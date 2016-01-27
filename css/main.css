@@ -27,7 +27,8 @@ a {
 }
 a:hover,
 a:focus {
-  color: #0085a1;
+  /*color: #0085a1;*/
+  color: #159957;
 }
 blockquote {
   color: #808080;
@@ -62,12 +63,14 @@ hr.small {
 ::-moz-selection {
   color: white;
   text-shadow: none;
-  background: #0085a1;
+  /*background: #0085a1;*/
+  background: #159957;
 }
 ::selection {
   color: white;
   text-shadow: none;
-  background: #0085a1;
+  /*background: #0085a1;*/
+  background: #159957;
 }
 img::selection {
   color: white;
@@ -116,7 +119,8 @@ img {
 .navbar-custom .navbar-brand:focus ,
 .navbar-custom .nav li a:hover,
 .navbar-custom .nav li a:focus {
-  color: #0085a1;
+  /*color: #0085a1;*/
+  color: #159957;
 }
 
 @media only screen and (min-width: 768px) {
@@ -359,8 +363,10 @@ header.header-post .post-heading .post-subheading {
 .pager li a:hover,
 .pager li a:focus {
   color: #FFF;
-  background: #0085a1;
-  border: 1px solid #0085a1;
+  /*background: #0085a1;*/
+  background: #159957;
+  /*border: 1px solid #0085a1;*/
+  border: 1px solid #159957;
 }
 
 .pager {

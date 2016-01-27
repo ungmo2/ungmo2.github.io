@@ -31,7 +31,7 @@ title: Javascript Introduction
   * ECMAScript 6 : [ECMA-262 6th edition](http://www.ecma-international.org/ecma-262/6.0/ECMA-262.pdf.) (2015.06)  
   Symbol type, let keyword, module system, Arrow Function, class 등이 추가되었다. <sup id="a2">[`[2]`](#f2)</sup>
 
-#Hello World
+# Hello World
 
 {% highlight html linenos %}
 <!DOCTYPE html>
@@ -81,7 +81,7 @@ HTML에서 javascript가 실행될 때 이하와 같은 동작을 할 것이다.
 `<body>`요소의 가장 아래에 스크립트를 위치시키는 것은 좋은 아이디어이다.
 HTML 요소들이 스크립트 로딩 지연으로 인해 렌더링에 지장 받는 일이 발생하지 않아 페이지 로딩 시간이 단축된다.
 
-#JavaScript Output
+# JavaScript Output
 Javascript에서 data를 표시하는 방법은 아래와 같다.
 | Type            | Code             |
 | --------------- | ---------------- |
@@ -106,6 +106,24 @@ Javascript에서 data를 표시하는 방법은 아래와 같다.
 </body>
 </html>
 {% endhighlight %}
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>My First Web Page</h1>
+  <p id="demo"></p>
+
+  <script>
+    window.alert("alert");
+    document.write("document.write");
+    document.getElementById("demo").innerHTML = "innerHTML";
+    console.log("console.log");
+  </script>
+</body>
+</html>
+```
+
 ***  
 
 <b id="f1">1.</b> [ECMAScript Version](https://developer.mozilla.org/ko/docs/Web/JavaScript/%EC%96%B8%EC%96%B4_%EB%A6%AC%EC%86%8C%EC%8A%A4) [↩](#a1)  

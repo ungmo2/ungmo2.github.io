@@ -70,10 +70,12 @@ footer-links-active:
 
 # Output options (more information on Jekyll's site)
 timezone: "Asis/Seoul"
-# markdown: kramdown
-markdown: redcarpet
-redcarpet:
-  extensions: ["smart", "tables", "no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript", "with_toc_data"]
+markdown: kramdown
+kramdown:
+  input: GFM # Enable GitHub Flavored Markdown (fenced code blocks)
+# markdown: redcarpet
+# redcarpet:
+#   extensions: ["smart", "tables", "no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript", "with_toc_data"]
 highlighter: Pygments
 permalink: /:year-:month-:day-:title
 # gems: [jekyll-paginate]

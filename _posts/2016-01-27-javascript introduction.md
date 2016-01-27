@@ -39,7 +39,7 @@ title: Javascript Introduction
 <body>
   <h1>My Web Page</h1>
   <p id="demo">A Paragraph</p>
-  <button type="button" onclick="myFunction()">Try it</button>
+  <button type="button" onclick="myFunction()">Try it</button>
   <script>
     function myFunction() {
       var myParagraph = document.getElementById("demo");

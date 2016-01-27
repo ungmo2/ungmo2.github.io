@@ -67,6 +67,7 @@ String str = "Hello World";
 위의 Java 예제에서 <1> 은 데이터 타입, <2>는 변수명, <3>은 (String) 리터럴(literal)이다.
 
 자바스크립트는 7가지 데이터 타입을 제공한다.
+
 * 기본 자료형 (primitive data type)
   * `Boolean`
   * `null`

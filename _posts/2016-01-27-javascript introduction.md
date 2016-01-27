@@ -53,7 +53,7 @@ title: Javascript Introduction
 Javascript는 interactive한 웹페이지 작성을 가능하게 한다. 즉, 웹 브라우저가 웹페이지를 로드한 후 그 내용을 변경할 수 있다.
 예를 들면, Contents에 접근하여 수정할 수 있으며 이벤트(e.g. 버튼 클릭, 웹페이지 로딩 완료 등)에 반응하여 특정 스크립트를 실행할 수 있다.
 
-#External JavaScript
+# External JavaScript
 {% highlight html linenos %}
 <!DOCTYPE html>
 <html>

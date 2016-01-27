@@ -6,16 +6,18 @@ description: >
   Google search results) and in your feed.xml site description.
 
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://hitchhiker.ma" # the base hostname & protocol for your site
+# url: "http://hitchhiker.ma" # the base hostname & protocol for your site
 
 author:
-  fullname: Motaquillah Maddane
-  googleplus: https://www.google.com/+MotaquillahMaddane
-  github: kronik3r
-  twitter: electrik_frog
+  fullname: Ungmo Lee
+  # googleplus: https://www.google.com/+MotaquillahMaddane
+  github: ungmo2
+  # twitter: electrik_frog
   # disqus: your_disqus_username
 
 # google_analytics: 'UA-XXXXXXXX-X'
 
 # Build settings
 markdown: kramdown
+
+pygments: true

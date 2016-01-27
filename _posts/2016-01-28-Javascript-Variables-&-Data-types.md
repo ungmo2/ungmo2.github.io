@@ -185,10 +185,6 @@ Scope란 변수(매개변수 포함)에의 접근성과 생존기간(life-cycle)
 
 C-family language 대부분은 `block-scope`를 사용하지만 Javascript는 `function scope`를 사용한다.
 
-변수를 함수 밖에서 선언하면 `전역변수(Global variable)`가 된다. 전역변수는 어니 곳에서든지 접근이 가능하다.
-
-함수 내부에서 선언된 변수는 함수 내부에서만 접근이 가능하다. 이런 변수를 `지역변수(Local variable)`이라한다.
-
 ```c
 int main(void) {
   // block-scope
@@ -202,6 +198,10 @@ int main(void) {
   return 0;
 }
 ```
+
+변수를 함수 밖에서 선언하면 `전역변수(Global variable)`가 된다. 전역변수는 어니 곳에서든지 접근이 가능하다.
+
+함수 내부에서 선언된 변수는 함수 내부에서만 접근이 가능하다. 이런 변수를 `지역변수(Local variable)`이라한다.
 
 ```javascript
 // non-block-scope

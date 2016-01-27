@@ -18,7 +18,7 @@ Colorless green ideas sleep furiously.
 
 위 문장은 문법(Syntax)적으로 전혀 문제가 없지만 의미(Semantics)는 없다.
 
-{% highlight c %}
+{% highlight c linenos %}
 // syntax is okay (type identifier = value),
 // semantics is wrong ("five" is not an int).
 // Syntax is what the grammar allows, semantics is what it means.

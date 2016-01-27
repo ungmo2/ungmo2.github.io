@@ -62,20 +62,20 @@ x = 6; // 정수값의 할당
 
 ```java
 String str = "Hello World";
-< 1 >   < 2 >      < 3 >
+< 1 > < 2 >      < 3 >
 ```
 위의 Java 예제에서 <1> 은 데이터 타입, <2>는 변수명, <3>은 (String) 리터럴(literal)이다.
 
 자바스크립트는 7가지 데이터 타입을 제공한다.
 
-* 기본 자료형 (primitive data type)
-  * `Boolean`
-  * `null`
-  * `undefined`
-  * `Number`
-  * `String`
-  * `Symbol` (New in ECMAScript 6)
-* `Object`
+*기본 자료형 (primitive data type)
+  *`Boolean`
+  *`null`
+  *`undefined`
+  *`Number`
+  *`String`
+  *`Symbol` (New in ECMAScript 6)
+*`Object`
 
 리터럴이란 값을 표현하는 방식을 의미한다.
 자바스크립트는 값(value)을 표현하기 위해 리터럴을 사용한다.  그리고 대부분 값은 변수에 저장된다 (변수도 값이다!)

@@ -60,7 +60,7 @@ Javascript는 interactive한 웹페이지 작성을 가능하게 한다. 즉, �
 <body>
   <h1>My Web Page</h1>
   <p id="demo">A Paragraph</p>
-  <button type="button" onclick="myFunction()">Try it</button>
+  <button type="button" onclick="myFunction()">Try it</button>
   <script src="extern.js"></script>
 </body>
 </html>

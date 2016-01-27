@@ -410,3 +410,23 @@ header.header-post .post-heading .post-subheading {
 .blog-post table tr td :last-child {
   margin-bottom: 0;
 }
+
+table {
+  width: 100%;
+  overflow: auto;
+  display: block;
+  border-spacing: 0;
+  border-collapse: collapse;
+  margin: 15px 0;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table th,
+table td {
+  border: 1px solid #ddd;
+  padding: 6px 13px;
+}

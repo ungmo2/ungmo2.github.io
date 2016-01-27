@@ -107,21 +107,7 @@ Javascript에서 data를 표시하는 방법은 아래와 같다.
 </body>
 </html>
 ```
-First Header | Second Header
------------- | -------------
-Content from cell 1 | Content from cell 2
-Content in the first column | Content in the second column
-
-
-
-
-| Left-Aligned  | Center Aligned  | Right Aligned |
-| :------------ |:---------------:| -----:|
-| col 3 is      | some wordy text | $1600 |
-| col 2 is      | centered        |   $12 |
-| zebra stripes | are neat        |    $1 |
 ***
 
-<b id="f1">1.</b> [ECMAScript Version](https://developer.mozilla.org/ko/docs/Web/JavaScript/%EC%96%B8%EC%96%B4_%EB%A6%AC%EC%86%8C%EC%8A%A4) [↩](#a1)
-
+<b id="f1">1.</b> [ECMAScript Version](https://developer.mozilla.org/ko/docs/Web/JavaScript/%EC%96%B8%EC%96%B4_%EB%A6%AC%EC%86%8C%EC%8A%A4) [↩](#a1)  
 <b id="f2">2.</b> [ECMAScript 6 New Features: Overview & Comparison](http://es6-features.org) [↩](#a2)

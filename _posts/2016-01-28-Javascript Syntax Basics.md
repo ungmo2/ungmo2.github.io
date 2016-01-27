@@ -2,7 +2,7 @@
 layout: post
 title: Javascript Syntax Basics
 ---
-[TOC]
+{:toc:}
 
 # statement
 프로그램(스크립트)은 컴퓨터(Client-side Javascript의 경우, 엄밀히 말하면 웹 브라우저)에 의해 단계별로 수행될 명령들의 집합이다.

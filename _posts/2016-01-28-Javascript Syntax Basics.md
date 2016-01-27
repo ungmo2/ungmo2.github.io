@@ -68,7 +68,7 @@ String str = "Hello World";
 
 자바스크립트는 7가지 데이터 타입을 제공한다.
 
-*기본 자료형 (primitive data type)
+*기본 자료형 (primitive data type)  
   *`Boolean`
   *`null`
   *`undefined`

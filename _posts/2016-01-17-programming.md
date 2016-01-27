@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Programming!
+title: Coding!
 ---
 
-프로그래밍은 수행하여야 할 명령을 컴퓨터에게 전달하는 일종의 커뮤니케이션이다.
+Coding(프로그래밍)은 수행하여야 할 명령을 컴퓨터에게 전달하는 일종의 커뮤니케이션이다.
 
 이때 인간만이 이해할 수 있는 자연어가 아닌 컴퓨터가 이해할 수 있는 언어인 기계어로 명령을 전달해야 한다. 그런데 인간이 기계어를 이해하여 직접 명령을 전달하는 것은 매우 어려운 작업이다.
 
@@ -11,20 +11,18 @@ title: Programming!
 
 따라서 프로그래밍을 학습한다고 하는 것은 문법을 배우는 것이 된다. 이는 외국어 학습과도 유사하다 할 수 있는데 문법을 잘 안다고해서 외국어를 잘한다고 말 할 수는 없을 것이다. 상대방의 말이나 문장을 적절히 이해한 후, 문맥에 따른 적당한 어휘 선택과 결론으로 이끌어가는 순차적인 문장의 구성이 필요할 것이다. 즉 의미(Semantics)를 가지고 있어야 한다.
 
-{% highlight bash %}
-Colorless green ideas sleep furiously.
-- Noam Chomsky
-{% endhighlight %}
+> Colorless green ideas sleep furiously.
+> - Noam Chomsky
 
 위 문장은 문법(Syntax)적으로 전혀 문제가 없지만 의미(Semantics)는 없다.
 
-{% highlight c linenos %}
+```c linenos
 // syntax is okay (type identifier = value),
 // semantics is wrong ("five" is not an int).
 // Syntax is what the grammar allows, semantics is what it means.
 
 int x = "five"; // warning: incompatible pointer to integer conversion initializing 'int' with an expression of type 'char [5]' [-Wint-conversion]
-{% endhighlight %}
+```
 
 위 C언어 구문은 문법적으로 문제가 없으나 의미적으로는 틀리다. ("five"는 정수가 아니라 문자열이다.)
 
@@ -34,4 +32,4 @@ int x = "five"; // warning: incompatible pointer to integer conversion initializ
 
 자연어의 문장은 프로그래밍의 구문(Statement)에 해당한다. 구문은 변수와 값, 키워드, 연산자, 표현식, 주석으로 구성된다. 즉, 변수를 통해 값를 저장하고 참조하며 연산자로 값을 연산, 평가하고 조건문과 반복문에 의한 흐름제어로 데이터의 흐름을 제어하고 함수로 구문의 집합을 만들며 객체, 배열 등으로 자료를 구조화한다.
 
->***프로그래밍은 요구사항의 집합을 분석하여 적절한 자료구조와 함수의 집합으로 변환한 후 그 흐름을 제어하는 것이다.***
+> ***프로그래밍은 요구사항의 집합을 분석하여 적절한 자료구조와 함수의 집합으로 변환한 후 그 흐름을 제어하는 것이다.***

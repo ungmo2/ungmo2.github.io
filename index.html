@@ -2,13 +2,14 @@
 layout: page
 title: Ready to Learn Coding?
 subtitle: Javascript, Node.js, Express, etc.
+css: /css/typing-effect.css
 ---
 
 <div class="posts-list">
   {% for post in paginator.posts %}
   <article class="post-preview">
     <a href="{{ post.url | prepend: site.baseurl }}">
-	  <h2 class="post-title">{{ post.title }}</h2>
+	  <h2 class="post-title css-typing">{{ post.title }}</h2>
 
 	  {% if post.subtitle %}
 	  <h3 class="post-subtitle">

@@ -71,8 +71,9 @@ footer-links-active:
 # Output options (more information on Jekyll's site)
 timezone: "Asis/Seoul"
 markdown: kramdown
-highlighter: pygments
+highlighter: Pygments
 permalink: /:year-:month-:day-:title
+gems: [jekyll-paginate]
 paginate: 10
 
 # Default YAML values (more information on Jekyll's site)

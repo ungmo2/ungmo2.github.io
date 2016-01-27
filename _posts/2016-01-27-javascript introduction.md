@@ -83,6 +83,7 @@ HTML 요소들이 스크립트 로딩 지연으로 인해 렌더링에 지장 �
 
 # JavaScript Output
 Javascript에서 data를 표시하는 방법은 아래와 같다.
+
 | Type            | Code             |
 | --------------- | ---------------- |
 | alert box       | window.alert()   |

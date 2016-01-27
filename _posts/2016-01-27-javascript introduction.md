@@ -24,16 +24,16 @@ title: Javascript Introduction
 * Javascript는 Interpreter language이기 때문에 compile이 필요없어 HTML파일 안에 직접 기술이 가능하다.
 
 * ECMAScript Version <sup id="a1">[`[1]`](#f1)</sup>
-  * ECMAScript 3 : [ECMA-262 3rd edition](http://www.ecma-international.org/publications/files/ECMA-ST-ARCH/ECMA-262,%203rd%20edition,%20December%201999.pdf) (1999.12)  
+  * ECMAScript 3 : [ECMA-262 3rd edition](http://www.ecma-international.org/publications/files/ECMA-ST-ARCH/ECMA-262,%203rd%20edition,%20December%201999.pdf) (1999.12)
   가장 범용적으로 지원되는 버전이다.
-  * ECMAScript 5 : [ECMA-262 5th edition](http://www.ecma-international.org/publications/files/ECMA-ST-ARCH/ECMA-262%205th%20edition%20December%202009.pdf) (2009.12)  
+  * ECMAScript 5 : [ECMA-262 5th edition](http://www.ecma-international.org/publications/files/ECMA-ST-ARCH/ECMA-262%205th%20edition%20December%202009.pdf) (2009.12)
   HTML5와 함께 출현한 표준안이다. 인터넷 익스플로러 9이상이나 그 외 브라우저에서만 작동한다.
-  * ECMAScript 6 : [ECMA-262 6th edition](http://www.ecma-international.org/ecma-262/6.0/ECMA-262.pdf.) (2015.06)  
+  * ECMAScript 6 : [ECMA-262 6th edition](http://www.ecma-international.org/ecma-262/6.0/ECMA-262.pdf.) (2015.06)
   Symbol type, let keyword, module system, Arrow Function, class 등이 추가되었다. <sup id="a2">[`[2]`](#f2)</sup>
 
 # Hello World
 
-{% highlight html linenos %}
+```html
 <!DOCTYPE html>
 <html>
 <body>
@@ -48,13 +48,13 @@ title: Javascript Introduction
   </script>
 </body>
 </html>
-{% endhighlight %}
+```
 
 Javascript는 interactive한 웹페이지 작성을 가능하게 한다. 즉, 웹 브라우저가 웹페이지를 로드한 후 그 내용을 변경할 수 있다.
 예를 들면, Contents에 접근하여 수정할 수 있으며 이벤트(e.g. 버튼 클릭, 웹페이지 로딩 완료 등)에 반응하여 특정 스크립트를 실행할 수 있다.
 
 # External JavaScript
-{% highlight html linenos %}
+```html
 <!DOCTYPE html>
 <html>
 <body>
@@ -64,14 +64,14 @@ Javascript는 interactive한 웹페이지 작성을 가능하게 한다. 즉, �
   <script src="extern.js"></script>
 </body>
 </html>
-{% endhighlight %}
+```
 
-{% highlight javascript linenos %}
+```javascript
 function myFunction() {
   var myParagraph = document.getElementById("demo");
   myParagraph.innerHTML = "Hello world!";
 }
-{% endhighlight %}
+```
 
 HTML에서 javascript가 실행될 때 이하와 같은 동작을 할 것이다.
 1. 브라우저가 script 요소를 만나면, 문서의 렌더링을 잠시 중단하고
@@ -90,23 +90,6 @@ Javascript에서 data를 표시하는 방법은 아래와 같다.
 | HTML element    | innerHTML        |
 | Browser console | console.log()    |
 
-{% highlight html linenos %}
-<!DOCTYPE html>
-<html>
-<body>
-  <h1>My First Web Page</h1>
-  <p id="demo"></p>
-
-  <script>
-    window.alert("alert");
-    document.write("document.write");
-    document.getElementById("demo").innerHTML = "innerHTML";
-    console.log("console.log");
-  </script>
-</body>
-</html>
-{% endhighlight %}
-
 ```html
 <!DOCTYPE html>
 <html>
@@ -124,7 +107,7 @@ Javascript에서 data를 표시하는 방법은 아래와 같다.
 </html>
 ```
 
-***  
+***
 
-<b id="f1">1.</b> [ECMAScript Version](https://developer.mozilla.org/ko/docs/Web/JavaScript/%EC%96%B8%EC%96%B4_%EB%A6%AC%EC%86%8C%EC%8A%A4) [↩](#a1)  
+<b id="f1">1.</b> [ECMAScript Version](https://developer.mozilla.org/ko/docs/Web/JavaScript/%EC%96%B8%EC%96%B4_%EB%A6%AC%EC%86%8C%EC%8A%A4) [↩](#a1)
 <b id="f2">2.</b> [ECMAScript 6 New Features: Overview & Comparison](http://es6-features.org) [↩](#a2)

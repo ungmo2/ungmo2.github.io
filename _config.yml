@@ -113,7 +113,7 @@ prose:
     - _config.yml
     - /_layouts
     - /_includes
-    # - /css
+    - /css
     - /img
     - /js
   metadata:

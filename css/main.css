@@ -433,3 +433,7 @@ table td {
   border: 1px solid #ddd;
   padding: 6px 13px;
 }
+
+h2.post-title {
+  color: #159957;
+}

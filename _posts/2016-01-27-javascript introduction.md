@@ -7,7 +7,7 @@ title: Javascript Introduction
 
 * JavaScript는 멀티-패러다임 언어로 명령형 (imperative), 함수형 (functional), 프로토타입 기반 (prototype-based) 객체지향형 언어다.
 
-* 비록 다른 객체지향적인 언어들과의 차이점에 대한 논쟁들이 있긴 하지만, JavaScript는 강력한 객체지향 프로그래밍 능력들을 지니고 있다. ~~간혹 클래스가 없어서 객체지향이 아니라고 생각하는 사람들도 있으나 프로토타입 객체지향 방식의 객체지향 언어다.~~
+* 비록 다른 객체지향적인 언어들과의 차이점에 대한 논쟁들이 있긴 하지만, JavaScript는 강력한 객체지향 프로그래밍 능력들을 지니고 있다. 간혹 클래스가 없어서 객체지향이 아니라고 생각하는 사람들도 있으나 프로토타입 객체지향 방식의 객체지향 언어다.
 
 * Javascript는 웹은 물론 모바일 하이브리드 앱(PhoneGap or Appcelerator), 서버 사이드([NodeJS](https://nodejs.org/) or Wakanda), Desk-top(NW.js, Electron, AppJS), 로봇 제어(nodebot or nodruino) 언어로서 세계에서 가장 인기있는 언어이다. ([가장 많은 오해를 받는 언어이기도 하다](http://javascript.crockford.com/javascript.html))
 
@@ -74,6 +74,7 @@ function myFunction() {
 ```
 
 HTML에서 javascript가 실행될 때 이하와 같은 동작을 할 것이다.
+
 1. 브라우저가 script 요소를 만나면, 문서의 렌더링을 잠시 중단하고
 2. 브라우저는 src 속성에 정의된 자바스크립트 파일을 로드한다.
 3. 스크립트를 실행한 뒤 다음 작업을 진행한다.
@@ -90,6 +91,7 @@ Javascript에서 data를 표시하는 방법은 아래와 같다.
 | HTML output     | document.write() |
 | HTML element    | innerHTML        |
 | Browser console | console.log()    |
+
 
 ```html
 <!DOCTYPE html>
@@ -109,5 +111,5 @@ Javascript에서 data를 표시하는 방법은 아래와 같다.
 ```
 ***
 
-<b id="f1">1.</b> [ECMAScript Version](https://developer.mozilla.org/ko/docs/Web/JavaScript/%EC%96%B8%EC%96%B4_%EB%A6%AC%EC%86%8C%EC%8A%A4) [↩](#a1)  
+<b id="f1">1.</b> [ECMAScript Version](https://developer.mozilla.org/ko/docs/Web/JavaScript/%EC%96%B8%EC%96%B4_%EB%A6%AC%EC%86%8C%EC%8A%A4) [↩](#a1)
 <b id="f2">2.</b> [ECMAScript 6 New Features: Overview & Comparison](http://es6-features.org) [↩](#a2)

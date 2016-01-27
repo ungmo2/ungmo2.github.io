@@ -1,265 +1,46 @@
-<!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Variables by ungmo2</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">Variables</h1>
-      <h2 class="project-tagline">2016.01.27</h2>
-    </section>
-
-    <section class="main-content">
-      <h1>
-<a id="variables" class="anchor" href="#variables" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Variables</h1>
-
-<p>어플리케이션에서 값(value)을 유지할 필요가 있을 때 변수를 사용한다.  </p>
-
-<p>변수는 값을 저장, 조회, 조작하는 데 사용되며 다른 사용자가 변수가 수행하는 작업을 쉽게 이해할 수 있도록 의미있는 이름을 지정하여야한다.</p>
-
-<p>변수명은 identifier(식별자)로 불리기도 하며 명명 규칙이 존재한다.</p>
-
-<ul>
-<li>반드시 문자(특수문자 제외), underscore ( _ ), 또는 달러 기호($)로 시작하여야 한다. 이어지는 문자에는 숫자(0~9)도 사용할 수 있다.</li>
-<li>JavaScript는 대/소문자를 구별하므로 사용할 수 있는 문자는 "A" ~ "Z" (대문자)와 "a" ~ "z" (소문자)이다.</li>
-</ul>
-
-<p>변수를 선언할 때 <code>var</code> keyword가 사용된다. 등호(=, equal sign)는 변수에 값을 할당하기 위해 사용된다.</p>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> name;     <span class="pl-c">// 변수 name 선언</span>
-name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>Lee<span class="pl-pds">'</span></span>; <span class="pl-c">// 변수 name에 값 'Lee'가 저장(할당)되었다.</span>
-
-<span class="pl-k">var</span> age <span class="pl-k">=</span> <span class="pl-c1">30</span>; <span class="pl-c">// 선언과 할당</span>
-
-<span class="pl-k">var</span> person <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>John Doe<span class="pl-pds">"</span></span>,
-    carName <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>Volvo<span class="pl-pds">"</span></span>,
-    price <span class="pl-k">=</span> <span class="pl-c1">200</span>;
-
-<span class="pl-k">var</span> price1 <span class="pl-k">=</span> <span class="pl-c1">5</span>;
-<span class="pl-k">var</span> price2 <span class="pl-k">=</span> <span class="pl-c1">6</span>;
-<span class="pl-k">var</span> total <span class="pl-k">=</span> price1 <span class="pl-k">+</span> price2;</pre></div>
-
-<p>초기화되지 않은 변수는 <code>undefined</code> 값을 갖게 된다. 미선언 변수에 접근하면 <code>ReferenceError</code> 예외가 발생한다.</p>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> x;
-<span class="pl-en">console</span>.<span class="pl-c1">log</span>(x); <span class="pl-c">// logs "undefined"</span>
-<span class="pl-en">console</span>.<span class="pl-c1">log</span>(y); <span class="pl-c">// throws ReferenceError exception</span></pre></div>
-
-<h1>
-<a id="data-types" class="anchor" href="#data-types" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Data Types</h1>
-
-<p>최신 ECMAScript 표준(ECMAScript 2015 (6th Edition, ECMA-262) / 2015.06)은 7개의 data type을 정의한다</p>
-
-<ul>
-<li>기본 자료형 (primitive data type)
-
-<ul>
-<li><code>Boolean</code></li>
-<li><code>null</code></li>
-<li><code>undefined</code></li>
-<li><code>Number</code></li>
-<li><code>String</code></li>
-<li>
-<code>Symbol</code> (New in ECMAScript 6)</li>
-</ul>
-</li>
-<li><code>Object</code></li>
-</ul>
-
-<h2>
-<a id="primitive-data-type-기본자료형" class="anchor" href="#primitive-data-type-%EA%B8%B0%EB%B3%B8%EC%9E%90%EB%A3%8C%ED%98%95" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Primitive Data Type (기본자료형)</h2>
-
-<p>기본자료형(Primitive data type)의 값은 변경 불가능한 값 (immutable value)이다. 또한 이들은 pass-by-value이다.</p>
-
-<h3>
-<a id="boolean" class="anchor" href="#boolean" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Boolean</h3>
-
-<p>논리적인 요소를 나타내며 <code>true</code>와 <code>false</code> 두가지 값을 가질 수 있다. 비어있는 문자열과 <code>null</code>, <code>undefined</code>, 숫자 0은 <code>false</code>로 간주된다.</p>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> foo <span class="pl-k">=</span> <span class="pl-c1">true</span>;
-<span class="pl-k">var</span> bar <span class="pl-k">=</span> <span class="pl-c1">false</span>;</pre></div>
-
-<h3>
-<a id="null" class="anchor" href="#null" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>null</h3>
-
-<p>null 타입은 딱 한 가지 값, <code>null</code> 을 가질 수 있다. JavaScript는 case-sensitive하므로 <code>null</code>은 Null, NULL등과 다르다.</p>
-
-<p>Computer science에서 <code>null</code>은 의도적으로 기본형(primitives)과 object에 값이 없다는 것을 명시한 것이다. 따라서 값이 없는 변수의 초기화 시 <code>null</code>을 사용한다.</p>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> foo <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>Lee<span class="pl-pds">'</span></span>;
-foo <span class="pl-k">=</span> <span class="pl-c1">null</span>;  <span class="pl-c">// 값 또는 참조 정보가 제거됨</span></pre></div>
-
-<h3>
-<a id="undefined" class="anchor" href="#undefined" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>undefined</h3>
-
-<p>값을 할당하지 않은 변수는 <code>undefined</code> 값을 가진다. 즉, 선언은 되었지만 할당된 적이 없는 변수에 접근하거나 존재하지 않는 객체 프로퍼티에 접근할 경우 반환된다.</p>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> foo;
-<span class="pl-en">console</span>.<span class="pl-c1">log</span>(foo); <span class="pl-c">// undefined</span></pre></div>
-
-<h3>
-<a id="number" class="anchor" href="#number" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Number</h3>
-
-<p>ECMAScript 표준에 따르면, 숫자의 자료형은 배정밀도 64비트 부동 소수점 형 (double-precision 64-bit floating-point format : -(2<sup>53</sup> -1) 와 2<sup>53</sup> -1 사이의 숫자값) 단 하나만 존재한다. 정수만을 표현하기 위한 특별한 자료형(integer type)은 없다.</p>
-
-<p>추가적으로 세가지 의미있는 기호적인 값들도 표현할 수 있다.</p>
-
-<ul>
-<li>
-<code>+/-</code> Infinity</li>
-<li>
-<code>NaN</code> (not-a-number)</li>
-</ul>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> x <span class="pl-k">=</span> <span class="pl-c1">10</span>;
-<span class="pl-k">var</span> y <span class="pl-k">=</span> <span class="pl-c1">10.12</span>;
-<span class="pl-k">var</span> z <span class="pl-k">=</span> <span class="pl-k">-</span><span class="pl-c1">20</span>;
-
-<span class="pl-k">var</span> foo <span class="pl-k">=</span> <span class="pl-c1">1</span> <span class="pl-k">*</span> <span class="pl-s"><span class="pl-pds">'</span>string<span class="pl-pds">'</span></span>;
-<span class="pl-en">console</span>.<span class="pl-c1">log</span>(foo);  <span class="pl-c">// NaN</span></pre></div>
-
-<h3>
-<a id="string" class="anchor" href="#string" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>String</h3>
-
-<p>String 타입은 텍스트 데이터를 나타내는데 사용한다. 이는 0개 또는 그 이상의 유니코드(16비트 부호없는 정수 값) 문자들의 집합이다.</p>
-
-<p>C와 같은 언어와는 다르게, 자바스크립트의 문자열은 변경 불가능 (immutable) 하다.</p>
-
-<p>이것은 한 번 문자열이 생성되면, 그 문자열을 변경할 수 없다는걸 의미한다.
-그러나 원래 문자열에서 일부가 수정된 다른 문자열을 만드는건 가능하다. 예를 들면</p>
-
-<ul>
-<li>원래 문자열에서 각각의 글자를 추출하거나 String.substr()을 사용해서 만든 부분 문자열</li>
-<li>접합 연산자 (+) 나 String.concat() 으로 두 문자열을 합친 문자열</li>
-</ul>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>John Doe<span class="pl-pds">"</span></span>;   <span class="pl-c">// Using double quotes</span>
-<span class="pl-k">var</span> name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>John Doe<span class="pl-pds">'</span></span>;   <span class="pl-c">// Using single quotes</span>
-
-<span class="pl-k">var</span> answer <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>It's alright<span class="pl-pds">"</span></span>;          <span class="pl-c">// Single quote inside double quotes</span>
-<span class="pl-k">var</span> answer <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>He is called 'Johnny'<span class="pl-pds">"</span></span>; <span class="pl-c">// Single quotes inside double quotes</span>
-<span class="pl-k">var</span> answer <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>He is called "Johnny"<span class="pl-pds">'</span></span>; <span class="pl-c">// Double quotes inside single quotes</span></pre></div>
-
-<h3>
-<a id="symbol" class="anchor" href="#symbol" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Symbol</h3>
-
-<p>ECMAScript 6 에서 추가되었다. Symbol은 유일하고 변경 불가능한 (immutable) 기본값 (primitive value) 이다. 또한, 객체 속성의 key 값으로도 사용될 수 있다. 몇몇 프로그래밍 언어에서는 Symbol을 atom 이라고 부른다. C 언어의 이름있는 열거형 (enum) 과도 비슷하다.</p>
-
-<h3>
-<a id="object" class="anchor" href="#object" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Object</h3>
-
-<p>6가지 기본자료형을 제외한 나머지는 모두 객체이다.</p>
-
-<ul>
-<li>함수 (Function)</li>
-<li>배열 (Array)</li>
-<li>날짜 (Date)</li>
-<li>정규식 (RegExp)</li>
-</ul>
-
-<p>이것들은 모두 객체이다. 또한 객체는 pass-by-reference이다</p>
-
-<h2>
-<a id="dynamic-type" class="anchor" href="#dynamic-type" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dynamic Type</h2>
-
-<p>C-family language은 변수의 data type(자료형)을 미리 선언하고 data type에 맞는 값을 대입하여야한다. (statically typed languages)</p>
-
-<div class="highlight highlight-source-c"><pre><span class="pl-k">int</span> <span class="pl-en">main</span>(<span class="pl-k">void</span>) {
-  <span class="pl-k">int</span> num = <span class="pl-c1">46</span>;
-  <span class="pl-k">char</span> * str = <span class="pl-s"><span class="pl-pds">"</span>String<span class="pl-pds">"</span></span>;
-
-  num = <span class="pl-s"><span class="pl-pds">"</span>String<span class="pl-pds">"</span></span>; <span class="pl-c">// warning: incompatible pointer to integer conversion assigning to 'int' from 'char [7]'</span>
-
-  <span class="pl-k">return</span> <span class="pl-c1">0</span>;
-}</pre></div>
-
-<p>Javascript는 느슨한 타입(loosely typed) 언어 혹은 동적(dynamic typed) 언어이다. 이것은 변수의 data type을 미리 선언할 필요없이 값이 할당되는 과정에서 자동으로 data type이 결정될 것이라는 뜻이다. 따라서 같은 변수에 여러 data type의 값을 대입할 수 있다.</p>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> foo <span class="pl-k">=</span> <span class="pl-c1">3</span>;                 <span class="pl-c">// Number</span>
-foo <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>Hi there<span class="pl-pds">"</span></span>;            <span class="pl-c">// String</span>
-foo <span class="pl-k">=</span> <span class="pl-c1">true</span>;                  <span class="pl-c">// Boolean</span>
-foo <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>The answer is <span class="pl-pds">"</span></span> <span class="pl-k">+</span> <span class="pl-c1">42</span>; <span class="pl-c">// "The answer is 42“</span>
-foo <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>37<span class="pl-pds">"</span></span> <span class="pl-k">-</span> <span class="pl-c1">7</span>;              <span class="pl-c">// 30</span>
-foo <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>37<span class="pl-pds">"</span></span> <span class="pl-k">+</span> <span class="pl-c1">7</span>;              <span class="pl-c">// "377"</span></pre></div>
-
-<h2>
-<a id="immutability-in-javascript" class="anchor" href="#immutability-in-javascript" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Immutability in JavaScript</h2>
-
-<p>Immutability (변경불가성)은 함수형 프로그래밍의 핵심 원리이다. 뿐만 아니라, 객체 지향 프로그램을 위한 기능을 제공하고 있다</p>
-
-<p><code>object</code> type을 제외한 모든 data type은 한번 정해지면 변경이 불가능한 값 (immutable value)이다.
-C 언어와는 다르게도, 문자열은 변경 불가능한 값 (immutable) 이다. 이런 값을 "primitive values" 라 한다. 
-(변경이 불가능하다는 뜻은 메모리 영역에서의 변경이 불가능하다는 뜻이다. 재할당은 가능하다)</p>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> statement <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>I am an immutable value<span class="pl-pds">"</span></span>; <span class="pl-c">// String is an immutable value</span>
-<span class="pl-k">var</span> otherStr <span class="pl-k">=</span> <span class="pl-smi">statement</span>.<span class="pl-c1">slice</span>(<span class="pl-c1">8</span>, <span class="pl-c1">17</span>);     <span class="pl-c">// “immutable”</span>
-<span class="pl-en">console</span>.<span class="pl-c1">log</span>(statement);                    </pre></div>
-
-<p>2행에서 Stirng객체의 slice 메서드는 statement 변수에 저장된 문자열을 변경하는 것이 아니라 사실은 새로운 문자열을 생성하여 반환하고 있다.
-그 이유는 문자열은 변경할 수 없는 immutable value이기 때문이다.</p>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> arr <span class="pl-k">=</span> [];
-<span class="pl-k">var</span> v2 <span class="pl-k">=</span> <span class="pl-smi">arr</span>.<span class="pl-c1">push</span>(<span class="pl-c1">2</span>);</pre></div>
-
-<p>상기 예제에서 v2의 값은 무엇인가? 문자열의 예와 같이 배열이 동작한다면 v2는 새로운 배열(하나의 요소를 가지고 그 값은 2인)을 가지게 될 것이다. 그러나 객체인 arr은 push 메서드에 의해 update되고 v2에는 배열의 새로운 <code>length</code> 값이 반환된다. (Passing by Reference)</p>
-
-<h1>
-<a id="variable-scope" class="anchor" href="#variable-scope" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Variable scope</h1>
-
-<p>Scope란 변수(매개변수 포함)에의 접근성과 생존기간(life-cycle)을 의미한다.</p>
-
-<p>C-family language 대부분은 <code>block-scope</code>를 사용하지만 Javascript는 <code>function scope</code>를 사용한다.</p>
-
-<p>변수를 함수 밖에서 선언하면 <code>전역변수(Global variable)</code>가 된다. 전역변수는 어니 곳에서든지 접근이 가능하다.</p>
-
-<p>함수 내부에서 선언된 변수는 함수 내부에서만 접근이 가능하다. 이런 변수를 <code>지역변수(Local variable)</code>이라한다.</p>
-
-<div class="highlight highlight-source-c"><pre><span class="pl-k">int</span> <span class="pl-en">main</span>(<span class="pl-k">void</span>) {
-  <span class="pl-c">// block-scope</span>
-  <span class="pl-k">if</span> (<span class="pl-c1">1</span>) {
-    <span class="pl-k">int</span> x = <span class="pl-c1">5</span>;
-    <span class="pl-c1">printf</span>(<span class="pl-s"><span class="pl-pds">"</span>x = <span class="pl-c1">%d</span><span class="pl-cce">\n</span><span class="pl-pds">"</span></span>, x);
-  }
-
-  <span class="pl-c1">printf</span>(<span class="pl-s"><span class="pl-pds">"</span>x = <span class="pl-c1">%d</span><span class="pl-cce">\n</span><span class="pl-pds">"</span></span>, x); <span class="pl-c">// use of undeclared identifier 'x'</span>
-
-  <span class="pl-k">return</span> <span class="pl-c1">0</span>;
-}</pre></div>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-c">// non-block-scope</span>
-<span class="pl-k">if</span> (<span class="pl-c1">true</span>) {
-  <span class="pl-k">var</span> x <span class="pl-k">=</span> <span class="pl-c1">5</span>;
-}
-<span class="pl-en">console</span>.<span class="pl-c1">log</span>(x);</pre></div>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-c">// Function-scope</span>
-<span class="pl-k">var</span> x <span class="pl-k">=</span> <span class="pl-c1">1</span>; <span class="pl-c">// global variable</span>
-
-<span class="pl-k">function</span> <span class="pl-en">foo</span>() {
-  x <span class="pl-k">=</span> <span class="pl-c1">2</span>;
-  y <span class="pl-k">=</span> <span class="pl-c1">3</span>;  <span class="pl-c">// 암묵적 전역</span>
-  <span class="pl-k">var</span> z <span class="pl-k">=</span> <span class="pl-c1">4</span>;  <span class="pl-c">// local variable</span>
-}
-
-<span class="pl-en">foo</span>();
-
-<span class="pl-en">console</span>.<span class="pl-c1">log</span>(x); <span class="pl-c">// logs "2"</span>
-<span class="pl-en">console</span>.<span class="pl-c1">log</span>(y); <span class="pl-c">// logs "3"</span>
-<span class="pl-en">console</span>.<span class="pl-c1">log</span>(z); <span class="pl-c">// Throws a ReferenceError</span></pre></div>
-
-      <footer class="site-footer">
-
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
-
-    </section>
-
+---
+layout: page
+title: My website
+subtitle: This is where I will tell my friends way too much about me
+---
+
+<div class="posts-list">
+  {% for post in paginator.posts %}
+  <article class="post-preview">
+    <a href="{{ post.url | prepend: site.baseurl }}">
+	  <h2 class="post-title">{{ post.title }}</h2>
+	
+	  {% if post.subtitle %}
+	  <h3 class="post-subtitle">
+	    {{ post.subtitle }}
+	  </h3>
+	  {% endif %}  
+    </a>
+
+    <p class="post-meta">
+      Posted on {{ post.date | date: "%B %-d, %Y" }}
+    </p>
   
-  </body>
-</html>
+    <div class="post-entry">
+      {{ post.content | truncatewords: 50 | strip_html | xml_escape}}
+	  <a href="{{ post.url | prepend: site.baseurl }}" class="post-read-more">[Read&nbsp;More]</a>
+    </div>
+  
+   </article>
+  {% endfor %}
+</div>
+
+{% if paginator.total_pages > 1 %}
+<ul class="pager main-pager">
+  {% if paginator.previous_page %}
+  <li class="previous">
+    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
+  </li>
+  {% endif %}
+  {% if paginator.next_page %}
+  <li class="next">
+    <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
+  </li>
+  {% endif %}
+</ul>
+{% endif %}

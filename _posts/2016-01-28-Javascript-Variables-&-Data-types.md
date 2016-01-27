@@ -41,6 +41,7 @@ console.log(y); // throws ReferenceError exception
 #Data Types
 최신 ECMAScript 표준(ECMAScript 2015 (6th Edition, ECMA-262) / 2015.06)은 7개의 data type을 정의한다
 
+
 * 기본 자료형 (primitive data type)
   * `Boolean`
   * `null`
@@ -83,6 +84,8 @@ console.log(foo); // undefined
 ECMAScript 표준에 따르면, 숫자의 자료형은 배정밀도 64비트 부동 소수점 형 (double-precision 64-bit floating-point format : -(2<sup>53</sup> -1) 와 2<sup>53</sup> -1 사이의 숫자값) 단 하나만 존재한다. 정수만을 표현하기 위한 특별한 자료형(integer type)은 없다.
 
 추가적으로 세가지 의미있는 기호적인 값들도 표현할 수 있다.
+
+
 * `+/-` Infinity
 * `NaN` (not-a-number)
 
@@ -101,7 +104,8 @@ String 타입은 텍스트 데이터를 나타내는데 사용한다. 이는 0�
 C와 같은 언어와는 다르게, 자바스크립트의 문자열은 변경 불가능 (immutable) 하다.
 
 이것은 한 번 문자열이 생성되면, 그 문자열을 변경할 수 없다는걸 의미한다.
-그러나 원래 문자열에서 일부가 수정된 다른 문자열을 만드는건 가능하다. 예를 들면
+그러나 원래 문자열에서 일부가 수정된 다른 문자열을 만드는건 가능하다. 예를 들면  
+
 
 * 원래 문자열에서 각각의 글자를 추출하거나 String.substr()을 사용해서 만든 부분 문자열
 * 접합 연산자 (+) 나 String.concat() 으로 두 문자열을 합친 문자열

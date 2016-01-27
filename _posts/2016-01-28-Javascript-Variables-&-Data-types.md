@@ -9,7 +9,8 @@ title: Javascript Variables & Data types
 변수는 값을 저장, 조회, 조작하는 데 사용되며 다른 사용자가 변수가 수행하는 작업을 쉽게 이해할 수 있도록 의미있는 이름을 지정하여야한다.
 
 변수명은 identifier(식별자)로 불리기도 하며 명명 규칙이 존재한다.
-* 반드시 문자(특수문자 제외), underscore ( _ ), 또는 달러 기호($)로 시작하여야 한다. 이어지는 문자에는 숫자(0~9)도 사용할 수 있다.
+
+* 반드시 문자(특수문자 제외), underscore ( _ ), 또는 달러 기호($)로 시작하여야 한다. 이어지는 문자에는 숫자(0~9)도 사용할 수 있다.  
 * JavaScript는 대/소문자를 구별하므로 사용할 수 있는 문자는 "A" ~ "Z" (대문자)와 "a" ~ "z" (소문자)이다.
 
 변수를 선언할 때 `var` keyword가 사용된다. 등호(=, equal sign)는 변수에 값을 할당하기 위해 사용된다.
@@ -39,6 +40,7 @@ console.log(y); // throws ReferenceError exception
 
 #Data Types
 최신 ECMAScript 표준(ECMAScript 2015 (6th Edition, ECMA-262) / 2015.06)은 7개의 data type을 정의한다
+
 * 기본 자료형 (primitive data type)
   * `Boolean`
   * `null`
@@ -100,6 +102,7 @@ C와 같은 언어와는 다르게, 자바스크립트의 문자열은 변경 �
 
 이것은 한 번 문자열이 생성되면, 그 문자열을 변경할 수 없다는걸 의미한다.
 그러나 원래 문자열에서 일부가 수정된 다른 문자열을 만드는건 가능하다. 예를 들면
+
 * 원래 문자열에서 각각의 글자를 추출하거나 String.substr()을 사용해서 만든 부분 문자열
 * 접합 연산자 (+) 나 String.concat() 으로 두 문자열을 합친 문자열
 
@@ -172,7 +175,6 @@ var v2 = arr.push(2);
 ```
 
 상기 예제에서 v2의 값은 무엇인가? 문자열의 예와 같이 배열이 동작한다면 v2는 새로운 배열(하나의 요소를 가지고 그 값은 2인)을 가지게 될 것이다. 그러나 객체인 arr은 push 메서드에 의해 update되고 v2에는 배열의 새로운 `length` 값이 반환된다. (Passing by Reference)
-
 
 #Variable scope
 Scope란 변수(매개변수 포함)에의 접근성과 생존기간(life-cycle)을 의미한다.

@@ -248,7 +248,8 @@ footer .theme-by {
 .post-preview a:focus,
 .post-preview a:hover {
   text-decoration: none;
-  color: #0085a1;
+  /*color: #0085a1;*/
+  color: #159957;
 }
 
 .post-preview .post-title {
@@ -432,8 +433,4 @@ table th,
 table td {
   border: 1px solid #ddd;
   padding: 6px 13px;
-}
-
-h2.post-title {
-  color: #159957;
 }

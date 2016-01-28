@@ -137,6 +137,6 @@ var status = Quo.prototype.get_status.apply(statusObject);
 console.log(status); // 'A-OK'
 ```
 
-#Reference**  
+#Reference  
 
 * [JavaScript : The Good Parts 04.Functions -by Douglas Crockford](http://www.yes24.com/24/goods/3071412?scode=032&OzSrank=1)  

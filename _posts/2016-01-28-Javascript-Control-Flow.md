@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Javascript Control Flow (흐름 제어)
+title: Javascript Control Flow
 ---
 
 #블록 구문(Block statement)

@@ -76,7 +76,6 @@ redcarpet:
 highlighter: pygments
 # permalink: /:year-:month-:day-:title
 permalink: /blog/:title
-# gems: [jekyll-paginate]
 paginate: 10
 paginate_path: "/page:num/"
 

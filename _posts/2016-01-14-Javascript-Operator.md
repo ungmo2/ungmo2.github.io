@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Javascript Operator
+categories: javascript
+tags: []
 ---
 
 # 산술 연산자 (Arithmetic Operators)

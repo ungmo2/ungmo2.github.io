@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Coding!
+categories: javascript
+tags: []
 ---
 
 Coding(프로그래밍)은 수행하여야 할 명령을 컴퓨터에게 전달하는 일종의 커뮤니케이션이다.

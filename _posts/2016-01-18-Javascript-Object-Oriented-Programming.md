@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Javascript Object-Oriented Programming
+categories: javascript
+tags: []
 ---
 
 객체지향 프로그래밍은 실제 세계에 기반한 모델을 만들기 위해 추상화를 사용하는 프로그래밍 패러다임이다.

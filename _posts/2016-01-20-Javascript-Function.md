@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Javascript Function
+categories: javascript
+tags: []
 ---
 
 함수란 어떤 특정 작업을 수행하기 위해 필요한 일련의 구문들을 그룹화하기 위한 개념이다. 만일 스크립트의 다른 부분에서도 동일한 작업을 반복적으로 수행해야 한다면 (동일한 구문을 계속해서 반복 작성하는 것이 아니라) 함수를 재사용할 수 있다.

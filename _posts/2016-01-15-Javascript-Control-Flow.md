@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Javascript Control Flow
+categories: javascript
+tags: []
 ---
 
 #블록 구문(Block statement)

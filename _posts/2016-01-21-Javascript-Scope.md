@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Javascript Scope
+categories: javascript
+tags: []
 ---
 
 Scope란 변수(매개변수 포함)에의 접근성과 생존기간(life-cycle)을 의미한다.

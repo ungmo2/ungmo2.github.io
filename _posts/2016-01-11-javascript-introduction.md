@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Javascript Introduction
+categories: javascript
+tags: []
 ---
 
 * Javascript는 HTML, CSS와 함께 웹을 구성하는 요소중  하나로 웹브라우저에서 사용할 수 있는 유일한 언어이다.

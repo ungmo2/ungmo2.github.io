@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Javascript this
+categories: javascript
+tags: []
 ---
 
 JavaScript의 `this` keyword는 Java와 같은 익숙한 언어의 개념과 달라 개발자에게 혼란을 준다. Java에서의 `this`는 자기자신(self)을 의미한다.

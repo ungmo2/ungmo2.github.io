@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Javascript Syntax Basics
+categories: javascript
+tags: []
 ---
 
 # statement

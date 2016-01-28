@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Javascript Object
+categories: javascript
+tags: []
 ---
 
 #Object

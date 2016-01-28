@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Javascript Variables & Data types
+categories: javascript
+tags: []
 ---
 
 #Variables

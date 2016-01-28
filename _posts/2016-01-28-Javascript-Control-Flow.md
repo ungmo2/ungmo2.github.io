@@ -182,8 +182,8 @@ if (b) // this condition evaluates to true
 
 | 평가식                  | 평가 결과        |
 | :-------------------: | :------------- |
-| `true  || anything`   | `true`
-| `false || anything`   | `anything`
+| `true  \|\| anything`   | `true`
+| `false \|\| anything`   | `anything`
 | `true  && anything`   | `anything`
 | `false && anything`   | `false`
 

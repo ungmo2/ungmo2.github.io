@@ -94,6 +94,7 @@ Javascript의 함수는 일급 객체이다.
 > 2. 변수나 자료 구조(객체, 배열...)에 저장할 수 있다.
 > 3. 함수의 파라미터로 전달 할 수 있다.
 > 4. 반환값(return value)으로 사용할 수 있다.
+
 ```javascript
 // 1. 무명의 리터럴로 표현이 가능하다.
 // 2. 변수나 데이터 구조안에 담을 수 있다.
@@ -489,7 +490,7 @@ http://localhost:8888/start 를 요청하면 “Hello Start”가 출력되고, 
 위의 코드는 문제없이 잘 동작하는 것처럼 보이지만 치명적 결함을 가지고 있다.
 `request handler`에 비동기 방식의 코드를 포함시키면 문제가 발생한다.
 
-<img src='http://ungmo2.github.io/images/block_nonblock.png'>
+<img src='/img/block_nonblock.png'>
 
 기존의 웹 서버는 대부분 쓰레드를 기반으로 하는 동기 방식으로 I/O를 처리를 한다. 반면에 Node.js는 이벤트를 기반으로 하는 비동기 방식으로 I/O를 처리한다.
 
@@ -704,7 +705,7 @@ request.addListener("end", function() {
 ```
 참고로 `request.addListener` 대신 `request.on`도 가능하다.
 
-> .on() is exactly the same as .addListener() in the EventEmitter object.
+> .on() is exactly the same as .addListener() in the EventEmitter object.  
 [EventEmitter source code:](https://github.com/nodejs/node-v0.x-archive/blob/master/lib/events.js#L188)  
 EventEmitter.prototype.on = EventEmitter.prototype.addListener;
 
@@ -1062,6 +1063,7 @@ $ npm init
 $ npm install formidable --save
 ```
 `package.json`을 수정한다.
+
 ```
 {
   "name": "test",

@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Javascript Execution Context
+category: javascript
+tags: [execution context, function, scope, this, vo]
 ---
 
 함수란 어떤 특정 작업을 수행하기 위해 필요한 일련의 구문들을 그룹화하는 개념이다. 즉 CPU가 실행하게 될 동작들을 기능 단위로 그룹화 해 놓은 것이라 할 수 있다.
@@ -275,8 +277,5 @@ Variable Declaration된 변수 z를 Variable Object(AO_2)에 set한다(프로퍼
 * [http://dmitrysoshnikov.com/ecmascript/chapter-6-closures/](http://dmitrysoshnikov.com/ecmascript/chapter-6-closures/)  
 * [http://davidshariff.com/blog/what-is-the-execution-context-in-javascript/](http://davidshariff.com/blog/what-is-the-execution-context-in-javascript/)  
 * [http://jibbering.com/faq/notes/closures/](http://jibbering.com/faq/notes/closures/)  
-
-this : [참고](http://www.nextree.co.kr/p7522/)  
-매개변수(parameter)와 인수(argument)  
-  매개변수는 함수 내에서 변수와 동일하게 메로리 공간을 확보하며 전달되어진 인수는 매개변수에 대입된다.
-  즉, 일반적인 변수는 undefined로 초화기되는 것과 달리 매개변수는 인수로 초기화된다.   [참고](http://stackoverflow.com/questions/1788923/parameter-vs-argument)
+* [this](http://www.nextree.co.kr/p7522/)  
+* [매개변수(parameter)와 인수(argument)](http://stackoverflow.com/questions/1788923/parameter-vs-argument)

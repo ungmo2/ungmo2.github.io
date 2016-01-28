@@ -34,7 +34,7 @@ console.log(i); // variable "k" still in scope even the loop is finished
 
 객체지향언어의 관점에서 생각해 보면, 변수는 크게 2가지로 생각해 볼 수 있다.
 
-* `this`[^1]를 통해서 접근되는 객체의 멤버변수  
+* `this`를 통해서 접근되는 객체의 멤버변수  
 
 	```javascript
    	var person = {
@@ -92,7 +92,7 @@ function foo () {
 foo();
 ```
 
-<img src="img/ec_1.png" width="700">
+<img src="./img/ec_1.png" width="700">
 
 실행 컨텍스트는 이하의 3가지 프로퍼티를 포함한다.
 
@@ -112,14 +112,14 @@ foo();
 * this value  
 	현재 실행 컨텍스트를 포함하는 객체에 대한 레퍼런스이다.
 
-<img src="img/excute_context_structure.png" width="400">
+<img src="./img/excute_context_structure.png" width="400">
 
 
 #1. Global Code
 
 컨트롤이 실행 컨텍스트에 들어가기 이전에, 유일한 전역 객체(Global Object)가 생성된다. 전역 객체는 단일 사본으로 존재하며, 이 객체의 프로퍼티는 프로그램의 어떠한 곳에서도 접근할 수 있다. 프로그램이 종료되면 전역 객체의 라이프 사이클은 끝이 난다. 초기상태의 전역 객체에는 Built-in object(Math, String등)와 BOM(window객체 등), DOM이 Set 되어있다.
 
-<img src="img/ec_3.jpg" width="700">
+<img src="./img/ec_3.jpg" width="700">
 
 전역 객체가 생성된 이후, Global Code로 컨트롤이 이동하면 새로운 실행 컨텍스트가 스택에 쌓인다.
 그리고 이후 이 실행 컨텍스트를 바탕으로 이하의 처리가 실행된다.
@@ -128,7 +128,7 @@ foo();
 >2. Variable Instantiation 실행
 >3. this value 결정
 
-<img src="img/ec_4.jpg" width="700">
+<img src="./img/ec_4.jpg" width="700">
 
 ##Scope Chain의 생성과 초기화
 새로운 실행 컨텍스트에 들어가게 되면 우선 Scope Chain의 생성과 초기화가 실행된다.
@@ -137,21 +137,21 @@ foo();
 
 Global Code로 컨트롤이 이동하면 Scope Chain는 전역 객체의 레퍼런스를 포함하는 리스트가 된다.
 
-<img src="img/ec_5.jpg" width="700">
+<img src="./img/ec_5.jpg" width="700">
 
 ##Variable Instantiation 실행
 Scope Chain의 생성과 초기화가 끝나면 Variable Instantiation이 실행된다. Variable Instantiation이란  Variable Object이란 특수한 객체에 프로퍼티와 값을 추가하는 것을 의미한다. 모든 실행 컨텍스트에는 Variable Object가 존재하며 코드 상의 변수와 함수의 선언이 Variable Object의 프로퍼티로서 추가된다.
 
 Global Code의 경우 Global Object가 Variable Object가 된다.
 
-<img src="img/ec_6.jpg" width="700">
+<img src="./img/ec_6.jpg" width="700">
 
 ###<div id="Variable_Instantiation">Variable Instantiation 실행 순서</div>
 
 Variable Instantiation에서는 이하의 순서로 Variable Object에 프로퍼티와 값이 set된다.
 (반드시 1→2→3 순서로 실행된다.)
 
->1. (Function Code인 경우) 매개변수(parameter)가 Variable Object의 프로퍼티로, 인수(argument)가 값으로 set된다.  [^2]
+>1. (Function Code인 경우) 매개변수(parameter)가 Variable Object의 프로퍼티로, 인수(argument)가 값으로 set된다.
 >2. 대상 코드 내의 Function Declaration(*Function Expression 제외*)를 대상으로 함수명이 Variable Object의 프로퍼티로, 생성된 Function Object가 값으로 set된다.
 >3. 대상 코드 내의  Variable Declaration을 대상으로 변수명이 Variable Object의 프로퍼티로, undefined가 값으로 set된다.    
 
@@ -161,17 +161,17 @@ Variable Instantiation에서는 이하의 순서로 Variable Object에 프로퍼
 ###함수 foo의 선언 처리
 Function Declaration는  <a href="#Variable_Instantiation">Variable Instantiation 실행 순서</a> 2.와 같이 선언된 함수명( foo )이 Variable Object( Global Code인 경우 Global Object )의 프로퍼티로, 생성된 Function Object가 값으로 set된다. 생성된 Function Object는 `[[Scope]]` 프로퍼티를 가지게 되고 값으로 현재의 실행 컨텍스트의 Scope Chain이 참조하고 있는 객체와 같은 객체( Global Code인 경우 Global Object )를 참조하는 리스트가 set된다.
 
-<img src="img/ec_7.jpg" width="700">
+<img src="./img/ec_7.jpg" width="700">
 
 ###변수 x의 선언 처리  
 Variable Declaration는 <a href="#Variable_Instantiation">Variable Instantiation 실행 순서</a> 3.과 같이 선언된 변수명( x )이 Variable Object의 프로퍼티로, undefined가 값으로 set된다. (아직 변수 x는 'xxx'로 초기화되지 않는다.)
 
-<img src="img/ec_8.jpg" width="700">
+<img src="./img/ec_8.jpg" width="700">
 
 ##this value 결정
-Variable Instantiation 실행이 끝나면 다음은 this value가 결정된다. this[^1]는 모든 active한 실행 컨텍스트에 관련되어 있으며 호출한 객체와 실행된 코드의 종류에 따라 값이 결정된다. 그리고 결정된 값은 불변한다. Global Code의 경우, this의 value는 언제나 전역 객체이다.
+Variable Instantiation 실행이 끝나면 다음은 this value가 결정된다. `this`는 모든 active한 실행 컨텍스트에 관련되어 있으며 호출한 객체와 실행된 코드의 종류에 따라 값이 결정된다. 그리고 결정된 값은 불변한다. Global Code의 경우, this의 value는 언제나 전역 객체이다.
 
-<img src="img/ec_9.jpg" width="700">
+<img src="./img/ec_9.jpg" width="700">
 ***전역 컨텍스트(Global Code)의 경우, VO, SC, this값은 언제나 GO이다.***  
 <br>
 
@@ -181,39 +181,39 @@ Variable Instantiation 실행이 끝나면 다음은 this value가 결정된다.
 ##변수 값의 대입
 전역 변수 x에 문자열 'xxx'를 대입할 때, 현재 실행 컨텍스트의 Scope Chain이 참조하고 있는 Variable Object를 선두(0)부터 검색하여 변수명에 해당하는 프로퍼티가 발견되면 값('xxxx')을 저장한다.
 
-<img src="img/ec_10.jpg" width="700">
+<img src="./img/ec_10.jpg" width="700">
 
 ##함수 foo의 실행
 Global Code의 함수 foo가 실행되기 시작하면 새로운 실행 컨텍스트이 생성된다. 함수 foo의 실행 컨텍스트로  컨트롤이 이동하면 Global Code의 경우와 마찬가지로 `1. Scope Chain의 생성과 초기화`, `2. Variable Instantiation 실행`, `3. this value 결정`이 순차적으로 실행된다.
 
 단, Global Code와 다른 점은 이번 실행되는 코드는 Function Code이라는 것이다. 따라서 `1. Scope Chain의 생성과 초기화`, `2. Variable Instantiation 실행`, `3. this value 결정`은 Global Code의 룰이 아닌 Function Code의 룰이 적용된다.
 
-<img src="img/ec_11.jpg" width="700">
+<img src="./img/ec_11.jpg" width="700">
 
 ##Scope Chain의 생성과 초기화
 Function Code의 `Scope Chain의 생성과 초기화`는 우선 Activation Object(실행에 필요한 여러 가지 정보들, 구체적으로 arguments객체와 변수등을 담을 객체)에 대한 레퍼런스를 Scope Chain의 선두에 설정하는 것으로 시작된다.
 
 Activation Object는 우선 arguments 프로퍼티의 초기화를 실행하고 그 후, Variable Instantiation가 실행된다. Activation Object는 스펙 상의 개념으로 프로그램이 Activation Object에 직접 접근할 수 없다. (Activation Object의 프로퍼티에 접근은 가능하다)
 
-<img src="img/ec_12.jpg" width="700">
+<img src="./img/ec_12.jpg" width="700">
 
 그 후, Caller(global context)의 [[Scope]] 프로퍼티가 참조하고 있는 객체가 Scope Chain에 push된다. 따라서, 이 경우 함수 foo를 실행한 직후 실행 컨텍스트의 Scope Chain은 Activation Object(함수 foo의 실행으로 만들어진 AO_1)과 Global Object를 참조하게 된다.
 
-<img src="img/ec_13.jpg" width="700">
+<img src="./img/ec_13.jpg" width="700">
 
 ##Variable Instantiation 실행
 Function Code의 경우, `Scope Chain의 생성과 초기화`에서 생성된 Activation Object를 Variable Object로서 Variable Instantiation가 실행된다. 이것을 제외하면 Global Code의 경우와 같은 처리가 실행된다. 즉, Function  Declaration된 함수를 Variable Object(AO_1)에 set한다. (프로퍼티는 bar, 값은 새로 생성된 Function Object. bar function object의 [[Scope]] 프로퍼티 값은 AO_1과 Global Object를 참조하는 리스트）
 
-<img src="img/ec_14.jpg" width="700">
+<img src="./img/ec_14.jpg" width="700">
 
 Variable Declaration된 변수 y를 Variable Object(AO_1)에 set한다(프로퍼티는 y, 값은 undefined）
 
-<img src="img/ec_15.jpg" width="700">
+<img src="./img/ec_15.jpg" width="700">
 
 **this value 결정**  
 Function code의 경우, this의 value는 자신을 호출한 객체로부터 제공된다.(call 또는 apply 메서드로 this의 값을 지정할 수 있다). 만약 자신을 호출한 객체로부터 제공된 this의 값이 객체가 아니면(null인 경우도 포함) this의 값은 Global Object가 된다. 결국 this의 값은 전역 객체가 된다.
 
-<img src="img/ec_16.jpg" width="700">
+<img src="./img/ec_16.jpg" width="700">
 
 #3. Code의 실행
 이제 함수 foo의 코드블럭 내 구문이 실행된다. <a href="#sample">Sample code</a>를 보면 변수 y에 문자열 'yyy'의 대입과 함수 bar가 실행된다.
@@ -221,42 +221,42 @@ Function code의 경우, this의 value는 자신을 호출한 객체로부터 �
 ##변수 값의 대입  
 전역 변수 y에 문자열 'yyy'를 대입할 때, 현재 실행 컨텍스트의 Scope Chain이 참조하고 있는 Variable Object를 선두(0)부터 검색하여 변수명에 해당하는 프로퍼티가 발견되면 값('yyy')을 저장한다.
 
-<img src="img/ec_17.jpg" width="700">
+<img src="./img/ec_17.jpg" width="700">
 
 ##함수 bar의 실행
 함수 bar가 실행되기 시작하면 새로운 실행 컨텍스트이 생성된다. 이전 함수 foo의 실행 과정과 동일하게  `1. Scope Chain의 생성과 초기화`, `2. Variable Instantiation 실행`, `3. this value 결정`이 순차적으로 실행된다.
 
-<img src="img/ec_18.jpg" width="700">
+<img src="./img/ec_18.jpg" width="700">
 
 ##Scope Chain의 생성과 초기화
 함수 foo 실행 과정과 동일하게 새로운 Activation Object(AO_2)에 대한 레퍼런스를 Scope Chain의 선두에 설정하는 것으로 시작된다.
 
-<img src="img/ec_19.jpg" width="700">
+<img src="./img/ec_19.jpg" width="700">
 
 그 후, Caller(foo)의 [[Scope]] 프로퍼티가 참조하고 있는 객체가 Scope Chain에 push된다. 이 단계에서 함수 bar 실행 컨텍스트의 Scope Chain에는 선두부터 AO_2, AO_1, 전역 객체가 set된다.
 
-<img src="img/ec_20.jpg" width="700">
+<img src="./img/ec_20.jpg" width="700">
 
 ##Variable Instantiation 실행  
 Variable Declaration된 변수 z를 Variable Object(AO_2)에 set한다(프로퍼티는 z, 값은 undefined）
 
-<img src="img/ec_21.jpg" width="700">
+<img src="./img/ec_21.jpg" width="700">
 
 ##this value 결정
 함수 foo의 경우와 동일하게 특별히 this 값이 지정되지 않았으므로 this의 값은 전역 객체가 된다.
 
 > 전역 함수를 호출할 때 `this`는 전역객체에 바인딩된다. 심지어 내부함수의 경우도 `this`는 외부함수가 아닌 전역객체에 바인딩된다. 이것은 설계 단계의 결함으로 메소드가 내부함수를 사용하여 자신의 작업을 돕게 할 수 없다는 것을 의미한다.
 
-<img src="img/ec_22.jpg" width="700">
+<img src="./img/ec_22.jpg" width="700">
 
 #4. Code의 실행
 이제 함수 bar의 코드블럭 내 구문이 실행된다. <a href="#sample">Sample code</a>를 보면 변수 z에 문자열 'zzz'의 대입된다.
 
-<img src="img/ec_23.jpg" width="700">
+<img src="./img/ec_23.jpg" width="700">
 
 이 시점에서 현재 active한 실행 컨텍스트(함수 bar의 실행 컨텍스트)는 이하와 같이 구성된다.
 
-<img src="img/ec_24.jpg" width="700">
+<img src="./img/ec_24.jpg" width="700">
 
 이 단계에서 `console.log(x + y + z);` 구문의 실행 결과는 xxxyyyzzz가 된다.  
 
@@ -276,7 +276,7 @@ Variable Declaration된 변수 z를 Variable Object(AO_2)에 set한다(프로퍼
 * [http://davidshariff.com/blog/what-is-the-execution-context-in-javascript/](http://davidshariff.com/blog/what-is-the-execution-context-in-javascript/)  
 * [http://jibbering.com/faq/notes/closures/](http://jibbering.com/faq/notes/closures/)  
 
-[^1]: this : [참고](http://www.nextree.co.kr/p7522/)  
-[^2]: 매개변수(parameter)와 인수(argument)  
+this : [참고](http://www.nextree.co.kr/p7522/)  
+매개변수(parameter)와 인수(argument)  
   매개변수는 함수 내에서 변수와 동일하게 메로리 공간을 확보하며 전달되어진 인수는 매개변수에 대입된다.
   즉, 일반적인 변수는 undefined로 초화기되는 것과 달리 매개변수는 인수로 초기화된다.   [참고](http://stackoverflow.com/questions/1788923/parameter-vs-argument)

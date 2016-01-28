@@ -122,7 +122,7 @@ var greeting = "Good" + ((now.getHours() > 17) ? " evening." : " day.");
 | Operator	  | Description
 | :---------: |:-------------:|
 | &&	        | and
-| \|\| 	        | or
+| &#124;&#124;	        | or
 | !	          | not
 
 ```javascript

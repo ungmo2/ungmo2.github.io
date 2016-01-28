@@ -3,19 +3,13 @@ layout: page
 title: Ready to Learn Coding?
 subtitle: Javascript, Node.js, Express, etc.
 ---
-
+{{ site.categories }}
+{{ page.categories }}
 <div class="posts-list">
   {% for post in paginator.posts %}
   <article class="post-preview">
     <a href="{{ post.url | prepend: site.baseurl }}">
 	  <h2 class="post-title">{{ post.title }}</h2>
-
-
-    {% for post in site.categories.[page.category] %}
-      <h2><a href="">1</a></h2>
-      <p>1</p>
-    {% endfor %}
-
 
 
 

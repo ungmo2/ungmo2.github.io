@@ -33,7 +33,8 @@ var square = function(number) {
 };
 ```
 
- 함수의 이름은 생략할 수 있다.(익명 함수. anonymous function))
+ 함수의 이름은 생략할 수 있다.(익명 함수. anonymous function)
+
 ```javascript
 // 기명 함수표현식(named function expression)
 var foo = function myFunction(a, b) {

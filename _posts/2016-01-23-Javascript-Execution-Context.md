@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Javascript Execution Context
-category: javascript
+categories: javascript
 tags: [execution context, function, scope, this, vo]
 ---
 

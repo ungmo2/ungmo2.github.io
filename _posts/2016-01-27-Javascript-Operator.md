@@ -122,7 +122,7 @@ var greeting = "Good" + ((now.getHours() > 17) ? " evening." : " day.");
 | Operator	  | Description
 | :---------: |:-------------:|
 | &&	        | and
-| ||	        | or
+| || 	        | or
 | !	          | not
 
 ```javascript
@@ -210,12 +210,12 @@ if (!x) console.log(x); // null
 #단축 평가 (Short-Circuit Evaluation)
 논리 연산자가 왼쪽에서 오른쪽으로 평가될때, 논리연산자는 다음의 규칙을 따라서 "단축 평가"로 검사된다.
 
-| 평가식                  | 평가 결과        |
+| 평가식                 | 평가 결과        |
 | :-------------------: | :------------- |
-| `true  \|\| anything`   | `true`
-| `false \|\| anything`   | `anything`
-| `true  && anything`   | `anything`
-| `false && anything`   | `false`
+| true  || anything     | true
+| false || anything     | anything
+| true  && anything     | anything
+| false && anything     | false
 
 Boolean값으로 평가하기 위해 참조하여야 할 곳까지 진행하여 평가가 중지하게된 계기가 된 값을 리턴한다.
 

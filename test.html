@@ -1,11 +1,10 @@
 ---
 layout: page
-title: Ready to Learn Coding?
+title: {{ page.title }}
 subtitle: Javascript, Node.js, Express, etc.
 ---
 
 {% for category in site.categories %}
-
   <li><a name="{{ category | first }}">{{ category | first }}</a>
     <ul>
     {% for posts in category %}

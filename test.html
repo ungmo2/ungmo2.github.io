@@ -11,9 +11,10 @@ subtitle: Javascript, Node.js, Express, etc.
 	  <h2 class="post-title">{{ post.title }}</h2>
 
 
-    {% if post.categories %}
-      {{ post.categories }}
-    {% endif %}
+    {% for post in site.categories.[page.category] %}
+      <h2><a href="">1</a></h2>
+      <p>1</p>
+    {% endfor %}
 
 
 

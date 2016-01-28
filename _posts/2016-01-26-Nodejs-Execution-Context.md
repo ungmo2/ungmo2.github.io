@@ -568,6 +568,7 @@ http://localhost:8888/start 에 접속하면 현재 디렉토리에 있는 모�
 ##*Non-blocking 방식 request handler*
 지금까지는 handler가 작성한 content를 여러 layer를 거쳐 server에 전달하였다.
 
+
 ```
 content의 이동
 request handler ⇒ router ⇒ sever   

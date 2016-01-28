@@ -1,6 +1,6 @@
 ---
 layout: page
-title: $ coding start -g
+title: $coding start
 subtitle: Javascript, Node.js, Express, etc.
 ---
 
@@ -17,3 +17,15 @@ subtitle: Javascript, Node.js, Express, etc.
     </ul>
   </li>
 {% endfor %}
+
+<section>
+  <table>
+    {% for post in site.posts %}
+      <tr>
+        <td><i class="icon-clock"></i> <time datetime="{{post.date|date:"%F"}}">{{post.date|date:"%b %d, %Y"}}</time></td>
+        <td><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
+        <td><span class="category"><i class="icon-tag"></i> {{post.categories | category_links}}</span></td>
+      </tr>
+  	{% endfor %}
+  </table>
+</section>

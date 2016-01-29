@@ -217,7 +217,8 @@ footer .theme-by {
 
 @media only screen and (min-width: 768px) {
   footer {
-    padding: 50px 0;
+    /*padding: 50px 0;*/
+    padding: 30px 0;
   }
   footer .footer-links {
     font-size: 18px;
@@ -225,6 +226,7 @@ footer .theme-by {
   footer .copyright {
     /*font-size: 16px;*/
     font-size: 14px;
+    margin: 20px 0;
   }
 }
 

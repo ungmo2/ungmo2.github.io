@@ -80,6 +80,11 @@ permalink: /:categories/:title
 paginate: 10
 paginate_path: "/page:num/"
 
+# Sitemaps for GitHub Pages
+gems:
+  - jekyll-sitemap
+
+
 # Default YAML values (more information on Jekyll's site)
 defaults:
   -

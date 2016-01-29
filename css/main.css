@@ -227,10 +227,11 @@ footer {
   border-top: 1px #EAEAEA solid;
   margin-top: 50px;
   font-size: 14px;
+  color: #BBC7CC;
 }
 
 footer a {
-  color: #404040;
+  /*color: #404040;*/
 }
 
 footer .list-inline {

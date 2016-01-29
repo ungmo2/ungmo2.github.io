@@ -12,10 +12,11 @@ body {
   background: #FFF;
 }
 p {
+  /*lee edits*/
   /*line-height: 1.5;*/
   /*margin: 30px 0;*/
-  line-height: 2;             // lee edit
-  margin: 20px 0 !important;  // lee edit
+  line-height: 2;
+  margin: 20px 0 0 !important;
 }
 p a {
   /* text-decoration: underline */

@@ -458,3 +458,6 @@ header.header-post .post-heading .post-subheading {
 .highlight {
   margin: 20px 0 10px;
 }
+.highlight span {
+  line-height: 1.2;
+}

@@ -174,6 +174,7 @@ Variable Declaration는 <a href="#Variable_Instantiation">Variable Instantiation
 Variable Instantiation 실행이 끝나면 다음은 this value가 결정된다. `this`는 모든 active한 실행 컨텍스트에 관련되어 있으며 호출한 객체와 실행된 코드의 종류에 따라 값이 결정된다. 그리고 결정된 값은 불변한다. Global Code의 경우, this의 value는 언제나 전역 객체이다.
 
 <img src="/img/ec_9.jpg" width="700">
+
 ***전역 컨텍스트(Global Code)의 경우, VO, SC, this값은 언제나 GO이다.***  
 <br>
 

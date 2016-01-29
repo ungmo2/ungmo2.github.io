@@ -206,7 +206,7 @@ footer .list-inline {
   padding: 0;
 }
 footer .copyright {
-  font-family: Open Sans;
+  /*font-family: Open Sans;*/
   text-align: center;
   margin-bottom: 0;
 }
@@ -223,7 +223,8 @@ footer .theme-by {
     font-size: 18px;
   }
   footer .copyright {
-    font-size: 16px;
+    /*font-size: 16px;*/
+    font-size: 14px;
   }
 }
 

@@ -75,9 +75,7 @@
           {% endif %}
         </ul>
         <p class="copyright text-muted">
-		      &copy; {{ site.author.name }}
-		      &nbsp;&bull;&nbsp;
-		      {{ site.time | date: '%Y' }}
+		      &copy; {{ site.time | date: '%Y' }}&nbsp;&nbsp;{{ site.author.name }}
 
 		      {% if site.url-pretty %}
 		      &nbsp;&bull;&nbsp;
@@ -86,7 +84,7 @@
 	      </p>
 	        <!-- Please don't remove this, keep my open source work credited :) -->
 		    <p class="theme-by text-muted">
-		      Powered by 
+		      Hosted on
 		      <a href="https://pages.github.com/">GitHub Pages</a> <i class="fa fa-github"></i>
 		    </p>
       </div>

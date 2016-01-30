@@ -866,7 +866,7 @@ http.createServer(function(req, res) {
     '<input type="submit" value="Upload">'+
     '</form>'
   );
-}).listen(8080);
+}).listen(8888);
 ```
 
 위 코드를 실행하면 `form.parse` 메서드의 callback에 파라미터로 넘어가는 `files` 객체가 어떻게 생겼는지 살펴볼 수 있다.
@@ -1201,7 +1201,7 @@ http.createServer(function (req, res) {
       res.end();
     });
   }
-}).listen(1337, '127.0.0.1');
+}).listen(8888, '127.0.0.1');
 console.log('Server running at http://127.0.0.1:1337/');
 ```
 
@@ -1217,8 +1217,8 @@ app.get('/', function (req, res) {
   res.send('Hello World!');
 });
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+app.listen(8888, function () {
+  console.log('Example app listening on port 8888!');
 });
 ```
 

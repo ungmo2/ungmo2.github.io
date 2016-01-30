@@ -6,9 +6,15 @@
   <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
 
   <meta name="author" content="{{ site.author.name }}" />
-  
-  {% if page.subtitle %}
-  <meta name="description" content="{{ page.subtitle }}">
+
+  <!-- {% if page.subtitle %} -->
+  <!-- <meta name="description" content="{{ page.subtitle }}"> -->
+  {% if site.description %}
+  <meta name="description" content="{{ site.description }}">
+  {% endif %}
+
+  {% if site.keywords %}
+  <meta name="keywords" content="{{ site.keywords }}">
   {% endif %}
 
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
@@ -17,14 +23,14 @@
     {% for css in page.common-ext-css %}
       <link rel="stylesheet" href="{{ css }}" />
     {% endfor %}
-  {% endif %}  
-  
+  {% endif %}
+
   {% if page.common-css %}
     {% for css in page.common-css %}
       <link rel="stylesheet" href="{{ css | prepend: site.baseurl | replace: '//', '/' }}" />
     {% endfor %}
   {% endif %}
-  
+
   {% if page.common-googlefonts %}
     {% for font in page.common-googlefonts %}
 	  <link rel="stylesheet" href="//fonts.googleapis.com/css?family={{ font }}" />
@@ -35,30 +41,30 @@
     {% for css in page.ext-css %}
       <link rel="stylesheet" href="{{ css }}" />
     {% endfor %}
-  {% endif %}  
-  
+  {% endif %}
+
   {% if page.css %}
     {% for css in page.css %}
       <link rel="stylesheet" href="{{ css | prepend: site.baseurl | replace: '//', '/' }}" />
     {% endfor %}
   {% endif %}
-  
+
   {% if page.googlefonts %}
     {% for font in page.googlefonts %}
 	  <link rel="stylesheet" href="//fonts.googleapis.com/css?family={{ font }}" />
     {% endfor %}
   {% endif %}
-  
+
   <!-- Facebook OpenGraph tags -->
   <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" />
   <meta property="og:type" content="website" />
-  
+
   {% if page.id %}
   <meta property="og:url" content="{{ site.url }}{{ page.url }}/" />
   {% else %}
   <meta property="og:url" content="{{ site.url }}{{ page.url | remove: '/index.html' | remove: '.html' }}" />
   {% endif %}
-  
+
   {% if page.fb-img %}
   <meta property="og:image" content="{{ page.fb-img }}" />
   {% elsif site.avatar %}
@@ -66,5 +72,5 @@
   {% else %}
   <meta property="og:image" content="" />
   {% endif %}
-  
+
 </head>

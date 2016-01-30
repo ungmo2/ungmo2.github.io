@@ -1,11 +1,12 @@
 /*@import url("pygment_highlights.css");*/
 @import url("tango.css");
 /*@import url("monokai.css");*/
+@import url(http://fonts.googleapis.com/earlyaccess/kopubbatang.css);
 
 /* --- General --- */
 
 body {
-  font-family: 'Lora', 'Times New Roman', serif;
+  font-family: 'Lora', 'KoPub Batang', 'Times New Roman', serif;
   font-size: 18px;
   color: #404040;
   position: relative;
@@ -50,7 +51,7 @@ table td {
 /*end*/
 
 h1,h2,h3,h4,h5,h6 {
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', 'KoPub Batang', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 800;
   margin: 30px 0 20px;  /*lee add*/
 }
@@ -85,7 +86,7 @@ hr.small {
 }
 
 .main-explain-area {
-  font-family:  'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family:  'Open Sans', 'KoPub Batang', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   padding: 15px inherit;
 }
 
@@ -133,7 +134,7 @@ img {
 .navbar-custom {
   background: #F5F5F5;
   border-bottom: 1px solid #EAEAEA;
-  font-family:  'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family:  'Open Sans', 'KoPub Batang', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .navbar-custom .nav li a {
@@ -317,7 +318,7 @@ footer .theme-by {
   margin: 0 0 10px;
 }
 .post-preview .post-entry {
-  font-family:  'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family:  'Open Sans', 'KoPub Batang', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 .post-preview .post-read-more {
   font-weight: 800;
@@ -354,7 +355,7 @@ header.header-page .page-heading .page-subheading {
   font-size: 24px;
   line-height: 1.1;
   display: block;
-  font-family:  'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family:  'Open Sans', 'KoPub Batang', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 300;
   margin: 10px 0 0;
 }
@@ -389,7 +390,7 @@ header.header-post .post-heading .post-subheading {
 /* --- Pager --- */
 
 .pager li a {
-  font-family:  'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family:  'Open Sans', 'KoPub Batang', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   font-size: 14px;
   font-weight: 800;

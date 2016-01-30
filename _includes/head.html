@@ -7,6 +7,10 @@
 
   <meta name="author" content="{{ site.author.name }}" />
 
+  {% if page.subtitle %}
+  <meta name="description" content="{{ page.subtitle }}">
+  {% endif %}
+
   <!-- {% if page.subtitle %} -->
   <!-- <meta name="description" content="{{ page.subtitle }}"> -->
   <!-- {% if site.description %}

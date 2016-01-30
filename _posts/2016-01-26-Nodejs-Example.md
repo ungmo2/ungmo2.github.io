@@ -4,14 +4,20 @@ title: Node.js file upload example
 categories: node.js
 ---
 
-Node.js는 백엔드에서 자바스크립트를 실행할 수 있게 한다. 또한 많은 유용한 모듈을 탑재하고 있다.
+Node.js는 Server-side Javascript이다. 즉 백엔드에서 자바스크립트를 실행할 수 있게 한다. 또한 유용한 모듈을 내부에 탑재하고 있고 필요에 따라 `npm` 등을 사용하여 외부에서 필요한 모듈을 import하여 사용할 수 있어 높은 생산성과 스피디한 개발을 가능케 해준다. 따라서 Node.js는 Server-side Javascript와 모듈(라이브러리)로 구성되어 있고 말할 수 있다.
 
-Node.js는 서버사이드 자바스크립트와 모듈(라이브러리)로 구성되어 있고 말할 수 있다.
+file upload 예제를 통해서 Node.js의 기본과 Routing, 모듈화, Request Handling 등을 알아보자.
 
 #*Install*
+
+아래의 페이지에 방문하여 자신의 개발환경에 맞는 설치파일을 다운로드하여 설치한다.
+
 https://nodejs.org/en/download/
 
 #*Hello World*
+
+설치가 완료되었으면 아래의 예제를 실시하여 동작을 확인해 보자.
+
 ```javascript
 // helloworld.js
 console.log("Hello World");
@@ -22,11 +28,15 @@ $ node helloworld.js
 
 #*Use cases*
 
+앞으로 구현해볼 예제의 use case는 아래와 같다.
+
 * 사용자는 웹 브라우저로 이 웹 애플리케이션을 이용할 수 있다.
 * 사용자가 http://domain/start 를 요청하면 파일 업로드 폼이 들어있는 웰컴 페이지를 볼 수 있어야 한다.
 * 업로드할 이미지 파일을 선택해서 폼으로 전송하면, 해당 이미지는 http://domain/upload 로 업로드 되어야 하며, 업로드가 끝나면 해당 페이지에 표시된다.
 
 #*Appication Stack*
+
+use case를 만족시키기 위해 구현되어야 할 기술적 사항은 아래와 같다.
 
 * 웹페이지를 제공해야 한다. 따라서 HTTP 서버가 필요하다.
 * 서버는 어떤 URL 요청(request)을 받았는지에 따라 다르게 응답해야 한다. 따라서, 요청과 요청을 처리할 핸들러들을 연결짓기 위한 라우터(router) 같은 것이 필요하다.
@@ -82,7 +92,10 @@ $ node server.js
 * 마지막으로 response.end()로 응답을 마무리한다.
 
 ##*Event-driven callbacks*
-* [단일 쓰레드 비동기식 이벤트 드리븐 방식](http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb)
+
+Node.js는 event-driven, non-blocking I/O model을 지원한다. 자세한 사항은 아래의 포스트를 참조하기 바란다.
+
+* [Understanding node.js](http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb)
 
 Javascript의 함수는 일급 객체이다.
 
@@ -1209,10 +1222,12 @@ app.listen(3000, function () {
 });
 ```
 
+이 포스트는 http://www.nodebeginner.org/ 를 바탕으로 작성되었다. 한국어 번역도 있으니 참조 바란다. 소스코드는 https://github.com/manuelkiessling/nodebeginner.org/tree/master/code/application 에서 다운 받을 수 있다.
+
+
 #*Reference*
 
 * [Node.js](https://nodejs.org)
 * [Understanding node.js](http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb)
 * [이벤트 기반 비동기 방식](http://www.nextree.co.kr/p7292/)
-* http://www.nodebeginner.org/index-kr.html
 * [Express](http://expressjs.com/)

@@ -1202,7 +1202,7 @@ http.createServer(function (req, res) {
     });
   }
 }).listen(8888, '127.0.0.1');
-console.log('Server running at http://127.0.0.1:1337/');
+console.log('Server running at http://127.0.0.1:8888/');
 ```
 
 이것이 꽤 번거러운 일이다. 그러나. `Express`와 같은 framework를 사용하면 이러한 문제는 쉽게 해결할 수 있다. 지금까지 살펴본 코드를 이해할 수 있다면 `Express`는 쉽게 사용할 수 있다. `Express`을 사용하면 Routing, Error handling, static file 제공 등을 매우 쉽게 구현할 수 있는 장점이 있다.

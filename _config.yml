@@ -17,8 +17,8 @@ baseurl: ""
 title: $coding start
 
 # Short description of your site
-description: Javascript node.js express
-keywords: Javascript, node.js, express
+description: "Javascript node.js express"
+keywords: "Javascript, node.js, express"
 
 # --- Navigation bar options --- #
 

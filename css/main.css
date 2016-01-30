@@ -56,7 +56,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 a {
   color: #008AFF;
-  word-break:break-all; /*화면표시 링크가 길때, width를 오버하는 문제*/
+  word-break:break-all; /*화면표시 링크가 길때, width를 오버하는 문제 대응*/
 }
 a:hover,
 a:focus {

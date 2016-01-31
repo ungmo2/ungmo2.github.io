@@ -24,7 +24,6 @@ p a {
 
 
 /*ungmo2 add 2016.1.27*/
-
 li {
   margin: 10px 0 0;
 }
@@ -471,8 +470,13 @@ header.header-post .post-heading .post-subheading {
 .highlight {
   margin: 20px 0 10px;
 }
-.highlight span {
+
+/*.highlight span {
   line-height: 1.2;
+}*/
+
+.highlight pre {
+  line-height: 2;
 }
 
 .text-muted {

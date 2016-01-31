@@ -5,7 +5,7 @@ subtitle: Javascript, Node.js, Express, etc.
 ---
 
 {% for category in site.categories %}
-  <li><a name="{{ category | first }}">{{ category | first }}</a>
+  <li>{{ category | first }}
     <ul>
     {% for posts in category %}
       {% for post in posts %}

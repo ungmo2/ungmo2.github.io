@@ -12,7 +12,8 @@
 
     <div class="collapse navbar-collapse" id="main-navbar">
       <ul class="nav navbar-nav navbar-right">
-	    {% for link in site.navbar-links %}
+	    <!-- {% for link in site.navbar-links %} -->
+      {% for link in page.categories %}
 	      {% capture before %}{{ link[1] | split: "://" | first }}{% endcapture %}
 	      {% capture after %}{{ link[1] | split: "://" | last }}{% endcapture %}
         <li>
@@ -22,7 +23,7 @@
               {% assign internal = false %}
             {% endif %}
           {% endif %}
-        	
+
         {% if internal %}
           {% capture linkurl %}{{ site.baseurl }}/{{ link[1] }}{% endcapture %}
         {% else %}
@@ -34,7 +35,7 @@
 	    {% endfor %}
       </ul>
     </div>
-	
+
 	{% if site.avatar %}
 	<div class="avatar-container">
 	  <div class="avatar-img-border">
@@ -44,6 +45,6 @@
 	  </div>
 	</div>
 	{% endif %}
-	
+
   </div>
-</nav>  
+</nav>

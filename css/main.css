@@ -239,6 +239,7 @@ footer a {
 
 footer a:hover {
   color: #50585D;
+  text-decoration: none;
 }
 
 footer .list-inline {

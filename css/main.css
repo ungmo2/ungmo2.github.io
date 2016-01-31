@@ -238,7 +238,8 @@ footer a {
   color: #BBC7CC;
 }
 
-footer a:hover {
+footer a:hover,
+footer a:focus  {
   color: #50585D;
   text-decoration: none;
 }

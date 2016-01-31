@@ -244,10 +244,6 @@ footer a:focus  {
   text-decoration: none;
 }
 
-footer a:visited  {
-  color: #BBC7CC;
-}
-
 footer .list-inline {
   margin: 0;
   padding: 0;

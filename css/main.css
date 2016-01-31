@@ -13,7 +13,7 @@ body {
   background: #FFF;
 }
 p {
-  line-height: 1.5;
+  line-height: 1.7;
   /*margin: 30px 0;*//*lee edits*/
   margin: 20px 0 0;
 }
@@ -485,7 +485,7 @@ header.header-post .post-heading .post-subheading {
 }*/
 
 .highlight pre {
-  line-height: 2;
+  line-height: 1.8;
 }
 
 .text-muted {

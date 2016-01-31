@@ -63,6 +63,7 @@ a:hover,
 a:focus {
   /*color: #0085a1;*/
   color: #a0ce4e;
+  text-decoration: none;
 }
 blockquote {
   color: #808080;

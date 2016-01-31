@@ -47,11 +47,6 @@ table td {
   border: 1px solid #ddd;
   padding: 6px 13px;
 }
-
-blockquote {
-  padding: 0 10px;
-  margin: 30px 0;
-}
 /*end*/
 
 h1,h2,h3,h4,h5,h6 {
@@ -59,20 +54,26 @@ h1,h2,h3,h4,h5,h6 {
   font-weight: 800;
   margin: 30px 0 20px;  /*lee add*/
 }
+
 a {
   color: #008AFF;
   word-break:break-all; /*url넓이 > 화면width 시, 오버플로우하는 문제 대응*/
 }
+
 a:hover,
 a:focus {
   /*color: #0085a1;*/
   color: #a0ce4e;
   text-decoration: none;
 }
+
 blockquote {
   color: #808080;
   font-style: italic;
+  padding: 0 10px;
+  margin: 30px 0;
 }
+
 hr.small {
   max-width: 100px;
   margin: 15px auto;
@@ -105,16 +106,19 @@ hr.small {
   /*background: #0085a1;*/
   background: #a0ce4e;
 }
+
 ::selection {
   color: white;
   text-shadow: none;
   /*background: #0085a1;*/
   background: #a0ce4e;
 }
+
 img::selection {
   color: white;
   background: transparent;
 }
+
 img::-moz-selection {
   color: white;
   background: transparent;

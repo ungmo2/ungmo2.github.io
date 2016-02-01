@@ -12,22 +12,28 @@ Scope의 종류는 다음과 같다.
 - 전역 Scope (Global scope)
 - 지역 Scope (Local scope or Function-level scope)
 
-Javascript는 function scope만 사용한다.
+전역 Scope를 갖는 변수를 전역 변수(Global variable), 지역 Scope를 갖는 변수를 지역 변수(Local variable)이라 한다.
 
-- C-family language 대부분은 `block scope`를 사용하지만 Javascript는 `function scope`를 사용한다.
+Javascript는 function-level scope만 사용한다.
+
+- C-family language 대부분은 `block-level scope`를 사용하지만 Javascript는 `function-level scope`를 사용한다.
 - 즉, 함수 내에서 정의된 매개변수와 변수는 함수 외부에서는 유효하지 않다.
-- 단, ECMAScript 6에서 도입된 `let` keyword를 사용하면 `block scope`를 사용할 수 있다.
+- 단, ECMAScript 6에서 도입된 `let` keyword를 사용하면 `block-level scope`를 사용할 수 있다.
 
 #Non block-level scope
 
 ```javascript
 if (true) {
-   var x = 5; // The scope is inside the if-block
+  var x = 5; // The scope is inside the if-block
 }
 console.log(x);
 ```
 
+변수 x는 코드 블럭 내에서 정의되었다. 하지만 JavaScript는 block-level scope를 사용하지 않으므로 변수 x는 전역 변수이다.
+
 #암묵적 전역 (implied globals)
+
+foo 함수 내의 변수 x는 var keyword를 사용하지 않고 선언되었다. `var` keyword를 사용하지 않고 선언된 변수는 암묵적으로 전역변수가 된다.
 
 ```javascript
 function foo() {
@@ -40,7 +46,8 @@ foo();
 console.log(x); // logs "1"
 console.log(y); // Throws a ReferenceError
 ```
-`var` keyword는 반드시 사용하자
+
+의도하지 않게 전역변수가 되었다면 혼란의 여지가 있으므로 `var` keyword는 반드시 사용하자.
 
 #Hoisting
 

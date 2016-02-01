@@ -7,7 +7,11 @@ tags: [execution context, function, scope, this, vo]
 
 함수란 어떤 특정 작업을 수행하기 위해 필요한 일련의 구문들을 그룹화하는 개념이다. 즉 CPU가 실행하게 될 동작들을 기능 단위로 그룹화 해 놓은 것이라 할 수 있다.
 
-그런데 함수의 구문 종류 중에는 단순 연산을 수행하는 것도 있지만, 메모리에서 값을 읽어 오거나 저장해야 하는 것도 존재한다. 보통 고급언어에서는 값을 읽어오거나 저장하는 행위를 메모리를 이용한 변수를 통해 수행하도록 구성되어 있다. 함수와 변수는 실행 컨텍스트와 밀접한 연관이 있다.
+그런데 함수 내의 구문 중에는 단순 연산을 수행하는 것도 있지만, 메모리에서 값을 읽어 오거나 저장해야 하는 것도 존재한다. 보통 고급언어에서는 값을 읽어오거나 저장하는 행위를 메모리를 이용한 변수를 통해 수행하도록 구성되어 있다. 함수와 변수는 실행 컨텍스트(execution context)와 밀접한 연관이 있다.
+
+또한 Javascript는 function-level scope를 사용하므로 함수와 변수는 scope와 밀접한 관계가 있다.
+
+우선 scope에 대하여 알아본다. scope에 대한 더욱 자세한 포스트는 [이곳]({% post_url 2016-01-21-Javascript-Scope %})을 참조하기 바란다
 
 #Scope
 
@@ -22,7 +26,7 @@ alert(a);	// 10
 alert(b);	// "b" is not defined
 ```
 
-C-family language 대부분은 block scope를 사용하지만 Javascript는 function scope를 사용한다. 즉 함수 내에서 정의된 매개변수와 변수는 함수 외부에서는 유효하지 않다. 단, ECMAScript 6에서 도입된 let keyword를 사용하면 block scope를 사용할 수 있다.
+C-family language 대부분은 `block-level scope`를 사용하지만 Javascript는 `function-level scope`를 사용한다. 즉 함수 내에서 정의된 매개변수와 변수는 함수 외부에서는 유효하지 않다. 단, ECMAScript 6에서 도입된 let keyword를 사용하면 block-level scope를 사용할 수 있다.
 
 ```javascript
 for (var i = 0; i < 3; i++) {
@@ -32,7 +36,13 @@ for (var i = 0; i < 3; i++) {
 console.log(i); // variable "k" still in scope even the loop is finished
 ```
 
-이와 같이 ECMA 스펙에서는 오직 “함수” 코드의 실행 컨텍스트만이 격리된 scope를 만들 수 있다. 위의 예와 같이 ECMAScript의 for 루프 블럭은 지역 콘텍스트를 만들지 않는다. (변수 i는 전역 변수이다.)
+이 예제의 for 문 내에에 정의된 변수 i를 살펴보자.
+
+Javascript가 block-level scope을 지원하는 언어라면, 변수 i는 for 문 블럭 내에서만 유효한 local scope을 갖게되므로 for 문 블럭 밖에서는 참조할 수 없다.
+
+그러나 Javascript는 function-level scope를 사용하므로 function 밖에서 정의된 변수는 모두 global scope을 갖게된다.
+
+이와 같이 Javascript(ECMA 스펙)는 오직 "function"의 실행 컨텍스트만이 scope를 만들 수 있다. 위의 예와 같이 Javascript for 문 블럭은 지역 컨텍스트를 만들지 않는다. (변수 i는 전역 변수이다.)
 
 객체지향언어의 관점에서 생각해 보면, 변수는 크게 2가지로 생각해 볼 수 있다.
 
@@ -55,7 +65,7 @@ console.log(i); // variable "k" still in scope even the loop is finished
    	console.log(fullName);
 	```
 
-* 함수 내부에서만 사용되는 로컬변수
+* 함수 내부에서만 사용되는 지역변수
 
 	```javascript
 	var foo = function() {
@@ -65,9 +75,9 @@ console.log(i); // variable "k" still in scope even the loop is finished
 	}
 	```
 
-물론 멤버변수도 아니고 로컬변수도 아닌 전역변수(혹은 static 변수)도 있지만 이것은 말 그대로 전역으로 존재하며 특정 함수나 객체에 속하는 것이 아니므로 논의에서 제외한다.
+물론 멤버변수도 아니고 지역변수도 아닌 전역변수(혹은 static 변수)도 있지만 이것은 말 그대로 전역으로 존재하며 특정 함수나 객체에 속하는 것이 아니므로 논의에서 제외한다.
 
-함수를 실행할 때는 멤버변수가 저장된 공간 즉 this가 가리키는 객체와, 로컬변수를 저장할 수 있는 공간이 마련되어 제공되어야 한다. Javascript는 바로 실행 컨텍스트(Execution Context)이라는 또다른 객체를 통해 이것을 제공한다.
+함수를 실행할 때는 멤버변수가 저장된 공간 즉 this가 가리키는 객체와, 지역변수를 저장할 수 있는 공간이 마련되어 제공되어야 한다. Javascript는 바로 실행 컨텍스트(Execution Context)이라는 또다른 객체를 통해 이것을 제공한다.
 
 - 실행 컨텍스트는 논리적 스택 구조를 가지며 컨트롤이 실행가능한 코드(Global Code、Eval Code、Function Code)로 이동되면 새로운 실행 컨텍스트가 생성된다.
 - 가장 바깥쪽에 존재하는 실행 컨텍스트인 전역 컨텍스트는 애플리케이션이 종료될 때(웹 페이지에서 나가거나 브라우저를 닫을 때)까지 유지된다.

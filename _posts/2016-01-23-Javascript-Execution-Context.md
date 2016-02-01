@@ -288,5 +288,4 @@ Variable Declaration된 변수 z를 Variable Object(AO_2)에 set한다(프로퍼
 * [http://dmitrysoshnikov.com/ecmascript/chapter-6-closures/](http://dmitrysoshnikov.com/ecmascript/chapter-6-closures/)  
 * [http://davidshariff.com/blog/what-is-the-execution-context-in-javascript/](http://davidshariff.com/blog/what-is-the-execution-context-in-javascript/)  
 * [http://jibbering.com/faq/notes/closures/](http://jibbering.com/faq/notes/closures/)  
-* [this](http://www.nextree.co.kr/p7522/)  
 * [매개변수(parameter)와 인수(argument)](http://stackoverflow.com/questions/1788923/parameter-vs-argument)

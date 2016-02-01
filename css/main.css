@@ -47,6 +47,10 @@ table td {
   border: 1px solid #ddd;
   padding: 6px 13px;
 }
+
+code {
+  font-family: 'Lora', 'KoPub Batang', 'Times New Roman', serif;
+}
 /*end*/
 
 h1,h2,h3,h4,h5,h6 {

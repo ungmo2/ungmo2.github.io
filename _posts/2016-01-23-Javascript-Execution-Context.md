@@ -49,14 +49,14 @@ Javascript가 block-level scope을 지원하는 언어라면, 변수 i는 for �
 
 	```javascript
   var person = {
-  	firstName: "John",
-  	lastName : "Doe",
-  	id       : 5566,
+    	firstName: "John",
+    	lastName : "Doe",
+    	id       : 5566,
 
-  	fullName : function() {
-  		return this.firstName + " " + this.lastName;
-  		//return firstName + " " + lastName; // ReferenceError: firstName is not defined
-  	}
+    	fullName : function() {
+    		return this.firstName + " " + this.lastName;
+    		//return firstName + " " + lastName; // ReferenceError: firstName is not defined
+    	}
   };
 
   var fullName = person.fullName(); // "John Doe"
@@ -66,9 +66,9 @@ Javascript가 block-level scope을 지원하는 언어라면, 변수 i는 for �
 
 	```javascript
 	var foo = function() {
-    var bar = 0;
-    bar += 1
-		return bar;
+      var bar = 0;
+      bar += 1
+    	return bar;
 	}
 	```
 

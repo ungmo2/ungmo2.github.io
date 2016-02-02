@@ -67,8 +67,8 @@ Javascript가 block-level scope을 지원하는 언어라면, 변수 i는 for �
 	```javascript
 	var foo = function() {
       var bar = 0;
-      bar += 1
-    	return bar;
+      bar += 1;
+      return bar;
 	}
 	```
 

@@ -58,7 +58,6 @@ Javascript가 block-level scope을 지원하는 언어라면, 변수 i는 for �
     		//return firstName + " " + lastName; // ReferenceError: firstName is not defined
     	}
   };
-
   var fullName = person.fullName(); // "John Doe"
 	```
 

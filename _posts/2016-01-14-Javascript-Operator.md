@@ -5,6 +5,8 @@ categories: javascript
 tags: []
 ---
 
+연산자(Operators)는 하나 혹은 그 이상의 값을 하나의 값으로 만들 때 사용한다.
+
 # 산술 연산자 (Arithmetic Operators)
 
 | Operator	  | Description   |

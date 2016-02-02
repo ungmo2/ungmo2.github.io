@@ -8,7 +8,9 @@ tags: []
 # statement
 프로그램(스크립트)은 컴퓨터(Client-side Javascript의 경우, 엄밀히 말하면 웹 브라우저)에 의해 단계별로 수행될 명령들의 집합이다.
 
-각각의 명령을 statement(구문)이라 하며 구문은 값(Values), 연산자(Operators), 표현식(Expressions), Keywords, 주석(Comments)으로 구성된다. 구문은 세미콜론( ; )으로 끝나야 한다.
+각각의 명령을 statement(구문)이라 하며 statement가 실행되면 무슨 일인가가 일어나게 된다.
+
+구문은 값(Values), 연산자(Operators), 표현식(Expressions), Keywords, 주석(Comments)으로 구성되며 세미콜론( ; )으로 끝나야 한다.
 
 ```javascript
 var x = 5;
@@ -42,7 +44,7 @@ if (time < 10) {
 
 # Expression
 표현식(Expression)은 값, 변수, 연산자의 조합이며 이 조합은 값을 연산한다. 즉, 표현식은 하나의 값으로 평가될 수 있는 문장이다.
-아래의 예에서 5 * 10은 50으로 연산(평가)된다.
+아래의 예에서 5 * 10은 50으로 평가(연산)된다.
 
 ```javascript
 5 * 10                // 50
@@ -50,7 +52,7 @@ if (time < 10) {
 ```
 
 # Variable
-programming language에서 변수는 data값을 저장하기 위해 사용된다.
+programming language에서 변수는 data값을 저장(할당), 참조하기 위해 사용된다. 한번 쓰고 버리는 값이 아닌 값(value)을 유지할 필요가 있는 경우에 변수를 사용한다.
 
 변수를 선언할 때 `var` keyword가 사용된다. 등호(=, equal sign)는 변수에 값을 할당하기 위해 사용된다.
 
@@ -81,7 +83,7 @@ String str = "Hello World";
 * `Object`
 
 리터럴이란 값을 표현하는 방식을 의미한다.
-자바스크립트는 값(value)을 표현하기 위해 리터럴을 사용한다.  그리고 대부분 값은 변수에 저장된다 (변수도 값이다!)
+자바스크립트는 값(value)을 표현하기 위해 리터럴을 사용한다. 그리고 대부분 값은 변수에 저장된다 (변수도 값이다!)
 
 ```javascript
 // literal : Number

@@ -8,11 +8,16 @@ tags: []
 #Variables
 어플리케이션에서 값(value)을 유지할 필요가 있을 때 변수를 사용한다.  
 
-변수는 값을 저장, 조회, 조작하는 데 사용되며 다른 사용자가 변수가 수행하는 작업을 쉽게 이해할 수 있도록 의미있는 이름을 지정하여야한다.
+변수는 값을 저장, 조회, 조작(변경)하는 데 사용되며 다른 사용자가 변수의 존재 목적을 쉽게 이해할 수 있도록 의미있는 이름을 지정하여야한다.
+
+```javascript
+var score = 100;  // OK
+var x = 3;        // NG
+```
 
 변수명은 identifier(식별자)로 불리기도 하며 명명 규칙이 존재한다.
 
-* 반드시 문자(특수문자 제외), underscore ( _ ), 또는 달러 기호($)로 시작하여야 한다. 이어지는 문자에는 숫자(0~9)도 사용할 수 있다.  
+* 반드시 영문자(특수문자 제외), underscore ( _ ), 또는 달러 기호($)로 시작하여야 한다. 이어지는 문자에는 숫자(0~9)도 사용할 수 있다.  
 * JavaScript는 대/소문자를 구별하므로 사용할 수 있는 문자는 "A" ~ "Z" (대문자)와 "a" ~ "z" (소문자)이다.
 
 변수를 선언할 때 `var` keyword가 사용된다. 등호(=, equal sign)는 변수에 값을 할당하기 위해 사용된다.
@@ -27,9 +32,9 @@ var person = "John Doe",
     carName = "Volvo",
     price = 200;
 
-var price1 = 5;
-var price2 = 6;
-var total = price1 + price2;
+var price = 10;
+var tax   = 1;
+var total = price + tax;
 ```
 
 초기화되지 않은 변수는 `undefined` 값을 갖게 된다. 미선언 변수에 접근하면 `ReferenceError` 예외가 발생한다.
@@ -54,7 +59,7 @@ console.log(y); // throws ReferenceError exception
 * `Object`
 
 ##Primitive Data Type (기본자료형)
-기본자료형(Primitive data type)의 값은 변경 불가능한 값 (immutable value)이다. 또한 이들은 pass-by-value이다.
+기본자료형(Primitive data type)의 값은 변경 불가능한 값 (immutable value)이다. 또한 이들은 `pass-by-value`이다.
 
 ###Boolean
 논리적인 요소를 나타내며 `true`와 `false` 두가지 값을 가질 수 있다. 비어있는 문자열과 `null`, `undefined`, 숫자 0은 `false`로 간주된다.
@@ -67,7 +72,7 @@ var bar = false;
 ###null
 null 타입은 딱 한 가지 값, `null` 을 가질 수 있다. JavaScript는 case-sensitive하므로 `null`은 Null, NULL등과 다르다.
 
-Computer science에서 `null`은 의도적으로 기본형(primitives)과 object에 값이 없다는 것을 명시한 것이다. 따라서 값이 없는 변수의 초기화 시 `null`을 사용한다.
+Computer science에서 `null`은 의도적으로 기본형(primitives)과 object형 변수에 값이 없다는 것을 명시한 것이다.
 
 ```javascript
 var foo = 'Lee';
@@ -88,7 +93,7 @@ ECMAScript 표준에 따르면, 숫자의 자료형은 배정밀도 64비트 �
 추가적으로 세가지 의미있는 기호적인 값들도 표현할 수 있다.
 
 
-* `+/-` Infinity
+* `+/- Infinity`
 * `NaN` (not-a-number)
 
 ```javascript
@@ -96,8 +101,11 @@ var x = 10;
 var y = 10.12;
 var z = -20;
 
-var foo = 1 * 'string';
-console.log(foo);  // NaN
+var foo = 42 / -0;
+console.log(foo);  // -Infinity
+
+var bar = 1 * 'string';
+console.log(bar);  // NaN
 ```
 
 ###String
@@ -114,15 +122,15 @@ C와 같은 언어와는 다르게, 자바스크립트의 문자열은 변경 �
 
 ```javascript
 var name = "John Doe";   // Using double quotes
-var name = 'John Doe';   // Using single quotes
+    name = 'John Doe';   // Using single quotes
 
 var answer = "It's alright";          // Single quote inside double quotes
-var answer = "He is called 'Johnny'"; // Single quotes inside double quotes
-var answer = 'He is called "Johnny"'; // Double quotes inside single quotes
+    answer = "He is called 'Johnny'"; // Single quotes inside double quotes
+    answer = 'He is called "Johnny"'; // Double quotes inside single quotes
 ```
 
 ###Symbol
-ECMAScript 6 에서 추가되었다. Symbol은 유일하고 변경 불가능한 (immutable) 기본값 (primitive value) 이다. 또한, 객체 속성의 key 값으로도 사용될 수 있다. 몇몇 프로그래밍 언어에서는 Symbol을 atom 이라고 부른다. C 언어의 이름있는 열거형 (enum) 과도 비슷하다.
+ECMAScript 6(Javascript 2015) 에서 추가되었다. Symbol은 유일하고 변경 불가능한 (immutable) 기본값 (primitive value) 이다. 또한, 객체 속성의 key 값으로도 사용될 수 있다. 몇몇 프로그래밍 언어에서는 Symbol을 atom 이라고 부른다. C 언어의 이름있는 열거형 (enum) 과도 비슷하다.
 
 ###Object
 6가지 기본자료형을 제외한 나머지는 모두 객체이다.

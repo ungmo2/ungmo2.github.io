@@ -2,7 +2,6 @@
 layout: post
 title: Javascript Execution Context
 categories: javascript
-tags: [execution context, function, scope, this, vo]
 ---
 
 함수란 어떤 특정 작업을 수행하기 위해 필요한 일련의 구문들을 그룹화하는 개념이다. 즉 CPU가 실행하게 될 동작들을 기능 단위로 그룹화 해 놓은 것이라 할 수 있다.

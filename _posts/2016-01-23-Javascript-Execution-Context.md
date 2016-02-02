@@ -10,9 +10,7 @@ categories: javascript
 
 또한 Javascript는 function-level scope를 사용하므로 함수와 변수는 scope와 밀접한 관계가 있다.
 
-우선 scope에 대하여 알아본다. scope에 대한 더욱 자세한 포스트는 [이곳]({% post_url 2016-01-21-Javascript-Scope %})을 참조하기 바란다
-
-#Scope
+우선 scope에 대하여 알아본다. scope에 대한 자세한 포스트는 [이곳]({% post_url 2016-01-21-Javascript-Scope %})을 참조하기 바란다.
 
 ```javascript
 var a = 10;		// variable of the global context
@@ -43,7 +41,8 @@ Javascript가 block-level scope을 지원하는 언어라면, 변수 i는 for �
 
 이와 같이 Javascript는 오직 "function"의 실행 컨텍스트만이 scope를 만들 수 있다. 위의 예와 같이 코드 블럭은 지역 컨텍스트를 만들지 않는다. (변수 i는 전역 변수이다.)
 
-변수는 객체지향언어의 관점에서 생각해 보면 크게 2가지로 구분할 수 있다.
+변수는 객체지향언어의 관점에서 생각해 보면 크게 2가지로 구분할 수 있다.  
+(물론 전역변수(혹은 static 변수)도 있지만 이것은 말 그대로 전역으로 존재하며 특정 함수나 객체에 속하는 것이 아니므로 논의에서 제외한다.)
 
 * `this`를 통해서 접근되는 객체의 멤버변수  
 
@@ -71,9 +70,7 @@ Javascript가 block-level scope을 지원하는 언어라면, 변수 i는 for �
 	}
 	```
 
-물론 전역변수(혹은 static 변수)도 있지만 이것은 말 그대로 전역으로 존재하며 특정 함수나 객체에 속하는 것이 아니므로 논의에서 제외한다.
-
-함수를 실행할 때는 멤버변수가 저장된 공간 즉 this가 가리키는 객체와, 지역변수를 저장할 수 있는 공간이 마련되어 제공되어야 한다. Javascript는 바로 실행 컨텍스트(Execution Context)이라는 또다른 객체를 통해 이것을 제공한다.
+이것은 함수를 실행할 때 "멤버변수가 저장된 공간 즉 this가 가리키는 객체"와 "지역변수"를 저장할 수 있는 공간이 마련되어 제공되어야 한다. Javascript는 바로 실행 컨텍스트(Execution Context)이라는 또다른 객체를 통해 이것을 제공한다.
 
 - 실행 컨텍스트는 논리적 스택 구조를 가지며 컨트롤이 실행가능한 코드(Global Code、Eval Code、Function Code)로 이동되면 새로운 실행 컨텍스트가 생성된다.
 - 가장 바깥쪽에 존재하는 실행 컨텍스트인 전역 컨텍스트는 애플리케이션이 종료될 때(웹 페이지에서 나가거나 브라우저를 닫을 때)까지 유지된다.

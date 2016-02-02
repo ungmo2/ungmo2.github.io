@@ -16,6 +16,7 @@ Scope의 종류는 다음과 같다.
 
 - C-family language 대부분은 `block-level scope`를 사용하지만 Javascript는 `function-level scope`를 사용한다.  
 
+
   ```c
   int main(void) {
     // block-scope
@@ -29,7 +30,7 @@ Scope의 종류는 다음과 같다.
     return 0;
   }
   ```
-  
+
 - 즉, 함수 내에서 정의된 매개변수와 변수는 함수 외부에서는 유효하지 않다.
 - 단, ECMAScript 6에서 도입된 `let` keyword를 사용하면 `block-level scope`를 사용할 수 있다.
 

@@ -20,6 +20,20 @@ Javascript는 function-level scope만 사용한다.
 - 즉, 함수 내에서 정의된 매개변수와 변수는 함수 외부에서는 유효하지 않다.
 - 단, ECMAScript 6에서 도입된 `let` keyword를 사용하면 `block-level scope`를 사용할 수 있다.
 
+#Global scope
+
+```javascript
+var x = 'global'; // Global scope
+
+function foo(){
+  console.log(x);
+}
+
+foo();
+```
+
+변수 x는 함수 영역 밖에서 선언되었다. 함수 영역 밖에서 선언된 변수는 모두 global scope을 갖게된다. 따라서 변수 x는 전역 변수이다. 전역 변수는 어느 곳에서든지 참조할 수 있다.
+
 #Non block-level scope
 
 ```javascript
@@ -29,7 +43,114 @@ if (true) {
 console.log(x);
 ```
 
-변수 x는 코드 블럭 내에서 정의되었다. 하지만 JavaScript는 block-level scope를 사용하지 않으므로 변수 x는 전역 변수이다.
+변수 x는 코드 블럭 내에서 선언되었다. 하지만 JavaScript는 block-level scope를 사용하지 않으므로 function 밖에서 선언된 변수는 모두 global scope을 갖게된다. 따라서 변수 x는 전역 변수이다.
+
+#Function scope
+
+```javascript
+var a = 10;     // variable of the global context
+
+(function () {
+  var b = 20;   // local variable of the function context
+})();
+
+console.log(a); // 10
+console.log(b); // "b" is not defined
+```
+
+Javascript는 function-level scope를 사용한다. 즉 함수 내에서 선언된 매개변수와 변수는 함수 외부에서는 유효하지 않다. 따라서 변수 b는 지역 변수이다.
+
+```javascript
+var x = 'global'; // Global scope
+
+function foo(){
+  var x = 'local';  // Local scope
+  console.log(x);
+}
+
+foo();
+console.log(x); // ?
+```
+
+전역변수 x와 지역변수 x가 중복 선언되었다. 전역 영역에서는 전역변수만이 참조 가능하고 함수 내 지역 영역에서는 전역과 지역 변수 모두 참조 가능하나 위 예제와 같이 변수명이 중복된 경우, 지역변수를 우선하여 참조한다.
+
+```javascript
+var x = 'global'; // Global scope
+
+function foo(){
+  var x = 'local';  // Local scope
+  console.log(x);
+
+  function bar(){ // 내부함수
+    console.log(x); // ?
+  }
+
+  bar();
+}
+foo();
+console.log(x); // ?
+```
+
+내부함수는 자신을 포함하고 있는 외부함수의 변수에 접근할 수 있다. 이는 매우 유용하다. 클로저에서와 같이 내부함수가 더 오래 생존하는 경우, 타 언어와는 다른 움직임을 보인다.
+
+
+```javascript
+var x = 10; // Global scope
+
+function foo(){
+  x = 100;
+  console.log(x);
+}
+foo();
+console.log(x); // ?
+```
+
+함수(지역) 영역에서 전역 변수의 값을 변경할 수 있다.
+
+```javascript
+var x = 10; // Global scope
+
+function foo(){
+  var x = 100;  // Local scope
+  console.log(x);
+
+  function bar(){ // 내부함수
+    x = 1000;
+    console.log(x); // ?
+  }
+
+  bar();
+}
+foo();
+console.log(x); // ?
+```
+
+중첩 scope는 가장 인접한 지역을 우선하여 참조한다.
+
+```javascript
+var foo = function ( ) {
+
+  var a = 3, b = 5;
+
+  var bar = function ( ) {
+    var b = 7, c = 11;
+
+// 이 시점에서 a는 3, b는 7, c는 11
+
+    a += b + c;
+
+// 이 시점에서 a는 21, b는 7, c는 11
+
+  };
+
+// 이 시점에서 a는 3, b는 5, c는 not defined
+
+  bar( );
+
+// 이 시점에서 a는 21, b는 5
+
+};
+```
 
 #암묵적 전역 (implied globals)
 
@@ -99,108 +220,6 @@ function bar() { // 선언된 시점에서의 scope를 갖는다!
 foo(); // ?
 ```
 
-#Global scope
-
-```javascript
-var x = 'global'; // Global scope
-
-function foo(){
-  console.log(x);
-}
-
-foo();
-```
-
-#Function scope
-
-```javascript
-var x = 'global'; // Global scope
-
-function foo(){
-  var x = 'local';  // Local scope
-  console.log(x);
-}
-
-foo();
-console.log(x); // ?
-```
-
-```javascript
-var x = 'global'; // Global scope
-
-function foo(){
-  var x = 'local';  // Local scope
-  console.log(x);
-
-  function bar(){ // 내부함수
-    console.log(x); // ?
-  }
-
-  bar();
-}
-foo();
-console.log(x); // ?
-```
-
-```javascript
-var x = 10; // Global scope
-
-function foo(){
-  x = 100;
-  console.log(x);
-}
-foo();
-console.log(x); // ?
-```
-
-```javascript
-var x = 10; // Global scope
-
-function foo(){
-  var x = 100;  // Local scope
-  console.log(x);
-
-  function bar(){ // 내부함수
-    x = 1000;
-    console.log(x); // ?
-  }
-
-  bar();
-}
-foo();
-console.log(x); // ?
-```
-
-```javascript
-var foo = function ( ) {
-
-  var a = 3, b = 5;
-
-  var bar = function ( ) {
-    var b = 7, c = 11;
-
-// 이 시점에서 a는 3, b는 7, c는 11
-
-    a += b + c;
-
-// 이 시점에서 a는 21, b는 7, c는 11
-
-  };
-
-// 이 시점에서 a는 3, b는 5, c는 not defined
-
-  bar( );
-
-// 이 시점에서 a는 21, b는 5
-
-};
-```
-
-***전역변수를 반드시 사용하여야 할 이유를 찾지 못한다면 지역변수를 사용하여야 한다.***
-
-- 코드가 길어지면 변수명의 중복이 발생하기 쉬워 예기치 못한 이상의 원인이 되기 쉽다.
-- 전역변수는 지역변수보다 탐색에 걸리는 시간이 더 길다.(속도면에서 그리 큰 차이는 없지만 분명히 느리다.)
-
 #변수명의 중복
 ```javascript
 // script A
@@ -216,6 +235,11 @@ for(var i = 0; i < 5; i++){
   console.log(i);
 }
 ```
+
+***전역변수를 반드시 사용하여야 할 이유를 찾지 못한다면 지역변수를 사용하여야 한다.***
+
+- 코드가 길어지면 변수명의 중복이 발생하기 쉬워 예기치 못한 이상의 원인이 되기 쉽다.
+- 전역변수는 지역변수보다 탐색에 걸리는 시간이 더 길다.(속도면에서 그리 큰 차이는 없지만 분명히 느리다.)
 
 #최소한의 전역변수 사용
 더글라스 크락포드의 제안:  

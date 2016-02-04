@@ -71,11 +71,12 @@ google_analytics: "UA-72992114-1"
 
 # Output options (more information on Jekyll's site)
 timezone: "Asis/Seoul"
-markdown: redcarpet
-redcarpet:
-  extensions: ["smart", "no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "strikethrough", "superscript", "with_toc_data"]
-highlighter: pygments
-# highlighter: rouge
+# markdown: redcarpet
+# redcarpet:
+#   extensions: ["smart", "no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "strikethrough", "superscript", "with_toc_data"]
+# highlighter: pygments
+markdown: kramdown
+highlighter: rouge
 # permalink: /:year-:month-:day-:title
 # permalink: /blog/:title
 permalink: /:categories/:title

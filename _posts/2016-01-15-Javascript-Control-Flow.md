@@ -62,7 +62,7 @@ if (time < 10) {
 }
 ```
 
-`switch`변수의 값과 일치되는 `case`구문으로 실행 순서가 이동하게 된다. `break` keyword는 `switch` 구문에서 탈출하는 역할을 수행한다.
+switch 구문의 경우, `switch`변수의 값과 일치되는 `case`구문으로 실행 순서가 이동하게 된다. `break` keyword는 switch 구문에서 탈출하는 역할을 수행한다.
 
 `break`가 없다면 실행 순서는 다음 `case`구문으로 이동한다. `switch`변수의 값과 일치되는 구문이 없다면 실행 순서는 `default`로 이동한다.
 
@@ -83,6 +83,7 @@ switch (new Date().getDay()) {
 `default`구문에 `break`는 생략하여도 무방하다. 이유는 `default`구문이 가장 마지막에 위치하므로 다음 구문으로 이동할 수 없기 때문이다.
 
 # Truthy & Falsy values
+
 ## Falsy values
 아래 값들은 Boolean context에서 `false`로 평가된다.
 

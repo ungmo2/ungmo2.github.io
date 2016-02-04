@@ -84,7 +84,17 @@ switch (new Date().getDay()) {
 
 # Truthy & Falsy values
 
+흐름제어를 위해서는 의사결정이 조건식을 평가하여 논리적 참, 거짓을 구별하는 것이 일반적이다. 예를 들어 점수가 80점 이상이면 합격이고 80 미만이면 불합격이라는 기준이 있을 때, 80이상이면 참으로 평가하여 흐름을 제어할 수 있다.
+
+```javascript
+if (score >= 80) {
+  console.log('pass!!');
+} else {
+  console.log('fail..');
+}
+
 ## Falsy values
+
 아래 값들은 Boolean context에서 `false`로 평가된다.
 
 * `false`
@@ -95,6 +105,7 @@ switch (new Date().getDay()) {
 * `""` (빈문자열)
 
 ## Truthy values
+
 Falsy values 이외의 값들(object포함)은 모두 true로 평가된다.
 
 ```javascript
@@ -118,6 +129,7 @@ if (!x)  console.log(x+" is falsy value");
 ```
 
 # Type coercion (Type강제)
+
 Javascript는 context(문맥)을 고려하여 내부적으로 자료형을 자동 변경하여 작업을 완료할 수 있다.
 이는 의도하지 않은 값을 만들어낼 수 있어 주의가 필요하다.
 
@@ -147,6 +159,7 @@ console.log(NaN == NaN);
 두 값을 비교할 때에 동등연산자(==, !=)보다 일치연산자(===, !==)를 사용하여야 한다.
 
 # Checking existence
+
 단항 연산자를 활용한 존재 확인이 가능하다. 즉, 객체나 배열(배열도 객체이다)이 값을 가지고 있으면 truthy value로 취급된다.받는다. 이를 이용하여 존재여부를 확인할 수 있다.
 
 ```javascript

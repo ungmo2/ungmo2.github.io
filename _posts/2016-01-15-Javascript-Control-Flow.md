@@ -92,6 +92,7 @@ if (score >= 80) {
 } else {
   console.log('fail..');
 }
+```
 
 ## Falsy values
 

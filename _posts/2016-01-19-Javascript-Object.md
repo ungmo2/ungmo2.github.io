@@ -5,27 +5,13 @@ categories: javascript
 tags: []
 ---
 
-#Object
 객체는 데이터와 그 데이터에 관련되는 동작(절차,방법,기능)을 모두 포함할 수 있는 개념적 존재이다.
 
 달리 말해, 이름과 값을 가지는 데이터를 의미하는 속성(property)와 동작을 의미하는 메서드(method)를 포함하고 있는 독립적 주체이다.
 
 객체는 데이터를 한 곳에 모으고 구조화하는데 유용하다. 객체 하나는 다른 객체를 포함할 수 있기 때문에, 그래프나 트리와 같은 자료구조를 쉽게 표현할 수 있다.
 
-#Property
-프로퍼티란 객체의 일부로서 이름과 값의 쌍을 가지는 정보를 의미한다. 객체는 프로퍼티들을 포함하는 컨테이너라고 할 수 있다.
-
-#Method
-메서드는 객체가 가지고 있는 동작(절차,방법,기능)이다. 기본적으로 함수와 메서드가 서로 일련의 동작을 실행하는 구문들의 집합이라는 점에서 동일하지만 메서드는 객체가 가지고 있는 동작이라는 점에서 차이가 있다.
-
-메서드를 수행하기 위해서는 객체를 통해서 해당 메서드를 수행하여야 한다. 즉 그 동작을 수행하는 주체는 객체이며 그 동작을 수행하기 위해서는 객체에게 그 동작을 수행하라고 지시해야 한다. 함수는 그 동작을 수행하기 위해 객체에게 어떤을 동작을 수행하라고 명령하지 않아도 된다. (함수는 자체가 그 동작을 정의한 객체이다.)
-
-즉, 메서드는 객체를 움직이는 동작이며 그 동작을 수행하기 위해서 객체의 정보인 프로퍼티를 사용할 수 있다.
-
-#Javascript Object
-자바스크립트는 객체(object)기반의 스크립트 언어이며 자바스크립트를 이루고 있는 대부분 “모든 것”은 객체이다.
-
-기본자료형(Primitives) 이외의 다른 값들(배열, 함수, 정규표현식 등)은 모두 객체이다.
+자바스크립트는 객체(object)기반의 스크립트 언어이며 자바스크립트를 이루고 있는 대부분 “모든 것”은 객체이다. 기본자료형(Primitives) 이외의 다른 값들(배열, 함수, 정규표현식 등)은 모두 객체이다.
 
 객체는 이름(name)과 값(value)의 쌍인 속성들을 포함하는 컨테이너라고 할 수 있다.
 
@@ -76,7 +62,8 @@ flight.status         // undefined
 stooge["FIRST-NAME"]  // undefined
 ```
 
-`||` 연산자를 사용하여 기본값을 지정할 수 있다.(5_Operator: 단축 평가 참고)
+`||` 연산자를 사용하여 기본값을 지정할 수 있다.  
+[Operator: 단축 평가 참고]({% post_url 2016-01-14-Javascript-Operator %})
 
 ```javascript
 var middle = stooge["middle-name"] || "(none)";
@@ -112,7 +99,7 @@ flight.equipment = {
 flight.status = 'overdue';
 ```
 
-#Pass-by-reference
+# Pass-by-reference
 기본자료형은 값이 한번 정해지면 변경할 수 없지만(immutable), 객체는 변경 가능한 프로퍼티(속성)들의 집합이라 할 수 있다.
 
 기본자료형의 값은 값(value)으로 전달된다. 즉, 복사되어 전달된다.
@@ -153,7 +140,7 @@ a = b = c = {};
   // a, b, c는 모두 같은 빈 객체를 참조
 ```
 
-#속성 삭제
+# 속성 삭제
 `delete` 연산자를 사용하면 객체의 속성을 삭제할 수 있다.
 
 ```javascript
@@ -164,19 +151,19 @@ delete stooge.nickname;
 stooge.nickname;  // undefined
 ```
 
-#Built-in Object(내장객체)
+# Built-in Object(내장객체)
 
-##Built-in Object(자바스크립트 내장객체)
+## Built-in Object(자바스크립트 내장객체)
 Javascript는 프로그램 전체의 영역에서 공통적으로 필요한 기능을 사용자 각자가 일일히 작성하는 수고를 줄이기 위해 Built-in Object(내장객체)를 제공한다.
 
 Object, String, Number, Boolean, Date, Array, Math, RegExp, Error 등 많은 내장객체들이 있다.
 
 이들은 자바스크립트 엔진이 구동되는 시점에서 바로 제공되며 자바스크립트코드 어디에서든 사용이 가능하다.
 
-##Native Object(브라우저 내장 객체)
+## Native Object(브라우저 내장 객체)
 브라우저객체모델(BOM)과 문서객체모델(DOM)로 이 객체들은 Built-in Object 가 구성된 후에 구성된다.
 
 Native Object 역시 내장객체이며  Built-in Object와 동일하게 자바스크립트 구동시점부터 바로 사용가능 하다. 
 
-##Host Object(사용자 정의 객체)
+## Host Object(사용자 정의 객체)
 사용자가 생성한 객체 들이다. constructor 혹은 객체리터럴을 통해 사용자가 객체를 정의하고 확장시킨 것들이기 때문에 Built-in Object 와 Native Object가 구성된 이후에 구성된다.

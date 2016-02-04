@@ -11,7 +11,7 @@ categories: javascript
 변수는 객체지향언어의 관점에서 생각해 보면 크게 2가지로 구분할 수 있다.  
 (물론 전역변수(혹은 static 변수)도 있지만 이것은 말 그대로 전역으로 존재하며 특정 함수나 객체에 속하는 것이 아니므로 논의에서 제외한다.)
 
-* `this`를 통해서 접근되는 객체의 멤버변수    
+* `this`를 통해서 접근되는 객체의 멤버변수
 
 ```javascript
 var person = {
@@ -27,7 +27,7 @@ var person = {
 var fullName = person.fullName(); // "John Doe"
 ```
 
-* 함수 내부에서만 사용되는 지역변수  
+* 함수 내부에서만 사용되는 지역변수
 
 ```javascript
 var foo = function() {
@@ -50,7 +50,7 @@ Javascript는 바로 실행 컨텍스트(Execution Context)이라는 또다른 �
 - 실행 컨텍스트는 함수 실행이 끝나면 해당 함수의 실행 컨텍스트를 파기하고 컨트롤을 이전 컨텍스트에 반환한다.
 
 
-# <div id='sample'>sample code</div>
+# sample code
 
 ```javascript
 var x = 'xxx';
@@ -123,7 +123,7 @@ Global Code의 경우 Global Object가 Variable Object가 된다.
 
 <img src="/img/ec_6.jpg">
 
-### <div id="Variable_Instantiation">Variable Instantiation 실행 순서</div>
+### Variable Instantiation 실행 순서
 
 Variable Instantiation에서는 이하의 순서로 Variable Object에 프로퍼티와 값이 set된다.
 (반드시 1→2→3 순서로 실행된다.)
@@ -132,16 +132,16 @@ Variable Instantiation에서는 이하의 순서로 Variable Object에 프로퍼
 >2. 대상 코드 내의 Function Declaration(*Function Expression 제외*)를 대상으로 함수명이 Variable Object의 프로퍼티로, 생성된 Function Object가 값으로 set된다.
 >3. 대상 코드 내의  Variable Declaration을 대상으로 변수명이 Variable Object의 프로퍼티로, undefined가 값으로 set된다.    
 
-<a href="#sample">Sample code</a>를 보면 Global Code의 변수 x 선언(Variable Declaration)과 함수 foo의 선언(Function Declaration. 매개변수 없음)이 실행되었다. Variable Instantiation의 실행 순서 상,
+Sample code를 보면 Global Code의 변수 x 선언(Variable Declaration)과 함수 foo의 선언(Function Declaration. 매개변수 없음)이 실행되었다. Variable Instantiation의 실행 순서 상,
 우선 2. 함수 foo의 선언이 처리되고(Function Code이 아닌 Global Code이기 때문에 1. 매개변수 처리는 실행되지 않는다.) 그 후 3. 변수 x의 선언이 처리된다.
 
 ### 함수 foo의 선언 처리
-Function Declaration는  <a href="#Variable_Instantiation">Variable Instantiation 실행 순서</a> 2.와 같이 선언된 함수명( foo )이 Variable Object( Global Code인 경우 Global Object )의 프로퍼티로, 생성된 Function Object가 값으로 set된다. 생성된 Function Object는 `[[Scope]]` 프로퍼티를 가지게 되고 값으로 현재의 실행 컨텍스트의 Scope Chain이 참조하고 있는 객체와 같은 객체( Global Code인 경우 Global Object )를 참조하는 리스트가 set된다.
+Function Declaration는 Variable Instantiation 실행 순서 2.와 같이 선언된 함수명( foo )이 Variable Object( Global Code인 경우 Global Object )의 프로퍼티로, 생성된 Function Object가 값으로 set된다. 생성된 Function Object는 `[[Scope]]` 프로퍼티를 가지게 되고 값으로 현재의 실행 컨텍스트의 Scope Chain이 참조하고 있는 객체와 같은 객체( Global Code인 경우 Global Object )를 참조하는 리스트가 set된다.
 
 <img src="/img/ec_7.jpg">
 
 ### 변수 x의 선언 처리  
-Variable Declaration는 <a href="#Variable_Instantiation">Variable Instantiation 실행 순서</a> 3.과 같이 선언된 변수명( x )이 Variable Object의 프로퍼티로, undefined가 값으로 set된다. (아직 변수 x는 'xxx'로 초기화되지 않는다.)
+Variable Declaration는 Variable Instantiation 실행 순서 3.과 같이 선언된 변수명( x )이 Variable Object의 프로퍼티로, undefined가 값으로 set된다. (아직 변수 x는 'xxx'로 초기화되지 않는다.)
 
 <img src="/img/ec_8.jpg">
 
@@ -154,7 +154,7 @@ Variable Instantiation 실행이 끝나면 다음은 this value가 결정된다.
 <br>
 
 # 2. Code의 실행
-코드의 실행은 지금부터 시작된다. <a href="#sample">Sample code</a>를 보면 전역 변수 x에 문자열 'xxx' 대입과 함수 foo의 호출이 실행된다.
+코드의 실행은 지금부터 시작된다. Sample code를 보면 전역 변수 x에 문자열 'xxx' 대입과 함수 foo의 호출이 실행된다.
 
 ## 변수 값의 대입
 전역 변수 x에 문자열 'xxx'를 대입할 때, 현재 실행 컨텍스트의 Scope Chain이 참조하고 있는 Variable Object를 선두(0)부터 검색하여 변수명에 해당하는 프로퍼티가 발견되면 값('xxxx')을 저장한다.
@@ -194,7 +194,7 @@ Function code의 경우, this의 value는 자신을 호출한 객체로부터 �
 <img src="/img/ec_16.jpg">
 
 # 3. Code의 실행
-이제 함수 foo의 코드블럭 내 구문이 실행된다. <a href="#sample">Sample code</a>를 보면 변수 y에 문자열 'yyy'의 대입과 함수 bar가 실행된다.
+이제 함수 foo의 코드블럭 내 구문이 실행된다. Sample code를 보면 변수 y에 문자열 'yyy'의 대입과 함수 bar가 실행된다.
 
 ## 변수 값의 대입  
 전역 변수 y에 문자열 'yyy'를 대입할 때, 현재 실행 컨텍스트의 Scope Chain이 참조하고 있는 Variable Object를 선두(0)부터 검색하여 변수명에 해당하는 프로퍼티가 발견되면 값('yyy')을 저장한다.
@@ -228,7 +228,7 @@ Variable Declaration된 변수 z를 Variable Object(AO_2)에 set한다(프로퍼
 <img src="/img/ec_22.jpg">
 
 # 4. Code의 실행
-이제 함수 bar의 코드블럭 내 구문이 실행된다. <a href="#sample">Sample code</a>를 보면 변수 z에 문자열 'zzz'의 대입된다.
+이제 함수 bar의 코드블럭 내 구문이 실행된다. Sample code를 보면 변수 z에 문자열 'zzz'의 대입된다.
 
 <img src="/img/ec_23.jpg">
 

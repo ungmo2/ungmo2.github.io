@@ -5,6 +5,10 @@ categories: javascript
 tags: []
 ---
 
+제어문(Control flow statement)은 조건에 따른 명령 실행(조건문)이나 반복 실행(반복문)이 필요할 때 사용된다.
+
+일반적으로 코드는 위에서 아래 방향으로 순차적 실행을 하지만 실행 순서를 변경하거나 조건에 따라 실행 여부를 결정하기도 하고 반복할 수도 있다.
+
 # 블록 구문(Block statement)
 블록 구문(Block statement)는 구문들의 집합으로 가장 기본이 되는 구문이다. (블록은 중괄호로 그 범위를 정한다)
 블록 구문은 일반적으로 함수, 객체리터럴, 흐름 제어 구문(control flow statement)에서 사용된다. (e.g. if, for, while)

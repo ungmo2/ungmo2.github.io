@@ -29,13 +29,13 @@ var fullName = person.fullName(); // "John Doe"
 
 * 함수 내부에서만 사용되는 지역변수
 
-	```javascript
-	var foo = function() {
-	  var bar = 0;
-	  bar += 1;
-	  return bar;
-	}
-	```
+```javascript
+var foo = function() {
+  var bar = 0;
+  bar += 1;
+  return bar;
+}
+```
 
 함수가 실행될 때 당연히 변수를 사용하게 되는데 이는 Javascript의 실행환경(Javascript 엔진)이 이하의 사항을 인식하고 있어야 함을 의미한다.
 

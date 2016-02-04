@@ -184,38 +184,8 @@ var b = new Boolean(false);
 if (b) // this condition evaluates to true
 ```
 
-# 단축 평가 (Short-Circuit Evaluation)
-논리 연산자가 왼쪽에서 오른쪽으로 평가될때, 논리연산자는 다음의 규칙을 따라서 "단축 평가"로 검사된다.
-
-| 평가식                 | 평가 결과        |
-| :-------------------: | :------------- |
-| true  &#124;&#124; anything     | true
-| false &#124;&#124; anything     | anything
-| true  && anything     | anything
-| false && anything     | false
-
-Boolean값으로 평가하기 위해 참조하여야 할 곳까지 진행하여 평가가 중지하게된 계기가 된 값을 리턴한다.
-
-```javascript
-var foo = "Cat" && "Dog"  // t && t returns "Dog"
-```
-
-이 경우, "Cat" 은 `true`로 평가되므로 "Dog"까지 평가해 보아야 한다. 평가가 중지하게된 계기가 된 값("Dog")을 리턴한다.
-
-```javascript
-var foo = false && "Cat"  // f && t returns false
-```
-
-이 경우, `false`가 처음 등장했으므로 평가는 중지되고 `false`가 리턴된다
-
-```javascript
-var foo = "Cat" || "Dog"  // t || t returns "Cat"
-```
-
-이 경우, "Cat" 은 `true`로 평가 되므로 평가는 중지되고 `true`가 리턴된다.
-
 # Loop
-반복문(Loops)은 주어진 조건식 (condition expression)이  참인 경우 코드 블록을 실행한다.
+반복문(Loops)은 주어진 조건식 (condition expression)이 참인 경우 코드 블록을 실행한다.
 
 그 후 조건식을 다시 검사하여 여전히 참인 경우 코드 블록을 다시 실행하며 이는 조건식이 거짓일 때까지 반복된다.
 배열 내의 각 요소에 대한 동일한 코드를 반복 실행할 때 유용하다.
@@ -223,8 +193,7 @@ var foo = "Cat" || "Dog"  // t || t returns "Cat"
 JavaScript는 3가지의 반복문  `for`, `while`, `do while` 을 제공한다.
 
 ## for문
-가장 일반적으로 사용되는 반복문이다. 일정 횟수만큼 반복
-실행하여야 할 때 사용한다.
+가장 일반적으로 사용되는 반복문이다. 일정 횟수만큼 반복 실행하여야 할 때 사용한다.
 
 ```javascript
 for (var i = 0; i < 3; i++) {
@@ -232,7 +201,7 @@ for (var i = 0; i < 3; i++) {
 }
 ```
 
-### while문
+## while문
 반복 횟수를 정확히 알지 못할 때 사용한다.
 
 ```javascript

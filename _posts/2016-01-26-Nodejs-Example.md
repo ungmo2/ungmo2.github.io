@@ -12,7 +12,7 @@ file upload 예제를 통해서 Node.js의 기본과 Routing, 모듈화, Request
 
 아래의 페이지에 방문하여 자신의 개발환경에 맞는 설치파일을 다운로드하여 설치한다.
 
-https://nodejs.org/en/download/
+[https://nodejs.org/en/download](https://nodejs.org/en/download/)
 
 # *Hello World*
 
@@ -1222,7 +1222,7 @@ app.listen(8888, function () {
 });
 ```
 
-이 포스트는 http://www.nodebeginner.org/ 를 바탕으로 작성되었다. 한국어 번역도 있으니 참조 바란다. 소스코드는 https://github.com/manuelkiessling/nodebeginner.org/tree/master/code/application 에서 다운 받을 수 있다.
+이 포스트는 [http://www.nodebeginner.org](http://www.nodebeginner.org/) 를 바탕으로 작성되었다. 한국어 번역도 있으니 참조 바란다. 소스코드는 [이곳]( https://github.com/manuelkiessling/nodebeginner.org/tree/master/code/application) 에서 다운 받을 수 있다.
 
 
 # *Reference*

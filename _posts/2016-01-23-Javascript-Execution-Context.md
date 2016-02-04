@@ -13,6 +13,7 @@ categories: javascript
 
 * `this`를 통해서 접근되는 객체의 멤버변수  
 
+
 	```javascript
   var person = {
     	firstName: "John",
@@ -28,6 +29,7 @@ categories: javascript
 	```
 
 * 함수 내부에서만 사용되는 지역변수
+
 
 	```javascript
 	var foo = function() {

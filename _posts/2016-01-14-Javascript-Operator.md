@@ -35,7 +35,7 @@ z = x--;    // 7 선대입후감소
 z = --x;    // 5 선감소후대입
 ```
 
-##대입 연산자 (Assignment Operators)
+# 대입 연산자 (Assignment Operators)
 
 | Operator	  | Example	 | Same As
 | :---------: |:-------- | :-------- |
@@ -68,7 +68,7 @@ var y = "5" + 5;      // '55'
 var z = "Hello" + 5;  // 'Hello5'
 ```
 
-#비교 연산자 (Comparison Operators)
+# 비교 연산자 (Comparison Operators)
 
 | Operator	  | Description
 | :---------: |:-------------- |
@@ -121,7 +121,7 @@ var now = new Date();
 var greeting = "Good" + ((now.getHours() > 17) ? " evening." : " day.");
 ```
 
-#논리 연산자 (Logical Operators)
+# 논리 연산자 (Logical Operators)
 
 | Operator	  | Description
 | :---------: |:-------------:|
@@ -154,7 +154,7 @@ var n2 = !false; // true
 var n3 = !"Cat"; // false
 ```
 
-#타입 연산자(Type Operators)
+# 타입 연산자(Type Operators)
 
 | Operator	  | Description
 | :---------: |:-------------- |
@@ -179,7 +179,7 @@ var me = new Person()
 me instanceof Person // true
 ```
 
-#Evaluating variable
+# Evaluating variable
 초기화되지 않은 변수는 `undefined` 값을 갖게 된다. 미선언 변수에 접근하면 `ReferenceError` 예외가 발생한다.
 
 ```javascript
@@ -211,7 +211,7 @@ console.log(x * 2); // 0
 if (!x) console.log(x); // null
 ```
 
-#단축 평가 (Short-Circuit Evaluation)
+# 단축 평가 (Short-Circuit Evaluation)
 논리 연산자가 왼쪽에서 오른쪽으로 평가될때, 논리연산자는 다음의 규칙을 따라서 "단축 평가"로 검사된다.
 
 | 평가식                 | 평가 결과        |

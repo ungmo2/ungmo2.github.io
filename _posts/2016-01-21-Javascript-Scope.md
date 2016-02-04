@@ -34,7 +34,7 @@ Scope의 종류는 다음과 같다.
 - 즉, 함수 내에서 정의된 매개변수와 변수는 함수 외부에서는 유효하지 않다.
 - 단, ECMAScript 6에서 도입된 `let` keyword를 사용하면 `block-level scope`를 사용할 수 있다.
 
-#Global scope
+# Global scope
 
 ```javascript
 var x = 'global'; // Global scope
@@ -48,7 +48,7 @@ foo();
 
 변수 x는 함수 영역 밖에서 선언되었다. 함수 영역 밖에서 선언된 변수는 모두 global scope을 갖게된다. 따라서 변수 x는 전역 변수이다. 전역 변수는 어느 곳에서든지 참조할 수 있다.
 
-#Non block-level scope
+# Non block-level scope
 
 ```javascript
 if (true) {
@@ -59,7 +59,7 @@ console.log(x);
 
 변수 x는 코드 블럭 내에서 선언되었다. 하지만 JavaScript는 block-level scope를 사용하지 않으므로 function 밖에서 선언된 변수는 모두 global scope을 갖게된다. 따라서 변수 x는 전역 변수이다.
 
-#Function scope
+# Function scope
 
 ```javascript
 var a = 10;     // variable of the global context
@@ -166,7 +166,7 @@ var foo = function ( ) {
 };
 ```
 
-#암묵적 전역 (implied globals)
+# 암묵적 전역 (implied globals)
 
 foo 함수 내의 변수 x는 var keyword를 사용하지 않고 선언되었다. `var` keyword를 사용하지 않고 선언된 변수는 암묵적으로 전역변수가 된다.
 
@@ -184,7 +184,7 @@ console.log(y); // Throws a ReferenceError
 
 의도하지 않게 전역변수가 되었다면 혼란의 여지가 있으므로 `var` keyword는 반드시 사용하자.
 
-#Hoisting
+# Hoisting
 
 JavaScript는 선언문을 모두 호이스트(Hoist)한다. 호이스트란 var 구문이나 function 선언문을 해당 스코프의 맨 위로 옮기는 것을 말한다. 코드를 실행하기 전에 JavaScript는 var 구문과 function 선언문을 해당 스코프의 맨위로 옮긴다.
 
@@ -216,7 +216,7 @@ var square = function(number) {
 }
 ```
 
-#Lexical scoping (Static scoping)
+# Lexical scoping (Static scoping)
 자바스크립트는 함수가 선언된 시점에서의 유효범위를 갖는다. 예제의 함수 bar가 어떤 상황에서 호출될 지 선언 시점에서는 알 수 없다.
 
 ```javascript
@@ -234,7 +234,7 @@ function bar() { // 선언된 시점에서의 scope를 갖는다!
 foo(); // ?
 ```
 
-#변수명의 중복
+# 변수명의 중복
 ```javascript
 // script A
 function foo (){
@@ -255,7 +255,7 @@ for(var i = 0; i < 5; i++){
 - 코드가 길어지면 변수명의 중복이 발생하기 쉬워 예기치 못한 이상의 원인이 되기 쉽다.
 - 전역변수는 지역변수보다 탐색에 걸리는 시간이 더 길다.(속도면에서 그리 큰 차이는 없지만 분명히 느리다.)
 
-#최소한의 전역변수 사용
+# 최소한의 전역변수 사용
 더글라스 크락포드의 제안:  
 전역변수 사용을 최소화하는 방법 한가지는 애플리케이션에세 전역변수 사용을 위해 다음과 같이 전역변수 하나를 만들어 사용하는 것이다.
 
@@ -283,7 +283,7 @@ MYAPP.flight = {
 };
 ```
 
-#즉시실행함수를 이용한 전역변수 사용 억제
+# 즉시실행함수를 이용한 전역변수 사용 억제
 전역변수 사용을 억제하기 위해, 즉시 실행 함수(IIFE, Immediately-Invoked Function Expression)를 사용할 수 있다. 이 방법을 사용하면 전역변수를 만들지 않으므로 라이브러리 등에 자주 사용된다. 즉시 실행 함수는 즉시 실행되고 그 후 전역스페이스에서 바로 사라진다.
 
 ```javascript
@@ -314,5 +314,5 @@ MYAPP.flight = {
 console.log(MYAPP);
 ```
 
-#Reference  
+# Reference  
 * [JavaScript : The Good Parts 03.Object -by Douglas Crockford](http://www.yes24.com/24/goods/3071412?scode=032&OzSrank=1)

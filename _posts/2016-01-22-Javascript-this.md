@@ -20,7 +20,7 @@ public Class Person {
 }
 ```
 
-JavaScript의 경우, 함수 호출 패턴에 따라 어떤 객체를  `this`에 바인딩(참조)하는지가 결정된다.
+JavaScript의 경우, 함수 호출 패턴에 따라 어떤 객체를 `this`에 바인딩(참조)하는지가 결정된다.
 
 함수 호출 패턴은 아래와 같다.
 
@@ -30,7 +30,7 @@ JavaScript의 경우, 함수 호출 패턴에 따라 어떤 객체를  `this`에
 > 4. apply호출패턴(Apply Invocation Pattern)
 
 
-#함수호출패턴(Function Invocation Pattern)
+# 함수호출패턴(Function Invocation Pattern)
 기본적으로 `this`는 전역객체(global object)에 바인딩된다. 전역 함수는 물론이고 심지어 내부함수의 경우도 `this`는 외부함수가 아닌 전역객체에 바인딩된다.
 
 더글라스 크락포드는 "이것은 설계 단계의 결함으로 메소드가 내부함수를 사용하여 자신의 작업을 돕게 할 수 없다는 것을 의미한다"라고 말한다. 내부함수의 `this`가 전역객체를 참조하는 것을 회피방법은 아래와 같다.
@@ -63,7 +63,7 @@ myObject.double(  );
 console.log(myObject.value);    // 6
 ```
 
-#메소드 호출 패턴(Method Invocation Pattern)
+# 메소드 호출 패턴(Method Invocation Pattern)
 그러나, 함수가 메소드일 경우, 즉, 함수가 객체의 속성이면 메소드 호출 패턴으로 호출된다. 이때 메소드 내부의 `this`는 해당 메소드를 소유한 객체를 참조한다.
 
 ```javascript
@@ -81,7 +81,7 @@ myObject.increment(2);
 console.log(myObject.value);
 ```
 
-#생성자호출패턴(Constructor Invocation Pattern)
+# 생성자호출패턴(Constructor Invocation Pattern)
 생성자 함수 내부의 `this`는 새로 생성된 객체를 참조한다. 그리고 프로토타입 객체 메소드 내부의 this도 해당 메소드의 소유 객체를 참조한다.
 
 ```javascript
@@ -104,7 +104,7 @@ var myQuo = new Quo("confused");
 console.log(myQuo.get_status( ));   // confused
 ```
 
-#apply호출패턴(Apply Invocation Pattern)
+# apply호출패턴(Apply Invocation Pattern)
 call()과 apply() 메소드로 함수를 호출할 때, 함수의 this는 첫 번째 인자로 넘겨받은 객체를 참조한다.
 
 ```javascript
@@ -139,6 +139,6 @@ var status = Quo.prototype.get_status.apply(statusObject);
 console.log(status); // 'A-OK'
 ```
 
-#Reference  
+# Reference  
 
 * [JavaScript : The Good Parts 04.Functions -by Douglas Crockford](http://www.yes24.com/24/goods/3071412?scode=032&OzSrank=1)  

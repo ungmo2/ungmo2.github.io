@@ -9,10 +9,10 @@ tags: []
 
 함수는 구문(statement)의 집합으로 모듈화의 근간이 된다. 코드의 재사용이나 정보의 구성 및 은닉 등에 사용하고, 객체의 행위를 지정하기도 한다. 일반적으로 프로그래밍 기술은 요구사항의 집합을 자료구조와 함수의 집합으로 변환하는 것이다.
 
-#함수 정의
+# 함수 정의
 함수를 정의하기 위해 `함수선언식(Function declaration)` 또는 `함수표현식(Function expression)`을 사용할 수 있다.
 
-##함수선언식(Function declaration)
+## 함수선언식(Function declaration)
 함수선언식으로의 함수 정의는 `function` 키워드와 이하의 내용으로 구성된다.
 
 * 함수의 이름 (option)
@@ -26,7 +26,7 @@ function square(number) {
 ```
 `return`문은 함수가 반환하는 값을 지정한다.
 
-##함수표현식(Function expression)
+## 함수표현식(Function expression)
 함수선언식으로 정의한 함수 squre를 함수표현식으로 선언하면 아래와 같다.
 
 ```javascript
@@ -48,7 +48,7 @@ var foo = function(a, b) {
 };
 ```
 
-#함수의 호출
+# 함수의 호출
 
 ```javascript
 square(5);
@@ -77,7 +77,7 @@ var square = function(number) {
 
 함수선언식으로 함수를 정의하면 사용하기에 쉽지만 대규모 애플리케이션을 개발하는 경우 인터프리터가 너무 많은 코드를 VO에 저장하므로 애플리케이션의 응답속도는 현저히 떨어질 수 있으므로 주의해야 할 필요가 있다.
 
-#반환값 (return value)
+# 반환값 (return value)
 함수는 자신을 호출한 코드에게 수행한 결과를 반환(return)할 수 있다.
 
 * `return` 키워드는 함수를 호출한 코드에게 값을 반환할 때 사용한다.
@@ -104,13 +104,13 @@ var areaOne = getSize(3, 2, 3)[0];
 var volumeOne = getSize(3, 2, 3)[1];
 ```
 
-#매개변수(Parameter)
+# 매개변수(Parameter)
 함수의 작업 실행을 위해 추가적인 정보가 필요할 경우, 매개변수를 지정한다. 매개변수는 함수 내에서 변수와 동일하게 동작한다.
 
-##매개변수(parameter) vs 인수(argument)
+## 매개변수(parameter) vs 인수(argument)
 매개변수는 함수 내에서 변수와 동일하게 메모리 공간을 확보하며 전달되어진 인수는 매개변수에 대입된다. 즉, 일반적인 변수는 `undefined`로 초기화되는 것과 달리 매개변수는 인수로 초기화된다.
 
-##Pass-by-value
+## Pass-by-value
 Primitives(기본자료형) 매개변수는 `Pass-by-value`로 함수에 전달된다.
 
 ```javascript
@@ -125,7 +125,7 @@ myFunc(x);
 console.log(x); // logs 0
 ```
 
-##Pass-by-reference
+## Pass-by-reference
 객체 매개변수는 `Pass-by-reference`로 함수에 전달된다.
 
 ```javascript
@@ -148,7 +148,7 @@ myFunc(mycar);
 console.log(mycar.make); // "Toyota"
 ```
 
-#즉시호출함수표현식 (IIFE, Immediately Invoke Function Expression)
+# 즉시호출함수표현식 (IIFE, Immediately Invoke Function Expression)
 
 ```javascript
 // 기명 즉시실행함수(named immediately-invoked function expression)
@@ -174,7 +174,7 @@ console.log(mycar.make); // "Toyota"
 
 즉, 글로벌 네임스페이스에 변수를 추가하지 않아도 되기 때문에 코드 충돌이 없이 구현할 수 있어 플러그인이나 라이브러리 등을 만들 때 많이 사용된다.
 
-#First-class object
+# First-class object
 일급 객체(first-class object)란, 생성, 대입, 연산, 인자 또는 반환값으로서의 전달 등, 프로그래밍언어의 기본적 조작을 제한없이 사용할 수 있는 대상을 의미한다.
 
 다음 조건을 만족하면 일급 객체로 간주한다.

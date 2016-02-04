@@ -8,13 +8,13 @@ Node.js는 Server-side Javascript이다. 즉 백엔드에서 자바스크립트�
 
 file upload 예제를 통해서 Node.js의 기본과 Routing, 모듈화, Request Handling 등을 알아보자.
 
-#*Install*
+# *Install*
 
 아래의 페이지에 방문하여 자신의 개발환경에 맞는 설치파일을 다운로드하여 설치한다.
 
 https://nodejs.org/en/download/
 
-#*Hello World*
+# *Hello World*
 
 설치가 완료되었으면 아래의 예제를 실시하여 동작을 확인해 보자.
 
@@ -26,7 +26,7 @@ console.log("Hello World");
 $ node helloworld.js
 ```
 
-#*Use cases*
+# *Use cases*
 
 앞으로 구현해볼 예제의 use case는 아래와 같다.
 
@@ -34,7 +34,7 @@ $ node helloworld.js
 * 사용자가 http://domain/start 를 요청하면 파일 업로드 폼이 들어있는 웰컴 페이지를 볼 수 있어야 한다.
 * 업로드할 이미지 파일을 선택해서 폼으로 전송하면, 해당 이미지는 http://domain/upload 로 업로드 되어야 하며, 업로드가 끝나면 해당 페이지에 표시된다.
 
-#*Appication Stack*
+# *Appication Stack*
 
 use case를 만족시키기 위해 구현되어야 할 기술적 사항은 아래와 같다.
 
@@ -45,8 +45,8 @@ use case를 만족시키기 위해 구현되어야 할 기술적 사항은 아�
 * URL에 대한 요청을 다루는 것뿐 아니라 URL이 요청되었을 때 내용을 표시할 필요도 있다. 이 말은 즉, request handler 들이 사용자 브라우저로 콘텐트를 보내기 위해 사용할 수 있는 뷰 로직(view logic)이 필요하다.
 * 사용자가 이미지들을 업로드 할 수 있어야 하므로, 세부 사항을 다루는 업로드 핸들링(upload handling)이 필요하다.
 
-#*Building the application stack*
-##*Basic HTTP server*
+# *Building the application stack*
+## *Basic HTTP server*
 
 우선 HTTP server와 client를 사용하기 위하여 `http` 모듈을 로드한다.
 
@@ -91,7 +91,7 @@ $ node server.js
 * response.write() 함수로 “Hello World” 텍스트를 HTTP 응답 바디로 보낸다.
 * 마지막으로 response.end()로 응답을 마무리한다.
 
-##*Event-driven callbacks*
+## *Event-driven callbacks*
 
 Node.js는 event-driven, non-blocking I/O model을 지원한다. 자세한 사항은 아래의 포스트를 참조하기 바란다.
 
@@ -169,7 +169,7 @@ HTTP 요청(비동기적 이벤트)이 발생하면 callback(onRequest)이 호�
 
 한번의 브라우저 요청에 “Request received.” 메시지가 두번 STDOUT으로 찍히는 것은 대부분의 브라우저가 http://localhost:8888/ 을 요청할 때 http://localhost:8888/favicon.ico 를 로드하려 하기 때문이다.
 
-##*모듈화*
+## *모듈화*
 
 ```javascript
 // server.js
@@ -202,7 +202,7 @@ $ node index.js
 ```
 모듈을 만든다는 것은 모듈을 필요로 하는 스크립트에 제공할 기능의 일부를 export 하는 것이다.
 
-##*Routing*
+## *Routing*
 요청 URL과 GET/POST 파라미터를 router로 전달하면 router는 어떤 코드를 실행할지 결정할 수 있어야 한다.
 
 즉, 전달된 요청 URL과 파라미터에 따라 서버의 할 일이 정해지는데 서버의 할 일을 수행하는 함수를 request handler라 한다.
@@ -233,7 +233,7 @@ http://localhost:8888/start?foo=bar&hello=world
 
 `querystring`은 query string을 request 파라미터로 파싱 하는데 사용한다. 또한, POST 요청의 body를 파싱하는 데도 사용된다.
 
-###*Get path name & request parameters*
+### *Get path name & request parameters*
 ```javascript
 var http = require("http");
 var url = require("url");
@@ -301,7 +301,7 @@ function route(pathname) {
 exports.route = route;
 ```
 
-##*Dependency injection*
+## *Dependency injection*
 router를 server와 어떻게 엮을지 고려해야 한다.
 
 HTTP server가 router를 사용한다는 것을 알게 해야 한다.  [dependency injection](http://martinfowler.com/articles/injection.html)을 통해 server와 router를 느슨하게 결합한다.
@@ -355,7 +355,7 @@ About to route a request for /foo
 ```
 server는 router 객체의 route 메서드를 전달(주입/inject)받아 server는 이 객체의 메서드를 호출할 수 있게 되었다.
 
-##*Request handler*
+## *Request handler*
 `server`는 `router`를 주입받아 사용할 수 있게 되었다.
 `router`는 `server`로 부터 `pathname`을 전달 받는데 이 `pathname`에 따라 각각의 `Request handler`를 호출하면 요청에 따라 행동하는 서버를 만들 수 있다.
 
@@ -499,7 +499,7 @@ exports.start = start;
 
 http://localhost:8888/start 를 요청하면 “Hello Start”가 출력되고, http://localhost:8888/upload 는 “Hello Upload”가, http://localhost:8888/foo 는 “404 Not found”가 출력된다.
 
-##*Blocking vs Non-Blocking*
+## *Blocking vs Non-Blocking*
 위의 코드는 문제없이 잘 동작하는 것처럼 보이지만 치명적 결함을 가지고 있다.
 `request handler`에 비동기 방식의 코드를 포함시키면 문제가 발생한다.
 
@@ -578,7 +578,7 @@ http://localhost:8888/start 에 접속하면 현재 디렉토리에 있는 모�
 
 이 시점에 content는 여전히 'empty'이며 화면에 'empty'가 출력된다.
 
-##*Non-blocking 방식 request handler*
+## *Non-blocking 방식 request handler*
 지금까지는 handler가 작성한 content를 여러 layer를 거쳐 server에 전달하였다.
 
 ```
@@ -657,7 +657,7 @@ exports.start = start;
 exports.upload = upload;
 ```
 
-##*Handling POST requests*
+## *Handling POST requests*
 
 Post 요청 처리를 구현하기 위해 http://localhost:8888 에 접속하면 textarea와 submit 버튼을 가진 html을 클라이언트에 전송한다.
 
@@ -820,7 +820,7 @@ exports.start = start;
 exports.upload = upload;
 ```
 
-##*Handling file uploads*
+## *Handling file uploads*
 우리 계획은 사용자가 이미지 파일을 업로드 하면 업로드된 이미지를 브라우저에 출력하는 것이었다.
 
 파일 데이터를 받아서 처리하는 것은 단지 POST 데이터를 처리하는 것이지만, 그 처리가 단순하지 않고 복잡하기 때문에, 여기서는 미리 만들어진 `formidable` 오픈소스 모듈을 사용한다.
@@ -1225,7 +1225,7 @@ app.listen(8888, function () {
 이 포스트는 http://www.nodebeginner.org/ 를 바탕으로 작성되었다. 한국어 번역도 있으니 참조 바란다. 소스코드는 https://github.com/manuelkiessling/nodebeginner.org/tree/master/code/application 에서 다운 받을 수 있다.
 
 
-#*Reference*
+# *Reference*
 
 * [Node.js](https://nodejs.org)
 * [Understanding node.js](http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb)

@@ -5,7 +5,7 @@ categories: javascript
 tags: []
 ---
 
-#Variables
+# Variables
 어플리케이션에서 값(value)을 유지할 필요가 있을 때 변수를 사용한다.  
 
 변수는 값을 저장, 조회, 조작(변경)하는 데 사용되며 다른 사용자가 변수의 존재 목적을 쉽게 이해할 수 있도록 의미있는 이름을 지정하여야한다.
@@ -45,7 +45,7 @@ console.log(x); // logs "undefined"
 console.log(y); // throws ReferenceError exception
 ```
 
-#Data Types
+# Data Types
 최신 ECMAScript 표준(ECMAScript 2015 (6th Edition, ECMA-262) / 2015.06)은 7개의 data type을 정의한다
 
 
@@ -58,10 +58,10 @@ console.log(y); // throws ReferenceError exception
   * `Symbol` (New in ECMAScript 6)
 * `Object`
 
-##Primitive Data Type (기본자료형)
+## Primitive Data Type (기본자료형)
 기본자료형(Primitive data type)의 값은 변경 불가능한 값 (immutable value)이다. 또한 이들은 `pass-by-value`이다.
 
-###Boolean
+### Boolean
 논리적인 요소를 나타내며 `true`와 `false` 두가지 값을 가질 수 있다. 비어있는 문자열과 `null`, `undefined`, 숫자 0은 `false`로 간주된다.
 
 ```javascript
@@ -69,7 +69,7 @@ var foo = true;
 var bar = false;
 ```
 
-###null
+### null
 null 타입은 딱 한 가지 값, `null` 을 가질 수 있다. JavaScript는 case-sensitive하므로 `null`은 Null, NULL등과 다르다.
 
 Computer science에서 `null`은 의도적으로 기본형(primitives)과 object형 변수에 값이 없다는 것을 명시한 것이다.
@@ -79,7 +79,7 @@ var foo = 'Lee';
 foo = null;  // 값 또는 참조 정보가 제거됨
 ```
 
-###undefined
+### undefined
 값을 할당하지 않은 변수는 `undefined` 값을 가진다. 즉, 선언은 되었지만 할당된 적이 없는 변수에 접근하거나 존재하지 않는 객체 프로퍼티에 접근할 경우 반환된다.
 
 ```javascript
@@ -87,7 +87,7 @@ var foo;
 console.log(foo); // undefined
 ```
 
-###Number
+### Number
 ECMAScript 표준에 따르면, 숫자의 자료형은 배정밀도 64비트 부동 소수점 형 (double-precision 64-bit floating-point format : -(2<sup>53</sup> -1) 와 2<sup>53</sup> -1 사이의 숫자값) 단 하나만 존재한다. 정수만을 표현하기 위한 특별한 자료형(integer type)은 없다.
 
 추가적으로 세가지 의미있는 기호적인 값들도 표현할 수 있다.
@@ -108,7 +108,7 @@ var bar = 1 * 'string';
 console.log(bar);  // NaN
 ```
 
-###String
+### String
 String 타입은 텍스트 데이터를 나타내는데 사용한다. 이는 0개 또는 그 이상의 유니코드(16비트 부호없는 정수 값) 문자들의 집합이다.
 
 C와 같은 언어와는 다르게, 자바스크립트의 문자열은 변경 불가능 (immutable) 하다.
@@ -129,10 +129,11 @@ var answer = "It's alright";          // Single quote inside double quotes
     answer = 'He is called "Johnny"'; // Double quotes inside single quotes
 ```
 
-###Symbol
+### Symbol
 ECMAScript 6(Javascript 2015) 에서 추가되었다. Symbol은 유일하고 변경 불가능한 (immutable) 기본값 (primitive value) 이다. 또한, 객체 속성의 key 값으로도 사용될 수 있다. 몇몇 프로그래밍 언어에서는 Symbol을 atom 이라고 부른다. C 언어의 이름있는 열거형 (enum) 과도 비슷하다.
 
-###Object
+### Object
+객체는 식별자 (Identifier) 로 참조할 수 있는, 메모리에 있는 값이다.
 6가지 기본자료형을 제외한 나머지는 모두 객체이다.
 
 * 함수 (Function)
@@ -140,9 +141,9 @@ ECMAScript 6(Javascript 2015) 에서 추가되었다. Symbol은 유일하고 �
 * 날짜 (Date)
 * 정규식 (RegExp)
 
-이것들은 모두 객체이다. 또한 객체는 pass-by-reference이다
+이것들은 모두 객체이다. 또한 객체는 `pass-by-reference`이다
 
-##Dynamic Type
+## Dynamic Type
 C-family language은 변수의 data type(자료형)을 미리 선언하고 data type에 맞는 값을 대입하여야한다. (statically typed languages)
 
 ```c
@@ -167,7 +168,7 @@ foo = "37" - 7;              // 30
 foo = "37" + 7;              // "377"
 ```
 
-##Immutability in JavaScript
+## Immutability in JavaScript
 Immutability (변경불가성)은 함수형 프로그래밍의 핵심 원리이다. 뿐만 아니라, 객체 지향 프로그램을 위한 기능을 제공하고 있다
 
 `object` type을 제외한 모든 data type은 한번 정해지면 변경이 불가능한 값 (immutable value)이다.
@@ -190,7 +191,7 @@ var v2 = arr.push(2);
 
 상기 예제에서 v2의 값은 무엇인가? 문자열의 예와 같이 배열이 동작한다면 v2는 새로운 배열(하나의 요소를 가지고 그 값은 2인)을 가지게 될 것이다. 그러나 객체인 arr은 push 메서드에 의해 update되고 v2에는 배열의 새로운 `length` 값이 반환된다. (Passing by Reference)
 
-#Variable scope
+# Variable scope
 Scope란 변수(매개변수 포함)에의 접근성과 생존기간(life-cycle)을 의미한다.
 
 C-family language 대부분은 `block-scope`를 사용하지만 Javascript는 `function scope`를 사용한다.

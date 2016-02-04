@@ -77,8 +77,8 @@ timezone: "Asis/Seoul"
 # highlighter: pygments
 markdown: kramdown
 kramdown:
-  input: GFM
-  hard_wrap: false
+  # input: GFM
+  # hard_wrap: false
 highlighter: rouge
 # permalink: /:year-:month-:day-:title
 # permalink: /blog/:title

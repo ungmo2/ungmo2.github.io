@@ -76,6 +76,9 @@ timezone: "Asis/Seoul"
 #   extensions: ["smart", "no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "strikethrough", "superscript", "with_toc_data"]
 # highlighter: pygments
 markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
 highlighter: rouge
 # permalink: /:year-:month-:day-:title
 # permalink: /blog/:title

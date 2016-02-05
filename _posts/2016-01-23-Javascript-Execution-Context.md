@@ -13,7 +13,7 @@ Execution Context(실행 컨텍스트)는 scope, hoisting, this, function, closu
 변수는 객체지향언어의 관점에서 생각해 보면 크게 2가지로 구분할 수 있다.  
 (물론 전역변수(혹은 static 변수)도 있지만 이것은 말 그대로 전역으로 존재하며 특정 함수나 객체에 속하는 것이 아니므로 논의에서 제외한다.)
 
-- `this`를 통해서 접근되는 객체의 멤버변수
+- `this`를 통해서 접근되는 객체의 멤버변수  
 
 
 	```javascript
@@ -30,7 +30,7 @@ Execution Context(실행 컨텍스트)는 scope, hoisting, this, function, closu
 	var fullName = person.fullName(); // "John Doe"
 	```
 
-- 함수 내부에서만 사용되는 지역변수
+- 함수 내부에서만 사용되는 지역변수  
 
 
 	```javascript

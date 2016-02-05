@@ -10,13 +10,13 @@ JavaScript의 `this` keyword는 Java와 같은 익숙한 언어의 개념과 달
 ```java
 public Class Person {
 
-    private String firstName;
-    private String lastName;
+  private String firstName;
+  private String lastName;
 
-    public Person(String firstName, String lastName) {
-    	this.firstName = firstName;
-    	this.lastName = lastName;
-    }
+  public Person(String firstName, String lastName) {
+  	this.firstName = firstName;
+  	this.lastName = lastName;
+  }
 }
 ```
 

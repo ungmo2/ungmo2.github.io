@@ -446,12 +446,12 @@ header.header-post .post-heading .post-subheading {
 }
 
 .pager.blog-pager {
-  margin-top: 0;
+  margin-top: 30px;
 }
 
 @media only screen and (min-width: 768px) {
   .pager.blog-pager  {
-    margin-top: 10px;
+    margin-top: 50px;
   }
 }
 

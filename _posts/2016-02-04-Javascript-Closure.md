@@ -1,6 +1,6 @@
 ---
 layout: post
-title: javascript Closure
+title: Javascript Closure
 categories: javascript
 ---
 

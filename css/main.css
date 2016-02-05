@@ -445,12 +445,14 @@ header.header-post .post-heading .post-subheading {
   margin: 10px 0 0;
 }
 
-.pager.blog-pager {
+.pager.blog-pager,
+.pager.main-pager {
   margin-top: 30px;
 }
 
 @media only screen and (min-width: 768px) {
-  .pager.blog-pager  {
+  .pager.blog-pager,
+  .pager.main-pager  {
     margin-top: 50px;
   }
 }

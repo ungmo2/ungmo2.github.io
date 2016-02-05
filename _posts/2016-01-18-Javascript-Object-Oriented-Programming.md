@@ -112,6 +112,7 @@ tags: []
 
 * 객체 지향 5원칙  
 객체지향에서 지켜야 할 5개의 원칙을 말한다.   
+[참고 : SOLID](https://ko.wikipedia.org/wiki/SOLID)  
 
   * 단일 책임 원칙 (Single responsibility principle)  
     한 클래스는 하나의 책임만 가져야 한다.
@@ -127,8 +128,6 @@ tags: []
 
   * 의존관계 역전 원칙 (Dependency inversion principle)  
     프로그래머는 “추상화에 의존해야지, 구체화에 의존하면 안된다.” 의존성 주입은 이 원칙을 따르는 방법 중 하나다.
-
-[참고 : SOLID](https://ko.wikipedia.org/wiki/SOLID)
 
 # Javascript Object Object-Oriented Programming
 자바스크립트는 객체(object)기반의 스크립트 언어이며 자바스크립트를 이루고 있는 대부분 “모든 것”은 객체이다.

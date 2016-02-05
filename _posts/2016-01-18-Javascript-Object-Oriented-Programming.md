@@ -287,6 +287,7 @@ myCat.get_name = function ( ) {
   ```javascript
   my.member = value;
   ```
+
 3. `that` 에 새로운 객체를 할당하고 메서드를 추가한다. 이때 추가되는 메서드는 함수의 매개변수와 `private`에 접근할 수 있다.
 4. `that`을 리턴한다.  
 

@@ -15,6 +15,7 @@ Execution Context(실행 컨텍스트)는 scope, hoisting, this, function, closu
 
 - `this`를 통해서 접근되는 객체의 멤버변수  
 
+
 ```javascript
 var person = {
 	firstName: "John",

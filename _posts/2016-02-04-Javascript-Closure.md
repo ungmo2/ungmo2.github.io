@@ -40,9 +40,7 @@ sayHello('lee')(); // Hello lee
 
 위의 예제는 자신을 포함하고 있는 외부함수보다 내부함수가 더 오래 유지되는 경우인데 이때 내부함수가 외부함수의 지역변수에 접근 할 수 있고, 외부함수는 외부함수의 지역변수를 사용하는 내부함수가 소멸될 때까지 소멸되지 않고 상태를 유지하는 특성을 클로저라 한다.
 
-클로저의 필요성
-
-버튼이 클릭될 때마다 클릭한 횟수가 누적되어 화면에 표시되는 코드를 만들어보자.
+클로저의 필요성을 이해하기 위해서, 버튼이 클릭될 때마다 클릭한 횟수가 누적되어 화면에 표시되는 코드를 만들어보자.
 
 ```html
 <!DOCTYPE html>
@@ -167,7 +165,7 @@ for(var index in arr) {
 }
 ```
 
-#Reference
+# Reference
 
 * [http://dmitrysoshnikov.com/ecmascript/chapter-6-closures/](http://dmitrysoshnikov.com/ecmascript/chapter-6-closures/)
 

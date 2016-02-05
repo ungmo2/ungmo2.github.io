@@ -73,7 +73,6 @@ function myFunction(){
 
 ```html
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html>
 <body>
 

@@ -107,6 +107,8 @@ console.log(x); // ?
 
 내부함수는 자신을 포함하고 있는 외부함수의 변수에 접근할 수 있다. 이는 매우 유용하다. 클로저에서와 같이 내부함수가 더 오래 생존하는 경우, 타 언어와는 다른 움직임을 보인다.
 
+함수 bar에서 참조하는 변수 x는 함수 foo에서 선언된 지역변수이다. 이는 실행 컨텍스트의 스코프 체인 탐색 방법에 따라 참조 순위에서 전역변수 x가 뒤로 밀렸기 때문이다. [Execution Context 참고](({% post_url 2016-01-23-Javascript-Execution-Context %}))
+
 
 ```javascript
 var x = 10; // Global scope

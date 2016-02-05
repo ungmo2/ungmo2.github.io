@@ -966,7 +966,7 @@ handle["/upload"] = requestHandlers.upload;
 handle["/show"] = requestHandlers.show;
 
 server.start(router.route, handle);
- ```
+```
 
 다음은 /start의 form에 파일 업로드 element를 추가한다.
 
@@ -1163,7 +1163,7 @@ exports.show = show;
 $ npm start
 ```
 
-#Express framework
+# Express framework
 본 예제에서 다루는 web page는 css와 js 파일을 사용하지 않는 단순한 html을 사용하였다. 만약, html에 extern css, js 파일이 사용된다면 클라이언트는 css, js 파일을 요청할 것이고 그 요청에 대응하는 처리를 구현하여야 한다.
 
 extern css, js 파일 요청에 응답하는 예제는 아래와 같다.

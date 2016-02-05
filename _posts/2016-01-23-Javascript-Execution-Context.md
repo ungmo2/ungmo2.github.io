@@ -16,19 +16,19 @@ Execution Context(실행 컨텍스트)는 scope, hoisting, this, function, closu
 - `this`를 통해서 접근되는 객체의 멤버변수  
 
 
-```javascript
-var person = {
-	firstName: "John",
-	lastName : "Doe",
-	id       : 5566,
+	```javascript
+	var person = {
+		firstName: "John",
+		lastName : "Doe",
+		id       : 5566,
 
-	fullName : function() {
-		return this.firstName + " " + this.lastName;
-		//return firstName + " " + lastName; // ReferenceError: firstName is not defined
-	}
-};
-var fullName = person.fullName(); // "John Doe"
-```
+		fullName : function() {
+			return this.firstName + " " + this.lastName;
+			//return firstName + " " + lastName; // ReferenceError: firstName is not defined
+		}
+	};
+	var fullName = person.fullName(); // "John Doe"
+	```
 
 - 함수 내부에서만 사용되는 지역변수  
 

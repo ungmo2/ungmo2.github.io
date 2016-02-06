@@ -1164,7 +1164,7 @@ $ npm start
 ```
 
 # Express framework
-본 예제에서 다루는 web page는 css와 js 파일을 사용하지 않는 단순한 html을 사용하였다. 만약, html에 extern css, js 파일이 사용된다면 클라이언트는 css, js 파일을 요청할 것이고 그 요청에 대응하는 처리를 구현하여야 한다.
+본 예제에서 다루는 web page는 css와 js 파일을 사용하지 않는 단순한 html을 사용하였다. 정적 html을 제공하기 위해 매번 html 파일을 읽어들이는 처리를 해야하고 만약, html에 extern css, js 파일이 사용된다면 클라이언트는 css, js 파일을 요청할 것이고 그 요청에 대응하는 처리를 구현하여야 한다.
 
 extern css, js 파일 요청에 응답하는 예제는 아래와 같다.
 
@@ -1175,7 +1175,7 @@ var http = require('http'),
 http.createServer(function (req, res) {
 
   if(req.url.indexOf('.html') != -1){ //req.url has the pathname, check if it conatins '.html'
-    fs.readFile(__dirname + '/public/chatclient.html', function (err, data) {
+    fs.readFile(__dirname + '/public/index.html', function (err, data) {
       if (err) console.log(err);
       res.writeHead(200, {'Content-Type': 'text/html'});
       res.write(data);
@@ -1205,7 +1205,9 @@ http.createServer(function (req, res) {
 console.log('Server running at http://127.0.0.1:8888/');
 ```
 
-이것이 꽤 번거러운 일이다. 그러나. `Express`와 같은 framework를 사용하면 이러한 문제는 쉽게 해결할 수 있다. 지금까지 살펴본 코드를 이해할 수 있다면 `Express`는 쉽게 사용할 수 있다. `Express`을 사용하면 Routing, Error handling, static file 제공 등을 매우 쉽게 구현할 수 있는 장점이 있다.
+`http` 모듈로 웹서버를 생성하면 일반적 웹서버가 수행하여야 할 많은 일들을 직접 처리해야 하는데 이것이 꽤 번거러운 일이다. 위의 예제와 같이 정적 파일을 제공하기 위해서는 직접 구현하든지 아니면  [node-static](https://www.npmjs.com/package/node-static), [serve-static](https://www.npmjs.com/package/serve-static) 등의 외부 module을 사용하여야 한다.
+
+그러나 `Express`와 같은 framework를 사용하면 이러한 문제는 쉽게 해결할 수 있다. 지금까지 살펴본 코드를 이해할 수 있다면 `Express`는 쉽게 사용할 수 있다. `Express`을 사용하면 Routing, Error handling, static file 제공 등 일반적 웹서버가 제공해야 하는 서비스를 쉽게 구현할 수 있는 장점이 있다.
 
 아래는 Server, Routing, Request handler가 모두 구현되어 있는 `Express`의 Hello world 예제이다.
 

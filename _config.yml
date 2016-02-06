@@ -82,7 +82,7 @@ kramdown:
 highlighter: rouge
 # permalink: /:year-:month-:day-:title
 # permalink: /blog/:title
-permalink: /:categories/:title
+permalink: /:categories/:title/
 paginate: 10
 paginate_path: "/page:num/"
 

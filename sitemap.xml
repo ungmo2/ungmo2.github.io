@@ -3,17 +3,14 @@ layout: null
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    {% for post in site.posts %}
-    {% if site.url %}
-    {% if post.url %}
+
+    <!-- {% for post in site.posts %}
     <url>
         <loc>{{ site.url }}{{ post.url | remove: 'index.html' }}</loc>
     </url>
-    {% endif %}
-    {% endif %}
     {% endfor %}
 
-    <!-- {% for page in site.pages %}
+    {% for page in site.pages %}
     {% if page.layout != nil %}
     {% if page.layout != 'redirect' %}
     <url>
@@ -22,4 +19,47 @@ layout: null
     {% endif %}
     {% endif %}
     {% endfor %} -->
+
+  <url>
+    <loc>http://ungmo2.github.io/javascript/Javascript-Closure/</loc>
+  </url>
+  <url>
+    <loc>http://ungmo2.github.io/node.js/Nodejs-Example/</loc>
+  </url>
+  <url>
+    <loc>http://ungmo2.github.io/javascript/Javascript-Execution-Context/</loc>
+  </url>
+  <url>
+    <loc>http://ungmo2.github.io/javascript/Javascript-this/</loc>
+  </url>
+  <url>
+    <loc>http://ungmo2.github.io/javascript/Javascript-Scope/</loc>
+  </url>
+  <url>
+    <loc>http://ungmo2.github.io/javascript/Javascript-Function/</loc>
+  </url>
+  <url>
+    <loc>http://ungmo2.github.io/javascript/Javascript-Object/</loc>
+  </url>
+  <url>
+    <loc>http://ungmo2.github.io/javascript/Javascript-Object-Oriented-Programming/</loc>
+  </url>
+  <url>
+    <loc>http://ungmo2.github.io/javascript/Javascript-Control-Flow/</loc>
+  </url>
+  <url>
+    <loc>http://ungmo2.github.io/javascript/Javascript-Operator/</loc>
+  </url>
+  <url>
+    <loc>http://ungmo2.github.io/javascript/Javascript-Variables-&-Data-types/</loc>
+  </url>
+  <url>
+    <loc>http://ungmo2.github.io/javascript/Javascript-Syntax-Basics/</loc>
+  </url>
+  <url>
+    <loc>http://ungmo2.github.io/javascript/Javascript-introduction/</loc>
+  </url>
+  <url>
+    <loc>http://ungmo2.github.io/javascript/Coding/</loc>
+  </url>
 </urlset>

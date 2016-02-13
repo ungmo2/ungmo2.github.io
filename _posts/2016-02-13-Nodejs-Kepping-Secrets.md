@@ -68,9 +68,7 @@ var connection = mysql.createConnection({
 });
 ```
 
-```javascript
-// db-config.json
-
+```json
 {
   "host": "localhost",
   "user": "me",

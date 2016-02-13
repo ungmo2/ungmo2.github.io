@@ -72,10 +72,10 @@ var connection = mysql.createConnection({
 // db-config.json
 
 {
-  "host":"localhost",
-  "user":"me",
-  "password":"secret",
-  "database":"my_db"
+  "host": "localhost",
+  "user": "me",
+  "password": "secret",
+  "database": "my_db"
 }
 ```
 

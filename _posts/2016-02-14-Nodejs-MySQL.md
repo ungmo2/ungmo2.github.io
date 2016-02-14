@@ -84,7 +84,7 @@ SELECT * FROM Persons;
 
 # Node.js와 MySQL 연동
 
-index.js를 아래와 같이 변경한다. `createConnection` 함수의 인자로 전달되는 객체에 자신의 데이터베이스 유저명과 패스워드를 입력하여야 한다.
+index.js를 아래와 같이 변경한다. `createConnection` 함수의 인자로 전달되는 객체에 자신의 데이터베이스 유저명과 패스워드를 입력하여야 한다. 설정 정보의 관리에 대해서는 [Node.js에서 비밀 설정 정보(Secrets) 관리](http://ungmo2.github.io/node.js/Nodejs-Kepping-Secrets/)를 참조하기 바란다.
 
 ```javascript
 var mysql      = require('mysql');

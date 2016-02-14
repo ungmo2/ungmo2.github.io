@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: http://ungmo2.github.io/sitemap.xml

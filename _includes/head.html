@@ -7,9 +7,13 @@
 
   <meta name="author" content="{{ site.author.name }}" />
 
-  {% if site.description %}
-  <meta name="description" content="{{ site.description }}">
+  {% if page.content %}
+  <meta name="description" content="{{ page.content| truncatewords: 30 | strip_html | xml_escape }}">
   {% endif %}
+
+  <!-- {% if site.description %}
+  <meta name="description" content="{{ site.description }}">
+  {% endif %} -->
 
   {% if site.keywords %}
   <meta name="keywords" content="{{ site.keywords }}">

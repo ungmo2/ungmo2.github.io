@@ -13,7 +13,7 @@
 
   {% if page.url == "/index.html" %}
   <meta name="description" content="{{ site.description }}">
-  {% elseif page.content %}
+  {% else %}
   <meta name="description" content="{{ page.content| truncatewords: 30 | strip_html | xml_escape }}">
   {% endif %}
 

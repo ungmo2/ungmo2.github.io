@@ -11,10 +11,10 @@
   <meta name="description" content="{{ site.description }}">
   {% endif %} -->
 
-  {% if page.layout == "page" %}
+  {% if page.url == "/" %}
   <meta name="description" content="{{ site.description }}">
   {% else %}
-  <meta name="description" content="{{ page.content| truncatewords: 30 | strip_html | xml_escape }}">
+  <meta name="description" content="{{ page.content | truncatewords: 30 | strip_html | xml_escape }}">
   {% endif %}
 
   {% if site.keywords %}

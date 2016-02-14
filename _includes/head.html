@@ -11,7 +11,7 @@
   <meta name="description" content="{{ site.description }}">
   {% endif %} -->
 
-  {% if page.url == "/index.html" %}
+  {% if page.url == "" %}
   <meta name="description" content="{{ site.description }}">
   {% else %}
   <meta name="description" content="{{ page.content| truncatewords: 30 | strip_html | xml_escape }}">

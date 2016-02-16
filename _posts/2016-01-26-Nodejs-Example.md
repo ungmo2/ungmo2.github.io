@@ -46,6 +46,7 @@ use case를 만족시키기 위해 구현되어야 할 기술적 사항은 아�
 * 사용자가 이미지들을 업로드 할 수 있어야 하므로, 세부 사항을 다루는 업로드 핸들링(upload handling)이 필요하다.
 
 # *Building the application stack*
+
 ## *Basic HTTP server*
 
 우선 HTTP server와 client를 사용하기 위하여 `http` 모듈을 로드한다.

@@ -512,7 +512,8 @@ Node.js의 방식을 ***[이벤트 기반 비동기 방식](http://www.nextree.c
 
 Node.js가 비동기(Non-Blocking) 방식으로 동작하므로 우리도 blocking 방식을 피하고 non-blocking 방식을 사용해야만 한다.
 
-###동기 방식
+### 동기 방식
+
 ```javascript
 var fs = require('fs');
 
@@ -526,7 +527,8 @@ console.log('ready');
 console.log('can process next job...');
 ```
 
-###비동기 방식
+### 비동기 방식
+
 ```javascript
 var fs = require('fs');
 

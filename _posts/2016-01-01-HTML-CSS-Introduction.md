@@ -73,21 +73,21 @@ HTML document는 요소(Element)들로 만들어 진다.
 </html>
 ```
 
-<html> 요소는 웹페이지를 구성하는 모든 요소들을 포함한다. 위 예제를 보면 <html> 요소는 <body> 요소를 포함하며 <body> 요소는 <h1>, <p> 요소를 포함한다. 이 중첩 관계 (부자 관계)로 웹페이지의 구성(structure)를 표현한다.
+html 요소는 웹페이지를 구성하는 모든 요소들을 포함한다. 위 예제를 보면 html 요소는 body 요소를 포함하며 body 요소는 h1, p 요소를 포함한다. 이 중첩 관계 (부자 관계)로 웹페이지의 구성(structure)를 표현한다.
 
 이런 중첩 관계 (부자 관계)를 시각적으로 파악하기 쉽게 indent를 활용한다.
 
 ### 빈 요소 (Empty Element)
 
-* <br>
-* <embed>
-* <hr>
-* <img>
-* <input>
-* <link>
-* <meta>
-* <param>
-* <source>
+* br
+* embed
+* hr
+* img
+* input
+* link
+* meta
+* param
+* source
 
 content를 가질 수 없는 요소를 빈 요소(Empty element or Self-Closing element)라 한다. 아래의 예와 같이 빈 요소는 내용이 없으며 속성(Attribute)만을 가질 수 있다.
 

@@ -142,11 +142,11 @@ p {
 }
 ```
 
-# HTML과 CSS의 연계
+# HTML과 CSS의 연동
 
 HTML은 CSS를 포함할 수 있다. CSS를 가지고 있지 않은 HTML은 브라우저에서 기본으로 적용하는 CSS에 의거하여 표시된다. (user agent stylesheet)
 
-CSS를 포함하는 HTML은 CSS가 적용되는데 이때 CSS와 HTML을 연꼐하는 방법은 다음과 같다.
+CSS를 포함하는 HTML은 CSS가 적용되는데 이때 CSS와 HTML을 연동하는 방법은 다음과 같다.
 
 ## Link style
 

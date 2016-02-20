@@ -4,7 +4,7 @@ title: HTML & CSS Introduction
 categories: html
 ---
 
-HTML (HyperText Markup Language) 은 웹페이지의 내용(content)과 구성(structure)을 담당한다. HTML은 tag들의 집합으로 tag는 각 정보의 종류와 내용을 갖는다.
+HTML (HyperText Markup Language) 은 웹페이지의 내용(content)과 구조(structure)을 담당한다.
 
 * 제목
 * 단락
@@ -18,13 +18,13 @@ CSS (Cascading Style Sheets) 는 HTML 요소(Element)의 style(design, layout et
 
 HTML과 CSS는 각자의 문법을 갖는 언어로 HTML은 CSS를 포함할 수 있다. 그러나 HTML 없이 단독으로 존재하는 CSS는 의미가 없다.
 
-HTML은 웹페이지의 내용(content)와 구성(structure)를 담당하며 CSS는 HTML 요소의 외양(style)을 정의한다.
+HTML은 웹페이지의 내용(content)와 구조(structure)를 담당하며 CSS는 HTML 요소의 외양(style)을 정의한다.
 
 # HTML Document Structure
 
 HTML document는 반드시 `<!DOCTYPE html>`으로 시작하여 document의 type을 HTML로 지정한다.  
 실제적인 HTML document은 2행부터 시작되는데 `<html>` 과 `</html>` 사이에 기술한다.  
-`<head>` 와 `</head>` 사이에는 document title, 외부파일의 침조, metadata의 설정 등이 실시되며 이 정보들은 브라우저에 표시되지 않는다.  
+`<head>` 와 `</head>` 사이에는 document title, 외부파일의 참조, metadata의 설정 등이 실시되며 이 정보들은 브라우저에 표시되지 않는다.  
 브라우저에 표시되는 대부분의 요소는 `<body>` 과 `</body>` 사이 위치한다.
 
 ```html
@@ -41,13 +41,18 @@ HTML document는 반드시 `<!DOCTYPE html>`으로 시작하여 document의 type
 </html>
 ```
 
-HTML document는 순수한 텍스트이고 .html 확장자 파일로 저장한다.
+HTML document는 순수한 텍스트이며 .html 확장자 파일로 저장한다. 메모장으로도 편집할 수 있으나 다양한 편의 기능을 제공하는 editor 또는 IDE(Integrated Development Environment)를 사용하는 것이 일반적이다.
+
+* [Atom](https://www.atom.io/)  
+* [Sublime text](https://www.sublimetext.com/)  
+* [Brackets](www.brackets.io/)  
+* [WebStorm](https://www.jetbrains.com/webstorm/)
 
 # HTML Terms
 
 ## 요소 (Element)
 
-HTML document는 요소(Element)들로 만들어 진다.
+HTML document는 요소(Element)들의 집합이다.
 
 요소는 시작 태그(start tag)와 종료 태그(end tag) 그리고 태그 사이에 위치한 content로 구성된다. 종료 태그는 생략할 수 없다.
 
@@ -258,6 +263,27 @@ table {
 	border-spacing: 0;
 }
 ```
+
+# Versions
+
+## HTML Versions
+
+| Version	    | Year     |
+| :---------: |:---------|
+| HTML5       | 2014
+| XHTML	      | 2000
+| HTML 4.01   | 1999
+| HTML 3.2    | 1997
+| HTML 2.0    | 1995
+| HTML        | 1991
+
+## CSS Versions
+
+| Version	    | Year     |
+| :---------: |:---------|
+| CSS3        | 2005
+| CSS2	      | 1998
+| CSS1        | 1996
 
 # Reference
 

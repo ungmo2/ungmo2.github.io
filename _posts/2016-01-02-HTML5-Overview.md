@@ -1,0 +1,899 @@
+---
+layout: post
+title: HTML5 Overview
+categories: html
+---
+
+# 1.기본 태그
+
+## 1.1 문서 형식 (Document Type)
+
+문서 형식 태그는 브라우저에게 출력할 웹 페이지의 형식을 전달한다. 문서의 최상위에 위치해야 하며 대소문자를 구별하지 않는다. 문서별 기술 양식은 아래와 같다.
+
+HTML5
+
+```html
+<!DOCTYPE html>
+```
+
+HTML 4.01
+
+```html
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+```
+
+XHTML 1.0
+
+```html
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+```
+
+## 1.2 글로벌 속성 (HTML Global Attributes)
+
+요소는 속성을 가질 수 있으며 속성은 요소에 추가적 정보를 제공한다.  
+글로벌 속성은 모든 HTML 요소의 공통 속성이다. 몇몇 요소에는 효과가 적용되지 않을 수 있지만, 글로벌 속성은 모든 요소에 사용될 수 있다.
+
+자주 사용되는 글로벌 속성은 아래와 같다.
+
+| Attribute   | Description |
+| :---------: |:------------|
+| id          | 유일한 식별자(id)를 요소에 지정한다. 중복 지정이 불가하다.
+| class       | 스타일시트에 정의된 class를 요소에 지정한다. 중복 지정이 가능하다.
+| hidden      | css의 hidden과는 다르게 의미상으로도 브라우저에 노출되지 않게 된다.
+| lang        | 지정된 요소의 언어를 지정한다. 검색엔진의 크롤링 시 웹페이지의 언어를 인식할 수 있게 한다.
+| style       | 요소에 인라인 스타일을 지정한다.
+| tabindex    | 사용자가 키보드로 페이지를 내비게이션 시 이동 순서를 지정한다.
+| title       | 요소에 관한 제목을 지정한다.
+
+* [Global attributes](https://www.w3.org/TR/html-markup/global-attributes.html)
+
+
+## 1.3 html
+
+html 태그는 모든 HTML 요소의 부모 요소이다. 즉 모든 요소는 html 요소의 자식 요소이며 html 요소 내부에 기술해야 한다. 단 `<!DOCTYPE>`는 예외이다.
+
+```html
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Title of the document</title>
+  </head>
+
+  <body>
+    The content of the document......
+  </body>
+</html>
+```
+
+html은 글로벌 속성을 지원한다. 특히 `lang` 속성을 사용하는 경우가 많다. 다음은 한국어를 주언어로 사용하는 경우의 예이다.
+
+```html
+<html lang="ko">
+```
+
+## 1.4 head
+
+head 요소는 메타데이터를 포함하기 위한 요소이다. 메타데이터는 HTML 문서의 title, style, link, script에 대한 데이터로 화면에 표시되지 않는다.
+
+head 요소에는 메타데이터 이외의 화면에 표시되는 일체의 요소를 포함시킬 수 없다.
+
+### 1.4.1 title
+
+title 요소는 문서의 제목을 정의한다. 정의된 제목은 브라우저의 탭에 표시된다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <title>Page Title</title>
+
+  <body>
+  The content of the document......
+  </body>
+</html>
+```
+
+### 1.4.2 style
+
+style 요소에는 HTML 문서를 위한 style 정보를 정의한다.
+
+```html
+<style>
+  body {background-color:yellow;}
+  p {color:blue;}
+</style>
+```
+
+### 1.4.3 link
+
+link 요소에는 외부 리소스와의 연계 정보를 정의한다. 주로 HTML과 외부 CSS 파일을 연계에 사용된다
+
+```html
+<link rel="stylesheet" href="mystyle.css">
+```
+
+### 1.4.4 script
+
+script 요소에는 client-side JavaScript를 정의한다.
+
+```html
+<script>
+function myFunction {
+  document.getElementById("demo").innerHTML = "Hello JavaScript!";
+}
+</script>
+```
+
+### 1.4.5 meta
+
+meta 요소는 description, keywords, author, 기타 메타데이터 정의에 사용된다. 메터데이터는 브라우저, 검색엔진(keywords) 등에에 의해 사용된다.
+
+브라우저가 사용할 문자셋을 정의한다.
+
+```html
+<meta charset="UTF-8">
+```
+
+검색엔진이 사용할 keywords을 정의한다.
+
+```html
+<meta name="keywords" content="HTML, CSS, XML, XHTML, JavaScript">
+```
+
+웹페이지의 설명을 정의한다.
+
+```html
+<meta name="description" content="Web tutorials on HTML and CSS">
+```
+
+웹페이지의 저자을 명기한다.
+
+```html
+<meta name="author" content="John Doe">
+```
+
+웹페이지를 30초 마다 Refresh한다.
+
+```html
+<meta http-equiv="refresh" content="30">
+```
+
+## 1.5 body
+
+body tag는 문서의 body를 정의한다. 메타데이터를 제외한 웹페이지를 구성하는 대부분의 요소가 body 요소 내에 기술된다.
+
+```html
+<html>
+  <head>
+    <title>Title of the document</title>
+  </head>
+
+  <body>
+    The content of the document......
+  </body>
+</html>
+```
+
+
+## 1.6 주석 (Comments)
+
+주석(comment)는 주로 코드를 설명하기 위해 사용되며 브라우저는 주석을 화면에 표시하지 않는다.
+
+```html
+<!--This is a comment. Comments are not displayed in the browser-->
+<p>This is a paragraph.</p>
+```
+
+# 2.글자 태그 (Text-Based)
+
+## 2.1 제목 (Headings)
+
+Heading 태그는 제목을 지정할 때 사용하며 h1에서 h6까지의 태그가 있다. h1이 가장 중요한 제목을 의미하며 글자의 크기도 가장 크다.
+
+시멘틱 웹의 의미를 살려서 제목 이외에는 사용하지 않는 것이 좋다. 검색엔진은 제목 태그를 중요한 의미로 받아들일 가능성이 크다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>This is heading 1</h1>
+    <h2>This is heading 2</h2>
+    <h3>This is heading 3</h3>
+    <h4>This is heading 4</h4>
+    <h5>This is heading 5</h5>
+    <h6>This is heading 6</h6>
+  </body>
+</html>
+```
+
+## 2.2 글자 형태 (Text Formatting)
+
+### 2.2.1 b
+
+bold체를 지정한다. 제목 태그와 같이 의미론적(Semantic) 중요성의 의미는 없다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>This text is normal.</p>
+    <p><b>This text is bold.</b></p>
+  </body>
+</html>
+```
+
+### 2.2.2 strong
+
+b tag와 동일하게 bold체를 지정한다. 하지만 의미론적(Semantic) 중요성의 의미를 갖는다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>This text is normal.</p>
+    <p><strong>This text is strong.</strong></p>
+  </body>
+</html>
+```
+
+### 2.2.3 i
+
+Italic체를 지정한다. 의미론적(Semantic) 중요성의 의미는 없다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>This text is normal.</p>
+    <p><i>This text is italic.</i></p>
+  </body>
+</html>
+```
+
+### 2.2.4 em
+
+emphasized(강조, 중요한) text를 지정한다. i tag와 동일하게 Italic체로 표현된다. 의미론적(Semantic) 중요성의 의미를 갖는다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>This text is normal.</p>
+    <p><<em>This text is emphasized.</em></p>
+  </body>
+</html>
+```
+
+### 2.2.5 small
+
+small text를 지정한다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>HTML <small>Small</small> Formatting</h2>
+  </body>
+</html>
+```
+
+### 2.2.6 mark
+
+highlighted text를 지정한다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>HTML <mark>Marked</mark> Formatting</h2>
+  </body>
+</html>
+```
+
+### 2.2.7 del
+
+deleted (removed) text를 지정한다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>The del element represents deleted (removed) text.</p>
+    <p>My favorite color is <del>blue</del> red.</p>
+  </body>
+</html>
+```
+
+### 2.2.8 ins
+
+inserted (added) text를 지정한다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>The ins element represent inserted (added) text.</p>
+    <p>My favorite <ins>color</ins> is red.</p>
+  </body>
+</html>
+```
+
+### 2.2.9 sub / sup
+
+sub 태그는 subscripted(아래에 쓰인) text를 sup superscripted(위에 쓰인) text를 지정한다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>This is <sub>subscripted</sub> text.</p>
+    <p>This is <sup>superscripted</sup> text.</p>
+  </body>
+</html>
+```
+
+# 3.본문
+
+## 3.1 p
+
+단락 (Paragraphs)을 지정한다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>This is a heading.</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </body>
+</html>
+```
+
+## 3.2 br
+
+HTML에서는 1개 이상의 연속된 공백(space)을 삽입하여도 1개의 공백으로 표시된다. 또한 1개 이상의 연속된 줄바꿈(enter)도 1개의 공백으로 표시된다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>In HTML, spaces and new lines are ignored:</p>
+    <p>
+      My Bonnie lies over the ocean.
+
+      My Bonnie  lies over the sea.
+
+      My Bonnie   lies over the ocean.
+
+      Oh,           bring back my Bonnie to me.
+    </p>
+  </body>
+</html>
+```
+
+br tag는 (강제)개행 (line break)을 지정한다. br tag는 빈 요소(empty element)로 종료태그가 없다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>This is<br>a para<br>graph with line breaks</p>
+  </body>
+</html>
+```
+
+연속적 공백을 삽입하는 방법은 아래와 같다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>This is&nbsp; a para&nbsp; &nbsp; graph</p>
+  </body>
+</html>
+```
+
+## 3.3 pre
+
+형식화된(preformatted) text를 지정한다. pre 태그 내의 content는 작성된 그대로 브라우저에 표시된다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>The pre tag preserves both spaces and line breaks:</p>
+    <pre>
+       My Bonnie lies over the ocean.
+
+       My Bonnie lies over the sea.
+
+       My Bonnie lies over the ocean.
+
+       Oh, bring back my Bonnie to me.
+    </pre>
+  </body>
+</html>
+```
+
+## 3.4 hr
+
+수평줄을 삽입한다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>HTML</h1>
+    <p>HTML is a language for describing web pages.</p>
+
+    <hr>
+
+    <h1>CSS</h1>
+    <p>CSS defines how to display HTML elements.</p>
+  </body>
+</html>
+```
+
+## 3.5 q
+
+짧은 인용문(quotation)을 지정한다. 브라우저는 인용부호(큰따옴표/quotation marks)로 q 요소를 감싼다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>Browsers usually insert quotation marks around the q element.</p>
+    <p>WWF's goal is to: <q>Build a future where people live in harmony with nature.</q></p>
+  </body>
+</html>
+```
+
+## 3.6 blockquote
+
+긴 인용문 블럭을 지정한다. 브라우저는 blockquote 요소를 들여쓰기한다. css를 이용하여 다양한 style을 적용할 수 있다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>Browsers usually indent blockquote elements.</p>
+    <blockquote>
+      For 50 years, WWF has been protecting the future of nature.
+      The world's leading conservation organization,
+      WWF works in 100 countries and is supported by
+      1.2 million members in the United States and
+      close to 5 million globally.
+    </blockquote>
+  </body>
+</html>
+```
+
+![blockquote-style](/img/blockquote-style.png)
+
+# 4.링크
+
+HyperText의 Hyper는 컴퓨터 용어로서 텍스트 등의 정보가 동일 선상에 있는 것이 아니라 다중으로 연결되어 있는 상태를 의미한다.
+
+이것은 HTML의 가장 중요한 특징인 link의 개념과 연결되는데 기존 문서나 텍스트의 선형성, 고정성의 제약에서 벗어나 사용자가 원하는 순서대로 원하는 정보를 취득할 수 있는 기능을 제공한다. 한 텍스트에서 다른 텍스트로 건너뛰어 읽을 수 있는 이 기능을 하이퍼링크(hyper link)라 한다.
+
+HTML link는 hyperlink를 의미하며 a tag가 그 역할을 담당한다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <a href="http://www.google.com">Google</a>
+  </body>
+</html>
+```
+
+## href 속성
+
+링크의 위치를 값으로 받는다. 사용 가능한 값은 아래와 같다.
+
+| Value               | Description |
+| :-----------------: |:------------|
+| 절대 URL             | 웹사이트 URL (href="http://www.example.com/default.htm")
+| 상대 URL             | 자신의 위치를 기준으로한 대상의 URL (href="html/default.htm")
+| fragment identifier | 페이지 내의 특정 id를 갖는 요소에의 링크 (href="#top"))
+| 기타 프로토콜          | https://, ftp://, mailto:, file:, etc..
+| script              | href="javascript:alert('Hello');"
+
+
+```html
+<a href="http://www.google.com">URL</a>
+<a href="html/my.html">Local file</a>
+<a href="#top">fragment identifier</a>
+<a href="mailto:someone@example.com?Subject=Hello%20again" target="_top">Send Mail</a>
+```
+
+fragment identifier를 이용한 페이지 내부 이동 방법은 다음과 같다.
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2 id="top">Top of page!</h2>
+
+<p>In my younger and more vulnerable years my father gave me some advice that I've been turning over in my mind ever since.</p>
+<p>"Whenever you feel like criticizing any one," he told me, "just remember that all the people in this world haven't had the advantages that you've had."</p>
+<p>He didn't say any more, but we've always been unusually communicative in a reserved way, and I understood that he meant a great deal more than that. In consequence, I'm inclined to reserve all judgments, a habit that has opened up many curious natures to me and also made me the victim of not a few veteran bores. The abnormal mind is quick to detect and attach itself to this quality when it appears in a normal person, and so it came about that in college I was unjustly accused of being a politician, because I was privy to the secret griefs of wild, unknown men. Most of the confidences were unsought-frequently I have feigned sleep, preoccupation, or a hostile levity when I realized by some unmistakable sign that an intimate revelation was quivering on the horizon; for the intimate revelations of young men, or at least the terms in which they express them, are usually plagiaristic and marred by obvious suppressions. Reserving judgments is a matter of infinite hope. I am still a little afraid of missing something if I forget that, as my father snobbishly suggested, and I snobbishly repeat, a sense of the fundamental decencies is parcelled out unequally at birth.</p>
+<p>And, after boasting this way of my tolerance, I come to the admission that it has a limit. Conduct may be founded on the hard rock or the wet marshes, but after a certain point I don't care what it's founded on. When I came back from the East last autumn I felt that I wanted the world to be in uniform and at a sort of moral attention forever; I wanted no more riotous excursions with privileged glimpses into the human heart. Only Gatsby, the man who gives his name to this book, was exempt from my reaction-Gatsby, who represented everything for which I have an unaffected scorn. If personality is an unbroken series of successful gestures, then there was something gorgeous about him, some heightened sensitivity to the promises of life, as if he were related to one of those intricate machines that register earthquakes ten thousand miles away. This responsiveness had nothing to do with that flabby impressionability which is dignified under the name of the "creative temperament"-it was an extraordinary gift for hope, a romantic readiness such as I have never found in any other person and which it is not likely I shall ever find again. No-Gatsby turned out all right at the end; it is what preyed on Gatsby, what foul dust floated in the wake of his dreams that temporarily closed out my interest in the abortive sorrows and short-winded elations of men.</p>
+
+<a href="#top">Go to top</a>
+</body>
+</html>
+```
+
+target 속성은 링크를 클릭했을 때 윈도우를 어떻게 오픈할 지를 지정한다.
+
+| Value       | Description |
+| :---------: |:------------|
+| `_blank`    | 링크를 클릭했을 때 연결문서를 새로운 윈도우나 탭에서 오픈한다
+| `_self`     | 링크를 클릭했을 때 연결문서를 현재 윈도우에서 오픈한다 (기본값)
+| `_parent`   | 링크를 클릭했을 때 연결문서를 부모(상위레벨) 윈도우에서 오픈한다
+| `_top`      | 링크를 클릭했을 때 연결문서를 최상위 윈도우에서 오픈한다.
+| framename   | 링크를 클릭했을 때 연결문서를 지정한 윈도우에서 오픈한다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <a href="http://www.google.com" target="_blank">Visit google.com!</a>
+  </body>
+</html>
+```
+
+# 5.목록
+
+## 5.1 순서없는 목록 (Unordered Lists)
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>Unordered List with Default Bullets</h2>
+
+    <ul>
+      <li>Coffee</li>
+      <li>Tea</li>
+      <li>Milk</li>
+    </ul>  
+  </body>
+</html>
+```
+
+## 5.2 순서있는 목록 (Ordered Lists)
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>Ordered List</h2>
+
+    <ol>
+      <li>Coffee</li>
+      <li>Tea</li>
+      <li>Milk</li>
+    </ol>  
+  </body>
+</html>
+```
+
+type 속성을 사용하여 순서를 나타내는 문자를 조정할 수 있다
+
+| Value       | Description |
+| :---------: |:------------|
+| "1"         | 숫자 (기본값)
+| "A"         | 대문자 알파벳
+| "a"         | 소문자 알파벳
+| "I"         | 대문자 로마숫자
+| "i"         | 소문자 로마숫자
+
+```html
+<ol type="1">
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ol>
+```
+
+## 5.3 중첩 목록
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>A Nested List</h2>
+
+    <ul>
+      <li>Coffee</li>
+      <li>Tea
+        <ol>
+          <li>Black tea</li>
+          <li>Green tea</li>
+        </ol>
+      </li>
+      <li>Milk</li>
+    </ul>
+  </body>
+</html>
+```
+
+목록 태그는 네비게이션 메뉴를 만들 때 자주 사용된다.
+
+# 6.테이블
+
+표(table)을 만들 때 사용하는 태그이다. 과거에는 테이블 태그를 사용하여 레이아웃을 구성하기도 하였으나 혀대 웹에서는 주로 공간 분할 태그인 div 태그를 사용하여 레이아웃을 구성한다.
+
+| tag       | Description |
+| :-------: |:------------|
+| tr        | 표 내부의 행 (table row)
+| th        | 행 내부의 제목 셀 (table heading)
+| td        | 행 내부의 일반 셀 (table data)
+
+![table tag](/img/html_table_structure.gif)
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <table border="1">
+      <tr>
+        <th>First name</td>
+        <th>Last name</td>		
+        <th>Score</td>
+      </tr>
+      <tr>
+        <td>Jill</td>
+        <td>Smith</td>		
+        <td>50</td>
+      </tr>
+      <tr>
+        <td>Eve</td>
+        <td>Jackson</td>		
+        <td>94</td>
+      </tr>
+      <tr>
+        <td>John</td>
+        <td>Doe</td>		
+        <td>80</td>
+      </tr>
+    </table>
+  </body>
+</html>
+```
+
+테이블 태그의 속성은 아래와 같다.
+
+| attribute     | Description |
+| :-----------: |:------------|
+| border        | 표 테두리 두께 지정. (CSS border property를 사용하는 것이 더 나은 방법이다.)
+| rowspan       | 해당 셀이 점유하는 행의 수 지정
+| colspan       | 해당 셀이 점유하는 열의 수 지정
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      th, td {
+        padding: 5px;
+        text-align: left;    
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Cell that spans two columns:</h2>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th colspan="2">Telephone</th>
+      </tr>
+      <tr>
+        <td>Bill Gates</td>
+        <td>555 77 854</td>
+        <td>555 77 855</td>
+      </tr>
+    </table>
+
+    <h2>Cell that spans two rows:</h2>
+    <table>
+      <tr>
+        <th>Name:</th>
+        <td>Bill Gates</td>
+      </tr>
+      <tr>
+        <th rowspan="2">Telephone:</th>
+        <td>555 77 854</td>
+      </tr>
+      <tr>
+        <td>555 77 855</td>
+      </tr>
+    </table>
+  </body>
+</html>
+```
+
+# 7.이미지
+
+웹페이지에 이미지를 삽입하는 경우, img tag를 사용한다.
+
+| attribute   | Description |
+| :---------: |:------------|
+| src         | 이미지 파일 경로
+| alt         | 이미지 파일이 없을 경우 표시되는 문장
+| width       | 이미지의 너비 (CSS에서 지정하는 것이 일반적)
+| height      | 이미지의 높이 (CSS에서 지정하는 것이 일반적)
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <img src="smiley.gif" alt="Smiley face" width="100">
+    <img src="wrongname.gif" alt="이미지가 없습니다.">
+  </body>
+</html>
+```
+
+# 8.미디어
+
+## 8.1 audio
+
+audio 태그는 HTML5에서 새롭게 추가된 태그이다. IE8 이하에서는 사용할 수 없다.
+
+| attribute   | Description |
+| :---------: |:------------|
+| src         | 음악 파일 경로
+| preload     | 재생 전에 음악 파일을 모두 불러올 것인지 지정
+| autoplay    | 음악 파일을 자동의 재생 개시할 것인지 지정
+| loop        | 음악을 반복할 것인지 지정
+| controls    | 음악 재생 도구를 표시할 것인지 지정. 재생 도구의 외관은 브라우저마다 차이가 있다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <audio src="Kalimba.mp3" controls autoplay></audio>
+  </body>
+</html>
+```
+
+웹브라우저 별로 지원하는 음악 파일 형식이 다르다. 파일 형식에 따라 재생되지 않는 브라우저가 존재한다는 뜻이다.
+
+| Browser	          | MP3	     | Wav   | Ogg
+| :---------------- |:--------:|:-----:|:-----:|
+| Internet Explorer	| YES      | NO	   | NO
+| Chrome	          | YES	     | YES   | YES
+| Firefox	          | YES(24~) | YES   | YES
+| Safari	          | YES	     | YES   | NO
+| Opera	            | YES(25~) | YES   | YES
+
+source 태그를 사용하여 파일 형식의 차이 문제를 해결 할 수 있다. type 속성은 생략 가능하다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <audio controls autoplay>
+      <source src="Kalimba.mp3" type="audio/mpeg">
+      <source src="Kalimba.ogg" type="audio/ogg">
+    </audio>
+  </body>
+</html>
+```
+
+## 8.2 비디오
+
+video 태그는 HTML5에서 새롭게 추가된 태그이다. IE8 이하에서는 사용할 수 없다.
+
+| attribute   | Description |
+| :---------: |:------------|
+| src         | 동영상 파일 경로
+| poster      | 동영상 준비 중에 표시될 이미지 파일 경로
+| preload     | 재생 전에 동영상 파일을 모두 불러올 것인지 지정
+| autoplay    | 동영상 파일을 자동의 재생 개시할 것인지 지정
+| loop        | 동영상을 반복할 것인지 지정
+| controls    | 동영상 재생 도구를 표시할 것인지 지정. 재생 도구의 외관은 브라우저마다 차이가 있다.
+| width       | 동영상의 너비를 지정
+| height      | 동영상의 높이를 지정
+
+audio 태그와 마찬가지로 파일 형식의 차이 문제가 발생할 수 있다. source 태그를 사용하여 형식 차이 문제를 해결한다. type 속성은 생략 가능하다.
+
+| Browser	          | MP4	     | WebM  | Ogv
+| :---------------- |:--------:|:-----:|:-----:|
+| Internet Explorer	| YES      | NO	   | NO
+| Chrome	          | YES	     | YES   | YES
+| Firefox	          | YES(21~) | YES   | YES
+| Safari	          | YES	     | NO    | NO
+| Opera	            | YES(25~) | YES   | YES
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <video width="640" height="360" controls>
+      <source src="Wildlife.mp4" type="video/mp4">
+      <source src="Wildlife.webm" type="video/webm">
+    </video>
+  </body>
+</html>
+```
+
+# 9.입력 양식 (Forms)
+
+입력 양식 태그는 사용자의 입력을 수집하기 위해 사용된다.
+
+## 9.1 form
+
+## 9.2 input
+
+## 9.3 select
+
+## 9.4 textarea
+
+## 9.5 button
+
+## 9.6 filedset / legend
+
+
+# 10.공간 분할
+
+## 10.1 div
+
+## 10.1 span
+
+---
+
+# Block / inline
+
+# Semantic Web
+
+# Responsive Web
+
+---
+
+웹페이지를 제작은 우리가 표현하고자 하는 바를 가장 효과적으로 구현할 수 있는 HTML 요소의 선택에서 시작된다. 이를 위하여 각 HTML 요소가 웹페이지 상에서 어떻게 표현되는지, 의미론적으로 어떤 의미를 가지는지 알아야하며 한다.
+
+# 시멘틱 (Semantics)
+
+2016년 현재 전세계적으로 웹사이트는 10억개, 인터넷 사용자 수는 33억명이다. ([인터넷 라이브 스탯](http://www.internetlivestats.com/) 참고)
+
+![Total number of Websites](/img/Total-number-of-Websites.png)
+
+대부분의 인터넷 사용자는 원하는 정보를 취득하기 위해 Goole이나 Naver 같은 검색사이트를 이용한다. "나는 검색된다. 고로 존재한다"는 말이 있을 정도로 웹사이트는 검색엔진에 노출이 매우 중요하다. 당연한 것이 검색엔진에 노출되지 않는 웹사이트는 접속하는 이도 없기 때문이다. 검색엔진은 이 시대의 가장 강력한 권력 중의 하나라고 말할 수도 있겠다.
+
+SEO(검색엔진 최적화: Search Engine Optimization)같은 마케팅 도구를 사용하여 검색엔진이 본인의 웹사이트를 검색하기 알맞은 구조로 웹사이트를 조정하기도 하는데, 이것은 기본적으로 검색엔진이 웹사이트 정보를 어떻게 수집하는지 아는 것으로 부터 시작된다.
+
+검색엔진은 로봇(Robot)이라는 프로그램을 이용해 매일 전세계의 웹사이트 정보를 수집한다.(이것을 크롤링이라 하며 검색엔진의 크롤러가 이를 수행한다.) 그리고 검색 사이트 이용자가 검색할 만한 키워드를 미리 예상하여 검색 키워드에 대응하는 인덱스(색인)을 만들어 둔다.(이것을 인덱싱이라 하며 검색엔진의 인덱서가 이를 수행한다.)
+
+인덱스를 생성할 때 사용되는 정보가 검색 로봇이 수집한 정보인데 결국 웹사이트의 HTML 코드이다. 즉 HTML 코드 만으로 프로그램이 그 의미를 인지하여야 하는데 그 방법은 바로 시멘틱 요소(Semantic element)를 해석하는 것이다.
+
+HTML으로 작성된 문서는 컴퓨터가 해석할 수 있는 메타데이터와 사람이 사용하는 자연어 문장이 뒤섞여 있다.　아래 코드를 보면 1행과 2행은 브라우저에서 동일한 외형을 갖는다. 이는 h1 태그의 디폴트 스타일이 1행과 같기 때문이다.
+
+그러나 1행의 tag은 의미론적으로 어떤 의미도 가지고 있지 않고 폰트 크기와 볼드체를 지정하는 메타데이터일 뿐이다. 그러나 2행은 header 중 가장 상위 레벨이라는 의미를 내포하고 있다.
+
+```html
+<font size="6"><b>This is the page title</b></font>
+<h1>This is a heading</h1>
+```
+
+검색엔진은 대체로 h1 tag 내의 컨텐츠를 웹문서의 중요한 제목으로 인식하고 인덱스에 포함시킬 확률이 높다. 또한 사람도 h1 tag 내의 컨텐츠가 제목임을 인식할 수 있다.
+
+시멘틱 요소로 구성되어 있는 웹페이지는 검색엔진에 보다 의미론적으로 문서 정보를 전달할 수 있고 검색엔진 또한 시멘틱 요소를 이용하여 보다 효과적인 크롤링과 인덱싱이 가능하게 되었다.
+
+## Semantic Elements
+
+# Reference
+
+* [w3schools.com](http://www.w3schools.com)
+
+* [Learn to Code HTML & CSS](http://learn.shayhowe.com/)
+
+* [HTML elements](https://www.w3.org/TR/html-markup/elements.html)
+
+* [HTML attributes](https://www.w3.org/TR/html-markup/global-attributes.html#common.attrs.core)

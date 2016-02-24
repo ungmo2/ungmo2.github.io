@@ -826,11 +826,87 @@ audio 태그와 마찬가지로 파일 형식의 차이 문제가 발생할 수 
 
 # 9.입력 양식 (Forms)
 
-입력 양식 태그는 사용자의 입력을 수집하기 위해 사용된다.
-
 ## 9.1 form
 
+form 태그는 사용자가 입력한 데이터를 수집하기 위해 사용되며 input, textarea, button, select, checkbox, radio button, submit button 등의 입력 양식 태그를 포함할 수 있다.
+
+```html
+<form>
+...
+form elements (input, checkbox, radio button, submit button...)
+...
+</form>
+```
+
+| attribute   | Value       | Description |
+| :---------: |:------------|:------------|
+| action      | URL         | 입력 데이터(form data)가 전송될 URL 지정
+| method      | get / post  | 입력 데이터(form data) 전달 방식 지정
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <form action="demo_form.php" method="get">
+      First name: <input type="text" name="FirstName" value="Mickey"><br>
+      Last name: <input type="text" name="LastName" value="Mouse"><br>
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>
+```
+
+submit button이 클릭되면 input 태그에 입력된 데이터가 form 태그의 action 속성에 지정된 서버측의 처리로직에 method 속성에 지정된 방식으로 전달된다.
+
 ## 9.2 input
+
+input 태그는 form 태그 중에서 가장 중요한 태그로 사용자로부터 데이터를 입력받기 위해 사용된다.
+input 태그는 다양한 종류가 있는데 type 속성에 의해 구분된다.
+
+Type	Description
+text	Defines normal text input
+radio	Defines radio button input (for selecting one of many choices)
+submit	Defines a submit button (for submitting the form)
+
+
+| type 속성값      | Description            | HTML5에서 추가 |
+| :------------: |:-----------------------|:------------:|
+| button         | 버튼 생성                 |
+| checkbox       | checkbox 생성            |
+| color          | 컬러 선택 생성             | ◯   
+| date           | date control (년월일)    | ◯   
+| datetime       | date & time control (년월일시분초) 생성 | ◯   
+| datetime-local | 지역 date & time control (년월일시분초) 생성 | ◯   
+| email          | 이메일 입력 form 생성       | ◯   
+| file           | 파일 선택 form 생성        |
+| hidden         | 감추어진 입력 form 생성     |
+| image          | 이미지로 된 submit button 생성 |
+| month          | 월 선택 form 생성        | ◯  
+| number         | 숫자 입력 form 생성       | ◯  
+| password       | password 입력 form 생성  |
+| radio          | radio button 생성       |
+| range          | 범위 선택 form 생성       | ◯
+| reset          | 초기화 button 생성       |
+| search         | 검색어 입력 form 생성      | ◯
+| submit         | 제출 button 생성         |
+| tel            | 전화번호 입력 form 생성    | ◯
+| text           | 텍스트 입력 form  생성     |
+| time           | 시간 선택 form 생성       | ◯
+| url            | url 입력 form 생성       | ◯
+| week           | 주 선택 입력 form 생성     | ◯
+
+
+
+
+
+
+
+| submit      | 제출 버튼 생성
+| reset       | 초기화 버튼 생성
+
+
+
+
 
 ## 9.3 select
 

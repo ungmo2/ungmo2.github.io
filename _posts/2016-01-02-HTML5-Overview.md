@@ -863,12 +863,6 @@ submit button이 클릭되면 input 태그에 입력된 데이터가 form 태그
 input 태그는 form 태그 중에서 가장 중요한 태그로 사용자로부터 데이터를 입력받기 위해 사용된다.
 input 태그는 다양한 종류가 있는데 type 속성에 의해 구분된다.
 
-Type	Description
-text	Defines normal text input
-radio	Defines radio button input (for selecting one of many choices)
-submit	Defines a submit button (for submitting the form)
-
-
 | type 속성값      | Description            | HTML5에서 추가 |
 | :------------: |:-----------------------|:------------:|
 | button         | 버튼 생성                 |
@@ -896,13 +890,6 @@ submit	Defines a submit button (for submitting the form)
 | week           | 주 선택 입력 form 생성     | ◯
 
 
-
-
-
-
-
-| submit      | 제출 버튼 생성
-| reset       | 초기화 버튼 생성
 
 
 

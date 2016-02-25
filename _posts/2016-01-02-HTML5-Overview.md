@@ -1098,7 +1098,7 @@ fieldset 태그는 관련된 입력 양식들을 그룹화할 때 사용한다. 
 
 웹페이지의 레이아웃을 구성하기 위해서 공간을 분할할 필요가 있다.
 
-![html layout](html-layout.png)
+![html layout](/img/html-layout.png)
 
 공간을 분할할 수 있는 태그는 div, span, table 등이 있는데, 과거에는 table 태그를 사용하여 레이아웃을 구성하였으나 모던 웹에서는 주로 div, span을 사용한다.
 

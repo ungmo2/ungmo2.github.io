@@ -863,36 +863,51 @@ submit button이 클릭되면 input 태그에 입력된 데이터가 form 태그
 input 태그는 form 태그 중에서 가장 중요한 태그로 사용자로부터 데이터를 입력받기 위해 사용된다.
 input 태그는 다양한 종류가 있는데 type 속성에 의해 구분된다.
 
-| type 속성값      | Description            | HTML5에서 추가 |
-| :------------- |:-----------------------|:------------:|
-| button         | 버튼 생성                 |
-| checkbox       | checkbox 생성            |
-| color          | 컬러 선택 생성             | ◯   
-| date           | date control (년월일)    | ◯   
-| datetime       | date & time control (년월일시분초) 생성 | ◯   
-| datetime-local | 지역 date & time control (년월일시분초) 생성 | ◯   
-| email          | 이메일 입력 form 생성       | ◯   
-| file           | 파일 선택 form 생성        |
-| hidden         | 감추어진 입력 form 생성     |
-| image          | 이미지로 된 submit button 생성 |
-| month          | 월 선택 form 생성        | ◯  
-| number         | 숫자 입력 form 생성       | ◯  
-| password       | password 입력 form 생성  |
-| radio          | radio button 생성       |
-| range          | 범위 선택 form 생성       | ◯
-| reset          | 초기화 button 생성       |
-| search         | 검색어 입력 form 생성      | ◯
-| submit         | 제출 button 생성         |
-| tel            | 전화번호 입력 form 생성    | ◯
-| text           | 텍스트 입력 form  생성     |
-| time           | 시간 선택 form 생성       | ◯
-| url            | url 입력 form 생성       | ◯
-| week           | 주 선택 입력 form 생성     | ◯
+| type 속성값      | Description            | HTML5 추가 | IE | FF | CR | SF | OP |
+| :------------- |:-----------------------|:---------:|:--:|:--:|:--:|:--:|:--:|
+| button         | 버튼 생성                 |          | ◯  | ◯  | ◯  | ◯  | ◯  |
+| checkbox       | checkbox 생성            |         | ◯  | ◯  | ◯  | ◯  | ◯  |
+| color          | 컬러 선택 생성             | ◯         | X  | ◯  | ◯  | X  | ◯  |
+| date           | date control (년월일)    | ◯         | X  | X  | ◯  | ◯  | ◯  |
+| datetime       | date & time control (년월일시분초) 생성 | ◯ | X  | X  | X  | X  | X  |   
+| datetime-local | 지역 date & time control (년월일시분초) 생성 | ◯ | X  | X  | ◯  | ◯  | ◯  |   
+| email          | 이메일 입력 form 생성       | ◯        | ◯  | ◯  | ◯  | X  | ◯  |
+| file           | 파일 선택 form 생성        |          |  ◯  | ◯  | ◯  | ◯  | ◯  |
+| hidden         | 감추어진 입력 form 생성     |          | ◯  | ◯  | ◯  | ◯  | ◯  |
+| image          | 이미지로 된 submit button 생성 |       | ◯  | ◯  | ◯  | ◯  | ◯  |
+| month          | 월 선택 form 생성        | ◯          | X  | X  | ◯  | ◯  | ◯  |
+| number         | 숫자 입력 form 생성       | ◯         |  ◯  | ◯  | ◯  | ◯  | ◯  |
+| password       | password 입력 form 생성  |           |  ◯  | ◯  | ◯  | ◯  | ◯  |
+| radio          | radio button 생성       |           |  ◯  | ◯  | ◯  | ◯  | ◯  |
+| range          | 범위 선택 form 생성       | ◯         |  ◯  | ◯  | ◯  | ◯  | ◯  |
+| reset          | 초기화 button 생성       |            |  ◯  | ◯  | ◯  | ◯  | ◯  |
+| search         | 검색어 입력 form 생성      | ◯         |  X  | X  | ◯  | ◯  | X  |
+| submit         | 제출 button 생성         |            |  ◯  | ◯  | ◯  | ◯  | ◯  |
+| tel            | 전화번호 입력 form 생성    | ◯          |  X  | X  | X  | X  | X  |
+| text           | 텍스트 입력 form  생성     |            |  ◯  | ◯  | ◯  | ◯  | ◯  |
+| time           | 시간 선택 form 생성       | ◯           |  X  | X  | ◯  | ◯  | ◯  |
+| url            | url 입력 form 생성       | ◯          |  ◯  | ◯  | ◯  | X  | ◯  |
+| week           | 주 선택 입력 form 생성     | ◯          |  X  | X  | ◯  | ◯  | ◯  |
 
 
+```html
+<!DOCTYPE html>
+<html>
+  <body>
 
+  <form>
+    <p>button</p>
+    <input type="button" value="Click me" onclick="alert('Hello world!');">
+    <hr>
 
+    <input type="radio" name="gender" value="male" checked> Male<br>
+    <input type="radio" name="gender" value="female"> Female<br>
+    <input type="radio" name="gender" value="other"> Other  
+  </form>
 
+  </body>
+</html>
+```
 
 
 ## 9.3 select

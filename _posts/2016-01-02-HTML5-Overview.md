@@ -1094,25 +1094,41 @@ fieldset 태그는 관련된 입력 양식들을 그룹화할 때 사용한다. 
 </html>
 ```
 
-# 10.공간 분할
+# 10.공간 분할 (Division & Span)
 
-## 10.1 div
+웹페이지의 레이아웃을 구성하기 위해서 공간을 분할할 필요가 있다.
 
-## 10.1 span
+![html layout](html-layout.png)
 
----
+공간을 분할할 수 있는 태그는 div, span, table 등이 있는데, 과거에는 table 태그를 사용하여 레이아웃을 구성하였으나 모던 웹에서는 주로 div, span을 사용한다.
 
-# Block / inline
+| div                        | span                       |
+|:---------------------------|:---------------------------|
+| block 요소                  | inline 요소
+| 화면 크기 전체의 가로폭을 차지한다. | content의 폭만큼 가로폭을 차지한다.
+| 너비, 높이 지정이 가능하다.       | 너비, 높이 지정이 불가능하다.
+| 줄바꿈                       | 줄바꿈이 없고 문장의 중간에 들어갈 수 있다.
 
-# Semantic Web
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <div style="background-color:black; color:white; padding:20px;">
+      <h2>London</h2>
+      <p>London is the capital city of England. It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
+    </div>
+    <div style="background-color:red; color:white; padding:20px; width:200px;">
+      <h2>Paris</h2>
+      <p>Paris is the capital and most populous city of France. Situated on the Seine River, in the north of the country.</p>
+    </div>
+    <h1>My <span style="background-color:red; color:white;">Important</span> Heading</h1>
+  </body>
+</html>
+```
 
 # Responsive Web
 
----
-
-웹페이지를 제작은 우리가 표현하고자 하는 바를 가장 효과적으로 구현할 수 있는 HTML 요소의 선택에서 시작된다. 이를 위하여 각 HTML 요소가 웹페이지 상에서 어떻게 표현되는지, 의미론적으로 어떤 의미를 가지는지 알아야하며 한다.
-
-# 시멘틱 (Semantics)
+# 시멘틱 (Semantics) 태그
 
 2016년 현재 전세계적으로 웹사이트는 10억개, 인터넷 사용자 수는 33억명이다. ([인터넷 라이브 스탯](http://www.internetlivestats.com/) 참고)
 
@@ -1138,8 +1154,6 @@ HTML으로 작성된 문서는 컴퓨터가 해석할 수 있는 메타데이터
 검색엔진은 대체로 h1 tag 내의 컨텐츠를 웹문서의 중요한 제목으로 인식하고 인덱스에 포함시킬 확률이 높다. 또한 사람도 h1 tag 내의 컨텐츠가 제목임을 인식할 수 있다.
 
 시멘틱 요소로 구성되어 있는 웹페이지는 검색엔진에 보다 의미론적으로 문서 정보를 전달할 수 있고 검색엔진 또한 시멘틱 요소를 이용하여 보다 효과적인 크롤링과 인덱싱이 가능하게 되었다.
-
-## Semantic Elements
 
 # Reference
 

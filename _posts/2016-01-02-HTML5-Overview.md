@@ -1215,7 +1215,7 @@ HTML 요소는 non-semantic element, semantic element로 구분할 수 있다.
 | article  | 분문의 주내용이 들어가는 공간을 의미한다
 | footer   | 푸터를 의미한다
 
-![HTML5 semantic elements](semantic_elements.gif)
+![HTML5 semantic elements](/img/semantic_elements.gif)
 
 # Reference
 

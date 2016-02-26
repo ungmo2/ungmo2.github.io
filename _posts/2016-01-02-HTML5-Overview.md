@@ -1102,7 +1102,9 @@ fieldset 태그는 관련된 입력 양식들을 그룹화할 때 사용한다. 
 
 공간을 분할할 수 있는 태그는 div, span, table 등이 있는데, 과거에는 table 태그를 사용하여 레이아웃을 구성하였으나 모던 웹에서는 주로 div, span을 사용한다.
 
-모든 HTML 요소는 아무런 CSS를 적용하지 않아도 기본적으로 브라우저에 표현되는 디폴트 표시 값을 가진다. 그중 block 또는 inline 특성이 있다.
+모든 HTML 요소는 아무런 CSS를 적용하지 않아도 기본적으로 브라우저에 표현되는 디폴트 표시 값을 가진다. 대부분의 HTML 요소는 block 또는 inline 특성을 갖는다.
+
+자세한 내용은 CSS display 속성을 참조하기 바란다.
 
 ## block 요소
 
@@ -1121,6 +1123,22 @@ fieldset 태그는 관련된 입력 양식들을 그룹화할 때 사용한다. 
   - p
 
   - form
+
+  ```html
+  <!DOCTYPE html>
+  <html>
+    <body>
+      <div style="background-color:black; color:white; padding:20px;">
+        <h2>London</h2>
+        <p>London is the capital city of England. It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
+      </div>
+      <div style="background-color:red; color:white; padding:20px; width:200px;">
+        <h2>Paris</h2>
+        <p>Paris is the capital and most populous city of France. Situated on the Seine River, in the north of the country.</p>
+      </div>
+    </body>
+  </html>
+  ```
 
 ## inline 요소
 
@@ -1142,22 +1160,12 @@ fieldset 태그는 관련된 입력 양식들을 그룹화할 때 사용한다. 
 <!DOCTYPE html>
 <html>
   <body>
-    <div style="background-color:black; color:white; padding:20px;">
-      <h2>London</h2>
-      <p>London is the capital city of England. It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
-    </div>
-    <div style="background-color:red; color:white; padding:20px; width:200px;">
-      <h2>Paris</h2>
-      <p>Paris is the capital and most populous city of France. Situated on the Seine River, in the north of the country.</p>
-    </div>
     <h1>My <span style="background-color:red; color:white;">Important</span> Heading</h1>
   </body>
 </html>
 ```
 
-# Responsive Web
-
-# 시멘틱 (Semantics) 태그
+# 11.시멘틱 (Semantic)
 
 2016년 현재 전세계적으로 웹사이트는 10억개, 인터넷 사용자 수는 33억명이다. ([인터넷 라이브 스탯](http://www.internetlivestats.com/) 참고)
 
@@ -1183,6 +1191,31 @@ HTML으로 작성된 문서는 컴퓨터가 해석할 수 있는 메타데이터
 검색엔진은 대체로 h1 tag 내의 컨텐츠를 웹문서의 중요한 제목으로 인식하고 인덱스에 포함시킬 확률이 높다. 또한 사람도 h1 tag 내의 컨텐츠가 제목임을 인식할 수 있다.
 
 시멘틱 요소로 구성되어 있는 웹페이지는 검색엔진에 보다 의미론적으로 문서 정보를 전달할 수 있고 검색엔진 또한 시멘틱 요소를 이용하여 보다 효과적인 크롤링과 인덱싱이 가능하게 되었다.
+
+즉, 시멘틱 태그란 브라우저, 겸색엔진, 개발자 모두에게 태그의 의미를 명확히 설명하는 역할을 한다.
+
+HTML 요소는 non-semantic element, semantic element로 구분할 수 있다.
+
+- non-semantic element
+
+  - div, span 등이 있으며 이들 태그는 content에 대하여 어떤 설명도 하지 않는다.
+
+- semantic element
+
+  - form, table, img 등이 있으며 이들 태그는 content의 의미를 명확히 설명한다,
+
+다음은 HTML5에서 새롭게 추가된 시멘틱 태그이다.
+
+| tag      | Description |
+|:-------- |:------------|
+| header   | 헤더를 의미한다
+| nav      | 네비게이션을 의미한다
+| aside    | 사이드에 위치하는 공간을 의미한다
+| section  | 본문의 여러 내용(article)을 포함하는 공간을 의미한다
+| article  | 분문의 주내용이 들어가는 공간을 의미한다
+| footer   | 푸터를 의미한다
+
+![HTML5 semantic elements](semantic_elements.gif)
 
 # Reference
 

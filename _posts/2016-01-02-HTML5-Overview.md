@@ -258,7 +258,7 @@ emphasized(강조, 중요한) text를 지정한다. i tag와 동일하게 Italic
 <html>
   <body>
     <p>This text is normal.</p>
-    <p><<em>This text is emphasized.</em></p>
+    <p><em>This text is emphasized.</em></p>
   </body>
 </html>
 ```

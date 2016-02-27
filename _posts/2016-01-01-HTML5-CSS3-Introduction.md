@@ -116,9 +116,9 @@ content를 가질 수 없는 요소를 빈 요소(Empty element or Self-Closing 
 
 ## 선택자 (Selector)
 
-CSS는 HTML 요소의 style(design, layout etc)을 정의하는데 사용된다. 선택자는 style을 적용하고자 하는 HTML 요소를 지시하는 방법이다.
+CSS는 HTML 요소의 style(design, layout etc)을 정의하는데 사용된다. 선택자는 style을 적용하고자 하는 HTML 요소를 선택하는 방법이다.
 
-![css selector](/img/selector.gif)
+![css selector](/img/css-syntax.png)
 
 ## 프로퍼티 (Property)
 

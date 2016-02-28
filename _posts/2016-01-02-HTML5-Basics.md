@@ -1,6 +1,6 @@
 ---
 layout: post
-title: HTML5 Overview
+title: HTML5 Basics
 categories: html
 ---
 

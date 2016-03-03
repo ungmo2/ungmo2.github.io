@@ -47,7 +47,7 @@ HTML document는 순수한 텍스트이며 .html 확장자 파일로 저장한�
 
 * [Atom](https://www.atom.io/)  
 * [Sublime text](https://www.sublimetext.com/)  
-* [Brackets](www.brackets.io/)  
+* [Brackets](http://brackets.io/)  
 * [WebStorm](https://www.jetbrains.com/webstorm/)
 
 # HTML Terms

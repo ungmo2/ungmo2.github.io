@@ -1104,7 +1104,7 @@ fieldset 태그는 관련된 입력 양식들을 그룹화할 때 사용한다. 
 
 모든 HTML 요소는 아무런 CSS를 적용하지 않아도 기본적으로 브라우저에 표현되는 디폴트 표시 값을 가진다. 대부분의 HTML 요소는 block 또는 inline 특성을 갖는다.
 
-자세한 내용은 CSS display 속성을 참조하기 바란다.
+자세한 내용은 [CSS display 속성](/css/CSS3-Basics/#display)을 참조하기 바란다.
 
 ## block 요소
 

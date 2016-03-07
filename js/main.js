@@ -18,3 +18,8 @@ $('#main-navbar').on('hidden.bs.collapse', function () {
 })
 
 // 2fc73a3a967e97599c9763d05e564189
+
+$(document).ready(function(){
+  $(document).bind("contextmenu",function(){return false;});
+  $(document).bind("mousedown",function(){return false;});
+});

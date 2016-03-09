@@ -1311,9 +1311,109 @@ text-decoration 속성을 사용하여 링크 underline을 제거할 수 있다.
 
 ## 2.6 위치 (Position)
 
-position
+### 2.6.1 position
 
-z-index
+position 속성은 요소의 위치를 정의한다. top, bottom, left, right 속성과 함께 사용하여 위치를 지정한다.
+
+![position](/img/position.png)
+
+*absolute 또는 fixed 로 position 설정시, block 요소의 width는 inline 요소와 같이 content에 맞게 변화되므로 주의하여야 한다.* 또한 position 속성은 상속되지 않는다.
+
+| 속성값	      | Description
+|:-----------|:-----------------
+| static     | 위에서 아래로, 왼쪽에서 오른쪽으로 순서에 따라 배치된다. 이는 position 속성을 지정하지 않았을 때와 같다. 기본적으로 이 속성을 지정할 일은 없지만 이전에 설정된 position을 무력화하기 위해 사용될 수 있다. top, bottom, left, right 속성을 같이 사용할 수 없다.(기본값)
+| relative   | static으로 지정되었을 때의 위치를 기준으로 top, bottom, left, right 속성을 사용하여 위치를 이동시킨다.
+| absolute   | 문서의 좌상단을 기준으로 절대 위치를 지정한다.
+| fixed      | viewport를 기준으로 페이지가 스크롤되더라도 같은 곳에 위치한다
+
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		.box{
+      color: #fff;
+      font-weight: 600;
+      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+      border: 1px solid #bcbcbc;
+      border-radius: 6px;
+      height: 80px;
+      padding: 20px;
+    }
+		#box1 {
+      position:static;
+      top:20px; right:30px;
+      background: #2db34a;
+    }
+		#box2 {
+      position:absolute;
+      top:20px; right:30px;
+      background: #F44336;
+    }
+		#box3 {
+      position:relative;
+      top:20px; left:30px;
+      background: #795548;
+    }
+		#box4 {
+      position:fixed;
+      bottom:20px; right:30px;
+      background: #673AB7;
+    }
+	</style>
+</head>
+<body>
+	<div id="box1" class="box">static; top:20px; right:30px;</div>
+	<div id="box2" class="box">absolute; top:20px; right:30px;</div>
+	<div id="box3" class="box">relative; top:20px; left:30px;</div>
+	<div id="box4" class="box">fixed; bottom:20px; right:30px; </div>
+</body>
+</html>
+```
+
+### 2.6.2 z-index
+
+z-index 속성에 큰 숫자값을 지정할 수록 화면 전면에 출력된다.
+
+![z-index](/img/z-index.jpeg)
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+        .box {
+          width: 100px; height: 100px;
+          position: absolute;
+        }
+        .red {
+          background-color: red;
+          left: 10px; top: 10px;
+          z-index: 100;
+        }
+        .green {
+          background-color: green;
+          left: 50px; top: 50px;
+          z-index: 10;
+        }
+        .blue {
+          background-color: blue;
+          left: 90px; top: 90px;
+          z-index: 1;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="box red"></div>
+    <div class="box green"></div>
+    <div class="box blue"></div>
+  </body>
+</html>
+```
+
+
+
 
 overflow
 

@@ -1317,7 +1317,7 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
 
 ![position](/img/position.png)
 
-*absolute 또는 fixed 로 position 설정시, block 요소의 width는 inline 요소와 같이 content에 맞게 변화되므로 주의하여야 한다.* 또한 position 속성은 상속되지 않는다.
+**absolute 또는 fixed 로 position 설정시, block 요소의 width는 inline 요소와 같이 content에 맞게 변화되므로 주의하여야 한다.** 또한 position 속성은 상속되지 않는다.
 
 | 속성값	      | Description
 |:-----------|:-----------------

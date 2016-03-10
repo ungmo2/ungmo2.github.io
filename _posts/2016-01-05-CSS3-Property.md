@@ -1701,35 +1701,35 @@ float 속성을 사용하지 않은 블록 요소들은 수직으로 정렬된�
 ```html
 <!DOCTYPE html>
 <html>
-	<head>
-		<style>
-			div{
-				color: #fff;
-				font-weight: 600;
-				font-size: 50px;
-				border-radius: 6px;
-				background: #bcbcbc;
-				width: 200px;
-				height: 200px;
-				margin: 10px 10px;
-				padding: 10px;
-			}
-			#content1 {
-				/*float: left;*/
-				float: right;
-				background: red;
-			}
-			#content2 {
-				/*float: left;*/
-				float: right;
-				background: orange;
-			}
-		</style>
-	</head>
-	<body>
-		<div id="content1"> 1 </div>
-		<div id="content2"> 2 </div>
-	</body>
+  <head>
+    <style>
+      div{
+        color: white;
+        font-weight: 600;
+        font-size: 50px;
+        border-radius: 6px;
+        background: #bcbcbc;
+        width: 200px;
+        height: 200px;
+        margin: 10px 10px;
+        padding: 10px;
+      }
+      #content1 {
+        /*float: left;*/
+        float: right;
+        background: red;
+      }
+      #content2 {
+        /*float: left;*/
+        float: right;
+        background: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="content1"> 1 </div>
+    <div id="content2"> 2 </div>
+  </body>
 </html>
 ```
 

@@ -1744,7 +1744,7 @@ div {
 
 width값을 지정하지 않은 block 속성 요소는 기본적으로 `width: 100%`가 된다. 이때 block 속성 요소에 float 속성이 선언되면 width가 inline 요소와 같이 content에 맞게 최소화되고 남는 공간에 다음 요소가 위치한다.
 
-![float lineup](float-lineup.png)
+![float lineup](/img/float-lineup.png)
 
 ```html
 <!DOCTYPE html>

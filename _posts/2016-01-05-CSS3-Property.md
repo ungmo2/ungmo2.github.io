@@ -1441,7 +1441,7 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
     <h1>Relative</h1>
     <div>
       parent
-  	  <div class="relative-box">relative box</div>
+      <div class="relative-box">relative box</div>
       <div class="relative-box">relative box</div>
     </div>
     <div class="relative-box">relative box</div>
@@ -1613,42 +1613,42 @@ overflow 속성은 자식 요소가 부모 요소의 영역를 벗어났을 때 
 ```html
 <!DOCTYPE html>
 <html>
-<head>
-	<style>
-		div {
-      color: #fff;
-      font-weight: 600;
-      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
-      border: 1px solid #bcbcbc;
-      border-radius: 6px;
-      height: 200px;
-      padding: 20px;
-      background: #bcbcbc;
-      position: relative;
-			overflow: scroll;
-    }
-    .absolute-box1 {
-      position: absolute;
-      background: #2db34a;
-      top: 100px; left: 50px;
-			height: 150px;
-    }
-    .absolute-box2 {
-      position: absolute;
-      background: #F44336;
-      top: 150px; left: 100px;
-			height: 150px;
-    }
-	</style>
-</head>
-<body>
-  <h1>Absolute</h1>
-  <div>
-    parent
-    <div class="absolute-box1">absolute box1</div>
-    <div class="absolute-box2">absolute box2</div>
-  </div>
-</body>
+  <head>
+    <style>
+      div {
+        color: #fff;
+        font-weight: 600;
+        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+        border: 1px solid #bcbcbc;
+        border-radius: 6px;
+        height: 200px;
+        padding: 20px;
+        background: #bcbcbc;
+        position: relative;
+        overflow: scroll;
+      }
+      .absolute-box1 {
+        position: absolute;
+        background: #2db34a;
+        top: 100px; left: 50px;
+        height: 150px;
+      }
+      .absolute-box2 {
+        position: absolute;
+        background: #F44336;
+        top: 150px; left: 100px;
+        height: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Absolute</h1>
+    <div>
+      parent
+      <div class="absolute-box1">absolute box1</div>
+      <div class="absolute-box2">absolute box2</div>
+    </div>
+  </body>
 </html>
 ```
 

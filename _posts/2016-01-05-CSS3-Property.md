@@ -1742,7 +1742,7 @@ div {
 }
 ```
 
-width값을 지정하지 않은 block 속성 요소는 기본적으로 `width: 100%`가 된다. 이때 block 속성 요소에 float 속성이 선언되면 width가 inline 요소와 같이 content에 맞게 최소화되고 남는 공간에 다음 요소가 위치한다.
+width값을 지정하지 않은 block 속성 요소는 기본적으로 `width: 100%`가 된다. 이때 block 속성 요소에 float 속성이 선언되면 width가 inline 요소와 같이 content에 맞게 최소화되고 남는 공간에 다음 요소가 위치한다. 다음요소에 float 속성이 선언되지 않았다면 다음요소는 남은 공간을 가득 채운다.
 
 ![float lineup](/img/float-lineup.png)
 
@@ -1772,7 +1772,129 @@ width값을 지정하지 않은 block 속성 요소는 기본적으로 `width: 1
 </html>
 ```
 
-### 2.7.2 Layout
+### 2.7.2 float 속성 문제 해결
+
+#### 2.7.2.1 float 속성이 선언되지 않은 요소의 문제
+
+위 예제를 보면 두 요소간 margin이 있어야 한다. 그러나 결과는 그렇지 않다.
+
+![float problem](/img/float-problem1.png)
+
+이것은 두번째 요소에 float 속성을 선언하지 않았기 때문에 발생하는 박스 모델 상의 문제이다. 이 문제를 해결하는 가장 쉬운 방법은 float 속성을 선언하지 않은 요소에 `overflow: hidden` 속성을 선언하는 것이다.
+
+`overflow: hidden` 속성은 자식 요소가 부모 요소의 영역보다 클 경우 넘치는 부분을 안보이게 해주는 역할을 하는데 여기서는 float 속성이 없어서 제대로 표현되지 못하는 요소를 제대로 출력해준다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      div {
+        color: white;
+        margin: 0 10px;
+        padding: 20px;
+      }
+      .d1 {
+      	background-color: #59b1f6;
+      	float: left;
+      }
+      .d2 {
+      	background-color: #ffb5b4;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+    <body>
+    <div class="d1">dv1</div>
+    <div class="d2">dv2</div>
+  </body>
+</html>
+```
+
+두번째 요소에도 float 속성을 선언하면 `overflow: hidden` 속성은 선언하지 않아도 되지만  너비가 최소화된다.
+
+#### 2.7.2.2 float 속성이 선언된 요소 간의 문제
+
+아래 예제를 보면 float 속성이 선언된 두개의 자식 요소를 포함하는 부모 요소의 높이가 정상적인 값을 가지지 못하는 문제가 발생한다.
+
+```html
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			.wrap {
+				color: white;
+				text-align: center;
+				padding: 10px;
+				background-color: #def0c2;
+			}
+			.d1 {
+				float: left;
+				width: 49%;
+				margin-right: 2%;
+				padding: 20px 0;
+				background-color: #59b1f6;
+
+			}
+			.d2 {
+				float: left;
+				width: 49%;
+				padding: 20px 0;
+				background-color: #ffb5b4;
+			}
+		</style>
+	</head>
+	<body>
+	<div class="wrap">
+		<div class="d1">dv1</div>
+		<div class="d2">dv2</div>
+	</div>
+	</body>
+</html>
+```
+
+d1, d2 모두 `float: left` 속성을 가지고 있으므로 `overflow: hidden` 속성을 선언할 필요는 없다. 문제는 d1과 d2를 감싸고 있는 wrap이다. 요소를 감싸는 포장용 요소는 자식요소가  모두 float 속성을 가지고 있으면 정상적인 높이 값을 가지지 못하는 현상이 발생한다.
+
+이 문제를 해결하는 가장 쉬운 방법은 float 속성을 가진 요소의 부모 요소(wrap)에 `overflow: hidden` 속성을 선언하는 것이다.
+
+```html
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			.wrap {
+				color: white;
+				text-align: center;
+				padding: 10px;
+				background-color: #def0c2;
+				overflow: hidden;
+			}
+			.d1 {
+				float: left;
+				width: 49%;
+				margin-right: 2%;
+				padding: 20px 0;
+				background-color: #59b1f6;
+
+			}
+			.d2 {
+				float: left;
+				width: 49%;
+				padding: 20px 0;
+				background-color: #ffb5b4;
+			}
+		</style>
+	</head>
+	<body>
+	<div class="wrap">
+		<div class="d1">dv1</div>
+		<div class="d2">dv2</div>
+	</div>
+	</body>
+</html>
+```
+
+### 2.7.3 Layout
 
 
 ## 2.8 Shadow / Rounded Corner / Gradients
@@ -1802,3 +1924,5 @@ width값을 지정하지 않은 block 속성 요소는 기본적으로 `width: 1
 * [Learn to Code HTML & CSS](http://learn.shayhowe.com/)
 
 * [W3C CSS Document](https://www.w3.org/TR/CSS/)
+
+* [positioning : Float](http://beautifulcss.com/archives/787)

@@ -1329,45 +1329,45 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
 ```html
 <!DOCTYPE html>
 <html>
-<head>
-	<style>
-		div {
-      color: #fff;
-      font-weight: 600;
-      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
-      border: 1px solid #bcbcbc;
-      border-radius: 6px;
-      height: 80px;
-      padding: 20px;
-    }
-		#box1 {
-      position: static;
-      top:20px; right:30px;
-      background: #2db34a;
-    }
-		#box2 {
-      position: absolute;
-      top:20px; right:30px;
-      background: #F44336;
-    }
-		#box3 {
-      position: relative;
-      top:20px; left:30px;
-      background: #795548;
-    }
-		#box4 {
-      position: fixed;
-      bottom:20px; right:30px;
-      background: #673AB7;
-    }
-	</style>
-</head>
-<body>
-	<div id="box1">static; top:20px; right:30px;</div>
-	<div id="box2">absolute; top:20px; right:30px;</div>
-	<div id="box3">relative; top:20px; left:30px;</div>
-	<div id="box4">fixed; bottom:20px; right:30px; </div>
-</body>
+  <head>
+    <style>
+      div {
+        color: #fff;
+        font-weight: 600;
+        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+        border: 1px solid #bcbcbc;
+        border-radius: 6px;
+        height: 80px;
+        padding: 20px;
+      }
+      #box1 {
+        position: static;
+        top:20px; right:30px;
+        background: #2db34a;
+      }
+      #box2 {
+        position: absolute;
+        top:20px; right:30px;
+        background: #F44336;
+      }
+      #box3 {
+        position: relative;
+        top:20px; left:30px;
+        background: #795548;
+      }
+      #box4 {
+        position: fixed;
+        bottom:20px; right:30px;
+        background: #673AB7;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box1">static; top:20px; right:30px;</div>
+    <div id="box2">absolute; top:20px; right:30px;</div>
+    <div id="box3">relative; top:20px; left:30px;</div>
+    <div id="box4">fixed; bottom:20px; right:30px; </div>
+  </body>
 </html>
 ```
 
@@ -1380,34 +1380,34 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
 ```html
 <!DOCTYPE html>
 <html>
-<head>
-	<style>
-		div {
-      color: #fff;
-      font-weight: 600;
-      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
-      border: 1px solid #bcbcbc;
-      border-radius: 6px;
-      height: 100%;
-      padding: 20px;
-      background: #bcbcbc;
-    }
-		.static-box {
-      position: static;
-      background: #2db34a;
-    }
-	</style>
-</head>
-<body>
-  <h1>Static</h1>
-  <div>
-    parent
+  <head>
+  	<style>
+  		div {
+        color: #fff;
+        font-weight: 600;
+        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+        border: 1px solid #bcbcbc;
+        border-radius: 6px;
+        height: 100%;
+        padding: 20px;
+        background: #bcbcbc;
+      }
+  		.static-box {
+        position: static;
+        background: #2db34a;
+      }
+  	</style>
+  </head>
+  <body>
+    <h1>Static</h1>
+    <div>
+      parent
+      <div class="static-box">static box</div>
+      <div class="static-box">static box</div>
+    </div>
     <div class="static-box">static box</div>
     <div class="static-box">static box</div>
-  </div>
-  <div class="static-box">static box</div>
-  <div class="static-box">static box</div>
-</body>
+  </body>
 </html>
 ```
 
@@ -1418,35 +1418,35 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
 ```html
 <!DOCTYPE html>
 <html>
-<head>
-	<style>
-		div {
-      color: #fff;
-      font-weight: 600;
-      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
-      border: 1px solid #bcbcbc;
-      border-radius: 6px;
-      height: 100%;
-      padding: 20px;
-      background: #bcbcbc;
-    }
-    .relative-box {
-      position: relative;
-      background: #2db34a;
-      top: 50px; left: 50px;
-    }
-	</style>
-</head>
-<body>
-  <h1>Relative</h1>
-  <div>
-    parent
-	  <div class="relative-box">relative box</div>
+  <head>
+  	<style>
+  		div {
+        color: #fff;
+        font-weight: 600;
+        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+        border: 1px solid #bcbcbc;
+        border-radius: 6px;
+        height: 100%;
+        padding: 20px;
+        background: #bcbcbc;
+      }
+      .relative-box {
+        position: relative;
+        background: #2db34a;
+        top: 50px; left: 50px;
+      }
+  	</style>
+  </head>
+  <body>
+    <h1>Relative</h1>
+    <div>
+      parent
+  	  <div class="relative-box">relative box</div>
+      <div class="relative-box">relative box</div>
+    </div>
     <div class="relative-box">relative box</div>
-  </div>
-  <div class="relative-box">relative box</div>
-  <div class="relative-box">relative box</div>
-</body>
+    <div class="relative-box">relative box</div>
+  </body>
 </html>
 ```
 
@@ -1463,53 +1463,53 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
 ```html
 <!DOCTYPE html>
 <html>
-<head>
-	<style>
-		div {
-      color: #fff;
-      font-weight: 600;
-      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
-      border: 1px solid #bcbcbc;
-      border-radius: 6px;
-      height: 100%;
-      padding: 20px;
-      background: #bcbcbc;
-      position: relative;
-    }
-    .absolute-box1 {
-      position: absolute;
-      background: #2db34a;
-      top: 50px; left: 50px;
-    }
-    .absolute-box2 {
-      position: absolute;
-      background: #2db34a;
-      top: 100px; left: 100px;
-    }
-    .absolute-box3 {
-      position: absolute;
-      background: #2db34a;
-      bottom: 50px; right: 50px;
-    }
-    .absolute-box4 {
-      position: absolute;
-      background: #2db34a;
-      bottom: 100px; right: 100px;
-    }
-	</style>
-</head>
-<body>
-  <h1>Absolute</h1>
-  <div>
-    parent
-    <div class="absolute-box1">absolute box1</div>
-    <div class="absolute-box2">absolute box2</div>
+  <head>
+  	<style>
+  		div {
+        color: #fff;
+        font-weight: 600;
+        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+        border: 1px solid #bcbcbc;
+        border-radius: 6px;
+        height: 100%;
+        padding: 20px;
+        background: #bcbcbc;
+        position: relative;
+      }
+      .absolute-box1 {
+        position: absolute;
+        background: #2db34a;
+        top: 50px; left: 50px;
+      }
+      .absolute-box2 {
+        position: absolute;
+        background: #2db34a;
+        top: 100px; left: 100px;
+      }
+      .absolute-box3 {
+        position: absolute;
+        background: #2db34a;
+        bottom: 50px; right: 50px;
+      }
+      .absolute-box4 {
+        position: absolute;
+        background: #2db34a;
+        bottom: 100px; right: 100px;
+      }
+  	</style>
+  </head>
+  <body>
+    <h1>Absolute</h1>
+    <div>
+      parent
+      <div class="absolute-box1">absolute box1</div>
+      <div class="absolute-box2">absolute box2</div>
+      <div class="absolute-box3">absolute box3</div>
+      <div class="absolute-box4">absolute box4</div>
+    </div>
     <div class="absolute-box3">absolute box3</div>
     <div class="absolute-box4">absolute box4</div>
-  </div>
-  <div class="absolute-box3">absolute box3</div>
-  <div class="absolute-box4">absolute box4</div>
-</body>
+  </body>
 </html>
 ```
 
@@ -1520,42 +1520,42 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
 ```html
 <!DOCTYPE html>
 <html>
-<head>
-	<style>
-		body { margin: 0; }
-		div {
-      color: #fff;
-      font-weight: 600;
-      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
-      border: 1px solid #bcbcbc;
-      border-radius: 6px;
-      height: 100%;
-      padding: 20px;
-      background: #bcbcbc;
-      position: relative;
-    }
-    .fixed-box1 {
-      position: fixed;
-      background: #2db34a;
-      bottom: 0; left: 0;
-			width: 300px; height: 50px;
-    }
-    .fixed-box2 {
-      position: fixed;
-      background: #2db34a;
-			bottom: 50px; right: 50px;
-			width: 300px; height: 50px;
-		}
-	</style>
-</head>
-<body>
-  <h1>Absolute</h1>
-  <div>
-    parent
-    <div class="fixed-box1">fixed box1</div>
-  </div>
-  <div class="fixed-box2">fixed box2</div>
-</body>
+  <head>
+  	<style>
+  		body { margin: 0; }
+  		div {
+        color: #fff;
+        font-weight: 600;
+        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+        border: 1px solid #bcbcbc;
+        border-radius: 6px;
+        height: 100%;
+        padding: 20px;
+        background: #bcbcbc;
+        position: relative;
+      }
+      .fixed-box1 {
+        position: fixed;
+        background: #2db34a;
+        bottom: 0; left: 0;
+  			width: 300px; height: 50px;
+      }
+      .fixed-box2 {
+        position: fixed;
+        background: #2db34a;
+  			bottom: 50px; right: 50px;
+  			width: 300px; height: 50px;
+  		}
+  	</style>
+  </head>
+  <body>
+    <h1>Absolute</h1>
+    <div>
+      parent
+      <div class="fixed-box1">fixed box1</div>
+    </div>
+    <div class="fixed-box2">fixed box2</div>
+  </body>
 </html>
 ```
 

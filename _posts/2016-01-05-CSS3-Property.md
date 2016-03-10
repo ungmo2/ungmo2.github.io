@@ -1694,7 +1694,7 @@ float 속성은 해당 요소를 떠 있게 한다. 여기서 떠 있다(float)�
 
 ### 2.7.1 정렬
 
-float 속성을 사용하지 않은 블록 요소들은 수직으로 출력된다. `float:left;` 속성을 사용하면 왼쪽부터 정렬되고, `float:right;` 속성을 사용하면 오른쪽부터 정렬된다.
+float 속성을 사용하지 않은 블록 요소들은 수직으로 정렬된다. `float:left;` 속성을 사용하면 왼쪽부터 정렬되고, `float:right;` 속성을 사용하면 오른쪽부터 정렬된다.
 
 오른쪽 정렬의 경우, 먼저 기술된 요소가 가장 오른쪽에 출력되므로 출력 순서가 역순이 된다.
 
@@ -1749,26 +1749,26 @@ width값을 지정하지 않은 block 속성 요소는 기본적으로 `width: 1
 ```html
 <!DOCTYPE html>
 <html>
-	<head>
-		<style>
-			div {
+  <head>
+    <style>
+      div {
         color: white;
         margin: 0 10px;
         padding: 20px;
       }
-			.d1 {
-				background-color: #59b1f6;
-				float: left;
-			}
-			.d2 {
-				background-color: #ffb5b4;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="d1">dv1</div>
-		<div class="d2">dv2</div>
-	</body>
+      .d1 {
+      	background-color: #59b1f6;
+      	float: left;
+      }
+      .d2 {
+      	background-color: #ffb5b4;
+      }
+    </style>
+  </head>
+    <body>
+    <div class="d1">dv1</div>
+    <div class="d2">dv2</div>
+  </body>
 </html>
 ```
 

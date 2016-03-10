@@ -1817,6 +1817,8 @@ width값을 지정하지 않은 block 속성 요소는 기본적으로 `width: 1
 
 아래 예제를 보면 float 속성이 선언된 두개의 자식 요소를 포함하는 부모 요소의 높이가 정상적인 값을 가지지 못하는 문제가 발생한다.
 
+![float problem](/img/float-problem2.png)
+
 ```html
 <!DOCTYPE html>
 <html>

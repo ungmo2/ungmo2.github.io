@@ -1898,6 +1898,42 @@ d1, d2 모두 `float: left` 속성을 가지고 있으므로 `overflow: hidden` 
 
 ### 2.7.3 Layout
 
+3-column
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      div {
+        color: white;
+        padding: 18px;
+      }
+      .left {
+        float: left;
+        margin-right: 7px;
+        background-color: #59b1f6;
+      }
+      .right {
+        float: right;
+        margin-left: 7px;
+        background-color: #ffb5b4;
+      }
+      .center {
+        background-color: #d5eeb0;
+        color: #5e8818;
+        overflow: hidden
+      }
+    </style>
+  </head>
+  <body>
+    <div class="left">left</div>
+    <div class="right">right</div>
+    <!-- float 속성이 없는 객체이므로 맨 마지막에 위치 -->
+    <div class="center">center</div>
+  </body>
+</html>
+```
 
 ## 2.8 Shadow / Rounded Corner / Gradients
 

@@ -1820,36 +1820,36 @@ width값을 지정하지 않은 block 속성 요소는 기본적으로 `width: 1
 ```html
 <!DOCTYPE html>
 <html>
-	<head>
-		<style>
-			.wrap {
-				color: white;
-				text-align: center;
-				padding: 10px;
-				background-color: #def0c2;
-			}
-			.d1 {
-				float: left;
-				width: 49%;
-				margin-right: 2%;
-				padding: 20px 0;
-				background-color: #59b1f6;
+  <head>
+    <style>
+      .wrap {
+        color: white;
+        text-align: center;
+        padding: 10px;
+        background-color: #def0c2;
+      }
+      .d1 {
+        float: left;
+        width: 49%;
+        margin-right: 2%;
+        padding: 20px 0;
+        background-color: #59b1f6;
 
-			}
-			.d2 {
-				float: left;
-				width: 49%;
-				padding: 20px 0;
-				background-color: #ffb5b4;
-			}
-		</style>
-	</head>
-	<body>
-	<div class="wrap">
-		<div class="d1">dv1</div>
-		<div class="d2">dv2</div>
-	</div>
-	</body>
+      }
+      .d2 {
+        float: left;
+        width: 49%;
+        padding: 20px 0;
+        background-color: #ffb5b4;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="d1">dv1</div>
+      <div class="d2">dv2</div>
+    </div>
+  </body>
 </html>
 ```
 
@@ -1860,37 +1860,37 @@ d1, d2 모두 `float: left` 속성을 가지고 있으므로 `overflow: hidden` 
 ```html
 <!DOCTYPE html>
 <html>
-	<head>
-		<style>
-			.wrap {
-				color: white;
-				text-align: center;
-				padding: 10px;
-				background-color: #def0c2;
-				overflow: hidden;
-			}
-			.d1 {
-				float: left;
-				width: 49%;
-				margin-right: 2%;
-				padding: 20px 0;
-				background-color: #59b1f6;
+  <head>
+    <style>
+      .wrap {
+        color: white;
+        text-align: center;
+        padding: 10px;
+        background-color: #def0c2;
+        overflow: hidden;
+      }
+      .d1 {
+        float: left;
+        width: 49%;
+        margin-right: 2%;
+        padding: 20px 0;
+        background-color: #59b1f6;
 
-			}
-			.d2 {
-				float: left;
-				width: 49%;
-				padding: 20px 0;
-				background-color: #ffb5b4;
-			}
-		</style>
-	</head>
-	<body>
-	<div class="wrap">
-		<div class="d1">dv1</div>
-		<div class="d2">dv2</div>
-	</div>
-	</body>
+      }
+      .d2 {
+        float: left;
+        width: 49%;
+        padding: 20px 0;
+        background-color: #ffb5b4;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="d1">dv1</div>
+      <div class="d2">dv2</div>
+    </div>
+  </body>
 </html>
 ```
 

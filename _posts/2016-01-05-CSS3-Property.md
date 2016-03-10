@@ -1317,22 +1317,21 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
 
 ![position](/img/position.png)
 
-**absolute 또는 fixed 로 position 설정시, block 요소의 width는 inline 요소와 같이 content에 맞게 변화되므로 주의하여야 한다.** 또한 position 속성은 상속되지 않는다.
+**absolute 또는 fixed로 position 설정시, block 요소의 width는 inline 요소와 같이 content에 맞게 변화되므로 주의하여야 한다.** 또한 position 속성은 상속되지 않는다.
 
 | 속성값	      | Description
 |:-----------|:-----------------
-| static     | 위에서 아래로, 왼쪽에서 오른쪽으로 순서에 따라 배치된다. 이는 position 속성을 지정하지 않았을 때와 같다. 기본적으로 이 속성을 지정할 일은 없지만 이전에 설정된 position을 무력화하기 위해 사용될 수 있다. top, bottom, left, right 속성을 같이 사용할 수 없다.(기본값)
-| relative   | static으로 지정되었을 때의 위치를 기준으로 top, bottom, left, right 속성을 사용하여 위치를 이동시킨다.
-| absolute   | 문서의 좌상단을 기준으로 절대 위치를 지정한다.
-| fixed      | viewport를 기준으로 페이지가 스크롤되더라도 같은 곳에 위치한다
-
+| static     | 위에서 아래로, 왼쪽에서 오른쪽으로 순서에 따라 배치된다.(기본값)
+| relative   | 기본 위치(static으로 지정되었을 때의 위치)에서 좌표 속성(top, bottom, left, right)을 사용하여 위치를 이동시킨다.(상대위치)
+| absolute   | 부모 혹은 조상 요소중에 relative 속성이 선언된 요소를 기준으로 좌표속성(top, bottom, left, right)을 사용하여 위치를 이동시킨다.(절대위치)
+| fixed      | viewport를 기준으로 좌표속성(top, bottom, left, right)을 사용하여 위치를 이동시킨다. 스크롤이 되더라도 화면에서 사라지지 않고 같은 곳에 위치한다.(고정위치)
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
 	<style>
-		.box{
+		div {
       color: #fff;
       font-weight: 600;
       font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
@@ -1342,32 +1341,220 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
       padding: 20px;
     }
 		#box1 {
-      position:static;
+      position: static;
       top:20px; right:30px;
       background: #2db34a;
     }
 		#box2 {
-      position:absolute;
+      position: absolute;
       top:20px; right:30px;
       background: #F44336;
     }
 		#box3 {
-      position:relative;
+      position: relative;
       top:20px; left:30px;
       background: #795548;
     }
 		#box4 {
-      position:fixed;
+      position: fixed;
       bottom:20px; right:30px;
       background: #673AB7;
     }
 	</style>
 </head>
 <body>
-	<div id="box1" class="box">static; top:20px; right:30px;</div>
-	<div id="box2" class="box">absolute; top:20px; right:30px;</div>
-	<div id="box3" class="box">relative; top:20px; left:30px;</div>
-	<div id="box4" class="box">fixed; bottom:20px; right:30px; </div>
+	<div id="box1">static; top:20px; right:30px;</div>
+	<div id="box2">absolute; top:20px; right:30px;</div>
+	<div id="box3">relative; top:20px; left:30px;</div>
+	<div id="box4">fixed; bottom:20px; right:30px; </div>
+</body>
+</html>
+```
+
+#### 2.6.1.1 static (기본위치)
+
+위에서 아래로, 왼쪽에서 오른쪽으로 순서에 따라 배치된다. 이는 static 속성을 지정하지 않았을 때와 같다. 부모 요소 내에 존재할 때는 부모 요소의 위치를 기준으로 배치된다.
+
+기본적으로 이 속성을 지정할 일은 없지만 이전에 설정된 position을 무력화하기 위해 사용될 수 있다. 좌표속성(top, bottom, left, right)을 같이 사용할 수 없다.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		div {
+      color: #fff;
+      font-weight: 600;
+      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+      border: 1px solid #bcbcbc;
+      border-radius: 6px;
+      height: 100%;
+      padding: 20px;
+      background: #bcbcbc;
+    }
+		.static-box {
+      position: static;
+      background: #2db34a;
+    }
+	</style>
+</head>
+<body>
+  <h1>Static</h1>
+  <div>
+    parent
+    <div class="static-box">static box</div>
+    <div class="static-box">static box</div>
+  </div>
+  <div class="static-box">static box</div>
+  <div class="static-box">static box</div>
+</body>
+</html>
+```
+
+#### 2.6.1.2 relative (상대위치)
+
+기본 위치(static으로 지정되었을 때의 위치)에서 좌표 속성(top, bottom, left, right)을 사용하여 위치를 이동시킨다. 부모 요소 내에 존재할 때는 부모 요소의 위치를 기준으로 배치된다.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		div {
+      color: #fff;
+      font-weight: 600;
+      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+      border: 1px solid #bcbcbc;
+      border-radius: 6px;
+      height: 100%;
+      padding: 20px;
+      background: #bcbcbc;
+    }
+    .relative-box {
+      position: relative;
+      background: #2db34a;
+      top: 50px; left: 50px;
+    }
+	</style>
+</head>
+<body>
+  <h1>Relative</h1>
+  <div>
+    parent
+	  <div class="relative-box">relative box</div>
+    <div class="relative-box">relative box</div>
+  </div>
+  <div class="relative-box">relative box</div>
+  <div class="relative-box">relative box</div>
+</body>
+</html>
+```
+
+#### 2.6.1.3 absolute (절대위치)
+
+부모 혹은 조상 요소중에 relative 속성이 선언된 가장 가까운 요소를 기준으로 좌표속성(top, bottom, left, right)을 사용하여 위치를 이동시킨다. 이때 다른 요소가 먼저 위치를 점유하고 있어도 뒤로 밀리지 않고 덮어쓰게 된다. (이런 특성을 부유 또는 부유 객체라 한다)
+
+***부모 또는 조상 요소에 relative 속성이 선언되어 있으면 그 요소를 기준으로 하여 좌표 속성(top, bottom, left, right)만큼 이동한다. 따라서 부모 요소를 배치의 기준으로 삼기 위해서는 부모 요소에 relative 속성을 정의하여야 한다. relative 속성이 선언되어 있는 부모 요소가 없다면 부모 요소와 관계없이 document body를 기준으로 하여 좌표 속성대로 위치하게 된다.***
+
+***absolute 속성 선언 시, block 요소의 width는 inline 요소와 같이 content에 맞게 변화되므로 주의하여야 한다.*** 또한 position 속성은 상속되지 않는다.
+
+실제 웹페이지 개발에 사용하는 경우는 드물다(바람직하지 않다)
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		div {
+      color: #fff;
+      font-weight: 600;
+      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+      border: 1px solid #bcbcbc;
+      border-radius: 6px;
+      height: 100%;
+      padding: 20px;
+      background: #bcbcbc;
+      position: relative;
+    }
+    .absolute-box1 {
+      position: absolute;
+      background: #2db34a;
+      top: 50px; left: 50px;
+    }
+    .absolute-box2 {
+      position: absolute;
+      background: #2db34a;
+      top: 100px; left: 100px;
+    }
+    .absolute-box3 {
+      position: absolute;
+      background: #2db34a;
+      bottom: 50px; right: 50px;
+    }
+    .absolute-box4 {
+      position: absolute;
+      background: #2db34a;
+      bottom: 100px; right: 100px;
+    }
+	</style>
+</head>
+<body>
+  <h1>Absolute</h1>
+  <div>
+    parent
+    <div class="absolute-box1">absolute box1</div>
+    <div class="absolute-box2">absolute box2</div>
+    <div class="absolute-box3">absolute box3</div>
+    <div class="absolute-box4">absolute box4</div>
+  </div>
+  <div class="absolute-box3">absolute box3</div>
+  <div class="absolute-box4">absolute box4</div>
+</body>
+</html>
+```
+
+#### 2.6.1.4 fixed (고정위치)
+
+부모 요소와 관계없이 브라우저의 viewport를 기준으로 좌표속성(top, bottom, left, right)을 사용하여 위치를 이동시킨다. 스크롤이 되더라도 화면에서 사라지지 않고 항상 같은 곳에 위치한다.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		body { margin: 0; }
+		div {
+      color: #fff;
+      font-weight: 600;
+      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+      border: 1px solid #bcbcbc;
+      border-radius: 6px;
+      height: 100%;
+      padding: 20px;
+      background: #bcbcbc;
+      position: relative;
+    }
+    .fixed-box1 {
+      position: fixed;
+      background: #2db34a;
+      bottom: 0; left: 0;
+			width: 300px; height: 50px;
+    }
+    .fixed-box2 {
+      position: fixed;
+      background: #2db34a;
+			bottom: 50px; right: 50px;
+			width: 300px; height: 50px;
+		}
+	</style>
+</head>
+<body>
+  <h1>Absolute</h1>
+  <div>
+    parent
+    <div class="fixed-box1">fixed box1</div>
+  </div>
+  <div class="fixed-box2">fixed box2</div>
 </body>
 </html>
 ```
@@ -1383,25 +1570,25 @@ z-index 속성에 큰 숫자값을 지정할 수록 화면 전면에 출력된�
 <html>
   <head>
     <style>
-        .box {
-          width: 100px; height: 100px;
-          position: absolute;
-        }
-        .red {
-          background-color: red;
-          left: 10px; top: 10px;
-          z-index: 100;
-        }
-        .green {
-          background-color: green;
-          left: 50px; top: 50px;
-          z-index: 10;
-        }
-        .blue {
-          background-color: blue;
-          left: 90px; top: 90px;
-          z-index: 1;
-        }
+      .box {
+        width: 100px; height: 100px;
+        position: absolute;
+      }
+      .red {
+        background-color: red;
+        left: 10px; top: 10px;
+        z-index: 100;
+      }
+      .green {
+        background-color: green;
+        left: 50px; top: 50px;
+        z-index: 10;
+      }
+      .blue {
+        background-color: blue;
+        left: 90px; top: 90px;
+        z-index: 1;
+      }
     </style>
   </head>
   <body>
@@ -1412,16 +1599,98 @@ z-index 속성에 큰 숫자값을 지정할 수록 화면 전면에 출력된�
 </html>
 ```
 
+### 2.6.3 overflow
 
+overflow 속성은 자식 요소가 부모 요소의 영역를 벗어났을 때 처리 방법을 정의한다.
 
+| 속성값	     | Description
+|:----------|:-----------------
+| visible   | 영역을 벗어난 부분을 표시한다. (기본값)
+| hidden    | 영역을 벗어난 부분을 잘라내어 보이지 않게 한다.
+| scroll    | 영역을 벗어난 부분이 없어도 스크롤 표시한다.(현재 대부분 브라우저는 auto과 동일하게 작동한다)
+| auto      | 영역을 벗어난 부분이 있을때만 스크롤 표시한다.
 
-overflow
+```html
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		div {
+      color: #fff;
+      font-weight: 600;
+      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+      border: 1px solid #bcbcbc;
+      border-radius: 6px;
+      height: 200px;
+      padding: 20px;
+      background: #bcbcbc;
+      position: relative;
+			overflow: scroll;
+    }
+    .absolute-box1 {
+      position: absolute;
+      background: #2db34a;
+      top: 100px; left: 50px;
+			height: 150px;
+    }
+    .absolute-box2 {
+      position: absolute;
+      background: #F44336;
+      top: 150px; left: 100px;
+			height: 150px;
+    }
+	</style>
+</head>
+<body>
+  <h1>Absolute</h1>
+  <div>
+    parent
+    <div class="absolute-box1">absolute box1</div>
+    <div class="absolute-box2">absolute box2</div>
+  </div>
+</body>
+</html>
+```
 
+특정 방향으로만 스크롤을 표시하고자 할 때는 overflow-x 또는 overflow-y 속성을 사용한다.
 
-
-
+```css
+div { overflow-y: scroll; }
+```
 
 ## 2.7 float
+
+float 속성은 주로 layout을 구성하기 위해 사용되는 핵심 기술이다. layout의 가장 큰 목적은 block 속성 요소를 원하는 위치에 정렬시키는 것이다.
+
+![CSS Grid Layout example](/img/layout.png)
+
+float 속성은 다음 예제와 같이 이미지 주위를 텍스트로 감싸기 위해 만들어진 것이다.
+
+```html
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			img { float: right; }
+		</style>
+	</head>
+	<body>
+	  <img src="klematis.jpg">
+	  <p>The float property was originally designed to allow content to wrap around images. An image could be floated, and all of the content surrounding that image could then naturally flow around it. Although this works great for images, the float property was never actually intended to be used for layout and positioning purposes, and thus it comes with a few pitfalls.One of those pitfalls is that occasionally the proper styles will not render on an element that it is sitting next to or is a parent element of a floated element. When an element is floated, it is taken out of the normal flow of the page, and, as a result, the styles of elements around that floated element can be negatively impacted. Often margin and padding property values arent interpreted correctly, causing them to blend into the floated element; other properties can be affected, too. Another pitfall is that sometimes unwanted content begins to wrap around a floated element. Removing an element from the flow of the document allows all the elements around the floated element to wrap and consume any available space around the floated element, which is often undesired.</p>
+	</body>
+</html>
+```
+
+float 속성은 해당 요소를 떠 있게 한다. 여기서 떠 있다(float)는 의미는 요소가 기본 레이아웃 흐름에서 벗어나 요소의 모서리가 페이지의 왼쪽이나 오른쪽에 이동하는 것이다. float 속성을 사용할 때 요소의 위치가 고정시키는 position 속성의 absolute를 사용하면 안된다.
+
+
+| 속성값	     | Description
+|:----------|:-----------------
+| none      | 요소를 떠 있게 하지 않는다. (기본값)
+| right     | 요소를 오른쪽으로 이동시킨다
+| left      | 요소를 왼쪽으로 이동시킨다.
+| inherit   | 요소를 감싸는 부모 요소의 float 속성을 상속받는다.
+
 
 ## 2.8 Shadow / Rounded Corner / Gradients
 

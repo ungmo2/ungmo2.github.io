@@ -1515,7 +1515,7 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
 
 #### 2.6.1.4 fixed (고정위치)
 
-부모 요소와 관계없이 브라우저의 viewport를 기준으로 좌표속성(top, bottom, left, right)을 사용하여 위치를 이동시킨다. 스크롤이 되더라도 화면에서 사라지지 않고 항상 같은 곳에 위치한다.
+부모 요소와 관계없이 브라우저의 viewport를 기준으로 좌표속성(top, bottom, left, right)을 사용하여 위치를 이동시킨다. 스크롤이 되더라도 화면에서 사라지지 않고 항상 같은 곳에 위치한다. ***fixed 속성 선언 시, block 요소의 width는 inline 요소와 같이 content에 맞게 변화되므로 주의하여야 한다.***
 
 ```html
 <!DOCTYPE html>
@@ -1660,7 +1660,7 @@ div { overflow-y: scroll; }
 
 ## 2.7 float
 
-float 속성은 주로 layout을 구성하기 위해 사용되는 핵심 기술이다. layout의 가장 큰 목적은 block 속성 요소를 원하는 위치에 정렬시키는 것이다.
+float 속성은 주로 layout을 구성하기 위해 사용되는 핵심 기술이다. layout의 가장 큰 목적은 1개 이상의 block 속성 요소를 원하는 위치에 정렬시키는 것이다.
 
 ![CSS Grid Layout example](/img/layout.png)
 
@@ -1683,7 +1683,6 @@ float 속성은 다음 예제와 같이 이미지 주위를 텍스트로 감싸�
 
 float 속성은 해당 요소를 떠 있게 한다. 여기서 떠 있다(float)는 의미는 요소가 기본 레이아웃 흐름에서 벗어나 요소의 모서리가 페이지의 왼쪽이나 오른쪽에 이동하는 것이다. float 속성을 사용할 때 요소의 위치가 고정시키는 position 속성의 absolute를 사용하면 안된다.
 
-
 | 속성값	     | Description
 |:----------|:-----------------
 | none      | 요소를 떠 있게 하지 않는다. (기본값)
@@ -1693,7 +1692,87 @@ float 속성은 해당 요소를 떠 있게 한다. 여기서 떠 있다(float)�
 
 ![css float](/img/float.png)
 
+### 2.7.1 정렬
 
+float 속성을 사용하지 않은 블록 요소들은 수직으로 출력된다. `float:left;` 속성을 사용하면 왼쪽부터 정렬되고, `float:right;` 속성을 사용하면 오른쪽부터 정렬된다.
+
+오른쪽 정렬의 경우, 먼저 기술된 요소가 가장 오른쪽에 출력되므로 출력 순서가 역순이 된다.
+
+```html
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			div{
+				color: #fff;
+				font-weight: 600;
+				font-size: 50px;
+				border-radius: 6px;
+				background: #bcbcbc;
+				width: 200px;
+				height: 200px;
+				margin: 10px 10px;
+				padding: 10px;
+			}
+			#content1 {
+				/*float: left;*/
+				float: right;
+				background: red;
+			}
+			#content2 {
+				/*float: left;*/
+				float: right;
+				background: orange;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="content1"> 1 </div>
+		<div id="content2"> 2 </div>
+	</body>
+</html>
+```
+
+float 속성은 좌측, 우측 정렬만 할 수 있다. 중앙 정렬은 margin 속성을 사용해야 한다.
+
+```css
+div {
+  width: 960px;
+  margin: 0 auto;
+}
+```
+
+width값을 지정하지 않은 block 속성 요소는 기본적으로 `width: 100%`가 된다. 이때 block 속성 요소에 float 속성이 선언되면 width가 inline 요소와 같이 content에 맞게 최소화되고 남는 공간에 다음 요소가 위치한다.
+
+![float lineup](float-lineup.png)
+
+```html
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			div {
+        color: white;
+        margin: 0 10px;
+        padding: 20px;
+      }
+			.d1 {
+				background-color: #59b1f6;
+				float: left;
+			}
+			.d2 {
+				background-color: #ffb5b4;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="d1">dv1</div>
+		<div class="d2">dv2</div>
+	</body>
+</html>
+```
+
+### 2.7.2 Layout
 
 
 ## 2.8 Shadow / Rounded Corner / Gradients

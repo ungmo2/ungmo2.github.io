@@ -1381,8 +1381,8 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
 <!DOCTYPE html>
 <html>
   <head>
-  	<style>
-  		div {
+    <style>
+      div {
         color: #fff;
         font-weight: 600;
         font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
@@ -1392,11 +1392,11 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
         padding: 20px;
         background: #bcbcbc;
       }
-  		.static-box {
+      .static-box {
         position: static;
         background: #2db34a;
       }
-  	</style>
+    </style>
   </head>
   <body>
     <h1>Static</h1>
@@ -1419,8 +1419,8 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
 <!DOCTYPE html>
 <html>
   <head>
-  	<style>
-  		div {
+    <style>
+      div {
         color: #fff;
         font-weight: 600;
         font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
@@ -1435,7 +1435,7 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
         background: #2db34a;
         top: 50px; left: 50px;
       }
-  	</style>
+    </style>
   </head>
   <body>
     <h1>Relative</h1>
@@ -1464,8 +1464,8 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
 <!DOCTYPE html>
 <html>
   <head>
-  	<style>
-  		div {
+    <style>
+      div {
         color: #fff;
         font-weight: 600;
         font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
@@ -1496,7 +1496,7 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
         background: #2db34a;
         bottom: 100px; right: 100px;
       }
-  	</style>
+    </style>
   </head>
   <body>
     <h1>Absolute</h1>
@@ -1521,9 +1521,9 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
 <!DOCTYPE html>
 <html>
   <head>
-  	<style>
-  		body { margin: 0; }
-  		div {
+    <style>
+      body { margin: 0; }
+      div {
         color: #fff;
         font-weight: 600;
         font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
@@ -1538,15 +1538,15 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
         position: fixed;
         background: #2db34a;
         bottom: 0; left: 0;
-  			width: 300px; height: 50px;
+        width: 300px; height: 50px;
       }
       .fixed-box2 {
         position: fixed;
         background: #2db34a;
-  			bottom: 50px; right: 50px;
-  			width: 300px; height: 50px;
-  		}
-  	</style>
+        bottom: 50px; right: 50px;
+        width: 300px; height: 50px;
+      }
+    </style>
   </head>
   <body>
     <h1>Absolute</h1>

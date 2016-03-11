@@ -80,6 +80,8 @@ kramdown:
   # input: GFM
   # hard_wrap: false
 highlighter: rouge
+pygments_options:
+  tabsize: 2
 # permalink: /:year-:month-:day-:title
 permalink: /:categories/:title/
 paginate: 10

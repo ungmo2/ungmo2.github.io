@@ -2150,8 +2150,15 @@ viewport란 웹페이지의 가시영역을 의미한다. viewport는 디바이�
 
 [meta tag](http://ungmo2.github.io/html/HTML5-Tag/#meta)는 메타데이터를 브라우저 혹은 검색엔진에게 전달하기 위해 사용된다. viewport meta tag는 브라우저의 화면 설정과 관련된 정보를 제공한다.
 
-
-
+| 속성	          | Description    | 사용예
+|:---------------|:-------------- |:--------------
+| width          | 화면 너비        | width=240
+|                |                | width=device-width
+| height         | 화면 높이        |
+| initial-scale  | 초기확대비율       |
+| user-scale     | 확대 축소 가능 여부 |
+| maximum-scale  | 최대 축소 비율     |
+| minimum-scale  | 최소 축소 비율     |
 
 
 

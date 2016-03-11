@@ -1900,6 +1900,8 @@ d1, d2 모두 `float: left` 속성을 가지고 있으므로 `overflow: hidden` 
 
 #### 2.7.3.1 2-Column Layout
 
+![2-column-layout](/img/2-column-layout.png)
+
 ```html
 <!DOCTYPE html>
 <html>

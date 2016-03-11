@@ -1969,6 +1969,8 @@ d1, d2 모두 `float: left` 속성을 가지고 있으므로 `overflow: hidden` 
 
 #### 2.7.3.2 3-Column Layout
 
+![3-column-layout](/img/3-column-layout.png)
+
 ```html
 <!DOCTYPE html>
 <html>

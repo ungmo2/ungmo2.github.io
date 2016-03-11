@@ -1855,7 +1855,7 @@ width값을 지정하지 않은 block 속성 요소는 기본적으로 `width: 1
 </html>
 ```
 
-d1, d2 모두 `float: left` 속성을 가지고 있으므로 `overflow: hidden` 속성을 선언할 필요는 없다. 문제는 d1과 d2를 감싸고 있는 wrap이다. 요소를 감싸는 포장용 요소는 자식요소가  모두 float 속성을 가지고 있으면 정상적인 높이 값을 가지지 못하는 현상이 발생한다.
+d1, d2 모두 `float: left` 속성을 가지고 있으므로 `overflow: hidden` 속성을 선언할 필요는 없다. 문제는 d1과 d2를 감싸고 있는 wrap이다. 요소를 감싸는 wrap 요소는 자식요소가  모두 float 속성을 가지고 있으면 정상적인 높이 값을 가지지 못하는 현상이 발생한다. 이 문제는 wrap 요소 이후에 위치하는 요소의 정렬에 문제를 발생시킨다.
 
 이 문제를 해결하는 가장 쉬운 방법은 float 속성을 가진 요소의 부모 요소(wrap)에 `overflow: hidden` 속성을 선언하는 것이다.
 
@@ -1898,7 +1898,75 @@ d1, d2 모두 `float: left` 속성을 가지고 있으므로 `overflow: hidden` 
 
 ### 2.7.3 Layout
 
-3-column
+#### 2.7.3.1 2-Column Layout
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+			body {
+				max-width: 960px;
+				margin: 0 auto;
+			}
+			div {
+				color: white;
+        /*text-align: center;*/
+				padding: 10px;
+			}
+			#header {
+				background-color: #FF9900;
+			}
+			#nav {
+				background-color: #CC6600;
+			}
+      #wrap {
+        background-color: #def0c2;
+				overflow: hidden;
+      }
+      #section {
+        float: left;
+        width: 65%;
+        /*margin-right: 2%;*/
+        padding: 2%;
+        background-color: #59b1f6;
+      }
+      #aside {
+        float: right;
+        width: 25%;
+        padding: 2%;
+        background-color: #C13100;
+      }
+			#footer {
+				background-color: #003366;
+			}
+    </style>
+  </head>
+  <body>
+		<div id="header"><h1>Header</h1></div>
+		<div id="nav"><h1>Navigation</h1></div>
+    <div id="wrap">
+      <div id="section">
+				<h1>Section</h1>
+				<p>London is the capital city of England. It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
+				<p>Standing on the River Thames, London has been a major settlement for two millennia,its history going back to its founding by the Romans, who named it Londinium.</p>
+				<p>London, also referred to as Greater London, is one of 9 regions of England and the top-level subdivision covering most of the city's metropolis. The small ancient City of London at its core once comprised the whole settlement, but as its urban area grew, the Corporation of London resisted attempts to amalgamate the city with its suburbs, causing "London" to be defined in a number ways for different purposes.</p>
+			</div>
+      <div id="aside">
+				<h1>Aside</h1>
+				<ul>
+					<li>London</li>
+					<li>Paris</li>
+					<li>Tokyo</li>
+				</ul>
+			</div>
+    </div>
+		<div id="footer"><h1>Footer</h1></div>
+  </body>
+</html>
+```
+
+#### 2.7.3.2 3-Column Layout
 
 ```html
 <!DOCTYPE html>
@@ -1922,7 +1990,7 @@ d1, d2 모두 `float: left` 속성을 가지고 있으므로 `overflow: hidden` 
       .center {
         background-color: #d5eeb0;
         color: #5e8818;
-        overflow: hidden
+        overflow: hidden;
       }
     </style>
   </head>

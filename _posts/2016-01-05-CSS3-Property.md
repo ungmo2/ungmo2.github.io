@@ -1309,9 +1309,65 @@ text-decoration 속성을 사용하여 링크 underline을 제거할 수 있다.
 </html>
 ```
 
-## 2.6 위치 (Position)
+## 2.6 Shadow Effect
 
-### 2.6.1 position
+text-shadow 속성은 텍스트에 그림자 효과를 지정한다.
+
+```
+text-shadow: h-shadow(오른쪽) v-shadow(아래) blur-radius(흐림정도) color
+```
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      h1 {
+        color: white;
+        text-shadow: 2px 2px 4px #000000;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Text-shadow on white text</h1>
+  </body>
+</html>
+```
+
+box-shadow 속성은 박스에 그림자 효과를 지정한다.
+
+```
+box-shadow: h-shadow v-shadow blur spread color
+```
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      div {
+        width: 300px;
+        height: 100px;
+        background-color: yellow;
+        box-shadow: 10px 10px 5px #888888;
+      }
+    </style>
+  </head>
+  <body>
+    <div></div>
+  </body>
+</html>
+```
+
+다음과 같은 툴을 사용하여 간단히 작성할 수 있다. (Rounded Corner, Gradient...)
+
+* [css3generator.com](http://www.css3generator.com/)  
+* [css3gen.com/](http://css3gen.com/)  
+* [cssmatic.com](http://www.cssmatic.com/box-shadow)
+
+## 2.7 위치 (Position)
+
+### 2.7.1 position
 
 position 속성은 요소의 위치를 정의한다. top, bottom, left, right 속성과 함께 사용하여 위치를 지정한다.
 
@@ -1371,7 +1427,7 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
 </html>
 ```
 
-#### 2.6.1.1 static (기본위치)
+#### 2.7.1.1 static (기본위치)
 
 위에서 아래로, 왼쪽에서 오른쪽으로 순서에 따라 배치된다. 이는 static 속성을 지정하지 않았을 때와 같다. 부모 요소 내에 존재할 때는 부모 요소의 위치를 기준으로 배치된다.
 
@@ -1411,7 +1467,7 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
 </html>
 ```
 
-#### 2.6.1.2 relative (상대위치)
+#### 2.7.1.2 relative (상대위치)
 
 기본 위치(static으로 지정되었을 때의 위치)에서 좌표 속성(top, bottom, left, right)을 사용하여 위치를 이동시킨다. 부모 요소 내에 존재할 때는 부모 요소의 위치를 기준으로 배치된다.
 
@@ -1450,7 +1506,7 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
 </html>
 ```
 
-#### 2.6.1.3 absolute (절대위치)
+#### 2.7.1.3 absolute (절대위치)
 
 부모 혹은 조상 요소중에 relative 속성이 선언된 가장 가까운 요소를 기준으로 좌표속성(top, bottom, left, right)을 사용하여 위치를 이동시킨다. 이때 다른 요소가 먼저 위치를 점유하고 있어도 뒤로 밀리지 않고 덮어쓰게 된다. (이런 특성을 부유 또는 부유 객체라 한다)
 
@@ -1513,7 +1569,7 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
 </html>
 ```
 
-#### 2.6.1.4 fixed (고정위치)
+#### 2.7.1.4 fixed (고정위치)
 
 부모 요소와 관계없이 브라우저의 viewport를 기준으로 좌표속성(top, bottom, left, right)을 사용하여 위치를 이동시킨다. 스크롤이 되더라도 화면에서 사라지지 않고 항상 같은 곳에 위치한다. ***fixed 속성 선언 시, block 요소의 width는 inline 요소와 같이 content에 맞게 변화되므로 주의하여야 한다.***
 
@@ -1559,7 +1615,7 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
 </html>
 ```
 
-### 2.6.2 z-index
+### 2.7.2 z-index
 
 z-index 속성에 큰 숫자값을 지정할 수록 화면 전면에 출력된다.
 
@@ -1599,7 +1655,7 @@ z-index 속성에 큰 숫자값을 지정할 수록 화면 전면에 출력된�
 </html>
 ```
 
-### 2.6.3 overflow
+### 2.7.3 overflow
 
 overflow 속성은 자식 요소가 부모 요소의 영역를 벗어났을 때 처리 방법을 정의한다.
 
@@ -1658,7 +1714,7 @@ overflow 속성은 자식 요소가 부모 요소의 영역를 벗어났을 때 
 div { overflow-y: scroll; }
 ```
 
-## 2.7 float
+## 2.8 float
 
 float 속성은 주로 layout을 구성하기 위해 사용되는 핵심 기술이다. layout의 가장 큰 목적은 1개 이상의 block 속성 요소를 원하는 위치에 정렬시키는 것이다.
 
@@ -1692,7 +1748,7 @@ float 속성은 해당 요소를 떠 있게 한다. 여기서 떠 있다(float)�
 
 ![css float](/img/float.png)
 
-### 2.7.1 정렬
+### 2.8.1 정렬
 
 float 속성을 사용하지 않은 블록 요소들은 수직으로 정렬된다. `float:left;` 속성을 사용하면 왼쪽부터 정렬되고, `float:right;` 속성을 사용하면 오른쪽부터 정렬된다.
 
@@ -1772,9 +1828,9 @@ width값을 지정하지 않은 block 속성 요소는 기본적으로 `width: 1
 </html>
 ```
 
-### 2.7.2 float 속성 문제 해결
+### 2.8.2 float 속성 문제 해결
 
-#### 2.7.2.1 float 속성이 선언되지 않은 요소의 문제
+#### 2.8.2.1 float 속성이 선언되지 않은 요소의 문제
 
 위 예제를 보면 두 요소간 margin이 있어야 한다. 그러나 결과는 그렇지 않다.
 
@@ -1813,7 +1869,7 @@ width값을 지정하지 않은 block 속성 요소는 기본적으로 `width: 1
 
 두번째 요소에도 float 속성을 선언하면 `overflow: hidden` 속성은 선언하지 않아도 되지만  너비가 최소화된다.
 
-#### 2.7.2.2 float 속성이 선언된 요소 간의 문제
+#### 2.8.2.2 float 속성이 선언된 요소 간의 문제
 
 아래 예제를 보면 float 속성이 선언된 두개의 자식 요소를 포함하는 부모 요소의 높이가 정상적인 값을 가지지 못하는 문제가 발생한다.
 
@@ -1896,9 +1952,9 @@ d1, d2 모두 `float: left` 속성을 가지고 있으므로 `overflow: hidden` 
 </html>
 ```
 
-### 2.7.3 Layout
+### 2.8.3 Layout
 
-#### 2.7.3.1 2-Column Layout
+#### 2.8.3.1 2-Column Layout
 
 ![2-column-layout](/img/2-column-layout.png)
 
@@ -1967,7 +2023,7 @@ d1, d2 모두 `float: left` 속성을 가지고 있으므로 `overflow: hidden` 
 </html>
 ```
 
-#### 2.7.3.2 3-Column Layout
+#### 2.8.3.2 3-Column Layout
 
 ![3-column-layout](/img/3-column-layout.png)
 
@@ -1978,7 +2034,7 @@ d1, d2 모두 `float: left` 속성을 가지고 있으므로 `overflow: hidden` 
     <style>
       body {
         max-width: 960px;
-        margin: 10px auto;
+        margin: 0 auto;
         color: white;
       }
       header {
@@ -2051,50 +2107,30 @@ d1, d2 모두 `float: left` 속성을 가지고 있으므로 `overflow: hidden` 
 </html>
 ```
 
+# 3. Layout
+
+이전에는 table을 사용하여 layout을 만들기도 하였으나 html과 css의 본연의 취지와도 맞지 않을 뿐더러 반응형 웹 페이지를 만드기 곤란하며 코드의 양 또한 많아져 현재는 거의 사용하지 않으며 웹 페이지의 style과 layout을 담당하는 CSS를 사용하여 layout을 구성하는 것이 일반적이다.
+
+layout의 핵심은 블록 특성의 요소들을 원하는 위치에 배열하는 것이다.
+
+![layout-samples](/img/layout-samples.png)
+
+모바일 사용자가 데스크탑 사용자보다 많은 상황을 감안하여 화면의 크기에 따라 적절히 화면 구성을 변화시키는 반응형 웹 디자인(Responsive Web Design) 또한 모던 웹 사이트의 필수 사항이 되었다.
+
+![responsive-web-design-sample](/img/responsive-web-design-samples.png)
+
+CSS를 사용하여 layout을 구성할 때에 자주 사용되는 핵심 기술은 `float`이다. 다음은 전형적인 웹사이트의 layout이다.
+
+![layout-default](layout-default.png)
 
 
 
 
+# 4. Responsive Web Design
 
 
 
 
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <style>
-      div {
-        color: white;
-        padding: 18px;
-      }
-      .left {
-        float: left;
-        margin-right: 7px;
-        background-color: #59b1f6;
-      }
-      .right {
-        float: right;
-        margin-left: 7px;
-        background-color: #ffb5b4;
-      }
-      .center {
-        background-color: #d5eeb0;
-        color: #5e8818;
-        overflow: hidden;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="left">left</div>
-    <div class="right">right</div>
-    <!-- float 속성이 없는 객체이므로 맨 마지막에 위치 -->
-    <div class="center">center</div>
-  </body>
-</html>
-```
-
-## 2.8 Shadow / Rounded Corner / Gradients
 
 
 ----->CSS3
@@ -2107,9 +2143,9 @@ d1, d2 모두 `float: left` 속성을 가지고 있으므로 `overflow: hidden` 
 
 
 
-# 5. Layout
 
-# 6. Responsive Web Design
+
+
 
 
 

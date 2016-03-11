@@ -1974,23 +1974,23 @@ d1, d2 모두 `float: left` 속성을 가지고 있으므로 `overflow: hidden` 
 <html>
   <head>
     <style>
-			body {
-				max-width: 960px;
-				margin: 10px auto;
+      body {
+        max-width: 960px;
+        margin: 10px auto;
         color: white;
-			}
-			header {
+      }
+      header {
         padding: 10px;
-				background-color: #FF9900;
-			}
-			nav {
+        background-color: #FF9900;
+      }
+      nav {
         padding: 10px;
-				background-color: #CC6600;
-			}
+        background-color: #CC6600;
+      }
       #wrap {
         padding: 10px;
         background-color: #def0c2;
-				overflow: hidden;
+        overflow: hidden;
       }
       aside.left {
         float: left;
@@ -2011,10 +2011,10 @@ d1, d2 모두 `float: left` 속성을 가지고 있으므로 `overflow: hidden` 
         padding: 2%;
         background-color: #C13100;
       }
-			footer {
+      footer {
         padding: 10px;
-				background-color: #003366;
-			}
+        background-color: #003366;
+      }
     </style>
   </head>
   <body>

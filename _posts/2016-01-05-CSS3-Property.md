@@ -1908,60 +1908,59 @@ d1, d2 모두 `float: left` 속성을 가지고 있으므로 `overflow: hidden` 
 			body {
 				max-width: 960px;
 				margin: 0 auto;
+        color: white;
 			}
-			div {
-				color: white;
-        /*text-align: center;*/
-				padding: 10px;
-			}
-			#header {
+			header {
+        padding: 10px;
 				background-color: #FF9900;
 			}
-			#nav {
+			nav {
+        padding: 10px;
 				background-color: #CC6600;
 			}
       #wrap {
+        padding: 10px;
         background-color: #def0c2;
 				overflow: hidden;
       }
-      #section {
+      section {
         float: left;
         width: 65%;
-        /*margin-right: 2%;*/
         padding: 2%;
         background-color: #59b1f6;
       }
-      #aside {
+      aside {
         float: right;
         width: 25%;
         padding: 2%;
         background-color: #C13100;
       }
-			#footer {
+			footer {
+        padding: 10px;
 				background-color: #003366;
 			}
     </style>
   </head>
   <body>
-		<div id="header"><h1>Header</h1></div>
-		<div id="nav"><h1>Navigation</h1></div>
+		<header><h1>Header</h1></header>
+		<nav><h1>Navigation</h1></nav>
     <div id="wrap">
-      <div id="section">
+      <section>
 				<h1>Section</h1>
 				<p>London is the capital city of England. It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
 				<p>Standing on the River Thames, London has been a major settlement for two millennia,its history going back to its founding by the Romans, who named it Londinium.</p>
 				<p>London, also referred to as Greater London, is one of 9 regions of England and the top-level subdivision covering most of the city's metropolis. The small ancient City of London at its core once comprised the whole settlement, but as its urban area grew, the Corporation of London resisted attempts to amalgamate the city with its suburbs, causing "London" to be defined in a number ways for different purposes.</p>
-			</div>
-      <div id="aside">
-				<h1>Aside</h1>
-				<ul>
-					<li>London</li>
-					<li>Paris</li>
-					<li>Tokyo</li>
-				</ul>
-			</div>
+			</section>
+      <aside>
+        <h1>Aside</h1>
+        <ul>
+          <li>London</li>
+          <li>Paris</li>
+          <li>Tokyo</li>
+        </ul>
+      </aside>
     </div>
-		<div id="footer"><h1>Footer</h1></div>
+		<footer><h1>Footer</h1></footer>
   </body>
 </html>
 ```

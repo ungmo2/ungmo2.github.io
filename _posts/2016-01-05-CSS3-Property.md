@@ -2125,11 +2125,51 @@ CSS를 사용하여 layout을 구성할 때에 자주 사용되는 핵심 기술
 
 layout이란 웹사이트를 구성하는 요소들을 배치할 공간을 분할하여 정렬하는 것이다. 공간을 분할할 때는 일반적으로 행을 구분한 후, 행 내부 요소를 분리한다.
 
-## 3.1 초기화
+아래 예제는 단순한 2 column layout의 골격이다.
 
-## 3.2 2-Column Layout
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <header>
+      <nav></nav>
+    </header>
+    <div id="wrap">
+      <section></section>
+      <aside></aside>
+    </div>
+    <footer></footer>
+  </body>
+</html>
+```
 
-## 3.2 Navigation
+## 3.1 Navigation Bar
+
+대부분의 웹사이트는 Navigation Bar를 가지고 있다. Navigation Bar는 웹사이트의 필수 구성 요소라고 할 수 있을 것이다.
+
+Navigation Bar는 기본적으로 링크들의 리스트이다. 따라서 ul, li tag를 이용하여 작성한다.
+
+다음은 최소한의 Reset CSS를 추가한 링크들의 리스트이다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </body>
+</html>
+```
+
+## 3.1 2-Column Layout
+
+
+
+
 
 
 
@@ -2150,16 +2190,16 @@ viewport란 웹페이지의 가시영역을 의미한다. viewport는 디바이�
 
 [meta tag](http://ungmo2.github.io/html/HTML5-Tag/#meta)는 메타데이터를 브라우저 혹은 검색엔진에게 전달하기 위해 사용된다. viewport meta tag는 브라우저의 화면 설정과 관련된 정보를 제공한다.
 
-| 속성	          | Description    | 사용예
-|:---------------|:-------------- |:--------------
-| width          | 화면 너비        | width=240
-|                |                | width=device-width
-| height         | 화면 높이        |
-| initial-scale  | 초기확대비율       |
-| user-scale     | 확대 축소 가능 여부 |
-| maximum-scale  | 최대 축소 비율     |
-| minimum-scale  | 최소 축소 비율     |
-
+| 속성	          | Description      | 사용예
+|:---------------|:-----------------|:--------------
+| width          | viewport 너비(px) | width=240
+|                |                  | width=device-width
+| height         | viewport 높이(px) | height=800
+|                |                  | width=device-height
+| initial-scale  | viewport초기 배율  | initial-scale=1.0
+| user-scale     | 확대 축소 가능 여부  | user-scale=no
+| maximum-scale  | 최대 화면 배율      | maximum-scale=2.0
+| minimum-scale  | 최소 화면 배율      | minimum-scale=1.0
 
 
 ```html

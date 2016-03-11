@@ -2109,7 +2109,7 @@ d1, d2 모두 `float: left` 속성을 가지고 있으므로 `overflow: hidden` 
 
 # 3. Layout
 
-이전에는 table을 사용하여 layout을 만들기도 하였으나 html과 css의 본연의 취지와도 맞지 않을 뿐더러 반응형 웹 페이지를 만드기 곤란하며 코드의 양 또한 많아져 현재는 거의 사용하지 않으며 웹 페이지의 style과 layout을 담당하는 CSS를 사용하여 layout을 구성하는 것이 일반적이다.
+이전에는 table을 사용하여 layout을 만들기도 하였으나 html과 css의 본연의 취지와도 맞지 않을 뿐더러 반응형 웹 페이지 작성이 곤란하며 코드의 양 또한 많아져 현재는 거의 사용하지 않는다. 모던한 웹 페이지는 style과 layout을 담당하는 CSS를 사용하여 layout을 구성하는 것이 일반적이다.
 
 layout의 핵심은 블록 특성의 요소들을 원하는 위치에 배열하는 것이다.
 
@@ -2121,7 +2121,7 @@ layout의 핵심은 블록 특성의 요소들을 원하는 위치에 배열하�
 
 CSS를 사용하여 layout을 구성할 때에 자주 사용되는 핵심 기술은 `float`이다. 다음은 전형적인 웹사이트의 layout이다.
 
-![layout-default](layout-default.png)
+![layout-default](/img/layout-default.png)
 
 
 

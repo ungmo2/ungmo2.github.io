@@ -279,7 +279,9 @@ p {
 
 - content의 폭만큼만 가로폭을 차지한다.
 
-- width, height, margin-top, margin-bottom 속성 지정이 불가능하다. inline 요소를 연속 사용하는 경우, 간격을 유지하기 위해서 좌, 우에 약 5px 가량의 외부 여백(margin)이 자동 지정된다. 그리고 inline 요소의 상, 하 여백은 line-height 속성으로 지정한다.
+- width, height, margin-top, margin-bottom 속성 지정이 불가능하다. padding은 지정할 수 있으나 height가 적용되진 않는다. 상, 하 여백은 line-height로 지정한다.
+
+- inline 요소를 연속 사용하는 경우, 간격을 유지하기 위해서 좌, 우에 약 5px 가량의 외부 여백(margin)이 자동 지정된다.
 
 - inline 요소 예
 

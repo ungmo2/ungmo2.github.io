@@ -14,12 +14,12 @@ categories: css
 화면폭을 좁히면 아래 그림과 같이 화면이 망가지는데 이것는 HTML 요소에 고정폭을 지정하여 가로 스크롤을 발생시키지 않으면 해결이 어렵다.
 
 ![](/img/break-view.png)
-{: style="width:500px; margin: 0 auto;"}
+{: style="max-width:500px; margin: 0 auto;"}
 
 그리고 모바일과 같이 작은 해상도의 디바이스에서 접근했을 때 화면이 너무 작아져 가시성에 문제가 발생한다.
 
 ![](/img/mobile-view.jpg)
-{: style="max-width:500px; text-align: center;"}
+{: style="max-width:500px; margin: 0 auto;"}
 
 
 

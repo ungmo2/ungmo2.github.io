@@ -21,16 +21,6 @@ categories: css
 ![](/img/mobile-view.jpg)
 {: style="max-width:500px; margin: 0 auto;"}
 
-
-
-
-
-
-
-
-
-
-
 # 1. Responsive Web Design
 
 사용자가 어떤 디바이스로 웹사이트를 방문할 지 알 수 없다. layout은 방문자의 모니터의 화면 해상도를 고려하여야 한다. 가로폭이 너무 큰 layout을 작성하면 작은 해상도 모니터로 방문하였을 때 가로 스크롤이 생겨서 사용이 불편할 수도 있다.
@@ -54,7 +44,7 @@ viewport란 웹페이지의 가시영역을 의미한다. viewport는 디바이�
 
 ![viewport](/img/viewport.png)
 
-[meta tag](http://ungmo2.github.io/html/HTML5-Tag/#meta)는 메타데이터를 브라우저 혹은 검색엔진에게 전달하기 위해 사용된다. viewport meta tag는 브라우저의 화면 설정과 관련된 정보를 제공한다.
+[meta tag](http://ungmo2.github.io/html/HTML5-Tag/#meta)는 브라우저 혹은 검색엔진최적화(SEO)를 위해 검색엔진에게 메타데이터를 전달하기 위해 사용된다. viewport meta tag는 브라우저의 화면 설정과 관련된 정보를 제공한다.
 
 | 속성	          | Description      | 사용예
 |:---------------|:-----------------|:--------------
@@ -64,13 +54,17 @@ viewport란 웹페이지의 가시영역을 의미한다. viewport는 디바이�
 |                |                  | width=device-height
 | initial-scale  | viewport초기 배율  | initial-scale=1.0
 | user-scale     | 확대 축소 가능 여부  | user-scale=no
-| maximum-scale  | 최대 화면 배율      | maximum-scale=2.0
-| minimum-scale  | 최소 화면 배율      | minimum-scale=1.0
+| maximum-scale  | viewport 최대 배율 | maximum-scale=2.0
+| minimum-scale  | viewport 최소 배율 | minimum-scale=1.0
 
+meta tag에서는 px단위를 사용하며 단위 표현은 생략한다. 복수개의 속성을 사용할 때는 쉼표(,)로 구분한다.
 
 ```html
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 ```
+
+위 예제는 가장 일반적인 viewport 설정이다. 가로폭을 디바이스의 가로폭에 맞추고 초기 화면 배율을 100%로 설정하는 것을 의미한다.
+
 
 ## 2.2 @media 속성
 
@@ -97,10 +91,9 @@ viewport란 웹페이지의 가시영역을 의미한다. viewport는 디바이�
 ## Media Queries
 ----->CSS3
 
+스프라이트 이미지 (sprite image)
 
-
-
-
+페이지의 로딩 속도를 감소시켜주는 방법 중 하나이다. 자주 쓰는 이미지들을 쓸 때마다 각각 로딩하는 것이 아니라 하나의 이미지파일로 작성한 후 좌표값을 사용하여 필요한 이미지를 로딩하는 방식이다. 하나의 이미지로 만들기 때문에 관기가 쉽고 여러번 로딩할 필요가 없고 중복되는 이미지를 로딩하지 않기 때문에 트래픽이 감소되는 효과가 있다.
 
 
 

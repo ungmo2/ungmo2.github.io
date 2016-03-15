@@ -67,5 +67,5 @@ inline-block 요소가 연이어 있으면 정의하지 않은 space(4px)이 끼
 ```
 
 https://css-tricks.com/fighting-the-space-between-inline-block-elements/
-
+http://reallygood.work/03/13/an-inline-block-intervention/
 http://codepen.io/chriscoyier/pen/hmlqF

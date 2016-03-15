@@ -37,7 +37,7 @@ categories: css
 
 이러한 문제를 해결하는 방법 중의 하나가 반응형 웹디자인(Responsive Web Design)이다. 화면 해상도에 따라 가로폭이나 배치를 변경하여 가독성을 높이는 것이다.
 
-![Responsive_Web_Design_for_Desktop_Notebook_Tablet_and_Mobile_Phone](Responsive_Web_Design_for_Desktop_Notebook_Tablet_and_Mobile_Phone.png)
+![Responsive_Web_Design_for_Desktop_Notebook_Tablet_and_Mobile_Phone](/img/Responsive_Web_Design_for_Desktop_Notebook_Tablet_and_Mobile_Phone.png)
 
 또한 모바일 웹페이지는 대부분 애플리케이션의 형태로 진화하고 있어 앱인지 웹인지 구분이 어려울 정도이다. HTML5/CSS3/Javascript만으로 네이티브 앱과 차이를 느낄 수 없는 앱을 만들 수 있다. 다음은 최근 관심을 끌고 있는 Web App Framework이다.
 

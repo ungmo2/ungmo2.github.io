@@ -119,7 +119,7 @@ cm, mm, inch 등의 단위도 존재하나 대표적인 크기 단위는 다음�
 
 더욱 다양한 색상을 표현하기 위해 다음과 같은 색상 표현 단위를 사용할 수 있다.
 
-| 단위                               | 사용예                          |
+| 단위                               | 사용예                          
 |:----------------------------------|:------------------------------|
 | HEX 코드 단위 (Hexadecimal Colors)  | #000000
 | RGB (Red, Green, Blue)            | rgb(255, 255, 0)
@@ -281,7 +281,7 @@ p {
 
 - width, height, margin-top, margin-bottom 속성 지정이 불가능하다. padding은 지정할 수 있으나 height가 적용되진 않는다. 상, 하 여백은 line-height로 지정한다.
 
-- inline 요소를 연속 사용하는 경우, 간격을 유지하기 위해서 좌, 우에 약 5px 가량의 외부 여백(margin)이 자동 지정된다.
+- inline 요소를 연속 사용하는 경우, 간격을 유지하기 위해서 좌우에 약 4px 가량의 외부 여백(margin)이 자동 지정된다.
 
 - inline 요소 예
 
@@ -320,7 +320,7 @@ block과 inline의 특징을 모두 갖는다. inline 요소 같이 한 줄에 �
 
 - block 속성처럼 width와 height, margin 속성을 정의할 수 있다. 상, 하 여백을 margin과 line-height 두가지 속성 모두를 통해 제어할 수 있다.
 
-- inline-block 속성을 가진 태그끼리 연속으로 사용되는 경우에는 최소한의 간격을 유지하기 위해서 좌, 우에 약 5px 가량의 외부 여백(margin)이 자동 지정된다. margin-left나 margin-right를 사용하면 추가로 여백을 지정 가능하다.
+- inline-block 속성을 가진 태그끼리 연속으로 사용되는 경우에는 최소한의 간격을 유지하기 위해서 좌우에 약 4px 가량의 외부 여백(margin)이 자동 지정된다.
 
 ```html
 <!DOCTYPE html>

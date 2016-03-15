@@ -18,7 +18,7 @@ inline-block 요소가 연이어 있으면 정의하지 않은 space(4px)이 끼
   <head>
     <style>
       * {
-        margin: 0; padding: 0;
+        /*margin: 0; padding: 0;*/
         box-sizing: border-box;
       }
       #wrap {
@@ -47,6 +47,11 @@ inline-block 요소가 연이어 있으면 정의하지 않은 space(4px)이 끼
         height: 100px;
         width: 100px;
       }
+      span {
+        display: inline-block;
+        background-color: red;
+        width: 100px;
+      }
     </style>
   </head>
   <body>
@@ -55,6 +60,8 @@ inline-block 요소가 연이어 있으면 정의하지 않은 space(4px)이 끼
       <div class="box red">Red</div>
       <!-- <div class="box black">black</div> -->
     </div>
+    <span>TEST</span>
+    <span>SPACE</span>
   </body>
 </html>
 ```

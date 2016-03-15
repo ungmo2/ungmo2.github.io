@@ -11,7 +11,13 @@ categories: css
 
 먼저 어떤 문제가 있는지 알아본다.
 
-화면폭을 좁히면
+화면폭을 좁히면 아래 그림과 같이 화면이 망가지는데 이것는 HTML 요소에 고정폭을 지정하여 가로 스크롤을 발생시키지 않으면 해결이 어렵다.
+
+![](break-view.png)
+
+그리고 모바일과 같이 작은 해상도의 디바이스에서 접근했을 때 화면이 너무 작아져 가시성에 문제가 발생한다.
+
+![](mobile-view.png)
 
 
 
@@ -21,7 +27,9 @@ categories: css
 
 
 
-# 2. Responsive Web Design
+
+
+# 1. Responsive Web Design
 
 사용자가 어떤 디바이스로 웹사이트를 방문할 지 알 수 없다. layout은 방문자의 모니터의 화면 해상도를 고려하여야 한다. 가로폭이 너무 큰 layout을 작성하면 작은 해상도 모니터로 방문하였을 때 가로 스크롤이 생겨서 사용이 불편할 수도 있다.
 
@@ -31,7 +39,14 @@ categories: css
 
 ![Responsive_Web_Design_for_Desktop_Notebook_Tablet_and_Mobile_Phone](Responsive_Web_Design_for_Desktop_Notebook_Tablet_and_Mobile_Phone.png)
 
-## 2.1 viewport meta tag
+또한 모바일 웹페이지는 대부분 애플리케이션의 형태로 진화하고 있어 앱인지 웹인지 구분이 어려울 정도이다. HTML5/CSS3/Javascript만으로 네이티브 앱과 차이를 느낄 수 없는 앱을 만들 수 있다. 다음은 최근 관심을 끌고 있는 Web App Framework이다.
+
+- [ionic](http://ionicframework.com/)
+- [Electron](http://electron.atom.io/)
+- [PhoneGap](http://phonegap.com/)
+- [Sencha Touch](https://www.sencha.com/)
+
+## 1.1 viewport meta tag
 
 viewport란 웹페이지의 가시영역을 의미한다. viewport는 디바이스에 따라 차이가 있다. 예를 들어 모바일 브라우저는 윈도우 resize가 불가하고 화면 터치를 사용하는 등 데스크탑 브라우저와 구성이나 형태가 다르다. 또한 모바일의 화면은 데스크탑 화면보다 훨씬 작으므로 데스크탑용 웹페이지를 그대로 모바일에 출력하면 가독성이 현저히 나빠진다. 따라서 viewport를 이용하여 디바이스의 특성과 디바이스의 화면 크기 등을 고려하여 각종 디바이스 사용자에게 최적화된 웹페이지를 제공할 수 있다.
 

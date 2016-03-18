@@ -241,7 +241,7 @@ orientation을 제외한 모든 속성은 min/max 접두사를 사용할 수 있
 
 ## 1.3 Responsive Navigation Bar
 
-우선 viewport meta tag와 media query를 추가한다.
+디바이스 해상도에 따라 반응할 수 있도록 viewport meta tag와 media query를 추가한다.
 
 ```html
 <!DOCTYPE html>
@@ -262,6 +262,51 @@ orientation을 제외한 모든 속성은 min/max 접두사를 사용할 수 있
   </head>
   ...
 ```
+
+스마트폰, 태블릿, 데스크탑 그룹의 3단계로 구분하여 breakpoint를 정의하였다. Non Mobile First Method로 정의하였기 때문에 Media Query로 정의하지 않은 스타일은 데스크탑 그룹을 위한 코드가 된다.
+
+
+```css
+/* for tablet */
+@media screen and (max-width: 800px) {
+}
+```
+
+최대 viewport width를 800px로 한정하였다는 것은 화면 크기가 800px 이하인 디바이스(태블릿)를 위한 정의란 의미가 된다. 위 예제 내에 정의 되는 스타일은 화면 크기가 800px 이하인 디바이스에서 웹사이트가 표시될 때 실행된다.
+
+```css
+/* for smartphone */
+@media screen and (max-width: 480px) {
+}  
+```
+
+최대 viewport width를 480px로 한정하였다는 것은 화면 크기가 480px 이하인 디바이스(스마트폰)를 위한 정의란 의미가 된다. 위 예제 내에 정의 되는 스타일은 화면 크기가 480px 이하인 디바이스에서 웹사이트가 표시될 때 실행된다.
+
+[CSS 적용 우선 순위 (Cascading Order)](http://ungmo2.github.io/css/CSS3-Selector/#css----cascading-order) 에 따라 나중에 선언된 스타일이 우선 적용된다. 따라서 Media Query는 기술 순서에 의미가 있다. 만일 스마트폰 용 스타일을 태블릿 용 스타일 보다 먼저 기술하면 최종적으로 태블릿 용 스타일이 적용된다. 일반적으로 Mobile-first 방식은 해상도가 작은 순서로, Non Mobile-first 방식은 해상도 큰 순서로 기술한다.
+
+### 1.3.1 Responsive Navigation Bar - Tablet
+
+데스크탑 layout에서 화면이 작아질 때 header navigation bar가 header 영역 아래로 내려오는 현상이 발생하였다. 다음과 같이 태블릿에서의 layout을 정의한다.
+
+1. viewport width가 800px 이하가 되면 header 영역을 2단으로 하여 현재(60px)의 2배로 넓힌다.
+
+2. logo image를 centering하고 상단에 배치한다.
+
+3. navigation bar를 centering하고 하단에 배치한다.
+
+
+### 1.3.2 Responsive Navigation Bar - Smartphone
+
+태블릿 layout에서는 navigation bar를 header 영역 하단에 배치하였다. 하지만 스마트폰의 width는 navigation bar를 모두 담기에는 너무 좁다. 따라서
+다음과 같이 태블릿에서의 layout을 정의한다.
+
+1. viewport width가 480px 이하가 되면 header 영역을 데스크탑 layout과 같이 다시 1단으로 되돌려서 60px이 되게 한다.
+
+2. logo image를 centering 한다.
+
+3. 스마트폰 이외의 layout에서는 감추었던 navigation item을 담고 있는 navigation icon을 우측에 표시한다.
+
+4. navigation icon이 클릭되면 navigation icon을 애니메이션 처리하고 navigation item 수직 정렬하여 header 영역 아래에 추가한다.
 
 
 ## 2.2

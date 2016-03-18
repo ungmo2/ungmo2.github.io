@@ -298,7 +298,7 @@ orientation을 제외한 모든 속성은 min/max 접두사를 사용할 수 있
 ### 1.3.2 Responsive Navigation Bar - Smartphone
 
 태블릿 layout에서는 navigation bar를 header 영역 하단에 배치하였다. 하지만 스마트폰의 width는 navigation bar를 모두 담기에는 너무 좁다. 따라서
-다음과 같이 태블릿에서의 layout을 정의한다.
+다음과 같이 스마트폰 layout을 정의한다.
 
 1. viewport width가 480px 이하가 되면 header 영역을 데스크탑 layout과 같이 다시 1단으로 되돌려서 60px이 되게 한다.
 

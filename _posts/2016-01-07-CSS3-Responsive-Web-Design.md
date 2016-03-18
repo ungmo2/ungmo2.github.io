@@ -67,9 +67,202 @@ meta tag에서는 px단위를 사용하며 단위 표현은 생략한다. 복수
 위 예제는 가장 일반적인 viewport 설정이다. 가로폭을 디바이스의 가로폭에 맞추고 초기 화면 배율을 100%로 설정하는 것을 의미한다.
 
 
-## 2.2 @media 속성
+## 1.2 @media 속성
+
+이것은 서로 다른 미디어 타입(print, screen...)에 따라 각각의 styles을 지정하는 것을 가능하게 한다. 다음은 일반 화면(screen)과 인쇄장치 별로 서로 다른 style을 지정하는 예이다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      @media screen {
+        * { color: red; }
+      }
+      @media print {
+        * { color: blue; }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>@media practice</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </body>
+</html>
+```
 
 반응형 웹디자인에 사용되는 핵심 기술은 `@media`이다.
+
+
+`@media`을 사용하여 미디어 별로 style을 지정하는 것을 `Media Query`라 한다. 디바이스를 지정하는 것뿐만 아니라 디바이스의 크기나 비율까지 구분할 수 있다.
+
+다음은 Media Query의 문법이다.
+
+```
+@media not|only mediatype and (expressions) {
+  CSS-Code;
+}
+```
+
+```css
+@media screen and (min-width: 480px) {
+  body {
+    background-color: lightgreen;
+  }
+}
+```
+
+| 속성	               |  Description
+|:--------------------|:-----------------
+| width               | viewport 너비(px)
+| height              | viewport 높이(px)
+| device-width        | 디바이스의 물리적 너비(px)
+| device-height       | 디바이스의 물리적 높이(px)
+| orientation         | 디바이스 방향 (가로 방향: landscape, 세로방향 portrait)
+| device-aspect-ratio | 디바이스의 물리적 width/height 비율
+| color               | 디바이스에서 표현 가능한 최대 색상 비트수
+| monochrome          | 흑백 디바이스의 픽셀 당 비트수
+| resolution          | 디바이스 해상도
+
+orientation을 제외한 모든 속성은 min/max 접두사를 사용할 수 있다. 이것을 이용하여 화면 크기 범위를 지정할 수 있다.
+
+```css
+/*==========  Mobile First Method  ==========*/
+/* All Device */
+
+/* Custom, iPhone Retina : 320px ~ */
+@media only screen and (min-width : 320px) {
+
+}
+/* Extra Small Devices, Phones : 480px ~ */
+@media only screen and (min-width : 480px) {
+
+}  
+/* Small Devices, Tablets : 768px ~ */
+@media only screen and (min-width : 768px) {
+
+}
+/* Medium Devices, Desktops : 992px ~ */
+@media only screen and (min-width : 992px) {
+
+}
+/* Large Devices, Wide Screens : 1200px ~ */
+@media only screen and (min-width : 1200px) {
+
+}
+
+/*==========  Non-Mobile First Method  ==========*/
+/* All Device */
+
+/* Large Devices, Wide Screens : ~ 1200px */
+@media only screen and (max-width : 1200px) {
+
+}
+/* Medium Devices, Desktops : ~ 992px */
+@media only screen and (max-width : 992px) {
+
+}
+/* Small Devices, Tablets : ~ 768px */
+@media only screen and (max-width : 768px) {
+
+}
+/* Extra Small Devices, Phones : ~ 480px */
+@media only screen and (max-width : 480px) {
+
+}
+/* Custom, iPhone Retina : ~ 320px */
+@media only screen and (max-width : 320px) {
+
+}
+```
+
+![media-query-breakpoints](/img/media-query-breakpoints.jpg)
+
+다음은 임의로 해상도를 3단계로 구분하여 breakpoint를 정의한 예제이다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      /* 801px ~ */
+      * { color: black; }
+      /* 800~ px */
+      @media screen and (max-width: 800px) {
+        * { color: blue; }
+      }
+      /* ~ 480px */
+      @media screen and (max-width: 480px) {
+        * { color: red; }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>@media practice</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </body>
+</html>
+```
+
+다음은 화면이 세로일 때, 가로일 때를 구분하는 예제이다. 주의할 점은 데스크탑은 언제나 가로 화면이기 때문에 `device-width`로 스마트폰의 해상도를 지정하지 않으면 데스크탑에서도 가로화면 시 style이 적용되는 문제가 발생한다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      /* 세로  */
+      * { color: black; }
+      /* 가로 */
+      /*@media screen and (orientation: landscape) {
+        * { color: blue; }
+      }*/
+
+      /* Landscape */
+      @media screen
+        and (min-device-width: 320px)
+        and (max-device-width: 480px)
+        and (orientation: landscape) {
+        * { color: blue; }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>@media practice</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </body>
+</html>
+```
+
+이제까지의 내용을 바탕으로 [앞서 만들어본 예제](http://ungmo2.github.io/css/CSS3-Layout/#header--navigation-bar)를 Responsive Web Design에 맞추어 수정해 보자.
+
+## 1.3 Responsive Navigation Bar
+
+우선 viewport meta tag와 media query를 추가한다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      /*Media Query*/
+      /* for tablet */
+      @media screen and (max-width: 800px) {
+
+      }
+      /* for smartphone */
+      @media screen and (max-width: 480px) {
+
+      }      
+    </style>
+  </head>
+  ...
+```
+
 
 ## 2.2
 
@@ -85,9 +278,8 @@ meta tag에서는 px단위를 사용하며 단위 표현은 생략한다. 복수
 
 
 ----->CSS3
-## Transitions
-
-## Animations
+# Web font
+# CSS3 Transition & Animation
 
 ## Media Queries
 ----->CSS3

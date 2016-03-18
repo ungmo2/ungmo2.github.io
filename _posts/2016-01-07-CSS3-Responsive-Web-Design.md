@@ -100,11 +100,11 @@ meta tag에서는 px단위를 사용하며 단위 표현은 생략한다. 복수
 
 다음은 Media Query의 문법이다.
 
-```
+{% highlight html %}
 @media not|only mediatype and (expressions) {
   CSS-Code;
 }
-```
+{% highlight html %}
 
 ```css
 @media screen and (min-width: 480px) {

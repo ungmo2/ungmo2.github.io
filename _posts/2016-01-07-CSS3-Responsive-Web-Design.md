@@ -292,45 +292,45 @@ orientation을 제외한 모든 속성은 min/max 접두사를 사용할 수 있
 
 1. viewport width가 800px 이하가 되면 header 영역을 2단으로 하여 현재(60px)의 2배로 넓힌다.
 
-```css
-@media screen and (max-width: 800px) {
-  header {
-    height: 120px;
+  ```css
+  @media screen and (max-width: 800px) {
+    header {
+      height: 120px;
+    }
   }
-}
-```
+  ```
 
 2. logo image를 centering하고 상단에 배치한다.
 
-```css
-@media screen and (max-width: 800px) {
-  header {
-    height: 120px;
-    text-align: center;
+  ```css
+  @media screen and (max-width: 800px) {
+    header {
+      height: 120px;
+      text-align: center;
+    }
+    .logo {
+      float: none;
+    }
   }
-  .logo {
-    float: none;
-  }
-}
-```
+  ```
 
 3. navigation bar를 centering하고 하단에 배치한다.
 
-```css
-@media screen and (max-width: 800px) {
-  header {
-    height: 120px;
-    text-align: center;
+  ```css
+  @media screen and (max-width: 800px) {
+    header {
+      height: 120px;
+      text-align: center;
+    }
+    .logo {
+      float: none;
+    }
+    nav {
+      float: none;
+      margin-right: 0;
+    }
   }
-  .logo {
-    float: none;
-  }
-  nav {
-    float: none;
-    margin-right: 0;
-  }
-}
-```
+  ```
 
 ![res-layout-practice-1](/img/res-layout-practice-1.png)
 

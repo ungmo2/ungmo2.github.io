@@ -61,8 +61,8 @@ viewport란 웹페이지의 가시영역을 의미한다. viewport는 디바이�
 meta tag에서는 px단위를 사용하며 단위 표현은 생략한다. 복수개의 속성을 사용할 때는 쉼표(,)로 구분한다.
 
 
-```html
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
+```
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 ```
 
 위 예제는 가장 일반적인 viewport 설정이다. 가로폭을 디바이스의 가로폭에 맞추고 초기 화면 배율을 100%로 설정하는 것을 의미한다.

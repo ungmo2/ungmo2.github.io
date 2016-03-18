@@ -104,7 +104,7 @@ meta tag에서는 px단위를 사용하며 단위 표현은 생략한다. 복수
 @media not|only mediatype and (expressions) {
   CSS-Code;
 }
-{% highlight html %}
+{% endhighlight %}
 
 ```css
 @media screen and (min-width: 480px) {

@@ -61,7 +61,7 @@ viewport란 웹페이지의 가시영역을 의미한다. viewport는 디바이�
 meta tag에서는 px단위를 사용하며 단위 표현은 생략한다. 복수개의 속성을 사용할 때는 쉼표(,)로 구분한다.
 
 
-```
+```html
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 ```
 

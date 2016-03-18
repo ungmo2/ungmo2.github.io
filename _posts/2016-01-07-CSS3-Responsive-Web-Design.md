@@ -61,9 +61,9 @@ viewport란 웹페이지의 가시영역을 의미한다. viewport는 디바이�
 meta tag에서는 px단위를 사용하며 단위 표현은 생략한다. 복수개의 속성을 사용할 때는 쉼표(,)로 구분한다.
 
 
-{% highlight html %}
+```html
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-{% endhighlight %}
+```
 
 위 예제는 가장 일반적인 viewport 설정이다. 가로폭을 디바이스의 가로폭에 맞추고 초기 화면 배율을 100%로 설정하는 것을 의미한다.
 
@@ -72,7 +72,7 @@ meta tag에서는 px단위를 사용하며 단위 표현은 생략한다. 복수
 
 이것은 서로 다른 미디어 타입(print, screen...)에 따라 각각의 styles을 지정하는 것을 가능하게 한다. 다음은 일반 화면(screen)과 인쇄장치 별로 서로 다른 style을 지정하는 예이다.
 
-{% highlight html %}
+```html
 <!DOCTYPE html>
 <html>
   <head>
@@ -91,7 +91,7 @@ meta tag에서는 px단위를 사용하며 단위 표현은 생략한다. 복수
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
   </body>
 </html>
-{% endhighlight %}
+```
 
 반응형 웹디자인에 사용되는 핵심 기술은 `@media`이다.
 
@@ -100,12 +100,11 @@ meta tag에서는 px단위를 사용하며 단위 표현은 생략한다. 복수
 
 다음은 Media Query의 문법이다.
 
-{% highlight html %}
+```
 @media not|only mediatype and (expressions) {
   CSS-Code;
 }
-{% endhighlight %}
-
+```
 
 ```css
 @media screen and (min-width: 480px) {

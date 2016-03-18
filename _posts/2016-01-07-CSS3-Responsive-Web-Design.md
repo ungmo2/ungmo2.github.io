@@ -19,7 +19,7 @@ categories: css
 그리고 모바일과 같이 작은 해상도의 디바이스에서 접근했을 때 화면이 너무 작아져 가시성에 문제가 발생한다.
 
 ![](/img/mobile-view.jpg)
-{: style="max-width:500px; margin: 0 auto;"}
+{: style="max-width:350px; margin: 0 auto;"}
 
 # 1. Responsive Web Design
 

@@ -107,6 +107,7 @@ meta tag에서는 px단위를 사용하며 단위 표현은 생략한다. 복수
 {% endhighlight %}
 
 ```css
+
 @media screen and (min-width: 480px) {
   body {
     background-color: lightgreen;
@@ -129,6 +130,7 @@ meta tag에서는 px단위를 사용하며 단위 표현은 생략한다. 복수
 orientation을 제외한 모든 속성은 min/max 접두사를 사용할 수 있다. 이것을 이용하여 화면 크기 범위를 지정할 수 있다.
 
 ```css
+
 /*==========  Mobile First Method  ==========*/
 /* All Device */
 
@@ -183,6 +185,7 @@ orientation을 제외한 모든 속성은 min/max 접두사를 사용할 수 있
 다음은 임의로 해상도를 3단계로 구분하여 breakpoint를 정의한 예제이다.
 
 ```html
+
 <!DOCTYPE html>
 <html>
   <head>

@@ -77,7 +77,7 @@ timezone: "Asis/Seoul"
 # highlighter: pygments
 markdown: kramdown
 kramdown:
-  # input: GFM
+  input: GFM
   # hard_wrap: false
 highlighter: rouge
 pygments_options:

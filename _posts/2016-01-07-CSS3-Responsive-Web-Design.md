@@ -290,17 +290,7 @@ orientation을 제외한 모든 속성은 min/max 접두사를 사용할 수 있
 
 데스크탑 layout에서 화면이 작아질 때 header navigation bar가 header 영역 아래로 내려오는 현상이 발생하였다. 다음과 같이 태블릿에서의 layout을 정의한다.
 
-- viewport width가 800px 이하가 되면 header 영역을 2단으로 하여 현재(60px)의 2배로 넓힌다.
-
-```css
-@media screen and (max-width: 800px) {
-  header {
-    height: 120px;
-  }
-}
-```
-
-- logo image를 centering하고 상단에 배치한다.
+viewport width가 800px 이하가 되면 header 영역을 2단(logo영역과 navigation bar영역)으로 하기 위하여 현재(60px)의 2배로 넓힌다. 그리고 logo image과 navigation bar를 centering한다.
 
 ```css
 @media screen and (max-width: 800px) {
@@ -308,22 +298,16 @@ orientation을 제외한 모든 속성은 min/max 접두사를 사용할 수 있
     height: 120px;
     text-align: center;
   }
-  .logo {
-    float: none;
-  }
 }
 ```
 
-- navigation bar를 centering하고 하단에 배치한다.
+가로로 나란히 정렬되어 있던 logo image과 navigation bar를 상단과 하단으로 분리 배치하기 위하여 navigation bar의 `float: right;` 속성을 해제한다. 그러면 navigation bar는 `block` 속성을 가지게 되어 logo image의 아래 영역으로 내려가게 된다.
 
 ```css
 @media screen and (max-width: 800px) {
   header {
     height: 120px;
     text-align: center;
-  }
-  .logo {
-    float: none;
   }
   nav {
     float: none;
@@ -337,8 +321,26 @@ orientation을 제외한 모든 속성은 min/max 접두사를 사용할 수 있
 
 ### 1.3.2 Responsive Navigation Bar - Smartphone
 
-태블릿 layout에서는 navigation bar를 header 영역 하단에 배치하였다. 하지만 스마트폰의 width는 navigation bar를 모두 담기에는 너무 좁다. 따라서
-다음과 같이 스마트폰 layout을 정의한다.
+태블릿 layout에서는 header 영역을 2단으로 분리하여 navigation bar는 header 하단 영역에 배치하였다. 하지만 스마트폰의 viewport width는 가로로 나란히 정렬되어 있는 navigation bar를 모두 담기에는 너무 좁다. 다음과 같이 스마트폰 layout을 정의한다.
+
+![res-layout-practice-2](/img/res-layout-practice-2.png)
+{: style="max-width:350px; margin: 0 auto;"}
+
+우측 navigation icon을 클릭하면 navigation bar가 수직 정렬되어 화면에 나타나도록 한다. 한번 더 클릭하면 화면에서 사라지도록 한다. 이때 navigation icon에 animation 효과를 부여한다.
+
+![res-layout-practice-3](/img/res-layout-practice-3.png)
+{: style="max-width:350px; margin: 0 auto;"}
+
+nav 요소 내에 클릭할 수 있는 navigation icon을 만들기 위한 html tag를 추가한다.
+
+```html
+<nav>
+  <input class="nav-toggle" id="nav-toggle" type="checkbox">
+  <label class="navicon" for="nav-toggle"><span class="navicon-bar"></span></label>
+```
+
+
+
 
 1. viewport width가 480px 이하가 되면 header 영역을 데스크탑 layout과 같이 다시 1단으로 되돌려서 60px이 되게 한다.
 
@@ -347,6 +349,9 @@ orientation을 제외한 모든 속성은 min/max 접두사를 사용할 수 있
 3. 스마트폰 이외의 layout에서는 감추었던 navigation item을 담고 있는 navigation icon을 우측에 표시한다.
 
 4. navigation icon이 클릭되면 navigation icon을 애니메이션 처리하고 navigation item 수직 정렬하여 header 영역 아래에 추가한다.
+
+
+
 
 
 ## 2.2

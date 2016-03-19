@@ -721,8 +721,18 @@ navigation icon을 클릭하면 아래와 같은 현상이 발생할 수 있다.
 
 ## 1.4 Section & Aside
 
+<p data-height="268" data-theme-id="0" data-slug-hash="bogtz" data-default-tab="result" data-user="SaraSoueidan" class="codepen">See the Pen <a href="http://codepen.io/SaraSoueidan/pen/bogtz/">Responsive CSS3 Side Navigation Menu</a> by Sara Soueidan (<a href="http://codepen.io/SaraSoueidan">@SaraSoueidan</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
+위로올린다
+http://localhost:63342/metronic_v4.5.2/theme/admin_3/index.html
+위로올린다+접는다
+https://devcenter.heroku.com/categories/nodejs
+아래로내린다
+https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions
 
+http://webdesignerwall.com/tutorials/responsive-design-with-css3-media-queries
+## 1.5 footer ?
 
 
 

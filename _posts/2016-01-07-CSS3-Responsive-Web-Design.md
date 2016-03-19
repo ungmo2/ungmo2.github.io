@@ -365,7 +365,7 @@ navigation icon은 클릭할 수 있어야 한다. 즉 클릭되었을 때의 �
 
 그럼 navigation icon을 만들어 보자.
 
-navigation icon의 외양을 담당하는 것이 label tag이다. checkbox input tag는 navigation icon과 연동되어 navigation icon을 클릭하면 checkbox input tag도 checked 상태가 된다.
+navigation icon은 checkbox input tag과 연동되어야 하므로 label tag를 사용하였다. 즉 navigation icon을 클릭하면 checkbox input tag도 checked 상태가 된다.
 
 navigation icon의 style은 다음과 같이 정의한다.
 
@@ -403,6 +403,53 @@ navigation icon은 header 우측의 절대 위치에 배치되어야 하므로 `
 
 ![res-layout-practice-4](/img/res-layout-practice-4.png)
 {: style="max-width:100px; margin: 10px auto;"}
+
+위 그림과 같이 navigation icon의 내부 막대 1개가 표기된다.  
+
+[가상 요소 선택자 (Pseudo-Element Selector)](http://ungmo2.github.io/css/CSS3-Selector/#pseudo-element-selector) 를 사용하여 navigation icon의 내부 막대 앞뒤 공간에 내부 막대를 추가한다.
+
+```css
+.navicon-bar::before,
+.navicon-bar::after {
+  background-color: #333;
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  /*transition: all .2s ease-out;*/
+  width: 100%;
+}
+.navicon-bar::before {
+  top: -7px;
+}
+.navicon-bar::after {
+  top: 7px;
+}
+```
+
+절대 위치를 지정하기 위해 `position: absolute;`를 사용하였으므로 가상 요소의 부모 요소인 span 요소에 `position: relative;`를 추가한다.
+
+```css
+.navicon-bar {
+  background-color: #333;
+  display: block;
+  position: relative;
+  /*transition: background-color 0.2s ease-out;*/
+  width: 20px;
+  height: 3px;
+}
+```
+
+![res-layout-practice-5](/img/res-layout-practice-5.png)
+{: style="max-width:100px; margin: 10px auto;"}
+
+아직 navigation icon을 클릭하여도 아무런 반응이 없다.
+
+
+
+
+
+
 
 
 

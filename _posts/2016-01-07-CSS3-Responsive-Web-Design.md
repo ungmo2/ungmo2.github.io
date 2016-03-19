@@ -443,13 +443,26 @@ navigation icon은 header 우측의 절대 위치에 배치되어야 하므로 `
 ![res-layout-practice-5](/img/res-layout-practice-5.png)
 {: style="max-width:100px; margin: 10px auto;"}
 
-아직 navigation icon을 클릭하여도 아무런 반응이 없다.
+아직 navigation icon을 클릭하여도 아무런 반응이 없다. navigation icon을 클릭하면 클릭되었음을 사용자가 확인할 수 있도록 navigation icon의 style을 변화시킨다.
 
+```css
+.nav-toggle:checked ~ .navicon > .navicon-bar {
+  background: transparent;
+}
+.nav-toggle:checked ~ .navicon > .navicon-bar:before {
+  transform: rotate(45deg);
+  top: 0;
+}
+.nav-toggle:checked ~ .navicon > .navicon-bar:after {
+  transform: rotate(-45deg);
+  top: 0;
+}
+```
 
+먼저 중간에 위치한 막대를 없앤다. 그리고 상하 막대를 45도 회전시킨다. 이때 위치가 틀어지므로 `top: 0;`로 보정한다.
 
-
-
-
+![res-layout-practice-6](/img/res-layout-practice-6.png)
+{: style="max-width:100px; margin: 10px auto;"}
 
 
 

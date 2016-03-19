@@ -14,12 +14,12 @@ categories: css
 화면폭을 좁히면 아래 그림과 같이 화면이 망가지는데 이것는 HTML 요소에 고정폭을 지정하여 가로 스크롤을 발생시키지 않으면 해결이 어렵다.
 
 ![](/img/break-view.png)
-{: style="max-width:500px; margin: 0 auto;"}
+{: style="max-width:500px; margin: 10px auto;"}
 
 그리고 모바일과 같이 작은 해상도의 디바이스에서 접근했을 때 화면이 너무 작아져 가시성에 문제가 발생한다.
 
 ![](/img/mobile-view.jpg)
-{: style="max-width:350px; margin: 0 auto;"}
+{: style="max-width:350px; margin: 10px auto;"}
 
 # 1. Responsive Web Design
 
@@ -43,7 +43,7 @@ categories: css
 viewport란 웹페이지의 가시영역을 의미한다. viewport는 디바이스에 따라 차이가 있다. 예를 들어 모바일 브라우저는 윈도우 resize가 불가하고 화면 터치를 사용하는 등 데스크탑 브라우저와 구성이나 형태가 다르다. 또한 모바일의 화면은 데스크탑 화면보다 훨씬 작으므로 데스크탑용 웹페이지를 그대로 모바일에 출력하면 가독성이 현저히 나빠진다. 따라서 viewport를 이용하여 디바이스의 특성과 디바이스의 화면 크기 등을 고려하여 각종 디바이스 사용자에게 최적화된 웹페이지를 제공할 수 있다.
 
 ![viewport](/img/viewport.png)
-{: style="max-width:500px; margin: 0 auto;"}
+{: style="max-width:500px; margin: 10px auto;"}
 
 [meta tag](http://ungmo2.github.io/html/HTML5-Tag/#meta)는 브라우저 혹은 검색엔진최적화(SEO)를 위해 검색엔진에게 메타데이터를 전달하기 위해 사용된다. viewport meta tag는 브라우저의 화면 설정과 관련된 정보를 제공한다.
 
@@ -317,19 +317,19 @@ viewport width가 800px 이하가 되면 header 영역을 2단(logo영역과 nav
 ```
 
 ![res-layout-practice-1](/img/res-layout-practice-1.png)
-{: style="max-width:500px; margin: 0 auto;"}
+{: style="max-width:500px; margin: 10px auto;"}
 
 ### 1.3.2 Responsive Navigation Bar - Smartphone
 
 태블릿 layout에서는 header 영역을 2단으로 분리하여 navigation bar는 header 하단 영역에 배치하였다. 하지만 스마트폰의 viewport width는 가로로 나란히 정렬되어 있는 navigation bar를 모두 담기에는 너무 좁다. 다음과 같이 스마트폰 layout을 정의한다.
 
 ![res-layout-practice-2](/img/res-layout-practice-2.png)
-{: style="max-width:350px; margin: 0 auto;"}
+{: style="max-width:350px; margin: 10px auto;"}
 
 우측 navigation icon을 클릭하면 navigation bar가 수직 정렬되어 화면에 나타나도록 한다. 한번 더 클릭하면 화면에서 사라지도록 한다. 이때 navigation icon에 animation 효과를 부여한다.
 
 ![res-layout-practice-3](/img/res-layout-practice-3.png)
-{: style="max-width:350px; margin: 0 auto;"}
+{: style="max-width:350px; margin: 10px auto;"}
 
 nav 요소 내에 클릭할 수 있는 navigation icon을 만들기 위한 html tag를 추가한다.
 

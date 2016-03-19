@@ -433,7 +433,6 @@ navigation icon은 header 우측의 절대 위치에 배치되어야 하므로 `
   display: block;
   height: 100%;
   position: absolute;
-  /*transition: all .2s ease-out;*/
   width: 100%;
 }
 .navicon-bar::before {
@@ -451,7 +450,6 @@ navigation icon은 header 우측의 절대 위치에 배치되어야 하므로 `
   background-color: #333;
   display: block;
   position: relative;
-  /*transition: background-color 0.2s ease-out;*/
   width: 20px;
   height: 3px;
 }
@@ -481,17 +479,247 @@ navigation icon은 header 우측의 절대 위치에 배치되어야 하므로 `
 ![res-layout-practice-6](/img/res-layout-practice-6.png)
 {: style="max-width:100px; margin: 10px auto;"}
 
+navigation icon에 transition 효과를 부여하여 좀더 부드럽게 움직이도록 한다.
+
+```css
+.navicon-bar {
+  background-color: #333;
+  display: block;
+  position: relative;
+  transition: background-color .2s ease-out;
+  width: 20px;
+  height: 3px;
+}
+.navicon-bar::before,
+.navicon-bar::after {
+  background-color: #333;
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  transition: all .2s ease-out;
+  width: 100%;
+}
+```
+
+transition 속성은 property, duration, delay 순으로 정의한다.
+
+navigation icon을 클릭하면 아래와 같은 현상이 발생할 수 있다.
+
+![res-layout-practice-7](/img/res-layout-practice-7.png)
+{: style="max-width:350px; margin: 10px auto;"}
+
+이것은 navigation icon이 텍스트이기 때문에 발생하는 문제이다. 이 문제는 텍스트 선택을 차단하는 방법인 `user-select: none;` 속성을 지정하여 회피할 수 있다. user-select 속성은 현재 W3C(World Wide Web 컨소시엄) CSS 사양에 포함되어 있지 않기 때문에 벤더프리픽스(vendor prefix)를 사용하여야 한다.
+
+```css
+.navicon {
+  cursor: pointer;
+  /*display: inline-block;*/
+  height: 60px;
+  padding: 28px 15px;
+  position: absolute;
+  top: 0; right: 0;
+
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;          /* Likely future */
+}
+```
+
+마지막으로 navigation icon을 클릭하면 navigation item이 표시되도록 한다.
+
+```css
+@media screen and (max-width: 480px) {
+  ...
+
+  .nav-toggle:checked ~ .nav-items {
+    display: block;
+    background-color: #fff;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(0, 0, 0, 0.05);
+  }
+  .nav-items > li  {
+    display: block;
+  }
+  .nav-items > li > a {
+    line-height: 50px;
+  }
+}
+```
 
 
+다음은 왼성된 Responsive Navigation Bar의 소스코드이다.
 
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      /*Simple Reset CSS*/
+      * {
+        margin: 0; padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #58666e;
+        background-color: #f0f3f4;
+      }
+      li { list-style: none; }
+      a { text-decoration: none; }
 
-1. viewport width가 480px 이하가 되면 header 영역을 데스크탑 layout과 같이 다시 1단으로 되돌려서 60px이 되게 한다.
+      /*Navigation bar*/
+      header {
+        width: 100%;
+        height: 60px;
+        z-index: 2000;
+        background-color: #fff;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(0, 0, 0, 0.05);
+      }
+      .logo {
+        display: inline-block;
+        height: 36px;
+        margin: 12px 0 12px 25px;
+      }
+      .logo > img { height: 36px; }
+      nav {
+        float: right;
+        margin-right: 20px;
+      }
 
-2. logo image를 centering 한다.
+      .nav-items > li {
+        display: inline-block;
+      }
+      .nav-items > li > a {
+        line-height: 60px;
+        padding: 0 30px;
+        color: #666666;
+      }
+      .nav-items > li > a:hover {
+        color: #1E1E1E;
+      }
 
-3. 스마트폰 이외의 layout에서는 감추었던 navigation item을 담고 있는 navigation icon을 우측에 표시한다.
+      /* nav icon */
+      .navicon {
+        cursor: pointer;
+        height: 60px;
+        padding: 28px 15px;
+        position: absolute;
+        top: 0; right: 0;
 
-4. navigation icon이 클릭되면 navigation icon을 애니메이션 처리하고 navigation item 수직 정렬하여 header 영역 아래에 추가한다.
+        -webkit-user-select: none;  /* Chrome all / Safari all */
+        -moz-user-select: none;     /* Firefox all */
+        -ms-user-select: none;      /* IE 10+ */
+        user-select: none;          /* Likely future */
+      }
+
+      /*nav icon의 내부 막대*/
+      .navicon-bar {
+        background-color: #333;
+        display: block;
+        position: relative;
+        transition: background-color .2s ease-out;
+        width: 20px;
+        height: 3px;
+      }
+      .navicon-bar::before,
+      .navicon-bar::after {
+        background-color: #333;
+        content: '';
+        display: block;
+        height: 100%;
+        position: absolute;
+        transition: all .2s ease-out;
+        width: 100%;
+      }
+      .navicon-bar::before {
+        top: -7px;
+      }
+      .navicon-bar::after {
+        top: 7px;
+      }
+
+      /* nav-toggle checkbox */
+      .nav-toggle:checked ~ .navicon > .navicon-bar {
+        background: transparent;
+      }
+      .nav-toggle:checked ~ .navicon > .navicon-bar::before {
+        transform: rotate(45deg);
+        top: 0;
+      }
+      .nav-toggle:checked ~ .navicon > .navicon-bar::after {
+        transform: rotate(-45deg);
+        top: 0;
+      }
+
+      .nav-toggle {
+        display: none;
+      }
+      .navicon {
+        display: none;
+      }
+
+      /*Media Query*/
+      /* for tablet */
+      @media screen and (max-width: 800px) {
+        header {
+          height: 120px;
+          text-align: center;
+        }
+        nav {
+          float: none;
+          margin-right: 0;
+        }
+      }
+
+      /* for smartphone */
+      @media screen and (max-width: 480px) {
+        header {
+          height: 60px;
+          position: relative;
+        }
+        .nav-items {
+          display: none;
+        }
+        .navicon {
+          display: block;
+        }
+        .nav-toggle:checked ~ .nav-items {
+          display: block;
+          background-color: #fff;
+          box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(0, 0, 0, 0.05);
+        }
+        .nav-items > li  {
+          display: block;
+        }
+        .nav-items > li > a {
+          line-height: 50px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+      <header>
+        <a class="logo" href="#home"><img src="http://ungmo2.github.io/img/logo.png"></a>
+        <nav>
+          <!-- nav-toggle Start -->
+          <input class="nav-toggle" id="nav-toggle" type="checkbox">
+          <label class="navicon" for="nav-toggle"><span class="navicon-bar"></span></label>
+          <!-- nav-toggle End -->
+          <ul class="nav-items">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#news">News</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about">About</a></li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+  </body>
+</html>
+```
 
 
 

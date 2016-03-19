@@ -514,7 +514,6 @@ navigation icon을 클릭하면 아래와 같은 현상이 발생할 수 있다.
 ```css
 .navicon {
   cursor: pointer;
-  /*display: inline-block;*/
   height: 60px;
   padding: 28px 15px;
   position: absolute;
@@ -547,8 +546,7 @@ navigation icon을 클릭하면 아래와 같은 현상이 발생할 수 있다.
 }
 ```
 
-
-다음은 왼성된 Responsive Navigation Bar의 소스코드이다.
+다음은 완성된 Responsive Navigation Bar의 소스코드이다.
 
 ```html
 <!DOCTYPE html>
@@ -721,11 +719,10 @@ navigation icon을 클릭하면 아래와 같은 현상이 발생할 수 있다.
 </html>
 ```
 
+## 1.4 Section & Aside
 
 
 
-
-## 2.2
 
 
 

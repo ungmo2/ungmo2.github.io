@@ -331,16 +331,97 @@ viewport width가 800px 이하가 되면 header 영역을 2단(logo영역과 nav
 ![res-layout-practice-3](/img/res-layout-practice-3.png)
 {: style="max-width:350px; margin: 10px auto;"}
 
-nav 요소 내에 클릭할 수 있는 navigation icon을 만들기 위한 html tag를 추가한다.
+우선 nav 요소 내에 클릭할 수 있는 navigation icon을 만들기 위한 html tag를 추가한다. label tag의 for 속성값으로 input tag의 id 속성값이 주어져야한다.
 
 ```html
 <nav>
   <input class="nav-toggle" id="nav-toggle" type="checkbox">
   <label class="navicon" for="nav-toggle"><span class="navicon-bar"></span></label>
+  <ul class="nav-items">
+    <li><a href="#home">Home</a></li>
+...
 ```
 
+navigation icon과 checkbox input tag는 스마트폰 layout 이외의 경우, 화면에 표시되어서는 않된다. 따라서 `display: none;`으로 화면에 표시되지 않도록 한다. `display: none;`은 해당 공간조차 점유하지 않지만 `visibility: hidden;`을 사용하면 해당 공간은 남아있고 표시만 되지 않는다. [참고 : CSS display](http://ungmo2.github.io/css/CSS3-Property/#display)
+
+[CSS 적용 우선 순위 (Cascading Order)](http://ungmo2.github.io/css/CSS3-Selector/#css----cascading-order) 를 고려하여 가장 마지막에 정의하는 것이 안전하다.
+
+```css
+.nav-toggle {
+  display: none;
+}
+.navicon {
+  display: none;
+}
+```
+
+navigation icon은 클릭할 수 있어야 한다. 즉 클릭되었을 때의 상태를 감지할 수 있어야 한다. checkbox input tag를 사용하면 checked 속성을 이용하여 클릭되었을 때(input:checked)와 그렇지 않을 때를 구분할 수 있다.
+
+```css
+.nav-toggle:checked ~ .nav-items {
+  ...
+}
+```
+
+그럼 navigation icon을 만들어 보자.
+
+navigation icon의 외양을 담당하는 것이 label tag이다. checkbox input tag는 navigation icon과 연동되어 navigation icon을 클릭하면 checkbox input tag도 checked 상태가 된다.
+
+navigation icon의 style은 다음과 같이 정의한다.
+
+```css
+.navicon {
+  cursor: pointer;
+  height: 60px;
+  padding: 28px 15px;
+  position: absolute;
+  top: 0; right: 0;
+}
+```
+
+navigation icon은 header 우측의 절대 위치에 배치되어야 하므로 `position: absolute;`를 지정한다. absolute 속성은 relative 속성의 부모 요소를 기준으로 배치되므로 header 요소에 relative 속성을 지정한다. 이것은 스마트폰 layout에서만 해당되는 것이므로 스마트폰 용 media query 내에 정의한다.
+
+```css
+@media screen and (max-width: 480px) {
+  header {
+    height: 60px;
+    position: relative;
+  }
+}
+```
+
+다음은 label tag 내의 span tag의 style을 정의한다. span tag는 navigation icon의 내부 막대 3개(클릭 시에는 X 표시)를 표현하기 위해 정의하였다.
+
+```css
+.navicon-bar {
+  background-color: #333;
+  display: block;
+  width: 20px;
+  height: 3px;
+}
+```
+
+![res-layout-practice-4](/img/res-layout-practice-4.png)
+{: style="max-width:100px; margin: 10px auto;"}
 
 
+
+스마트폰 layout에서는 navigation bar가 초기상태에서 비표시되어야 한다. 그리고 navigation icon은 표시되어야 한다.
+
+```css
+@media screen and (max-width: 480px) {
+  header {
+    height: 60px;
+    position: relative;
+  }
+  .nav-items {
+    display: none;
+  }
+  .navicon {
+    display: block;
+  }
+}
+```
 
 1. viewport width가 480px 이하가 되면 header 영역을 데스크탑 layout과 같이 다시 1단으로 되돌려서 60px이 되게 한다.
 

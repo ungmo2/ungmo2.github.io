@@ -390,6 +390,23 @@ navigation icon은 header 우측의 절대 위치에 배치되어야 하므로 `
 }
 ```
 
+스마트폰 layout에서는 navigation bar가 초기상태에서 비표시되어야 한다. 그리고 navigation icon은 표시되어야 한다.
+
+```css
+@media screen and (max-width: 480px) {
+  header {
+    height: 60px;
+    position: relative;
+  }
+  .nav-items {
+    display: none;
+  }
+  .navicon {
+    display: block;
+  }
+}
+```
+
 다음은 label tag 내의 span tag의 style을 정의한다. span tag는 navigation icon의 내부 막대 3개(클릭 시에는 X 표시)를 표현하기 위해 정의하였다.
 
 ```css
@@ -449,11 +466,11 @@ navigation icon은 header 우측의 절대 위치에 배치되어야 하므로 `
 .nav-toggle:checked ~ .navicon > .navicon-bar {
   background: transparent;
 }
-.nav-toggle:checked ~ .navicon > .navicon-bar:before {
+.nav-toggle:checked ~ .navicon > .navicon-bar::before {
   transform: rotate(45deg);
   top: 0;
 }
-.nav-toggle:checked ~ .navicon > .navicon-bar:after {
+.nav-toggle:checked ~ .navicon > .navicon-bar::after {
   transform: rotate(-45deg);
   top: 0;
 }
@@ -466,22 +483,7 @@ navigation icon은 header 우측의 절대 위치에 배치되어야 하므로 `
 
 
 
-스마트폰 layout에서는 navigation bar가 초기상태에서 비표시되어야 한다. 그리고 navigation icon은 표시되어야 한다.
 
-```css
-@media screen and (max-width: 480px) {
-  header {
-    height: 60px;
-    position: relative;
-  }
-  .nav-items {
-    display: none;
-  }
-  .navicon {
-    display: block;
-  }
-}
-```
 
 1. viewport width가 480px 이하가 되면 header 영역을 데스크탑 layout과 같이 다시 1단으로 되돌려서 60px이 되게 한다.
 

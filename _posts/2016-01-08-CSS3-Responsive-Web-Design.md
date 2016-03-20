@@ -504,7 +504,7 @@ navigation icon에 transition 효과를 부여하여 좀더 부드럽게 움직�
 
 transition 속성은 property, duration, delay 순으로 정의한다.
 
-navigation icon을 클릭하면 아래와 같은 현상이 발생할 수 있다.
+navigation icon을 클릭하면 의도하지 않게 이미지가 선택되는 현상이 발생할 수 있다.
 
 ![res-layout-practice-7](/img/res-layout-practice-7.png)
 {: style="max-width:350px; margin: 10px auto;"}

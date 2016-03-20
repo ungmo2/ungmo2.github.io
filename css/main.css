@@ -39,7 +39,7 @@ li {
   margin: 10px 0 0;
 }
 
-#markdown-toc ul {
+#markdown-toc , #markdown-toc ul {
   list-style-type: none;
 }
 

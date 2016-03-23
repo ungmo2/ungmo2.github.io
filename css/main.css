@@ -4,12 +4,12 @@
 @import url(http://fonts.googleapis.com/earlyaccess/kopubbatang.css);
 
 /* --- General --- */
-* {
+/** {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
+}*/
 
 body {
   font-family: 'Lora', 'KoPub Batang', 'Times New Roman', serif;

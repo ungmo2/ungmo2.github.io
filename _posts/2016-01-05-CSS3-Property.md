@@ -235,7 +235,9 @@ p {
 
 - 화면 크기 전체의 가로폭을 차지한다. (width: 100%)
 
-- width, height, margin 속성 지정이 가능하다.
+- width, height, margin, padding 속성 지정이 가능하다.
+
+- block 요소 내에 inline 요소를 포함할 수 있다
 
 - block 요소 예
 
@@ -277,11 +279,13 @@ p {
 
 - 새로운 라인에서 시작하지 않으며 문장의 중간에 들어갈 수 있다. 즉, 줄을 바꾸지 않고 다른 요소와 함께 한 행에 위치시킬 수 있다.
 
-- content의 폭만큼만 가로폭을 차지한다.
+- content의 너비만큼 가로폭을 차지한다.
 
-- width, height, margin-top, margin-bottom 속성 지정이 불가능하다. padding은 지정할 수 있으나 height가 적용되진 않는다. 상, 하 여백은 line-height로 지정한다.
+- width, height, margin-top, margin-bottom 속성을 지정할 수 없다. padding 속성은 지정 가능하나 padding-top, padding-bottom의 경우 정상적으로 적용되지 않는다. 상, 하 여백은 line-height로 지정한다.
 
-- inline 요소를 연속 사용하는 경우, 간격을 유지하기 위해서 좌우에 약 4px 가량의 외부 여백(margin)이 자동 지정된다.
+- inline 요소를 연속 사용하는 경우, 좌우에 정의하지 않은 space(4px)가 자동 지정된다.
+
+- inline 요소 내에 block 요소를 포함할 수 없다.
 
 - inline 요소 예
 
@@ -318,9 +322,9 @@ block과 inline의 특징을 모두 갖는다. inline 요소 같이 한 줄에 �
 
 - 기본적으로 inline 속성과 흡사하게 줄을 바꾸지 않고 다른 요소와 함께 한 행에 위치시킬 수 있다.
 
-- block 속성처럼 width와 height, margin 속성을 정의할 수 있다. 상, 하 여백을 margin과 line-height 두가지 속성 모두를 통해 제어할 수 있다.
+- block 속성처럼 width와 height, margin, padding 속성을 정의할 수 있다. 상, 하 여백을 margin과 line-height 두가지 속성 모두를 통해 제어할 수 있다.
 
-- inline-block 속성을 가진 태그끼리 연속으로 사용되는 경우에는 최소한의 간격을 유지하기 위해서 좌우에 약 4px 가량의 외부 여백(margin)이 자동 지정된다.
+- inline-block 속성 요소를 연속 사용되는 경우, 좌우에 정의하지 않은 space(4px)가 자동 지정된다.
 
 ```html
 <!DOCTYPE html>

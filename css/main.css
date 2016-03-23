@@ -202,7 +202,7 @@ img {
 
   .navbar-custom.top-nav-short {
     padding: 0;
-    opacity: 0.1;
+    background: rgba(255,255,255,0.1);
   }
 }
 

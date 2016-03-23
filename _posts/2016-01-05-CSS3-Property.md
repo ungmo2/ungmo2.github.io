@@ -213,7 +213,18 @@ cm, mm, inch 등의 단위도 존재하나 대표적인 크기 단위는 다음�
 
 # 2. CSS 속성(Property)
 
-## 2.1 block / inline
+## 2.1 표시 （Display）
+
+### 2.1.1 display 속성
+
+display 속성은 layout을 정의하기 위한 가장 중요한 CSS 속성이다.
+
+| 속성값 키워드   | 설명                         |
+|:-------------|:----------------------------|
+| block        | block 속성 요소로 지정
+| inline       | inline 속성 요소로 지정
+| inline-block | inline-block 속성 요소로 지정
+| none         | 해당 요소를 화면에 표시하지 않는다 (공간조차 사라진다)
 
 모든 HTML 요소는 아무런 CSS를 적용하지 않아도 기본적으로 브라우저에 표현되는 디폴트 표시 값을 가진다. 대부분의 HTML 요소는 block 또는 inline 속성을 갖는다.
 
@@ -229,7 +240,7 @@ p {
 }
 ```
 
-### 2.1.1 block 속성
+#### 2.1.1.1 block 속성
 
 - 항상 새로운 라인에서 시작한다.
 
@@ -275,7 +286,7 @@ p {
 </html>
 ```
 
-### 2.1.2 inline 속성
+#### 2.1.1.2 inline 속성
 
 - 새로운 라인에서 시작하지 않으며 문장의 중간에 들어갈 수 있다. 즉, 줄을 바꾸지 않고 다른 요소와 함께 한 행에 위치시킬 수 있다.
 
@@ -316,7 +327,7 @@ p {
 </html>
 ```
 
-### 2.1.3 inline-block 요소
+#### 2.1.1.3 inline-block 요소
 
 block과 inline의 특징을 모두 갖는다. inline 요소 같이 한 줄에 표현되면서 width, height, margin 속성을 지정할 수 있다. 디폴트 표시값으로 inline-block 속성을 갖는 요소는 없다. inline-block 속성을 갖게 하려면 별도 지정이 필요하다.
 
@@ -359,19 +370,7 @@ block과 inline의 특징을 모두 갖는다. inline 요소 같이 한 줄에 �
 </html>
 ```
 
-## 2.2 표시 （Display）
-
-### 2.2.1 display 속성
-
-display 속성은 layout을 정의하기 위한 가장 중요한 CSS 속성이다.
-
-
-| 속성값 키워드   | 설명                         |
-|:-------------|:----------------------------|
-| block        | block 속성 요소로 지정
-| inline       | inline 속성 요소로 지정
-| inline-block | inline-block 속성 요소로 지정
-| none         | 해당 요소를 화면에 표시하지 않는다 (공간조차 사라진다)
+아래는 display 속성 사용 예제이다.
 
 ```html
 <!DOCTYPE html>
@@ -426,7 +425,7 @@ display 속성은 layout을 정의하기 위한 가장 중요한 CSS 속성이�
 </html>
 ```
 
-### 2.2.2 visibility 속성
+### 2.1.2 visibility 속성
 
 visibility 속성은 요소를 보이게 할 것인지 보이지 않게 할 것인지를 정의한다.
 
@@ -507,7 +506,7 @@ opacity 속성은 요소의 투명도를 정의한다. 0.0 ~ 1.0의 값을 입�
 </html>
 ```
 
-## 2.3 박스 모델 (Box Model)
+## 2.2 박스 모델 (Box Model)
 
 모든 HTML 요소는 박스 형태의 영역을 가지고 있다.
 
@@ -546,7 +545,7 @@ CSS 박스 모델은 모든 HTML 요소를 감싸고 있는 margin, border, padd
 </html>
 ```
 
-### 2.3.1 width / height 속성
+### 2.2.1 width / height 속성
 
 width와 height 속성은 요소의 내용(content)가 위치하는 영역의 너비와 높이를 의미한다. 따라서 박스 전체 크기는 다음과 같이 계산할 수 있다.
 
@@ -554,7 +553,7 @@ width와 height 속성은 요소의 내용(content)가 위치하는 영역의 �
 
 - 전체 높이 = height + top padding + bottom padding + top border + bottom border + top margin + bottom margin
 
-### 2.3.2 margin / padding 속성
+### 2.2.2 margin / padding 속성
 
 margin / padding 속성은 content의 4개 방향에 대하여 지정이 가능하다.
 
@@ -672,7 +671,7 @@ margin 속성에 `auto` 키워드를 설정하면 해당 요소를 브라우저 
 
 `max-width` 속성을 사용하면 브라우저 너비가 요소의 너비보다 좁아질 때 자동으로 요소의 너비가 줄어든다.
 
-### 2.3.3 border 속성
+### 2.2.3 border 속성
 
 Border Style
 
@@ -838,7 +837,7 @@ Border Radius
 </html>
 ```
 
-### 2.3.4 box-sizing 속성
+### 2.2.4 box-sizing 속성
 
 | 키워드           | 설명
 |:----------------|:-----------------------------------------------------------
@@ -876,11 +875,11 @@ Border Radius
 </html>
 ```
 
-## 2.4 배경 (Background)
+## 2.3 배경 (Background)
 
 해당 요소의 배경으로 이미지 또는 색상을 정의한다.
 
-### 2.4.1 Background Image
+### 2.3.1 Background Image
 
 ```html
 <!DOCTYPE html>
@@ -1000,7 +999,6 @@ background-size: 100%, 500px;
   </style>
 </head>
 <body>
-
   <div>
     <p>The background-image is fixed. Try to scroll down the page.</p>
     <p>The background-image is fixed. Try to scroll down the page.</p>
@@ -1039,7 +1037,7 @@ background-size: 100%, 500px;
 </html>
 ```
 
-### 2.4.2 Background Position
+### 2.3.2 Background Position
 
 | 속성값	        | Description
 |:--------------|:-----------------
@@ -1082,11 +1080,11 @@ div {
 }
 ```
 
-## 2.5 폰트와 텍스트
+## 2.4 폰트와 텍스트
 
 폰트 및 텍스트 관련 속성은 폰트의 크기, 폰트의 지정, 폰트의 스타일, 텍스트 정렬 등을 정의한다.
 
-### 2.5.1 font-size 속성
+### 2.4.1 font-size 속성
 
 텍스트의 크기를 정의한다.
 
@@ -1112,7 +1110,7 @@ div {
 </html>
 ```
 
-### 2.5.2 font-family 속성
+### 2.4.2 font-family 속성
 
 폰트를 지정한다. 컴퓨터에 폰트가 설치되어 있지 않으면 적용되지 않는다. 폰트는 복수개 지정이 가능한데 첫번째 지정한 폰트가 클라이언트 컴퓨터에 설치되어 있지 않은 경우, 다음에 지정된 폰트를 적용한다. 따라서 마지막에 지정하는 폰트는 대부분의 OS에 기본적으로 설치되어 있는 generic-family 폰트(Serif, Sans-serif, Mono space)를 지정하는 것이 일반적이다.
 
@@ -1144,7 +1142,7 @@ div {
 </html>
 ```
 
-### 2.5.2 font-style / font-weight 속성
+### 2.4.3 font-style / font-weight 속성
 
 font-style 속성은 이탤릭체의 지정, font-weight 속성은 폰트 굵기 지정에 사용된다.
 
@@ -1183,7 +1181,7 @@ font-style 속성은 이탤릭체의 지정, font-weight 속성은 폰트 굵기
 </html>
 ```
 
-### 2.5.3 line-height 속성
+### 2.4.4 line-height 속성
 
 텍스트의 높이를 지정한다. 텍스트 수직 정렬에도 응용되어 사용된다.
 
@@ -1254,7 +1252,7 @@ font-style 속성은 이탤릭체의 지정, font-weight 속성은 폰트 굵기
 </html>
 ```
 
-### 2.5.4 text-align 속성
+### 2.4.5 text-align 속성
 
 텍스트의 수평 정렬을 정의한다.
 
@@ -1289,7 +1287,7 @@ font-style 속성은 이탤릭체의 지정, font-weight 속성은 폰트 굵기
 
 위 예제의 a 요소에 대한 중앙 정렬은 적용되지 않았다. 이는 a 요소는 inline 요소이기 때문이다. inline 요소는 width 속성이 없으므로 중앙 개념이 존재하지 않는다. a 요소에 `display: block;`을 지정한다면 중앙 정렬이 가능할 것이다.
 
-### 2.5.5 text-decoration 속성
+### 2.4.6 text-decoration 속성
 
 text-decoration 속성을 사용하여 링크 underline을 제거할 수 있다. 또는 텍스트에 underline, overline, line-through를 추가할 수도 있다.
 
@@ -1315,65 +1313,9 @@ text-decoration 속성을 사용하여 링크 underline을 제거할 수 있다.
 </html>
 ```
 
-## 2.6 Shadow Effect
+## 2.5 위치 (Position)
 
-text-shadow 속성은 텍스트에 그림자 효과를 지정한다.
-
-```
-text-shadow: h-shadow(오른쪽) v-shadow(아래) blur-radius(흐림정도) color
-```
-
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <style>
-      h1 {
-        color: white;
-        text-shadow: 2px 2px 4px #000000;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Text-shadow on white text</h1>
-  </body>
-</html>
-```
-
-box-shadow 속성은 박스에 그림자 효과를 지정한다.
-
-```
-box-shadow: h-shadow v-shadow blur spread color
-```
-
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <style>
-      div {
-        width: 300px;
-        height: 100px;
-        background-color: yellow;
-        box-shadow: 10px 10px 5px #888888;
-      }
-    </style>
-  </head>
-  <body>
-    <div></div>
-  </body>
-</html>
-```
-
-다음과 같은 툴을 사용하여 간단히 작성할 수 있다. (Rounded Corner, Gradient...)
-
-* [css3generator.com](http://www.css3generator.com/)  
-* [css3gen.com/](http://css3gen.com/)  
-* [cssmatic.com](http://www.cssmatic.com/box-shadow)
-
-## 2.7 위치 (Position)
-
-### 2.7.1 position
+### 2.5.1 position
 
 position 속성은 요소의 위치를 정의한다. top, bottom, left, right 속성과 함께 사용하여 위치를 지정한다.
 
@@ -1433,7 +1375,7 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
 </html>
 ```
 
-#### 2.7.1.1 static (기본위치)
+#### 2.5.1.1 static (기본위치)
 
 위에서 아래로, 왼쪽에서 오른쪽으로 순서에 따라 배치된다. 이는 static 속성을 지정하지 않았을 때와 같다. 부모 요소 내에 존재할 때는 부모 요소의 위치를 기준으로 배치된다.
 
@@ -1473,7 +1415,7 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
 </html>
 ```
 
-#### 2.7.1.2 relative (상대위치)
+#### 2.5.1.2 relative (상대위치)
 
 기본 위치(static으로 지정되었을 때의 위치)에서 좌표 속성(top, bottom, left, right)을 사용하여 위치를 이동시킨다. 부모 요소 내에 존재할 때는 부모 요소의 위치를 기준으로 배치된다.
 
@@ -1512,7 +1454,7 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
 </html>
 ```
 
-#### 2.7.1.3 absolute (절대위치)
+#### 2.5.1.3 absolute (절대위치)
 
 부모 혹은 조상 요소중에 relative 속성이 선언된 가장 가까운 요소를 기준으로 좌표속성(top, bottom, left, right)을 사용하여 위치를 이동시킨다. 이때 다른 요소가 먼저 위치를 점유하고 있어도 뒤로 밀리지 않고 덮어쓰게 된다. (이런 특성을 부유 또는 부유 객체라 한다)
 
@@ -1575,7 +1517,7 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
 </html>
 ```
 
-#### 2.7.1.4 fixed (고정위치)
+#### 2.5.1.4 fixed (고정위치)
 
 부모 요소와 관계없이 브라우저의 viewport를 기준으로 좌표속성(top, bottom, left, right)을 사용하여 위치를 이동시킨다. 스크롤이 되더라도 화면에서 사라지지 않고 항상 같은 곳에 위치한다. ***fixed 속성 선언 시, block 요소의 width는 inline 요소와 같이 content에 맞게 변화되므로 주의하여야 한다.***
 
@@ -1621,7 +1563,7 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
 </html>
 ```
 
-### 2.7.2 z-index
+### 2.5.2 z-index
 
 z-index 속성에 큰 숫자값을 지정할 수록 화면 전면에 출력된다.
 
@@ -1661,7 +1603,7 @@ z-index 속성에 큰 숫자값을 지정할 수록 화면 전면에 출력된�
 </html>
 ```
 
-### 2.7.3 overflow
+### 2.5.3 overflow
 
 overflow 속성은 자식 요소가 부모 요소의 영역를 벗어났을 때 처리 방법을 정의한다.
 
@@ -1720,7 +1662,7 @@ overflow 속성은 자식 요소가 부모 요소의 영역를 벗어났을 때 
 div { overflow-y: scroll; }
 ```
 
-## 2.8 float
+## 2.6 float
 
 float 속성은 주로 layout을 구성하기 위해 사용되는 핵심 기술이다. layout의 가장 큰 목적은 1개 이상의 block 속성 요소를 원하는 위치에 정렬시키는 것이다.
 
@@ -1754,7 +1696,7 @@ float 속성은 해당 요소를 떠 있게 한다. 여기서 떠 있다(float)�
 
 ![css float](/img/float.png)
 
-### 2.8.1 정렬
+### 2.6.1 정렬
 
 float 속성을 사용하지 않은 블록 요소들은 수직으로 정렬된다. `float:left;` 속성을 사용하면 왼쪽부터 정렬되고, `float:right;` 속성을 사용하면 오른쪽부터 정렬된다.
 
@@ -1834,9 +1776,9 @@ width값을 지정하지 않은 block 속성 요소는 기본적으로 `width: 1
 </html>
 ```
 
-### 2.8.2 float 속성 문제 해결
+### 2.6.2 float 속성 문제 해결
 
-#### 2.8.2.1 float 속성이 선언되지 않은 요소의 문제
+#### 2.6.2.1 float 속성이 선언되지 않은 요소의 문제
 
 위 예제를 보면 두 요소간 margin이 있어야 한다. 그러나 결과는 그렇지 않다.
 
@@ -1875,7 +1817,7 @@ width값을 지정하지 않은 block 속성 요소는 기본적으로 `width: 1
 
 두번째 요소에도 float 속성을 선언하면 `overflow: hidden` 속성은 선언하지 않아도 되지만  너비가 최소화된다.
 
-#### 2.8.2.2 float 속성이 선언된 요소 간의 문제
+#### 2.6.2.2 float 속성이 선언된 요소 간의 문제
 
 아래 예제를 보면 float 속성이 선언된 두개의 자식 요소를 포함하는 부모 요소의 높이가 정상적인 값을 가지지 못하는 문제가 발생한다.
 
@@ -1958,9 +1900,9 @@ d1, d2 모두 `float: left` 속성을 가지고 있으므로 `overflow: hidden` 
 </html>
 ```
 
-### 2.8.3 Layout Examples
+### 2.6.3 Layout Examples
 
-#### 2.8.3.1 2-Column Layout Example
+#### 2.6.3.1 2-Column Layout Example
 
 ![2-column-layout](/img/2-column-layout.png)
 
@@ -2029,7 +1971,7 @@ d1, d2 모두 `float: left` 속성을 가지고 있으므로 `overflow: hidden` 
 </html>
 ```
 
-#### 2.8.3.2 3-Column Layout Example
+#### 2.6.3.2 3-Column Layout Example
 
 ![3-column-layout](/img/3-column-layout.png)
 

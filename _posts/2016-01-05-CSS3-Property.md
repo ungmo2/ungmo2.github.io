@@ -213,7 +213,7 @@ cm, mm, inch 등의 단위도 존재하나 대표적인 크기 단위는 다음�
 
 # 2. CSS 속성(Property)
 
-## 2.1 표시（Display）
+## 2.1 표시(Display）
 
 ### 2.1.1 display 속성
 

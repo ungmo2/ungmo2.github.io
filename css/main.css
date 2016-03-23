@@ -197,11 +197,12 @@ img {
     padding: 20px 0;
     -webkit-transition: background .5s ease-in-out,padding .5s ease-in-out;
     -moz-transition: background .5s ease-in-out,padding .5s ease-in-out;
-    transition: background .5s ease-in-out,padding .5s ease-in-out;
+    transition: background .5s ease-in-out, padding .5s ease-in-out, opacity .5s ease-in-out;
   }
 
   .navbar-custom.top-nav-short {
     padding: 0;
+    opacity: 0.1;
   }
 }
 

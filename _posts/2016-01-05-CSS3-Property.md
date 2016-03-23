@@ -217,7 +217,7 @@ cm, mm, inch 등의 단위도 존재하나 대표적인 크기 단위는 다음�
 
 ### 2.1.1 display 속성
 
-display 속성은 layout을 정의하기 위한 가장 중요한 CSS 속성이다.
+display 속성은 layout 정의에 자주 사용되는 중요한 속성이다.
 
 | 속성값 키워드   | 설명                         |
 |:-------------|:----------------------------|
@@ -248,9 +248,9 @@ p {
 
 - width, height, margin, padding 속성 지정이 가능하다.
 
-- block 요소 내에 inline 요소를 포함할 수 있다
+- block 속성 요소 내에 inline 속성 요소를 포함할 수 있다
 
-- block 요소 예
+- block 속성 요소 예
 
   - div
 
@@ -294,11 +294,11 @@ p {
 
 - width, height, margin-top, margin-bottom 속성을 지정할 수 없다. padding 속성은 지정 가능하나 padding-top, padding-bottom의 경우 정상적으로 적용되지 않는다. 상, 하 여백은 line-height로 지정한다.
 
-- inline 요소를 연속 사용하는 경우, 좌우에 정의하지 않은 space(4px)가 자동 지정된다.
+- inline 속성 요소를 연속 사용하는 경우, 좌우에 정의하지 않은 space(4px)가 자동 지정된다.
 
-- inline 요소 내에 block 요소를 포함할 수 없다.
+- inline 속성 요소 내에 block 속성 요소를 포함할 수 없다.
 
-- inline 요소 예
+- inline 속성 요소 예
 
   - span
 
@@ -327,7 +327,7 @@ p {
 </html>
 ```
 
-#### 2.1.1.3 inline-block 요소
+#### 2.1.1.3 inline-block 속성
 
 block과 inline의 특징을 모두 갖는다. inline 요소 같이 한 줄에 표현되면서 width, height, margin 속성을 지정할 수 있다. 디폴트 표시값으로 inline-block 속성을 갖는 요소는 없다. inline-block 속성을 갖게 하려면 별도 지정이 필요하다.
 

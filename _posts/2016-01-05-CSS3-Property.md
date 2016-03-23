@@ -511,12 +511,12 @@ opacity 속성은 요소의 투명도를 정의한다. 0.0 ~ 1.0의 값을 입�
 모든 HTML 요소는 박스 형태의 영역을 가지고 있다.
 
 ![typesetting](/img/typesetting.jpg)
-{: style="max-width:450px; margin: 0 auto;"}
+{: style="max-width:500px; margin: 10px auto;"}
 
 CSS 박스 모델은 모든 HTML 요소를 감싸고 있는 margin, border, padding 속성을 의미한다.
 
 ![css box model](/img/box-model.png)
-{: style="max-width:450px; margin: 0 auto;"}
+{: style="max-width:500px; margin: 10px auto;"}
 
 | 명칭     | 설명
 |:--------|:-----------------------------------------------------------

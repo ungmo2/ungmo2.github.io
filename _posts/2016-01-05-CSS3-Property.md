@@ -1119,6 +1119,7 @@ div {
 다음은 맥용 크롬 브라우저의 generic-family 폰트 설정 화면이다.
 
 ![Chrome generic-family font](/img/generic-family-font.png)
+{: style="max-width:400px; margin: 10px auto;"}
 
 폰트명은 따옴표로 감싸주며 폰트명이 한단어인 경우는 따옴표로 감싸주지 않아도 된다.
 
@@ -1751,6 +1752,7 @@ div {
 width값을 지정하지 않은 block 속성 요소는 기본적으로 `width: 100%`가 된다. 이때 block 속성 요소에 float 속성이 선언되면 width가 inline 요소와 같이 content에 맞게 최소화되고 남는 공간에 다음 요소가 위치한다. 다음요소에 float 속성이 선언되지 않았다면 다음요소는 남은 공간을 가득 채운다.
 
 ![float lineup](/img/float-lineup.png)
+{: style="max-width:500px; margin: 0 auto;"}
 
 ```html
 <!DOCTYPE html>

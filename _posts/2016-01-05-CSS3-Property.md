@@ -119,13 +119,13 @@ cm, mm, inch 등의 단위도 존재하나 대표적인 크기 단위는 다음�
 
 더욱 다양한 색상을 표현하기 위해 다음과 같은 색상 표현 단위를 사용할 수 있다.
 
-| 단위                               | 사용예                          
-|:----------------------------------|:------------------------------|
-| HEX 코드 단위 (Hexadecimal Colors)  | #000000
-| RGB (Red, Green, Blue)            | rgb(255, 255, 0)
-| RGBA (Red, Green, Blue, Alpha)    | rgba(255, 255, 0, 1)
-| HSL                               | hsl(0, 100%, 25%)
-| HSLA                              | hsla(60, 100%, 50%, 1)
+| 단위                                      | 사용예                          
+|:-----------------------------------------|:------------------------------|
+| HEX 코드 단위 (Hexadecimal Colors)         | #000000
+| RGB (Red, Green, Blue)                   | rgb(255, 255, 0)
+| RGBA (Red, Green, Blue, Alpha)           | rgba(255, 255, 0, 1)
+| HSL (Hue, Saturation, Lightness)         | hsl(0, 100%, 25%)
+| HSLA (Hue, Saturation, Lightness, Alpha) | hsla(60, 100%, 50%, 1)
 
 ```html
 <!DOCTYPE html>
@@ -432,8 +432,8 @@ visibility 속성은 요소를 보이게 할 것인지 보이지 않게 할 것�
 | 속성값 키워드   | 설명                         |
 |:-------------|:----------------------------|
 | visible      | 해당 요소를 보이게 한다 (기본값)
-| hidden       | 해당 요소를 보이지 않게 한다. display 속성의 none 속성값과 다르게 해당 공간은 사라지지 않는다.
-| collapse     | inline-block 속성 요소로 지정
+| hidden       | 해당 요소를 보이지 않게 한다. display: none;은 해당 요소의 공간까지 사라지게 visibility: hidden;은 해당 요소의 공간은 사라지지 않고 남아있게 된다.
+| collapse     | 테이블의 행이나 열을 보이지 않게 한다.
 | none         | 테이블 요소의 row나 column을 보이지 않게 한다. IE, 파이어폭스에서만 동작하며 크롬에서는 hidden과 동일하게 동작한다.
 
 ```html
@@ -442,10 +442,10 @@ visibility 속성은 요소를 보이게 할 것인지 보이지 않게 할 것�
   <head>
     <style>
       h1.visible {
-        visibility: visible
+        visibility: visible;
       }
       h1.hidden {
-        visibility: hidden
+        visibility: hidden;
       }
 
       table, td {
@@ -586,7 +586,6 @@ margin / padding 속성은 content의 4개 방향에 대하여 지정이 가능�
   </body>
 </html>
 ```
-
 -top, -right, -bottom, -left 4방향의 속성을 각각 지정하지 않고 margin, padding 1개의 속성만으로 4방향의 속성을 한번에 지정할 수 있다.
 
 - 4개의 값을 지정할 때
@@ -610,7 +609,6 @@ margin / padding 속성은 content의 4개 방향에 대하여 지정이 가능�
 - 1개의 값을 지정할 때
   - margin: 25px;
     - top, right, bottom, left margin : 25px
-
 
 ```html
 <!DOCTYPE html>
@@ -1264,18 +1262,10 @@ font-style 속성은 이탤릭체의 지정, font-weight 속성은 폰트 굵기
 <html>
   <head>
     <style>
-      h1 {
-        text-align: center;
-      }
-      h3 {
-        text-align: right;
-      }
-      p {
-        text-align: left;
-      }
-      a {
-        text-align: center;
-      }
+      h1 { text-align: center; }
+      h3 { text-align: right; }
+      p  { text-align: left; }
+      a  { text-align: center; }
     </style>
   </head>
   <body>
@@ -1312,6 +1302,166 @@ text-decoration 속성을 사용하여 링크 underline을 제거할 수 있다.
     <p>text-decoration: overline</p>
     <p>text-decoration: line-through</p>
     <p>text-decoration: underline</p>
+  </body>
+</html>
+```
+
+### 2.4.7 white-space 속성
+
+html의 white space는 공백(space), 들여쓰기(tab), 줄바꿈(line break)을 의미한다. html은 기본적으로 연속된 공백(space), 들여쓰기(tab)는 1번만 실행되며 줄바꿈(line break)은 무시된다. 또한 텍스트는 부모 가로 영역을 벗어나지 않고 자동 줄바꿈(wrap)된다. white-space 속성은 이러한 기본 동작을 제어하기 위한 속성이다.
+
+| 속성값     |line break | space/tab | wrapping(자동줄바꿈)
+|:---------|:---------:|:---------:|:---------:|
+| normal   | 무시       | 1번만      | O
+| nowrap   | 무시       | 1번만      | X
+| pre      | 반영       | 반영       | X
+| pre-wrap | 반영       | 반영       | O
+| pre-line | 반영       | 1번만      | O
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      div {
+        width: 150px;
+        height: 150px;
+        padding: 10px;
+        margin: 40px;
+        border-radius: 6px;
+        border-color: gray;
+        border-style: dotted;
+      }
+      .normal { white-space: normal; }
+      .nowrap { white-space: nowrap; }
+      .pre    { white-space: pre; }
+      .pre-wrap { white-space: pre-wrap; }
+      .pre-line { white-space: pre-line; }
+    </style>
+  </head>
+  <body>
+    <h1>white-space</h1>
+    <div class="normal"><h3>normal</h3>Lorem   ipsum
+
+      dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+    <div class="nowrap"><h3>nowrap</h3>Lorem   ipsum
+
+      dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+    <div class="pre"><h3>pre</h3>Lorem   ipsum
+
+        dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+    <div class="pre-wrap"><h3>pre-wrap</h3>Lorem   ipsum
+
+      dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+    <div class="pre-line"><h3>pre-line</h3>Lorem   ipsum
+
+      dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+  </body>
+</html>
+```
+
+### 2.4.8 text-overflow 속성
+
+부모 영역을 벗어난 wrapping(자동줄바꿈)이 되지 않은 텍스트의 처리 방법을 정의한다. 이 속성을 사용하기 위해서는 overflow 속성에 반드시 "visible" 이외의 값이 지정되어 있어야 한다.
+
+| 속성값	     | Description
+|:----------|:-----------------
+| clip      | 영역을 벗어난 부분을 표시하지 않는다. (기본값)
+| ellipsis  | 영역을 벗어난 부분을 잘라내어 보이지 않게 하고 말줄임표(...)를 표시한다.
+| <string>  | 값으로 지정한 임의의 문자열을 출력한다. Firefox(9.0~)만 지원하는 기능이다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+      div {
+        width: 150px;
+        height: 150px;
+        padding: 10px;
+        margin: 40px;
+        border-radius: 6px;
+        border-color: gray;
+        border-style: dotted;
+        white-space: nowrap;
+        overflow: hidden;  /*반드시 "visible" 이외의 값이 지정되어 있어야 한다.*/
+      }
+      .clip     { text-overflow: clip; }
+      .ellipsis { text-overflow: ellipsis; }
+      .string   { text-overflow: '☺'; } /*only Firefox(9.0~)*/
+    </style>
+  </head>
+  <body>
+    <h1>text-overflow</h1>
+    <div class="clip"><h3>clip</h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+    <div class="ellipsis"><h3>ellipsis</h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+    <div class="string"><h3>string</h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+  </body>
+</html>
+```
+
+### 2.4.9 word-wrap 속성
+
+한 단어의 길이가 길어서 부모 영역을 벗어난 텍스트의 처리 방법을 정의한다. link 등을 표기할 때(e.g. http://ungmo2.github.io/css/CSS3-Property/) 그 길이가 매우 길어지는데 이 속성을 사용하지 않으면 부모 영역을 넘어가게 된다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+      div {
+        width: 150px;
+        height: 150px;
+        padding: 10px;
+        margin: 40px;
+        border-radius: 6px;
+        border-color: gray;
+        border-style: dotted;
+      }
+      .word-wrap { word-wrap: break-word; }
+    </style>
+  </head>
+  <body>
+    <h1>word-wrap</h1>
+    <div>Floccinaucinihilipilification http://ungmo2.github.io/css/CSS3-Property/</div>
+    <div class="word-wrap">Floccinaucinihilipilification http://ungmo2.github.io/css/CSS3-Property/</div>
+  </body>
+</html>
+```
+
+### 2.4.10 word-break 속성
+
+한 단어의 길이가 길어서 부모 영역을 벗어난 텍스트의 처리 방법을 정의한다.
+
+word-wrap 속성은 단어를 어느 정도는 고려하여 개행하지만(.,- 등을 고려한다) word-break: break-all;는 단어를 부모 영역에 맞추어 개행한다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+      div {
+        width: 150px;
+        height: 150px;
+        padding: 10px;
+        margin: 40px;
+        border-radius: 6px;
+        border-color: gray;
+        border-style: dotted;
+      }
+      .word-wrap { word-wrap: break-word; }
+      .word-break { word-break: break-all; }
+    </style>
+  </head>
+  <body>
+    <h1>word-wrap</h1>
+    <div>Floccinaucinihilipilification http://ungmo2.github.io/css/CSS3-Property/</div>
+    <div class="word-wrap">Floccinaucinihilipilification http://ungmo2.github.io/css/CSS3-Property/</div>
+
+    <div class="word-break">Floccinaucinihilipilification http://ungmo2.github.io/css/CSS3-Property/</div>
   </body>
 </html>
 ```
@@ -1556,7 +1706,7 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
     </style>
   </head>
   <body>
-    <h1>Absolute</h1>
+    <h1>Fixed</h1>
     <div>
       parent
       <div class="fixed-box1">fixed box1</div>
@@ -1623,38 +1773,28 @@ overflow 속성은 자식 요소가 부모 요소의 영역를 벗어났을 때 
   <head>
     <style>
       div {
-        color: #fff;
-        font-weight: 600;
-        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
-        border: 1px solid #bcbcbc;
+        width: 150px;
+        height: 150px;
+        padding: 10px;
+        margin: 30px;
+        font-size: 1.2em;
         border-radius: 6px;
-        height: 200px;
-        padding: 20px;
-        background: #bcbcbc;
-        position: relative;
-        overflow: scroll;
+        border-color: gray;
+        border-style: dotted;
+        float: left;
       }
-      .absolute-box1 {
-        position: absolute;
-        background: #2db34a;
-        top: 100px; left: 50px;
-        height: 150px;
-      }
-      .absolute-box2 {
-        position: absolute;
-        background: #F44336;
-        top: 150px; left: 100px;
-        height: 150px;
-      }
+      .visible { overflow: visible; }
+      .hidden  { overflow: hidden; }
+      .scroll  { overflow: scroll; }
+      .auto    { overflow: auto; }
     </style>
   </head>
   <body>
-    <h1>Absolute</h1>
-    <div>
-      parent
-      <div class="absolute-box1">absolute box1</div>
-      <div class="absolute-box2">absolute box2</div>
-    </div>
+    <h1>overflow</h1>
+    <div class="visible"><h3>visible</h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+    <div class="hidden"><h3>hidden</h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+    <div class="scroll"><h3>scroll</h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+    <div class="auto"><h3>auto</h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
   </body>
 </html>
 ```

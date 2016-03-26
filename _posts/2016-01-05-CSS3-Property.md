@@ -1920,15 +1920,15 @@ width값을 지정하지 않은 block 속성 요소는 기본적으로 `width: 1
 </html>
 ```
 
-### 2.6.2 float 속성 문제 해결
+### 2.6.2 float 속성 관련 문제 해결 방법
 
-#### 2.6.2.1 float 속성이 선언되지 않은 요소의 문제
+#### 2.6.2.1 float 속성 요소와 float 속성이 선언되지 않은 요소간 margin이 사라지는 문제
 
 위 예제를 보면 두 요소간 margin이 있어야 한다. 그러나 결과는 그렇지 않다.
 
 ![float problem](/img/float-problem1.png)
 
-이것은 두번째 요소에 float 속성을 선언하지 않았기 때문에 발생하는 박스 모델 상의 문제이다. 이 문제를 해결하는 가장 쉬운 방법은 float 속성을 선언하지 않은 요소에 `overflow: hidden` 속성을 선언하는 것이다.
+이것은 두번째 요소에 float 속성을 선언하지 않았기 때문에 발생하는 박스 모델 상의 문제이다. 이 문제를 해결하는 가장 쉬운 방법은 float 속성을 선언하지 않은 요소(.d2)에 `overflow: hidden` 속성을 선언하는 것이다.
 
 `overflow: hidden` 속성은 자식 요소가 부모 요소의 영역보다 클 경우 넘치는 부분을 안보이게 해주는 역할을 하는데 여기서는 float 속성이 없어서 제대로 표현되지 못하는 요소를 제대로 출력해준다.
 
@@ -1959,11 +1959,11 @@ width값을 지정하지 않은 block 속성 요소는 기본적으로 `width: 1
 </html>
 ```
 
-두번째 요소에도 float 속성을 선언하면 `overflow: hidden` 속성은 선언하지 않아도 되지만  너비가 최소화된다.
+두번째 요소에도 float 속성을 선언하면 `overflow: hidden` 속성은 선언하지 않아도 되지만 너비가 최소화된다.
 
-#### 2.6.2.2 float 속성이 선언된 요소 간의 문제
+#### 2.6.2.2 float속성을 가진 자식 요소를 포함하는 부모 요소의 높이가 정상적으로 반영되지 않는 문제
 
-아래 예제를 보면 float 속성이 선언된 두개의 자식 요소를 포함하는 부모 요소의 높이가 정상적인 값을 가지지 못하는 문제가 발생한다.
+아래 예제를 보면 float 속성이 선언된 두개의 자식 요소를 포함하는 부모 요소의 높이가 정상적인 값을 가지지 못하는 문제가 발생한다. 이 문제는 부모 요소 이후에 위치하는 요소의 정렬에 문제를 발생시킨다.
 
 ![float problem](/img/float-problem2.png)
 
@@ -1984,7 +1984,6 @@ width값을 지정하지 않은 block 속성 요소는 기본적으로 `width: 1
         margin-right: 2%;
         padding: 20px 0;
         background-color: #59b1f6;
-
       }
       .d2 {
         float: left;
@@ -1999,11 +1998,10 @@ width값을 지정하지 않은 block 속성 요소는 기본적으로 `width: 1
       <div class="d1">dv1</div>
       <div class="d2">dv2</div>
     </div>
+    <div style="background:red;padding:10px;color:white;">dv3</div>
   </body>
 </html>
 ```
-
-d1, d2 모두 `float: left` 속성을 가지고 있으므로 `overflow: hidden` 속성을 선언할 필요는 없다. 문제는 d1과 d2를 감싸고 있는 wrap이다. 요소를 감싸는 wrap 요소는 자식요소가  모두 float 속성을 가지고 있으면 정상적인 높이 값을 가지지 못하는 현상이 발생한다. 이 문제는 wrap 요소 이후에 위치하는 요소의 정렬에 문제를 발생시킨다.
 
 이 문제를 해결하는 가장 쉬운 방법은 float 속성을 가진 요소의 부모 요소(wrap)에 `overflow: hidden` 속성을 선언하는 것이다.
 
@@ -2025,7 +2023,6 @@ d1, d2 모두 `float: left` 속성을 가지고 있으므로 `overflow: hidden` 
         margin-right: 2%;
         padding: 20px 0;
         background-color: #59b1f6;
-
       }
       .d2 {
         float: left;
@@ -2040,6 +2037,138 @@ d1, d2 모두 `float: left` 속성을 가지고 있으므로 `overflow: hidden` 
       <div class="d1">dv1</div>
       <div class="d2">dv2</div>
     </div>
+    <div style="background:red;padding:10px;color:white;">dv3</div>
+  </body>
+</html>
+```
+
+다른 방법으로 부모 요소에 float 속성을 부여하는 방법도 있다. 하지만 부모 요소의 너비는 float된 두개의 자식요소의 컨텐츠를 표현할 수 있는 만큼만으로 작게 줄어들게 된다. 권장할 수 있는 방법은 아니다.
+
+wrap 영역이 끝나기 직전 빈 요소를 만들고 clear:both 속성을 부여하는 방법도 가능하다. 하지만 의미 없는 빈 요소를 사용하여야 하기 때문에 이 방법 역시 권장할 수 있는 방법은 아니다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .wrap {
+        color: white;
+        text-align: center;
+        padding: 10px;
+        background-color: #def0c2;
+        /*overflow: hidden;*/
+      }
+      .d1 {
+        float: left;
+        width: 49%;
+        margin-right: 2%;
+        padding: 20px 0;
+        background-color: #59b1f6;
+      }
+      .d2 {
+        float: left;
+        width: 49%;
+        padding: 20px 0;
+        background-color: #ffb5b4;
+      }
+      .clear {
+        height: 0;
+        clear: both;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="d1">dv1</div>
+      <div class="d2">dv2</div>
+      <div class="clear"></div>
+    </div>
+    <div style="background:red;padding:10px;color:white;">dv3</div>
+  </body>
+</html>
+```
+
+overflow: hidden;과 함께 많이 사용되는 방법은 [::after 가상 요소 선택자](http://ungmo2.github.io/css/CSS3-Selector/#pseudo-element-selector) 를 이용하는 것이다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .wrap {
+        color: white;
+        text-align: center;
+        padding: 10px;
+        background-color: #def0c2;
+        /*overflow: hidden;*/
+      }
+      .wrap::after {
+        content: "";
+        display: block;
+        clear: both;
+      }
+      .d1 {
+        float: left;
+        width: 49%;
+        margin-right: 2%;
+        padding: 20px 0;
+        background-color: #59b1f6;
+      }
+      .d2 {
+        float: left;
+        width: 49%;
+        padding: 20px 0;
+        background-color: #ffb5b4;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="d1">dv1</div>
+      <div class="d2">dv2</div>
+    </div>
+    <div style="background:red;padding:10px;color:white;">dv3</div>
+  </body>
+</html>
+```
+
+또 다른 방법은 float 속성 대신 display:inline-block;을 설정하는 것이다. 주의해야야 점은 [inline-block 속성](http://ungmo2.github.io/css/CSS3-Property/#inline-block-) 요소를 연속 사용되는 경우, 좌우에 정의하지 않은 space(4px)가 자동 지정되는 것이다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .wrap {
+        color: white;
+        text-align: center;
+        padding: 10px;
+        background-color: #def0c2;
+        /*overflow: hidden;*/
+      }
+      .d1 {
+        /*float: left;*/
+        display: inline-block;
+        width: 49%;
+        /*margin-right: 2%;*/
+        padding: 20px 0;
+        background-color: #59b1f6;
+      }
+      .d2 {
+        /*float: left;*/
+        display: inline-block;
+        width: 49%;
+        padding: 20px 0;
+        background-color: #ffb5b4;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="d1">dv1</div>
+      <div class="d2">dv2</div>
+    </div>
+    <div style="background:red;padding:10px;color:white;">dv3</div>
   </body>
 </html>
 ```

@@ -1320,35 +1320,3 @@ mobile layout을 작성한다. 480px 이하로 화면이 작아지면 고정 배
   </body>
 </html>
 ```
-
-
-
-# Less
-# SASS
-
-
-# 2. Bootstrap
-
-부트스트랩의 장점 중 하나는 반응형 웹 디자인이 쉽게 만들어진다는 점이다
-
-
------>CSS3
-# Web font
-# CSS3 Transition & Animation
-
-## Media Queries
------>CSS3
-
-스프라이트 이미지 (sprite image)
-
-페이지의 로딩 속도를 감소시켜주는 방법 중 하나이다. 자주 쓰는 이미지들을 쓸 때마다 각각 로딩하는 것이 아니라 하나의 이미지파일로 작성한 후 좌표값을 사용하여 필요한 이미지를 로딩하는 방식이다. 하나의 이미지로 만들기 때문에 관기가 쉽고 여러번 로딩할 필요가 없고 중복되는 이미지를 로딩하지 않기 때문에 트래픽이 감소되는 효과가 있다.
-
-
-
-
-
-# Reference
-
-* [w3schools.com](http://www.w3schools.com)
-
-* [Learn to Code HTML & CSS](http://learn.shayhowe.com/)

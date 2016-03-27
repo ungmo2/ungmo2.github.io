@@ -378,9 +378,6 @@ navigation icon의 style은 다음과 같이 정의한다.
   top: 0; right: 0;
 }
 ```
-~~
-navigation icon은 header 우측의 절대 위치에 배치되어야 하므로 `position: absolute;`를 지정한다. absolute 속성은 relative 속성의 부모 요소를 기준으로 배치되므로 header 요소에 relative 속성을 지정한다. 이것은 스마트폰 layout에서만 해당되는 것이므로 스마트폰 용 media query 내에 정의한다.
-~~
 
 navigation icon은 header 우측의 절대 위치에 배치되어야 하므로 `position: absolute;`를 지정한다. absolute 속성은 relative 속성의 부모 요소를 기준으로 배치된다. 마침 html 요소에 relative 속성이 적용되어 있으므로 별도 지정은 필요없다. 이것은 스마트폰 layout에서만 해당되는 것이므로 스마트폰 용 media query 내에 정의한다.
 
@@ -400,7 +397,6 @@ tablet용 layout에서 header height를 2배로 하였으므로 mobile용 layout
 @media screen and (max-width: 480px) {
   header {
     height: 60px;
-    position: relative;
   }
   .nav-items {
     display: none;
@@ -563,6 +559,14 @@ navigation icon을 클릭하면 의도하지 않게 이미지가 선택되는 �
         margin: 0; padding: 0;
         box-sizing: border-box;
       }
+      html {
+        /*footer의 position: absolute;에 대응 (for sticky footer)*/
+        /*mobile layout의 .navicon의 position: absolute;에 대응*/
+        position: relative;
+        min-height: 100%;   /*footer가 bottom에 붙게한다*/
+        -webkit-font-smoothing: antialiased;
+        -webkit-text-size-adjus: 100%;  /*iphone font size 변경 방지*/
+      }
       body {
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         color: #58666e;
@@ -570,9 +574,27 @@ navigation icon을 클릭하면 의도하지 않게 이미지가 선택되는 �
       }
       li { list-style: none; }
       a { text-decoration: none; }
+      h1, h2, h3, h4, h5, h6, p {
+        margin: 10px 5px;
+      }
+      h1 { font-size: 1.8em; }
+
+      #wrap {
+        /*
+        for full width
+        top = header height
+        bottom = footer height
+        */
+        width: 100%;
+        margin: 60px 0 60px;
+      }
 
       /*Navigation bar*/
       header {
+        /*for sticky header*/
+        position: fixed;
+        top: 0;
+
         width: 100%;
         height: 60px;
         z-index: 2000;
@@ -587,22 +609,23 @@ navigation icon을 클릭하면 의도하지 않게 이미지가 선택되는 �
       .logo > img { height: 36px; }
       nav {
         float: right;
+      }
+      .nav-items {
         margin-right: 20px;
       }
-
       .nav-items > li {
-        display: inline-block;
+        display: inline-block; /*가로정렬*/
       }
       .nav-items > li > a {
-        line-height: 60px;
-        padding: 0 30px;
+        line-height: 60px; /*for Vertical Centering*/
+        padding: 0 30px;   /*nav item간 간격*/
         color: #666666;
       }
       .nav-items > li > a:hover {
         color: #1E1E1E;
       }
 
-      /* nav icon */
+      /*navigation icon for Tablet/Mobile Layout*/
       .navicon {
         cursor: pointer;
         height: 60px;
@@ -615,12 +638,12 @@ navigation icon을 클릭하면 의도하지 않게 이미지가 선택되는 �
         -ms-user-select: none;      /* IE 10+ */
         user-select: none;          /* Likely future */
       }
-
       /*nav icon의 내부 막대*/
       .navicon-bar {
         background-color: #333;
         display: block;
         position: relative;
+        /*navigation icon animation*/
         transition: background-color .2s ease-out;
         width: 20px;
         height: 3px;
@@ -632,6 +655,7 @@ navigation icon을 클릭하면 의도하지 않게 이미지가 선택되는 �
         display: block;
         height: 100%;
         position: absolute;
+        /*navigation icon animation*/
         transition: all .2s ease-out;
         width: 100%;
       }
@@ -641,8 +665,7 @@ navigation icon을 클릭하면 의도하지 않게 이미지가 선택되는 �
       .navicon-bar::after {
         top: 7px;
       }
-
-      /* nav-toggle checkbox */
+      /*toggle navigation icon*/
       .nav-toggle:checked ~ .navicon > .navicon-bar {
         background: transparent;
       }
@@ -653,6 +676,63 @@ navigation icon을 클릭하면 의도하지 않게 이미지가 선택되는 �
       .nav-toggle:checked ~ .navicon > .navicon-bar::after {
         transform: rotate(-45deg);
         top: 0;
+      }
+
+      /*contents*/
+      #content-wrap {
+        overflow: hidden; /*height가 접히는 문제*/
+      }
+      aside {
+        /*for fixed side bar*/
+        position: fixed;
+        top: 60px;
+        bottom: 0;
+
+        width: 200px;  /*너비 고정*/
+        padding-top: 25px;
+        background-color: #333;
+      }
+      /*aside navigation*/
+      aside > ul {
+        width: 200px;
+      }
+      aside > ul > li > a {
+        display: block;
+        color: #fff;
+        padding: 10px 0 10px 20px;
+      }
+      aside > ul > li > a.active {
+        background-color: #4CAF50;
+      }
+      aside > ul > li > a:hover:not(.active) {
+        background-color: #555;
+      }
+      aside > h1 {
+        padding: 20px 0 20px 20px;
+        color: #fff;
+      }
+      /*Section*/
+      section {
+        float: right;
+        margin-left: 200px;  /*aside width*/
+      }
+      article {
+        margin: 10px;
+        padding: 25px;
+        background-color: white;
+      }
+      /*footer*/
+      footer {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 60px;
+        width: 100%;
+        padding: 0 25px;
+        line-height: 60px;
+        color: #8a8c8f;
+        border-top: 1px solid #dee5e7;
+        background-color: #f2f2f2;
       }
 
       .nav-toggle {
@@ -674,12 +754,10 @@ navigation icon을 클릭하면 의도하지 않게 이미지가 선택되는 �
           margin-right: 0;
         }
       }
-
       /* for smartphone */
       @media screen and (max-width: 480px) {
         header {
           height: 60px;
-          position: relative;
         }
         .nav-items {
           display: none;
@@ -687,6 +765,7 @@ navigation icon을 클릭하면 의도하지 않게 이미지가 선택되는 �
         .navicon {
           display: block;
         }
+        /*View navigation item*/
         .nav-toggle:checked ~ .nav-items {
           display: block;
           background-color: #fff;
@@ -706,10 +785,8 @@ navigation icon을 클릭하면 의도하지 않게 이미지가 선택되는 �
       <header>
         <a class="logo" href="#home"><img src="http://ungmo2.github.io/img/logo.png"></a>
         <nav>
-          <!-- nav-toggle Start -->
           <input class="nav-toggle" id="nav-toggle" type="checkbox">
           <label class="navicon" for="nav-toggle"><span class="navicon-bar"></span></label>
-          <!-- nav-toggle End -->
           <ul class="nav-items">
             <li><a href="#home">Home</a></li>
             <li><a href="#news">News</a></li>
@@ -718,6 +795,47 @@ navigation icon을 클릭하면 의도하지 않게 이미지가 선택되는 �
           </ul>
         </nav>
       </header>
+
+      <div id="content-wrap">
+        <aside>
+          <h1>Aside</h1>
+          <ul>
+            <li><a href="#" class="active">London</a></li>
+            <li><a href="#">Paris</a></li>
+            <li><a href="#">Tokyo</a></li>
+            <li><a href="#">Newyork</a></li>
+          </ul>
+        </aside>
+        <section>
+          <article id="london">
+            <h1>London</h1>
+            <p>London is the capital city of England. It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
+            <p>Standing on the River Thames, London has been a major settlement for two millennia,its history going back to its founding by the Romans, who named it Londinium.</p>
+            <p>London, also referred to as Greater London, is one of 9 regions of England and the top-level subdivision covering most of the city's metropolis. The small ancient City of London at its core once comprised the whole settlement, but as its urban area grew, the Corporation of London resisted attempts to amalgamate the city with its suburbs, causing "London" to be defined in a number ways for different purposes.</p>
+          </article>
+          <article id="paris">
+            <h1>Paris</h1>
+            <p>London is the capital city of England. It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
+            <p>Standing on the River Thames, London has been a major settlement for two millennia,its history going back to its founding by the Romans, who named it Londinium.</p>
+            <p>London, also referred to as Greater London, is one of 9 regions of England and the top-level subdivision covering most of the city's metropolis. The small ancient City of London at its core once comprised the whole settlement, but as its urban area grew, the Corporation of London resisted attempts to amalgamate the city with its suburbs, causing "London" to be defined in a number ways for different purposes.</p>
+          </article>
+          <article id="tokyo">
+            <h1>Tokyo</h1>
+            <p>London is the capital city of England. It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
+            <p>Standing on the River Thames, London has been a major settlement for two millennia,its history going back to its founding by the Romans, who named it Londinium.</p>
+            <p>London, also referred to as Greater London, is one of 9 regions of England and the top-level subdivision covering most of the city's metropolis. The small ancient City of London at its core once comprised the whole settlement, but as its urban area grew, the Corporation of London resisted attempts to amalgamate the city with its suburbs, causing "London" to be defined in a number ways for different purposes.</p>
+          </article>
+          <article id="newyork">
+            <h1>Newyork</h1>
+            <p>London is the capital city of England. It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
+            <p>Standing on the River Thames, London has been a major settlement for two millennia,its history going back to its founding by the Romans, who named it Londinium.</p>
+            <p>London, also referred to as Greater London, is one of 9 regions of England and the top-level subdivision covering most of the city's metropolis. The small ancient City of London at its core once comprised the whole settlement, but as its urban area grew, the Corporation of London resisted attempts to amalgamate the city with its suburbs, causing "London" to be defined in a number ways for different purposes.</p>
+          </article>
+        </section>
+        <!-- end of content-wrap -->
+      </div>
+      <footer>© Copyright 2016 ungmo2</footer>
+    <!-- end of wrap   -->
     </div>
   </body>
 </html>

@@ -344,7 +344,7 @@ viewport width가 800px 이하가 되면 header 영역을 2단(logo영역과 nav
 
 navigation icon과 checkbox input tag는 스마트폰 layout 이외의 경우, 화면에 표시되어서는 않된다. 따라서 `display: none;`으로 화면에 표시되지 않도록 한다. `display: none;`은 해당 공간조차 점유하지 않지만 `visibility: hidden;`을 사용하면 해당 공간은 남아있고 표시만 되지 않는다. [참고 : CSS display](http://ungmo2.github.io/css/CSS3-Property/#display)
 
-[CSS 적용 우선 순위 (Cascading Order)](http://ungmo2.github.io/css/CSS3-Selector/#css----cascading-order) 를 고려하여 가장 마지막에 정의하는 것이 안전하다.
+[CSS 적용 우선 순위 (Cascading Order)](http://ungmo2.github.io/css/CSS3-Selector/#css----cascading-order) 를 고려하여 가장 마지막에 정의하는 것이 안전하다. 일반적으로 media query를 가장 마지막에 정의하므로 media query 정의부 직전에 위치시킨다.
 
 ```css
 .nav-toggle {
@@ -378,19 +378,23 @@ navigation icon의 style은 다음과 같이 정의한다.
   top: 0; right: 0;
 }
 ```
-
+~~
 navigation icon은 header 우측의 절대 위치에 배치되어야 하므로 `position: absolute;`를 지정한다. absolute 속성은 relative 속성의 부모 요소를 기준으로 배치되므로 header 요소에 relative 속성을 지정한다. 이것은 스마트폰 layout에서만 해당되는 것이므로 스마트폰 용 media query 내에 정의한다.
+~~
+
+navigation icon은 header 우측의 절대 위치에 배치되어야 하므로 `position: absolute;`를 지정한다. absolute 속성은 relative 속성의 부모 요소를 기준으로 배치된다. 마침 html 요소에 relative 속성이 적용되어 있으므로 별도 지정은 필요없다. 이것은 스마트폰 layout에서만 해당되는 것이므로 스마트폰 용 media query 내에 정의한다.
+
+tablet용 layout에서 header height를 2배로 하였으므로 mobile용 layout을 위해 다시 60px로 되돌린다.
 
 ```css
 @media screen and (max-width: 480px) {
   header {
     height: 60px;
-    position: relative;
   }
 }
 ```
 
-스마트폰 layout에서는 navigation bar가 초기상태에서 비표시되어야 한다. 그리고 navigation icon은 표시되어야 한다.
+스마트폰 layout에서는 navigation bar가 초기상태에서 비표시되어야 한다. 그리고 navigation icon은 표시되어야 한다. 아직 navigation icon을 완성하지 않았으므로 표시되지 않는다.
 
 ```css
 @media screen and (max-width: 480px) {
@@ -719,7 +723,15 @@ navigation icon을 클릭하면 의도하지 않게 이미지가 선택되는 �
 </html>
 ```
 
-## 1.4 Section & Aside
+## 1.4 Section & Aside & Footer
+
+[layout Section & Aside](http://ungmo2.github.io/css/CSS3-Layout/#section--aside) 과 [layout footer](http://ungmo2.github.io/css/CSS3-Layout/#footer) 를 참조하여 컨텐츠 영역과 풋터 영역을 작성한다.
+
+
+
+
+
+
 
 <!-- <p data-height="268" data-theme-id="0" data-slug-hash="bogtz" data-default-tab="result" data-user="SaraSoueidan" class="codepen">See the Pen <a href="http://codepen.io/SaraSoueidan/pen/bogtz/">Responsive CSS3 Side Navigation Menu</a> by Sara Soueidan (<a href="http://codepen.io/SaraSoueidan">@SaraSoueidan</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script> -->

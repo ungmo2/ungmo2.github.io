@@ -959,7 +959,7 @@ mobile layout을 작성한다. 480px 이하로 화면이 작아지면 고정 배
     top: 60px;
     position: static;
     width: 100%;
-    padding: 5px 0;;
+    padding: 5px 0;
   }
   /*aside navigation*/
   aside > ul {
@@ -1230,7 +1230,7 @@ mobile layout을 작성한다. 480px 이하로 화면이 작아지면 고정 배
           top: 60px;
           position: static;
           width: 100%;
-          padding: 5px 0;;
+          padding: 5px 0;
         }
         /*aside navigation*/
         aside > ul {

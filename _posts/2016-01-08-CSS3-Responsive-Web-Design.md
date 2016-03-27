@@ -658,10 +658,10 @@ navigation icon을 클릭하면 의도하지 않게 이미지가 선택되는 �
       .nav-items > li > a {
         line-height: 60px; /*for Vertical Centering*/
         padding: 0 30px;   /*nav item간 간격*/
-        color: #666666;
+        color: rgba(0,0,0,0.4);
       }
       .nav-items > li > a:hover {
-        color: #1E1E1E;
+        color: rgba(0,0,0,0.8);
       }
 
       /*navigation icon for Tablet/Mobile Layout*/
@@ -1050,10 +1050,10 @@ mobile layout을 작성한다. 480px 이하로 화면이 작아지면 고정 배
       .nav-items > li > a {
         line-height: 60px; /*for Vertical Centering*/
         padding: 0 30px;   /*nav item간 간격*/
-        color: #666666;
+        color: rgba(0,0,0,0.4);
       }
       .nav-items > li > a:hover {
-        color: #1E1E1E;
+        color: rgba(0,0,0,0.8);
       }
 
       /*navigation icon for Tablet/Mobile Layout*/

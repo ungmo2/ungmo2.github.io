@@ -86,68 +86,94 @@ CDN이란 html 파일에서 참조하는 css, javascript 파일이나 다른 리
 
 # 3. Hello world
 
-
-부트스트랩의 장점 중 하나는 반응형 웹 디자인이 쉽게 만들어진다는 점이다
-
-
-
-CDN
-
-```html
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-```
-
-
-
-```
-https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css
-https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js
-```
-
-```
-npm install bootstrap
-npm install jquery
-```
-
+먼저 기본적인 html을 구성한다. 아직 bootstrap이 적용되지 않았다.
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">    
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
-
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-<!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
   <body>
-    <h1>Hello, world!</h1>
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <h1>My First Bootstrap Page</h1>
+    <p>This is some text.</p>
   </body>
 </html>
 ```
+
+bootstrap을 웹페이지에 포함시킨다. 여기서는 CDN 방식을 사용하기로 한다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  </head>
+  <body>
+    <h1>My First Bootstrap Page</h1>
+    <p>This is some text.</p>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  </body>
+</html>
+```
+
+javascript 파일을 2개 포함시켰다. 하나는 bootstrap의 javascript 파일이고 또 다른 하나는 bootstrap이 사용할 jQuery이다. jQuery는 bootstrap이 사용하므로 bootstrap javascript 로드 전에 로드하여야 한다. 그리고 body tag가 끝나기 직전 javascript 파일을 로드하였는데 이 방법은 웹페이지 로딩 속도 향상에 효과적이다.
+
+# 4. Container
+
+Bootstrap은 모든 컨텐츠를 감싸는 wrapping 요소(container)를 포함해야 한다. 즉 모든 켄텐츠 요소는 wrapping 요소의 자식이어야 한다. container는 그리드 시스템을 위한 필수 사항이다.
+
+container에는 2가지 종류가 있다.
+
+- .container class: fixed width container로서 fixed layout을 제공한다.
+- .container-fluid class: full width container로서 fluid layout을 제공한다.
+
+2가지 container를 중첩 사용해서는 않된다. padding에 문제가 발생하기 때문이다.
+
+## 4.1 fixed width container (fixed layout)
+
+고정된 너비를 사용한다. viewport 너비가 늘어나도 고정된 너비를 갖는다.
+
+```html
+<div class="container">
+  ...
+</div>
+```
+
+## 4.2 full width container (fluid layout)
+
+화면에 꽉차는 너비를 사용한다. viewport 너비에 따라 너비가 변화한다.
+
+```html
+<div class="container-fluid">
+  ...
+</div>
+```
+
+## 5. Grid system
+
+## 6. Media Query
+
+```less
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @screen-sm-min) { ... }
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @screen-md-min) { ... }
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @screen-lg-min) { ... }
+```
+
+부트스트랩의 장점 중 하나는 반응형 웹 디자인이 쉽게 만들어진다는 점이다
+
 
 CSS 전처리기(pre-processor)
 "Sass(Syntactically Awesome Stylesheets)는 CSS 상위에 있는 메타언어(meta-language)로 보다 간결하고 격식을 갖춘 CSS 문법을 사용합니다
@@ -162,3 +188,4 @@ CSS 전처리기(pre-processor)
 
 * [Bootstrap website](http://getbootstrap.com/)
 * [Bootstrap 한국어 website](http://bootstrapk.com/)
+* [w3schools bootstrap tutorial](http://www.w3schools.com/bootstrap/default.asp)

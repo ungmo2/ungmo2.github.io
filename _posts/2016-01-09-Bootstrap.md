@@ -154,9 +154,9 @@ container에는 2가지 종류가 있다.
 </div>
 ```
 
-## 5. Grid system
+# 5. Grid system
 
-## 6. Media Query
+# 6. Media Query
 
 ```
 /* Extra small devices (phones, less than 768px) */

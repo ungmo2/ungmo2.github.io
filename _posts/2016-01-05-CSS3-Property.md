@@ -1539,15 +1539,12 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
 <html>
   <head>
     <style>
+      body { margin: 0;}
       div {
         color: #fff;
-        font-weight: 600;
-        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
-        border: 1px solid #bcbcbc;
-        border-radius: 6px;
-        height: 100%;
-        padding: 20px;
+        height: 150px; width: 150px;
         background: #bcbcbc;
+        border: 1px solid #bcbcbc;
       }
       .static-box {
         position: static;
@@ -1556,14 +1553,9 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
     </style>
   </head>
   <body>
-    <h1>Static</h1>
     <div>
-      parent
-      <div class="static-box">static box</div>
       <div class="static-box">static box</div>
     </div>
-    <div class="static-box">static box</div>
-    <div class="static-box">static box</div>
   </body>
 </html>
 ```
@@ -1577,32 +1569,25 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
 <html>
   <head>
     <style>
+      body { margin: 0;}
       div {
         color: #fff;
-        font-weight: 600;
-        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
-        border: 1px solid #bcbcbc;
-        border-radius: 6px;
-        height: 100%;
-        padding: 20px;
+        height: 150px; width: 150px;
         background: #bcbcbc;
+        border: 1px solid #bcbcbc;
       }
       .relative-box {
-        position: relative;
+        padding: 10px;
         background: #2db34a;
+        position: relative;
         top: 50px; left: 50px;
       }
     </style>
   </head>
   <body>
-    <h1>Relative</h1>
     <div>
-      parent
-      <div class="relative-box">relative box</div>
       <div class="relative-box">relative box</div>
     </div>
-    <div class="relative-box">relative box</div>
-    <div class="relative-box">relative box</div>
   </body>
 </html>
 ```
@@ -1622,16 +1607,12 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
 <html>
   <head>
     <style>
+      body { margin: 0;}
       div {
         color: #fff;
-        font-weight: 600;
-        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
-        border: 1px solid #bcbcbc;
-        border-radius: 6px;
-        height: 100%;
-        padding: 20px;
+        height: 150px; width: 150px;
         background: #bcbcbc;
-        position: relative;
+        border: 1px solid #bcbcbc;
       }
       .absolute-box1 {
         position: absolute;
@@ -1646,7 +1627,7 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
       .absolute-box3 {
         position: absolute;
         background: #2db34a;
-        bottom: 50px; right: 50px;
+        bottom: 100px; left: 100px;
       }
       .absolute-box4 {
         position: absolute;
@@ -1656,16 +1637,12 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
     </style>
   </head>
   <body>
-    <h1>Absolute</h1>
     <div>
-      parent
       <div class="absolute-box1">absolute box1</div>
       <div class="absolute-box2">absolute box2</div>
       <div class="absolute-box3">absolute box3</div>
       <div class="absolute-box4">absolute box4</div>
     </div>
-    <div class="absolute-box3">absolute box3</div>
-    <div class="absolute-box4">absolute box4</div>
   </body>
 </html>
 ```
@@ -1679,36 +1656,27 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
 <html>
   <head>
     <style>
-      body { margin: 0; }
+      body { margin: 0;}
       div {
         color: #fff;
-        font-weight: 600;
-        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
-        border: 1px solid #bcbcbc;
-        border-radius: 6px;
-        height: 100%;
-        padding: 20px;
+        height: 150px; width: 150px;
         background: #bcbcbc;
-        position: relative;
+        border: 1px solid #bcbcbc;
       }
       .fixed-box1 {
         position: fixed;
         background: #2db34a;
         bottom: 0; left: 0;
-        width: 300px; height: 50px;
       }
       .fixed-box2 {
         position: fixed;
         background: #2db34a;
-        bottom: 50px; right: 50px;
-        width: 300px; height: 50px;
+        top: 0; right: 0;
       }
     </style>
   </head>
   <body>
-    <h1>Fixed</h1>
     <div>
-      parent
       <div class="fixed-box1">fixed box1</div>
     </div>
     <div class="fixed-box2">fixed box2</div>

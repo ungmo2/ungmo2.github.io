@@ -7,11 +7,9 @@ categories: css
 * TOC
 {:toc}
 
-[앞에서](http://ungmo2.github.io/css/CSS3-Layout/) 살펴본 예제에는 사실 몇가지 문제가 숨겨져 있다. 그 문제를 해결할 열쇠는 바로 Responsive Web Design이다.
+[앞에서 살펴본 layout](http://ungmo2.github.io/css/CSS3-Layout/) 에는 사실 몇가지 문제가 숨겨져 있다. 그 문제를 해결할 열쇠는 바로 Responsive Web Design이다.
 
-먼저 어떤 문제가 있는지 알아본다.
-
-화면폭을 좁히면 아래 그림과 같이 화면이 망가지는데 이것는 HTML 요소에 고정폭을 지정하여 가로 스크롤을 발생시키지 않으면 해결이 어렵다.
+먼저 어떤 문제가 있는지 알아본다. 화면폭을 좁히면 아래 그림과 같이 화면이 망가지는데 이것는 HTML 요소에 고정폭을 지정하여 가로 스크롤을 발생시키지 않으면 해결이 어렵다.
 
 ![](/img/break-view.png)
 {: style="max-width:500px; margin: 10px auto;"}

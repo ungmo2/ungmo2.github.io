@@ -158,7 +158,7 @@ container에는 2가지 종류가 있다.
 
 ## 6. Media Query
 
-```less
+```
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */
 

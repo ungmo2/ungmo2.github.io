@@ -86,23 +86,21 @@ CDN이란 html 파일에서 참조하는 css, javascript 파일이나 다른 리
 
 # 3. Hello world
 
-먼저 기본적인 html을 구성한다. 아직 bootstrap이 적용되지 않았다.
+아래와 같이 폴더 구조를 만들고 html 파일을 위치 시킨다.
 
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">    
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
-    <h1>My First Bootstrap Page</h1>
-    <p>This is some text.</p>
-  </body>
-</html>
+```
+bootstrap/
+├── css/
+├── js/
+└── fonts/
+mycode.html
 ```
 
-bootstrap을 웹페이지에 포함시킨다. 여기서는 CDN 방식을 사용하기로 한다.
+아래와 같이 bootstrap을 웹페이지에 로드한다. bootstrap.min.css은 bootstrap.css을 압축(minify)한 것이다. bootstrap.css을 로드하여도 무방하다.
+
+```html
+<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+```
 
 ```html
 <!DOCTYPE html>
@@ -110,7 +108,8 @@ bootstrap을 웹페이지에 포함시킨다. 여기서는 CDN 방식을 사용�
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="
+    ./bootstrap/css/bootstrap.min.css">
   </head>
   <body>
     <h1>My First Bootstrap Page</h1>
@@ -129,14 +128,16 @@ Bootstrap은 모든 컨텐츠를 감싸는 wrapping 요소(container)를 포함�
 
 container에는 2가지 종류가 있다.
 
-- .container class: fixed width container로서 fixed layout을 제공한다.
-- .container-fluid class: full width container로서 fluid layout을 제공한다.
+- .container class:
+  fixed width container로서 responsive fixed layout을 제공한다.
+- .container-fluid class:
+  full width container로서 fluid layout을 제공한다.
 
 2가지 container를 중첩 사용해서는 않된다. padding에 문제가 발생하기 때문이다.
 
 ## 4.1 fixed width container (fixed layout)
 
-고정된 너비를 사용한다. viewport 너비가 늘어나도 고정된 너비를 갖는다.
+responsive fixed layout(반응형 고정폭 레이아웃)를 사용한다. Media query에 의해 반응형으로 동작하며 viewport 너비가 늘어나거나 줄어들어도 고정폭을 갖는다.
 
 ```html
 <div class="container">
@@ -144,9 +145,38 @@ container에는 2가지 종류가 있다.
 </div>
 ```
 
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <style>
+      .container, .container-fluid {
+        background: #eaeaed;
+      }
+      .fixed {
+        background: #2db34a;
+        height: 100px;
+        line-height: 100px;
+        text-align: center;
+        color: white;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="fixed">fixed width (.container)</div>
+    </div>
+  </body>
+</html>
+```
+
 ## 4.2 full width container (fluid layout)
 
-화면에 꽉차는 너비를 사용한다. viewport 너비에 따라 너비가 변화한다.
+fluid layout(유동 최대폭 레이아웃)을 사용한다. viewport 너비에 상관없이 언제나 컨텐츠 요소를 화면에 꽉차는 너비를 갖게 한다.
 
 ```html
 <div class="container-fluid">
@@ -154,9 +184,56 @@ container에는 2가지 종류가 있다.
 </div>
 ```
 
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <style>
+      .container, .container-fluid {
+        background: #eaeaed;
+      }
+      .fluid {
+        background: #2db34a;
+        height: 100px;
+        line-height: 100px;
+        text-align: center;
+        color: white;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="fluid">full width (.container-fluid)</div>
+    </div>
+  </body>
+</html>
+
+```
+
 # 5. Grid system
 
+그리드 시스템은 열을 나누어 컨텐츠를 원하는 위치에 배치하는 방법을 말한다. Bootstrap은 반응형 12열 그리드 시스템을 제공한다.
+
+- 행은 반드시 container(.container 또는 .container-fluid) 내에 위치해야 한다.
+
+
+
 # 6. Media Query
+
+Bootstrap은 Mobile-first 방식을 지원하므로 Media query에 포함되지 않은 모든 정의는 768px 이하 디바이스를 위한 것이다.
+
+기본적으로 4개의 breakpoint로 구간을 나눈다.
+
+| Device              | 구분             | breakpoint          | prefix  |
+|:--------------------|:----------------|:--------------------|:-------:|
+| Extra small devices | phones          | 768px 미만 (default) | xs  
+| Small devices       | tablets         | 768px 이상           | sm
+| Medium devices      | desktops        | 992px 이상           | md
+| Large devices       | large desktops  | 1200px 이상          | lg
 
 ```
 /* Extra small devices (phones, less than 768px) */

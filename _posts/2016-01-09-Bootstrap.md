@@ -214,26 +214,18 @@ fluid layout(유동 최대폭 레이아웃)을 사용한다. viewport 너비에 
 
 ```
 
-# 5. Grid system
+# 5. Media Query
 
-그리드 시스템은 열을 나누어 컨텐츠를 원하는 위치에 배치하는 방법을 말한다. Bootstrap은 반응형 12열 그리드 시스템을 제공한다.
-
-- 행은 반드시 container(.container 또는 .container-fluid) 내에 위치해야 한다.
-
-
-
-# 6. Media Query
-
-Bootstrap은 Mobile-first 방식을 지원하므로 Media query에 포함되지 않은 모든 정의는 768px 이하 디바이스를 위한 것이다.
+Bootstrap은 Mobile-first 방식을 기본 지원하므로 Media query에 포함되지 않은 모든 정의는 768px 미만 디바이스를 위한 것이다.
 
 기본적으로 4개의 breakpoint로 구간을 나눈다.
 
-| Device              | 구분             | breakpoint          | prefix  |
-|:--------------------|:----------------|:--------------------|:-------:|
-| Extra small devices | phones          | 768px 미만 (default) | xs  
-| Small devices       | tablets         | 768px 이상           | sm
-| Medium devices      | desktops        | 992px 이상           | md
-| Large devices       | large desktops  | 1200px 이상          | lg
+| Device              | 구분             | prefix | breakpoint         | 동작
+|:--------------------|:----------------|:------:|--------------------|:--------------
+| Extra small devices | phones          | xs     | 768px 미만 (default)| 언제나 가로 정렬
+| Small devices       | tablets         | sm     | 768px 이상          | 768px보다 작아지면 stack
+| Medium devices      | desktops        | md     | 992px 이상          | 992px보다 작아지면 stack
+| Large devices       | large desktops  | lg     | 1200px 이상         | 1200px보다 작아지면 stack
 
 ```
 /* Extra small devices (phones, less than 768px) */
@@ -248,6 +240,162 @@ Bootstrap은 Mobile-first 방식을 지원하므로 Media query에 포함되지 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: @screen-lg-min) { ... }
 ```
+
+# 6. Grid system
+
+그리드 시스템은 열을 나누어 컨텐츠를 원하는 위치에 배치하는 방법을 말한다. Bootstrap은 반응형 12열 그리드 시스템을 제공한다.
+
+- 행은 반드시 container(.container 또는 .container-fluid) 내에 위치해야 한다.
+
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <style>
+      .show-viewport-width {
+        position: fixed;
+        top: 0; right: 0;
+        z-index: 1000;
+        margin: 5px; padding: 5px;
+        background: rgba(255,255,255,0.5);
+      }
+      .row {
+        margin-bottom: 10px;
+      }
+      [class*="col-"] {
+        background: #2db34a;
+        border: 1px solid #eaeaed;
+        height: 50px;
+        font-size: .8em;
+        line-height: 50px;
+        text-align: center;
+        color: white;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="show-viewport-width"></div>
+    <div class="container">
+      <h4>col-lg-*: 1200px 이상</h4>
+      <div class="row">
+        <div class="col-lg-1">col-lg-1</div>
+        <div class="col-lg-1">col-lg-1</div>
+        <div class="col-lg-1">col-lg-1</div>
+        <div class="col-lg-1">col-lg-1</div>
+        <div class="col-lg-1">col-lg-1</div>
+        <div class="col-lg-1">col-lg-1</div>
+        <div class="col-lg-1">col-lg-1</div>
+        <div class="col-lg-1">col-lg-1</div>
+        <div class="col-lg-1">col-lg-1</div>
+        <div class="col-lg-1">col-lg-1</div>
+        <div class="col-lg-1">col-lg-1</div>
+        <div class="col-lg-1">col-lg-1</div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3">col-lg-3</div>
+        <div class="col-lg-6">col-lg-6</div>
+        <div class="col-lg-3">col-lg-3</div>
+      </div><hr>
+
+      <h4>col-md-*: 992px 이상</h4>
+      <div class="row">
+        <div class="col-md-1">col-md-1</div>
+        <div class="col-md-1">col-md-1</div>
+        <div class="col-md-1">col-md-1</div>
+        <div class="col-md-1">col-md-1</div>
+        <div class="col-md-1">col-md-1</div>
+        <div class="col-md-1">col-md-1</div>
+        <div class="col-md-1">col-md-1</div>
+        <div class="col-md-1">col-md-1</div>
+        <div class="col-md-1">col-md-1</div>
+        <div class="col-md-1">col-md-1</div>
+        <div class="col-md-1">col-md-1</div>
+        <div class="col-md-1">col-md-1</div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">col-md-3</div>
+        <div class="col-md-9">col-md-9</div>
+      </div><hr>
+
+      <h4>col-sm-*: 768px 이상</h4>
+      <div class="row">
+        <div class="col-sm-1">sm-1</div>
+        <div class="col-sm-1">sm-1</div>
+        <div class="col-sm-1">sm-1</div>
+        <div class="col-sm-1">sm-1</div>
+        <div class="col-sm-1">sm-1</div>
+        <div class="col-sm-1">sm-1</div>
+        <div class="col-sm-1">sm-1</div>
+        <div class="col-sm-1">sm-1</div>
+        <div class="col-sm-1">sm-1</div>
+        <div class="col-sm-1">sm-1</div>
+        <div class="col-sm-1">sm-1</div>
+        <div class="col-sm-1">sm-1</div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">col-sm-4</div>
+        <div class="col-sm-4">col-sm-4</div>
+        <div class="col-sm-4">col-sm-4</div>
+      </div><hr>
+
+      <h4>col-xs-*: 768px 미만</h4>
+      <div class="row">
+        <div class="col-xs-1">xs-1</div>
+        <div class="col-xs-1">xs-1</div>
+        <div class="col-xs-1">xs-1</div>
+        <div class="col-xs-1">xs-1</div>
+        <div class="col-xs-1">xs-1</div>
+        <div class="col-xs-1">xs-1</div>
+        <div class="col-xs-1">xs-1</div>
+        <div class="col-xs-1">xs-1</div>
+        <div class="col-xs-1">xs-1</div>
+        <div class="col-xs-1">xs-1</div>
+        <div class="col-xs-1">xs-1</div>
+        <div class="col-xs-1">xs-1</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-5">xs-5</div>
+        <div class="col-xs-4">xs-4</div>
+        <div class="col-xs-1">xs-1</div>
+        <div class="col-xs-1">xs-1</div>
+        <div class="col-xs-1">xs-1</div>
+      </div><hr>
+
+      <h4>Mixed: smartphone(768px 미만) 3:9, tablet(768px 이상) 4:8</h4>
+      <div class="row">
+        <div class="col-xs-3 col-sm-4">col-xs-3 col-sm-4</div>
+        <div class="col-xs-9 col-sm-8">col-xs-9 col-sm-8</div>
+      </div><hr>
+
+      <h4>Mixed: smartphone(768px 미만) stack, tablet(768px 이상) 4:8, desktop(992px 이상) 3:9</h4>
+      <div class="row">
+        <div class="col-sm-4 col-md-3">col-sm-4 col-md-3</div>
+        <div class="col-sm-8 col-md-9">col-sm-8 col-md-9</div>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        showViewportWidth();
+        $(window).on('resize orientationChange', function(event) {
+          showViewportWidth();
+        });
+        function showViewportWidth() {
+          var width = $(window).width();
+          $(".show-viewport-width").text( "width : " + width + "px" );
+        }
+      });
+    </script>
+  </body>
+</html>
+```
+
+
 
 부트스트랩의 장점 중 하나는 반응형 웹 디자인이 쉽게 만들어진다는 점이다
 

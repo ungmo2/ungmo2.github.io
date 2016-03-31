@@ -33,7 +33,7 @@ CSS (Cascading Style Sheets) 는 HTML 요소(Element)의 style(design, layout et
 
 # 1. 전체 선택자 (Universal Selector)
 
-HTML 문서 내의 모든 요소를 선택한다. html 요소에 포함된 모든 요소가 선택된다. (head 요소도 포함된다)
+HTML 문서 내의 모든 요소를 선택한다. html 요소를 포함한 모든 요소가 선택된다. (head 요소도 포함된다)
 
 ```html
 <!DOCTYPE html>
@@ -58,7 +58,7 @@ HTML 문서 내의 모든 요소를 선택한다. html 요소에 포함된 모�
 
 # 2. 태그 선택자 (Type Selector)
 
-특정한 태그명을 가지는 요소를 선택한다.
+지정된 태그명을 가지는 요소를 선택한다.
 
 ```html
 <!DOCTYPE html>
@@ -138,21 +138,16 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 <html>
   <head>
     <style>
-      /* p 태그 중 class 속성값이 center인 요소 */
-      p.center {
-        text-align: center;
-        color: red;
-      }
-
-      p.large {
-        font-size: 300%;
-      }
+      .text-center { text-align: center; }
+      .text-large  { font-size: 300%; }
+      .text-red    { color: red; }
+      .text-blue   { color: blue; }
     </style>
   </head>
   <body>
-    <h1 class="center">This heading will not be affected</h1>
-    <p class="center">This paragraph will be red and center-aligned.</p>
-    <p class="center large">This paragraph will be red, center-aligned, and in a large font-size.</p>
+    <h1 class="text-center">heading</h1>
+    <p class="text-large text-red">Lorem ipsum dolor sit amet</p>
+    <p class="text-center text-large text-blue">Lorem ipsum dolor sit amet</p>
   </body>
 </html>
 ```
@@ -166,12 +161,12 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 | 선택자[속성]           | 지정 속성과 일치하는 요소 선택
 | 선택자[속성=값]        | 지정 속성과 값이 일치하는 요소 선택
 | 선택자[속성~=값]       | 지정 속성값을 단어로 포함하는 요소 선택
-| 선택자[속성\|=값]       | 지정 속성값과 단어로 일치하거나 지정 속성값으로 시작하는 요소 선택
+| 선택자[속성\|=값]      | 지정 속성값과 단어로 일치하거나 지정 속성값으로 시작하는 요소 선택
 | 선택자[속성^=값]       | 지정 속성값으로 시작하는 요소 선택
 | 선택자[속성$=값]       | 지정 속성값으로 끝나는 요소 선택
 | 선택자[속성*=값]       | 지정 속성값을 포함하는 요소 선택
 
-선택자[속성]
+선택자[속성] : 지정 속성과 일치하는 요소 선택
 
 ```html
 <!DOCTYPE html>
@@ -191,7 +186,7 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 </html>
 ```
 
-선택자[속성=값]
+선택자[속성=값] 지정 속성과 값이 일치하는 요소 선택
 
 ```html
 <!DOCTYPE html>
@@ -211,7 +206,7 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 </html>
 ```
 
-선택자[속성~=값]
+선택자[속성~=값] : 지정 속성값을 단어로 포함하는 요소 선택
 
 ```html
 <!DOCTYPE html>
@@ -231,7 +226,7 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 </html>
 ```
 
-선택자[속성\|=값]
+선택자[속성\|=값] : 지정 속성값과 단어로 일치하거나 지정 속성값으로 시작하는 요소 선택
 
 ```html
 <!DOCTYPE html>
@@ -253,7 +248,7 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 </html>
 ```
 
-선택자[속성^=값]
+선택자[속성^=값] : 지정 속성값으로 시작하는 요소 선택
 
 ```html
 <!DOCTYPE html>
@@ -274,7 +269,7 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 </html>
 ```
 
-선택자[속성$=값]
+선택자[속성$=값] : 지정 속성값으로 끝나는 요소 선택
 
 ```html
 <!DOCTYPE html>
@@ -295,7 +290,7 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 </html>
 ```
 
-선택자[속성*=값]
+선택자[속성*=값] : 지정 속성값을 포함하는 요소 선택
 
 ```html
 <!DOCTYPE html>

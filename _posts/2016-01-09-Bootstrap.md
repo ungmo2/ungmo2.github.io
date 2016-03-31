@@ -20,7 +20,7 @@ Bootstrap은 빠르고 간편한 반응형 웹 디자인(responsive web design)�
 
 ## 1.1 Framework의 장점
 
-사람은 실수를 하게 마련이다. 따라서 검증된 Framework나 Library를 사용하는 것은 옳바른 어프로치이다. 또한 Framework에 제시하는 Coding style로 팀 전체의 Coding style을 통일시키는 것은 커뮤니케이션과 유지보수 측면에서도 바람직하다. 자신만의(팀이나 회사 고유의) Framework를 만드는 것도 좋은 방법이기는 하나 일정 기간, 여러 사람의 검증을 받아 실제 환경에서 안정된 운용을 하고 있는 Framework보다 안정성과 성능면에서 더 나은 제품이어야 한다는 전제가 따른다. 이것은 소규모 회사나 팀에게는 버거운 일일 것이다.
+사람은 실수를 하게 마련이다. 따라서 검증된 Framework나 Library를 사용하는 것은 옳바른 어프로치이다. 또한 Framework에 제시하는 Coding style로 팀 전체의 Coding style을 통일시키는 것은 커뮤니케이션과 maintenance 측면에서도 바람직하다. 자신만의(팀이나 회사 고유의) Framework를 만드는 것도 좋은 방법이기는 하나 일정 기간, 여러 사람의 검증을 받아 실제 환경에서 안정된 운용을 하고 있는 Framework보다 안정성과 성능면에서 더 나은 제품이어야 한다는 전제가 따른다. 이것은 소규모 회사나 팀에게는 버거운 일일 것이다.
 
 ## 1.2 Bootstrap의 장점
 
@@ -377,6 +377,21 @@ Bootstrap은 Mobile-first 방식을 기본 지원하므로 Media query에 포함
         <div class="col-sm-4 col-md-3">col-sm-4 col-md-3</div>
         <div class="col-sm-8 col-md-9">col-sm-8 col-md-9</div>
       </div>
+
+<!-- ******* -->
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-8">.col-xs-12 .col-sm-6 .col-md-8</div>
+        <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+        <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+        <!-- Optional: clear the XS cols if their content doesn't match in height -->
+        <div class="clearfix visible-xs-block"></div>
+        <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+      </div>
+<!-- ******* -->
+
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script>

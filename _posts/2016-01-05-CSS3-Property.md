@@ -119,13 +119,13 @@ cm, mm, inch 등의 단위도 존재하나 대표적인 크기 단위는 다음�
 
 더욱 다양한 색상을 표현하기 위해 다음과 같은 색상 표현 단위를 사용할 수 있다.
 
-| 단위                                      | 사용예                          
-|:-----------------------------------------|:------------------------------|
-| HEX 코드 단위 (Hexadecimal Colors)         | #000000
-| RGB (Red, Green, Blue)                   | rgb(255, 255, 0)
-| RGBA (Red, Green, Blue, Alpha)           | rgba(255, 255, 0, 1)
-| HSL (Hue, Saturation, Lightness)         | hsl(0, 100%, 25%)
-| HSLA (Hue, Saturation, Lightness, Alpha) | hsla(60, 100%, 50%, 1)
+| 단위                                         | 사용예                          
+|:--------------------------------------------|:------------------------------|
+| HEX 코드 단위 (Hexadecimal Colors)            | #000000
+| RGB (Red, Green, Blue)                      | rgb(255, 255, 0)
+| RGBA (Red, Green, Blue, Alpha/투명도)         | rgba(255, 255, 0, 1)
+| HSL (Hue/색상, Saturation/채도, Lightness/명도) | hsl(0, 100%, 25%)
+| HSLA (Hue, Saturation, Lightness, Alpha)     | hsla(60, 100%, 50%, 1)
 
 ```html
 <!DOCTYPE html>

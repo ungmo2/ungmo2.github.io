@@ -165,9 +165,9 @@ console.log(NaN == NaN);
 
 ```javascript
 if (document.getElementById('header')) {
-   // 요소가 존재함 : 필요한 작업을 수행
+  // 요소가 존재함 : 필요한 작업을 수행
 } else {
-   // 요소가 존재하지 않음 : 필요한 작업을 수행
+  // 요소가 존재하지 않음 : 필요한 작업을 수행
 }
 ```
 
@@ -184,7 +184,24 @@ var b = new Boolean(false);
 if (b) // this condition evaluates to true
 ```
 
+# Checking existence & Return
+
+객체의 존재 확인 후 그 결과를 반환해야 하는 경우, !!를 사용하면 강제로 객체를 boolean으로 형 변환 할 수 있다.
+
+```javascript
+function checkExist(obj) {
+  return !!obj;
+}
+
+var obj;
+console.log(checkExist(obj)); // false
+
+obj = {};
+console.log(checkExist(obj)); // true
+```
+
 # Loop
+
 반복문(Loops)은 주어진 조건식 (condition expression)이 참인 경우 코드 블록을 실행한다.
 
 그 후 조건식을 다시 검사하여 여전히 참인 경우 코드 블록을 다시 실행하며 이는 조건식이 거짓일 때까지 반복된다.
@@ -193,6 +210,7 @@ if (b) // this condition evaluates to true
 JavaScript는 3가지의 반복문  `for`, `while`, `do while` 을 제공한다.
 
 ## for문
+
 가장 일반적으로 사용되는 반복문이다. 일정 횟수만큼 반복 실행하여야 할 때 사용한다.
 
 ```javascript
@@ -213,6 +231,7 @@ while (i < 3) {
 ```
 
 ## do while문
+
 While문과 매우 유사하나 코드블록은 최소 1회 이상 실행된다.
 
 ```javascript
@@ -224,6 +243,7 @@ do {
 ```
 
 ## break
+
 반복문을 탈출할 때 사용하는 키워드이다. break문을 감싸는 반복문 하나를 탈출한다.
 
 ```javascript
@@ -236,6 +256,7 @@ while (1) {    // infinite loop
 ```
 
 ## continue
+
 continue문 이후의 구문은 실행 생략하고 반복문의 조건검사 위치로 이동한다.
 
 ```javascript

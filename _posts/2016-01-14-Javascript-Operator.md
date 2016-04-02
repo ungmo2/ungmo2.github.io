@@ -180,6 +180,7 @@ me instanceof Person // true
 ```
 
 # Evaluating variable
+
 초기화되지 않은 변수는 `undefined` 값을 갖게 된다. 미선언 변수에 접근하면 `ReferenceError` 예외가 발생한다.
 
 ```javascript
@@ -212,6 +213,7 @@ if (!x) console.log(x); // null
 ```
 
 # 단축 평가 (Short-Circuit Evaluation)
+
 논리 연산자가 왼쪽에서 오른쪽으로 평가될때, 논리연산자는 다음의 규칙을 따라서 "단축 평가"로 검사된다.
 
 | 평가식                 | 평가 결과        |

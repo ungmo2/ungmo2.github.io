@@ -206,6 +206,9 @@
     requestAnimationFrame( animate );
     // For mobile sensor
     controls.update();
+    camera.lookAt( scene.position );
+
+
     update();
   }
 

@@ -92,10 +92,6 @@
     document.addEventListener( 'mousewheel', onDocumentMouseWheel, false );
     document.addEventListener( 'MozMousePixelScroll', onDocumentMouseWheel, false);
 
-
-    screen.addEventListener("orientationchange", function() {
-        console.log(("the orientation of the device is now " + screen.orientation));
-    });
     //
 
     document.addEventListener( 'dragover', function ( event ) {
@@ -138,6 +134,10 @@
 
     window.addEventListener( 'resize', onWindowResize, false );
 
+
+    window.addEventListener("orientationchange", function() {
+      alert("the orientation of the device is now " + screen.orientation);
+    });
   }
 
   function onWindowResize() {

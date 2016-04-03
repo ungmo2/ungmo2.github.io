@@ -59,14 +59,10 @@
     container = document.getElementById( 'container' );
 
     camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1100 );
-    // camera.target = new THREE.Vector3( 0, 0, 0 );
-
-    camera.lookAt( scene.position );
-    // camera.lookAt( {x:0, y:0, z:0 } );
+    camera.target = new THREE.Vector3( 0, 0, 0 );
 
     // For mobile sensor
     controls = new THREE.DeviceOrientationControls( camera );
-
 
     scene = new THREE.Scene();
 
@@ -209,8 +205,6 @@
     requestAnimationFrame( animate );
     // For mobile sensor
     controls.update();
-
-
     update();
   }
 
@@ -230,7 +224,7 @@
     // camera.target.y = 500 * Math.cos( phi );
     // camera.target.z = 500 * Math.sin( phi ) * Math.sin( theta );
     //
-    // camera.lookAt( camera.target );
+    camera.lookAt( camera.target );
 
     /*
      // distortion

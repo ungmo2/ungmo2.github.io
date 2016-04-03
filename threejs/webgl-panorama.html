@@ -206,7 +206,8 @@
     requestAnimationFrame( animate );
     // For mobile sensor
     controls.update();
-    camera.lookAt( scene.position );
+    // camera.lookAt( scene.position );
+    camera.lookAt( {x:0, y:0, z:0 } );
 
 
     update();

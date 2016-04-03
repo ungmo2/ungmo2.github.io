@@ -203,8 +203,6 @@
 
   function animate() {
     requestAnimationFrame( animate );
-    // For mobile sensor
-    controls.update();
     update();
   }
 
@@ -225,6 +223,9 @@
     // camera.target.z = 500 * Math.sin( phi ) * Math.sin( theta );
     //
     camera.lookAt( camera.target );
+
+    // For mobile sensor
+    controls.update();
 
     /*
      // distortion

@@ -9,16 +9,15 @@ Device Orientation는 HTML5가 제공하는 매우 유용한 기능으로 중력
 
 디바이스의 방향 정보를 다루는 자바스크립트 이벤트는 두가지가 있다.
 
-- [DeviceOrientationEvent](https://developer.mozilla.org/ko/docs/Web/API/DeviceOrientationEvent)
+- [DeviceOrientationEvent](https://developer.mozilla.org/ko/docs/Web/API/DeviceOrientationEvent)  
   가속도계(accelerometer)가 기기의 방향의 변화를 감지했을 때 발생한다.
 
-- [DeviceMotionEvent](https://developer.mozilla.org/ko/docs/Web/API/DeviceMotionEvent)
+- [DeviceMotionEvent](https://developer.mozilla.org/ko/docs/Web/API/DeviceMotionEvent)  
   가속도에 변화가 일어났을 때 발생한다
 
 브라우저 별 지원 정보는 [caniuse](http://caniuse.com/#search=DeviceOrientation)를 참조한다. 현재 사파리를 제외한 대부분의 브라우저에서 사용할 수 있다.
 
 하지만 오래된 브라우저를 사용하는 사용자를 위해 브라우저의 이벤트 지원 여부를 먼저 확인할 필요가 있다.
-
 
 ```javascript
 if (window.DeviceOrientationEvent) {
@@ -50,12 +49,6 @@ function handleOrientation(event) {
 - DeviceOrientationEvent.gamma
 
 ![deviceorientation-angles](/img/deviceorientation-angles.png)
-
-DeviceOrientationEvent.alpha 값은 0도부터 360도까지 범위의 z축을 중심으로 한 기기의 움직임을 나타낸다.
-DeviceOrientationEvent.beta 값은 -180도부터 180도까지 범위의 x축을 줌심으로 한 기기의 움직임을 나타낸다. 이는 기기의 앞뒤 움직임을 나타낸다.
-DeviceOrientationEvent.gamma 값은 -90도부터 90도까지 범위의 y축을 중심으로 한 기기의 움직임을 나타낸다. 이는 기기의 좌우 움직임을 나타낸다.
-
-A boolean that indicates whether or not the device is providing orientation data absolutely.
 
 ## absolute
 

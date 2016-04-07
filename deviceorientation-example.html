@@ -9,9 +9,9 @@
         height: 200px;
         border: 5px solid #CCC;
         border-radius: 10px;
-        }
+      }
 
-        .ball {
+      .ball {
         position: absolute;
         top   : 90px;
         left  : 90px;
@@ -19,11 +19,12 @@
         height: 20px;
         background: green;
         border-radius: 100%;
-        }
+      }
     </style>
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script>
-    $( document ).ready(function() {
+    // $( document ).ready(function() {
+    $(window).load( function(){
       var ball   = document.querySelector('.ball');
       var garden = document.querySelector('.garden');
       var output = document.querySelector('.output');
@@ -50,8 +51,15 @@
 
         // 10 is half the size of the ball
         // It center the positioning point to the center of the ball
-        ball.style.top  = (maxX*x/180 - 10) + "px";
-        ball.style.left = (maxY*y/180 - 10) + "px";
+        // ball.style.top  = (maxX*x/180 - 10) + "px";
+        // ball.style.left = (maxY*y/180 - 10) + "px";
+
+//90,90
+        ball.style.top = ( ball.style.top + x/180) + "px";
+
+        ball.style.top  = (maxX * x/180 - 10) + "px";
+        ball.style.left = (maxY * y/180 - 10) + "px";
+
       }
       window.addEventListener('deviceorientation', handleOrientation);
     });

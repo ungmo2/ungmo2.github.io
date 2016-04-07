@@ -75,10 +75,11 @@
     } );
 
     mesh = new THREE.Mesh( geometry, material );
+
     scene.add( mesh );
 
-    // var wireframe = new THREE.WireframeHelper( mesh, 0x00ff00 );
-    // scene.add( wireframe );
+    var wireframe = new THREE.WireframeHelper( mesh, 0x00ff00 );
+    scene.add( wireframe );
 
     renderer = new THREE.WebGLRenderer();
     renderer.setPixelRatio( window.devicePixelRatio );

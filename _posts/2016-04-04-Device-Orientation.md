@@ -72,14 +72,6 @@ function handleOrientation(event) {
 
 ![deviceorientation-angles](/img/deviceorientation-gamma.png)
 
-
-# DeviceMotionEvent
-
-
-
-
-
-
 # Reference
 
 * [Using Device Orientation in HTML5](http://www.sitepoint.com/using-device-orientation-html5/)

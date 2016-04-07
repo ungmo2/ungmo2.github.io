@@ -56,19 +56,19 @@ function handleOrientation(event) {
 
 ## alpha
 
-0도부터 360도까지 범위의 z축을 중심으로 한 기기의 움직임을 나타낸다.
+0도부터 360도까지 범위의 z축을 중심으로 디바이스의 움직임을 나타낸다.
 
 ![deviceorientation-angles](/img/deviceorientation-alpha.png)
 
 ## beta
 
--180도부터 180도(모바일 사파리: -90도~90도)까지 범위의 x축을 중심으로 한 기기의 움직임을 나타낸다. 이는 기기의 앞뒤 움직임을 나타낸다.
+-180도부터 180도(모바일 사파리: -90도~90도)까지 범위의 x축을 중심으로 디바이스의 움직임을 나타낸다. 이는 디바이스의 앞뒤 움직임을 나타낸다.
 
 ![deviceorientation-angles](/img/deviceorientation-beta.png)
 
 ## gamma
 
--90도부터 90도(모바일 사파리: -180도~180도)까지 범위의 y축을 중심으로 한 기기의 움직임을 나타낸다. 이는 기기의 좌우 움직임을 나타낸다.
+-90도부터 90도(모바일 사파리: -180도~180도)까지 범위의 y축을 중심으로 디바이스의 움직임을 나타낸다. 이는 디바이스의 좌우 움직임을 나타낸다.
 
 ![deviceorientation-angles](/img/deviceorientation-gamma.png)
 

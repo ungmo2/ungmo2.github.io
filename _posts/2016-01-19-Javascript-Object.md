@@ -153,17 +153,11 @@ stooge.nickname;  // undefined
 
 # Built-in Object(내장객체)
 
-## Built-in Object(자바스크립트 내장객체)
-Javascript는 프로그램 전체의 영역에서 공통적으로 필요한 기능을 사용자 각자가 일일히 작성하는 수고를 줄이기 위해 Built-in Object(내장객체)를 제공한다.
+Built-in Object(내장 객체)는 웹페이지 등을 표현하기 위한 공통의 기능을 제공한다. 웹페이지가 브라우저에 의해 로드되자마자 별다른 행위없이 바로 사용이 가능하다. Built-in Object는 아래와 같이 구분할 수 있다.
 
-Object, String, Number, Boolean, Date, Array, Math, RegExp, Error 등 많은 내장객체들이 있다.
+- [Standard Built-in Objects (or Global Objects)](http://ungmo2.github.io/javascript/Built-in-Object/)
+- [BOM (Browser Object Model)](http://ungmo2.github.io/javascript/BOM/)
+- [DOM (Document Object Model)](http://ungmo2.github.io/javascript/DOM/)
 
-이들은 자바스크립트 엔진이 구동되는 시점에서 바로 제공되며 자바스크립트코드 어디에서든 사용이 가능하다.
-
-## Native Object(브라우저 내장 객체)
-브라우저객체모델(BOM)과 문서객체모델(DOM)로 이 객체들은 Built-in Object 가 구성된 후에 구성된다.
-
-Native Object 역시 내장객체이며 Built-in Object와 동일하게 자바스크립트 구동시점부터 바로 사용가능 하다. 
-
-## Host Object(사용자 정의 객체)
+# Host Object(사용자 정의 객체)
 사용자가 생성한 객체 들이다. constructor 혹은 객체리터럴을 통해 사용자가 객체를 정의하고 확장시킨 것들이기 때문에 Built-in Object 와 Native Object가 구성된 이후에 구성된다.

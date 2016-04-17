@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://ungmo2.github.io/javascript/Device-Orientation/</loc>
+  </url>
+  <url>
     <loc>http://ungmo2.github.io/node.js/Nodejs-MySQL/</loc>
   </url>
   <url>
@@ -11,6 +14,9 @@
   </url>
   <url>
     <loc>http://ungmo2.github.io/javascript/DOM/</loc>
+  </url>
+  <url>
+    <loc>http://ungmo2.github.io/javascript/Built-in-Object/</loc>
   </url>
   <url>
     <loc>http://ungmo2.github.io/javascript/Javascript-Closure/</loc>

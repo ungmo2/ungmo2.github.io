@@ -163,7 +163,7 @@ Object, String, Number, Boolean, Date, Array, Math, RegExp, Error 등 많은 �
 ## Native Object(브라우저 내장 객체)
 브라우저객체모델(BOM)과 문서객체모델(DOM)로 이 객체들은 Built-in Object 가 구성된 후에 구성된다.
 
-Native Object 역시 내장객체이며  Built-in Object와 동일하게 자바스크립트 구동시점부터 바로 사용가능 하다. 
+Native Object 역시 내장객체이며 Built-in Object와 동일하게 자바스크립트 구동시점부터 바로 사용가능 하다. 
 
 ## Host Object(사용자 정의 객체)
 사용자가 생성한 객체 들이다. constructor 혹은 객체리터럴을 통해 사용자가 객체를 정의하고 확장시킨 것들이기 때문에 Built-in Object 와 Native Object가 구성된 이후에 구성된다.

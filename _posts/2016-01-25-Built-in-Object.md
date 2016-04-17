@@ -78,14 +78,14 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 브라우저 객체 모델은 브라우저 탭 또는 브라우저 창의 모델을 생성한다. 최상위 객체는 `window` 객체로 현재 브라우저 창 또는 탭을 표현하는 객체이다. 또한 이 객체의 자식 객체 들은 브라우저의 다른 기능들을 표현한다.
 
 ![BOM](/img/BOM.png)
-{: style="max-width:500px; margin: 10px auto;"}
+{: style="max-width:400px; margin: 10px auto;"}
 
 # DOM (Document Object Model)
 
 문서 객체 모델은 현재 웹페이지의 모델을 생성한다. 최상위 객체는 `document` 객체로 전체 문서를 표현한다. 또한 이 객체의 자식 객체들은 문서의 다른 요소들을 표현한다.
 
 ![DOM](/img/DOM.png)
-{: style="max-width:500px; margin: 10px auto;"}
+{: style="max-width:400px; margin: 10px auto;"}
 
 # Built-in Object(내장객체)
 

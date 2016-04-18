@@ -73,6 +73,7 @@ Standard Built-in Objects(표준 빌트인 객체)를 Global Objects로 표현�
 Global property(전역 속성)은 간단한 값을 나타내며 다른 속성이나 메서드를 가지고 있지 않다. 아래의 Global property(전역 속성)은 모두 Global Object(전역 객체)의 속성이다.
 
 - Infinity  
+
   양/음의 무한대를 나타내는 숫자값이다.
 
   ```javascript
@@ -83,6 +84,7 @@ Global property(전역 속성)은 간단한 값을 나타내며 다른 속성이
   ```
 
 - NaN  
+
   숫자가 아님(Not-a-Number)을 나타내는 숫자값이다. NaN 속성은 Number.NaN 속성과 같다.
 
   ```javascript
@@ -91,7 +93,8 @@ Global property(전역 속성)은 간단한 값을 나타내며 다른 속성이
   console.log(typeof NaN);    // number
   ```
 
-- undefined  
+- undefined
+
   변수에 값이 대입되지 않았음을 나타내는 값이다. 초기값은 [기본 자료형(primitive data type)](http://ungmo2.github.io/javascript/Javascript-Variables-Data-types/) undefined이다.
 
   ```javascript
@@ -104,6 +107,7 @@ Global property(전역 속성)은 간단한 값을 나타내며 다른 속성이
   Global function(전역 함수)는 전역에서 호출할 수 있으며 호출한 곳(caller)으로 결과값을 반환한다. 아래의 Global function(전역 함수)는 모두 Global Object(전역 객체)의 함수 속성이다.
 
 - eval()
+
   문자열 파라미터로서 전달된 code 또는 표현식(expression)을 평가 또는 실행한다. 사용자로 부터 입력받은 Contents(untrusted data)를 eval()로 실행하는 것은 보안에 매우 취약하다. 불필요한 eval()의 사용은 금지되어야 한다.
 
   ```javascript
@@ -120,6 +124,7 @@ Global property(전역 속성)은 간단한 값을 나타내며 다른 속성이
   ```
 
 - isFinite()  
+
   매개변수(parameter)로 전달된 값이 유한수인지, 정상적인 수인지를 검사하여 그 결과를 Boolean으로 반환한다.
 
   ```javascript
@@ -139,6 +144,7 @@ Global property(전역 속성)은 간단한 값을 나타내며 다른 속성이
   ```
 
 - isNaN()  
+
   매개변수(parameter)로 전달된 값이 NaN인지를 검사하여 그 결과를 Boolean으로 반환한다.
 
   ```javascript
@@ -168,6 +174,7 @@ Global property(전역 속성)은 간단한 값을 나타내며 다른 속성이
   ```
 
 - parseFloat()  
+
   매개변수(parameter)로 전달된 문자열을 부동소수점숫자(floating point number)로 변환하여 반환한다.
 
   ```javascript
@@ -187,6 +194,7 @@ Global property(전역 속성)은 간단한 값을 나타내며 다른 속성이
   ```
 
 - parseInt()  
+
   매개변수(parameter)로 전달된 문자열을 정수형 숫자(Integer)로 변환하여 반환한다.
 
   ```javascript
@@ -215,7 +223,9 @@ Global property(전역 속성)은 간단한 값을 나타내며 다른 속성이
   ```
 
 - encodeURI() / decodeURI()  
+
   encodeURI()은 매개변수로 전달된 URI(Uniform Resource Identifier)를 인코딩한다. 여기서 인코딩이란 URI의 문자들을 이스케이프 처리하는 것을 의미한다. 단 아래의 문자는 이스케이프 처리에서 제외된다.
+  
   - 알파벳, 0~9의 숫자, - _ . ! ~ * ' ( )
 
   decodeURI()은 매개변수로 전달된 URI을 디코딩한다.
@@ -241,6 +251,7 @@ Global property(전역 속성)은 간단한 값을 나타내며 다른 속성이
 - encodeURIComponent() / decodeURIComponent()
 
   encodeURIComponent()은 매개변수로 전달된 URI(Uniform Resource Identifier) component(구성 요소)를 인코딩한다. 여기서 인코딩이란 URI의 문자들을 이스케이프 처리하는 것을 의미한다. 단 아래의 문자는 이스케이프 처리에서 제외된다.
+
   - 알파벳, 0~9의 숫자, - _ . ! ~ * ' ( )
 
   decodeURIComponent()은 매개변수로 전달된 URI component(구성 요소)를 디코딩한다.

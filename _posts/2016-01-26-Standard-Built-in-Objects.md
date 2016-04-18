@@ -52,8 +52,9 @@ Standard Built-in Objects(표준 빌트인 객체)를 Global Objects로 표현�
   window.foo();
   ```
 
-- Standard Built-in Objects(표준 빌트인 객체)도 마찬가지로 전역 객체의 자식 객체이다.
+- Standard Built-in Objects(표준 빌트인 객체)도 역시 전역 객체의 자식 객체이다.
 
+global properties like undefined, Infinity, and NaN • global functions like isNaN(), parseInt() (§3.8.2), and eval() (§4.12). • constructor functions like Date(), RegExp(), String(), Object(), and Array() (§3.8.2) • global objects like Math and JSON (§6.9)
 
 String
 

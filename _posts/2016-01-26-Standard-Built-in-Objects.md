@@ -225,13 +225,13 @@ Global property(전역 속성)은 간단한 값을 나타내며 다른 속성이
 - encodeURI() / decodeURI()  
 
   encodeURI()은 매개변수로 전달된 URI(Uniform Resource Identifier)를 인코딩한다. 여기서 인코딩이란 URI의 문자들을 이스케이프 처리하는 것을 의미한다. 단 아래의 문자는 이스케이프 처리에서 제외된다.
-  
-  - 알파벳, 0~9의 숫자, - _ . ! ~ * ' ( )
 
-  decodeURI()은 매개변수로 전달된 URI을 디코딩한다.
+  - 알파벳, 0~9의 숫자, - _ . ! ~ * ' ( )
 
   ![uri](/img/uri.png)
   {: style="max-width:700px; margin:10px auto;"}
+
+  decodeURI()은 매개변수로 전달된 URI을 디코딩한다.
 
   ```javascript
   encodeURI(URI)
@@ -280,9 +280,10 @@ Javascript는 프로그램 전체의 영역에서 공통적으로 필요한 기�
 다른 객체들의 기초가 되는 핵심적이고 기본적인 객체이다. 일반적인 객체, 함수, 에러들을 대표하는 객체들이 포함된다.
 
 - Object  
-  객체 생성자(Object constructor)는 객체 레퍼(wrapper)를 생성한다. 만약 생성자 인수값이 null이거나 undefined이면 빈 객체가 반환되고 그렇지 않은 경우 생성자 인수값에 따라 강제 형변환된 객체가 반환된다.
 
-  특수한 상황이 아니라면 객체리터럴
+  [객체 생성자(Object constructor)](http://ungmo2.github.io/javascript/Javascript-Object/)는 객체 레퍼(wrapper)를 생성한다. 만약 생성자 인수값이 null이거나 undefined이면 빈 객체가 반환되고 그렇지 않은 경우 생성자 인수값에 따라 강제 형변환된 객체가 반환된다.
+
+  객체 생성 시 특수한 상황이 아니라면 객체리터럴 방식을 사용하는 것이 일반적이다.
 
   ```javascript
   // 변수 o에 빈 객체를 저장한다
@@ -297,77 +298,130 @@ Javascript는 프로그램 전체의 영역에서 공통적으로 필요한 기�
   var o = new Object(true); // var o = new Boolean(true);과 동치이다
   ```
 
-Function
-Boolean
-Symbol
-Error
-EvalError
-InternalError
-RangeError
-ReferenceError
-SyntaxError
-TypeError
-URIError
+- Function
+
+  JavaScript의 모든 함수는 Function 객체이다. 다른 모든 객체들처럼 Function 객체는 new 연산자을 사용해 생성할 수 있다.
+
+  ```javascript
+  var adder = new Function('a', 'b', 'return a + b');
+
+  adder(2, 6);  // 8
+  ```
+
+- Boolean
+
+  Boolean 객체는 기본자료형 boolean을 위한 객체 레퍼(wrapper)를 생성한다.
+
+  ```javascript
+  var foo = new Boolean(true);    // true
+  var foo = new Boolean("false"); // true
+
+  var foo = new Boolean(false); // false
+  var foo = new Boolean();      // false
+  var foo = new Boolean("");    // false
+  var foo = new Boolean(0);     // false
+  var foo = new Boolean(null);  // false
+
+  var x = new Boolean(false);
+  if (x) { // x는 객체로서 존재한다. 따라서 참으로 간주된다.
+    // . . . 이 코드는 실행된다.
+  }
+  ```
+
+- Symbol
+
+  Symbol은 ECMAScript 6(Javascript 2015) 에서 추가된 유일하고 변경 불가능한(immutable) 기본자료형으로 Symbol 객체는 기본자료형 Symbol을 위한 객체 레퍼(wrapper)를 생성한다.
+
+- Error
+
+  Error 생성자는 error 객체를 생성한다. error 객체의 인스턴스는 런타임 에러가 발생하였을 때 throw된다.
+
+  ```javascript
+  try {
+    throw new Error("Whoops!");
+  } catch (e) {
+    alert(e.name + ": " + e.message);
+  }
+  ```
+
+  Error 이외에 Error에 관련한 객체는 아래와 같다.
+
+  - EvalError
+  - InternalError
+  - RangeError
+  - ReferenceError
+  - SyntaxError
+  - TypeError
+  - URIError
 
 # Numbers and dates (숫자와 날짜)
 
-Number
-Math
-Date
+숫자, 날짜, 수학적인 계산을 대표하는 기본 객체이다.
+
+- Number
+
+  Number 객체는 기본자료형인 Number를 다룰 때 유용한 속성과 메서드를 제공한다. 변수 또는 객체 속성이 숫자를 값으로 가지고 있다면 Number 객체의 별도 생성없이 Number 객체의 속성과 메서드를 사용할 수 있다.
+
+  - Number Property
+
+    - MAX_VALUE	Returns the largest number possible in JavaScript
+    - MIN_VALUE	Returns the smallest number possible in JavaScript
+    - NEGATIVE_INFINITY	Represents negative infinity (returned on overflow)
+    - NaN	Represents a "Not-a-Number" value
+    - POSITIVE_INFINITY	Represents infinity (returned on overflow)
+
+  - Number Method
+    - isFinite()	Checks whether a value is a finite number
+    - isInteger()	Checks whether a value is an integer
+    - isNaN()	Checks whether a value is Number.NaN
+    - isSafeInteger()	Checks whether a value is a safe integer
+    - toExponential(x)	Converts a number into an exponential notation
+    - toFixed(x)	Formats a number with x numbers of digits after the decimal point
+    - toPrecision(x)	Formats a number to x length
+    - toString()	Converts a number to a string
+    - valueOf()	Returns the primitive value of a number
+
+
+
+- Math
+
+- Date
 
 # Text processing (텍스트 처리)
 
-String
-RegExp
+- String
+
+- RegExp
 
 # Indexed collections
 
-Array
-Int8Array
-Uint8Array
-Uint8ClampedArray
-Int16Array
-Uint16Array
-Int32Array
-Uint32Array
-Float32Array
-Float64Array
+- Array
+
+  - Int8Array
+  - Uint8Array
+  - Uint8ClampedArray
+  - Int16Array
+  - Uint16Array
+  - Int32Array
+  - Uint32Array
+  - Float32Array
+  - Float64Array
 
 # Keyed collections
 
-Map
-Set
-WeakMap
-WeakSet
+- Map
+- Set
+- WeakMap
+- WeakSet
 
 # Structured data
 
-ArrayBuffer
-DataView
-JSON
-
-
-String
-
-Number
-
-Math
-
-Date
-
--------
-
-Array
-
-RegExp
-
-Global
+- ArrayBuffer
+- DataView
+- JSON
 
 
 
+# Reference
 
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
-
-# Introduction
-
-The term "global objects" (or standard built-in objects) here is not to be confused with the global object. Here, global objects refer to objects in the global scope (but only if ECMAScript 5 strict mode is not used; in that case it returns undefined). The global object itself can be accessed using the this operator in the global scope. In fact, the global scope consists of the properties of the global object, including inherited properties, if any.
+* [Standard built-in objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects)

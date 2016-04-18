@@ -18,10 +18,95 @@ tags: []
 * 속성명 : 빈 문자열을 포함하는 문자열
 * 속성값 : `undefined`을 제외한 모든 값
 
+# 객체 생성 방법
+
+## 객체 리터럴
+
+객체를 생성하는 가장 일반적이고 가장 쉬운 방법이다.
+
+```javascript
+var person = {
+  name: 'Lee',
+  gender:'male',
+  sayHello: function(){
+    alert('Hi! my name is ' + this.name);
+  }
+};
+person.sayHello();
+```
+
+## Object() 생성자 (Constructor)
+
+new 연산자와 Object 객체 생성자를 사용하여 빈 객체를 생성할 수 있다. 빈 객체 생성 이후 속성과 메서드를 추가하여 객체를 완성하는 방법이다.
+
+객체가 소유하고 있는 속성에 새로운 값을 할당하면 속성값은 갱신된다. 객체가 소유하고 있지 않은 속성에 값을 할당하려고 하면 해당 속성과 값을 객체에 추가한다.
+
+```javascript
+var person = new Object();
+person.name = 'Lee';
+person.gender = 'male';
+person.sayHello = function(){
+  alert('Hi! my name is ' + this.name);
+};
+```
+
+사실 위의 방법은 반드시 new 연산자와 Object 객체 생성자를 사용해야는 것은 아니다. 빈 객체를 생성는 방법은 객체 리터럴를 사용하는 것이 더 간편하다. 그리고 빈 객체를 생성 후에 속성과 메서드를 추가해야하는 특별한 이유가 옶다면 이 방식은 그다지 유용해 보이지 않는다.
+
+```javascript
+var person = {};
+person.name = 'Lee';
+person.gender = 'male';
+person.sayHello = function(){
+  alert('Hi! my name is ' + this.name);
+};
+```
+
+# 객체 생성자 함수
+
+객체 리터럴 방식과 Object() 생성자 방식으로 객체를 생성하는 것은 속성값만 다른 여러개의 객체 생성에 불편이 있다.
+
+객체 생성자 함수를 마치 객체를 생성하기 위한 템플릿처럼 사용하여 속성이 다른 동일한 객체 여러개를 간편하게 생성할 수 있다.
+
+```javascript
+function Person(name, gender) {
+  this.name = name;
+  this.gender = gender;
+  this.sayHello = function(){
+    alert('Hi! my name is ' + this.name);
+  };
+}
+
+var person1 = new Person('Lee', 'male');
+var person2 = new Person('Kim', 'female');
+
+person1.sayHello();
+person2.sayHello();
+```
+
+- 생성자 함수 이름은 일반적으로 대분자로 시작한다. 이것은 생성자 함수임을 인식하도록 도움을 준다.
+- 속성 또는 메서드명 앞에 기술한 `this`는 생성자 함수로 생성될 `인스턴스(instance)`이다. 따라서 this에 연결되어 있는 속성과 메서드는 `public`이다.
+- 생성자 함수 내에서 선언된 일반 변수는 `private`이다. 즉 생성자 함수 내부에서는 자유롭게 접근이 가능하나 외부에서 접근할 수 있는 방법이 없다.
+
+  ```javascript
+  function Person(name, gender) {
+    var married = 'yes';
+    this.name = name;
+    this.gender = gender;
+    this.sayHello = function(){
+      alert('Hi! my name is ' + this.name);
+    };
+  }
+
+  var person = new Person('Lee', 'male');
+  console.log(person.married); // undefined
+  ```
+
+# 객체에의 접근
+
 ```javascript
 var empty_object = {}; // 객체리터럴
 
-var empty_object = new Object();
+var empty_object = new Object(); // 객체 생성자
 
 var stooge = {
   "first-name": "Jerome",
@@ -78,13 +163,13 @@ flight.equipment.model                      // throw "TypeError"
 flight.equipment && flight.equipment.model  // undefined
 ```
 
-속성값은 할당에 의해 갱신한다. 만약 할당하는 표현식에서 속성명이 이미 객체 안에 존재하면 해당 속성값만 교체한다.
+객체가 소유하고 있는 속성에 새로운 값을 할당하면 속성값은 갱신된다.
 
 ```javascript
 stooge['first-name'] = 'Joe';
 ```
 
-속성이 이미 객체 안에 존재하지 않으면 해당 속성을 객체에 추가한다.
+객체가 소유하고 있지 않은 속성에 값을 할당하려고 하면 해당 속성을 객체에 추가한다.
 
 ```javascript
 //Adding Property
@@ -141,6 +226,7 @@ a = b = c = {};
 ```
 
 # 속성 삭제
+
 `delete` 연산자를 사용하면 객체의 속성을 삭제할 수 있다.
 
 ```javascript
@@ -151,13 +237,20 @@ delete stooge.nickname;
 stooge.nickname;  // undefined
 ```
 
-# Built-in Object(내장객체)
+# 객체의 분류
 
-[Built-in Object(내장 객체)](http://ungmo2.github.io/javascript/Built-in-Object/)는 웹페이지 등을 표현하기 위한 공통의 기능을 제공한다. 웹페이지가 브라우저에 의해 로드되자마자 별다른 행위없이 바로 사용이 가능하다. Built-in Object는 아래와 같이 구분할 수 있다.
+객체는 아래와 같이 분류할 수 있다.
 
-- [Standard Built-in Objects (or Global Objects)](http://ungmo2.github.io/javascript/Built-in-Object/)
-- [BOM (Browser Object Model)](http://ungmo2.github.io/javascript/BOM/)
-- [DOM (Document Object Model)](http://ungmo2.github.io/javascript/DOM/)
+![object](/img/object.png)
+{: style="max-width:400px; margin:10px auto;"}
 
-# Host Object(사용자 정의 객체)
-사용자가 생성한 객체 들이다. constructor 혹은 객체리터럴을 통해 사용자가 객체를 정의하고 확장시킨 것들이기 때문에 Built-in Object 와 Native Object가 구성된 이후에 구성된다.
+- [Built-in Object(내장 객체)](http://ungmo2.github.io/javascript/Built-in-Object/)는 웹페이지 등을 표현하기 위한 공통의 기능을 제공한다. 웹페이지가 브라우저에 의해 로드되자마자 별다른 행위없이 바로 사용이 가능하다. Built-in Object는 아래와 같이 구분할 수 있다.
+
+  - [Standard Built-in Objects (or Global Objects)](http://ungmo2.github.io/javascript/Built-in-Object/)
+  - [BOM (Browser Object Model)](http://ungmo2.github.io/javascript/BOM/)
+  - [DOM (Document Object Model)](http://ungmo2.github.io/javascript/DOM/)
+
+`Standard Built-in Objects`(표준 빌트인 객체)를 제외한 BOM과 DOM을 `Native Object`라고 분류하기도 한다. 또한 사용자가 생성한 객체를 `Host Object`(사용자 정의 객체)라 한다.
+
+- Host Object(사용자 정의 객체)
+  사용자가 생성한 객체 들이다. constructor 혹은 객체리터럴을 통해 사용자가 객체를 정의하고 확장시킨 것들이기 때문에 Built-in Object 와 Native Object가 구성된 이후에 구성된다.

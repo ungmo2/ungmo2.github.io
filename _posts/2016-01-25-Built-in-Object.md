@@ -56,7 +56,7 @@ Javascript는 프로그램 전체의 영역에서 공통적으로 필요한 기�
   - Infinity
   - NaN
   - undefined
-  - null literal
+  - null
 
 - 전역 함수
 

@@ -221,7 +221,7 @@ Global property(전역 속성)은 간단한 값을 나타내며 다른 속성이
   decodeURI()은 매개변수로 전달된 URI을 디코딩한다.
 
   ![uri](/img/uri.png)
-  {: style="max-width:500px; margin:10px auto;"}
+  {: style="max-width:700px; margin:10px auto;"}
 
   ```javascript
   encodeURI(URI)

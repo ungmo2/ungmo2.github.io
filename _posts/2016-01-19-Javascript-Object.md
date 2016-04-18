@@ -153,7 +153,7 @@ stooge.nickname;  // undefined
 
 # Built-in Object(내장객체)
 
-Built-in Object(내장 객체)는 웹페이지 등을 표현하기 위한 공통의 기능을 제공한다. 웹페이지가 브라우저에 의해 로드되자마자 별다른 행위없이 바로 사용이 가능하다. Built-in Object는 아래와 같이 구분할 수 있다.
+[Built-in Object(내장 객체)](http://ungmo2.github.io/javascript/Built-in-Object/)는 웹페이지 등을 표현하기 위한 공통의 기능을 제공한다. 웹페이지가 브라우저에 의해 로드되자마자 별다른 행위없이 바로 사용이 가능하다. Built-in Object는 아래와 같이 구분할 수 있다.
 
 - [Standard Built-in Objects (or Global Objects)](http://ungmo2.github.io/javascript/Built-in-Object/)
 - [BOM (Browser Object Model)](http://ungmo2.github.io/javascript/BOM/)

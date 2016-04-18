@@ -4,7 +4,7 @@ title: Built-in Object
 categories: javascript
 ---
 
-Built-in Object(내장 객체)는 웹페이지 등을 표현하기 위한 공통의 기능을 제공한다. 웹페이지가 브라우저에 의해 로드되자마자 별다른 행위없이 바로 사용이 가능하다. Built-in Object는 아래와 같이 구분할 수 있다.
+`Built-in Object`(내장 객체)는 웹페이지 등을 표현하기 위한 공통의 기능을 제공한다. 웹페이지가 브라우저에 의해 로드되자마자 별다른 행위없이 바로 사용이 가능하다. Built-in Object는 아래와 같이 구분할 수 있다.
 
 - Standard Built-in Objects (or Global Objects)  
 
@@ -12,16 +12,33 @@ Built-in Object(내장 객체)는 웹페이지 등을 표현하기 위한 공통
 
 - DOM (Document Object Model)
 
+`Standard Built-in Objects`(표준 빌트인 객체)를 제외한 BOM과 DOM을 `Native Object`라고 분류하기도 한다. 또한 사용자가 생성한 객체를 `Host Object`(사용자 정의 객체)라 한다.
+
+![object](/img/object.png)
+{: style="max-width:400px; margin:10px auto;"}
 
 # Standard Built-in Objects (or Global Objects)
 
-Javascript는 프로그램 전체의 영역에서 공통적으로 필요한 기능을 사용자 각자가 일일히 작성하는 수고를 줄이기 위해 Standard Built-in Objects(표준 빌트인 객체)를 제공한다.
-
-일반적으로 String, Array와 같이 대문자로 시작한다. 전역 객체(Global Object)와 다른 의미로 사용되므로 혼동에 주의하여야 한다.
+Javascript는 프로그램 전체의 영역에서 공통적으로 필요한 기능을 사용자 각자가 일일히 작성하는 수고를 줄이기 위해 Standard Built-in Objects(표준 빌트인 객체)를 제공한다. 일반적으로 String, Array와 같이 대문자로 시작한다.
 
 전역 객체(Global Object)는 모든 객체의 최상위 객체를 의미하며 일반적으로 Browser-side에서는 `window`, Server-side(Node.js)에서는 `global` 객체를 의미한다.
 
 대표적인 표준 빌트인 객체는 아래와 같다.
+
+- String
+
+- Number
+
+- Boolean
+
+- Date
+
+- Math
+
+- RegEx
+
+
+
 
 - Objects
 

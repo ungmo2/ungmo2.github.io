@@ -125,7 +125,7 @@ Global property(전역 속성)은 간단한 값을 나타내며 다른 속성이
 
 - isFinite()  
 
-  매개변수(parameter)로 전달된 값이 유한수인지, 정상적인 수인지를 검사하여 그 결과를 Boolean으로 반환한다.
+  매개변수(parameter)로 전달된 값이 유한수인지, 정상적인 수인지를 검사하여 그 결과를 Boolean으로 반환한다. 매개변수가 숫자가 아닌 경우, 숫자로 변환한 후 검사를 수행한다.
 
   ```javascript
   isFinite(testValue)
@@ -140,12 +140,19 @@ Global property(전역 속성)은 간단한 값을 나타내며 다른 속성이
 
   console.log(isFinite(0));         // true
   console.log(isFinite(2e64));      // true
-  console.log(isFinite(null));      // true
+  console.log(isFinite(null));      // true: null->0
+  ```
+
+  isFinite(null)은 true를 반환하는데 이것은 null을 숫자로 변환하여 검사를 수행하였기 때문이다.
+
+  ```javascript
+  Number(null)  // 0
+  Boolean(null) // false
   ```
 
 - isNaN()  
 
-  매개변수(parameter)로 전달된 값이 NaN인지를 검사하여 그 결과를 Boolean으로 반환한다.
+  매개변수(parameter)로 전달된 값이 NaN인지를 검사하여 그 결과를 Boolean으로 반환한다. 매개변수가 숫자가 아닌 경우, 숫자로 변환한 후 검사를 수행한다.
 
   ```javascript
   isNaN(testValue)
@@ -153,24 +160,24 @@ Global property(전역 속성)은 간단한 값을 나타내며 다른 속성이
   ```
 
   ```javascript
-  isNaN(NaN);       // true
-  isNaN(undefined); // true
-  isNaN({});        // true
-  isNaN("blabla")   // true
+  isNaN(NaN)       // true
+  isNaN(undefined) // true: undefined -> NaN
+  isNaN({})        // true: {} -> NaN
+  isNaN("blabla")  // true: "blabla" -> NaN
 
-  isNaN(true);      // false
-  isNaN(null);      // false
-  isNaN(37);        // false
+  isNaN(true)      // false: true -> 1
+  isNaN(null)      // false: null -> 0
+  isNaN(37)        // false
 
   // strings
-  isNaN("37");      // false: "37" is converted to the number 37 which is not NaN
-  isNaN("37.37");   // false: "37.37" is converted to the number 37.37 which is not NaN
-  isNaN("");        // false: the empty string is converted to 0 which is not NaN
-  isNaN(" ");       // false: a string with spaces is converted to 0 which is not NaN
+  isNaN("37")      // false: "37" -> 37
+  isNaN("37.37")   // false: "37.37" -> 37.37
+  isNaN("")        // false: "" -> 0
+  isNaN(" ")       // false: " " -> 0
 
   // dates
-  isNaN(new Date());                // false
-  isNaN(new Date().toString());     // true
+  isNaN(new Date())             // false: new Date() -> Number
+  isNaN(new Date().toString())  // true:  String -> NaN
   ```
 
 - parseFloat()  
@@ -370,17 +377,135 @@ Javascript는 프로그램 전체의 영역에서 공통적으로 필요한 기�
 
   - Number Property
 
-    - MAX_VALUE	Returns the largest number possible in JavaScript
-    - MIN_VALUE	Returns the smallest number possible in JavaScript
-    - NEGATIVE_INFINITY	Represents negative infinity (returned on overflow)
-    - NaN	Represents a "Not-a-Number" value
-    - POSITIVE_INFINITY	Represents infinity (returned on overflow)
+    - MAX_VALUE
+
+      자바스크립트에서 사용 가능한 가장 큰 숫자(1.7976931348623157e+308)를 반환한다. MAX_VALUE보다 큰 숫자는 `Infinity`이다. MAX_VALUE는 Number 객체의 정적(static) 속성으로 `Number.MAX_VALUE`의 형태로 사용하여야 한다.
+
+      ```javascript
+      Number.MAX_VALUE; // 1.7976931348623157e+308
+      var num = 10;
+      num.MAX_VALUE;    // undefined
+      ```
+
+    - MIN_VALUE
+
+      자바스크립트에서 사용 가능한 가장 작은 숫자(5e-324)를 반환한다. MIN_VALUE는 `0`에 가장 가까운 값이다. MIN_VALUE보다 작은 숫자는 `0`으로 변환된다. MIN_VALUE는 Number 객체의 정적(static) 속성으로 `Number.MIN_VALUE`의 형태로 사용하여야 한다.
+
+      ```javascript
+      Number.MIN_VALUE; // 5e-324
+      var num = 10;
+      num.MIN_VALUE;    // undefined
+      ```
+    - POSITIVE_INFINITY
+
+      양의 무한대 `Infinity`를 반환한다. POSITIVE_INFINITY는 Number 객체의 정적(static) 속성으로 `Number.POSITIVE_INFINITY`의 형태로 사용하여야 한다.
+
+      ```javascript
+      Number.POSITIVE_INFINITY // Infinity
+      var num = 10;
+      num.POSITIVE_INFINITY;   // undefined
+      ```
+
+    - NEGATIVE_INFINITY
+
+      음의 무한대 `-Infinity`를 반환한다. NEGATIVE_INFINITY는 Number 객체의 정적(static) 속성으로 `Number.NEGATIVE_INFINITY`의 형태로 사용하여야 한다.
+
+      ```javascript
+      Number.NEGATIVE_INFINITY // -Infinity
+      var num = 10;
+      num.NEGATIVE_INFINITY;   // undefined
+      ```
+
+    - NaN
+
+      숫자가 아님(Not-a-Number)을 나타내는 숫자값이다. Number.NaN 속성은 NaN 속성과 같다.
+
+      ```javascript
+      console.log(Number('xyz')); // NaN
+      console.log(1 * 'string');  // NaN
+      console.log(typeof NaN);    // number
+      ```
 
   - Number Method
-    - isFinite()	Checks whether a value is a finite number
+
+    - isFinite()
+
+      매개변수(parameter)로 전달된 값이 유한수인지, 정상적인 수인지를 검사하여 그 결과를 Boolean으로 반환한다.
+
+      ```javascript
+      Number.isFinite(testValue)
+      // testValue: 검사 대상 값
+      ```
+
+      Number.isFinite()는 전역 함수 isFinite()와 차이가 있다. 전역 함수 isFinite()는 매개변수를 Number로 변환하여 검사를 수행하지만 Number.isFinite()는 매개변수를 변환하지 않는다. 따라서 Number가 아닌 매개변수가 주어졌을 때 반환값은 언제나 false가 된다.
+
+      ```javascript
+      Number.isFinite(Infinity)  // false
+      Number.isFinite(NaN)       // false
+      Number.isFinite("Hello")   // false
+      Number.isFinite("2005/12/12")   // false
+
+      Number.isFinite(0)         // true
+      Number.isFinite(2e64)      // true
+      Number.isFinite(null)      // false. isFinite(null) -> true
+      ```
+
     - isInteger()	Checks whether a value is an integer
-    - isNaN()	Checks whether a value is Number.NaN
+
+      매개변수로 전달된 값이 정수(Integer)인지 검사하여 그 결과를 Boolean으로 반환한다. 검사전에 매개변수를 Number로 변환하지 않는다.
+
+      ```javascript
+      Number.isInteger(testValue)
+      // testValue: 검사 대상 값
+      ```
+
+      ```javascript
+      Number.isInteger(123)   //true
+      Number.isInteger(-123)  //true
+      Number.isInteger(5-2)   //true
+      Number.isInteger(0)     //true
+      Number.isInteger(0.5)   //false
+      Number.isInteger('123') //false
+      Number.isInteger(false) //false
+      Number.isInteger(Infinity)  //false
+      Number.isInteger(-Infinity) //false
+      Number.isInteger(0 / 0) //false
+      ```
+
+    - isNaN()
+
+      매개변수로 전달된 값이 NaN인지를 검사하여 그 결과를 Boolean으로 반환한다.
+
+      ```javascript
+      Number.isNaN(testValue)
+      // testValue: 검사 대상 값
+      ```
+
+      Number.isNaN()는 전역 함수 isNaN()와 차이가 있다. 전역 함수 isNaN()는 매개변수를 Number로 변환하여 검사를 수행하지만 Number.isNaN()는 매개변수를 변환하지 않는다. 따라서 Number가 아닌 매개변수가 주어졌을 때 반환값은 언제나 false가 된다. 이는 자바스크립트에서 NaN은 Number type이기 때문에 Number type이 아닌 매개변수가 주어졌을 때 반환값은 false가 되기 때문이다.
+
+      ```javascript
+      Number.isNaN(NaN)       // true
+      Number.isNaN(undefined) // false. undefined->NaN. isNaN(undefined) -> true.
+      Number.isNaN({})        // false. {}->NaN.        isNaN({}) -> true.
+      Number.isNaN("blabla")  // false. "blabla"->NaN.  isNaN("blabla") -> true.
+
+      Number.isNaN(true)      // false
+      Number.isNaN(null)      // false
+      Number.isNaN(37)        // false
+      Number.isNaN("37");     // false
+      Number.isNaN("37.37");  // false
+      Number.isNaN("");       // false
+      Number.isNaN(" ");      // false
+      Number.isNaN(new Date())             // false
+      Number.isNaN(new Date().toString())  // false. String->NaN. isNaN(String) -> true.
+      ```
+
     - isSafeInteger()	Checks whether a value is a safe integer
+
+      매개변수로 전달된 값이 안전한(safe) 정수값인지 검사하여 그 결과를 Boolean으로 반환한다. 안전한 정수값은 (2<sup>53</sup> - 1) to -(2<sup>53</sup> - 1)
+
+
+
     - toExponential(x)	Converts a number into an exponential notation
     - toFixed(x)	Formats a number with x numbers of digits after the decimal point
     - toPrecision(x)	Formats a number to x length

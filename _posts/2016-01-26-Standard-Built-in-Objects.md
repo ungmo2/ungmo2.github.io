@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Standard Built-in Objects
+title: Javascript Standard Built-in Objects
 categories: javascript
 ---
 

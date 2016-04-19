@@ -224,12 +224,18 @@ Global property(전역 속성)은 간단한 값을 나타내며 다른 속성이
 
 - encodeURI() / decodeURI()  
 
-  encodeURI()은 매개변수로 전달된 URI(Uniform Resource Identifier)를 인코딩한다. 여기서 인코딩이란 URI의 문자들을 이스케이프 처리하는 것을 의미한다. 단 아래의 문자는 이스케이프 처리에서 제외된다.
-
-  - 알파벳, 0~9의 숫자, - _ . ! ~ * ' ( )
+  encodeURI()은 매개변수로 전달된 URI(Uniform Resource Identifier)를 인코딩한다.
 
   ![uri](/img/uri.png)
   {: style="max-width:700px; margin:10px auto;"}
+
+  여기서 인코딩이란 URI의 문자들을 이스케이프 처리하는 것을 의미한다.
+
+  - 이스케이프 처리: 네트워크를 통해 정보를 공유할 때 어떤 시스템에서도 읽을 수 있는 ASCII 문자로 변환하는 것이다. UTF-8 특수문자의 경우, 1문자당 1~3byte, UTF-8 한글 표현의 경우, 1문자당 3btye이다.  예를 들어 특수문자 공백(space)은	%20, 한글 '가'는 %EC%9E%90으로 인코딩된다.
+
+  단 아래의 문자는 이스케이프 처리에서 제외된다.
+
+  - 알파벳, 0~9의 숫자, - _ . ! ~ * ' ( )
 
   decodeURI()은 매개변수로 전달된 URI을 디코딩한다.
 
@@ -356,7 +362,7 @@ Javascript는 프로그램 전체의 영역에서 공통적으로 필요한 기�
 
 # Numbers and dates (숫자와 날짜)
 
-숫자, 날짜, 수학적인 계산을 대표하는 기본 객체이다.
+숫자, 수학적인 계산, 날짜를 대표하는 기본 객체이다.
 
 - Number
 

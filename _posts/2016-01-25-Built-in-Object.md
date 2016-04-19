@@ -21,72 +21,9 @@ categories: javascript
 
 Javascript는 프로그램 전체의 영역에서 공통적으로 필요한 기능을 사용자 각자가 일일히 작성하는 수고를 줄이기 위해 Standard Built-in Objects(표준 빌트인 객체)를 제공한다. 일반적으로 String, Array와 같이 대문자로 시작한다.
 
+Standard Built-in Objects(표준 빌트인 객체)를 Global Objects로 표현하기도 하는데 이것은 전역 객체(Global Object)와 다른 의미로 사용되므로 혼동에 주의하여야 한다.
+
 전역 객체(Global Object)는 모든 객체의 최상위 객체를 의미하며 일반적으로 Browser-side에서는 `window`, Server-side(Node.js)에서는 `global` 객체를 의미한다.
-
-대표적인 표준 빌트인 객체는 아래와 같다.
-
-- String
-
-- Number
-
-- Boolean
-
-- Date
-
-- Math
-
-- RegEx
-
-
-
-
-- Objects
-
-  - Object
-  - String
-  - RegExp
-  - Array
-  - ArrayBuffer
-  - JSON
-  - Boolean
-  - Number
-  - Math
-  - Date
-  - Function
-  - Symbol
-  - Error
-  - EvalError
-  - InternalError
-  - RangeError
-  - ReferenceError
-  - SyntaxError
-  - TypeError
-  - URIError
-  - Map
-  - Set
-  - WeakMap
-  - WeakSet
-  - Promise
-
-- 전역 속성
-
-  - Infinity
-  - NaN
-  - undefined
-  - null
-
-- 전역 함수
-
-  - eval()
-  - uneval()
-  - isFinite()
-  - isNaN()
-  - parseFloat()
-  - parseInt()
-  - decodeURI()
-  - decodeURIComponent()
-  - encodeURI()
-  - encodeURIComponent()
 
 # BOM (Browser Object Model)
 

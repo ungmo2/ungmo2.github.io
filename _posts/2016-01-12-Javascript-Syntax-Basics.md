@@ -5,7 +5,90 @@ categories: javascript
 tags: []
 ---
 
-# statement
+* TOC
+{:toc}
+
+# 1. Hello World
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>My Web Page</h1>
+  <p id="demo">A Paragraph</p>
+  <button type="button" onclick="myFunction()">Try it</button>
+  <script>
+    function myFunction() {
+      var myParagraph = document.getElementById("demo");
+      myParagraph.innerHTML = "Hello world!";
+    }
+  </script>
+</body>
+</html>
+```
+
+Javascript는 interactive한 웹페이지 작성을 가능하게 한다. 즉, 웹 브라우저가 웹페이지를 로드한 후 그 내용을 변경할 수 있다.
+예를 들면, Contents에 접근하여 수정할 수 있으며 이벤트(e.g. 버튼 클릭, 웹페이지 로딩 완료 등)에 반응하여 특정 스크립트를 실행할 수 있다.
+
+# 2. External JavaScript
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>My Web Page</h1>
+  <p id="demo">A Paragraph</p>
+  <button type="button" onclick="myFunction()">Try it</button>
+  <script src="extern.js"></script>
+</body>
+</html>
+```
+
+```javascript
+function myFunction() {
+  var myParagraph = document.getElementById("demo");
+  myParagraph.innerHTML = "Hello world!";
+}
+```
+
+HTML에서 javascript가 실행될 때 이하와 같은 동작을 할 것이다.
+
+1. 브라우저가 script 요소를 만나면, 문서의 렌더링을 잠시 중단하고
+2. 브라우저는 src 속성에 정의된 자바스크립트 파일을 로드한다.
+3. 스크립트를 실행한 뒤 다음 작업을 진행한다.
+
+`<body>`요소의 가장 아래에 스크립트를 위치시키는 것은 좋은 아이디어이다.
+HTML 요소들이 스크립트 로딩 지연으로 인해 렌더링에 지장 받는 일이 발생하지 않아 페이지 로딩 시간이 단축된다.
+
+# 3. JavaScript Output
+
+Javascript에서 data를 표시하는 방법은 아래와 같다.
+
+| Type            | Code             |
+| --------------- | ---------------- |
+| alert box       | window.alert()   |
+| HTML output     | document.write() |
+| HTML element    | innerHTML        |
+| Browser console | console.log()    |
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>My First Web Page</h1>
+  <p id="demo"></p>
+  <script>
+    window.alert("alert");
+    document.write("document.write");
+    document.getElementById("demo").innerHTML = "innerHTML";
+    console.log("console.log");
+  </script>
+</body>
+</html>
+```
+
+# 4. statement
+
 프로그램(스크립트)은 컴퓨터(Client-side Javascript의 경우, 엄밀히 말하면 웹 브라우저)에 의해 단계별로 수행될 명령들의 집합이다.
 
 각각의 명령을 statement(구문)이라 하며 statement가 실행되면 무슨 일인가가 일어나게 된다.
@@ -42,7 +125,8 @@ if (time < 10) {
 
 다른 언어와 달리 자바스크립트에서는 블록 유효범위(Block-level scope)를 생성하지 않는다. 함수 단위의 유효범위(Function-level scope)만이 생성된다.
 
-# Expression
+# 5. Expression
+
 표현식(Expression)은 값, 변수, 연산자의 조합이며 이 조합은 값을 연산한다. 즉, 표현식은 하나의 값으로 평가될 수 있는 문장이다.
 아래의 예에서 5 * 10은 50으로 평가(연산)된다.
 
@@ -51,7 +135,8 @@ if (time < 10) {
 "John" + " " + "Doe"  // "John Doe"
 ```
 
-# Variable
+# 6. Variable
+
 programming language에서 변수는 data값을 저장(할당), 참조하기 위해 사용된다. 한번 쓰고 버리는 값이 아닌 값(value)을 유지할 필요가 있는 경우에 변수를 사용한다.
 
 변수를 선언할 때 `var` keyword가 사용된다. 등호(=, equal sign)는 변수에 값을 할당하기 위해 사용된다.
@@ -63,7 +148,7 @@ var x; // 변수의 선언
 x = 6; // 정수값의 할당
 ```
 
-# Value
+# 7. Value
 
 ```java
 String str = "Hello World";
@@ -101,7 +186,8 @@ String str = "Hello World";
 [ "French Roast", "Colombian", "Kona" ];
 ```
 
-# Operator
+# 8. Operator
+
 연산자(Operators)는 하나 혹은 그 이상의 값을 하나의 값으로 만들 때 사용한다.
 
 ```javascript
@@ -121,7 +207,8 @@ var buy = 3 > 5; // false
 var buy = (5 > 3) && (2 < 4);  // true
 ```
 
-# keyword
+# 9. keyword
+
 키워드(keyword)는 수행되어져할 동작을 규정한 것이다.
 예를 들어 `var` keyword는 브라우저에게 새로운 변수를 생성할 것을 지시한다.
 
@@ -145,7 +232,8 @@ var y = x * 10;
 | var             | Declares a variable
 
 
-# Comment
+# 10. Comment
+
 주석(Comment)은 작성된 코드의 의미를 설명하기 위해 사용한다. 코드는 읽기(이해하기) 쉬워야 한다(가독성이 좋아야 한다)
 
 여러분이 작성한 코드를 다른 누군가가 읽는다면 “아니, 이게 뭐하는 코드야?”라고 생각하는 순간이 있기 마련이다.

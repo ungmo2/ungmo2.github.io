@@ -111,34 +111,7 @@ ECMAScript 6(Javascript 2015) 에서 추가되었다. Symbol은 유일하고 �
 
 이것들은 모두 객체이다. 또한 객체는 `pass-by-reference`이다
 
-# 2. Dynamic Type
-
-C-family language은 변수의 data type(자료형)을 미리 선언하고 data type에 맞는 값을 대입하여야한다. (statically typed languages)
-
-```c
-int main(void) {
-  int num = 46;
-  char * str = "String";
-
-  num = "String"; // warning: incompatible pointer to integer conversion assigning to 'int' from 'char [7]'
-
-  return 0;
-}
-```
-
-Javascript는 느슨한 타입(loosely typed) 언어 혹은 동적(dynamic typed) 언어이다. 이것은 변수의 data type을 미리 선언할 필요없이 값이 할당되는 과정에서 자동으로 data type이 결정될 것이라는 뜻이다. 따라서 같은 변수에 여러 data type의 값을 대입할 수 있다.
-
-```javascript
-var foo = 3;                 // Number
-foo = "Hi there";            // String
-foo = true;                  // Boolean
-foo = "The answer is " + 42; // "The answer is 42“
-foo = "37" - 7;              // 30
-foo = "37" + 7;              // "377"
-```
-
-
-# 3. Variables
+# 2. Variable (변수)
 
 어플리케이션에서 값(value)을 유지할 필요가 있을 때 변수를 사용한다.  
 
@@ -179,6 +152,32 @@ console.log(x); // logs "undefined"
 console.log(y); // throws ReferenceError exception
 ```
 
+# 3. Dynamic Type (동적 타입)
+
+C-family language은 변수의 data type(자료형)을 미리 선언하고 data type에 맞는 값을 대입하여야한다. (statically typed languages)
+
+```c
+int main(void) {
+  int num = 46;
+  char * str = "String";
+
+  num = "String"; // warning: incompatible pointer to integer conversion assigning to 'int' from 'char [7]'
+
+  return 0;
+}
+```
+
+Javascript는 느슨한 타입(loosely typed) 언어 혹은 동적 타입(dynamic typed) 언어이다. 이것은 변수의 data type을 미리 선언할 필요없이 값이 할당되는 과정에서 자동으로 data type이 결정될 것이라는 뜻이다. 따라서 같은 변수에 여러 data type의 값을 대입할 수 있다.
+
+```javascript
+var foo = 3;                 // Number
+foo = "Hi there";            // String
+foo = true;                  // Boolean
+foo = "The answer is " + 42; // "The answer is 42“
+foo = "37" - 7;              // 30
+foo = "37" + 7;              // "377"
+```
+
 # 4. Immutability in JavaScript
 Immutability (변경불가성)은 함수형 프로그래밍의 핵심 원리이다. 뿐만 아니라, 객체 지향 프로그램을 위한 기능을 제공하고 있다
 
@@ -203,6 +202,7 @@ var v2 = arr.push(2);
 상기 예제에서 v2의 값은 무엇인가? 문자열의 예와 같이 배열이 동작한다면 v2는 새로운 배열(하나의 요소를 가지고 그 값은 2인)을 가지게 될 것이다. 그러나 객체인 arr은 push 메서드에 의해 update되고 v2에는 배열의 새로운 `length` 값이 반환된다. (Passing by Reference)
 
 # 5. Variable scope
+
 Scope란 변수(매개변수 포함)에의 접근성과 생존기간(life-cycle)을 의미한다.
 
 C-family language 대부분은 `block-scope`를 사용하지만 Javascript는 `function scope`를 사용한다.

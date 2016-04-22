@@ -31,6 +31,7 @@ console.dir(student);
 ```
 
 ![Google chrome에서 student 객체 출력 결과](/img/printout_student_obj_from_chrome.png)
+
 Google chrome에서 student 객체 출력 결과
 {: style="color:gray; font-size: 80%; text-align: center; margin-top: 5px;"}
 

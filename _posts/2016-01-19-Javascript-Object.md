@@ -279,7 +279,6 @@ gender: male
 
 기본자료형은 값이 한번 정해지면 변경할 수 없지만(immutable), 객체는 변경 가능한 프로퍼티(속성)들의 집합이라 할 수 있다.
 
-
 ```javascript
 // Pass-by-reference
 var obj_A = {
@@ -288,69 +287,68 @@ var obj_A = {
 
 var obj_B = obj_A;
 console.log(obj_A.val, obj_B.val); // 10 10
+console.log(obj_A === obj_B);      // true
 
 obj_B.val = 20;
 console.log(obj_A.val, obj_B.val); // 20 20
+console.log(obj_A === obj_B);      // true
 ```
 
 obj_A 객체를 객체 리터럴 방식으로 생성하였다. 이때 변수 obj_A는 객체 자체를 저장하고 있는 것이 아니라 생성된 객체의 참조값(address)를 저장하고 있다.
 
-변수 obj_B에 변수 obj_A의 값을 할당하였다. 변수 obj_A의 값은 생성된 객체를 가리키는 참조값이므로 변수 obj_B에도 같은 참조값이 저장된다.
+변수 obj_B에 변수 obj_A의 값을 할당하였다. 변수 obj_A의 값은 생성된 객체를 가리키는 참조값이므로 변수 obj_B에도 같은 참조값이 저장된다. 즉 변수 obj_A, obj_B 모두 동일한 객체를 참조하고 있다. 따라서 참조하고 있는 객체의 val 값이 변경되면 변수 obj_A, obj_B 모두 동일한 객체를 참조하고 있으므로 두 변수 모두 변경된 객체의 속성값을 참조하게 된다. 객체는 참조(Reference) 방식으로 전달된다. 결코 복사되지 않는다.
 
 ![pass-by-reference](/img/pass-by-ref.png)
 {: style="max-width:400px; margin:10px auto;"}
 
+아래의 경우는 위의 경우와 약간 차이가 있다.
+
+```javascript
+var obj_A = { val: 10 };
+var obj_B = { val: 10 };
+
+console.log(obj_A.val, obj_B.val); // 10 10
+console.log(obj_A === obj_B);      // false
+
+var obj_C = obj_B;
+
+console.log(obj_C.val, obj_B.val); // 10 10
+console.log(obj_C === obj_B);      // true
+```
+
+변수 obj_A와 변수 obj_B는 비록 내용을 같지만 별개의 객체를 생성하여 참조값을 할당하였다. 따라서 변수 obj_A와 변수 obj_B의 참조값은 동일하지 않다.
+
+변수 obj_C에는 변수 obj_B의 값을 할당하였다. 결국 변수 obj_C와 변수 obj_B는 동일한 객체를 가리키는 참조값을 저장하고 있다. 따라서 변수 obj_C와 변수 obj_B의 참조값은 동일하다.
+
+![pass-by-reference](/img/pass-by-ref-2.png)
+{: style="max-width:400px; margin:10px auto;"}
+
+```javascript
+var a = {}, b = {}, c = {}; // a, b, c는 각각 다른 빈 객체를 참조
+console.log(a === b, a === c, b === c); // false false false
+
+a = b = c = {}; // a, b, c는 모두 같은 빈 객체를 참조
+console.log(a === b, a === c, b === c); // true true true
+```
+
+# 5. Pass-by-value
 
 ```javascript
 // Pass-by-value
 var a = 1;
 var b = a;
 
-console.log(a, b); // 1  1
+console.log(a, b);    // 1  1
+console.log(a === b); // true
 
-b = 10;
-console.log(a, b); // 1  10
+a = 10;
+console.log(a, b);    // 1  10
+console.log(a === b); // false
 ```
 
-```javascript
-var foo = 1;
-var bar = foo;
+변수 a는 기본료형인 number type의 1을 저장하고 있다. 기본자료형의 경우 값이 복사되어 변수에 저장된다. 즉 참조형으로 저장되는 것이 아니라 값 자체가 저장되게 된다. 변수 b에 변수 a를 대입할 경우, 변수 a의 값 1은 복사되어 변수 b에 저장된다.
 
-bar = 9;
-
-console.log(foo, bar); // => 1, 9
-
-//Pass by Reference
-
-var foo = [1, 2];
-var bar = foo;
-
-bar[0] = 9;
-
-console.log(foo[0], bar[0]); // => 9, 9
-```
-
-객체는 참조(Reference) 방식으로 전달된다. 결코 복사되지 않는다.
-
-```javascript
-var x = stooge;
-
-x.nickname = 'Curly';
-
-var nick = stooge.nickname;
-  // x와 stooge가 모두 같은 객체를 참조하기 때문에  
-  // 변수 nick의 값은 'Curly'
-
-var a = {}, b = {}, c = {};
-  // a, b, c는 각각 다른 빈 객체를 참조
-
-a = b = c = {};
-  // a, b, c는 모두 같은 빈 객체를 참조
-```
-
-
-
-# 객체의 분류
+# 6. 객체의 분류
 
 객체는 아래와 같이 분류할 수 있다.
 

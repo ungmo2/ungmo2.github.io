@@ -249,7 +249,24 @@ foo = true;
 console.log(typeof foo);  // boolean
 ```
 
-# 4. Immutability in JavaScript
+# 4. Pass-by-value
+
+```javascript
+// Pass-by-value
+var a = 1;
+var b = a;
+
+console.log(a, b);    // 1  1
+console.log(a === b); // true
+
+a = 10;
+console.log(a, b);    // 1  10
+console.log(a === b); // false
+```
+
+변수 a는 기본료형인 number type의 1을 저장하고 있다. 기본자료형의 경우 값이 복사되어 변수에 저장된다. 즉 참조형으로 저장되는 것이 아니라 값 자체가 저장되게 된다. 변수 b에 변수 a를 대입할 경우, 변수 a의 값 1은 복사되어 변수 b에 저장된다.
+
+# 5. Immutability in JavaScript
 
 Immutability (변경불가성)은 함수형 프로그래밍의 핵심 원리이다. 뿐만 아니라, 객체 지향 프로그램을 위한 기능을 제공하고 있다
 
@@ -263,17 +280,16 @@ var otherStr = statement.slice(8, 17);     // “immutable”
 console.log(statement);                    
 ```
 
-2행에서 Stirng객체의 slice 메서드는 statement 변수에 저장된 문자열을 변경하는 것이 아니라 사실은 새로운 문자열을 생성하여 반환하고 있다.
-그 이유는 문자열은 변경할 수 없는 immutable value이기 때문이다.
+2행에서 Stirng 객체의 slice 메서드는 statement 변수에 저장된 문자열을 변경하는 것이 아니라 사실은 새로운 문자열을 생성하여 반환하고 있다. 그 이유는 문자열은 변경할 수 없는 immutable value이기 때문이다.
 
 ```javascript
 var arr = [];
 var v2 = arr.push(2);
 ```
 
-상기 예제에서 v2의 값은 무엇인가? 문자열의 예와 같이 배열이 동작한다면 v2는 새로운 배열(하나의 요소를 가지고 그 값은 2인)을 가지게 될 것이다. 그러나 객체인 arr은 push 메서드에 의해 update되고 v2에는 배열의 새로운 `length` 값이 반환된다. (Passing by Reference)
+상기 예제에서 v2의 값은 무엇인가? 문자열의 예와 같이 배열이 동작한다면 v2는 새로운 배열(하나의 요소를 가지고 그 값은 2인)을 가지게 될 것이다. 그러나 객체인 arr은 push 메서드에 의해 update되고 v2에는 배열의 새로운 `length` 값이 반환된다. ([Passing by Reference](http://ungmo2.github.io/javascript/Javascript-Object/#pass-by-reference) 참고)
 
-# 5. Variable scope
+# 6. Variable scope
 
 Scope란 변수(매개변수 포함)에의 접근성과 생존기간(life-cycle)을 의미한다.
 

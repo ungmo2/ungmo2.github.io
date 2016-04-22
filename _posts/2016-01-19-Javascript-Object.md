@@ -364,4 +364,4 @@ console.log(a === b); // false
 `Standard Built-in Objects`(표준 빌트인 객체)를 제외한 BOM과 DOM을 `Native Object`라고 분류하기도 한다. 또한 사용자가 생성한 객체를 `Host Object`(사용자 정의 객체)라 한다.
 
 - Host Object(사용자 정의 객체)
-  사용자가 생성한 객체 들이다. constructor 혹은 객체리터럴을 통해 사용자가 객체를 정의하고 확장시킨 것들이기 때문에 Built-in Object 와 Native Object가 구성된 이후에 구성된다.
+  사용자가 생성한 객체 들이다. constructor 혹은 객체리터럴을 통해 사용자가 객체를 정의하고 확장시킨 것들이기 때문에 Built-in Object 와 Native Object가 구성된 이후에 구성된다. 

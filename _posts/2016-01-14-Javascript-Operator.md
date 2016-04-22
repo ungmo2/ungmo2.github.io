@@ -162,24 +162,7 @@ var n2 = !false; // true
 var n3 = !"Cat"; // false
 ```
 
-# 5. !! 연산자
-
-!! 연산자의 역할은 피연산자를 불린값으로 변환하는 것이다.
-
-```javascript
-console.log(!!1);         // true
-console.log(!!0);         // false
-console.log(!!'string');  // true
-console.log(!!'');        // false
-console.log(!!null);      // false
-console.log(!!undefined); // false
-console.log(!!{});        // true
-console.log(!![]);        // true
-```
-
-객체(배열 포함)의 경우 빈 객체라도 존재하기만하면 true가 변환된다.
-
-# 타입 연산자(Type Operators)
+# 5. 타입 연산자(Type Operators)
 
 | Operator	  | Description
 | :---------: |:-------------- |
@@ -204,7 +187,24 @@ var me = new Person()
 me instanceof Person // true
 ```
 
-# 6. Evaluating variable
+# 6. !! 연산자
+
+!! 연산자의 역할은 피연산자를 불린값으로 변환하는 것이다.
+
+```javascript
+console.log(!!1);         // true
+console.log(!!0);         // false
+console.log(!!'string');  // true
+console.log(!!'');        // false
+console.log(!!null);      // false
+console.log(!!undefined); // false
+console.log(!!{});        // true
+console.log(!![]);        // true
+```
+
+객체(배열 포함)의 경우 빈 객체라도 존재하기만하면 true가 변환된다.
+
+# 7. Evaluating variable
 
 초기화되지 않은 변수는 `undefined` 값을 갖게 된다. 미선언 변수에 접근하면 `ReferenceError` 예외가 발생한다.
 
@@ -237,7 +237,7 @@ console.log(x * 2); // 0
 if (!x) console.log(x); // null
 ```
 
-# 7. Type Conversion Table
+# 8. Type Conversion Table
 
 |Original Value|Converted to Number	|Converted to String |Converted to Boolean|
 |:-------------|:------------------:|:------------------:|:------------------:|
@@ -264,7 +264,7 @@ if (!x) console.log(x); // null
 | undefined    | NaN	              | "undefined"	       | false
 
 
-# 8. 단축 평가 (Short-Circuit Evaluation)
+# 9. 단축 평가 (Short-Circuit Evaluation)
 
 논리 연산자가 왼쪽에서 오른쪽으로 평가될때, 논리연산자는 다음의 규칙을 따라서 "단축 평가"로 검사된다.
 

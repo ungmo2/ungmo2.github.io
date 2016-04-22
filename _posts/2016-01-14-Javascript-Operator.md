@@ -250,7 +250,7 @@ if (!x) console.log(x); // null
 | NaN	         | NaN	              | "NaN"	             | false
 | Infinity	   | Infinity	          | "Infinity"	       | true
 | -Infinity	   | -Infinity	        | "-Infinity"	       | true
-| ""	         | ** 0 **	          | ""	               | false
+| ""	         | <b> 0 </b>	        | ""	               | false
 | "20"	       | 20	                | "20"	             | true
 | "twenty"	   | NaN	              | "twenty"	         | true
 | [ ]	         | 0	                | ""	               | true

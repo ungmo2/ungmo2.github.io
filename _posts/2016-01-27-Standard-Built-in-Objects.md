@@ -426,7 +426,22 @@ Error 이외에 Error에 관련한 객체는 아래와 같다.
 ### 4.6.2 DataView
 ### 4.6.3 JSON
 
+# 5. 기본자료형과 Standard Built-in Object
 
+앞서 살펴본 바와 같이 각 Standard Built-in Object는 각자의 메서드를 가진다. 그런데 기본자료형의 값에 대해 Standard Built-in Object의 메서드를 호출하면 정상적으로 작동한다.
+
+```javascript
+var str1 = "Hello ";
+var str2 = "world!";
+var res = str1.concat(str2);
+
+console.log(res); // 'Hello world!'
+
+var num = 1.5;
+console.log(num.toFixed()); // 2
+```
+
+이는 기본자료형의 값에 대해 Standard Built-in Object의 메서드를 호출할 때, 기본자료형의 값은 객체로 변환되고 각 타입별 Standard Built-in Object의 메서드가 호출되기에 가능한 것이다. 그리고 메서드 호출이 종료되면 객체로 변환된 기본자료형의 값은 다시 기본자료형의 값으로 복귀한다.
 
 # Reference
 

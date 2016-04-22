@@ -15,7 +15,6 @@ Execution Context(실행 컨텍스트)는 scope, hoisting, this, function, closu
 
 - `this`를 통해서 접근되는 객체의 멤버변수  
 
-
 ```javascript
 var person = {
 	firstName: "John",
@@ -51,7 +50,6 @@ Javascript는 바로 실행 컨텍스트(Execution Context)이라는 또다른 �
 - 가장 바깥쪽에 존재하는 실행 컨텍스트인 전역 컨텍스트는 애플리케이션이 종료될 때(웹 페이지에서 나가거나 브라우저를 닫을 때)까지 유지된다.
 - 함수를 호출하면 자체의 새로운 실행 컨택스트가 생성된다. 컨트롤이 새로운 함수로 들어갈 때마다 그 함수의 컨텍스트가 컨텍스트 스택에 쌓인다.
 - 실행 컨텍스트는 함수 실행이 끝나면 해당 함수의 실행 컨텍스트를 파기하고 컨트롤을 이전 컨텍스트에 반환한다.
-
 
 # sample code
 

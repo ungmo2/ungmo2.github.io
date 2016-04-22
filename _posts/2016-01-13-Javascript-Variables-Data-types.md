@@ -8,7 +8,11 @@ tags: []
 * TOC
 {:toc}
 
-# 1. Data Types (자료형)
+# 1. Data Type (자료형)
+
+모든 프로그래밍 언어의 학습은 Data Type(자료형)을 파악하는 것으로부터 시작된다.
+
+자료형은 프로그래밍 언어에서 객체, 정수, 불린 자료형 등 여러 종류의 데이터를 식별하는 분류를 말한다.
 
 최신 ECMAScript 표준(ECMAScript 2015 (6th Edition, ECMA-262) / 2015.06)은 7개의 data type을 정의한다
 
@@ -21,9 +25,11 @@ tags: []
   * `Symbol` (New in ECMAScript 6)
 * `Object`
 
+Javascript의 자료형은 크게 기본 자료형(primitive data type)과 Object(객체형, 참조형)으로 가분할 수 있다.
+
 ## 1.1 Primitive Data Type (기본자료형)
 
-기본자료형(Primitive data type)의 값은 변경 불가능한 값 (immutable value)이다. 또한 이들은 `pass-by-value`이다.
+기본자료형(Primitive data type)의 값은 변경 불가능한 값(immutable value)이다. 또한 이들은 `pass-by-value`이다.
 
 ### 1.1.1 Boolean
 
@@ -45,6 +51,21 @@ var foo = 'Lee';
 foo = null;  // 값 또는 참조 정보가 제거됨
 ```
 
+주의할 것은 데이터 형식을 나타내는 문자열을 반환하는 typeof 연산자로 null값은 가진 변수를 연산해 보면 null이 아닌 object가 나온다. 이는 설계상의 문제이다.
+
+```javascript
+var foo  = null;
+console.log(typeof foo); // object
+```
+
+따라서 null 타입 변수인지 확인할 때 typeof 연산자를 사용하면 안되고 일치 연산자(===)를 사용하여야 한다.
+
+```javascript
+var foo  = null;
+console.log(typeof foo === null); // false
+console.log(foo === null);        // true
+```
+
 ### 1.1.3 undefined
 
 값을 할당하지 않은 변수는 `undefined` 값을 가진다. 즉, 선언은 되었지만 할당된 적이 없는 변수에 접근하거나 존재하지 않는 객체 프로퍼티에 접근할 경우 반환된다.
@@ -52,10 +73,19 @@ foo = null;  // 값 또는 참조 정보가 제거됨
 ```javascript
 var foo;
 console.log(foo); // undefined
+
+foo = {
+  name: 'Lee',
+  gender: 'male'
+}
+console.log(foo.bar); // undefined
 ```
 
 ### 1.1.4 Number
-ECMAScript 표준에 따르면, 숫자의 자료형은 배정밀도 64비트 부동 소수점 형 (double-precision 64-bit floating-point format : -(2<sup>53</sup> -1) 와 2<sup>53</sup> -1 사이의 숫자값) 단 하나만 존재한다. 정수만을 표현하기 위한 특별한 자료형(integer type)은 없다.
+
+C 언어의 경우, 정수형과 실수형을 구분하여 int, long, float, double 등과 같은 다양한 숫자 자료형이 존재한다. 하지만 자바스크립트는 하나의 숫자 자료형만 존재한다.
+
+ECMAScript 표준에 따르면, 숫자 자료형은 배정밀도 64비트 부동 소수점 형 (double-precision 64-bit floating-point format : -(2<sup>53</sup> -1) 와 2<sup>53</sup> -1 사이의 숫자값) 단 하나만 존재한다. 정수만을 표현하기 위한 특별한 자료형(integer type)은 없다.
 
 추가적으로 세가지 의미있는 기호적인 값들도 표현할 수 있다.
 
@@ -63,36 +93,62 @@ ECMAScript 표준에 따르면, 숫자의 자료형은 배정밀도 64비트 �
 * `NaN` (not-a-number)
 
 ```javascript
-var x = 10;
-var y = 10.12;
-var z = -20;
+var x = 10;    // 정수
+var y = 10.12; // 실수
+var z = -20;   // 음의 정수
 
 var foo = 42 / -0;
-console.log(foo);  // -Infinity
+console.log(foo);        // -Infinity
+console.log(typeof foo); // number
 
 var bar = 1 * 'string';
-console.log(bar);  // NaN
+console.log(bar);        // NaN
+console.log(typeof bar); // number
 ```
 
 ### 1.1.5 String
 
-String 타입은 텍스트 데이터를 나타내는데 사용한다. 이는 0개 또는 그 이상의 유니코드(16비트 부호없는 정수 값) 문자들의 집합이다.
-
-C와 같은 언어와는 다르게, 자바스크립트의 문자열은 변경 불가능 (immutable) 하다.
-
-이것은 한 번 문자열이 생성되면, 그 문자열을 변경할 수 없다는걸 의미한다.
-그러나 원래 문자열에서 일부가 수정된 다른 문자열을 만드는건 가능하다. 예를 들면  
-
-* 원래 문자열에서 각각의 글자를 추출하거나 String.substr()을 사용해서 만든 부분 문자열
-* 접합 연산자 (+) 나 String.concat() 으로 두 문자열을 합친 문자열
+String(문자열) 타입은 텍스트 데이터를 나타내는데 사용한다. 이는 0개 또는 그 이상의 유니코드(16비트 부호없는 정수 값) 문자들의 집합이다. 문자열은 작은 따옴표('') 또는 큰 따옴표("") 안에 텍스트를 넣어 생성한다.
 
 ```javascript
-var name = "John Doe";   // Using double quotes
-    name = 'John Doe';   // Using single quotes
+var name = "John Doe";    // Using double quotes
+    name = 'John Doe';    // Using single quotes
+console.log(typeof name); // string
 
 var answer = "It's alright";          // Single quote inside double quotes
     answer = "He is called 'Johnny'"; // Single quotes inside double quotes
     answer = 'He is called "Johnny"'; // Double quotes inside single quotes
+```
+
+C와 같은 언어와는 다르게, 자바스크립트의 문자열은 변경 불가능(immutable) 하다. 이것은 한 번 문자열이 생성되면, 그 문자열을 변경할 수 없다는걸 의미한다.
+
+```javascript
+var str = 'string';
+console.log(str[0],str[1],str[2],str[3],str[4],str[5]);
+
+str[0] = 'S';
+console.log(str); // string
+```
+
+문자열은 배열처럼 인덱스를 통해 접근할 수 있다. str[0] = 'S'처럼 이미 생성된 문자열에 새로운 문자를 대입하여 변경시켜도 반영되지 않는다(이때 에러가 발생하지 않는다). 한번 생성된 문자열은 read only로서 수정은 불가하다. 이것을 변경 불가능(immutable)이라 한다.
+
+그러나 새로운 문자열을 할당하는 것은 물론 가능하다. 이는 기존 문자열을 수정하는 것이 아닌 새로운 문자열을 할당하는 것이기 때문이다.
+
+```javascript
+var str = 'string';
+console.log(str); // string
+
+str = 'String';
+console.log(str); // String
+
+str += ' test';
+console.log(str); // String test
+
+str.substring(0, 3);
+console.log(str); // Str
+
+str = str.toUpperCase();
+console.log(str); // STR
 ```
 
 ### 1.1.6 Symbol
@@ -101,8 +157,9 @@ ECMAScript 6(Javascript 2015) 에서 추가되었다. Symbol은 유일하고 �
 
 ## 1.2 Object (객체형, 참조형)
 
-객체는 식별자 (Identifier) 로 참조할 수 있는, 메모리에 있는 값이다.
-6가지 기본자료형을 제외한 나머지는 모두 객체이다.
+[객체](http://ungmo2.github.io/javascript/Javascript-Object/)는 데이터와 그 데이터에 관련되는 동작(절차,방법,기능)을 모두 포함할 수 있는 개념적 존재이다. 달리 말해, 이름과 값을 가지는 데이터를 의미하는 속성(property)와 동작을 의미하는 메서드(method)를 포함하고 있는 독립적 주체이다.
+
+자바스크립트는 객체(object)기반의 스크립트 언어이며 자바스크립트를 이루고 있는 거의 “모든 것”은 객체이다. 기본자료형(Primitives)을 제외한 나머지 값들(배열, 함수, 정규표현식 등)은 모두 객체이다.
 
 * 함수 (Function)
 * 배열 (Array)
@@ -154,7 +211,7 @@ console.log(y); // throws ReferenceError exception
 
 # 3. Dynamic Type (동적 타입)
 
-C-family language은 변수의 data type(자료형)을 미리 선언하고 data type에 맞는 값을 대입하여야한다. (statically typed languages)
+C-family language은 변수를 선언할 때 미리 data type(자료형)을 정하고 data type에 맞는 값을 대입(할당)하여야한다. (statically typed languages)
 
 ```c
 int main(void) {
@@ -167,18 +224,33 @@ int main(void) {
 }
 ```
 
-Javascript는 느슨한 타입(loosely typed) 언어 혹은 동적 타입(dynamic typed) 언어이다. 이것은 변수의 data type을 미리 선언할 필요없이 값이 할당되는 과정에서 자동으로 data type이 결정될 것이라는 뜻이다. 따라서 같은 변수에 여러 data type의 값을 대입할 수 있다.
+Javascript는 동적 타입(dynamic typed) 언어 혹은 느슨한 타입(loosely typed) 언어이다. 이것은 변수의 data type을 미리 선언할 필요없이 값이 할당되는 과정에서 자동으로 data type이 결정될 것이라는 뜻이다. 따라서 같은 변수에 여러 data type의 값을 대입할 수 있다.
 
 ```javascript
-var foo = 3;                 // Number
-foo = "Hi there";            // String
-foo = true;                  // Boolean
-foo = "The answer is " + 42; // "The answer is 42“
-foo = "37" - 7;              // 30
-foo = "37" + 7;              // "377"
+var foo;
+
+console.log(typeof foo);  // undefined
+
+foo = null;
+console.log(typeof foo);  // object
+
+foo = {};
+console.log(typeof foo);  // object
+
+foo = 3;
+console.log(typeof foo);  // number
+foo = 3.14;
+console.log(typeof foo);  // number
+
+foo = "Hi there";            
+console.log(typeof foo);  // string
+
+foo = true;                  
+console.log(typeof foo);  // boolean
 ```
 
 # 4. Immutability in JavaScript
+
 Immutability (변경불가성)은 함수형 프로그래밍의 핵심 원리이다. 뿐만 아니라, 객체 지향 프로그램을 위한 기능을 제공하고 있다
 
 `object` type을 제외한 모든 data type은 한번 정해지면 변경이 불가능한 값 (immutable value)이다.

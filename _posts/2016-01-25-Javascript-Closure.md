@@ -4,7 +4,7 @@ title: Javascript Closure
 categories: javascript
 ---
 
-클로저(closure)는 자바스크립트에서 중요한 개념 중 하나로 자바스크립트에 관심을 가지고 있다면 한번쯤은 들어보았을 내용이다. [function]({% post_url 2016-01-20-Javascript-Function %}), [scope]({% post_url 2016-01-21-Javascript-Scope %}), [execution context]({% post_url 2016-01-23-Javascript-Execution-Context %})에 대한 사전 지식이 있으면 이해하기 어렵지 않은 개념이다. 먼저 일독을 권장한다.
+클로저(closure)는 자바스크립트에서 중요한 개념 중 하나로 자바스크립트에 관심을 가지고 있다면 한번쯤은 들어보았을 내용이다. [function](http://ungmo2.github.io/javascript/Javascript-Function/), [scope](http://ungmo2.github.io/javascript/Javascript-Scope/), [execution context](http://ungmo2.github.io/javascript/Javascript-Execution-Context/)에 대한 사전 지식이 있으면 이해하기 어렵지 않은 개념이다. 먼저 일독을 권장한다.
 
 클로저는 내부함수를 위한 외부함수의 지역변수가 외부함수에 의한 내부함수의 반환 이후에도 life-cycle이 유지되는 것을 의미한다.
 

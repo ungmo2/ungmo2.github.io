@@ -5,9 +5,12 @@ categories: javascript
 tags: []
 ---
 
+* TOC
+{:toc}
+
 연산자(Operators)는 하나 혹은 그 이상의 값을 하나의 값으로 만들 때 사용한다.
 
-# 산술 연산자 (Arithmetic Operators)
+# 1. 산술 연산자 (Arithmetic Operators)
 
 | Operator	  | Description   |
 | :---------: |:------------- |
@@ -33,9 +36,18 @@ z = x++;    // 5 선대입후증가
 z = ++x;    // 7 선증가후대입
 z = x--;    // 7 선대입후감소
 z = --x;    // 5 선감소후대입
+
+var str1 = "5" + 5;      // '55'
+var str2 = 5 + "5";      // '55'
+var str3 = "Hello" + 5;  // 'Hello5'
 ```
 
-# 대입 연산자 (Assignment Operators)
+`+ 연산자`는 덧셈 연산과 문자열 연결 연산을 수행한다.
+
+- 연산 대상이 모두 숫자인 경우 : 덧셈 연산
+- 그 외의 경우 : 문자열 연결 연산
+
+# 2. 대입 연산자 (Assignment Operators)
 
 | Operator	  | Example	 | Same As
 | :---------: |:-------- | :-------- |
@@ -62,13 +74,9 @@ var txt3 = txt1 + " " + txt2; // Good Morning
 
 txt1 = "What a very ";
 txt1 += "nice day"; // What a very nice day
-
-var x = 5 + 5;        // 10
-var y = "5" + 5;      // '55'
-var z = "Hello" + 5;  // 'Hello5'
 ```
 
-# 비교 연산자 (Comparison Operators)
+# 3. 비교 연산자 (Comparison Operators)
 
 | Operator	  | Description
 | :---------: |:-------------- |
@@ -121,12 +129,12 @@ var now = new Date();
 var greeting = "Good" + ((now.getHours() > 17) ? " evening." : " day.");
 ```
 
-# 논리 연산자 (Logical Operators)
+# 4. 논리 연산자 (Logical Operators)
 
 | Operator	  | Description
 | :---------: |:-------------:|
 | &&	        | and
-| &#124;&#124;	        | or
+| &#124;&#124;| or
 | !	          | not
 
 ```javascript
@@ -154,12 +162,29 @@ var n2 = !false; // true
 var n3 = !"Cat"; // false
 ```
 
+# 5. !! 연산자
+
+!! 연산자의 역할은 피연산자를 불린값으로 변환하는 것이다.
+
+```javascript
+console.log(!!1);         // true
+console.log(!!0);         // false
+console.log(!!'string');  // true
+console.log(!!'');        // false
+console.log(!!null);      // false
+console.log(!!undefined); // false
+console.log(!!{});        // true
+console.log(!![]);        // true
+```
+
+객체(배열 포함)의 경우 빈 객체라도 존재하기만하면 true가 변환된다.
+
 # 타입 연산자(Type Operators)
 
 | Operator	  | Description
 | :---------: |:-------------- |
-| `typeof`	    | 변수의 자료형을 반환한다.
-| `instanceof`	| 객체가 동일 객체형의 인스턴스이면 `true`를 반환한다.
+| typeof	    | 변수의 자료형을 문자열로 반환한다. null과 배열의 경우 object, 함수의 경우 function를 반환하는 것에 유의하여야 한다.
+| instanceof	| 객체가 동일 객체형의 인스턴스이면 `true`를 반환한다.
 
 ```javascript
 typeof "John"                 // returns string
@@ -179,7 +204,7 @@ var me = new Person()
 me instanceof Person // true
 ```
 
-# Evaluating variable
+# 6. Evaluating variable
 
 초기화되지 않은 변수는 `undefined` 값을 갖게 된다. 미선언 변수에 접근하면 `ReferenceError` 예외가 발생한다.
 
@@ -192,8 +217,8 @@ console.log("The value of y is " + y); // throws ReferenceError exception
 `undefined`은 boolean context에서 사용되면 `false`가 된다. (비어있는 문자열과 `null`, `undefined`, 숫자 0은 `false`로 간주된다.)
 
 ```javascript
-var name;
-if (!name) console.log(name); // undefined
+var foo;
+if (!foo) console.log(foo); // undefined
 ```
 
 `undefined`은 numeric context에서 사용되면 `NaN`(Not a Number)으로 변환된다.
@@ -212,7 +237,34 @@ console.log(x * 2); // 0
 if (!x) console.log(x); // null
 ```
 
-# 단축 평가 (Short-Circuit Evaluation)
+# 7. Type Conversion Table
+
+|Original Value|Converted to Number	|Converted to String |Converted to Boolean|
+|:-------------|:------------------:|:------------------:|:------------------:|
+| false        | 0	                | "false"	           | false
+| true         | 1	                | "true"	           | true
+| 0	           | 0	                | "0"	               | false
+| 1	           | 1  	              | "1"	               | true
+| "0"	         | 0	                | "0"	               | true
+| "1"	         | 1	                | "1"	               | true
+| NaN	         | NaN	              | "NaN"	             | false
+| Infinity	   | Infinity	          | "Infinity"	       | true
+| -Infinity	   | -Infinity	        | "-Infinity"	       | true
+| ""	         | ** 0 **	          | ""	               | false
+| "20"	       | 20	                | "20"	             | true
+| "twenty"	   | NaN	              | "twenty"	         | true
+| [ ]	         | 0	                | ""	               | true
+| [20]	       | 20	                | "20"	             | true
+| [10,20]	     | NaN	              | "10,20"	           | true
+| ["twenty"]	 | NaN	              | "twenty"	         | true
+| ["ten","twenty"]|	NaN	            | "ten,twenty"	     | true
+| function(){} | NaN	              | "function(){}"	   | true
+| { }	         | NaN	              | "[object Object]"	 | true
+| null	       | 0	                | "null"	           | false
+| undefined    | NaN	              | "undefined"	       | false
+
+
+# 8. 단축 평가 (Short-Circuit Evaluation)
 
 논리 연산자가 왼쪽에서 오른쪽으로 평가될때, 논리연산자는 다음의 규칙을 따라서 "단축 평가"로 검사된다.
 

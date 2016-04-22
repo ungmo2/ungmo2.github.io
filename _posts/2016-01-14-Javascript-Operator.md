@@ -250,17 +250,17 @@ if (!x) console.log(x); // null
 | NaN	         | NaN	              | "NaN"	             | false
 | Infinity	   | Infinity	          | "Infinity"	       | true
 | -Infinity	   | -Infinity	        | "-Infinity"	       | true
-| ""	         | <b style='color:red'>0</b>| ""	       | false
+| ""	         | <b style='color:red'>0</b>| ""	         | <b style='color:red'>false</b>
 | "20"	       | 20	                | "20"	             | true
 | "twenty"	   | NaN	              | "twenty"	         | true
-| [ ]	         | 0	                | ""	               | true
-| [20]	       | 20	                | "20"	             | true
+| [ ]	         | <b style='color:red'>0</b>| ""	         | true
+| [20]	       | <b style='color:red'>20</b>| "20"	     | true
 | [10,20]	     | NaN	              | "10,20"	           | true
 | ["twenty"]	 | NaN	              | "twenty"	         | true
 | ["ten","twenty"]|	NaN	            | "ten,twenty"	     | true
 | function(){} | NaN	              | "function(){}"	   | true
 | { }	         | NaN	              | "[object Object]"	 | true
-| null	       | 0	                | "null"	           | false
+| null	       | <b style='color:red'>0</b> | "null"	   | false
 | undefined    | NaN	              | "undefined"	       | false
 
 

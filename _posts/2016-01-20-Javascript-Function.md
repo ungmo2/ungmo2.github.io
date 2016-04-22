@@ -165,7 +165,7 @@ console.log(num); // 100
 console.log(obj); // Object {name: "Kim", gender: "female"}
 ```
 
-![call-by-value & call-by-reference](call-by-val&ref.png)
+![call-by-value & call-by-reference](/img/call-by-val&ref.png)
 {: style="max-width:500px; margin:10px auto;"}
 
 # 5. 즉시호출함수표현식 (IIFE, Immediately Invoke Function Expression)

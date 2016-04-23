@@ -11,7 +11,7 @@ tags: []
 
 * 비록 다른 객체지향적인 언어들과의 차이점에 대한 논쟁들이 있긴 하지만, JavaScript는 강력한 객체지향 프로그래밍 능력들을 지니고 있다. 간혹 클래스가 없어서 객체지향이 아니라고 생각하는 사람들도 있으나 프로토타입 객체지향 방식의 객체지향 언어다.
 
-* Javascript는 웹은 물론 모바일 하이브리드 앱(PhoneGap or Appcelerator), 서버 사이드([NodeJS](https://nodejs.org/) or Wakanda), Desk-top(Electron, NW.js, AppJS), 로봇 제어(nodebot or nodruino) 언어로서 세계에서 가장 인기있는 언어이다. ([가장 많은 오해를 받는 언어이기도 하다](http://javascript.crockford.com/javascript.html))
+* Javascript는 웹은 물론 모바일 하이브리드 앱(PhoneGap, Sencha Touch, jQuery Mobile, Appcelerator), 서버 사이드([NodeJS](https://nodejs.org/) or Wakanda), Desk-top(Electron, NW.js, AppJS), 로봇 제어(NodeBots or noduino) 언어로서 세계에서 가장 인기있는 언어이다. ([가장 많은 오해를 받는 언어이기도 하다](http://javascript.crockford.com/javascript.html))
 
 * 1995년 Brendan Eich(Nescape)이 Navigator 2를 위하여 웹페이지에 포함되는 스크립트 언어로서 개발되었으며 초창기 Javascript는 웹페이지 제작에 있어서 보조적인 기능을 수행하기 위해 한정적인 용도로 주로 사용되었다. 이 시기에 대부분 로직은 주로 웹서버에서 실행되었고 브라우저(클라이언트)는 서버로 부터 전달받은 HTML과 CSS를 렌더링하는 수준이었다.
 

@@ -15,7 +15,7 @@ var student = {
 console.log(student.toString());
 ```
 
-student 객체에는 toString() 메서드가 없으므로 에러가 발생하여야 하나 정상적으로 결과가 출력되었다. 이는 student 객체의 프로토타입(객체)에 toString() 메서드가 정의되어있고 프로토타입(객체)를 student 객체가 상속한 것 같이 toString()를 호출한 것이다.
+student 객체에는 toString() 메서드가 없으므로 에러가 발생하여야 하나 정상적으로 결과가 출력되었다. 이는 student 객체의 프로토타입 객체(Object.prototype)에 toString() 메서드가 정의되어있고 프로토타입(객체)를 student 객체가 상속한 것 같이 toString()를 호출한 것이다.
 
 이번에는 student 객체를 출력하여 보자.
 

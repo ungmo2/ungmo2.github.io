@@ -108,7 +108,7 @@ console.log(typeof undefined); // undefined
 
 # 3. Global function (전역 함수)
 
-  Global function(전역 함수)는 전역에서 호출할 수 있으며 호출한 곳(caller)으로 결과값을 반환한다. 아래의 Global function(전역 함수)는 모두 Global Object(전역 객체)의 함수 속성이다.
+Global function(전역 함수)는 전역에서 호출할 수 있으며 호출한 곳(caller)으로 결과값을 반환한다. 아래의 Global function(전역 함수)는 모두 Global Object(전역 객체)의 함수 속성이다.
 
 ## 3.1 eval()
 

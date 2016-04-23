@@ -200,8 +200,8 @@ console.log(cal(decrease, 1));
 // 3. 반환값(return value)으로 사용할 수 있다.
 function cal(mode){
   var funcs = {
-    'plus' : function(left, right){return left + right},
-    'minus' : function(left, right){return left - right}
+    'plus': function(left, right){return left + right},
+    'minus': function(left, right){return left - right}
   }
   return funcs[mode];
 }

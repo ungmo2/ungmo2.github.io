@@ -429,7 +429,7 @@ console.log(namedFunc.name);     // multiply
 console.log(anonymousFunc.name); // ''
 ```
 
-## 6.5 __proto__ 속성  
+## 6.5 `__proto__` 속성  
 
 ECMAScript spec에서는 **모든 객체는 자신의 프로토타입을 가리키는 [[Prototype]]이라는 숨겨진 프로퍼티를 가진다** 라고 되어있다. 크롬 브라우저에서는 숨겨진 [[Prototype]] 속성이 `__proto__` 속성으로 구현되어 있다. 즉 `__proto__`과 [[Prototype]]은 같은 개념이다.
 

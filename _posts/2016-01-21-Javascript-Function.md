@@ -107,7 +107,6 @@ var square = function square(number) {
 
 함수명과 함수 참조값을 가진 변수명이 일치하므로 함수명으로 호출되는 듯 보이지만 사실은 변수명으로 호출된 것이다.
 
-
 ## 1.3 Function() 생성자 함수
 
 함수표현식으로 함수를 정의할 때 함수 리터럴 방식을 사용한다. 함수선언식도 내부적으로 자바스크립트 엔진이 기명 함수표현식으로 변환하므로 결국 함수 리터럴 방식을 사용한다.
@@ -154,6 +153,7 @@ var square = function(number) {
   return number * number;
 }
 ```
+
 함수선언식의 경우와는 달리 TypeError가 발생하였다. 함수표현식의 경우 함수 호이스팅이 발생하지 않는다.
 
 함수표현식은 함수선언식과는 달리 스크립트 로딩 시점에 VO에 함수를 저장하지 않고 runtime에 해석되고 실행되므로 이 두가지를 구분하는 것은 중요하다.
@@ -294,9 +294,196 @@ var areaOne = getSize(3, 2, 3)[0];
 var volumeOne = getSize(3, 2, 3)[1];
 ```
 
-# 6. 함수의 다양한 형태
+# 6. 함수 객체의 속성
 
-# 6.1. 즉시호출함수표현식 (IIFE, Immediately Invoke Function Expression)
+함수는 객체이다. 따라서 함수도 속성을 가질 수 있다.
+
+```javascript
+function square(number) {
+  return number * number;
+}
+
+square.x = 10;
+square.y = 20;
+
+console.log(square.x, square.y);
+```
+
+함수는 일반 객체와는 다르게 함수만의 표준 속성을 갖는다.
+
+```javascript
+function square(number) {
+  return number * number;
+}
+console.dir(square);
+```
+
+![function property](/img/function_property.png)
+{: style="max-width:500px; margin:10px auto;"}
+
+여러가지 속성을 확인할 수 있는데 이들 중 length, prototype 속성은 ECMAScript spec에서 정한 표준 속성이다. 나머지 속성은 ECMAScript 표준 spec은 아니다.
+
+## 6.1 arguments 속성  
+
+arguments 속성은 함수 호출 시 전달된 인수들의 정보를 배열의 형태로 담고 있는 객체인 arguments 객체를 값으로 갖는다.
+
+자바스크립트는 함수 호출 시 함수 정의에 따라 인수를 전달하지 않아도 에러가 발생하지 않는다.
+
+```javascript
+function multiply(x, y) {
+  console.log(arguments);
+  return x * y;
+}
+console.log(multiply());
+console.log(multiply(1));
+console.log(multiply(1,2));
+console.log(multiply(1,2,3));
+```
+
+매개변수(parameter)는 인수(argument)로 초기화된다.
+
+- 매개변수의 갯수보다 인수를 적게 전달했을 때(multiply(), multiply(1)) 인수가 전달되지 않은 매개변수는 `undefined`로 초기화된다.
+
+- 매개변수의 갯수보다 인수를 더 많이 전달한 경우, 초과된 인수는 무시된다.
+
+이러한 자바스크립트의 특성때문에 런타임 시에 호출된 함수의 인자 갯수를 확인하고 이에 따라 동작을 달리 정의할 필요가 있을 수 있다. 이때 유용하게 사용되는 것이 arguments 객체이다.
+
+즉 arguments 객체는 매개변수 갯수가 확정되지 않은 함수를 구현하거나 전달된 인수의 갯수에 따라 다른 처리 로직을 구현할 때 유용하게 사용된다.
+
+```javascript
+function sum() {
+  var res = 0;
+
+  for (var i=0; i<arguments.length; i++) {
+    res += arguments[i];
+  }
+
+  return res;
+}
+
+console.log(sum());
+console.log(sum(1,2));
+console.log(sum(1,2,3));
+```
+
+자바스크립트는 함수를 호출할 때 인수들과 함께 암묵적으로 arguments 객체가 함수 내부로 전달된다. arguments 객체는 배열의 형태로 인자값 정보를 담고 있지만 실제 배열이 아닌 유사배열객체이다.
+
+유사배열객체란 length 속성을 가진 객체를 말한다. 유사배열객체는 배열이 아니므로 배열 메서드를 사용하 경우 에러가 발생하게 된다. (그러나 call, apply 메서드를 사용하여 배열 메서드를 사용하는 방법이 있기는 하다.)
+
+## 6.2 caller 속성  
+
+caller 속성은 자신을 호출한 함수를 의미한다.
+
+```javascript
+function foo(func) {
+  var res = func();
+  return res;
+}
+
+function bar() {
+  if (bar.caller == null) {
+    return 'The function was called from the top!';
+  } else {
+    return 'This function\'s caller :\n' + bar.caller;
+  }
+}
+
+console.log(foo(bar));
+console.log(bar());
+```
+
+## 6.3 length 속성
+
+length 속성은 ECMAScript 표준 spec으로 함수 정의 시 작성된 매개변수 갯수를 의미한다.
+
+```javascript
+function foo() {}
+console.log(foo.length); // 0
+
+function bar(x) {
+  return x;
+}
+console.log(bar.length); // 1
+
+function baz(x, y) {
+  return x * y;
+}
+console.log(baz.length); // 2
+```
+
+## 6.4 name 속성  
+
+함수명을 나타낸다. 기명함수의 경우 함수명을 값으로 갖고 익명함수의 경우 빈문자열을 값으로 갖는다.
+
+```javascript
+// 기명 함수표현식(named function expression)
+var namedFunc = function multiply(a, b) {
+  return a * b;
+};
+// 익명 함수표현식(anonymous function expression)
+var anonymousFunc = function(a, b) {
+  return a * b;
+};
+
+console.log(namedFunc.name);     // multiply
+console.log(anonymousFunc.name); // ''
+```
+
+## 6.5 __proto__ 속성  
+
+ECMAScript spec에서는 <b style="text-decoration:underline">자바스크립트의 모든 객체는 자신의 프로토타입을 가리키는 [[Prototype]]이라는 숨겨진 프로퍼티를 가진다</b> 라고 되어있다. 크롬 브라우저에서는 숨겨진 [[Prototype]] 속성이 `__proto__` 속성으로 구현되어 있다. 즉 `__proto__`과 [[Prototype]]은 같은 개념이다.
+
+```javascript
+function square(number) {
+  return number * number;
+}
+
+console.dir(square);
+```
+
+square() 함수 역시 객체이므로 [[Prototype]] 속성(__proto__ 속성)을 가지며 이를 통해 자신의 부모 역할을 하는 프로토타입 객체를 가리킨다.
+
+함수의 프로토타입 객체는 `Function.prototype`이며 이것 역시 함수이다.
+
+## 6.6 prototype 속성  
+
+<b style="text-decoration:underline">모든 함수는 객체로서 prototype 속성을 갖는다. 주의해야 할 것은 prototype 속성은 프로토타입 객체를 가리키는 [[Prototype]] 속성(__proto__ 속성)과는 다르다는 것이다.</b>
+
+prototype 속성은 [[Prototype]] 속성은 모두 프로토타입 객체를 가리키지만 관점의 차이가 있다.
+
+- [[Prototype]] 속성  
+  - 모든 객체가 가지고 있는 속성이다.
+  - <b style="text-decoration:underline">객체의 입장에서 자신의 부모 역할을 하는 프로토타입 객체을 가리키며 함수 객체의 경우 `Function.prototype`를 가리킨다.</b>
+
+- prototype 속성  
+  - 함수 객체만 가지고 있는 속성이다.
+  - <b style="text-decoration:underline">함수 객체가 생성자로 사용될 때 이 함수를 통해 생성된 객체의 부모 역할을 하는 객체를 가리킨다.</b>
+  - 함수가 생성될 때 만들어 지며 `constructor` 속성을 가지는 객체를 가리킨다. 이 `constructor` 속성은 함수 객체 자신을 가리킨다.
+
+  ```javascript
+  function square(number) {
+    return number * number;
+  }
+
+  // console.dir(square);
+  console.dir(square.__proto__);
+  console.dir(square.prototype);
+
+  console.log(square.__proto__ === Function.prototype); // true
+  console.log(square.__proto__ === square.prototype);   // false
+  console.log(square.prototype.constructor === square); // true
+  console.log(square.__proto__.constructor === square.prototype.constructor); // false
+  ```
+
+  ![function property](/img/function_prototype.png)
+  {: style="max-width:450px; margin:10px auto;"}
+
+
+
+
+# 7. 함수의 다양한 형태
+
+## 7.1. 즉시호출함수표현식 (IIFE, Immediately Invoke Function Expression)
 
 ```javascript
 // 기명 즉시실행함수(named immediately-invoked function expression)

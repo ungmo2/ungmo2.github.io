@@ -264,6 +264,13 @@ if (!x) console.log(x); // null
 | undefined    | NaN	              | "undefined"	       | false
 
 
+```javascript
+var x = false;
+console.log("Number : " + Number(x));
+console.log("String : " + String(x));
+console.log("Boolean: " + Boolean(x));
+```
+
 # 9. 단축 평가 (Short-Circuit Evaluation)
 
 논리 연산자가 왼쪽에서 오른쪽으로 평가될때, 논리연산자는 다음의 규칙을 따라서 "단축 평가"로 검사된다.

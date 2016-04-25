@@ -478,12 +478,13 @@ prototype 속성은 [[Prototype]] 속성은 모두 프로토타입 객체를 가
   ![function property](/img/function_prototype.png)
   {: style="max-width:550px; margin:10px auto;"}
 
-
-
+**[[Prototype]](`__proto__`) 속성은 함수 객체의 부모 객체(Function.prototype)를 가리키며 prototype 속성은 함수객체가 생성자 함수로 사용되어 객체를 생성할 때 생성된 객체의 부모 객체 역할을 하는 객체를 가리킨다.**
 
 # 7. 함수의 다양한 형태
 
 ## 7.1. 즉시호출함수표현식 (IIFE, Immediately Invoke Function Expression)
+
+함수의 정의와 동시에 실행되는 함수를 즉시호출함수라고 한다. 최초 한번만 호출되며 다시 호출할 수는 없다. 이러한 특징을 이용하여 최초 한번만 실행이 필요한 초기화 처리등에 사용할 수 있다.
 
 ```javascript
 // 기명 즉시실행함수(named immediately-invoked function expression)
@@ -501,9 +502,71 @@ prototype 속성은 [[Prototype]] 속성은 모두 프로토타입 객체를 가
 }());
 ```
 
-자바스크립트에서 가장 큰 문제점 중의 하나는 글로벌 스코프에 정의된 것은 코드 내의 어디서든지 접근이 가능하다는 것이다. 하지만, 외부에 공유되면 안되거나 공유될 필요가 없는 속성이나 메서드가 있다.
+자바스크립트에서 가장 큰 문제점 중의 하나는 글로벌 스코프에 정의된 것은 코드 내의 어디서든지 접근이 가능하다는 것이다. 하지만 외부에 공유되면 곤란하거나 공유될 필요가 없는 속성이나 메서드가 있다.
 
-또한, 다른 스크립트 파일 내에서 동일한 이름으로 명명된 변수나 함수가 있을 경우 원치 않는 결과를 가져올 수 있다.
-익명함수를 선언하여 사용하는 방법은 여러가지 상황에 활용될 수 있지만 간혹 변수 이름의 충돌을 방지하기 위한 목적으로 사용되기도 한다.
+또한 다른 스크립트 파일 내에서 동일한 이름으로 명명된 변수나 함수가 같은 스코프 내에 존재할 경우 원치 않는 결과를 가져올 수 있다.
 
-즉, 글로벌 네임스페이스에 변수를 추가하지 않아도 되기 때문에 코드 충돌이 없이 구현할 수 있어 플러그인이나 라이브러리 등을 만들 때 많이 사용된다.
+즉시실행함수 내에 처리 로직을 모아 두면 혹시 있을 수도 있는 변수명 충돌을 방지할 수 있어 이를 위한 목적으로 사용되기도 한다.
+
+특히 jQuery와 같은 라이브러리의 경우 코드를 즉시실행함수 내에 정의해 두면 라이브러리의 변수들이 독립된 영역 내에 있게 되므로 여러 라이브러리들은 동시에 사용하더라도 변수명 충돌과 같은 문제를 방지할 수 있다.
+
+```javascript
+(function() {
+  var foo = 1;
+  console.log(foo);
+}());
+
+var foo = 100;
+console.log(foo);
+```
+
+## 7.2 콜백 함수 (Callback function)
+
+콜백함수는 함수를 명시적으로 호출하는 방식이 아니라 특정 이벤트가 발생했을 때 시스템에 의해 호출되는 함수를 말한다.
+
+콜백함수가 자주 사용되는 대표적인 예는 이벤트 핸들러 처리이다.
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+  <button id="myBtn">Click me</button>
+  <script>
+    document.getElementById("myBtn").onclick = function(){ alert("button clicked!"); };
+  </script>
+</body>
+</html>
+```
+
+## 7.3 내부 함수 (Inner function)
+
+함수 내부에 정의된 함수를 내부함수라 한다.
+
+내부함수 child는 자신을 포함하고 있는 부모함수 parent의 변수에 접근할 수 있다. 하지만 부모함수는 자식함수(내부함수)의 변수에 접근할 수 없다.
+
+```javascript
+function parent(param) {
+  var parentVar = param;
+  function child() {
+    var childVar = 'lee';
+    console.log(parentVar + ' ' + childVar); // Hello lee
+  }
+  child();
+  console.log(parentVar + ' ' + childVar);
+      // Uncaught ReferenceError: childVar is not defined
+}
+parent('Hello');
+```
+
+또한 내부함수는 부모함수 외부에서 접근할 수 없다.
+
+```javascript
+function sayHello(name){
+  var text = 'Hello ' + name;
+  var logHello = function(){ console.log(text); }
+  logHello();
+}
+
+sayHello('lee');  // Hello lee
+logHello('lee');  // logHello is not defined
+```

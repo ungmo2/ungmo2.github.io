@@ -45,7 +45,7 @@ Google chrome에서 student 객체 출력 결과
 
 student 객체에 name과 score 속성 이외에 `__proto__` 속성이 존재하고 있다. 이 속성이 바로 student 객체의 프로토타입이다. 앞서 student 객체에서 정의하지 않고도 사용할 수 있었던 toString() 메서드 또한 프로토타입의 메서드로 존재함을 확인할 수 있다.
 
-ECMAScript spec에서는 <b style="text-decoration:underline">자바스크립트의 모든 객체는 자신의 프로토타입을 가리키는 [[Prototype]]이라는 숨겨진 프로퍼티를 가진다</b> 라고 되어있다. 크롬 브라우저에서는 숨겨진 [[Prototype]] 속성이 `__proto__` 속성으로 구현되어 있다. 즉 `__proto__`과 [[Prototype]]은 같은 개념이다.
+ECMAScript spec에서는 <b style="text-decoration:underline">자바스크립트의 모든 객체는 자신의 프로토타입을 가리키는 [[Prototype]]이라는 숨겨진 프로퍼티를 가진다</b> 라고 되어있다. 크롬, 파이어폭스 등에서는 숨겨진 [[Prototype]] 속성이 `__proto__` 속성으로 구현되어 있다. 즉 `__proto__`과 [[Prototype]]은 같은 개념이다.
 
 따라서 student 객체는 `__proto__`라는 숨겨진 속성에 자신의 부모 객체(프로토타입 객체)를 Link하고 있는 것이다.
 
@@ -82,10 +82,30 @@ prototype 속성과 [[Prototype]] 속성은 모두 프로토타입 객체를 가
   - 모든 객체가 가지고 있는 속성이다.
   - <b style="text-decoration:underline">객체의 입장에서 자신의 부모 역할을 하는 프로토타입 객체을 가리키며 함수 객체의 경우 `Function.prototype`를 가리킨다.</b>
 
+    ```javascript
+    console.log(Person.__proto__ === Function.prototype);
+    ```
+
 - prototype 속성  
   - 함수 객체만 가지고 있는 속성이다.
   - <b style="text-decoration:underline">함수 객체가 생성자로 사용될 때 이 함수를 통해 생성된 객체의 부모 역할을 하는 객체를 가리킨다.</b>
+
+    ```javascript
+    console.log(Person.prototype === foo.__proto__);
+    ```
+
   - 함수가 생성될 때 만들어 지며 `constructor` 속성을 가지는 객체를 가리킨다. 이 `constructor` 속성은 함수 객체 자신을 가리킨다.
+
+    ```javascript
+    console.log(Person.prototype.constructor === Person);
+    ```
+
+# 3. Prototype chaining
+
+## 3.1 객체 리터럴 방식으로 생성된 객체의 프로토타입 체이닝
+
+## 3.2 생성자 함수로 생성된 객체의 프로토타입 체이닝
+
 
 # Reference
 

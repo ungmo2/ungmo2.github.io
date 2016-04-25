@@ -431,7 +431,7 @@ console.log(anonymousFunc.name); // ''
 
 ## 6.5 __proto__ 속성  
 
-ECMAScript spec에서는 <b style="text-decoration:underline">자바스크립트의 모든 객체는 자신의 프로토타입을 가리키는 [[Prototype]]이라는 숨겨진 프로퍼티를 가진다</b> 라고 되어있다. 크롬 브라우저에서는 숨겨진 [[Prototype]] 속성이 `__proto__` 속성으로 구현되어 있다. 즉 `__proto__`과 [[Prototype]]은 같은 개념이다.
+ECMAScript spec에서는 **모든 객체는 자신의 프로토타입을 가리키는 [[Prototype]]이라는 숨겨진 프로퍼티를 가진다** 라고 되어있다. 크롬 브라우저에서는 숨겨진 [[Prototype]] 속성이 `__proto__` 속성으로 구현되어 있다. 즉 `__proto__`과 [[Prototype]]은 같은 개념이다.
 
 ```javascript
 function square(number) {
@@ -476,7 +476,7 @@ prototype 속성은 [[Prototype]] 속성은 모두 프로토타입 객체를 가
   ```
 
   ![function property](/img/function_prototype.png)
-  {: style="max-width:450px; margin:10px auto;"}
+  {: style="max-width:550px; margin:10px auto;"}
 
 
 

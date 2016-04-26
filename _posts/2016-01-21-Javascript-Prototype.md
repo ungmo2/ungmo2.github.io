@@ -121,15 +121,16 @@ var square = function square(number) {
 따라서 함수선언식과 함수표현식은 모두 함수 리터럴 방식으로 함수를 정의하는데 이것은 결국 내장 함수 Function() 생성자 함수로 함수를 생성하는 것을 단순화 시킨 것이다. Function() 생성자 함수는 Function.prototype.constructor 프로퍼티로 접근할 수 있다.
 
 [객체 생성 방법](http://ungmo2.github.io/javascript/Javascript-Object/#section)도 3가지가 있다.
-- 객체 리터럴
-- 생성자 함수
-- Object() 생성자 함수
+
+- 객체 리터럴  
+- 생성자 함수  
+- Object() 생성자 함수  
 
 함수는 객체이므로 함수와 경우와 마찬가지로 객체 리터럴 방식으로 생성한 객체는 결국 내장 함수 Object() 생성자 함수로 객체를 생성하는 것을 단순화 시킨 것이다. Object() 생성자 함수는 Object.prototype.constructor 프로퍼티로 접근할 수 있다.
 
 그런데 Object() 생성자 함수는 물론 함수이다. 함수도 객체인데 함수 객체는 일반 객체와 달리 `prototype` 프로퍼티가 있다.
 
-- [`prototype` 프로퍼티](http://ungmo2.github.io/javascript/Javascript-Function/#prototype-)는 함수 객체가 생성자로 사용될 때 이 함수를 통해 생성된 객체의 부모 역할을 하는 객체를 가리킨다.
+- [`prototype` 프로퍼티](http://ungmo2.github.io/javascript/Javascript-Function/#prototype-)는 함수 객체가 생성자로 사용될 때 이 함수를 통해 생성된 객체의 부모 역할을 하는 객체를 가리킨다.  
 - [`[[Prototype]]` 프로퍼티](http://ungmo2.github.io/javascript/Javascript-Function/#proto-)는 객체의 입장에서 자신의 부모 역할을 하는 프로토타입 객체을 가리킨다.
 
 

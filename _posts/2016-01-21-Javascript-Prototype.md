@@ -53,56 +53,20 @@ ECMAScript spec에서는 <b style="text-decoration:underline">자바스크립트
 
 또한 객체를 생성할 때 결정된 프로토타입 객체는 다른 임의의 객체로 변경할 수 있다. 이것은 부모 객체인 프로토타입을 동적으로 변경할 수 있다는 것을 의미한다. 이러한 특징을 활용하여 객체의 상속을 구현할 수 있다.
 
-# 2. 자바스크립트 객체 생성 규칙
+# 2. Prototype chaining
 
-자바스크립트의 모든 객체는 자신을 생성한 생성자 함수의 prototype 프로퍼티가 가리키는 프로토타입 객체를 자신의 부모 객체로 설정하는 [[Prototype]] 프로퍼티로 연결한다.
+자바스크립트는 특정 객체의 프로퍼티나 메서드에 접근하려고 할 때 해당 객체에 접근하려는 프로퍼티 또는 메서드가 없다면 `[[Prototype]]` 프로퍼티가 가리키는 링크를 따라 자신의 부모 역할을 하는 프로토타입 객체의 프로퍼티나 메서드를 차례대로 검색한다. 이것을 프로토타입 체이닝이라 한다.
 
 ```javascript
-function Person(name, gender) {
-  this.name = name;
-  this.gender = gender;
-  this.sayHello = function(){
-    alert('Hi! my name is ' + this.name);
-  };
+var foo = {
+  x: 1
 }
-
-var foo = new Person('Lee', 'male');
-
-console.dir(Person);
-console.dir(foo);
+console.log(foo.hasOwnProperty('x')); // true
 ```
 
-![object creating rule](/img/object_creating_rule.png)
+foo 객체는 hasOwnProperty 메서드를 가지고 있지 않다. 그러나 에러없이 실행되었다. 이는 foo 객체의 `[[Prototype]]` 프로퍼티가 가리키는 링크를 따라 foo 객체의 부모역할을 하는 프로토타입 객체(Object.prototype)의 메서드 hasOwnProperty를 호출하였기 때문에 가능한 것이다.
 
-모든 함수는 객체로서 prototype 프로퍼티를 갖는다. 주의해야 할 것은 prototype 프로퍼티는 프로토타입 객체를 가리키는 [[Prototype]] 프로퍼티(`__proto__` 프로퍼티)와는 다르다는 것이다.
-
-prototype 프로퍼티와 [[Prototype]] 프로퍼티는 모두 프로토타입 객체를 가리키지만 관점의 차이가 있다.
-
-- [[Prototype]] 프로퍼티  
-  - 모든 객체가 가지고 있는 프로퍼티이다.
-  - <b style="text-decoration:underline">객체의 입장에서 자신의 부모 역할을 하는 프로토타입 객체을 가리키며 함수 객체의 경우 `Function.prototype`를 가리킨다.</b>
-
-    ```javascript
-    console.log(Person.__proto__ === Function.prototype);
-    ```
-
-- prototype 프로퍼티  
-  - 함수 객체만 가지고 있는 프로퍼티이다.
-  - <b style="text-decoration:underline">함수 객체가 생성자로 사용될 때 이 함수를 통해 생성된 객체의 부모 역할을 하는 객체를 가리킨다.</b>
-
-    ```javascript
-    console.log(Person.prototype === foo.__proto__);
-    ```
-
-  - 함수가 생성될 때 만들어 지며 `constructor` 프로퍼티를 가지는 객체를 가리킨다. 이 `constructor` 프로퍼티는 함수 객체 자신을 가리킨다.
-
-    ```javascript
-    console.log(Person.prototype.constructor === Person);
-    ```
-
-# 3. Prototype chaining
-
-## 3.1 객체 리터럴 방식으로 생성된 객체의 프로토타입 체이닝
+## 2.1 객체 리터럴 방식으로 생성된 객체의 프로토타입 체이닝
 
 [함수를 정의하는 방식](http://ungmo2.github.io/javascript/Javascript-Function/#section)은 3가지가 있다.
 
@@ -152,8 +116,52 @@ console.log(Object.__proto__ === Function.prototype); // true
 
 ![Object literal Prototype chaining](/img/object_literal_prototype_chaining.png)
 
-## 3.2 생성자 함수로 생성된 객체의 프로토타입 체이닝
+## 2.2 생성자 함수로 생성된 객체의 프로토타입 체이닝
 
+자바스크립트의 모든 객체는 자신을 생성한 생성자 함수의 prototype 프로퍼티가 가리키는 프로토타입 객체를 자신의 부모 객체로 설정하는 [[Prototype]] 프로퍼티로 연결한다.
+
+```javascript
+function Person(name, gender) {
+  this.name = name;
+  this.gender = gender;
+  this.sayHello = function(){
+    alert('Hi! my name is ' + this.name);
+  };
+}
+
+var foo = new Person('Lee', 'male');
+
+console.dir(Person);
+console.dir(foo);
+```
+
+![object creating rule](/img/object_creating_rule.png)
+
+모든 함수는 객체로서 prototype 프로퍼티를 갖는다. 주의해야 할 것은 prototype 프로퍼티는 프로토타입 객체를 가리키는 [[Prototype]] 프로퍼티(`__proto__` 프로퍼티)와는 다르다는 것이다.
+
+prototype 프로퍼티와 [[Prototype]] 프로퍼티는 모두 프로토타입 객체를 가리키지만 관점의 차이가 있다.
+
+- [[Prototype]] 프로퍼티  
+  - 모든 객체가 가지고 있는 프로퍼티이다.
+  - <b style="text-decoration:underline">객체의 입장에서 자신의 부모 역할을 하는 프로토타입 객체을 가리키며 함수 객체의 경우 `Function.prototype`를 가리킨다.</b>
+
+    ```javascript
+    console.log(Person.__proto__ === Function.prototype);
+    ```
+
+- prototype 프로퍼티  
+  - 함수 객체만 가지고 있는 프로퍼티이다.
+  - <b style="text-decoration:underline">함수 객체가 생성자로 사용될 때 이 함수를 통해 생성된 객체의 부모 역할을 하는 객체를 가리킨다.</b>
+
+    ```javascript
+    console.log(Person.prototype === foo.__proto__);
+    ```
+
+  - 함수가 생성될 때 만들어 지며 `constructor` 프로퍼티를 가지는 객체를 가리킨다. 이 `constructor` 프로퍼티는 함수 객체 자신을 가리킨다.
+
+    ```javascript
+    console.log(Person.prototype.constructor === Person);
+    ```
 
 # Reference
 

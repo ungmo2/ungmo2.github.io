@@ -33,7 +33,15 @@ Google chrome에서 student 객체 출력 결과
 
 ECMAScript spec에서는 <b style="text-decoration:underline">자바스크립트의 모든 객체는 자신의 프로토타입을 가리키는 `[[Prototype]]`이라는 숨겨진 프로퍼티를 가진다</b> 라고 되어있다. 크롬, 파이어폭스 등에서는 숨겨진 `[[Prototype]]` 프로퍼티가 `__proto__` 프로퍼티로 구현되어 있다. 즉 `__proto__`과 `[[Prototype]]`은 같은 개념이다.
 
-student 객체는 `__proto__`라는 프로퍼티에 자신의 부모 객체(프로토타입 객체)인 Object.prototype을 Link하고 있는 것이다. 정의하지 않고도 사용할 수 있었던 toString() 메서드는 student 객체의 프로토타입 객체인 Object.prototype의 메서드로 존재함을 확인할 수 있다.
+student 객체는 `__proto__`라는 프로퍼티에 자신의 부모 객체(프로토타입 객체)인 Object.prototype을 Link하고 있는 것이다.
+
+```javascript
+var student = {
+  name: 'Lee',
+  score: 90
+}
+console.log(student.__proto__ === Object.prototype); // true
+```
 
 객체를 생성할 때 프로토타입은 결정된다. 결정된 프로토타입 객체는 다른 임의의 객체로 변경할 수 있다. 이것은 부모 객체인 프로토타입을 동적으로 변경할 수 있다는 것을 의미한다. 이러한 특징을 활용하여 객체의 상속을 구현할 수 있다.
 
@@ -41,7 +49,7 @@ student 객체는 `__proto__`라는 프로퍼티에 자신의 부모 객체(프�
 
 `[[Prototype]]` 프로퍼티는 모든 객체는 자신의 프로토타입 객체를 가리키는 숨겨진 프로퍼티이다. `[[Prototype]]` 프로퍼티는 `__proto__` 프로퍼티로 구현되어 있어 `__proto__`과 `[[Prototype]]`은 같은 개념이다.
 
-함수도 객체이므로 `[[Prototype]]` 프로퍼티를 갖는다. 그런데 일반 객체와는 달리 `prototype` 프로퍼티도 소유하게 된다.
+함수도 객체이므로 `[[Prototype]]` 프로퍼티를 갖는다. 그런데 함수 객체는 일반 객체와는 달리 `prototype` 프로퍼티도 소유하게 된다.
 
 주의해야 할 것은 `prototype` 프로퍼티는 프로토타입 객체를 가리키는 `[[Prototype]]` 프로퍼티(`__proto__` 프로퍼티)와는 다르다는 것이다. `prototype` 프로퍼티와 `[[Prototype]]` 프로퍼티는 모두 프로토타입 객체를 가리키지만 관점의 차이가 있다.
 
@@ -93,6 +101,17 @@ console.log(student.hasOwnProperty('name')); // true
 
 student 객체는 hasOwnProperty 메서드를 가지고 있지 않으므로 에러가 발생하여야 하나 정상적으로 결과가 출력되었다. 이는 student 객체의 `[[Prototype]]` 프로퍼티가 가리키는 링크를 따라가서 student 객체의 부모역할을 하는 프로토타입 객체(Object.prototype)의 메서드 hasOwnProperty를 호출하였기 때문에 가능한 것이다.
 
+```javascript
+var student = {
+  name: 'Lee',
+  score: 90
+}
+console.dir(student);
+console.log(student.hasOwnProperty('name')); // true
+console.log(student.__proto__ === Object.prototype); // true
+console.log(Object.prototype.hasOwnProperty('hasOwnProperty')); // true
+```
+
 ## 2.1 객체 리터럴 방식으로 생성된 객체의 프로토타입 체이닝
 
 [객체 생성 방법](http://ungmo2.github.io/javascript/Javascript-Object/#section)은 3가지가 있다.
@@ -103,10 +122,10 @@ student 객체는 hasOwnProperty 메서드를 가지고 있지 않으므로 에�
 
 객체 리터럴 방식으로 생성된 객체는 결국 내장 함수 Object() 생성자 함수로 객체를 생성하는 것을 단순화 시킨 것이다.
 
-Object() 생성자 함수는 물론 함수이다. 따라서 객체인 함수는 일반 객체와 달리 `prototype` 프로퍼티가 있다.
+Object() 생성자 함수는 물론 함수이다. 따라서 함수 객체는 일반 객체와 달리 `prototype` 프로퍼티가 있다.
 
-- [`prototype` 프로퍼티](http://ungmo2.github.io/javascript/Javascript-Function/#prototype-)는 함수 객체가 생성자로 사용될 때 이 함수를 통해 생성된 객체의 부모 역할을 하는 객체를 가리킨다.  
-- [`[[Prototype]]` 프로퍼티](http://ungmo2.github.io/javascript/Javascript-Function/#proto-)는 객체의 입장에서 자신의 부모 역할을 하는 프로토타입 객체을 가리킨다.
+- `prototype` 프로퍼티는 함수 객체가 생성자로 사용될 때 이 함수를 통해 생성된 객체의 부모 역할을 하는 객체를 가리킨다.  
+- `[[Prototype]]` 프로퍼티는 객체의 입장에서 자신의 부모 역할을 하는 프로토타입 객체을 가리킨다.
 
 ```javascript
 var person = {
@@ -119,10 +138,9 @@ var person = {
 
 console.dir(person);
 
-console.log(person.__proto__ === Object.prototype);   // true
-console.log(Object.prototype === person.__proto__);   // true
-console.log(Object.prototype.constructor === Object); // true
-console.log(Object.__proto__ === Function.prototype); // true
+console.log(person.__proto__ === Object.prototype);   // ① true
+console.log(Object.prototype.constructor === Object); // ② true
+console.log(Object.__proto__ === Function.prototype); // ③ true
 ```
 
 ![Object literal Prototype chaining](/img/object_literal_prototype_chaining.png)
@@ -164,6 +182,10 @@ var foo = new Person('Lee', 'male');
 
 console.dir(Person);
 console.dir(foo);
+
+console.log(foo.__proto__ === Person.prototype);      // ① true
+console.log(Person.prototype.constructor === Person); // ② true
+console.log(Person.__proto__ === Function.prototype); // ③ true
 ```
 
-![object creating rule](/img/object_creating_rule.png)
+![constructor function prototype chaining](/img/constructor_function_prototype_chaining.png)

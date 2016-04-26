@@ -150,6 +150,8 @@ console.log(Object.prototype.constructor === Object); // true
 console.log(Object.__proto__ === Function.prototype); // true
 ```
 
+![Object literal Prototype chaining](/img/object_literal_prototype_chaining.png)
+
 ## 3.2 생성자 함수로 생성된 객체의 프로토타입 체이닝
 
 

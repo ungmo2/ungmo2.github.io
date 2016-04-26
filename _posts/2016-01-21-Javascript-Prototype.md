@@ -133,9 +133,6 @@ var square = function square(number) {
 - [`prototype` 프로퍼티](http://ungmo2.github.io/javascript/Javascript-Function/#prototype-)는 함수 객체가 생성자로 사용될 때 이 함수를 통해 생성된 객체의 부모 역할을 하는 객체를 가리킨다.  
 - [`[[Prototype]]` 프로퍼티](http://ungmo2.github.io/javascript/Javascript-Function/#proto-)는 객체의 입장에서 자신의 부모 역할을 하는 프로토타입 객체을 가리킨다.
 
-
-
-
 ```javascript
 var person = {
   name: 'Lee',
@@ -146,6 +143,11 @@ var person = {
 };
 
 console.dir(person);
+
+console.log(person.__proto__ === Object.prototype);   // true
+console.log(Object.prototype === person.__proto__);   // true
+console.log(Object.prototype.constructor === Object); // true
+console.log(Object.__proto__ === Function.prototype); // true
 ```
 
 ## 3.2 생성자 함수로 생성된 객체의 프로토타입 체이닝

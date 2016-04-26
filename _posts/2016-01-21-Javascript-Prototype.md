@@ -86,7 +86,7 @@ console.dir(foo);
     console.log(Person.prototype.constructor === Person);
     ```
 
-# 2. Prototype chaining
+# 3. Prototype chaining
 
 자바스크립트는 특정 객체의 프로퍼티나 메서드에 접근하려고 할 때 해당 객체에 접근하려는 프로퍼티 또는 메서드가 없다면 `[[Prototype]]` 프로퍼티가 가리키는 링크를 따라 자신의 부모 역할을 하는 프로토타입 객체의 프로퍼티나 메서드를 차례대로 검색한다. 이것을 프로토타입 체이닝이라 한다.
 
@@ -112,7 +112,7 @@ console.log(student.__proto__ === Object.prototype); // true
 console.log(Object.prototype.hasOwnProperty('hasOwnProperty')); // true
 ```
 
-## 2.1 객체 리터럴 방식으로 생성된 객체의 프로토타입 체이닝
+## 3.1 객체 리터럴 방식으로 생성된 객체의 프로토타입 체이닝
 
 [객체 생성 방법](http://ungmo2.github.io/javascript/Javascript-Object/#section)은 3가지가 있다.
 
@@ -145,7 +145,7 @@ console.log(Object.__proto__ === Function.prototype); // ③ true
 
 ![Object literal Prototype chaining](/img/object_literal_prototype_chaining.png)
 
-## 2.2 생성자 함수로 생성된 객체의 프로토타입 체이닝
+## 3.2 생성자 함수로 생성된 객체의 프로토타입 체이닝
 
 생성자 함수로 객체를 생성하기 위해서는 우선 생성자 함수를 정의하여야 한다.
 
@@ -195,3 +195,30 @@ console.log(Function.prototype.__proto__  === Object.prototype); // ⑤ true
 foo 객체의 프로토타입 객체 Person.prototype 객체와 Person() 생성자 함수의 프로토타입 객체인 Function.prototype의 프로토타입 객체는 Object.prototype 객체이다.
 
 이는 객체 리터럴 방식이나 생성자 함수 방식이나 결국은 모든 객체의 부모 객체인 Object.prototype 객체에서 프로토타입 체이닝이 끝나기 때문이다. 이때 Object.prototype 객체를 `프로토타입 체이닝의 종점`이라 한다.
+
+# 4. 기본자료형(Primitive data type)의 확장
+
+앞서 살펴본 바와 같이 모든 객체는 프로토타입 체이닝에 의해 Object.prototype 객체의 메서드를 사용할 수 있었다. Object.prototype 객체는 프로토타입 체이닝의 종점으로 모든 객체가 사용할 수 있는 메서드를 갖는다.
+
+이후 살펴보게 될 [Built-in object(내장 객체)](http://ungmo2.github.io/javascript/Built-in-Object/)의 [Global objects (Standard Built-in Objects)](http://ungmo2.github.io/javascript/Standard-Built-in-Objects/#global-objects-standard-built-in-objects)  String, Number, Array 객체 등이 가지고 있는 표준 메서드는 프로토타입 객체인 String.prototype, Number.prototype, Array.prototype 등에 정의되어 있다. 이들 프로토타입 객체 또한 Object.prototype를 프로토타입 체이닝에 의해 자신의 프로토타입 객체로 연결되어 있다.
+
+자바스크립트는 표준 내장 객체의 프로토타입 객체에 개발자가 정의한 메서드의 추가를 허용한다.
+
+```javascript
+String.prototype.myMethod = function() {
+  return 'String.prototype.myMethod';
+}
+
+var str = 'test';
+
+console.log(str.myMethod());
+console.dir(String.prototype);
+
+console.log(str.__proto__ === String.prototype);      // ① true
+console.log(String.prototype.constructor === String); // ② true
+console.log(String.__proto__ === Function.prototype); // ③ true
+console.log(String.prototype.__proto__  === Object.prototype);   // ④ true
+console.log(Function.prototype.__proto__  === Object.prototype); // ⑤ true
+```
+
+![String constructor function prototype chaining](/img/string_constructor_function_prototype_chaining.png)

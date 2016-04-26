@@ -186,6 +186,12 @@ console.dir(foo);
 console.log(foo.__proto__ === Person.prototype);      // ① true
 console.log(Person.prototype.constructor === Person); // ② true
 console.log(Person.__proto__ === Function.prototype); // ③ true
+console.log(Person.prototype.__proto__  === Object.prototype);   // ④ true
+console.log(Function.prototype.__proto__  === Object.prototype); // ⑤ true
 ```
 
 ![constructor function prototype chaining](/img/constructor_function_prototype_chaining.png)
+
+foo 객체의 프로토타입 객체 Person.prototype 객체와 Person() 생성자 함수의 프로토타입 객체인 Function.prototype의 프로토타입 객체는 Object.prototype 객체이다.
+
+이는 객체 리터럴 방식이나 생성자 함수 방식이나 결국은 모든 객체의 부모 객체인 Object.prototype 객체에서 프로토타입 체이닝이 끝나기 때문이다. 이때 Object.prototype 객체를 `프로토타입 체이닝의 종점`이라 한다.

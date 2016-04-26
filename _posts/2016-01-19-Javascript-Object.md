@@ -51,7 +51,7 @@ console.log(person);
 person.sayHello();
 ```
 
-## 1.2 Object() 생성자(Constructor) 함수
+## 1.2 Object() 생성자 함수
 
 new 연산자와 Object() 생성자 함수([Standard Built-in Object 참고](http://ungmo2.github.io/javascript/Standard-Built-in-Objects/#object))를 사용하여 빈 객체를 생성할 수 있다. 빈 객체 생성 이후 속성과 메서드를 추가하여 객체를 완성하는 방법이다.
 
@@ -82,7 +82,7 @@ person.sayHello = function(){
 };
 ```
 
-## 1.3 생성자(Constructor) 함수
+## 1.3 생성자 함수
 
 객체 리터럴 방식과 Object() 생성자 함수 방식으로 객체를 생성하는 것은 속성값만 다른 여러개의 객체 생성에 불편이 있다.
 
@@ -364,4 +364,4 @@ console.log(a === b); // false
 `Standard Built-in Objects`(표준 빌트인 객체)를 제외한 BOM과 DOM을 `Native Object`라고 분류하기도 한다. 또한 사용자가 생성한 객체를 `Host Object`(사용자 정의 객체)라 한다.
 
 - Host Object(사용자 정의 객체)
-  사용자가 생성한 객체 들이다. constructor 혹은 객체리터럴을 통해 사용자가 객체를 정의하고 확장시킨 것들이기 때문에 Built-in Object 와 Native Object가 구성된 이후에 구성된다. 
+  사용자가 생성한 객체 들이다. constructor 혹은 객체리터럴을 통해 사용자가 객체를 정의하고 확장시킨 것들이기 때문에 Built-in Object 와 Native Object가 구성된 이후에 구성된다.

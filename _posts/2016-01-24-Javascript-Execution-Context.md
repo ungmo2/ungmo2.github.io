@@ -62,8 +62,8 @@ Javascript는 바로 실행 컨텍스트(Execution Context)이라는 또다른 �
 
 실행에 필요한 여러가지 정보란 아래와 같은 것들이 있다.
 
-- 변수  
-	- 매개변수  
+- 변수
+	- 매개변수
 	- 함수 내부에서만 접근할 수 있는 지역변수
 		<!-- ```javascript
 		var foo = function() {
@@ -106,10 +106,8 @@ function foo () {
     var z = 'zzz';
   	console.log(x + y + z); //xxxyyyzzz
   }
-
   bar();
 }
-
 foo();
 ```
 

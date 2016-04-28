@@ -64,7 +64,7 @@ Javascript는 바로 실행 컨텍스트(Execution Context)이라는 또다른 �
 
 - 변수  
 	- 매개변수
-	- 함수 내부에서만 접근할 수 있는 지역변수
+	- 함수 내부에서만 접근할 수 있는 지역변수  
 
 		```javascript
 		var foo = function() {
@@ -74,7 +74,7 @@ Javascript는 바로 실행 컨텍스트(Execution Context)이라는 또다른 �
 		}
 		```
 
-	- this를 통해 접근할 수 있는 객체의 프로퍼티
+	- this를 통해 접근할 수 있는 객체의 프로퍼티  
 
 		```javascript
 		var person = {
@@ -303,7 +303,7 @@ Variable Declaration된 변수 z를 Variable Object(AO_2)에 set한다(프로퍼
 
 <img src="/img/ec_22.jpg">
 
-# 3.4. Code의 실행
+## 3.4. Code의 실행
 
 이제 함수 bar의 코드블럭 내 구문이 실행된다. Sample code를 보면 변수 z에 문자열 'zzz'의 대입된다.
 

@@ -46,7 +46,7 @@ console.log(student.__proto__ === Object.prototype); // true
 
 객체를 생성할 때 프로토타입은 결정된다. 결정된 프로토타입 객체는 다른 임의의 객체로 변경할 수 있다. 이것은 부모 객체인 프로토타입을 동적으로 변경할 수 있다는 것을 의미한다. 이러한 특징을 활용하여 객체의 상속을 구현할 수 있다.
 
-# 2. `[[Prototype]]` 프로퍼티 vs prototype 프로퍼티
+# 2. [[Prototype]] 프로퍼티 vs prototype 프로퍼티
 
 `[[Prototype]]` 프로퍼티는 모든 객체는 자신의 프로토타입 객체를 가리키는 숨겨진 프로퍼티이다. `[[Prototype]]` 프로퍼티는 `__proto__` 프로퍼티로 구현되어 있어 `__proto__`과 `[[Prototype]]`은 같은 개념이다.
 

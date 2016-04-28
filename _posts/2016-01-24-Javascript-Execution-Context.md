@@ -104,7 +104,7 @@ function foo () {
 
   function bar () {
     var z = 'zzz';
-  	console.log(x + y + z); //xxxyyyzzz
+		console.log(x + y + z); //xxxyyyzzz
   }
   bar();
 }

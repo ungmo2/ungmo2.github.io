@@ -265,7 +265,6 @@ console.log(Function.prototype.__proto__  === Object.prototype); // ⑤ true
 
 ![String constructor function prototype chaining](/img/string_constructor_function_prototype_chaining.png)
 
-
 # 5. 프로토타입 객체의 확장
 
 생성자 함수로 객체를 생성할 때 생성자 함수의 prototype 프로퍼티에 연결된 프로토타입 객체는 constructor와 [[Prototype]] 프로퍼티를 갖는다. 프로토타입 객체도 객체이므로 일반 객체와 같이 프로퍼티를 추가/삭제할 수 있다. 그리고 이렇게 추가/삭제된 프로퍼티는 즉시 프로토타입 체이닝에 반영된다.

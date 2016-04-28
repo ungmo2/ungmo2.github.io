@@ -76,17 +76,17 @@ Javascript는 바로 실행 컨텍스트(Execution Context)이라는 또다른 �
 
 	- this를 통해 접근할 수 있는 객체의 프로퍼티  
 
-		```javascript
-		var person = {
-			firstName: "John",
-			lastName : "Doe",
-			fullName : function() {
-				return this.firstName + " " + this.lastName;
-				//return firstName + " " + lastName; // ReferenceError: firstName is not defined
-			}
-		};
-		var fullName = person.fullName(); // "John Doe"
-		```
+	```javascript
+	var person = {
+		firstName: "John",
+		lastName : "Doe",
+		fullName : function() {
+			return this.firstName + " " + this.lastName;
+			//return firstName + " " + lastName; // ReferenceError: firstName is not defined
+		}
+	};
+	var fullName = person.fullName(); // "John Doe"
+	```
 
 - 변수의 유효범위(Scope)  
 - 함수 선언  

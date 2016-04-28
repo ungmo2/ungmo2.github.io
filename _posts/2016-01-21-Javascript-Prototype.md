@@ -141,6 +141,7 @@ console.dir(person);
 console.log(person.__proto__ === Object.prototype);   // ① true
 console.log(Object.prototype.constructor === Object); // ② true
 console.log(Object.__proto__ === Function.prototype); // ③ true
+console.log(Function.prototype.__proto__ === Object.prototype); // ④ true
 ```
 
 ![Object literal Prototype chaining](/img/object_literal_prototype_chaining.png)

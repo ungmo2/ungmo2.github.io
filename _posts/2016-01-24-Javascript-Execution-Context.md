@@ -63,8 +63,8 @@ Javascript는 바로 실행 컨텍스트(Execution Context)이라는 또다른 �
 실행에 필요한 여러가지 정보란 아래와 같은 것들이 있다.
 
 - 변수  
-	- 매개변수
-	- 함수 내부에서만 접근할 수 있는 지역변수  
+	- 매개변수  
+	- 함수 내부에서만 접근할 수 있는 지역변수
 		```javascript
 		var foo = function() {
 			var bar = 0;
@@ -73,7 +73,7 @@ Javascript는 바로 실행 컨텍스트(Execution Context)이라는 또다른 �
 		}
 		```
 
-	- this를 통해 접근할 수 있는 객체의 프로퍼티  
+	- this를 통해 접근할 수 있는 객체의 프로퍼티
 		```javascript
 		var person = {
 			firstName: "John",
@@ -85,7 +85,7 @@ Javascript는 바로 실행 컨텍스트(Execution Context)이라는 또다른 �
 		};
 		var fullName = person.fullName(); // "John Doe"
 		```
-		
+
 - 변수의 유효범위(Scope)  
 - 함수 선언  
 - this

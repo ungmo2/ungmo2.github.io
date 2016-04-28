@@ -322,4 +322,4 @@ console.log(bar.gender); // 'male'
 ```
 
 ![changing prototype](/img/changing_prototype.png)
-{: style="max-width:700px; margin:10px auto;"}
+{: style="max-width:750px; margin:10px auto;"}

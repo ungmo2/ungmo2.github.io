@@ -183,10 +183,10 @@ var foo = new Person('Lee', 'male');
 console.dir(Person);
 console.dir(foo);
 
-console.log(foo.__proto__ === Person.prototype);      // ① true
-console.log(Person.prototype.constructor === Person); // ② true
-console.log(Person.__proto__ === Function.prototype); // ③ true
-console.log(Person.prototype.__proto__  === Object.prototype);   // ④ true
+console.log(foo.__proto__ === Person.prototype);                 // ① true
+console.log(Person.prototype.__proto__  === Object.prototype);   // ② true
+console.log(Person.prototype.constructor === Person);            // ③ true
+console.log(Person.__proto__ === Function.prototype);            // ④ true
 console.log(Function.prototype.__proto__  === Object.prototype); // ⑤ true
 ```
 
@@ -198,27 +198,78 @@ foo 객체의 프로토타입 객체 Person.prototype 객체와 Person() 생성�
 
 # 4. 기본자료형(Primitive data type)의 확장
 
-앞서 살펴본 바와 같이 모든 객체는 프로토타입 체이닝에 의해 Object.prototype 객체의 메서드를 사용할 수 있었다. Object.prototype 객체는 프로토타입 체이닝의 종점으로 모든 객체가 사용할 수 있는 메서드를 갖는다.
-
-이후 살펴보게 될 [Built-in object(내장 객체)](http://ungmo2.github.io/javascript/Built-in-Object/)의 [Global objects (Standard Built-in Objects)](http://ungmo2.github.io/javascript/Standard-Built-in-Objects/#global-objects-standard-built-in-objects)  String, Number, Array 객체 등이 가지고 있는 표준 메서드는 프로토타입 객체인 String.prototype, Number.prototype, Array.prototype 등에 정의되어 있다. 이들 프로토타입 객체 또한 Object.prototype를 프로토타입 체이닝에 의해 자신의 프로토타입 객체로 연결되어 있다.
-
-자바스크립트는 표준 내장 객체의 프로토타입 객체에 개발자가 정의한 메서드의 추가를 허용한다.
+자바스크립트에서 기본자료형(숫자, 문자열, 불린, null, undefined)을 제외한 모든것은 객체이다. 그런데 기본자료형인 문자열이 흡사 객체와 같이 동작한다.
 
 ```javascript
+var str = 'test';
+console.log(typeof str);
+console.dir(str);
+
+var strObj = new String('test');
+console.log(typeof strObj);
+console.dir(strObj);
+
+console.log(str.toUpperCase());
+console.log(strObj.toUpperCase());
+```
+
+기본자료형 문자열과 String() 생성자 함수로 생성한 문자열 객체의 타입은 분명이 다르다. 기본 자료형은 객체가 아니므로 프로퍼티나 메소드를 가질수 없다. 하지만 **기본자료형으로 프로퍼티나 메소드를 호출할 때 기본자료형과 연관된 객체로 일시적으로 변환되어 프로토타입 객체를 공유하게 된다.**
+
+기본자료형은 객체가 아니므로 프로퍼티나 메서드를 직접 추가할 수 없다.
+
+```javascript
+var str = 'test';
+
+str.myMethod = function() {
+  console.log('str.myMethod');
+};
+
+str.myMethod(); // Uncaught TypeError: str.myMethod is not a function
+```
+
+하지만 String 객체의 프로토타입 객체 String.prototype에 메소드를 추가하면 기본자료형, 객체 모두 메소드를 사용할 수 있다.
+
+```javascript
+var str = 'test';
+
 String.prototype.myMethod = function() {
   return 'String.prototype.myMethod';
 }
 
+console.log(str.myMethod());
+console.dir(String.prototype);
+```
+
+앞서 살펴본 바와 같이 모든 객체는 프로토타입 체이닝에 의해 Object.prototype 객체의 메서드를 사용할 수 있었다. Object.prototype 객체는 프로토타입 체이닝의 종점으로 모든 객체가 사용할 수 있는 메서드를 갖는다.
+
+이후 살펴보게 될 [Built-in object(내장 객체)](http://ungmo2.github.io/javascript/Built-in-Object/)의 [Global objects (Standard Built-in Objects)](http://ungmo2.github.io/javascript/Standard-Built-in-Objects/#global-objects-standard-built-in-objects)  String, Number, Array 객체 등이 가지고 있는 표준 메서드는 프로토타입 객체인 String.prototype, Number.prototype, Array.prototype 등에 정의되어 있다. 이들 프로토타입 객체 또한 Object.prototype를 프로토타입 체이닝에 의해 자신의 프로토타입 객체로 연결한다.
+
+자바스크립트는 표준 내장 객체의 프로토타입 객체에 개발자가 정의한 메서드의 추가를 허용한다.
+
+```javascript
 var str = 'test';
+
+String.prototype.myMethod = function() {
+  return 'String.prototype.myMethod';
+}
 
 console.log(str.myMethod());
 console.dir(String.prototype);
 
-console.log(str.__proto__ === String.prototype);      // ① true
-console.log(String.prototype.constructor === String); // ② true
-console.log(String.__proto__ === Function.prototype); // ③ true
-console.log(String.prototype.__proto__  === Object.prototype);   // ④ true
+console.log(str.__proto__ === String.prototype);                 // ① true
+console.log(String.prototype.__proto__  === Object.prototype);   // ② true
+console.log(String.prototype.constructor === String);            // ③ true
+console.log(String.__proto__ === Function.prototype);            // ④ true
 console.log(Function.prototype.__proto__  === Object.prototype); // ⑤ true
 ```
 
 ![String constructor function prototype chaining](/img/string_constructor_function_prototype_chaining.png)
+
+
+# 5. 프로토타입 객체의 확장
+
+생성자 함수로 객체를 생성할 때 생성자 함수의 prototype 프로퍼티에 연결된 프로토타입 객체는 constructor와 [[Prototype]] 프로퍼티를 갖는다. 프로토타입 객체도 객체이므로 일반 객체와 같이 프로퍼티를 추가/삭제할 수 있다. 그리고 이렇게 추가/삭제된 프로퍼티는 즉시 프로토타입 체이닝에 반영된다.
+
+```javascript
+
+```

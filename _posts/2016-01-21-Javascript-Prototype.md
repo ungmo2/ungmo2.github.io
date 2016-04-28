@@ -27,6 +27,7 @@ console.dir(student);
 ```
 
 ![Google chrome에서 student 객체 출력 결과](/img/printout_student_obj_from_chrome.png)
+{: style="max-width:500px; margin:10px auto;"}
 
 Google chrome에서 student 객체 출력 결과
 {: style="color:gray; font-size: 80%; text-align: center; margin-top: 5px;"}
@@ -145,6 +146,7 @@ console.log(Function.prototype.__proto__ === Object.prototype); // ④ true
 ```
 
 ![Object literal Prototype chaining](/img/object_literal_prototype_chaining.png)
+{: style="max-width:500px; margin:10px auto;"}
 
 ## 3.2 생성자 함수로 생성된 객체의 프로토타입 체이닝
 
@@ -192,6 +194,7 @@ console.log(Function.prototype.__proto__  === Object.prototype); // ⑤ true
 ```
 
 ![constructor function prototype chaining](/img/constructor_function_prototype_chaining.png)
+{: style="max-width:500px; margin:10px auto;"}
 
 foo 객체의 프로토타입 객체 Person.prototype 객체와 Person() 생성자 함수의 프로토타입 객체인 Function.prototype의 프로토타입 객체는 Object.prototype 객체이다.
 
@@ -265,11 +268,27 @@ console.log(Function.prototype.__proto__  === Object.prototype); // ⑤ true
 ```
 
 ![String constructor function prototype chaining](/img/string_constructor_function_prototype_chaining.png)
+{: style="max-width:500px; margin:10px auto;"}
 
 # 5. 프로토타입 객체의 확장
 
 생성자 함수로 객체를 생성할 때 생성자 함수의 prototype 프로퍼티에 연결된 프로토타입 객체는 constructor와 [[Prototype]] 프로퍼티를 갖는다. 프로토타입 객체도 객체이므로 일반 객체와 같이 프로퍼티를 추가/삭제할 수 있다. 그리고 이렇게 추가/삭제된 프로퍼티는 즉시 프로토타입 체이닝에 반영된다.
 
 ```javascript
-console.log();
+function Person(name) {
+  this.name = name;
+}
+
+var foo = new Person('Lee');
+
+Person.prototype.sayHello = function(){
+  console.log('Hi! my name is ' + this.name);
+};
+
+foo.sayHello();
 ```
+
+생성자 함수 Person은 prototype 프로퍼티에 연결된 프로토타입 객체 Person.prototype를 갖는다. Person.prototype 객체는 일반 객체와 같이 프로퍼티를 추가/삭제가 가능하다. 위의 예에서는 Person.prototype 객체에 메서드 sayHello를 추가하였다. 이때 sayHello 메서드는 프로토타입 체이닝에 반영된다. 따라서 생성자 함수 Person에 의해 생성된 foo 객체는 프로토타입 체이닝에 의해 부모객체인 Person.prototype의 메서드를 사용할 수 있게 되었다.
+
+![extension of prototype](/img/extension_prototype.png)
+{: style="max-width:500px; margin:10px auto;"}

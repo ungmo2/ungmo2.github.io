@@ -292,3 +292,34 @@ foo.sayHello();
 
 ![extension of prototype](/img/extension_prototype.png)
 {: style="max-width:500px; margin:10px auto;"}
+
+# 6. 프로토타입 객체의 변경
+
+객체를 생성할 때 프로토타입은 결정된다. 결정된 프로토타입 객체는 다른 임의의 객체로 변경할 수 있다. 이것은 부모 객체인 프로토타입을 동적으로 변경할 수 있다는 것을 의미한다. 이러한 특징을 활용하여 객체의 상속을 구현할 수 있다.
+
+이때 주의할 것은 객체 생성 시 같이 생성된 프로토타입 객체를 변경하면
+
+- 변경 시점 이전에 생성된 객체
+  기존 프로토타입 객체에 [[Prototype]] 링크를 연결한다.
+
+- 변경 시점 이후에 생성된 객체
+  변경된 프로토타입 객체에 [[Prototype]] 링크를 연결한다.
+
+
+```javascript
+function Person(name) {
+  this.name = name;
+}
+
+var foo = new Person('Lee');
+
+Person.prototype = { gender: 'male' }; // 프로토타입 객체의 변경
+
+var bar = new Person('Kim');
+
+console.log(foo.gender); // undefined
+console.log(bar.gender); // 'male'
+```
+
+![changing prototype](/img/changing_prototype.png)
+{: style="max-width:700px; margin:10px auto;"}

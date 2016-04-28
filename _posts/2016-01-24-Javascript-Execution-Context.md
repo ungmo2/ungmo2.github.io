@@ -100,13 +100,13 @@ Javascript는 바로 실행 컨텍스트(Execution Context)이라는 또다른 �
 var x = 'xxx';
 
 function foo () {
-  var y = 'yyy';
+	var y = 'yyy';
 
-  function bar () {
-    var z = 'zzz';
+	function bar () {
+		var z = 'zzz';
 		console.log(x + y + z); //xxxyyyzzz
-  }
-  bar();
+	}
+	bar();
 }
 foo();
 ```

@@ -305,7 +305,6 @@ foo.sayHello();
 - 변경 시점 이후에 생성된 객체
   변경된 프로토타입 객체에 [[Prototype]] 링크를 연결한다.
 
-
 ```javascript
 function Person(name) {
   this.name = name;
@@ -319,7 +318,41 @@ var bar = new Person('Kim');
 
 console.log(foo.gender); // undefined
 console.log(bar.gender); // 'male'
+
+console.log(foo.constructor); // ① Person(name)
+console.log(bar.constructor); // ② Object()
 ```
 
 ![changing prototype](/img/changing_prototype.png)
 {: style="max-width:750px; margin:10px auto;"}
+
+① 프로토타입 객체는 constructor 프로퍼티를 갖는다. 프로토타입 객체 변경 전, Person() 생성자 함수의 [[Prototype]] 프로퍼티가 가리키는 프로토타입 객체도 물론 constructor 프로퍼티를 가지며 이 constructor 프로퍼티는 Person() 생성자 함수를 가리킨다.
+
+② 프로토타입 객체 변경 후, Person() 생성자 함수의 [[Prototype]] 프로퍼티가 가리키는 프로토타입 객체는 일반 객체로 변경되었다. 그리고 constructor 프로퍼티도 삭제되었다. 따라서 프로토타입 체이닝에 의해 bar.constructor의 값은 Object.prototype.constructor 즉 Object() 생성자 함수가 된다.
+
+# 7. 프로토타입 체이닝 동작 조건
+
+객체의 프로퍼티를 읽으려 할 때 해당 객체에 프로퍼티가 없는 경우, 프로토타입 체이닝이 동작한다.
+
+그런데 객체의 프로퍼티에 값을 쓰려고 하면 프로토타입 체이닝이 동작하지 않는다. 이는 객체에 해당 프로퍼티가 있는 경우, 값을 재할당하고 해당 프로퍼티가 없는 경우는 해당 객체에 프로퍼티를 동적으로 추가하기 때문이다.
+
+```javascript
+function Person(name) {
+  this.name = name;
+}
+
+Person.prototype.gender = 'male'; // ①
+
+var foo = new Person('Lee');
+var bar = new Person('Kim');
+
+console.log(foo.gender); // 'male'
+console.log(bar.gender); // 'male'
+
+foo.gender = 'female';   // ②
+
+console.log(foo.gender); // 'female'
+console.log(bar.gender); // 'male'
+```
+
+foo 객체의 gender 프로퍼티에 값을 쓰면 프로토타입 체이닝이 발생하여 Person.prototype 객체의 gender 프로퍼티에 값을 쓰는 것이 아니라 foo 객체에 프로퍼티를 추가한다.

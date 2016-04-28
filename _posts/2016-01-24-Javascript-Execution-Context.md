@@ -72,7 +72,6 @@ Javascript는 바로 실행 컨텍스트(Execution Context)이라는 또다른 �
 			return bar;
 		}
 		``` -->
-
   * this를 통해 접근할 수 있는 객체의 프로퍼티
 		<!-- ```javascript
 		var person = {
@@ -85,7 +84,6 @@ Javascript는 바로 실행 컨텍스트(Execution Context)이라는 또다른 �
 		};
 		var fullName = person.fullName(); // "John Doe"
 		``` -->
-
 * 변수의 유효범위(Scope)  
 * 함수 선언  
 * this

@@ -133,7 +133,7 @@ foo();
 	<!-- 전역 컨텍스트에서는 VO === this === global이고,  
 	함수 컨텍스트에서는 VO === Activation object(AO)이며 arguments object와 formal parameters가 추가된다. -->
 
-	전역 컨텍스트에서 VO는 전역객체를 가리킨다.
+	전역 컨텍스트에서 VO는 전역객체를 가리킨다.  
 	함수 컨텍스트에서 VO는 Activation object(AO)를 가리키며 인수들의 정보를 배열의 형태로 담고 있는 객체인 [arguments object](http://ungmo2.github.io/javascript/Javascript-Function/#arguments-)와 formal parameters가 추가된다.
 
 - Scope Chain (SC)  

@@ -355,4 +355,7 @@ console.log(foo.gender); // 'female'
 console.log(bar.gender); // 'male'
 ```
 
+![condition of prototype chaining](/img/condition_prototype_chaining.png)
+{: style="max-width:500px; margin:10px auto;"}
+
 foo 객체의 gender 프로퍼티에 값을 쓰면 프로토타입 체이닝이 발생하여 Person.prototype 객체의 gender 프로퍼티에 값을 쓰는 것이 아니라 foo 객체에 프로퍼티를 추가한다.

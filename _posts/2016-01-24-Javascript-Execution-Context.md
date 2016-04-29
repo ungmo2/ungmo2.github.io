@@ -7,8 +7,6 @@ categories: javascript
 * TOC
 {:toc}
 
-# 1. 실행 컨택스트(Execution Context)의 개념
-
 Execution Context(실행 컨텍스트)는 scope, hoisting, this, function, closure 등의 동작원리를 담고 있는 자바스크립트의 핵심원리이다. 실행 컨텍스트를 바로 이해하지 못하면 코드 독해가 어려워지며 디버깅도 매우 곤란해 질 것이다.
 
 <!-- 함수란 어떤 특정 작업을 수행하기 위해 필요한 일련의 구문들을 그룹화하는 개념이다. 즉 CPU가 실행하게 될 동작들을 기능 단위로 그룹화 해 놓은 것이라 할 수 있다.
@@ -90,8 +88,6 @@ Javascript는 바로 실행 컨텍스트(Execution Context)이라는 또다른 �
 
 이들 실행에 필요한 정보를 자바스크립트 엔진은 실행 컨텍스트(Execution Context)이라는 또다른 객체 내에 관리하게 된다.
 
-# 2. sample code
-
 이후 아래의 샘플 코드를 가지고 실행 컨텍스트를 설명한다.
 
 ```javascript
@@ -119,7 +115,7 @@ foo();
 
 4. 함수 실행이 끝나면 해당 함수의 실행 컨텍스트를 파기하고 컨트롤을 이전 컨텍스트에 반환한다.
 
-# 3. 실행 컨텍스트 생성 과정
+# 1. 실행 컨텍스트 생성 과정
 
 실행 컨텍스트는 이하의 3가지 프로퍼티를 포함한다.
 
@@ -145,7 +141,7 @@ foo();
 <img src="/img/excute_context_structure.png">
 
 
-## 3.1 Global Code에의 진입
+## 1.1 Global Code에의 진입
 
 컨트롤이 실행 컨텍스트에 들어가기 이전에, 유일한 전역 객체(Global Object)가 생성된다. 전역 객체는 단일 사본으로 존재하며, 이 객체의 프로퍼티는 프로그램의 어떠한 곳에서도 접근할 수 있다. 프로그램이 종료되면 전역 객체의 라이프 사이클은 끝이 난다. 초기상태의 전역 객체에는 Built-in object(Math, String, Array 등)와 BOM(window 객체 등), DOM이 Set 되어있다.
 
@@ -160,7 +156,7 @@ foo();
 
 <img src="/img/ec_4.jpg">
 
-### 3.1.1 Scope Chain의 생성과 초기화
+### 1.1.1 Scope Chain의 생성과 초기화
 
 새로운 실행 컨텍스트에 들어가게 되면 우선 Scope Chain의 생성과 초기화가 실행된다.
 
@@ -170,15 +166,15 @@ Global Code로 컨트롤이 이동하면 Scope Chain는 전역 객체의 레퍼�
 
 <img src="/img/ec_5.jpg">
 
-### 3.1.2 Variable Instantiation 실행
+### 1.1.2 Variable Instantiation 실행
 
-Scope Chain의 생성과 초기화가 끝나면 Variable Instantiation이 실행된다. Variable Instantiation이란  Variable Object이란 특수한 객체에 프로퍼티와 값을 추가하는 것을 의미한다. 모든 실행 컨텍스트에는 Variable Object가 존재하며 코드 상의 변수와 함수의 선언이 Variable Object의 프로퍼티로서 추가된다.
+Scope Chain의 생성과 초기화가 끝나면 Variable Instantiation이 실행된다. Variable Instantiation는 Variable Object란 특수한 객체에 프로퍼티와 값을 추가하는 것을 의미한다. 모든 실행 컨텍스트에는 Variable Object가 존재하며 코드 상의 변수와 함수의 선언이 Variable Object의 프로퍼티로서 추가된다.
 
 Global Code의 경우 Global Object가 Variable Object가 된다.
 
 <img src="/img/ec_6.jpg">
 
-#### 3.1.2.1 Variable Instantiation 실행 순서
+#### 1.1.2.1 Variable Instantiation 실행 순서
 
 Variable Instantiation에서는 이하의 순서로 Variable Object에 프로퍼티와 값이 set된다.
 (반드시 1→2→3 순서로 실행된다.)
@@ -190,19 +186,19 @@ Variable Instantiation에서는 이하의 순서로 Variable Object에 프로퍼
 Sample code를 보면 Global Code의 변수 x 선언(Variable Declaration)과 함수 foo의 선언(Function Declaration. 매개변수 없음)이 실행되었다. Variable Instantiation의 실행 순서 상,
 우선 2. 함수 foo의 선언이 처리되고(Function Code이 아닌 Global Code이기 때문에 1. 매개변수 처리는 실행되지 않는다.) 그 후 3. 변수 x의 선언이 처리된다.
 
-#### 3.1.2.2 함수 foo의 선언 처리
+#### 1.1.2.2 함수 foo의 선언 처리
 
 Function Declaration는 Variable Instantiation 실행 순서 2.와 같이 선언된 함수명( foo )이 Variable Object( Global Code인 경우 Global Object )의 프로퍼티로, 생성된 Function Object가 값으로 set된다. 생성된 Function Object는 `[[Scope]]` 프로퍼티를 가지게 되고 값으로 현재의 실행 컨텍스트의 Scope Chain이 참조하고 있는 객체와 같은 객체( Global Code인 경우 Global Object )를 참조하는 리스트가 set된다.
 
 <img src="/img/ec_7.jpg">
 
-#### 3.1.2.3 변수 x의 선언 처리  
+#### 1.1.2.3 변수 x의 선언 처리  
 
 Variable Declaration는 Variable Instantiation 실행 순서 3.과 같이 선언된 변수명( x )이 Variable Object의 프로퍼티로, undefined가 값으로 set된다. (아직 변수 x는 'xxx'로 초기화되지 않는다.)
 
 <img src="/img/ec_8.jpg">
 
-### 3.1.3 this value 결정
+### 1.1.3 this value 결정
 
 Variable Instantiation 실행이 끝나면 다음은 this value가 결정된다. `this`는 모든 active한 실행 컨텍스트에 관련되어 있으며 호출한 객체와 실행된 코드의 종류에 따라 값이 결정된다. 그리고 결정된 값은 불변한다. Global Code의 경우, this의 value는 언제나 전역 객체이다.
 
@@ -211,17 +207,17 @@ Variable Instantiation 실행이 끝나면 다음은 this value가 결정된다.
 ***전역 컨텍스트(Global Code)의 경우, VO, SC, this값은 언제나 GO이다.***  
 <br>
 
-## 3.2 Code의 실행
+## 1.2 Code의 실행
 
 코드의 실행은 지금부터 시작된다. Sample code를 보면 전역 변수 x에 문자열 'xxx' 대입과 함수 foo의 호출이 실행된다.
 
-### 3.2.1 변수 값의 대입
+### 1.2.1 변수 값의 대입
 
 전역 변수 x에 문자열 'xxx'를 대입할 때, 현재 실행 컨텍스트의 Scope Chain이 참조하고 있는 Variable Object를 선두(0)부터 검색하여 변수명에 해당하는 프로퍼티가 발견되면 값('xxx')을 저장한다.
 
 <img src="/img/ec_10.jpg">
 
-### 3.2.2 함수 foo의 실행
+### 1.2.2 함수 foo의 실행
 
 Global Code의 함수 foo가 실행되기 시작하면 새로운 실행 컨텍스트이 생성된다. 함수 foo의 실행 컨텍스트로  컨트롤이 이동하면 Global Code의 경우와 마찬가지로 `1. Scope Chain의 생성과 초기화`, `2. Variable Instantiation 실행`, `3. this value 결정`이 순차적으로 실행된다.
 
@@ -229,7 +225,7 @@ Global Code의 함수 foo가 실행되기 시작하면 새로운 실행 컨텍�
 
 <img src="/img/ec_11.jpg">
 
-#### 3.2.2.1 Scope Chain의 생성과 초기화
+#### 1.2.2.1 Scope Chain의 생성과 초기화
 
 Function Code의 `Scope Chain의 생성과 초기화`는 우선 Activation Object(실행에 필요한 여러 가지 정보들, 구체적으로 arguments객체와 변수등을 담을 객체)에 대한 레퍼런스를 Scope Chain의 선두에 설정하는 것으로 시작된다.
 
@@ -241,7 +237,7 @@ Activation Object는 우선 arguments 프로퍼티의 초기화를 실행하고 
 
 <img src="/img/ec_13.jpg">
 
-#### 3.2.2.2 Variable Instantiation 실행
+#### 1.2.2.2 Variable Instantiation 실행
 
 Function Code의 경우, `Scope Chain의 생성과 초기화`에서 생성된 Activation Object를 Variable Object로서 Variable Instantiation가 실행된다. 이것을 제외하면 Global Code의 경우와 같은 처리가 실행된다. 즉, Function  Declaration된 함수를 Variable Object(AO_1)에 set한다. (프로퍼티는 bar, 값은 새로 생성된 Function Object. bar function object의 [[Scope]] 프로퍼티 값은 AO_1과 Global Object를 참조하는 리스트）
 
@@ -251,29 +247,29 @@ Variable Declaration된 변수 y를 Variable Object(AO_1)에 set한다(프로퍼
 
 <img src="/img/ec_15.jpg">
 
-#### 3.2.2.3 this value 결정
+#### 1.2.2.3 this value 결정
 
 Function code의 경우, this의 value는 자신을 호출한 객체로부터 제공된다.(call 또는 apply 메서드로 this의 값을 지정할 수 있다). 만약 자신을 호출한 객체로부터 제공된 this의 값이 객체가 아니면(null인 경우도 포함) this의 값은 Global Object가 된다. 결국 this의 값은 전역 객체가 된다.
 
 <img src="/img/ec_16.jpg">
 
-## 3.3 Code의 실행
+## 1.3 foo function code의 실행
 
 이제 함수 foo의 코드블럭 내 구문이 실행된다. Sample code를 보면 변수 y에 문자열 'yyy'의 대입과 함수 bar가 실행된다.
 
-### 3.3.1 변수 값의 대입  
+### 1.3.1 변수 값의 대입  
 
 전역 변수 y에 문자열 'yyy'를 대입할 때, 현재 실행 컨텍스트의 Scope Chain이 참조하고 있는 Variable Object를 선두(0)부터 검색하여 변수명에 해당하는 프로퍼티가 발견되면 값('yyy')을 저장한다.
 
 <img src="/img/ec_17.jpg">
 
-### 3.3.2 함수 bar의 실행
+### 1.3.2 함수 bar의 실행
 
 함수 bar가 실행되기 시작하면 새로운 실행 컨텍스트이 생성된다. 이전 함수 foo의 실행 과정과 동일하게  `1. Scope Chain의 생성과 초기화`, `2. Variable Instantiation 실행`, `3. this value 결정`이 순차적으로 실행된다.
 
 <img src="/img/ec_18.jpg">
 
-#### 3.3.2.1 Scope Chain의 생성과 초기화
+#### 1.3.2.1 Scope Chain의 생성과 초기화
 
 함수 foo 실행 과정과 동일하게 새로운 Activation Object(AO_2)에 대한 레퍼런스를 Scope Chain의 선두에 설정하는 것으로 시작된다.
 
@@ -283,13 +279,13 @@ Function code의 경우, this의 value는 자신을 호출한 객체로부터 �
 
 <img src="/img/ec_20.jpg">
 
-#### 3.3.2.2 Variable Instantiation 실행  
+#### 1.3.2.2 Variable Instantiation 실행  
 
 Variable Declaration된 변수 z를 Variable Object(AO_2)에 set한다(프로퍼티는 z, 값은 undefined）
 
 <img src="/img/ec_21.jpg">
 
-#### 3.3.2.3 this value 결정
+#### 1.3.2.3 this value 결정
 
 함수 foo의 경우와 동일하게 특별히 this 값이 지정되지 않았으므로 this의 값은 전역 객체가 된다.
 
@@ -297,7 +293,7 @@ Variable Declaration된 변수 z를 Variable Object(AO_2)에 set한다(프로퍼
 
 <img src="/img/ec_22.jpg">
 
-## 3.4. Code의 실행
+## 1.4. bar function code의 실행
 
 이제 함수 bar의 코드블럭 내 구문이 실행된다. Sample code를 보면 변수 z에 문자열 'zzz'의 대입된다.
 

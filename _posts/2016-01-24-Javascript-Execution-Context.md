@@ -82,8 +82,8 @@ Javascript는 바로 실행 컨텍스트(Execution Context)이라는 또다른 �
 		};
 		var fullName = person.fullName(); // "John Doe"
 		``` -->
-* 변수의 유효범위(Scope)  
-* 함수 선언  
+* 함수 선언
+* 변수의 유효범위(Scope)
 * this
 
 이들 실행에 필요한 정보를 자바스크립트 엔진은 실행 컨텍스트(Execution Context)이라는 또다른 객체 내에 관리하게 된다.
@@ -168,7 +168,7 @@ Global Code로 컨트롤이 이동하면 Scope Chain는 전역 객체의 레퍼�
 
 ## 1.2 Variable Instantiation 실행
 
-Scope Chain의 생성과 초기화가 끝나면 Variable Instantiation이 실행된다. Variable Instantiation는 Variable Object란 특수한 객체에 프로퍼티와 값을 추가하는 것을 의미한다. 모든 실행 컨텍스트에는 Variable Object가 존재하며 코드 상의 변수와 함수의 선언이 Variable Object의 프로퍼티로서 추가된다.
+Scope Chain의 생성과 초기화가 끝나면 Variable Instantiation이 실행된다. Variable Instantiation은 Variable Object란 특수한 객체에 프로퍼티와 값을 추가하는 것을 의미한다. 모든 실행 컨텍스트에는 Variable Object가 존재하며 코드 상의 변수와 함수의 선언이 Variable Object의 프로퍼티로서 추가된다.
 
 Global Code의 경우 Global Object가 Variable Object가 된다.
 
@@ -207,7 +207,7 @@ Variable Instantiation 실행이 끝나면 다음은 this value가 결정된다.
 ***전역 컨텍스트(Global Code)의 경우, VO, SC, this값은 언제나 GO이다.***  
 <br>
 
-# 2. Code의 실행
+# 2. Global code의 실행
 
 코드의 실행은 지금부터 시작된다. Sample code를 보면 전역 변수 x에 문자열 'xxx' 대입과 함수 foo의 호출이 실행된다.
 

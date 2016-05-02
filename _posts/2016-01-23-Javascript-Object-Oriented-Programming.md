@@ -8,34 +8,134 @@ tags: []
 * TOC
 {:toc}
 
+Javascript는 멀티-패러다임 언어로 명령형(imperative), 함수형(functional), 프로토타입 기반(prototype-based) 객체지향형 언어다.
+
+비록 다른 객체지향적인 언어들과의 차이점에 대한 논쟁들이 있긴 하지만, Javascript는 강력한 객체지향 프로그래밍 능력들을 지니고 있다. 간혹 클래스가 없어서 객체지향이 아니라고 생각하는 사람들도 있으나 프로토타입 객체지향 방식의 객체지향 언어다.
+
+프로토타입 기반 언어인 자바스크립트와 클래스 기반 언어의 특성을 구분해서 파악할 필요가 있다.
+
 # 1. 객체지향 프로그래밍 (Object-Oriented Programming)
 
 객체지향 프로그래밍은 실제 세계에 기반한 모델을 만들기 위해 추상화를 사용하는 프로그래밍 패러다임이다.
 
-오늘날, 많은 유명한 프로그래밍 언어(Java, C++, C#, Python, PHP, Ruby, Object-C)는 객체지향 프로그래밍을 지원한다.
+오늘날 많은 유명한 프로그래밍 언어(Java, C++, C#, Python, PHP, Ruby, Object-C)는 객체지향 프로그래밍을 지원한다.
 
 객체지향 프로그래밍은 함수들의 집합 혹은 단순한 컴퓨터의 명령어들의 목록이라는 기존의 프로그래밍에 대한 전통적인 관점에 반하여, 관계성있는 객체들의 집합이라는 관점으로 접근하는 소프트웨어 디자인으로 볼 수 있다.
 
-각 객체는 메시지를 받을 수도 있고, 데이터를 처리할 수도 있으며, 또다른 객체에게 메시지를 전달할 수도 있다. 각 객체는 별도의 역할이나 책임을 갖는 작은 독립적인 기계 또는 부품으로 볼 수 있는 것이다.
+각 객체는 메시지를 받을 수도 있고, 데이터를 처리할 수도 있으며, 또다른 객체에게 메시지를 전달할 수도 있다. 각 객체는 별도의 역할이나 책임을 갖는 작은 독립적인 기계 또는 부품으로 볼 수 있다.
 
 객체지향 프로그래밍은 보다 유연하고 유지보수하기 쉬우며 확장성 측면에서서도 유리한 프로그래밍을 하도록 의도되었고, 대규모 소프트웨어 개발에 널리 사용되고 있다.
 
 객체지향 프로그래밍이 갖는 modularity(모듈화)에 기반한 강력한 힘에 의해, 객체지향적인 코드는 개발을 보다 단순하게 했고, 시간이 흐른 뒤에도 보다 쉽게 이해할 수 있도록 했으며, 복잡한 상황이나 절차들을 덜 모듈화된 프로그래밍 방법들보다 더 직접적으로 분석하고, 코딩하고, 이해할 수 있도록 만들었다.
 
-# 2. Terms
+## 1.1 Class
 
-## 2.1 Class  
 같은 종류의 집단에 속하는 속성(attribute)과 행위(behavior)를 정의한 것으로 객체지향 프로그램의 기본적인 사용자 정의 데이터형(user define data type)이라고 할 수 있다. 결국 클래스는 객체 생성에 사용되는 패턴 혹은 청사진(blueprint) 이다.
 
-## 2.2 Object (객체)  
+클래스 기반 언어는 클래스로 객체의 기본적인 형태와 기능을 정의하고 생성자로 인스턴스를 생성하여 사용할 수 있다. 이런 형태의 언어는 모든 인스턴스가 클래스에 정의된 것과 같은 구조이며 보통 런타임에 변경할 수 없다. 반면 프로토타입 기반 언어는 객체의 자료구조(Property)와 메서드를 동적으로 변경할 수 있다.
+
+정확성, 안정성, 예측성 측면에서 클래스 기반 언어가 프로토타입 기반 언어보다 좀 더 나은 결과를 보장한다. 하지만 프로토타입 기반 언어는 동적으로 객체의 구조와 동작 방식을 변경할 수 있다는 장점이 있다.
+
+Java나 C#, C++과 같은 클래스 기반 언어는 class 키워드를 제공하고 이것으로 클래스를 정의할 수 있다. 생성자는 클래스명과 동일하며 메서드로 구현된다.
+
+```java
+class Person {
+  private String name;
+
+  public Person(String name) {
+    this.name = name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getName() {
+    return this.name;
+  }
+}
+
+public class MainClass {
+  public static void main(String[] args) {
+    Person me = new Person("Lee");
+
+    String name= me.getName();
+    System.out.println(name); // Lee
+
+    me.setName("Kim");
+
+    name= me.getName();
+    System.out.println(name); // Kim
+  }
+}
+```
+
+자바스크립트의 객체 생성 방식은 클래스 기반 언어와는 다르다. 자바스크립트는 자바스크립트를 이루고 있는 거의 “모든 것”은 객체이다. 특히 함수 객체로 많은 것을 할 수 있는데 클래스, 생성자, 메서드도 모두 함수로 구현이 가능하다.
+
+```javascript
+function Person(name) {
+  this.name = name;
+
+  this.setName = function(name) {
+    this.name = name;
+  }
+  this.getName = function() {
+    return this.name;
+  }
+}
+
+var me = new Person('Lee');
+console.log(me.getName());
+
+me.setName('Kim');
+console.log(me.getName());
+```
+
+클래스 기반 언어의 인스턴스 생성과 매우 유사한 방식으로 객체를 생성할 수 있다. 생성자 함수 Person은 클래스이자 생성자의 역할을 한다.
+
+하지만 이 코드는 문제가 많다. Person 생성자 함수로 여러개의 객체를 생성해보자.
+
+```javascript
+var me  = new Person('Lee');
+var you = new Person('Kim');
+var him = new Person('Choi');
+```
+
+이 방식으로 객체를 생성하면 메서드 setName, getName이 중복되어 생성된다. 즉, 각 인스턴스가 동일한 메서드를 각자 소유한다. 이는 메모리의 낭비이고 메소드가 변경되었을 때 유지보수가 번거롭게 된다.
+
+이같은 문제를 해결하려면 다른 접근 방식이 필요한데 그 해답은 프로토타입이다.
+
+```javascript
+function Person(name) {
+  this.name = name;
+}
+
+Person.prototype.setName = function(name) {
+  this.name = name;
+}
+Person.prototype.getName = function() {
+  return this.name;
+}
+
+var me  = new Person('Lee');
+var you = new Person('Kim');
+```
+
+![prototype](/img/prototype.png)
+{: style="max-width:500px; margin:10px auto;"}
+
+
+## 1.2 Object (객체)
+
 클래스의 인스턴스(실제로 메모리상에 할당된 것)이다. 객체는 자신 고유의 속성(attribute)을 가지며 클래스에서 정의한 행위(behavior)를 수행할 수 있다.
 
-## 2.3 Property  
+## 1.3 Property
+
 객체의 속성으로 field, member, attribute 등과 같은 의미이다.
 
   프로퍼티란 객체의 일부로서 이름과 값의 쌍을 가지는 정보를 의미한다. 객체는 프로퍼티들을 포함하는 컨테이너라고 할 수 있다.
 
-# 2.4 Method  
+## 1.4 Method  
 객체의 행위/능력(예: 걷기)이다. 프로퍼티의 값이 함수일 때 이것을 메서드라 한다.
 
 메서드는 객체가 가지고 있는 동작(절차,방법,기능)이다. 기본적으로 함수와 메서드가 서로 일련의 동작을 실행하는 구문들의 집합이라는 점에서 동일하지만 메서드는 객체가 가지고 있는 동작이라는 점에서 차이가 있다.
@@ -44,20 +144,24 @@ tags: []
 
 즉, 메서드는 객체를 움직이는 동작이며 그 동작을 수행하기 위해서 객체의 정보인 프로퍼티를 사용할 수 있다.
 
-## 2.5 Constructor (생성자)  
+## 1.5 Constructor (생성자)  
+
 인스턴스화 되는 시점에서 호출되는 메서드이다.
 
-## 2.6 Abstraction (추상화)  
+## 1.6 Abstraction (추상화)  
+
 현실세계의 사실을 그대로 객체로 표현하기 보다는 문제의 중요한 측면을 주목하여 상세내역을 없애나가는 과정을 의미한다. 객체지향에서는 클래스를 통해서 추상화를 지원하고 있으며, 이것은 다른 전통적 프로그래밍보다 강력한 추상화의 방법이다.
 
-## 2.7 Encapsulation (캡슐화)  
+## 1.7 Encapsulation (캡슐화)
+
 객체의 상세한 내용을 객체 외부에 철저히 숨기고 단순히 메시지만으로 객체와의 상호작용을 하게 하는 것을 말하며 다른 말로 정보 은닉(information hiding)이라고 한다. 즉, 캡슐화는 추상화와 거의 같은 개념이지만 추상화를 지원하며 보다 구체적이고 제한적이다.
 
   Java의 경우, 클래스를 선언하고 그 클래스를 구성하는 객체에 대하여 `public` 또는 `private` 등으로 한정할 수 있다. `public`으로 선언된 메서드 또는 데이터는 외부에서 사용이 가능하며, `private`으로 선언된 경우는 외부에서 참조할 수 없고 내부에서만 사용된다.
 
   이것은 클래스 외부에는 제한된 접근 권한을 제공하며 원하지 않는 외부의 접근에 대해 내부를 보호하는 작용을 한다. 이렇게 함으로써 이들 부분이 프로그램의 다른 부분들에 영향을 미치지 않고 변경될 수 있다.
 
-## 2.6 Inheritance (상속)  
+## 1.8 Inheritance (상속)
+
 추상화는 복잡한 프로그램을 간단하게 해주고 분석의 초점을 명확히 할 수 있다. 캡슐화는 객체의 내부구조와 실체를 분리함으로써 내부의 변경이 소스 프로그램에 미치는 영향을 최소화한다. 따라서 유지보수도 용이해진다.
 
   상속은 객체기술의 가장 핵심이 되는 개념으로 프로그램을 쉽게 확장할 수 있도록 해주는 강력한 수단이 된다. 앞의 두 개념은 객체지향이 아닌 개발 방법에서도 흉내를 낼 수 있으나 이것은 객체지향 언어와 개발 방법만의 특성이다.
@@ -65,7 +169,7 @@ tags: []
   상속은 코드 재사용의 한 형태로 만약 새로 만들 클래스가 기존 클래스와 유사하다면 상속을 통해 동일한 부분은 그대로 사용하고 다른 부분만 구현하면 된다.  
 
   ```java
-  public class Animal {
+  class Animal {
     public Animal() {
       System.out.println("A new animal has been created!");
     }
@@ -79,7 +183,7 @@ tags: []
     }
   }
 
-  public class Bird extends Animal {
+  class Bird extends Animal {
     public Bird() {
       super();
       System.out.println("A new bird has been created!");
@@ -109,12 +213,16 @@ tags: []
     }
   }
   ```
+
+
   코드의 재사용은 소프트웨어 개발 비용을 현저하게 줄일 수 있는 잠재력이 있기 때문에 매우 중요하다.
 
-## 2.7 Polymorphism (다형성)  
+## 1.9 Polymorphism (다형성)
+
 동일한 이름의 메서드나 클래스가 있을 때 이것들이 다양한 방법으로 동작하는 것을 의미한다. 키보드의 키를 사용하는 방법은 '누른다'이지만 똑같은 동작 방법의 키라고 하더라도 ESC는 취소를 ENTER는 실행의 목적을 가지고 있다. 다형성이란 동일한 조작방법으로 동작시키지만 동작의 내용은 서로 다른 것을 의미한다.
 
-## 2.8 객체 지향 5원칙  
+## 1.10 객체 지향 5원칙
+
 객체지향에서 지켜야 할 5개의 원칙을 말한다.   
 [참고 : SOLID](https://ko.wikipedia.org/wiki/SOLID)  
 

@@ -4,9 +4,12 @@ title: Javascript Closure
 categories: javascript
 ---
 
-# 클로저(closure)의 개념
+* TOC
+{:toc}
 
-클로저(closure)는 자바스크립트에서 중요한 개념 중 하나로 자바스크립트에 관심을 가지고 있다면 한번쯤은 들어보았을 내용이다. [execution context](http://ungmo2.github.io/javascript/Javascript-Execution-Context/)에 대한 사전 지식이 있으면 이해하기 어렵지 않은 개념이다.
+# 1. 클로저(closure)의 개념
+
+클로저(closure)는 자바스크립트에서 중요한 개념 중 하나로 자바스크립트에 관심을 가지고 있다면 한번쯤은 들어보았을 내용이다. [execution context](http://ungmo2.github.io/javascript/Javascript-Execution-Context/)에 대한 사전 지식이 있으면 이해하기 어렵지 않은 개념이다. 클로저는 자바스크립트 고유의 개념이 아니라 함수를 일급 객체로 취급하는 함수형 언어(Functional language: Python, Haskell, Erlang, Perl, D, R...)에서 사용되는 중요한 특성이다.
 
 클로저는 내부함수를 위한 외부함수의 지역변수가 외부함수에 의해 내부함수가 반환된 이후에도 life-cycle이 유지되는 것을 의미한다.
 
@@ -43,11 +46,17 @@ inner();
 
 위의 예제는 자신을 포함하고 있는 외부함수보다 내부함수가 더 오래 유지되는 경우인데 이때 내부함수가 외부함수의 지역변수에 접근 할 수 있고, 외부함수는 외부함수의 지역변수를 사용하는 내부함수가 소멸될 때까지 소멸되지 못하고 상태가 유지되며 내부함수에 의해서 소멸하게 되는 특성을 클로저(Closure)라고 부른다.
 
-[실행 컨텍스트](http://ungmo2.github.io/javascript/Javascript-Execution-Context/)의 관점에 설명하면, 내부함수가 유효한 상태에서 외부함수가 종료하여 외부함수의 실행 컨텍스트가 소멸하더라도, 외부함수 실행 컨텍스트 내의 `Activation object`(변수, 함수정의 등의 정보를 가지고 있다)는 유효하여 내부함수가 `Scope-chain`을 통해 참조할 수 있는 것을 의미한다.
+[실행 컨텍스트](http://ungmo2.github.io/javascript/Javascript-Execution-Context/)의 관점에 설명하면, 내부함수가 유효한 상태에서 외부함수가 종료하여 외부함수의 실행 컨텍스트가 반환되어도, 외부함수 실행 컨텍스트 내의 `Activation object`(변수, 함수정의 등의 정보를 가지고 있다)는 유효하여 내부함수가 `Scope-chain`을 통해 참조할 수 있는 것을 의미한다.
+
+따라서 외부함수가 이미 반환되었어도 외부함수 내의 변수는 이를 필요로 하는 내부함수가 하나 이상 존재하는 경우 계속 유지된다. 이때 내부함수가 외부함수에 있는 변수의 복사본이 아니라 실제 변수에 접근한다는 것에 주의하여야 한다.
 
 ![closure](/img/closure.png)
 
-# 클로저의 활용
+# 2. 클로저의 활용
+
+클로저는 자바스크립트의 강력한 기능이기는 하나 성능적인 면과 자원적인 면에서 손해를 볼 수 있다. 무분별한 클로저의 사용은 득보다는 실이 많다. 클로저를 사용하여야 할 장면에서 사용해야 하는데 사실 이것은 경험이 필요하다.
+
+## 2.1 전역 변수의 사용 억제
 
 클로저의 필요성을 이해하기 위해서, 버튼이 클릭될 때마다 클릭한 횟수가 누적되어 화면에 표시되는 코드를 만들어보자.
 
@@ -78,7 +87,7 @@ function myFunction(){
 </html>
 ```
 
-위 코드는 잘 동작한다. 하지만 add 함수만을 위한 전역 변수를 사용하고 있어서 의도하지 않게 값이 변경되었을 때 문제가 될 수 있다. 그럼 전역 변수 counter를 add 함수의 지역 변수로 바꾸어보자.  
+위 코드는 잘 동작한다. 하지만 add 함수만을 위한 전역 변수 counter를 사용하고 있다. 전역 변수는 누구나 접근할 수 있어 의도하지 않게 변수명이 중복되거나 값이 변경되었을 때 문제가 될 수 있다. 그럼 전역 변수 counter를 add 함수의 지역 변수로 바꾸어보자.  
 
 ```html
 <!DOCTYPE html>
@@ -138,6 +147,50 @@ function myFunction(){
 즉시실행함수은 한번만 실행되므로 add에 담겨있는 함수가 호출될 때마다 변수 counter가 재차 초기화될 일은 없을 것이다. 이때 중요한 것은 add에 담겨있는 함수는 변수 counter에 접근할 수 있고 변수 counter는 add에 담겨있는 함수가 소멸될 때가지 유지된다는 것이다. 이것이 바로 클로저이다.
 
 변수 counter는 외부에서 직접 접근할 수 없는 `private` 변수이므로 전역 변수를 사용했을 때와 같이 의도되지 않은 변경을 걱정할 필요도 없다.
+
+## 2.2 setTimeout()에 지정되는 함수
+
+setTimeout() 함수는 내장함수로 첫번째 parameter에 실행하고자 하는 함수를 두번째 parameter에 지정한 시간 간격(ms: 1000분의 1초)으로 해당 함수를 호출한다.
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+var fade = function(node) {
+  var level = 1; // ②
+  var step = function() {
+    var hex = level.toString(16); // ④
+
+    node.style.backgroundColor = '#FFFF' + hex + hex; // ⑤
+
+    if(level < 15) { // ⑥
+      level += 1;
+      setTimeout(step, 100); // ⑦
+    }
+  };
+  setTimeout(step, 100); // ③
+};
+
+fade(document.body); // ①
+</script>
+</body>
+</html>
+```
+
+① fade()는 document.body를 전달받아 호출된다.  
+② fade()의 지역변수 level은 1로 초기화되어 있다. 함수 step()은 내부함수로 외부함수 fade()의 지역변수 level을 사용한다.  
+③ 100ms 후 step()은 호출되고 fade()는 종료한다.  
+④ 함수 step()은 지역변수 hex을 갖는다. 이것은 16진수 문자열을 값으로 갖는다.   
+⑤ 함수 fade()의 매개변수 node(document.body)의 배경색을 변경한다.  
+⑥ 변수 level이 15보다 작으면 즉 16진수 범위안(1~F)인지 확인한다.  
+⑦ level을 1 증가시키고 다시 함수 step()을 호출하여 같은 작업을 반복한다.
+
+이때 fade 함수는 이미 반환되었지만 함수 안에
+
+이때 fade 함수는 이미 반환되었지만 외부함수 fade 내의 변수는 이를 필요로 하는 내부함수가 하나 이상 존재하는 경우 계속 유지된다. 이때 내부함수가 외부함수에 있는 변수의 복사본이 아니라 실제 변수에 접근한다는 것에 주의하여야 한다.
+
+## 2.3 자주 발생하는 실수
 
 아래의 예제는 클로저를 사용할 때 자주 발생할 수 있는 실수에 관련한 예제다.
 

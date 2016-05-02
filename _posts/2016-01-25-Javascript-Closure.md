@@ -4,43 +4,47 @@ title: Javascript Closure
 categories: javascript
 ---
 
-클로저(closure)는 자바스크립트에서 중요한 개념 중 하나로 자바스크립트에 관심을 가지고 있다면 한번쯤은 들어보았을 내용이다. [function](http://ungmo2.github.io/javascript/Javascript-Function/), [scope](http://ungmo2.github.io/javascript/Javascript-Scope/), [execution context](http://ungmo2.github.io/javascript/Javascript-Execution-Context/)에 대한 사전 지식이 있으면 이해하기 어렵지 않은 개념이다. 먼저 일독을 권장한다.
+클로저(closure)는 자바스크립트에서 중요한 개념 중 하나로 자바스크립트에 관심을 가지고 있다면 한번쯤은 들어보았을 내용이다. [function](http://ungmo2.github.io/javascript/Javascript-Function/), [scope](http://ungmo2.github.io/javascript/Javascript-Scope/), [execution context](http://ungmo2.github.io/javascript/Javascript-Execution-Context/)에 대한 사전 지식이 있으면 이해하기 어렵지 않은 개념이다.
 
-클로저는 내부함수를 위한 외부함수의 지역변수가 외부함수에 의한 내부함수의 반환 이후에도 life-cycle이 유지되는 것을 의미한다.
+클로저는 내부함수를 위한 외부함수의 지역변수가 외부함수에 의해 내부함수가 반환된 이후에도 life-cycle이 유지되는 것을 의미한다.
 
 말이 난해하니 우선 예제를 살펴보자. 우리 모두는 자신의 힘으로 발견한 내용을 가장 쉽게 익힌다.(- 도널드 커누스)
 
 ```javascript
-function sayHello(name){
-  var text = 'Hello ' + name;
-  var logHello = function(){ console.log(text); }
-  logHello();
+function outerFunc(){
+  var x = 10;
+  var innerFunc = function(){ console.log(x); }
+  innerFunc();
 }
 
-sayHello('lee');  // Hello lee
+outerFunc();
 ```
 
-함수 sayHello 내에 내부함수(inner function) logHello가 선언되며 실행된다.
-이때 내부함수 logHello는 자신을 포함하고 있는 외부함수 sayHello의 변수 text에 접근할 수 있다.
+함수 outerFunc 내에 내부함수(inner function) innerFunc가 선언되고 실행되었다.
+이때 내부함수 innerFunc는 자신을 포함하고 있는 외부함수 outerFunc의 변수 x에 접근할 수 있다.
 
 이것은 중첩된 함수의 scope의 레퍼런스를 차례대로 저장하고 있는 `scope-chain`을 자바스크립트 엔진이 검색하였기에 가능한 것이다.
 
-이번에는 내부함수 logHello를 sayHello내에서 실행하지 말고 반환하는 코드로 변경해 보자.
+이번에는 내부함수 innerFunc를 outerFunc내에서 실행하지 말고 반환하는 코드로 변경해 보자.
 
 ```javascript
-function sayHello(name){
-  var text = 'Hello ' + name; // local variable
-  return function(){ console.log(text); }
+function outerFunc(){
+  var x = 10;  // local variable
+  var innerFunc = function(){ console.log(x); }
+  return innerFunc;
 }
 
-sayHello('lee')(); // Hello lee
+var inner = outerFunc();
+inner();
 ```
 
-함수 sayHello는 내부함수를 반환하고 생을 마감했다. 함수 sayHello의 변수 text 또한 더이상 유효하지 않게 되어 변수 text에 접근할 수 있는 방법은 달리 없어 보인다. 그러나 위 코드의 실행 결과는 "Hello lee"이다. 이미 life-cycle이 종료된 함수 sayHello의 지역변수 text가 다시 부활이라도 한 듯이 동작하고 있다. 뭔가 특별한 일이 벌어 지고 있는 것 같다.
+함수 outerFunc는 내부함수를 반환하고 생을 마감했다. 함수 outerFunc의 변수 x 또한 더이상 유효하지 않게 되어 변수 x에 접근할 수 있는 방법은 달리 없어 보인다. 그러나 위 코드의 실행 결과는 변수 x의 값인 10이다. 이미 life-cycle이 종료된 함수 outerFunc의 지역변수 x가 다시 부활이라도 한 듯이 동작하고 있다. 뭔가 특별한 일이 벌어 지고 있는 것 같다.
 
-위의 예제는 자신을 포함하고 있는 외부함수보다 내부함수가 더 오래 유지되는 경우인데 이때 내부함수가 외부함수의 지역변수에 접근 할 수 있고, 외부함수는 외부함수의 지역변수를 사용하는 내부함수가 소멸될 때까지 소멸되지 않고 상태를 유지되는 특성을 클로저라 한다.
+위의 예제는 자신을 포함하고 있는 외부함수보다 내부함수가 더 오래 유지되는 경우인데 이때 내부함수가 외부함수의 지역변수에 접근 할 수 있고, 외부함수는 외부함수의 지역변수를 사용하는 내부함수가 소멸될 때까지 소멸되지 못하고 상태가 유지되며 내부함수에 의해서 소멸하게 되는 특성을 클로저(Closure)라고 부른다.
 
-좀 더 자세히 말하면, 내부함수가 유효한 상태에서 외부함수의 실행 컨텍스트가 소멸되지 않고 유효하며 내부함수는 외부함수의 실행 컨텍스트 내의 `Activation object`(변수, 함수정의 등의 정보를 가지고 있다)를 `Scope-chain`을 통해 참조할 수 있는 것을 의미한다. 실행 컨텍스트의 세부 내용은 [이곳](http://ungmo2.github.io/javascript/Javascript-Execution-Context/)을 참조하기 바란다.
+실행 컨텍스트의 관점에 설명하면, 내부함수가 유효한 상태에서 외부함수의 실행 컨텍스트가 소멸되지 않고 유효하며 내부함수는 외부함수의 실행 컨텍스트 내의 `Activation object`(변수, 함수정의 등의 정보를 가지고 있다)를 `Scope-chain`을 통해 참조할 수 있는 것을 의미한다. 실행 컨텍스트의 세부 내용은 [이곳](http://ungmo2.github.io/javascript/Javascript-Execution-Context/)을 참조하기 바란다.
+
+![closure](/img/closure.png)
 
 클로저의 필요성을 이해하기 위해서, 버튼이 클릭될 때마다 클릭한 횟수가 누적되어 화면에 표시되는 코드를 만들어보자.
 

@@ -140,7 +140,7 @@ function square(number) {
 
 위 코드를 보면 함수선언식으로 함수가 정의되기 이전에 함수 호출이 가능하다. 함수 선언의 위치와는 상관없이 코드 내 어느 곳에서든지 호출이 가능한데 이것을 함수 호이스팅(Function Hoisting)이라 한다.
 
-함수 호이스팅이 발생하는 원인은 자바스크립트이 변수 생성과 초기화가 분리되어 진행되기 때문이다. 이는 [Execution Context](http://ungmo2.github.io/javascript/Javascript-Execution-Context/)에서 자세히 설명한다.
+함수 호이스팅이 발생하는 원인은 자바스크립트 변수 생성과 초기화가 분리되어 진행되기 때문이다. 이는 [Execution Context](http://ungmo2.github.io/javascript/Javascript-Execution-Context/#variable-instantiation--)에서 자세히 설명한다.
 
 간단히 설명하면 함수선언식으로 정의된 함수는 자바스크립트 엔진이 스크립트가 로딩되는 시점에 바로 초기화하고 이를 VO(variable object)에 저장한다. 그렇기 때문에 함수 선언의 위치와는 상관없이 소스 내 어느 곳에서든지 호출이 가능하다.
 

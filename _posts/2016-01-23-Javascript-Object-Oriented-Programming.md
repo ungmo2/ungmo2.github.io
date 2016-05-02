@@ -14,7 +14,7 @@ Javascript는 멀티-패러다임 언어로 명령형(imperative), 함수형(fun
 
 프로토타입 기반 언어인 자바스크립트와 클래스 기반 언어의 특성을 구분해서 파악할 필요가 있다.
 
-# 1. 객체지향 프로그래밍 (Object-Oriented Programming)
+<!-- # 1. 객체지향 프로그래밍 (Object-Oriented Programming)
 
 객체지향 프로그래밍은 실제 세계에 기반한 모델을 만들기 위해 추상화를 사용하는 프로그래밍 패러다임이다.
 
@@ -26,11 +26,11 @@ Javascript는 멀티-패러다임 언어로 명령형(imperative), 함수형(fun
 
 객체지향 프로그래밍은 보다 유연하고 유지보수하기 쉬우며 확장성 측면에서서도 유리한 프로그래밍을 하도록 의도되었고, 대규모 소프트웨어 개발에 널리 사용되고 있다.
 
-객체지향 프로그래밍이 갖는 modularity(모듈화)에 기반한 강력한 힘에 의해, 객체지향적인 코드는 개발을 보다 단순하게 했고, 시간이 흐른 뒤에도 보다 쉽게 이해할 수 있도록 했으며, 복잡한 상황이나 절차들을 덜 모듈화된 프로그래밍 방법들보다 더 직접적으로 분석하고, 코딩하고, 이해할 수 있도록 만들었다.
+객체지향 프로그래밍이 갖는 modularity(모듈화)에 기반한 강력한 힘에 의해, 객체지향적인 코드는 개발을 보다 단순하게 했고, 시간이 흐른 뒤에도 보다 쉽게 이해할 수 있도록 했으며, 복잡한 상황이나 절차들을 덜 모듈화된 프로그래밍 방법들보다 더 직접적으로 분석하고, 코딩하고, 이해할 수 있도록 만들었다. -->
 
-## 1.1 Class
+# 1. Class, Constructor, Method
 
-같은 종류의 집단에 속하는 속성(attribute)과 행위(behavior)를 정의한 것으로 객체지향 프로그램의 기본적인 사용자 정의 데이터형(user define data type)이라고 할 수 있다. 결국 클래스는 객체 생성에 사용되는 패턴 혹은 청사진(blueprint) 이다.
+클래스 기반 언어(Java, C++, C#, Python, PHP, Ruby, Object-C)의 클래스란 같은 종류의 집단에 속하는 속성(attribute)과 행위(behavior)를 정의한 것으로 객체지향 프로그램의 기본적인 사용자 정의 데이터형(user define data type)이라고 할 수 있다. 결국 클래스는 객체 생성에 사용되는 패턴 혹은 청사진(blueprint) 이다.
 
 클래스 기반 언어는 클래스로 객체의 기본적인 형태와 기능을 정의하고 생성자로 인스턴스를 생성하여 사용할 수 있다. 이런 형태의 언어는 모든 인스턴스가 클래스에 정의된 것과 같은 구조이며 보통 런타임에 변경할 수 없다. 반면 프로토타입 기반 언어는 객체의 자료구조(Property)와 메서드를 동적으로 변경할 수 있다.
 
@@ -70,7 +70,11 @@ public class MainClass {
 }
 ```
 
-자바스크립트의 객체 생성 방식은 클래스 기반 언어와는 다르다. 자바스크립트는 자바스크립트를 이루고 있는 거의 “모든 것”은 객체이다. 특히 함수 객체로 많은 것을 할 수 있는데 클래스, 생성자, 메서드도 모두 함수로 구현이 가능하다.
+자바스크립트의 객체 생성 방식은 클래스 기반 언어와는 다르다. 자바스크립트는 객체를 생성하기 위해 먼저 class를 만들 필요가 없다. class문을 흔하게 볼 수 있는 C++이나 자바와는 달리 자바스크립트는 class문이 포함되지 않은 프로토타입 기반 언어이다.
+
+프로토타입 기반 프로그래밍은 클래스가 존재하지 않는 객체지향 프로그래밍 스타일로 프로토타입 체이닝과 클로저 등으로 객체 지향 언어의 상속, 캡슐화(정보 은닉) 등의 개념을 소화할 수 있다.
+
+이로 인해 때때로 class 기반 언어에 익숙한 프로그래머들은 혼란을 일으킨다. 자바스크립트에서는 함수 객체로 많은 것을 할 수 있는데 클래스, 생성자, 메서드도 모두 함수로 구현이 가능하다.
 
 ```javascript
 function Person(name) {
@@ -101,7 +105,7 @@ var you = new Person('Kim');
 var him = new Person('Choi');
 ```
 
-이 방식으로 객체를 생성하면 메서드 setName, getName이 중복되어 생성된다. 즉, 각 인스턴스가 동일한 메서드를 각자 소유한다. 이는 메모리의 낭비이고 메소드가 변경되었을 때 유지보수가 번거롭게 된다.
+이 방식으로 객체를 생성하면 메서드 setName, getName이 중복되어 생성된다. 즉, 각 인스턴스가 동일한 메서드를 각자 소유한다. 이는 메모리 낭비인데 생성되는 인스턴스가 많아지거나 메서드가 크거나 많다면 무시할 수 없는 문제이다.
 
 이같은 문제를 해결하려면 다른 접근 방식이 필요한데 그 해답은 프로토타입이다.
 
@@ -119,12 +123,63 @@ Person.prototype.getName = function() {
 
 var me  = new Person('Lee');
 var you = new Person('Kim');
+var him = new Person('choi');
+
+console.log(me.getName());
+console.log(you.getName());
+console.log(him.getName());
+
+me.setName('me');
+you.setName('you');
+him.setName('him');
+
+console.log(me.getName());
+console.log(you.getName());
+console.log(him.getName());
 ```
 
 ![prototype](/img/prototype.png)
-{: style="max-width:500px; margin:10px auto;"}
+{: style="max-width:650px; margin:10px auto;"}
 
+Person() 생성자 함수의 prototype 프로퍼티가 가리키는 프로토타입 객체에 메서드를 추가하면 프로토타입 체이닝에 의해 모든 인스턴스는 추가된 메서드에 접근할 수 있다.
 
+아래는 더글라스 크락포드가 제안한 프로토타입 객체에 메서드를 추가하는 방식이다.
+
+```javascript
+Function.prototype.method = function(name, func) {
+  if(!this.prototype[name]) // 동일한 이름의 메서드가 없으면 메서드를 추가
+    this.prototype[name] = func;
+}
+
+function Person(name) {
+  this.name = name;
+}
+
+Person.method('setName', function(name) {
+  this.name = name;
+});
+
+Person.method('getName', function() {
+  return this.name;
+});
+
+var me  = new Person('Lee');
+var you = new Person('Kim');
+var him = new Person('choi');
+
+console.log(me.getName());
+console.log(you.getName());
+console.log(him.getName());
+
+me.setName('me');
+you.setName('you');
+him.setName('him');
+
+console.log(me.getName());
+console.log(you.getName());
+console.log(him.getName());
+```
+<!--
 ## 1.2 Object (객체)
 
 클래스의 인스턴스(실제로 메모리상에 할당된 것)이다. 객체는 자신 고유의 속성(attribute)을 가지며 클래스에서 정의한 행위(behavior)를 수행할 수 있다.
@@ -239,38 +294,10 @@ var you = new Person('Kim');
     “특정 클라이언트를 위한 인터페이스 여러 개가 범용 인터페이스 하나보다 낫다.”
 
   * 의존관계 역전 원칙 (Dependency inversion principle)  
-    프로그래머는 “추상화에 의존해야지, 구체화에 의존하면 안된다.” 의존성 주입은 이 원칙을 따르는 방법 중 하나다.
+    프로그래머는 “추상화에 의존해야지, 구체화에 의존하면 안된다.” 의존성 주입은 이 원칙을 따르는 방법 중 하나다. -->
 
-# 2. Javascript Object Object-Oriented Programming
 
-자바스크립트는 객체(object)기반의 스크립트 언어이며 자바스크립트를 이루고 있는 거의 “모든 것”은 객체이다.
-
-자바스크립트는 객체를 생성하기 위해 먼저 class를 만들 필요가 없다. class문을 흔하게 볼 수 있는 C++이나 자바와는 달리 자바스크립트는 class문이 포함되지 않은 프로토타입 기반 언어이다.
-
-프로토타입 기반 프로그래밍은 클래스가 존재하지 않는 객체지향 프로그래밍의 한가지 스타일로 프로토타입 체인과 클로저 등으로 객체 지향 언어의 상속, 캡슐화(정보 은닉) 등의 개념을 소화할 수 있다.
-
-이로 인해 때때로 class 기반 언어에 익숙한 프로그래머들은 혼란을 일으킨다. 자바스크립트에서는 function을 class로서 사용한다. 아래 예제에서는 Person 이라는 이름의 클래스를 새로 정의하고 있다.
-
-```javascript
-function Person(name) {
-  this.name = name;
-}
-```
-
-obj 이름의 객체의 새로운 인스턴스를 만들때에는 new obj 라는 statement를 사용하고, 차후에 접근할 수 있도록 변수에 결과를 받는다.
-
-아래의 예제에서 Person이라는 이름의 클래스를 정의한 후에, 두개의 인스턴스를 생성하고 있다.
-
-```javascript
-function Person(name) {
-  this.name = name;
-}
-
-var person1 = new Person('Lee');
-var person2 = new Person('Kim');
-```
-
-## 2.1 Javascript Inheritance (상속)
+# 2. Inheritance (상속)
 
 Java같은 클래스 기반 언어에서 상속(또는 확장)은 코드 재사용의 관점에서 매우 유용하다.  
 새로 만들 클래스가 기존에 있는 클래스와 매우 유사하다면, 상속을 통해 다른 점만 구현하면 된다. 코드 재사용은 개발 비용을 현저히 줄 일 수 있는 잠재력이 있기 때문에 메우 중요하다.
@@ -279,7 +306,7 @@ Java같은 클래스 기반 언어에서 상속(또는 확장)은 코드 재사�
 
 클래스 기반 언어의 객체는 클래스의 인스턴스이며 클래스는 다른 클래스로 상속될 수 있다. 자바스크립트는 프로토타입 기반 언어인데 이 말은 객체가 다른 객체로 바로 상속된다는 것이다.
 
-### 2.1.1 의사 클래스 방식 (Pseudo-classical)
+## 2.1 의사 클래스 방식 (Pseudo-classical)
 
 프로토타입 본성에 맞게 객체에서 다른 객체로 직접 상속하는 방법을 갖는 대신 생성자 함수를 통해 객체를 생성하는 불필요한 간접적인 단계가 있다.
 
@@ -347,7 +374,7 @@ var name = myCat.get_name( ); // 'meow Mary meow'
 
 이런 문제점을 경감시키기 위해 파스칼 표시법으로 생성자 함수 이름을 표기하는 방법을 사용하지만, 이러한 방법보다 더 나은 대안은 `new` 를 사용하는 방식을 피하는 것이다.
 
-### 2.1.2 프로토타입 방식
+## 2.2 프로토타입 방식
 
 순수하게 프로토타입에 기반한 패턴에서는 클래스가 필요없다. 프로토타입에 의한 상속은 개념적으로 클래스에 의한 상속보다 더 간단하다.
 
@@ -392,7 +419,7 @@ myCat.get_name = function ( ) {
 
 프로토타입에 의한 상속 패턴의 한가지 단점은 `private`속성을 가질 수 없다는 것이다. 객체의 모든 속성은 `public`이다.
 
-### 2.1.3 함수를 사용한 방식
+## 2.3 함수를 사용한 방식
 
 * 객체를 반환하는 함수를 호출하여 새로운 객체를 생성한다.
 * 필요한 `private`변수와 메서드를 정의한다. 객체에 담아 반환하지 않는 함수 내 일반 변수는 `private`이다. (매개변수로 전달한 my 객체를 사용할 수도 있다.)  
@@ -450,3 +477,5 @@ var name = myCat.get_name( ); // 'meow Mary meow'
 ```
 
 함수형 패턴은 유연하며, 의사 클래스 패턴보다 작업량이 적고 캡슐화, 정보은닉을 제공한다.
+
+# 3. Encapsulation (캡슐화)

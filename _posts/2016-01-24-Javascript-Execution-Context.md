@@ -120,7 +120,9 @@ foo();
 실행 컨텍스트는 이하의 3가지 프로퍼티를 포함한다.
 
 - Variable Object (VO / 변수객체)  
-	실행 컨텍스트가 생성되면 자바스크립트 엔진은 실행에 필요한 여러 정보들을 담을 객체를 생성한다. 이를 Variable Object(변수 객체)라고 한다. Variable Object는 아래의 정보를 담는 객체이다.
+	실행 컨텍스트가 생성되면 자바스크립트 엔진은 실행에 필요한 여러 정보들을 담을 객체를 생성한다. 이를 Variable Object(변수 객체)라고 한다. Variable Object는 코드가 실행될 때 참조되며 프로그램에서는 접근할 수 없다.
+
+Variable Object는 아래의 정보를 담는 객체이다.
 
 	- 변수
 	- 매개변수(parameters)와 인수(arguments)
@@ -134,7 +136,7 @@ foo();
 	함수 컨텍스트에서 VO는 Activation object(AO / 활성 객체)를 가리키며 인수들의 정보를 배열의 형태로 담고 있는 객체인 [arguments object](http://ungmo2.github.io/javascript/Javascript-Function/#arguments-)와 매개변수가 추가된다.
 
 - Scope Chain (SC)  
-	Scope Chain은 일종의 리스트로서 중첩된 함수의 스코프(혹은 Variable Object)의 레퍼런스를 차례로 저장하고 있는 개념이다. 이 리스트로 현재 컨텍스트의 변수 뿐만 아니라 상위 실행 컨텍스트의 변수에도 접근이 가능하다. 이 리스트에서 찾지 못한 변수는 결국 정의되지 않은 변수에 접근하는 것으로 판단되어 ReferenceError 에러를 출력한다. 이 리스트를 스코프 체인이라 하는데 [[scope]] 프로퍼티로 참조할 수 있다.
+	Scope Chain은 일종의 리스트로서 중첩된 함수의 스코프(혹은 Variable Object)의 레퍼런스를 차례로 저장하고 있는 개념이다. 이 리스트로 현재 컨텍스트의 변수 뿐만 아니라 상위 실행 컨텍스트의 변수에도 접근이 가능하다. 이 리스트에서 찾지 못한 변수는 결국 정의되지 않은 변수에 접근하는 것으로 판단되어 ReferenceError 에러를 출력한다. 이 리스트를 스코프 체인이라 하는데 [[scope]] 프로퍼티로 참조할 수 있다. [[Scope]] 함수가 만들어질 때 생성되는 스코프 체인을 참조하는 함수의 프로퍼티로 프로그램에서는 접근할 수 없다.
 
 - this value  
 	현재 실행 컨텍스트를 포함하는 객체에 대한 레퍼런스이다.
@@ -169,7 +171,9 @@ Global Code로 컨트롤이 이동하면 Scope Chain는 전역 객체의 레퍼�
 
 ## 1.2 Variable Instantiation 실행
 
-Scope Chain의 생성과 초기화가 끝나면 Variable Instantiation이 실행된다. Variable Instantiation은 Variable Object란 특수한 객체에 프로퍼티와 값을 추가하는 것을 의미한다. 모든 실행 컨텍스트에는 Variable Object가 존재하며 코드 상의 변수와 함수의 선언이 Variable Object의 프로퍼티로서 추가된다.
+Scope Chain의 생성과 초기화가 끝나면 Variable Instantiation이 실행된다.
+
+Variable Instantiation은 Variable Object란 특수한 객체에 프로퍼티와 값을 추가하는 것을 의미한다. 변수 객체화라고 번역하기도 하는데 이는 변수와 함수 선언을 Variable Object에 추가하여 객체화하기 때문이다.
 
 Global Code의 경우 Global Object가 Variable Object가 된다.
 
@@ -189,7 +193,7 @@ Sample code를 보면 Global Code의 변수 x 선언(Variable Declaration)과 �
 
 ### 1.2.2 함수 foo의 선언 처리
 
-Function Declaration는 Variable Instantiation 실행 순서 2.와 같이 선언된 함수명( foo )이 Variable Object( Global Code인 경우 Global Object )의 프로퍼티로, 생성된 Function Object가 값으로 set된다. 생성된 Function Object는 `[[Scope]]` 프로퍼티를 가지게 되고 값으로 현재의 실행 컨텍스트의 Scope Chain이 참조하고 있는 객체와 같은 객체( Global Code인 경우 Global Object )를 참조하는 리스트가 set된다.
+Function Declaration는 Variable Instantiation 실행 순서 2.와 같이 선언된 함수명( foo )이 Variable Object( Global Code인 경우 Global Object )의 프로퍼티로, 생성된 Function Object가 값으로 set된다. 생성된 Function Object는 `[[Scope]]` 프로퍼티를 가지게 되고 값으로 현재 실행 컨텍스트의 Scope Chain이 참조하고 있는 객체와 같은 객체를 참조하는 리스트가 set된다.
 
 <img src="/img/ec_7.jpg">
 

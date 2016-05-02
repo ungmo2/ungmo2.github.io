@@ -4,7 +4,9 @@ title: Javascript Closure
 categories: javascript
 ---
 
-클로저(closure)는 자바스크립트에서 중요한 개념 중 하나로 자바스크립트에 관심을 가지고 있다면 한번쯤은 들어보았을 내용이다. [function](http://ungmo2.github.io/javascript/Javascript-Function/), [scope](http://ungmo2.github.io/javascript/Javascript-Scope/), [execution context](http://ungmo2.github.io/javascript/Javascript-Execution-Context/)에 대한 사전 지식이 있으면 이해하기 어렵지 않은 개념이다.
+# 클로저(closure)의 개념
+
+클로저(closure)는 자바스크립트에서 중요한 개념 중 하나로 자바스크립트에 관심을 가지고 있다면 한번쯤은 들어보았을 내용이다. [execution context](http://ungmo2.github.io/javascript/Javascript-Execution-Context/)에 대한 사전 지식이 있으면 이해하기 어렵지 않은 개념이다.
 
 클로저는 내부함수를 위한 외부함수의 지역변수가 외부함수에 의해 내부함수가 반환된 이후에도 life-cycle이 유지되는 것을 의미한다.
 
@@ -20,10 +22,9 @@ function outerFunc(){
 outerFunc();
 ```
 
-함수 outerFunc 내에 내부함수(inner function) innerFunc가 선언되고 실행되었다.
-이때 내부함수 innerFunc는 자신을 포함하고 있는 외부함수 outerFunc의 변수 x에 접근할 수 있다.
+함수 outerFunc 내에 내부함수(inner function) innerFunc가 선언되고 실행되었다. 이때 내부함수 innerFunc는 자신을 포함하고 있는 외부함수 outerFunc의 변수 x에 접근할 수 있다.
 
-이것은 중첩된 함수의 scope의 레퍼런스를 차례대로 저장하고 있는 `scope-chain`을 자바스크립트 엔진이 검색하였기에 가능한 것이다.
+이것은 중첩된 함수의 scope 레퍼런스를 차례대로 저장하고 있는 `scope-chain`을 자바스크립트 엔진이 검색하였기에 가능한 것이다.
 
 이번에는 내부함수 innerFunc를 outerFunc내에서 실행하지 말고 반환하는 코드로 변경해 보자.
 
@@ -34,7 +35,7 @@ function outerFunc(){
   return innerFunc;
 }
 
-var inner = outerFunc();
+var inner = outerFunc(); // 클로저의 형성
 inner();
 ```
 
@@ -42,9 +43,11 @@ inner();
 
 위의 예제는 자신을 포함하고 있는 외부함수보다 내부함수가 더 오래 유지되는 경우인데 이때 내부함수가 외부함수의 지역변수에 접근 할 수 있고, 외부함수는 외부함수의 지역변수를 사용하는 내부함수가 소멸될 때까지 소멸되지 못하고 상태가 유지되며 내부함수에 의해서 소멸하게 되는 특성을 클로저(Closure)라고 부른다.
 
-실행 컨텍스트의 관점에 설명하면, 내부함수가 유효한 상태에서 외부함수의 실행 컨텍스트가 소멸되지 않고 유효하며 내부함수는 외부함수의 실행 컨텍스트 내의 `Activation object`(변수, 함수정의 등의 정보를 가지고 있다)를 `Scope-chain`을 통해 참조할 수 있는 것을 의미한다. 실행 컨텍스트의 세부 내용은 [이곳](http://ungmo2.github.io/javascript/Javascript-Execution-Context/)을 참조하기 바란다.
+[실행 컨텍스트](http://ungmo2.github.io/javascript/Javascript-Execution-Context/)의 관점에 설명하면, 내부함수가 유효한 상태에서 외부함수가 종료하여 외부함수의 실행 컨텍스트가 소멸하더라도, 외부함수 실행 컨텍스트 내의 `Activation object`(변수, 함수정의 등의 정보를 가지고 있다)는 유효하여 내부함수가 `Scope-chain`을 통해 참조할 수 있는 것을 의미한다.
 
 ![closure](/img/closure.png)
+
+# 클로저의 활용
 
 클로저의 필요성을 이해하기 위해서, 버튼이 클릭될 때마다 클릭한 횟수가 누적되어 화면에 표시되는 코드를 만들어보자.
 

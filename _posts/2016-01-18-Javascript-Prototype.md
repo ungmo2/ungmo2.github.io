@@ -87,9 +87,9 @@ console.dir(foo);
     console.log(Person.prototype.constructor === Person);
     ```
 
-# 3. Prototype chaining
+# 3. Prototype chain
 
-자바스크립트는 특정 객체의 프로퍼티나 메서드에 접근하려고 할 때 해당 객체에 접근하려는 프로퍼티 또는 메서드가 없다면 `[[Prototype]]` 프로퍼티가 가리키는 링크를 따라 자신의 부모 역할을 하는 프로토타입 객체의 프로퍼티나 메서드를 차례대로 검색한다. 이것을 프로토타입 체이닝이라 한다.
+자바스크립트는 특정 객체의 프로퍼티나 메서드에 접근하려고 할 때 해당 객체에 접근하려는 프로퍼티 또는 메서드가 없다면 `[[Prototype]]` 프로퍼티가 가리키는 링크를 따라 자신의 부모 역할을 하는 프로토타입 객체의 프로퍼티나 메서드를 차례대로 검색한다. 이것을 프로토타입 체인이라 한다.
 
 ```javascript
 var student = {
@@ -113,7 +113,7 @@ console.log(student.__proto__ === Object.prototype); // true
 console.log(Object.prototype.hasOwnProperty('hasOwnProperty')); // true
 ```
 
-## 3.1 객체 리터럴 방식으로 생성된 객체의 프로토타입 체이닝
+## 3.1 객체 리터럴 방식으로 생성된 객체의 프로토타입 체인
 
 [객체 생성 방법](http://ungmo2.github.io/javascript/Javascript-Object/#section)은 3가지가 있다.
 
@@ -148,7 +148,7 @@ console.log(Function.prototype.__proto__ === Object.prototype); // ④ true
 ![Object literal Prototype chaining](/img/object_literal_prototype_chaining.png)
 {: style="max-width:500px; margin:10px auto;"}
 
-## 3.2 생성자 함수로 생성된 객체의 프로토타입 체이닝
+## 3.2 생성자 함수로 생성된 객체의 프로토타입 체인
 
 생성자 함수로 객체를 생성하기 위해서는 우선 생성자 함수를 정의하여야 한다.
 
@@ -168,7 +168,7 @@ var square = function square(number) {
 
 따라서 함수선언식과 함수표현식은 모두 함수 리터럴 방식으로 함수를 정의하는데 이것은 결국 내장 함수 Function() 생성자 함수로 함수를 생성하는 것을 단순화 시킨 것이다.
 
-이는 앞서 살펴본 `객체 리터럴 방식으로 생성된 객체의 프로토타입 체이닝`의 경우, 객체의 생성은 내장 함수 Object() 생성자 함수를 사용하는 것과 유사하다. Object() 생성자 함수는 물론 함수이기 때문에 함수 객체는 일반 객체와 달리 `prototype` 프로퍼티가 있다고 했다.
+이는 앞서 살펴본 `객체 리터럴 방식으로 생성된 객체의 프로토타입 체인`의 경우, 객체의 생성은 내장 함수 Object() 생성자 함수를 사용하는 것과 유사하다. Object() 생성자 함수는 물론 함수이기 때문에 함수 객체는 일반 객체와 달리 `prototype` 프로퍼티가 있다고 했다.
 
 내장 함수 Function() 생성자 함수도 물론 함수이기 때문에 일반 객체와 달리 `prototype` 프로퍼티가 있다.
 
@@ -198,7 +198,7 @@ console.log(Function.prototype.__proto__  === Object.prototype); // ⑤ true
 
 foo 객체의 프로토타입 객체 Person.prototype 객체와 Person() 생성자 함수의 프로토타입 객체인 Function.prototype의 프로토타입 객체는 Object.prototype 객체이다.
 
-이는 객체 리터럴 방식이나 생성자 함수 방식이나 결국은 모든 객체의 부모 객체인 Object.prototype 객체에서 프로토타입 체이닝이 끝나기 때문이다. 이때 Object.prototype 객체를 `프로토타입 체이닝의 종점`이라 한다.
+이는 객체 리터럴 방식이나 생성자 함수 방식이나 결국은 모든 객체의 부모 객체인 Object.prototype 객체에서 프로토타입 체인이 끝나기 때문이다. 이때 Object.prototype 객체를 `프로토타입 체인의 종점`이라 한다.
 
 # 4. 기본자료형(Primitive data type)의 확장
 
@@ -244,9 +244,9 @@ console.log(str.myMethod());
 console.dir(String.prototype);
 ```
 
-앞서 살펴본 바와 같이 모든 객체는 프로토타입 체이닝에 의해 Object.prototype 객체의 메서드를 사용할 수 있었다. Object.prototype 객체는 프로토타입 체이닝의 종점으로 모든 객체가 사용할 수 있는 메서드를 갖는다.
+앞서 살펴본 바와 같이 모든 객체는 프로토타입 체인에 의해 Object.prototype 객체의 메서드를 사용할 수 있었다. Object.prototype 객체는 프로토타입 체인의 종점으로 모든 객체가 사용할 수 있는 메서드를 갖는다.
 
-이후 살펴보게 될 [Built-in object(내장 객체)](http://ungmo2.github.io/javascript/Built-in-Object/)의 [Global objects (Standard Built-in Objects)](http://ungmo2.github.io/javascript/Standard-Built-in-Objects/#global-objects-standard-built-in-objects)  String, Number, Array 객체 등이 가지고 있는 표준 메서드는 프로토타입 객체인 String.prototype, Number.prototype, Array.prototype 등에 정의되어 있다. 이들 프로토타입 객체 또한 Object.prototype를 프로토타입 체이닝에 의해 자신의 프로토타입 객체로 연결한다.
+이후 살펴보게 될 [Built-in object(내장 객체)](http://ungmo2.github.io/javascript/Built-in-Object/)의 [Global objects (Standard Built-in Objects)](http://ungmo2.github.io/javascript/Standard-Built-in-Objects/#global-objects-standard-built-in-objects)  String, Number, Array 객체 등이 가지고 있는 표준 메서드는 프로토타입 객체인 String.prototype, Number.prototype, Array.prototype 등에 정의되어 있다. 이들 프로토타입 객체 또한 Object.prototype를 프로토타입 체인에 의해 자신의 프로토타입 객체로 연결한다.
 
 자바스크립트는 표준 내장 객체의 프로토타입 객체에 개발자가 정의한 메서드의 추가를 허용한다.
 
@@ -272,7 +272,7 @@ console.log(Function.prototype.__proto__  === Object.prototype); // ⑤ true
 
 # 5. 프로토타입 객체의 확장
 
-생성자 함수로 객체를 생성할 때 생성자 함수의 prototype 프로퍼티에 연결된 프로토타입 객체는 constructor와 [[Prototype]] 프로퍼티를 갖는다. 프로토타입 객체도 객체이므로 일반 객체와 같이 프로퍼티를 추가/삭제할 수 있다. 그리고 이렇게 추가/삭제된 프로퍼티는 즉시 프로토타입 체이닝에 반영된다.
+생성자 함수로 객체를 생성할 때 생성자 함수의 prototype 프로퍼티에 연결된 프로토타입 객체는 constructor와 [[Prototype]] 프로퍼티를 갖는다. 프로토타입 객체도 객체이므로 일반 객체와 같이 프로퍼티를 추가/삭제할 수 있다. 그리고 이렇게 추가/삭제된 프로퍼티는 즉시 프로토타입 체인에 반영된다.
 
 ```javascript
 function Person(name) {
@@ -288,7 +288,7 @@ Person.prototype.sayHello = function(){
 foo.sayHello();
 ```
 
-생성자 함수 Person은 prototype 프로퍼티에 연결된 프로토타입 객체 Person.prototype를 갖는다. Person.prototype 객체는 일반 객체와 같이 프로퍼티를 추가/삭제가 가능하다. 위의 예에서는 Person.prototype 객체에 메서드 sayHello를 추가하였다. 이때 sayHello 메서드는 프로토타입 체이닝에 반영된다. 따라서 생성자 함수 Person에 의해 생성된 foo 객체는 프로토타입 체이닝에 의해 부모객체인 Person.prototype의 메서드를 사용할 수 있게 되었다.
+생성자 함수 Person은 prototype 프로퍼티에 연결된 프로토타입 객체 Person.prototype를 갖는다. Person.prototype 객체는 일반 객체와 같이 프로퍼티를 추가/삭제가 가능하다. 위의 예에서는 Person.prototype 객체에 메서드 sayHello를 추가하였다. 이때 sayHello 메서드는 프로토타입 체인에 반영된다. 따라서 생성자 함수 Person에 의해 생성된 foo 객체는 프로토타입 체인에 의해 부모객체인 Person.prototype의 메서드를 사용할 수 있게 되었다.
 
 ![extension of prototype](/img/extension_prototype.png)
 {: style="max-width:500px; margin:10px auto;"}
@@ -328,13 +328,13 @@ console.log(bar.constructor); // ② Object()
 
 ① 프로토타입 객체는 constructor 프로퍼티를 갖는다. 프로토타입 객체 변경 전, Person() 생성자 함수의 [[Prototype]] 프로퍼티가 가리키는 프로토타입 객체도 물론 constructor 프로퍼티를 가지며 이 constructor 프로퍼티는 Person() 생성자 함수를 가리킨다.
 
-② 프로토타입 객체 변경 후, Person() 생성자 함수의 [[Prototype]] 프로퍼티가 가리키는 프로토타입 객체는 일반 객체로 변경되었다. 그리고 constructor 프로퍼티도 삭제되었다. 따라서 프로토타입 체이닝에 의해 bar.constructor의 값은 Object.prototype.constructor 즉 Object() 생성자 함수가 된다.
+② 프로토타입 객체 변경 후, Person() 생성자 함수의 [[Prototype]] 프로퍼티가 가리키는 프로토타입 객체는 일반 객체로 변경되었다. 그리고 constructor 프로퍼티도 삭제되었다. 따라서 프로토타입 체인에 의해 bar.constructor의 값은 Object.prototype.constructor 즉 Object() 생성자 함수가 된다.
 
-# 7. 프로토타입 체이닝 동작 조건
+# 7. 프로토타입 체인 동작 조건
 
-객체의 프로퍼티를 읽으려 할 때 해당 객체에 프로퍼티가 없는 경우, 프로토타입 체이닝이 동작한다.
+객체의 프로퍼티를 읽으려 할 때 해당 객체에 프로퍼티가 없는 경우, 프로토타입 체인이 동작한다.
 
-그런데 객체의 프로퍼티에 값을 쓰려고 하면 프로토타입 체이닝이 동작하지 않는다. 이는 객체에 해당 프로퍼티가 있는 경우, 값을 재할당하고 해당 프로퍼티가 없는 경우는 해당 객체에 프로퍼티를 동적으로 추가하기 때문이다.
+그런데 객체의 프로퍼티에 값을 쓰려고 하면 프로토타입 체인이 동작하지 않는다. 이는 객체에 해당 프로퍼티가 있는 경우, 값을 재할당하고 해당 프로퍼티가 없는 경우는 해당 객체에 프로퍼티를 동적으로 추가하기 때문이다.
 
 ```javascript
 function Person(name) {
@@ -358,4 +358,4 @@ console.log(bar.gender); // 'male'
 ![condition of prototype chaining](/img/condition_prototype_chaining.png)
 {: style="max-width:500px; margin:10px auto;"}
 
-foo 객체의 gender 프로퍼티에 값을 할당하면 프로토타입 체이닝이 발생하여 Person.prototype 객체의 gender 프로퍼티에 값을 할당하는 것이 아니라 foo 객체에 프로퍼티를 동적으로 추가한다.
+foo 객체의 gender 프로퍼티에 값을 할당하면 프로토타입 체인이 발생하여 Person.prototype 객체의 gender 프로퍼티에 값을 할당하는 것이 아니라 foo 객체에 프로퍼티를 동적으로 추가한다.

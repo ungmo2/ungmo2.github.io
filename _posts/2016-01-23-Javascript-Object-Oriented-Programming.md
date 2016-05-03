@@ -139,7 +139,7 @@ console.log(him.getName());
 ```
 
 ![prototype](/img/prototype.png)
-{: style="max-width:650px; margin:10px auto;"}
+{: style="max-width:700px; margin:10px auto;"}
 
 Person() 생성자 함수의 prototype 프로퍼티가 가리키는 프로토타입 객체에 메서드를 추가하면 프로토타입 체이닝에 의해 모든 인스턴스는 추가된 메서드에 접근할 수 있다.
 

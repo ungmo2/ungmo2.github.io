@@ -366,26 +366,24 @@ Cat.prototype.get_name = function ( ) {
 };
 
 var myCat = new Cat('Mary');
-var says = myCat.says( ); // 'meow'
-var purr = myCat.purr(5); // 'r-r-r-r-r'
-var name = myCat.get_name( ); // 'meow Mary meow'
+var says = myCat.says( );
+var purr = myCat.purr(5);
+var name = myCat.get_name( );
+
+console.dir(myCat);
+console.log(says); // 'meow'
+console.log(purr); // 'r-r-r-r-r'
+console.log(name); // 'meow Mary meow'
 ```
 
 ![cat](/img/cat.png)
 {: style="max-width:500px; margin:10px auto;"}
 
+의사 클래스 패턴은 객체지향처럼 보이게 고안 됐지만 `private`는 전혀 없고 모든 프로퍼티는 `public`이다. 그리고 부모 메서드로 접근도 할 수 없다.
 
+설상가상으로 생성자 함수의 사용에는 심각한 위험이 존재한다. 만약 생성자 함수를 호출할 때 `new` 연산자를 포함하는 것을 잊게 되면 `this`는 새로운 객체와 바인딩되지 않고 전역객체에 바인딩된다. (`new` 연산자와 함께 호출된 생성자 함수 내부의 `this`는 새로 생성된 객체를 참조한다.)
 
-
-
-
-
-의사 클래스 패턴은 객체지향처럼 보이게 고안 됐지만 `private`는 전혀 없고 모든 속성은 `public`이다. 그리고 부모 메서드로 접근도 할 수 없다.
-
-설상가상으로 생성자 함수의 사용에는 심각한 위험이 존재한다. 만약 생성자 함수를 호출할 때 `new` 연산자를 포함하는 것을 잊게 되면 `this`는 새로운 객체와 바인딩되지 않고 전역객체에 바인딩된다.
-(`new` 연산자와 함께 오출된 생성자 함수 내부의 `this`는 새로 생성된 객체를 참조한다.)
-
-이런 문제점을 경감시키기 위해 파스칼 표시법으로 생성자 함수 이름을 표기하는 방법을 사용하지만, 이러한 방법보다 더 나은 대안은 `new` 를 사용하는 방식을 피하는 것이다.
+이런 문제점을 경감시키기 위해 파스칼 표시법(첫글자를 대문자 표기)으로 생성자 함수 이름을 표기하는 방법을 사용하지만, 이러한 방법보다 더 나은 대안은 `new` 를 사용하는 방식을 피하는 것이다.
 
 ## 2.2 프로토타입 방식
 
@@ -395,7 +393,7 @@ var name = myCat.get_name( ); // 'meow Mary meow'
 
 ```javascript
 var myMammal = {
-  name : 'Herb the Mammal',
+  name : 'Lee',
   get_name : function ( ) {
     return this.name;
   },
@@ -406,6 +404,8 @@ var myMammal = {
 ```
 
 `Object.create` 메서드를 사용하여 더 많은 인스턴스를 생성할 수 있다. 그리고 나서 새로 만든 인스턴스에 필요한 메서드나 속성들을 추가할 수 있다.
+
+`Object.create` 메서드는 매개변수에 전달한 프로토타입 객체를 상속하는 새로운 객체를 생성한다.
 
 ```javascript
 // 새로운 인스턴스 생성
@@ -427,6 +427,10 @@ myCat.get_name = function ( ) {
   return this.says( ) + ' ' + this.name + ' ' + this.says( );
 };
 ```
+
+inheritance_proto.png
+
+![inheritance prototype](/img/inheritance_proto.png)
 
 이러한 방법은 클래스에 의한 상속과는 분병히 구별되는 상속 방법이다.
 

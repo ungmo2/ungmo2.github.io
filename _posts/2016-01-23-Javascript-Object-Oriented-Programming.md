@@ -405,7 +405,33 @@ var myMammal = {
 
 `Object.create` 메서드를 사용하여 더 많은 인스턴스를 생성할 수 있다. 그리고 나서 새로 만든 인스턴스에 필요한 메서드나 속성들을 추가할 수 있다.
 
-`Object.create` 메서드는 매개변수에 전달한 프로토타입 객체를 상속하는 새로운 객체를 생성한다.
+`Object.create` 메서드는 매개변수에 전달한 프로토타입 객체를 상속하는 새로운 객체를 생성한다. `Object.create` 메서드의 폴리필(Polyfill: 개발자가 특정 기능이 지원되지 않는 브라우저를 위해 사용할 수 있는 코드 조각이나 플러그인)을 살펴보자.
+
+```javascript
+if (!Object.create) {
+  Object.create = function (o) {
+    if (arguments.length > 1) {
+      throw new Error('Object.create implementation only accepts the first parameter.');
+    }
+    function F() {}  // 1
+    F.prototype = o; // 2
+    return new F();  // 3
+  };
+}
+```
+
+위 코드 후반부 3 line은 프로토타입 상속의 핵심을 담고 있다.
+
+1. 비어있는 함수 객체 F를 생성한다.
+
+2. 함수 객체 F.prototype 프로퍼티에 매개변수로 들어온 객체를 참조한다.
+
+3. 함수 객체 F를 생성자로 하여 새로운 객채를 생성항고 반환한다.
+
+![object.create()](/img/object_create.png)
+{: style="max-width:550px; margin:10px auto;"}
+
+`Object.create` 메서드를 사용하여 인스턴스를 생성하고 새로 만든 인스턴스에 필요한 메서드나 속성들을 추가하여 보자.
 
 ```javascript
 // 새로운 인스턴스 생성
@@ -429,7 +455,7 @@ myCat.get_name = function ( ) {
 ```
 
 ![inheritance prototype](/img/inheritance_proto.png)
-{: style="max-width:500px; margin:10px auto;"}
+{: style="max-width:450px; margin:10px auto;"}
 
 이러한 방법은 클래스에 의한 상속과는 분병히 구별되는 상속 방법이다.
 

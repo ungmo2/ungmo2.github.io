@@ -377,7 +377,7 @@ console.log(name); // 'meow Mary meow'
 ```
 
 ![cat](/img/cat.png)
-{: style="max-width:500px; margin:10px auto;"}
+{: style="max-width:600px; margin:10px auto;"}
 
 의사 클래스 패턴은 객체지향처럼 보이게 고안 됐지만 `private`는 전혀 없고 모든 프로퍼티는 `public`이다. 그리고 부모 메서드로 접근도 할 수 없다.
 
@@ -428,9 +428,8 @@ myCat.get_name = function ( ) {
 };
 ```
 
-inheritance_proto.png
-
 ![inheritance prototype](/img/inheritance_proto.png)
+{: style="max-width:500px; margin:10px auto;"}
 
 이러한 방법은 클래스에 의한 상속과는 분병히 구별되는 상속 방법이다.
 

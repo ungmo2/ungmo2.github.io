@@ -690,6 +690,20 @@ var Person = function() {
 
 var me = new Person();
 var you = new Person();
+
+console.log((Person.prototype === me.__proto__) && (Person.prototype === you.__proto__));
+
+me.setName('Lee')
+console.log(me.getName());
+
+me.setName('Kim')
+console.log(me.getName());
+
+you.setName('Choi')
+console.log(you.getName());
+
+you.setName('Park')
+console.log(you.getName());
 ```
 
 Person 함수는 생성자 함수로 사용될 Constructor 함수를 반환하였다. 결국 new Person()과 new Constructor()는 같은 의미가 된다.

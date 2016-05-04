@@ -639,4 +639,27 @@ console.log('myInfo: ', myInfo);
 
 - person 함수가 반환한 객체는 person 함수 객체의 프로토타입에 접근할 수 없다. 이는 상속을 구현할 수 없음을 의미한다.
 
-person 함수는 객체를 반환한다. 이 객체 내의 메서드 getName, setName은 클로저로서 private 변수 name에 접근할 수 있다. 이러한 방식을 `모듈 패턴`이라 하며 많은 라이브러리에서 사용되는 유용한 패턴이다.
+앞에서 살펴본 모듈 패턴은 생성자 함수가 아니며 단순히 메서드를 담은 객체를 반환한다. 반환된 객체는 객체 리터럴 방식으로 생성된 객체로 함수 person의 프로토타입에 접근할 수 없다.
+
+```javascript
+var person = function(arg) {
+  var name = arg ? arg : '';
+
+  return {
+    getName: function() {
+      return name;
+    },
+    setName: function(arg) {
+      name = arg;
+    }
+  }
+}
+
+var me = person('Lee');
+
+console.log(person.prototype === me.__proto__); // false
+console.log(me.__proto__ === Object.prototype); // true: 객체 리터럴 방식으로 생성된 객체와 동일하다
+```
+
+![module pattern](/img/module_pattern_1.png)
+{: style="max-width:500px; margin:10px auto;"}

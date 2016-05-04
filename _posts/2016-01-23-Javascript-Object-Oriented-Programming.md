@@ -617,9 +617,8 @@ console.log('myInfo: ', myInfo);
 
 객체를 반환하는 경우 반환값은 얕은 복사(shallow copy)로 private 멤버의 [참조값](http://ungmo2.github.io/javascript/Javascript-Object/#pass-by-reference)을 반환하게 된다. 따라서 외부에서도 private 멤버의 값을 변경할 수 있다. 이를 회피하기 위해서는 객체를 그대로 반환하지 않고 반환해야 할 객체의 정보를 새로운 객체에 담아 반환해야 한다. 반드시 객체 전체가 그대로 반환되어야 하는 경우에는 깊은 복사(deep copy)로 복사본을 만들어 반환한다.
 
+<!--
 객체를 깊은 복사하는 방법은 두가지가 있다
-
-  <!--
 
     * jQuery의 extend 메서드
 
@@ -636,8 +635,7 @@ console.log('myInfo: ', myInfo);
     var bar = JSON.parse(JSON.stringify(foo));
     console.log(foo === bar);
     ```
-
-  -->
+-->
 
 - person 함수가 반환한 객체는 person 함수 객체의 프로토타입에 접근할 수 없다. 이는 상속을 구현할 수 없음을 의미한다.
 

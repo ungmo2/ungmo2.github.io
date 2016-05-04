@@ -520,7 +520,7 @@ var name = myCat.get_name( ); // 'meow Mary meow'
 
 함수형 패턴은 유연하며, 의사 클래스 패턴보다 작업량이 적고 캡슐화, 정보은닉을 제공한다.
 
-# 3. Encapsulation(캡슐화)
+# 3. Encapsulation(캡슐화)와 Module Pattern(모듈 패턴)
 
 캡슐화는 기본적으로 관련된 여러 정보를 하나의 틀 안에 담는 것으로 객체 지향 언어에서 상당히 중요한 개념이다. 관련있는 멤버 변수와 메서드를 클래스와 같은 하나의 틀 안에 담고 외부에 공개될 필요가 없는 정보는 숨길 수 있는데 이를 정보 은닉(information hiding)이라고 한다.
 

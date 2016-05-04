@@ -621,7 +621,7 @@ console.log('myInfo: ', myInfo);
 
   <!--
 
-    - jQuery의 extend 메서드
+    * jQuery의 extend 메서드
 
     ```javascript
     var foo = {};
@@ -629,7 +629,7 @@ console.log('myInfo: ', myInfo);
     console.log(foo === bar);
     ```
 
-  -  JSON의 직렬화 기법
+    * JSON의 직렬화 기법
 
     ```javascript
     var foo = {};

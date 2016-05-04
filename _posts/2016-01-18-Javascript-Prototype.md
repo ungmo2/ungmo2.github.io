@@ -158,13 +158,23 @@ console.log(Function.prototype.__proto__ === Object.prototype); // ④ true
 - 함수표현식(Function expression)
 - Function() 생성자 함수
 
-함수표현식으로 함수를 정의할 때 함수 리터럴 방식을 사용한다. 함수선언식도 내부적으로 자바스크립트 엔진이 기명 함수표현식으로 변환하므로 결국 함수 리터럴 방식을 사용한다.
+함수표현식으로 함수를 정의할 때 함수 리터럴 방식을 사용한다.
+
+```javascript
+var square = function(number) {
+  return number * number;
+};
+```
+
+함수선언식의 경우 자바스크립트 엔진이 내부적으로 기명 함수표현식으로 변환한다.
 
 ```javascript
 var square = function square(number) {
   return number * number;
 };
 ```
+
+결국 함수 리터럴 방식을 사용한다.
 
 따라서 함수선언식과 함수표현식은 모두 함수 리터럴 방식으로 함수를 정의하는데 이것은 결국 내장 함수 Function() 생성자 함수로 함수를 생성하는 것을 단순화 시킨 것이다.
 

@@ -663,3 +663,36 @@ console.log(me.__proto__ === Object.prototype); // true: 객체 리터럴 방식
 
 ![module pattern](/img/module_pattern_1.png)
 {: style="max-width:500px; margin:10px auto;"}
+
+반환된 객체가 함수 person의 프로토타입에 접근할 수 없다는 것은 person을 부모 객체로 상속할 수 없다는 것을 의미한다. 따라서 함수 person가 여러개의 객체를 반환할 경우 반환된 객체는 프로토타입 체인에 의해 프로토타입 객체의 메서드를 참조할 수 없으므로 메서드 setName, getName를 담은 객체가 중복되어 생성된다.
+
+이 문제를 해결하기 위해서는 객체를 반환하는 것이 아닌 함수를 반환해야 한다.
+
+```javascript
+var Person = function() {
+  var name;
+
+  var getName = function() {
+    return name;
+  };
+
+  var setName = function(arg) {
+    name = arg;
+  };
+
+  var Constructor = function() {};
+
+  Constructor.prototype.getName = getName;
+  Constructor.prototype.setName = setName;
+
+  return Constructor;
+}();
+
+var me = new Person();
+var you = new Person();
+```
+
+Person 함수는 생성자 함수로 사용될 Constructor 함수를 반환하였다. 결국 new Person()과 new Constructor()는 같은 의미가 된다.
+
+![module pattern](/img/module_pattern_2.png)
+{: style="max-width:700px; margin:10px auto;"}

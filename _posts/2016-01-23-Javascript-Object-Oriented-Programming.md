@@ -485,7 +485,7 @@ var mammal = function (spec) {
   return that;
 };
 
-var myMammal = mammal({name: 'Herb'});
+var myMammal = mammal({name: 'Lee'});
 ```
 
 `spec` 객체에 인스턴스를 만드는데 필요한 모든 정보를 담아 Constructor에 전달한다.
@@ -557,7 +557,7 @@ console.log(name);
 
 ①의 name 변수는 private 변수가 된다. 자바스크립트는 function-level scope를 제공하므로 함수 내의 변수는 외부에서 참조할 수 없다. 만약에 var 때신 this를 사용하면 public 멤버가 된다. 단 new 키워드로 객체를 생성하지 않으면 this는 생성된 객체에 바인딩되지 않고 전역객체에 연결된다.
 
-그리고 public 메서드 getName, setName은 클로저로서 private 변수에 접근할 수 있다. 이것이 기본적인 정보 은닉 방법이다.
+그리고 public 메서드 getName, setName은 클로저로서 private 변수(자유 변수)에 접근할 수 있다. 이것이 기본적인 정보 은닉 방법이다.
 
 위 예제를 조금 더 정리해보자.
 
@@ -672,20 +672,18 @@ console.log(me.__proto__ === Object.prototype); // true: 객체 리터럴 방식
 var Person = function() {
   var name;
 
-  var getName = function() {
-    return name;
+  var F = function() {};
+
+  F.prototype = {
+    getName: function() {
+      return name;
+    },
+    setName: function(arg) {
+      name = arg;
+    }
   };
 
-  var setName = function(arg) {
-    name = arg;
-  };
-
-  var Constructor = function() {};
-
-  Constructor.prototype.getName = getName;
-  Constructor.prototype.setName = setName;
-
-  return Constructor;
+  return F;
 }();
 
 var me = new Person();
@@ -706,7 +704,63 @@ you.setName('Park')
 console.log(you.getName());
 ```
 
-Person 함수는 생성자 함수로 사용될 Constructor 함수를 반환하였다. 결국 new Person()과 new Constructor()는 같은 의미가 된다.
-
 ![module pattern](/img/module_pattern_2.png)
-{: style="max-width:700px; margin:10px auto;"}
+{: style="max-width:730px; margin:10px auto;"}
+
+IIFE(즉시호출함수표현식: Immediately Invoke Function Expression)가 동작하여 변수 Person에 F 생성자 함수가 할당되었다. 결국 new Person()과 new F()는 같은 의미가 된다. Person.prototype의 메서드 getName, setName은 클로저로서 private 변수(자유 변수)에 접근할 수 있다.
+
+그런데 위 예제도 문제가 있다. 모듈 패턴이 IIFE에 의해 반환한 생성자 함수는 유일한 함수 객체이다. IIFE은 단 한번만 실행되기 때문인데 그 결과 이 생성자 함수로 여러개의 객체를 생성했을 때 각 객체는 자유변수를 공유하게 된다.
+
+```javascript
+me.setName('Lee')
+console.log(me.getName());  // `Lee`
+
+you.setName('Park')
+console.log(you.getName()); // 'Park'
+
+console.log(me.getName());  // 'Park'
+```
+
+다른 방법을 찾아보자.
+
+```javascript
+var Person = function(arg) {
+  var name;
+
+  function F(arg) {
+    name = arg ? arg : '';
+    console.log('hello');
+  };
+
+  F.prototype = {
+    getName: function() {
+      return name;
+    },
+    setName: function(arg) {
+      name = arg;
+    }
+  };
+
+  return new F(arg);
+};
+
+var me = new Person('Lee');
+var you = new Person('Kim');
+
+console.log((Person.prototype === me.__proto__) && (Person.prototype === you.__proto__));
+
+console.log(me.getName());
+
+me.setName('Choi')
+console.log(me.getName());
+
+console.log(you.getName());
+
+you.setName('Park')
+console.log(you.getName());
+```
+
+![module pattern](/img/module_pattern_3.png)
+{: style="max-width:730px; margin:10px auto;"}
+
+캡슐화를 구현하는 방법은 다양하다. 다양한 방법을 잘 분석하고 각각의 장단점을 파악하는 것이 보다 효율적인 코드를 작성하는데 중요하다. 

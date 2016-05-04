@@ -620,6 +620,7 @@ console.log('myInfo: ', myInfo);
 객체를 깊은 복사하는 방법은 두가지가 있다
 
   <!--
+
     - jQuery의 extend 메서드
 
     ```javascript
@@ -635,6 +636,7 @@ console.log('myInfo: ', myInfo);
     var bar = JSON.parse(JSON.stringify(foo));
     console.log(foo === bar);
     ```
+
   -->
 
 - person 함수가 반환한 객체는 person 함수 객체의 프로토타입에 접근할 수 없다. 이는 상속을 구현할 수 없음을 의미한다.

@@ -18,6 +18,7 @@
   <url>
     <loc>http://ungmo2.github.io/javascript/Array/</loc>
   </url>
+  
   <url>
     <loc>http://ungmo2.github.io/javascript/Number/</loc>
   </url>
@@ -26,6 +27,9 @@
   </url>
   <url>
     <loc>http://ungmo2.github.io/javascript/Built-in-Object/</loc>
+  </url>
+  <url>
+    <loc>http://ungmo2.github.io/javascript/Javascript-Object-Oriented-Programming/</loc>
   </url>
   <url>
     <loc>http://ungmo2.github.io/javascript/Javascript-Closure/</loc>
@@ -47,9 +51,6 @@
   </url>
   <url>
     <loc>http://ungmo2.github.io/javascript/Javascript-Object/</loc>
-  </url>
-  <url>
-    <loc>http://ungmo2.github.io/javascript/Javascript-Object-Oriented-Programming/</loc>
   </url>
   <url>
     <loc>http://ungmo2.github.io/javascript/Javascript-Control-Flow/</loc>

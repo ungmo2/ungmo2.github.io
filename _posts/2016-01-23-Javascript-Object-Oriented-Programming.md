@@ -664,7 +664,7 @@ console.log(me.__proto__ === Object.prototype); // true: 객체 리터럴 방식
 ![module pattern](/img/module_pattern_1.png)
 {: style="max-width:500px; margin:10px auto;"}
 
-반환된 객체가 함수 person의 프로토타입에 접근할 수 없다는 것은 person을 부모 객체로 상속할 수 없다는 것을 의미한다. 따라서 함수 person가 여러개의 객체를 반환할 경우 반환된 객체는 프로토타입 체인에 의해 프로토타입 객체의 메서드를 참조할 수 없으므로 메서드 setName, getName를 담은 객체가 중복되어 생성된다.
+반환된 객체가 함수 person의 프로토타입에 접근할 수 없다는 것은 person을 부모 객체로 상속할 수 없다는 것을 의미한다. <!-- 따라서 함수 person가 여러개의 객체를 반환할 경우 반환된 객체는 프로토타입 체인에 의해 프로토타입 객체의 메서드를 참조할 수 없으므로 메서드 setName, getName를 담은 객체가 중복되어 생성된다. -->
 
 이 문제를 해결하기 위해서는 객체를 반환하는 것이 아닌 함수를 반환해야 한다.
 
@@ -707,9 +707,9 @@ console.log(you.getName());
 ![module pattern](/img/module_pattern_2.png)
 {: style="max-width:730px; margin:10px auto;"}
 
-IIFE(즉시호출함수표현식: Immediately Invoke Function Expression)가 동작하여 변수 Person에 F 생성자 함수가 할당되었다. 결국 new Person()과 new F()는 같은 의미가 된다. Person.prototype의 메서드 getName, setName은 클로저로서 private 변수(자유 변수)에 접근할 수 있다.
+<!-- IIFE(즉시호출함수표현식: Immediately Invoke Function Expression)가 동작하여 변수 Person에 F 생성자 함수가 할당되었다. 결국 new Person()과 new F()는 같은 의미가 된다. Person.prototype의 메서드 getName, setName은 클로저로서 private 변수(자유 변수)에 접근할 수 있다.
 
-그런데 위 예제도 문제가 있다. 모듈 패턴이 IIFE에 의해 반환한 생성자 함수는 유일한 함수 객체이다. IIFE은 단 한번만 실행되기 때문인데 그 결과 이 생성자 함수로 여러개의 객체를 생성했을 때 각 객체는 자유변수를 공유하게 된다.
+그런데 위 예제도 문제가 있다. 모듈 패턴이 IIFE에 의해 반환한 생성자 함수는 유일한 함수 객체(Singleton)이다. IIFE은 단 한번만 실행되기 때문인데 그 결과 이 생성자 함수로 여러개의 객체를 생성했을 때 각 객체는 자유변수를 공유하게 된다. 즉, 상기 패턴은 단일 객체 생성에 적합하며 복수의 객체 생성에 적합하지 않다.
 
 ```javascript
 me.setName('Lee')
@@ -721,7 +721,19 @@ console.log(you.getName()); // 'Park'
 console.log(me.getName());  // 'Park'
 ```
 
-다른 방법을 찾아보자.
+복수의 객체를 지원하기 위해서 다른 방법을 찾아보자. -->
+
+<!--
+NOTE:
+아래 예제는 올바르지 않다...
+return new F()는 새로운 객체를 생성하여 반환하는데 여러개의 객체를 생성할 경우 각 객체의 __proto__은 별도 존재하게 된다.
+
+console.log(me.__proto__ === you.__proto__); // false
+
+캡슐화와 상속은 별개 개념이므로 캡슐화로 만들어진 객체의 상속은 일반 상속 방식을 따르면 될 것이다..
+2016.5.6 ungmo2 wrote
+ -->
+<!--
 
 ```javascript
 var Person = function(arg) {
@@ -744,8 +756,8 @@ var Person = function(arg) {
   return new F(arg);
 };
 
-var me = new Person('Lee');
-var you = new Person('Kim');
+var me  = Person('Lee'); /* or var me = new person('Lee'); */
+var you = Person('Kim');
 
 console.log((Person.prototype === me.__proto__) && (Person.prototype === you.__proto__));
 
@@ -763,4 +775,6 @@ console.log(you.getName());
 ![module pattern](/img/module_pattern_3.png)
 {: style="max-width:730px; margin:10px auto;"}
 
-캡슐화를 구현하는 방법은 다양하다. 다양한 방법을 잘 분석하고 각각의 장단점을 파악하는 것이 보다 효율적인 코드를 작성하는데 중요하다. 
+-->
+
+캡슐화를 구현하는 방법은 다양하다. 다양한 방법을 잘 분석하고 각각의 장단점을 파악하는 것이 보다 효율적인 코드를 작성하는데 중요하다.

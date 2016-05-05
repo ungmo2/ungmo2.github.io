@@ -269,7 +269,6 @@ console.log(him.getName());
   }
   ```
 
-
   코드의 재사용은 소프트웨어 개발 비용을 현저하게 줄일 수 있는 잠재력이 있기 때문에 매우 중요하다.
 
 ## 1.9 Polymorphism (다형성)
@@ -296,7 +295,6 @@ console.log(him.getName());
   * 의존관계 역전 원칙 (Dependency inversion principle)  
     프로그래머는 “추상화에 의존해야지, 구체화에 의존하면 안된다.” 의존성 주입은 이 원칙을 따르는 방법 중 하나다. -->
 
-
 # 2. Inheritance (상속)
 
 Java같은 클래스 기반 언어에서 상속(또는 확장)은 코드 재사용의 관점에서 매우 유용하다. 새롭게 정의할 클래스가 기존에 있는 클래스와 매우 유사하다면, 상속을 통해 다른 점만 구현하면 된다. 코드 재사용은 개발 비용을 현저히 줄일 수 있는 잠재력이 있기 때문에 매우 중요하다.
@@ -305,7 +303,7 @@ Java같은 클래스 기반 언어에서 상속(또는 확장)은 코드 재사�
 
 자바스크립트는 프로토타입 기반 언어인데 이 말은 객체가 다른 객체로 바로 상속된다는 것이다. 이러한 점이 자바스크립트의 약점으로 여겨지기도 하지만 프로토타입 상속 모델은 사실 고전적인 방법보다 강력한 방법이다. 프로토타입 기반 언어에서 고전적인 방식을 구현하는 것은 간단하지만 그 반대는 훨씬 더 어려운 일이다.
 
-## 2.1 의사 클래스 방식 (Pseudo-classical)
+## 2.1 의사 클래스(Pseudo-classical) 패턴
 
 자바스크립트는 자신의 프로토타입 본질과 모순되는 점이 있다. 클래스와 비슷하게 보이는 일부 복잡합 구문은 프로토타입 메커니즘을 명확히 나타내지 못하게 한다.
 
@@ -385,7 +383,7 @@ console.log(name); // 'meow Mary meow'
 
 이런 문제점을 경감시키기 위해 파스칼 표시법(첫글자를 대문자 표기)으로 생성자 함수 이름을 표기하는 방법을 사용하지만, 이러한 방법보다 더 나은 대안은 `new` 를 사용하는 방식을 피하는 것이다.
 
-## 2.2 프로토타입 방식
+## 2.2 프로토타입 패턴
 
 순수하게 프로토타입에 기반한 패턴에서는 클래스가 필요없다. 프로토타입에 의한 상속은 개념적으로 클래스에 의한 상속보다 더 간단하다.
 
@@ -426,7 +424,7 @@ if (!Object.create) {
 
 2. 함수 객체 F.prototype 프로퍼티에 매개변수로 들어온 객체를 참조한다.
 
-3. 함수 객체 F를 생성자로 하여 새로운 객채를 생성항고 반환한다.
+3. 함수 객체 F를 생성자로 하여 새로운 객채를 생성하고 반환한다.
 
 ![object.create()](/img/object_create.png)
 {: style="max-width:550px; margin:10px auto;"}
@@ -459,42 +457,44 @@ myCat.get_name = function ( ) {
 
 이러한 방법은 클래스에 의한 상속과는 분병히 구별되는 상속 방법이다.
 
-프로토타입에 의한 상속 패턴의 한가지 단점은 `private`속성을 가질 수 없다는 것이다. 객체의 모든 속성은 `public`이다.
+프로토타입에 의한 상속 패턴의 한가지 단점은 `private` 프로퍼티를 가질 수 없다는 것이다. 객체의 모든 속성은 `public`이다.
 
-## 2.3 함수를 사용한 방식
+## 2.3 함수형 패턴
 
-* 객체를 반환하는 함수를 호출하여 새로운 객체를 생성한다.
-* 필요한 `private`변수와 메서드를 정의한다. 객체에 담아 반환하지 않는 함수 내 일반 변수는 `private`이다. (매개변수로 전달한 my 객체를 사용할 수도 있다.)  
-
-```javascript
-my.member = value;
-```
-
-* `that` 에 새로운 객체를 할당하고 메서드를 추가한다. 이때 추가되는 메서드는 함수의 매개변수와 `private`에 접근할 수 있다.
-* `that`을 리턴한다.  
+지금까지 살펴본 방식들의 공통된 단점은 `private` 프로퍼티를 가질 수 없다는 것이다.
 
 ```javascript
-var mammal = function (spec) {
+var mammal = function(spec) {
+  // private vars, methods
+
+  // Object to return
   var that = {};
-  that.get_name = function ( ) {
+
+  that.get_name = function( ) {
     return spec.name;
   };
   that.says = function ( ) {
     return spec.saying || '';
   };
+
   return that;
 };
 
 var myMammal = mammal({name: 'Lee'});
 ```
 
-`spec` 객체에 인스턴스를 만드는데 필요한 모든 정보를 담아 Constructor에 전달한다.
+- 필요한 private 변수와 메서드를 정의한다. 객체에 담아 반환하지 않는 함수 내 변수와 매개변수는 private이다.  
+- `spec` 객체에 인스턴스 생성 시 필요한 모든 정보를 담아 Constructor에 전달한다.  
+- `that` 에 새로운 객체를 할당하고 메서드를 추가한다. 이때 추가되는 메서드는 함수의 매개변수와 private에 접근할 수 있다.  
+- `that`을 리턴한다.
 
 ```javascript
 var cat = function (spec) {
   spec.saying = spec.saying || 'meow';
-  // Inheritance
+
+  // Inheritance (that은 super이다)
   var that = mammal(spec);
+
   that.purr = function (n) {
     var i, s = '';
     for (i = 0; i < n; i++) {
@@ -508,6 +508,7 @@ var cat = function (spec) {
   that.get_name = function ( ) {
     return that.says( ) + ' ' + spec.name + ' ' + that.says( );
   };
+
   return that;
 };
 
@@ -518,7 +519,7 @@ var purr = myCat.purr(5);     // 'r-r-r-r-r'
 var name = myCat.get_name( ); // 'meow Mary meow'
 ```
 
-함수형 패턴은 유연하며, 의사 클래스 패턴보다 작업량이 적고 캡슐화, 정보은닉을 제공한다.
+함수형 패턴은 유연하며 의사 클래스 패턴보다 작업량이 적고 캡슐화, 정보은닉을 제공한다. 그리고 super 메서드에 접근할 수도 있다.
 
 # 3. Encapsulation(캡슐화)와 Module Pattern(모듈 패턴)
 
@@ -672,7 +673,7 @@ console.log(me.__proto__ === Object.prototype); // true: 객체 리터럴 방식
 var Person = function() {
   var name;
 
-  var F = function() {};
+  var F = function(arg) { name = arg ? arg : ''; };
 
   F.prototype = {
     getName: function() {
@@ -686,22 +687,13 @@ var Person = function() {
   return F;
 }();
 
-var me = new Person();
-var you = new Person();
+var me = new Person('Lee');
 
-console.log((Person.prototype === me.__proto__) && (Person.prototype === you.__proto__));
+console.log(Person.prototype === me.__proto__);
 
-me.setName('Lee')
 console.log(me.getName());
-
 me.setName('Kim')
 console.log(me.getName());
-
-you.setName('Choi')
-console.log(you.getName());
-
-you.setName('Park')
-console.log(you.getName());
 ```
 
 ![module pattern](/img/module_pattern_2.png)
@@ -777,4 +769,4 @@ console.log(you.getName());
 
 -->
 
-캡슐화를 구현하는 방법은 다양하다. 다양한 방법을 잘 분석하고 각각의 장단점을 파악하는 것이 보다 효율적인 코드를 작성하는데 중요하다.
+캡슐화를 구현하는 방법은 다양하며 각각의 방법에는 장단점이 있다. 다양한 방법을 잘 분석하고 각각의 장단점을 파악하는 것이 보다 효율적인 코드를 작성하는데 중요하다.

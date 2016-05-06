@@ -37,7 +37,7 @@ public Class Person {
 }
 ```
 
-# 1. 함수 호출 패턴과 this 바인딩
+# 함수 호출 패턴과 this 바인딩
 
 자바스크립트의 경우 함수 호출 패턴에 따라 어떤 객체를 `this`에 바인딩할 지가 결정된다. 즉 함수 호출 패턴에 따라 this의 참조값이 달라진다.
 
@@ -48,7 +48,7 @@ public Class Person {
 > 3. 생성자 호출 패턴(Constructor Invocation Pattern)
 > 4. apply 호출 패턴(Apply Invocation Pattern)
 
-## 1.1 메서드 호출 패턴(Method Invocation Pattern)
+# 1. 메서드 호출 패턴(Method Invocation Pattern)
 
 함수가 객체의 속성이면 메서드 호출 패턴으로 호출된다. 이때 메서드 내부의 `this`는 해당 메서드를 소유한 객체 즉 해당 메서드를 호출한 객체를 바인딩한다.
 

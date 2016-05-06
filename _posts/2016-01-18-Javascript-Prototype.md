@@ -121,7 +121,7 @@ console.log(Object.prototype.hasOwnProperty('hasOwnProperty')); // true
 - 생성자 함수  
 - Object() 생성자 함수  
 
-객체 리터럴 방식으로 생성된 객체는 결국 내장 함수 Object() 생성자 함수로 객체를 생성하는 것을 단순화 시킨 것이다.
+객체 리터럴 방식으로 생성된 객체는 결국 내장 함수인 Object() 생성자 함수로 객체를 생성하는 것을 단순화 시킨 것이다.
 
 Object() 생성자 함수는 물론 함수이다. 따라서 함수 객체는 일반 객체와 달리 `prototype` 프로퍼티가 있다.
 

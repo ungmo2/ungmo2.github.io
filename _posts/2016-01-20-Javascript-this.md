@@ -442,3 +442,5 @@ console.log(status); // 'A-OK'
 # Reference  
 
 * [JavaScript : The Good Parts 04.Functions -by Douglas Crockford](http://www.yes24.com/24/goods/3071412?scode=032&OzSrank=1)  
+
+* [Inside Javascript : 4.4 함수 호출과 this](http://www.hanbit.co.kr/store/books/look.php?p_code=B6479856408)

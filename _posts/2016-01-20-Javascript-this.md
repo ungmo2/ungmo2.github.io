@@ -91,7 +91,7 @@ obj2.sayName();
 ![Method Invocation Pattern](/img/Method_Invocation_Pattern.png)
 {: style="max-width:500px; margin:10px auto;"}
 
-## 1.2 함수 호출 패턴(Function Invocation Pattern)
+# 2. 함수 호출 패턴(Function Invocation Pattern)
 
 전역객체(Global Object)는 모든 객체의 유일한 최상위 객체를 의미하며 일반적으로 Browser-side에서는 `window`, Server-side(Node.js)에서는 `global` 객체를 의미한다.
 
@@ -212,7 +212,7 @@ console.log(myObject.value);    // 6
 ```
  -->
 
-## 1.3 생성자 호출 패턴(Constructor Invocation Pattern)
+# 3. 생성자 호출 패턴(Constructor Invocation Pattern)
 
 자바스크립트의 생성자 함수는 말 그대로 객체를 생성하는 역할을 한다. 하지만 자바와 같은 객체지향 언어의 생성자 함수와는 다르게 그 형식이 정해져 있는 것이 아니라 기존 함수에 new 연산자를 붙여서 호출하면 해당 함수는 생성자 함수로 동작한다.
 
@@ -220,7 +220,7 @@ console.log(myObject.value);    // 6
 
 new 연산자와 함께 생성자 함수를 호출하면 this 바인딩이 메서드나 함수 호출 때와는 다르게 동작한다.
 
-### 1.3.1 생성자 함수 동작 방식
+## 3.1 생성자 함수 동작 방식
 
 new 연산자와 함께 생성자 함수를 호출하면 다음과 같은 수순으로 동작한다.
 
@@ -250,7 +250,7 @@ console.log(me.name);
 {: style="max-width:600px; margin:10px auto;"}
 
 
-### 1.3.2 객체 리터럴 방식과 생성자 함수 방식의 차이
+## 3.2 객체 리터럴 방식과 생성자 함수 방식의 차이
 
 객체 리터럴 방식과 생성자 함수 방식의 차이를 비교해 보자.
 
@@ -282,7 +282,7 @@ console.dir(you);
 
 - 생성자 함수 방식의 경우, 생성된 객체의 프로토타입 객체는 Person.prototype이다.
 
-### 1.3.3 생성자 함수에 new 연산자를 붙이지 않고 호출할 경우
+## 3.3 생성자 함수에 new 연산자를 붙이지 않고 호출할 경우
 
 일반함수와 생성자 함수에 특별한 형식적 차이는 없으며 함수에 new 연산자를 붙여서 호출하면 해당 함수는 생성자 함수로 동작한다.
 
@@ -348,7 +348,7 @@ console.log(myQuo.get_status( ));   // confused
 ```
  -->
 
-## 1.4 apply 호출 패턴(Apply Invocation Pattern)
+# 4. apply 호출 패턴(Apply Invocation Pattern)
 
 함수 호출 시 각 상황에 따라 this에 바인딩될 객체가 결정된다. 이는 자바스크립트 엔진 내부에서 자동으로 실시되는 것이다. 이러한 내부적인 바인딩 이외에 this를 특정 객체에 명시적으로 바인딩하는 방법도 제공된다. 이것을 가능하게 하는 것이 apply(), call() 메서드이다.
 

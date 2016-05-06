@@ -93,7 +93,7 @@ obj2.sayName();
 
 ## 1.2 함수 호출 패턴(Function Invocation Pattern)
 
-전역 객체(Global Object)는 모든 객체의 유일한 최상위 객체를 의미하며 일반적으로 Browser-side에서는 `window`, Server-side(Node.js)에서는 `global` 객체를 의미한다.
+전역객체(Global Object)는 모든 객체의 유일한 최상위 객체를 의미하며 일반적으로 Browser-side에서는 `window`, Server-side(Node.js)에서는 `global` 객체를 의미한다.
 
 ```javascript
 // in browser console
@@ -104,7 +104,7 @@ node
 this === global // true
 ```
 
-전역 객체는 전역 스코프(Global Scope)를 갖게 되며 전역 변수(Global variable)를 속성으로 가지게 된다. 또한 글로벌 영역에 선언한 함수도 전역 객체의 속성으로 접근할 수 있다.
+전역객체는 전역 스코프(Global Scope)를 갖게 되며 전역변수(Global variable)를 속성으로 가지게 되며 글로벌 영역에 선언한 함수도 전역객체의 속성으로 접근할 수 있다.
 
 ```javascript
 var ga = "Global variable";
@@ -131,7 +131,53 @@ function foo() {
 foo();
 ```
 
+또한 메서드의 내부함수일 경우에도 `this`는 전역객체에 바인딩된다.
+
+```javascript
+var value = 1;
+
+var obj = {
+  value: 100,
+  foo: function() {
+    console.log("foo's this: ",  this);  // obj
+    console.log("foo's this.value: ",  this.value); // 100
+    function bar() {
+      console.log("bar's this: ",  this); // window
+      console.log("bar's this.value: ", this.value); // 1
+    }
+    bar();
+  }
+}
+obj.foo();
+```
+
 더글라스 크락포드는 "이것은 설계 단계의 결함으로 메서드가 내부함수를 사용하여 자신의 작업을 돕게 할 수 없다는 것을 의미한다" 라고 말한다. 내부함수의 `this`가 전역객체를 참조하는 것을 회피방법은 아래와 같다.
+
+```javascript
+var value = 1;
+
+var obj = {
+  value: 100,
+  foo: function() {
+    var that = this;  // Workaround : this === obj
+
+    console.log("foo's this: ",  this);  // obj
+    console.log("foo's this.value: ",  this.value); // 100
+    function bar() {
+      console.log("bar's this: ",  this); // window
+      console.log("bar's this.value: ", this.value); // 1
+
+      console.log("bar's that: ",  that); // obj
+      console.log("bar's that.value: ", that.value); // 100
+    }
+    bar();
+  }
+}
+obj.foo();
+```
+
+![Function Invocation Pattern](/img/Function_Invocation_Pattern.png)
+{: style="max-width:600px; margin:10px auto;"}
 
 ```javascript
 var myObject = {

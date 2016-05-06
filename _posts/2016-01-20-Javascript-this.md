@@ -232,9 +232,8 @@ new 연산자와 함께 생성자 함수를 호출하면 다음과 같은 수순
 
 3. 생성된 객체 반환
 
-  - 반환문이 없는 경우, this에 바인딩된 새로 생성한 객체가 반환된다. 명시적으로 this를 반환하여도 결과는 같다.
-  - 반환문이 this가 아닌 다른 객체를 반환하는 경우, this가 아닌 해당 객체가 반환된다.
-
+    - 반환문이 없는 경우, this에 바인딩된 새로 생성한 객체가 반환된다. 명시적으로 this를 반환하여도 결과는 같다.
+    - 반환문이 this가 아닌 다른 객체를 반환하는 경우, this가 아닌 해당 객체가 반환된다.
 
 ```javascript
 var Person = function(name) {
@@ -248,15 +247,84 @@ console.log(me.name);
 ```
 
 ![constructor](/img/constructor.png)
-{: style="max-width:500px; margin:10px auto;"}
+{: style="max-width:600px; margin:10px auto;"}
 
 
 ### 1.3.2 객체 리터럴 방식과 생성자 함수 방식의 차이
 
+객체 리터럴 방식과 생성자 함수 방식의 차이를 비교해 보자.
+
+```javascript
+// 객체 리터럴 방식
+var foo = {
+  name: 'foo',
+  gender: 'male'
+}
+
+console.dir(foo);
+
+// 생성자 함수 방식
+var Person = function(name, gender) {
+  this.name = name;
+  this.gender = gender;
+}
+
+var me  = new Person('Lee', 'male');
+console.dir(me);
+
+var you = new Person('Kim', 'female');
+console.dir(you);
+```
+
+객체 리터럴 방식과 생성자 함수 방식의 차이는 [프로토타입 객체([[prototype]])](http://ungmo2.github.io/javascript/Javascript-Prototype/#prototype-chain)에 있다.
+
+- 객체 리터럴 방식의 경우, 생성된 객체의 프로토타입 객체는 Object.prototype이다.
+
+- 생성자 함수 방식의 경우, 생성된 객체의 프로토타입 객체는 Person.prototype이다.
 
 ### 1.3.3 생성자 함수에 new 연산자를 붙이지 않고 호출할 경우
 
+일반함수와 생성자 함수에 특별한 형식적 차이는 없으며 함수에 new 연산자를 붙여서 호출하면 해당 함수는 생성자 함수로 동작한다.
 
+그러나 객체 생성 목적으로 작성한 생성자 함수를 new 없이 호출하거나 일반함수에 new를 붙여 호출하면 오류가 발생할 수 있다. 일반함수와 생성자 함수의 호출 시 this 바인딩 방식이 다르기 때문이다.
+
+일반 함수를 호출하면 this는 전역객체에 바인딩되지만 생성자 함수를 호출하면 this는 새로 생성되는 객체에 바인딩된다.
+
+```javascript
+var Person = function(name) {
+  this.name = name;
+}
+
+var me = Person('Lee');
+
+console.log(me); //undefined
+console.log(window.name); // Lee
+```
+
+생성자 함수를 new 없이 호출한 경우 함수 Person 내부의 this는 전역객체를 가리키므로 name은 전역변수(window)에 바인딩된다. 또한 new와 함께 생성자 함수를 호출하는 경우 반환문이 없을 때 암묵적으로 반환하던 this도 반환하지 않으며, 반환문이 없으므로 undefined를 반환하게 된다.
+
+일반함수와 생성자 함수에 특별한 형식적 차이는 없기 때문에 일반적으로 생성자 함수명은 첫문자를 대문자로 기술하여 혼란을 방지하려는 노력을 한다. 그러나 이러한 규칙을 사용한다 하더라도 실수는 발생할 수 있다.
+
+이러한 위험성을 회피하기 위해 사용되는 패턴은 다음과 같다. 이 패턴은 대부분의 라이브러리에서 광범위하게 사용된다.
+
+```javascript
+function A(arg) {
+  // this가 호출된 함수(arguments.callee)의 인스턴스가 아니면
+  // new 연산자를 사용하지 않은 것이므로
+  // 이 경우 new와 함께 생성자 함수를 호출하여 인스턴스를 반환한다.
+  if(!(this instanceof arguments.callee))
+    return new arguments.callee(arg);
+  this.value = arg ? arg : 0;
+}
+
+var a = new A(100);
+var b = A(10);
+
+console.log(a.value);
+console.log(b.value);
+```
+
+<!--
 생성자 함수 내부의 `this`는 새로 생성된 객체를 참조한다. 그리고 프로토타입 객체 메서드 내부의 this도 해당 메서드의 소유 객체를 참조한다.
 
 ```javascript
@@ -278,6 +346,7 @@ Quo.prototype.get_status = function ( ) {
 var myQuo = new Quo("confused");
 console.log(myQuo.get_status( ));   // confused
 ```
+ -->
 
 ## 1.4 apply 호출 패턴(Apply Invocation Pattern)
 

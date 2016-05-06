@@ -350,6 +350,60 @@ console.log(myQuo.get_status( ));   // confused
 
 ## 1.4 apply 호출 패턴(Apply Invocation Pattern)
 
+함수 호출 시 각 상황에 따라 this에 바인딩될 객체가 결정된다. 이는 자바스크립트 엔진 내부에서 자동으로 실시되는 것이다. 이러한 내부적인 바인딩 이외에 this를 특정 객체에 명시적으로 바인딩하는 방법도 제공된다. 이것을 가능하게 하는 것이 apply(), call() 메서드이다.
+
+이 메서드들은 모든 함수 객체의 프로토타입 객체인 Function.prototype 객체의 메서드이다.
+
+```javascript
+func.apply(thisArg, [argsArray])
+
+// thisArg: 함수 내부의 this에 바인딩할 객체
+// argsArray: 함수에 전달할 인자 배열
+```
+
+기억해야 할 것은 apply() 메서드를 호출하는 주체가 함수이며 apply() 메서드도 this를 특정 객체에 바인딩할 뿐 본질적인 기능은 함수 호출이라는 것이다.
+
+```javascript
+var Person = function(name) {
+  this.name= name;
+}
+
+var foo = {};
+
+Person.apply(foo, ['name']);
+
+console.log(foo);
+```
+
+빈 객체 foo를 apply() 메서드의 첫번째 인자로 배열을 두번째 인자로 전달하고 Person 함수를 호출하였다. 이때 Person 함수의 this는 foo 객체가 된다. Person 함수에서 this의 name 프로퍼티에 값을 할당하는데 this에 바인딩된 foo 객체에는 name 프로퍼티가 없으므로 name 프로퍼티가 새로 추가되가 값이 할당된다.
+
+apply() 메서드의 대표적인 용도는 arguments 객체와 같은 유사 배열 객체에 배열 메서드를 사용하는 경우이다. arguments 객체는 배열이 아니기 때문에 slice() 같은 배열의 메서드를 사용할 수 없으나 apply() 메서드를 이용하면 가능하다.
+
+```javascript
+function convertArgsToArray() {
+  console.log(arguments);
+
+  // arguments 객체를 배열로 변환
+  var arr = Array.prototype.slice.apply(arguments); // arguments.slice
+
+  console.log(arr);
+  return arr;
+}
+
+convertArgsToArray(1,2,3);
+```
+
+`Array.prototype.slice.apply(arguments)`는 Array.prototype.slice() 메서드를 호출하라. 단 this는 arguments 객체로 바인딩하라는 의미가 된다. 결국 Array.prototype.slice() 메서드를 arguments 객체 자신의 메서드인 것처럼 `arguments.slice()`와 같은 형태로 호출하라는 것이다.
+
+call() 메서드의 경우, apply()와 기능은 같지만 apply()의 두번째 인자에서 배열 형태로 넘긴 것을 각각 하나의 인자로 넘긴다.
+
+```javascript
+Person.apply(foo, [1, 2, 3]);
+
+Person.call(foo, 1, 2, 3);
+```
+
+<!--
 call()과 apply() 메서드로 함수를 호출할 때, 함수의 this는 첫 번째 인자로 넘겨받은 객체를 참조한다.
 
 ```javascript
@@ -383,7 +437,7 @@ var statusObject = {
 var status = Quo.prototype.get_status.apply(statusObject);
 console.log(status); // 'A-OK'
 ```
-
+ -->
 # Reference  
 
 * [JavaScript : The Good Parts 04.Functions -by Douglas Crockford](http://www.yes24.com/24/goods/3071412?scode=032&OzSrank=1)  

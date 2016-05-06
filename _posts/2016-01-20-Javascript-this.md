@@ -248,7 +248,7 @@ console.log(me.name);
 ```
 
 ![constructor](/img/constructor.png)
-
+{: style="max-width:500px; margin:10px auto;"}
 
 
 ### 1.3.2 객체 리터럴 방식과 생성자 함수 방식의 차이

@@ -309,7 +309,7 @@ square.y = 20;
 console.log(square.x, square.y);
 ```
 
-함수는 일반 객체와는 다르게 함수만의 표준 속성을 갖는다.
+함수는 일반 객체와는 다른 함수만의 표준 속성을 갖는다.
 
 ```javascript
 function square(number) {
@@ -368,7 +368,7 @@ console.log(sum(1,2));
 console.log(sum(1,2,3));
 ```
 
-자바스크립트는 함수를 호출할 때 인수들과 함께 암묵적으로 arguments 객체가 함수 내부로 전달된다. arguments 객체는 배열의 형태로 인자값 정보를 담고 있지만 실제 배열이 아닌 유사배열객체이다.
+자바스크립트는 함수를 호출할 때 인수들과 함께 암묵적으로 arguments 객체가 함수 내부로 전달된다. arguments 객체는 배열의 형태로 인자값 정보를 담고 있지만 실제 배열이 아닌 유사배열객체(array-like object)이다.
 
 유사배열객체란 length 속성을 가진 객체를 말한다. 유사배열객체는 배열이 아니므로 배열 메서드를 사용하 경우 에러가 발생하게 된다. (그러나 call, apply 메서드를 사용하여 배열 메서드를 사용하는 방법이 있기는 하다.)
 
@@ -396,7 +396,7 @@ console.log(bar());
 
 ## 6.3 length 속성
 
-length 속성은 ECMAScript 표준 spec으로 함수 정의 시 작성된 매개변수 갯수를 의미한다.
+length 속성은 함수 정의 시 작성된 매개변수 갯수를 의미한다.
 
 ```javascript
 function foo() {}
@@ -412,6 +412,8 @@ function baz(x, y) {
 }
 console.log(baz.length); // 2
 ```
+
+arguments.length의 값과는 다를 수 있으므로 주의하여야 한다. arguments.length는 함수 호출시 인자의 갯수이다.
 
 ## 6.4 name 속성  
 
@@ -449,7 +451,9 @@ square() 함수 역시 객체이므로 [[Prototype]] 속성(`__proto__` 속성)�
 
 ## 6.6 prototype 속성  
 
-<b style="text-decoration:underline">모든 함수는 객체로서 prototype 속성을 갖는다. 주의해야 할 것은 prototype 속성은 프로토타입 객체를 가리키는 [[Prototype]] 속성(`__proto__` 속성)과는 다르다는 것이다.</b>
+함수 객체만이 가지고 있는 속성으로 자바스크립트 객체지향의 근간이다.
+
+<b style="text-decoration:underline">모든 함수 객체는 prototype 속성을 갖는다. 주의해야 할 것은 prototype 속성은 프로토타입 객체를 가리키는 [[Prototype]] 속성(`__proto__` 속성)과는 다르다는 것이다.</b>
 
 prototype 속성과 [[Prototype]] 속성은 모두 프로토타입 객체를 가리키지만 관점의 차이가 있다.
 

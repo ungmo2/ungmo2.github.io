@@ -107,10 +107,10 @@ Person.prototype.getName = function() {
 }
 
 var me = new Person('Lee');
-console.log(me.getName());              // foo
+console.log(me.getName());
 
 Person.prototype.name = 'Kim';
-console.log(Person.prototype.getName()); // person
+console.log(Person.prototype.getName());
 ```
 
 ![Prototype Method Invocation Pattern](/img/prototype_metthod_invocation_pattern.png)

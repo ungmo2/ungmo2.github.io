@@ -22,20 +22,24 @@ function square(number) {
 square();
 ```
 
-자바스크립트의 `this` keyword는 Java와 같은 익숙한 언어의 개념과 달라 개발자에게 혼란을 준다. Java에서의 `this`는 자기자신(self)을 의미한다.
+자바스크립트의 `this` keyword는 Java와 같은 익숙한 언어의 개념과 달라 개발자에게 혼란을 준다.
+
+Java에서의 this는 인스턴스 자신(self)을 가리키는 참조변수이다. this가 객체 자신에 대한 참조 값을 가지고 있다는 뜻이다. 주로 매개변수와 객체 자신이 가지고 있는 멤버 변수 명이 같을 경우 이를 구분하기 위해서 사용된다.
 
 ```java
 public Class Person {
 
-  private String firstName;
-  private String lastName;
+  private String name;
 
-  public Person(String firstName, String lastName) {
-  	this.firstName = firstName;
-  	this.lastName = lastName;
+  public Person(String name) {
+  	this.name = name;
   }
 }
 ```
+
+this.변수명은 멤버 변수를 의미한다. 그리고 변수명 만을 사용하는 경우는 매개변수을 의미한다.
+
+하지만 자바스크립트의 경우 자바와 같이 this에 바인딩되는 객체는 한가지가 아니라 해당 함수 호출 패턴에 따라 this에 바인딩되는 객체가 달라진다.
 
 # 함수 호출 패턴과 this 바인딩
 
@@ -50,7 +54,7 @@ public Class Person {
 
 # 1. 메서드 호출 패턴(Method Invocation Pattern)
 
-함수가 객체의 속성이면 메서드 호출 패턴으로 호출된다. 이때 메서드 내부의 `this`는 해당 메서드를 소유한 객체 즉 해당 메서드를 호출한 객체를 바인딩한다.
+함수가 객체의 속성이면 메서드 호출 패턴으로 호출된다. 이때 메서드 내부의 `this`는 해당 메서드를 소유한 객체 즉 해당 메서드를 호출한 객체에 바인딩된다.
 
 <!--
 
@@ -90,6 +94,27 @@ obj2.sayName();
 
 ![Method Invocation Pattern](/img/Method_Invocation_Pattern.png)
 {: style="max-width:500px; margin:10px auto;"}
+
+프로토타입 객체도 메서드를 가질 수 있다. 프로토타입 객체 메서드 내부에서 사용된 this도 일반 메서드 방식과 마찬가지로 해당 메서드를 호출한 객체에 바인딩된다.
+
+```javascript
+function Person(name) {
+  this.name = name;
+}
+
+Person.prototype.getName = function() {
+  return this.name;
+}
+
+var me = new Person('Lee');
+console.log(me.getName());              // foo
+
+Person.prototype.name = 'Kim';
+console.log(Person.prototype.getName()); // person
+```
+
+![Prototype Method Invocation Pattern](/img/prototype_metthod_invocation_pattern.png)
+{: style="max-width:600px; margin:10px auto;"}
 
 # 2. 함수 호출 패턴(Function Invocation Pattern)
 

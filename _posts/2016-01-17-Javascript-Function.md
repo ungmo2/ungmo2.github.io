@@ -78,7 +78,7 @@ console.log(foo(10, 5)); // 50
 console.log(multiply(10, 5)); // Uncaught ReferenceError: multiply is not defined
 ```
 
-함수의 일급객체이기 때문에 변수에 할당할 수 있는데 이 변수는 함수명이 아니라 할당된 함수를 가리키는 참조값을 저장하게 된다. 함수 호출시 이 변수가 함수명처럼 사용된다.
+함수는 일급객체이기 때문에 변수에 할당할 수 있는데 이 변수는 함수명이 아니라 할당된 함수를 가리키는 참조값을 저장하게 된다. 함수 호출시 이 변수가 함수명처럼 사용된다.
 
 ```javascript
 var foo = function(a, b) {
@@ -107,11 +107,15 @@ var square = function square(number) {
 
 함수명과 함수 참조값을 가진 변수명이 일치하므로 함수명으로 호출되는 듯 보이지만 사실은 변수명으로 호출된 것이다.
 
+결국 함수선언식도 함수표현식과 동일하게 함수 리터럴 방식으로 정의되는 것이다.
+
 ## 1.3 Function() 생성자 함수
 
 함수표현식으로 함수를 정의할 때 함수 리터럴 방식을 사용한다. 함수선언식도 내부적으로 자바스크립트 엔진이 기명 함수표현식으로 변환하므로 결국 함수 리터럴 방식을 사용한다.
 
-따라서 함수선언식과 함수표현식은 모두 함수 리터럴 방식으로 함수를 정의하는데 이것은 결국 내장 함수 Function() 생성자 함수로 함수를 생성하는 것을 단순화 시킨 것이다. Function() 생성자 함수는 Function.prototype.constructor 속성으로 접근할 수 있다.
+따라서 ***함수선언식과 함수표현식은 모두 함수 리터럴 방식으로 함수를 정의하는데 이것은 결국 내장 함수 Function() 생성자 함수로 함수를 생성하는 것을 단순화 시킨 것이다.***
+
+Function() 생성자 함수는 Function.prototype.constructor 속성으로 접근할 수 있다.
 
 Function() 생성자 함수로 함수를 생성하는 문법은 다음과 같다.
 
@@ -140,6 +144,8 @@ function square(number) {
 
 위 코드를 보면 함수선언식으로 함수가 정의되기 이전에 함수 호출이 가능하다. 함수 선언의 위치와는 상관없이 코드 내 어느 곳에서든지 호출이 가능한데 이것을 함수 호이스팅(Function Hoisting)이라 한다.
 
+자바스크립트는 선언문을 모두 호이스팅(Hoisting)한다. 호이스팅란 var 구문이나 function 선언문을 해당 [Scope](http://ungmo2.github.io/javascript/Javascript-Scope/)의 맨 위로 옮기는 것을 말한다. 코드를 실행하기 전에 자바스크립트는 var 구문과 function 선언문을 해당 스코프의 맨위로 옮긴다.
+
 함수 호이스팅이 발생하는 원인은 자바스크립트 변수 생성과 초기화가 분리되어 진행되기 때문이다. 이는 [Execution Context](http://ungmo2.github.io/javascript/Javascript-Execution-Context/#variable-instantiation--)에서 자세히 설명한다.
 
 간단히 설명하면 함수선언식으로 정의된 함수는 자바스크립트 엔진이 스크립트가 로딩되는 시점에 바로 초기화하고 이를 VO(variable object)에 저장한다. 그렇기 때문에 함수 선언의 위치와는 상관없이 소스 내 어느 곳에서든지 호출이 가능하다.
@@ -154,7 +160,7 @@ var square = function(number) {
 }
 ```
 
-함수선언식의 경우와는 달리 TypeError가 발생하였다. 함수표현식의 경우 함수 호이스팅이 발생하지 않는다.
+함수선언식의 경우와는 달리 TypeError가 발생하였다. ***함수표현식의 경우 함수 호이스팅이 발생하지 않는다.***
 
 함수표현식은 함수선언식과는 달리 스크립트 로딩 시점에 VO에 함수를 저장하지 않고 runtime에 해석되고 실행되므로 이 두가지를 구분하는 것은 중요하다.
 

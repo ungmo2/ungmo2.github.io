@@ -204,6 +204,20 @@ console.log(!![]);        // true
 
 객체(배열 포함)의 경우 빈 객체라도 존재하기만하면 true가 변환된다.
 
+객체의 존재 확인 후 그 결과를 반환해야 하는 경우, !! 연산자를 사용하면 강제로 피연산자를 boolean으로 형 변환 할 수 있다.
+
+```javascript
+function checkExist(obj) {
+  return !!obj;
+}
+
+var obj;
+console.log(checkExist(obj)); // false
+
+obj = {};
+console.log(checkExist(obj)); // true
+```
+
 # 7. Evaluating variable
 
 초기화되지 않은 변수는 `undefined` 값을 갖게 된다. 미선언 변수에 접근하면 `ReferenceError` 예외가 발생한다.

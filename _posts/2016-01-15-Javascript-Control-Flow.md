@@ -229,8 +229,8 @@ console.log(undefined === null); // logs false
 
 |Original Value|Converted to Number	|Converted to String |Converted to Boolean|
 |:-------------|:------------------:|:------------------:|:------------------:|
-| false        | 0	                | "false"	           | <b style='color:red'>false</b>
-| true         | 1	                | "true"	           | true
+| false        | <b style='color:red'>0</b> | "false"	   | <b style='color:red'>false</b>
+| true         | <b style='color:red'>1</b> | "true"	   | true
 | 0	           | 0	                | "0"	               | <b style='color:red'>false</b>
 | 1	           | 1  	              | "1"	               | true
 | "0"	         | 0	                | "0"	               | true

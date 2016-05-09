@@ -294,7 +294,7 @@ container(.container 또는 .container-fluid) 내에 `.row` class를 사용하�
       <tr>
         <th class="text-nowrap" scope="row">Grid behavior</th>
         <td>항상 수평 적용</td>
-        <td colspan="3">breakpoint보다 크면 수평 적용, 작으면 stack</td>
+        <td colspan="3">viewport 너비가 breakpoint 이상이면 수평 적용, 미만이면 stack</td>
       </tr>
       <tr>
         <th class="text-nowrap" scope="row">Container width</th>
@@ -351,6 +351,12 @@ col-xs-1의 경우, 행에 12개가 들어 올 수 있으며 col-xs-6의 경우 
 
 즉 행에 들어 올 수 있는 열은 두번째 `*`의 합 만큼이다. 12보다 클 경우는 다음 줄로 넘어간다.
 
+- 두번째 `*`의 합이 12인 경우, 행의 너비를 꽉 채운다.
+
+- 두번째 `*`의 합이 12보다 작은 경우, 오른쪽에 남는 부분이 생긴다.
+
+- 두번째 `*`의 합이 12보다 큰 경우, 12를 넘게한 마지막 열이 다음 줄로 넘어간다.
+
 ### 6.2.1 .col-xs-*
 
 viewport 너비와 관계없이 항상 수평으로 정렬된다.
@@ -363,13 +369,13 @@ viewport 너비와 관계없이 항상 수평으로 정렬된다.
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
     <style>
-      .container {
+      /*.container {
         background: #eaeaed;
-      }
+      }*/
       .row {
         margin-bottom: 10px;
       }
-      [class|="col-"] {
+      [class*="col-"] {
         background: #2db34a;
         border: 1px solid #eaeaed;
         height: 50px;
@@ -397,22 +403,242 @@ viewport 너비와 관계없이 항상 수평으로 정렬된다.
         <div class="col-xs-1">xs-1</div>
         <div class="col-xs-1">xs-1</div>
       </div>
+      <div class="row">
+        <div class="col-xs-8">xs-8</div>
+        <div class="col-xs-4">xs-4</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-5">xs-5</div>
+        <div class="col-xs-5">xs-5</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-5">xs-5</div>
+        <div class="col-xs-5">xs-5</div>
+        <div class="col-xs-4">xs-4</div>
+      </div>
     </div>
   </body>
 </html>
 ```
 
+### 6.2.2 .col-sm-*
+
+viewport 너비가 768px 이상일 때 적용된다. 768px 미만일 때는 media query에 의해 해당 css가 적용되지 않고 div 요소의 block 속성에 의해 행 전체의 너비를 가지며 수직으로 쌓이게 된다.
+
+```html
+@media (min-width: 768px)
+.col-sm-1 {
+  width: 8.33333333%;
+}
+@media (min-width: 768px)
+.col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9 {
+  float: left;
+}
+```
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <style>
+      /*.container {
+        background: #eaeaed;
+      }*/
+      .row {
+        margin-bottom: 10px;
+      }
+      [class*="col-"] {
+        background: #2db34a;
+        border: 1px solid #eaeaed;
+        height: 50px;
+        font-size: .8em;
+        line-height: 50px;
+        text-align: center;
+        color: white;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-1">sm-1</div>
+        <div class="col-sm-1">sm-1</div>
+        <div class="col-sm-1">sm-1</div>
+        <div class="col-sm-1">sm-1</div>
+        <div class="col-sm-1">sm-1</div>
+        <div class="col-sm-1">sm-1</div>
+        <div class="col-sm-1">sm-1</div>
+        <div class="col-sm-1">sm-1</div>
+        <div class="col-sm-1">sm-1</div>
+        <div class="col-sm-1">sm-1</div>
+        <div class="col-sm-1">sm-1</div>
+        <div class="col-sm-1">sm-1</div>
+      </div>
+      <div class="row">
+        <div class="col-sm-8">sm-5</div>
+        <div class="col-sm-4">sm-5</div>
+      </div>
+      <div class="row">
+        <div class="col-sm-5">sm-5</div>
+        <div class="col-sm-5">sm-5</div>
+      </div>
+      <div class="row">
+        <div class="col-sm-5">sm-5</div>
+        <div class="col-sm-5">sm-5</div>
+        <div class="col-sm-4">sm-4</div>
+      </div>
+    </div>
+  </body>
+</html>
+```
+
+### 6.2.3　.col-md-*
+
+viewport 너비가 992px 이상일 때 적용된다. 992px 미만일 때는 media query에 의해 해당 css가 적용되지 않고 div 요소의 block 속성에 의해 행 전체의 너비를 가지며 수직으로 쌓이게 된다.
+
+### 6.2.4 .col-lg-*
+
+viewport 너비가 1200px 이상일 때 적용된다. 1200px 미만일 때는 media query에 의해 해당 css가 적용되지 않고 div 요소의 block 속성에 의해 행 전체의 너비를 가지며 수직으로 쌓이게 된다.
+
+## 6.3 열의 복합 구성
+
+지금까지는 하나의 요소에 하나의 Class prefix(.col-xs-, .col-sm-, .col-md-, .col-lg-)만을 사용하였다.
+
+```html
+<div class="col-sm-8">sm-5</div>
+```
+
+하지만 Class prefix를 혼합하여 사용할 수도 있다.
+
+```html
+<div class="col-xs-12 col-sm-6">xs-12 sm-6</div>
+```
+
+위와 같이 정의하면 아래와 같이 동작한다.
+
+- viewport 너비가 768px 미만이면 col-xs-12가 적용된다.
+- viewport 너비가 768px 이상이면 col-sm-6가 적용된다.
+
+하지만 col-xs-는 언제나 적용된다고 하였다.
+
+```css
+.col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+  float: left;
+}
+```
+
+viewport 너비가 768px 이상인 경우 요소에 지정된 두개의 클래스는 경합하게 된다. 이때 ***우선순위는 CSS 파일 내에서 후위에 지정된 css가 더 높다.*** 따라서 CSS 파일(bootstrap.css) 내에서 .col-xs-보다 후위에 정의된 col-sm-6가 적용되게 된다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .blue { color: blue; }
+      .red { color: red; }
+    </style>
+  </head>
+  <body>
+    <div class="red blue">Text</div>
+  </body>
+</html>
+```
+
+breakpoint에 따른 Class prefix가 지정되어 있지 않다면 하위 Class prefix가 적용된다.
+
+```html
+<div class="row">
+  <div class="col-sm-12 col-md-8">.col-sm-12 .col-md-8</div>
+  <div class="col-sm-6">.col-sm-6</div>
+</div>
+```
+
+위의 경우, viewport 너비가 992px 이상일 때 첫번째 div 요소는 col-md-8가 지정되어 있으므로 col-md-8가 적용되지만 두번째 div 요소에는 col-md-이 지정되어 있지 않다. 따라서 viewport 너비가 992px 이상이더라도 col-xs-6이 적용된다.
+
+이는 col-xs-를 제외한 `col-*-`이 min-width로 지정되었기 때문이다. min-width는 속성값 이상을 의미한다. 예를 들어 `min-width: 768px`의 경우 viewport 너비가 768px 이상일 경우 적용된다.
+
+```html
+@media (min-width: 768px)
+.col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9 {
+  float: left;
+}
+```
+
+### 6.3.1 Mobile and desktop
+
+부트스트랩의 breakpoint는 기본적으로 아래와 같다.
+
+- Mobile의 경우 breakpoint는 768px 미만이며 Class prefix는 .col-xs-이다.
+- Desktop의 경우, breakpoint는 992px 이상이며 Class prefix는 .col-md-이다.
+
+.col-xs-와 .col-md-를 혼용하면 아래와 같이 동작한다.
+
+- viewport 너비가 768px 미만이면 .col-xs-가 적용된다.
+- viewport 너비가 992px 이상이면 .col-md-가 적용된다.
+
+```html
+<!-- Stack the columns on mobile by making one full-width and the other half-width -->
+<div class="row">
+  <div class="col-xs-12 col-md-8">.col-xs-12 .col-md-8</div>
+  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+</div>
+
+<!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+<div class="row">
+  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+</div>
+
+<!-- Columns are always 50% wide, on mobile and desktop -->
+<div class="row">
+  <div class="col-xs-6">.col-xs-6</div>
+  <div class="col-xs-6">.col-xs-6</div>
+</div>
+```
+
+### 6.3.2 Mobile, tablet, desktop
+
+부트스트랩의 breakpoint는 기본적으로 아래와 같다.
+
+- Mobile의 경우 breakpoint는 768px 미만이며 Class prefix는 .col-xs-이다.
+- tablet의 경우 breakpoint는 768px 이상이며 Class prefix는 .col-sm-이다.
+- Desktop의 경우, breakpoint는 992px 이상이며 Class prefix는 .col-md-이다.
+
+.col-xs-, .col-sm-, .col-md-를 혼용하면 아래와 같이 동작한다.
+
+- viewport 너비가 768px 미만이면 .col-xs-가 적용된다.
+- viewport 너비가 768px 이상이면 .col-sm-가 적용된다.
+- viewport 너비가 992px 이상이면 .col-md-가 적용된다.
+
+```html
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-md-8">.col-xs-12 .col-sm-6 .col-md-8</div>
+  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+</div>
+<div class="row">
+  <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+  <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+  <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+</div>
+```
+
+breakpoint에 따른 Class prefix가 지정되어 있지 않다면 하위 Class prefix가 적용된다.
+
+## 6.4 Nesting columns
+
+
+## 6.5 Offsetting columns
 
 
 
-
-dsdsdsd
-
+## 6.6 Column ordering
 
 
-.col-sm-*
-.col-md-*
-.col-lg-*
 
 
 ```html

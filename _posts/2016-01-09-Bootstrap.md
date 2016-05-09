@@ -265,7 +265,7 @@ container(.container 또는 .container-fluid) 내에 `.row` class를 사용하�
 
 열은 행(.row) 내에 위치하여야 한다. `.col-*-*` class로 열을 생성하는데 첫번째 `*`에는 xs, sm, md, lg 중의 하나를 지정하고 두번째 `*`에는 1부터 12까지의 숫자 중의 하나를 지정한다.
 
-<h3 id="grid-options">Grid options</h2>
+<h3 id="grid-options">Grid options</h3>
 <div class="table-responsive">
   <table class="table table-bordered table-striped">
     <thead>

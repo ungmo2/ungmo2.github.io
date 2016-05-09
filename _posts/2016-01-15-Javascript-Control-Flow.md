@@ -233,8 +233,8 @@ console.log(undefined === null); // logs false
 | true         | <b style='color:red'>1</b> | "true"	   | true
 | 0	           | 0	                | "0"	               | <b style='color:red'>false</b>
 | 1	           | 1  	              | "1"	               | true
-| "0"	         | 0	                | "0"	               | true
-| "1"	         | 1	                | "1"	               | true
+| "0"	         | <b style='color:red'>0</b>	| "0"	       | true
+| "1"	         | <b style='color:red'>1</b>	| "1"        | true
 | NaN	         | NaN	              | "NaN"	             | <b style='color:red'>false</b>
 | Infinity	   | Infinity	          | "Infinity"	       | true
 | -Infinity	   | -Infinity	        | "-Infinity"	       | true
@@ -249,7 +249,7 @@ console.log(undefined === null); // logs false
 | function(){} | NaN	              | "function(){}"	   | true
 | { }	         | NaN	              | "[object Object]"	 | true
 | null	       | <b style='color:red'>0</b> | "null"	   | <b style='color:red'>false</b>
-| undefined    | NaN	              | "undefined"	       | <b style='color:red'>false</b>
+| undefined    | <b style='color:red'>NaN</b> | "undefined"	| <b style='color:red'>false</b>
 
 
 ```javascript

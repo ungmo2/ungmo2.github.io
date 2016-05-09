@@ -248,7 +248,7 @@ console.log(typeof foo);  // string
 foo = true;                  
 console.log(typeof foo);  // boolean
 ```
-
+<!--
 # 4. Pass-by-value
 
 ```javascript
@@ -287,4 +287,4 @@ var arr = [];
 var v2 = arr.push(2);
 ```
 
-상기 예제에서 v2의 값은 무엇인가? 문자열의 예와 같이 배열이 동작한다면 v2는 새로운 배열(하나의 요소를 가지고 그 값은 2인)을 가지게 될 것이다. 그러나 객체인 arr은 push 메서드에 의해 update되고 v2에는 배열의 새로운 `length` 값이 반환된다. ([Passing by Reference](http://ungmo2.github.io/javascript/Javascript-Object/#pass-by-reference) 참고)
+상기 예제에서 v2의 값은 무엇인가? 문자열의 예와 같이 배열이 동작한다면 v2는 새로운 배열(하나의 요소를 가지고 그 값은 2인)을 가지게 될 것이다. 그러나 객체인 arr은 push 메서드에 의해 update되고 v2에는 배열의 새로운 `length` 값이 반환된다. ([Passing by Reference](http://ungmo2.github.io/javascript/Javascript-Object/#pass-by-reference) 참고) -->

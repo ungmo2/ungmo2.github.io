@@ -263,9 +263,10 @@ container(.container 또는 .container-fluid) 내에 `.row` class를 사용하�
 
 ## 6.2 열(`.col-*-*`)의 구성
 
-열은 행(.row) 내에 위치하여야 한다. `.col-*-*` class로 열을 생성하는데 첫번째 `*`에는 xs, sm, md, lg 중의 하나를 지정하고 두번째 `*`에는 1부터 12까지의 숫자 중의 하나를 지정한다.
+열은 행(.row) 내에 위치하여야 한다. `.col-*-*` class로 열을 생성하는데 첫번째 `*`에는 xs, sm, md, lg 중의 하나를 지정한다.
 
-<h3 id="grid-options">Grid options</h3>
+*Grid options*
+
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
@@ -342,17 +343,17 @@ container(.container 또는 .container-fluid) 내에 `.row` class를 사용하�
   </table>
 </div>
 
+부트스트랩의 그리드 시스템은 12열까지 지원한다. 두번째 `*`에는 1부터 12까지의 숫자 중의 하나를 지정한다.
 
-| Device              | 구분             | prefix | breakpoint         | 동작
-|:--------------------|:----------------|:------:|--------------------|:--------------
-| Extra small devices | phones          | xs     | 768px 미만 (default)| 항상 적용
-| Small devices       | tablets         | sm     | 768px 이상          | 768px보다 크면 적용
-| Medium devices      | desktops        | md     | 992px 이상          | 992px보다 크면 적용
-| Large devices       | large desktops  | lg     | 1200px 이상         | 1200px보다 크면 적용
+예를 들어 col-xs-1은 행 너비의 1/12를 열의 너비로 한다는 의미이다. col-xs-6은 행 너비의 6/12를 열의 너비로, col-xs-12은 행 너비의 12/12를 열의 너비로 지정한다.
 
+col-xs-1의 경우, 행에 12개가 들어 올 수 있으며 col-xs-6의 경우 2개, col-xs-12의 경우 1개가 들어 올 수 있다.
 
+즉 행에 들어 올 수 있는 열은 두번째 `*`의 합 만큼이다. 12보다 클 경우는 다음 줄로 넘어간다.
 
 ### 6.2.1 .col-xs-*
+
+viewport 너비와 관계없이 항상 수평으로 정렬된다.
 
 ```html
 <!DOCTYPE html>

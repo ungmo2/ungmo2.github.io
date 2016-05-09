@@ -293,7 +293,7 @@ container(.container 또는 .container-fluid) 내에 `.row` class를 사용하�
       <tr>
         <th class="text-nowrap" scope="row">Grid behavior</th>
         <td>항상 수평 적용</td>
-        <td colspan="3">breakpoint보다 크면 적용</td>
+        <td colspan="3">breakpoint보다 크면 수평 적용, 작으면 stack</td>
       </tr>
       <tr>
         <th class="text-nowrap" scope="row">Container width</th>
@@ -353,6 +353,56 @@ container(.container 또는 .container-fluid) 내에 `.row` class를 사용하�
 
 
 ### 6.2.1 .col-xs-*
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <style>
+      .container {
+        background: #eaeaed;
+      }
+      .row {
+        margin-bottom: 10px;
+      }
+      [class|="col-"] {
+        background: #2db34a;
+        border: 1px solid #eaeaed;
+        height: 50px;
+        font-size: .8em;
+        line-height: 50px;
+        text-align: center;
+        color: white;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-1">xs-1</div>
+        <div class="col-xs-1">xs-1</div>
+        <div class="col-xs-1">xs-1</div>
+        <div class="col-xs-1">xs-1</div>
+        <div class="col-xs-1">xs-1</div>
+        <div class="col-xs-1">xs-1</div>
+        <div class="col-xs-1">xs-1</div>
+        <div class="col-xs-1">xs-1</div>
+        <div class="col-xs-1">xs-1</div>
+        <div class="col-xs-1">xs-1</div>
+        <div class="col-xs-1">xs-1</div>
+        <div class="col-xs-1">xs-1</div>
+      </div>
+    </div>
+  </body>
+</html>
+```
+
+
+
 
 
 dsdsdsd

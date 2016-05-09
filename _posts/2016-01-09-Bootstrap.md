@@ -272,7 +272,7 @@ container(.container 또는 .container-fluid) 내에 `.row` class를 사용하�
       <tr>
         <th></th>
         <th>
-          Extra small devices
+          Extra small devices<br>
           <small>Phones<br>(&lt;768px)</small>
         </th>
         <th>

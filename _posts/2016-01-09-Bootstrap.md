@@ -504,7 +504,7 @@ viewport 너비가 992px 이상일 때 적용된다. 992px 미만일 때는 medi
 
 viewport 너비가 1200px 이상일 때 적용된다. 1200px 미만일 때는 media query에 의해 해당 css가 적용되지 않고 div 요소의 block 속성에 의해 행 전체의 너비를 가지며 수직으로 쌓이게 된다.
 
-## 6.3 열의 복합 구성
+## 6.3 col- class의 복합 구성
 
 지금까지는 하나의 요소에 하나의 Class prefix(.col-xs-, .col-sm-, .col-md-, .col-lg-)만을 사용하였다.
 

@@ -369,12 +369,7 @@ viewport 너비와 관계없이 항상 수평으로 정렬된다.
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
     <style>
-      /*.container {
-        background: #eaeaed;
-      }*/
-      .row {
-        margin-bottom: 10px;
-      }
+      .row { margin-bottom: 10px; }
       [class*="col-"] {
         background: #2db34a;
         border: 1px solid #eaeaed;
@@ -444,12 +439,7 @@ viewport 너비가 768px 이상일 때 적용된다. 768px 미만일 때는 medi
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
     <style>
-      /*.container {
-        background: #eaeaed;
-      }*/
-      .row {
-        margin-bottom: 10px;
-      }
+      .row { margin-bottom: 10px; }
       [class*="col-"] {
         background: #2db34a;
         border: 1px solid #eaeaed;
@@ -539,7 +529,7 @@ viewport 너비가 768px 이상인 경우 요소에 지정된 두개의 클래�
   <head>
     <style>
       .blue { color: blue; }
-      .red { color: red; }
+      .red  { color: red; }
     </style>
   </head>
   <body>
@@ -630,6 +620,7 @@ breakpoint에 따른 Class prefix가 지정되어 있지 않다면 하위 Class 
 breakpoint에 따른 Class prefix가 지정되어 있지 않다면 하위 Class prefix가 적용된다.
 
 ## 6.4 Nesting columns
+
 
 
 ## 6.5 Offsetting columns

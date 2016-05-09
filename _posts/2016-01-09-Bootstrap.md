@@ -320,10 +320,12 @@ container(.container 또는 .container-fluid) 내에 `.row` class를 사용하�
         <td>~81px</td>
         <td>~97px</td>
       </tr>
-      <!-- <tr>
+      <!--
+      <tr>
         <th class="text-nowrap" scope="row">Gutter width</th>
         <td colspan="4">30px (15px on each side of a column)</td>
-      </tr> -->
+      </tr>
+       -->
       <tr>
         <th class="text-nowrap" scope="row">Nestable</th>
         <td colspan="4">Yes</td>

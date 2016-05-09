@@ -29,8 +29,6 @@ Bootstrap은 빠르고 간편한 반응형 웹 디자인(responsive web design)�
 - Mobile-first approach: Bootstrap 3부터 mobile-first style을 기본으로 지원한다.
 - Browser compatibility: 대부분의 브라우저(Chrome, Firefox, Internet Explorer, Safari, Opera)를 지원한다.
 
-is compatible with all modern browsers
-
 ## 1.3 Version
 
 이글의 작성 시점인 2016년 현재 최신 버전은 3.3.6이며 2015년 8월 4-alpha 버전이 공개되었다. 이글은 3.3.6을 기준으로 작성되었다.
@@ -108,113 +106,20 @@ mycode.html
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="
-    ./bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
   </head>
   <body>
     <h1>My First Bootstrap Page</h1>
     <p>This is some text.</p>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   </body>
 </html>
 ```
 
-javascript 파일을 2개 포함시켰다. 하나는 bootstrap의 javascript 파일이고 또 다른 하나는 bootstrap이 사용할 jQuery이다. jQuery는 bootstrap이 사용하므로 bootstrap javascript 로드 전에 로드하여야 한다. 그리고 body tag가 끝나기 직전 javascript 파일을 로드하였는데 이 방법은 웹페이지 로딩 속도 향상에 효과적이다.
+javascript 파일을 2개 포함시켰다. 하나는 bootstrap의 자바스크립트 파일이고 또 다른 하나는 bootstrap이 사용할 jQuery이다. jQuery는 bootstrap의 자바스크립트가 사용하므로 bootstrap 자바스크립트 파일 로드 전에 로드하여야 한다. 그리고 body tag가 끝나기 직전 javascript 파일을 로드하였는데 이 방법은 웹페이지 로딩 속도 향상에 효과적이다.
 
-# 4. Container
-
-Bootstrap은 모든 컨텐츠를 감싸는 wrapping 요소(container)를 포함해야 한다. 즉 모든 켄텐츠 요소는 wrapping 요소의 자식이어야 한다. container는 그리드 시스템을 위한 필수 사항이다.
-
-container에는 2가지 종류가 있다.
-
-- .container class:
-  fixed width container로서 responsive fixed layout을 제공한다.
-- .container-fluid class:
-  full width container로서 fluid layout을 제공한다.
-
-2가지 container를 중첩 사용해서는 않된다. padding에 문제가 발생하기 때문이다.
-
-## 4.1 fixed width container (fixed layout)
-
-responsive fixed layout(반응형 고정폭 레이아웃)를 사용한다. Media query에 의해 반응형으로 동작하며 viewport 너비가 늘어나거나 줄어들어도 고정폭을 갖는다.
-
-```html
-<div class="container">
-  ...
-</div>
-```
-
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
-    <style>
-      .container, .container-fluid {
-        background: #eaeaed;
-      }
-      .fixed {
-        background: #2db34a;
-        height: 100px;
-        line-height: 100px;
-        text-align: center;
-        color: white;
-        font-weight: 700;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div class="fixed">fixed width (.container)</div>
-    </div>
-  </body>
-</html>
-```
-
-## 4.2 full width container (fluid layout)
-
-fluid layout(유동 최대폭 레이아웃)을 사용한다. viewport 너비에 상관없이 언제나 컨텐츠 요소를 화면에 꽉차는 너비를 갖게 한다.
-
-```html
-<div class="container-fluid">
-  ...
-</div>
-```
-
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
-    <style>
-      .container, .container-fluid {
-        background: #eaeaed;
-      }
-      .fluid {
-        background: #2db34a;
-        height: 100px;
-        line-height: 100px;
-        text-align: center;
-        color: white;
-        font-weight: 700;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container-fluid">
-      <div class="fluid">full width (.container-fluid)</div>
-    </div>
-  </body>
-</html>
-
-```
-
-# 5. Media Query
+# 4. Media Query
 
 Bootstrap은 Mobile-first 방식을 기본 지원하므로 Media query에 포함되지 않은 모든 정의는 768px 미만 디바이스를 위한 것이다.
 
@@ -241,11 +146,149 @@ Bootstrap은 Mobile-first 방식을 기본 지원하므로 Media query에 포함
 @media (min-width: @screen-lg-min) { ... }
 ```
 
+# 5. Container
+
+Bootstrap은 모든 컨텐츠를 감싸는 wrapping 요소(container)를 포함해야 한다. 즉 모든 컨텐츠 요소는 wrapping 요소의 자식이어야 한다. container는 그리드 시스템을 위한 필수 사항이다.
+
+container에는 2가지 종류가 있다.
+
+- .container class:
+  fixed width container로서 responsive fixed layout(반응형 고정폭 레이아웃)을 제공한다.
+- .container-fluid class:
+  full width container로서 fluid layout(유동 최대폭 레이아웃)을 제공한다.
+
+2가지 container를 중첩 사용해서는 않된다. padding에 문제가 발생하기 때문이다.
+
+## 5.1 fixed width container (responsive fixed layout)
+
+responsive fixed layout(반응형 고정폭 레이아웃)을 만들 때 사용한다. Media query에 의해 반응형으로 동작하며 viewport 너비가 늘어나거나 줄어들어도 고정폭을 갖는다.
+
+.container의 속성은 다음과 같다.
+
+```css
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+```
+
+## 5.2 full width container (fluid layout)
+
+fluid layout(유동 최대폭 레이아웃)을 만들 때 사용한다. viewport 너비에 상관없이 언제나 컨텐츠 요소를 화면에 꽉차는 너비를 갖게 한다.
+
+.container-fluid의 속성은 다음과 같다.
+
+```css
+.container-fluid {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+```
+
+다음은 fixed width container(container class)와 full width container(container-fluid class)이 예제이다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <style>
+      .container, .container-fluid {
+        background: #eaeaed;
+      }
+      .fixed, .fluid {
+        background: #2db34a;
+        height: 100px;
+        line-height: 100px;
+        text-align: center;
+        color: white;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="fixed">fixed width (.container)</div>
+    </div>
+    <br>
+    <div class="container-fluid">
+      <div class="fluid">full width (.container-fluid)</div>
+    </div>
+  </body>
+</html>
+```
+
 # 6. Grid system
 
-그리드 시스템은 열을 나누어 컨텐츠를 원하는 위치에 배치하는 방법을 말한다. Bootstrap은 반응형 12열 그리드 시스템을 제공한다.
+앞에서 설명한 .container와 .container-fluid는 모든 컨텐츠 요소를 포함하는 부모 요소로서 wrapping 요소(container)라고 부른다. container는 그리드 시스템을 위한 필수 사항이다.
 
-- 행은 반드시 container(.container 또는 .container-fluid) 내에 위치해야 한다.
+그리드 시스템은 열을 나누어 컨텐츠를 원하는 위치에 배치하는 방법을 말한다. Bootstrap은 반응형 12열 그리드 시스템을 제공한다. 반드시 `.row`(행)를 먼저 구성하며 행 안에 `.col-*-*`(열)을 필요한 갯수만큼 포함시킨다.
+
+즉 container 내에 `.row`(행)이 위치하고 그 안에 `.col-*-*`(열)이 위치하게 된다.
+
+## 6.1 행(.row)의 구성
+
+container(.container 또는 .container-fluid) 내에 `.row` class를 사용하여 행을 생성한다.
+
+```html
+<div class="container">
+  <div class="row">
+    <!-- ... -->
+  </div>
+  <div class="row">
+    <!-- ... -->
+  </div>
+</div>
+```
+
+## 6.2 열(`.col-*-*`)의 구성
+
+열은 행(.row) 내에 위치하여야 한다. `.col-*-*` class로 열을 생성하는데 첫번째 `*`에는 xs, sm, md, lg 중의 하나를 지정하고 두번째 `*`에는 1부터 12까지의 숫자 중의 하나를 지정한다.
+
+| prefix | breakpoint         | 동작
+|:------:|--------------------|:--------------
+| xs     | 768px 미만 (default)| 항상 적용
+| sm     | 768px 이상          | 768px보다 크면 적용
+| md     | 992px 이상          | 992px보다 크면 적용
+| lg     | 1200px 이상         | 1200px보다 크면 적용
+
+### 6.2.1 .col-xs-*
+
+
+dsdsdsd
+
+
+
+.col-sm-*
+.col-md-*
+.col-lg-*
 
 
 ```html

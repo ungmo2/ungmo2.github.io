@@ -218,74 +218,7 @@ obj = {};
 console.log(checkExist(obj)); // true
 ```
 
-# 7. Evaluating variable
-
-초기화되지 않은 변수는 `undefined` 값을 갖게 된다. 미선언 변수에 접근하면 `ReferenceError` 예외가 발생한다.
-
-```javascript
-var x;
-console.log("The value of x is " + x); // logs "The value of a is undefined"
-console.log("The value of y is " + y); // throws ReferenceError exception
-```
-
-`undefined`은 boolean context에서 사용되면 `false`가 된다. (비어있는 문자열과 `null`, `undefined`, 숫자 0은 `false`로 간주된다.)
-
-```javascript
-var foo;
-if (!foo) console.log(foo); // undefined
-```
-
-`undefined`은 numeric context에서 사용되면 `NaN`(Not a Number)으로 변환된다.
-
-```javascript
-var x;
-console.log(x + 2); // NaN
-```
-
-`null`은 numeric context에서 사용되면 0이 되며, boolean context에서 사용되면 `false`가 된다.  
-
-```javascript
-var x = null;
-console.log(x * 2); // 0
-
-if (!x) console.log(x); // null
-```
-
-# 8. Type Conversion Table
-
-|Original Value|Converted to Number	|Converted to String |Converted to Boolean|
-|:-------------|:------------------:|:------------------:|:------------------:|
-| false        | 0	                | "false"	           | false
-| true         | 1	                | "true"	           | true
-| 0	           | 0	                | "0"	               | false
-| 1	           | 1  	              | "1"	               | true
-| "0"	         | 0	                | "0"	               | true
-| "1"	         | 1	                | "1"	               | true
-| NaN	         | NaN	              | "NaN"	             | false
-| Infinity	   | Infinity	          | "Infinity"	       | true
-| -Infinity	   | -Infinity	        | "-Infinity"	       | true
-| ""	         | <b style='color:red'>0</b>| ""	         | <b style='color:red'>false</b>
-| "20"	       | 20	                | "20"	             | true
-| "twenty"	   | NaN	              | "twenty"	         | true
-| [ ]	         | <b style='color:red'>0</b>| ""	         | true
-| [20]	       | <b style='color:red'>20</b>| "20"	     | true
-| [10,20]	     | NaN	              | "10,20"	           | true
-| ["twenty"]	 | NaN	              | "twenty"	         | true
-| ["ten","twenty"]|	NaN	            | "ten,twenty"	     | true
-| function(){} | NaN	              | "function(){}"	   | true
-| { }	         | NaN	              | "[object Object]"	 | true
-| null	       | <b style='color:red'>0</b> | "null"	   | false
-| undefined    | NaN	              | "undefined"	       | false
-
-
-```javascript
-var x = false;
-console.log("Number : " + Number(x));
-console.log("String : " + String(x));
-console.log("Boolean: " + Boolean(x));
-```
-
-# 9. 단축 평가 (Short-Circuit Evaluation)
+# 7. 단축 평가 (Short-Circuit Evaluation)
 
 논리 연산자가 왼쪽에서 오른쪽으로 평가될때, 논리연산자는 다음의 규칙을 따라서 "단축 평가"로 검사된다.
 

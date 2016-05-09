@@ -267,7 +267,7 @@ container(.container 또는 .container-fluid) 내에 `.row` class를 사용하�
 
 <h3 id="grid-options">Grid options</h3>
 <div class="table-responsive">
-  <table class="table">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th></th>

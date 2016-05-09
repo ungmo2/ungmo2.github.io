@@ -19,7 +19,7 @@ categories: css
 ![](/img/mobile-view.jpg)
 {: style="max-width:350px; margin: 10px auto;"}
 
-# 1. Responsive Web Design
+# 1. Responsive Web Design 개요
 
 사용자가 어떤 디바이스로 웹사이트를 방문할 지 알 수 없다. layout은 방문자의 화면 해상도를 고려하여야 한다. 가로폭이 너무 큰 layout을 작성하면 작은 해상도 모니터로 방문하였을 때 가로 스크롤이 생겨서 사용이 불편할 수도 있다.
 
@@ -239,7 +239,7 @@ orientation을 제외한 모든 속성은 min/max 접두사를 사용할 수 있
 
 이제까지의 내용을 바탕으로 [앞서 만들어본 예제](http://ungmo2.github.io/css/CSS3-Layout/#header--navigation-bar)를 Responsive Web Design에 맞추어 수정해 보자.
 
-## 1.3 Responsive Navigation Bar
+# 2. Responsive Navigation Bar
 
 디바이스 해상도에 따라 반응할 수 있도록 viewport meta tag와 media query를 추가한다.
 
@@ -284,7 +284,7 @@ orientation을 제외한 모든 속성은 min/max 접두사를 사용할 수 있
 
 [CSS 적용 우선 순위 (Cascading Order)](http://ungmo2.github.io/css/CSS3-Selector/#css----cascading-order) 에 따라 나중에 선언된 스타일이 우선 적용된다. 따라서 Media Query는 기술 순서에 의미가 있다. 만일 스마트폰 용 스타일을 태블릿 용 스타일 보다 먼저 기술하면 최종적으로 태블릿 용 스타일이 적용된다. 일반적으로 Mobile-first 방식은 해상도가 작은 순서로, Non Mobile-first 방식은 해상도 큰 순서로 기술한다.
 
-### 1.3.1 Responsive Navigation Bar - Tablet
+## 2.1 Responsive Navigation Bar - Tablet
 
 데스크탑 layout에서 화면이 작아질 때 header navigation bar가 header 영역 아래로 내려오는 현상이 발생하였다. 다음과 같이 태블릿에서의 layout을 정의한다.
 
@@ -340,7 +340,7 @@ viewport width가 800px 이하가 되면 header 영역을 2단(logo영역과 nav
 ![res-layout-practice-1](/img/res-layout-practice-1.png)
 {: style="max-width:500px; margin: 10px auto;"}
 
-### 1.3.2 Responsive Navigation Bar - Smartphone
+## 2.2 Responsive Navigation Bar - Smartphone
 
 태블릿 layout에서는 header 영역을 2단으로 분리하여 navigation bar는 header 하단 영역에 배치하였다. 하지만 스마트폰의 viewport width는 가로로 나란히 정렬되어 있는 navigation bar를 모두 담기에는 너무 좁다. 다음과 같이 스마트폰 layout을 정의한다.
 
@@ -891,7 +891,7 @@ navigation icon을 클릭하면 의도하지 않게 이미지가 선택되는 �
 </html>
 ```
 
-## 1.4 Section & Aside & Footer
+# 3. Section & Aside & Footer
 
 현재 article은 layout에 상관없이 1행에 1개씩 배치되었다. responsive web design의 효과를 좀더 체감하기 위하여 1행에 2열로 배치한다.
 

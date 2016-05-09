@@ -521,7 +521,7 @@ viewport 너비가 1200px 이상일 때 적용된다. 1200px 미만일 때는 me
 }
 ```
 
-viewport 너비가 768px 이상인 경우 요소에 지정된 두개의 클래스는 경합하게 된다. 이때 ***우선순위는 CSS 파일 내에서 후위에 지정된 css가 더 높다.*** 따라서 CSS 파일(bootstrap.css) 내에서 .col-xs-보다 후위에 정의된 col-sm-6가 적용되게 된다.
+viewport 너비가 768px 이상인 경우 요소에 지정된 두개의 클래스는 경합하게 된다. 이때 ***[우선순위](http://ungmo2.github.io/css/CSS3-Selector/#css----cascading-order)는 CSS 파일 내에서 후위에 지정된 css가 더 높다.*** 따라서 CSS 파일(bootstrap.css) 내에서 .col-xs-보다 후위에 정의된 col-sm-6가 적용되게 된다.
 
 ```html
 <!DOCTYPE html>

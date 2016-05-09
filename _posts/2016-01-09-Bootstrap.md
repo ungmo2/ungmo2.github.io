@@ -265,10 +265,7 @@ container(.container 또는 .container-fluid) 내에 `.row` class를 사용하�
 
 열은 행(.row) 내에 위치하여야 한다. `.col-*-*` class로 열을 생성하는데 첫번째 `*`에는 xs, sm, md, lg 중의 하나를 지정하고 두번째 `*`에는 1부터 12까지의 숫자 중의 하나를 지정한다.
 
-
-
-<h2 id="grid-options">Grid options</h2>
-<p>See how aspects of the Bootstrap grid system work across multiple devices with a handy table.</p>
+<h3 id="grid-options">Grid options</h2>
 <div class="table-responsive">
   <table class="table table-bordered table-striped">
     <thead>
@@ -323,10 +320,10 @@ container(.container 또는 .container-fluid) 내에 `.row` class를 사용하�
         <td>~81px</td>
         <td>~97px</td>
       </tr>
-      <tr>
+      <!-- <tr>
         <th class="text-nowrap" scope="row">Gutter width</th>
         <td colspan="4">30px (15px on each side of a column)</td>
-      </tr>
+      </tr> -->
       <tr>
         <th class="text-nowrap" scope="row">Nestable</th>
         <td colspan="4">Yes</td>
@@ -343,20 +340,6 @@ container(.container 또는 .container-fluid) 내에 `.row` class를 사용하�
   </table>
 </div>
 
-Grid options
-
-|                 | Extra small devicesPhones (<768px)             | prefix | breakpoint         |:----------------|:----------------|:------:|--------------------|:--------------
-| Grid behavior   |
-| Container width |
-| Class prefix    |
-| # of columns    |
-| Column width    |
-| Nestable        |
-| Offsets         |
-| Column ordering |
-
-
-
 
 | Device              | 구분             | prefix | breakpoint         | 동작
 |:--------------------|:----------------|:------:|--------------------|:--------------
@@ -366,12 +349,6 @@ Grid options
 | Large devices       | large desktops  | lg     | 1200px 이상         | 1200px보다 크면 적용
 
 
-| prefix | breakpoint         | 동작
-|:------:|--------------------|:--------------
-| xs     | 768px 미만 (default)| 항상 적용
-| sm     | 768px 이상          | 768px보다 크면 적용
-| md     | 992px 이상          | 992px보다 크면 적용
-| lg     | 1200px 이상         | 1200px보다 크면 적용
 
 ### 6.2.1 .col-xs-*
 

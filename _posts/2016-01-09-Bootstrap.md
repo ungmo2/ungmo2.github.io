@@ -273,27 +273,27 @@ container(.container 또는 .container-fluid) 내에 `.row` class를 사용하�
         <th></th>
         <th>
           Extra small devices
-          <small>Phones (&lt;768px)</small>
+          <small>Phones<br>(&lt;768px)</small>
         </th>
         <th>
           Small devices
-          <small>Tablets (&ge;768px)</small>
+          <small>Tablets<br>(&ge;768px)</small>
         </th>
         <th>
           Medium devices
-          <small>Desktops (&ge;992px)</small>
+          <small>Desktops<br>(&ge;992px)</small>
         </th>
         <th>
           Large devices
-          <small>Desktops (&ge;1200px)</small>
+          <small>Desktops<br>(&ge;1200px)</small>
         </th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <th class="text-nowrap" scope="row">Grid behavior</th>
-        <td>Horizontal at all times</td>
-        <td colspan="3">Collapsed to start, horizontal above breakpoints</td>
+        <td>항상 수평 적용</td>
+        <td colspan="3">breakpoint보다 크면 적용</td>
       </tr>
       <tr>
         <th class="text-nowrap" scope="row">Container width</th>

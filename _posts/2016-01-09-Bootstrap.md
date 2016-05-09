@@ -125,13 +125,6 @@ Bootstrap은 Mobile-first 방식을 기본 지원하므로 Media query에 포함
 
 기본적으로 4개의 breakpoint로 구간을 나눈다.
 
-| Device              | 구분             | prefix | breakpoint         | 동작
-|:--------------------|:----------------|:------:|--------------------|:--------------
-| Extra small devices | phones          | xs     | 768px 미만 (default)| 언제나 가로 정렬
-| Small devices       | tablets         | sm     | 768px 이상          | 768px보다 작아지면 stack
-| Medium devices      | desktops        | md     | 992px 이상          | 992px보다 작아지면 stack
-| Large devices       | large desktops  | lg     | 1200px 이상         | 1200px보다 작아지면 stack
-
 ```
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */
@@ -271,6 +264,107 @@ container(.container 또는 .container-fluid) 내에 `.row` class를 사용하�
 ## 6.2 열(`.col-*-*`)의 구성
 
 열은 행(.row) 내에 위치하여야 한다. `.col-*-*` class로 열을 생성하는데 첫번째 `*`에는 xs, sm, md, lg 중의 하나를 지정하고 두번째 `*`에는 1부터 12까지의 숫자 중의 하나를 지정한다.
+
+
+
+<h2 id="grid-options">Grid options</h2>
+<p>See how aspects of the Bootstrap grid system work across multiple devices with a handy table.</p>
+<div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th></th>
+        <th>
+          Extra small devices
+          <small>Phones (&lt;768px)</small>
+        </th>
+        <th>
+          Small devices
+          <small>Tablets (&ge;768px)</small>
+        </th>
+        <th>
+          Medium devices
+          <small>Desktops (&ge;992px)</small>
+        </th>
+        <th>
+          Large devices
+          <small>Desktops (&ge;1200px)</small>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th class="text-nowrap" scope="row">Grid behavior</th>
+        <td>Horizontal at all times</td>
+        <td colspan="3">Collapsed to start, horizontal above breakpoints</td>
+      </tr>
+      <tr>
+        <th class="text-nowrap" scope="row">Container width</th>
+        <td>None (auto)</td>
+        <td>750px</td>
+        <td>970px</td>
+        <td>1170px</td>
+      </tr>
+      <tr>
+        <th class="text-nowrap" scope="row">Class prefix</th>
+        <td><code>.col-xs-</code></td>
+        <td><code>.col-sm-</code></td>
+        <td><code>.col-md-</code></td>
+        <td><code>.col-lg-</code></td>
+      </tr>
+      <tr>
+        <th class="text-nowrap" scope="row"># of columns</th>
+        <td colspan="4">12</td>
+      </tr>
+      <tr>
+        <th class="text-nowrap" scope="row">Column width</th>
+        <td class="text-muted">Auto</td>
+        <td>~62px</td>
+        <td>~81px</td>
+        <td>~97px</td>
+      </tr>
+      <tr>
+        <th class="text-nowrap" scope="row">Gutter width</th>
+        <td colspan="4">30px (15px on each side of a column)</td>
+      </tr>
+      <tr>
+        <th class="text-nowrap" scope="row">Nestable</th>
+        <td colspan="4">Yes</td>
+      </tr>
+      <tr>
+        <th class="text-nowrap" scope="row">Offsets</th>
+        <td colspan="4">Yes</td>
+      </tr>
+      <tr>
+        <th class="text-nowrap" scope="row">Column ordering</th>
+        <td colspan="4">Yes</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+Grid options
+
+|                 | Extra small devicesPhones (<768px)             | prefix | breakpoint         |:----------------|:----------------|:------:|--------------------|:--------------
+| Grid behavior   |
+| Container width |
+| Class prefix    |
+| # of columns    |
+| Column width    |
+| Nestable        |
+| Offsets         |
+| Column ordering |
+
+
+
+
+| Device              | 구분             | prefix | breakpoint         | 동작
+|:--------------------|:----------------|:------:|--------------------|:--------------
+| Extra small devices | phones          | xs     | 768px 미만 (default)| 항상 적용
+| Small devices       | tablets         | sm     | 768px 이상          | 768px보다 크면 적용
+| Medium devices      | desktops        | md     | 992px 이상          | 992px보다 크면 적용
+| Large devices       | large desktops  | lg     | 1200px 이상         | 1200px보다 크면 적용
+
 
 | prefix | breakpoint         | 동작
 |:------:|--------------------|:--------------

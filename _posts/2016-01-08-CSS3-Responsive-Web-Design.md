@@ -189,7 +189,7 @@ orientation을 제외한 모든 속성은 min/max 접두사를 사용할 수 있
     <style>
       /* 801px ~ */
       * { color: black; }
-      /* 800~ px */
+      /* ~ 800px */
       @media screen and (max-width: 800px) {
         * { color: blue; }
       }

@@ -112,7 +112,7 @@ mycode.html
     <h1>My First Bootstrap Page</h1>
     <p>This is some text.</p>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="./bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>
 ```
@@ -240,11 +240,11 @@ fluid layout(유동 최대폭 레이아웃)을 만들 때 사용한다. viewport
 
 # 6. Grid system
 
-앞에서 설명한 .container와 .container-fluid는 모든 컨텐츠 요소를 포함하는 부모 요소로서 wrapping 요소(container)라고 부른다. container는 그리드 시스템을 위한 필수 사항이다.
+앞에서 설명한 .container와 .container-fluid는 모든 컨텐츠 요소를 포함하는 부모 요소로서 container 또는 wrapping 요소라고 부른다. container는 그리드 시스템을 위한 필수 사항이다.
 
-그리드 시스템은 열을 나누어 컨텐츠를 원하는 위치에 배치하는 방법을 말한다. Bootstrap은 반응형 12열 그리드 시스템을 제공한다. 반드시 `.row`(행)를 먼저 구성하며 행 안에 `.col-*-*`(열)을 필요한 갯수만큼 포함시킨다.
+그리드 시스템은 열을 나누어 컨텐츠를 원하는 위치에 배치하는 방법을 말한다. Bootstrap은 반응형 12열 그리드 시스템을 제공한다.
 
-즉 container 내에 `.row`(행)이 위치하고 그 안에 `.col-*-*`(열)이 위치하게 된다.
+그리드 레이아웃을 구성하려면 반드시 `.row`(행)를 먼저 구성하며 행 안에 `.col-*-*`(열)을 필요한 갯수만큼 포함시킨다. 즉 container 내에 `.row`(행)이 위치하고 그 안에 `.col-*-*`(열)이 위치하게 된다.
 
 ## 6.1 행(.row)의 구성
 
@@ -621,192 +621,54 @@ breakpoint에 따른 Class prefix가 지정되어 있지 않다면 하위 Class 
 
 ## 6.4 Nesting columns
 
+열 내부에 그리드를 추가하면 자식 그리드의 전체 너비는 부모 열의 너비와 같다.
 
+```html
+<div class="row">
+  <div class="col-sm-9">
+    Level 1: .col-sm-9
+    <div class="row">
+      <div class="col-xs-8 col-sm-6">
+        Level 2: .col-xs-8 .col-sm-6
+      </div>
+      <div class="col-xs-4 col-sm-6">
+        Level 2: .col-xs-4 .col-sm-6
+      </div>
+    </div>
+  </div>
+</div>
+```
 
 ## 6.5 Offsetting columns
 
+열에 `.col-*-offset-*` 클래스를 추가하면 오른쪽으로 열을 이동시킬 수 있다.
 
+예를 들어 `<div class="col-md-2 col-md-offset-4">`의 경우, viewport 너비가 992px 이상이면 .col-md-4 만큼 오른쪽으로 이동한 후 .col-md-2 만큼의 너비를 갖는 열을 표시한다.
+
+```html
+<div class="row">
+  <div class="col-md-4">.col-md-4</div>
+  <div class="col-md-4 col-md-offset-4">.col-md-4 .col-md-offset-4</div>
+</div>
+<div class="row">
+  <div class="col-md-3 col-md-offset-3">.col-md-3 .col-md-offset-3</div>
+  <div class="col-md-3 col-md-offset-3">.col-md-3 .col-md-offset-3</div>
+</div>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">.col-md-6 .col-md-offset-3</div>
+</div>
+```
 
 ## 6.6 Column ordering
 
-
-
+`.col-*-push-*` 와 `.col-*-pull-*` 클래스를 사용하여 열의 순서를 변경할 수 있다.
 
 ```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
-    <style>
-      .show-viewport-width {
-        position: fixed;
-        top: 0; right: 0;
-        z-index: 1000;
-        margin: 5px; padding: 5px;
-        background: rgba(255,255,255,0.5);
-      }
-      .row {
-        margin-bottom: 10px;
-      }
-      [class*="col-"] {
-        background: #2db34a;
-        border: 1px solid #eaeaed;
-        height: 50px;
-        font-size: .8em;
-        line-height: 50px;
-        text-align: center;
-        color: white;
-        font-weight: 700;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="show-viewport-width"></div>
-    <div class="container">
-      <h4>col-lg-*: 1200px 이상</h4>
-      <div class="row">
-        <div class="col-lg-1">col-lg-1</div>
-        <div class="col-lg-1">col-lg-1</div>
-        <div class="col-lg-1">col-lg-1</div>
-        <div class="col-lg-1">col-lg-1</div>
-        <div class="col-lg-1">col-lg-1</div>
-        <div class="col-lg-1">col-lg-1</div>
-        <div class="col-lg-1">col-lg-1</div>
-        <div class="col-lg-1">col-lg-1</div>
-        <div class="col-lg-1">col-lg-1</div>
-        <div class="col-lg-1">col-lg-1</div>
-        <div class="col-lg-1">col-lg-1</div>
-        <div class="col-lg-1">col-lg-1</div>
-      </div>
-      <div class="row">
-        <div class="col-lg-3">col-lg-3</div>
-        <div class="col-lg-6">col-lg-6</div>
-        <div class="col-lg-3">col-lg-3</div>
-      </div><hr>
-
-      <h4>col-md-*: 992px 이상</h4>
-      <div class="row">
-        <div class="col-md-1">col-md-1</div>
-        <div class="col-md-1">col-md-1</div>
-        <div class="col-md-1">col-md-1</div>
-        <div class="col-md-1">col-md-1</div>
-        <div class="col-md-1">col-md-1</div>
-        <div class="col-md-1">col-md-1</div>
-        <div class="col-md-1">col-md-1</div>
-        <div class="col-md-1">col-md-1</div>
-        <div class="col-md-1">col-md-1</div>
-        <div class="col-md-1">col-md-1</div>
-        <div class="col-md-1">col-md-1</div>
-        <div class="col-md-1">col-md-1</div>
-      </div>
-      <div class="row">
-        <div class="col-md-3">col-md-3</div>
-        <div class="col-md-9">col-md-9</div>
-      </div><hr>
-
-      <h4>col-sm-*: 768px 이상</h4>
-      <div class="row">
-        <div class="col-sm-1">sm-1</div>
-        <div class="col-sm-1">sm-1</div>
-        <div class="col-sm-1">sm-1</div>
-        <div class="col-sm-1">sm-1</div>
-        <div class="col-sm-1">sm-1</div>
-        <div class="col-sm-1">sm-1</div>
-        <div class="col-sm-1">sm-1</div>
-        <div class="col-sm-1">sm-1</div>
-        <div class="col-sm-1">sm-1</div>
-        <div class="col-sm-1">sm-1</div>
-        <div class="col-sm-1">sm-1</div>
-        <div class="col-sm-1">sm-1</div>
-      </div>
-      <div class="row">
-        <div class="col-sm-4">col-sm-4</div>
-        <div class="col-sm-4">col-sm-4</div>
-        <div class="col-sm-4">col-sm-4</div>
-      </div><hr>
-
-      <h4>col-xs-*: 768px 미만</h4>
-      <div class="row">
-        <div class="col-xs-1">xs-1</div>
-        <div class="col-xs-1">xs-1</div>
-        <div class="col-xs-1">xs-1</div>
-        <div class="col-xs-1">xs-1</div>
-        <div class="col-xs-1">xs-1</div>
-        <div class="col-xs-1">xs-1</div>
-        <div class="col-xs-1">xs-1</div>
-        <div class="col-xs-1">xs-1</div>
-        <div class="col-xs-1">xs-1</div>
-        <div class="col-xs-1">xs-1</div>
-        <div class="col-xs-1">xs-1</div>
-        <div class="col-xs-1">xs-1</div>
-      </div>
-      <div class="row">
-        <div class="col-xs-5">xs-5</div>
-        <div class="col-xs-4">xs-4</div>
-        <div class="col-xs-1">xs-1</div>
-        <div class="col-xs-1">xs-1</div>
-        <div class="col-xs-1">xs-1</div>
-      </div><hr>
-
-      <h4>Mixed: smartphone(768px 미만) 3:9, tablet(768px 이상) 4:8</h4>
-      <div class="row">
-        <div class="col-xs-3 col-sm-4">col-xs-3 col-sm-4</div>
-        <div class="col-xs-9 col-sm-8">col-xs-9 col-sm-8</div>
-      </div><hr>
-
-      <h4>Mixed: smartphone(768px 미만) stack, tablet(768px 이상) 4:8, desktop(992px 이상) 3:9</h4>
-      <div class="row">
-        <div class="col-sm-4 col-md-3">col-sm-4 col-md-3</div>
-        <div class="col-sm-8 col-md-9">col-sm-8 col-md-9</div>
-      </div>
-
-<!-- ******* -->
-      <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-8">.col-xs-12 .col-sm-6 .col-md-8</div>
-        <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
-      </div>
-      <div class="row">
-        <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
-        <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
-        <!-- Optional: clear the XS cols if their content doesn't match in height -->
-        <div class="clearfix visible-xs-block"></div>
-        <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
-      </div>
-<!-- ******* -->
-
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script>
-      $(document).ready(function(){
-        showViewportWidth();
-        $(window).on('resize orientationChange', function(event) {
-          showViewportWidth();
-        });
-        function showViewportWidth() {
-          var width = $(window).width();
-          $(".show-viewport-width").text( "width : " + width + "px" );
-        }
-      });
-    </script>
-  </body>
-</html>
+<div class="row">
+  <div class="col-md-9 col-md-push-3">.col-md-9 .col-md-push-3</div>
+  <div class="col-md-3 col-md-pull-9">.col-md-3 .col-md-pull-9</div>
+</div>
 ```
-
-
-
-부트스트랩의 장점 중 하나는 반응형 웹 디자인이 쉽게 만들어진다는 점이다
-
-
-CSS 전처리기(pre-processor)
-"Sass(Syntactically Awesome Stylesheets)는 CSS 상위에 있는 메타언어(meta-language)로 보다 간결하고 격식을 갖춘 CSS 문법을 사용합니다
-
-
-스프라이트 이미지 (sprite image)
-
-페이지의 로딩 속도를 감소시켜주는 방법 중 하나이다. 자주 쓰는 이미지들을 쓸 때마다 각각 로딩하는 것이 아니라 하나의 이미지파일로 작성한 후 좌표값을 사용하여 필요한 이미지를 로딩하는 방식이다. 하나의 이미지로 만들기 때문에 관기가 쉽고 여러번 로딩할 필요가 없고 중복되는 이미지를 로딩하지 않기 때문에 트래픽이 감소되는 효과가 있다.
-
 
 # Reference
 

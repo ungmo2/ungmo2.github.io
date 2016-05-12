@@ -298,26 +298,55 @@ Javascript는 프로그램 전체의 영역에서 공통적으로 필요한 기�
 
 ### 4.1.1 Object  
 
-[객체 생성자(Object constructor)](http://ungmo2.github.io/javascript/Javascript-Object/)는 객체 레퍼(wrapper)를 생성한다. 만약 생성자 인수값이 null이거나 undefined이면 빈 객체가 반환되고 그렇지 않은 경우 생성자 인수값에 따라 강제 형변환된 객체가 반환된다.
-
-객체 생성 시 특수한 상황이 아니라면 객체리터럴 방식을 사용하는 것이 일반적이다.
+[객체 생성자(Object constructor)](http://ungmo2.github.io/javascript/Javascript-Object/)는 레퍼(wrapper) 객체를 생성한다. 만약 생성자 인수값이 null이거나 undefined이면 빈 객체를 반환한다. 객체 생성 시 특수한 상황이 아니라면 객체리터럴 방식을 사용하는 것이 일반적이다.
 
 ```javascript
 // 변수 o에 빈 객체를 저장한다
 var o = new Object();
-var o = new Object(undefined);
-var o = new Object(null);
+console.log(typeof o + ': ', o);
+
+o = new Object(undefined);
+console.log(typeof o + ': ', o);
+
+o = new Object(null);
+console.log(typeof o + ': ', o);
 
 // 객체리터럴을 사용하는 것이 바람직하다.
 var o = {};
+```
 
-// 변수 o에 Boolean 객체를 저장한다.
-var o = new Object(true); // var o = new Boolean(true);과 동치이다
+그 이외의 경우 생성자 함수의 인수값에 따라 강제 형변환된 객체가 반환된다. 이때 반환된 객체의 [[prototype]]프로퍼티에 바인딩된 객체는 Object.prototype이 아니다.
+
+```javascript
+// String 객체를 반환한다
+// var o = new String('String');과 동치이다
+var obj = new Object('String');
+console.log(typeof obj + ': ', obj);
+console.dir(obj);
+
+var strObj = new String('String');
+console.log(typeof strObj + ': ', strObj);
+
+// Number 객체를 반환한다
+// var o = new Number(123);과 동치이다
+var obj = new Object(123);
+console.log(typeof obj + ': ', obj);
+
+var numObj = new Number(123);
+console.log(typeof numObj + ': ', numObj);
+
+// Boolean 객체를 반환한다.
+// var o = new Boolean(true);과 동치이다
+var obj = new Object(true);
+console.log(typeof obj + ': ', obj);
+
+var boolObj = new Boolean(123);
+console.log(typeof boolObj + ': ', boolObj);
 ```
 
 ### 4.1.2 Function
 
-JavaScript의 모든 함수는 Function 객체이다. 다른 모든 객체들처럼 Function 객체는 new 연산자을 사용해 생성할 수 있다.
+자바스크립트의 모든 함수는 Function 객체이다. 다른 모든 객체들처럼 Function 객체는 new 연산자을 사용해 생성할 수 있다.
 
 ```javascript
 var adder = new Function('a', 'b', 'return a + b');
@@ -327,7 +356,7 @@ adder(2, 6);  // 8
 
 ### 4.1.3 Boolean
 
-Boolean 객체는 기본자료형 boolean을 위한 객체 레퍼(wrapper)를 생성한다.
+Boolean 객체는 기본자료형 boolean을 위한 레퍼(wrapper) 객체이다. Boolean 생성자 함수로 Boolean 객체를 생성할 수 있다.
 
 ```javascript
 var foo = new Boolean(true);    // true
@@ -347,7 +376,7 @@ if (x) { // x는 객체로서 존재한다. 따라서 참으로 간주된다.
 
 ### 4.1.3 Symbol
 
-Symbol은 ECMAScript 6(Javascript 2015) 에서 추가된 유일하고 변경 불가능한(immutable) 기본자료형으로 Symbol 객체는 기본자료형 Symbol을 위한 객체 레퍼(wrapper)를 생성한다.
+Symbol은 ECMAScript 6(Javascript 2015) 에서 추가된 유일하고 변경 불가능한(immutable) 기본자료형으로 Symbol 객체는 기본자료형 Symbol을 위한 레퍼(wrapper) 객체를 생성한다.
 
 ### 4.1.4 Error
 
@@ -426,9 +455,11 @@ Error 이외에 Error에 관련한 객체는 아래와 같다.
 ### 4.6.2 DataView
 ### 4.6.3 JSON
 
-# 5. 기본자료형과 Standard Built-in Object
+# 5. 기본자료형과 래퍼객체(Wrapper Object)
 
-앞서 살펴본 바와 같이 각 Standard Built-in Object는 각자의 메서드를 가진다. 그런데 기본자료형의 값에 대해 Standard Built-in Object의 메서드를 호출하면 정상적으로 작동한다.
+앞서 살펴본 바와 같이 각 Standard Built-in Object는 각자의 프로퍼티와 메서드를 가진다. 정적(static) 프로퍼티, 메서드는 해당 인스턴스를 생성하지 않아도 사용할 수 있고 prototype에 속해있는 메소드는 해당 prototype을 상속받은 인스턴스가 있어야만 사용할 수 있다.
+
+그런데 기본자료형의 값에 대해 Standard Built-in Object의 메서드를 호출하면 정상적으로 작동한다.
 
 ```javascript
 var str1 = "Hello ";
@@ -441,7 +472,11 @@ var num = 1.5;
 console.log(num.toFixed()); // 2
 ```
 
-이는 기본자료형의 값에 대해 Standard Built-in Object의 메서드를 호출할 때, 기본자료형의 값은 객체로 변환되고 각 타입별 Standard Built-in Object의 메서드가 호출되기에 가능한 것이다. 그리고 메서드 호출이 종료되면 객체로 변환된 기본자료형의 값은 다시 기본자료형의 값으로 복귀한다.
+이는 기본자료형의 값에 대해 Standard Built-in Object의 메서드를 호출할 때, ***기본자료형의 값은 연관된 객체(Wrapper 객체)로 일시 변환*** 되기 때문에 가능한 것이다. 그리고 메서드 호출이 종료되면 객체로 변환된 기본자료형의 값은 다시 기본자료형의 값으로 복귀한다.
+
+자세한 내용은 [Prototype: 4.기본자료형(Primitive data type)의 확장](http://ungmo2.github.io/javascript/Javascript-Prototype/#primitive-data-type-)을 참조 바란다.
+
+Wrapper 객체는 String, Number, Boolean이 있다.
 
 # Reference
 

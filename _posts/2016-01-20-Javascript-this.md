@@ -332,11 +332,14 @@ console.log(window.name); // Lee
 
 이러한 위험성을 회피하기 위해 사용되는 패턴은 다음과 같다. 이 패턴은 대부분의 라이브러리에서 광범위하게 사용된다.
 
+생성자 함수 내부의 this는 생성자 함수에 의해 생성된 인스턴스를 가리킨다. 따라서 아래 A 함수가 new 연산자와 함께 생성자 함수로 호출되면 A 함수 내부의 this는 A 생성자 함수에 의해 생성된 인스턴스를 가리킨다.
+
 ```javascript
 function A(arg) {
-  // this가 호출된 함수(arguments.callee)의 인스턴스가 아니면
-  // new 연산자를 사용하지 않은 것이므로
-  // 이 경우 new와 함께 생성자 함수를 호출하여 인스턴스를 반환한다.
+  /*
+  this가 호출된 함수(arguments.callee, 본 예제의 경우 A)의 인스턴스가 아니면 new 연산자를 사용하지 않은 것이므로 이 경우 new와 함께 생성자 함수를 호출하여 인스턴스를 반환한다.
+  arguments.callee는 호출된 함수의 이름을 나타낸다. 이 예제의 경우 A로 표기하여도 문제없이 동작하지만 특정함수의 이름과 의존성을 없애기 위해서 arguments.callee를 사용하는 것이 좋다.
+  */
   if(!(this instanceof arguments.callee))
     return new arguments.callee(arg);
   this.value = arg ? arg : 0;

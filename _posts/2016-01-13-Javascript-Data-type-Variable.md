@@ -12,12 +12,6 @@ tags: []
 
 모든 프로그래밍 언어의 학습은 Data Type(자료형)을 파악하는 것으로부터 시작된다.
 
-
-
-
-
-
-
 자료형은 프로그래밍 언어에서 객체, 정수, 불린 자료형 등 여러 종류의 데이터를 식별하는 분류를 말한다. 최신 ECMAScript 표준(ECMAScript 2015 (6th Edition, ECMA-262) / 2015.06)은 7개의 data type을 정의한다
 
 * 기본 자료형 (primitive data type)
@@ -29,11 +23,11 @@ tags: []
   * `Symbol` (New in ECMAScript 6)
 * `Object`
 
-Javascript의 자료형은 크게 기본 자료형(primitive data type)과 Object(객체형, 참조형)으로 가분할 수 있다.
+Javascript의 자료형은 크게 기본 자료형(primitive data type)과 Object(객체형, 참조형)으로 구분할 수 있다.
 
 ## 1.1 Primitive Data Type (기본자료형)
 
-기본자료형(Primitive data type)의 값은 변경 불가능한 값(immutable value)이다. 또한 이들은 `pass-by-value`이다.
+기본자료형(Primitive data type)의 값은 변경 불가능한 값(immutable value)이다. 또한 이들은 [`pass-by-value`](http://ungmo2.github.io/javascript/Javascript-Object/#pass-by-value)이다.
 
 ### 1.1.1 Boolean
 
@@ -273,43 +267,3 @@ console.log(typeof foo);  // string
 foo = true;                  
 console.log(typeof foo);  // boolean
 ```
-<!--
-# 4. Pass-by-value
-
-```javascript
-// Pass-by-value
-var a = 1;
-var b = a;
-
-console.log(a, b);    // 1  1
-console.log(a === b); // true
-
-a = 10;
-console.log(a, b);    // 1  10
-console.log(a === b); // false
-```
-
-변수 a는 기본료형인 number type의 1을 저장하고 있다. 기본자료형의 경우 값이 복사되어 변수에 저장된다. 즉 참조형으로 저장되는 것이 아니라 값 자체가 저장되게 된다. 변수 b에 변수 a를 대입할 경우, 변수 a의 값 1은 복사되어 변수 b에 저장된다.
-
-# 5. Immutability in JavaScript
-
-Immutability (변경불가성)은 함수형 프로그래밍의 핵심 원리이다. 뿐만 아니라, 객체 지향 프로그램을 위한 기능을 제공하고 있다
-
-`object` type을 제외한 모든 data type은 한번 정해지면 변경이 불가능한 값 (immutable value)이다.
-C 언어와는 다르게도, 문자열은 변경 불가능한 값 (immutable) 이다. 이런 값을 "primitive values" 라 한다. 
-(변경이 불가능하다는 뜻은 메모리 영역에서의 변경이 불가능하다는 뜻이다. 재할당은 가능하다)
-
-```javascript
-var statement = "I am an immutable value"; // String is an immutable value
-var otherStr = statement.slice(8, 17);     // “immutable”
-console.log(statement);                    
-```
-
-2행에서 Stirng 객체의 slice 메서드는 statement 변수에 저장된 문자열을 변경하는 것이 아니라 사실은 새로운 문자열을 생성하여 반환하고 있다. 그 이유는 문자열은 변경할 수 없는 immutable value이기 때문이다.
-
-```javascript
-var arr = [];
-var v2 = arr.push(2);
-```
-
-상기 예제에서 v2의 값은 무엇인가? 문자열의 예와 같이 배열이 동작한다면 v2는 새로운 배열(하나의 요소를 가지고 그 값은 2인)을 가지게 될 것이다. 그러나 객체인 arr은 push 메서드에 의해 update되고 v2에는 배열의 새로운 `length` 값이 반환된다. ([Passing by Reference](http://ungmo2.github.io/javascript/Javascript-Object/#pass-by-reference) 참고) -->

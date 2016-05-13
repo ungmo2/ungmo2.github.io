@@ -12,9 +12,13 @@ tags: []
 
 모든 프로그래밍 언어의 학습은 Data Type(자료형)을 파악하는 것으로부터 시작된다.
 
-자료형은 프로그래밍 언어에서 객체, 정수, 불린 자료형 등 여러 종류의 데이터를 식별하는 분류를 말한다.
 
-최신 ECMAScript 표준(ECMAScript 2015 (6th Edition, ECMA-262) / 2015.06)은 7개의 data type을 정의한다
+
+
+
+
+
+자료형은 프로그래밍 언어에서 객체, 정수, 불린 자료형 등 여러 종류의 데이터를 식별하는 분류를 말한다. 최신 ECMAScript 표준(ECMAScript 2015 (6th Edition, ECMA-262) / 2015.06)은 7개의 data type을 정의한다
 
 * 기본 자료형 (primitive data type)
   * `Boolean`
@@ -211,7 +215,26 @@ console.log(y); // throws ReferenceError exception
 
 # 3. Dynamic Type (동적 타입)
 
-C-family language은 변수를 선언할 때 미리 data type(자료형)을 정하고 data type에 맞는 값을 대입(할당)하여야한다. (statically typed languages)
+프로그래밍은 변수를 통해 값을 저장하고 참조하며 연산자로 값을 연산, 평가하고 조건문과 반복문에 의한 흐름제어로 데이터의 흐름을 제어하고 함수로 구문의 집합을 만들며 객체, 배열 등으로 자료를 구조화하는 것이다.
+
+변수는 위치(주소)를 기억하는 저장소이다. 위치(주소)란 메모리 상의 주소(address)를 의미한다. 즉 변수란 메모리 주소(Memory address)에 접근하기 위해 사람이 이해할 수 있는 언어로 지정한 식별자(identifier)이다.
+
+![memory_address](/img/memory_address.png)
+{: style="max-width:500px; margin:10px auto;"}
+
+변수(memory address에 접근하기 위한 식별자)를 통해 메모리에 값을 저장하기 위해서는 우선 필요한 저장 단위(byte)를 알아야한다. 이는 값의 종류(데이터의 종류 = 자료형)에 따라 필요한 메모리의 크기가 다르기 때문이다.
+
+C나 Java같은 언어는 변수 선언 시 변수에 저장할 값의 종류에 따라 사전에 자료형을 지정해 주어야 한다.
+
+```C
+int num; // 4byte
+```
+
+![int num](/img/int_num.png)
+{: style="max-width:400px; margin:10px auto;"}
+
+
+또한 자료형에 맞는 값을 대입(할당)하여야한다. (statically typed languages)
 
 ```c
 int main(void) {

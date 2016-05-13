@@ -220,18 +220,18 @@ console.log(y); // throws ReferenceError exception
 변수는 위치(주소)를 기억하는 저장소이다. 위치(주소)란 메모리 상의 주소(address)를 의미한다. 즉 변수란 메모리 주소(Memory address)에 접근하기 위해 사람이 이해할 수 있는 언어로 지정한 식별자(identifier)이다.
 
 ![memory_address](/img/memory_address.png)
-{: style="max-width:500px; margin:10px auto;"}
+{: style="max-width:600px; margin:10px auto;"}
 
 변수(memory address에 접근하기 위한 식별자)를 통해 메모리에 값을 저장하기 위해서는 우선 필요한 저장 단위(byte)를 알아야한다. 이는 값의 종류(데이터의 종류 = 자료형)에 따라 필요한 메모리의 크기가 다르기 때문이다.
 
 C나 Java같은 언어는 변수 선언 시 변수에 저장할 값의 종류에 따라 사전에 자료형을 지정해 주어야 한다.
 
 ```c
-int num; // 4byte
+int num; // 4byte 정수형
 ```
 
 ![int num](/img/int_num.png)
-{: style="max-width:400px; margin:10px auto;"}
+{: style="max-width:550px; margin:10px auto;"}
 
 
 또한 자료형에 맞는 값을 대입(할당)하여야한다. (statically typed languages)

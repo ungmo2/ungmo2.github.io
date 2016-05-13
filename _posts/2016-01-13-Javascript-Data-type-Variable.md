@@ -226,7 +226,7 @@ console.log(y); // throws ReferenceError exception
 
 C나 Java같은 언어는 변수 선언 시 변수에 저장할 값의 종류에 따라 사전에 자료형을 지정해 주어야 한다.
 
-```C
+```c
 int num; // 4byte
 ```
 

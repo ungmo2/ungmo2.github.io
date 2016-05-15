@@ -217,10 +217,12 @@ foo 객체의 프로토타입 객체 Person.prototype 객체와 Person() 생성�
 ```javascript
 var str = 'test';
 console.log(typeof str);
+console.log(str.constructor === String);
 console.dir(str);
 
 var strObj = new String('test');
 console.log(typeof strObj);
+console.log(strObj.constructor === String);
 console.dir(strObj);
 
 console.log(str.toUpperCase());

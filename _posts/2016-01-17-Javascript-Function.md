@@ -441,7 +441,7 @@ console.log(anonymousFunc.name); // ''
 
 ## 6.5 `__proto__` 속성  
 
-ECMAScript spec에서는 **모든 객체는 자신의 프로토타입을 가리키는 `[[Prototype]]`이라는 숨겨진 프로퍼티를 가진다** 라고 되어있다. 크롬, 파이어폭스 등에서는 숨겨진 [[Prototype]] 속성이 `__proto__` 속성으로 구현되어 있다. 즉 `__proto__`과 [[Prototype]]은 같은 개념이다.
+ECMAScript spec에서는 ***모든 객체는 자신의 프로토타입을 가리키는 `[[Prototype]]`이라는 숨겨진 프로퍼티를 가진다*** 라고 되어있다. 크롬, 파이어폭스 등에서는 숨겨진 [[Prototype]] 속성이 `__proto__` 속성으로 구현되어 있다. 즉 `__proto__`과 [[Prototype]]은 같은 개념이다.
 
 ```javascript
 function square(number) {
@@ -459,17 +459,17 @@ square() 함수 역시 객체이므로 [[Prototype]] 속성(`__proto__` 속성)�
 
 함수 객체만이 가지고 있는 속성으로 자바스크립트 객체지향의 근간이다.
 
-<b style="text-decoration:underline">모든 함수 객체는 prototype 속성을 갖는다. 주의해야 할 것은 prototype 속성은 프로토타입 객체를 가리키는 [[Prototype]] 속성(`__proto__` 속성)과는 다르다는 것이다.</b>
+***모든 함수 객체는 prototype 속성을 갖는다. 주의해야 할 것은 prototype 속성은 프로토타입 객체를 가리키는 [[Prototype]] 속성(`__proto__` 속성)과는 다르다는 것이다.***
 
 prototype 속성과 [[Prototype]] 속성은 모두 프로토타입 객체를 가리키지만 관점의 차이가 있다.
 
 - [[Prototype]] 속성  
   - 모든 객체가 가지고 있는 속성이다.
-  - <b style="text-decoration:underline">객체의 입장에서 자신의 부모 역할을 하는 프로토타입 객체을 가리키며 함수 객체의 경우 `Function.prototype`를 가리킨다.</b>
+  - ***객체의 입장에서 자신의 부모 역할을 하는 프로토타입 객체을 가리키며 함수 객체의 경우 `Function.prototype`를 가리킨다.***
 
 - prototype 속성  
   - 함수 객체만 가지고 있는 속성이다.
-  - <b style="text-decoration:underline">함수 객체가 생성자로 사용될 때 이 함수를 통해 생성된 객체의 부모 역할을 하는 객체를 가리킨다.</b>
+  - ***함수 객체가 생성자로 사용될 때 이 함수를 통해 생성된 객체의 부모 역할을 하는 객체를 가리킨다.***
   - 함수가 생성될 때 만들어 지며 `constructor` 속성을 가지는 객체를 가리킨다. 이 `constructor` 속성은 함수 객체 자신을 가리킨다.
 
   ```javascript
@@ -481,16 +481,16 @@ prototype 속성과 [[Prototype]] 속성은 모두 프로토타입 객체를 가
   console.dir(square.__proto__);
   console.dir(square.prototype);
 
-  console.log(square.__proto__ === Function.prototype); // true
+  console.log(square.__proto__ === Function.prototype); // true ①
   console.log(square.__proto__ === square.prototype);   // false
-  console.log(square.prototype.constructor === square); // true
+  console.log(square.prototype.constructor === square); // true ②
   console.log(square.__proto__.constructor === square.prototype.constructor); // false
   ```
 
   ![function property](/img/function_prototype.png)
   {: style="max-width:550px; margin:10px auto;"}
 
-**`[[Prototype]]`(`__proto__`) 속성은 함수 객체의 부모 객체(Function.prototype)를 가리키며 prototype 속성은 함수객체가 생성자 함수로 사용되어 객체를 생성할 때 생성된 객체의 부모 객체 역할을 하는 객체를 가리킨다.**
+***`[[Prototype]]`(`__proto__`) 속성은 함수 객체의 부모 객체(Function.prototype)를 가리키며 prototype 속성은 함수객체가 생성자 함수로 사용되어 객체를 생성할 때 생성된 객체의 부모 객체 역할을 하는 객체를 가리킨다.***
 
 # 7. 함수의 다양한 형태
 

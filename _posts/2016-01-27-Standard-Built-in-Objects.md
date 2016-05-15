@@ -462,11 +462,9 @@ Error 이외에 Error에 관련한 객체는 아래와 같다.
 그런데 기본자료형의 값에 대해 Standard Built-in Object의 메서드를 호출하면 정상적으로 작동한다.
 
 ```javascript
-var str1 = "Hello ";
-var str2 = "world!";
-var res = str1.concat(str2);
-
-console.log(res); // 'Hello world!'
+var str = "Hello world!";
+var res = str.toUpperCase();
+console.log(res); // 'HELLO WORLD!'
 
 var num = 1.5;
 console.log(num.toFixed()); // 2

@@ -161,7 +161,7 @@ rem은 최상위 요소(html)의 폰트 사이즈를 기준으로 삼는다. rem
       font-size: 14px;
     }
     div {
-      font-size: 1.2rem; /* html font-size:14px * 1.2 = 16.8px */;
+      font-size: 1.2rem; /* html font-size:14px * 1.2 = 16.8px */
       font-weight: bold;
       padding: 2em;     /* 14px * 2 = 28px */
       text-align: center;
@@ -189,7 +189,7 @@ rem은 최상위 요소(html)의 폰트 사이즈를 기준으로 삼는다. rem
 
 ```css
 .container {
-  width: 70rem; // 70 * 14px = 980px
+  width: 70rem; /* 14px * 70rem = 980px */
 }
 ```
 

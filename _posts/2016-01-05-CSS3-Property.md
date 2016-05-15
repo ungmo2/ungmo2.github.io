@@ -19,60 +19,212 @@ CSS 속성값은 키워드, 크기 단위, 색상 표현 단위 등의 특정 �
 
 cm, mm, inch 등의 단위도 존재하나 대표적인 크기 단위는 다음과 같다. px은 절대값이고 em, %는 상대값이 된다.
 
-| 단위        | Description                          |
-|:-----------|:-------------------------------------|
-| px         | 픽셀(화소) 단위. 디바이스 해상도에 따라 상대적인 크기를 갖는다. 1px은 화소 1개 크기를 의미한다. 요소의 크기나 이미지의 크기 지정에 주로 사용된다. (절대단위)
-| em         | 배수 단위. 요소에 지정된(부모요소에 지정된 사이즈나 디폴트 사이즈) font 사이즈 단위이다. 1em은 지정 폰트 사이즈와 같고 2em은 지정 폰트 사이즈의 2배이다. 폰트 사이즈 설정에 사용하면 상대적인 설정이 가능하여 편리하다. (상대단위)
-| %          | 백분률 단위 (상대단위)
-
 대부분 브라우저의 폰트 사이즈 기본값은 16px, 1em, 100%이다. 속성값이 0인 경우, 단위를 지정하지 않아도 된다.
+
+### 1.2.1 px
+
+픽셀(화소) 단위. 1px은 화소 1개 크기를 의미한다. 디바이스 해상도(resolution)에 따라 상대적인 크기를 갖는다.
+
+22인치 LCD 모니터의 경우 해상도가 1680 * 1050 인데 이것은 가로에 1680개의 픽셀, 세로에 1050개의 픽셀을 가진다는 의미이다.
+
+요소의 크기나 이미지의 크기 지정에 주로 사용된다. (절대단위)
 
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      #px > :nth-child(1) { }
-      #px > :nth-child(2) { font-size: 16px; }
-      #px > :nth-child(3) { font-size: 24px; }
-      #px > :nth-child(4) { font-size: 32px; }
+<head>
+  <style>
+    body {
+      text-align: center;
+    }
+    div {
+      font-size: 14px;
+      font-weight: bold;
+      padding: 2em; /* 14px * 2 = 28px */
+      background-color:rgba(255,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+  <div>14px</div>
+</body>
+</html>
+```
 
-      #em > :nth-child(1) { }
-      #em > :nth-child(2) { font-size: 1.0em; }
-      #em > :nth-child(3) { font-size: 1.5em; }
-      #em > :nth-child(4) { font-size: 2.0em; }
+### 1.2.2 %
 
-      #percent > :nth-child(1) { }
-      #percent > :nth-child(2) { font-size: 100%; }
-      #percent > :nth-child(3) { font-size: 150%; }
-      #percent > :nth-child(4) { font-size: 200%; }
-    </style>
-  </head>
-  <body>
-    <h1>px uint</h1>
-    <div id="px">
-      <p>This is a paragraph</p>
-      <p>This is a paragraph</p>
-      <p>This is a paragraph</p>
-      <p>This is a paragraph</p>
+백분률 단위. 요소에 지정된 폰트 사이즈(부모 요소에 지정된 사이즈나 디폴트 사이즈)에 상대적인 폰트 사이즈를 설정한다.(상대단위)
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-size: 14px;
+      text-align: center;
+    }
+    div {
+      font-size: 120%; /* 14px * 1.2 = 16.8px */;
+      font-weight: bold;
+      padding: 2em;     /* 14px * 2 = 28px */
+      background-color:rgba(255,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+  <div>14px * 120% → 16.8px</div>
+</body>
+</html>
+```
+
+### 1.2.3 em
+
+배수 단위. 요소에 지정된 폰트 사이즈(부모 요소에 지정된 사이즈나 디폴트 사이즈)에 상대적인 폰트 사이즈를 설정한다.
+
+예를 들어 1em은 요소에 지정된 폰트 사이즈와 같고 2em은 요소에 지정된 폰트 사이즈의 2배이다.
+
+폰트 사이즈 설정이나 컨탠츠를 포함하는 컨테이너의 크기 설정에 사용하면 상대적인 설정이 가능하여 편리하다. (상대단위)
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-size: 14px;
+      text-align: center;
+    }
+    div {
+      font-size: 1.2em; /* 14px * 1.2 = 16.8px */;
+      font-weight: bold;
+      padding: 2em;     /* 14px * 2 = 28px */
+      background-color:rgba(255,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+  <div>14px * 1.2em → 16.8px</div>
+</body>
+</html>
+```
+
+중첩된 자식 요소에 em을 지정하면 모든 자식 요소의 폰트 사이즈에 영향을 미친다.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-size: 14px;
+      text-align: center;
+    }
+    div {
+      font-size: 1.2em; /* 14px * 1.2 = 16.8px */;
+      font-weight: bold;
+      padding: 2em;     /* 14px * 2 = 28px */
+    }
+  </style>
+</head>
+<body>
+  <div style="background-color:rgba(255,0,0,0.2)">
+    14px * 1.2em ⇒ 16.8px
+    <div style="background-color:rgba(255,0,0,0.6)">
+      16.8px * 1.2em ⇒ 20.16px
+      <div style="background-color:rgba(255,0,0,0.8)">
+        20.16px * 1.2em ⇒ 24.192px
+      </div>
     </div>
+  </div>
+</body>
+</html>
+```
 
-    <h1>em unit</h1>
-    <div id="em">
-      <p>This is a paragraph</p>
-      <p>This is a paragraph</p>
-      <p>This is a paragraph</p>
-      <p>This is a paragraph</p>
-    </div>
+의도되지 않은 상황이라면 무척 난감한 상황일 수 있다. 즉 상대 단위인 em의 기준(부모 요소에 지정된 폰트 사이즈)이 상속의 영향으로 일정하지 않기 때문이다.
 
-    <h1>% unit</h1>
-    <div id="percent">
-      <p>This is a paragraph</p>
-      <p>This is a paragraph</p>
-      <p>This is a paragraph</p>
-      <p>This is a paragraph</p>
+### 1.2.4 rem
+
+em의 기준(부모 요소에 지정된 폰트 사이즈)은 상속의 영향으로 일정하지 않다. 즉 상황에 따라 1.2em은 각기 다른 값을 가질 수 있다.
+
+rem은 최상위 요소(html)의 폰트 사이즈를 기준으로 삼는다. rem의 r은 root를 의미한다.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    html {
+      font-size: 14px;
+    }
+    div {
+      font-size: 1.2rem; /* html font-size:14px * 1.2 = 16.8px */;
+      font-weight: bold;
+      padding: 2em;     /* 14px * 2 = 28px */
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div style="background-color:rgba(255,0,0,0.2)">
+    14px * 1.2em ⇒ 16.8px
+    <div style="background-color:rgba(255,0,0,0.6)">
+      14px * 1.2em ⇒ 16.8px
+      <div style="background-color:rgba(255,0,0,0.8)">
+        14px * 1.2em ⇒ 16.8px
+      </div>
     </div>
-  </body>
+  </div>
+</body>
+</html>
+```
+
+사용자가 브라우저의 기본 폰트 크기를 변경하더라도 이에 따라 웹사이트의 레이아웃을 적절히 조정할 수 있다는 장점이 있다. 따라서 폰트 사이즈 뿐만이 아니라 컨텐츠의 크기에 따라 가변적으로 대응하여야 하는 wrapper 요소(container) 등에 적합하다.
+
+```css
+.container {
+  width: 70rem; // 70 * 14px = 980px
+}
+```
+
+### 1.2.5 Viewport 단위(vh, vw, vmin, vmax)
+
+반응형 웹디자인은 화면의 크기에 동적으로 대응하기 위해 % 단위를 많이 사용한다. 하지만 % 단위는 em과 같이 상속에 의해 부모 요소에 상대적 영향을 받는다.
+
+Viewport 단위는 상대적인 단위로 [viewport](http://ungmo2.github.io/css/CSS3-Responsive-Web-Design/#viewport-meta-tag)를 기준으로 한 상대적 사이즈를 의미한다.
+
+| 단위   | Description
+|:-----:|:--------------------------------
+| vw    | viewport 너비의 1/100
+| vh    | viewport 높이의 1/100
+| vmin  | viewport 너비 또는 높이 중 작은 쪽의 1/100
+| vmax  | viewport 너비 또는 높이 중 큰 쪽의 1/100
+
+
+예를 들어 viewport 너비값이 600px인 경우 1vw는 viewport 너비값의 1%인 6px이다. viewport 높이값이 1000px인 경우 1vh는 10px이다.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { margin: 0px; }
+    .item {
+      width: 50vw;
+      height: 100vh;
+      text-align: center;
+      line-height: 100vh;
+      font-size: 4rem;
+      color: white;
+    }
+    .item1 { background-color: red; }
+    .item2 { background-color: orange; }
+  </style>
+</head>
+<body>
+  <div class='item item1'>item1</div>
+  <div class='item item2'>item2</div>
+</body>
 </html>
 ```
 

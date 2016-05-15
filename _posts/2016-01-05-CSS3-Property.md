@@ -65,7 +65,7 @@ cm, mm, inch 등의 단위도 존재하나 대표적인 크기 단위는 다음�
       text-align: center;
     }
     div {
-      font-size: 120%; /* 14px * 1.2 = 16.8px */;
+      font-size: 120%; /* 14px * 1.2 = 16.8px */
       font-weight: bold;
       padding: 2em;     /* 14px * 2 = 28px */
       background-color:rgba(255,0,0,0.2);
@@ -96,7 +96,7 @@ cm, mm, inch 등의 단위도 존재하나 대표적인 크기 단위는 다음�
       text-align: center;
     }
     div {
-      font-size: 1.2em; /* 14px * 1.2 = 16.8px */;
+      font-size: 1.2em; /* 14px * 1.2 = 16.8px */
       font-weight: bold;
       padding: 2em;     /* 14px * 2 = 28px */
       background-color:rgba(255,0,0,0.2);
@@ -121,18 +121,21 @@ cm, mm, inch 등의 단위도 존재하나 대표적인 크기 단위는 다음�
       text-align: center;
     }
     div {
-      font-size: 1.2em; /* 14px * 1.2 = 16.8px */;
+      font-size: 1.2em; /* 14px * 1.2 = 16.8px */
       font-weight: bold;
       padding: 2em;     /* 14px * 2 = 28px */
     }
+    .box1 { background-color:rgba(255,0,0,0.2); }
+    .box2 { background-color:rgba(255,0,0,0.6); }
+    .box3 { background-color:rgba(255,0,0,0.8); }
   </style>
 </head>
 <body>
-  <div style="background-color:rgba(255,0,0,0.2)">
+  <div class='box1'>
     14px * 1.2em ⇒ 16.8px
-    <div style="background-color:rgba(255,0,0,0.6)">
+    <div class='box2'>
       16.8px * 1.2em ⇒ 20.16px
-      <div style="background-color:rgba(255,0,0,0.8)">
+      <div class='box3'>
         20.16px * 1.2em ⇒ 24.192px
       </div>
     </div>
@@ -163,14 +166,17 @@ rem은 최상위 요소(html)의 폰트 사이즈를 기준으로 삼는다. rem
       padding: 2em;     /* 14px * 2 = 28px */
       text-align: center;
     }
+    .box1 { background-color:rgba(255,0,0,0.2); }
+    .box2 { background-color:rgba(255,0,0,0.6); }
+    .box3 { background-color:rgba(255,0,0,0.8); }
   </style>
 </head>
 <body>
-  <div style="background-color:rgba(255,0,0,0.2)">
+  <div class='box1'>
     14px * 1.2em ⇒ 16.8px
-    <div style="background-color:rgba(255,0,0,0.6)">
+    <div class='box2'>
       14px * 1.2em ⇒ 16.8px
-      <div style="background-color:rgba(255,0,0,0.8)">
+      <div class='box3'>
         14px * 1.2em ⇒ 16.8px
       </div>
     </div>

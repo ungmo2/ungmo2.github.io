@@ -47,6 +47,10 @@ ul#markdown-toc {
   padding-left: 0;
 }
 
+ul#markdown-toc ul{
+  margin-top: 10px
+}
+
 table {
   width: 100%;
   overflow: auto;

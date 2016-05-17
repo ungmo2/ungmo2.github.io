@@ -43,6 +43,10 @@ li {
   list-style-type: none;
 }
 
+ul#markdown-toc {
+  padding-left: 0;
+}
+
 table {
   width: 100%;
   overflow: auto;

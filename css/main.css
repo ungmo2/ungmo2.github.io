@@ -41,6 +41,7 @@ li {
 
 #markdown-toc, #markdown-toc ul {
   list-style-type: none;
+  padding-left: 0;
 }
 
 table {

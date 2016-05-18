@@ -232,6 +232,21 @@ var y = x * 10;
 | var             | Declares a variable
 
 
+| abstract | arguments | boolean | break | byte |
+| case | catch | char | class | const |
+| continue | debugger | default | delete | do |
+| double | else | enum | eval | export |
+| extends | false	final | finally | float |
+| for | function | goto | if | implements |
+| import | in | instanceof | int | interface |
+| let | long | native | new | null |
+| package | private | protected | public | return |
+| short | static | super | switch | synchronized |
+| this | throw | throws | transient | true | 
+| try | typeof | var | void | volatile |
+| while | with | yield |
+
+
 # 10. Comment
 
 주석(Comment)은 작성된 코드의 의미를 설명하기 위해 사용한다. 코드는 읽기(이해하기) 쉬워야 한다(가독성이 좋아야 한다)

@@ -28,6 +28,8 @@ Standard Built-in Objects(표준 빌트인 객체)를 Global Objects라고 부�
 
 전역 객체(Global Object)는 모든 객체의 최상위 객체를 의미하며 일반적으로 Browser-side에서는 `window`, Server-side(Node.js)에서는 `global` 객체를 의미한다.
 
+자세한 내용은 [Javascript Standard Built-in Objects](http://ungmo2.github.io/javascript/Standard-Built-in-Objects/)를 참조하기 바란다.
+
 # 2. BOM (Browser Object Model)
 
 브라우저 객체 모델은 브라우저 탭 또는 브라우저 창의 모델을 생성한다. 최상위 객체는 `window` 객체로 현재 브라우저 창 또는 탭을 표현하는 객체이다. 또한 이 객체의 자식 객체 들은 브라우저의 다른 기능들을 표현한다. 이 객체들은 Standard Built-in Objects가 구성된 후에 구성된다.
@@ -43,6 +45,8 @@ Standard Built-in Objects(표준 빌트인 객체)를 Global Objects라고 부�
 
 ![DOM](/img/DOM.png)
 {: style="max-width:400px; margin: 10px auto;"}
+
+자세한 내용은 [Javascript DOM](http://ungmo2.github.io/javascript/DOM/)를 참조하기 바란다.
 
 # Reference
 

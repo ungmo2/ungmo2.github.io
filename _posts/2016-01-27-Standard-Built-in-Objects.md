@@ -344,6 +344,8 @@ console.log(typeof boolObj + ': ', boolObj);
 var o = {};
 ```
 
+객체에 대한 자세한 내용은 [Javascript Object](http://ungmo2.github.io/javascript/Javascript-Object/)을 참조 바란다.
+
 ## 2.2 Function
 
 자바스크립트의 모든 함수는 Function 객체이다. 다른 모든 객체들처럼 Function 객체는 new 연산자을 사용해 생성할 수 있다.

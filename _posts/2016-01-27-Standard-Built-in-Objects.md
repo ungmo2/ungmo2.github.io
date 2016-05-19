@@ -71,11 +71,11 @@ Standard Built-in Objects(표준 빌트인 객체)를 Global Objects로 표현�
   alert('Hello world!');
   ```
 
-# 2. Global property (전역 속성)
+## 1.1 Global property (전역 속성)
 
 Global property(전역 속성)은 간단한 값을 나타내며 다른 속성이나 메서드를 가지고 있지 않다. 아래의 Global property(전역 속성)은 모두 Global Object(전역 객체)의 속성이다.
 
-## 2.1 Infinity  
+### 1.1.1 Infinity  
 
 양/음의 무한대를 나타내는 숫자값이다.
 
@@ -86,7 +86,7 @@ console.log(Number.MAX_VALUE * 2); // 1.7976931348623157e+308 * 2
 console.log(typeof Infinity); // number
 ```
 
-## 2.2 NaN  
+### 1.1.2 NaN  
 
 숫자가 아님(Not-a-Number)을 나타내는 숫자값이다. NaN 속성은 Number.NaN 속성과 같다.
 
@@ -96,7 +96,7 @@ console.log(1 * 'string');  // NaN
 console.log(typeof NaN);    // number
 ```
 
-## 2.3 undefined
+### 1.1.3 undefined
 
 변수에 값이 대입되지 않았음을 나타내는 값이다. 초기값은 [기본 자료형(primitive data type)](http://ungmo2.github.io/javascript/Javascript-Variables-Data-types/) undefined이다.
 
@@ -106,11 +106,11 @@ console.log(foo); // undefined
 console.log(typeof undefined); // undefined
 ```
 
-# 3. Global function (전역 함수)
+## 1.2 Global function (전역 함수)
 
 Global function(전역 함수)는 전역에서 호출할 수 있으며 호출한 곳(caller)으로 결과값을 반환한다. 아래의 Global function(전역 함수)는 모두 Global Object(전역 객체)의 함수 속성이다.
 
-## 3.1 eval()
+### 1.2.1 eval()
 
 문자열 파라미터로서 전달된 code 또는 표현식(expression)을 평가 또는 실행한다. 사용자로 부터 입력받은 Contents(untrusted data)를 eval()로 실행하는 것은 보안에 매우 취약하다. 불필요한 eval()의 사용은 금지되어야 한다.
 
@@ -127,7 +127,7 @@ console.log(foo); // 4
 console.log(eval('x * y')); // 20
 ```
 
-## 3.2 isFinite()  
+### 1.2.2 isFinite()  
 
 매개변수(parameter)로 전달된 값이 유한수인지, 정상적인 수인지를 검사하여 그 결과를 Boolean으로 반환한다. 매개변수가 숫자가 아닌 경우, 숫자로 변환한 후 검사를 수행한다.
 
@@ -154,7 +154,7 @@ Number(null)  // 0
 Boolean(null) // false
 ```
 
-## 3.3 isNaN()  
+### 1.2.3 isNaN()  
 
 매개변수(parameter)로 전달된 값이 NaN인지를 검사하여 그 결과를 Boolean으로 반환한다. 매개변수가 숫자가 아닌 경우, 숫자로 변환한 후 검사를 수행한다.
 
@@ -184,7 +184,7 @@ isNaN(new Date())             // false: new Date() -> Number
 isNaN(new Date().toString())  // true:  String -> NaN
 ```
 
-## 3.4 parseFloat()  
+### 1.2.4 parseFloat()  
 
 매개변수(parameter)로 전달된 문자열을 부동소수점숫자(floating point number)로 변환하여 반환한다.
 
@@ -204,7 +204,7 @@ parseFloat("40 years"); // 40
 parseFloat("He was 40") // NaN
 ```
 
-## 3.5 parseInt()  
+### 1.2.5 parseInt()  
 
 매개변수(parameter)로 전달된 문자열을 정수형 숫자(Integer)로 변환하여 반환한다.
 
@@ -233,7 +233,7 @@ parseInt("10", 16);   // 16
 parseInt("10", 8);    // 8
 ```
 
-## 3.6 encodeURI() / decodeURI()  
+### 1.2.6 encodeURI() / decodeURI()  
 
 encodeURI()은 매개변수로 전달된 URI(Uniform Resource Identifier)를 인코딩한다.
 
@@ -265,7 +265,7 @@ console.log(enc);
 console.log(dec);
 ```
 
-## 3.7 encodeURIComponent() / decodeURIComponent()
+### 1.2.7 encodeURIComponent() / decodeURIComponent()
 
 encodeURIComponent()은 매개변수로 전달된 URI(Uniform Resource Identifier) component(구성 요소)를 인코딩한다. 여기서 인코딩이란 URI의 문자들을 이스케이프 처리하는 것을 의미한다. 단 아래의 문자는 이스케이프 처리에서 제외된다.
 
@@ -288,17 +288,13 @@ console.log(enc);
 console.log(dec);
 ```
 
-# 4. Global objects (Standard Built-in Objects)
+# 2. Standard Built-in Objects (Global objects)
 
 Javascript는 프로그램 전체의 영역에서 공통적으로 필요한 기능을 사용자 각자가 일일히 작성하는 수고를 줄이기 위해 Standard Built-in Objects(표준 빌트인 객체)를 제공한다.
 
-## 4.1 Fundamental objects (기본 객체)
+## 2.1 Object  
 
-다른 객체들의 기초가 되는 핵심적이고 기본적인 객체이다. 일반적인 객체, 함수, 에러들을 대표하는 객체들이 포함된다.
-
-### 4.1.1 Object  
-
-[객체 생성자(Object constructor)](http://ungmo2.github.io/javascript/Javascript-Object/)는 레퍼(wrapper) 객체를 생성한다. 만약 생성자 인수값이 null이거나 undefined이면 빈 객체를 반환한다. 객체 생성 시 특수한 상황이 아니라면 객체리터럴 방식을 사용하는 것이 일반적이다.
+[객체 생성자(Object constructor)](http://ungmo2.github.io/javascript/Javascript-Object/)는 레퍼(wrapper) 객체를 생성한다. 만약 생성자 인수값이 null이거나 undefined이면 빈 객체를 반환한다.
 
 ```javascript
 // 변수 o에 빈 객체를 저장한다
@@ -310,9 +306,6 @@ console.log(typeof o + ': ', o);
 
 o = new Object(null);
 console.log(typeof o + ': ', o);
-
-// 객체리터럴을 사용하는 것이 바람직하다.
-var o = {};
 ```
 
 그 이외의 경우 생성자 함수의 인수값에 따라 강제 형변환된 객체가 반환된다. 이때 반환된 객체의 [[prototype]]프로퍼티에 바인딩된 객체는 Object.prototype이 아니다.
@@ -344,7 +337,14 @@ var boolObj = new Boolean(123);
 console.log(typeof boolObj + ': ', boolObj);
 ```
 
-### 4.1.2 Function
+객체를 생성할 경우 특수한 상황이 아니라면 객체리터럴 방식을 사용하는 것이 일반적이다.
+
+```javascript
+// 객체리터럴을 사용하는 것이 바람직하다.
+var o = {};
+```
+
+## 2.2 Function
 
 자바스크립트의 모든 함수는 Function 객체이다. 다른 모든 객체들처럼 Function 객체는 new 연산자을 사용해 생성할 수 있다.
 
@@ -354,7 +354,9 @@ var adder = new Function('a', 'b', 'return a + b');
 adder(2, 6);  // 8
 ```
 
-### 4.1.3 Boolean
+함수에 대한 자세한 내용은 [Javascript Function](http://ungmo2.github.io/javascript/Javascript-Function/)을 참조 바란다.
+
+## 2.3 Boolean
 
 Boolean 객체는 기본자료형 boolean을 위한 레퍼(wrapper) 객체이다. Boolean 생성자 함수로 Boolean 객체를 생성할 수 있다.
 
@@ -367,18 +369,42 @@ var foo = new Boolean();      // false
 var foo = new Boolean("");    // false
 var foo = new Boolean(0);     // false
 var foo = new Boolean(null);  // false
+```
 
+Boolean 객체와 기본자료형 boolean을 혼동하기 쉽다. Boolean 객체는 true/false를 포함하고 있는 객체이다.
+
+```javascript
 var x = new Boolean(false);
 if (x) { // x는 객체로서 존재한다. 따라서 참으로 간주된다.
   // . . . 이 코드는 실행된다.
 }
 ```
 
-### 4.1.3 Symbol
+## 2.4 Number
 
-Symbol은 ECMAScript 6(Javascript 2015) 에서 추가된 유일하고 변경 불가능한(immutable) 기본자료형으로 Symbol 객체는 기본자료형 Symbol을 위한 레퍼(wrapper) 객체를 생성한다.
+* [Number](http://ungmo2.github.io/javascript/Number/)
 
-### 4.1.4 Error
+## 2.5 Math
+
+* [Math](http://ungmo2.github.io/javascript/Math/)
+
+## 2.6 Date
+
+* [Date](http://ungmo2.github.io/javascript/Date/)
+
+## 2.7 String
+
+* [Date](http://ungmo2.github.io/javascript/String/)
+
+## 2.8 RegExp
+
+* [RegExp](http://ungmo2.github.io/javascript/RegExp/)
+
+## 2.9 Array
+
+* [Array](http://ungmo2.github.io/javascript/Array/)
+
+## 2.10 Error
 
 Error 생성자는 error 객체를 생성한다. error 객체의 인스턴스는 런타임 에러가 발생하였을 때 throw된다.
 
@@ -400,62 +426,11 @@ Error 이외에 Error에 관련한 객체는 아래와 같다.
 - TypeError
 - URIError
 
-## 4.2 Numbers and dates (숫자와 날짜)
+## 2.11 Symbol
 
-숫자, 수학적인 계산, 날짜를 대표하는 기본 객체이다.
+Symbol은 ECMAScript 6(Javascript 2015) 에서 추가된 유일하고 변경 불가능한(immutable) 기본자료형으로 Symbol 객체는 기본자료형 Symbol을 위한 레퍼(wrapper) 객체를 생성한다.
 
-### 4.2.1 Number
-
-* [Number](http://ungmo2.github.io/javascript/Number/)
-
-### 4.2.2 Math
-
-* [Math](http://ungmo2.github.io/javascript/Math/)
-
-### 4.2.3 Date
-
-* [Date](http://ungmo2.github.io/javascript/Date/)
-
-## 4.3 Text processing (텍스트 처리)
-
-### 4.3.1 String
-
-* [Date](http://ungmo2.github.io/javascript/String/)
-
-### 4.3.2 RegExp
-
-* [RegExp](http://ungmo2.github.io/javascript/RegExp/)
-
-## 4.4 Indexed collections
-
-### 4.4.1 Array
-
-* [Array](http://ungmo2.github.io/javascript/Array/)
-
-  - Int8Array
-  - Uint8Array
-  - Uint8ClampedArray
-  - Int16Array
-  - Uint16Array
-  - Int32Array
-  - Uint32Array
-  - Float32Array
-  - Float64Array
-
-## 4.5 Keyed collections
-
-### 4.5.1 Map
-### 4.5.2 Set
-### 4.5.3 WeakMap
-### 4.5.4 WeakSet
-
-## 4.6 Structured data
-
-### 4.6.1 ArrayBuffer
-### 4.6.2 DataView
-### 4.6.3 JSON
-
-# 5. 기본자료형과 래퍼객체(Wrapper Object)
+# 3. 기본자료형과 래퍼객체(Wrapper Object)
 
 앞서 살펴본 바와 같이 각 Standard Built-in Object는 각자의 프로퍼티와 메서드를 가진다. 정적(static) 프로퍼티, 메서드는 해당 인스턴스를 생성하지 않아도 사용할 수 있고 prototype에 속해있는 메소드는 해당 prototype을 상속받은 인스턴스가 있어야만 사용할 수 있다.
 

@@ -35,6 +35,8 @@ Standard Built-in Objects(표준 빌트인 객체)를 Global Objects라고 부�
 ![BOM](/img/BOM.png)
 {: style="max-width:400px; margin: 10px auto;"}
 
+자세한 내용은 [MDN Web APIs: Window](https://developer.mozilla.org/en-US/docs/Web/API/Window)를 참조하기 바란다.
+
 # 3. DOM (Document Object Model)
 
 문서 객체 모델은 현재 웹페이지의 모델을 생성한다. 최상위 객체는 `document` 객체로 전체 문서를 표현한다. 또한 이 객체의 자식 객체들은 문서의 다른 요소들을 표현한다. 이 객체들은 Standard Built-in Objects가 구성된 후에 구성된다.

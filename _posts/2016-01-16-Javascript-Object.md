@@ -73,7 +73,7 @@ console.log(person);
 person.sayHello();
 ```
 
-반드시 new 연산자와 Object 객체 생성자 함수를 사용해야는 것은 아니다. 빈 객체를 생성는 방법은 객체 리터럴를 사용하는 것이 더 간편하다. 그리고 빈 객체를 생성 후에 속성과 메서드를 추가해야하는 특별한 이유가 없다면 이 방식은 그다지 유용해 보이지 않는다.
+반드시 new 연산자와 Object 객체 생성자 함수를 사용해야하는 것은 아니다. 빈 객체를 생성하는 방법은 객체 리터럴을 사용하는 것이 더 간편하다.
 
 ```javascript
 var person = {};
@@ -84,13 +84,30 @@ person.sayHello = function(){
 };
 ```
 
-하지만 객체 리터럴 방식으로 생성된 객체는 결국 내장 함수인 Object() 생성자 함수로 객체를 생성하는 것을 단순화 시킨 것이다. 자바스크립트 엔진은 객체 리터럴로 객체를 생성하는 코드를 만나면 내부적으로 Object() 생성자 함수를 사용하여 객체를 생성한다는 뜻이다.
+특별한 이유가 없다면 Object() 생성자 함수 방식은 그다지 유용해 보이지 않는다. 하지만 객체 리터럴 방식으로 생성된 객체는 결국 내장(Built-in) 함수인 Object() 생성자 함수로 객체를 생성하는 것을 단순화 시킨 것이다. 자바스크립트 엔진은 객체 리터럴로 객체를 생성하는 코드를 만나면 내부적으로 Object() 생성자 함수를 사용하여 객체를 생성한다는 뜻이다.
 
 ## 1.3 생성자 함수
 
 객체 리터럴 방식과 Object() 생성자 함수 방식으로 객체를 생성하는 것은 속성값만 다른 여러개의 객체 생성에 불편이 있다.
 
-생성자 함수를 마치 객체를 생성하기 위한 템플릿처럼 사용하여 속성값이 다른 동일한 객체 여러개를 간편하게 생성할 수 있다.
+```javascript
+var person1 = {
+  name: 'Lee',
+  gender:'male',
+  sayHello: function(){
+    alert('Hi! my name is ' + this.name);
+  }
+};
+var person2 = {
+  name: 'Kim',
+  gender:'female',
+  sayHello: function(){
+    alert('Hi! my name is ' + this.name);
+  }
+};
+```
+
+생성자 함수를 마치 객체를 생성하기 위한 템플릿처럼 사용하여 속성값이 다른 객체 여러개를 간편하게 생성할 수 있다.
 
 ```javascript
 function Person(name, gender) {

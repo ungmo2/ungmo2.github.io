@@ -121,7 +121,7 @@ console.log(Object.prototype.hasOwnProperty('hasOwnProperty')); // true
 - 생성자 함수  
 - Object() 생성자 함수  
 
-객체 리터럴 방식으로 생성된 객체는 결국 내장 함수인 Object() 생성자 함수로 객체를 생성하는 것을 단순화 시킨 것이다.
+객체 리터럴 방식으로 생성된 객체는 결국 내장 함수(Built-in)인 Object() 생성자 함수로 객체를 생성하는 것을 단순화 시킨 것이다. 자바스크립트 엔진은 객체 리터럴로 객체를 생성하는 코드를 만나면 내부적으로 Object() 생성자 함수를 사용하여 객체를 생성한다는 뜻이다.
 
 Object() 생성자 함수는 물론 함수이다. 따라서 함수 객체는 일반 객체와 달리 `prototype` 프로퍼티가 있다.
 
@@ -208,7 +208,7 @@ console.log(Function.prototype.__proto__  === Object.prototype); // ⑤ true
 
 foo 객체의 프로토타입 객체 Person.prototype 객체와 Person() 생성자 함수의 프로토타입 객체인 Function.prototype의 프로토타입 객체는 Object.prototype 객체이다.
 
-이는 객체 리터럴 방식이나 생성자 함수 방식이나 결국은 모든 객체의 부모 객체인 Object.prototype 객체에서 프로토타입 체인이 끝나기 때문이다. 이때 Object.prototype 객체를 `프로토타입 체인의 종점`이라 한다.
+이는 객체 리터럴 방식이나 생성자 함수 방식이나 결국은 모든 객체의 부모 객체인 Object.prototype 객체에서 프로토타입 체인이 끝나기 때문이다. 이때 Object.prototype 객체를 `프로토타입 체인의 종점(End of prototype chain)`이라 한다.
 
 # 4. 기본자료형(Primitive data type)의 확장
 
@@ -258,7 +258,7 @@ console.dir(String.prototype);
 
 앞서 살펴본 바와 같이 모든 객체는 프로토타입 체인에 의해 Object.prototype 객체의 메서드를 사용할 수 있었다. Object.prototype 객체는 프로토타입 체인의 종점으로 모든 객체가 사용할 수 있는 메서드를 갖는다.
 
-이후 살펴보게 될 [Built-in object(내장 객체)](http://ungmo2.github.io/javascript/Built-in-Object/)의 [Global objects (Standard Built-in Objects)](http://ungmo2.github.io/javascript/Standard-Built-in-Objects/#global-objects-standard-built-in-objects)  String, Number, Array 객체 등이 가지고 있는 표준 메서드는 프로토타입 객체인 String.prototype, Number.prototype, Array.prototype 등에 정의되어 있다. 이들 프로토타입 객체 또한 Object.prototype를 프로토타입 체인에 의해 자신의 프로토타입 객체로 연결한다.
+이후 살펴보게 될 [Built-in object(내장 객체)](http://ungmo2.github.io/javascript/Built-in-Object/)의 [Global objects (Standard Built-in Objects)](http://ungmo2.github.io/javascript/Standard-Built-in-Objects/#global-objects-standard-built-in-objects)인 String, Number, Array 객체 등이 가지고 있는 표준 메서드는 프로토타입 객체인 String.prototype, Number.prototype, Array.prototype 등에 정의되어 있다. 이들 프로토타입 객체 또한 Object.prototype를 프로토타입 체인에 의해 자신의 프로토타입 객체로 연결한다.
 
 자바스크립트는 표준 내장 객체의 프로토타입 객체에 개발자가 정의한 메서드의 추가를 허용한다.
 

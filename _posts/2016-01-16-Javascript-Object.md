@@ -55,7 +55,7 @@ person.sayHello();
 
 ## 1.2 Object() 생성자 함수
 
-new 연산자와 Object() 생성자 함수([Standard Built-in Object 참고](http://ungmo2.github.io/javascript/Standard-Built-in-Objects/#object))를 사용하여 빈 객체를 생성할 수 있다. 빈 객체 생성 이후 속성과 메서드를 추가하여 객체를 완성하는 방법이다.
+new 연산자와 [Object() 생성자 함수](http://ungmo2.github.io/javascript/Standard-Built-in-Objects/#object)를 사용하여 빈 객체를 생성할 수 있다. 빈 객체 생성 이후 속성과 메서드를 추가하여 객체를 완성하는 방법이다.
 
 객체가 소유하고 있는 속성에 새로운 값을 할당하면 속성값은 갱신된다. 객체가 소유하고 있지 않은 속성에 값을 할당하려고 하면 해당 속성과 값을 객체에 추가한다.
 

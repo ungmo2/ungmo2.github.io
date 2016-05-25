@@ -1632,6 +1632,7 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
 
 ![position](/img/position.png)
 
+<!--
 **absolute 또는 fixed로 position 설정시, block 요소의 width는 inline 요소와 같이 content에 맞게 변화되므로 주의하여야 한다.** 또한 position 속성은 상속되지 않는다.
 
 | 속성값	      | Description
@@ -1685,12 +1686,17 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
   </body>
 </html>
 ```
+-->
 
 #### 2.5.1.1 static (기본위치)
 
-위에서 아래로, 왼쪽에서 오른쪽으로 순서에 따라 배치된다. 이는 static 속성을 지정하지 않았을 때와 같다. 부모 요소 내에 존재할 때는 부모 요소의 위치를 기준으로 배치된다.
+static은 position 속성의 기본값으로 position 속성을 지정하지 않았을 때와 같다.
 
-기본적으로 이 속성을 지정할 일은 없지만 이전에 설정된 position을 무력화하기 위해 사용될 수 있다. 좌표속성(top, bottom, left, right)을 같이 사용할 수 없다.
+기본적인 요소의 배치 순서에 따라 위에서 아래로, 왼쪽에서 오른쪽으로 순서에 따라 배치되며 부모 요소 내에 자식 요소로서 존재할 때는 부모 요소의 위치를 기준으로 배치된다.
+
+기본적으로 이 속성값을 지정할 일은 없지만 이미 설정된 position을 무력화하기 위해 사용될 수 있다.
+
+좌표속성(top, bottom, left, right)을 같이 사용할 수 없다. 좌표속성을 사용할 경우 무시된다.
 
 ```html
 <!DOCTYPE html>
@@ -1707,6 +1713,8 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
       .static-box {
         position: static;
         background: #2db34a;
+        text-align: center;
+        line-height: 150px;
       }
     </style>
   </head>
@@ -1720,7 +1728,7 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
 
 #### 2.5.1.2 relative (상대위치)
 
-기본 위치(static으로 지정되었을 때의 위치)에서 좌표 속성(top, bottom, left, right)을 사용하여 위치를 이동시킨다. 부모 요소 내에 존재할 때는 부모 요소의 위치를 기준으로 배치된다.
+기본 위치(static으로 지정되었을 때의 위치)를 기준으로 좌표 속성(top, bottom, left, right)을 사용하여 위치를 이동시킨다.
 
 ```html
 <!DOCTYPE html>
@@ -1752,11 +1760,15 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
 
 #### 2.5.1.3 absolute (절대위치)
 
-부모 혹은 조상 요소중에 relative 속성이 선언된 가장 가까운 요소를 기준으로 좌표속성(top, bottom, left, right)을 사용하여 위치를 이동시킨다. 이때 다른 요소가 먼저 위치를 점유하고 있어도 뒤로 밀리지 않고 덮어쓰게 된다. (이런 특성을 부유 또는 부유 객체라 한다)
+***부모 또는 조상 요소에 relative 속성이 선언되어 있으면 그 요소를 기준으로 하여 좌표 속성(top, bottom, left, right)만큼 이동한다.***
 
-***부모 또는 조상 요소에 relative 속성이 선언되어 있으면 그 요소를 기준으로 하여 좌표 속성(top, bottom, left, right)만큼 이동한다. 따라서 부모 요소를 배치의 기준으로 삼기 위해서는 부모 요소에 relative 속성을 정의하여야 한다. relative 속성이 선언되어 있는 부모 요소가 없다면 부모 요소와 관계없이 document body를 기준으로 하여 좌표 속성대로 위치하게 된다.***
+***relative 속성이 선언되어 있는 부모 또는 조상 요소가 없다면 부모 요소와 관계없이 document body를 기준으로 하여 좌표 속성대로 위치하게 된다.***
 
-***absolute 속성 선언 시, block 요소의 width는 inline 요소와 같이 content에 맞게 변화되므로 주의하여야 한다.*** 또한 position 속성은 상속되지 않는다.
+따라서 부모 요소를 배치의 기준으로 삼기 위해서는 부모 요소에 relative 속성을 정의하여야 한다.
+
+이때 다른 요소가 먼저 위치를 점유하고 있어도 뒤로 밀리지 않고 덮어쓰게 된다. (이런 특성을 부유 또는 부유 객체라 한다)
+
+***absolute 속성 선언 시, block 요소의 width는 inline 요소와 같이 content에 맞게 변화되므로 주의하여야 한다.***
 
 실제 웹페이지 개발에 사용하는 경우는 드물다(바람직하지 않다)
 
@@ -1768,46 +1780,42 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
       body { margin: 0;}
       div {
         color: #fff;
-        height: 150px; width: 150px;
+        height: 300px; width: 300px;
         background: #bcbcbc;
         border: 1px solid #bcbcbc;
+        position: relative;
+        top: 200px; left: 200px;
       }
       .absolute-box1 {
-        position: absolute;
         background: #2db34a;
+        height: 150px; width: 150px;
+        position: absolute;
         top: 50px; left: 50px;
       }
       .absolute-box2 {
-        position: absolute;
         background: #2db34a;
-        top: 100px; left: 100px;
-      }
-      .absolute-box3 {
+        height: 150px; width: 150px;
         position: absolute;
-        background: #2db34a;
-        bottom: 100px; left: 100px;
-      }
-      .absolute-box4 {
-        position: absolute;
-        background: #2db34a;
-        bottom: 100px; right: 100px;
+        top: 50px; left: 50px;
       }
     </style>
   </head>
   <body>
     <div>
       <div class="absolute-box1">absolute box1</div>
-      <div class="absolute-box2">absolute box2</div>
-      <div class="absolute-box3">absolute box3</div>
-      <div class="absolute-box4">absolute box4</div>
     </div>
+    <div class="absolute-box2">absolute box2</div>
   </body>
 </html>
 ```
 
 #### 2.5.1.4 fixed (고정위치)
 
-부모 요소와 관계없이 브라우저의 viewport를 기준으로 좌표속성(top, bottom, left, right)을 사용하여 위치를 이동시킨다. 스크롤이 되더라도 화면에서 사라지지 않고 항상 같은 곳에 위치한다. ***fixed 속성 선언 시, block 요소의 width는 inline 요소와 같이 content에 맞게 변화되므로 주의하여야 한다.***
+부모 요소와 관계없이 브라우저의 viewport를 기준으로 좌표속성(top, bottom, left, right)을 사용하여 위치를 이동시킨다.
+
+스크롤이 되더라도 화면에서 사라지지 않고 항상 같은 곳에 위치한다.
+
+***fixed 속성 선언 시, block 요소의 width는 inline 요소와 같이 content에 맞게 변화되므로 주의하여야 한다.***
 
 ```html
 <!DOCTYPE html>

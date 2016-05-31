@@ -4,7 +4,7 @@ title: HTML5 Introduction
 categories: html
 ---
 
-HTML (HyperText Markup Language) 은 웹페이지를 기술하기 위한 [마크업 언어](https://ko.wikipedia.org/wiki/%EB%A7%88%ED%81%AC%EC%97%85_%EC%96%B8%EC%96%B4)로, 웹페이지의 내용(content)과 구조(structure)을 담당한다. 즉, HTML이란 HTML 태그를 통해 정보를 구조화하는 것이다.
+[HTML (HyperText Markup Language)](https://ko.wikipedia.org/wiki/HTML) 은 웹페이지를 기술하기 위한 [마크업 언어](https://ko.wikipedia.org/wiki/%EB%A7%88%ED%81%AC%EC%97%85_%EC%96%B8%EC%96%B4)로, 웹페이지의 내용(content)과 구조(structure)을 담당한다. 즉, HTML이란 HTML 태그를 통해 정보를 구조화하는 것이다.
 
 ![html5](/img/html5.png)
 {: style="max-width:500px; margin: 10px auto;"}
@@ -108,3 +108,7 @@ content를 가질 수 없는 요소를 빈 요소(Empty element or Self-Closing 
 | HTML 3.2    | 1997
 | HTML 2.0    | 1995
 | HTML        | 1991
+
+# Reference
+
+* [Browser Wars](https://ko.wikipedia.org/wiki/%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80_%EC%A0%84%EC%9F%81)

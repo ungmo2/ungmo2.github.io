@@ -44,7 +44,7 @@ HTML document는 요소(Element)들의 집합이다.
 HTML 요소는 시작 태그(start tag)와 종료 태그(end tag) 그리고 태그 사이에 위치한 content로 구성된다.
 
 ![tag](/img/tag.png)
-{: style="max-width:500px; margin: 10px auto;"}
+{: style="max-width:550px; margin: 10px auto;"}
 
 태그는 대소문자를 구별하지 않으나 [W3C: World Wide Web Consortium](https://www.w3.org/)에서는 HTML4의 경우 소문자를 추천하고 있으므로 HTML5에서도 소문자를 사용하는 것이 일반적이다.
 
@@ -90,7 +90,7 @@ content를 가질 수 없는 요소를 빈 요소(Empty element or Self-Closing 
 속성은 시작 태그에 위치해야 하며 속성명과 속성값의 쌍을 이룬다. (e.g. name="value")
 
 ![html attribute](/img/html-attribute.png)
-{: style="max-width:500px; margin: 10px auto;"}
+{: style="max-width:550px; margin: 10px auto;"}
 
 ```html
 <img src="html.jpg" width="104" height="142">

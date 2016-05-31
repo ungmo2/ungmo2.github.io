@@ -4,9 +4,11 @@ title: HTML5 Introduction
 categories: html
 ---
 
-HTML (HyperText Markup Language) 은 웹페이지를 기술하기 위한 마크업 언어로, 웹페이지의 내용(content)과 구조(structure)을 담당한다. 즉, HTML이란 HTML 태그를 통해 정보를 구조화하는 것이다.
+HTML (HyperText Markup Language) 은 웹페이지를 기술하기 위한 [마크업 언어](https://ko.wikipedia.org/wiki/%EB%A7%88%ED%81%AC%EC%97%85_%EC%96%B8%EC%96%B4)로, 웹페이지의 내용(content)과 구조(structure)을 담당한다. 즉, HTML이란 HTML 태그를 통해 정보를 구조화하는 것이다.
 
-HTML5 document는 반드시 `<!DOCTYPE html>`으로 시작하여 문서 형식(document type)을 HTML5로 지정한다.
+![html5](/img/html5.png)
+
+HTML5 문서는 반드시 `<!DOCTYPE html>`으로 시작하여 문서 형식(document type)을 HTML5로 지정한다.
 
 실제적인 HTML document은 2행부터 시작되는데 `<html>` 과 `</html>` 사이에 기술한다.  
 `<head>` 와 `</head>` 사이에는 document title, 외부파일의 참조, metadata의 설정 등이 위치하며 이 정보들은 브라우저에 표시되지 않는다. 브라우저에 출력되는 대부분의 요소는 `<body>` 과 `</body>` 사이 위치한다.

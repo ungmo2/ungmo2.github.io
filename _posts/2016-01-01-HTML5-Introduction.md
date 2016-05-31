@@ -7,6 +7,7 @@ categories: html
 HTML (HyperText Markup Language) 은 웹페이지를 기술하기 위한 [마크업 언어](https://ko.wikipedia.org/wiki/%EB%A7%88%ED%81%AC%EC%97%85_%EC%96%B8%EC%96%B4)로, 웹페이지의 내용(content)과 구조(structure)을 담당한다. 즉, HTML이란 HTML 태그를 통해 정보를 구조화하는 것이다.
 
 ![html5](/img/html5.png)
+{: style="max-width:500px; margin: 10px auto;"}
 
 HTML5 문서는 반드시 `<!DOCTYPE html>`으로 시작하여 문서 형식(document type)을 HTML5로 지정한다.
 

@@ -486,7 +486,7 @@ viewport 너비가 768px 이상일 때 적용된다. 768px 미만일 때는 medi
 </html>
 ```
 
-### 6.2.3　.col-md-*
+### 6.2.3 .col-md-*
 
 viewport 너비가 992px 이상일 때 적용된다. 992px 미만일 때는 media query에 의해 해당 css가 적용되지 않고 div 요소의 block 속성에 의해 행 전체의 너비를 가지며 수직으로 쌓이게 된다.
 

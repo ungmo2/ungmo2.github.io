@@ -7,9 +7,9 @@ categories: css
 * TOC
 {:toc}
 
-CSS (Cascading Style Sheets) 는 HTML 요소(Element)의 style(design, layout etc)을 정의한다. 그리하려면 HTML이 존재하여야 하고 또한 style을 지정하고자하는 HTML 요소를 특정할 필요가 있다.
+CSS (Cascading Style Sheets) 는 HTML 요소(Element)의 style(design, layout etc)을 정의한다. 그리하려면 HTML이 존재하여야 하고 또한 style을 적용하고자하는 HTML 요소를 특정할 필요가 있다.
 
-이러한 목적으로 사용되는 것이 선택자(Selector)이다. 즉, style을 지정하고자하는 HTML 요소를 선택하는 기능을 하는 것이다.
+이러한 목적으로 사용되는 것이 선택자(Selector)이다. 즉, style을 적용하고자하는 HTML 요소를 선택하는 기능을 하는 것이다.
 
 ![css selector](/img/css-syntax.png)
 
@@ -158,15 +158,15 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 
 | 패턴                 | Description |
 |:--------------------|:------------|
-| 선택자[속성]           | 지정 속성과 일치하는 요소 선택
-| 선택자[속성=값]        | 지정 속성과 값이 일치하는 요소 선택
-| 선택자[속성~=값]       | 지정 속성값을 단어로 포함하는 요소 선택
-| 선택자[속성\|=값]      | 지정 속성값과 단어로 일치하거나 지정 속성값으로 시작하는 요소 선택
-| 선택자[속성^=값]       | 지정 속성값으로 시작하는 요소 선택
-| 선택자[속성$=값]       | 지정 속성값으로 끝나는 요소 선택
-| 선택자[속성*=값]       | 지정 속성값을 포함하는 요소 선택
+| 선택자[속성]           | 지정 속성이 포함된 요소 선택
+| 선택자[속성="값"]       | 지정 속성과 값이 일치하는 요소 선택
+| 선택자[속성~="값"]      | 지정 속성의 값에 지정 속성값을 (공백으로 분리된 단어로) 포함하는 요소 선택
+| 선택자[속성\|="값"]     | 지정 속성값과 일치하거나 지정 속성값 뒤 연이은 하이픈("값-")으로 시작하는 요소 선택
+| 선택자[속성^="값"]      | 지정 속성값으로 시작하는 요소 선택
+| 선택자[속성$="값"]      | 지정 속성값으로 끝나는 요소 선택
+| 선택자[속성*="값"]      | 지정 속성값을 포함하는 요소 선택
 
-선택자[속성] : 지정 속성과 일치하는 요소 선택
+선택자[속성] : 지정 속성이 포함된 요소 선택한다.
 
 ```html
 <!DOCTYPE html>
@@ -186,14 +186,14 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 </html>
 ```
 
-선택자[속성=값] 지정 속성과 값이 일치하는 요소 선택
+선택자[속성="값"] : 지정 속성과 값이 일치하는 요소를 선택한다.
 
 ```html
 <!DOCTYPE html>
 <html>
   <head>
     <style>
-      a[target=_blank] {
+      a[target="_blank"] {
         background-color: yellow;
       }
     </style>
@@ -206,14 +206,14 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 </html>
 ```
 
-선택자[속성~=값] : 지정 속성값을 단어로 포함하는 요소 선택
+선택자[속성~="값"] : 지정 속성의 값에 지정 속성값을 (공백으로 분리된 단어로) 포함하는 요소를 선택한다.
 
 ```html
 <!DOCTYPE html>
 <html>
   <head>
     <style>
-      h1[title~=first] {
+      h1[title~="first"] {
         background-color: yellow;
       }
     </style>
@@ -226,14 +226,14 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 </html>
 ```
 
-선택자[속성\|=값] : 지정 속성값과 단어로 일치하거나 지정 속성값으로 시작하는 요소 선택
+선택자[속성\|="값"] : 지정 속성값과 일치하거나 지정 속성값 뒤 연이은 하이픈("값-")으로 시작하는 요소를 선택한다.
 
 ```html
 <!DOCTYPE html>
 <html>
   <head>
     <style>
-      [lang|=en] {
+      [lang|="en"] {
         background: yellow;
       }
     </style>
@@ -248,56 +248,52 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 </html>
 ```
 
-선택자[속성^=값] : 지정 속성값으로 시작하는 요소 선택
+선택자[속성^="값"] : 지정 속성값으로 시작하는 요소를 선택한다.
 
 ```html
 <!DOCTYPE html>
 <html>
   <head>
     <style>
-      div[class^=test] {
+      a[href^="https://"] {
         background: #ffff00;
       }
     </style>
   </head>
   <body>
-    <div class="first_test">The first div element.</div>
-    <div class="second">The second div element.</div>
-    <div class="test">The third div element.</div>
-    <p class="test">This is some text in a paragraph.</p>
+    <a href="https://www.test.com">https://www.test.com</a><br>
+    <a href="http://www.test.com">http://www.test.com</a>
   </body>
 </html>
 ```
 
-선택자[속성$=값] : 지정 속성값으로 끝나는 요소 선택
+선택자[속성$="값"] : 지정 속성값으로 끝나는 요소를 선택한다.
 
 ```html
 <!DOCTYPE html>
 <html>
   <head>
     <style>
-      div[class$=test] {
+      a[href$=".html"] {
         background: #ffff00;
       }
     </style>
   </head>
   <body>
-    <div class="first_test">The first div element.</div>
-    <div class="second">The second div element.</div>
-    <div class="test">The third div element.</div>
-    <p class="test">This is some text in a paragraph.</p>
+    <a href="test.html">test.html</a><br>
+    <a href="test.jsp">test.jsp</a>
   </body>
 </html>
 ```
 
-선택자[속성*=값] : 지정 속성값을 포함하는 요소 선택
+선택자[속성*="값"] : 지정 속성값을 포함하는 요소를 선택한다.
 
 ```html
 <!DOCTYPE html>
 <html>
   <head>
     <style>
-      div[class*=test] {
+      div[class*="test"] {
         background: #ffff00;
       }
     </style>

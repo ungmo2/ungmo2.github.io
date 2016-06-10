@@ -585,19 +585,19 @@ div:hover {
 
 | pseudo-class       | Description                          |
 |:-------------------|:-------------------------------------|
-| :first-child       | 선택자에 해당하는 모든 요소 중 첫번째 자식 요소
-| :last-child        | 선택자에 해당하는 모든 요소 중 마지막 자식 요소
-| :nth-child(n)      | 선택자에 해당하는 모든 요소 중 앞에서 n번째 자식 요소
-| :nth-last-child(n) | 선택자에 해당하는 모든 요소 중 뒤에서 n번째 자식 요소
+| :first-child       | 선택자에 해당하는 모든 요소 중 첫번째 자식인 요소를 선택
+| :last-child        | 선택자에 해당하는 모든 요소 중 마지막 자식인 요소를 선택
 
 ```html
 <!DOCTYPE html>
 <html>
   <head>
     <style>
-      p:first-child {
-        color: red;
-      }
+      /* 첫번째 자식 요소인 p 요소를 선택 */
+      p:first-child { color: red; }
+      /* 마지막 자식 요소인 p 요소를 선택 */
+      /* body 요소의 두번째 p 요소는 마지막 자식 요소가 아니다. body 요소의 마지막 자식 요소는 div 요소이다. */
+      p:last-child { color: blue; }
     </style>
   </head>
   <body>
@@ -614,33 +614,31 @@ div:hover {
 </html>
 ```
 
+| pseudo-class       | Description                          |
+|:-------------------|:-------------------------------------|
+| :nth-child(n)      | 선택자에 해당하는 모든 요소 중 앞에서 n번째 자식인 요소를 선택
+| :nth-last-child(n) | 선택자에 해당하는 모든 요소 중 뒤에서 n번째 자식인 요소를 선택
+
+n은 1부터 시작하는 정수이다.
+
 ```html
 <!DOCTYPE html>
 <html>
   <head>
     <style>
-      ol > li:nth-child(2n) {
-        color: orange;
-      }
-      ol > li:nth-child(2n+1) {
-        color: green;
-      }
-      ol > li:first-child {
-        color: red;
-      }
-      ol > li:last-child {
-        color: blue;
-      }
-      ol > li:nth-child(4) {
-        background: brown;
-      }
+      /* 짝수번째 요소 */
+      ol > li:nth-child(2n)   { color: orange; }
+      /* 홀수번째 요소 */
+      ol > li:nth-child(2n+1) { color: green; }
+      ol > li:first-child     { color: red; }
+      ol > li:last-child      { color: blue; }
+      /* 4번째 요소 */
+      ol > li:nth-child(4)    { background: brown; }
 
-      ul > :nth-last-child(2n+1) {
-        color: red;
-      }
-      ul > :nth-last-child(2n) {
-        color: blue;
-      }
+      /* 뒤에서부터 시작하여 홀수번째 요소 */
+      ul > :nth-last-child(2n+1) { color: red; }
+      /* 뒤에서부터 시작하여 짝수번째 요소 */
+      ul > :nth-last-child(2n)   { color: blue; }
     </style>
   </head>
   <body>

@@ -21,6 +21,10 @@ CSS는 HTML 요소의 style(design, layout etc)을 정의하는데 사용된다.
 
 ![css selector](/img/css-syntax.png)
 
+위와 같은 문장을 Rule Set(or Rule)이라 하며 선택자에 의해 선택된 특정 HTML 요소를 어떻게 렌더링(Rendering)할 것인지 브라우저에 지시하는 역할을 한다.
+
+이와 같은 Rule Set의 집합을 스타일시트(Style Sheet)라 한다.
+
 ## 프로퍼티 (Property)
 
 선택자로 HTML 요소를 선택하고 {} 내에 프로퍼티를 지정하는 것으로 다양한 style을 적용시킬수 있다. 프로퍼티는 [표준 스펙](https://www.w3.org/community/webed/wiki/CSS/Properties)으로 이미 지정되어 있는 것을 사용하여야하며 사용자가 임의로 정의할 수 없다. 여러개의 프로퍼티를 연속해서 지정할 수 있으며 세미콜론(;)으로 구분한다.

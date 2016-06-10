@@ -10,6 +10,9 @@ HTML5 이전 버전의 HTML에는 style을 담당하는 태그(font, center)가 
 
 HTML과 CSS는 각자의 문법을 갖는 언어로 HTML은 CSS를 포함할 수 있다. 그러나 HTML 없이 단독으로 존재하는 CSS는 의미가 없다.
 
+![html5](/img/html5.png)
+{: style="max-width:500px; margin: 10px auto;"}
+
 # CSS Terms
 
 ## 선택자 (Selector)

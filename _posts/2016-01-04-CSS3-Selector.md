@@ -476,6 +476,8 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 
 - 포커스가 들어와 있을 때
 
+이러한 특정 상태에는 원래 클래스가 존재하지 않지만 가상 클래스를 임의로 지정하여 선택하는 방법이다.
+
 가상 클래스는 마침표(.) 대신 콜론(:)을 사용한다. CSS 표준에 의해 미리 정의된 이름이 있기 때문에 임의의 이름을 사용할 수 없다.
 
 ```css
@@ -519,35 +521,24 @@ div:hover {
 
       /* mouse over link */
       a:hover {
-        color: red;
+        font-weight: bold;
       }
 
       /* selected link */
       a:active {
         color: blue;
       }
+
+      /* focus in */
+      input[type=text]:focus {
+        color: red;
+      }
       </style>
     </head>
   <body>
-    <a href="index.html" target="_blank">This is a link</a>
-  </body>
-</html>
-```
-
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <style>
-      input[type=text]:focus {
-        background-color: yellow;
-      }
-    </style>
-  </head>
-  <body>
-    First name: <input type="text" name="firstname"><br>
-    Last name: <input type="text" name="lastname"><br>
-    password: <input type="password" name="password">
+    <a href="#" target="_blank">This is a link</a><br>
+    <input type="text" value="I'll be red when focused"><br>
+    <input type="password" value="I'll be red when focused">
   </body>
 </html>
 ```

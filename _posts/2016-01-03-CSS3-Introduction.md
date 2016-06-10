@@ -17,7 +17,9 @@ HTML과 CSS는 각자의 문법을 갖는 언어로 HTML은 CSS를 포함할 수
 
 ## 선택자 (Selector)
 
-CSS는 HTML 요소의 style(design, layout etc)을 정의하는데 사용된다. 선택자는 style을 적용하고자 하는 HTML 요소를 선택하는 방법이다.
+CSS는 HTML 요소의 style(design, layout etc)을 정의하는데 사용된다. 이때 CSS는 특정 HTML 요소(들)에 적용되어야 한다.
+
+선택자는 style을 적용하고자 하는 HTML 요소를 선택하는 방법이다.
 
 ![css selector](/img/css-syntax.png)
 

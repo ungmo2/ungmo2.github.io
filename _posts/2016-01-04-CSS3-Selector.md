@@ -317,20 +317,18 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 
 자신보다 n level 하위에 속하는 요소는 후손 요소(하위 요소)라 한다.
 
+후손 선택자는 선택자A의 모든 후손(하위) 요소 중 선택자B와 일치하는 요소를 선택한다.
+
 ```
 선택자A 선택자B
 ```
-
-후손 선택자는 선택자A의 모든 후손(하위) 요소 중 선택자B와 일치하는 요소를 선택한다.
 
 ```html
 <!DOCTYPE html>
 <html>
   <head>
     <style>
-      div p {
-        background-color: yellow;
-      }
+      div p { background-color: yellow; }
     </style>
   </head>
   <body>
@@ -349,20 +347,18 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 
 ## 6.2 자손 선택자 (Child Combinator)
 
+자손 선택자는 선택자A의 모든 자손(자식) 요소 중 선택자B와 일치하는 요소를 선택한다.
+
 ```
 선택자A > 선택자B
 ```
-
-자손 선택자는 선택자A의 모든 자손(자식) 요소 중 선택자B와 일치하는 요소를 선택한다.
 
 ```html
 <!DOCTYPE html>
 <html>
   <head>
     <style>
-      div > p {
-        background-color: yellow;
-      }
+      div > p { background-color: yellow; }
     </style>
   </head>
   <body>
@@ -379,32 +375,70 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 </html>
 ```
 
-## 6.3 동위 선택자
+## 6.3 형제(동위) 선택자 (Sibling Combinator)
 
-동위 선택자는 동위 관계(형제 관계)에서 뒤에 위치하는 요소를 선택할 때 사용한다.
+형제(동위) 선택자는 형제 관계(동위 관계)에서 뒤에 위치하는 요소를 선택할 때 사용한다.
+
+![Sibling Combinator](/img/Sibling_Combinator.png)
+{: style="max-width:400px; margin:10px auto;"}
+
+## 6.3.1 인접 형제 선택자(Adjacent Sibling Combinator)
+
+선택자A의 형제 요소 중 선택자A 바로 뒤에 위치하는 선택자B 요소를 선택한다. A와 B 사이에 다른 요소가 존재하면 선택되지 않는다.
 
 ```
 선택자A + 선택자B
 ```
-선택자A 뒤에 위치하는 모든 동위 요소 중 바로 뒤에 위치하는 선택자B 요소 1개를 선택한다.
-
-```
-선택자A ~ 선택자B
-```
-선택자A 뒤에 위치하는 모든 동위 요소 중 선택자B 요소를 모두 선택한다.
 
 ```html
 <!DOCTYPE html>
 <html>
   <head>
     <style>
-      p + ul {
-        color: red;
-      }
+      /* p 요소의 형제 요소 중에 p 요소 바로 뒤에 위치하는 ul 요소를 선택한다. */
+      p + ul { color: red; }
+    </style>
+  </head>
+  <body>
+    <div>A div element.</div>
+    <ul>
+      <li>Coffee</li>
+      <li>Tea</li>
+      <li>Milk</li>
+    </ul>
 
-      p ~ ul {
-        background: yellow;
-      }
+    <p>The first paragraph.</p>
+    <ul>
+      <li>Coffee</li>
+      <li>Tea</li>
+      <li>Milk</li>
+    </ul>
+
+    <h2>Another list</h2>
+    <ul>
+      <li>Coffee</li>
+      <li>Tea</li>
+      <li>Milk</li>
+    </ul>
+  </body>
+</html>
+```
+
+## 6.3.2 일반 형제 선택자(General Sibling Combinator)
+
+선택자A의 형제 요소 중 선택자A 뒤에 위치하는 선택자B 요소를 모두 선택한다.
+
+```
+선택자A ~ 선택자B
+```
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      /* p 요소의 형제 요소 중에 p 요소 뒤에 위치하는 ul 요소를 모두 선택한다.*/
+      p ~ ul { color: red; }
     </style>
   </head>
   <body>

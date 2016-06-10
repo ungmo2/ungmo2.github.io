@@ -27,7 +27,7 @@ CSS는 HTML 요소의 style(design, layout etc)을 정의하는데 사용된다.
 
 이와 같은 Rule Set의 집합을 스타일시트(Style Sheet)라 한다.
 
-## 프로퍼티 (Property)
+## 프로퍼티 (Property / 속성)
 
 선택자로 HTML 요소를 선택하고 {} 내에 프로퍼티를 지정하는 것으로 다양한 style을 적용시킬수 있다. 프로퍼티는 [표준 스펙](https://www.w3.org/community/webed/wiki/CSS/Properties)으로 이미 지정되어 있는 것을 사용하여야하며 사용자가 임의로 정의할 수 없다. 여러개의 프로퍼티를 연속해서 지정할 수 있으며 세미콜론(;)으로 구분한다.
 
@@ -38,7 +38,7 @@ p {
 }
 ```
 
-## 값 (Value)
+## 값 (Value / 속성값)
 
 선택자로 지정한 HTML 요소에 style을 적용하기 위해 프로퍼티를 사용했다. 프로퍼티는 style의 종류(e.g. Color, Background, Font 등)로서 표준 스펙으로 지정되어 있는 것을 사용하는데 이 프로퍼티의 값은 사용자가 지정하여야 한다.
 
@@ -53,7 +53,7 @@ p {
 
 HTML은 CSS를 포함할 수 있다. CSS를 가지고 있지 않은 HTML은 브라우저에서 기본으로 적용하는 CSS에 의거하여 표시된다. (user agent stylesheet)
 
-CSS를 포함하는 HTML은 CSS가 적용되는데 이때 CSS와 HTML을 연동하는 방법은 다음과 같다.
+CSS와 HTML을 연동하는 방법은 다음과 같다.
 
 ## Link style
 
@@ -73,7 +73,7 @@ CSS를 포함하는 HTML은 CSS가 적용되는데 이때 CSS와 HTML을 연동�
 
 ```css
 h1 { color: red; }
-p { background: blue; }
+p  { background: blue; }
 ```
 
 ## Embedding style
@@ -84,7 +84,7 @@ p { background: blue; }
   <head>
     <style>
       h1 { color: red; }
-      p { background: blue; }
+      p  { background: blue; }
     </style>
   </head>
 

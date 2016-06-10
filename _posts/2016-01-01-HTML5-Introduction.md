@@ -112,3 +112,5 @@ content를 가질 수 없는 요소를 빈 요소(Empty element or Self-Closing 
 # Reference
 
 * [Browser Wars](https://ko.wikipedia.org/wiki/%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80_%EC%A0%84%EC%9F%81)
+
+* [웹 호환성 문제](https://ko.wikipedia.org/wiki/%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD%EC%9D%98_%EC%9B%B9_%ED%98%B8%ED%99%98%EC%84%B1_%EB%AC%B8%EC%A0%9C)

@@ -9,7 +9,7 @@ CSS (Cascading Style Sheets) 는 HTML 요소(Element)의 style(design, layout et
 HTML5 이전 버전의 HTML에는 style을 담당하는 태그(font, center)가 존재하여 CSS가 없이도 어느 정도의 표현이 가능하였으나 정보와 구조를 담당하는 HTML의 본연의 임무와 동떨어진 기능까지 추가됨으로서 복잡하고 혼란스러운 언어가 되어 버렸다. HTML5에서는 HTML는 정보와 구조화, CSS3는 styling의 정의라는 본연의 임무에 충실한 명확한 구분이 이루어졌다.
 
 ![html5](/img/html5.png)
-{: style="max-width:500px; margin: 20px 10px auto;"}
+{: style="max-width:500px; margin: 20px auto 10px;"}
 
 HTML과 CSS는 각자의 문법을 갖는 언어로 HTML은 CSS를 포함할 수 있다. 그러나 HTML 없이 단독으로 존재하는 CSS는 의미가 없다.
 

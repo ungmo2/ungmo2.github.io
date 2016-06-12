@@ -28,7 +28,7 @@ cm, mm, inch 등의 단위도 존재하나 대표적인 크기 단위는 다음�
 
 ### 1.2.1 px
 
-[픽셀(화소)](https://ko.wikipedia.org/wiki/%ED%99%94%EC%86%8C) 단위. 1px은 화소 1개 크기를 의미한다. 디바이스 해상도(resolution)에 따라 상대적인 크기를 갖는다.
+[픽셀(화소)](https://ko.wikipedia.org/wiki/%ED%99%94%EC%86%8C) 단위. 1px은 화소 1개 크기를 의미한다. 디바이스 [해상도(resolution)](https://ko.wikipedia.org/wiki/%ED%95%B4%EC%83%81%EB%8F%84)에 따라 상대적인 크기를 갖는다.
 
 ![pixels](/img/pixels.jpg)
 
@@ -77,7 +77,7 @@ cm, mm, inch 등의 단위도 존재하나 대표적인 크기 단위는 다음�
     div {
       font-size: 120%; /* 14px * 1.2 = 16.8px */
       font-weight: bold;
-      padding: 2em;     /* 14px * 2 = 28px */
+      padding: 2em;    /* 16.8px * 2 = 33.6px */
       background-color:rgba(255,0,0,0.2);
     }
   </style>
@@ -90,11 +90,11 @@ cm, mm, inch 등의 단위도 존재하나 대표적인 크기 단위는 다음�
 
 ### 1.2.3 em
 
-배수 단위. 요소에 지정된 폰트 사이즈(부모 요소에 지정된 사이즈나 디폴트 사이즈)에 상대적인 폰트 사이즈를 설정한다.
+배수(倍數) 단위. 요소에 지정된 폰트 사이즈(부모 요소에 지정된 사이즈나 디폴트 사이즈)에 상대적인 폰트 사이즈를 설정한다.
 
 예를 들어 1em은 요소에 지정된 폰트 사이즈와 같고 2em은 요소에 지정된 폰트 사이즈의 2배이다.
 
-폰트 사이즈 설정이나 컨탠츠를 포함하는 컨테이너의 크기 설정에 사용하면 상대적인 설정이 가능하여 편리하다. (상대단위)
+폰트 사이즈 설정이나 컨텐츠를 포함하는 컨테이너의 크기 설정에 사용하면 상대적인 설정이 가능하여 편리하다. (상대단위)
 
 ```html
 <!DOCTYPE html>
@@ -108,7 +108,7 @@ cm, mm, inch 등의 단위도 존재하나 대표적인 크기 단위는 다음�
     div {
       font-size: 1.2em; /* 14px * 1.2 = 16.8px */
       font-weight: bold;
-      padding: 2em;     /* 14px * 2 = 28px */
+      padding: 2em;     /* 16.8px * 2 = 33.6px */
       background-color:rgba(255,0,0,0.2);
     }
   </style>

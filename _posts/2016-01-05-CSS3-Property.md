@@ -13,7 +13,7 @@ CSS 속성값은 키워드, 크기 단위, 색상 표현 단위 등의 특정 �
 
 ![css selector](/img/css-syntax.png)
 
-<Rule Set>
+Rule Set
 {: style="color:gray; font-size: 80%; text-align: center; margin-top: 5px;"}
 
 ## 1.1 키워드

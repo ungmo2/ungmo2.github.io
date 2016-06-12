@@ -675,23 +675,12 @@ n은 1부터 시작하는 정수이다.
 <html>
   <head>
     <style>
-      p:first-of-type {
-        color: red;
-      }
-      p:last-of-type {
-        color: blue;
-      }
-      p:nth-of-type(2) {
-        color: green;
-      }
-      p:nth-last-of-type(2) {
-        color: orange;
-      }
+      p:first-of-type  { color: red; }
+      p:last-of-type   { color: blue; }
+      p:nth-of-type(2) { color: green; }
+      p:nth-last-of-type(2) { color: orange;}
 
-      p:first-child {
-        background: brown;
-      }
-
+      p:first-child { background: brown;}
     </style>
   </head>
   <body>
@@ -746,23 +735,19 @@ selector::pseudo-element {
 
 | pseudo-element        | Description                          |
 |:----------------------|:-------------------------------------|
-| ::first-letter        | 첫글자를 선택한다
-| ::first-line          | 첫줄을 선택한다
-| ::after               | 태그 뒤에 위치하는 공간을 선택한다
-| ::before              | 태그 앞에 위치하는 공간을 선택한다
-| ::selection           | 드래그한 글자를 선택한다
+| ::first-letter        | 첫글자를 선택한다.
+| ::first-line          | 첫줄을 선택한다. 블록 요소에만 적용할 수 있다.
+| ::after               | 태그 뒤에 위치하는 공간을 선택한다. 일반적으로 content 속성과 함께 사용된다.
+| ::before              | 태그 앞에 위치하는 공간을 선택한다. 일반적으로 content 속성과 함께 사용된다.
+| ::selection           | 드래그한 글자를 선택한다. iOS Safari에서는 동작 않으며 Firefox에서는 -moz- 프리픽스를 사용하여야 한다.
 
 ```html
 <!DOCTYPE html>
 <html>
   <head>
     <style>
-      p::first-letter {
-        font-size: 3em;
-      }
-      p::first-line {
-        color: red;
-      }
+      p::first-letter { font-size: 3em; }
+      p::first-line   { color: red; }
 
       h1::before {
         content: " HTML!!! ";

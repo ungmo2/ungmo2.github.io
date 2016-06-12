@@ -133,7 +133,7 @@ cm, mm, inch 등의 단위도 존재하나 대표적인 크기 단위는 다음�
     div {
       font-size: 1.2em; /* 14px * 1.2 = 16.8px */
       font-weight: bold;
-      padding: 2em;     /* 14px * 2 = 28px */
+      padding: 2em;
     }
     .box1 { background-color:rgba(255,0,0,0.2); }
     .box2 { background-color:rgba(255,0,0,0.6); }
@@ -173,7 +173,7 @@ rem은 최상위 요소(html)의 폰트 사이즈를 기준으로 삼는다. rem
     div {
       font-size: 1.2rem; /* html font-size:14px * 1.2 = 16.8px */
       font-weight: bold;
-      padding: 2em;     /* 14px * 2 = 28px */
+      padding: 2em;
       text-align: center;
     }
     .box1 { background-color:rgba(255,0,0,0.2); }
@@ -195,13 +195,15 @@ rem은 최상위 요소(html)의 폰트 사이즈를 기준으로 삼는다. rem
 </html>
 ```
 
-사용자가 브라우저의 기본 폰트 크기를 변경하더라도 이에 따라 웹사이트의 레이아웃을 적절히 조정할 수 있다는 장점이 있다. 따라서 폰트 사이즈 뿐만이 아니라 컨텐츠의 크기에 따라 가변적으로 대응하여야 하는 wrapper 요소(container) 등에 적합하다.
+사용자가 브라우저의 기본 폰트 크기를 변경(Mac Chrome의 경우, 설정 > 고급 설정 표시 > 웹 컨텐츠 > 글꼴 맞춤 설정)하더라도 이에 따라 웹사이트의 레이아웃을 적절히 조정할 수 있다는 장점이 있다. 따라서 폰트 사이즈 뿐만이 아니라 컨텐츠의 크기에 따라 가변적으로 대응하여야 하는 wrapper 요소(container) 등에 적합하다.
 
 ```css
 .container {
   width: 70rem; /* 14px * 70rem = 980px */
 }
 ```
+
+Reset CSS를 사용하여 사전에 html 요소의 font-size 지정이 필요하다.
 
 ### 1.2.5 Viewport 단위(vh, vw, vmin, vmax)
 

@@ -13,6 +13,9 @@ CSS (Cascading Style Sheets) 는 HTML 요소(Element)의 style(design, layout et
 
 ![css selector](/img/css-syntax.png)
 
+Rule Set
+{: style="color:gray; font-size: 80%; text-align: center; margin-top: 5px;"}
+
 복수개의 선택자를 연속하여 지정할 수 있으며 쉼표( , )로 구분한다.
 
 ```html

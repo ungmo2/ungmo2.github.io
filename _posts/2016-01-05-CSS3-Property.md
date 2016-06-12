@@ -11,6 +11,8 @@ categories: css
 
 CSS 속성값은 키워드, 크기 단위, 색상 표현 단위 등의 특정 단위를 갖는다.
 
+![css selector](/img/css-syntax.png)
+
 ## 1.1 키워드
 
 각 속성에 따라 별도의 키워드가 존재한다. 예를 들어 [display 속성](http://ungmo2.github.io/css/CSS3-Property/#display-)의 속성값으로 사용할 수 있는 키워드는 block, inline, inline-block, none이 있다. 자세한 내용은 각각의 속성을 참조하기 바란다.

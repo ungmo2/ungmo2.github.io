@@ -665,19 +665,23 @@ n은 1부터 시작하는 정수이다.
 
 | pseudo-class          | Description                          |
 |:----------------------|:-------------------------------------|
-| :first-of-type        | 선택자에 해당하는 모든 요소 중 첫번째에 등장하는 요소
-| :last-of-type         | 선택자에 해당하는 모든 요소 중 마지막에 등장하는 요소
-| :nth-of-type (n)      | 선택자에 해당하는 모든 요소 중 앞에서 n번째에 등장하는 요소
-| :nth-last-of-type (n) | 선택자에 해당하는 모든 요소 중 뒤에서 n번째에 등장하는 요소
+| :first-of-type        | 선택자에 해당하는 요소의 부모의 자식 중 첫번째 등장하는 요소를 선택
+| :last-of-type         | 선택자에 해당하는 요소의 부모의 자식 중 마지막에 등장하는 요소를 선택
+| :nth-of-type (n)      | 선택자에 해당하는 요소의 부모의 자식 중 앞에서 n번째에 등장하는 요소를 선택
+| :nth-last-of-type (n) | 선택자에 해당하는 요소의 부모의 자식 중 뒤에서 n번째에 등장하는 요소를 선택
 
 ```html
 <!DOCTYPE html>
 <html>
   <head>
     <style>
+      /* p 요소의 부모의 자식 중 첫번째 등장하는 p 요소 */
       p:first-of-type  { color: red; }
+      /* p 요소의 부모의 자식 중 마지막 등장하는 p 요소 */
       p:last-of-type   { color: blue; }
+      /* p 요소의 부모의 자식 중 앞에서 2번째 등장하는 p 요소 */
       p:nth-of-type(2) { color: green; }
+      /* p 요소의 부모의 자식 중 뒤에서 2번째 등장하는 p 요소 */
       p:nth-last-of-type(2) { color: orange;}
 
       p:first-child { background: brown;}
@@ -689,6 +693,13 @@ n은 1부터 시작하는 정수이다.
     <p>The second paragraph.</p>
     <p>The third paragraph.</p>
     <p>The fourth paragraph.</p>
+    <div>
+      <h1>This is a heading</h1>
+      <p>The first paragraph.</p>
+      <p>The second paragraph.</p>
+      <p>The third paragraph.</p>
+      <p>The fourth paragraph.</p>
+    </div>
   </body>
 </html>
 ```
@@ -739,7 +750,7 @@ selector::pseudo-element {
 | ::first-line          | 첫줄을 선택한다. 블록 요소에만 적용할 수 있다.
 | ::after               | 태그 뒤에 위치하는 공간을 선택한다. 일반적으로 content 속성과 함께 사용된다.
 | ::before              | 태그 앞에 위치하는 공간을 선택한다. 일반적으로 content 속성과 함께 사용된다.
-| ::selection           | 드래그한 글자를 선택한다. iOS Safari에서는 동작 않으며 Firefox에서는 -moz- 프리픽스를 사용하여야 한다. 
+| ::selection           | 드래그한 글자를 선택한다. iOS의 Safari와 Chrome에서는 동작 않는다. Firefox에서는 -moz- 프리픽스를 사용하여야 한다.
 
 ```html
 <!DOCTYPE html>
@@ -786,18 +797,22 @@ selector::pseudo-element {
     <style>
       p { color: blue; }
       p { color: red; }
+
+      .red { color: red; }
+      .blue { color: blue; }
     </style>
   </head>
   <body>
     <p>Will be RED.</p>
+    <p class="blue red">Will be BLUE.</p>
   </body>
-</html>  
+</html>
 ```
 
 그러나 스타일 적용 방법이나 선택자에 따라 우선순위가 적용된다.
 
 ```
-!important > 인라인 스타일 > 아이디 선택자 > 클래스/속성/가상 선택자 > 태그 선택자 > 전체 선택자 > 상위 객체에 의해 상속된 속성
+!important > 인라인 스타일 > 아이디 선택자 > 클래스/속성/가상 선택자 > 태그 선택자 > 전체 선택자 > 상위 요소에 의해 상속된 속성
 ```
 
 ```html
@@ -805,18 +820,10 @@ selector::pseudo-element {
 <html>
   <head>
     <style>
-      p {
-        color: red !important;
-      }
-      #thing {
-        color: blue;
-      }
-      .food {
-        color: green;
-      }
-      div {
-        color: orange;
-      }
+      p      { color: red !important; }
+      #thing { color: blue; }
+      .food  { color: green; }
+      div    { color: orange; }
     </style>
   </head>
   <body>
@@ -828,8 +835,8 @@ selector::pseudo-element {
 
 또한 연동 방식에 따라서도 우선순위가 적용된다.
 
-1. `<head>` 요소 내 style 요소
-2. `<style>` 요소 내 @import 문
+1. head 요소 내의 style 요소
+2. head 요소 내의 style 요소 내의 @import 문
 3. `<link>` 로 연결된 CSS 파일
 4. `<link>` 로 연결된 CSS 파일 내의 @import 문
 5. 브라우저 디폴트 스타일시트
@@ -838,7 +845,7 @@ selector::pseudo-element {
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <link rel="stylesheet" href="style.css">
     <style>
       body {
         background-color: yellow;

@@ -739,7 +739,7 @@ selector::pseudo-element {
 | ::first-line          | 첫줄을 선택한다. 블록 요소에만 적용할 수 있다.
 | ::after               | 태그 뒤에 위치하는 공간을 선택한다. 일반적으로 content 속성과 함께 사용된다.
 | ::before              | 태그 앞에 위치하는 공간을 선택한다. 일반적으로 content 속성과 함께 사용된다.
-| ::selection           | 드래그한 글자를 선택한다. iOS Safari에서는 동작 않으며 Firefox에서는 -moz- 프리픽스를 사용하여야 한다.
+| ::selection           | 드래그한 글자를 선택한다. iOS Safari에서는 동작 않으며 Firefox에서는 -moz- 프리픽스를 사용하여야 한다. 
 
 ```html
 <!DOCTYPE html>

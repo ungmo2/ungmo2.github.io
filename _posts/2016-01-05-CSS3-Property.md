@@ -1070,6 +1070,8 @@ opacity 속성은 요소의 투명도를 정의한다. 0.0 ~ 1.0의 값을 입�
 
 ### 2.3.1 Background Image
 
+[background-image](https://developer.mozilla.org/en-US/docs/Web/CSS/background-image)
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -1086,6 +1088,10 @@ opacity 속성은 요소의 투명도를 정의한다. 0.0 ~ 1.0의 값을 입�
   </body>
 </html>
 ```
+
+### 2.3.2 Background Repeat
+
+[background-repeat](https://developer.mozilla.org/en-US/docs/Web/CSS/background-repeat)
 
 설정된 이미지의 크기가 화면보다 작으면 자동으로 이미지가 반복 출력되어 화면을 채우게 된다. 이것은 `background-repeat` 속성의 기본값이 `repeat`이기 때문이다.
 
@@ -1115,6 +1121,10 @@ body {
   background-repeat: no-repeat, repeat;
 }
 ```
+
+### 2.3.3 Background Size
+
+[background-size](https://developer.mozilla.org/en-US/docs/Web/CSS/background-size)
 
 배경 이미지의 크기를 조절하고 싶은 경우, `background-size` 속성을 사용한다. px값을 지정할 경우, 배경이미지 크기가 지정된 px값으로 조정되고 100%를 지정하며 화면 크기에 맞추어 이미지를 출력한다. 이때 지정한 값은 width를 의미한다. width만 지정한 경우 height는 auto로 지장된다.
 
@@ -1150,12 +1160,15 @@ body {
 }
 ```
 
+### 2.3.4 Background Attachment
+
+[background-attachment](https://developer.mozilla.org/en-US/docs/Web/CSS/background-attachmen
+
 화면을 스크롤하면 배경 이미지도 함께 스크롤된다. 화면이 스크롤되더라도 배경이미지는 스크롤되지 않고 고정되어 있게 하려면 `background-attachment` 속성에 `fixed` 키워드를 지정한다.
 
 ```html
 <!DOCTYPE html>
 <html>
-
 <head>
   <style>
     body {
@@ -1195,30 +1208,21 @@ body {
     </div>
   </div>
 </body>
-
 </html>
 ```
 
-Reference
-- [background-image](https://developer.mozilla.org/en-US/docs/Web/CSS/background-image)
-- [background-repeat](https://developer.mozilla.org/en-US/docs/Web/CSS/background-repeat)
-- [background-size](https://developer.mozilla.org/en-US/docs/Web/CSS/background-size)
-- [background-attachment](https://developer.mozilla.org/en-US/docs/Web/CSS/background-attachment)
-- [background-position](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position)
-- [background-color](https://developer.mozilla.org/en-US/docs/Web/CSS/background-color)
+### 2.3.5 Background Position
 
-### 2.3.2 Background Position
+[background-position](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position)
 
 ```html
 <!DOCTYPE html>
 <html>
-
 <head>
   <style>
     body {
       margin: 0;
     }
-
     div {
       background-image: url("img/dot.png");
       background-color: #FFEE99;
@@ -1228,41 +1232,32 @@ Reference
       margin-bottom: 2vw;
       float: left;
     }
-
     div:not(:nth-of-type(3n-2)) {
       margin-left: 2vw;
     }
-
     .example1 {
       background-position: top;
     }
-
     .example2 {
       background-position: bottom;
     }
-
     .example3 {
       background-position: center;
     }
-
     .example4 {
       background-position: left;
     }
-
     .example5 {
       background-position: right;
     }
-
     .example6 {
       /* <percentage> values */
       background-position: 25% 75%;
     }
-
     .example7 {
       /* <length> values */
       background-position: 10px 20px;
     }
-
     .example8 {
       background-image: url("img/dot.png"), url("img/dot.png");
       background-position: 0px 0px, center;
@@ -1280,18 +1275,21 @@ Reference
   <div class="example7">10px 20px</div>
   <div class="example8">0px 0px, center</div>
 </body>
-
 </html>
 ```
 
-### 2.4.3 Background Color
+### 2.3.6 Background Color
+
+[background-color](https://developer.mozilla.org/en-US/docs/Web/CSS/background-color)
 
 ```css
 div {
-  background-color:red;
-  background-color:rgb(255,255,255);
+  background-color: red;
+  background-color: rgb(255,255,255);
 }
 ```
+
+### 2.3.7 Background Shorthand
 
 Shorthand Syntax
 
@@ -1299,8 +1297,23 @@ Shorthand Syntax
 background: background-color || background-image || background-repeat || background-attachment || background-position
 ```
 
-```
-background: #ffffff url("img_tree.png") no-repeat right top;
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    div {
+      /*background: background-color || background-image || background-repeat || background-attachment || background-position*/
+      background: #FFEE99 url("img/dot.png") no-repeat center;
+      width: 50vw;
+      height: 300px;
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+</body>
+</html>
 ```
 
 ## 2.4 폰트와 텍스트

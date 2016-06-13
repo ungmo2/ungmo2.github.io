@@ -21,16 +21,16 @@ Rule Set
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      h1 { color: red; }
-      p  { color: blue; }
-    </style>
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-    <p>This paragraph is styled with CSS.</p>
-  </body>
+<head>
+  <style>
+    h1 { color: red; }
+    p  { color: blue; }
+  </style>
+</head>
+<body>
+  <h1>Hello World!</h1>
+  <p>This paragraph is styled with CSS.</p>
+</body>
 </html>
 ```
 
@@ -41,21 +41,21 @@ HTML 문서 내의 모든 요소를 선택한다. html 요소를 포함한 모�
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      * {
-        background-color: yellow;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Welcome to My Homepage</h1>
-    <div class="intro">
-      <p id="firstname">My name is Donald.</p>
-      <p id="hometown">I live in Duckburg.</p>
-    </div>
-    <p>My best friend is Mickey.</p>
-  </body>
+<head>
+  <style>
+    * {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to My Homepage</h1>
+  <div class="intro">
+    <p id="firstname">My name is Donald.</p>
+    <p id="hometown">I live in Duckburg.</p>
+  </div>
+  <p>My best friend is Mickey.</p>
+</body>
 </html>
 ```
 
@@ -66,21 +66,21 @@ HTML 문서 내의 모든 요소를 선택한다. html 요소를 포함한 모�
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      p {
-        background-color: yellow;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Welcome to My Homepage</h1>
-    <div class="intro">
-      <p id="firstname">My name is Donald.</p>
-      <p id="hometown">I live in Duckburg.</p>
-    </div>
-    <p>My best friend is Mickey.</p>
-  </body>
+<head>
+  <style>
+    p {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to My Homepage</h1>
+  <div class="intro">
+    <p id="firstname">My name is Donald.</p>
+    <p id="hometown">I live in Duckburg.</p>
+  </div>
+  <p>My best friend is Mickey.</p>
+</body>
 </html>
 ```
 
@@ -91,21 +91,21 @@ id 속성값을 지정하여 일치하는 요소를 선택한다. id 속성값�
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      #firstname {
-        background-color: yellow;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Welcome to My Homepage</h1>
-    <div class="intro">
-      <p id="firstname">My name is Donald.</p>
-      <p id="hometown">I live in Duckburg.</p>
-    </div>
-    <p>My best friend is Mickey.</p>
-  </body>
+<head>
+  <style>
+    #firstname {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to My Homepage</h1>
+  <div class="intro">
+    <p id="firstname">My name is Donald.</p>
+    <p id="hometown">I live in Duckburg.</p>
+  </div>
+  <p>My best friend is Mickey.</p>
+</body>
 </html>
 ```
 
@@ -116,21 +116,21 @@ class 속성값을 지정하여 일치하는 요소를 선택한다. class 속�
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      .intro {
-        background-color: yellow;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Welcome to My Homepage</h1>
-    <div class="intro">
-      <p id="firstname">My name is Donald.</p>
-      <p id="hometown">I live in Duckburg.</p>
-    </div>
-    <p>My best friend is Mickey.</p>
-  </body>
+<head>
+  <style>
+    .intro {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to My Homepage</h1>
+  <div class="intro">
+    <p id="firstname">My name is Donald.</p>
+    <p id="hometown">I live in Duckburg.</p>
+  </div>
+  <p>My best friend is Mickey.</p>
+</body>
 </html>
 ```
 
@@ -139,19 +139,19 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      .text-center { text-align: center; }
-      .text-large  { font-size: 300%; }
-      .text-red    { color: red; }
-      .text-blue   { color: blue; }
-    </style>
-  </head>
-  <body>
-    <h1 class="text-center">heading</h1>
-    <p class="text-large text-red">Lorem ipsum dolor sit amet</p>
-    <p class="text-center text-large text-blue">Lorem ipsum dolor sit amet</p>
-  </body>
+<head>
+  <style>
+    .text-center { text-align: center; }
+    .text-large  { font-size: 300%; }
+    .text-red    { color: red; }
+    .text-blue   { color: blue; }
+  </style>
+</head>
+<body>
+  <h1 class="text-center">heading</h1>
+  <p class="text-large text-red">Lorem ipsum dolor sit amet</p>
+  <p class="text-center text-large text-blue">Lorem ipsum dolor sit amet</p>
+</body>
 </html>
 ```
 
@@ -174,18 +174,18 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      a[href] {
-        background-color: yellow;
-      }
-    </style>
-  </head>
-  <body>
-    <a href="http://www.w3schools.com">w3schools.com</a><br>
-    <a href="http://www.disney.com" target="_blank">disney.com</a><br>
-    <a href="http://www.wikipedia.org" target="_top">wikipedia.org</a>
-  </body>
+<head>
+  <style>
+    a[href] {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <a href="http://www.w3schools.com">w3schools.com</a><br>
+  <a href="http://www.disney.com" target="_blank">disney.com</a><br>
+  <a href="http://www.wikipedia.org" target="_top">wikipedia.org</a>
+</body>
 </html>
 ```
 
@@ -194,18 +194,18 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      a[target="_blank"] {
-        background-color: yellow;
-      }
-    </style>
-  </head>
-  <body>
-    <a href="http://www.w3schools.com">w3schools.com</a><br>
-    <a href="http://www.disney.com" target="_blank">disney.com</a><br>
-    <a href="http://www.wikipedia.org" target="_top">wikipedia.org</a>
-  </body>
+<head>
+  <style>
+    a[target="_blank"] {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <a href="http://www.w3schools.com">w3schools.com</a><br>
+  <a href="http://www.disney.com" target="_blank">disney.com</a><br>
+  <a href="http://www.wikipedia.org" target="_top">wikipedia.org</a>
+</body>
 </html>
 ```
 
@@ -214,18 +214,18 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      h1[title~="first"] {
-        background-color: yellow;
-      }
-    </style>
-  </head>
-  <body>
-    <h1 title="heading first">Heading first</h1>
-    <h1 title="heading second">Heading second</h1>
-    <h1 title="heading third">Heading third</h1>
-  </body>
+<head>
+  <style>
+    h1[title~="first"] {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <h1 title="heading first">Heading first</h1>
+  <h1 title="heading second">Heading second</h1>
+  <h1 title="heading third">Heading third</h1>
+</body>
 </html>
 ```
 
@@ -234,20 +234,20 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      [lang|="en"] {
-        background: yellow;
-      }
-    </style>
-  </head>
-  <body>
-    <p lang="en">Hello!</p>
-    <p lang="en-us">Hi!</p>
-    <p lang="en-gb">Ello!</p>
-    <p lang="us">Hi!</p>
-    <p lang="no">Hei!</p>
-  </body>
+<head>
+  <style>
+    [lang|="en"] {
+      background: yellow;
+    }
+  </style>
+</head>
+<body>
+  <p lang="en">Hello!</p>
+  <p lang="en-us">Hi!</p>
+  <p lang="en-gb">Ello!</p>
+  <p lang="us">Hi!</p>
+  <p lang="no">Hei!</p>
+</body>
 </html>
 ```
 
@@ -256,17 +256,17 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      a[href^="https://"] {
-        background: #ffff00;
-      }
-    </style>
-  </head>
-  <body>
-    <a href="https://www.test.com">https://www.test.com</a><br>
-    <a href="http://www.test.com">http://www.test.com</a>
-  </body>
+<head>
+  <style>
+    a[href^="https://"] {
+      background: #ffff00;
+    }
+  </style>
+</head>
+<body>
+  <a href="https://www.test.com">https://www.test.com</a><br>
+  <a href="http://www.test.com">http://www.test.com</a>
+</body>
 </html>
 ```
 
@@ -275,17 +275,17 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      a[href$=".html"] {
-        background: #ffff00;
-      }
-    </style>
-  </head>
-  <body>
-    <a href="test.html">test.html</a><br>
-    <a href="test.jsp">test.jsp</a>
-  </body>
+<head>
+  <style>
+    a[href$=".html"] {
+      background: #ffff00;
+    }
+  </style>
+</head>
+<body>
+  <a href="test.html">test.html</a><br>
+  <a href="test.jsp">test.jsp</a>
+</body>
 </html>
 ```
 
@@ -294,19 +294,19 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      div[class*="test"] {
-        background: #ffff00;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="first_test">The first div element.</div>
-    <div class="second">The second div element.</div>
-    <div class="test">The third div element.</div>
-    <p class="test">This is some text in a paragraph.</p>
-  </body>
+<head>
+  <style>
+    div[class*="test"] {
+      background: #ffff00;
+    }
+  </style>
+</head>
+<body>
+  <div class="first_test">The first div element.</div>
+  <div class="second">The second div element.</div>
+  <div class="test">The third div element.</div>
+  <p class="test">This is some text in a paragraph.</p>
+</body>
 </html>
 ```
 
@@ -329,22 +329,22 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      div p { background-color: yellow; }
-    </style>
-  </head>
-  <body>
-    <h1>Welcome to My Homepage</h1>
+<head>
+  <style>
+    div p { background-color: yellow; }
+  </style>
+</head>
+<body>
+  <h1>Welcome to My Homepage</h1>
 
-    <div>
-      <h2>My name is Donald</h2>
-      <p>I live in Duckburg.</p>
-      <span><p>I will not be styled.</p></span>
-    </div>
+  <div>
+    <h2>My name is Donald</h2>
+    <p>I live in Duckburg.</p>
+    <span><p>I will not be styled.</p></span>
+  </div>
 
-    <p>My best friend is Mickey.</p>
-  </body>
+  <p>My best friend is Mickey.</p>
+</body>
 </html>
 ```
 
@@ -359,22 +359,22 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      div > p { background-color: yellow; }
-    </style>
-  </head>
-  <body>
-    <h1>Welcome to My Homepage</h1>
+<head>
+  <style>
+    div > p { background-color: yellow; }
+  </style>
+</head>
+<body>
+  <h1>Welcome to My Homepage</h1>
 
-    <div>
-      <h2>My name is Donald</h2>
-      <p>I live in Duckburg.</p>
-      <span><p>I will not be styled.</p></span>
-    </div>
+  <div>
+    <h2>My name is Donald</h2>
+    <p>I live in Duckburg.</p>
+    <span><p>I will not be styled.</p></span>
+  </div>
 
-    <p>My best friend is Mickey.</p>
-  </body>
+  <p>My best friend is Mickey.</p>
+</body>
 </html>
 ```
 
@@ -396,34 +396,34 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      /* p 요소의 형제 요소 중에 p 요소 바로 뒤에 위치하는 ul 요소를 선택한다. */
-      p + ul { color: red; }
-    </style>
-  </head>
-  <body>
-    <div>A div element.</div>
-    <ul>
-      <li>Coffee</li>
-      <li>Tea</li>
-      <li>Milk</li>
-    </ul>
+<head>
+  <style>
+    /* p 요소의 형제 요소 중에 p 요소 바로 뒤에 위치하는 ul 요소를 선택한다. */
+    p + ul { color: red; }
+  </style>
+</head>
+<body>
+  <div>A div element.</div>
+  <ul>
+    <li>Coffee</li>
+    <li>Tea</li>
+    <li>Milk</li>
+  </ul>
 
-    <p>The first paragraph.</p>
-    <ul>
-      <li>Coffee</li>
-      <li>Tea</li>
-      <li>Milk</li>
-    </ul>
+  <p>The first paragraph.</p>
+  <ul>
+    <li>Coffee</li>
+    <li>Tea</li>
+    <li>Milk</li>
+  </ul>
 
-    <h2>Another list</h2>
-    <ul>
-      <li>Coffee</li>
-      <li>Tea</li>
-      <li>Milk</li>
-    </ul>
-  </body>
+  <h2>Another list</h2>
+  <ul>
+    <li>Coffee</li>
+    <li>Tea</li>
+    <li>Milk</li>
+  </ul>
+</body>
 </html>
 ```
 
@@ -438,34 +438,34 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      /* p 요소의 형제 요소 중에 p 요소 뒤에 위치하는 ul 요소를 모두 선택한다.*/
-      p ~ ul { color: red; }
-    </style>
-  </head>
-  <body>
-    <div>A div element.</div>
-    <ul>
-      <li>Coffee</li>
-      <li>Tea</li>
-      <li>Milk</li>
-    </ul>
+<head>
+  <style>
+    /* p 요소의 형제 요소 중에 p 요소 뒤에 위치하는 ul 요소를 모두 선택한다.*/
+    p ~ ul { color: red; }
+  </style>
+</head>
+<body>
+  <div>A div element.</div>
+  <ul>
+    <li>Coffee</li>
+    <li>Tea</li>
+    <li>Milk</li>
+  </ul>
 
-    <p>The first paragraph.</p>
-    <ul>
-      <li>Coffee</li>
-      <li>Tea</li>
-      <li>Milk</li>
-    </ul>
+  <p>The first paragraph.</p>
+  <ul>
+    <li>Coffee</li>
+    <li>Tea</li>
+    <li>Milk</li>
+  </ul>
 
-    <h2>Another list</h2>
-    <ul>
-      <li>Coffee</li>
-      <li>Tea</li>
-      <li>Milk</li>
-    </ul>
-  </body>
+  <h2>Another list</h2>
+  <ul>
+    <li>Coffee</li>
+    <li>Tea</li>
+    <li>Milk</li>
+  </ul>
+</body>
 </html>
 ```
 
@@ -510,39 +510,39 @@ div:hover {
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      /* unvisited link */
-      a:link {
-        color: orange;
-      }
+<head>
+  <style>
+    /* unvisited link */
+    a:link {
+      color: orange;
+    }
 
-      /* visited link */
-      a:visited {
-        color: green;
-      }
+    /* visited link */
+    a:visited {
+      color: green;
+    }
 
-      /* mouse over link */
-      a:hover {
-        font-weight: bold;
-      }
+    /* mouse over link */
+    a:hover {
+      font-weight: bold;
+    }
 
-      /* selected link */
-      a:active {
-        color: blue;
-      }
+    /* selected link */
+    a:active {
+      color: blue;
+    }
 
-      /* focus in */
-      input[type=text]:focus {
-        color: red;
-      }
-      </style>
-    </head>
-  <body>
-    <a href="#" target="_blank">This is a link</a><br>
-    <input type="text" value="I'll be red when focused"><br>
-    <input type="password" value="I'll be red when focused">
-  </body>
+    /* focus in */
+    input[type=text]:focus {
+      color: red;
+    }
+    </style>
+  </head>
+<body>
+  <a href="#" target="_blank">This is a link</a><br>
+  <input type="text" value="I'll be red when focused"><br>
+  <input type="password" value="I'll be red when focused">
+</body>
 </html>
 ```
 
@@ -558,29 +558,29 @@ div:hover {
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      input:enabled + span {
-        color: blue;
-      }
-      input:disabled + span {
-        color: gray;
-        text-decoration: line-through;
-      }
-      input:checked + span {
-        color: red;
-      }
-    </style>
-  </head>
-  <body>
-    <input type="radio" checked="checked" value="male" name="gender"> <span>Male</span><br>
-    <input type="radio" value="female" name="gender"> <span>Female</span><br>
-    <input type="radio" value="neuter" name="gender" disabled> <span>Neuter</span><hr>
+<head>
+  <style>
+    input:enabled + span {
+      color: blue;
+    }
+    input:disabled + span {
+      color: gray;
+      text-decoration: line-through;
+    }
+    input:checked + span {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <input type="radio" checked="checked" value="male" name="gender"> <span>Male</span><br>
+  <input type="radio" value="female" name="gender"> <span>Female</span><br>
+  <input type="radio" value="neuter" name="gender" disabled> <span>Neuter</span><hr>
 
-    <input type="checkbox" checked="checked" value="bicycle"> <span>I have a bicycle</span><br>
-    <input type="checkbox" value="car"> <span>I have a car</span><br>
-    <input type="checkbox" value="motorcycle" disabled> <span>I have a motorcycle</span>
-  </body>
+  <input type="checkbox" checked="checked" value="bicycle"> <span>I have a bicycle</span><br>
+  <input type="checkbox" value="car"> <span>I have a car</span><br>
+  <input type="checkbox" value="motorcycle" disabled> <span>I have a motorcycle</span>
+</body>
 </html>
 ```
 
@@ -594,26 +594,26 @@ div:hover {
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      /* 첫번째 자식 요소인 p 요소를 선택 */
-      p:first-child { color: red; }
-      /* 마지막 자식 요소인 p 요소를 선택 */
-      /* body 요소의 두번째 p 요소는 마지막 자식 요소가 아니다. body 요소의 마지막 자식 요소는 div 요소이다. */
-      p:last-child { color: blue; }
-    </style>
-  </head>
-  <body>
-    <p>This paragraph is the first child of its parent (body).</p>
+<head>
+  <style>
+    /* 첫번째 자식 요소인 p 요소를 선택 */
+    p:first-child { color: red; }
+    /* 마지막 자식 요소인 p 요소를 선택 */
+    /* body 요소의 두번째 p 요소는 마지막 자식 요소가 아니다. body 요소의 마지막 자식 요소는 div 요소이다. */
+    p:last-child { color: blue; }
+  </style>
+</head>
+<body>
+  <p>This paragraph is the first child of its parent (body).</p>
 
-    <h1>Welcome to My Homepage</h1>
+  <h1>Welcome to My Homepage</h1>
+  <p>This paragraph is not the first child of its parent.</p>
+
+  <div>
+    <p>This paragraph is the first child of its parent (div).</p>
     <p>This paragraph is not the first child of its parent.</p>
-
-    <div>
-      <p>This paragraph is the first child of its parent (div).</p>
-      <p>This paragraph is not the first child of its parent.</p>
-    </div>
-  </body>
+  </div>
+</body>
 </html>
 ```
 
@@ -627,42 +627,42 @@ n은 1부터 시작하는 정수이다.
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      /* 짝수번째 요소 */
-      ol > li:nth-child(2n)   { color: orange; }
-      /* 홀수번째 요소 */
-      ol > li:nth-child(2n+1) { color: green; }
-      ol > li:first-child     { color: red; }
-      ol > li:last-child      { color: blue; }
-      /* 4번째 요소 */
-      ol > li:nth-child(4)    { background: brown; }
+<head>
+  <style>
+    /* 짝수번째 요소 */
+    ol > li:nth-child(2n)   { color: orange; }
+    /* 홀수번째 요소 */
+    ol > li:nth-child(2n+1) { color: green; }
+    ol > li:first-child     { color: red; }
+    ol > li:last-child      { color: blue; }
+    /* 4번째 요소 */
+    ol > li:nth-child(4)    { background: brown; }
 
-      /* 뒤에서부터 시작하여 홀수번째 요소 */
-      ul > :nth-last-child(2n+1) { color: red; }
-      /* 뒤에서부터 시작하여 짝수번째 요소 */
-      ul > :nth-last-child(2n)   { color: blue; }
-    </style>
-  </head>
-  <body>
-    <ol>
-      <li>Espresso</li>
-      <li>Americano</li>
-      <li>Caffe Latte</li>
-      <li>Caffe Mocha</li>
-      <li>Caramel Latte</li>
-      <li>Cappuccino</li>
-    </ol>
+    /* 뒤에서부터 시작하여 홀수번째 요소 */
+    ul > :nth-last-child(2n+1) { color: red; }
+    /* 뒤에서부터 시작하여 짝수번째 요소 */
+    ul > :nth-last-child(2n)   { color: blue; }
+  </style>
+</head>
+<body>
+  <ol>
+    <li>Espresso</li>
+    <li>Americano</li>
+    <li>Caffe Latte</li>
+    <li>Caffe Mocha</li>
+    <li>Caramel Latte</li>
+    <li>Cappuccino</li>
+  </ol>
 
-    <ul>
-      <li>Espresso</li>
-      <li>Americano</li>
-      <li>Caffe Latte</li>
-      <li>Caffe Mocha</li>
-      <li>Caramel Latte</li>
-      <li>Cappuccino</li>
-    </ul>
-  </body>
+  <ul>
+    <li>Espresso</li>
+    <li>Americano</li>
+    <li>Caffe Latte</li>
+    <li>Caffe Mocha</li>
+    <li>Caramel Latte</li>
+    <li>Cappuccino</li>
+  </ul>
+</body>
 </html>
 ```
 
@@ -676,34 +676,34 @@ n은 1부터 시작하는 정수이다.
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      /* p 요소의 부모의 자식 중 첫번째 등장하는 p 요소 */
-      p:first-of-type  { color: red; }
-      /* p 요소의 부모의 자식 중 마지막 등장하는 p 요소 */
-      p:last-of-type   { color: blue; }
-      /* p 요소의 부모의 자식 중 앞에서 2번째 등장하는 p 요소 */
-      p:nth-of-type(2) { color: green; }
-      /* p 요소의 부모의 자식 중 뒤에서 2번째 등장하는 p 요소 */
-      p:nth-last-of-type(2) { color: orange;}
+<head>
+  <style>
+    /* p 요소의 부모의 자식 중 첫번째 등장하는 p 요소 */
+    p:first-of-type  { color: red; }
+    /* p 요소의 부모의 자식 중 마지막 등장하는 p 요소 */
+    p:last-of-type   { color: blue; }
+    /* p 요소의 부모의 자식 중 앞에서 2번째 등장하는 p 요소 */
+    p:nth-of-type(2) { color: green; }
+    /* p 요소의 부모의 자식 중 뒤에서 2번째 등장하는 p 요소 */
+    p:nth-last-of-type(2) { color: orange;}
 
-      p:first-child { background: brown;}
-    </style>
-  </head>
-  <body>
+    p:first-child { background: brown;}
+  </style>
+</head>
+<body>
+  <h1>This is a heading</h1>
+  <p>The first paragraph.</p>
+  <p>The second paragraph.</p>
+  <p>The third paragraph.</p>
+  <p>The fourth paragraph.</p>
+  <div>
     <h1>This is a heading</h1>
     <p>The first paragraph.</p>
     <p>The second paragraph.</p>
     <p>The third paragraph.</p>
     <p>The fourth paragraph.</p>
-    <div>
-      <h1>This is a heading</h1>
-      <p>The first paragraph.</p>
-      <p>The second paragraph.</p>
-      <p>The third paragraph.</p>
-      <p>The fourth paragraph.</p>
-    </div>
-  </body>
+  </div>
+</body>
 </html>
 ```
 
@@ -716,18 +716,49 @@ n은 1부터 시작하는 정수이다.
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      input:not([type=password]) {
-        background: yellow;
-      }
-    </style>
-  </head>
-  <body>
-    <input type="text" value="Text input">
-    <input type="email" value="email input">
-    <input type="password" value="Password input">
-  </body>
+<head>
+  <style>
+    input:not([type=password]) {
+      background: yellow;
+    }
+  </style>
+</head>
+<body>
+  <input type="text" value="Text input">
+  <input type="email" value="email input">
+  <input type="password" value="Password input">
+</body>
+</html>
+```
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      margin: 0;
+    }
+    div {
+      width: 32vw;
+      height: 200px;
+      background-color: red;
+      margin-bottom: 2vw;
+      float: left;
+    }
+    div:not(:nth-of-type(3n-2)) {
+      margin-left: 2vw;
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</body>
 </html>
 ```
 
@@ -758,34 +789,34 @@ selector::pseudo-element {
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      p::first-letter { font-size: 3em; }
-      p::first-line   { color: red; }
+<head>
+  <style>
+    p::first-letter { font-size: 3em; }
+    p::first-line   { color: red; }
 
-      h1::before {
-        content: " HTML!!! ";
-        color: blue;
-      }
-      h1::after {
-        content: " CSS3!!!";
-        color: red;
-      }
+    h1::before {
+      content: " HTML!!! ";
+      color: blue;
+    }
+    h1::after {
+      content: " CSS3!!!";
+      color: red;
+    }
 
-      ::-moz-selection { /* Code for Firefox */
-        color: red;
-        background: yellow;
-      }
-      ::selection {
-        color: red;
-        background: yellow;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>This is a heading</h1>
-    <p>You can use the ::first-line pseudo-element to add a special effect to the first line of a text. Some more text. And even more, and more, and more, and more, and more, and more, and more, and more, and more, and more, and more, and more.</p>
-  </body>
+    ::-moz-selection { /* Code for Firefox */
+      color: red;
+      background: yellow;
+    }
+    ::selection {
+      color: red;
+      background: yellow;
+    }
+  </style>
+</head>
+<body>
+  <h1>This is a heading</h1>
+  <p>You can use the ::first-line pseudo-element to add a special effect to the first line of a text. Some more text. And even more, and more, and more, and more, and more, and more, and more, and more, and more, and more, and more, and more.</p>
+</body>
 </html>
 ```
 
@@ -796,19 +827,19 @@ selector::pseudo-element {
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      p { color: blue; }
-      p { color: red; }
+<head>
+  <style>
+    p { color: blue; }
+    p { color: red; }
 
-      .red { color: red; }
-      .blue { color: blue; }
-    </style>
-  </head>
-  <body>
-    <p>Will be RED.</p>
-    <p class="blue red">Will be BLUE.</p>
-  </body>
+    .red { color: red; }
+    .blue { color: blue; }
+  </style>
+</head>
+<body>
+  <p>Will be RED.</p>
+  <p class="blue red">Will be BLUE.</p>
+</body>
 </html>
 ```
 
@@ -821,18 +852,18 @@ selector::pseudo-element {
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      p      { color: red !important; }
-      #thing { color: blue; }
-      .food  { color: green; }
-      div    { color: orange; }
-    </style>
-  </head>
-  <body>
-    <p id="thing">Will be Red.</p>
-    <div class="food">Will be Green.</div>
-  </body>
+<head>
+  <style>
+    p      { color: red !important; }
+    #thing { color: blue; }
+    .food  { color: green; }
+    div    { color: orange; }
+  </style>
+</head>
+<body>
+  <p id="thing">Will be Red.</p>
+  <div class="food">Will be Green.</div>
+</body>
 </html>
 ```
 
@@ -847,20 +878,20 @@ selector::pseudo-element {
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="style.css">
-    <style>
-      body {
-        background-color: yellow;
-        color: navy;
-      }
-    </style>
-  </head>
-  <body style="background-color: beige">
-    <h1>Multiple Styles Will Cascade into One</h1>
-    <p>In this example, the background color is set inline, in an internal stylesheet, and in an external stylesheet.</p>
-    <p>Try experimenting by removing styles to see how the cascading stylesheets work. (try removing the inline first, then the internal, then the external)</p>
-  </body>
+<head>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background-color: yellow;
+      color: navy;
+    }
+  </style>
+</head>
+<body style="background-color: beige">
+  <h1>Multiple Styles Will Cascade into One</h1>
+  <p>In this example, the background color is set inline, in an internal stylesheet, and in an external stylesheet.</p>
+  <p>Try experimenting by removing styles to see how the cascading stylesheets work. (try removing the inline first, then the internal, then the external)</p>
+</body>
 </html>
 ```
 

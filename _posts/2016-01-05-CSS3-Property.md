@@ -389,7 +389,7 @@ Viewport 단위는 상대적인 단위로 [viewport](http://ungmo2.github.io/css
 
 ## 2.1 박스 모델 (Box Model)
 
-모든 HTML 요소는 박스 형태의 영역을 가지고 있다.
+모든 HTML 요소는 박스 형태의 영역을 가지고 있다. 박스 형태는 사각형을 의미하므로 너비와 높이로 요소의 영역을 표현할 수 있다.
 
 ![typesetting](/img/typesetting.jpg)
 {: style="max-width:500px; margin: 10px auto;"}
@@ -399,9 +399,11 @@ CSS 박스 모델은 모든 HTML 요소를 감싸고 있는 margin, border, padd
 ![css box model](/img/box-model.png)
 {: style="max-width:500px; margin: 10px auto;"}
 
+브라우저는 박스 모델의 크기(dimension)와 속성(색, 배경, 모양 등), 위치를 근거로 하여 렌더링을 실시하게 된다.
+
 | 명칭     | 설명
 |:--------|:-----------------------------------------------------------
-| Content | 요소의 텍스트나 이미지 등의 내용이 위치하는 영역이다. width, height 속성을 갖는다.
+| Content | 요소의 텍스트나 이미지 등의 실제 내용이 위치하는 영역이다. width, height 속성을 갖는다.
 | Padding | 테두리 내부 영역이다. 속성값은 두께를 의미하며 기본적으로 투명한 색을 갖는다.
 | Border  | 테두리 영역이다. 속성값은 두께를 의미한다.
 | Margin  | 테두리의 외부 영역이다. 기본적으로 투명한 색을 갖는다.

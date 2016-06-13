@@ -704,12 +704,14 @@ margin 속성에 `auto` 키워드를 설정하면 해당 요소를 브라우저 
       }
 
       .border-rounded {
+        /* Radius is set for all 4 sides */
         border-radius: 5px;
       }
       .border-circle {
         border-radius: 50%;
       }
       .border-football {
+        /* top-left-and-bottom-right | top-right-and-bottom-left */
         border-radius: 15px 75px;
       }
     </style>
@@ -839,7 +841,7 @@ p {
 
 - content의 너비만큼 가로폭을 차지한다.
 
-- width, height, margin-top, margin-bottom 속성을 지정할 수 없다. padding 속성은 지정 가능하나 padding-top, padding-bottom의 경우 정상적으로 적용되지 않는다. 상, 하 여백은 line-height로 지정한다.
+- width, height, margin-top, margin-bottom 속성을 지정할 수 없다. 상, 하 여백은 line-height로 지정한다.
 
 - inline 속성 요소를 연속 사용하는 경우, 좌우에 정의하지 않은 space(4px)가 자동 지정된다.
 
@@ -868,8 +870,22 @@ p {
 ```html
 <!DOCTYPE html>
 <html>
+  <head>
+    <style>
+      span {
+        background-color:red;
+        color:white;
+        padding: 10px;
+        /*width: 200px;*/
+        /*margin: 10px;*/
+        /*line-height: 50px;*/
+      }
+    </style>
+  </head>
   <body>
-    <h1>My <span style="background-color:red; color:white;">Important</span> Heading</h1>
+    <h1>My <span>Important</span> Heading</h1>
+    <span>Inline</span>
+    <span>Inline</span><span>Inline</span>
   </body>
 </html>
 ```
@@ -880,7 +896,7 @@ block과 inline의 특징을 모두 갖는다. inline 요소 같이 한 줄에 �
 
 - 기본적으로 inline 속성과 흡사하게 줄을 바꾸지 않고 다른 요소와 함께 한 행에 위치시킬 수 있다.
 
-- block 속성처럼 width와 height, margin, padding 속성을 정의할 수 있다. 상, 하 여백을 margin과 line-height 두가지 속성 모두를 통해 제어할 수 있다.
+- block 속성처럼 width height, margin, padding 속성을 정의할 수 있다. 상, 하 여백을 margin과 line-height 두가지 속성 모두를 통해 제어할 수 있다.
 
 - inline-block 속성 요소를 연속 사용되는 경우, 좌우에 정의하지 않은 space(4px)가 자동 지정된다.
 
@@ -979,45 +995,41 @@ visibility 속성은 요소를 보이게 할 것인지 보이지 않게 할 것�
 | 속성값 키워드   | 설명                         |
 |:-------------|:----------------------------|
 | visible      | 해당 요소를 보이게 한다 (기본값)
-| hidden       | 해당 요소를 보이지 않게 한다. display: none;은 해당 요소의 공간까지 사라지게 visibility: hidden;은 해당 요소의 공간은 사라지지 않고 남아있게 된다.
+| hidden       | 해당 요소를 보이지 않게 한다. display: none;은 해당 요소의 공간까지 사라지게 하지만 visibility: hidden;은 해당 요소의 공간은 사라지지 않고 남아있게 된다.
 | collapse     | 테이블의 행이나 열을 보이지 않게 한다.
 | none         | 테이블 요소의 row나 column을 보이지 않게 한다. IE, 파이어폭스에서만 동작하며 크롬에서는 hidden과 동일하게 동작한다.
 
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      h1.visible {
-        visibility: visible;
-      }
-      h1.hidden {
-        visibility: hidden;
-      }
+<head>
+  <style>
+    h1.visible { visibility: visible; }
+    h1.hidden  { visibility: hidden; }
 
-      table, td {
-        border: 1px solid black;
-      }
-      tr.collapse {
-        visibility: collapse;
-      }
-    </style>
-  </head>
-  <body>
-    <h1 class="visible">This is a visible heading</h1>
-    <h1 class="hidden">This is an invisible heading</h1>
+    /*셀의 테두리선을 겹쳐서 표현*/
+    table { border-collapse: collapse; }
+    table, td { border: 1px solid black; }
+    tr.collapse { visibility: collapse; }
+    /*tr.collapse { visibility: hidden; }*/
+  </style>
+</head>
+<body>
+  <h1 class="visible">This is a visible heading</h1>
+  <h1 class="hidden">This is an invisible heading</h1>
+  <h1 style="display:none">This is an invisible heading</h1>
 
-    <table>
-      <tr>
-        <td>Peter</td>
-        <td>Griffin</td>
-      </tr>
-      <tr class="collapse">
-        <td>Lois</td>
-        <td>Griffin</td>
-      </tr>
-    </table>
-  </body>
+  <table>
+    <tr>
+      <td>Peter</td>
+      <td>Griffin</td>
+    </tr>
+    <tr class="collapse">
+      <td>Lois</td>
+      <td>Griffin</td>
+    </tr>
+  </table>
+</body>
 </html>
 ```
 

@@ -1826,28 +1826,28 @@ static은 position 속성의 기본값으로 position 속성을 지정하지 않
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      body { margin: 0;}
-      div {
-        color: #fff;
-        height: 150px; width: 150px;
-        background: #bcbcbc;
-        border: 1px solid #bcbcbc;
-      }
-      .static-box {
-        position: static;
-        background: #2db34a;
-        text-align: center;
-        line-height: 150px;
-      }
-    </style>
-  </head>
-  <body>
-    <div>
-      <div class="static-box">static box</div>
-    </div>
-  </body>
+<head>
+  <style>
+    body { margin: 0;}
+    div {
+      color: #fff;
+      text-align: center;
+      height: 150px; width: 150px;
+      background: #bcbcbc;
+      border: 1px solid #bcbcbc;
+    }
+    .static-box {
+      position: static;
+      background: #2db34a;
+      line-height: 150px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="static-box">static box</div>
+  </div>
+</body>
 </html>
 ```
 
@@ -1858,28 +1858,29 @@ static은 position 속성의 기본값으로 position 속성을 지정하지 않
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      body { margin: 0;}
-      div {
-        color: #fff;
-        height: 150px; width: 150px;
-        background: #bcbcbc;
-        border: 1px solid #bcbcbc;
-      }
-      .relative-box {
-        padding: 10px;
-        background: #2db34a;
-        position: relative;
-        top: 50px; left: 50px;
-      }
-    </style>
-  </head>
-  <body>
-    <div>
-      <div class="relative-box">relative box</div>
-    </div>
-  </body>
+<head>
+  <style>
+    body { margin: 0;}
+    div {
+      color: #fff;
+      text-align: center;
+      line-height: 150px;
+      height: 150px; width: 150px;
+      background: #bcbcbc;
+      border: 1px solid #bcbcbc;
+    }
+    .relative-box {
+      position: relative;
+      top: 50px; left: 50px;
+      background: #2db34a;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="relative-box">relative box</div>
+  </div>
+</body>
 </html>
 ```
 
@@ -1900,37 +1901,33 @@ static은 position 속성의 기본값으로 position 속성을 지정하지 않
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      body { margin: 0;}
-      div {
-        color: #fff;
-        height: 300px; width: 300px;
-        background: #bcbcbc;
-        border: 1px solid #bcbcbc;
-        position: relative;
-        top: 200px; left: 200px;
-      }
-      .absolute-box1 {
-        background: #2db34a;
-        height: 150px; width: 150px;
-        position: absolute;
-        top: 50px; left: 50px;
-      }
-      .absolute-box2 {
-        background: #2db34a;
-        height: 150px; width: 150px;
-        position: absolute;
-        top: 50px; left: 50px;
-      }
-    </style>
-  </head>
-  <body>
-    <div>
-      <div class="absolute-box1">absolute box1</div>
-    </div>
-    <div class="absolute-box2">absolute box2</div>
-  </body>
+<head>
+  <style>
+    body { margin: 0;}
+    div {
+      color: #fff;
+      text-align: center;
+      line-height: 200px;
+      height: 300px; width: 300px;
+      background: #bcbcbc;
+      border: 1px solid #bcbcbc;
+      position: relative;
+      top: 200px; left: 200px;
+    }
+    .absolute-box {
+      background: #2db34a;
+      height: 200px; width: 200px;
+      position: absolute;
+      top: 50px; left: 50px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="absolute-box">absolute box1</div>
+  </div>
+  <div class="absolute-box">absolute box2</div>
+</body>
 </html>
 ```
 
@@ -1945,73 +1942,75 @@ static은 position 속성의 기본값으로 position 속성을 지정하지 않
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      body { margin: 0;}
-      div {
-        color: #fff;
-        height: 150px; width: 150px;
-        background: #bcbcbc;
-        border: 1px solid #bcbcbc;
-      }
-      .fixed-box1 {
-        position: fixed;
-        background: #2db34a;
-        bottom: 0; left: 0;
-      }
-      .fixed-box2 {
-        position: fixed;
-        background: #2db34a;
-        top: 0; right: 0;
-      }
-    </style>
-  </head>
-  <body>
-    <div>
-      <div class="fixed-box1">fixed box1</div>
-    </div>
-    <div class="fixed-box2">fixed box2</div>
-  </body>
+<head>
+  <style>
+    body { margin: 0;}
+    div {
+      color: #fff;
+      text-align: center;
+      line-height: 150px;
+      height: 150px; width: 150px;
+      background: #bcbcbc;
+      border: 1px solid #bcbcbc;
+    }
+    .fixed-box1 {
+      position: fixed;
+      background: #2db34a;
+      bottom: 0; left: 0;
+    }
+    .fixed-box2 {
+      position: fixed;
+      background: #2db34a;
+      top: 0; right: 0;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="fixed-box1">fixed box1</div>
+  </div>
+  <div class="fixed-box2">fixed box2</div>
+</body>
 </html>
 ```
 
 ### 2.5.2 z-index 속성
 
-z-index 속성에 큰 숫자값을 지정할 수록 화면 전면에 출력된다.
+z-index 속성에 큰 숫자값을 지정할수록 화면 전면에 출력된다.
 
 ![z-index](/img/z-index.jpeg)
 
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      .box {
-        width: 100px; height: 100px;
-        position: absolute;
-      }
-      .red {
-        background-color: red;
-        left: 10px; top: 10px;
-        z-index: 100;
-      }
-      .green {
-        background-color: green;
-        left: 50px; top: 50px;
-        z-index: 10;
-      }
-      .blue {
-        background-color: blue;
-        left: 90px; top: 90px;
-        z-index: 1;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="box red"></div>
-    <div class="box green"></div>
-    <div class="box blue"></div>
-  </body>
+<head>
+  <style>
+    .box {
+      width: 100px; height: 100px;
+      position: absolute;
+    }
+    .red {
+      background-color: red;
+      left: 10px; top: 10px;
+      z-index: 100;
+    }
+    .green {
+      background-color: green;
+      left: 50px; top: 50px;
+      z-index: 10;
+    }
+    .blue {
+      background-color: blue;
+      left: 90px; top: 90px;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="box red"></div>
+  <div class="box green"></div>
+  <div class="box blue"></div>
+</body>
 </html>
 ```
 
@@ -2029,39 +2028,39 @@ overflow 속성은 자식 요소가 부모 요소의 영역를 벗어났을 때 
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      div {
-        width: 150px;
-        height: 150px;
-        padding: 10px;
-        margin: 30px;
-        font-size: 1.2em;
-        border-radius: 6px;
-        border-color: gray;
-        border-style: dotted;
-        float: left;
-      }
-      .visible { overflow: visible; }
-      .hidden  { overflow: hidden; }
-      .scroll  { overflow: scroll; }
-      .auto    { overflow: auto; }
-    </style>
-  </head>
-  <body>
-    <h1>overflow</h1>
-    <div class="visible"><h3>visible</h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-    <div class="hidden"><h3>hidden</h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-    <div class="scroll"><h3>scroll</h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-    <div class="auto"><h3>auto</h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-  </body>
+<head>
+  <style>
+    div {
+      width: 150px;
+      height: 150px;
+      padding: 10px;
+      margin: 30px;
+      font-size: 1.2em;
+      border-radius: 6px;
+      border-color: gray;
+      border-style: dotted;
+      float: left;
+    }
+    .visible { overflow: visible; }
+    .hidden  { overflow: hidden; }
+    .scroll  { overflow: scroll; }
+    .auto    { overflow: auto; }
+  </style>
+</head>
+<body>
+  <h1>overflow</h1>
+  <div class="visible"><h3>visible</h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+  <div class="hidden"><h3>hidden</h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+  <div class="scroll"><h3>scroll</h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+  <div class="auto"><h3>auto</h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+</body>
 </html>
 ```
 
 특정 방향으로만 스크롤을 표시하고자 할 때는 overflow-x 또는 overflow-y 속성을 사용한다.
 
 ```css
-div { overflow-y: scroll; }
+div { overflow-y: auto; }
 ```
 
 ## 2.6 float 속성
@@ -2070,31 +2069,30 @@ float 속성은 주로 layout을 구성하기 위해 사용되는 핵심 기술�
 
 ![CSS Grid Layout example](/img/layout.png)
 
-float 속성은 다음 예제와 같이 이미지 주위를 텍스트로 감싸기 위해 만들어진 것이다.
+float 속성은 본래 다음 예제와 같이 이미지 주위를 텍스트로 감싸기 위해 만들어진 것이다.
 
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      img { float: right; }
-    </style>
-  </head>
-  <body>
-    <img src="klematis.jpg">
-    <p>The float property was originally designed to allow content to wrap around images. An image could be floated, and all of the content surrounding that image could then naturally flow around it. Although this works great for images, the float property was never actually intended to be used for layout and positioning purposes, and thus it comes with a few pitfalls.One of those pitfalls is that occasionally the proper styles will not render on an element that it is sitting next to or is a parent element of a floated element. When an element is floated, it is taken out of the normal flow of the page, and, as a result, the styles of elements around that floated element can be negatively impacted. Often margin and padding property values arent interpreted correctly, causing them to blend into the floated element; other properties can be affected, too. Another pitfall is that sometimes unwanted content begins to wrap around a floated element. Removing an element from the flow of the document allows all the elements around the floated element to wrap and consume any available space around the floated element, which is often undesired.</p>
-  </body>
+<head>
+  <style>
+    img { float: right; }
+  </style>
+</head>
+<body>
+  <img src="img/klematis.jpg">
+  <p>The float property was originally designed to allow content to wrap around images. An image could be floated, and all of the content surrounding that image could then naturally flow around it. Although this works great for images, the float property was never actually intended to be used for layout and positioning purposes, and thus it comes with a few pitfalls.One of those pitfalls is that occasionally the proper styles will not render on an element that it is sitting next to or is a parent element of a floated element. When an element is floated, it is taken out of the normal flow of the page, and, as a result, the styles of elements around that floated element can be negatively impacted. Often margin and padding property values arent interpreted correctly, causing them to blend into the floated element; other properties can be affected, too. Another pitfall is that sometimes unwanted content begins to wrap around a floated element. Removing an element from the flow of the document allows all the elements around the floated element to wrap and consume any available space around the floated element, which is often undesired.</p>
+</body>
 </html>
 ```
 
-float 속성은 해당 요소를 떠 있게 한다. 여기서 떠 있다(float)는 의미는 요소가 기본 레이아웃 흐름에서 벗어나 요소의 모서리가 페이지의 왼쪽이나 오른쪽에 이동하는 것이다. float 속성을 사용할 때 요소의 위치가 고정시키는 position 속성의 absolute를 사용하면 안된다.
+float 속성은 해당 요소를 떠 있게 한다. 여기서 떠 있다(float)는 의미는 요소가 기본 레이아웃 흐름에서 벗어나 요소의 모서리가 페이지의 왼쪽이나 오른쪽에 이동하는 것이다. float 속성을 사용할 때 요소의 위치를 고정시키는 position 속성의 absolute를 사용하면 안된다.
 
 | 속성값	     | Description
 |:----------|:-----------------
 | none      | 요소를 떠 있게 하지 않는다. (기본값)
 | right     | 요소를 오른쪽으로 이동시킨다
 | left      | 요소를 왼쪽으로 이동시킨다.
-| inherit   | 요소를 감싸는 부모 요소의 float 속성을 상속받는다.
 
 ![css float](/img/float.png)
 

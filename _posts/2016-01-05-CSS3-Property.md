@@ -1477,7 +1477,7 @@ font-style 속성은 이탤릭체의 지정, font-weight 속성은 폰트 굵기
 
 ```
 
-다음은 수직 중앙 정렬 예제이다. a 요소의 `line-height` 값과 a 요소를 감싸는　div 요소의 `height` 값을 일치시킨다.
+다음은 수직 중앙 정렬 예제이다. a 요소의 `line-height` 값과 a 요소를 감싸는 div 요소의 `height` 값을 일치시킨다.
 
 ```html
 <!DOCTYPE html>

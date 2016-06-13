@@ -1116,12 +1116,14 @@ body {
 }
 ```
 
-배경 이미지의 크기를 조절하고 싶은 경우, `background-size` 속성을 사용한다. px값을 지정할 경우, 배경이미지 크기가 지정된 px값으로 조정되고 100%를 지정하며 화면 크기에 맞추어 이미지를 출력한다. 이때 지정한 값은 width를 의미한다.
+배경 이미지의 크기를 조절하고 싶은 경우, `background-size` 속성을 사용한다. px값을 지정할 경우, 배경이미지 크기가 지정된 px값으로 조정되고 100%를 지정하며 화면 크기에 맞추어 이미지를 출력한다. 이때 지정한 값은 width를 의미한다. width만 지정한 경우 height는 auto로 지장된다.
 
 ```css
 body {
   background-image: url("img/dot.png");
   background-repeat: no-repeat;
+  /* One-value syntax */
+  /* the width of the image (height set to 'auto') */
   background-size: 100%;
 }
 ```
@@ -1132,6 +1134,8 @@ body {
 body {
   background-image: url("img/dot.png");
   background-repeat: no-repeat;
+  /* Two-value syntax */
+  /* first value: width of the image, second value: height */
   background-size: 100% 500px;
 }
 ```
@@ -1141,7 +1145,7 @@ body {
 ```css
 body {
   background-image: url("front.png"), url("back.png");
-  background-repeat: no-repeat, no-repeat;;
+  background-repeat: no-repeat, no-repeat;
   background-size: 100%, 500px;
 }
 ```
@@ -1151,89 +1155,132 @@ body {
 ```html
 <!DOCTYPE html>
 <html>
+
 <head>
   <style>
-    div {
-      background-image: url("background.jpg");
-      background-size: 100% 100%;
-      display: inline-block;
-      width: 45%;
+    body {
+      /*overflow: hidden;*/
+      margin: 0;
+      padding: 0;
     }
-    .fixed {
+
+    .bg {
+      background-image: url("img/bg.jpg");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
       background-attachment: fixed;
+      float: left;
+      width: 100vw;
+      height: 100vh;
+      overflow: auto;
+    }
+
+    #page-wrap {
+      width: 300px;
+      margin: 50px auto;
+      padding: 20px;
+      background: white;
+      box-shadow: 0 0 20px black;
+      /* size/line-height | family */
+      font: 15px/2 Georgia, Serif;
     }
   </style>
 </head>
+
 <body>
-  <div>
-    <p>The background-image is fixed. Try to scroll down the page.</p>
-    <p>The background-image is fixed. Try to scroll down the page.</p>
-    <p>The background-image is fixed. Try to scroll down the page.</p>
-    <p>The background-image is fixed. Try to scroll down the page.</p>
-    <p>The background-image is fixed. Try to scroll down the page.</p>
-    <p>The background-image is fixed. Try to scroll down the page.</p>
-    <p>The background-image is fixed. Try to scroll down the page.</p>
-    <p>The background-image is fixed. Try to scroll down the page.</p>
-    <p>The background-image is fixed. Try to scroll down the page.</p>
-    <p>The background-image is fixed. Try to scroll down the page.</p>
-    <p>The background-image is fixed. Try to scroll down the page.</p>
-    <p>The background-image is fixed. Try to scroll down the page.</p>
-    <p>The background-image is fixed. Try to scroll down the page.</p>
-    <p>The background-image is fixed. Try to scroll down the page.</p>
-    <p>The background-image is fixed. Try to scroll down the page.</p>
-  </div>
-  <div class='fixed'>
-    <p>The background-image is fixed. Try to scroll down the page.</p>
-    <p>The background-image is fixed. Try to scroll down the page.</p>
-    <p>The background-image is fixed. Try to scroll down the page.</p>
-    <p>The background-image is fixed. Try to scroll down the page.</p>
-    <p>The background-image is fixed. Try to scroll down the page.</p>
-    <p>The background-image is fixed. Try to scroll down the page.</p>
-    <p>The background-image is fixed. Try to scroll down the page.</p>
-    <p>The background-image is fixed. Try to scroll down the page.</p>
-    <p>The background-image is fixed. Try to scroll down the page.</p>
-    <p>The background-image is fixed. Try to scroll down the page.</p>
-    <p>The background-image is fixed. Try to scroll down the page.</p>
-    <p>The background-image is fixed. Try to scroll down the page.</p>
-    <p>The background-image is fixed. Try to scroll down the page.</p>
-    <p>The background-image is fixed. Try to scroll down the page.</p>
-    <p>The background-image is fixed. Try to scroll down the page.</p>
+  <div class='bg'>
+    <div id="page-wrap">
+      <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est.</p>
+      <p>Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus acus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+    </div>
   </div>
 </body>
+
 </html>
 ```
 
-### 2.3.2 Background Position
+Reference
+- [background-image](https://developer.mozilla.org/en-US/docs/Web/CSS/background-image)
+- [background-repeat](https://developer.mozilla.org/en-US/docs/Web/CSS/background-repeat)
+- [background-size](https://developer.mozilla.org/en-US/docs/Web/CSS/background-size)
+- [background-attachment](https://developer.mozilla.org/en-US/docs/Web/CSS/background-attachment)
+- [background-position](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position)
+- [background-color](https://developer.mozilla.org/en-US/docs/Web/CSS/background-color)
 
-| 속성값	        | Description
-|:--------------|:-----------------
-| left top       | x축 y축
-| left center    | x축 y축
-| left bottom    | x축 y축
-| right top      | x축 y축
-| right center   | x축 y축
-| right bottom   | x축 y축
-| center top     | x축 y축
-| center center  | x축 y축
-| center         | center center
-| bottom	       | bottom center
-| x% y%          | x축 y축
-| xpos ypos      | x축 y축
+### 2.3.2 Background Position
 
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      div {
-        background-image: url('dot.png');
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: center;
-      }
-    </style>
-  </head>
-  <body><div></div></body>
+
+<head>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    div {
+      background-image: url("img/dot.png");
+      background-color: #FFEE99;
+      background-repeat: no-repeat;
+      width: 32vw;
+      height: 200px;
+      margin-bottom: 2vw;
+      float: left;
+    }
+
+    div:not(:nth-of-type(3n-2)) {
+      margin-left: 2vw;
+    }
+
+    .example1 {
+      background-position: top;
+    }
+
+    .example2 {
+      background-position: bottom;
+    }
+
+    .example3 {
+      background-position: center;
+    }
+
+    .example4 {
+      background-position: left;
+    }
+
+    .example5 {
+      background-position: right;
+    }
+
+    .example6 {
+      /* <percentage> values */
+      background-position: 25% 75%;
+    }
+
+    .example7 {
+      /* <length> values */
+      background-position: 10px 20px;
+    }
+
+    .example8 {
+      background-image: url("img/dot.png"), url("img/dot.png");
+      background-position: 0px 0px, center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="example1">top</div>
+  <div class="example2">bottom</div>
+  <div class="example3">center</div>
+  <div class="example4">left</div>
+  <div class="example5">right</div>
+  <div class="example6">25% 75%</div>
+  <div class="example7">10px 20px</div>
+  <div class="example8">0px 0px, center</div>
+</body>
+
 </html>
 ```
 
@@ -1244,6 +1291,16 @@ div {
   background-color:red;
   background-color:rgb(255,255,255);
 }
+```
+
+Shorthand Syntax
+
+```
+background: background-color || background-image || background-repeat || background-attachment || background-position
+```
+
+```
+background: #ffffff url("img_tree.png") no-repeat right top;
 ```
 
 ## 2.4 폰트와 텍스트

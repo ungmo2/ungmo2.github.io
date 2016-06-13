@@ -1074,7 +1074,7 @@ opacity 속성은 요소의 투명도를 정의한다. 0.0 ~ 1.0의 값을 입�
   <head>
     <style>
       body {
-        background-image: url("dot.png");
+        background-image: url("img/dot.png");
       }
       </style>
   </head>
@@ -1088,7 +1088,9 @@ opacity 속성은 요소의 투명도를 정의한다. 0.0 ~ 1.0의 값을 입�
 background-image에 복수개의 이미지를 설정할 경우, 먼저 설정된 이미지가 전면에 출력된다.
 
 ```css
-background-image: url("front.png"), url("back.png");
+body {
+  background-image: url("front.png"), url("back.png");
+}
 ```
 
 설정된 이미지의 크기가 화면보다 작으면 자동으로 이미지가 반복 출력되어 화면을 채우게 된다. 이것은 `background-repeat` 속성의 기본값이 `repeat`이기 때문이다.

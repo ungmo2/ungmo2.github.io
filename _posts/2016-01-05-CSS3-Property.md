@@ -1068,7 +1068,7 @@ opacity 속성은 요소의 투명도를 정의한다. 0.0 ~ 1.0의 값을 입�
 
 자세한 내용은 [CSS Background and Borders](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Background_and_Borders)를 참조한다.
 
-### 2.3.1 Background Image
+### 2.3.1 Background Image 속성
 
 [background-image](https://developer.mozilla.org/en-US/docs/Web/CSS/background-image)
 
@@ -1089,7 +1089,7 @@ opacity 속성은 요소의 투명도를 정의한다. 0.0 ~ 1.0의 값을 입�
 </html>
 ```
 
-### 2.3.2 Background Repeat
+### 2.3.2 Background Repeat 속성
 
 [background-repeat](https://developer.mozilla.org/en-US/docs/Web/CSS/background-repeat)
 
@@ -1122,7 +1122,7 @@ body {
 }
 ```
 
-### 2.3.3 Background Size
+### 2.3.3 Background Size 속성
 
 [background-size](https://developer.mozilla.org/en-US/docs/Web/CSS/background-size)
 
@@ -1160,7 +1160,7 @@ body {
 }
 ```
 
-### 2.3.4 Background Attachment
+### 2.3.4 Background Attachment 속성
 
 [background-attachment](https://developer.mozilla.org/en-US/docs/Web/CSS/background-attachmen
 
@@ -1211,7 +1211,7 @@ body {
 </html>
 ```
 
-### 2.3.5 Background Position
+### 2.3.5 Background Position 속성
 
 [background-position](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position)
 
@@ -1278,7 +1278,7 @@ body {
 </html>
 ```
 
-### 2.3.6 Background Color
+### 2.3.6 Background Color 속성
 
 [background-color](https://developer.mozilla.org/en-US/docs/Web/CSS/background-color)
 
@@ -1704,7 +1704,7 @@ word-wrap 속성은 단어를 어느 정도는 고려하여 개행하지만(.,- 
 
 ## 2.5 위치 (Position)
 
-### 2.5.1 position
+### 2.5.1 position 속성
 
 position 속성은 요소의 위치를 정의한다. top, bottom, left, right 속성과 함께 사용하여 위치를 지정한다.
 
@@ -1928,7 +1928,7 @@ static은 position 속성의 기본값으로 position 속성을 지정하지 않
 </html>
 ```
 
-### 2.5.2 z-index
+### 2.5.2 z-index 속성
 
 z-index 속성에 큰 숫자값을 지정할 수록 화면 전면에 출력된다.
 
@@ -1968,7 +1968,7 @@ z-index 속성에 큰 숫자값을 지정할 수록 화면 전면에 출력된�
 </html>
 ```
 
-### 2.5.3 overflow
+### 2.5.3 overflow 속성
 
 overflow 속성은 자식 요소가 부모 요소의 영역를 벗어났을 때 처리 방법을 정의한다.
 
@@ -2017,7 +2017,7 @@ overflow 속성은 자식 요소가 부모 요소의 영역를 벗어났을 때 
 div { overflow-y: scroll; }
 ```
 
-## 2.6 float
+## 2.6 float 속성
 
 float 속성은 주로 layout을 구성하기 위해 사용되는 핵심 기술이다. layout의 가장 큰 목적은 1개 이상의 block 속성 요소를 원하는 위치에 정렬시키는 것이다.
 

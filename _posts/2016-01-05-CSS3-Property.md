@@ -1519,6 +1519,19 @@ Shorthand Syntax
 font : font-style(optional) font-variant(optional) font-weight(optional) font-size(mandatory) line-height(optional) font-family(mandatory)
 ```
 
+```
+/* size | family */
+font: 2em "Open Sans", sans-serif;
+
+/* style | size | family */
+font: italic 2em "Open Sans", sans-serif;
+
+/* style | variant | weight | size/line-height | family */
+font: italic small-caps bolder 16px/3 cursive;
+
+/* style | variant | weight | stretch | size/line-height | family */
+font: italic small-caps bolder condensed 16px/3 cursive;
+```
 
 ### 2.4.6 text-align 속성
 
@@ -1598,6 +1611,7 @@ html의 white space는 공백(space), 들여쓰기(tab), 줄바꿈(line break)�
         border-radius: 6px;
         border-color: gray;
         border-style: dotted;
+        /*overflow: hidden;*/
       }
       .normal { white-space: normal; }
       .nowrap { white-space: nowrap; }
@@ -1724,10 +1738,12 @@ word-wrap 속성은 단어를 어느 정도는 고려하여 개행하지만(.,- 
     </style>
   </head>
   <body>
-    <h1>word-wrap</h1>
     <div>Floccinaucinihilipilification http://ungmo2.github.io/css/CSS3-Property/</div>
+
+    <h1>word-wrap</h1>
     <div class="word-wrap">Floccinaucinihilipilification http://ungmo2.github.io/css/CSS3-Property/</div>
 
+    <h1>word-break</h1>
     <div class="word-break">Floccinaucinihilipilification http://ungmo2.github.io/css/CSS3-Property/</div>
   </body>
 </html>

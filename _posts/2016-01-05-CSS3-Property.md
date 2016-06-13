@@ -401,10 +401,12 @@ CSS 박스 모델은 모든 HTML 요소를 감싸고 있는 margin, border, padd
 
 브라우저는 박스 모델의 크기(dimension)와 속성(색, 배경, 모양 등), 위치를 근거로 하여 렌더링을 실시하게 된다.
 
+웹디자인은 컨텐츠를 담을 [박스 모델을 정의](http://ungmo2.github.io/css/CSS3-Property/#display)하고 CSS 속성을 통해 스타일([배경](http://ungmo2.github.io/css/CSS3-Property/#background), [폰트와 텍스트](http://ungmo2.github.io/css/CSS3-Property/#section-4) 등)과 [위치](http://ungmo2.github.io/css/CSS3-Property/#position) 및 [정렬](http://ungmo2.github.io/css/CSS3-Property/#float)을 부여하는 것이라고 할 수 있다.
+
 | 명칭     | 설명
 |:--------|:-----------------------------------------------------------
 | Content | 요소의 텍스트나 이미지 등의 실제 내용이 위치하는 영역이다. width, height 속성을 갖는다.
-| Padding | 테두리 내부 영역이다. 속성값은 두께를 의미하며 기본적으로 투명한 색을 갖는다.
+| Padding | 테두리 내부 영역이다. 속성값은 두께를 의미하며 기본적으로 투명한 색을 갖는다. 요소에 적용된 배경의 컬러, 이미지는 패딩 영역까지 적용된다.
 | Border  | 테두리 영역이다. 속성값은 두께를 의미한다.
 | Margin  | 테두리의 외부 영역이다. 기본적으로 투명한 색을 갖는다.
 

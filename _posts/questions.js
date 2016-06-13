@@ -11,9 +11,28 @@ for(i = 0; i < 10001; i++) {
   str += i.toString();
 }
 
+// console.log(str);
+
 for (i = 0; i < str.length; i++) {
-  str.charAt(i) === '8' ? sum++ : '';
+  if(str.charAt(i) === '8') sum++;
 }
 
-console.log(str);
-console.log(sum);
+console.log('Answer : ' + sum);
+
+
+/*
+x = 1, 2, 3, 4
+x : 짝수
+x >= 3
+*/
+
+var x = [1, 2, 3, 4];
+var result = [];
+
+for (var i = 0; i < x.length; i++) {
+  if(x[i] % 2 === 0 && x[i] >= 3){
+    result.push(x[i]);
+  }
+}
+
+console.log(result);

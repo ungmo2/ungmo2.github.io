@@ -218,8 +218,12 @@ Viewport 단위는 상대적인 단위로 [viewport](http://ungmo2.github.io/css
 | vmin  | viewport 너비 또는 높이 중 작은 쪽의 1/100
 | vmax  | viewport 너비 또는 높이 중 큰 쪽의 1/100
 
+예를 들어 viewport 너비가 1000px, 높이가 600px인 경우,
 
-예를 들어 viewport 너비값이 600px인 경우 1vw는 viewport 너비값의 1%인 6px이다. viewport 높이값이 1000px인 경우 1vh는 10px이다.
+- 1vw  : viewport 너비 1000px의 1%인 10px
+- 1vh  : viewport 높이 600px의 1%인 6px
+- vmin :　viewport 높이 600px의 1%인 6px
+- vmax :　viewport 너비 1000px의 1%인 10px
 
 ```html
 <!DOCTYPE html>

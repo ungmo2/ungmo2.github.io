@@ -1045,14 +1045,11 @@ opacity 속성은 요소의 투명도를 정의한다. 0.0 ~ 1.0의 값을 입�
       div, img {
         background-color: blue;
         color: white;
-
         opacity: 0.5;
-        filter: Alpha(opacity=50); /* IE8 and earlier */
       }
 
       div:hover, img:hover {
         opacity: 1.0;
-        filter: alpha(opacity=100); /* For IE8 and earlier */
       }
     </style>
   </head>

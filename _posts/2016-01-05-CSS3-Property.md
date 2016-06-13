@@ -1324,6 +1324,8 @@ background: background-color || background-image || background-repeat || backgro
 
 텍스트의 크기를 정의한다.
 
+[font-size](https://developer.mozilla.org/en-US/docs/Web/CSS/font-size)
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -1348,12 +1350,16 @@ background: background-color || background-image || background-repeat || backgro
 
 ### 2.4.2 font-family 속성
 
-폰트를 지정한다. 컴퓨터에 폰트가 설치되어 있지 않으면 적용되지 않는다. 폰트는 복수개 지정이 가능한데 첫번째 지정한 폰트가 클라이언트 컴퓨터에 설치되어 있지 않은 경우, 다음에 지정된 폰트를 적용한다. 따라서 마지막에 지정하는 폰트는 대부분의 OS에 기본적으로 설치되어 있는 generic-family 폰트(Serif, Sans-serif, Mono space)를 지정하는 것이 일반적이다.
+폰트를 지정한다. 컴퓨터에 폰트가 설치되어 있지 않으면 적용되지 않는다.
+
+[font-family](https://developer.mozilla.org/en-US/docs/Web/CSS/font-family)
+
+폰트는 복수개 지정이 가능한데 첫번째 지정한 폰트가 클라이언트 컴퓨터에 설치되어 있지 않은 경우, 다음에 지정된 폰트를 적용한다. 따라서 마지막에 지정하는 폰트는 대부분의 OS에 기본적으로 설치되어 있는 generic-family 폰트(Serif, Sans-serif, Mono space)를 지정하는 것이 일반적이다.
 
 다음은 맥용 크롬 브라우저의 generic-family 폰트 설정 화면이다.
 
 ![Chrome generic-family font](/img/generic-family-font.png)
-{: style="max-width:400px; margin: 10px auto;"}
+{: style="max-width:500px; margin: 10px auto;"}
 
 폰트명은 따옴표로 감싸주며 폰트명이 한단어인 경우는 따옴표로 감싸주지 않아도 된다.
 
@@ -1382,6 +1388,10 @@ background: background-color || background-image || background-repeat || backgro
 ### 2.4.3 font-style / font-weight 속성
 
 font-style 속성은 이탤릭체의 지정, font-weight 속성은 폰트 굵기 지정에 사용된다.
+
+- [font-style](https://developer.mozilla.org/en-US/docs/Web/CSS/font-style)
+
+- [font-weight](https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight)
 
 ```html
 <!DOCTYPE html>
@@ -1422,6 +1432,8 @@ font-style 속성은 이탤릭체의 지정, font-weight 속성은 폰트 굵기
 
 텍스트의 높이를 지정한다. 텍스트 수직 정렬에도 응용되어 사용된다.
 
+[line-height](https://developer.mozilla.org/ko/docs/Web/CSS/line-height)
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -1433,6 +1445,10 @@ font-style 속성은 이탤릭체의 지정, font-weight 속성은 폰트 굵기
       .big {
         line-height: 200%;
       }
+      .lh-3x {
+        line-height: 3.0; /*16px * 3*/
+      }
+
     </style>
   </head>
   <body>
@@ -1451,8 +1467,14 @@ font-style 속성은 이탤릭체의 지정, font-weight 속성은 폰트 굵기
       This is a paragraph with a bigger line-height.<br>
       This is a paragraph with a bigger line-height.<br>
     </p>
+
+    <p class="lh-3x">
+      This is a paragraph with a 3x line-height.<br>
+      This is a paragraph with a 3x line-height.<br>
+    </p>
   </body>
 </html>
+
 ```
 
 다음은 수직 중앙 정렬 예제이다. a 요소의 `line-height` 값과 a 요소를 감싸는　div 요소의 `height` 값을 일치시킨다.
@@ -1489,7 +1511,16 @@ font-style 속성은 이탤릭체의 지정, font-weight 속성은 폰트 굵기
 </html>
 ```
 
-### 2.4.5 text-align 속성
+### 2.4.5 font Shorthand
+
+Shorthand Syntax
+
+```
+font : font-style(optional) font-variant(optional) font-weight(optional) font-size(mandatory) line-height(optional) font-family(mandatory)
+```
+
+
+### 2.4.6 text-align 속성
 
 텍스트의 수평 정렬을 정의한다.
 
@@ -1516,7 +1547,7 @@ font-style 속성은 이탤릭체의 지정, font-weight 속성은 폰트 굵기
 
 위 예제의 a 요소에 대한 중앙 정렬은 적용되지 않았다. 이는 a 요소는 inline 요소이기 때문이다. inline 요소는 width 속성이 없으므로 중앙 개념이 존재하지 않는다. a 요소에 `display: block;`을 지정한다면 중앙 정렬이 가능할 것이다.
 
-### 2.4.6 text-decoration 속성
+### 2.4.7 text-decoration 속성
 
 text-decoration 속성을 사용하여 링크 underline을 제거할 수 있다. 또는 텍스트에 underline, overline, line-through를 추가할 수도 있다.
 
@@ -1542,7 +1573,7 @@ text-decoration 속성을 사용하여 링크 underline을 제거할 수 있다.
 </html>
 ```
 
-### 2.4.7 white-space 속성
+### 2.4.8 white-space 속성
 
 html의 white space는 공백(space), 들여쓰기(tab), 줄바꿈(line break)을 의미한다. html은 기본적으로 연속된 공백(space), 들여쓰기(tab)는 1번만 실행되며 줄바꿈(line break)은 무시된다. 또한 텍스트는 부모 가로 영역을 벗어나지 않고 자동 줄바꿈(wrap)된다. white-space 속성은 이러한 기본 동작을 제어하기 위한 속성이다.
 
@@ -1596,7 +1627,7 @@ html의 white space는 공백(space), 들여쓰기(tab), 줄바꿈(line break)�
 </html>
 ```
 
-### 2.4.8 text-overflow 속성
+### 2.4.9 text-overflow 속성
 
 부모 영역을 벗어난 wrapping(자동줄바꿈)이 되지 않은 텍스트의 처리 방법을 정의한다. 이 속성을 사용하기 위해서는 overflow 속성에 반드시 "visible" 이외의 값이 지정되어 있어야 한다.
 
@@ -1637,7 +1668,7 @@ html의 white space는 공백(space), 들여쓰기(tab), 줄바꿈(line break)�
 </html>
 ```
 
-### 2.4.9 word-wrap 속성
+### 2.4.10 word-wrap 속성
 
 한 단어의 길이가 길어서 부모 영역을 벗어난 텍스트의 처리 방법을 정의한다. link 등을 표기할 때(e.g. http://ungmo2.github.io/css/CSS3-Property/) 그 길이가 매우 길어지는데 이 속성을 사용하지 않으면 부모 영역을 넘어가게 된다.
 
@@ -1667,7 +1698,7 @@ html의 white space는 공백(space), 들여쓰기(tab), 줄바꿈(line break)�
 </html>
 ```
 
-### 2.4.10 word-break 속성
+### 2.4.11 word-break 속성
 
 한 단어의 길이가 길어서 부모 영역을 벗어난 텍스트의 처리 방법을 정의한다.
 

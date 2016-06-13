@@ -406,9 +406,9 @@ CSS 박스 모델은 모든 HTML 요소를 감싸고 있는 margin, border, padd
 | 명칭     | 설명
 |:--------|:-----------------------------------------------------------
 | Content | 요소의 텍스트나 이미지 등의 실제 내용이 위치하는 영역이다. width, height 속성을 갖는다.
-| Padding | 테두리 내부 영역이다. 속성값은 두께를 의미하며 기본적으로 투명한 색을 갖는다. 요소에 적용된 배경의 컬러, 이미지는 패딩 영역까지 적용된다.
-| Border  | 테두리 영역이다. 속성값은 두께를 의미한다.
-| Margin  | 테두리의 외부 영역이다. 기본적으로 투명한 색을 갖는다.
+| Padding | 테두리(Border) 내부 영역으로 속성값은 패딩 영역의 두께를 의미하며 기본적으로 투명한 색을 갖는다. 요소에 적용된 배경의 컬러, 이미지는 패딩 영역까지 적용된다.
+| Border  | 테두리 영역으로 속성값은 테두리의 두께를 의미한다.
+| Margin  | 테두리의 외부 영역으로 속성값은 마진의 두께를 의미한다. 기본적으로 투명한 색을 갖는다.
 
 ```html
 <!DOCTYPE html>
@@ -425,7 +425,7 @@ CSS 박스 모델은 모든 HTML 요소를 감싸고 있는 margin, border, padd
     </style>
   </head>
   <body>
-    <h2>Demonstrating the Box Model</h2>
+    <h2>Box Model</h2>
 
     <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
   </body>

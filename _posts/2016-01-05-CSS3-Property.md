@@ -2411,65 +2411,71 @@ overflow: hidden;과 함께 많이 사용되는 방법은 [::after 가상 요소
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      body {
-        max-width: 960px;
-        margin: 0 auto;
-        color: white;
-      }
-      header {
-        padding: 10px;
-        background-color: #FF9900;
-      }
-      nav {
-        padding: 10px;
-        background-color: #CC6600;
-      }
-      #wrap {
-        padding: 10px;
-        background-color: #def0c2;
-        overflow: hidden;
-      }
-      section {
-        float: left;
-        width: 65%;
-        padding: 2%;
-        background-color: #59b1f6;
-      }
-      aside {
-        float: right;
-        width: 25%;
-        padding: 2%;
-        background-color: #C13100;
-      }
-      footer {
-        padding: 10px;
-        background-color: #003366;
-      }
-    </style>
-  </head>
-  <body>
-    <header><h1>Header</h1></header>
-    <nav><h1>Navigation</h1></nav>
-    <div id="wrap">
-      <section>
-        <h1>Section</h1>
-        <p>London is the capital city of England. It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
-        <p>Standing on the River Thames, London has been a major settlement for two millennia,its history going back to its founding by the Romans, who named it Londinium.</p>
-        <p>London, also referred to as Greater London, is one of 9 regions of England and the top-level subdivision covering most of the city's metropolis. The small ancient City of London at its core once comprised the whole settlement, but as its urban area grew, the Corporation of London resisted attempts to amalgamate the city with its suburbs, causing "London" to be defined in a number ways for different purposes.</p>
-      </section>
-      <aside>
-        <h1>Aside</h1>
-        <ul>
-          <li>London</li>
-          <li>Paris</li>
-          <li>Tokyo</li>
-        </ul>
-      </aside>
-    </div>
-    <footer><h1>Footer</h1></footer>
-  </body>
+<head>
+  <style>
+    body {
+      max-width: 960px;
+      margin: 0 auto;
+      color: white;
+    }
+    header {
+      padding: 10px;
+      background-color: #FF9900;
+    }
+    nav {
+      padding: 10px;
+      background-color: #CC6600;
+    }
+    #wrap {
+      padding: 10px;
+      background-color: #def0c2;
+      overflow: hidden;
+    }
+    section {
+      float: left;
+      width: 65%;
+      padding: 2%;
+      background-color: #59b1f6;
+    }
+    aside {
+      float: right;
+      width: 25%;
+      padding: 2%;
+      background-color: #C13100;
+    }
+    footer {
+      padding: 10px;
+      background-color: #003366;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Header</h1>
+  </header>
+  <nav>
+    <h1>Navigation</h1>
+  </nav>
+  <div id="wrap">
+    <section>
+      <h1>Section</h1>
+      <p>London is the capital city of England. It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
+      <p>Standing on the River Thames, London has been a major settlement for two millennia,its history going back to its founding by the Romans, who named it Londinium.</p>
+      <p>London, also referred to as Greater London, is one of 9 regions of England and the top-level subdivision covering most of the city's metropolis. The small ancient City of London at its core once comprised the whole settlement, but as its urban area grew, the Corporation of London resisted attempts to amalgamate the city with its suburbs, causing "London" to be defined in a number ways for different purposes.</p>
+    </section>
+    <aside>
+      <h1>Aside</h1>
+      <ul>
+        <li>London</li>
+        <li>Paris</li>
+        <li>Tokyo</li>
+      </ul>
+    </aside>
+  </div>
+  <footer>
+    <h1>Footer</h1>
+  </footer>
+</body>
 </html>
 ```
 
@@ -2480,80 +2486,86 @@ overflow: hidden;과 함께 많이 사용되는 방법은 [::after 가상 요소
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      body {
-        max-width: 960px;
-        margin: 0 auto;
-        color: white;
-      }
-      header {
-        padding: 10px;
-        background-color: #FF9900;
-      }
-      nav {
-        padding: 10px;
-        background-color: #CC6600;
-      }
-      #wrap {
-        padding: 10px;
-        background-color: #def0c2;
-        overflow: hidden;
-      }
-      aside.left {
-        float: left;
-        width: 20%;
-        padding: 2%;
-        background-color: #C13100;
-      }
-      section {
-        float: left;
-        width: 44%;
-        margin: 0 2%;
-        padding: 2%;
-        background-color: #59b1f6;
-      }
-      aside.right {
-        float: right;
-        width: 20%;
-        padding: 2%;
-        background-color: #C13100;
-      }
-      footer {
-        padding: 10px;
-        background-color: #003366;
-      }
-    </style>
-  </head>
-  <body>
-    <header><h1>Header</h1></header>
-    <nav><h1>Navigation</h1></nav>
-    <div id="wrap">
-      <aside class="left">
-        <h1>Aside</h1>
-        <ul>
-          <li>London</li>
-          <li>Paris</li>
-          <li>Tokyo</li>
-        </ul>
-      </aside>
-      <section>
+<head>
+  <style>
+    body {
+      max-width: 960px;
+      margin: 0 auto;
+      color: white;
+    }
+    header {
+      padding: 10px;
+      background-color: #FF9900;
+    }
+    nav {
+      padding: 10px;
+      background-color: #CC6600;
+    }
+    #wrap {
+      padding: 10px;
+      background-color: #def0c2;
+      overflow: hidden;
+    }
+    aside.left {
+      float: left;
+      width: 20%;
+      padding: 2%;
+      background-color: #C13100;
+    }
+    section {
+      float: left;
+      width: 44%;
+      margin: 0 2%;
+      padding: 2%;
+      background-color: #59b1f6;
+    }
+    aside.right {
+      float: right;
+      width: 20%;
+      padding: 2%;
+      background-color: #C13100;
+    }
+    footer {
+      padding: 10px;
+      background-color: #003366;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Header</h1>
+  </header>
+  <nav>
+    <h1>Navigation</h1>
+  </nav>
+  <div id="wrap">
+    <aside class="left">
+      <h1>Aside</h1>
+      <ul>
+        <li>London</li>
+        <li>Paris</li>
+        <li>Tokyo</li>
+      </ul>
+    </aside>
+    <section>
       <h1>Section</h1>
-        <p>London is the capital city of England. It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
-        <p>Standing on the River Thames, London has been a major settlement for two millennia,its history going back to its founding by the Romans, who named it Londinium.</p>
-        <p>London, also referred to as Greater London, is one of 9 regions of England and the top-level subdivision covering most of the city's metropolis. The small ancient City of London at its core once comprised the whole settlement, but as its urban area grew, the Corporation of London resisted attempts to amalgamate the city with its suburbs, causing "London" to be defined in a number ways for different purposes.</p>
-      </section>
-      <aside class="right">
-        <h1>Aside</h1>
-        <ul>
-          <li>London</li>
-          <li>Paris</li>
-          <li>Tokyo</li>
-        </ul>
-      </aside>
-    </div>
-    <footer><h1>Footer</h1></footer>
-  </body>
+      <p>London is the capital city of England. It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
+      <p>Standing on the River Thames, London has been a major settlement for two millennia,its history going back to its founding by the Romans, who named it Londinium.</p>
+      <p>London, also referred to as Greater London, is one of 9 regions of England and the top-level subdivision covering most of the city's metropolis. The small ancient City of London at its core once comprised the whole settlement, but as its urban area grew, the Corporation of London resisted attempts to amalgamate the city with its suburbs, causing "London" to be defined in a number ways for different purposes.</p>
+    </section>
+    <aside class="right">
+      <h1>Aside</h1>
+      <ul>
+        <li>London</li>
+        <li>Paris</li>
+        <li>Tokyo</li>
+      </ul>
+    </aside>
+  </div>
+  <footer>
+    <h1>Footer</h1>
+  </footer>
+</body>
 </html>
 ```
 

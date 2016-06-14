@@ -1896,8 +1896,6 @@ static은 position 속성의 기본값으로 position 속성을 지정하지 않
 
 ***absolute 속성 선언 시, block 요소의 width는 inline 요소와 같이 content에 맞게 변화되므로 주의하여야 한다.***
 
-실제 웹페이지 개발에 사용하는 경우는 드물다(바람직하지 않다)
-
 ```html
 <!DOCTYPE html>
 <html>
@@ -2105,35 +2103,35 @@ float 속성을 사용하지 않은 블록 요소들은 수직으로 정렬된�
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      div{
-        color: white;
-        font-weight: 600;
-        font-size: 50px;
-        border-radius: 6px;
-        background: #bcbcbc;
-        width: 200px;
-        height: 200px;
-        margin: 10px 10px;
-        padding: 10px;
-      }
-      #content1 {
-        /*float: left;*/
-        float: right;
-        background: red;
-      }
-      #content2 {
-        /*float: left;*/
-        float: right;
-        background: orange;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="content1"> 1 </div>
-    <div id="content2"> 2 </div>
-  </body>
+<head>
+  <style>
+    div{
+      color: white;
+      font-weight: 600;
+      font-size: 50px;
+      border-radius: 6px;
+      background: #bcbcbc;
+      width: 200px;
+      height: 200px;
+      margin: 10px 10px;
+      padding: 10px;
+    }
+    #content1 {
+      /*float: left;*/
+      float: right;
+      background: red;
+    }
+    #content2 {
+      /*float: left;*/
+      float: right;
+      background: orange;
+    }
+  </style>
+</head>
+<body>
+  <div id="content1"> 1 </div>
+  <div id="content2"> 2 </div>
+</body>
 </html>
 ```
 
@@ -2192,28 +2190,29 @@ width값을 지정하지 않은 block 속성 요소는 기본적으로 `width: 1
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      div {
-        color: white;
-        margin: 0 10px;
-        padding: 20px;
-      }
-      .d1 {
-      	background-color: #59b1f6;
-      	float: left;
-      }
-      .d2 {
-      	background-color: #ffb5b4;
-        overflow: hidden;
-      }
-    </style>
-  </head>
-    <body>
-    <div class="d1">dv1</div>
-    <div class="d2">dv2</div>
-  </body>
+<head>
+  <style>
+    div {
+      color: white;
+      margin: 0 10px;
+      padding: 20px;
+    }
+    .d1 {
+      background-color: #59b1f6;
+      float: left;
+    }
+    .d2 {
+      background-color: #ffb5b4;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div class="d1">dv1</div>
+  <div class="d2">dv2</div>
+</body>
 </html>
+
 ```
 
 두번째 요소에도 float 속성을 선언하면 `overflow: hidden` 속성은 선언하지 않아도 되지만 너비가 최소화된다.

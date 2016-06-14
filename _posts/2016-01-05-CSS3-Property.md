@@ -2226,76 +2226,49 @@ width값을 지정하지 않은 block 속성 요소는 기본적으로 `width: 1
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      .wrap {
-        color: white;
-        text-align: center;
-        padding: 10px;
-        background-color: #def0c2;
-      }
-      .d1 {
-        float: left;
-        width: 49%;
-        margin-right: 2%;
-        padding: 20px 0;
-        background-color: #59b1f6;
-      }
-      .d2 {
-        float: left;
-        width: 49%;
-        padding: 20px 0;
-        background-color: #ffb5b4;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="wrap">
-      <div class="d1">dv1</div>
-      <div class="d2">dv2</div>
-    </div>
-    <div style="background:red;padding:10px;color:white;">dv3</div>
-  </body>
+<head>
+  <style>
+    .wrap {
+      color: white;
+      text-align: center;
+      padding: 10px;
+      background-color: #def0c2;
+    }
+    .d1 {
+      float: left;
+      width: 49%;
+      margin-right: 2%;
+      padding: 20px 0;
+      background-color: #59b1f6;
+    }
+    .d2 {
+      float: left;
+      width: 49%;
+      padding: 20px 0;
+      background-color: #ffb5b4;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="d1">dv1</div>
+    <div class="d2">dv2</div>
+  </div>
+  <div style="background:red;padding:10px;color:white;">dv3</div>
+</body>
 </html>
 ```
 
 이 문제를 해결하는 가장 쉬운 방법은 float 속성을 가진 요소의 부모 요소(wrap)에 `overflow: hidden` 속성을 선언하는 것이다.
 
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <style>
-      .wrap {
-        color: white;
-        text-align: center;
-        padding: 10px;
-        background-color: #def0c2;
-        overflow: hidden;
-      }
-      .d1 {
-        float: left;
-        width: 49%;
-        margin-right: 2%;
-        padding: 20px 0;
-        background-color: #59b1f6;
-      }
-      .d2 {
-        float: left;
-        width: 49%;
-        padding: 20px 0;
-        background-color: #ffb5b4;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="wrap">
-      <div class="d1">dv1</div>
-      <div class="d2">dv2</div>
-    </div>
-    <div style="background:red;padding:10px;color:white;">dv3</div>
-  </body>
-</html>
+```css
+.wrap {
+  color: white;
+  text-align: center;
+  padding: 10px;
+  background-color: #def0c2;
+  overflow: hidden;
+}
 ```
 
 다른 방법으로 부모 요소에 float 속성을 부여하는 방법도 있다. 하지만 부모 요소의 너비는 float된 두개의 자식요소의 컨텐츠를 표현할 수 있는 만큼만으로 작게 줄어들게 된다. 권장할 수 있는 방법은 아니다.
@@ -2305,42 +2278,42 @@ wrap 영역이 끝나기 직전 빈 요소를 만들고 clear:both 속성을 부
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      .wrap {
-        color: white;
-        text-align: center;
-        padding: 10px;
-        background-color: #def0c2;
-        /*overflow: hidden;*/
-      }
-      .d1 {
-        float: left;
-        width: 49%;
-        margin-right: 2%;
-        padding: 20px 0;
-        background-color: #59b1f6;
-      }
-      .d2 {
-        float: left;
-        width: 49%;
-        padding: 20px 0;
-        background-color: #ffb5b4;
-      }
-      .clear {
-        height: 0;
-        clear: both;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="wrap">
-      <div class="d1">dv1</div>
-      <div class="d2">dv2</div>
-      <div class="clear"></div>
-    </div>
-    <div style="background:red;padding:10px;color:white;">dv3</div>
-  </body>
+<head>
+  <style>
+    .wrap {
+      color: white;
+      text-align: center;
+      padding: 10px;
+      background-color: #def0c2;
+      /*overflow: hidden;*/
+    }
+    .d1 {
+      float: left;
+      width: 49%;
+      margin-right: 2%;
+      padding: 20px 0;
+      background-color: #59b1f6;
+    }
+    .d2 {
+      float: left;
+      width: 49%;
+      padding: 20px 0;
+      background-color: #ffb5b4;
+    }
+    .clear {
+      height: 0;
+      clear: both;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="d1">dv1</div>
+    <div class="d2">dv2</div>
+    <div class="clear"></div>
+  </div>
+  <div style="background:red;padding:10px;color:white;">dv3</div>
+</body>
 </html>
 ```
 
@@ -2349,42 +2322,42 @@ overflow: hidden;과 함께 많이 사용되는 방법은 [::after 가상 요소
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      .wrap {
-        color: white;
-        text-align: center;
-        padding: 10px;
-        background-color: #def0c2;
-        /*overflow: hidden;*/
-      }
-      .wrap::after {
-        content: "";
-        display: block;
-        clear: both;
-      }
-      .d1 {
-        float: left;
-        width: 49%;
-        margin-right: 2%;
-        padding: 20px 0;
-        background-color: #59b1f6;
-      }
-      .d2 {
-        float: left;
-        width: 49%;
-        padding: 20px 0;
-        background-color: #ffb5b4;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="wrap">
-      <div class="d1">dv1</div>
-      <div class="d2">dv2</div>
-    </div>
-    <div style="background:red;padding:10px;color:white;">dv3</div>
-  </body>
+<head>
+  <style>
+    .wrap {
+      color: white;
+      text-align: center;
+      padding: 10px;
+      background-color: #def0c2;
+      /*overflow: hidden;*/
+    }
+    .wrap::after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+    .d1 {
+      float: left;
+      width: 49%;
+      margin-right: 2%;
+      padding: 20px 0;
+      background-color: #59b1f6;
+    }
+    .d2 {
+      float: left;
+      width: 49%;
+      padding: 20px 0;
+      background-color: #ffb5b4;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="d1">dv1</div>
+    <div class="d2">dv2</div>
+  </div>
+  <div style="background:red;padding:10px;color:white;">dv3</div>
+</body>
 </html>
 ```
 
@@ -2393,39 +2366,39 @@ overflow: hidden;과 함께 많이 사용되는 방법은 [::after 가상 요소
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      .wrap {
-        color: white;
-        text-align: center;
-        padding: 10px;
-        background-color: #def0c2;
-        /*overflow: hidden;*/
-      }
-      .d1 {
-        /*float: left;*/
-        display: inline-block;
-        width: 49%;
-        /*margin-right: 2%;*/
-        padding: 20px 0;
-        background-color: #59b1f6;
-      }
-      .d2 {
-        /*float: left;*/
-        display: inline-block;
-        width: 49%;
-        padding: 20px 0;
-        background-color: #ffb5b4;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="wrap">
-      <div class="d1">dv1</div>
-      <div class="d2">dv2</div>
-    </div>
-    <div style="background:red;padding:10px;color:white;">dv3</div>
-  </body>
+<head>
+  <style>
+    .wrap {
+      color: white;
+      text-align: center;
+      padding: 10px;
+      background-color: #def0c2;
+      /*overflow: hidden;*/
+    }
+    .d1 {
+      /*float: left;*/
+      display: inline-block;
+      width: 49%;
+      /*margin-right: 2%;*/
+      padding: 20px 0;
+      background-color: #59b1f6;
+    }
+    .d2 {
+      /*float: left;*/
+      display: inline-block;
+      width: 49%;
+      padding: 20px 0;
+      background-color: #ffb5b4;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="d1">dv1</div>
+    <div class="d2">dv2</div>
+  </div>
+  <div style="background:red;padding:10px;color:white;">dv3</div>
+</body>
 </html>
 ```
 

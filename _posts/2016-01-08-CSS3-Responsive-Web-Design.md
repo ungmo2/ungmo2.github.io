@@ -46,7 +46,9 @@ viewport란 웹페이지의 가시영역을 의미한다. viewport는 디바이�
 ![viewport](/img/viewport.png)
 {: style="max-width:500px; margin: 10px auto;"}
 
-[meta tag](http://ungmo2.github.io/html/HTML5-Tag/#meta)는 브라우저 혹은 검색엔진최적화(SEO)를 위해 검색엔진에게 메타데이터를 전달하기 위해 사용된다. viewport meta tag는 브라우저의 화면 설정과 관련된 정보를 제공한다.
+[meta tag](http://ungmo2.github.io/html/HTML5-Tag/#meta)는 브라우저 혹은 검색엔진최적화(SEO)를 위해 검색엔진에게 메타데이터를 전달하기 위해 사용된다.
+
+viewport meta tag는 브라우저의 화면 설정과 관련된 정보를 제공한다.
 
 | 속성	          | Description      | 사용예
 |:---------------|:-----------------|:--------------
@@ -76,21 +78,21 @@ meta tag에서는 px단위를 사용하며 단위 표현은 생략한다. 복수
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-      @media screen {
-        * { color: red; }
-      }
-      @media print {
-        * { color: blue; }
-      }
-    </style>
-  </head>
-  <body>
-    <h1>@media practice</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-  </body>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @media screen {
+      * { color: red; }
+    }
+    @media print {
+      * { color: blue; }
+    }
+  </style>
+</head>
+<body>
+  <h1>@media practice</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</body>
 </html>
 ```
 

@@ -17,6 +17,7 @@ body {
   color: #404040;
   position: relative;
   background: #FFF;
+  -webkit-font-smoothing: antialiased;
 }
 p {
   line-height: 1.7;

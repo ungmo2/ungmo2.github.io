@@ -147,7 +147,7 @@ javascript 파일을 2개 포함시켰다. 하나는 bootstrap의 자바스크�
 
 # 4. Media Query
 
-Bootstrap은 Mobile-first 방식을 기본 지원하므로 Media query에 포함되지 않은 모든 정의는 768px 미만 디바이스를 위한 것이다.
+Bootstrap은 Mobile-first 방식을 기본 지원하므로 [Media query](http://ungmo2.github.io/css/CSS3-Responsive-Web-Design/#media-)에 포함되지 않은 모든 정의는 768px 미만 디바이스를 위한 것이다.
 
 기본적으로 4개의 breakpoint로 구간을 나눈다.
 
@@ -180,7 +180,7 @@ container에는 2가지 종류가 있다.
 
 ## 5.1 fixed width container (responsive fixed layout)
 
-responsive fixed layout(반응형 고정폭 레이아웃)을 만들 때 사용한다. Media query에 의해 반응형으로 동작하며 viewport 너비가 늘어나거나 줄어들어도 고정폭을 갖는다.
+responsive fixed layout(반응형 고정폭 레이아웃)을 만들 때 사용한다. Media query에 의해 반응형으로 동작하며 동일 breakpoint내에서는 viewport 너비가 늘어나거나 줄어들어도 고정폭을 갖는다.
 
 .container의 속성은 다음과 같다.
 
@@ -234,33 +234,33 @@ fluid layout(유동 최대폭 레이아웃)을 만들 때 사용한다. viewport
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
-    <style>
-      .container, .container-fluid {
-        background: #eaeaed;
-      }
-      .fixed, .fluid {
-        background: #2db34a;
-        height: 100px;
-        line-height: 100px;
-        text-align: center;
-        color: white;
-        font-weight: 700;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div class="fixed">fixed width (.container)</div>
-    </div>
-    <br>
-    <div class="container-fluid">
-      <div class="fluid">full width (.container-fluid)</div>
-    </div>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+  <style>
+    .container, .container-fluid {
+      background: #eaeaed;
+    }
+    .fixed, .fluid {
+      background: #2db34a;
+      height: 100px;
+      line-height: 100px;
+      text-align: center;
+      color: white;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="fixed">fixed width (.container)</div>
+  </div>
+  <br>
+  <div class="container-fluid">
+    <div class="fluid">full width (.container-fluid)</div>
+  </div>
+</body>
 </html>
 ```
 
@@ -291,7 +291,7 @@ container(.container 또는 .container-fluid) 내에 `.row` class를 사용하�
 
 열은 행(.row) 내에 위치하여야 한다. `.col-*-*` class로 열을 생성하는데 첫번째 `*`에는 xs, sm, md, lg 중의 하나를 지정한다.
 
-*Grid options*
+***Grid options***
 
 <div class="table-responsive">
   <table class="table table-striped">
@@ -390,55 +390,55 @@ viewport 너비와 관계없이 항상 수평으로 정렬된다.
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
-    <style>
-      .row { margin-bottom: 10px; }
-      [class*="col-"] {
-        background: #2db34a;
-        border: 1px solid #eaeaed;
-        height: 50px;
-        font-size: .8em;
-        line-height: 50px;
-        text-align: center;
-        color: white;
-        font-weight: 700;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-1">xs-1</div>
-        <div class="col-xs-1">xs-1</div>
-        <div class="col-xs-1">xs-1</div>
-        <div class="col-xs-1">xs-1</div>
-        <div class="col-xs-1">xs-1</div>
-        <div class="col-xs-1">xs-1</div>
-        <div class="col-xs-1">xs-1</div>
-        <div class="col-xs-1">xs-1</div>
-        <div class="col-xs-1">xs-1</div>
-        <div class="col-xs-1">xs-1</div>
-        <div class="col-xs-1">xs-1</div>
-        <div class="col-xs-1">xs-1</div>
-      </div>
-      <div class="row">
-        <div class="col-xs-8">xs-8</div>
-        <div class="col-xs-4">xs-4</div>
-      </div>
-      <div class="row">
-        <div class="col-xs-5">xs-5</div>
-        <div class="col-xs-5">xs-5</div>
-      </div>
-      <div class="row">
-        <div class="col-xs-5">xs-5</div>
-        <div class="col-xs-5">xs-5</div>
-        <div class="col-xs-4">xs-4</div>
-      </div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+  <style>
+    .row { margin-bottom: 10px; }
+    [class*="col-"] {
+      background: #2db34a;
+      border: 1px solid #eaeaed;
+      height: 50px;
+      font-size: .8em;
+      line-height: 50px;
+      text-align: center;
+      color: white;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-1">xs-1</div>
+      <div class="col-xs-1">xs-1</div>
+      <div class="col-xs-1">xs-1</div>
+      <div class="col-xs-1">xs-1</div>
+      <div class="col-xs-1">xs-1</div>
+      <div class="col-xs-1">xs-1</div>
+      <div class="col-xs-1">xs-1</div>
+      <div class="col-xs-1">xs-1</div>
+      <div class="col-xs-1">xs-1</div>
+      <div class="col-xs-1">xs-1</div>
+      <div class="col-xs-1">xs-1</div>
+      <div class="col-xs-1">xs-1</div>
     </div>
-  </body>
+    <div class="row">
+      <div class="col-xs-8">xs-8</div>
+      <div class="col-xs-4">xs-4</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-5">xs-5</div>
+      <div class="col-xs-5">xs-5</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-5">xs-5</div>
+      <div class="col-xs-5">xs-5</div>
+      <div class="col-xs-4">xs-4</div>
+    </div>
+  </div>
+</body>
 </html>
 ```
 
@@ -460,55 +460,55 @@ viewport 너비가 768px 이상일 때 적용된다. 768px 미만일 때는 medi
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
-    <style>
-      .row { margin-bottom: 10px; }
-      [class*="col-"] {
-        background: #2db34a;
-        border: 1px solid #eaeaed;
-        height: 50px;
-        font-size: .8em;
-        line-height: 50px;
-        text-align: center;
-        color: white;
-        font-weight: 700;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-1">sm-1</div>
-        <div class="col-sm-1">sm-1</div>
-        <div class="col-sm-1">sm-1</div>
-        <div class="col-sm-1">sm-1</div>
-        <div class="col-sm-1">sm-1</div>
-        <div class="col-sm-1">sm-1</div>
-        <div class="col-sm-1">sm-1</div>
-        <div class="col-sm-1">sm-1</div>
-        <div class="col-sm-1">sm-1</div>
-        <div class="col-sm-1">sm-1</div>
-        <div class="col-sm-1">sm-1</div>
-        <div class="col-sm-1">sm-1</div>
-      </div>
-      <div class="row">
-        <div class="col-sm-8">sm-5</div>
-        <div class="col-sm-4">sm-5</div>
-      </div>
-      <div class="row">
-        <div class="col-sm-5">sm-5</div>
-        <div class="col-sm-5">sm-5</div>
-      </div>
-      <div class="row">
-        <div class="col-sm-5">sm-5</div>
-        <div class="col-sm-5">sm-5</div>
-        <div class="col-sm-4">sm-4</div>
-      </div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+  <style>
+    .row { margin-bottom: 10px; }
+    [class*="col-"] {
+      background: #2db34a;
+      border: 1px solid #eaeaed;
+      height: 50px;
+      font-size: .8em;
+      line-height: 50px;
+      text-align: center;
+      color: white;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-1">sm-1</div>
+      <div class="col-sm-1">sm-1</div>
+      <div class="col-sm-1">sm-1</div>
+      <div class="col-sm-1">sm-1</div>
+      <div class="col-sm-1">sm-1</div>
+      <div class="col-sm-1">sm-1</div>
+      <div class="col-sm-1">sm-1</div>
+      <div class="col-sm-1">sm-1</div>
+      <div class="col-sm-1">sm-1</div>
+      <div class="col-sm-1">sm-1</div>
+      <div class="col-sm-1">sm-1</div>
+      <div class="col-sm-1">sm-1</div>
     </div>
-  </body>
+    <div class="row">
+      <div class="col-sm-8">sm-5</div>
+      <div class="col-sm-4">sm-5</div>
+    </div>
+    <div class="row">
+      <div class="col-sm-5">sm-5</div>
+      <div class="col-sm-5">sm-5</div>
+    </div>
+    <div class="row">
+      <div class="col-sm-5">sm-5</div>
+      <div class="col-sm-5">sm-5</div>
+      <div class="col-sm-4">sm-4</div>
+    </div>
+  </div>
+</body>
 </html>
 ```
 
@@ -552,15 +552,15 @@ viewport 너비가 768px 이상인 경우 요소에 지정된 두개의 클래�
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      .blue { color: blue; }
-      .red  { color: red; }
-    </style>
-  </head>
-  <body>
-    <div class="red blue">Text</div>
-  </body>
+<head>
+  <style>
+    .blue { color: blue; }
+    .red  { color: red; }
+  </style>
+</head>
+<body>
+  <div class="red blue">Text</div>
+</body>
 </html>
 ```
 
@@ -573,7 +573,7 @@ breakpoint에 따른 Class prefix가 지정되어 있지 않다면 하위 Class 
 </div>
 ```
 
-위의 경우, viewport 너비가 992px 이상일 때 첫번째 div 요소는 col-md-8가 지정되어 있으므로 col-md-8가 적용되지만 두번째 div 요소에는 col-md-이 지정되어 있지 않다. 따라서 viewport 너비가 992px 이상이더라도 col-xs-6이 적용된다.
+위의 경우, viewport 너비가 992px 이상일 때 첫번째 div 요소는 col-md-8가 지정되어 있으므로 col-md-8가 적용되지만 두번째 div 요소에는 col-md-이 지정되어 있지 않다. 따라서 viewport 너비가 992px 이상이더라도 col-sm-6이 적용된다.
 
 이는 col-xs-를 제외한 `col-*-`이 min-width로 지정되었기 때문이다. min-width는 속성값 이상을 의미한다. 예를 들어 `min-width: 768px`의 경우 viewport 너비가 768px 이상일 경우 적용된다.
 
@@ -593,7 +593,7 @@ breakpoint에 따른 Class prefix가 지정되어 있지 않다면 하위 Class 
 
 .col-xs-와 .col-md-를 혼용하면 아래와 같이 동작한다.
 
-- viewport 너비가 768px 미만이면 .col-xs-가 적용된다.
+- viewport 너비가 992px 미만이면 .col-xs-가 적용된다.
 - viewport 너비가 992px 이상이면 .col-md-가 적용된다.
 
 ```html

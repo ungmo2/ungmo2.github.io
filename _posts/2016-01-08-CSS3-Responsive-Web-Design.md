@@ -259,21 +259,21 @@ viewport의 width 속성을 이용하여 viewport 너비에 따라 반응하는 
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-      /*Media Query*/
-      /* for tablet */
-      @media screen and (max-width: 800px) {
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /*Media Query*/
+    /* for tablet */
+    @media screen and (max-width: 800px) {
 
-      }
-      /* for smartphone */
-      @media screen and (max-width: 480px) {
+    }
+    /* for smartphone */
+    @media screen and (max-width: 480px) {
 
-      }      
-    </style>
-  </head>
-  ...
+    }      
+  </style>
+</head>
+...
 ```
 
 스마트폰, 태블릿, 데스크탑 그룹의 3단계로 구분하여 breakpoint를 정의하였다. Non Mobile First Method로 정의하였기 때문에 Media Query로 정의하지 않은 스타일은 데스크탑 그룹을 위한 코드가 된다.
@@ -355,15 +355,6 @@ viewport width가 800px 이하가 되면 header 영역을 2단(logo영역과 nav
 
 ## 2.2 Responsive Navigation Bar - Smartphone
 
-우선 Smartphone을 위한 media query를 정의한다. Tablet용 media query 다음에 아래 코드를 추가한다.
-
-```css
-/* For Smartphone : ~ 480px */
-@media screen and (max-width: 480px) {
-
-}
-```
-
 태블릿 layout에서는 header 영역을 2단으로 분리하여 navigation bar는 header 하단 영역에 배치하였다. 하지만 스마트폰의 viewport width는 가로로 나란히 정렬되어 있는 navigation bar를 모두 담기에는 너무 좁다. 다음과 같이 스마트폰 layout을 정의한다.
 
 ![res-layout-practice-2](/img/res-layout-practice-2.png)
@@ -412,8 +403,7 @@ navigation icon의 style은 다음과 같이 정의한다.
 }
 ```
 
-navigation icon은 header 우측의 절대 위치에 배치되어야 하므로 `position: absolute;`를 지정한다. absolute 속성은 relative 속성의 부모 요소를 기준으로 배치된다. 마침 html 요소에 relative 속성이 적용되어 있으므로 별도 지정은 필요없다.
-<!-- 이것은 스마트폰 layout에서만 해당되는 것이므로 스마트폰용 media query 내에 정의한다. -->
+navigation icon은 header 우측의 절대 위치에 배치되어야 하므로 `position: absolute;`를 지정한다. absolute 속성은 relative 속성을 가진 부모 요소를 기준으로 배치된다. 마침 html 요소에 relative 속성이 적용되어 있으므로 별도 지정은 필요없다.
 
 다음은 label tag 내의 span tag의 style을 정의한다. span tag는 navigation icon의 내부 막대 3개(클릭 시에는 X 표시)를 표현하기 위해 정의하였다.
 

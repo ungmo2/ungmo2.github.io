@@ -913,16 +913,6 @@ tablet용 layout에서 header height를 2배로 하였으므로 mobile용 layout
 
 현재 article은 layout에 상관없이 1행에 1개씩 배치되었다. responsive web design의 효과를 좀더 체감하기 위하여 1행에 2열로 배치한다.
 
-기존의 article은 margin을 고정값으로 지정하였고 width에 값을 지정하지 않아 화면에 꽉차도록 하였다.
-
-```css
-article {
-  margin: 10px;
-  padding: 25px;
-  background-color: white;
-}
-```
-
 article을 2열로 배치하기 위해서 width 값을 지정하여야 한다. %로 width 값을 지정하여 viewport에 상대적인 너비를 갖도록 한다. 이때 margin도 %로 지정한다. 그리고 float: left;를 지정하여 2열로 정렬되도록 한다.
 
 ```css
@@ -1072,7 +1062,7 @@ mobile layout을 작성한다. 480px 이하로 화면이 작아지면 고정 배
         color: rgba(0,0,0,0.8);
       }
 
-      /*navigation icon for Tablet/Mobile Layout*/
+      /*navigation icon for Mobile Layout*/
       .navicon {
         cursor: pointer;
         height: 60px;

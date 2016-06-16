@@ -18,7 +18,54 @@ Bootstrap은 빠르고 간편한 반응형 웹 디자인(responsive web design)�
 
 한국어 website의 경우, 대응 버전이 영문 website보다 느린 점은 주의하여야 한다.
 
-## 1.1 Framework의 장점
+## 1.1 Code의 재사용 (Code reuse)
+
+CSS를 활용한 UI/UX 디자인은 수많은 선택자에 CSS 속성과 값을 선언하는 작업이다. 이때 중복되는 선언이 발생할 수 있는데 class 속성을 활용하면 중복 선언울 방지하고 코드를 재사용할 수 있다.
+
+예를 들어 버튼을 만드는 경우, 웹사이트 내의 버튼은 한정된 스타일을 정하고 사용하는 것이 일반적이다. 이때 기본이 되는 스타일을 선언하고 컬러와 크기를 변경할 수 있는 구조가 바람직하다.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  .btn {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+  .btn-red {
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+  }
+  .btn-blue {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+  }
+  </style>
+</head>
+<body>
+  <button class="btn">Button</button>
+  <button class="btn btn-red">Button</button>
+  <button class="btn btn-blue">Button</button>
+</body>
+</html>
+```
+
+위와 같이 미리 사용될 가능성이 높은 스타일을 미리 작성하고 class화하면 같은 코드를 중복 작성하는 비효율을 줄일 수 있으며 이는 비용 절감과 품질의 향상으로 이어진다.
+
+Bootstrap은 이처럼 미리 선언해 놓은 다양한 class와 자바스크립트 코드로 이루어진 스타일시트 프레임워크이다. HTML에 Bootstrap의 class를 지정하는 것으로 빠르고 쉽게 일관된 스타일의 웹사이트를 작성할 수 있게 한다.
+
+## 1.2 Framework의 장점
 
 Framework의 사전적 의미는 아래와 같다.
 
@@ -28,16 +75,18 @@ Framework의 사전적 의미는 아래와 같다.
 
 소프트웨어에서의 Framework란 "소프트웨어 개발시 공통적으로 필요한 기능들을 재사용 관점에서 모아 구조화한 것"으로 일관된 애플리케이션의 뼈대를 제공하며 필요에 따라 확장 가능한 기반 코드를 제공한다. 즉 Framework에서 제공하는 기반 코드를 사용하여 필요한 기능을 추가해 나가는 방법이다.
 
+웹사이트 디자인에는 정형화된 코드가 자주 사용되는데 이를 별도로 저장해 두었다가 필요할 때마다 복사하여 사용하곤 한다. 이를 스니핏(Snippet)이라 한다. 그러나 스니핏이 개발팀 내 공유되어 관리되지 못하고 개인별로 사용하다보면 전체 코드는 일관된 스타일을 가지지 못하여 품질면이나 유지보수면에서도 문제가 발생하곤 한다.
+
 사람은 실수를 하게 마련이다. 따라서 검증된 Framework나 Library를 사용하는 것은 옳바른 어프로치이다. 또한 Framework에 제시하는 Coding style로 팀 전체의 Coding style을 통일시키는 것은 커뮤니케이션과 maintenance 측면에서도 바람직하다. 자신만의(팀이나 회사 고유의) Framework를 만드는 것도 좋은 방법이기는 하나 일정 기간, 여러 사람의 검증을 받아 실제 환경에서 안정된 운용을 하고 있는 Framework보다 안정성과 성능면에서 더 나은 제품이어야 한다는 전제가 따른다. 이것은 소규모 회사나 팀에게는 버거운 일일 것이다.
 
-## 1.2 Bootstrap의 장점
+## 1.3 Bootstrap의 장점
 
 - Easy to use: HTML과 CSS에 대한 기본 지식이 있다면 쉽게 사용할 수 있다.
 - Responsive features: 스마트폰, 테블릿, 데스크탑에 적합한 responsive CSS를 제공한다.
 - Mobile-first approach: Bootstrap 3부터 mobile-first style을 기본으로 지원한다.
 - Browser compatibility: 대부분의 브라우저(Chrome, Firefox, Internet Explorer, Safari, Opera)를 지원한다.
 
-## 1.3 Version
+## 1.4 Version
 
 이글의 작성 시점인 2016년 현재 최신 버전은 3.3.6이며 2015년 8월 4-alpha 버전이 공개되었다. 이글은 3.3.6을 기준으로 작성되었다.
 

@@ -5,7 +5,7 @@ subtitle: Ready to try Coding?
 ---
 
 <div class="posts-list">
-  {% for post in paginator.posts %}
+  {% for post in paginator.posts reversed %}
   <article class="post-preview">
     <a href="{{ post.url | prepend: site.baseurl }}">
 	  <h2 class="post-title">{{ post.title }}</h2>
@@ -21,10 +21,10 @@ subtitle: Ready to try Coding?
       Posted on {{ post.date | date: "%B %-d, %Y" }}&nbsp;&nbsp;&nbsp;<i class="fa fa-tags"></i>&nbsp;{{ post.categories }}
     </p>
 
-    <div class="post-entry">
+    <!-- <div class="post-entry">
       {{ post.content | truncatewords: 20 | strip_html | xml_escape}}
 	  <a href="{{ post.url | prepend: site.baseurl }}" class="post-read-more">[Read&nbsp;More]</a>
-    </div>
+    </div> -->
 
    </article>
   {% endfor %}

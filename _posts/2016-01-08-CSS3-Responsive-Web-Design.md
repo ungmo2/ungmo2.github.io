@@ -52,7 +52,7 @@ viewport meta tag는 브라우저의 화면 설정과 관련된 정보를 제공
 
 | 속성	          | Description      | 사용예
 |:---------------|:-----------------|:--------------
-| width          | viewport 너비(px) | width=240
+| width          | viewport 너비(px). 기본값: 980px | width=240
 |                |                  | width=device-width
 | height         | viewport 높이(px) | height=800
 |                |                  | width=device-height

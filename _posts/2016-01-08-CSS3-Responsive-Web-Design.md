@@ -295,13 +295,13 @@ viewport의 width 속성을 이용하여 viewport 너비에 따라 반응하는 
 
 최대 viewport width를 480px로 한정하였다는 것은 화면 크기가 480px 이하인 디바이스(스마트폰)를 위한 정의란 의미가 된다. 위 예제 내에 정의 되는 스타일은 화면 크기가 480px 이하인 디바이스에서 웹사이트가 표시될 때 실행된다.
 
-[CSS 적용 우선 순위 (Cascading Order)](http://ungmo2.github.io/css/CSS3-Selector/#css----cascading-order) 에 따라 나중에 선언된 스타일이 우선 적용된다. 따라서 Media Query는 기술 순서에 의미가 있다. 만일 스마트폰 용 스타일을 태블릿 용 스타일 보다 먼저 기술하면 최종적으로 태블릿 용 스타일이 적용된다. 일반적으로 Mobile-first 방식은 해상도가 작은 순서로, Non Mobile-first 방식은 해상도 큰 순서로 기술한다.
+[CSS 적용 우선 순위 (Cascading Order)](http://ungmo2.github.io/css/CSS3-Selector/#css----cascading-order) 에 따라 나중에 선언된 스타일이 우선 적용된다. 따라서 Media Query는 기술 순서에 의미가 있다. 만일 스마트폰 용 스타일을 태블릿용 스타일 보다 먼저 기술하면 최종적으로 태블릿용 스타일이 적용된다. 일반적으로 Mobile-first 방식은 해상도가 작은 순서로, Non Mobile-first 방식은 해상도 큰 순서로 기술한다.
 
 ## 2.1 Responsive Navigation Bar - Tablet
 
-데스크탑 layout에서 화면이 작아질 때 header navigation bar가 header 영역 아래로 내려오는 현상이 발생하였다. 다음과 같이 태블릿에서의 layout을 정의한다.
+데스크탑 layout에서 화면이 작아질 때 header navigation bar가 header 영역 아래로 내려오는 현상이 발생하였다. 이를 보완하기 위해 다음과 같이 태블릿에서의 layout을 정의한다.
 
-viewport width가 800px 이하가 되면 header 영역을 2단(logo영역과 navigation bar영역)으로 하기 위하여 현재(60px)의 2배로 넓힌다. 그리고 logo image과 navigation bar를 centering한다.
+viewport width가 800px 이하가 되면 header 영역을 2단(logo영역과 navigation bar영역)으로 구분하기 위하여 header 영역의 높이를 현재(60px)의 2배로 넓힌다. 그리고 logo image과 navigation bar를 centering한다.
 
 ```css
 @media screen and (max-width: 800px) {
@@ -339,7 +339,7 @@ viewport width가 800px 이하가 되면 header 영역을 2단(logo영역과 nav
   }
   nav {
     float: none;
-    margin-right: 0;
+    /*margin-right: 0;*/
   }
   #wrap {
     margin-top: 120px;
@@ -355,17 +355,26 @@ viewport width가 800px 이하가 되면 header 영역을 2단(logo영역과 nav
 
 ## 2.2 Responsive Navigation Bar - Smartphone
 
+우선 Smartphone을 위한 media query를 정의한다. Tablet용 media query 다음에 아래 코드를 추가한다.
+
+```css
+/* For Smartphone : ~ 480px */
+@media screen and (max-width: 480px) {
+
+}
+```
+
 태블릿 layout에서는 header 영역을 2단으로 분리하여 navigation bar는 header 하단 영역에 배치하였다. 하지만 스마트폰의 viewport width는 가로로 나란히 정렬되어 있는 navigation bar를 모두 담기에는 너무 좁다. 다음과 같이 스마트폰 layout을 정의한다.
 
 ![res-layout-practice-2](/img/res-layout-practice-2.png)
 {: style="max-width:350px; margin: 10px auto;"}
 
-우측 navigation icon을 클릭하면 navigation bar가 수직 정렬되어 화면에 나타나도록 한다. 한번 더 클릭하면 화면에서 사라지도록 한다. 이때 navigation icon에 animation 효과를 부여한다.
+우측 navigation icon을 클릭하면 navigation bar가 수직 정렬되어 화면에 나타나도록 한다. 한번 더 클릭하면 화면에서 사라지도록 한다. 이때 navigation icon에 [animation](http://ungmo2.github.io/css/CSS3-Effect/#animation) 효과를 부여한다.
 
 ![res-layout-practice-3](/img/res-layout-practice-3.png)
 {: style="max-width:350px; margin: 10px auto;"}
 
-우선 nav 요소 내에 클릭할 수 있는 navigation icon을 만들기 위한 html tag를 추가한다. label tag의 for 속성값으로 input tag의 id 속성값이 주어져야한다.
+nav 요소 내에 클릭할 수 있는 navigation icon을 만들기 위한 html tag를 추가한다. label tag의 for 속성값과 input tag의 id 속성값이 일치하여야 한다.
 
 ```html
 <nav>
@@ -376,30 +385,20 @@ viewport width가 800px 이하가 되면 header 영역을 2단(logo영역과 nav
 ...
 ```
 
-navigation icon과 checkbox input tag는 스마트폰 layout 이외의 경우, 화면에 표시되어서는 않된다. 따라서 `display: none;`으로 화면에 표시되지 않도록 한다. `display: none;`은 해당 공간조차 점유하지 않지만 `visibility: hidden;`을 사용하면 해당 공간은 남아있고 표시만 되지 않는다. [참고 : CSS display](http://ungmo2.github.io/css/CSS3-Property/#display)
+위의 코드는 checkbox의 기본 외관을 사용하지 않고 커스텀 navigation icon을 사용하기 위한 방법이다.
 
-[CSS 적용 우선 순위 (Cascading Order)](http://ungmo2.github.io/css/CSS3-Selector/#css----cascading-order) 를 고려하여 가장 마지막에 정의하는 것이 안전하다. 일반적으로 media query를 가장 마지막에 정의하므로 media query 정의부 직전에 위치시킨다.
-
-```css
-.nav-toggle {
-  display: none;
-}
-.navicon {
-  display: none;
-}
+```html
+<label for="remeber_pw">Remeber password?</label>
+<input type="checkbox" name="remeber_pw" id="remeber_pw">
 ```
 
-navigation icon은 클릭할 수 있어야 한다. 즉 클릭되었을 때의 상태를 감지할 수 있어야 한다. checkbox input tag를 사용하면 checked 속성을 이용하여 클릭되었을 때(input:checked)와 그렇지 않을 때를 구분할 수 있다.
+input checkbox 요소의 id 속성값과 label 요소의 for 속성값을 일치시켜 연동하면 label 요소를 클릭하여도 input checkbox 요소가 클릭된다.
 
-```css
-.nav-toggle:checked ~ .nav-items {
-  ...
-}
-```
+이것을 이용하여 label 요소의 컨텐츠를 커스텀 navigation icon으로 만들어 주고 input checkbox 요소의 기본 외관을 비표시하는 방법이다.
 
 그럼 navigation icon을 만들어 보자.
 
-navigation icon은 checkbox input tag과 연동되어야 하므로 label tag를 사용하였다. 즉 navigation icon을 클릭하면 checkbox input tag도 checked 상태가 된다.
+navigation icon은 input checkbox 요소와 연동되어야 하므로 label 요소를 사용하였다. 즉 navigation icon을 클릭하면 checkbox input tag도 checked 상태가 된다.
 
 navigation icon의 style은 다음과 같이 정의한다.
 
@@ -413,33 +412,8 @@ navigation icon의 style은 다음과 같이 정의한다.
 }
 ```
 
-navigation icon은 header 우측의 절대 위치에 배치되어야 하므로 `position: absolute;`를 지정한다. absolute 속성은 relative 속성의 부모 요소를 기준으로 배치된다. 마침 html 요소에 relative 속성이 적용되어 있으므로 별도 지정은 필요없다. 이것은 스마트폰 layout에서만 해당되는 것이므로 스마트폰 용 media query 내에 정의한다.
-
-tablet용 layout에서 header height를 2배로 하였으므로 mobile용 layout을 위해 다시 60px로 되돌린다.
-
-```css
-@media screen and (max-width: 480px) {
-  header {
-    height: 60px;
-  }
-}
-```
-
-스마트폰 layout에서는 navigation bar가 초기상태에서 비표시되어야 한다. 그리고 navigation icon은 표시되어야 한다. 아직 navigation icon을 완성하지 않았으므로 표시되지 않는다.
-
-```css
-@media screen and (max-width: 480px) {
-  header {
-    height: 60px;
-  }
-  .nav-items {
-    display: none;
-  }
-  .navicon {
-    display: block;
-  }
-}
-```
+navigation icon은 header 우측의 절대 위치에 배치되어야 하므로 `position: absolute;`를 지정한다. absolute 속성은 relative 속성의 부모 요소를 기준으로 배치된다. 마침 html 요소에 relative 속성이 적용되어 있으므로 별도 지정은 필요없다.
+<!-- 이것은 스마트폰 layout에서만 해당되는 것이므로 스마트폰용 media query 내에 정의한다. -->
 
 다음은 label tag 내의 span tag의 style을 정의한다. span tag는 navigation icon의 내부 막대 3개(클릭 시에는 X 표시)를 표현하기 위해 정의하였다.
 
@@ -466,8 +440,8 @@ tablet용 layout에서 header height를 2배로 하였으므로 mobile용 layout
   content: '';
   display: block;
   height: 100%;
-  position: absolute;
   width: 100%;
+  position: absolute;
 }
 .navicon-bar::before {
   top: -7px;
@@ -493,6 +467,8 @@ tablet용 layout에서 header height를 2배로 하였으므로 mobile용 layout
 {: style="max-width:100px; margin: 10px auto;"}
 
 아직 navigation icon을 클릭하여도 아무런 반응이 없다. navigation icon을 클릭하면 클릭되었음을 사용자가 확인할 수 있도록 navigation icon의 style을 변화시킨다.
+
+input checkbox tag의 가상 클래스 선택자 checked 속성을 이용하여 클릭되었을 때(input:checked)와 그렇지 않을 때를 구분할 수 있다.
 
 ```css
 .nav-toggle:checked ~ .navicon > .navicon-bar {
@@ -530,9 +506,9 @@ navigation icon에 transition 효과를 부여하여 좀더 부드럽게 움직�
   content: '';
   display: block;
   height: 100%;
+  width: 100%;
   position: absolute;
   transition: all .2s ease-out;
-  width: 100%;
 }
 ```
 
@@ -557,6 +533,45 @@ navigation icon을 클릭하면 의도하지 않게 이미지가 선택되는 �
   -moz-user-select: none;     /* Firefox all */
   -ms-user-select: none;      /* IE 10+ */
   user-select: none;          /* Likely future */
+}
+```
+
+navigation icon과 checkbox input tag는 스마트폰 layout 이외의 경우, 화면에 표시되어서는 않된다. 따라서 `display: none;`으로 화면에 표시되지 않도록 한다. `display: none;`은 해당 공간조차 점유하지 않지만 `visibility: hidden;`을 사용하면 해당 공간은 남아있고 표시만 되지 않는다. [참고 : CSS display](http://ungmo2.github.io/css/CSS3-Property/#display)
+
+[CSS 적용 우선 순위 (Cascading Order)](http://ungmo2.github.io/css/CSS3-Selector/#css----cascading-order) 를 고려하여 가장 마지막에 정의하는 것이 안전하다. 일반적으로 media query를 가장 마지막에 정의하므로 media query 정의부 직전에 위치시킨다.
+
+```css
+.nav-toggle {
+  display: none;
+}
+.navicon {
+  display: none;
+}
+```
+
+tablet용 layout에서 header height를 2배로 하였으므로 mobile용 layout을 위해 다시 60px로 되돌린다.
+
+```css
+@media screen and (max-width: 480px) {
+  header {
+    height: 60px;
+  }
+}
+```
+
+스마트폰 layout에서는 navigation bar가 초기상태에서 비표시되어야 한다. 그리고 navigation icon은 표시되어야 한다. 아직 navigation icon을 완성하지 않았으므로 표시되지 않는다.
+
+```css
+@media screen and (max-width: 480px) {
+  header {
+    height: 60px;
+  }
+  .nav-items {
+    display: none;
+  }
+  .navicon {
+    display: block;
+  }
 }
 ```
 
@@ -601,306 +616,306 @@ navigation icon을 클릭하면 의도하지 않게 이미지가 선택되는 �
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-      /*Simple Reset CSS*/
-      * {
-        margin: 0; padding: 0;
-        box-sizing: border-box;
-      }
-      html {
-        /*footer의 position: absolute;에 대응 (for sticky footer)*/
-        /*mobile layout의 .navicon의 position: absolute;에 대응*/
-        position: relative;
-        min-height: 100%;   /*footer가 bottom에 붙게한다*/
-        -webkit-font-smoothing: antialiased;
-        -webkit-text-size-adjus: 100%;  /*iphone font size 변경 방지*/
-      }
-      body {
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        color: #58666e;
-        background-color: #f0f3f4;
-      }
-      li { list-style: none; }
-      a { text-decoration: none; }
-      h1, h2, h3, h4, h5, h6, p {
-        margin: 10px 5px;
-      }
-      h1 { font-size: 1.8em; }
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /*Simple Reset CSS*/
+    * {
+      margin: 0; padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      /*footer의 position: absolute;에 대응 (for sticky footer)*/
+      /*mobile layout의 .navicon의 position: absolute;에 대응*/
+      position: relative;
+      min-height: 100%;   /*footer가 bottom에 붙게한다*/
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-size-adjus: 100%;  /*iphone font size 변경 방지*/
+    }
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: #58666e;
+      background-color: #f0f3f4;
+    }
+    li { list-style: none; }
+    a { text-decoration: none; }
+    h1, h2, h3, h4, h5, h6, p {
+      margin: 10px 5px;
+    }
+    h1 { font-size: 1.8em; }
 
-      #wrap {
-        /*
-        for full width
-        top = header height
-        bottom = footer height
-        */
-        width: 100%;
-        margin: 60px 0 60px;
-      }
+    #wrap {
+      /*
+      for full width
+      top = header height
+      bottom = footer height
+      */
+      width: 100%;
+      margin: 60px 0 60px;
+    }
 
-      /*Navigation bar*/
+    /*Navigation bar*/
+    header {
+      /*for sticky header*/
+      position: fixed;
+      top: 0;
+
+      width: 100%;
+      height: 60px;
+      z-index: 2000;
+      background-color: #fff;
+      box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(0, 0, 0, 0.05);
+    }
+    .logo {
+      display: inline-block;
+      height: 36px;
+      margin: 12px 0 12px 25px;
+    }
+    .logo > img { height: 36px; }
+    nav {
+      float: right;
+    }
+    .nav-items {
+      margin-right: 20px;
+    }
+    .nav-items > li {
+      display: inline-block; /*가로정렬*/
+    }
+    .nav-items > li > a {
+      line-height: 60px; /*for Vertical Centering*/
+      padding: 0 30px;   /*nav item간 간격*/
+      color: rgba(0,0,0,0.4);
+    }
+    .nav-items > li > a:hover {
+      color: rgba(0,0,0,0.8);
+    }
+
+    /*navigation icon for Mobile Layout*/
+    .navicon {
+      cursor: pointer;
+      height: 60px;
+      padding: 28px 15px;
+      position: absolute;
+      top: 0; right: 0;
+
+      -webkit-user-select: none;  /* Chrome all / Safari all */
+      -moz-user-select: none;     /* Firefox all */
+      -ms-user-select: none;      /* IE 10+ */
+      user-select: none;          /* Likely future */
+    }
+    /*nav icon의 내부 막대*/
+    .navicon-bar {
+      background-color: #333;
+      display: block;
+      position: relative;
+      /*navigation icon animation*/
+      transition: background-color .2s ease-out;
+      width: 20px;
+      height: 3px;
+    }
+    .navicon-bar::before,
+    .navicon-bar::after {
+      background-color: #333;
+      content: '';
+      display: block;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      /*navigation icon animation*/
+      transition: all .2s ease-out;
+    }
+    .navicon-bar::before {
+      top: -7px;
+    }
+    .navicon-bar::after {
+      top: 7px;
+    }
+    /*toggle navigation icon*/
+    .nav-toggle:checked ~ .navicon > .navicon-bar {
+      background: transparent;
+    }
+    .nav-toggle:checked ~ .navicon > .navicon-bar::before {
+      transform: rotate(45deg);
+      top: 0;
+    }
+    .nav-toggle:checked ~ .navicon > .navicon-bar::after {
+      transform: rotate(-45deg);
+      top: 0;
+    }
+
+    /*contents*/
+    #content-wrap {
+      overflow: hidden; /*height가 접히는 문제*/
+    }
+    aside {
+      /*for fixed side bar*/
+      position: fixed;
+      top: 60px;
+      bottom: 0;
+
+      width: 200px;  /*너비 고정*/
+      padding-top: 25px;
+      background-color: #333;
+    }
+    /*aside navigation*/
+    aside > ul {
+      width: 200px;
+    }
+    aside > ul > li > a {
+      display: block;
+      color: #fff;
+      padding: 10px 0 10px 20px;
+    }
+    aside > ul > li > a.active {
+      background-color: #4CAF50;
+    }
+    aside > ul > li > a:hover:not(.active) {
+      background-color: #555;
+    }
+    aside > h1 {
+      padding: 20px 0 20px 20px;
+      color: #fff;
+    }
+    /*Section*/
+    section {
+      float: right;
+      margin-left: 200px;  /*aside width*/
+    }
+    article {
+      margin: 10px;
+      padding: 25px;
+      background-color: white;
+    }
+    /*footer*/
+    footer {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 60px;
+      padding: 0 25px;
+      line-height: 60px;
+      color: #8a8c8f;
+      border-top: 1px solid #dee5e7;
+      background-color: #f2f2f2;
+    }
+
+    .nav-toggle {
+      display: none;
+    }
+    .navicon {
+      display: none;
+    }
+
+    /*Media Query*/
+    /* for tablet */
+    @media screen and (max-width: 800px) {
       header {
-        /*for sticky header*/
-        position: fixed;
-        top: 0;
-
-        width: 100%;
+        height: 120px;
+        text-align: center;
+      }
+      nav {
+        float: none;
+        margin-right: 0;
+      }
+      #wrap {
+        margin-top: 120px;
+      }
+      aside {
+        top: 120px;
+      }
+    }
+    /* for smartphone */
+    @media screen and (max-width: 480px) {
+      header {
         height: 60px;
-        z-index: 2000;
+      }
+      .nav-items {
+        display: none;
+      }
+      .navicon {
+        display: block;
+      }
+      #wrap {
+        margin-top: 60px;
+      }
+      aside {
+        top: 60px;
+      }
+      /*View navigation item*/
+      .nav-toggle:checked ~ .nav-items {
+        display: block;
+        width: 100%;
         background-color: #fff;
         box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(0, 0, 0, 0.05);
       }
-      .logo {
-        display: inline-block;
-        height: 36px;
-        margin: 12px 0 12px 25px;
-      }
-      .logo > img { height: 36px; }
-      nav {
-        float: right;
-      }
-      .nav-items {
-        margin-right: 20px;
-      }
-      .nav-items > li {
-        display: inline-block; /*가로정렬*/
+      .nav-items > li  {
+        display: block;
       }
       .nav-items > li > a {
-        line-height: 60px; /*for Vertical Centering*/
-        padding: 0 30px;   /*nav item간 간격*/
-        color: rgba(0,0,0,0.4);
+        line-height: 50px;
       }
-      .nav-items > li > a:hover {
-        color: rgba(0,0,0,0.8);
-      }
+    }
+  </style>
+</head>
+<body>
+  <div id="wrap">
+    <header>
+      <a class="logo" href="#home"><img src="http://ungmo2.github.io/img/logo.png"></a>
+      <nav>
+        <input class="nav-toggle" id="nav-toggle" type="checkbox">
+        <label class="navicon" for="nav-toggle"><span class="navicon-bar"></span></label>
+        <ul class="nav-items">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#news">News</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+      </nav>
+    </header>
 
-      /*navigation icon for Tablet/Mobile Layout*/
-      .navicon {
-        cursor: pointer;
-        height: 60px;
-        padding: 28px 15px;
-        position: absolute;
-        top: 0; right: 0;
-
-        -webkit-user-select: none;  /* Chrome all / Safari all */
-        -moz-user-select: none;     /* Firefox all */
-        -ms-user-select: none;      /* IE 10+ */
-        user-select: none;          /* Likely future */
-      }
-      /*nav icon의 내부 막대*/
-      .navicon-bar {
-        background-color: #333;
-        display: block;
-        position: relative;
-        /*navigation icon animation*/
-        transition: background-color .2s ease-out;
-        width: 20px;
-        height: 3px;
-      }
-      .navicon-bar::before,
-      .navicon-bar::after {
-        background-color: #333;
-        content: '';
-        display: block;
-        height: 100%;
-        position: absolute;
-        /*navigation icon animation*/
-        transition: all .2s ease-out;
-        width: 100%;
-      }
-      .navicon-bar::before {
-        top: -7px;
-      }
-      .navicon-bar::after {
-        top: 7px;
-      }
-      /*toggle navigation icon*/
-      .nav-toggle:checked ~ .navicon > .navicon-bar {
-        background: transparent;
-      }
-      .nav-toggle:checked ~ .navicon > .navicon-bar::before {
-        transform: rotate(45deg);
-        top: 0;
-      }
-      .nav-toggle:checked ~ .navicon > .navicon-bar::after {
-        transform: rotate(-45deg);
-        top: 0;
-      }
-
-      /*contents*/
-      #content-wrap {
-        overflow: hidden; /*height가 접히는 문제*/
-      }
-      aside {
-        /*for fixed side bar*/
-        position: fixed;
-        top: 60px;
-        bottom: 0;
-
-        width: 200px;  /*너비 고정*/
-        padding-top: 25px;
-        background-color: #333;
-      }
-      /*aside navigation*/
-      aside > ul {
-        width: 200px;
-      }
-      aside > ul > li > a {
-        display: block;
-        color: #fff;
-        padding: 10px 0 10px 20px;
-      }
-      aside > ul > li > a.active {
-        background-color: #4CAF50;
-      }
-      aside > ul > li > a:hover:not(.active) {
-        background-color: #555;
-      }
-      aside > h1 {
-        padding: 20px 0 20px 20px;
-        color: #fff;
-      }
-      /*Section*/
-      section {
-        float: right;
-        margin-left: 200px;  /*aside width*/
-      }
-      article {
-        margin: 10px;
-        padding: 25px;
-        background-color: white;
-      }
-      /*footer*/
-      footer {
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        height: 60px;
-        width: 100%;
-        padding: 0 25px;
-        line-height: 60px;
-        color: #8a8c8f;
-        border-top: 1px solid #dee5e7;
-        background-color: #f2f2f2;
-      }
-
-      .nav-toggle {
-        display: none;
-      }
-      .navicon {
-        display: none;
-      }
-
-      /*Media Query*/
-      /* for tablet */
-      @media screen and (max-width: 800px) {
-        header {
-          height: 120px;
-          text-align: center;
-        }
-        nav {
-          float: none;
-          margin-right: 0;
-        }
-        #wrap {
-          margin-top: 120px;
-        }
-        aside {
-          top: 120px;
-        }
-      }
-      /* for smartphone */
-      @media screen and (max-width: 480px) {
-        header {
-          height: 60px;
-        }
-        .nav-items {
-          display: none;
-        }
-        .navicon {
-          display: block;
-        }
-        #wrap {
-          margin-top: 60px;
-        }
-        aside {
-          top: 60px;
-        }
-        /*View navigation item*/
-        .nav-toggle:checked ~ .nav-items {
-          display: block;
-          width: 100%;
-          background-color: #fff;
-          box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(0, 0, 0, 0.05);
-        }
-        .nav-items > li  {
-          display: block;
-        }
-        .nav-items > li > a {
-          line-height: 50px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="wrap">
-      <header>
-        <a class="logo" href="#home"><img src="http://ungmo2.github.io/img/logo.png"></a>
-        <nav>
-          <input class="nav-toggle" id="nav-toggle" type="checkbox">
-          <label class="navicon" for="nav-toggle"><span class="navicon-bar"></span></label>
-          <ul class="nav-items">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#news">News</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#about">About</a></li>
-          </ul>
-        </nav>
-      </header>
-
-      <div id="content-wrap">
-        <aside>
-          <h1>Aside</h1>
-          <ul>
-            <li><a href="#" class="active">London</a></li>
-            <li><a href="#">Paris</a></li>
-            <li><a href="#">Tokyo</a></li>
-            <li><a href="#">Newyork</a></li>
-          </ul>
-        </aside>
-        <section>
-          <article id="london">
-            <h1>London</h1>
-            <p>London is the capital city of England. It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
-            <p>Standing on the River Thames, London has been a major settlement for two millennia,its history going back to its founding by the Romans, who named it Londinium.</p>
-            <p>London, also referred to as Greater London, is one of 9 regions of England and the top-level subdivision covering most of the city's metropolis. The small ancient City of London at its core once comprised the whole settlement, but as its urban area grew, the Corporation of London resisted attempts to amalgamate the city with its suburbs, causing "London" to be defined in a number ways for different purposes.</p>
-          </article>
-          <article id="paris">
-            <h1>Paris</h1>
-            <p>London is the capital city of England. It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
-            <p>Standing on the River Thames, London has been a major settlement for two millennia,its history going back to its founding by the Romans, who named it Londinium.</p>
-            <p>London, also referred to as Greater London, is one of 9 regions of England and the top-level subdivision covering most of the city's metropolis. The small ancient City of London at its core once comprised the whole settlement, but as its urban area grew, the Corporation of London resisted attempts to amalgamate the city with its suburbs, causing "London" to be defined in a number ways for different purposes.</p>
-          </article>
-          <article id="tokyo">
-            <h1>Tokyo</h1>
-            <p>London is the capital city of England. It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
-            <p>Standing on the River Thames, London has been a major settlement for two millennia,its history going back to its founding by the Romans, who named it Londinium.</p>
-            <p>London, also referred to as Greater London, is one of 9 regions of England and the top-level subdivision covering most of the city's metropolis. The small ancient City of London at its core once comprised the whole settlement, but as its urban area grew, the Corporation of London resisted attempts to amalgamate the city with its suburbs, causing "London" to be defined in a number ways for different purposes.</p>
-          </article>
-          <article id="newyork">
-            <h1>Newyork</h1>
-            <p>London is the capital city of England. It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
-            <p>Standing on the River Thames, London has been a major settlement for two millennia,its history going back to its founding by the Romans, who named it Londinium.</p>
-            <p>London, also referred to as Greater London, is one of 9 regions of England and the top-level subdivision covering most of the city's metropolis. The small ancient City of London at its core once comprised the whole settlement, but as its urban area grew, the Corporation of London resisted attempts to amalgamate the city with its suburbs, causing "London" to be defined in a number ways for different purposes.</p>
-          </article>
-        </section>
-        <!-- end of content-wrap -->
-      </div>
-      <footer>© Copyright 2016 ungmo2</footer>
-    <!-- end of wrap   -->
+    <div id="content-wrap">
+      <aside>
+        <h1>Aside</h1>
+        <ul>
+          <li><a href="#" class="active">London</a></li>
+          <li><a href="#">Paris</a></li>
+          <li><a href="#">Tokyo</a></li>
+          <li><a href="#">Newyork</a></li>
+        </ul>
+      </aside>
+      <section>
+        <article id="london">
+          <h1>London</h1>
+          <p>London is the capital city of England. It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
+          <p>Standing on the River Thames, London has been a major settlement for two millennia,its history going back to its founding by the Romans, who named it Londinium.</p>
+          <p>London, also referred to as Greater London, is one of 9 regions of England and the top-level subdivision covering most of the city's metropolis. The small ancient City of London at its core once comprised the whole settlement, but as its urban area grew, the Corporation of London resisted attempts to amalgamate the city with its suburbs, causing "London" to be defined in a number ways for different purposes.</p>
+        </article>
+        <article id="paris">
+          <h1>Paris</h1>
+          <p>London is the capital city of England. It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
+          <p>Standing on the River Thames, London has been a major settlement for two millennia,its history going back to its founding by the Romans, who named it Londinium.</p>
+          <p>London, also referred to as Greater London, is one of 9 regions of England and the top-level subdivision covering most of the city's metropolis. The small ancient City of London at its core once comprised the whole settlement, but as its urban area grew, the Corporation of London resisted attempts to amalgamate the city with its suburbs, causing "London" to be defined in a number ways for different purposes.</p>
+        </article>
+        <article id="tokyo">
+          <h1>Tokyo</h1>
+          <p>London is the capital city of England. It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
+          <p>Standing on the River Thames, London has been a major settlement for two millennia,its history going back to its founding by the Romans, who named it Londinium.</p>
+          <p>London, also referred to as Greater London, is one of 9 regions of England and the top-level subdivision covering most of the city's metropolis. The small ancient City of London at its core once comprised the whole settlement, but as its urban area grew, the Corporation of London resisted attempts to amalgamate the city with its suburbs, causing "London" to be defined in a number ways for different purposes.</p>
+        </article>
+        <article id="newyork">
+          <h1>Newyork</h1>
+          <p>London is the capital city of England. It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
+          <p>Standing on the River Thames, London has been a major settlement for two millennia,its history going back to its founding by the Romans, who named it Londinium.</p>
+          <p>London, also referred to as Greater London, is one of 9 regions of England and the top-level subdivision covering most of the city's metropolis. The small ancient City of London at its core once comprised the whole settlement, but as its urban area grew, the Corporation of London resisted attempts to amalgamate the city with its suburbs, causing "London" to be defined in a number ways for different purposes.</p>
+        </article>
+      </section>
+      <!-- end of content-wrap -->
     </div>
-  </body>
+    <footer>© Copyright 2016 ungmo2</footer>
+  <!-- end of wrap   -->
+  </div>
+</body>
 </html>
 ```
 

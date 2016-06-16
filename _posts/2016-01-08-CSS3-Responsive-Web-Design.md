@@ -63,13 +63,15 @@ viewport meta tag는 브라우저의 화면 설정과 관련된 정보를 제공
 
 meta tag에서는 px단위를 사용하며 단위 표현은 생략한다. 복수개의 속성을 사용할 때는 쉼표(,)로 구분한다.
 
+***일반적으로 viewport meta tag는 모바일 디바이스에서만 적용된다.***
+
+[<meta>](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta)
 
 ```html
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 ```
 
 위 예제는 가장 일반적인 viewport 설정이다. 가로폭을 디바이스의 가로폭에 맞추고 초기 화면 배율을 100%로 설정하는 것을 의미한다.
-
 
 ## 1.2 @media 속성
 
@@ -123,13 +125,19 @@ meta tag에서는 px단위를 사용하며 단위 표현은 생략한다. 복수
 | height              | viewport 높이(px)
 | device-width        | 디바이스의 물리적 너비(px)
 | device-height       | 디바이스의 물리적 높이(px)
-| orientation         | 디바이스 방향 (가로 방향: landscape, 세로방향 portrait)
+| orientation         | 디바이스 방향 (가로 방향: landscape, 세로방향: portrait)
 | device-aspect-ratio | 디바이스의 물리적 width/height 비율
 | color               | 디바이스에서 표현 가능한 최대 색상 비트수
 | monochrome          | 흑백 디바이스의 픽셀 당 비트수
 | resolution          | 디바이스 해상도
 
-orientation을 제외한 모든 속성은 min/max 접두사를 사용할 수 있다. 이것을 이용하여 화면 크기 범위를 지정할 수 있다.
+orientation을 제외한 모든 속성은 min/max 접두사를 사용할 수 있다.
+
+[W3C > Media Queries > Media features](https://www.w3.org/TR/css3-mediaqueries/#media1)
+
+일반적으로 반응형 웹 디자인은 viewport 너비(width 속성)를 기준으로
+
+width 속성을 이용하여 화면 크기 범위를 지정할 수 있다.
 
 ```css
 /*==========  Mobile First Method  ==========*/

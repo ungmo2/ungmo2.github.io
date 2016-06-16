@@ -222,35 +222,37 @@ viewport의 width 속성을 이용하여 viewport 너비에 따라 반응하는 
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-      /* 세로  */
-      * { color: black; }
-      /* 가로 */
-      /*@media screen and (orientation: landscape) {
-        * { color: blue; }
-      }*/
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* 세로  */
+    * { color: black; }
+    /* 가로 */
+    /*Desktop의 화면은 가로화면(landscape)이므로 아래 rule이 적용된다.*/
+    /*@media screen and (orientation: landscape) {
+      * { color: blue; }
+    }*/
 
-      /* Landscape */
-      @media screen
-        and (min-device-width: 320px)
-        and (max-device-width: 480px)
-        and (orientation: landscape) {
-        * { color: blue; }
-      }
-    </style>
-  </head>
-  <body>
-    <h1>@media practice</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-  </body>
+    /* Landscape */
+    @media screen
+      /*디바이스가 모바일일때(device-width 0~768px)*/
+      and (max-device-width: 760px)
+      /* 가로 */
+      and (orientation: landscape) {
+      * { color: blue; }
+    }
+  </style>
+</head>
+<body>
+  <h1>@media practice: orientation</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</body>
 </html>
 ```
 
-이제까지의 내용을 바탕으로 [앞서 만들어본 예제](http://ungmo2.github.io/css/CSS3-Layout/#header--navigation-bar)를 Responsive Web Design에 맞추어 수정해 보자.
-
 # 2. Responsive Navigation Bar
+
+이제까지의 내용을 바탕으로 [앞서 만들어본 예제](http://ungmo2.github.io/css/CSS3-Layout/#header--navigation-bar)를 Responsive Web Design에 맞추어 수정해 보자.
 
 디바이스 해상도에 따라 반응할 수 있도록 viewport meta tag와 media query를 추가한다.
 

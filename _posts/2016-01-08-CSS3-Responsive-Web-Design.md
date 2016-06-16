@@ -65,7 +65,7 @@ meta tag에서는 px단위를 사용하며 단위 표현은 생략한다. 복수
 
 ***일반적으로 viewport meta tag는 모바일 디바이스에서만 적용된다.***
 
-[<meta>](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta)
+[meta tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta)
 
 ```html
 <meta name="viewport" content="width=device-width, initial-scale=1.0">

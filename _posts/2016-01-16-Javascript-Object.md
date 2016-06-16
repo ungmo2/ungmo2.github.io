@@ -379,7 +379,7 @@ console.log(a === b); // false
 
 # 6. Immutability in JavaScript
 
-Immutability (변경불가성)은 함수형 프로그래밍의 핵심 원리이다. 뿐만 아니라, 객체 지향 프로그램을 위한 기능을 제공하고 있다
+Immutability(변경불가성)은 함수형 프로그래밍의 핵심 원리이다. 뿐만 아니라, 객체 지향 프로그램을 위한 기능을 제공하고 있다
 
 `object` type을 제외한 모든 data type은 한번 정해지면 변경이 불가능한 값 (immutable value)이다.
 
@@ -395,7 +395,10 @@ console.log(statement);
 
 ```javascript
 var arr = [];
-var v2 = arr.push(2);
+console.log(arr.length); // 0
+
+var v2 = arr.push(2);    // arr.push()는 연산 후 arr의 length를 반환
+console.log(arr.length); // 1
 ```
 
 상기 예제에서 v2의 값은 무엇인가? 문자열의 예와 같이 배열이 동작한다면 v2는 새로운 배열(하나의 요소를 가지고 그 값은 2인)을 가지게 될 것이다. 그러나 객체인 arr은 push 메서드에 의해 update되고 v2에는 배열의 새로운 `length` 값이 반환된다.

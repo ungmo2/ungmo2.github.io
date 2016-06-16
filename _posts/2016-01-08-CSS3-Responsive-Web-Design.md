@@ -65,7 +65,7 @@ meta tag에서는 px단위를 사용하며 단위 표현은 생략한다. 복수
 
 ***일반적으로 viewport meta tag는 모바일 디바이스에서만 적용된다.***
 
-[meta tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta)
+[meta tag: MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta)
 
 ```html
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -99,7 +99,6 @@ meta tag에서는 px단위를 사용하며 단위 표현은 생략한다. 복수
 ```
 
 반응형 웹디자인에 사용되는 핵심 기술은 `@media`이다.
-
 
 `@media`을 사용하여 미디어 별로 style을 지정하는 것을 `Media Query`라 한다. 디바이스를 지정하는 것뿐만 아니라 디바이스의 크기나 비율까지 구분할 수 있다.
 
@@ -135,9 +134,9 @@ orientation을 제외한 모든 속성은 min/max 접두사를 사용할 수 있
 
 [W3C > Media Queries > Media features](https://www.w3.org/TR/css3-mediaqueries/#media1)
 
-일반적으로 반응형 웹 디자인은 viewport 너비(width 속성)를 기준으로
+일반적으로 반응형 웹 디자인은 viewport 너비(width 속성)를 기준으로 한다.
 
-width 속성을 이용하여 화면 크기 범위를 지정할 수 있다.
+viewport의 width 속성을 이용하여 viewport 너비에 따라 반응하는 범위(breakpoint)를 지정할 수 있다.
 
 ```css
 /*==========  Mobile First Method  ==========*/
@@ -194,28 +193,27 @@ width 속성을 이용하여 화면 크기 범위를 지정할 수 있다.
 다음은 임의로 해상도를 3단계로 구분하여 breakpoint를 정의한 예제이다.
 
 ```html
-
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-      /* 801px ~ */
-      * { color: black; }
-      /* ~ 800px */
-      @media screen and (max-width: 800px) {
-        * { color: blue; }
-      }
-      /* ~ 480px */
-      @media screen and (max-width: 480px) {
-        * { color: red; }
-      }
-    </style>
-  </head>
-  <body>
-    <h1>@media practice</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-  </body>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* 801px ~ */
+    * { color: black; }
+    /* ~ 800px */
+    @media screen and (max-width: 800px) {
+      * { color: blue; }
+    }
+    /* ~ 480px */
+    @media screen and (max-width: 480px) {
+      * { color: red; }
+    }
+  </style>
+</head>
+<body>
+  <h1>@media practice</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</body>
 </html>
 ```
 

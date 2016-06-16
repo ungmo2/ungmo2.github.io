@@ -1,3 +1,8 @@
+---
+layout: page
+title: Frontend stuff
+---
+
 Frontend stuff
 ==============
 

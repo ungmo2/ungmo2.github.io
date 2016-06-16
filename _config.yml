@@ -84,7 +84,7 @@ pygments_options:
   tabsize: 2
 # permalink: /:year-:month-:day-:title
 permalink: /:categories/:title/
-paginate: 10
+paginate: 20
 paginate_path: "/page:num/"
 
 # Sitemaps for GitHub Pages

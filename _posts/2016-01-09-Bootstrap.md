@@ -111,17 +111,35 @@ mycode.html
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
-  </head>
-  <body>
-    <h1>My First Bootstrap Page</h1>
-    <p>This is some text.</p>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="./bootstrap/js/bootstrap.min.js"></script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+  <h1>My First Bootstrap Page</h1>
+
+  <!-- Standard button -->
+  <button type="button" class="btn btn-default">Default</button>
+
+  <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+  <button type="button" class="btn btn-primary">Primary</button>
+
+  <!-- Indicates a successful or positive action -->
+  <button type="button" class="btn btn-success">Success</button>
+
+  <!-- Contextual button for informational alert messages -->
+  <button type="button" class="btn btn-info">Info</button>
+
+  <!-- Indicates caution should be taken with this action -->
+  <button type="button" class="btn btn-warning">Warning</button>
+
+  <!-- Indicates a dangerous or potentially negative action -->
+  <button type="button" class="btn btn-danger">Danger</button>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="./bootstrap/js/bootstrap.min.js"></script>
+</body>
 </html>
 ```
 

@@ -20,7 +20,7 @@ Bootstrap은 빠르고 간편한 반응형 웹 디자인(responsive web design)�
 
 ## 1.1 Code의 재사용 (Code reuse)
 
-CSS를 활용한 UI/UX 디자인은 수많은 선택자에 CSS 속성과 값을 선언하는 작업이다. 이때 중복되는 선언이 발생할 수 있는데 class 속성을 활용하면 중복 선언울 방지하고 코드를 재사용할 수 있다.
+CSS를 활용한 UI/UX 디자인은 수많은 선택자에 CSS 속성과 값을 선언하는 작업이다. 이때 중복되는 선언이 발생할 수 있는데 class 속성을 활용하면 중복 선언을 방지할 수 있고 코드를 재사용할 수 있다.
 
 예를 들어 버튼을 만드는 경우, 웹사이트 내의 버튼은 한정된 스타일을 정하고 사용하는 것이 일반적이다. 이때 기본이 되는 스타일을 선언하고 컬러와 크기를 변경할 수 있는 구조가 바람직하다.
 
@@ -41,6 +41,11 @@ CSS를 활용한 UI/UX 디자인은 수많은 선택자에 CSS 속성과 값을 
     padding: 6px 12px;
     cursor: pointer;
   }
+  .btn-large {
+    font-size: 18px;
+    padding: 10px 16px;
+    border-radius: 6px;
+  }
   .btn-red {
     color: #fff;
     background-color: #d9534f;
@@ -57,13 +62,14 @@ CSS를 활용한 UI/UX 디자인은 수많은 선택자에 CSS 속성과 값을 
   <button class="btn">Button</button>
   <button class="btn btn-red">Button</button>
   <button class="btn btn-blue">Button</button>
+  <button class="btn btn-large">Button</button>
 </body>
 </html>
 ```
 
-위와 같이 미리 사용될 가능성이 높은 스타일을 미리 작성하고 class화하면 같은 코드를 중복 작성하는 비효율을 줄일 수 있으며 이는 비용 절감과 품질의 향상으로 이어진다.
+위와 같이 미리 사용될 가능성이 높은 스타일을 미리 작성하여 class화하면 같은 코드를 중복 작성하는 비효율을 줄일 수 있으며 이는 비용 절감과 품질의 향상으로 이어진다.
 
-Bootstrap은 이처럼 미리 선언해 놓은 다양한 class와 자바스크립트 코드로 이루어진 스타일시트 프레임워크이다. HTML에 Bootstrap의 class를 지정하는 것으로 빠르고 쉽게 일관된 스타일의 웹사이트를 작성할 수 있게 한다.
+Bootstrap은 이처럼 미리 선언해 놓은 다양한 class와 자바스크립트 코드로 이루어진 프론트엔드 프레임워크이다. HTML에 Bootstrap의 class를 지정하는 것으로 빠르고 쉽게 일관된 스타일의 반응형 웹사이트를 작성할 수 있게 한다.
 
 ## 1.2 Framework의 장점
 
@@ -320,6 +326,16 @@ fluid layout(유동 최대폭 레이아웃)을 만들 때 사용한다. viewport
 그리드 시스템은 열을 나누어 컨텐츠를 원하는 위치에 배치하는 방법(Layout)을 말한다. Bootstrap은 반응형 12열 그리드 시스템을 제공한다.
 
 그리드 레이아웃을 구성하려면 반드시 `.row`(행)를 먼저 구성하며 행 안에 `.col-*-*`(열)을 필요한 갯수만큼 포함시킨다. 즉 container 내에 `.row`(행)이 위치하고 그 안에 `.col-*-*`(열)이 위치하게 된다.
+
+```
+.container
+  .row
+    .col-xs-#
+    .col-xs-#
+  .row
+    .col-xs-#
+    .col-xs-#
+```
 
 ## 6.1 행(.row)의 구성
 

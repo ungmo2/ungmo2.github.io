@@ -22,5 +22,9 @@ $('#main-navbar').on('hidden.bs.collapse', function () {
 //   $(document).bind("contextmenu",function(){return false;});
 //   $(document).bind("mousedown",function(){return false;});
 // });
+$(document).ready(function(){
+  $(pre.highlight).bind("contextmenu",function(){return false;});
+  $(pre.highlight).bind("mousedown",function(){return false;});
+});
 
 // 2fc73a3a967e97599c9763d05e564189

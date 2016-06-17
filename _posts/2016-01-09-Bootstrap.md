@@ -214,9 +214,14 @@ Bootstrap은 Mobile-first 방식을 기본 지원하므로 [Media query](http://
 @media (min-width: @screen-lg-min) { ... }
 ```
 
+
+
+레이아웃을 만드는 가장 상위 요소에 .container 또는 .container-fluid를 추가합니다.
+
+
 # 5. Container
 
-Bootstrap은 모든 컨텐츠를 감싸는 wrapping 요소(container)를 포함해야 한다. 즉 모든 컨텐츠 요소는 wrapping 요소의 자식이어야 한다. container는 그리드 시스템을 위한 필수 사항이다.
+Bootstrap은 컨텐츠를 감싸는 wrapping 요소(container)를 포함해야 한다. container는 그리드 시스템의 필수 요소이다.
 
 container에는 2가지 종류가 있다.
 
@@ -315,9 +320,9 @@ fluid layout(유동 최대폭 레이아웃)을 만들 때 사용한다. viewport
 
 # 6. Grid system
 
-앞에서 설명한 .container와 .container-fluid는 모든 컨텐츠 요소를 포함하는 부모 요소로서 container 또는 wrapping 요소라고 부른다. container는 그리드 시스템을 위한 필수 사항이다.
+앞에서 설명한 .container와 .container-fluid는 컨텐츠 요소를 포함하는 부모 요소로서 container 또는 wrapping 요소라고 부른다. container는 그리드 시스템을 위한 필수 사항이다.
 
-그리드 시스템은 열을 나누어 컨텐츠를 원하는 위치에 배치하는 방법을 말한다. Bootstrap은 반응형 12열 그리드 시스템을 제공한다.
+그리드 시스템은 열을 나누어 컨텐츠를 원하는 위치에 배치하는 방법(Layout)을 말한다. Bootstrap은 반응형 12열 그리드 시스템을 제공한다.
 
 그리드 레이아웃을 구성하려면 반드시 `.row`(행)를 먼저 구성하며 행 안에 `.col-*-*`(열)을 필요한 갯수만큼 포함시킨다. 즉 container 내에 `.row`(행)이 위치하고 그 안에 `.col-*-*`(열)이 위치하게 된다.
 

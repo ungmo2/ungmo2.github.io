@@ -424,7 +424,6 @@ container(.container 또는 .container-fluid) 내에 `.row` class를 사용하�
 </div>
 
 ![Grid options](/img/bs_grid_options.png)
-{: style="max-width:500px; margin:10px auto;"}
 
 부트스트랩의 그리드 시스템은 12열까지 지원한다. 두번째 `*`에는 1부터 12까지의 숫자 중의 하나를 지정한다.
 

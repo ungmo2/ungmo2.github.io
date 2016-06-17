@@ -100,7 +100,29 @@ categories: html
 </html>
 ```
 
+# CSS 상속
 
+CSS는 부모가 자식에게 영향을 준다. 특히 color, font 등이 주로 자식에게 영향을 주며, 이런 속성들은 대체로 <body>에 작성해두어 모든 요소들이 영향을 받게 한다.
+
+```css
+body {
+  font-size: 2em;
+  line-height: 3em;
+  font-family: "Helvetica", "APPLE SD Gothic NEO", sans-serif;
+}
+```
+
+<input> 요소에서 font-size나 line-height가 상속받지 않고, <a> 요소에서 color 속성을 상속받지 않는데, 그런 경우에는 inherit 키워드를 명시적으로 작성해주어 상속받게 할 수 있다.
+
+```css
+a {
+  color: inherit;
+}
+input {
+  font-size: inherit;
+  line-height: inherit;
+}
+```
 
 # Animated Resizing Header On Scroll
 

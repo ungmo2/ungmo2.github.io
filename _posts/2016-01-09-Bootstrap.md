@@ -423,6 +423,9 @@ container(.container 또는 .container-fluid) 내에 `.row` class를 사용하�
   </table>
 </div>
 
+![Grid options](/img/bs_grid_options.png)
+{: style="max-width:500px; margin:10px auto;"}
+
 부트스트랩의 그리드 시스템은 12열까지 지원한다. 두번째 `*`에는 1부터 12까지의 숫자 중의 하나를 지정한다.
 
 예를 들어 col-xs-1은 행 너비의 1/12를 열의 너비로 한다는 의미이다. col-xs-6은 행 너비의 6/12를 열의 너비로, col-xs-12은 행 너비의 12/12를 열의 너비로 지정한다.

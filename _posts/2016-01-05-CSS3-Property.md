@@ -2714,7 +2714,7 @@ body {
   <p class="blue red">Will be BLUE.</p>
 </body>
 </html>
-``
+```
 
 # Reference
 

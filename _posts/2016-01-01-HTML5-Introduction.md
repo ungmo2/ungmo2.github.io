@@ -9,6 +9,32 @@ categories: html
 ![html5](/img/html5.png)
 {: style="max-width:500px; margin: 10px auto;"}
 
+<!-- ```html
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      background-color: beige;
+      color: navy;
+    }
+    div {
+      width: 300px;
+      margin: 50px auto;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <p>input your name</p>
+    <input type="text">
+    <button onclick="alert('sended')">send</button>
+  </div>
+</body>
+</html>
+``` -->
+
 HTML5 문서는 반드시 `<!DOCTYPE html>`으로 시작하여 문서 형식(document type)을 HTML5로 지정한다.
 
 실제적인 HTML document은 2행부터 시작되는데 `<html>` 과 `</html>` 사이에 기술한다.  

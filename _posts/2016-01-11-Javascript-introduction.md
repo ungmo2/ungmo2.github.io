@@ -23,8 +23,15 @@ tags: []
 
 * Front-end 영역은 이미 JQuery, AngulaJS, React, Backbone과 같은 Javascript Framework가 강세를 나타내고 있으며 Back-end 영역 역시 node.js, express, SocketIO 등의 Javascript Framework가 두각을 나타내고 있고 Front-end와  Back-end를 아우르는 웹 프로그래밍 언어의 표준으로 자리잡고 있다.
 
+![Most Popular Technologies](/img/most-Popular-technologies.png)
+{: style="max-width:650px; margin:10px auto;"}
+[Stackoverflow Developer Survey Results 2016](http://stackoverflow.com/research/developer-survey-2016#technology)
+{: style="color:gray; font-size: 80%; text-align: center; margin-top: 5px;"}
+
 ![rank_of_top_language_github](/img/rank_of_top_language_github.png)
 {: style="max-width:650px; margin:10px auto;"}
+The rank of top languages on Github.com over time
+{: style="color:gray; font-size: 80%; text-align: center; margin-top: 5px;"}
 
 * 월마트, 이베이, 페이팔, 우버, 야후, 그루폰 등 거대 글로벌 기업들의 Javascript 환경으로 전환함에 따라 이와 같은 추세는 앞으로 더욱 가속될 전망이다. 빠르고 쉽게 서비스를 구축할 수 있는 장점을 가지고 있어 많은 Start-up기업 또한 Javascript 환경을 사용하고 있다.
 

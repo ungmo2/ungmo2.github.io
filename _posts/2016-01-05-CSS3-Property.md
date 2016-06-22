@@ -1224,7 +1224,7 @@ body {
 
 ### 2.3.4 Background Attachment 속성
 
-[background-attachment](https://developer.mozilla.org/en-US/docs/Web/CSS/background-attachmen
+[background-attachment](https://developer.mozilla.org/en-US/docs/Web/CSS/background-attachmen)
 
 화면을 스크롤하면 배경 이미지도 함께 스크롤된다. 화면이 스크롤되더라도 배경이미지는 스크롤되지 않고 고정되어 있게 하려면 `background-attachment` 속성에 `fixed` 키워드를 지정한다.
 
@@ -1263,7 +1263,7 @@ body {
 </head>
 
 <body>
-  <div class='bg'>
+  <div class="bg">
     <div id="page-wrap">
       <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est.</p>
       <p>Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus acus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
@@ -1276,6 +1276,8 @@ body {
 ### 2.3.5 Background Position 속성
 
 [background-position](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position)
+
+일반적으로 background-image는 좌상단부터 이미지를 출력한다. 이때 background-position 속성을 사용하면 이미지의 좌표를 지정 할 수 있다.
 
 ```html
 <!DOCTYPE html>
@@ -1353,10 +1355,13 @@ div {
 
 ### 2.3.7 Background Shorthand
 
+[background](https://developer.mozilla.org/en-US/docs/Web/CSS/background)
+
 Shorthand Syntax
 
 ```
-background: background-color || background-image || background-repeat || background-attachment || background-position
+// any order
+background: color || image || repeat || attachment || position
 ```
 
 ```html
@@ -1365,7 +1370,7 @@ background: background-color || background-image || background-repeat || backgro
 <head>
   <style>
     div {
-      /*background: background-color || background-image || background-repeat || background-attachment || background-position*/
+      /*background: color || image || repeat || attachment || position*/
       background: #FFEE99 url("img/dot.png") no-repeat center;
       width: 50vw;
       height: 300px;
@@ -1391,22 +1396,22 @@ background: background-color || background-image || background-repeat || backgro
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      .font-size-40 { font-size: 40px; }
-      .font-size-2x { font-size: 2.0em; }
-      .font-size-150ps { font-size: 150%; }
-      .font-size-large { font-size: large; }
+<head>
+  <style>
+    .font-size-40 { font-size: 40px; }
+    .font-size-2x { font-size: 2.0em; }
+    .font-size-150ps { font-size: 150%; }
+    .font-size-large { font-size: large; }
 
-    </style>
-  </head>
-  <body>
-    <p>This is text: p tag's default font size: 16px</p>
-    <p class='font-size-40'>This is text</p>
-    <p class='font-size-2x'>This is text</p>
-    <p class='font-size-150ps'>This is text</p>
-    <p class='font-size-large'>This is text</p>
-  </body>
+  </style>
+</head>
+<body>
+  <p>This is text: p tag's default font size: 16px</p>
+  <p class='font-size-40'>This is text</p>
+  <p class='font-size-2x'>This is text</p>
+  <p class='font-size-150ps'>This is text</p>
+  <p class='font-size-large'>This is text</p>
+</body>
 </html>
 ```
 
@@ -1428,22 +1433,22 @@ background: background-color || background-image || background-repeat || backgro
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      p.serif {
-        font-family: "Times New Roman", Times, serif;
-      }
+<head>
+  <style>
+    p.serif {
+      font-family: "Times New Roman", Times, serif;
+    }
 
-      p.sansserif {
-        font-family: Arial, Helvetica, sans-serif;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>CSS font-family</h1>
-    <p class="serif">This is a paragraph, shown in the Times New Roman font.</p>
-    <p class="sansserif">This is a paragraph, shown in the Arial font.</p>
-  </body>
+    p.sansserif {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <h1>CSS font-family</h1>
+  <p class="serif">This is a paragraph, shown in the Times New Roman font.</p>
+  <p class="sansserif">This is a paragraph, shown in the Arial font.</p>
+</body>
 </html>
 ```
 
@@ -1458,35 +1463,35 @@ font-style 속성은 이탤릭체의 지정, font-weight 속성은 폰트 굵기
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      p { font-size: 2.0em; }
+<head>
+  <style>
+    p { font-size: 2.0em; }
 
-      /* font-style */
-      .italic {
-        font-style: italic;
-      }
+    /* font-style */
+    .italic {
+      font-style: italic;
+    }
 
-      /* font-weight */
-      .light {
-        font-weight: lighter;
-      }
-      .thick {
-        font-weight: bold;
-      }
-      .thicker {
-        font-weight: 900;
-      }
-    </style>
-  </head>
-  <body>
-    <p>normal style.</p>
-    <p class="italic">font-style: italic</p>
+    /* font-weight */
+    .light {
+      font-weight: lighter;
+    }
+    .thick {
+      font-weight: bold;
+    }
+    .thicker {
+      font-weight: 900;
+    }
+  </style>
+</head>
+<body>
+  <p>normal style.</p>
+  <p class="italic">font-style: italic</p>
 
-    <p class="light">font-weight: lighter</p>
-    <p class="thick">font-weight: bold</p>
-    <p class="thicker">font-weight: 900</p>
-  </body>
+  <p class="light">font-weight: lighter</p>
+  <p class="thick">font-weight: bold</p>
+  <p class="thicker">font-weight: 900</p>
+</body>
 </html>
 ```
 
@@ -1499,42 +1504,42 @@ font-style 속성은 이탤릭체의 지정, font-weight 속성은 폰트 굵기
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      .small {
-        line-height: 70%;
-      }
-      .big {
-        line-height: 200%;
-      }
-      .lh-3x {
-        line-height: 3.0; /*16px * 3*/
-      }
+<head>
+  <style>
+    .small {
+      line-height: 70%;
+    }
+    .big {
+      line-height: 200%;
+    }
+    .lh-3x {
+      line-height: 3.0; /*16px * 3*/
+    }
 
-    </style>
-  </head>
-  <body>
-    <p>
-    This is a paragraph with a standard line-height.<br>
-    This is a paragraph with a standard line-height.<br>
-    The default line height in most browsers is about 110% to 120%.<br>
-    </p>
+  </style>
+</head>
+<body>
+  <p>
+  This is a paragraph with a standard line-height.<br>
+  This is a paragraph with a standard line-height.<br>
+  The default line height in most browsers is about 110% to 120%.<br>
+  </p>
 
-    <p class="small">
-      This is a paragraph with a smaller line-height.<br>
-      This is a paragraph with a smaller line-height.<br>
-    </p>
+  <p class="small">
+    This is a paragraph with a smaller line-height.<br>
+    This is a paragraph with a smaller line-height.<br>
+  </p>
 
-    <p class="big">
-      This is a paragraph with a bigger line-height.<br>
-      This is a paragraph with a bigger line-height.<br>
-    </p>
+  <p class="big">
+    This is a paragraph with a bigger line-height.<br>
+    This is a paragraph with a bigger line-height.<br>
+  </p>
 
-    <p class="lh-3x">
-      This is a paragraph with a 3x line-height.<br>
-      This is a paragraph with a 3x line-height.<br>
-    </p>
-  </body>
+  <p class="lh-3x">
+    This is a paragraph with a 3x line-height.<br>
+    This is a paragraph with a 3x line-height.<br>
+  </p>
+</body>
 </html>
 
 ```
@@ -1602,21 +1607,21 @@ font: italic small-caps bolder condensed 16px/3 cursive;
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      h1 { text-align: center; }
-      h3 { text-align: right; }
-      p  { text-align: left; }
-      a  { text-align: center; }
-    </style>
-  </head>
-  <body>
-    <h1>Understanding Node.js</h1>
-    <h3>2016.03.07</h3>
-    <p>As developers, we often face situations where we need to use unfamiliar code. A question will arise during these moments. How much time should I invest in understanding the code that I’m about to use? A typical answer is learn enough to start coding; then explore that topic further when time permits. Well, the time has come to gain a better understanding of module.exports and exports in Node.js. Here’s what I have learned.</p>
+<head>
+  <style>
+    h1 { text-align: center; }
+    h3 { text-align: right; }
+    p  { text-align: left; }
+    a  { text-align: center; }
+  </style>
+</head>
+<body>
+  <h1>Understanding Node.js</h1>
+  <h3>2016.03.07</h3>
+  <p>As developers, we often face situations where we need to use unfamiliar code. A question will arise during these moments. How much time should I invest in understanding the code that I’m about to use? A typical answer is learn enough to start coding; then explore that topic further when time permits. Well, the time has come to gain a better understanding of module.exports and exports in Node.js. Here’s what I have learned.</p>
 
-    <a href='#'>Reference</a>
-  </body>
+  <a href='#'>Reference</a>
+</body>
 </html>
 ```
 
@@ -1663,43 +1668,43 @@ html의 white space는 공백(space), 들여쓰기(tab), 줄바꿈(line break)�
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      div {
-        width: 150px;
-        height: 150px;
-        padding: 10px;
-        margin: 40px;
-        border-radius: 6px;
-        border-color: gray;
-        border-style: dotted;
-        /*overflow: hidden;*/
-      }
-      .normal { white-space: normal; }
-      .nowrap { white-space: nowrap; }
-      .pre    { white-space: pre; }
-      .pre-wrap { white-space: pre-wrap; }
-      .pre-line { white-space: pre-line; }
-    </style>
-  </head>
-  <body>
-    <h1>white-space</h1>
-    <div class="normal"><h3>normal</h3>Lorem   ipsum
+<head>
+  <style>
+    div {
+      width: 150px;
+      height: 150px;
+      padding: 10px;
+      margin: 40px;
+      border-radius: 6px;
+      border-color: gray;
+      border-style: dotted;
+      /*overflow: hidden;*/
+    }
+    .normal { white-space: normal; }
+    .nowrap { white-space: nowrap; }
+    .pre    { white-space: pre; }
+    .pre-wrap { white-space: pre-wrap; }
+    .pre-line { white-space: pre-line; }
+  </style>
+</head>
+<body>
+  <h1>white-space</h1>
+  <div class="normal"><h3>normal</h3>Lorem   ipsum
+
+    dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+  <div class="nowrap"><h3>nowrap</h3>Lorem   ipsum
+
+    dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+  <div class="pre"><h3>pre</h3>Lorem   ipsum
 
       dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-    <div class="nowrap"><h3>nowrap</h3>Lorem   ipsum
+  <div class="pre-wrap"><h3>pre-wrap</h3>Lorem   ipsum
 
-      dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-    <div class="pre"><h3>pre</h3>Lorem   ipsum
+    dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+  <div class="pre-line"><h3>pre-line</h3>Lorem   ipsum
 
-        dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-    <div class="pre-wrap"><h3>pre-wrap</h3>Lorem   ipsum
-
-      dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-    <div class="pre-line"><h3>pre-line</h3>Lorem   ipsum
-
-      dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-  </body>
+    dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+</body>
 </html>
 ```
 
@@ -1716,31 +1721,31 @@ html의 white space는 공백(space), 들여쓰기(tab), 줄바꿈(line break)�
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <style>
-      div {
-        width: 150px;
-        height: 150px;
-        padding: 10px;
-        margin: 40px;
-        border-radius: 6px;
-        border-color: gray;
-        border-style: dotted;
-        white-space: nowrap;
-        overflow: hidden;  /*반드시 "visible" 이외의 값이 지정되어 있어야 한다.*/
-      }
-      .clip     { text-overflow: clip; }
-      .ellipsis { text-overflow: ellipsis; }
-      .string   { text-overflow: '☺'; } /*only Firefox(9.0~)*/
-    </style>
-  </head>
-  <body>
-    <h1>text-overflow</h1>
-    <div class="clip"><h3>clip</h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-    <div class="ellipsis"><h3>ellipsis</h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-    <div class="string"><h3>string</h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <style>
+    div {
+      width: 150px;
+      height: 150px;
+      padding: 10px;
+      margin: 40px;
+      border-radius: 6px;
+      border-color: gray;
+      border-style: dotted;
+      white-space: nowrap;
+      overflow: hidden;  /*반드시 "visible" 이외의 값이 지정되어 있어야 한다.*/
+    }
+    .clip     { text-overflow: clip; }
+    .ellipsis { text-overflow: ellipsis; }
+    .string   { text-overflow: '☺'; } /*only Firefox(9.0~)*/
+  </style>
+</head>
+<body>
+  <h1>text-overflow</h1>
+  <div class="clip"><h3>clip</h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+  <div class="ellipsis"><h3>ellipsis</h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+  <div class="string"><h3>string</h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+</body>
 </html>
 ```
 
@@ -1783,31 +1788,31 @@ word-wrap 속성은 단어를 어느 정도는 고려하여 개행하지만(.,- 
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <style>
-      div {
-        width: 150px;
-        height: 150px;
-        padding: 10px;
-        margin: 40px;
-        border-radius: 6px;
-        border-color: gray;
-        border-style: dotted;
-      }
-      .word-wrap { word-wrap: break-word; }
-      .word-break { word-break: break-all; }
-    </style>
-  </head>
-  <body>
-    <div>Floccinaucinihilipilification http://ungmo2.github.io/css/CSS3-Property/</div>
+<head>
+  <meta charset="utf-8">
+  <style>
+    div {
+      width: 150px;
+      height: 150px;
+      padding: 10px;
+      margin: 40px;
+      border-radius: 6px;
+      border-color: gray;
+      border-style: dotted;
+    }
+    .word-wrap  { word-wrap: break-word; }
+    .word-break { word-break: break-all; }
+  </style>
+</head>
+<body>
+  <div>Floccinaucinihilipilification http://ungmo2.github.io/css/CSS3-Property/</div>
 
-    <h1>word-wrap</h1>
-    <div class="word-wrap">Floccinaucinihilipilification http://ungmo2.github.io/css/CSS3-Property/</div>
+  <h1>word-wrap</h1>
+  <div class="word-wrap">Floccinaucinihilipilification http://ungmo2.github.io/css/CSS3-Property/</div>
 
-    <h1>word-break</h1>
-    <div class="word-break">Floccinaucinihilipilification http://ungmo2.github.io/css/CSS3-Property/</div>
-  </body>
+  <h1>word-break</h1>
+  <div class="word-break">Floccinaucinihilipilification http://ungmo2.github.io/css/CSS3-Property/</div>
+</body>
 </html>
 ```
 
@@ -2214,26 +2219,26 @@ width값을 지정하지 않은 block 속성 요소는 기본적으로 `width: 1
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      div {
-        color: white;
-        margin: 0 10px;
-        padding: 20px;
-      }
-      .d1 {
-      	background-color: #59b1f6;
-      	float: left;
-      }
-      .d2 {
-      	background-color: #ffb5b4;
-      }
-    </style>
-  </head>
-    <body>
-    <div class="d1">dv1</div>
-    <div class="d2">dv2</div>
-  </body>
+<head>
+  <style>
+    div {
+      color: white;
+      margin: 0 10px;
+      padding: 20px;
+    }
+    .d1 {
+    	background-color: #59b1f6;
+    	float: left;
+    }
+    .d2 {
+    	background-color: #ffb5b4;
+    }
+  </style>
+</head>
+  <body>
+  <div class="d1">dv1</div>
+  <div class="d2">dv2</div>
+</body>
 </html>
 ```
 

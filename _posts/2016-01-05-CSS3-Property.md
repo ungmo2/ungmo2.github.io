@@ -2703,8 +2703,8 @@ css가 어디에 선언 되었는지에 따라서 우선순위가 달라진다.
 
 1. head 요소 내의 style 요소
 2. head 요소 내의 style 요소 내의 @import 문
-3. <link> 로 연결된 CSS 파일
-4. <link> 로 연결된 CSS 파일 내의 @import 문
+3. \<link\> 로 연결된 CSS 파일
+4. \<link\> 로 연결된 CSS 파일 내의 @import 문
 5. 브라우저 디폴트 스타일시트
 
 ```css

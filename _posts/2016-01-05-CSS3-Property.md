@@ -724,6 +724,20 @@ margin 속성에 `auto` 키워드를 설정하면 해당 요소를 브라우저 
 </html>
 ```
 
+[Border Shorthand](https://developer.mozilla.org/en-US/docs/Web/CSS/border)
+
+Syntax
+
+```
+border: border-width border-style border-color;
+```
+
+```css
+p {
+  border: 5px solid red;
+}
+```
+
 ### 2.1.4 box-sizing 속성
 
 | 키워드           | 설명
@@ -802,7 +816,7 @@ display 속성은 layout 정의에 자주 사용되는 중요한 속성이다.
 | inline-block | inline-block 속성 요소로 지정
 | none         | 해당 요소를 화면에 표시하지 않는다 (공간조차 사라진다)
 
-모든 HTML 요소는 아무런 CSS를 적용하지 않아도 기본적으로 브라우저에 표현되는 디폴트 표시 값을 가진다. 대부분의 HTML 요소는 block 또는 inline 속성을 갖는다.
+모든 HTML 요소는 아무런 CSS를 적용하지 않아도 기본적으로 브라우저에 표현되는 디폴트 표시값을 가진다. HTML 요소는 block 또는 inline 속성을 갖는다.
 
 아래는 p 요소에 대한 크롬 브라우저의 디폴트 css이다.
 
@@ -849,16 +863,30 @@ p {
 ```html
 <!DOCTYPE html>
 <html>
-  <body>
-    <div style="background-color:#FFA07A; padding:20px;">
-      <h2>London</h2>
-      <p>London is the capital city of England. It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
-    </div>
-    <div style="background-color:#FF7F50; padding:20px; width:200px;">
-      <h2>Paris</h2>
-      <p>Paris is the capital and most populous city of France. Situated on the Seine River, in the north of the country.</p>
-    </div>
-  </body>
+<head>
+  <style>
+    div:nth-of-type(1) {
+      background-color: #FFA07A;
+      padding: 20px;
+    }
+
+    div:nth-of-type(2) {
+      background-color: #FF7F50;
+      padding: 20px;
+      width: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h2>London</h2>
+    <p>London is the capital city of England. It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
+  </div>
+  <div>
+    <h2>Paris</h2>
+    <p>Paris is the capital and most populous city of France. Situated on the Seine River, in the north of the country.</p>
+  </div>
+</body>
 </html>
 ```
 
@@ -897,66 +925,69 @@ p {
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      span {
-        background-color:red;
-        color:white;
-        padding: 10px;
-        /*width: 200px;*/
-        /*margin: 10px;*/
-        /*line-height: 50px;*/
-      }
-    </style>
-  </head>
-  <body>
-    <h1>My <span>Important</span> Heading</h1>
-    <span>Inline</span>
-    <span>Inline</span><span>Inline</span>
-  </body>
+<head>
+  <style>
+    span {
+      background-color:red;
+      color:white;
+      padding: 10px;
+      /*width: 200px;*/
+      /*margin: 10px;*/
+      /*line-height: 50px;*/
+    }
+  </style>
+</head>
+<body>
+  <h1>My <span>Important</span> Heading</h1>
+  <span>Inline</span>
+  <span>Inline</span><span>Inline</span>
+</body>
 </html>
 ```
 
 #### 2.2.1.3 inline-block 속성
 
-block과 inline의 특징을 모두 갖는다. inline 요소 같이 한 줄에 표현되면서 width, height, margin 속성을 지정할 수 있다. 디폴트 표시값으로 inline-block 속성을 갖는 요소는 없다. inline-block 속성을 갖게 하려면 별도 지정이 필요하다.
+block과 inline의 특징을 모두 갖는다. inline 요소 같이 한 줄에 표현되면서 width, height, margin 속성을 모두 지정할 수 있다. 디폴트 표시값으로 inline-block 속성을 갖는 요소는 없다. inline-block 속성을 갖게 하려면 별도 지정이 필요하다.
 
 - 기본적으로 inline 속성과 흡사하게 줄을 바꾸지 않고 다른 요소와 함께 한 행에 위치시킬 수 있다.
 
-- block 속성처럼 width height, margin, padding 속성을 정의할 수 있다. 상, 하 여백을 margin과 line-height 두가지 속성 모두를 통해 제어할 수 있다.
+- block 속성처럼 width, height, margin, padding 속성을 모두 정의할 수 있다. 상, 하 여백을 margin과 line-height 두가지 속성 모두를 통해 제어할 수 있다.
 
 - inline-block 속성 요소를 연속 사용되는 경우, 좌우에 정의하지 않은 space(4px)가 자동 지정된다.
 
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      .floating-box {
-        display: inline-block;
-        width: 150px;
-        height: 75px;
-        margin: 10px;
-        border: 3px solid #73AD21;
-      }
+<head>
+  <style>
+    .box {
+      width: 150px;
+      height: 75px;
+      margin: 10px;
+    }
 
-      .after-box {
-        border: 3px solid red;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="floating-box">Floating box</div>
-    <div class="floating-box">Floating box</div>
-    <div class="floating-box">Floating box</div>
-    <div class="floating-box">Floating box</div>
-    <div class="floating-box">Floating box</div>
-    <div class="floating-box">Floating box</div>
-    <div class="floating-box">Floating box</div>
-    <div class="floating-box">Floating box</div>
+    .floating {
+      display: inline-block;
+      border: 3px solid #73AD21;
+    }
 
-    <div class="after-box">Another box, after the floating boxes...</div>
-  </body>
+    .after {
+      border: 3px solid red;
+    }
+  </style>
+</head>
+<body>
+  <div class="floating box">Floating box</div>
+  <div class="floating box">Floating box</div>
+  <div class="floating box">Floating box</div>
+  <div class="floating box">Floating box</div>
+  <div class="floating box">Floating box</div>
+  <div class="floating box">Floating box</div>
+  <div class="floating box">Floating box</div>
+  <div class="floating box">Floating box</div>
+
+  <div class="after box">Another box, after the floating boxes...</div>
+</body>
 </html>
 ```
 
@@ -965,53 +996,57 @@ block과 inline의 특징을 모두 갖는다. inline 요소 같이 한 줄에 �
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      span {
-        display: block;
-        width: 150px;
-        height: 75px;
-        margin: 10px;
-        border: 3px solid #73AD21;
-      }
-      li {
-        display: inline;
-      }
-      div {
-        display: inline-block;
-        width: 150px;
-        height: 75px;
-        margin: 10px;
-        border: 3px solid #73AD21;
-      }
-      .hidden {
-        display: none;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>display: block</h1>
+<head>
+  <style>
+    span {
+      display: block;
+      width: 150px;
+      height: 75px;
+      margin: 10px;
+      border: 3px solid #73AD21;
+    }
 
-    <span>A display property with a value of "block" results in</span> <span>a line break between the two elements.</span>
+    li {
+      display: inline;
+    }
 
-    <h1>display: inline</h1>
+    div {
+      display: inline-block;
+      width: 150px;
+      height: 75px;
+      margin: 10px;
+      border: 3px solid #73AD21;
+    }
 
-    <ul>
-      <li><a href="/html/default.asp" target="_blank">HTML</a></li>
-      <li><a href="/css/default.asp" target="_blank">CSS</a></li>
-      <li><a href="/js/default.asp" target="_blank">JavaScript</a></li>
-    </ul>
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>display: block</h1>
 
-    <h1>display: inline-block</h1>
+  <span>A display property with a value of "block" results in</span>
+  <span>a line break between the two elements.</span>
 
-    <div>This is a div</div>
-    <strong>This is a strong</strong>
+  <h1>display: inline</h1>
 
-    <h1>display: none</h1>
+  <ul>
+    <li><a href="/html/default.asp" target="_blank">HTML</a></li>
+    <li><a href="/css/default.asp" target="_blank">CSS</a></li>
+    <li><a href="/js/default.asp" target="_blank">JavaScript</a></li>
+  </ul>
 
-    <h1 class="hidden">This is a hidden heading</h1>
-    <p>Notice that the h1 element with display: none; does not take up any space.</p>
-  </body>
+  <h1>display: inline-block</h1>
+
+  <div>This is a div</div>
+  <strong>This is a strong</strong>
+
+  <h1>display: none</h1>
+
+  <h1 class="hidden">This is a hidden heading</h1>
+  <p>Notice that the h1 element with display: none; does not take up any space.</p>
+</body>
 </html>
 ```
 
@@ -1067,25 +1102,25 @@ opacity 속성은 요소의 투명도를 정의한다. 0.0 ~ 1.0의 값을 입�
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      div, img {
-        background-color: blue;
-        color: white;
-        opacity: 0.5;
-      }
+<head>
+  <style>
+    div, img {
+      background-color: blue;
+      color: white;
+      opacity: 0.5;
+    }
 
-      div:hover, img:hover {
-        opacity: 1.0;
-      }
-    </style>
-  </head>
-    <body>
-    <div>This element's opacity is 0.5! Note that both the text and the background-color are affected by the opacity level!</div>
+    div:hover, img:hover {
+      opacity: 1.0;
+    }
+  </style>
+</head>
+<body>
+  <div>This element's opacity is 0.5! Note that both the text and the background-color are affected by the opacity level!</div>
 
-    <h1>Image Transparency</h1>
-    <img src="klematis.jpg" width="150" height="113" alt="klematis">
-  </body>
+  <h1>Image Transparency</h1>
+  <img src="img/klematis.jpg" width="150" height="113" alt="klematis">
+</body>
 </html>
 ```
 

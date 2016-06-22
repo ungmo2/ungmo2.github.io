@@ -406,9 +406,9 @@ CSS 박스 모델은 모든 HTML 요소를 감싸고 있는 margin, border, padd
 | 명칭     | 설명
 |:--------|:-----------------------------------------------------------
 | Content | 요소의 텍스트나 이미지 등의 실제 내용이 위치하는 영역이다. width, height 속성을 갖는다.
-| Padding | 테두리(Border) 내부 영역으로 속성값은 패딩 영역의 두께를 의미하며 기본적으로 투명한 색을 갖는다. 요소에 적용된 배경의 컬러, 이미지는 패딩 영역까지 적용된다.
+| Padding | 테두리(Border) 안쪽에 위치하는 요소의 내부 여백 영역이다. 속성값은 패딩 영역의 두께를 의미하며 기본적으로 투명한 색을 갖는다. 요소에 적용된 배경의 컬러, 이미지는 패딩 영역까지 적용된다.
 | Border  | 테두리 영역으로 속성값은 테두리의 두께를 의미한다.
-| Margin  | 테두리의 외부 영역으로 속성값은 마진의 두께를 의미한다. 기본적으로 투명한 색을 갖는다.
+| Margin  | 테두리(Border) 바깥에 위치하는 요소의 외부 여백 영역이다. 속성값은 마진 영역의 두께를 의미한다. 기본적으로 투명(transparent)이며 배경색을 지정할 수 없다.
 
 ```html
 <!DOCTYPE html>
@@ -534,7 +534,7 @@ margin 속성에 `auto` 키워드를 설정하면 해당 요소를 브라우저 
 </html>
 ```
 
-브라우저 너비가 요소 너비보다 좁으면 가로 스크롤바가 만들어진다. 이 문제를 해결하기 위해서 `max-width` 속성을 사용할 수 있다.
+요소 너비가 브라우저 너비보다 크면 가로 스크롤바가 만들어진다. 이 문제를 해결하기 위해서 `max-width` 속성을 사용할 수 있다.
 
 ```html
 <!DOCTYPE html>
@@ -761,6 +761,33 @@ margin 속성에 `auto` 키워드를 설정하면 해당 요소를 브라우저 
 </body>
 </html>
 ```
+
+<!--
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      margin: 0;
+    }
+    div {
+      box-sizing: border-box;
+      width: 50%;
+      height: 100px;
+      float: left;
+      background-color: rgba(255, 0, 0, 0.5);
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+  <div></div>
+</body>
+</html>
+```
+-->
 
 ## 2.2 표시(Display）
 

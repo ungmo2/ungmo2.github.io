@@ -25,6 +25,61 @@ categories: html
 </html>
 ```
 
+# 텍스트 수직 정렬
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .center {
+      padding: 70px 0;
+      border: 3px solid green;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h2>Centering</h2>
+  <p>In this example, we use padding and text-align to center the div element vertically and horizontally:</p>
+
+  <div class="center">
+    <p>I am vertically and horizontally centered.</p>
+  </div>
+</body>
+</html>
+```
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .center {
+      line-height: 200px;
+      height: 200px;
+      border: 3px solid green;
+      text-align: center;
+    }
+    /* If the text has multiple lines, add the following: */
+    .center p {
+      line-height: 1.5;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <h2>Centering</h2>
+  <p>In this example, we use the line-height property with a value that is equal to the height property to center the div element:</p>
+
+  <div class="center">
+    <p>I am vertically and horizontally centered.</p>
+  </div>
+</body>
+</html>
+```
+
 # Scroll
 
 ## div 요소의 스크롤바 위치
@@ -102,7 +157,7 @@ categories: html
 
 # CSS 상속
 
-CSS는 부모가 자식에게 영향을 준다. 특히 color, font 등이 주로 자식에게 영향을 주며, 이런 속성들은 대체로 <body>에 작성해두어 모든 요소들이 영향을 받게 한다.
+CSS는 부모가 자식에게 영향을 준다. 특히 color, font 등이 주로 자식에게 영향을 주며, 이런 속성들은 대체로 에 작성해두어 모든 요소들이 영향을 받게 한다.
 
 ```css
 body {
@@ -112,20 +167,14 @@ body {
 }
 ```
 
-<input> 요소에서 font-size나 line-height가 상속받지 않고, <a> 요소에서 color 속성을 상속받지 않는데, 그런 경우에는 inherit 키워드를 명시적으로 작성해주어 상속받게 할 수 있다.
+<input>
 
-```css
-a {
-  color: inherit;
-}
-input {
-  font-size: inherit;
-  line-height: inherit;
-}
-```
+요소에서 font-size나 line-height가 상속받지 않고, [요소에서 color 속성을 상속받지 않는데, 그런 경우에는 inherit 키워드를 명시적으로 작성해주어 상속받게 할 수 있다.]()
 
-# Animated Resizing Header On Scroll
+[`css a { color: inherit; } input { font-size: inherit; line-height: inherit; }`
 
-http://callmenick.com/post/animated-resizing-header-on-scroll
+# Animated Resizing Header On Scroll]()
 
-http://deanattali.com/beautiful-jekyll/
+[]()<http://callmenick.com/post/animated-resizing-header-on-scroll>
+
+<http://deanattali.com/beautiful-jekyll/>

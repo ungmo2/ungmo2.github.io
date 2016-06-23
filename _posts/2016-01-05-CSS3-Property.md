@@ -440,6 +440,8 @@ width와 height 속성은 요소의 내용(content)가 위치하는 영역의 �
 
 - 전체 높이 = height + top padding + bottom padding + top border + bottom border + top margin + bottom margin
 
+width / height 속성은 상속되지 않는다.
+
 ### 2.1.2 margin / padding 속성
 
 margin / padding 속성은 content의 4개 방향에 대하여 지정이 가능하다.

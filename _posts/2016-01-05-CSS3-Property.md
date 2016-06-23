@@ -2516,6 +2516,30 @@ overflow: hidden;과 함께 많이 사용되는 방법은 [::after 가상 요소
 
 하지만 모든 속성이 상속되는 것은 아니다. 속성 중에는 상속이 되는 것과 되지 않는 것이 있다.
 
+| property     | Inherit     |
+| :----------: |:------------|
+| width/height | no
+| margin       | no
+| padding      | no
+| border       | no
+| box-sizing   | no
+| display      | no
+| visibility   | yes
+| opacity      | yes
+| background   | no
+| font         | yes
+| color        | yes
+| line-height  | yes
+| text-align   | yes
+| vertical-align  | no
+| text-decoration | no
+| white-space | yes
+| position    | no
+| top/right/bottom/left | no
+| z-index     | no
+| overflow    | no
+| float       | no
+
 ```html
 <!DOCTYPE html>
 <html>

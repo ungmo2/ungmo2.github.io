@@ -2489,7 +2489,7 @@ overflow: hidden;과 함께 많이 사용되는 방법은 [::after 가상 요소
 #### 2.6.3.1 2-Column Layout Example
 
 ![2-column-layout](/img/2-column-layout.png)
-
+<!--
 ```html
 <!DOCTYPE html>
 <html>
@@ -2560,11 +2560,13 @@ overflow: hidden;과 함께 많이 사용되는 방법은 [::after 가상 요소
 </body>
 </html>
 ```
+-->
 
 #### 2.6.3.2 3-Column Layout Example
 
 ![3-column-layout](/img/3-column-layout.png)
 
+<!--
 ```html
 <!DOCTYPE html>
 <html>
@@ -2650,6 +2652,7 @@ overflow: hidden;과 함께 많이 사용되는 방법은 [::after 가상 요소
 </body>
 </html>
 ```
+ -->
 
 # 3. 상속과 캐스케이딩
 

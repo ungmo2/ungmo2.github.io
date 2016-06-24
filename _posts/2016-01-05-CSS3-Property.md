@@ -964,7 +964,12 @@ p {
 
 #### 2.2.1.3 inline-block 속성
 
-block과 inline의 특징을 모두 갖는다. inline 요소 같이 한 줄에 표현되면서 width, height, margin 속성을 모두 지정할 수 있다. 디폴트 표시값으로 inline-block 속성을 갖는 요소는 없다. inline-block 속성을 갖게 하려면 별도 지정이 필요하다.
+block과 inline의 특징을 모두 갖는다. inline 요소 같이 한 줄에 표현되면서 width, height, margin 속성을 모두 지정할 수 있다.
+
+<!-- 디폴트 표시값으로 inline-block 속성을 갖는 요소는 없다. inline-block 속성을 갖게 하려면 별도 지정이 필요하다. 
+
+img, button, textarea, input, select elements are inline-block
+-->
 
 - 기본적으로 inline 속성과 흡사하게 줄을 바꾸지 않고 다른 요소와 함께 한 행에 위치시킬 수 있다.
 
@@ -2587,7 +2592,7 @@ p {
 
 캐스케이딩에는 다음과 같이 세가지 규칙이 있다.
 
-- 중요도 : css가 어디에 선언 되었는지에 따라서 우선순위가 달라진다.
+- 중요도 : CSS가 어디에 선언 되었는지에 따라서 우선순위가 달라진다.
 
 - 명시도 : 대상을 명확하게 특정할수록 명시도가 높아지고 우선순위가 높아진다.
 
@@ -2595,7 +2600,7 @@ p {
 
 **중요도**
 
-css가 어디에 선언 되었는지에 따라서 우선순위가 달라진다.
+CSS가 어디에 선언 되었는지에 따라서 우선순위가 달라진다.
 
 1. head 요소 내의 style 요소
 2. head 요소 내의 style 요소 내의 @import 문
@@ -2627,6 +2632,14 @@ body {
   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 </body>
 </html>
+```
+
+```css
+/* style.css */
+body {
+  background-color: red;
+  color: white;
+}
 ```
 
 **명시도**

@@ -966,9 +966,15 @@ p {
 
 block과 inline의 특징을 모두 갖는다. inline 요소 같이 한 줄에 표현되면서 width, height, margin 속성을 모두 지정할 수 있다.
 
-<!-- 디폴트 표시값으로 inline-block 속성을 갖는 요소는 없다. inline-block 속성을 갖게 하려면 별도 지정이 필요하다. 
+<!-- 디폴트 표시값으로 inline-block 속성을 갖는 요소는 없다. inline-block 속성을 갖게 하려면 별도 지정이 필요하다.
+==>
+http://stackoverflow.com/questions/21614938/html-element-which-defaults-to-displayinline-block
 
-img, button, textarea, input, select elements are inline-block
+img, button, textarea, input, select elements are inline-block.
+
+Strictly speaking, no there isn't. The W3 HTML specifications do not ever specify default CSS property values for any elements. They do provide a "default style sheet" for HTML 4, but developers are only encouraged to use it - it is not a requirement or any sort of mandate. The HTML 5 specifications indicate "typical default display properties" but, again, those are not required (also keep in mind that HTML 5 is still a working draft anyways).
+
+So that leaves all default values up to the browser and how the developers actually feel elements should be displayed to a user. No one can guarantee that a specific element will display as inline-block or any other way in someone's browser. You should always explicitly set that if you want it to happen. Don't rely on "defaults."
 -->
 
 - 기본적으로 inline 속성과 흡사하게 줄을 바꾸지 않고 다른 요소와 함께 한 행에 위치시킬 수 있다.

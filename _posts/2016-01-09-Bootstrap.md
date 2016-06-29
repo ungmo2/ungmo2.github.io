@@ -220,7 +220,7 @@ Bootstrap은 Mobile-first 방식을 기본 지원하므로 [Media query](http://
 @media (min-width: @screen-lg-min) { ... }
 ```
 
-@screen-\*의 \@는 [LESS](http://lesscss.org/)의 변수를 의미한다. LESS는 CSS 프리프로세서(Preprocessor)로서 Bootstrap의 소스코드는 Less와 Sass를 기반으로 작성되었다.
+@screen-\*의 @는 [LESS](http://lesscss.org/)의 변수를 의미한다. LESS는 CSS 프리프로세서(Preprocessor)로서 Bootstrap의 소스코드는 Less와 Sass를 기반으로 작성되었다.
 
 ```css
 @nice-blue: #5B83AD;

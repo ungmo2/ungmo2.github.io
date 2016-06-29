@@ -367,9 +367,9 @@ container(.container 또는 .container-fluid) 내에 `.row` class를 사용하�
 </div>
 ```
 
-## 6.2 열(`.col-*-*`)의 구성
+## 6.2 열(.col-*-*)의 구성
 
-열은 행(.row) 내에 위치하여야 한다. `.col-*-*` class로 열을 생성하는데 첫번째 `*`에는 xs, sm, md, lg 중의 하나를 지정한다.
+열은 행(.row) 내에 위치하여야 한다. .col-*-* class로 열을 생성하는데 첫번째 \*에는 xs, sm, md, lg 중의 하나를 지정한다.
 
 ***Grid options***
 
@@ -451,7 +451,7 @@ container(.container 또는 .container-fluid) 내에 `.row` class를 사용하�
 
 ![Grid options](/img/bs_grid_options.png)
 
-부트스트랩의 그리드 시스템은 12열까지 지원한다. 두번째 `*`에는 1부터 12까지의 숫자 중의 하나를 지정한다.
+부트스트랩의 그리드 시스템은 12열까지 지원한다. 두번째 \*에는 1부터 12까지의 숫자 중의 하나를 지정한다.
 
 예를 들어 col-xs-1은 행 너비의 1/12를 열의 너비로 한다는 의미이다. col-xs-6은 행 너비의 6/12를 열의 너비로, col-xs-12은 행 너비의 12/12를 열의 너비로 지정한다.
 

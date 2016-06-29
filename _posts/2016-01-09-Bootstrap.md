@@ -220,6 +220,21 @@ Bootstrap은 Mobile-first 방식을 기본 지원하므로 [Media query](http://
 @media (min-width: @screen-lg-min) { ... }
 ```
 
+@screen-\*의 \@는 [LESS](http://lesscss.org/)의 변수를 의미한다. LESS는 CSS 프리프로세서(Preprocessor)로서 Bootstrap의 소스코드는 Less와 Sass를 기반으로 작성되었다.
+
+```css
+@nice-blue: #5B83AD;
+@light-blue: @nice-blue + #111;
+
+#header { color: @light-blue; }
+```
+
+위 LESS 코드를 컴파일하면 아래와 같은 CSS로 변환된다.
+
+```css
+#header { color: #6c94be; }
+```
+
 # 5. Container
 
 Bootstrap은 컨텐츠를 감싸는 wrapping 요소(container)를 포함해야 한다. container는 그리드 시스템의 필수 요소이다.

@@ -27,6 +27,9 @@ tags: []
 </html>
 ```
 
+<p data-height="348" data-theme-id="0" data-slug-hash="JKNGKR" data-default-tab="html,result" data-user="ungmo2" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ungmo2/pen/JKNGKR/">Hello World</a> by Ungmo Lee (<a href="http://codepen.io/ungmo2">@ungmo2</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
 Javascript는 interactive한 웹페이지 작성을 가능하게 한다. 즉, 웹 브라우저가 웹페이지를 로드한 후 그 내용을 변경할 수 있다.
 예를 들면, Contents에 접근하여 수정할 수 있으며 이벤트(e.g. 버튼 클릭, 웹페이지 로딩 완료 등)에 반응하여 특정 스크립트를 실행할 수 있다.
 

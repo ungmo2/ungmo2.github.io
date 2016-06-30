@@ -493,7 +493,8 @@ viewport 너비와 관계없이 항상 수평으로 정렬된다.
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="container-fluid">
+    <p>viewport 너비와 관계없이 항상 수평으로 정렬된다.</p>
     <div class="row">
       <div class="col-xs-1">xs-1</div>
       <div class="col-xs-1">xs-1</div>
@@ -563,7 +564,8 @@ viewport 너비가 768px 이상일 때 적용된다. 768px 미만일 때는 medi
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="container-fluid">
+    <p>viewport 너비가 768px 이상일 때 적용된다. 768px 미만일 때는 media query에 의해 해당 css가 적용되지 않고 div 요소의 block 속성에 의해 행 전체의 너비를 가지며 수직으로 쌓이게 된다.</p>
     <div class="row">
       <div class="col-sm-1">sm-1</div>
       <div class="col-sm-1">sm-1</div>
@@ -579,8 +581,8 @@ viewport 너비가 768px 이상일 때 적용된다. 768px 미만일 때는 medi
       <div class="col-sm-1">sm-1</div>
     </div>
     <div class="row">
-      <div class="col-sm-8">sm-5</div>
-      <div class="col-sm-4">sm-5</div>
+      <div class="col-sm-8">sm-8</div>
+      <div class="col-sm-4">sm-4</div>
     </div>
     <div class="row">
       <div class="col-sm-5">sm-5</div>
@@ -609,7 +611,7 @@ viewport 너비가 1200px 이상일 때 적용된다. 1200px 미만일 때는 me
 지금까지는 하나의 요소에 하나의 Class prefix(.col-xs-, .col-sm-, .col-md-, .col-lg-)만을 사용하였다.
 
 ```html
-<div class="col-sm-8">sm-5</div>
+<div class="col-sm-8">sm-8</div>
 ```
 
 하지만 Class prefix를 혼합하여 사용할 수도 있다.
@@ -703,6 +705,42 @@ breakpoint에 따른 Class prefix가 지정되어 있지 않다면 하위 Class 
 </div>
 ```
 
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+  <style>
+    .row {
+      margin-bottom: 10px;
+    }
+    [class*="col-"] {
+      background: #2db34a;
+      border: 1px solid #eaeaed;
+      height: 50px;
+      font-size: .8em;
+      line-height: 50px;
+      text-align: center;
+      color: white;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <p>Viewport width가 992px 이상이면 3열, 미만이면 1열로 정렬된다</p>
+    <div class="row">
+      <div class="col-xs-12 col-md-4">1</div>
+      <div class="col-xs-12 col-md-4">2</div>
+      <div class="col-xs-12 col-md-4">3</div>
+    </div>
+  </div>
+</body>
+</html>
+```
+
 ### 6.3.2 Mobile, tablet, desktop
 
 부트스트랩의 breakpoint는 기본적으로 아래와 같다.
@@ -718,15 +756,48 @@ breakpoint에 따른 Class prefix가 지정되어 있지 않다면 하위 Class 
 - viewport 너비가 992px 이상이면 .col-md-가 적용된다.
 
 ```html
-<div class="row">
-  <div class="col-xs-12 col-sm-6 col-md-8">.col-xs-12 .col-sm-6 .col-md-8</div>
-  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
-</div>
-<div class="row">
-  <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
-  <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
-  <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+  <style>
+    .row {
+      margin-bottom: 10px;
+    }
+    [class*="col-"] {
+      background: #2db34a;
+      border: 1px solid #eaeaed;
+      height: 50px;
+      font-size: .8em;
+      line-height: 50px;
+      text-align: center;
+      color: white;
+      font-weight: 700;
+    }
+    p.bg-info {
+      font-weight: bold;
+      padding: 10px;
+      margin-right: -15px;
+      margin-left: -15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <p class="bg-info">Viewport width가 992px 이상이면 3열, 991px~768px이면 2열, 768px미만이면 1열로 정렬된다</p>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-4">1</div>
+      <div class="col-xs-12 col-sm-6 col-md-4">2</div>
+      <div class="col-xs-12 col-sm-6 col-md-4">3</div>
+      <div class="col-xs-12 col-sm-6 col-md-4">4</div>
+      <div class="col-xs-12 col-sm-6 col-md-4">5</div>
+      <div class="col-xs-12 col-sm-6 col-md-4">6</div>
+    </div>
+  </div>
+</body>
+</html>
 ```
 
 breakpoint에 따른 Class prefix가 지정되어 있지 않다면 하위 Class prefix가 적용된다.

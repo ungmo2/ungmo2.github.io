@@ -157,7 +157,7 @@ person2.sayHello();
 
 이는 반대로 생각하면 생성자 함수가 아닌 일반 함수에 new 연산자를 붙여 호출하면 생성자 함수처럼 동작할 수 있다. 따라서 일반적으로 생성자 함수명은 첫문자를 대문자로 기술하여 혼란을 방지하려는 노력을 한다.
 
-new 연산자와 함께 함수를 호출하면 `this` 바인딩이 다르게 동작한다. 자세한 내용은 [Javascript this 생성자 호출 패턴(Constructor Invocation Pattern)] (http://ungmo2.github.io/javascript/Javascript-this/#constructor-invocation-pattern)을 참조하기 바란다.
+new 연산자와 함께 함수를 호출하면 `this` 바인딩이 다르게 동작한다. 자세한 내용은 [생성자 호출 패턴] (http://ungmo2.github.io/javascript/Javascript-this/#constructor-invocation-pattern)을 참조하기 바란다.
 
 # 2. 객체 속성 접근
 

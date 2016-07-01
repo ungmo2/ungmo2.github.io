@@ -18,10 +18,26 @@ tags: []
 블록 구문은 일반적으로 함수, 객체리터럴, 흐름 제어 구문(control flow statement)에서 사용된다. (e.g. if, for, while)
 
 ```javascript
+// 함수
+function foo() {
+  var x = 1, y = 2;
+  console.log(x + y);
+}
+foo();
+
+// 객체리터럴
+var obj = {
+  x: 1,
+  y: 2
+};
+console.log(obj.x + obj.y);
+
+// 흐름 제어 구문(control flow statement)
 var x = 0;
 while (x < 10) {
   x++;
 }
+console.log(x);
 ```
 
 # 2. 조건문(Conditional statement)

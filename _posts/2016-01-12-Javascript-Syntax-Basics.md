@@ -117,6 +117,9 @@ function myFunction(x, y) {
 구문들은 대개 위에서 아래로 순서대로 실행된다. 이러한 실행 순서는 조건문(if, switch)이나 반복문(while, for)의 사용으로 제어될수 있으며(이를 Control Flow/흐름제어라 한다), 또는 함수 호출로 변경될 수 있다.
 
 ```javascript
+var time = 10;
+var greeting;
+
 if (time < 10) {
   greeting = "Good morning";
 } else if (time < 20) {
@@ -124,6 +127,8 @@ if (time < 10) {
 } else {
   greeting = "Good evening";
 }
+
+console.log(greeting);
 ```
 
 다른 언어와 달리 자바스크립트에서는 블록 유효범위(Block-level scope)를 생성하지 않는다. 함수 단위의 유효범위(Function-level scope)만이 생성된다.
@@ -140,7 +145,7 @@ if (time < 10) {
 
 # 6. Variable
 
-programming language에서 변수는 data값을 저장(할당), 참조하기 위해 사용된다. 한번 쓰고 버리는 값이 아닌 값(value)을 유지할 필요가 있는 경우에 변수를 사용한다.
+programming language에서 변수는 data를 저장(할당), 참조하기 위해 사용된다. 한번 쓰고 버리는 값이 아닌 값(value)을 유지할 필요가 있는 경우에 변수를 사용한다.
 
 변수를 선언할 때 `var` keyword가 사용된다. 등호(=, equal sign)는 변수에 값을 할당하기 위해 사용된다.
 

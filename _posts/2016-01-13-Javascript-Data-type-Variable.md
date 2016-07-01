@@ -12,7 +12,7 @@ tags: []
 
 모든 프로그래밍 언어의 학습은 Data Type(자료형)을 파악하는 것으로부터 시작된다.
 
-자료형은 프로그래밍 언어에서 객체, 정수, 불린 자료형 등 여러 종류의 데이터를 식별하는 분류를 말한다. 최신 ECMAScript 표준(ECMAScript 2015 (6th Edition, ECMA-262) / 2015.06)은 7개의 data type을 정의한다
+자료형은 프로그래밍 언어에서 객체, 정수, 불린 등 여러 종류의 데이터를 식별하는 분류를 말한다. 최신 ECMAScript 표준(ECMAScript 2015 (6th Edition, ECMA-262) / 2015.06)은 7개의 data type을 정의한다
 
 * 기본 자료형 (primitive data type)
   * `Boolean`
@@ -42,7 +42,7 @@ var bar = false;
 
 null 타입은 딱 한 가지 값, `null` 을 가질 수 있다. JavaScript는 case-sensitive하므로 `null`은 Null, NULL등과 다르다.
 
-Computer science에서 `null`은 의도적으로 기본형(primitives)과 object형 변수에 값이 없다는 것을 명시한 것이다.
+Computer science에서 `null`은 의도적으로 기본형(primitives) 또는 object형 변수에 값이 없다는 것을 명시한 것이다.
 
 ```javascript
 var foo = 'Lee';

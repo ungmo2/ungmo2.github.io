@@ -373,7 +373,7 @@ console.log(a, b);    // 1  10
 console.log(a === b); // false
 ```
 
-변수 a는 기본료형인 number type의 1을 저장하고 있다. 기본자료형의 경우 값이 복사되어 변수에 저장된다. 즉 참조형으로 저장되는 것이 아니라 값 자체가 저장되게 된다. 변수 b에 변수 a를 대입할 경우, 변수 a의 값 1은 복사되어 변수 b에 저장된다.
+변수 a는 기본자료형인 number type의 1을 저장하고 있다. 기본자료형의 경우 값이 복사되어 변수에 저장된다. 즉 참조형으로 저장되는 것이 아니라 값 자체가 저장되게 된다. 변수 b에 변수 a를 대입할 경우, 변수 a의 값 1은 복사되어 변수 b에 저장된다.
 
 기본자료형은 값이 한번 정해지면 변경할 수 없다.(immutable)
 
@@ -387,8 +387,9 @@ C 언어와는 다르게도, 문자열은 변경 불가능한 값 (immutable val
 
 ```javascript
 var statement = "I am an immutable value"; // String is an immutable value
-var otherStr = statement.slice(8, 17);     // “immutable”
-console.log(statement);                    
+var otherStr = statement.slice(8, 17);
+console.log(otherStr);   // “immutable”
+console.log(statement);
 ```
 
 2행에서 Stirng 객체의 slice() 메서드는 statement 변수에 저장된 문자열을 변경하는 것이 아니라 사실은 새로운 문자열을 생성하여 반환하고 있다. 그 이유는 문자열은 변경할 수 없는 immutable value이기 때문이다.
@@ -418,5 +419,5 @@ console.log(arr.length); // 1
 
 `Standard Built-in Objects`(표준 빌트인 객체)를 제외한 BOM과 DOM을 `Native Object`라고 분류하기도 한다. 또한 사용자가 생성한 객체를 `Host Object`(사용자 정의 객체)라 한다.
 
-- Host Object(사용자 정의 객체)
+- Host Object(사용자 정의 객체)　　
   사용자가 생성한 객체 들이다. constructor 혹은 객체리터럴을 통해 사용자가 객체를 정의하고 확장시킨 것들이기 때문에 Built-in Object 와 Native Object가 구성된 이후에 구성된다.

@@ -247,4 +247,4 @@ var foo = false && "Cat"  // f && t returns false
 var foo = "Cat" || "Dog"  // t || t returns "Cat"
 ```
 
-이 경우, "Cat" 은 `true`로 평가 되므로 평가는 중지되고 `true`가 리턴된다.
+이 경우, "Cat" 은 `true`로 평가 되므로 평가는 중지되고 `Cat`가 리턴된다.

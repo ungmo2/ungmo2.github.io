@@ -83,7 +83,7 @@ console.log(foo.bar); // undefined
 
 C 언어의 경우, 정수형과 실수형을 구분하여 int, long, float, double 등과 같은 다양한 숫자 자료형이 존재한다. 하지만 자바스크립트는 하나의 숫자 자료형만 존재한다.
 
-ECMAScript 표준에 따르면, 숫자 자료형은 배정밀도 64비트 부동 소수점 형 (double-precision 64-bit floating-point format : -(2<sup>53</sup> -1) 와 2<sup>53</sup> -1 사이의 숫자값) 단 하나만 존재한다. 정수만을 표현하기 위한 특별한 자료형(integer type)은 없다.
+ECMAScript 표준에 따르면, 숫자 자료형은 배정밀도 64비트 부동 소수점 형 ([double-precision 64-bit floating-point format](https://en.wikipedia.org/wiki/Double-precision_floating-point_format) : -(2<sup>53</sup> -1) 와 2<sup>53</sup> -1 사이의 숫자값) 단 하나만 존재한다. 정수만을 표현하기 위한 특별한 자료형(integer type)은 없다.
 
 추가적으로 세가지 의미있는 기호적인 값들도 표현할 수 있다.
 

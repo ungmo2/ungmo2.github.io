@@ -44,10 +44,7 @@ console.log(result);
 */
 
 function hide_numbers(s){
-  var result = "";
-  //함수를 완성해주세요
 
-  return result;
 }
 
 console.log("결과 : " + hide_numbers('01033334444'));
@@ -83,9 +80,7 @@ console.log("결과 : " + hide_numbers('01033334444')); // *******4444
 */
 
 function average(array){
-  //함수를 완성하세요
 
-  return 0;
 }
 
 var testArray = [5,3,4];
@@ -124,9 +119,7 @@ num이 짝수일 경우 "Even"을 반환하고 홀수인 경우 "Odd"를 반환�
 */
 
 function evenOrOdd(num) {
-  var result = '';
-  // 함수를 완성하세요
-  return result;
+
 }
 
 console.log("결과 : " + evenOrOdd(2));
@@ -166,10 +159,7 @@ n이 임의의 정수 x의 제곱이라면 x+1의 제곱을 리턴하고, n이 �
 */
 
 function nextSqaure(n){
-  var result = 0;
-  //함수를 완성하세요
 
-  return result;
 }
 
 console.log("결과 : " + nextSqaure(121));
@@ -218,14 +208,9 @@ printReversedTriangle 메소드는 양의 정수 num을 매개변수로 입력�
 */
 
 function printReversedTriangle(num) {
-  var result = '';
-  // 함수를 완성하세요
 
-  return result;
 }
 
-
-// 아래는 테스트로 출력해 보기 위한 코드입니다.
 console.log("결과 : " +'\n'+ printReversedTriangle(3));
 
 // 답1
@@ -262,6 +247,62 @@ function printReversedTriangle(num) {
 console.log("결과 : " + '\n' + printReversedTriangle(3));
 
 /*
+삼각형출력하기
+
+printTriangle 메소드는 양의 정수 num을 매개변수로 입력받는다.
+다음을 참고해 *(별)로 높이가 num인 삼각형을 문자열로 리턴하는 printTriangle 메소드를 완성하라
+printTriangle이 return하는 String은 개행문자('\n')로 끝나야 한다.
+
+높이가 3일때
+
+*
+**
+***
+높이가 5일때
+
+*
+**
+***
+****
+*****
+
+*/
+
+function printTriangle(num) {
+
+}
+
+console.log( printTriangle(3) );
+
+//답
+
+function printTriangle(num) {
+  var result = "";
+
+  for (var i = 1; i <= num; i++) {
+    for (var j = 1; j <= i; j++) {
+      result += "*";
+    }
+    result += "\n";
+  }
+
+  return result;
+}
+
+function printTriangle(num) {
+  var result = "";
+  for (var i = 1; i <= num; i++) {
+    result += Array(i + 1).join("*") + "\n";
+  }
+  return result;
+}
+
+console.log(printTriangle(3));
+console.log(printTriangle(5));
+
+
+
+/*
 스트링을 숫자로 바꾸기
 
 strToInt 메소드는 문자열 str을 매개변수로 받는다.
@@ -271,30 +312,132 @@ str은 부호(+,-)와 숫자로만 구성되어 있고, 잘못된 값이 입력�
 */
 
 function strToInt(str){
-  var result = 0;
-  //함수를 완성하세요
 
-  return result;
 }
 
 console.log(strToInt("-1234"));
 
+// 답
+
+function strToInt(str){
+  // return str * 1;
+  // return Number(str);
+  return parseInt(str);
+}
+
+function intToStr(int){
+  return int.toString();
+  // return int + "";
+  // return String(int);
+}
+console.log(typeof strToInt("1234"));
+console.log(strToInt("1234"));
+console.log(strToInt("-1234"));
+
+console.log(typeof intToStr(1234));
+console.log(intToStr(1234));
+console.log(intToStr(-1234));
+
 /*
 수박수박수박수박수박수?
 
-water_melon함수는 정수 n을 매개변수로 입력받습니다.
+waterMelon 함수는 정수 n을 매개변수로 입력받는다.
 길이가 n이고, 수박수박수...와 같은 패턴을 유지하는 문자열을 리턴하도록 함수를 완성하세요.
 
 예를들어 n이 4이면 '수박수박'을 리턴하고 3이라면 '수박수'를 리턴하면 됩니다.
 */
 
 function waterMelon(n){
+
+}
+
+console.log("n이 3인 경우: "+ waterMelon(3));
+console.log("n이 4인 경우: "+ waterMelon(4));
+
+// 답
+function waterMelon(n){
   var result = "";
+
+  for(var i = 0; i < n; i++){
+    result += (i % 2 === 0) ? "수" : "박";
+  }
+  return result;
+}
+
+console.log("n이 3인 경우: "+ waterMelon(3));
+console.log("n이 4인 경우: "+ waterMelon(4));
+
+/*
+findKim 함수는 String형 배열 seoul을 매개변수로 받는다.
+
+seoul의 element중 "Kim"의 위치 x를 찾아, "김서방은 x에 있다"는 String을 반환하라.
+seoul에 "Kim"은 오직 한 번만 나타나며 잘못된 값이 입력되는 경우는 없다.
+*/
+
+function findKim(seoul){
+  var idx = 0;
+  //함수를 완성하세요
+
+  return "김서방은 " + idx + "에 있다";
+}
+
+console.log( findKim(["Queen", "Tod", "Kim"]));
+
+// 답
+function findKim(seoul) {
+  var idx = 0;
+
+  for (var i = 0; i < seoul.length; i++) {
+    if (seoul[i] === "Kim") {
+      idx = i;
+      break;
+    }
+  }
+
+  return "김서방은 " + idx + "에 있다";
+}
+
+function findKim(seoul) {
+  var idx = 0;
+
+  idx = seoul.indexOf("Kim");
+
+  return "김서방은 " + idx + "에 있다";
+}
+
+console.log(findKim(["Queen", "Tod", "Kim"]));
+
+/*
+문자열 다루기 기본
+
+alpha_string46함수는 문자열 s를 매개변수로 입력받는다.
+s의 길이가 4혹은 6이고, 숫자로만 구성되있는지 확인해주는 함수를 완성하라.
+예를들어 s가 "a234"이면 False를 리턴하고 "1234"라면 True를 리턴한다
+*/
+
+function alpha_string46(s){
+  var result = true;
+  // 함수를 완성하세요
+
+  return result;
+}
+
+console.log( alpha_string46("a234") );
+
+/*
+문자열 내 p와 y의 개수
+
+numPY함수는 대문자와 소문자가 섞여있는 문자열 s를 매개변수로 입력받습니다.
+s에 'p'의 개수와 'y'의 개수를 비교해 같으면 True, 다르면 False를 리턴하도록 함수를 완성하세요. 'p', 'y' 모두 하나도 없는 경우는 항상 True를 리턴합니다.
+예를들어 s가 "pPoooyY"면 True를 리턴하고 "Pyy"라면 False를 리턴합니다.
+*/
+
+function numPY(s){
+  var result = true;
   //함수를 완성하세요
 
   return result;
 }
 
-// 실행을 위한 테스트코드입니다.
-console.log("n이 3인 경우: "+ waterMelon(3));
-console.log("n이 4인 경우: "+ waterMelon(4));
+console.log( numPY("pPoooyY") )
+console.log( numPY("Pyy") )

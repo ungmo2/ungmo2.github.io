@@ -376,7 +376,6 @@ seoul에 "Kim"은 오직 한 번만 나타나며 잘못된 값이 입력되는 �
 
 function findKim(seoul){
   var idx = 0;
-  //함수를 완성하세요
 
   return "김서방은 " + idx + "에 있다";
 }
@@ -411,33 +410,187 @@ console.log(findKim(["Queen", "Tod", "Kim"]));
 문자열 다루기 기본
 
 alpha_string46함수는 문자열 s를 매개변수로 입력받는다.
-s의 길이가 4혹은 6이고, 숫자로만 구성되있는지 확인해주는 함수를 완성하라.
+s의 길이가 4 혹은 6이고, 숫자로만 구성되어 있는지 확인하는 함수를 완성하라.
 예를들어 s가 "a234"이면 False를 리턴하고 "1234"라면 True를 리턴한다
 */
 
 function alpha_string46(s){
-  var result = true;
-  // 함수를 완성하세요
 
-  return result;
 }
 
 console.log( alpha_string46("a234") );
 
+// 답
+function alpha_string46(s) {
+  var result = ((s.length === 4 || s.length === 6) && !isNaN(s)) ? true : false;
+  return result;
+}
+
+// isNaN("a234") // true
+// isNaN("1234") // false
+
+// jQuery.isNumeric
+
+console.log(alpha_string46("a234"));
+console.log(alpha_string46("1234"));
+
 /*
 문자열 내 p와 y의 개수
 
-numPY함수는 대문자와 소문자가 섞여있는 문자열 s를 매개변수로 입력받습니다.
-s에 'p'의 개수와 'y'의 개수를 비교해 같으면 True, 다르면 False를 리턴하도록 함수를 완성하세요. 'p', 'y' 모두 하나도 없는 경우는 항상 True를 리턴합니다.
-예를들어 s가 "pPoooyY"면 True를 리턴하고 "Pyy"라면 False를 리턴합니다.
+numPY함수는 대문자와 소문자가 섞여있는 문자열 s를 매개변수로 입력받는다.
+대소문자를 구별하지 않으며 s에 'p'의 개수와 'y'의 개수를 비교해 같으면 True, 다르면 False를 리턴하도록 함수를 완성하라. 'p', 'y' 모두 하나도 없는 경우는 항상 True를 리턴한다.
+예를들어 s가 "pPoooyY"면 True를 리턴하고 "Pyy"라면 False를 리턴한다.
 */
 
 function numPY(s){
   var result = true;
-  //함수를 완성하세요
 
   return result;
 }
 
-console.log( numPY("pPoooyY") )
-console.log( numPY("Pyy") )
+console.log( numPY("pPoooyY") );
+console.log( numPY("Pyy") );
+
+// 답
+
+function numPY(s){
+  var result = true;
+  var cnt_p = 0, cnt_y = 0;
+
+  var lowerCaseStr = s.toLowerCase();
+
+  for (var i = 0; i < lowerCaseStr.length; i++) {
+    if(lowerCaseStr[i] === 'p') {
+      cnt_p++;
+    } else if(lowerCaseStr[i] === 'y') {
+      cnt_y++;
+    }
+  }
+
+  if(cnt_p !== cnt_y) {
+    result = false;
+  }
+  return result;
+}
+
+function numPY(s) {
+  var lowerCaseStr = s.toLowerCase();
+  return lowerCaseStr.match(/p/ig).length == lowerCaseStr.match(/y/ig).length;
+}
+
+function numPY(s) {
+  return s.match(/(p|P)/ig).length == s.match(/(y|Y)/ig).length;
+}
+
+console.log( numPY("pPoooyY") );
+console.log( numPY("Pyy") );
+
+
+/*
+최대공약수와 최소공배수
+
+두 수를 입력받아 두 수의 최대공약수와 최소공배수를 반환해주는 gcdlcm 함수를 완성하라. 배열의 맨 앞에 최대공약수, 그 다음 최소공배수를 넣어 반환한다. 예를 들어 gcdlcm(3,12) 가 입력되면, [3, 12]를 반환하라.
+*/
+
+function gcdlcm(a, b) {
+  var answer = [];
+
+  return answer;
+}
+
+console.log(gcdlcm(3,12));
+
+// 답
+/*
+[최대공약수(最大公約數 greatest common divisor)](https://ko.wikipedia.org/wiki/%EC%B5%9C%EB%8C%80%EA%B3%B5%EC%95%BD%EC%88%98)란, 0이 아닌 두 정수나 다항식의 공통되는 약수 중에서 가장 큰 수를 말한다.
+
+두 수 a와 b의 최대공약수를 구하는 방법은 소인수 분해를 사용하는 방법과 [유클리드 호제법](https://ko.wikipedia.org/wiki/%EC%9C%A0%ED%81%B4%EB%A6%AC%EB%93%9C_%ED%98%B8%EC%A0%9C%EB%B2%95)이 있다.
+
+일반적으로 소인수 분해를 효율적으로 빠른 시간 내에 하는 방법은 알려져 있지 않다. 더 빠른 시간 안에 구하는 방법에는 호제법이 있다.
+
+똑같이 두 수 192와 72의 최대공약수를 이번에는 호제법으로 구하여 보자. 일단 192을 72로 나누어 나머지를 구한다.
+
+192 = 72 * 2 + 48이다. 이는 192을 72로 나누어 나온 나머지가 48라는 것을 의미한다. 이번에는 72을 나머지인 48로 나눈다.
+
+72 = 48 * 1 + 24이다. 이와 같은 연산을 나머지가 0이 될 때까지 반복한다. 48 = 24 * 2 + 0 나머지가 0이 되었으므로 연산을 중지한다. 이때, 나머지가 0이 되기 바로 직전의 연산에서의 나머지가 원래 두 수의 최대공약수가 된다.
+
+1071과 1029의 최대공약수를 구하면,
+
+1071은 1029로 나누어 떨어지지 않기 때문에, 1071을 1029로 나눈 나머지를 구한다. => 42
+1029는 42로 나누어 떨어지지 않기 때문에, 1029를 42로 나눈 나머지를 구한다. => 21
+42는 21로 나누어 떨어진다.
+따라서, 최대공약수는 21이다.
+*/
+
+function gcd(x, y) {
+  if (!y) {   // y = 0이면 (나머지가 0이면)
+    return x;
+  }
+  return gcd(y, x % y);
+}
+
+function gcd(x, y) {
+  return !y ? x : gcd(y, x % y);
+}
+
+function gcd(x, y) {
+  while (y) {       // y !== 0이면 (나머지가 0이 아니면 계속 반복)
+		var z = x % y;  // 나머지
+		x = y;
+		y = z;
+	}
+	return x;
+}
+
+/*
+최소공배수(最小公倍數 least common multiple)는 n개의 정수 또는 다항식에 대해 모두의 배수가 되는 최소의 자연수 또는 다항식을 말한다.
+
+두 수 a와 b의 최소공배수를 구하는 방법은 소인수 분해를 사용하는 방법이 있다.
+
+두 수 192와 72의 최소공배수를 소인수 분해를 이용하여 구하여 보자. 일단 두 수를 소인수 분해한다.
+
+192 = 2 * 2 * 2 * 2 * 2 * 2 * 3
+72  = 2 * 2 * 2 * 3 * 3
+
+구하고 나면, 두 소인수 분해 결과의 한 소인수 중에서 지수가 가장 큰 수를 찾아 서로 곱한다. 두 결과에서 2가 여섯 번 3이 두 번 한 소인수 중에서 가장 큰 수를 찾아서 나왔다.
+
+즉 2 * 2 * 2 * 2 * 2 * 2 * 3 * 3 = 576
+최소공배수가 576이라는 결론이 나온다.
+*/
+function lcm(x, y) {
+  function gcd(x, y) {
+    return !y ? x : gcd(y, x % y);
+  }
+  function lcm(x, y) {
+    return (x * y) / gcd(x, y);
+  }
+  return lcm(x, y);
+
+}
+
+function lcm(min, max) {
+    function range(min, max) {
+        var arr = [];
+        for (var i = min; i <= max; i++) {
+            arr.push(i);
+        }
+        return arr;
+    }
+
+    function gcd(a, b) {
+        return !b ? a : gcd(b, a % b);
+    }
+
+    function lcm(a, b) {
+        return (a * b) / gcd(a, b);
+    }
+
+    var multiple = min;
+    range(min, max).forEach(function(n) {
+        multiple = lcm(multiple, n);
+    });
+
+    return multiple;
+}
+
+leastCommonMultiple(1, 13); // => 360360

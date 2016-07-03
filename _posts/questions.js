@@ -485,6 +485,46 @@ function numPY(s) {
 console.log( numPY("pPoooyY") );
 console.log( numPY("Pyy") );
 
+/*
+약수의 합
+
+어떤 수를 입력받아 그 수의 약수를 모두 더한 수를 구하는 sumDivisor 함수를 완성하라. 예를 들어 12가 입력된다면 12의 약수는 [1, 2, 3, 4, 6, 12]가 되고, 총 합은 28이 되므로 28을 반환한다.
+*/
+function sumDivisor(num) {
+	var answer = 0;
+
+	return answer;
+}
+
+console.log(sumDivisor(12));
+
+
+// 답
+// 약수(約數, divisor)는 어떤 수를 나누었을 때 나머지가 0인 수를 말하며, 배수 관계와 서로 반대되는 개념이다
+
+function getDivisorArray(num) {
+  var divisors = [];
+
+  for (var i = 1; i <= num; i++) {
+    if (num % i === 0) {
+      divisors.push(i);
+    }
+  }
+  return divisors;
+}
+
+function sumDivisor(num) {
+  var result = 0;
+  var arr = getDivisorArray(num);
+  for (var i = 0; i < arr.length; i++) {
+    result += arr[i];
+  }
+  return result;
+}
+
+console.log(getDivisorArray(12));
+console.log(sumDivisor(12));
+
 
 /*
 최대공약수와 최소공배수
@@ -500,7 +540,6 @@ function gcdlcm(a, b) {
 
 console.log(gcdlcm(3,12));
 
-// 답
 /*
 [최대공약수(最大公約數 greatest common divisor)](https://ko.wikipedia.org/wiki/%EC%B5%9C%EB%8C%80%EA%B3%B5%EC%95%BD%EC%88%98)란, 0이 아닌 두 정수나 다항식의 공통되는 약수 중에서 가장 큰 수를 말한다.
 
@@ -557,40 +596,90 @@ function gcd(x, y) {
 즉 2 * 2 * 2 * 2 * 2 * 2 * 3 * 3 = 576
 최소공배수가 576이라는 결론이 나온다.
 */
+
+function gcd(x, y) {
+  return !y ? x : gcd(y, x % y);
+}
+
 function lcm(x, y) {
-  function gcd(x, y) {
-    return !y ? x : gcd(y, x % y);
-  }
-  function lcm(x, y) {
-    return (x * y) / gcd(x, y);
-  }
-  return lcm(x, y);
+  return (x * y) / gcd(x, y);
+}
+
+console.log(gcd(3, 12));
+console.log(lcm(3, 12));
+
+function gcdlcm(a, b) {
+  var answer = [];
+  answer.push(gcd(a, b), lcm(a, b));
+  return answer;
+}
+
+console.log(gcdlcm(3,12));
+
+/*
+피보나치 수
+
+피보나치 수는 0과 1로 시작하며, 다음 피보나치 수는 바로 앞의 두 피보나치 수의 합이 된다.
+0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946...
+
+2 이상의 n이 입력되었을 때, fibonacci 함수를 제작하여 n번째 피보나치 수를 반환하라. 예를 들어 n = 3이라면 2를 반환한다.
+*/
+
+function fibonacci(n) {
 
 }
 
-function lcm(min, max) {
-    function range(min, max) {
-        var arr = [];
-        for (var i = min; i <= max; i++) {
-            arr.push(i);
-        }
-        return arr;
-    }
+console.log(fibonacci(2)); // 1
+console.log(fibonacci(3)); // 2
+console.log(fibonacci(4)); // 3
+console.log(fibonacci(5)); // 5
+console.log(fibonacci(6)); // 8
 
-    function gcd(a, b) {
-        return !b ? a : gcd(b, a % b);
-    }
+// 답
 
-    function lcm(a, b) {
-        return (a * b) / gcd(a, b);
-    }
-
-    var multiple = min;
-    range(min, max).forEach(function(n) {
-        multiple = lcm(multiple, n);
-    });
-
-    return multiple;
+// Fibonacci number via looping
+function fibonacci(n) {
+  var a = 0, b = 1, f = 1;
+  for (var i = 2; i <= n; i++) {
+    f = a + b;
+    a = b;
+    b = f;
+  }
+  return f;
 }
 
-leastCommonMultiple(1, 13); // => 360360
+// Fibonacci number via recursive
+function fibonacci(n) {
+  if (n <= 2) {
+    return 1;
+  } else {
+    return fibonacci(n - 1) + fibonacci(n - 2);
+  }
+}
+
+// 0, 1, 1, 2, 3, 5, 8, ... <- fibonacci number
+//       2  3  4  5  6      <- argument (>=2)
+
+console.log(fibonacci(2)); // 1
+console.log(fibonacci(3)); // 2
+console.log(fibonacci(4)); // 3
+console.log(fibonacci(5)); // 5
+console.log(fibonacci(6)); // 8
+
+/*
+요일 구하기
+
+2016년 1월 1일은 금요일이다. 2016년 A월 B일은 무슨 요일일까? 두 수 A,B를 입력받아 A월 B일이 무슨 요일인지 출력하는 getDayName 함수를 완성하세요.
+
+요일의 이름은 일요일부터 토요일까지 각각
+
+SUN,MON,TUE,WED,THU,FRI,SAT
+
+를 출력한다. 예를 들어 A=5, B=24가 입력된다면 5월 24일은 화요일이므로 TUE를 반환한다.
+*/
+
+function getDayName(a,b){
+
+}
+
+console.log(getDayName(5,24));

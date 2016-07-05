@@ -22,7 +22,9 @@ Java, C++과 같은 객체지향 프로그래밍 언어는 클래스를 정의�
 var student = {
   name: 'Lee',
   score: 90
-}
+};
+
+console.log(student.valueOf());
 console.dir(student);
 ```
 

@@ -24,7 +24,7 @@ var student = {
   score: 90
 };
 
-console.log(student.valueOf());
+console.log(student.hasOwnProperty('name')); // true
 console.dir(student);
 ```
 

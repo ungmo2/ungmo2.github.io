@@ -128,8 +128,7 @@ Variable Object는 아래의 정보를 담는 객체이다.
 	- 매개변수(parameters)와 인수(arguments)
 	- 함수 선언(Function Declaration. Function Expression은 제외)
 
-	<!-- 전역 컨텍스트에서는 VO === this === global이고,  
-	함수 컨텍스트에서는 VO === Activation object(AO)이며 arguments object와 formal parameters가 추가된다. -->
+<!-- 전역 컨텍스트에서는 VO === this === global이고, 함수 컨텍스트에서는 VO === Activation object(AO)이며 arguments object와 formal parameters가 추가된다. -->
 
 	전역 컨텍스트에서 VO는 전역객체를 가리킨다. 전역객체는 유일하며 최상위에 위치하고 모든 전역 변수, 전역 함수 등을 포함한다.
 

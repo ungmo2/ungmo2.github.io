@@ -124,15 +124,15 @@ foo();
 
 Variable Object는 아래의 정보를 담는 객체이다.
 
-	- 변수
-	- 매개변수(parameters)와 인수(arguments)
-	- 함수 선언(Function Declaration. Function Expression은 제외)
+- 변수
+- 매개변수(parameters)와 인수(arguments)
+- 함수 선언(Function Declaration. Function Expression은 제외)
 
 <!-- 전역 컨텍스트에서는 VO === this === global이고, 함수 컨텍스트에서는 VO === Activation object(AO)이며 arguments object와 formal parameters가 추가된다. -->
 
-	전역 컨텍스트에서 VO는 전역객체를 가리킨다. 전역객체는 유일하며 최상위에 위치하고 모든 전역 변수, 전역 함수 등을 포함한다.
+전역 컨텍스트에서 VO는 전역객체를 가리킨다. 전역객체는 유일하며 최상위에 위치하고 모든 전역 변수, 전역 함수 등을 포함한다.
 
-	함수 컨텍스트에서 VO는 Activation object(AO / 활성 객체)를 가리키며 인수들의 정보를 배열의 형태로 담고 있는 객체인 [arguments object](http://ungmo2.github.io/javascript/Javascript-Function/#arguments-)와 매개변수가 추가된다.
+함수 컨텍스트에서 VO는 Activation object(AO / 활성 객체)를 가리키며 인수들의 정보를 배열의 형태로 담고 있는 객체인 [arguments object](http://ungmo2.github.io/javascript/Javascript-Function/#arguments-)와 매개변수가 추가된다.
 
 - Scope Chain (SC)  
 	Scope Chain은 일종의 리스트로서 중첩된 함수의 스코프(혹은 Variable Object)의 레퍼런스를 차례로 저장하고 있는 개념이다. 이 리스트로 현재 컨텍스트의 변수 뿐만 아니라 상위 실행 컨텍스트의 변수에도 접근이 가능하다. 이 리스트에서 찾지 못한 변수는 결국 정의되지 않은 변수에 접근하는 것으로 판단되어 ReferenceError 에러를 출력한다. 이 리스트를 스코프 체인이라 하는데 [[scope]] 프로퍼티로 참조할 수 있다. [[Scope]] 함수가 만들어질 때 생성되는 스코프 체인을 참조하는 함수의 프로퍼티로 프로그램에서는 접근할 수 없다.

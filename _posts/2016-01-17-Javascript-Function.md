@@ -45,7 +45,7 @@ function square(number) {
 
 ## 1.2 함수표현식(Function expression)
 
-자바스크립트의 함수는 `일급 객체`이므로 아래와 같은 특징이 있다.
+자바스크립트의 함수는 [일급 객체](https://ko.wikipedia.org/wiki/%EC%9D%BC%EA%B8%89_%EA%B0%9D%EC%B2%B4)이므로 아래와 같은 특징이 있다.
 
 - 무명의 리터럴로 표현이 가능하다.
 - 변수나 자료 구조(객체, 배열…)에 저장할 수 있다.

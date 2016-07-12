@@ -135,7 +135,7 @@ Function() 생성자 함수로 함수를 생성하는 방식은 일반적으로 
 
 # 2. 함수 호이스팅(Function Hoisting)
 
-3가지의 함수 정의 방식을 알아보았다. 정의 방식은 달라도 결국 Function() 생성자 함수를 통해 함수를 생성하는 것까지 확인하였다. 그런데 이 3가지 함수 정의 방식은 약간의 동작 방식에 차이가 있다.
+3가지의 함수 정의 방식을 알아보았다. 정의 방식은 달라도 결국 Function() 생성자 함수를 통해 함수를 생성하는 것까지 확인하였다. 그런데 이 3가지 함수 정의 방식은 동작 방식에 약간의 차이가 있다.
 
 ```javascript
 var res = square(5);
@@ -209,9 +209,9 @@ console.log(cal(decrease, 1));
 // 3. 반환값(return value)으로 사용할 수 있다.
 function cal(mode){
   var funcs = {
-    'plus': function(left, right){return left + right},
-    'minus': function(left, right){return left - right}
-  }
+    plus:  function(left, right){ return left + right; },
+    minus: function(left, right){ return left - right; }
+  };
   return funcs[mode];
 }
 console.log(cal('plus')(2,1));

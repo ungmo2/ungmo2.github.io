@@ -129,7 +129,7 @@ node
 this === global // true
 ```
 
-전역객체는 전역 스코프(Global Scope)를 갖게 되며 전역변수(Global variable)를 속성으로 가지게 되며 글로벌 영역에 선언한 함수도 전역객체의 속성으로 접근할 수 있다.
+전역객체는 전역 스코프(Global Scope)를 갖게 되며 전역변수(Global variable)를 속성으로 가지게 되며 글로벌 영역에 선언한 함수는 전역객체의 속성으로 접근할 수 있는 전역 변수의 메서드이다.
 
 ```javascript
 var ga = "Global variable";
@@ -404,7 +404,7 @@ Person.apply(foo, ['name']);
 console.log(foo);
 ```
 
-빈 객체 foo를 apply() 메서드의 첫번째 인자로 배열을 두번째 인자로 전달하고 Person 함수를 호출하였다. 이때 Person 함수의 this는 foo 객체가 된다. Person 함수에서 this의 name 프로퍼티에 값을 할당하는데 this에 바인딩된 foo 객체에는 name 프로퍼티가 없으므로 name 프로퍼티가 새로 추가되가 값이 할당된다.
+빈 객체 foo를 apply() 메서드의 첫번째 인자로 배열을 두번째 인자로 전달하고 Person 함수를 호출하였다. 이때 Person 함수의 this는 foo 객체가 된다. Person 함수에서 this의 name 프로퍼티에 값을 할당하는데 this에 바인딩된 foo 객체에는 name 프로퍼티가 없으므로 name 프로퍼티가 새로 추가되고 값이 할당된다.
 
 apply() 메서드의 대표적인 용도는 arguments 객체와 같은 유사 배열 객체에 배열 메서드를 사용하는 경우이다. arguments 객체는 배열이 아니기 때문에 slice() 같은 배열의 메서드를 사용할 수 없으나 apply() 메서드를 이용하면 가능하다.
 
@@ -413,6 +413,7 @@ function convertArgsToArray() {
   console.log(arguments);
 
   // arguments 객체를 배열로 변환
+  // apply: 배열의 특정 부분에 대한 복사본을 생성한다.
   var arr = Array.prototype.slice.apply(arguments); // arguments.slice
 
   console.log(arr);

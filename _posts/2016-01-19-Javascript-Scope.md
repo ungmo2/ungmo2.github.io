@@ -28,7 +28,7 @@ console.log(global);
 console.log(local); // Uncaught ReferenceError: local is not defined
 ```
 
-Scope의 종류는 다음과 같다.
+자바스크립트의 Scope 종류는 다음과 같다.
 
 - 전역 Scope (Global scope) : 코드 어디에서든지 참조할 수 있다.
 - 지역 Scope (Local scope or Function-level scope) : 정의된 함수 내에서만 참조할 수 있다.
@@ -54,7 +54,7 @@ int main(void) {
 }
 ```
 
-하지만 자바스크립트는 `function-level scope`를 사용한다. 따라서 함수 내에서 정의된 매개변수와 변수는 함수 외부에서는 유효하지 않다. 단, ECMAScript 6에서 도입된 `let` keyword를 사용하면 `block-level scope`를 사용할 수 있다.
+하지만 자바스크립트는 `function-level scope`를 사용한다. 따라서 함수 내에서 정의된 매개변수와 변수는 함수 외부에서는 유효하지 않다. 단, ECMAScript 6에서 도입된 [let](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/let) keyword를 사용하면 `block-level scope`를 사용할 수 있다.
 
 # 1. Global scope
 
@@ -114,13 +114,13 @@ console.log(x); // ?
 자세한 실행원리는 [실행 컨텍스트의 Scope chain](http://ungmo2.github.io/javascript/Javascript-Execution-Context/)을 참조하기 바란다.
 
 ```javascript
-var x = 'global'; // Global scope
+var x = 'global';   // Global scope
 
 function foo(){
   var x = 'local';  // Local scope
   console.log(x);
 
-  function bar(){ // 내부함수
+  function bar(){   // 내부함수
     console.log(x); // ?
   }
 
@@ -148,13 +148,13 @@ console.log(x); // ?
 함수(지역) 영역에서 전역변수를 참조할 수 있으므로 전역변수의 값도 변경할 수 있다.
 
 ```javascript
-var x = 10; // Global scope
+var x = 10;     // Global scope
 
 function foo(){
   var x = 100;  // Local scope
   console.log(x);
 
-  function bar(){ // 내부함수
+  function bar(){   // 내부함수
     x = 1000;
     console.log(x); // ?
   }
@@ -194,7 +194,7 @@ var foo = function ( ) {
 
 # 4. 암묵적 전역 (implied globals)
 
-아래의 foo 함수 내 변수 x는 var keyword를 사용하지 않고 선언되었다. `var` keyword를 사용하지 않고 선언된 변수는 암묵적으로 전역변수가 된다.
+아래의 foo 함수 내 변수 x는 var keyword를 사용하지 않고 선언되었다. var keyword를 사용하지 않고 선언된 변수는 암묵적으로 전역변수가 된다.
 
 ```javascript
 function foo() {
@@ -208,7 +208,7 @@ console.log(x); // logs "1"
 console.log(y); // Throws a ReferenceError
 ```
 
-의도하지 않게 전역변수가 되었다면 혼란의 여지가 있으므로 `var` keyword는 반드시 사용하자.
+의도하지 않게 전역변수가 되었다면 혼란의 여지가 있으므로 var keyword는 반드시 사용하자.
 
 # 5. Hoisting
 

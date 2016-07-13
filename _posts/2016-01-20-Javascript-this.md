@@ -423,7 +423,7 @@ function convertArgsToArray() {
 convertArgsToArray(1,2,3);
 ```
 
-`Array.prototype.slice.apply(arguments)`는 Array.prototype.slice() 메서드를 호출하라. 단 this는 arguments 객체로 바인딩하라는 의미가 된다. 결국 Array.prototype.slice() 메서드를 arguments 객체 자신의 메서드인 것처럼 `arguments.slice()`와 같은 형태로 호출하라는 것이다.
+`Array.prototype.slice.apply(arguments)`는 "Array.prototype.slice() 메서드를 호출하라. 단 this는 arguments 객체로 바인딩하라"는 의미가 된다. 결국 Array.prototype.slice() 메서드를 arguments 객체 자신의 메서드인 것처럼 `arguments.slice()`와 같은 형태로 호출하라는 것이다.
 
 call() 메서드의 경우, apply()와 기능은 같지만 apply()의 두번째 인자에서 배열 형태로 넘긴 것을 각각 하나의 인자로 넘긴다.
 

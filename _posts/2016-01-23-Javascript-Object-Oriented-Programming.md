@@ -401,7 +401,7 @@ var myMammal = {
 };
 ```
 
-`Object.create` 메서드를 사용하여 더 많은 인스턴스를 생성할 수 있다. 그리고 나서 새로 만든 인스턴스에 필요한 메서드나 속성들을 추가할 수 있다.
+[Object.create 메서드](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create)를 사용하여 더 많은 인스턴스를 생성할 수 있다. 그리고 나서 새로 만든 인스턴스에 필요한 메서드나 속성들을 추가할 수 있다.
 
 `Object.create` 메서드는 매개변수에 전달한 프로토타입 객체를 상속하는 새로운 객체를 생성한다. 이 메서드의 폴리필(Polyfill: 특정 기능이 지원되지 않는 브라우저를 위해 사용할 수 있는 코드 조각이나 플러그인)을 살펴보자.
 

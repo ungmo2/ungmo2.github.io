@@ -414,7 +414,7 @@ Error 생성자는 error 객체를 생성한다. error 객체의 인스턴스는
 try {
   throw new Error("Whoops!");
 } catch (e) {
-  alert(e.name + ": " + e.message);
+  console.log(e.name + ": " + e.message);
 }
 ```
 

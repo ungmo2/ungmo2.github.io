@@ -451,7 +451,9 @@ console.log(alpha_string46("1234"));
 문자열 내 p와 y의 개수
 
 numPY함수는 대문자와 소문자가 섞여있는 문자열 s를 매개변수로 입력받는다.
-대소문자를 구별하지 않으며 s에 'p'의 개수와 'y'의 개수를 비교해 같으면 True, 다르면 False를 리턴하도록 함수를 완성하라. 'p', 'y' 모두 하나도 없는 경우는 항상 True를 리턴한다.
+대소문자를 구별하지 않으며 s에 'p'의 개수와 'y'의 개수를 비교해 같으면 True,
+다르면 False를 리턴하도록 함수를 완성하라.
+'p', 'y' 모두 하나도 없는 경우는 항상 True를 리턴한다.
 예를들어 s가 "pPoooyY"면 True를 리턴하고 "Pyy"라면 False를 리턴한다.
 */
 
@@ -852,17 +854,18 @@ console.log(adder(5, -1)); // 14
 이상한 문자만들기
 
 toWeirdCase함수는 문자열 s를 매개변수로 입력받는다.
-문자열 s에 각 단어의 짝수번째 인덱스 문자는 대문자로, 홀수번째 인덱스 문자는 소문자로 바꾼 문자열을 리턴하도록 함수를 완성하라.
+문자열 s에 각 단어의 짝수번째 인덱스 문자는 대문자로, 홀수번째 인덱스 문자는 소문자로
+바꾼 문자열을 리턴하도록 함수를 완성하라.
 예를 들어 s가 "try hello world"라면 첫 번째 단어는 "TrY", 두 번째 단어는 "HeLlO", 세 번째 단어는 "WoRlD"로 바꿔 "TrY HeLlO WoRlD"를 리턴한다.
 
 주의) 문자열 전체의 짝/홀수 인덱스가 아니라 단어(공백을 기준)별로 짝/홀수 인덱스를 판단한다.
 */
 
-function toUpperLowerCase(s){
+function toWeirdCase(s){
 
 }
 
-console.log(toUpperLowerCase("try hello world")); // "TrY HeLlO WoRlD"
+console.log(toWeirdCase("try hello world")); // "TrY HeLlO WoRlD"
 
 // 답
 function toUpperLowerCase(str) {

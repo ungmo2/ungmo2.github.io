@@ -868,7 +868,7 @@ function toWeirdCase(s){
 console.log(toWeirdCase("try hello world")); // "TrY HeLlO WoRlD"
 
 // 답
-function toUpperLowerCase(str) {
+function toWeirdCase(str) {
   var strArr = str.split(' ');
   for (var i = 0; i < strArr.length; i++) {
     strArr[i] = toUpperLower(strArr[i]);
@@ -883,7 +883,7 @@ function toUpperLower(str) {
   return res;
 }
 
-function toUpperLowerCase(str) {
+function toWeirdCase(str) {
   var strArr = str.split(' ');
   for (var i = 0; i < strArr.length; i++) {
     strArr[i] = strArr[i].toUpperLower();

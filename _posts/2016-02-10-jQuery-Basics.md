@@ -404,7 +404,7 @@ $(function() {
 });
 ```
 
-이벤트를 발생시킨 버튼만을 제거하도록 수정한다. 이때 this를 jQuery 함수를 사용하여 jQuery 객체화하여야 한다.
+이벤트를 발생시킨 버튼만을 제거하도록 수정한다. 이때 jQuery 함수를 사용하여 this를 jQuery 객체화하여야 한다.
 
 ```javascript
 $(function() {

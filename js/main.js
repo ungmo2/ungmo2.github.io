@@ -1,6 +1,6 @@
 // Dean Attali / Beautiful Jekyll 2015
 
-var ANTI_DRAG_COPY = true;
+var ANTI_DRAG_COPY = false;
 
 // Shorten the navbar after scrolling a little bit down
 $(window).scroll(function() {

@@ -2118,9 +2118,9 @@ overflow: hidden;과 함께 많이 사용되는 방법은 [::after 가상 요소
 </html>
 ```
 
-# 3. Layout Examples
+# 7. Layout Examples
 
-## 3.1 2-Column Layout Example
+## 7.1 2-Column Layout Example
 
 ![2-column-layout](/img/2-column-layout.png)
 
@@ -2130,7 +2130,7 @@ overflow: hidden;과 함께 많이 사용되는 방법은 [::after 가상 요소
 ```
 -->
 
-## 3.2 3-Column Layout Example
+## 7.2 3-Column Layout Example
 
 ![3-column-layout](/img/3-column-layout.png)
 

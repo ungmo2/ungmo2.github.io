@@ -223,7 +223,7 @@ app.get('/example/d', [cb0, cb1], function (req, res, next) {
 <table>
 <thead>
 <tr>
-<th style="width:160px;">메소드</th>
+<th style="width:175px;">메소드</th>
 <th>설명</th>
 </tr>
 </thead>

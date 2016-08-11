@@ -230,43 +230,85 @@ app.get('/example/d', [cb0, cb1], function (req, res, next) {
 <tbody>
 <tr>
 <td><a href="http://expressjs.com/ko/4x/api.html#res.download">res.download()</a></td>
-<td>파일이 다운로드되도록 프롬프트합니다.</td>
+<td>다운로드될 파일을 전송한다.</td>
 </tr>
 <tr>
 <td><a href="http://expressjs.com/ko/4x/api.html#res.end">res.end()</a></td>
-<td>응답 프로세스를 종료합니다.</td>
+<td>응답 프로세스를 종료한다.</td>
 </tr>
 <tr>
 <td><a href="http://expressjs.com/ko/4x/api.html#res.json">res.json()</a></td>
-<td>JSON 응답을 전송합니다.</td>
+<td>JSON 응답을 전송한다.</td>
 </tr>
 <tr>
 <td><a href="http://expressjs.com/ko/4x/api.html#res.jsonp">res.jsonp()</a></td>
-<td>JSONP 지원을 통해 JSON 응답을 전송합니다.</td>
+<td>JSONP 지원을 통해 JSON 응답을 전송한다.</td>
 </tr>
 <tr>
 <td><a href="http://expressjs.com/ko/4x/api.html#res.redirect">res.redirect()</a></td>
-<td>요청의 경로를 재지정합니다.</td>
+<td>요청 경로를 재지정한다.</td>
 </tr>
 <tr>
 <td><a href="http://expressjs.com/ko/4x/api.html#res.render">res.render()</a></td>
-<td>보기 템플리트를 렌더링합니다.</td>
+<td>view template을 렌더링한다.</td>
 </tr>
 <tr>
 <td><a href="http://expressjs.com/ko/4x/api.html#res.send">res.send()</a></td>
-<td>다양한 유형의 응답을 전송합니다.</td>
+<td>다양한 유형의 응답을 전송한다.</td>
 </tr>
 <tr>
 <td><a href="http://expressjs.com/ko/4x/api.html#res.sendFile">res.sendFile</a></td>
-<td>파일을 옥텟 스트림의 형태로 전송합니다.</td>
+<td>파일을 옥텟 스트림(이메일이나 http에서 사용되는 content-type에서 application의 형식이 지정되어 있지 않은 경우에 octet-stream이라고 한다)의 형태로 전송한다.</td>
 </tr>
 <tr>
 <td><a href="http://expressjs.com/ko/4x/api.html#res.sendStatus">res.sendStatus()</a></td>
-<td>응답 상태 코드를 설정한 후 해당 코드를 문자열로 표현한 내용을 응답 본문으로서 전송합니다.</td>
+<td>응답 상태 코드(response status code)를 설정한 후 해당 코드를 문자열로 표현한 내용을 응답 본문으로서 전송한다.</td>
 </tr>
 </tbody>
 </table>
 
+```javascript
+res.download(__dirname + '/public/report.pdf', 'report.pdf');
+
+res.end();
+res.status(404).end();
+
+res.json(null);
+res.json({ user: 'tobi' });
+res.status(500).json({ error: 'message' });
+
+res.jsonp({ user: 'tobi' });
+res.status(500).jsonp({ error: 'message' });
+
+res.redirect('/foo/bar');
+res.redirect('http://example.com');
+res.redirect(301, 'http://example.com');
+res.redirect('../login');
+
+// send the rendered view to the client
+res.render('index');
+// if a callback is specified, the rendered HTML string has to be sent explicitly
+res.render('index', function(err, html) {
+  res.send(html);
+});
+// pass a local variable to the view
+res.render('user', { name: 'Tobi' }, function(err, html) {
+  // ...
+});
+
+res.send(new Buffer('whoop'));
+res.send({ some: 'json' });
+res.send('<p>some html</p>');
+res.status(404).send('Sorry, we cannot find that!');
+res.status(500).send({ error: 'something blew up' });
+
+res.sendFile('test.json', { root: __dirname });
+
+res.sendStatus(200); // equivalent to res.status(200).send('OK')
+res.sendStatus(403); // equivalent to res.status(403).send('Forbidden')
+res.sendStatus(404); // equivalent to res.status(404).send('Not Found')
+res.sendStatus(500); // equivalent to res.status(500).send('Internal Server Error')
+```
 
 # Static file
 

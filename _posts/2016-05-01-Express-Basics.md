@@ -5,11 +5,14 @@ categories: express
 tags: []
 ---
 
+* TOC
+{:toc}
+
 [Express](http://expressjs.com/)는 Node.js 환경에서 동작하는 Web application Framework이다. Express는 Web Application 구성에 필요한 Routing, View Helper, Session(영속적 Session관리를 위해서는 [Redis](http://www.redis.io/)등의 Data store가 필요하다)등의 기능을 제공한다.
 
 Express 4.14.0 버전을 기준으로 한다.
 
-# Install
+# 1. Install
 
 [Node.js](https://nodejs.org/)가 install되어 있음을 전제로 한다.
 
@@ -22,7 +25,7 @@ $ npm init
 $ npm install express --save
 ```
 
-# 1. Hello world example
+# 2. Hello world example
 
 프로젝트 폴더(myapp)에 app.js를 생성한다.
 
@@ -47,7 +50,7 @@ $ node app.js
 
 서버는 port 3000에서 사용자의 접속을 대기하고 있다. 클라언트가 root URL(http://localhost:3000/)로 요청를 보내면 서버는 'Hello World!'로 응답할 것이다.
 
-# 2. Routing
+# 3. Routing
 
 클라이언트는 서버에 URI 및 특정한 HTTP 요청 메소드(GET, POST 등)로 요청을 전달한다.
 
@@ -96,7 +99,7 @@ app.listen(3000, function () {
 });
 ```
 
-## 2.1 Route method
+## 3.1 Route method
 
 Express는 HTTP 메소드에 해당하는 다음과 같은 라우팅 메소드를 지원한다.
 
@@ -139,7 +142,7 @@ app.get('/', function (req, res, next) {
 });
 ```
 
-## 2.2 Route path
+## 3.2 Route path
 
 Route path에는 문자열 또는 정규표현식을 사용할 수 있다.
 
@@ -170,7 +173,7 @@ app.get('/user/:userId/item/:itemId', function(req, res) {
 });
 ```
 
-## 2.3 Route handler
+## 3.3 Route handler
 
 Route handler는 요청을 처리하는 콜백함수이다.
 
@@ -218,7 +221,7 @@ app.get('/example/d', [cb0, cb1], function (req, res, next) {
 });
 ```
 
-## 2.4 Response method
+## 3.4 Response method
 
 <table>
 <thead>
@@ -310,7 +313,7 @@ res.sendStatus(404); // equivalent to res.status(404).send('Not Found')
 res.sendStatus(500); // equivalent to res.status(500).send('Internal Server Error')
 ```
 
-## 2.5 Static file
+# 4. Static file
 
 이미지 파일, CSS 파일, javascript 파일 등과 같은 정적 파일을 제공하기 위해 Express의 기본 제공 미들웨어 함수인 express.static을 사용한다.
 
@@ -320,7 +323,7 @@ res.sendStatus(500); // equivalent to res.status(500).send('Internal Server Erro
 app.use(express.static('public'));
 ```
 
-## 2.6 Template engine
+# 5. Template engine
 
 Express는 [jade](http://jade-lang.com/), [ejs](http://ejs.co/), [handlebars](http://handlebarsjs.com/)와 같은 템플릿 엔진을 사용할 수 있다.
 

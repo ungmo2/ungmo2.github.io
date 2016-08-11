@@ -218,6 +218,7 @@ app.get('/example/d', [cb0, cb1], function (req, res, next) {
 });
 ```
 
+## 2.4 Response method
 
 <table>
 <thead>
@@ -228,39 +229,39 @@ app.get('/example/d', [cb0, cb1], function (req, res, next) {
 </thead>
 <tbody>
 <tr>
-<td><a href="/ko/4x/api.html#res.download">res.download()</a></td>
+<td><a href="http://expressjs.com/ko/4x/api.html#res.download">res.download()</a></td>
 <td>파일이 다운로드되도록 프롬프트합니다.</td>
 </tr>
 <tr>
-<td><a href="/ko/4x/api.html#res.end">res.end()</a></td>
+<td><a href="http://expressjs.com/ko/4x/api.html#res.end">res.end()</a></td>
 <td>응답 프로세스를 종료합니다.</td>
 </tr>
 <tr>
-<td><a href="/ko/4x/api.html#res.json">res.json()</a></td>
+<td><a href="http://expressjs.com/ko/4x/api.html#res.json">res.json()</a></td>
 <td>JSON 응답을 전송합니다.</td>
 </tr>
 <tr>
-<td><a href="/ko/4x/api.html#res.jsonp">res.jsonp()</a></td>
+<td><a href="http://expressjs.com/ko/4x/api.html#res.jsonp">res.jsonp()</a></td>
 <td>JSONP 지원을 통해 JSON 응답을 전송합니다.</td>
 </tr>
 <tr>
-<td><a href="/ko/4x/api.html#res.redirect">res.redirect()</a></td>
+<td><a href="http://expressjs.com/ko/4x/api.html#res.redirect">res.redirect()</a></td>
 <td>요청의 경로를 재지정합니다.</td>
 </tr>
 <tr>
-<td><a href="/ko/4x/api.html#res.render">res.render()</a></td>
+<td><a href="http://expressjs.com/ko/4x/api.html#res.render">res.render()</a></td>
 <td>보기 템플리트를 렌더링합니다.</td>
 </tr>
 <tr>
-<td><a href="/ko/4x/api.html#res.send">res.send()</a></td>
+<td><a href="http://expressjs.com/ko/4x/api.html#res.send">res.send()</a></td>
 <td>다양한 유형의 응답을 전송합니다.</td>
 </tr>
 <tr>
-<td><a href="/ko/4x/api.html#res.sendFile">res.sendFile</a></td>
+<td><a href="http://expressjs.com/ko/4x/api.html#res.sendFile">res.sendFile</a></td>
 <td>파일을 옥텟 스트림의 형태로 전송합니다.</td>
 </tr>
 <tr>
-<td><a href="/ko/4x/api.html#res.sendStatus">res.sendStatus()</a></td>
+<td><a href="http://expressjs.com/ko/4x/api.html#res.sendStatus">res.sendStatus()</a></td>
 <td>응답 상태 코드를 설정한 후 해당 코드를 문자열로 표현한 내용을 응답 본문으로서 전송합니다.</td>
 </tr>
 </tbody>

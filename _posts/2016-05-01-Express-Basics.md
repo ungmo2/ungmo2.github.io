@@ -310,9 +310,44 @@ res.sendStatus(404); // equivalent to res.status(404).send('Not Found')
 res.sendStatus(500); // equivalent to res.status(500).send('Internal Server Error')
 ```
 
-# Static file
+## 2.5 Static file
 
+이미지 파일, CSS 파일, javascript 파일 등과 같은 정적 파일을 제공하기 위해 Express의 기본 제공 미들웨어 함수인 express.static을 사용한다.
 
-# Template engine
+아래는 루트 리렉터리에 있는 public 디렉터리에 있는 정적 파일을 제공하는 예이다.
 
-# express-generator
+```javascript
+app.use(express.static('public'));
+```
+
+## 2.6 Template engine
+
+Express는 [jade](http://jade-lang.com/), [ejs](http://ejs.co/), [handlebars](http://handlebarsjs.com/)와 같은 템플릿 엔진을 사용할 수 있다.
+
+**jade**
+
+```javascript
+// Optional since express defaults to CWD/views
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jade');
+
+app.get('/', function(req, res){
+  res.render('index', {
+    title: 'Hello world'
+  })
+});
+```
+
+**ejs**
+
+```javascript
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
+
+app.get('/', function(req, res){
+  res.render('index', {
+    title: 'Hello world'
+  })
+});
+```

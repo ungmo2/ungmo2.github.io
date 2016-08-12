@@ -99,6 +99,8 @@ app.listen(3000, function () {
 });
 ```
 
+![postman](/img/postman.png)
+
 ## 3.1 Route method
 
 Express는 HTTP 메소드에 해당하는 다음과 같은 라우팅 메소드를 지원한다.

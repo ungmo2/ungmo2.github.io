@@ -313,7 +313,51 @@ res.sendStatus(404); // equivalent to res.status(404).send('Not Found')
 res.sendStatus(500); // equivalent to res.status(500).send('Internal Server Error')
 ```
 
-# 4. Static file
+# 4. Middleware
+
+미들웨어 함수는 요청 오브젝트(req), 응답 오브젝트(res) 그리고 애플리케이션의 request-response cycle 내에서 다음 미들웨어 함수 대한 액세스 권한을 갖는 함수이다.
+
+미들웨어에는 유용한 동작을 하거나 요청이 실행되는 데 도움이 되는 무언가를 추가하는 패스스루(pass-through) 함수가 있다.
+
+예를 들면 bodyParser()와 cookieParser()는 각각 HTTP 요청 페이로드(req.body)와 파싱된 쿠키 데이터(req.cookie)를 추가한다.
+
+```javascript
+var express = require('express');
+
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+
+var app = express();
+
+// parse application/json
+app.use(bodyParser.json());
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+```
+
+현재의 미들웨어 함수가 요청-응답 주기(request-response cycle)를 종료하지 않는 경우에는 ***next()*** 를 호출하여 그 다음 미들웨어 함수에 제어를 전달해야 한다. 그렇지 않으면 해당 요청은 정지된 채로 방치된다.
+
+```javascript
+var express = require('express');
+var app = express();
+
+var myLogger = function (req, res, next) {
+  responseText = 'Requested at: ' + req.requestTime + '';
+  console.log('LOGGED: ' + responseText);
+  next(); // Call the next middleware in the stack.
+};
+
+app.use(myLogger); // Execute myLogger.
+
+app.get('/', function (req, res) {
+  res.send('Hello World!'); // End the request-response cycle.
+});
+
+app.listen(3000);
+```
+
+# 5. Static file
 
 이미지 파일, CSS 파일, javascript 파일 등과 같은 정적 파일을 제공하기 위해 Express의 기본 제공 미들웨어 함수인 express.static을 사용한다.
 
@@ -323,7 +367,7 @@ res.sendStatus(500); // equivalent to res.status(500).send('Internal Server Erro
 app.use(express.static('public'));
 ```
 
-# 5. Template engine
+# 6. Template engine
 
 Express는 [jade](http://jade-lang.com/), [ejs](http://ejs.co/), [handlebars](http://handlebarsjs.com/)와 같은 템플릿 엔진을 사용할 수 있다.
 
@@ -354,3 +398,7 @@ app.get('/', function(req, res){
   })
 });
 ```
+
+# Reference
+
+* [Express Guide](http://expressjs.com/en/guide/routing.html)

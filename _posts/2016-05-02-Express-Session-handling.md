@@ -100,6 +100,66 @@ session secret는 쿠키에 저장될 Session ID 서명에 사용된다. session
 
 # 4. Redis를 사용한 세션 관리
 
+Redis는 in-memory data structure store로 key-value의 형태로 data를 저장한다.
+
+Express의 경우, [connect-redis](https://github.com/tj/connect-redis) 모듈을 사용하여 Redis를 사용한 세션 관리가 가능하다.
+
+Redis를 사용하여 세션을 관리하면 application process가 종료되어도 세션 정보를 보존할 수 있고 복수 서버 환경에서도 세션 정보 공유가 가능하게 된다.
+
+## 4.1 Install Redis
+
+### 4.1.1 Windows
+
+Redis는 공식적으로 Windows를 지원하지 않는다. 하지만 [Microsoft Open Tech 그룹](https://msopentech.com/opentech-projects/redis/)에서 64bit 포팅판을 제공하고 있다.
+
+[Windows Radis Download](https://github.com/MSOpenTech/redis)에서 msi 파일을 다운로드하여 설치한다.
+
+설치가 완료되면 Redis 서버가 서비스로 등록되어 실행되고 있는 것을 확인한다.
+
+![windows-radis-service](/img/windows-radis-service.png)
+{: style="max-width:500px; margin: 20px auto 10px;"}
+
+Radis 설치 디렉터리에 있는 클라이언트 redis-cli.exe를 실행한다.
+
+![windows-radis-client](/img/windows-radis-client.png)
+{: style="max-width:500px; margin: 20px auto 10px;"}
+
+### 4.1.2 Mac
+
+Mac user의 경우, Homebrew를 사용하여 install할 수 있다.
+
+```
+$ brew update && brew install redis
+```
+
+Radis server를 기동한다.
+
+```
+$ redis-server
+
+6612:C 12 Aug 16:50:58.467 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+6612:M 12 Aug 16:50:58.470 * Increased maximum number of open files to 10032 (it was originally set to 256).
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 3.2.3 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in standalone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 6612
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+6612:M 12 Aug 16:50:58.499 # Server started, Redis version 3.2.3
+6612:M 12 Aug 16:50:58.499 * The server is now ready to accept connections on port 6379
+```
 
 # Reference
 

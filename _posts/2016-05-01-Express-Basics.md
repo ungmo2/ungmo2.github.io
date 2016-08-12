@@ -78,6 +78,7 @@ var express    = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 
+// parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/', function (req, res) {
@@ -132,7 +133,7 @@ app.all() 메서드는 모든 HTTP method에 대응한다. next()를 사용하�
 ```javascript
 // 모든 요청 메서드에 대응
 app.all('/', function (req, res, next) {
-  console.log('Accessing the root section ...');
+  console.log('All request to the root section ...');
   next(); // pass control to the next handler
 });
 

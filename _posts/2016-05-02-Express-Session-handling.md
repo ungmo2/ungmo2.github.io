@@ -54,7 +54,13 @@ http 프로토콜의 상태 비유지(stateless) 문제를 보완하여 클라�
 
 # 3. MemoryStore를 사용한 세션 관리
 
-Express 4.x에서는 express-session 모듈이 express에서 분리되었으므로 npm install이 필요하다.
+세션 데이터는 쿠키에 저장되지 않고 server-side에 저장된다. 쿠키에는 session ID만이 저장된다.
+
+개발을 위한 MemoryStore, server-side session storage의 사용은 문제될 것이 없지만 production 환경에서 MemoryStore의 사용은 적절하지 않으며 복수 서버 상에서의 Session data 공유도 MemoryStore에서는 불가능하다.
+
+Express 4.x에서는 express-session middleware가 express에서 분리되었으므로 별도의 npm install이 필요하다.
+
+express-session 1.5.0 이후 버전부터는 cookie-parser middleware가 필요하지 않다.
 
 ```
 $ npm install express-session -save
@@ -117,12 +123,13 @@ Redis는 공식적으로 Windows를 지원하지 않는다. 하지만 [Microsoft
 설치가 완료되면 Redis 서버가 서비스로 등록되어 실행되고 있는 것을 확인한다.
 
 ![windows-radis-service](/img/windows-radis-service.png)
-{: style="max-width:500px; margin: 20px auto 10px;"}
+{: style="max-width:550px; margin: 20px auto 10px;"}
 
 Radis 설치 디렉터리에 있는 클라이언트 redis-cli.exe를 실행한다.
 
 ![windows-radis-client](/img/windows-radis-client.png)
-{: style="max-width:500px; margin: 20px auto 10px;"}
+{: style="max-width:550px; margin: 20px auto 10px;"}
+
 
 ### 4.1.2 Mac
 
@@ -161,6 +168,48 @@ $ redis-server
 6612:M 12 Aug 16:50:58.499 * The server is now ready to accept connections on port 6379
 ```
 
-# Reference
+connect-redis 모듈을 인스톨한다.
 
-* [Express Guide](http://expressjs.com/en/guide/routing.html)
+```
+$ npm install connect-redis --save
+```
+
+app.js을 작성한다.
+
+```javascript
+var express = require('express');
+var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
+
+var app = express();
+
+// session 설정
+app.use(session({
+  store: new RedisStore({}),
+  secret : 'Rs89I67YEA55cLMgi0t6oyr8568e6KtD',
+  resave: false,
+  saveUninitialized: true
+}));
+
+// routing 설정
+app.get('/radis-store-counter', function(req, res) {
+  var session = req.session;
+  if (session && session.count) {
+    session.count++;
+  } else {
+    session.count = 1;
+  }
+  res.send('count is ' + session.count);
+});
+
+app.get('/session-destroy', function (req, res) {
+  req.session.destroy();
+  res.send('Session Destroyed!');
+});
+
+app.listen(3000, function() {
+  console.log('Express server listening on port ' + 3000);
+});
+```
+
+application을 재기동하여도 이전 카운트가 보존됨을 확인할 수 있다.

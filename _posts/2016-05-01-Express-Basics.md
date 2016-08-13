@@ -445,49 +445,46 @@ app.use(function(err, req, res, next) {
 })
 ```
 
+또는 view template이나 html을 render할 수도 있다.
 
+```javascript
+app.use(function(err, req, res, next) {
+  // Do logging and user-friendly error message display
+  console.error(err.stack);
+  res.render('500'); // 500.jade or 500.ejs
+})
+```
 
+next()를 사용하여 Error handler middleware로 에러 처리를 위임할 수 있다.
 
-| HTTP 상태 코드	        | 에러 원인 상세
-|:----------------------|:----------------------------------
-| 401 (인증 실패)         | 애플리케이션 클라이언트 아이디와 시크릿 값이 없거나 잘못되었을 경우
-| 401 (인증 실패)         | API 권한 설정이 안되어 있을 경우
-| 403 (지원하지 않는 프로토콜)| https가 아닌 http로 호출하였을 경우
-| 404 (API 없음)         | API 요청 URL이 잘못되었을 경우
-| 500 (내부 서버 오류)     | 서버에 오류가 발생하여 요청을 수행할 수 없는 경우
+next()를 인수없이 호출하면 이후에 일치하는 route로 이동하지만 next()에 인수를 전달하여 호출하면 Error handler middleware로 처리를 이동시킨다.
 
 ```javascript
 var express = require('express');
 var app = express();
 
-app.get('/error', function(req, res, next) {
-  try {
-    throw new Error("error occurred !!");
-  } catch (e) {
-    next(e);
-  }
+app.get('*', function(req, res, next) {
+  var error = new Error('My Error occurred');
+  error.status = 500;
+  next(error);
 });
 
 app.use(logHandler);
 app.use(errorHandler);
 
-// logger
+// logger middleware
 function logHandler(err, req, res, next) {
-  console.error("[" + new Date() + "] " + err.toString());
-  console.error(err.stack);
+  console.error('[' + new Date() + ']\n' + err.stack);
   next(err);
 }
 
-// error handler
+// error handler middleware
 function errorHandler(err, req, res, next) {
-  res.status(500).send(err.message);
+  res.status(err.status || 500);
+  res.send(err.message || 'Error!!');
 }
 
 app.listen(3000, function() {
   console.log('Express server listening on port ' + 3000);
 });
 ```
-
-# Reference
-
-* [Express Guide](http://expressjs.com/en/guide/routing.html)

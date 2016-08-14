@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Ajax & JSON
-categories: javascript
+title: jQuery Plugin
+categories: jQuery
 ---
 
 * TOC

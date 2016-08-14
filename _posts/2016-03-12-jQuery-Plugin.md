@@ -13,6 +13,25 @@ $ 함수는 jQuery 객체를 반환한다. jQuery 객체는 css()와 같은 jQue
 
 pure javascript에서 built object의 메서드가 prototype에 담겨있는 것과 같이 jQuery 객체의 메서드들은 jQuery 객체의 prototype인 **$.fn** 에 담겨 있다.
 
+다음은 jQuery의 source code의 발췌이다.
+
+```javascript
+var jQuery = function( selector, context ) {
+	return new jQuery.fn.init( selector, context );
+}
+
+jQuery.fn = jQuery.prototype = {
+  constructor: jQuery,
+  // ...
+}
+```
+
+이것을 그림으로 나타내면 아래와 같다.
+
+![jqueryfn](/img/jquery-fn.png)
+{: style="max-width:500px; margin: 10px auto;"}
+
+
 ```javascript
 $.fn.greenify = function() {
   this.css( "color", "green" );
@@ -20,11 +39,13 @@ $.fn.greenify = function() {
 
 $("a").greenify(); // Makes all the links green.
 ```
+```javascript
+$.fn.greenify = function() {
+  this.css( "color", "green" );
+};
 
-![jquery.fn.png](/img/jquery-fn.png)
-{: style="max-width:500px; margin: 10px auto;"}
-
-
+$("a").greenify(); // Makes all the links green.
+```
 # Reference
 
 * [jQuery API: Ajax](http://api.jquery.com/category/ajax/)

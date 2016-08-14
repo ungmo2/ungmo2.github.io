@@ -15,9 +15,9 @@ pure javascript에서 built object의 메서드가 prototype에 담겨있는 것
 
 다음은 jQuery의 source code의 발췌이다.
 
-```javascript
+```
 var jQuery = function( selector, context ) {
-	return new jQuery.fn.init( selector, context );
+  return new jQuery.fn.init( selector, context );
 }
 
 jQuery.fn = jQuery.prototype = {
@@ -28,7 +28,7 @@ jQuery.fn = jQuery.prototype = {
 
 이것을 그림으로 나타내면 아래와 같다.
 
-![jqueryfn](/img/jquery-fn.png)
+![jQuery.fn](/img/jquery-fn.png)
 {: style="max-width:500px; margin: 10px auto;"}
 
 
@@ -39,13 +39,7 @@ $.fn.greenify = function() {
 
 $("a").greenify(); // Makes all the links green.
 ```
-```javascript
-$.fn.greenify = function() {
-  this.css( "color", "green" );
-};
 
-$("a").greenify(); // Makes all the links green.
-```
 # Reference
 
 * [jQuery API: Ajax](http://api.jquery.com/category/ajax/)

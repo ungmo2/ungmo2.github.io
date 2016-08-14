@@ -16,13 +16,16 @@
     <loc>http://ungmo2.github.io/node.js/Nodejs-Example/</loc>
   </url>
   <url>
-    <loc>http://ungmo2.github.io/javascript/Device-Orientation/</loc>
+    <loc>http://ungmo2.github.io/jquery/jQuery-Plugin/</loc>
   </url>
   <url>
-    <loc>http://ungmo2.github.io/javascript/Ajax_JSON/</loc>
+    <loc>http://ungmo2.github.io/jquery/jQuery-Ajax-JSON/</loc>
   </url>
   <url>
     <loc>http://ungmo2.github.io/jquery/jQuery-Basics/</loc>
+  </url>
+  <url>
+    <loc>http://ungmo2.github.io/javascript/Event-Device-Orientation/</loc>
   </url>
   <url>
     <loc>http://ungmo2.github.io/javascript/Event/</loc>

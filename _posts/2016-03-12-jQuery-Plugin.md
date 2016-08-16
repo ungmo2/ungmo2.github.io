@@ -4,9 +4,6 @@ title: jQuery Plugin
 categories: jQuery
 ---
 
-* TOC
-{:toc}
-
 jQuery plugin이란 custom jQuery 메서드로서 jQuery를 확장한 것을 말한다. jQuery plugin을 정의하기 위해서는 **$.fn** object에 custom 메서드를 추가하여 확장한다.
 
 우선 jQuery의 동작 원리에 대해 간단히 알아보자.
@@ -44,6 +41,26 @@ $("a").greenify(); // Makes all the links green.
 ```
 
 위 코드내의 [this](http://ungmo2.github.io/javascript/Javascript-this/#method-invocation-pattern)는 greenify 메서드를 호출한 객체($("a"))에 바인딩된다. greenify 메서드를 호출한 객체는 언제나 jQuery 객체이므로 $(this)를 사용할 필요가 없다.
+
+주의할 것은 each(), append() 메서드 등의 callback 함수 내에서 사용된 this는 DOM 요소를 의미한다.
+
+```javascript
+(function($) {
+
+  $.fn.showLinkLocation = function() {
+    this.filter("a").each(function() {
+      var link = $(this);
+      link.append(" (" + link.attr("href") + ")");
+    });
+
+    return this;
+  };
+
+}(jQuery));
+
+// Usage example:
+$("a").showLinkLocation();
+```
 
 Query() 함수에 의해 생성된 객체를 Matched set 또는 jQuery selection이라 한다. 이 객체에는 선택한 요소에 대한 참조가 저장되어 있다. jQuery가 제공하는 프로퍼티와 메서드는 prototype 객체를 통해 접근할 수 있다.
 
@@ -104,6 +121,140 @@ $( "div" ).greenify({
   color: "orange"
 });
 ```
+
+# jQuery plugins
+
+## Slider
+
+### Unslider
+
+image slider
+
+[Demo & Download](http://unslider.com/)
+
+### Simple jQuery Slider
+
+Simple jQuery CSS3 slider
+
+<i class="fa fa-eye" aria-hidden="true"></i>
+
+[Demo](http://simpleslider.bitlabs.nl/)
+
+[Download](https://github.com/dirkgroenen/simple-jQuery-slider)
+
+## Image gallery
+
+### nanoGALLERY
+
+[Demo](http://nanogallery.brisbois.fr/)
+
+[Download](https://github.com/Kris-B/nanoGALLERY)
+
+## Navigation
+
+### Slinky
+
+Sliding menu
+
+[Demo](http://alizahid.github.io/slinky/)
+
+[Download](https://github.com/alizahid/slinky)
+
+## Input
+
+### Typeahead.js
+
+Autocomplete library
+
+[Demo & Download](http://twitter.github.io/typeahead.js/)
+
+### Chosen
+
+Chosen is a jQuery plugin that makes long, unwieldy select boxes much more user-friendly.
+
+[Demo & Download](https://harvesthq.github.io/chosen/)
+
+### jQuery Knob
+
+jQuery dial
+
+[Demo](http://anthonyterrien.com/knob/)
+
+[Download](https://github.com/aterrien/jQuery-Knob)
+
+
+## Popup & Modal & Alert
+
+### Magnific Popup
+
+lightbox plugin for jQuery
+
+[Demo](http://dimsemenov.com/plugins/magnific-popup/)
+
+[Download](https://github.com/dimsemenov/Magnific-Popup)
+
+### Avgrund Modal
+
+[Demo & Download](http://labs.voronianski.com/jquery.avgrund.js/)
+
+### ALERTIFY.js
+
+browser dialogs
+
+[Demo & Download](http://fabien-d.github.io/alertify.js/)
+
+## Tooltip
+
+### Tooltipster
+
+Create semantic, modern tooltips
+
+[Demo](http://iamceege.github.io/tooltipster/)
+
+[Download](https://github.com/dimsemenov/Magnific-Popup)
+
+## Scroll
+
+### FSVS
+
+simple fullscreen vertical slider using CSS3 transitions with jQuery fallback.
+
+[Demo](http://luke.sno.wden.co.uk/full-screen-vertical-scroll)
+
+[Download](https://github.com/lukesnowden/FSVS)
+### Scroll Path
+
+custom scroll paths
+
+[Demo](http://joelb.me/scrollpath/)
+
+[Download](https://github.com/JoelBesada/scrollpath)
+
+## Animation
+
+### TwentyTwenty
+
+Material Design hierarchical display animation effect
+
+[Demo](http://zavoloklom.github.io/material-design-hierarchical-display/)
+
+[Download](https://github.com/zavoloklom/material-design-hierarchical-display)
+
+## Typography
+
+### Lettering.js
+
+A jQuery plugin for radical web typography
+
+[Demo](http://letteringjs.com/)
+
+[Download](https://github.com/davatron5000/Lettering.js)
+
+### FitText
+
+[Demo](http://fittextjs.com/)
+
+[Download](https://github.com/davatron5000/FitText.js)
 
 # Reference
 

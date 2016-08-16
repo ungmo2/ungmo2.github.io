@@ -136,9 +136,9 @@ image slider
 
 Simple jQuery CSS3 slider
 
-<a href="http://simpleslider.bitlabs.nl/"><i class="fa fa-eye fa-2x" aria-hidden="true"></i></a>
+<!-- <a href="http://simpleslider.bitlabs.nl/"><i class="fa fa-eye fa-2x" aria-hidden="true"></i></a>
 
-<a href="https://github.com/dirkgroenen/simple-jQuery-slider"><i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
+<a href="https://github.com/dirkgroenen/simple-jQuery-slider"><i class="fa fa-download fa-2x" aria-hidden="true"></i></a> -->
 
 [Demo](http://simpleslider.bitlabs.nl/)
 
@@ -233,6 +233,13 @@ custom scroll paths
 [Download](https://github.com/JoelBesada/scrollpath)
 
 ## Animation
+
+### Morphext
+
+jQuery carousel plugin for text phrases.
+
+[Demo & Download](http://morphext.fyianlai.com/)
+
 
 ### TwentyTwenty
 

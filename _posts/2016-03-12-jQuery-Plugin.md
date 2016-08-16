@@ -136,7 +136,9 @@ image slider
 
 Simple jQuery CSS3 slider
 
-<i class="fa fa-eye" aria-hidden="true"></i>
+<a href="http://simpleslider.bitlabs.nl/"><i class="fa fa-eye fa-2x" aria-hidden="true"></i></a>
+
+<a href="https://github.com/dirkgroenen/simple-jQuery-slider"><i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
 
 [Demo](http://simpleslider.bitlabs.nl/)
 

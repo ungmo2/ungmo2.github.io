@@ -224,6 +224,7 @@ simple fullscreen vertical slider using CSS3 transitions with jQuery fallback.
 [Demo](http://luke.sno.wden.co.uk/full-screen-vertical-scroll)
 
 [Download](https://github.com/lukesnowden/FSVS)
+
 ### Scroll Path
 
 custom scroll paths
@@ -233,13 +234,6 @@ custom scroll paths
 [Download](https://github.com/JoelBesada/scrollpath)
 
 ## Animation
-
-### Morphext
-
-jQuery carousel plugin for text phrases.
-
-[Demo & Download](http://morphext.fyianlai.com/)
-
 
 ### TwentyTwenty
 
@@ -264,6 +258,18 @@ A jQuery plugin for radical web typography
 [Demo](http://fittextjs.com/)
 
 [Download](https://github.com/davatron5000/FitText.js)
+
+### Typed.js
+
+jQuery Animated Typing
+
+[Demo & Download](http://www.mattboldt.com/demos/typed-js/)
+
+### Morphext
+
+jQuery carousel plugin for text phrases.
+
+[Demo & Download](http://morphext.fyianlai.com/)
 
 # Reference
 

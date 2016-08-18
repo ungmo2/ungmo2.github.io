@@ -53,7 +53,7 @@ MongoDB Sharding Clustering
 
 <table style="max-width:550px">
   <tr>
-    <th colspan="2">Database Server</td>
+    <th colspan="2">Database Server</th>
   </tr>
   <tr>
     <td>mysqld</td>
@@ -61,24 +61,15 @@ MongoDB Sharding Clustering
   </tr>
 </table>
 
-| Database Server
-|:-------------|:-------------
-| mysqld       | mongod
-
 <table style="max-width:550px">
   <tr>
-    <th colspan="2">Database Client</td>
+    <th colspan="2">Database Client</th>
   </tr>
   <tr>
     <td>mysql</td>
     <td>mongo</td>
   </tr>
 </table>
-
-| Database Client
-|:-------------|:-------------
-| mysql        | mongo
-
 
 
 # 4. install

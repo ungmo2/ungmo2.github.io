@@ -51,9 +51,9 @@ MongoDB Sharding Clustering
 | Primary Key    | Primary Key (_id)
 
 
-<table style="display:block;max-width:550px">
+<table>
   <tr>
-    <th colspan="2">Database Server</th>
+    <th colspan="2" style="width:175px;">Database Server</th>
   </tr>
   <tr>
     <td>mysqld</td>
@@ -61,9 +61,9 @@ MongoDB Sharding Clustering
   </tr>
 </table>
 
-<table style="display:block;max-width:550px">
+<table>
   <tr>
-    <th colspan="2">Database Client</th>
+    <th colspan="2" style="width:175px;">Database Client</th>
   </tr>
   <tr>
     <td>mysql</td>

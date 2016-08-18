@@ -41,19 +41,10 @@ MongoDB Sharding Clustering
 
 # 3. RDMS와 mongodb의 비교
 
-| RDBMS          | MongoDB
-|:---------------|:---------------
-| Database	     | Database
-| Table	         | Collection
-| Tuple / Row	   | Document
-| Column         | Key / Field
-| Table Join     | Embedded Documents
-| Primary Key    | Primary Key (_id)
-
 <table>
   <tr>
-    <th style="width:200px;">RDBMS</th>
-    <th style="width:200px;">MongoDB</th>
+    <th style="width:220px;">RDBMS</th>
+    <th style="width:220px;">MongoDB</th>
   </tr>
   <tr>
     <td>Database</td>
@@ -86,8 +77,8 @@ MongoDB Sharding Clustering
     <th colspan="2">Database Server</th>
   </tr>
   <tr>
-    <td style="width:200px;">mysqld</td>
-    <td style="width:200px;">mongod</td>
+    <td style="width:220px;">mysqld</td>
+    <td style="width:220px;">mongod</td>
   </tr>
 </table>
 
@@ -96,8 +87,8 @@ MongoDB Sharding Clustering
     <th colspan="2">Database Client</th>
   </tr>
   <tr>
-    <td style="width:200px;">mysql</td>
-    <td style="width:200px;">mongo</td>
+    <td style="width:220px;">mysql</td>
+    <td style="width:220px;">mongo</td>
   </tr>
 </table>
 

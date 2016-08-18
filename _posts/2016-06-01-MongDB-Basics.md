@@ -12,7 +12,7 @@ tags: []
 
 [MongoDB](https://www.mongodb.com/)는 Document-Oriented  [NoSQL](https://ko.wikipedia.org/wiki/NoSQL) 데이터베이스이다. 오픈 소스이며 엔진은 C++로 작성되었다.
 
-MongoDB는 RDMS의 record와 유사한 개념의 ***document*** 라고 하는 JSON objects와 유사한 key-value의 쌍으로 이루어진 데이터 구조로 구성된다.
+MongoDB는 RDMS의 record와 유사한 개념의 ***document*** 라고 하는 JSON objects 형태의 key-value의 쌍으로 이루어진 데이터 구조로 구성된다.
 
 value field에는 다른 document, array, document array가 포함될 수 있다.
 
@@ -40,6 +40,25 @@ MongoDB Sharding Clustering
 {: style="color:gray; font-size: 80%; text-align: center; margin-top: 5px;"}
 
 # 3. RDMS
+
+| RDBMS        | MongoDB
+|:-------------|:-------------
+| Database	   | Database
+| Table	       | Collection
+| Tuple / Row	 | Document
+| Column       | Key / Field
+| Table Join   | Embedded Documents
+| Primary Key  | Primary Key (_id)
+
+| Database Server
+|:-------------|:-------------
+| mysqld       | mongod
+
+| Database Client
+|:-------------|:-------------
+| mysql        | mongo
+
+
 
 # install
 

@@ -39,7 +39,7 @@ value field에는 다른 document, array, document array가 포함될 수 있다
 MongoDB Sharding Clustering
 {: style="color:gray; font-size: 80%; text-align: center; margin-top: 5px;"}
 
-# 3. RDMS
+# 3. RDMS와 mongodb의 비교
 
 | RDBMS        | MongoDB
 |:-------------|:-------------
@@ -50,9 +50,30 @@ MongoDB Sharding Clustering
 | Table Join   | Embedded Documents
 | Primary Key  | Primary Key (_id)
 
+
+<table>
+  <tr>
+    <td colspan="2">Database Server</td>
+  </tr>
+  <tr>
+    <td>mysqld</td>
+    <td>mongod</td>
+  </tr>
+</table>
+
 | Database Server
 |:-------------|:-------------
 | mysqld       | mongod
+
+<table>
+  <tr>
+    <td colspan="2">Database Client</td>
+  </tr>
+  <tr>
+    <td>mysql</td>
+    <td>mongo</td>
+  </tr>
+</table>
 
 | Database Client
 |:-------------|:-------------
@@ -60,7 +81,7 @@ MongoDB Sharding Clustering
 
 
 
-# install
+# 4. install
 
 https://docs.mongodb.com/manual/installation/
 

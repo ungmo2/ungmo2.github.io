@@ -52,8 +52,8 @@ MongoDB Sharding Clustering
 
 <table>
   <tr>
-    <th style="width:160px;">RDBMS</th>
-    <th style="width:160px;">MongoDB</th>
+    <th style="width:200px;">RDBMS</th>
+    <th style="width:200px;">MongoDB</th>
   </tr>
   <tr>
     <td>Database</td>
@@ -86,8 +86,8 @@ MongoDB Sharding Clustering
     <th colspan="2">Database Server</th>
   </tr>
   <tr>
-    <td style="width:160px;">mysqld</td>
-    <td style="width:160px;">mongod</td>
+    <td style="width:200px;">mysqld</td>
+    <td style="width:200px;">mongod</td>
   </tr>
 </table>
 
@@ -96,8 +96,8 @@ MongoDB Sharding Clustering
     <th colspan="2">Database Client</th>
   </tr>
   <tr>
-    <td style="width:160px;">mysql</td>
-    <td style="width:160px;">mongo</td>
+    <td style="width:200px;">mysql</td>
+    <td style="width:200px;">mongo</td>
   </tr>
 </table>
 

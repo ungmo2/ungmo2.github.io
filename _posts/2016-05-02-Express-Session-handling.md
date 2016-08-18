@@ -106,7 +106,7 @@ session secret는 쿠키에 저장될 Session ID 서명에 사용된다. session
 
 # 4. Redis를 사용한 세션 관리
 
-Redis는 in-memory data structure store로 key-value의 형태로 data를 저장한다.
+Redis는 [in-memory](https://ko.wikipedia.org/wiki/%EC%9D%B8%EB%A9%94%EB%AA%A8%EB%A6%AC_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4) data structure store로 key-value의 형태로 data를 저장한다.
 
 Express의 경우, [connect-redis](https://github.com/tj/connect-redis) 모듈을 사용하여 Redis를 사용한 세션 관리가 가능하다.
 

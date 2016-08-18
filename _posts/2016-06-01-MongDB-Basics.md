@@ -68,7 +68,7 @@ MongoDB Sharding Clustering
   </tr>
   <tr>
     <td>Primary Key</td>
-    <td>Primary Key (\_id)</td>
+    <td>Primary Key (&#95;id)</td>
   </tr>
 </table>
 

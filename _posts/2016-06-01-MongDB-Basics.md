@@ -50,24 +50,54 @@ MongoDB Sharding Clustering
 | Table Join     | Embedded Documents
 | Primary Key    | Primary Key (_id)
 
-
 <table>
   <tr>
-    <th colspan="2" style="width:175px;">Database Server</th>
+    <th style="width:160px;">RDBMS</th>
+    <th style="width:160px;">MongoDB</th>
   </tr>
   <tr>
-    <td>mysqld</td>
-    <td>mongod</td>
+    <td>Database</td>
+    <td>Database</td>
+  </tr>
+  <tr>
+    <td>Table</td>
+    <td>Collection</td>
+  </tr>
+  <tr>
+    <td>Tuple / Row</td>
+    <td>Document</td>
+  </tr>
+  <tr>
+    <td>Column</td>
+    <td>Key field</td>
+  </tr>
+  <tr>
+    <td>Table Join</td>
+    <td>Embedded Documents</td>
+  </tr>
+  <tr>
+    <td>Primary Key</td>
+    <td>Primary Key (\_id)</td>
   </tr>
 </table>
 
 <table>
   <tr>
-    <th colspan="2" style="width:175px;">Database Client</th>
+    <th colspan="2">Database Server</th>
   </tr>
   <tr>
-    <td>mysql</td>
-    <td>mongo</td>
+    <td style="width:160px;">mysqld</td>
+    <td style="width:160px;">mongod</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2">Database Client</th>
+  </tr>
+  <tr>
+    <td style="width:160px;">mysql</td>
+    <td style="width:160px;">mongo</td>
   </tr>
 </table>
 

@@ -139,15 +139,15 @@ MongoDB Sharding Clustering
 
 # 4. install
 
-Community Server 3.2.9 기준으로 설명한다.
-
 ## 4.1 Windows
 
 **1. download & install**
 
 [MongoDB download](https://www.mongodb.com/download-center?jmp=homepage#community)에서 자신의 사양에 맞는 버전을 다운로드하여 install한다.
 
-설치가 완료되면 CMD 창을 열고 MongoDB가 설치된 디렉터리로 이동한다. 설치 디렉터리를 별도 지정하지 않았다면 `C:\Program Files\MongoDB\Server\3.2\bin\`에 설치된다. (Community Server 3.2.9 기준)
+Community Server 3.2.9을 기준으로 설명한다.
+
+설치가 완료되면 CMD 창을 열고 MongoDB가 설치된 디렉터리로 이동한다. 설치 디렉터리를 별도 지정하지 않았다면 `C:\Program Files\MongoDB\Server\3.2\bin\`에 설치된다.
 
 ```
 cd C:\Program Files\MongoDB\Server\3.2\bin
@@ -259,73 +259,58 @@ C:\Program Files\MongoDB\Server\3.2\bin>
 
 ## 4.2 Mac
 
+**1. download & install**
 
-기동
-
-# path 설정
-
-home directory 내의 .bash_profile 파일을 확인한다.
+Mac의 경우, Homebrew를 사용하여 install할 수 있다.
 
 ```
-$ cd  ~
-$ ls -al
-```
+$ brew update && brew install mongodb
 
-.bash_profile 파일이 없으면 생성한다.
-
-```
-$ touch .bash_profile
-```
-
-.bash_profile을 텍스트 편집기로 수정한다.
-
-```
-$ open -e .bash_profile
-```
-
-```
-export PATH=<mongodb-install-directory>/bin:$PATH
-```
-
-ex) export PATH=/usr/local/bin:$PATH
-
-
-restart terminal
-
-```
 $ mongo -version
 MongoDB shell version: 3.2.8
 ```
 
-# Start MongoDB
+**2. 기본 데이터베이스 디렉터리 생성**
 
-Terminal 1
+기본 데이터베이스 디렉터리(/data/db)를 생성한다. 기본 데이터베이스 디렉터리에 데이터가 store된다.
+
+```
+$ mkdir -p /data/db
+```
+
+**3. DB 기동**
+
+MongoDB 서버를 기동한다.
 
 ```
 $ mongod
-MongoDB starting : pid=8459 port=27017 dbpath=/data/db 64-bit host=ungmo2.local
-
-...
-
-waiting for connections on port 27017
 ```
 
-Terminal 2
+새로운 터미널에서 MongoDB 클라이언트를 기동한다.
 
 ```
 $ mongo
-MongoDB shell version: 3.2.8
-connecting to: test
+```
+
+**4. DB 중지**
+
+MongoDB 클라이언트를 기동시킨 터미널에서 DB를 중지시킨다. 이때 MongoDB 서버 또한 중지된다.
+
+```
+> use admin
+switched to db admin
+> db.shutdownServer()
+server should be down...
+2016-08-19T14:15:10.057+0900 I NETWORK  [thread1] trying reconnect to 127.0.0.1:27017 (127.0.0.1) failed
+2016-08-19T14:15:10.058+0900 W NETWORK  [thread1] Failed to connect to 127.0.0.1:27017, reason: errno:61 Connection refused
+2016-08-19T14:15:10.058+0900 I NETWORK  [thread1] reconnect 127.0.0.1:27017 (127.0.0.1) failed failed
+> quit()
+
+$ ps wuax | grep mongo
+leeungmo    15609   0.0  0.0  2454296    820 s001  S+    2:16PM   0:00.00 grep mongo
 ```
 
 
+# GUI 툴
 
-GUI 툴로는[Robomongo](https://robomongo.org/)
-
-
-# Auto Start MongoDB -> XXXXX
-
-To auto start mongoDB, create a launchd job on Mac.
-
-$ sudo touch /Library/LaunchDaemons/mongodb.plist
-$ sudo open -e /Library/LaunchDaemons/mongodb.plist
+[Robomongo](https://robomongo.org/)

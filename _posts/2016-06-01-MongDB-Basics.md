@@ -420,9 +420,9 @@ mongo-example     0.000GB
 }
 ```
 
-select할 field를 지정할 수 있다.
+select할 field를 지정할 수 있다. &#95;id는 지정하지 않아도 출력에 포함되므로 select할 field에 포함시키지 않을 경우애는 value에 0을 지정하여 명시적으로 배제하여야 한다.
 
-```javascript
+```
 > db.books.find({ }, { _id: 0, title: 1 })
 { "title" : "MongoDB Example" }
 { "title" : "Example1" }
@@ -439,7 +439,9 @@ db.collection.find(query, projection)
 | Parameter  | Type     | Description
 |:-----------|:---------|:--------------------------------
 | query      | document | Option. document를 select하는 기준이다. 기준이 없이 collect 내의 모든 document를 select하는 경우에는 생략하거나 { }를 전달한다.
-| projection | document | Option. document를 select할 때 보여줄 field이다.
+| projection | document | Option. document를 select할 때 포함될 field이다.
+
+SQL SELECT 구문과 find() 구문을 비교하면 다음과 같다.
 
 ```sql
 SELECT user_id, status
@@ -454,8 +456,19 @@ db.users.find(
 )
 ```
 
+projection를 생략하면 모든 field가 선택된다.
 
+```sql
+SELECT *
+FROM users
+WHERE status = "A"
+```
 
+```javascript
+db.users.find(
+  { status: "A" }
+)
+```
 
 
 

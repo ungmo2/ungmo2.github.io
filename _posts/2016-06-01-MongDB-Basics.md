@@ -39,7 +39,7 @@ value field에는 다른 document, array, document array가 포함될 수 있다
 MongoDB Sharding Clustering
 {: style="color:gray; font-size: 80%; text-align: center; margin-top: 5px;"}
 
-# 3. RDMS와 mongodb의 비교
+# 3. RDMS와 MongoDB의 비교
 
 **Terms**
 
@@ -139,13 +139,15 @@ MongoDB Sharding Clustering
 
 # 4. install
 
+Community Server 3.2.9 기준으로 설명한다.
+
 ## 4.1 Windows
 
 **1. download & install**
 
 [MongoDB download](https://www.mongodb.com/download-center?jmp=homepage#community)에서 자신의 사양에 맞는 버전을 다운로드하여 install한다.
 
-설치가 완료되면 CMD 창을 열고 MongoDB가 설치된 디렉터리로 이동한다. 설치 디렉터리를 별도 지정하지 않았다면 `C:\Program Files\MongoDB\Server\3.2\bin\`에 설치된다.
+설치가 완료되면 CMD 창을 열고 MongoDB가 설치된 디렉터리로 이동한다. 설치 디렉터리를 별도 지정하지 않았다면 `C:\Program Files\MongoDB\Server\3.2\bin\`에 설치된다. (Community Server 3.2.9 기준)
 
 ```
 cd C:\Program Files\MongoDB\Server\3.2\bin
@@ -153,10 +155,15 @@ cd C:\Program Files\MongoDB\Server\3.2\bin
 
 **2. 기본 데이터베이스 디렉터리 생성**
 
-기본 데이터베이스 디렉터리(C:\\data\\db)를 생성한다.
+기본 데이터베이스 디렉터리(C:\\data\\db)를 생성한다. 기본 데이터베이스 디렉터리에 데이터가 store된다.
 
 ```
 C:\Program Files\MongoDB\Server\3.2\bin>mkdir C:\data\db
+```
+
+로그 파일이 저장될 디렉터리를 생성한다.
+
+```
 C:\Program Files\MongoDB\Server\3.2\bin>mkdir C:\mongodb\log
 ```
 
@@ -310,6 +317,11 @@ $ mongo
 MongoDB shell version: 3.2.8
 connecting to: test
 ```
+
+
+
+GUI 툴로는[Robomongo](https://robomongo.org/)
+
 
 # Auto Start MongoDB -> XXXXX
 

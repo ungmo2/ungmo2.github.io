@@ -14,12 +14,16 @@ tags: []
 
 [MongoDB](https://www.mongodb.com/)는 Document-Oriented  [NoSQL](https://ko.wikipedia.org/wiki/NoSQL) 데이터베이스이다. 오픈 소스이며 엔진은 C++로 작성되었다.
 
-MongoDB는 RDMS의 record와 유사한 개념의 ***document*** 라고 하는 JSON objects 형태의 key-value의 쌍으로 이루어진 데이터 구조로 구성된다.
+MongoDB는 RDMS의 record와 유사한 개념의 [document](https://docs.mongodb.com/manual/core/document/) 라고 하는 JSON objects 형태의 key-value의 쌍으로 이루어진 데이터 구조로 구성된다.
 
 value field에는 다른 document, array, document array가 포함될 수 있다.
 
 ![MongoDB Document](/img/mongodb-document.png)
 {: style="max-width:450px; margin: 20px auto 10px;"}
+
+MongoDB Document
+{: style="color:gray; font-size: 80%; text-align: center; margin-top: 5px;"}
+
 
 # 2. 특징
 
@@ -307,6 +311,66 @@ leeungmo    15609   0.0  0.0  2454296    820 s001  S+    2:16PM   0:00.00 grep m
 ```
 
 # 5. MongoDB Shell
+
+MongoDB Shell을 사용하여 CRUD의 기본을 알아본다.
+
+## 5.1 Create
+
+`use <database_name>` 명령어를 사용하여 database를 생성한다.
+
+만약 동일한 이름의 Database가 존재할 경우, 그 database를 사용하며 존재하지 않을 경우, database를 생성한다.
+
+```
+> use mongo-example
+switched to db mongo-example
+```
+
+`db` 명령어를 사용하여 현재 사용중인 database를 확인한다.
+
+```
+> db
+mongo-example
+```
+
+`show dbs` 명령어를 사용하여 데이터베이스 리스트를 확인한다.
+
+```
+> show dbs
+local             0.000GB
+```
+
+이 시점에서 mongo-example database는 아직 생성되지 않았다. 최소 한개 이상의 document를 추가하여야 database가 생성된다.
+
+`db.<collection_name>.insert(<documents>)`로 document를 추가한다. 이때 RDBMS의 Table 개념의 [collection](https://docs.mongodb.com/manual/reference/glossary/#term-collection) book도 생성된다.
+
+```
+> db.book.insert({"title": "MongoDB Example", "author": "Lee", price: 100});
+WriteResult({ "nInserted" : 1 })
+```
+
+database list를 확인하면 mongo-example database가 생성된 것을 확인할 수 있다.
+
+```
+> show dbs
+local             0.000GB
+mongo-example     0.000GB
+```
+
+## 5.2 Read
+
+```
+> db.book.find({title: "MongoDB Example"})
+{ "_id" : ObjectId("57b6ac0e370997928bbee55b"), "title" : "MongoDB Example", "author" : "Lee", "price" : 100 }
+```
+
+## 5.3 Update
+
+
+## 5.4 Delete
+
+
+
+
 
 
 # Reference

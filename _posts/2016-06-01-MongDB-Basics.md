@@ -62,11 +62,11 @@ MongoDB Sharding Clustering
   </tr>
   <tr>
     <td>Column</td>
-    <td>Key / Field</td>
+    <td>Field</td>
   </tr>
   <tr>
     <td>Table Join</td>
-    <td>Embedded Documents</td>
+    <td>Embedded Documents & Linking</td>
   </tr>
   <tr>
     <td>Primary Key</td>
@@ -203,7 +203,7 @@ storageEngine = mmapv1
 
 **4. DB 기동**
 
-MongoDB 서버를 기동한다.
+MongoDB Server를 기동한다.
 
 ```
 C:\Program Files\MongoDB\Server\3.2\bin>mongod --config c:\mongodb\mongod.cfg
@@ -212,7 +212,7 @@ C:\Program Files\MongoDB\Server\3.2\bin>mongod --config c:\mongodb\mongod.cfg
 2016-08-18T16:41:10.303+0900 I COMMAND  [main] diagLogging using file C:\data\db/diaglog.57b56696
 ```
 
-새로운 CMD 창에서 MongoDB 클라이언트를 기동한다.
+새로운 CMD 창에서 MongoDB Client를 기동한다.
 
 ```
 C:\Program Files\MongoDB\Server\3.2\bin>mongo
@@ -280,13 +280,13 @@ $ mkdir -p /data/db
 
 **3. DB 기동**
 
-MongoDB 서버를 기동한다.
+MongoDB Server를 기동한다.
 
 ```
 $ mongod
 ```
 
-새로운 터미널에서 MongoDB 클라이언트를 기동한다.
+새로운 터미널에서 MongoDB Client를 기동한다.
 
 ```
 $ mongo
@@ -390,11 +390,78 @@ mongo-example     0.000GB
 { "_id" : ObjectId("57b6f5a3370997928bbee560"), "title" : "Example3", "author" : "Lee", "price" : 400 }
 ```
 
-조건을 부여하여 document를 select할 수 있다.
+`pretty()`를 사용하면 return data를 format에 맞게 출력한다.
 
 ```
-> db.books.find({title: "MongoDB Example"})
+> db.books.find().pretty()
+{
+	"_id" : ObjectId("57b6f590370997928bbee55d"),
+	"title" : "MongoDB Example",
+	"author" : "Lee",
+	"price" : 100
+}
+{
+	"_id" : ObjectId("57b6f5a3370997928bbee55e"),
+	"title" : "Example1",
+	"author" : "Lee",
+	"price" : 200
+}
+{
+	"_id" : ObjectId("57b6f5a3370997928bbee55f"),
+	"title" : "Example2",
+	"author" : "Lee",
+	"price" : 300
+}
+{
+	"_id" : ObjectId("57b6f5a3370997928bbee560"),
+	"title" : "Example3",
+	"author" : "Lee",
+	"price" : 400
+}
 ```
+
+select할 field를 지정할 수 있다.
+
+```javascript
+> db.books.find({ }, { _id: 0, title: 1 })
+{ "title" : "MongoDB Example" }
+{ "title" : "Example1" }
+{ "title" : "Example2" }
+{ "title" : "Example3" }
+```
+
+`find()` 메서드는 2개의 parameter를 갖는다.
+
+```javascript
+db.collection.find(query, projection)
+```
+
+| Parameter  | Type     | Description
+|:-----------|:---------|:--------------------------------
+| query      | document | Option. document를 select하는 기준이다. 기준이 없이 collect 내의 모든 document를 select하는 경우에는 생략하거나 { }를 전달한다.
+| projection | document | Option. document를 select할 때 보여줄 field이다.
+
+```sql
+SELECT user_id, status
+FROM users
+WHERE status = "A"
+```
+
+```javascript
+db.users.find(
+  { status: "A" },
+  { user_id: 1, status: 1, _id: 0 }
+)
+```
+
+
+
+
+
+
+
+
+
 
 [Query operator(연산자)](https://docs.mongodb.com/manual/reference/operator/query/)를 사용하여 조건을 지정할 수 있다.
 

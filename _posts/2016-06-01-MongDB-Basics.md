@@ -444,15 +444,39 @@ db.collection.find(query, projection)
 SQL SELECT 구문과 find() 구문을 비교하면 다음과 같다.
 
 ```sql
-SELECT user_id, status
-FROM users
-WHERE status = "A"
+SELECT id, title, author
+FROM books
 ```
 
 ```javascript
 db.users.find(
-  { status: "A" },
-  { user_id: 1, status: 1, _id: 0 }
+    { },
+    { title: 1, author: 1 }
+)
+```
+
+```sql
+SELECT title, author
+FROM books
+```
+
+```javascript
+db.users.find(
+    { },
+    { _id: 0, title: 1, author: 1 }
+)
+```
+
+```sql
+SELECT title, author
+FROM books
+WHERE price = 200
+```
+
+```javascript
+db.books.find(
+  { price: 200 },
+  { title: 1, author: 1, _id: 0 }
 )
 ```
 
@@ -460,36 +484,47 @@ projection를 생략하면 모든 field가 선택된다.
 
 ```sql
 SELECT *
-FROM users
-WHERE status = "A"
+FROM books
+WHERE price = 100
 ```
 
 ```javascript
-db.users.find(
-  { status: "A" }
+db.books.find(
+  { price: 100 }
 )
 ```
 
-* [SQL to MongoDB Mapping Chart](https://docs.mongodb.com/manual/reference/sql-comparison/)
+다음은 price가 200 보다 큰(200 미포함) document를 select한다.
 
-
-
-
-
-
-[Query operator(연산자)](https://docs.mongodb.com/manual/reference/operator/query/)를 사용하여 조건을 지정할 수 있다.
-
-```
-db.books.find({price:{$gte:150}})
-{ ・・ "_id" : 2, "title" : "JavaScriptリファレンス", "price" : 300 }
+```javascript
+db.books.find(
+  { price: { $gt: 200 } }
+)
 ```
 
+`$gt`는 greater than을 의미하는 [MongoDB Query operator](https://docs.mongodb.com/manual/reference/operator/query/)이다.
 
-db.<collection_name>.find( <query filter>, <projection> )
+Query operator(쿼리 연산자)에는 비교(Comparison), 논리(Logical), 요소(Element), 평가(Evaluation), 배열(Array) 등이 있다.
 
-```
-> db.books.find({title: "MongoDB Example"})
-{ "_id" : ObjectId("57b6ac0e370997928bbee55b"), "title" : "MongoDB Example", "author" : "Lee", "price" : 100 }
+그 중 사용 빈도가 높은 비교(Comparison) 연산자에 대해 알아본다.
+
+| Operator  | Meaning             | Description
+|:----------|:--------------------|:------------------------------------
+| $eq       | equals              | 지정 값과 일치하는 값
+| $gt	      | greater than        | 지정 값보다 큰 값
+| $gte      | greater than or equals | 지정 값보다 크거나 같은 값
+| $lt       | less than           | 지정 값보다 작은 값
+| $lte      | less than or equals | 지정 값보다 작거나 같은 값
+| $ne       | not equal           | 지정 값과 일치하지 않는 값
+| $in       | in an array         | 지정 배열 안에 속하는 값
+| $nin      | none in an array    | 지정 배열 안에 속하지 않는 값
+
+다음은 price가 200보다 크고 400보다 작거나 같은 document를 select한다.
+
+```javascript
+db.books.find(
+  { price: { $gt: 200, $lte: 400 } }
+)
 ```
 
 ## 5.3 Update
@@ -504,5 +539,7 @@ db.<collection_name>.find( <query filter>, <projection> )
 # Reference
 
 * [The MongoDB 3.2 Manual](https://docs.mongodb.com/manual/)
+
+* [SQL to MongoDB Mapping Chart](https://docs.mongodb.com/manual/reference/sql-comparison/)
 
 * [Robomongo](https://robomongo.org/)

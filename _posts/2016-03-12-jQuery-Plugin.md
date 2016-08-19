@@ -255,6 +255,8 @@ A jQuery plugin for radical web typography
 
 ### FitText
 
+A jQuery plugin for inflating web type
+
 [Demo](http://fittextjs.com/)
 
 [Download](https://github.com/davatron5000/FitText.js)

@@ -41,9 +41,11 @@ MongoDB Sharding Clustering
 
 # 3. RDMS와 mongodb의 비교
 
+**Terms**
+
 <table>
   <tr>
-    <th style="width:220px;">RDBMS</th>
+    <th style="width:220px;">RDB(MySQL)</th>
     <th style="width:220px;">MongoDB</th>
   </tr>
   <tr>
@@ -72,26 +74,68 @@ MongoDB Sharding Clustering
   </tr>
 </table>
 
-<table>
-  <tr>
-    <th colspan="2">Database Server</th>
-  </tr>
-  <tr>
-    <td style="width:220px;">mysqld</td>
-    <td style="width:220px;">mongod</td>
-  </tr>
-</table>
+**Database Server**
 
 <table>
   <tr>
-    <th colspan="2">Database Client</th>
+    <th style="width:220px;">RDB(MySQL)</th>
+    <th style="width:220px;">MongoDB</th>
   </tr>
   <tr>
-    <td style="width:220px;">mysql</td>
-    <td style="width:220px;">mongo</td>
+    <td>mysqld</td>
+    <td>mongod</td>
   </tr>
 </table>
 
+**Database Client**
+
+<table>
+  <tr>
+    <th style="width:220px;">RDB(MySQL)</th>
+    <th style="width:220px;">MongoDB</th>
+  </tr>
+  <tr>
+    <td>mysql</td>
+    <td>mongo</td>
+  </tr>
+</table>
+
+**SQL**
+
+<table>
+  <tr>
+    <th style="width:220px;">RDB(MySQL)</th>
+    <th style="width:220px;">MongoDB</th>
+  </tr>
+  <tr>
+    <th colspan="2">Insert</th>
+  </tr>
+  <tr>
+    <td>insert into users ("name", "city") values("lee", "seoul")</td>
+    <td>db.users.insert({name: "lee", city: "seoul"})</td>
+  </tr>
+  <tr>
+    <th colspan="2">Select</th>
+  </tr>
+  <tr>
+    <td>select * from users where name="lee"</td>
+    <td>db.users.find({name: "lee"})</td>
+  </tr>
+  <tr>
+    <th colspan="2">Update</th>
+  </tr>
+  <tr>
+    <td>update users set city="busan" where name="lee"</td>
+    <td>db.users.update({name: "lee"}, {$set: {city: "busan"}})</td>
+  </tr>
+  <tr>
+    <th colspan="2">Delete</th>
+  </tr>
+  <tr>
+    <td>delete from users where name="lee"</td>
+    <td>db.users.remove({name: "lee"})</td>
+  </tr>
+</table>
 
 # 4. install
 
@@ -99,7 +143,7 @@ MongoDB Sharding Clustering
 
 **1. download & install**
 
-[MongoDB download](https://www.mongodb.com/download-center?jmp=homepage#community)에서 자신의 사양에 맞는 버전을 다운로드한다.
+[MongoDB download](https://www.mongodb.com/download-center?jmp=homepage#community)에서 자신의 사양에 맞는 버전을 다운로드하여 install한다.
 
 설치가 완료되면 CMD 창을 열고 MongoDB가 설치된 디렉터리로 이동한다. 설치 디렉터리를 별도 지정하지 않았다면 `C:\Program Files\MongoDB\Server\3.2\bin\`에 설치된다.
 
@@ -112,8 +156,8 @@ cd C:\Program Files\MongoDB\Server\3.2\bin
 기본 데이터베이스 디렉터리(C:\\data\\db)를 생성한다.
 
 ```
-mkdir C:\data\db
-mkdir C:\mongodb\log
+C:\Program Files\MongoDB\Server\3.2\bin>mkdir C:\data\db
+C:\Program Files\MongoDB\Server\3.2\bin>mkdir C:\mongodb\log
 ```
 
 **3. 환경설정 파일 생성**
@@ -145,76 +189,69 @@ diaglog=3
 ##It ensures write durability and data consistency much as any journaling scheme would be expected to do.
 ##Only set this to false if you don’t really care about your data (or more so, the loss of it).
 journal = true
+
+##For mongodb 32 bit
+storageEngine = mmapv1
 ```
 
-**3. DB 기동**
+**4. DB 기동**
 
-mongodb 서버를 실행한다.
-
-```
-mongod.exe --config d:\mongodb\mongo.config
-```
-
+MongoDB 서버를 기동한다.
 
 ```
-Microsoft Windows [Version 10.0.10586]
-(c) 2015 Microsoft Corporation. All rights reserved.
-
-C:\Users\grace2us>cd "C:\Program Files\MongoDB\Server\3.2\bin"
-
-C:\Program Files\MongoDB\Server\3.2\bin>dir
- C 드라이브의 볼륨에는 이름이 없습니다.
- 볼륨 일련 번호: A470-9C67
-
- C:\Program Files\MongoDB\Server\3.2\bin 디렉터리
-
-2016-08-18  오후 03:04    <DIR>          .
-2016-08-18  오후 03:04    <DIR>          ..
-2016-08-16  오후 05:29         4,380,672 bsondump.exe
-2016-08-16  오후 05:33         7,741,440 mongo.exe
-2016-08-16  오후 05:37        14,070,272 mongod.exe
-2016-08-16  오후 05:38       153,481,216 mongod.pdb
-2016-08-16  오후 05:30         9,457,152 mongodump.exe
-2016-08-16  오후 05:29         5,873,152 mongoexport.exe
-2016-08-16  오후 05:29         5,734,400 mongofiles.exe
-2016-08-16  오후 05:29         5,974,528 mongoimport.exe
-2016-08-16  오후 05:30         5,490,688 mongooplog.exe
-2016-08-16  오후 05:38        11,912,704 mongoperf.exe
-2016-08-16  오후 05:29        13,778,944 mongorestore.exe
-2016-08-16  오후 05:37         6,254,592 mongos.exe
-2016-08-16  오후 05:37        85,504,000 mongos.pdb
-2016-08-16  오후 05:29         5,724,160 mongostat.exe
-2016-08-16  오후 05:30         5,561,344 mongotop.exe
-              15개 파일         340,939,264 바이트
-               2개 디렉터리  134,826,655,744 바이트 남음
-
-C:\Program Files\MongoDB\Server\3.2\bin>mkdir c:\data\db
-
-C:\Program Files\MongoDB\Server\3.2\bin>mongod
-2016-08-18T15:10:14.502+0900 I CONTROL  [main]
-2016-08-18T15:10:14.504+0900 W CONTROL  [main] 32-bit servers don't have journaling enabled by default. Please use --journal if you want durability.
-2016-08-18T15:10:14.508+0900 I CONTROL  [main]
-2016-08-18T15:10:14.716+0900 I CONTROL  [initandlisten] MongoDB starting : pid=8400 port=27017 dbpath=C:\data\db\ 32-bit host=LibraHG
-2016-08-18T15:10:14.720+0900 I CONTROL  [initandlisten] targetMinOS: Windows Vista/Windows Server 2008
-2016-08-18T15:10:14.724+0900 I CONTROL  [initandlisten] db version v3.2.9
-2016-08-18T15:10:14.727+0900 I CONTROL  [initandlisten] git version: 22ec9e93b40c85fc7cae7d56e7d6a02fd811088c
-2016-08-18T15:10:14.732+0900 I CONTROL  [initandlisten] allocator: tcmalloc
-2016-08-18T15:10:14.736+0900 I CONTROL  [initandlisten] modules: none
-2016-08-18T15:10:14.739+0900 I CONTROL  [initandlisten] build environment:
-2016-08-18T15:10:14.741+0900 I CONTROL  [initandlisten]     distarch: i386
-2016-08-18T15:10:14.743+0900 I CONTROL  [initandlisten]     target_arch: i386
-2016-08-18T15:10:14.746+0900 I CONTROL  [initandlisten] options: {}
-2016-08-18T15:10:14.861+0900 I STORAGE  [initandlisten] exception in initAndListen: 28663 Cannot start server. The default storage engine 'wiredTiger' is not available with this build of mongod. Please specify a different storage engine explicitly, e.g. --storageEngine=mmapv1., terminating
-2016-08-18T15:10:14.865+0900 I CONTROL  [initandlisten] dbexit:  rc: 100
+C:\Program Files\MongoDB\Server\3.2\bin>mongod --config c:\mongodb\mongod.cfg
+2016-08-18T16:41:10.289+0900 W CONTROL  [main] --diaglog is deprecated and will be removed in a future release
+2016-08-18T16:41:10.295+0900 I COMMAND  [main] diagLogging level=3
+2016-08-18T16:41:10.303+0900 I COMMAND  [main] diagLogging using file C:\data\db/diaglog.57b56696
 ```
 
-<!-- ![mongodb windows install](/img/mongodb-windows-install.png) -->
+새로운 CMD 창에서 MongoDB 클라이언트를 기동한다.
+
+```
+C:\Program Files\MongoDB\Server\3.2\bin>mongo
+MongoDB shell version: 3.2.9
+connecting to: test
+Welcome to the MongoDB shell.
+For interactive help, type "help".
+For more comprehensive documentation, see
+        http://docs.mongodb.org/
+Questions? Try the support group
+        http://groups.google.com/group/mongodb-user
+Server has startup warnings:
+2016-08-18T16:57:15.720+0900 W CONTROL  [main] --diaglog is deprecated and will be removed in a future release
+2016-08-18T16:57:16.095+0900 I CONTROL  [initandlisten]
+2016-08-18T16:57:16.096+0900 I CONTROL  [initandlisten] ** WARNING: This 32-bit MongoDB binary is deprecated
+2016-08-18T16:57:16.096+0900 I CONTROL  [initandlisten]
+2016-08-18T16:57:16.096+0900 I CONTROL  [initandlisten]
+2016-08-18T16:57:16.096+0900 I CONTROL  [initandlisten] ** NOTE: This is a 32 bit MongoDB binary.
+2016-08-18T16:57:16.096+0900 I CONTROL  [initandlisten] **       32 bit builds are limited to less than 2GB of data (or less with --journal).
+2016-08-18T16:57:16.097+0900 I CONTROL  [initandlisten] **       See http://dochub.mongodb.org/core/32bit
+2016-08-18T16:57:16.097+0900 I CONTROL  [initandlisten]
+>
+```
+
+**5. DB 중지**
+
+MongoDB 클라이언트를 기동시킨 CMD창에서 admin 데이터베이스로 변경한 후 DB를 중지시킨다. 이때 MongoDB 서버 또한 중지된다.
+
+```
+> show dbs
+local  0.078GB
+> use admin
+switched to db admin
+> db.shutdownServer()
+server should be down...
+2016-08-18T17:08:07.726+0900 I NETWORK  [thread1] trying reconnect to 127.0.0.1:27017 (127.0.0.1) failed
+2016-08-18T17:08:08.731+0900 W NETWORK  [thread1] Failed to connect to 127.0.0.1:27017, reason: errno:10061 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습 니다.
+2016-08-18T17:08:08.734+0900 I NETWORK  [thread1] reconnect 127.0.0.1:27017 (127.0.0.1) failed failed
+> quit()
+
+C:\Program Files\MongoDB\Server\3.2\bin>
+```
 
 
+## 4.2 Mac
 
-
-
-https://docs.mongodb.com/manual/installation/
 
 기동
 

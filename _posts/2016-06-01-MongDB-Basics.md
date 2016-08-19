@@ -8,6 +8,8 @@ tags: []
 * TOC
 {:toc}
 
+![MongoDB Logo](mongo-db-logo.png)
+
 # 1. Introduction
 
 [MongoDB](https://www.mongodb.com/)는 Document-Oriented  [NoSQL](https://ko.wikipedia.org/wiki/NoSQL) 데이터베이스이다. 오픈 소스이며 엔진은 C++로 작성되었다.
@@ -16,14 +18,8 @@ MongoDB는 RDMS의 record와 유사한 개념의 ***document*** 라고 하는 JS
 
 value field에는 다른 document, array, document array가 포함될 수 있다.
 
-```javascript
-{
-  name: "sue",
-  age: 26,
-  status: "A",
-  groups: ["news", "sports"]
-}
-```
+![MongoDB Document](mongodb-document.png)
+{: style="max-width:450px; margin: 20px auto 10px;"}
 
 # 2. 특징
 
@@ -62,7 +58,7 @@ MongoDB Sharding Clustering
   </tr>
   <tr>
     <td>Column</td>
-    <td>Key field</td>
+    <td>Key / Field</td>
   </tr>
   <tr>
     <td>Table Join</td>
@@ -137,7 +133,7 @@ MongoDB Sharding Clustering
   </tr>
 </table>
 
-# 4. install
+# 4. Install
 
 ## 4.1 Windows
 
@@ -310,7 +306,11 @@ $ ps wuax | grep mongo
 leeungmo    15609   0.0  0.0  2454296    820 s001  S+    2:16PM   0:00.00 grep mongo
 ```
 
+# 5. MongoDB Shell
 
-# GUI 툴
 
-[Robomongo](https://robomongo.org/)
+# Reference
+
+* [The MongoDB 3.2 Manual](https://docs.mongodb.com/manual/)
+
+* [Robomongo](https://robomongo.org/)

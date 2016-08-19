@@ -8,7 +8,7 @@ tags: []
 * TOC
 {:toc}
 
-![MongoDB Logo](mongo-db-logo.png)
+![MongoDB Logo](/img/mongo-db-logo.png)
 
 # 1. Introduction
 
@@ -18,7 +18,7 @@ MongoDB는 RDMS의 record와 유사한 개념의 ***document*** 라고 하는 JS
 
 value field에는 다른 document, array, document array가 포함될 수 있다.
 
-![MongoDB Document](mongodb-document.png)
+![MongoDB Document](/img/mongodb-document.png)
 {: style="max-width:450px; margin: 20px auto 10px;"}
 
 # 2. 특징

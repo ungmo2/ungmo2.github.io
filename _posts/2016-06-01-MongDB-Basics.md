@@ -341,11 +341,31 @@ local             0.000GB
 
 이 시점에서 mongo-example database는 아직 생성되지 않았다. 최소 한개 이상의 document를 추가하여야 database가 생성된다.
 
-`db.<collection_name>.insert(<documents>)`로 document를 추가한다. 이때 RDBMS의 Table 개념의 [collection](https://docs.mongodb.com/manual/reference/glossary/#term-collection) book도 생성된다.
+`db.<collection_name>.insert(<documents>)`로 document를 추가한다. 이때 RDBMS의 Table 개념의 [collection](https://docs.mongodb.com/manual/reference/glossary/#term-collection) books도 생성된다.
 
 ```
-> db.book.insert({"title": "MongoDB Example", "author": "Lee", price: 100});
+> db.books.insert({"title": "MongoDB Example", "author": "Lee", price: 100});
 WriteResult({ "nInserted" : 1 })
+```
+
+한번에 여러개의 document를 추가할 수 있다.
+
+```
+> db.books.insert([
+  {"title": "Example1", "author": "Lee", price: 200},
+  {"title": "Example2", "author": "Lee", price: 300},
+  {"title": "Example3", "author": "Lee", price: 400}
+  ])
+BulkWriteResult({
+	"writeErrors" : [ ],
+	"writeConcernErrors" : [ ],
+	"nInserted" : 3,
+	"nUpserted" : 0,
+	"nMatched" : 0,
+	"nModified" : 0,
+	"nRemoved" : 0,
+	"upserted" : [ ]
+})
 ```
 
 database list를 확인하면 mongo-example database가 생성된 것을 확인할 수 있다.
@@ -358,8 +378,36 @@ mongo-example     0.000GB
 
 ## 5.2 Read
 
+`db.<collection_name>.find()`을 사용하여 collection 내의 document를 select한다.
+
+다음 예제는 books collection 내의 모든 document를 select한다.
+
 ```
-> db.book.find({title: "MongoDB Example"})
+> db.books.find()
+{ "_id" : ObjectId("57b6f590370997928bbee55d"), "title" : "MongoDB Example", "author" : "Lee", "price" : 100 }
+{ "_id" : ObjectId("57b6f5a3370997928bbee55e"), "title" : "Example1", "author" : "Lee", "price" : 200 }
+{ "_id" : ObjectId("57b6f5a3370997928bbee55f"), "title" : "Example2", "author" : "Lee", "price" : 300 }
+{ "_id" : ObjectId("57b6f5a3370997928bbee560"), "title" : "Example3", "author" : "Lee", "price" : 400 }
+```
+
+조건을 부여하여 document를 select할 수 있다.
+
+```
+> db.books.find({title: "MongoDB Example"})
+```
+
+[Query operator(연산자)](https://docs.mongodb.com/manual/reference/operator/query/)를 사용하여 조건을 지정할 수 있다.
+
+```
+db.books.find({price:{$gte:150}})
+{ ・・ "_id" : 2, "title" : "JavaScriptリファレンス", "price" : 300 }
+```
+
+
+db.<collection_name>.find( <query filter>, <projection> )
+
+```
+> db.books.find({title: "MongoDB Example"})
 { "_id" : ObjectId("57b6ac0e370997928bbee55b"), "title" : "MongoDB Example", "author" : "Lee", "price" : 100 }
 ```
 
@@ -367,7 +415,6 @@ mongo-example     0.000GB
 
 
 ## 5.4 Delete
-
 
 
 

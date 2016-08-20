@@ -439,8 +439,51 @@ db.test.update(
 
 # 4. Delete
 
+**Document의 삭제**
+
+```
+db.collection.remove(
+  <query>,
+  {
+    justOne: <boolean>,
+    writeConcern: <document>
+  }
+)
+```
+
+| Parameter    | Type     | Description
+|:-------------|:---------|:----------------------------------------
+| query        | document | deletion criteria(기준)이다. collection 내의 모든 document를 삭제할 경우, {}를 전달한다.
+| justOne      | boolean  | Option(Default: false) true로 설정하면 하나의 document만 삭제한다. 생략하면 deletion criteria에 매칭하는 document 모두를 삭제한다.
+| writeConcern | document | Option. database에 write(insert, update, remove) 처리를 영속화시키기 위한 설정이다. 기본 설정을 사용하려면 이 설정을 생략한다. 자세한 내용은 [Write Concern](https://docs.mongodb.com/manual/reference/write-concern/)을 참조하기 바란다.
 
 
+다음은 price가 200보다 큰 모든 document를 삭제한다.
+
+```javascript
+db.books.remove(
+  { price: { $gt: 200 } }
+)
+```
+
+다음은 books collection의 모든 document를 삭제한다.
+
+```javascript
+db.books.remove( { } )
+```
+
+**Collection의 삭제**
+
+```javascript
+db.books.drop()
+```
+
+**Database의 삭제**
+
+```javascript
+use mongodb_example
+db.dropDatabase();
+```
 
 
 # Reference

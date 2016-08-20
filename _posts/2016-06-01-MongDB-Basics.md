@@ -688,42 +688,6 @@ db.test.update(
 )
 ```
 
-
-
-Use $min to Compare Dates
-
-Consider the following document in the collection tags:
-```
-{
-  _id: 1,
-  desc: "crafts",
-  dateEntered: ISODate("2013-10-01T05:00:00Z"),
-  dateExpired: ISODate("2013-10-01T16:38:16Z")
-}
-The following operation compares the current value of the dateEntered field, i.e. ISODate("2013-10-01T05:00:00Z"), with the specified date new Date("2013-09-25") to determine whether to update the field:
-
-
-
-
-| $min         | 설정값이 field value보다 작은 경우만 update한다.
-| $max         | 설정값이 field value보다 큰 경우만 update한다.
-
-
-db.tags.update(
-   { _id: 1 },
-   { $min: { dateEntered: new Date("2013-09-25") } }
-)
-The operation updates the dateEntered field:
-
-{
-  _id: 1,
-  desc: "crafts",
-  dateEntered: ISODate("2013-09-25T00:00:00Z"),
-  dateExpired: ISODate("2013-10-01T16:38:16Z")
-}
-
-```
-
 다음은 dateEntered field value와 $min의 value로 설정한 dateEntered field value(설정값)를 비교하여 설정값이 field value보다 작은 경우 설정값으로 field value를 update한다.
 
 ```javascript
@@ -743,6 +707,7 @@ db.test.update(
 상기 처리의 결과로 document는 아래와 같이 update된다.
 
 ```
+// update 전
 {
   "_id" : ObjectId("57b85d77370997928bbee569"),
   "title" : "Example1",
@@ -758,6 +723,7 @@ db.test.update(
 ```
 
 ```
+// update 후
 {
   "_id" : ObjectId("57b85d77370997928bbee569"),
   "title" : "Example1",

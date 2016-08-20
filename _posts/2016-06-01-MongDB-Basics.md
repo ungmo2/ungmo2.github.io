@@ -393,6 +393,13 @@ local             0.000GB
 mongo-example     0.000GB
 ```
 
+collection list를 확인하려면 아래 명령어를 실행한다.
+
+```
+> show collections
+books
+```
+
 ## 5.2 Read
 
 `db.<collection_name>.find()`을 사용하여 collection 내의 document를 select한다.
@@ -446,7 +453,7 @@ db.collection.find(query, projection)
 }
 ```
 
-select할 field를 지정할 수 있다. &#95;id는 지정하지 않아도 출력에 포함되므로 select할 field에 포함시키지 않을 경우애는 value에 0을 지정하여 명시적으로 배제하여야 한다.
+select할 field를 지정할 수 있다. &#95;id는 지정하지 않아도 출력에 포함되므로 select할 field에 포함시키지 않을 경우에는 projection의 해당 field의 value에 0을 지정하여 명시적으로 배제하여야 한다.
 
 ```
 > db.books.find({ }, { _id: 0, title: 1 })
@@ -592,9 +599,6 @@ db.<collection_name>.update(
 | upsert       | boolean  | Option(Default: false) true로 설정하면 query한 document가 없을 경우 새로운 document를 insert한다. false로 설정하면
 | multi        | boolean  | Option(Default: false) true로 설정하면 여러개의 document를 수정한다.
 | writeConcern | document | Option. database에 write(insert, update, remove) 처리를 영속화시키기 위한 설정이다. 기본 설정을 사용하려면 이 설정을 생략한다. 자세한 내용은 [Write Concern](https://docs.mongodb.com/manual/reference/write-concern/)을 참조하기 바란다.
-
-
-書き込みをデータベースに永続化させるための方法を選べます。 この方法のことを 書き込み確認 (Write Concern) と呼びます。 あらゆるエラーを無視することもできるし、 特定のサーバーへの書き込みを確認するまで書き込み完了と見なさないようにもできます。
 
 
 ## 5.4 Delete

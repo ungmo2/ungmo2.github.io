@@ -144,6 +144,26 @@ Simple jQuery CSS3 slider
 
 [Download](https://github.com/dirkgroenen/simple-jQuery-slider)
 
+## Parallax
+
+## ScrollMagic
+
+The jQuery plugin for magical scroll interactions.
+
+[Demo & Download](http://scrollmagic.io/)
+
+### Stellar.js
+
+Parallax scrolling made easy.
+
+[Demo & Download](http://markdalgleish.com/projects/stellar.js/)
+
+### Parallax.js
+
+Parallax.js is a dirt simple parallax scrolling effect inspired by Spotify.com and implemented as a jQuery plugin.
+
+[Demo & Download](http://pixelcog.github.io/parallax.js/)
+
 ## Image gallery
 
 ### nanoGALLERY
@@ -224,6 +244,12 @@ simple fullscreen vertical slider using CSS3 transitions with jQuery fallback.
 [Demo](http://luke.sno.wden.co.uk/full-screen-vertical-scroll)
 
 [Download](https://github.com/lukesnowden/FSVS)
+
+### Waypoints
+
+Waypoints is the easiest way to trigger a function when you scroll to an element.
+
+[Demo & Download](http://imakewebthings.com/waypoints/)
 
 ### Scroll Path
 

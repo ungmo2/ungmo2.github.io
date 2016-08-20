@@ -595,10 +595,89 @@ db.<collection_name>.update(
 | Parameter    | Type     | Description
 |:-------------|:---------|:----------------------------------------
 | query        | document | update를 위한 selection criteria(기준)이다. find()의 query와 같다. SQL의 WHERE절과 유사하다.
-| update       | document | document에 적용할 변동사항입니다.
-| upsert       | boolean  | Option(Default: false) true로 설정하면 query한 document가 없을 경우 새로운 document를 insert한다. false로 설정하면
-| multi        | boolean  | Option(Default: false) true로 설정하면 여러개의 document를 수정한다.
+| update       | document | document에 update할 수정 사항이다.
+| upsert       | boolean  | Option(Default: false) true로 설정하면 query criteria에 매칭하는 document가 없을 경우 새로운 document를 insert한다. false로 설정하면 insert하지 않는다.
+| multi        | boolean  | Option(Default: false) true로 설정하면 query criteria에 매칭하는 document 모두를 update한다. false로 설정하면 하나의 document만 update한다.
 | writeConcern | document | Option. database에 write(insert, update, remove) 처리를 영속화시키기 위한 설정이다. 기본 설정을 사용하려면 이 설정을 생략한다. 자세한 내용은 [Write Concern](https://docs.mongodb.com/manual/reference/write-concern/)을 참조하기 바란다.
+
+
+```sql
+UPDATE books
+SET author = "Kim"
+WHERE price > 200
+```
+
+```javascript
+db.books.update(
+  { price: { $gt: 200 } },
+  { $set: { author: "Kim" } },
+  { multi: true }
+)
+```
+
+`$set`는 SQL의 SET을 의미하는 [MongoDB Update field operator](https://docs.mongodb.com/manual/reference/operator/update-field/)이다.
+
+| Operator     | Description
+|:-------------|:------------------------------------
+| $inc         | field의 value를 지정한 수만큼 증가시킨다.
+| $rename      | field 이름을 rename한다.
+| $setOnInsert | update()의 upsert가 true로 설정되었을 경우, document가 insert될 때의 field value를 설정한다.
+| $set         | update할 field의 value를 설정한다.
+| $unset       | document에서 설정된 field를 삭제한다
+| $min         | field value가 설정값보다 작은 경우만 update한다.
+| $max         | field value가 설정값보다 큰 경우만 update한다.
+| $currentDate | 현재 시간을 설정한다
+
+다음은 author가 "Kim"인 document의 price field value를 -50 증가시킨다(50 감소시킨다). 이때 multi를 생략하였으므로 query criteria에 매칭되는 document 중 첫번째만 update된다.
+
+```javascript
+db.books.update(
+  { author: "Kim" },
+  { $inc: { price: -50 } }
+)
+```
+
+다음은 모든 document의 field name을 "ttle"에서 "title"로 rename한다.
+
+```javascript
+db.test.insert([
+  { "ttle": "Example1", "author": "Lee", price: 200 },
+  { "ttle": "Example2", "author": "Lee", price: 300 },
+  { "ttle": "Example3", "author": "Lee", price: 400 }
+  ])
+
+db.test.update(
+  {},
+  { $rename: { "ttle": "title" } },
+  { multi: true }
+)
+```
+
+다음은 author가 "Park"인 document의 title을 "Example4"로 update한다. 이때 query criteria({author: "Park"})에 매칭되는 document가 없으면 upsert: true에 의해 새로운 document가 insert된다.
+
+$set value에는 { title: "Example4" }만 설정되어 있으나 query criteria {author: "Park"}과 $setOnInsert value { price: 100 }도 더불어 insert된다.
+
+```javascript
+db.books.update(
+  { author: "Park" },
+  {
+    $set: { title: "Example4" },
+    $setOnInsert: { price: 100 } // set default value
+  },
+  { upsert: true }
+)
+```
+
+위 처리의 결과 아래의 document가 insert된다.
+
+```
+{
+	"_id" : ObjectId("57b841d16a73151e5d98f3c9"),
+	"author" : "Park",
+	"title" : "Example4",
+	"price" : 100
+}
+```
 
 
 ## 5.4 Delete

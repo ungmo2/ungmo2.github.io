@@ -361,7 +361,7 @@ db.collection.insert(
 
 
 ```
-> db.books.insert({ "title": "MongoDB Example", "author": "Lee", price: 100 });
+> db.books.insert({ title: "MongoDB Example", author: "Lee", price: 100 });
 WriteResult({ "nInserted" : 1 })
 ```
 
@@ -369,9 +369,9 @@ WriteResult({ "nInserted" : 1 })
 
 ```
 > db.books.insert([
-  { "title": "Example1", "author": "Lee", price: 200 },
-  { "title": "Example2", "author": "Lee", price: 300 },
-  { "title": "Example3", "author": "Lee", price: 400 }
+  { title: "Example1", author: "Lee", price: 200 },
+  { title: "Example2", author: "Lee", price: 300 },
+  { title: "Example3", author: "Lee", price: 400 }
   ])
 BulkWriteResult({
 	"writeErrors" : [ ],
@@ -472,8 +472,8 @@ FROM books
 
 ```javascript
 db.users.find(
-    { },
-    { title: 1, author: 1 }
+  { },
+  { title: 1, author: 1 }
 )
 ```
 
@@ -484,8 +484,8 @@ FROM books
 
 ```javascript
 db.users.find(
-    { },
-    { _id: 0, title: 1, author: 1 }
+  { },
+  { _id: 0, title: 1, author: 1 }
 )
 ```
 
@@ -624,8 +624,8 @@ db.books.update(
 | $setOnInsert | update()의 upsert가 true로 설정되었을 경우, document가 insert될 때의 field value를 설정한다.
 | $set         | update할 field의 value를 설정한다.
 | $unset       | document에서 설정된 field를 삭제한다
-| $min         | field value가 설정값보다 작은 경우만 update한다.
-| $max         | field value가 설정값보다 큰 경우만 update한다.
+| $min         | 설정값이 field value보다 작은 경우만 update한다.
+| $max         | 설정값이 field value보다 큰 경우만 update한다.
 | $currentDate | 현재 시간을 설정한다
 
 다음은 author가 "Kim"인 document의 price field value를 -50 증가시킨다(즉 50 감소시킨다). 이때 multi를 생략하였으므로 query criteria에 매칭되는 document 중 첫번째만 update된다.
@@ -641,9 +641,9 @@ db.books.update(
 
 ```javascript
 db.test.insert([
-  { "ttle": "Example1", "author": "Lee", price: 200 },
-  { "ttle": "Example2", "author": "Lee", price: 300 },
-  { "ttle": "Example3", "author": "Lee", price: 400 }
+  { ttle: "Example1", author: "Lee", price: 200 },
+  { ttle: "Example2", author: "Lee", price: 300 },
+  { ttle: "Example3", author: "Lee", price: 400 }
 ])
 
 db.test.update(
@@ -676,6 +676,99 @@ db.books.update(
   "author" : "Park",
   "title" : "Example4",
   "price" : 100
+}
+```
+
+다음은 test collection의 첫번째 document의 author, price field를 삭제한다.
+
+```javascript
+db.test.update(
+  { },
+  { $unset: { author: "", price: 0 } }
+)
+```
+
+
+
+Use $min to Compare Dates
+
+Consider the following document in the collection tags:
+```
+{
+  _id: 1,
+  desc: "crafts",
+  dateEntered: ISODate("2013-10-01T05:00:00Z"),
+  dateExpired: ISODate("2013-10-01T16:38:16Z")
+}
+The following operation compares the current value of the dateEntered field, i.e. ISODate("2013-10-01T05:00:00Z"), with the specified date new Date("2013-09-25") to determine whether to update the field:
+
+
+
+
+| $min         | 설정값이 field value보다 작은 경우만 update한다.
+| $max         | 설정값이 field value보다 큰 경우만 update한다.
+
+
+db.tags.update(
+   { _id: 1 },
+   { $min: { dateEntered: new Date("2013-09-25") } }
+)
+The operation updates the dateEntered field:
+
+{
+  _id: 1,
+  desc: "crafts",
+  dateEntered: ISODate("2013-09-25T00:00:00Z"),
+  dateExpired: ISODate("2013-10-01T16:38:16Z")
+}
+
+```
+
+다음은 dateEntered field value와 $min의 value로 설정한 dateEntered field value(설정값)를 비교하여 설정값이 field value보다 작은 경우 설정값으로 field value를 update한다.
+
+```javascript
+db.test.drop()
+
+db.test.insert([
+  { "title": "Example1", price: 100, dateEntered: new Date(Date.now()) },
+  { "title": "Example2", price: 200, dateEntered: new Date(Date.now()) }
+])
+
+db.test.update(
+  {  },
+  { $min: { dateEntered: new Date("2016-07-01") } }
+)
+```
+
+상기 처리의 결과로 document는 아래와 같이 update된다.
+
+```
+{
+  "_id" : ObjectId("57b85d77370997928bbee569"),
+  "title" : "Example1",
+  "price" : 100,
+  "dateEntered" : ISODate("2016-08-20T13:39:03.880Z")
+}
+{
+  "_id" : ObjectId("57b85d77370997928bbee56a"),
+  "title" : "Example2",
+  "price" : 200,
+  "dateEntered" : ISODate("2016-08-20T13:39:03.880Z")
+}
+```
+
+```
+{
+  "_id" : ObjectId("57b85d77370997928bbee569"),
+  "title" : "Example1",
+  "price" : 100,
+  "dateEntered" : ISODate("2016-07-01T00:00:00Z")
+}
+{
+  "_id" : ObjectId("57b85d77370997928bbee56a"),
+  "title" : "Example2",
+  "price" : 200,
+  "dateEntered" : ISODate("2016-08-20T13:39:03.880Z")
 }
 ```
 

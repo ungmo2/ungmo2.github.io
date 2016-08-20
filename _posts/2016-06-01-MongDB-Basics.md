@@ -428,28 +428,28 @@ db.collection.find(query, projection)
 ```
 > db.books.find().pretty()
 {
-	"_id" : ObjectId("57b6f590370997928bbee55d"),
-	"title" : "MongoDB Example",
-	"author" : "Lee",
-	"price" : 100
+  "_id" : ObjectId("57b6f590370997928bbee55d"),
+  "title" : "MongoDB Example",
+  "author" : "Lee",
+  "price" : 100
 }
 {
-	"_id" : ObjectId("57b6f5a3370997928bbee55e"),
-	"title" : "Example1",
-	"author" : "Lee",
-	"price" : 200
+  "_id" : ObjectId("57b6f5a3370997928bbee55e"),
+  "title" : "Example1",
+  "author" : "Lee",
+  "price" : 200
 }
 {
-	"_id" : ObjectId("57b6f5a3370997928bbee55f"),
-	"title" : "Example2",
-	"author" : "Lee",
-	"price" : 300
+  "_id" : ObjectId("57b6f5a3370997928bbee55f"),
+  "title" : "Example2",
+  "author" : "Lee",
+  "price" : 300
 }
 {
-	"_id" : ObjectId("57b6f5a3370997928bbee560"),
-	"title" : "Example3",
-	"author" : "Lee",
-	"price" : 400
+  "_id" : ObjectId("57b6f5a3370997928bbee560"),
+  "title" : "Example3",
+  "author" : "Lee",
+  "price" : 400
 }
 ```
 
@@ -628,7 +628,7 @@ db.books.update(
 | $max         | field value가 설정값보다 큰 경우만 update한다.
 | $currentDate | 현재 시간을 설정한다
 
-다음은 author가 "Kim"인 document의 price field value를 -50 증가시킨다(50 감소시킨다). 이때 multi를 생략하였으므로 query criteria에 매칭되는 document 중 첫번째만 update된다.
+다음은 author가 "Kim"인 document의 price field value를 -50 증가시킨다(즉 50 감소시킨다). 이때 multi를 생략하였으므로 query criteria에 매칭되는 document 중 첫번째만 update된다.
 
 ```javascript
 db.books.update(
@@ -644,7 +644,7 @@ db.test.insert([
   { "ttle": "Example1", "author": "Lee", price: 200 },
   { "ttle": "Example2", "author": "Lee", price: 300 },
   { "ttle": "Example3", "author": "Lee", price: 400 }
-  ])
+])
 
 db.test.update(
   {},
@@ -653,9 +653,9 @@ db.test.update(
 )
 ```
 
-다음은 author가 "Park"인 document의 title을 "Example4"로 update한다. 이때 query criteria({author: "Park"})에 매칭되는 document가 없으면 upsert: true에 의해 새로운 document가 insert된다.
+다음은 author가 "Park"인 document의 title을 "Example4"로 update한다. 이때 query criteria({ author: "Park" })에 매칭되는 document가 없으면 upsert: true에 의해 새로운 document가 insert된다.
 
-$set value에는 { title: "Example4" }만 설정되어 있으나 query criteria {author: "Park"}과 $setOnInsert value { price: 100 }도 더불어 insert된다.
+$set value에는 { title: "Example4" }만 설정되어 있으나 query criteria { author: "Park" }과 $setOnInsert value { price: 100 }도 더불어 insert된다.
 
 ```javascript
 db.books.update(
@@ -672,10 +672,10 @@ db.books.update(
 
 ```
 {
-	"_id" : ObjectId("57b841d16a73151e5d98f3c9"),
-	"author" : "Park",
-	"title" : "Example4",
-	"price" : 100
+  "_id" : ObjectId("57b841d16a73151e5d98f3c9"),
+  "author" : "Park",
+  "title" : "Example4",
+  "price" : 100
 }
 ```
 

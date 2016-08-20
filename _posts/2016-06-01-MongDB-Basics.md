@@ -58,7 +58,7 @@ MongoDB Sharding Clustering
   </tr>
   <tr>
     <td>Tuple / Row</td>
-    <td>Document</td>
+    <td>Document or BSON document</td>
   </tr>
   <tr>
     <td>Column</td>
@@ -112,28 +112,28 @@ MongoDB Sharding Clustering
   </tr>
   <tr>
     <td>insert into users ("name", "city") values("lee", "seoul")</td>
-    <td>db.users.insert({name: "lee", city: "seoul"})</td>
+    <td>db.users.insert({ name: "lee", city: "seoul" })</td>
   </tr>
   <tr>
     <th colspan="2">Select</th>
   </tr>
   <tr>
     <td>select * from users where name="lee"</td>
-    <td>db.users.find({name: "lee"})</td>
+    <td>db.users.find({ name: "lee" })</td>
   </tr>
   <tr>
     <th colspan="2">Update</th>
   </tr>
   <tr>
     <td>update users set city="busan" where name="lee"</td>
-    <td>db.users.update({name: "lee"}, {$set: {city: "busan"}})</td>
+    <td>db.users.update({ name: "lee" }, { $set: { city: "busan" }})</td>
   </tr>
   <tr>
     <th colspan="2">Delete</th>
   </tr>
   <tr>
     <td>delete from users where name="lee"</td>
-    <td>db.users.remove({name: "lee"})</td>
+    <td>db.users.remove({ name: "lee" })</td>
   </tr>
 </table>
 
@@ -343,8 +343,25 @@ local             0.000GB
 
 `db.<collection_name>.insert(<documents>)`로 document를 추가한다. 이때 RDBMS의 Table 개념의 [collection](https://docs.mongodb.com/manual/reference/glossary/#term-collection) books도 생성된다.
 
+```javascript
+db.collection.insert(
+  <document or array of documents>,
+  {
+    writeConcern: <document>,
+    ordered: <boolean>
+  }
+)
 ```
-> db.books.insert({"title": "MongoDB Example", "author": "Lee", price: 100});
+
+| Parameter    | Type              | Description
+|:-------------|:------------------|:----------------------------------------
+| document     | document or array | collection에 insert할 document 또는 document의 array이다.
+| writeConcern | document          | Option. database에 write(insert, update, remove) 처리를 영속화시키기 위한 설정이다. 기본 설정을 사용하려면 이 설정을 생략한다. 자세한 내용은 [Write Concern](https://docs.mongodb.com/manual/reference/write-concern/)을 참조하기 바란다.
+| ordered      | boolean           | Option(Defaults: true). true로 설정하면 document array의 인덱스 순으로 insert한다. 처리중 에러가 발생하면 에러가 발생된 document 이후의 처리는 진행되지 않는다.
+
+
+```
+> db.books.insert({ "title": "MongoDB Example", "author": "Lee", price: 100 });
 WriteResult({ "nInserted" : 1 })
 ```
 
@@ -352,9 +369,9 @@ WriteResult({ "nInserted" : 1 })
 
 ```
 > db.books.insert([
-  {"title": "Example1", "author": "Lee", price: 200},
-  {"title": "Example2", "author": "Lee", price: 300},
-  {"title": "Example3", "author": "Lee", price: 400}
+  { "title": "Example1", "author": "Lee", price: 200 },
+  { "title": "Example2", "author": "Lee", price: 300 },
+  { "title": "Example3", "author": "Lee", price: 400 }
   ])
 BulkWriteResult({
 	"writeErrors" : [ ],
@@ -379,6 +396,15 @@ mongo-example     0.000GB
 ## 5.2 Read
 
 `db.<collection_name>.find()`을 사용하여 collection 내의 document를 select한다.
+
+```javascript
+db.collection.find(query, projection)
+```
+
+| Parameter  | Type     | Description
+|:-----------|:---------|:--------------------------------
+| query      | document | Option. document selection criteria(기준)이다. 기준이 없이 collect 내의 모든 document를 select하는 경우에는 생략하거나 { }를 전달한다. SQL의 WHERE절과 유사하다.
+| projection | document | Option. document select 결과에 포함될 field이다.
 
 다음 예제는 books collection 내의 모든 document를 select한다.
 
@@ -429,17 +455,6 @@ select할 field를 지정할 수 있다. &#95;id는 지정하지 않아도 출�
 { "title" : "Example2" }
 { "title" : "Example3" }
 ```
-
-`find()` 메서드는 2개의 parameter를 갖는다.
-
-```javascript
-db.collection.find(query, projection)
-```
-
-| Parameter  | Type     | Description
-|:-----------|:---------|:--------------------------------
-| query      | document | Option. document를 select하는 기준이다. 기준이 없이 collect 내의 모든 document를 select하는 경우에는 생략하거나 { }를 전달한다.
-| projection | document | Option. document를 select할 때 포함될 field이다.
 
 SQL SELECT 구문과 find() 구문을 비교하면 다음과 같다.
 
@@ -506,7 +521,9 @@ db.books.find(
 
 Query operator(쿼리 연산자)에는 비교(Comparison), 논리(Logical), 요소(Element), 평가(Evaluation), 배열(Array) 등이 있다.
 
-그 중 사용 빈도가 높은 비교(Comparison) 연산자에 대해 알아본다.
+그 중 사용 빈도가 높은 연산자에 대해 알아본다.
+
+**비교(Comparison) 연산자**
 
 | Operator  | Meaning             | Description
 |:----------|:--------------------|:------------------------------------
@@ -527,7 +544,57 @@ db.books.find(
 )
 ```
 
+**논리 연산자**
+
+| Operator  | Description
+|:----------|:------------------------------------
+| $or	      | 지정 조건중 하나라도 true이면 true
+| $and	    | 모든 지정 조건이 true이면 true
+| $not	    | 지정 조건이 false이면 true, true이면 false
+| $nor	    | 모든 지정 조건이 false이면 true
+
+다음은 price가 200보다 작고 author가 "Lee"인 document를 select한다.
+
+```javascript
+db.books.find(
+  { $and: [ { price: { $lt: 200 } }, { author: "Lee" } ] }
+)
+```
+
+정규표현식을 사용할 수 있다. 다음은 title이 /Example[1-2]/에 일치하는 document를 select한다.
+
+```javascript
+db.books.find(
+  { title : /Example[1-2]/ }
+)
+```
+
 ## 5.3 Update
+
+`db.<collection_name>.update()`을 사용하여 collection 내의 document를 update한다.
+
+```
+db.<collection_name>.update(
+  <query>,
+  <update>,
+  {
+    upsert: <boolean>,
+    multi: <boolean>,
+    writeConcern: <document>
+  }
+)
+```
+
+| Parameter    | Type     | Description
+|:-------------|:---------|:----------------------------------------
+| query        | document | update를 위한 selection criteria(기준)이다. find()의 query와 같다. SQL의 WHERE절과 유사하다.
+| update       | document | document에 적용할 변동사항입니다.
+| upsert       | boolean  | Option(Default: false) true로 설정하면 query한 document가 없을 경우 새로운 document를 insert한다. false로 설정하면
+| multi        | boolean  | Option(Default: false) true로 설정하면 여러개의 document를 수정한다.
+| writeConcern | document | Option. database에 write(insert, update, remove) 처리를 영속화시키기 위한 설정이다. 기본 설정을 사용하려면 이 설정을 생략한다. 자세한 내용은 [Write Concern](https://docs.mongodb.com/manual/reference/write-concern/)을 참조하기 바란다.
+
+
+書き込みをデータベースに永続化させるための方法を選べます。 この方法のことを 書き込み確認 (Write Concern) と呼びます。 あらゆるエラーを無視することもできるし、 特定のサーバーへの書き込みを確認するまで書き込み完了と見なさないようにもできます。
 
 
 ## 5.4 Delete

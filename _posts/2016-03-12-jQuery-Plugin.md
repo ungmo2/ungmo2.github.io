@@ -126,23 +126,33 @@ $( "div" ).greenify({
 
 ## Slider
 
-### Unslider
+### Nivo
 
-image slider
+Nivo Slider jQuery Plugin
 
-[Demo & Download](http://unslider.com/)
+[Demo & Download](http://docs.dev7studios.com/article/12-getting-started-with-the-nivo-slider-jquery-plugin)
+
+### Flux-Slider
+
+Hardware accelerated image transitions using CSS3.
+
+[Demo](http://www.joelambert.co.uk/flux/)
+
+[Download](http://www.joelambert.co.uk/flux/js/flux.js)
 
 ### Simple jQuery Slider
 
 Simple jQuery CSS3 slider
 
-<!-- <a href="http://simpleslider.bitlabs.nl/"><i class="fa fa-eye fa-2x" aria-hidden="true"></i></a>
-
-<a href="https://github.com/dirkgroenen/simple-jQuery-slider"><i class="fa fa-download fa-2x" aria-hidden="true"></i></a> -->
-
 [Demo](http://simpleslider.bitlabs.nl/)
 
 [Download](https://github.com/dirkgroenen/simple-jQuery-slider)
+
+### Unslider
+
+image slider
+
+[Demo & Download](http://unslider.com/)
 
 ## Parallax
 

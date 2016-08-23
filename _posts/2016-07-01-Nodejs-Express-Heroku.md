@@ -65,7 +65,150 @@ https://heroku-express-example.herokuapp.com/ | https://git.heroku.com/heroku-ex
 ```
 
 ![heroku create app](/img/heroku-create-app.png)
-{: style="max-width:500px; margin: 10px auto;"}
+
+ode를 Heroku로 push한다.
+
+```
+$ git push heroku master
+Counting objects: 456, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (353/353), done.
+Writing objects: 100% (456/456), 226.22 KiB | 0 bytes/s, done.
+Total 456 (delta 69), reused 455 (delta 69)
+remote: Compressing source files... done.
+remote: Building source:
+remote:
+remote: -----> Node.js app detected
+remote:
+remote: -----> Creating runtime environment
+remote:        
+remote:        NPM_CONFIG_LOGLEVEL=error
+remote:        NPM_CONFIG_PRODUCTION=true
+remote:        NODE_ENV=production
+remote:        NODE_MODULES_CACHE=true
+remote:
+remote: -----> Installing binaries
+remote:        engines.node (package.json):  5.9.1
+remote:        engines.npm (package.json):   unspecified (use default)
+remote:        
+remote:        Downloading and installing node 5.9.1...
+remote:        Using default npm version: 3.7.3
+remote:
+remote: -----> Restoring cache
+remote:        Skipping cache restore (new runtime signature)
+remote:
+remote: -----> Building dependencies
+remote:        Installing node modules (package.json)
+remote:        node-js-getting-started@0.2.5 /tmp/build_9d5b37e25a8be581c1ec02687f237a83
+remote:        ├── ejs@2.4.1
+remote:        └─┬ express@4.13.3
+remote:        ├─┬ accepts@1.2.13
+remote:        │ ├─┬ mime-types@2.1.11
+remote:        │ │ └── mime-db@1.23.0
+remote:        │ └── negotiator@0.5.3
+remote:        ├── array-flatten@1.1.1
+remote:        ├── content-disposition@0.5.0
+remote:        ├── content-type@1.0.2
+remote:        ├── cookie@0.1.3
+remote:        ├── cookie-signature@1.0.6
+remote:        ├─┬ debug@2.2.0
+remote:        │ └── ms@0.7.1
+remote:        ├── depd@1.0.1
+remote:        ├── escape-html@1.0.2
+remote:        ├── etag@1.7.0
+remote:        ├─┬ finalhandler@0.4.0
+remote:        │ └── unpipe@1.0.0
+remote:        ├── fresh@0.3.0
+remote:        ├── merge-descriptors@1.0.0
+remote:        ├── methods@1.1.2
+remote:        ├─┬ on-finished@2.3.0
+remote:        │ └── ee-first@1.1.1
+remote:        ├── parseurl@1.3.1
+remote:        ├── path-to-regexp@0.1.7
+remote:        ├─┬ proxy-addr@1.0.10
+remote:        │ ├── forwarded@0.1.0
+remote:        │ └── ipaddr.js@1.0.5
+remote:        ├── qs@4.0.0
+remote:        ├── range-parser@1.0.3
+remote:        ├─┬ send@0.13.0
+remote:        │ ├── destroy@1.0.3
+remote:        │ ├─┬ http-errors@1.3.1
+remote:        │ │ └── inherits@2.0.1
+remote:        │ ├── mime@1.3.4
+remote:        │ └── statuses@1.2.1
+remote:        ├─┬ serve-static@1.10.3
+remote:        │ ├── escape-html@1.0.3
+remote:        │ └─┬ send@0.13.2
+remote:        │   ├── depd@1.1.0
+remote:        │   └── destroy@1.0.4
+remote:        ├─┬ type-is@1.6.13
+remote:        │ └── media-typer@0.3.0
+remote:        ├── utils-merge@1.0.0
+remote:        └── vary@1.0.1
+remote:        
+remote:
+remote: -----> Caching build
+remote:        Clearing previous node cache
+remote:        Saving 2 cacheDirectories (default):
+remote:        - node_modules
+remote:        - bower_components (nothing to cache)
+remote:
+remote: -----> Build succeeded!
+remote:        ├── ejs@2.4.1
+remote:        └── express@4.13.3
+remote:        
+remote: -----> Discovering process types
+remote:        Procfile declares types -> web
+remote:
+remote: -----> Compressing...
+remote:        Done: 12M
+remote: -----> Launching...
+remote:        Released v3
+remote:        https://heroku-express-example.herokuapp.com/ deployed to Heroku
+remote:
+remote: Verifying deploy... done.
+To https://git.heroku.com/heroku-express-example.git
+ * [new branch]      master -> master
+```
+
+app이 deploy되었다. instance가 동작하고 있는지 확인한다.
+
+```
+$ heroku ps:scale web=1
+```
+
+이제 생성된 app이 동작하는 [URL](https://heroku-express-example.herokuapp.com/)으로 방문하여 동작을 확인한다. 또는 아래의 명령어로 방문할 수 있다.
+
+```
+$ heroku open
+```
+
+log를 확인하는 방법은 아래와 같다.
+
+```
+$ heroku logs --tail
+```
+
+# 7. Procfile
+
+루트 디렉터리에 있는 `Procfile`에는 app이 start할 때 실행하여야 하는 동작을 명시적으로 정의한다.
+
+```
+web: node index.js
+```
+
+web은 process type을 의미한다.
+
+
+
+<!-- ************************************************** -->
+
+
+
+
+
+
+
 
 # 3. Node.js App 생성
 
@@ -132,55 +275,7 @@ https://heroku-express-example.herokuapp.com/ | https://git.heroku.com/heroku-ex
 http://<project-name>.herokuapp.com/으로 접속하여 동작여부를 확인한다.
 
 
-# Git リポジトリの作成とコミット
 
-リポジトリつくって、
-ローカルのファイルを全部 Index に追加して、
-コメントつけてコミット
-という、普通の Git の操作をします。
-
-$ git init
-$ git add .
-$ git commit -m "initial commit"
-
-
-
-# Procfile 작성
-
-Procfile とは、Heroku で必要となる、アプリケーションの起動に関するファイルです。私はこれがないと Heroku での表示で「Web じゃないよ」みたいなエラーになりました。詳しいことは procfile · herokaijp/devcenter Wiki に書かれているようですが、私は理解できませんでした／(^o^)＼
-
-とりあえず動くようにするには、次の一文だけ書いて、ファイル名を「Procfile」とし、プロジェクト直下に置きます。
-
-```
-web: node app.js
-```
-
-# .gitignore をつくる
-
-プロジェクトのファイルは Git を使って Heroku に Push しますが、node_modules ディレクトリ以下は Heroku 上で展開する（？）ので、ローカルから Push する必要はありません。そのため、.gitignore ファイルをつくってその旨を指定します。
-
-```
-node_modules
-.DS_Store
-```
-
-# package.json に追記
-
-Express で生成された sample/package.json ファイルに、Heroku 用の記述を追加します。これを書かないと Heroku に Push したときにエラーになるので注意！（はい、ハマりました。）
-
-Express で生成された状態では、"dependencies" の記述はありますが、"engines" の記述がありません。そのため下記のように、"dependencies" のあとに "engines" を追加して、Node.js と npm のバージョンを記述します。
-
-```
---- 省略 ---
-"dependencies": {
-  "express": "4.14.0"
-},
-"engines": {
-  "node": "6.4.0",
-  "npm":  "3.10.3"
-}
---- 省略 ---
-```
 
 
 # Reference

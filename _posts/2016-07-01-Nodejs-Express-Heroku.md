@@ -65,8 +65,8 @@ https://heroku-express-example.herokuapp.com/ | https://git.heroku.com/heroku-ex
 ```
 
 이때 .git/config 파일에 아래 내용이 추가된다.
+
 ```
-...
 [remote "heroku"]
 	url = https://git.heroku.com/heroku-express-example.git
 	fetch = +refs/heads/*:refs/remotes/heroku/*

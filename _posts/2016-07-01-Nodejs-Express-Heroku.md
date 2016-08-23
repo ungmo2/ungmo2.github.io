@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Deploying Node.js(Express) App to Heroku
-categories: [node.js, express]
+categories: [node.js]
 tags: [node.js, express]
 ---
 
@@ -64,7 +64,8 @@ Creating ⬢ heroku-express-example... done
 https://heroku-express-example.herokuapp.com/ | https://git.heroku.com/heroku-express-example.git
 ```
 
-
+![heroku create app](/img/heroku-create-app.png)
+{: style="max-width:500px; margin: 10px auto;"}
 
 # 3. Node.js App 생성
 

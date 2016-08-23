@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Deploying Node.js(Express) App to Heroku
+title: Deploying Node.js(Express) to Heroku
 categories: [node.js]
 tags: [node.js, express]
 ---

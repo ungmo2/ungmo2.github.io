@@ -214,8 +214,4 @@ web은 process type을 의미한다.
 
 # Reference
 
-* [The MongoDB 3.2 Manual](https://docs.mongodb.com/manual/)
-
-* [SQL to MongoDB Mapping Chart](https://docs.mongodb.com/manual/reference/sql-comparison/)
-
-* [Robomongo](https://robomongo.org/)
+* [Getting Started on Heroku with Node.js](https://devcenter.heroku.com/articles/getting-started-with-nodejs#introduction)

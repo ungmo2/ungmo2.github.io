@@ -37,6 +37,7 @@ MongoDB Document
 Database는 0개 이상의 Collection들의 집합으로 구성되며 Collection은 0개 이상의 Document로 구성되고 Document는 1개 이상의 field로 구성된다.
 
 ![MongoDB Structure](/img/mongodb-structure.png)
+{: style="max-width:450px; margin: 20px auto 10px;"}
 
 MongoDB Structure
 {: style="color:gray; font-size: 80%; text-align: center; margin-top: 5px;"}

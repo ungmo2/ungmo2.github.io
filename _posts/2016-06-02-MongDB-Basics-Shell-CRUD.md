@@ -12,6 +12,15 @@ tags: []
 
 MongoDB Shell을 사용하여 CRUD의 기본을 알아본다.
 
+MongoDB Shell은 JavaScript 실행 환경을 가지고 있어 JavaScript의 실행이 가능하다.
+
+```JavaScript
+> for(var i = 0; i < 3 ; i++) { print("i = " + i); }
+i=0
+i=1
+i=2
+```
+
 # 1. Create
 
 `use <database_name>` 명령어를 사용하여 database를 생성한다.

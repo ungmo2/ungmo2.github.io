@@ -331,4 +331,6 @@ leeungmo    15609   0.0  0.0  2454296    820 s001  S+    2:16PM   0:00.00 grep m
 
 * [The MongoDB 3.2 Manual](https://docs.mongodb.com/manual/)
 
+* [Install MongoDB](https://docs.mongodb.com/manual/installation/)
+
 * [mLab](https://mlab.com/)

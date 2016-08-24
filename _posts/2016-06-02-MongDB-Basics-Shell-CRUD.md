@@ -14,7 +14,7 @@ MongoDB Shell을 사용하여 CRUD의 기본을 알아본다.
 
 MongoDB Shell은 JavaScript 실행 환경을 가지고 있어 JavaScript의 실행이 가능하다.
 
-```JavaScript
+```
 > for(var i = 0; i < 3 ; i++) { print("i = " + i); }
 i=0
 i=1
@@ -23,7 +23,7 @@ i=2
 
 # 1. Create
 
-`use <database_name>` 명령어를 사용하여 database를 생성한다.
+`use <database_name>` shell method를 사용하여 database를 생성한다.
 
 만약 동일한 이름의 Database가 존재할 경우, 그 database를 사용하며 존재하지 않을 경우, database를 생성한다.
 
@@ -32,14 +32,14 @@ i=2
 switched to db mongo-example
 ```
 
-`db` 명령어를 사용하여 현재 사용중인 database를 확인한다.
+`db` shell method를 사용하여 현재 사용중인 database를 확인한다.
 
 ```
 > db
 mongo-example
 ```
 
-`show dbs` 명령어를 사용하여 데이터베이스 리스트를 확인한다.
+`show dbs` shell method를 사용하여 데이터베이스 리스트를 확인한다.
 
 ```
 > show dbs
@@ -48,7 +48,7 @@ local             0.000GB
 
 이 시점에서 mongo-example database는 아직 생성되지 않았다. 최소 한개 이상의 document를 추가하여야 database가 생성된다.
 
-`db.<collection_name>.insert(<documents>)`로 document를 추가한다. 이때 RDBMS의 Table 개념의 [collection](https://docs.mongodb.com/manual/reference/glossary/#term-collection) books도 생성된다.
+`insert()` 메서드를 사용하여 collection에 document를 insert한다. 이때 collection books도 생성된다.
 
 ```javascript
 db.collection.insert(
@@ -68,17 +68,17 @@ db.collection.insert(
 
 
 ```
-> db.books.insert({ title: "MongoDB Example", author: "Lee", price: 100 });
+> db.books.insert({ title: "Example1", author: "Lee", price: 100 })
 WriteResult({ "nInserted" : 1 })
 ```
 
-한번에 여러개의 document를 추가할 수 있다.
+한번에 여러개의 document를 insert할 수 있다.
 
 ```
 > db.books.insert([
-  { title: "Example1", author: "Lee", price: 200 },
-  { title: "Example2", author: "Lee", price: 300 },
-  { title: "Example3", author: "Lee", price: 400 }
+  { title: "Example2", author: "Lee", price: 200 },
+  { title: "Example3", author: "Lee", price: 300 },
+  { title: "Example4", author: "Lee", price: 400 }
   ])
 BulkWriteResult({
 	"writeErrors" : [ ],
@@ -92,6 +92,13 @@ BulkWriteResult({
 })
 ```
 
+MongoDB는 Schema-less하므로 동일한 Collection 내에 있더라도 document level의 다른 Schema를 가질 수 있다.
+
+```
+> db.books.insert({ title: "Example5", author: "Lee", price: 200, stock: 0 })
+WriteResult({ "nInserted" : 1 })
+```
+
 database list를 확인하면 mongo-example database가 생성된 것을 확인할 수 있다.
 
 ```
@@ -100,16 +107,23 @@ local             0.000GB
 mongo-example     0.000GB
 ```
 
-collection list를 확인하려면 아래 명령어를 실행한다.
+collection list를 확인하려면 아래 shell method를 실행한다.
 
 ```
 > show collections
 books
 ```
 
+또는 getCollectionNames() 메서드를 사용한다.
+
+```
+> db.getCollectionNames()
+[ "books" ]
+```
+
 # 2. Read
 
-`db.<collection_name>.find()`을 사용하여 collection 내의 document를 select한다.
+`find()` 메서드를 사용하여 collection 내의 document를 select한다.
 
 ```javascript
 db.collection.find(query, projection)
@@ -117,17 +131,18 @@ db.collection.find(query, projection)
 
 | Parameter  | Type     | Description
 |:-----------|:---------|:--------------------------------
-| query      | document | Option. document selection criteria(기준)이다. 기준이 없이 collect 내의 모든 document를 select하는 경우에는 생략하거나 { }를 전달한다. SQL의 WHERE절과 유사하다.
+| query      | document | Option. document selection criteria(기준)이다. criteria 없이 collect 내의 모든 document를 select하는 경우에는 생략하거나 { }를 전달한다. SQL의 WHERE절과 유사하다.
 | projection | document | Option. document select 결과에 포함될 field이다.
 
 다음 예제는 books collection 내의 모든 document를 select한다.
 
 ```
 > db.books.find()
-{ "_id" : ObjectId("57b6f590370997928bbee55d"), "title" : "MongoDB Example", "author" : "Lee", "price" : 100 }
-{ "_id" : ObjectId("57b6f5a3370997928bbee55e"), "title" : "Example1", "author" : "Lee", "price" : 200 }
-{ "_id" : ObjectId("57b6f5a3370997928bbee55f"), "title" : "Example2", "author" : "Lee", "price" : 300 }
-{ "_id" : ObjectId("57b6f5a3370997928bbee560"), "title" : "Example3", "author" : "Lee", "price" : 400 }
+{ "_id" : ObjectId("57bd5f2e414be2f9e2b81770"), "title" : "Example1", "author" : "Lee", "price" : 100 }
+{ "_id" : ObjectId("57bd5f34414be2f9e2b81771"), "title" : "Example2", "author" : "Lee", "price" : 200 }
+{ "_id" : ObjectId("57bd5f34414be2f9e2b81772"), "title" : "Example3", "author" : "Lee", "price" : 300 }
+{ "_id" : ObjectId("57bd5f34414be2f9e2b81773"), "title" : "Example4", "author" : "Lee", "price" : 400 }
+{ "_id" : ObjectId("57bd5f3b414be2f9e2b81774"), "title" : "Example5", "author" : "Lee", "price" : 200, "stock" : 0 }
 ```
 
 `pretty()`를 사용하면 return data를 format에 맞게 출력한다.
@@ -135,30 +150,39 @@ db.collection.find(query, projection)
 ```
 > db.books.find().pretty()
 {
-  "_id" : ObjectId("57b6f590370997928bbee55d"),
-  "title" : "MongoDB Example",
+  "_id" : ObjectId("57bd5f2e414be2f9e2b81770"),
+  "title" : "Example1",
   "author" : "Lee",
   "price" : 100
 }
 {
-  "_id" : ObjectId("57b6f5a3370997928bbee55e"),
-  "title" : "Example1",
+  "_id" : ObjectId("57bd5f34414be2f9e2b81771"),
+  "title" : "Example2",
   "author" : "Lee",
   "price" : 200
 }
 {
-  "_id" : ObjectId("57b6f5a3370997928bbee55f"),
-  "title" : "Example2",
+  "_id" : ObjectId("57bd5f34414be2f9e2b81772"),
+  "title" : "Example3",
   "author" : "Lee",
   "price" : 300
 }
 {
-  "_id" : ObjectId("57b6f5a3370997928bbee560"),
-  "title" : "Example3",
+  "_id" : ObjectId("57bd5f34414be2f9e2b81773"),
+  "title" : "Example4",
   "author" : "Lee",
   "price" : 400
 }
+{
+  "_id" : ObjectId("57bd5f3b414be2f9e2b81774"),
+  "title" : "Example5",
+  "author" : "Lee",
+  "price" : 200,
+  "stock" : 0
+}
 ```
+
+별도 지정하지 않은 &#95;id field가 추가되었다. 모든 document는 unique한 &#95;id field를 갖는다.
 
 select할 field를 지정할 수 있다. &#95;id는 지정하지 않아도 출력에 포함되므로 select할 field에 포함시키지 않을 경우에는 projection의 해당 field의 value에 0을 지정하여 명시적으로 배제하여야 한다.
 
@@ -209,25 +233,19 @@ db.books.find(
 )
 ```
 
-projection를 생략하면 모든 field가 선택된다.
+projection를 생략하면 모든 field가 선택된다. 다음은 price가 100 보다 크고(100 미포함) 400보다 작은(400 포함) document를 select한다.
+
 
 ```sql
 SELECT *
 FROM books
-WHERE price = 100
+WHERE price > 100
+AND   price <= 400
 ```
 
 ```javascript
 db.books.find(
-  { price: 100 }
-)
-```
-
-다음은 price가 200 보다 큰(200 미포함) document를 select한다.
-
-```javascript
-db.books.find(
-  { price: { $gt: 200 } }
+  { price: { $gt: 100, $lte: 400 } }
 )
 ```
 
@@ -267,11 +285,11 @@ db.books.find(
 | $not	    | 지정 조건이 false이면 true, true이면 false
 | $nor	    | 모든 지정 조건이 false이면 true
 
-다음은 price가 200보다 작고 author가 "Lee"인 document를 select한다.
+다음은 price가 200보다 작거나 stock이 0인 document를 select한다.
 
 ```javascript
 db.books.find(
-  { $and: [ { price: { $lt: 200 } }, { author: "Lee" } ] }
+  { $or: [ { price: { $lt: 200 } }, { stock: 0 } ] }
 )
 ```
 
@@ -285,7 +303,7 @@ db.books.find(
 
 # 3. Update
 
-`db.<collection_name>.update()`을 사용하여 collection 내의 document를 update한다.
+`update()` 메서드를 사용하여 collection 내의 document를 update한다.
 
 ```
 db.<collection_name>.update(
@@ -344,7 +362,7 @@ db.books.update(
 )
 ```
 
-다음은 모든 document의 field name을 "ttle"에서 "title"로 rename한다.
+다음은 모든 document의 field name을 "ttle"에서 "title"로 rename한다. 새로운 collection test에 테스트용 document를 insert한다.
 
 ```javascript
 db.test.insert([
@@ -365,7 +383,7 @@ db.test.update(
 $set value에는 { title: "Example4" }만 설정되어 있으나 query criteria { author: "Park" }과 $setOnInsert value { price: 100 }도 더불어 insert된다.
 
 ```javascript
-db.books.update(
+db.test.update(
   { author: "Park" },
   {
     $set: { title: "Example4" },
@@ -498,6 +516,10 @@ db.dropDatabase();
 # Reference
 
 * [The MongoDB 3.2 Manual](https://docs.mongodb.com/manual/)
+
+* [mongo Shell Quick Reference](https://docs.mongodb.com/manual/reference/mongo-shell/)
+
+* [MongoDB CRUD Operations](https://docs.mongodb.com/manual/crud/)
 
 * [SQL to MongoDB Mapping Chart](https://docs.mongodb.com/manual/reference/sql-comparison/)
 

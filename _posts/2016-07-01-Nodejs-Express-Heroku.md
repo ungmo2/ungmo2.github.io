@@ -210,11 +210,16 @@ web: node index.js
 
 web은 process type을 의미한다.
 
-# 8. local에서의 app 기동
+# 8. local 환경에서의 Code의 수정과 Heroku에의 Deploy
 
-pakage.json의 dependency 설정을 사용하여 local 환경에 필요 dependency를 설치한다.
+## 8.1 local 환경 구축
+
+local 환경에서 code를 수정하고 local 환경에서 app을 기동하여 수정사항을 확인한 후 Heroku에 수정사항을 반영한다.
+
+local 환경을 구축하기 위하여 pakage.json의 dependency 설정을 사용하여 local 환경에 필요 dependency를 설치한다.
 
 ```
+$ cd heroku-express-example
 $ npm install
 ```
 
@@ -222,10 +227,141 @@ $ npm install
 
 ```
 $ heroku local web
+[OKAY] Loaded ENV .env File as KEY=VALUE Format
+17:15:52 web.1   |  Node app is running on port 5000
 ```
 
+반듯이 heroku 명령어를 사용해야 하는 것은 아니다. 아래와 같이 일반적인 방법도 가능하다.
 
+```
+$ npm start
+```
 
+브라우저에서 http://localhost:5000으로 접속하여 local 환경에서 app이 실행되었음을 확인한다.
+
+## 8.2 Code의 수정
+
+code를 수정한다.
+
+[cool-ascii-faces](https://www.npmjs.com/package/cool-ascii-faces)를 install한다.
+
+```
+$ npm install --save --save-exact cool-ascii-faces
+```
+
+index.js를 아래와 같이 수정한다. ool-ascii-faces를 require하고 /cool 라우트를 추가한다.
+
+```javascript
+var cool = require('cool-ascii-faces');
+var express = require('express');
+var app = express();
+
+app.set('port', (process.env.PORT || 5000));
+
+app.use(express.static(__dirname + '/public'));
+
+// views is directory for all template files
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+
+app.get('/', function(request, response) {
+  response.render('pages/index')
+});
+
+app.get('/cool', function(request, response) {
+  response.send(cool());
+});
+
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
+```
+
+```
+$ npm install
+$ heroku local web
+```
+
+브라우저에서 http://localhost:5000/cool으로 접속하여 local 환경에서 app이 실행되었음을 확인한다.
+
+```
+( ⚆ _ ⚆ )
+```
+
+## 8.3 Heroku에의 Deploy
+
+먼저 모든 파일을 local git에 추가한다.
+
+```
+$ git add .
+```
+
+수정사항을 repository에 commit한다.
+
+```
+$ git commit -m "Demo"
+```
+
+heroku master에 git push한다.
+
+```
+$ git push heroku master
+```
+
+```
+$ git push origin master
+```
+
+app을 실행시켜서 정상 작동됨을 확인한다.
+
+```
+$ heroku open cool
+```
+
+# 9. GitHub Integration
+
+github와 연동하여 heroku에 수정사항을 반영할 수 있다.
+
+Heroku Dashboard > Deploy 탭으로 이동한다.
+
+Deployment method에서 GitHub를 선택한다.
+
+Connect to GitHub에 자신의 github repository를 등록한다.
+
+![Heroku GitHub Integration](/img/heroku-github integration-1.png)
+
+Connect to GitHub의 Search 버튼을 클릭하여 github repository를 등록한 후 Connect 버튼을 클릭한다.
+
+![Heroku GitHub Integration](/img/heroku-github integration-2.png)
+
+Automatic deploys에서 Enable Automatic Deploys 버튼을 클릭한다.
+
+![Heroku GitHub Integration](/img/heroku-github integration-3.png)
+
+이후 code를 GitHub에 push하면 자동으로 Heroku에 deploy가 실행된다.
+
+# 10. Add-on 설치
+
+Logging add-on [Papertrail](https://elements.heroku.com/addons/papertrail)을 설치한다.
+
+```
+$ heroku addons:create papertrail
+```
+
+```
+$ heroku addons
+
+Add-on                                  Plan     Price
+──────────────────────────────────────  ───────  ─────
+papertrail (papertrail-colorful-87606)  choklad  free
+ └─ as PAPERTRAIL
+
+The table above shows add-ons and the attachments to the current app (heroku-express-example) or other apps.
+```
+
+```
+$ heroku addons:open papertrail
+```
 
 
 

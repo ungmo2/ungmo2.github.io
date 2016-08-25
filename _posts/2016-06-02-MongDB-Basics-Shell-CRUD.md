@@ -517,7 +517,7 @@ db.dropDatabase();
 
 * [The MongoDB 3.2 Manual](https://docs.mongodb.com/manual/)
 
-* [mongo Shell Quick Reference](https://docs.mongodb.com/manual/reference/mongo-shell/)
+* [MongoDB Shell Quick Reference](https://docs.mongodb.com/manual/reference/mongo-shell/)
 
 * [MongoDB CRUD Operations](https://docs.mongodb.com/manual/crud/)
 

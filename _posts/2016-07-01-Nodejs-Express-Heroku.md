@@ -210,6 +210,23 @@ web: node index.js
 
 web은 process type을 의미한다.
 
+# 8. local에서의 app 기동
+
+pakage.json의 dependency 설정을 사용하여 local 환경에 필요 dependency를 설치한다.
+
+```
+$ npm install
+```
+
+`heroku local` command를 사용하여 local에서 app을 기동한다.
+
+```
+$ heroku local web
+```
+
+
+
+
 
 
 # Reference

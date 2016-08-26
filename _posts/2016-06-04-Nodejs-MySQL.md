@@ -6,7 +6,7 @@ categories: node.js
 * TOC
 {:toc}
 
-![node mysql](/img/nodejs-mysql.jpg)
+![node mysql](/img/nodejs-mysql.png)
 
 # 1. Introduction
 
@@ -33,7 +33,7 @@ $ npm init --yes
 `express`와 `node-mysql`을 설치한다.
 
 ```bash
-npm install express mysql --save --save-exact
+$ npm install express mysql --save --save-exact
 ```
 
 `package.json`을 아래와 같이 수정한다.
@@ -174,8 +174,8 @@ module.exports = {
 
 서버를 실행한다.
 
-```
-npm start
+```bash
+$ npm start
 ```
 
 localhost:3000/persons에 접속하여 결과를 확인한다.

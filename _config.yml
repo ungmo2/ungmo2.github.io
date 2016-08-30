@@ -29,6 +29,7 @@ keywords: "자바스크립트, 노드, 익스프레스, Javascript, node.js, exp
 # List of links in the navigation bar
 navbar-links:
   Home: ""
+  Archive: "archive"
   # About Me: "aboutme"
   # Author's home: "http://deanattali.com"
 

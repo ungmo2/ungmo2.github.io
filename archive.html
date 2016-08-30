@@ -4,8 +4,9 @@ title: Archive
 subtitle:
 ---
 
+<div class="bg-wrapper">
 {% for category in site.categories %}
-  <p><h2>{{ category | first }}</h2>
+  <h2>{{ category | first }}</h2>
     <ol>
     {% for posts in category %}
       {% for post in posts reversed %}
@@ -15,5 +16,5 @@ subtitle:
       {% endfor %}
     {% endfor %}
     </ol>
-  </p>
 {% endfor %}
+</div>

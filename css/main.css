@@ -80,6 +80,13 @@ code {
 .highlight code {
   font-family: inherit;
 }
+
+.bg-wrapper {
+  background-image: url(/img/triangles.svg);
+  background-size: auto 40%;
+  background-repeat-x: no-repeat;
+  background-position: 770px 0px;
+}
 /*end*/
 
 h1,h2,h3,h4,h5,h6 {

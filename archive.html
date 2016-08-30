@@ -6,7 +6,7 @@ subtitle:
 
 {% for category in site.categories %}
   <p><h2>{{ category | first }}</h2>
-    <ul>
+    <ol>
     {% for posts in category %}
       {% for post in posts reversed %}
         {% if post.url %}
@@ -14,6 +14,6 @@ subtitle:
         {% endif %}
       {% endfor %}
     {% endfor %}
-    </ul>
+    </ol>
   </p>
 {% endfor %}

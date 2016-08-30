@@ -82,10 +82,11 @@ code {
 }
 
 .bg-wrapper {
+  margin-right: -300px;
   background-image: url(/img/triangles.svg);
   background-size: auto 40%;
   background-repeat-x: no-repeat;
-  background-position: 770px 0px;
+  background-position: 550px 0px;
 }
 /*end*/
 

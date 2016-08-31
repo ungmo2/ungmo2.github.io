@@ -81,13 +81,13 @@ code {
   font-family: inherit;
 }
 
-.bg-wrapper {
+/*.bg-wrapper {
   margin-right: -300px;
   background-image: url(/img/triangles.svg);
   background-size: auto 40%;
   background-repeat-x: no-repeat;
   background-position: 550px 0px;
-}
+}*/
 /*end*/
 
 h1,h2,h3,h4,h5,h6 {

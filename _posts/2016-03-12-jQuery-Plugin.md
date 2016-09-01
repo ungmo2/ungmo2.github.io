@@ -10,7 +10,7 @@ jQuery plugin이란 custom jQuery 메서드로서 jQuery를 확장한 것을 말
 
 $ 함수는 jQuery 객체를 반환한다. jQuery 객체는 css()와 같은 jQuery 메서드를 사용할 수 있다.
 
-pure javascript에서 built object의 메서드가 prototype에 담겨있는 것과 같이 jQuery 객체의 메서드들은 jQuery 객체의 prototype인 **$.fn** 에 담겨 있다.
+pure javascript에서 built-in object의 메서드가 prototype에 담겨있는 것과 같이 jQuery 객체의 메서드들은 jQuery 객체의 prototype인 **$.fn** 에 담겨 있다.
 
 다음은 jQuery source code 초기 부분의 일부 발췌이다.
 

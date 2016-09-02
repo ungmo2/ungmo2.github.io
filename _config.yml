@@ -89,12 +89,12 @@ paginate: 20
 paginate_path: "/page:num/"
 
 # Sitemaps for GitHub Pages
-gems:
-  - jekyll-sitemap
+# gems:
+#   - jekyll-sitemap
 
 # Search engine optimization for GitHub Pages
-gems:
-  - jekyll-seo-tag
+# gems:
+#   - jekyll-seo-tag
 
 
 

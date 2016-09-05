@@ -96,8 +96,6 @@ paginate_path: "/page:num/"
 # gems:
 #   - jekyll-seo-tag
 
-
-
 # Default YAML values (more information on Jekyll's site)
 defaults:
   -

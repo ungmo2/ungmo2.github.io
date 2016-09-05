@@ -1,3 +1,17 @@
+# jekyll
 _site
 .sass-cache
 .jekyll-metadata
+
+# npm
+node_modules/
+npm-debug.log
+
+# bower
+public/libs/
+
+# Mac OS X
+.DS_Store
+
+# Webstorm
+.idea/

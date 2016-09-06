@@ -32,7 +32,9 @@ HTTP Method 사용의 예는 아래와 같다.
 | 예약 조회 | GET    | /reservation/2013012500001
 | 예약 취소 | DELETE | /reservation/2013012500001
 
-# 3. Install
+# 3. Setting
+
+## 3.1. Install
 
 mongoose-example 디렉터리를 생성하고 npm을 사용하여 Mongoose 모듈을 install한다.
 
@@ -59,9 +61,7 @@ package.json은 아래와 같다.
 }
 ```
 
-# 4. Setting
-
-## 4.1. 디렉터리 구조
+## 3.2. 디렉터리 구조
 
 ```
 mongoose-example/
@@ -73,27 +73,14 @@ mongoose-example/
 └── pakage.json
 ```
 
-## 4.2. API Reference
-
-| Route                         | Method   | Description
-|:------------------------------|:---------|:-----------
-| /api/users                    | POST     | user 생성
-| /api/users                    | GET      | 모든 user 조회
-| /api/users/:id                | GET      | _id로 user 조회
-| /api/users/username/:username | GET      | username으로 user 조회
-| /api/users/:id                | PUT      | _id로 user 조회 후 수정
-| /api/users/username/:username | PUT      | username으로 user 조회 후 수정
-| /api/users                    | DELETE   | 모든 user 삭제
-| /api/users/username/:username | DELETE   | username으로 user 조회 후 삭제
-
-# 5. Connection
+# 4. Connection
 
 루트 디렉터리에 app.js를 생성한다. mongoose 모듈을 require하고 connect 메서드로 MongoDB에 connect한다.
 
 ```javascript
-var express    = require('express');
-var bodyParser = require('body-parser');
-var mongoose   = require('mongoose');
+var express    = require("express");
+var bodyParser = require("body-parser");
+var mongoose   = require("mongoose");
 var app  = express();
 var port = process.env.port || 3000;
 
@@ -103,21 +90,21 @@ app.use(bodyParser.json());
 // CONNECT TO MONGODB SERVER
 var db = mongoose.connection;
 
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", function() {
   console.log("connect successfully");
 });
 
-mongoose.connect('mongodb://localhost/mydatabase');
+mongoose.connect("mongodb://localhost/mydatabase");
 ```
 
 mongoose.connection의 error, open 등의 이벤트를 활용하여 접속 실패, 접속 성공 시의 handling이 가능하다.
 
 [Mongoose Connections](http://mongoosejs.com/docs/connections.html)
 
-# 6. Schema & Model
+# 5. Schema & Model
 
-## 6.1. Schema
+## 5.1. Schema
 
 RDBMS의 Schema는 데이터베이스를 구성하는 레코드의 크기, 키(key)의 정의, 레코드와 레코드의 관계, 검색 방법 등을 정의한 것이다.
 
@@ -130,7 +117,7 @@ MongoDB는 Schema-less하다. 이는 RDMS처럼 고정 Schema가 존재하지 �
 models/user.js에 아래의 코드를 작성한다.
 
 ```javascript
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 
 // Define Schemes
 var userSchema = new mongoose.Schema({
@@ -148,6 +135,7 @@ var userSchema = new mongoose.Schema({
   timestamps: true
 });
 
+// Create Model & Export
 module.exports = mongoose.model("User", userSchema);
 ```
 
@@ -164,37 +152,49 @@ Mongoose Schema는 다음의 Data type을 지원한다.
 | Schema.types.ObjectId | 12byte binary 숫자에 대한 MongoDB 24자리 hex 문자열(501d86090d371bab2c0341c5)
 | Schema.types.Mixed    | 모든 유형의 데이터
 
-primary-key인 &#95;id는 insert()나 save() 메서드 호출시 자동으로 추가된다.
+primary-key인 &#95;id는 명시적으로 정의하지 않아도 insert()나 save() 메서드 호출시 자동으로 추가된다.
+
+Schema는 Model 생성 시 인자로서 전달되어지며 더이상 사용되지 않는다.
 
 - [Mongoose Schema Types](http://mongoosejs.com/docs/schematypes.html)
 
 - [option: timestamps](http://mongoosejs.com/docs/guide.html#timestamps)
 
-## 6.2. Model
+## 5.2. Model
 
 model() 메서드에 문자열과 schema를 전달하여 model을 생성한다. model은 보통 대문자로 시작한다.
 
-```javascript
-var User = mongoose.model('User', userSchema);
-```
-
-첫번째 인자는 해당 collection의 단수적 표현을 나타내는 문자열이다. 실제 collection의 이름은 'Users'로 자동 변환되어 사용된다.
-
-collection의 이름을 명시적으로 지정하고자 할 때는 schema 생성시 option은 지정한다.
+아래는 model 생성의 예이다.
 
 ```javascript
-var userSchema = new mongoose.Schema({..}, { collection: 'data' });
+var User = mongoose.model("User", userSchema);
 ```
 
-model은 생성자이므로 instance를 생성할 수 있는데 이것은 document를 나타낸다. instance 생성시 생성자에 초기값을 전달하거나 instance 생성후 속성과 값을 추가하여 document를 생성한다.
+첫번째 인자는 해당 collection의 단수적 표현을 나타내는 문자열이다. 실제 collection의 이름은 "Users"로 자동 변환되어 사용된다.
+
+collection의 이름을 명시적으로 지정하고자 할 때는 schema 생성시 option을 지정한다.
+
+```javascript
+var userSchema = new mongoose.Schema({..}, { collection: "my-collection-name" });
+```
+
+model은 생성자이므로 instance를 생성할 수 있는데 이것은 개별 document를 나타낸다. instance 생성시 생성자에 초기값을 전달하거나 instance 생성 후 속성과 값을 추가하여 document를 생성한다.
 
 ```javascript
 var lee = new User({
-  name: 'Lee',
-  username: 'ung-mo',
-  password: '1234',
+  name: "Lee",
+  username: "user01",
+  password: "1234",
   ...
-}});
+});
+
+// or
+
+var lee = new User();
+lee.name = "Lee";
+lee.username = "user01";
+lee.password = "Lee";
+...
 ```
 
 models/user.js의 마지막 라인에서 model을 생성하고 export한다.
@@ -210,11 +210,23 @@ module.exports = mongoose.model("User", userSchema);
 
 Statics model methods와 Document instance methods는 혼동하기 쉬우므로 주의가 필요하다.
 
-model(위의 경우 User)에서 메서드를 호출하면 Statics model methods가 되고 model의 instance(위의 경우 lee)에서 메서드를 호출하면 Document instance method가 된다.
+## 7.1. Statics model methods(Statics)
 
-- [Statics model methods](http://mongoosejs.com/docs/guide.html#statics)
+model(위의 경우 User)이 호출한 메서드는 Statics model method(Statics)이다.
 
-- [Document instance methods](http://mongoosejs.com/docs/api.html#document-js)
+특정 document가 존재하지 않거나 필요가 없는 경우에 유용하다.
+
+```javascript
+var User = mongoose.model("User", userSchema);
+
+// Statics model methods
+User.find({ }, function(err, users) {
+  if(err) throw err;
+  console.log(users);
+});
+```
+
+[Statics model methods](http://mongoosejs.com/docs/guide.html#statics)
 
 
 <!-- 사용 빈도가 높은 [Statics model methods](http://mongoosejs.com/docs/guide.html#statics)는 아래와 같다.
@@ -241,80 +253,241 @@ model(위의 경우 User)에서 메서드를 호출하면 Statics model methods�
 
 - [Model.findOneAndUpdate([conditions], [update], [options], [callback])](http://mongoosejs.com/docs/api.html#model_Model.findOneAndUpdate) -->
 
-# 9. Create
+## 7.2. Document instance methods(Methods)
 
-save() 메서드를 사용하여 user document를 저장한다.
+model의 instance(위의 경우 lee)가 호출한 메서드는 Document instance method(Methods)가 된다.
 
 ```javascript
-app.post('/api/users', function(req, res) {
-  var newUser = new User({
-    name     : req.body.name,
-    username : req.body.username,
-    password : req.body.password,
-    admin    : req.body.admin,
-    location : req.body.location,
-    meta     : {
-      age    : req.body.age,
-      website: req.body.website
-    }
-  });
+var User = mongoose.model("User", userSchema);
 
-  newUser.save(function(err, doc){
-    if(err) return res.status(500).send('save error');
-    res.send("User saved successfully: " + doc);
-  });
+// model instance (= document)
+var lee = new User({
+  name: "Lee",
+  username: "user01",
+  password: "1234"
 });
 
-app.listen(port, function () {
-  console.log('Express server listening on port ' + port);
+// Document instance method
+lee.save(function(err) {
+  if (err) throw err;
+  console.log("Saved successfully");
 });
 ```
 
-![Save Document](/img/mongoose-save-doc.png)
+[Document instance methods](http://mongoosejs.com/docs/api.html#document-js)
 
-# 10. Find
+## 7.3. Custom Statics & Methods
 
-## 10.1. Find One
+Built-in Statics model methods, Document instance methods 이외에도 사용자 정의 메서드를 추가할 수 있다.
 
-findOne() 메서드를 사용하여 query criteria에 부합하는 첫번째 document를 취득한다.
+**Instance methods**
+
+Schema의 methods 속성에 사용자 정의 메서드를 추가한다.
 
 ```javascript
-app.get('/api/users/username/:username', function(req, res) {
-  User.findOne({ "username" : req.params.username }, function(err, doc) {
+// define a schema
+var animalSchema = new Schema({ name: String, type: String });
+
+// assign a function to the "methods" object of our animalSchema
+animalSchema.methods.findSimilarTypes = function(cb) {
+  return this.model('Animal').find({ type: this.type }, cb);
+};
+```
+
+Animal model의 instance는 findSimilarTypes method를 사용할 수 있다.
+
+```javascript
+var Animal = mongoose.model('Animal', animalSchema);
+var dog = new Animal({ type: 'dog' });
+
+dog.findSimilarTypes(function(err, dogs) {
+  console.log(dogs); // woof
+});
+```
+**Statics**
+
+Schema의 statics 속성에 사용자 정의 메서드를 추가한다.
+
+```javascript
+// assign a function to the "statics" object of our animalSchema
+animalSchema.statics.findByName = function(name, cb) {
+  return this.find({ name: new RegExp(name, 'i') }, cb);
+};
+
+var Animal = mongoose.model('Animal', animalSchema);
+Animal.findByName('fido', function(err, animals) {
+  console.log(animals);
+});
+```
+
+# 8. CRUD
+
+RESTful API Reference는 아래와 같다.
+
+| Route                         | Method   | Description
+|:------------------------------|:---------|:-----------
+| /api/users                    | POST     | user 생성
+| /api/users                    | GET      | 모든 user 조회
+| /api/users/:id                | GET      | _id로 user 조회
+| /api/users/username/:username | GET      | username으로 user 조회
+| /api/users/:id                | PUT      | _id로 user 조회 후 수정
+| /api/users/username/:username | PUT      | username으로 user 조회 후 수정
+| /api/users                    | DELETE   | 모든 user 삭제
+| /api/users/username/:username | DELETE   | username으로 user 조회 후 삭제
+
+routes/user.js에 아래의 코드를 작성한다.
+
+```javascript
+var express = require("express");
+var router = express.Router();
+
+var User = require("../models/user");
+
+// Create
+router.post("/users", function(req, res) {
+});
+
+// Find All
+router.get("/users", function(req, res, next) {
+});
+
+// Find One
+router.get("/users/username/:username", function(req, res) {
+});
+
+// Find By ID
+router.get("/users/:id", function(req, res) {
+});
+
+// GET A USER, THEN UPDATE
+router.put("/users/:id", function(req, res) {
+});
+
+// FIND BY ID AND UPDATE
+router.put("/users/:id", function(req, res) {
+});
+
+// FIND AND UPDATE
+router.put("/users/username/:username", function(req, res) {
+});
+
+// REMOVE ALL
+router.delete("/users/", function(req, res) {
+});
+
+// FIND AND REMOVE
+router.delete("/users/username/:username", function(req, res) {
+});
+
+module.exports = router;
+```
+
+## 8.1. Create
+
+Static method인 create()를 사용하여 post data로 전달받은 user 정보를 저장한다.
+
+create() 메서드의 첫번째 매개변수에는 object 또는 array를 전달할 수 있다. array에 여러개의 user 정보를 담아 한번에 저장할 수 있어 유용하다.
+
+```javascript
+// Create
+router.post("/users", function(req, res)
+  User.create(req.body, function (err, users) {
     if(err) return res.status(500).send(err);
-    res.send("User findOne successfully:\n" + doc);
+    res.send("User Create successfully:\n" + users);
   });
 });
 ```
 
-![Find Document](/img/mongoose-findone-doc.png)
-
-## 10.2. Find All
-
-find() 메서드를 사용하여 query criteria에 부합하는 모든 document를 취득한다.
+post data로 전달받은 user 정보를 바탕으로 user를 생성한 후 instance method save()를 사용하여도 된다.
 
 ```javascript
-app.get('/api/users', function(req, res) {
-  User.find({ }, function(err, docs) {
+// Create
+router.post("/users", function(req, res)
+  var user = new User(req.body);
+
+  user.save(function(err, doc){
     if(err) return res.status(500).send(err);
-    res.send("User findOne successfully:\n" + docs);
+    res.send("User saved successfully:\n" + doc);
   });
 });
 ```
 
-![Find Document](/img/mongoose-find-doc.png)
+## 8.2. Read
 
-## 10.3. Find By ID
-
-findById() 메서드를 사용하여 id에 부합하는 document를 취득한다.
+- [Model.find](http://mongoosejs.com/docs/api.html#model_Model.find)  
+- [Model.findOne](http://mongoosejs.com/docs/api.html#model_Model.findOne)  
+- [Model.findById](http://mongoosejs.com/docs/api.html#model_Model.findById)
 
 ```javascript
-app.get('/api/users/id/:id', function(req, res) {
-  User.findById(req.params.id, function(err, doc) {
+// Find All
+router.get("/users", function(req, res) {
+  User.find({ }, function(err, users) {
+    if(err)           return res.status(500).send(err);
+    if(!users.length) return res.status(404).send({ err: "User not found" });
+    res.send("User find successfully:\n" + users);
+  });
+});
+
+// Find One
+router.get("/users/username/:username", function(req, res) {
+  User.findOne({ "username" : req.params.username }, function(err, user) {
+    if(err)   return res.status(500).send(err);
+    if(!user) return res.status(404).send({ err: "User not found" });
+    res.send("User findOne successfully:\n" + user);
+  });
+});
+
+// Find By ID
+router.get("/users/:id", function(req, res) {
+  User.findById(req.params.id, function(err, user) {
+    if(err)   return res.status(500).send(err);
+    if(!user) return res.status(404).send({ err: "User not found" });
+    res.send("User findById successfully:\n" + user);
+  });  
+});
+```
+
+## 8.3. Update
+
+- [Model.findByIdAndUpdate](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate)  
+- [Model.findOneAndUpdate](http://mongoosejs.com/docs/api.html#model_Model.findOneAndUpdate)
+
+```javascript
+// FIND BY ID AND UPDATE
+router.put("/users/:id", function(req, res) {
+  User.findByIdAndUpdate(req.params.id, req.body, {new: true}, function(err, user) {
     if(err) return res.status(500).send(err);
-    res.send("User findById successfully:\n" + doc);
+    res.send("User findByIdAndUpdate successfully:\n" + user);
+  });
+});
+
+// FIND AND UPDATE
+router.put("/users/username/:username", function(req, res) {
+  User.findOneAndUpdate({ username: req.params.username }, req.body, {new: true}, function(err, user) {
+    if(err) return res.status(500).send(err);
+    res.send("User findOneAndUpdate successfully:\n" + user);
   });
 });
 ```
 
-![Find Document](/img/mongoose-findone-doc.png)
+## 8.4. Delete
+
+- [Model.remove](http://mongoosejs.com/docs/api.html#model_Model.remove)  
+
+```javascript
+// REMOVE ALL
+router.delete("/users/", function(req, res) {
+  User.remove({ }, function(err) {
+    if(err) return res.status(500).send(err);
+    res.send("User all deleted successfully");
+  });
+});
+
+// FIND AND REMOVE
+router.delete("/users/username/:username", function(req, res) {
+  User.remove({ username: req.params.username }, function(err) {
+    if(err) return res.status(500).send(err);
+    res.send("User deleted successfully");
+  });
+});
+```

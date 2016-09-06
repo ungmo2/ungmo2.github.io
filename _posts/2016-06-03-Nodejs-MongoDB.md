@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Node.js(express)와 MongoDB 연동 - Mongoose
+title: Node.js(express)와 MongoDB 연동 RESTful API - Mongoose
 categories: mongodb
 ---
 
@@ -14,7 +14,25 @@ ODM의 사용은 코드 구성이나 개발 편의성 측면에서 장점이 많
 
 필요에 따라 확장 및 변경이 가능한 자체 검증(Validation)과 타입 변환(Casting)이 가능하며 Express와 함께 사용하면 MVC Concept 구현이 용이하다.
 
-# 2. Install
+# 2. RESTful API
+
+REST는 Representational state transfer의 약자로, 월드와이드웹과 같은 분산 하이퍼미디어 시스템에서 운영되는 소프트웨어 아키텍처스타일입니다.
+
+HTTP 프로토콜을 정확히 의도에 맞게 활용하여 디자인하게 유도하고 있기 때문에 디자인 기준이 명확해지며, 의미적인 범용성을 지니므로 중간 계층의 컴포넌트들이 서비스를 최적화하는 데 도움이 됩니다. REST의 기본 원칙을 성실히 지킨 서비스 디자인은 “RESTful 하다.” 라고 흔히 표현합니다.
+
+REST에서 가장 중요하며 기본적인 규칙은 아래 두 가지입니다.
+
+URI는 정보의 자원을 표현해야 한다.
+자원에 대한 행위는 HTTP Method(GET, POST, PUT, DELETE 등)으로 표현한다.
+
+자원의 생성은 “POST“, 수정은 “PUT“, 조회는 “GET“, 삭제는 “DELETE” 메서드를 사용합니다.
+예를 들면
+예약 생성 : POST /reservation/2013012500001
+예약 수정 : PUT /reservation/2013012500001
+예약 조회 : GET /reservation/2013012500001
+예약취소 : DELETE /reservation/2013012500001
+
+# 3. Install
 
 mongoose-example 디렉터리를 생성하고 npm을 사용하여 Mongoose 모듈을 install한다.
 
@@ -41,9 +59,34 @@ package.json은 아래와 같다.
 }
 ```
 
-[Mongoose Connections](http://mongoosejs.com/docs/connections.html)
+# 4. Setting
 
-# 3. Connection
+## 4.1. 디렉터리 구조
+
+```
+mongoose-example/
+├── models/
+│   └── user.js
+├── routes/
+│   └── user.js
+├── app.js
+└── pakage.json
+```
+
+## 4.2. API Reference
+
+| Route                         | Method   | Description
+|:------------------------------|:---------|:-----------
+| /api/users                    | POST     | user 생성
+| /api/users                    | GET      | 모든 user 조회
+| /api/users/:id                | GET      | _id로 user 조회
+| /api/users/username/:username | GET      | username으로 user 조회
+| /api/users/:id                | PUT      | _id로 user 조회 후 수정
+| /api/users/username/:username | PUT      | username으로 user 조회 후 수정
+| /api/users                    | DELETE   | 모든 user 삭제
+| /api/users/username/:username | DELETE   | username으로 user 조회 후 삭제
+
+# 5. Connection
 
 루트 디렉터리에 app.js를 생성한다. mongoose 모듈을 require하고 connect 메서드로 MongoDB에 connect한다.
 
@@ -54,8 +97,8 @@ var mongoose   = require('mongoose');
 var app  = express();
 var port = process.env.port || 3000;
 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 
 // CONNECT TO MONGODB SERVER
 var db = mongoose.connection;
@@ -68,7 +111,13 @@ db.once('open', function() {
 mongoose.connect('mongodb://localhost/mydatabase');
 ```
 
-# 4. Schema
+mongoose.connection의 error, open 등의 이벤트를 활용하여 접속 실패, 접속 성공 시의 handling이 가능하다.
+
+[Mongoose Connections](http://mongoosejs.com/docs/connections.html)
+
+# 6. Schema & Model
+
+## 6.1. Schema
 
 RDBMS의 Schema는 데이터베이스를 구성하는 레코드의 크기, 키(key)의 정의, 레코드와 레코드의 관계, 검색 방법 등을 정의한 것이다.
 
@@ -78,7 +127,12 @@ MongoDB는 Schema-less하다. 이는 RDMS처럼 고정 Schema가 존재하지 �
 
 이는 자유도가 높아서 유연한 사용이 가능하다는 장점이 있지만 명시적인 구조가 없기 때문에 어떤 필드가 어떤 데이터 타입인지 알기 어려운 단점이 있다. 이러한 문제를 보완하기 위해서 Mongoose는 Schema를 사용한다.
 
+models/user.js에 아래의 코드를 작성한다.
+
 ```javascript
+var mongoose = require('mongoose');
+
+// Define Schemes
 var userSchema = new mongoose.Schema({
   name: String,
   username: { type: String, required: true, unique: true },
@@ -93,6 +147,8 @@ var userSchema = new mongoose.Schema({
 {
   timestamps: true
 });
+
+module.exports = mongoose.model("User", userSchema);
 ```
 
 Mongoose Schema는 다음의 Data type을 지원한다.
@@ -114,7 +170,7 @@ primary-key인 &#95;id는 insert()나 save() 메서드 호출시 자동으로 �
 
 - [option: timestamps](http://mongoosejs.com/docs/guide.html#timestamps)
 
-# 5. Model
+## 6.2. Model
 
 model() 메서드에 문자열과 schema를 전달하여 model을 생성한다. model은 보통 대문자로 시작한다.
 
@@ -141,9 +197,16 @@ var lee = new User({
 }});
 ```
 
+models/user.js의 마지막 라인에서 model을 생성하고 export한다.
+
+```javascript
+...
+module.exports = mongoose.model("User", userSchema);
+```
+
 [Mongoose Models](http://mongoosejs.com/docs/models.html)
 
-# 6. Statics model methods & Document instance methods
+# 7. Statics model methods & Document instance methods
 
 Statics model methods와 Document instance methods는 혼동하기 쉬우므로 주의가 필요하다.
 
@@ -178,7 +241,7 @@ model(위의 경우 User)에서 메서드를 호출하면 Statics model methods�
 
 - [Model.findOneAndUpdate([conditions], [update], [options], [callback])](http://mongoosejs.com/docs/api.html#model_Model.findOneAndUpdate) -->
 
-# 7. Create
+# 9. Create
 
 save() 메서드를 사용하여 user document를 저장한다.
 
@@ -209,7 +272,9 @@ app.listen(port, function () {
 
 ![Save Document](/img/mongoose-save-doc.png)
 
-# 6. Find One
+# 10. Find
+
+## 10.1. Find One
 
 findOne() 메서드를 사용하여 query criteria에 부합하는 첫번째 document를 취득한다.
 
@@ -224,7 +289,7 @@ app.get('/api/users/username/:username', function(req, res) {
 
 ![Find Document](/img/mongoose-findone-doc.png)
 
-# 7. Find All
+## 10.2. Find All
 
 find() 메서드를 사용하여 query criteria에 부합하는 모든 document를 취득한다.
 
@@ -239,7 +304,7 @@ app.get('/api/users', function(req, res) {
 
 ![Find Document](/img/mongoose-find-doc.png)
 
-# 8. Find By ID
+## 10.3. Find By ID
 
 findById() 메서드를 사용하여 id에 부합하는 document를 취득한다.
 

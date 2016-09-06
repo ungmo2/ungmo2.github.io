@@ -388,6 +388,8 @@ Static method인 create()를 사용하여 post data로 전달받은 user 정보�
 
 create() 메서드의 첫번째 매개변수에는 object 또는 array를 전달할 수 있다. array에 여러개의 user 정보를 담아 한번에 저장할 수 있어 유용하다.
 
+- [Model.create](http://mongoosejs.com/docs/api.html#model_Model.create)
+
 ```javascript
 // Create
 router.post("/users", function(req, res)
@@ -399,6 +401,8 @@ router.post("/users", function(req, res)
 ```
 
 post data로 전달받은 user 정보를 바탕으로 user를 생성한 후 instance method save()를 사용하여도 된다.
+
+- [Model#save](http://mongoosejs.com/docs/api.html#model_Model-save)
 
 ```javascript
 // Create

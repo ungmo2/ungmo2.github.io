@@ -4,7 +4,7 @@ title: Node.js(express)와 MongoDB 연동 RESTful API - Mongoose
 categories: mongodb
 ---
 
-![mongoose logo](/img/mongoose-logo.jpeg)
+![mongoose logo](/img/mongoose-logo.png)
 
 # 1. Introduction
 
@@ -25,7 +25,7 @@ REST에서 가장 중요하며 기본적인 규칙은 아래 두 가지이다.
 - URI는 정보의 자원을 표현해야 한다.
 - 자원에 대한 행위는 HTTP Method(GET, POST, PUT, DELETE 등)으로 표현한다.
 
-예를 들면
+HTTP Method 사용의 예는 아래와 같다.
 
 | 예약 생성 | POST   | /reservation/2013012500001
 | 예약 수정 | PUT    | /reservation/2013012500001

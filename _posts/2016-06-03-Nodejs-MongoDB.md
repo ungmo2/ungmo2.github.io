@@ -16,21 +16,21 @@ ODM의 사용은 코드 구성이나 개발 편의성 측면에서 장점이 많
 
 # 2. RESTful API
 
-REST는 Representational state transfer의 약자로, 월드와이드웹과 같은 분산 하이퍼미디어 시스템에서 운영되는 소프트웨어 아키텍처스타일입니다.
+REST는 Representational state transfer의 약자로 World Wide Web과 같은 분산 하이퍼미디어 시스템에서 운영되는 소프트웨어 아키텍처 스타일이다.
 
-HTTP 프로토콜을 정확히 의도에 맞게 활용하여 디자인하게 유도하고 있기 때문에 디자인 기준이 명확해지며, 의미적인 범용성을 지니므로 중간 계층의 컴포넌트들이 서비스를 최적화하는 데 도움이 됩니다. REST의 기본 원칙을 성실히 지킨 서비스 디자인은 “RESTful 하다.” 라고 흔히 표현합니다.
+HTTP 프로토콜을 의도에 맞게 정확히 활용하여 디자인하도록 유도하고 있기 때문에 디자인 기준이 명확해지며, 의미적인 범용성을 지니므로 중간 계층의 컴포넌트들이 서비스를 최적화하는 데 도움이 된다. REST의 기본 원칙을 충실히 지킨 서비스 디자인을 “RESTful” 이라고 표현한다.
 
-REST에서 가장 중요하며 기본적인 규칙은 아래 두 가지입니다.
+REST에서 가장 중요하며 기본적인 규칙은 아래 두 가지이다.
 
-URI는 정보의 자원을 표현해야 한다.
-자원에 대한 행위는 HTTP Method(GET, POST, PUT, DELETE 등)으로 표현한다.
+- URI는 정보의 자원을 표현해야 한다.
+- 자원에 대한 행위는 HTTP Method(GET, POST, PUT, DELETE 등)으로 표현한다.
 
-자원의 생성은 “POST“, 수정은 “PUT“, 조회는 “GET“, 삭제는 “DELETE” 메서드를 사용합니다.
 예를 들면
-예약 생성 : POST /reservation/2013012500001
-예약 수정 : PUT /reservation/2013012500001
-예약 조회 : GET /reservation/2013012500001
-예약취소 : DELETE /reservation/2013012500001
+
+| 예약 생성 | POST   | /reservation/2013012500001
+| 예약 수정 | PUT    | /reservation/2013012500001
+| 예약 조회 | GET    | /reservation/2013012500001
+| 예약 취소 | DELETE | /reservation/2013012500001
 
 # 3. Install
 

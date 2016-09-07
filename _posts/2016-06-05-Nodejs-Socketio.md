@@ -25,3 +25,77 @@ WebSocket과 Polling 방식 비교 ([www.websocket.org](https://www.websocket.or
 {: style="color:gray; font-size: 80%; text-align: center; margin-top: 5px;"}
 
 이러한 특성으로 인해 WebSocket은 서버의 데이터를 클라이언트에 즉시 전달할 수 있는 실시간 애플리케이션 작성에 매우 효과적인 프로토콜이다.
+
+WebSocket을 사용하여 Node.js 서버와 통신이 가능한 예제를 작성하여 보자.
+
+먼저, 클라이언트(브라우저) WebSocket을 구현한다. 루트 디렉터리에 index.html을 작성한다.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Native WebSocket Example</title>
+</head>
+<body>
+<script>
+  // 웹소켓 전역 객체 생성
+  var ws = new WebSocket("ws://localhost:3000");
+
+  // 연결이 수립되면 서버에 메시지를 전송한다
+  ws.onopen = function(event) {
+    ws.send("Front-end message: Hi!");
+  }
+
+  // 서버로 부터 메시지를 수신한다
+  ws.onmessage = function(event) {
+    console.log("Server message: ", event.data);
+  }
+
+  // error event handler
+  ws.onerror = function(event) {
+    console.log("Server error message: ", event.data);
+  }
+</script>
+</body>
+</html>
+```
+
+다음은 [ws 모듈](https://www.npmjs.com/package/ws)을 사용하여 Node.js 기반 서버를 구현한다.
+
+```bash
+$ mkdir native-websocket && cd native-websocket
+$ npm init --yes
+$ npm install ws --save
+```
+
+루트 디렉터리에 server.js을 작성한다.
+
+```javascript
+var WebSocketServer = require("ws").Server;
+var wss = new WebSocketServer({ port: 3000 });
+
+// 연결이 수립되면 클라이언트에 메시지를 전송하고 클라이언트로부터의 메시지를 수신한다
+wss.on("connection", function(ws) {
+  ws.send("Hello! I am a server.");
+  ws.on("message", function(message) {
+    console.log("Received: %s", message);
+  });
+});
+```
+
+서버를 실행한다.
+
+```bash
+$ node server
+```
+
+브라우저에서 index.html을 열면 콘솔에서 메시지를 확인할 수 있다.
+
+![native-websocket-client](/img/native-websocket-client.png)
+{: style="max-width:500px; margin: 10px auto;"}
+
+![native-websocket-server](/img/native-websocket-server.png)
+{: style="max-width:500px; margin: 10px auto;"}
+
+# 2. Socket.io

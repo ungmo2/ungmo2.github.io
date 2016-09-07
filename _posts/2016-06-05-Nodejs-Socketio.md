@@ -105,3 +105,5 @@ Server에서 수신한 메시지
 {: style="color:gray; font-size: 80%; text-align: center; margin-top: 5px;"}
 
 # 2. Socket.io
+
+네이티브 HTML5 WebSocket은 매우 유용한 기술이지만 

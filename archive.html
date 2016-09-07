@@ -11,7 +11,13 @@ subtitle:
     {% for posts in category %}
       {% for post in posts reversed %}
         {% if post.url %}
-          <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+          <li>
+            <!-- <a href="{{ post.url }}">{{ post.title }}</a> -->
+            <a href="{{ post.url }}">
+        	    <h4 class="post-title">{{ post.title }}</h4>
+            </a>
+
+          </li>
         {% endif %}
       {% endfor %}
     {% endfor %}

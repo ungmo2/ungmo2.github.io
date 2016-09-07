@@ -5,10 +5,10 @@ categories: mongodb
 tags: []
 ---
 
+![MongoDB Logo](/img/mongo-db-logo.png)
+
 * TOC
 {:toc}
-
-![MongoDB Logo](/img/mongo-db-logo.png)
 
 MongoDB Shell을 사용하여 CRUD의 기본을 알아본다.
 

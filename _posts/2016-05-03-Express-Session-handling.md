@@ -5,15 +5,14 @@ categories: express
 tags: []
 ---
 
-* TOC
-{:toc}
-
 Web application은 로그인 인증 등의 용도로 Session을 사용한다. Express는 메모리 상(MemoryStore)에 Session data를 저장할 수 있다.
 
 개발을 위한 MemoryStore의 사용은 문제될 것이 없지만 production 환경에서 MemoryStore의 사용은 적절하지 않으며 복수 서버 상에서의 Session data 공유도 MemoryStore에서는 불가능하다.
 
 따라서 production 환경에서는 [Redis](http://www.redis.io/), [MongoDB](https://www.mongodb.com/)를 사용하여 영속적 Session data 관리하는 것이 일반적이다.
 
+* TOC
+{:toc}
 
 # 1. HTTP Stateless Protocol
 

@@ -3,10 +3,11 @@ layout: post
 title: Node.js(express)와 MySQL 연동
 categories: node.js
 ---
-* TOC
-{:toc}
 
 ![node mysql](/img/nodejs-mysql.png)
+
+* TOC
+{:toc}
 
 # 1. Introduction
 

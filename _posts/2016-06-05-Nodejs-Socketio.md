@@ -7,13 +7,12 @@ categories: node.js
 ![socket.io logo](/img/socketio-logo.png)
 {: style="max-width:600px; margin: 10px auto;"}
 
-# 1. Introduction
+HTTP는 무상태 프로토콜(stateless protocol)으로 어떠한 이전 요청과도 무관한 각각의 요청을 독립적인 트랜잭션으로 취급하는 통신 프로토콜이다. 이러한 HTTP의 한계에서 벗어나 실시간 양방향 웹 애플리케이션을 작성 가능한 HTML5 표준 기술인 WebSocket과 Node.js에서 손쉽게 실시간 양방향 웹 애플리케이션을 작성할 수 있는 Socket.io를 간단한 채팅 애플리케이션 작성을 통해 알아본다.
 
-HTTP는 무상태 프로토콜(stateless protocol)으로 어떠한 이전 요청과도 무관한 각각의 요청을 독립적인 트랜잭션으로 취급하는 통신 프로토콜이다.
+* TOC
+{:toc}
 
-이러한 HTTP의 한계에서 벗어나 실시간 양방향 웹 애플리케이션을 작성 가능한 HTML5 표준 기술인 WebSocket과 Node.js에서 손쉽게 실시간 양방향 웹 애플리케이션을 작성할 수 있는 Socket.io를 간단한 채팅 애플리케이션 작성을 통해 알아본다.
-
-# 2. WebSocket
+# 1. WebSocket
 
 [WebSocket](https://www.websocket.org/aboutwebsocket.html)은 브라우저(클라이언트)와 서버 간의 특별한 통신 채널을 구성하는 HTML5 프로토콜이다.
 

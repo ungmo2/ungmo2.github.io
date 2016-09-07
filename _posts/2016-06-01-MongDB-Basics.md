@@ -5,10 +5,10 @@ categories: mongodb
 tags: []
 ---
 
+![MongoDB Logo](/img/mongo-db-logo.png)
+
 * TOC
 {:toc}
-
-![MongoDB Logo](/img/mongo-db-logo.png)
 
 # 1. Introduction
 

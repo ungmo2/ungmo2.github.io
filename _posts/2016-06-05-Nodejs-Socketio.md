@@ -5,6 +5,7 @@ categories: node.js
 ---
 
 ![socket.io logo](/img/socketio-logo.png)
+{: style="max-width:600px; margin: 10px auto;"}
 
 # 1. Introduction
 
@@ -21,7 +22,7 @@ HTTP는 클라이언트에 의해 초기화되기 때문에 서버가 변경사�
 ![websocket-polling](/img/websocket-polling.gif)
 {: style="max-width:500px; margin: 10px auto;"}
 
-[WebSocket과 Polling 방식 비교](https://www.websocket.org/quantum.html)
+WebSocket과 Polling 방식 비교 ([www.websocket.org](https://www.websocket.org/quantum.html))
 {: style="color:gray; font-size: 80%; text-align: center; margin-top: 5px;"}
 
 이러한 특성으로 인해 WebSocket은 서버의 데이터를 클라이언트에 즉시 전달할 수 있는 실시간 애플리케이션 작성에 매우 효과적인 프로토콜이다.

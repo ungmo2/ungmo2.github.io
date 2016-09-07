@@ -95,7 +95,13 @@ $ node server
 ![native-websocket-client](/img/native-websocket-client.png)
 {: style="max-width:500px; margin: 10px auto;"}
 
+Client에 수신한 메시지
+{: style="color:gray; font-size: 80%; text-align: center; margin-top: 5px;"}
+
 ![native-websocket-server](/img/native-websocket-server.png)
 {: style="max-width:500px; margin: 10px auto;"}
+
+Server에서 수신한 메시지
+{: style="color:gray; font-size: 80%; text-align: center; margin-top: 5px;"}
 
 # 2. Socket.io

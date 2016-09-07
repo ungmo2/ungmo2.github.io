@@ -326,7 +326,7 @@ RESTful API Reference는 아래와 같다.
 
 | Route                         | Method   | Description
 |:------------------------------|:---------|:-----------
-| /api/users                    | POST     | user 생성
+| /api/users                    | POST     | 단일 또는 복수의 user 생성
 | /api/users                    | GET      | 모든 user 조회
 | /api/users/:id                | GET      | _id로 user 조회
 | /api/users/username/:username | GET      | username으로 user 조회

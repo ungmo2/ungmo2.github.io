@@ -4,6 +4,7 @@ title: Archive
 subtitle: Javascript, Node.js, Express, etc.
 ---
 
+<!-- filtering by category -->
 {% for category in site.categories %}
 {% if category contains "mongodb" %}
   <li>{{ category | first }}
@@ -20,7 +21,7 @@ subtitle: Javascript, Node.js, Express, etc.
 {% endif %}
 {% endfor %}
 
-
+<!-- listing all category -->
 {% for category in site.categories %}
   <li>{{ category | first }}
     <ul>

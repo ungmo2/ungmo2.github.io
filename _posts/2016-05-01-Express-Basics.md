@@ -311,7 +311,7 @@ res.send('<p>some html</p>');
 res.status(404).send('Sorry, we cannot find that!');
 res.status(500).send({ error: 'something blew up' });
 
-res.sendFile('test.json', { root: __dirname });
+res.sendFile(__dirname + 'test.json');
 
 res.sendStatus(200); // equivalent to res.status(200).send('OK')
 res.sendStatus(403); // equivalent to res.status(403).send('Forbidden')

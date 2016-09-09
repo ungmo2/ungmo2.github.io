@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Express Session Handling
-subtitle: Using Redis
+subtitle: Redis를 사용한 영속적 Session data 관리
 categories: express
 tags: []
 ---

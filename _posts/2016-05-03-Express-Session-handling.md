@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Express Session Handling
-subtitle: Redis를 사용한 영속적 Session data 관리
+subtitle: MemoryStore를 사용한 Session 관리와 Redis를 사용한 영속적 Session 관리
 categories: express
 tags: []
 ---

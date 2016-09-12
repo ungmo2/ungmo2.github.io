@@ -93,13 +93,13 @@ $ node server
 브라우저에서 index.html을 열면 콘솔에서 메시지를 확인할 수 있다.
 
 ![native-websocket-client](/img/native-websocket-client.png)
-{: style="max-width:500px; margin: 10px auto; border: 0.5px solid gray;"}
+{: style="max-width:550px; margin: 10px auto; border: 0.5px solid gray;"}
 
 Client에 수신한 메시지
 {: style="color:gray; font-size: 80%; text-align: center; margin-top: 5px;"}
 
 ![native-websocket-server](/img/native-websocket-server.png)
-{: style="max-width:500px; margin: 10px auto; border: 0.5px solid gray;"}
+{: style="max-width:550px; margin: 10px auto; border: 0.5px solid gray;"}
 
 Server에서 수신한 메시지
 {: style="color:gray; font-size: 80%; text-align: center; margin-top: 5px;"}
@@ -109,7 +109,7 @@ Server에서 수신한 메시지
 HTML5 WebSocket은 매우 유용한 기술이지만 오래된 브라우저의 경우 지원하지 않는 경우가 있다.
 
 ![caniuse-websocket](/img/caniuse-websocket.png)
-{: style="max-width:500px; margin: 10px auto;"}
+{: style="max-width:550px; margin: 10px auto;"}
 
 [www.caniuse.com](http://caniuse.com/#feat=websockets)
 {: style="color:gray; font-size: 80%; text-align: center; margin-top: 5px;"}

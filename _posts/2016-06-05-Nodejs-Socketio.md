@@ -173,29 +173,38 @@ app.get('/', function (req, res) {
 // connection이 수립되면 event handler function의 인자로 socket인 들어온다
 io.on('connection', function (socket) {
 
-  // 접속한 클라이언트 정보가 수신되면
-  socket.on('c2s login', function(data) {
-    console.log('Client logged-in:\n name:' + data.name + '\nuserid: ' + data.userid);
+  // 접속한 클라이언트의 정보가 수신되면
+  socket.on('login', function(data) {
+    console.log('Client logged-in:\n name:' + data.name + '\n userid: ' + data.userid);
 
     // socket에 클라이언트 정보를 저장한다
     socket.name = data.name;
     socket.userid = data.userid;
 
-    socket.emit('s2c login', 'Welcome to Socket IO Server! ' + data.name);
+    // 접속된 모든 클라이언트에게 메시지를 전송한다
+    io.emit('login', data.name );
   });
 
   // 클라이언트로부터의 메시지가 수신되면
-  socket.on('c2s chat', function(data) {
+  socket.on('chat', function(data) {
     console.log('Message from %s: %s', socket.name, data.msg);
 
+    var msg = {
+      from: {
+        name: socket.name,
+        userid: socket.userid
+      },
+      msg: data.msg
+    };
+
     // 메시지를 전송한 클라이언트를 제외하고 접속된 모든 클라이언트에게 메시지를 전송한다
-    socket.broadcast.emit('s2c chat', data);
+    socket.broadcast.emit('chat', msg);
 
     // 메시지를 전송한 클라이언트에게만 메시지를 전송한다
-    socket.emit('s2c chat', data);
+    // socket.emit('s2c chat', msg);
 
     // 접속된 모든 클라이언트에게 메시지를 전송한다
-    io.emit('s2c chat', data);
+    // io.emit('s2c chat', msg);
 
     // 특정 클라이언트에게만 메시지를 전송한다
     // io.to(id).emit('s2c chat', data);
@@ -223,12 +232,12 @@ websocket-chat 디렉터리에 아래의 2개 파일을 작성한다.
 <html>
 <head>
   <meta charset="utf-8">
-  <title>websocket-chat</title>
+  <title>Socket.io Chat Example</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
   <div class="container">
-    <h1>WebSocket-Chat</h1>
+    <h3>Socket.io Chat Example</h3>
     <form class="form-inline">
       <div class="form-group">
         <label for="msgForm">Message: </label>
@@ -246,14 +255,20 @@ websocket-chat 디렉터리에 아래의 2개 파일을 작성한다.
     var socket = io();
 
     // 서버로 자신의 정보를 전송한다.
-    socket.emit("c2s login", {
-      name: "ungmo2",
+    socket.emit("login", {
+      // name: "ungmo2",
+      name: makeRandomName(),
       userid: "ungmo2@gmail.com"
     });
 
     // 서버로부터의 메시지가 수신되면
-    socket.on("s2c chat", function(data) {
-      $("#chatLogs").append("<div>" + data.msg + "</div>");
+    socket.on("login", function(data) {
+      $("#chatLogs").append("<div><strong>" + data + "</strong> has joined</div>");
+    });
+
+    // 서버로부터의 메시지가 수신되면
+    socket.on("chat", function(data) {
+      $("#chatLogs").append("<div>" + data.msg + " : from <strong>" + data.from.name + "</strong></div>");
     });
 
     // Send 버튼이 클릭되면
@@ -262,10 +277,18 @@ websocket-chat 디렉터리에 아래의 2개 파일을 작성한다.
       var $msgForm = $("#msgForm");
 
       // 서버로 메시지를 전송한다.
-      socket.emit("c2s chat", { msg: $msgForm.val() });
-
+      socket.emit("chat", { msg: $msgForm.val() });
       $msgForm.val("");
-    });    
+    });
+
+    function makeRandomName(){
+      var name = "";
+      var possible = "abcdefghijklmnopqrstuvwxyz";
+      for( var i = 0; i < 3; i++ ) {
+        name += possible.charAt(Math.floor(Math.random() * possible.length));
+      }
+      return name;
+    }
   });
   </script>
 </body>

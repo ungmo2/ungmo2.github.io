@@ -114,7 +114,7 @@ HTML5 WebSocket은 매우 유용한 기술이지만 오래된 브라우저의 �
 [www.caniuse.com](http://caniuse.com/#feat=websockets)
 {: style="color:gray; font-size: 80%; text-align: center; margin-top: 5px;"}
 
-또한 연결은 언제든지 끊어질 수 있기 때문에 재연결 수립이 필요하다. 브라우저 간 호환이나 이전 버전 호환을 고려하여 Node.js를 위한 강력한 Cross-platform WebSocket API인 [Socket.io](http://socket.io/)를 사용하는 것이 바람직하다.
+브라우저 간 호환이나 이전 버전 호환을 고려하여 Node.js를 위한 강력한 Cross-platform WebSocket API인 [Socket.io](http://socket.io/)를 사용하는 것이 바람직하다.
 
 # 3. Install
 
@@ -154,51 +154,55 @@ Socket.io를 사용하여 클라이언트 간 Real-time Chat app을 구현하여
 | socket.emit          | 자신에게만 송신
 | socket.broadcast.emit| 자신을 제외한 모든 클라이언트에게 송신
 
+http server를 생성한 후 http server를 socket.io server로 upgrade한다.
 
 app.js
 
 ```javascript
 var app = require('express')();
 var server = require('http').createServer(app);
-// upgrade http server to socket.io server
+// http server를 socket.io server로 upgrade한다
 var io = require('socket.io')(server);
 
+// localhost:3000으로 서버에 접속하면 클라이언트로 index.html을 전송한다
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
+// connection event handler
+// connection이 수립되면 event handler function의 인자로 socket인 들어온다
 io.on('connection', function (socket) {
 
-  socket.emit('s2c', 'Wecome to Socket IO Server');
+  // 접속한 클라이언트 정보가 수신되면
+  socket.on('c2s login', function(data) {
+    console.log('Client logged-in:\n name:' + data.name + '\nuserid: ' + data.userid);
 
-  socket.on('c2s', function(data) {
-    socket.broadcast.emit('toclient',data); // 자신을 제외하고 다른 클라이언트에게 보냄
-    socket.emit('toclient',data); // 해당 클라이언트에게만 보냄. 다른 클라이언트에 보낼려면?
-    console.log('Message from client :'+data.msg);
+    // socket에 클라이언트 정보를 저장한다
+    socket.name = data.name;
+    socket.userid = data.userid;
+
+    socket.emit('s2c login', 'Welcome to Socket IO Server! ' + data.name);
   });
 
-  console.log('a user connected');
+  // 클라이언트로부터의 메시지가 수신되면
+  socket.on('c2s chat', function(data) {
+    console.log('Message from %s: %s', socket.name, data.msg);
 
-  // Send data
-  socket.on('chat message', function (msg) {
-    console.log('message: ' + msg);
-    // データを送信する
-    // io.emit('chat message', msg);
-    // 送信元以外に送信する
-    socket.broadcast.emit('chat message', msg);
-  });
+    // 메시지를 전송한 클라이언트를 제외하고 접속된 모든 클라이언트에게 메시지를 전송한다
+    socket.broadcast.emit('s2c chat', data);
 
-  // Receive data
-  socket.on('login message', function (data) {
-    var id   = socket.id;
-    var name = data;
-    var msg  = "Hello " + name;
-    // 送信元だけにデータを送信する
-    io.to(id).emit('login message', msg);
+    // 메시지를 전송한 클라이언트에게만 메시지를 전송한다
+    socket.emit('s2c chat', data);
+
+    // 접속된 모든 클라이언트에게 메시지를 전송한다
+    io.emit('s2c chat', data);
+
+    // 특정 클라이언트에게만 메시지를 전송한다
+    // io.to(id).emit('s2c chat', data);
   });
 
   socket.on('disconnect', function () {
-    console.log('user disconnected');
+    console.log('user disconnected: ' + socket.name);
   });
 });
 
@@ -237,20 +241,32 @@ websocket-chat 디렉터리에 아래의 2개 파일을 작성한다.
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script>
-    var socket = io.connect();
-    socket.on("server_to_client", function(data) {
-      appendMsg(data.value)
+  $(function(){
+    // socket.io 서버에 접속한다
+    var socket = io();
+
+    // 서버로 자신의 정보를 전송한다.
+    socket.emit("c2s login", {
+      name: "ungmo2",
+      userid: "ungmo2@gmail.com"
     });
 
-    function appendMsg(text) {
-      $("#chatLogs").append("<div>" + text + "</div>");
-    }
-    $("form").submit(function(e) {
-      var message = $("#msgForm").val();
-      $("#msgForm").val("");
-      socket.emit("client_to_server", { value: message });
-      e.preventDefault();
+    // 서버로부터의 메시지가 수신되면
+    socket.on("s2c chat", function(data) {
+      $("#chatLogs").append("<div>" + data.msg + "</div>");
     });
+
+    // Send 버튼이 클릭되면
+    $("form").submit(function(e) {
+      e.preventDefault();
+      var $msgForm = $("#msgForm");
+
+      // 서버로 메시지를 전송한다.
+      socket.emit("c2s chat", { msg: $msgForm.val() });
+
+      $msgForm.val("");
+    });    
+  });
   </script>
 </body>
 </html>
@@ -266,21 +282,5 @@ $ node app.js
 
 
 
-Socket.IOクライアントライブラリの読み込み
-クライアントライブラリは、srcに"/socket.io/socket.io.js"を指定したscriptタグを記述するだけで読み込めます。実際にjsファイルを配置する必要はありません。これは、Socket.IOがサーバ起動時に"/socket.io/socket.io.js"ライブラリを自動生成するためです
-
-
-| 処理概要         | クライアントサイド       | サーバサイド
-|:---------------|:--------------------
-| Load Module    | <script src="/socket.io/socket.io.js"></script>
-| Connect        | io(url:String, opts:Object):Socket	・モジュール読み込み（require）
-・HTTPサーバ生成（createServer）
-・ソケットのひも付け（listen）
-| Send data
-| Receive data   
-|
-データ送信	emit：一斉送信
-―	broadcast：自分以外
-―	to(id)：自分のみ
-データ受信	on：イベント・データ受信
-切断時の処理	―	disconnectイベント定義
+<!-- Socket.IOクライアントライブラリの読み込み -->
+<!-- クライアントライブラリは、srcに"/socket.io/socket.io.js"を指定したscriptタグを記述するだけで読み込めます。実際にjsファイルを配置する必要はありません。これは、Socket.IOがサーバ起動時に"/socket.io/socket.io.js"ライブラリを自動生成するためです -->

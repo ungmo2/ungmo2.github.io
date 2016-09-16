@@ -148,15 +148,22 @@ Socket.io를 사용하여 클라이언트 간 Real-time Chat app을 구현하여
 
 ## 4.1. Server-side
 
-| Method               | Description
-|:---------------------|:-------------------------
-| io.emit              | 자신을 포함한 모두에게 송신
-| socket.emit          | 자신에게만 송신
-| socket.broadcast.emit| 자신을 제외한 모든 클라이언트에게 송신
+서버 측 코드를 작성한다. 루트 디렉터리에 app.js를 생성한다.
 
-http server를 생성한 후 http server를 socket.io server로 upgrade한다.
+Express를 사용하여 Http 서버를 생성한다. 그리고 생성된 Http 서버를 socket.io server로 upgrade한다.
 
-app.js
+```javascript
+var app = require('express')();
+var server = require('http').createServer(app);
+// http server를 socket.io server로 upgrade한다
+var io = require('socket.io')(server);
+
+server.listen(3000, function() {
+  console.log('Socket IO server listening on port 3000');
+});
+```
+
+root url에 대한 라우트를 정의한다. localhost:3000으로 서버에 접속하면 클라이언트에 index.html을 전송한다.
 
 ```javascript
 var app = require('express')();
@@ -165,13 +172,88 @@ var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 
 // localhost:3000으로 서버에 접속하면 클라이언트로 index.html을 전송한다
-app.get('/', function (req, res) {
+app.get('/', function(req, res) {
+  res.sendFile(__dirname + '/index.html');
+});
+
+server.listen(3000, function() {
+  console.log('Socket IO server listening on port 3000');
+});
+```
+
+클라이언트가 socket.io 서버에 접속했을 때 connection 이벤트가 발생한다. connection event handler를 정의한다.
+
+```javascript
+// connection event handler
+// connection이 수립되면 event handler function의 인자로 socket이 들어온다
+io.on('connection', function(socket) {
+
+});
+```
+
+connection event handler function의 인자로 socket 객체가 전달된다. socket 객체는 개별 클라이언트와의 interacting을 위한 기본적인 객체이다. io 객체는 연결된 전체 클라이언트와의 interacting을 위한 객체이다.
+
+connection event가 발생하면(즉 클라이언트가 접속하면) 클라이언트가 전송한 메시지를 수신하거나 클라이언트에게 메시지를 송신한다.
+
+**클라이언트가 전송한 메시지 수신**
+
+현재 접속되어 있는 클라이언트로부터의 메시지를 수신하기 위해서는 on 메서드를 사용한다.
+
+| Parameter     | Description                                             |
+|:--------------|:--------------------------------------------------------|
+| event name    | 클라이언트가 메시지 송신 시 지정한 이벤트 명(string)               |
+| function      | 이벤트 핸들러. 핸들러 함수의 인자로 클라이언트가 송신한 메시지가 전달된다. |
+
+```javascript
+socket.on('event_name', function(data) {
+  console.log('Message from Client: ' + data);
+});
+```
+
+**클라이언트에게 메시지 송신**
+
+| Method                | Description                                                 |
+|:----------------------|:------------------------------------------------------------|
+| io.emit               | 접속된 모든 클라이언트에게 메시지를 전송한다.
+| socket.emit           | 메시지를 전송한 클라이언트에게만 메시지를 전송한다.
+| socket.broadcast.emit | 메시지를 전송한 클라이언트를 제외한 모든 클라이언트에게 메시지를 전송한다.
+| io.to(id).emit        | 특정 클라이언트에게만 메시지를 전송한다. id는 socket 객체의 id 속성값이다.
+
+| Parameter     | Description                |
+|:--------------|:---------------------------|
+| event name    | 이벤트 명(string)            |
+| msg           | 송신 메시지(string or object) |
+
+```javascript
+// 접속된 모든 클라이언트에게 메시지를 전송한다
+io.emit('event_name', msg);
+
+// 메시지를 전송한 클라이언트에게만 메시지를 전송한다
+socket.emit('event_name', msg);
+
+// 메시지를 전송한 클라이언트를 제외한 모든 클라이언트에게 메시지를 전송한다
+socket.broadcast.emit('event_name', msg);
+
+// 특정 클라이언트에게만 메시지를 전송한다
+io.to(id).emit('event_name', data);
+```
+
+완성된 서버 측 코드는 아래와 같다.
+
+```javascript
+var app = require('express')();
+var server = require('http').createServer(app);
+// http server를 socket.io server로 upgrade한다
+var io = require('socket.io')(server);
+
+// localhost:3000으로 서버에 접속하면 클라이언트로 index.html을 전송한다
+app.get('/', function(req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
 // connection event handler
 // connection이 수립되면 event handler function의 인자로 socket인 들어온다
-io.on('connection', function (socket) {
+io.on('connection', function(socket) {
 
   // 접속한 클라이언트의 정보가 수신되면
   socket.on('login', function(data) {
@@ -197,7 +279,7 @@ io.on('connection', function (socket) {
       msg: data.msg
     };
 
-    // 메시지를 전송한 클라이언트를 제외하고 접속된 모든 클라이언트에게 메시지를 전송한다
+    // 메시지를 전송한 클라이언트를 제외한 모든 클라이언트에게 메시지를 전송한다
     socket.broadcast.emit('chat', msg);
 
     // 메시지를 전송한 클라이언트에게만 메시지를 전송한다
@@ -210,22 +292,70 @@ io.on('connection', function (socket) {
     // io.to(id).emit('s2c chat', data);
   });
 
-  socket.on('disconnect', function () {
+  // force client disconnect from server
+  socket.on('forceDisconnect', function() {
+    socket.disconnect();
+  })
+
+  socket.on('disconnect', function() {
     console.log('user disconnected: ' + socket.name);
   });
 });
 
-server.listen(3000, function () {
+server.listen(3000, function() {
   console.log('Socket IO server listening on port 3000');
 });
 ```
 
+## 4.2. Client-side
 
-Chat app의 Skeleton을 작성한다.
+다음은 클라이언트 측 코드를 작성한다. 루트 디렉터리에 index.html을 생성한다.
 
-websocket-chat 디렉터리에 아래의 2개 파일을 작성한다.
+클라이어트 라이브러리는 script tag의 src 속성값으로 "/socket.io/socket.io.js"을 지정하면 된다. 실제 path에 socket.io.js 파일을 배치할 필요는 없다. 그 이유는 socket.io가 서버 기동 시에 socket.io.js 라이브러리를 자동 생성해 주기 때문이다.
 
-- index.html : Client-side（Chat UI）
+```html
+<script src="/socket.io/socket.io.js"></script>
+```
+
+socket.io 서버에 접속하기 위해 io() 메서드를 호출한다.
+
+```javascript
+// socket.io 서버에 접속한다
+var socket = io();
+```
+
+이때 생성된 socket으로 서버로의 메시지 송신 또는 서버로부터의 메시지 수신을 할 수 있다.
+
+**서버로의 메시지 송신**
+
+현재 접속되어 있는 서버로 메시지를 송신하기 위해서는 emit 메서드를 사용한다.
+
+| Parameter     | Description                |
+|:--------------|:---------------------------|
+| event name    | 이벤트 명(string)            |
+| msg           | 송신 메시지(string or object) |
+
+```javascript
+socket.emit("event_name", msg);
+```
+
+**서버로부터의 메시지 수신**
+
+현재 접속되어 있는 서버로부터의 메시지를 수신하기 위해서는 on 메서드를 사용한다.
+
+| Parameter     | Description                                          |
+|:--------------|:-----------------------------------------------------|
+| event name    | 서버가 메시지 송신 시 지정한 이벤트 명(string)                |
+| function      | 이벤트 핸들러. 핸들러 함수의 인자에 서버가 송신한 메시지가 전달된다. |
+
+
+```javascript
+socket.on("event_name", function(data) {
+  console.log('Message from Server: ' + data);
+});
+```
+
+완성된 클라이언트 측 코드는 아래와 같다.
 
 ```html
 <!DOCTYPE html>
@@ -294,16 +424,3 @@ websocket-chat 디렉터리에 아래의 2개 파일을 작성한다.
 </body>
 </html>
 ```
-
-
-
-Skeleton의 동작을 확인한다.
-
-```bash
-$ node app.js
-```
-
-
-
-<!-- Socket.IOクライアントライブラリの読み込み -->
-<!-- クライアントライブラリは、srcに"/socket.io/socket.io.js"を指定したscriptタグを記述するだけで読み込めます。実際にjsファイルを配置する必要はありません。これは、Socket.IOがサーバ起動時に"/socket.io/socket.io.js"ライブラリを自動生成するためです -->

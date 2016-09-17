@@ -424,3 +424,145 @@ socket.on("event_name", function(data) {
 </body>
 </html>
 ```
+
+# 5. Namespace
+
+socket.io는 서로 다른 엔드포인트(endpoint) 또는 경로(path)를 할당하는 의미로 socket에 namespace를 지정할 수 있다.
+
+namespace를 특별히 지정하지 않은 경우 default namespace인 `/`를 사용하게 된다.
+
+사용자 지정 namespace를 사용할 경우의 예제는 아래와 같다.
+
+```javascript
+// Server-side
+var nsp = io.of('/my-namespace');
+
+nsp.on('connection', function(socket){
+  console.log('someone connected'):
+});
+nsp.emit('hi', 'everyone!');
+```
+
+```javascript
+// Client-side
+// 지정 namespace로 접속한다
+var socket = io('/my-namespace');
+```
+
+# 6. Room
+
+각 namespace 내에서 임의의 채널을 지정할 수 있다. 이를 room이라 하며 이를 통해 room에 join되어 있는 클라이언트 만의 데이터 송수신이 가능하게 된다.
+
+즉 각 클라이언트는 socket을 가지게 되며 이 socket은 namespace를 가지고 각 namespace는 room을 가질 수 있다.
+
+![socket.io room](/img/socketio-room.png)
+{: style="max-width:550px; margin: 10px auto;"}
+
+각 socket은 랜덤하고 유일하게 작성된 socket.id로 구별된다. socket.io는 각 socket을 socket.id를 room 식별자로 사용하여 자동으로 room을 생성하고 join시킨다.
+
+특정 클라이언트에게만 메시지를 전송할 때 `io.to(id).emit`를 사용하는데 이것은 사실 디폴트로 생성되어 자동 join된 개별 socket의 room에 소속되어 있는 유일한 클라이언트에 메시지를 전송한 것이다.
+
+room에 join하기 위해서는 join 메서드를 사용한다.
+
+서버 측 코드는 아래와 같다.
+
+```javascript
+var app = require('express')();
+var server = require('http').createServer(app);
+// http server를 socket.io server로 upgrade한다
+var io = require('socket.io')(server);
+
+// localhost:3000으로 서버에 접속하면 클라이언트로 index.html을 전송한다
+app.get('/', function(req, res) {
+  res.sendFile(__dirname + '/index-room.html');
+});
+
+// namespace /chat에 접속한다.
+var chat = io.of('/chat').on('connection', function(socket) {
+  socket.on('chat message', function(data){
+    console.log('message from client: ', data);
+
+    var name = socket.name = data.name;
+    var room = socket.room = data.room;
+
+    // room에 join한다
+    socket.join(room);
+    // room에 join되어 있는 클라이언트에게 메시지를 전송한다
+    chat.to(room).emit('chat message', data.msg);
+  });
+});
+
+server.listen(3000, function() {
+  console.log('Socket IO server listening on port 3000');
+});
+```
+
+클라이언트 측 코드는 아래와 같다.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Socket.io Chat Example</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h3>Socket.io Chat Example</h3>
+    <!-- <form class="form-inline"> -->
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="name" placeholder="Name">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="room" class="col-sm-2 control-label">Room</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="room" placeholder="Room">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="msg" class="col-sm-2 control-label">Message</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="msg" placeholder="Message">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-default">Send</button>
+        </div>
+      </div>
+    </form>
+    <ul id="chat"></ul>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    $(function() {
+      // 지정 namespace로 접속한다
+      var chat = io('http://localhost:3000/chat'),
+          news = io('/news');
+
+      $("form").submit(function(e) {
+        e.preventDefault();
+
+        // 서버로 자신의 정보를 전송한다.
+        chat.emit("chat message", {
+          name: $("#name").val(),
+          room: $("#room").val(),
+          msg: $("#msg").val()
+        });
+      });
+
+      // 서버로부터의 메시지가 수신되면
+      chat.on("chat message", function(data) {
+        $("#chat").append($('<li>').text(data));
+      });
+    });
+  </script>
+</body>
+</html>
+```

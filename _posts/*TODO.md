@@ -1,4 +1,4 @@
-grid
+Flexbox / grid
 
 Promise
 

@@ -71,6 +71,8 @@ $ git push -u origin master
 
 [GitHub Desktop](https://central.github.com/mac/latest)을 사용하는 경우
 
+Commit to master 버튼을 클릭하여 GitHub에 commit 후, Sync 버튼을 클릭한다. Sync 버튼의 역할은 `git push`과 `git pull --rebase`을 동시에 실행하는 것이다.
+
 ![Commit & sync](/img/sync-mac.png)
 {: style="max-width:500px; margin: 20px auto;"}
 
@@ -80,7 +82,7 @@ http://username.github.io에 접속하여 정상적으로 동작하는지 확인
 
 ## 2.2 Install Ruby
 
-GitHub Pages가 사용하는 ruby의 version 2.1.7이다. 따라서 로컬 환경에도 ruby version 2.1.7을 install하는 것이 안전하다.
+GitHub Pages가 사용하는 ruby version은 2.1.7이다. 따라서 로컬 환경에도 ruby version 2.1.7을 install하는 것이 안전하다.
 
 - [GitHub Pages Dependency versions](https://pages.github.com/versions/)
 

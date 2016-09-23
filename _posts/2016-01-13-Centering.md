@@ -65,7 +65,48 @@ categories: css
 
 ## 2.1 inline/inline-block 요소
 
+### 2.1.1 Single line
+
+padding-top과 padding-bottom 속성값을 동일하게 적용한다.
+
+```css
+.container {
+  padding: 50px;
+}
+```
+
+padding을 사용할 수 없는 경우, 요소의 height와 line-height 속성값을 동일하게 적용한다. 단 이 방법은 여러 줄의 텍스트에는 사용할 수 없다.
+
+```css
+.container {
+  height: 100px;
+  line-height: 100px;
+}
+```
+
+### 2.1.2 Multiple lines
+
+여러 줄의 텍스트의 경우, padding-top과 padding-bottom 속성값을 동일하게 적용하는 방법도 가능하나 vertical-align 속성을 사용한 방법도 가능하다. 이 방법은 table 속성을 사용하여야 한다.
+
+```css
+.container {
+  display: table;
+  height: 100px;
+}
+.item {
+  display: table-cell;
+  vertical-align: middle;
+}
+```
+
+table 속성을 사용하여야 하므로 번거로울 수 있다. 좀 더 간단한 방법은 flexbox를 사용하는 것이다.
+
 ## 2.2 block 요소
+
+### 2.2.1 요소의 높이가 고정되어 있는 경우
+
+### 2.2.2 요소의 높이가 불확정 상태의 경우
+
 
 # 3. 수평/수직 정렬(Horizontal & Vertical Align)
 

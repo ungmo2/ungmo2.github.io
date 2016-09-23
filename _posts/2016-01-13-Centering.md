@@ -120,6 +120,8 @@ table 속성을 사용하여야 하므로 번거로울 수 있다. 좀 더 간�
 
 ### 2.2.1 요소의 높이가 고정되어 있는 경우
 
+부모 요소를 기준으로 절대 위치를 지정한다.
+
 ```css
 .parent {
   position: relative;
@@ -128,11 +130,14 @@ table 속성을 사용하여야 하므로 번거로울 수 있다. 좀 더 간�
   position: absolute;
   top: 50%;
   height: 100px;
-  margin-top: -50px; /* account for padding and border if not using box-sizing: border-box; */
+  /*요소의 높이(100px)의 반 만큼 위로 이동*/
+  margin-top: -50px;
 }
 ```
 
 ### 2.2.2 요소의 높이가 불확정 상태의 경우
+
+부모 요소를 기준으로 절대 위치를 지정한다.
 
 ```css
 .parent {
@@ -141,16 +146,21 @@ table 속성을 사용하여야 하므로 번거로울 수 있다. 좀 더 간�
 .child {
   position: absolute;
   top: 50%;
+  /*요소의 높이의 반(50%) 만큼 위로 이동*/
   transform: translateY(-50%);
 }
 ```
 
 ### 2.2.3 Flexbox
 
+부모 요소에 Flexbox layout을 지정한다.
+
 ```css
 .parent {
   display: flex;
+  /*위에서 아래로 수직 배치*/
   flex-direction: column;
+  /*중앙정렬*/
   justify-content: center;
 }
 ```
@@ -160,9 +170,30 @@ table 속성을 사용하여야 하므로 번거로울 수 있다. 좀 더 간�
 
 # 3. 수평/수직 정렬(Horizontal & Vertical Align)
 
-## 3.1 요소의 너비와 높이가 고정되어 있는 경우
+요소의 너비와 높이가 고정되어 있는 경우, 요소의 너비와 높이가 불확정 상태의 경우 모두 사용 가능한 방법이다
 
-## 3.1 요소의 너비와 높이가 불확정 상태의 경우
+```css
+.parent {
+  position: relative;
+}
+.child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /*요소의 높이/너비의 반(50%) 만큼 위/왼쪽으로 이동*/
+  transform: translate(-50%, -50%);
+}
+```
+
+Flexbox를 사용한 방법은 아래와 같다.
+
+```css
+.parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+```
 
 # Reference
 

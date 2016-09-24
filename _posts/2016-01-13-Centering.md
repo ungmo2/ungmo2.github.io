@@ -182,10 +182,17 @@ table 속성을 사용하여야 하므로 번거로울 수 있다. 좀 더 간�
   position: absolute;
   top: 50%;
   left: 50%;
-  /*요소의 높이/너비의 반(50%) 만큼 위/왼쪽으로 이동*/
+  /*요소의 높이/너비의 반(50%)만큼 위/왼쪽으로 이동*/
   transform: translate(-50%, -50%);
 }
 ```
+
+![vertical-horizontal-centering](img/vertical-horizontal-centering.png)
+{: style="max-width:550px; margin: 20px auto;"}
+
+vertical & horizontal centering
+{: style="color:gray; font-size: 80%; text-align: center; margin-top: 5px;"}
+
 
 Flexbox를 사용한 방법은 아래와 같다.
 

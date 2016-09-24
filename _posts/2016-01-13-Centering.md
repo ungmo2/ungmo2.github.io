@@ -77,7 +77,9 @@ padding-top과 padding-bottom 속성값을 동일하게 적용한다.
 }
 ```
 
-padding을 사용할 수 없는 경우, 요소의 height와 line-height 속성값을 동일하게 적용한다. 단 이 방법은 여러 줄의 텍스트에는 사용할 수 없다.
+padding을 사용할 수 없는 경우, 요소의 height와 line-height 속성값을 동일하게 적용한다. 단 이 방법은 행간이 지나치게 넓어지거나 Click Dead Zone 이슈가 발생하는 등 여러 줄의 텍스트에는 사용할 수 없다.
+
+![click-dead-zone](/img/click-dead-zone.gif)
 
 ```css
 .container {
@@ -194,6 +196,9 @@ Flexbox를 사용한 방법은 아래와 같다.
   align-items: center;
 }
 ```
+
+<p data-height="620" data-theme-id="0" data-slug-hash="QKpgzj" data-default-tab="result" data-user="ungmo2" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ungmo2/pen/QKpgzj/">centering-vertical-horizontal-align</a> by Ungmo Lee (<a href="http://codepen.io/ungmo2">@ungmo2</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 # Reference
 

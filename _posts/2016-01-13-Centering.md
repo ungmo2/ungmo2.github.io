@@ -187,7 +187,7 @@ table 속성을 사용하여야 하므로 번거로울 수 있다. 좀 더 간�
 }
 ```
 
-![vertical-horizontal-centering](img/vertical-horizontal-centering.png)
+![vertical-horizontal-centering](/img/vertical-horizontal-centering.png)
 {: style="max-width:550px; margin: 20px auto;"}
 
 vertical & horizontal centering

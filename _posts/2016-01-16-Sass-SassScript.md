@@ -191,8 +191,8 @@ CSS3의 calc 함수를 사용하면 이런 문제를 해결할 수 있다.
 
 ```css
 p {
-	/*font: font-style font-variant font-weight font-size/line-height font-family*/
-	font: italic bold 12px/30px Georgia, serif;
+  /*font: font-style font-variant font-weight font-size/line-height font-family*/
+  font: italic bold 12px/30px Georgia, serif;
 }
 ```
 
@@ -206,7 +206,7 @@ CSS에서의 `/`는 나눗셈의 의미가 아니라 값을 분리하는 의미�
 
 ```scss
 p {
-	// font와 border-radius의 '/'는 CSS문법에 맞는 표현이므로 연산되지 않는다.
+  // font와 border-radius의 '/'는 CSS문법에 맞는 표현이므로 연산되지 않는다.
   font: italic bold 12px/30px Georgia, serif;
   border-radius: 10px 20px/20px;
 

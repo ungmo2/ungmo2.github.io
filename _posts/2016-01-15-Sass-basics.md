@@ -1,6 +1,7 @@
 ---
 layout: post
-title: Sass
+title: Sass Basics
+subtitle: Sass의 소개, 설치와 간단한 명령어 사용법
 categories: [css]
 tags: []
 ---
@@ -144,135 +145,10 @@ Sass는 SASS 표기법(.sass)과 SCSS 표기법(.scss)이 있다. 이전 버전�
 
 SASS 표기법은 보다 코딩을 간략화할 수 있는 장점이 있지만 CSS 친화적인 SCSS 표기법를 사용하는 경우가 더 많으므로 본 Post에서는 SCSS 표기법을 기준으로 한다.
 
-# 5. SassScript
-
-SassScript는 CSS에 불가능한 연산, 변수, 함수 등의 확장 기능을 의미한다.
-
-## 5.1 Data Type
-
-속성값으로 사용할 수 있는 값에는 각각의 자료형(Data Type)이 존재한다. SassScript가 제공하는 자료형은 7가지가 있다.
-
-- 숫자형  
- 	e.g. 1.2, 13, 10px
-
-- 문자열  
-	CSS는 2종류의 문자열을 사용할 수 있다. 따옴표를 사용하는 경우("Lucida Grande", 'http://sass-lang.com')와 사용하지 않는 경우(bold, sans-serif)가 있다. Sass는 모든 문자열도 인식할 수 있으므로 컴파일 후의 CSS는 Sass에서 사용한 문자열이 그대로 출력된다.  
-	e.g. "Lucida Grande", 'http://sass-lang.com', sans-serif
-
-- 컬러  
-	e.g. blue, #04a3f9, rgba(255, 0, 0, 0.5))
-
-- boolean  
-	e.g. true, false
-
-- null
-
-- list  
-	margin과 padding 속성값 지정에 사용되는 0 auto와 font-family 속성값 지정에 사용되는 Helvetica, Arial, sans-serif 등은 공백 또는 콤마 구분된 값의 list이다.  
-	e.g. 1.5em 1em 0 2em, Helvetica, Arial, sans-serif
-
-- map  
-	JSON과 유사한 방식으로 `map-get` 함수를 사용하여 원하는 값은 추출할 수 있다.  
- 	e.g. (key1: value1, key2: value2)
-
-```scss
-$foundation-palette: (
-  primary: #E44347,
-  mars: #D7525C,
-  saturn: #E4B884,
-  neptune: #5147D7,
-)
-
-.mars {
-  color: map-get($foundation-palette, mars);
-}
-```
-{: style="margin-left: 40px;"}
-
-## 5.2 변수
-
-Sass에서는 변수를 사용할 수 있다. 문자열, 숫자, 컬러(#aa443f) 등을 사전에 변수에 저장하고 필요할 때 불러 사용할 수 있다.
-
-변수명은 `$`로 시작한다.
-
-```scss
-$width: 960px;
-
-header {
-  width: $width;
-  margin: 0 auto;
-}
-
-#main {
-  width: $width;
-  margin: 20px auto;
-}
-
-footer {
-  width: $width;
-  margin: 0 auto;
-}
-```
-
-## 5.3 변수의 Scope
-
-변수에는 유효범위(scope)가 존재한다.
-
-위의 예에서 변수 $width는 top level에 기술되었으므로 전역변수(global variable)가 된다. 전역변수는 전역은 물론 하위의 어떤 코드블럭 내에서도 유효하다.
-
-코드블럭 내에서 선언된 변수는 지역변수(local variable)가 된다. 지역변수의 유효범위는 자신이 속한 코드블럭과 하위 코드 블럭이다.
-
-```scss
-$width: 960px; // global variable
-
-header {
-  width: $width;
-  margin: 0 auto;
-}
-
-#main {
-  $color: #333; // local variable
-  width: $width;
-  margin: 20px auto;
-  section {
-    p {
-      color: $color;
-
-      a:link {
-        color: $color;
-      }
-    }
-  }
-}
-
-footer {
-  width: $width;
-  margin: 0 auto;
-  color: $color;
-}
-```
-
-위 코드를 컴파일하면 Undefined variable: "$color"라는 에러가 발생한다. 이는 &#35;main에서 선언한 $color는 &#35;main 내에서만 유효한 지역변수이기 때문이다.
-
-코드블럭 내에서 선언한 변수를 전역변수화하는 방법은 아래와 같다.
-
-```scss
-#main {
-  $color: #333 !global; // global variable
-  width: $width;
-  ...
-```
-
-## 5.4 연산자(Operation)
-
-## 5.5 함수
-
-# 6. CSS Extensions
+Sass의 문법에 대한 설명은 [Sass Syntax](http://poiemaweb.com/css/Sass-syntax/)를 참조하기 바란다.
 
 # Reference
 
 * [Sass](http://sass-lang.com/)
-
-* [What’s the Difference Between Sass and SCSS?](https://www.sitepoint.com/whats-difference-sass-scss/)
 
 * [Sassmeister: sass to css converter](http://www.sassmeister.com/)

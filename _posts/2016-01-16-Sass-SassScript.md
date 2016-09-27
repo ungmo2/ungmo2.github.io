@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Sass Syntax
-categories: [css]
+title: Sass - SassScript
+categories: [Sass]
 tags: []
 ---
 
@@ -10,11 +10,9 @@ tags: []
 * TOC
 {:toc}
 
-# 1. SassScript
-
 SassScript는 CSS에 불가능한 연산, 변수, 함수 등의 확장 기능을 의미한다.
 
-## 1.1 Data Type
+# 1 Data Type
 
 속성값으로 사용할 수 있는 값에는 각각의 자료형(Data Type)이 존재한다. SassScript가 제공하는 자료형은 7가지가 있다.
 
@@ -55,7 +53,7 @@ $foundation-palette: (
 ```
 {: style="margin-left: 40px;"}
 
-## 1.2 변수
+# 2. 변수
 
 Sass에서는 변수를 사용할 수 있다. 문자열, 숫자, 컬러(#aa443f) 등을 사전에 변수에 저장하고 필요할 때 불러 사용할 수 있다.
 
@@ -80,7 +78,7 @@ footer {
 }
 ```
 
-## 1.3 변수의 Scope
+# 3. 변수의 Scope
 
 변수에는 유효범위(scope)가 존재한다.
 
@@ -129,9 +127,9 @@ footer {
   ...
 ```
 
-## 1.4 연산자(Operation)
+# 4. 연산자(Operation)
 
-### 1.4.1 숫자 연산자
+## 4.1 숫자 연산자
 
 | Operator	| Description   |
 |:---------:|:------------- |
@@ -157,7 +155,7 @@ $width: 100px;
 }
 ```
 
-변수 $width의 값 100px에 10 또는 10em과 같이 다른 단위의 값을 연산하여도 에러없이 연산이 수행된다.
+변수 $width의 값 100px에 10 또는 10em과 같이 다른 단위의 값을 연산하여도 에러없이 연산이 수행된다. 이때 연산자의 왼쪽 값을 기준으로 단위가 설정된다.
 
 ```scss
 $width: 100px;
@@ -188,8 +186,6 @@ CSS3의 calc 함수를 사용하면 이런 문제를 해결할 수 있다.
   width: calc(25% - 5px);
 }
 ```
-
-
 
 아래의 CSS를 살펴보자.
 
@@ -231,7 +227,7 @@ p {
 }
 ```
 
-### 1.4.2 컬러 연산자
+## 4.2 컬러 연산자
 
 모든 산술 연산자은 컬러 값에도 사용할 수 있다.
 
@@ -273,21 +269,144 @@ p {
 }
 ```
 
-### 1.4.3 문자열 연산자
+## 4.3 문자열 연산자
 
-### 1.4.4 불린 연산자
+`+` 연산자는 자바스크립트와 같이 문자열을 연결할 수 있다.
 
-### 1.4.5 리스트 연산자
+```scss
+p {
+  cursor: e + -resize;  // e-resize
+}
+```
 
+따옴표가 있는 문자열과 없는 문자열을 함께 사용하는 경우, 왼쪽의 문자열을 기준으로 따옴표를 처리한다.
 
-## 1.5 함수
+```scss
+p:before {
+  content: "Foo " + Bar;        // "Foo Bar"
+  font-family: sans- + "serif"; // sans-serif
+}
+```
 
-# 2. CSS Extensions
+## 4.4 불린 연산자
+
+| Operator	  | Description
+| :---------: |:-------------:|
+| &&	        | and
+| &#124;&#124;| or
+| !	          | not
+
+## 4.5 리스트 연산자
+
+리스트를 위한 별도의 연산자는 제공되지 않지만 [리스트 함수](http://www.sass-lang.com/documentation/Sass/Script/Functions.html#list-functions)를 사용하여 필요한 처리를 수행할 수 있다.
+
+# 5. 함수
+
+[Sass Functions](http://www.sass-lang.com/documentation/Sass/Script/Functions.html)를 참조하기 바란다.
+
+# 6. Interpolation: #{}
+
+`#{}` 문법은 속성값은 물론 셀렉터와 속성명에도 사용할 수 있다.
+
+```scss
+$name: foo;
+$attr: border;
+
+p {
+  $font-size: 12px;
+  $line-height: 30px;
+  font: #{$font-size}/#{$line-height}; // 12px/30px
+}
+
+p.#{$name} {            // p.foo
+  #{$attr}-color: blue; // border-color: blue;
+}
+```
+
+# 7. Ampersand(&)
+
+`&`는 부모의 셀렉터를 참조한다.
+
+```scss
+.button {
+  &:visited { }
+  &:hover { }
+  &:active { }
+}
+```
+
+위 Sass의 컴파일 결과는 아래와 같다.
+
+```css
+.button:visited { }
+.button:hover { }
+.button:active { }
+```
+
+상세한 내용은 [The Sass Ampersand](https://css-tricks.com/the-sass-ampersand/)을 참조하기 바란다.
+
+# 8. !default
+
+!default flag는 할당되지 않은 변수의 초기값을 설정한다.
+
+```scss
+$content: null;
+$content: "Non-null content" !default;
+
+#main {
+  content: $content; // "Non-null content"
+}
+```
+
+이미 값이 할당되어 있는 변수에 !default flag를 사용하면 적용되지 않는다.
+
+```scss
+$content: "First content";
+$content: "Second content?" !default;
+$new_content: "First time reference" !default;
+
+#main {
+  content: $content; // "First content"
+  new-content: $new_content; // "First time reference"
+}
+```
+
+이러한 특성은 [partial](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#partials)에 매우 유용하다.
+
+```scss
+// font.scss
+$font-size: 16px !default;
+$line-height: 1.5 !default;
+$font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif !default;
+
+body {
+  font: $font-size/#{$line-height} $font-family;
+}
+```
+
+```scss
+$font-family: "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+
+@import "font";
+```
+
+위 코드의 컴파일 결과는 아래와 같다.
+
+```css
+body {
+  font: 16px/1.5 "Lucida Grande", "Lucida Sans Unicode", sans-serif; }
+```
 
 # Reference
 
 * [Sass](http://sass-lang.com/)
 
-* [What’s the Difference Between Sass and SCSS?](https://www.sitepoint.com/whats-difference-sass-scss/)
+* [The Sass Way](http://www.thesassway.com/)
 
-* [Sassmeister: sass to css converter](http://www.sassmeister.com/)
+* [Getting Started with SASS ](https://scotch.io/tutorials/getting-started-with-sass)
+
+* [Sass & Compass Color Functions](http://jackiebalzer.com/color)
+
+* [Using pure Sass functions to make reusable logic more useful](http://thesassway.com/advanced/pure-sass-functions)
+
+* [The Sass Ampersand](https://css-tricks.com/the-sass-ampersand/)

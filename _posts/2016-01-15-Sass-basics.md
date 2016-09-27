@@ -2,7 +2,7 @@
 layout: post
 title: Sass Basics
 subtitle: Sass의 소개, 설치와 간단한 명령어 사용법
-categories: [css]
+categories: [Sass]
 tags: []
 ---
 

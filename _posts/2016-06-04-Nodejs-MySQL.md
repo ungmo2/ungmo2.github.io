@@ -13,13 +13,13 @@ categories: node.js
 
 [MySQL](https://www.mysql.com/)은 오픈 소스 데이터베이스이다. [Wordpress](https://wordpress.org/)의 기본 데이터베이스이며 알려진 대부분의 프로그래밍 언어를 위한 드라이버를 지원하고 있다. AMP(Apache-MySQL-PHP) 플랫폼의 데이터베이스 구성체로 작동한다.
 
-SUN 인수 이후, 중소기업이나 개인용 사이트뿐만 아니라 대기업에서도 점차 관심을 보이고 있다. Wikipedia, Goggle(검색 엔진 제외), Facebook, Tweeter, Youtube 등에서 사용하고 있다. MySQL은 GPL/Commercial License의 듀얼 이중 라이선스가 적용된다.
+SUN 인수 이후, 중소기업이나 개인용 사이트뿐만 아니라 대기업에서도 점차 관심을 보이고 있다. Wikipedia, Goggle(검색 엔진 제외), Facebook, Tweeter, Youtube 등에서 사용하고 있다. MySQL은 GPL/Commercial License의 듀얼 라이선스가 적용된다.
 
 # 2. Express Hello world example
 
 Node.js(express)와 MySQL 연동을 위한 모듈 중 대표적인 [node-mysql](https://github.com/felixge/node-mysql) 대해 알아본다.
 
-사전에 MySQL이 설치되어 있어야 한다. 설치 방법은 설명하지 않으니 별도로 검색하여 설치하기 바란다.
+사전에 [MySQL](https://www.mysql.com/downloads/)이 설치되어 있어야 한다. 설치 방법은 설명하지 않으니 별도로 검색하여 설치하기 바란다.
 
 우선 간단한 [express Hello world example](http://expressjs.com/en/starter/hello-world.html)을 만들어 보자.
 
@@ -70,7 +70,7 @@ $ npm start
 
 # 3. 테이블 생성 및 테스트용 데이터 삽입
 
-MtSQL에 접속하여 테이블을 생성하고 테스트용 데이터를 insert해 놓자.
+MySQL에 접속하여 테이블을 생성하고 테스트용 데이터를 insert해 놓자.
 
 ```sql
 CREATE DATABASE my_db;

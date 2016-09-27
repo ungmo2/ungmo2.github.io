@@ -195,7 +195,7 @@ p {
 }
 ```
 
-변수를 CSS의 /와 함께 사용하고자 하는 경우 `#{}`를 사용하다.:
+변수를 CSS의 /와 함께 사용하고자 하는 경우 `#{}`를 사용한다.
 
 ```scss
 p {
@@ -206,6 +206,46 @@ p {
 ```
 
 ### 1.4.2 컬러 연산자
+
+모든 산술 연산자은 컬러 값에도 사용할 수 있다.
+
+```scss
+p {
+  color: #010203 + #040506;
+	// 01 + 04 = 05, 02 + 05 = 07, 03 + 06 = 09
+	// #050709
+}
+
+p {
+  color: #010203 * 2;
+	// 01 * 2 = 02, 02 * 2 = 04, 03 * 2 = 06
+	// #020406
+}
+
+p {
+  color: rgba(255, 0, 0, 0.75) + rgba(0, 255, 0, 0.75);
+	// alpha 값은 연산되지 않는다
+  // color: rgba(255, 255, 0, 0.75);
+}
+```
+
+alpha 값은 연산되지 않는다. alpha 값의 연산을 위해서는 opacify 함수 또는 transparentize 함수를 사용한다.
+
+- opacify 함수: 첫번째 argument의 alpha값에 두번째 argument를 더해 불투명도를 증가시킨다.(더 불투명해진다)
+
+- transparentize 함수: 첫번째 argument의 alpha값에 두번째 argument를 빼서 불투명도를 감소시킨다.(더 투명해진다)
+
+```scss
+$translucent-red: rgba(255, 0, 0, 0.5);
+
+p {
+  color: opacify($translucent-red, 0.3);
+  // color: rgba(255, 0, 0, 0.8);
+
+  background-color: transparentize($translucent-red, 0.25);
+  // background-color: rgba(255, 0, 0, 0.25);
+}
+```
 
 ### 1.4.3 문자열 연산자
 

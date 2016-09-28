@@ -12,7 +12,7 @@ tags: []
 
 # 1. Introduction
 
-[Jelyll](http://jekyllrb.com/)은 Static Website generator로 [markdown](https://daringfireball.net/projects/markdown/)으로 작성된 문서를 HTML로 변환하여 웹사이트를 generate 할 수 있는 tool이다. Ruby로 작성되어 있다.
+[Jelyll](http://jekyllrb.com/)은 [markdown](https://daringfireball.net/projects/markdown/)으로 작성된 문서를 HTML로 변환하여 웹사이트를 구축할 수 있도록 돕는 Static Website generator로 Ruby로 작성되어 있다.
 
 [GitHub Pages](https://pages.github.com/)는 GitHub에서 제공하는 Static Website로 GitHub repository에 리소스를 push하는 것 만으로 간단히 웹사이트를 만들 수 있다.
 

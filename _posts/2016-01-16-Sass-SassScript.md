@@ -306,20 +306,20 @@ p:before {
 
 # 6. Interpolation: #{}
 
-`#{}` 문법은 속성값은 물론 셀렉터와 속성명에도 사용할 수 있다.
+변수는 속성값으로만 사용할 수 있으나 `#{}`을 사용하면 속성값은 물론 셀렉터와 속성명에도 사용할 수 있다. 또한 연산의 대상으로 처리하지 않도록 할 수도 있다.
 
 ```scss
 $name: foo;
 $attr: border;
 
-p {
+p.#{$name} {            // p.foo
+  #{$attr}-color: blue; // border-color: blue;
+}
+
+.someclass {
   $font-size: 12px;
   $line-height: 30px;
   font: #{$font-size}/#{$line-height}; // 12px/30px
-}
-
-p.#{$name} {            // p.foo
-  #{$attr}-color: blue; // border-color: blue;
 }
 ```
 

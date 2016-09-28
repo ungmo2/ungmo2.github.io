@@ -18,7 +18,7 @@ tags: []
 
 Static Website이므로 Database 등은 사용할 수 없으나 무료로 유지보수가 간편한 Website를 Hosting할 수 있다는 장점이 있다.
 
-GitHub Pages는 html, css, Javascript만으로도 웹사이트를 구축할 수 있으나 markdown을 사용하여 웹사이트를 generate하기 위해 Jelyll을 지원한다.
+GitHub Pages는 HTML, CSS, Javascript만으로도 웹사이트를 구축할 수 있으나 markdown을 사용하여 웹사이트를 generate하기 위해 Jelyll을 지원한다.
 
 로컬 환경에서 Jelyll을 사용하여 웹사이트를 작성/테스트하고 GitHub repository에 웹리소스를 push하면 매우 간단히 Website를 Hosting할 수 있는 구조이다.
 

@@ -1,0 +1,27 @@
+---
+layout: page
+title: Archive
+subtitle:
+---
+
+<!-- filtering by category -->
+<div class="bg-wrapper">
+{% for category in site.categories %}
+  <h2>{{ category | first }}</h2>
+    <ol>
+    {% for posts in category %}
+      {% for post in posts reversed %}
+        {% if post.url %}
+          <li>
+            <!-- <a href="{{ post.url }}">{{ post.title }}</a> -->
+            <a href="{{ post.url }}">{{ post.title }}
+        	    <!-- <h4 style="margin: 0;">{{ post.title }}</h4> -->
+            </a>
+
+          </li>
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+    </ol>
+{% endfor %}
+</div>

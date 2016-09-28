@@ -13,7 +13,7 @@ tags: []
 
 # 1. Introduction
 
-[Sass(Syntactically Awesome StyleSheets)](http://sass-lang.com/)는 CSS pre-processor 로서 CSS의 한계와 결함을 보정하기 위한 CSS의 확장(extension)이다.
+[Sass(Syntactically Awesome StyleSheets)](http://sass-lang.com/)는 CSS pre-processor로서 CSS의 한계와 결함을 보정하여 보다 간결한 CSS를 생성하기 위한 CSS의 확장(extension)이다.
 
 CSS의 간결한 문법은 배우기 쉬우며 명확하지만 프로젝트의 규모가 커짐에 따라 쉽게 지저분해지고 유지보수가 어려워지는 단점도 가지고 있다. 이러한 CSS의 단점을 보완하기 위해 Sass는 다음과 같은 추가 기능과 유용한 도구들을 제공한다.
 
@@ -23,6 +23,12 @@ CSS의 간결한 문법은 배우기 쉬우며 명확하지만 프로젝트의 �
 - Nesting
 - Mixin
 - Extend/Inheritance
+
+CSS와 비교하여 Sass는 아래와 같은 장점이 있다.
+
+- CSS보다 심플한 표기법으로 CSS를 구조화하여 표현할 수 있다.
+- 스킬 레벨이 다른 팀원들과의 작업 시 발생할 수 있는 구문의 수준 차이을 평준화할 수 있다.
+- CSS에는 존재하지 않는 Mixin 등의 강력한 기능을 활용하여 CSS 유지보수 편의성를 큰 폭으로 향상시킬 수 있다.
 
 # 2. Install
 

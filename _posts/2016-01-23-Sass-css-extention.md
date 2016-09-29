@@ -505,6 +505,24 @@ Mixin을 사용한 유용한 예제를 살펴보자.
 
 # 5. Function
 
+Function은 mixin과 유사하나 리턴값에 차이가 있다.
+
+- mixin : style markup을 리턴
+
+- function : @return directive를 통하여 값을 리턴
+
+```scss
+$grid-width: 40px;
+$gutter-width: 10px;
+
+@function grid-width($n) {
+  @return $n * $grid-width + ($n - 1) * $gutter-width;
+}
+
+#sidebar { width: grid-width(5); }
+```
+
+
 # 6. Comment
 
 # Reference

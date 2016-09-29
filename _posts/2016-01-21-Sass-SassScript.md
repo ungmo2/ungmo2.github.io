@@ -12,7 +12,7 @@ tags: []
 
 SassScript는 CSS에 불가능한 연산, 변수, 함수 등의 확장 기능을 의미한다.
 
-# 1 Data Type
+# 1. Data Type
 
 속성값으로 사용할 수 있는 값에는 각각의 자료형(Data Type)이 존재한다. SassScript가 제공하는 자료형은 7가지가 있다.
 
@@ -302,7 +302,7 @@ p:before {
 
 # 5. 함수
 
-[Sass Functions](http://www.sass-lang.com/documentation/Sass/Script/Functions.html)를 참조하기 바란다.
+[Sass Built-in Functions](http://poiemaweb.com/sass/Sass-css-extention/)를 참조하기 바란다.
 
 # 6. Interpolation: #{}
 

@@ -16,7 +16,7 @@ CSS 박스 모델은 모든 HTML 요소를 감싸고 있는 margin, border, padd
 
 브라우저는 박스 모델의 크기(dimension)와 속성(색, 배경, 모양 등), 위치를 근거로 하여 렌더링을 실시하게 된다.
 
-웹디자인은 컨텐츠를 담을 [박스 모델을 정의](http://ungmo2.github.io/css/CSS3-Property/#display)하고 CSS 속성을 통해 스타일([배경](http://ungmo2.github.io/css/CSS3-Property/#background), [폰트와 텍스트](http://ungmo2.github.io/css/CSS3-Property/#section-4) 등)과 [위치](http://ungmo2.github.io/css/CSS3-Property/#position) 및 [정렬](http://ungmo2.github.io/css/CSS3-Property/#float)을 부여하는 것이라고 할 수 있다.
+웹디자인은 컨텐츠를 담을 [박스 모델을 정의](http://poiemaweb.com/css/CSS3-display/#display-)하고 CSS 속성을 통해 스타일([배경](http://poiemaweb.com/css/CSS3-background/), [폰트와 텍스트](http://poiemaweb.com/css/CSS3-font-text/) 등)과 [위치](http://poiemaweb.com/css/CSS3-position/) 및 [정렬](http://poiemaweb.com/css/CSS3-float/)을 부여하는 것이라고 할 수 있다.
 
 | 명칭     | 설명
 |:--------|:-----------------------------------------------------------

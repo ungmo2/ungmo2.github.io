@@ -12,6 +12,7 @@ subtitle:
 
 .archive-wrap li {
   list-style: none;
+  padding: 18px 22px 0;
 }
 
 .has-children .sub-title {
@@ -35,7 +36,7 @@ subtitle:
 </style>
 
 <div class="archive-wrap">
-  <ul class="archive">
+  <ul>
   {% for category in site.categories %}
     <li class="has-children">
       <a href="#">{{ category | first }}</a>

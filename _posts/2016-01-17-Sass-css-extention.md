@@ -75,6 +75,8 @@ Nesting은 속성에도 사용할 수 있다.
 
 # 2. @import
 
+1개의 CSS 파일에 모든 스타일을 기술하는 것은 가독성을 나쁘게 한다. 따라서 룰을 정하여 파일을 분리하여 개발하는 것이 유지보수 측면에서 효과적이다.
+
 Sass는 @import directive를 사용하여 분리된 stylesheet 파일을 import할 수 있다. 기존의 [CSS @import](https://developer.mozilla.org/ko/docs/Web/CSS/@import)보다 편리한 기능을 제공한다.
 
 ```scss
@@ -90,7 +92,18 @@ $family: unquote("Droid+Sans");
 @import url("http://fonts.googleapis.com/css?family=#{$family}");
 ```
 
-.scss 파일명의 선두에 underscore(&#95;)를 붙이면 해당 파일은 컴파일되지 않는다. 이를 partial이라 한다.
+여러개의 파일로 분할하는 것 또는 분항된 파일을 **partial** 이라 하며 partial된 Sass 파일명의 선두에 underscore(&#95;)를 붙인다. (&#95;reset.scss, &#95;module.scss, &#95;print.scss)
+
+예를 들어 "&#95;foo.scss"라는 partial된 Sass 파일이 있고 이 파일을 import하는 경우 아래와 같이 기술한다. 파일명 선두의 &#95와 확장자는 생략할 수 있다.
+
+```scss
+@import "foo";
+```
+
+partial된 Sass 파일명 선두에 붙인 &#95의 의미는 import는 수행하되 CSS로의 컴파일은 수행하지 말라는 의미를 갖는다. 따라서 partial은 import시에는 CSS 파일로 컴파일되지 않기 때문에 최종적으로 CSS로 컴파일을 수행할 Sass 파일로 import된다.
+
+![partial](/img/partial.png)
+{: style="max-width:500px; margin:10px auto;"}
 
 
 

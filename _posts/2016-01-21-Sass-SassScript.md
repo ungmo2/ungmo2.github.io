@@ -53,6 +53,8 @@ $foundation-palette: (
 ```
 {: style="margin-left: 40px;"}
 
+Data type은 [Built-in function unit](http://poiemaweb.com/sass/Sass-built-in-function/#data-type-)으로 취득할 수 있다.
+
 # 2. 변수
 
 Sass에서는 변수를 사용할 수 있다. 문자열, 숫자, 컬러(#aa443f) 등을 사전에 변수에 저장하고 필요할 때 불러 사용할 수 있다.

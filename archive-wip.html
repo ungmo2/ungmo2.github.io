@@ -7,17 +7,42 @@ subtitle:
 @import url('https://fonts.googleapis.com/css?family=Baloo+Tamma');
 
 .archive-wrap {
-  font-family: 'Baloo Tamma', cursive;
+  font-family: 'Baloo Tamma', 'KoPub Batang', cursive;
 }
 
+.archive-wrap li {
+  list-style: none;
+}
+
+.arrow::after {
+  content: "\f107";
+  font-family: 'FontAwesome';
+  padding: 10px;
+  color: #FFFA3B;
+  position: relative;
+}
+
+.arrow:hover::after {
+  cursor: pointer;
+  color: #fff;
+}
+
+.has-children .sub-title {
+  display: none;
+}
 </style>
+<script>
+  $('.has-children').click(function() {
+    $(this).find('.sub-title').slideToggle(300);
+  });
+</script>
 <div class="archive-wrap">
-  <ul class="menu">
+  <ul class="archive">
   {% for category in site.categories %}
-    <li class="menu-item-has-children">
+    <li class="has-children">
       <a href="#">{{ category | first }}</a>
-      <span class="sidebar-menu-arrow"></span>
-      <ul class="sub-menu">
+      <span class="arrow"></span>
+      <ul class="sub-title">
       {% for posts in category %}
         {% for post in posts reversed %}
           {% if post.url %}

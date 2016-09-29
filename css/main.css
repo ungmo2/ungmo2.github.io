@@ -551,7 +551,7 @@ header.header-post .post-heading .post-subheading {
 
 .archive-wrap li {
   list-style: none;
-  padding: 0;
+  padding: 10px;
   margin: 0;
 }
 
@@ -571,11 +571,11 @@ header.header-post .post-heading .post-subheading {
   content: "\f107";
   font-family: 'FontAwesome';
   padding: 10px;
-  color: #FFFA3B;
+  color: #2B2E4A;
   position: relative;
 }
 
 .arrow:hover::after {
   cursor: pointer;
-  color: #fff;
+  color: #2B2E4A;
 }

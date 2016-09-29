@@ -27,7 +27,7 @@ $(document).ready(function(){
   }
 
   // for archive page
-  $('.has-children').click(function() {
+  $('.has-children > a').click(function() {
     $(this).siblings().find('.sub-title').slideUp();
     $(this).find('.sub-title').slideToggle();
   });

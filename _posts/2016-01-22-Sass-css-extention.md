@@ -381,7 +381,7 @@ $i: 6;
 
 Mixin은 Sass의 매우 유용한 기능으로 @extend와 유사하나 함수와 같이 argument를 받을 수 있다.
 
-@mixin 뒤에 이름의 정의하고 @include로 불러들인다.
+@mixin 선언하고 @include로 불러들인다.
 
 ```scss
 @mixin circle {

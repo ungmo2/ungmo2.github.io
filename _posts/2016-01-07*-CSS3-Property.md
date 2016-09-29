@@ -7,387 +7,8 @@ categories: css
 * TOC
 {:toc}
 
-# 1. CSS 속성값(Property Values)의 표현
 
-CSS 속성값은 키워드, 크기 단위, 색상 표현 단위 등의 특정 단위를 갖는다.
-
-![css selector](/img/css-syntax.png)
-
-Rule Set
-{: style="color:gray; font-size: 80%; text-align: center; margin-top: 5px;"}
-
-## 1.1 키워드
-
-각 속성에 따라 별도의 키워드가 존재한다. 예를 들어 [display 속성](http://ungmo2.github.io/css/CSS3-Property/#display-)의 속성값으로 사용할 수 있는 키워드는 block, inline, inline-block, none이 있다. 자세한 내용은 각각의 속성을 참조하기 바란다.
-
-## 1.2 크기 단위
-
-cm, mm, inch 등의 단위도 존재하나 대표적인 크기 단위는 다음과 같다. px은 절대값이고 em, %는 상대값이 된다.
-
-대부분 브라우저의 폰트 사이즈 기본값은 16px, 1em, 100%이다. 속성값이 0인 경우, 단위를 지정하지 않아도 된다.
-
-### 1.2.1 px
-
-[픽셀(화소)](https://ko.wikipedia.org/wiki/%ED%99%94%EC%86%8C) 단위. 1px은 화소 1개 크기를 의미한다. 디바이스 [해상도(resolution)](https://ko.wikipedia.org/wiki/%ED%95%B4%EC%83%81%EB%8F%84)에 따라 상대적인 크기를 갖는다.
-
-![pixels](/img/pixels.jpg)
-
-스크린에서 확대한 픽셀. 각 픽셀들은 적색, 녹색, 청색 요소들(RGB)을 가지고 있다.
-{: style="color:gray; font-size: 80%; text-align: center; margin-top: 5px;"}
-
-22인치 LCD 모니터의 경우 해상도가 1680 * 1050 인데 이것은 가로에 1680개의 픽셀, 세로에 1050개의 픽셀을 가진다는 의미이다.
-
-요소의 크기나 이미지의 크기 지정에 주로 사용된다. (절대단위)
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <style>
-    body {
-      text-align: center;
-    }
-    div {
-      font-size: 14px;
-      font-weight: bold;
-      padding: 2em; /* 14px * 2 = 28px */
-      background-color:rgba(255,0,0,0.2);
-    }
-  </style>
-</head>
-<body>
-  <div>14px</div>
-</body>
-</html>
-```
-
-### 1.2.2 %
-
-백분률 단위. 요소에 지정된 폰트 사이즈(부모 요소에 지정된 사이즈나 디폴트 사이즈)에 상대적인 폰트 사이즈를 설정한다.(상대단위)
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <style>
-    body {
-      font-size: 14px;
-      text-align: center;
-    }
-    div {
-      font-size: 120%; /* 14px * 1.2 = 16.8px */
-      font-weight: bold;
-      padding: 2em;    /* 16.8px * 2 = 33.6px */
-      background-color:rgba(255,0,0,0.2);
-    }
-  </style>
-</head>
-<body>
-  <div>14px * 120% → 16.8px</div>
-</body>
-</html>
-```
-
-### 1.2.3 em
-
-배수(倍數) 단위. 요소에 지정된 폰트 사이즈(부모 요소에 지정된 사이즈나 디폴트 사이즈)에 상대적인 폰트 사이즈를 설정한다.
-
-예를 들어 1em은 요소에 지정된 폰트 사이즈와 같고 2em은 요소에 지정된 폰트 사이즈의 2배이다.
-
-폰트 사이즈 설정이나 컨텐츠를 포함하는 컨테이너의 크기 설정에 사용하면 상대적인 설정이 가능하여 편리하다. (상대단위)
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <style>
-    body {
-      font-size: 14px;
-      text-align: center;
-    }
-    div {
-      font-size: 1.2em; /* 14px * 1.2 = 16.8px */
-      font-weight: bold;
-      padding: 2em;     /* 16.8px * 2 = 33.6px */
-      background-color:rgba(255,0,0,0.2);
-    }
-  </style>
-</head>
-<body>
-  <div>14px * 1.2em → 16.8px</div>
-</body>
-</html>
-```
-
-중첩된 자식 요소에 em을 지정하면 모든 자식 요소의 폰트 사이즈에 영향을 미친다.
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <style>
-    body {
-      font-size: 14px;
-      text-align: center;
-    }
-    div {
-      font-size: 1.2em; /* 14px * 1.2 = 16.8px */
-      font-weight: bold;
-      padding: 2em;
-    }
-    .box1 { background-color:rgba(255,0,0,0.2); }
-    .box2 { background-color:rgba(255,0,0,0.6); }
-    .box3 { background-color:rgba(255,0,0,0.8); }
-  </style>
-</head>
-<body>
-  <div class='box1'>
-    14px * 1.2em ⇒ 16.8px
-    <div class='box2'>
-      16.8px * 1.2em ⇒ 20.16px
-      <div class='box3'>
-        20.16px * 1.2em ⇒ 24.192px
-      </div>
-    </div>
-  </div>
-</body>
-</html>
-```
-
-의도되지 않은 상황이라면 무척 난감한 상황일 수 있다. 즉 상대 단위인 em의 기준(부모 요소에 지정된 폰트 사이즈)이 상속의 영향으로 일정하지 않기 때문이다.
-
-### 1.2.4 rem
-
-em의 기준(부모 요소에 지정된 폰트 사이즈)은 상속의 영향으로 일정하지 않다. 즉 상황에 따라 1.2em은 각기 다른 값을 가질 수 있다.
-
-rem은 최상위 요소(html)의 폰트 사이즈를 기준으로 삼는다. rem의 r은 root를 의미한다.
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <style>
-    html {
-      font-size: 14px;
-    }
-    div {
-      font-size: 1.2rem; /* html font-size:14px * 1.2 = 16.8px */
-      font-weight: bold;
-      padding: 2em;
-      text-align: center;
-    }
-    .box1 { background-color:rgba(255,0,0,0.2); }
-    .box2 { background-color:rgba(255,0,0,0.6); }
-    .box3 { background-color:rgba(255,0,0,0.8); }
-  </style>
-</head>
-<body>
-  <div class='box1'>
-    14px * 1.2em ⇒ 16.8px
-    <div class='box2'>
-      14px * 1.2em ⇒ 16.8px
-      <div class='box3'>
-        14px * 1.2em ⇒ 16.8px
-      </div>
-    </div>
-  </div>
-</body>
-</html>
-```
-
-사용자가 브라우저의 기본 폰트 크기를 변경(Mac Chrome의 경우, 설정 > 고급 설정 표시 > 웹 컨텐츠 > 글꼴 맞춤 설정)하더라도 이에 따라 웹사이트의 레이아웃을 적절히 조정할 수 있다는 장점이 있다. 따라서 폰트 사이즈 뿐만이 아니라 컨텐츠의 크기에 따라 가변적으로 대응하여야 하는 wrapper 요소(container) 등에 적합하다.
-
-```css
-.container {
-  width: 70rem; /* 14px * 70rem = 980px */
-}
-```
-
-Reset CSS를 사용하여 사전에 html 요소의 font-size 지정이 필요하다.
-
-### 1.2.5 Viewport 단위(vh, vw, vmin, vmax)
-
-반응형 웹디자인은 화면의 크기에 동적으로 대응하기 위해 % 단위를 많이 사용한다. 하지만 % 단위는 em과 같이 상속에 의해 부모 요소에 상대적 영향을 받는다.
-
-Viewport 단위는 상대적인 단위로 [viewport](http://ungmo2.github.io/css/CSS3-Responsive-Web-Design/#viewport-meta-tag)를 기준으로 한 상대적 사이즈를 의미한다.
-
-| 단위   | Description
-|:-----:|:--------------------------------
-| vw    | viewport 너비의 1/100
-| vh    | viewport 높이의 1/100
-| vmin  | viewport 너비 또는 높이 중 작은 쪽의 1/100
-| vmax  | viewport 너비 또는 높이 중 큰 쪽의 1/100
-
-예를 들어 viewport 너비가 1000px, 높이가 600px인 경우,
-
-- 1vw  : viewport 너비 1000px의 1%인 10px
-- 1vh  : viewport 높이 600px의 1%인 6px
-- vmin : viewport 높이 600px의 1%인 6px
-- vmax : viewport 너비 1000px의 1%인 10px
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <style>
-    body { margin: 0px; }
-    .item {
-      width: 50vw;
-      height: 100vh;
-      text-align: center;
-      line-height: 100vh;
-      font-size: 4rem;
-      color: white;
-    }
-    .item1 { background-color: red; }
-    .item2 { background-color: orange; }
-  </style>
-</head>
-<body>
-  <div class='item item1'>item1</div>
-  <div class='item item2'>item2</div>
-</body>
-</html>
-```
-
-## 1.3 색상 표현 단위
-
-색상을 지정하기 위해 키워드(red, blue...)를 사용할 수 있다. 사용이 간편하다는 장점이 있으나 표현할 수 있는 색상의 수는 제한된다.
-
-색상를 표현할 수 있는 키워드 리스트는 [W3C css3-color ](https://www.w3.org/TR/css3-color/) 를 참고하기 바란다.
-
-```html
-<!DOCTYPE html>
-<html>
-  <body>
-    <h2 style="background-color:red">
-    Red background-color
-    </h2>
-
-    <h2 style="background-color:green">
-    Green background-color
-    </h2>
-
-    <h2 style="background-color:blue;color:white">
-    Blue background-color and white text color
-    </h2>
-
-    <h2 style="background-color:orange">
-    Orange background-color
-    </h2>
-
-    <h2 style="background-color:yellow">
-    Yellow background-color
-    </h2>
-
-    <h2 style="background-color:cyan">
-    Cyan background-color
-    </h2>
-
-    <h2 style="background-color:black;color:white">
-    Black background-color and white text color
-    </h2>
-  </body>
-</html>
-```
-
-더욱 다양한 색상을 표현하기 위해 다음과 같은 색상 표현 단위를 사용할 수 있다. [HTML COLOR CODES](http://htmlcolorcodes.com/)를 참조하면 편리하다.
-
-| 단위                                         | 사용예                          
-|:--------------------------------------------|:------------------------------|
-| HEX 코드 단위 (Hexadecimal Colors)            | #000000
-| RGB (Red, Green, Blue)                      | rgb(255, 255, 0)
-| RGBA (Red, Green, Blue, Alpha/투명도)         | rgba(255, 255, 0, 1)
-| HSL (Hue/색상, Saturation/채도, Lightness/명도) | hsl(0, 100%, 25%)
-| HSLA (Hue, Saturation, Lightness, Alpha)     | hsla(60, 100%, 50%, 1)
-
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <style>
-      #hex-p1 {background-color:#ff0000;}
-      #hex-p2 {background-color:#00ff00;}
-      #hex-p3 {background-color:#0000ff;}
-      #hex-p4 {background-color:#ffff00;}
-      #hex-p5 {background-color:#ff00ff;}
-
-      #rgb-p1 {background-color:rgb(255,0,0);}
-      #rgb-p2 {background-color:rgb(0,255,0);}
-      #rgb-p3 {background-color:rgb(0,0,255);}
-      #rgb-p4 {background-color:rgb(192,192,192);}
-      #rgb-p5 {background-color:rgb(255,255,0);}
-      #rgb-p6 {background-color:rgb(255,0,255);}
-
-      #rgba-p1 {background-color:rgba(255,0,0,0.3);}
-      #rgba-p2 {background-color:rgba(0,255,0,0.3);}
-      #rgba-p3 {background-color:rgba(0,0,255,0.3);}
-      #rgba-p4 {background-color:rgba(192,192,192,0.3);}
-      #rgba-p5 {background-color:rgba(255,255,0,0.3);}
-      #rgba-p6 {background-color:rgba(255,0,255,0.3);}
-
-      #hsl-p1 {background-color:hsl(120,100%,50%);}
-      #hsl-p2 {background-color:hsl(120,100%,75%);}
-      #hsl-p3 {background-color:hsl(120,100%,25%);}
-      #hsl-p4 {background-color:hsl(120,60%,70%);}
-      #hsl-p5 {background-color:hsl(290,100%,50%);}
-      #hsl-p6 {background-color:hsl(290,60%,70%);}
-
-      #hsla-p1 {background-color:hsla(120,100%,50%,0.3);}
-      #hsla-p2 {background-color:hsla(120,100%,75%,0.3);}
-      #hsla-p3 {background-color:hsla(120,100%,25%,0.3);}
-      #hsla-p4 {background-color:hsla(120,60%,70%,0.3);}
-      #hsla-p5 {background-color:hsla(290,100%,50%,0.3);}
-      #hsla-p6 {background-color:hsla(290,60%,70%,0.3);}
-    </style>
-  </head>
-
-  <body>
-    <h1>HEX colors:</h1>
-    <p id="hex-p1">Red</p>
-    <p id="hex-p2">Green</p>
-    <p id="hex-p3">Blue</p>
-    <p id="hex-p4">Yellow</p>
-    <p id="hex-p5">Cerise</p>
-
-    <h1>RGB colors:</h1>
-    <p id="rgb-p1">Red</p>
-    <p id="rgb-p2">Green</p>
-    <p id="rgb-p3">Blue</p>
-    <p id="rgb-p4">Grey</p>
-    <p id="rgb-p5">Yellow</p>
-    <p id="rgb-p6">Cerise</p>
-
-    <h1>RGB colors with opacity:</h1>
-    <p id="rgba-p1">Red</p>
-    <p id="rgba-p2">Green</p>
-    <p id="rgba-p3">Blue</p>
-    <p id="rgba-p4">Grey</p>
-    <p id="rgba-p5">Yellow</p>
-    <p id="rgba-p6">Cerise</p>
-
-    <h1>HSL colors:</h1>
-    <p id="hsl-p1">Green</p>
-    <p id="hsl-p2">Light green</p>
-    <p id="hsl-p3">Dark green</p>
-    <p id="hsl-p4">Pastel green</p>
-    <p id="hsl-p5">Violet</p>
-    <p id="hsl-p6">Pastel violet</p>
-
-    <h1>HSL colors with opacity:</h1>
-    <p id="hsla-p1">Green</p>
-    <p id="hsla-p2">Light green</p>
-    <p id="hsla-p3">Dark green</p>
-    <p id="hsla-p4">Pastel green</p>
-    <p id="hsla-p5">Violet</p>
-    <p id="hsla-p6">Pastel violet</p>
-  </body>
-</html>
-```
-
-# 2. CSS 속성(Property)
-
-## 2.1 박스 모델 (Box Model)
+# 1. 박스 모델 (Box Model)
 
 모든 HTML 요소는 박스 형태의 영역을 가지고 있다. 박스 형태는 사각형을 의미하므로 너비와 높이로 요소의 영역을 표현할 수 있다.
 
@@ -432,7 +53,7 @@ CSS 박스 모델은 모든 HTML 요소를 감싸고 있는 margin, border, padd
 </html>
 ```
 
-### 2.1.1 width / height 속성
+## 1.1 width / height 속성
 
 width와 height 속성은 요소의 내용(content)가 위치하는 영역의 너비와 높이를 의미한다. 따라서 박스 전체 크기는 다음과 같이 계산할 수 있다.
 
@@ -442,7 +63,7 @@ width와 height 속성은 요소의 내용(content)가 위치하는 영역의 �
 
 width / height 속성은 상속되지 않는다.
 
-### 2.1.2 margin / padding 속성
+## 1.2 margin / padding 속성
 
 margin / padding 속성은 content의 4개 방향에 대하여 지정이 가능하다.
 
@@ -558,7 +179,7 @@ margin 속성에 `auto` 키워드를 설정하면 해당 요소를 브라우저 
 
 `max-width` 속성을 사용하면 브라우저 너비가 요소의 너비보다 좁아질 때 자동으로 요소의 너비가 줄어든다.
 
-### 2.1.3 border 속성
+## 1.3 border 속성
 
 [Border Style](https://developer.mozilla.org/ko/docs/Web/CSS/border-style)
 
@@ -740,7 +361,7 @@ p {
 }
 ```
 
-### 2.1.4 box-sizing 속성
+## 1.4 box-sizing 속성
 
 box-sizing 속성은 CSS Layout을 직관적으로 사용할 수 있게 한다. 즉 padding, border, margin을 제외한 값인 width, height 속성을 content 영역, padding, border가 포함된 값으로 사용할 수 있게한다.
 
@@ -818,9 +439,9 @@ html {
 ```
 -->
 
-## 2.2 표시(Display）
+# 2. 표시(Display）
 
-### 2.2.1 display 속성
+## 2.1 display 속성
 
 display 속성은 layout 정의에 자주 사용되는 중요한 속성이다.
 
@@ -847,7 +468,7 @@ p {
 }
 ```
 
-#### 2.2.1.1 block 속성
+### 2.2.1 block 속성
 
 - 항상 새로운 라인에서 시작한다.
 
@@ -907,7 +528,7 @@ p {
 </html>
 ```
 
-#### 2.2.1.2 inline 속성
+### 2.2.2 inline 속성
 
 - 새로운 라인에서 시작하지 않으며 문장의 중간에 들어갈 수 있다. 즉, 줄을 바꾸지 않고 다른 요소와 함께 한 행에 위치시킬 수 있다.
 
@@ -962,7 +583,7 @@ p {
 </html>
 ```
 
-#### 2.2.1.3 inline-block 속성
+### 2.2.3 inline-block 속성
 
 block과 inline의 특징을 모두 갖는다. inline 요소 같이 한 줄에 표현되면서 width, height, margin 속성을 모두 지정할 수 있다.
 
@@ -1078,7 +699,7 @@ So that leaves all default values up to the browser and how the developers actua
 </html>
 ```
 
-### 2.2.2 visibility 속성
+## 2.2 visibility 속성
 
 visibility 속성은 요소를 보이게 할 것인지 보이지 않게 할 것인지를 정의한다. 즉 요소의 렌더링 여부를 결정한다.
 
@@ -1123,7 +744,7 @@ visibility 속성은 요소를 보이게 할 것인지 보이지 않게 할 것�
 </html>
 ```
 
-### 2.2.3 opacity 속성
+## 2.3 opacity 속성
 
 opacity 속성은 요소의 투명도를 정의한다. 0.0 ~ 1.0의 값을 입력하며 0.0은 투명, 1.0은 불투명을 의미한다.
 
@@ -1152,13 +773,13 @@ opacity 속성은 요소의 투명도를 정의한다. 0.0 ~ 1.0의 값을 입�
 </html>
 ```
 
-## 2.3 배경 (Background)
+# 3. 배경 (Background)
 
 해당 요소의 배경으로 이미지 또는 색상을 정의한다.
 
 자세한 내용은 [CSS Background and Borders](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Background_and_Borders)를 참조한다.
 
-### 2.3.1 Background Image 속성
+## 3.1 Background Image 속성
 
 [background-image](https://developer.mozilla.org/en-US/docs/Web/CSS/background-image)
 
@@ -1179,7 +800,7 @@ opacity 속성은 요소의 투명도를 정의한다. 0.0 ~ 1.0의 값을 입�
 </html>
 ```
 
-### 2.3.2 Background Repeat 속성
+## 3.2 Background Repeat 속성
 
 [background-repeat](https://developer.mozilla.org/en-US/docs/Web/CSS/background-repeat)
 
@@ -1212,7 +833,7 @@ body {
 }
 ```
 
-### 2.3.3 Background Size 속성
+## 3.3 Background Size 속성
 
 [background-size](https://developer.mozilla.org/en-US/docs/Web/CSS/background-size)
 
@@ -1250,7 +871,7 @@ body {
 }
 ```
 
-### 2.3.4 Background Attachment 속성
+## 3.4 Background Attachment 속성
 
 [background-attachment](https://developer.mozilla.org/en-US/docs/Web/CSS/background-attachmen)
 
@@ -1301,7 +922,7 @@ body {
 </html>
 ```
 
-### 2.3.5 Background Position 속성
+## 3.5 Background Position 속성
 
 [background-position](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position)
 
@@ -1370,7 +991,7 @@ body {
 </html>
 ```
 
-### 2.3.6 Background Color 속성
+## 3.6 Background Color 속성
 
 [background-color](https://developer.mozilla.org/en-US/docs/Web/CSS/background-color)
 
@@ -1381,7 +1002,7 @@ div {
 }
 ```
 
-### 2.3.7 Background Shorthand
+## 3.7 Background Shorthand
 
 [background](https://developer.mozilla.org/en-US/docs/Web/CSS/background)
 
@@ -1411,11 +1032,11 @@ background: color || image || repeat || attachment || position
 </html>
 ```
 
-## 2.4 폰트와 텍스트
+# 4 폰트와 텍스트
 
 폰트 및 텍스트 관련 속성은 폰트의 크기, 폰트의 지정, 폰트의 스타일, 텍스트 정렬 등을 정의한다.
 
-### 2.4.1 font-size 속성
+## 4.1 font-size 속성
 
 텍스트의 크기를 정의한다.
 
@@ -1443,7 +1064,7 @@ background: color || image || repeat || attachment || position
 </html>
 ```
 
-### 2.4.2 font-family 속성
+## 4.2 font-family 속성
 
 폰트를 지정한다. 컴퓨터에 폰트가 설치되어 있지 않으면 적용되지 않는다.
 
@@ -1480,7 +1101,7 @@ background: color || image || repeat || attachment || position
 </html>
 ```
 
-### 2.4.3 font-style / font-weight 속성
+## 4.3 font-style / font-weight 속성
 
 font-style 속성은 이탤릭체의 지정, font-weight 속성은 폰트 굵기 지정에 사용된다.
 
@@ -1523,7 +1144,7 @@ font-style 속성은 이탤릭체의 지정, font-weight 속성은 폰트 굵기
 </html>
 ```
 
-### 2.4.4 line-height 속성
+## 4.4 line-height 속성
 
 텍스트의 높이를 지정한다. 텍스트 수직 정렬에도 응용되어 사용된다.
 
@@ -1606,7 +1227,7 @@ font-style 속성은 이탤릭체의 지정, font-weight 속성은 폰트 굵기
 </html>
 ```
 
-### 2.4.5 font Shorthand
+## 4.5 font Shorthand
 
 Shorthand Syntax
 
@@ -1628,7 +1249,7 @@ font: italic small-caps bolder 16px/3 cursive;
 font: italic small-caps bolder condensed 16px/3 cursive;
 ```
 
-### 2.4.6 text-align 속성
+## 4.6 text-align 속성
 
 텍스트의 수평 정렬을 정의한다.
 
@@ -1655,7 +1276,7 @@ font: italic small-caps bolder condensed 16px/3 cursive;
 
 위 예제의 a 요소에 대한 중앙 정렬은 적용되지 않았다. 이는 a 요소는 inline 요소이기 때문이다. inline 요소는 width 속성이 없으므로 중앙 개념이 존재하지 않는다. a 요소에 `display: block;`을 지정한다면 중앙 정렬이 가능할 것이다.
 
-### 2.4.7 text-decoration 속성
+## 4.7 text-decoration 속성
 
 text-decoration 속성을 사용하여 링크 underline을 제거할 수 있다. 또는 텍스트에 underline, overline, line-through를 추가할 수도 있다.
 
@@ -1681,7 +1302,7 @@ text-decoration 속성을 사용하여 링크 underline을 제거할 수 있다.
 </html>
 ```
 
-### 2.4.8 white-space 속성
+## 4.8 white-space 속성
 
 html의 white space는 공백(space), 들여쓰기(tab), 줄바꿈(line break)을 의미한다. html은 기본적으로 연속된 공백(space), 들여쓰기(tab)는 1번만 실행되며 줄바꿈(line break)은 무시된다. 또한 텍스트는 부모 가로 영역을 벗어나지 않고 자동 줄바꿈(wrap)된다. white-space 속성은 이러한 기본 동작을 제어하기 위한 속성이다.
 
@@ -1736,7 +1357,7 @@ html의 white space는 공백(space), 들여쓰기(tab), 줄바꿈(line break)�
 </html>
 ```
 
-### 2.4.9 text-overflow 속성
+## 4.9 text-overflow 속성
 
 부모 영역을 벗어난 wrapping(자동줄바꿈)이 되지 않은 텍스트의 처리 방법을 정의한다. 이 속성을 사용하기 위해서는 overflow 속성에 반드시 "visible" 이외의 값이 지정되어 있어야 한다.
 
@@ -1777,7 +1398,7 @@ html의 white space는 공백(space), 들여쓰기(tab), 줄바꿈(line break)�
 </html>
 ```
 
-### 2.4.10 word-wrap 속성
+## 4.10 word-wrap 속성
 
 한 단어의 길이가 길어서 부모 영역을 벗어난 텍스트의 처리 방법을 정의한다. link 등을 표기할 때(e.g. http://ungmo2.github.io/css/CSS3-Property/) 그 길이가 매우 길어지는데 이 속성을 사용하지 않으면 부모 영역을 넘어가게 된다.
 
@@ -1807,7 +1428,7 @@ html의 white space는 공백(space), 들여쓰기(tab), 줄바꿈(line break)�
 </html>
 ```
 
-### 2.4.11 word-break 속성
+## 4.11 word-break 속성
 
 한 단어의 길이가 길어서 부모 영역을 벗어난 텍스트의 처리 방법을 정의한다.
 
@@ -1844,9 +1465,9 @@ word-wrap 속성은 단어를 어느 정도는 고려하여 개행하지만(.,- 
 </html>
 ```
 
-## 2.5 위치 (Position)
+# 5 위치 (Position)
 
-### 2.5.1 position 속성
+## 5.1 position 속성
 
 position 속성은 요소의 위치를 정의한다. top, bottom, left, right 속성과 함께 사용하여 위치를 지정한다.
 
@@ -1908,7 +1529,7 @@ position 속성은 요소의 위치를 정의한다. top, bottom, left, right �
 ```
 -->
 
-#### 2.5.1.1 static (기본위치)
+### 5.1.1 static (기본위치)
 
 static은 position 속성의 기본값으로 position 속성을 지정하지 않았을 때와 같다.
 
@@ -1946,7 +1567,7 @@ static은 position 속성의 기본값으로 position 속성을 지정하지 않
 </html>
 ```
 
-#### 2.5.1.2 relative (상대위치)
+### 5.1.2 relative (상대위치)
 
 기본 위치(static으로 지정되었을 때의 위치)를 기준으로 좌표 속성(top, bottom, left, right)을 사용하여 위치를 이동시킨다.
 
@@ -1979,7 +1600,7 @@ static은 position 속성의 기본값으로 position 속성을 지정하지 않
 </html>
 ```
 
-#### 2.5.1.3 absolute (절대위치)
+### 5.1.3 absolute (절대위치)
 
 ***부모 또는 조상 요소에 relative 속성이 선언되어 있으면 그 요소를 기준으로 하여 좌표 속성(top, bottom, left, right)만큼 이동한다.***
 
@@ -2024,7 +1645,7 @@ static은 position 속성의 기본값으로 position 속성을 지정하지 않
 </html>
 ```
 
-#### 2.5.1.4 fixed (고정위치)
+### 5.1.4 fixed (고정위치)
 
 부모 요소와 관계없이 브라우저의 viewport를 기준으로 좌표속성(top, bottom, left, right)을 사용하여 위치를 이동시킨다.
 
@@ -2067,7 +1688,7 @@ static은 position 속성의 기본값으로 position 속성을 지정하지 않
 </html>
 ```
 
-### 2.5.2 z-index 속성
+## 5.2 z-index 속성
 
 z-index 속성에 큰 숫자값을 지정할수록 화면 전면에 출력된다.
 
@@ -2107,7 +1728,7 @@ z-index 속성에 큰 숫자값을 지정할수록 화면 전면에 출력된다
 </html>
 ```
 
-### 2.5.3 overflow 속성
+## 5.3 overflow 속성
 
 overflow 속성은 자식 요소가 부모 요소의 영역를 벗어났을 때 처리 방법을 정의한다.
 
@@ -2156,7 +1777,7 @@ overflow 속성은 자식 요소가 부모 요소의 영역를 벗어났을 때 
 div { overflow-y: auto; }
 ```
 
-## 2.6 float 속성
+# 6. float 속성
 
 float 속성은 주로 layout을 구성하기 위해 사용되는 핵심 기술이다. layout의 가장 큰 목적은 1개 이상의 block 속성 요소를 원하는 위치에 정렬시키는 것이다.
 
@@ -2189,7 +1810,7 @@ float 속성은 해당 요소를 떠 있게 한다. 여기서 떠 있다(float)�
 
 ![css float](/img/float.png)
 
-### 2.6.1 정렬
+## 6.1 정렬
 
 float 속성을 사용하지 않은 블록 요소들은 수직으로 정렬된다. `float:left;` 속성을 사용하면 왼쪽부터 정렬되고, `float:right;` 속성을 사용하면 오른쪽부터 정렬된다.
 
@@ -2270,9 +1891,9 @@ width값을 지정하지 않은 block 속성 요소는 기본적으로 `width: 1
 </html>
 ```
 
-### 2.6.2 float 속성 관련 문제 해결 방법
+## 6.2 float 속성 관련 문제 해결 방법
 
-#### 2.6.2.1 float 속성 요소와 float 속성이 선언되지 않은 요소간 margin이 사라지는 문제
+### 6.2.1 float 속성 요소와 float 속성이 선언되지 않은 요소간 margin이 사라지는 문제
 
 위 예제를 보면 두 요소간 margin이 있어야 한다. 그러나 결과는 그렇지 않다.
 
@@ -2312,7 +1933,7 @@ width값을 지정하지 않은 block 속성 요소는 기본적으로 `width: 1
 
 두번째 요소에도 float 속성을 선언하면 `overflow: hidden` 속성은 선언하지 않아도 되지만 너비가 최소화된다.
 
-#### 2.6.2.2 float속성을 가진 자식 요소를 포함하는 부모 요소의 높이가 정상적으로 반영되지 않는 문제
+### 6.2.2 float속성을 가진 자식 요소를 포함하는 부모 요소의 높이가 정상적으로 반영되지 않는 문제
 
 아래 예제를 보면 float 속성이 선언된 두개의 자식 요소를 포함하는 부모 요소의 높이가 정상적인 값을 가지지 못하는 문제가 발생한다. 이 문제는 부모 요소 이후에 위치하는 요소의 정렬에 문제를 발생시킨다.
 
@@ -2497,9 +2118,9 @@ overflow: hidden;과 함께 많이 사용되는 방법은 [::after 가상 요소
 </html>
 ```
 
-### 2.6.3 Layout Examples
+# 7. Layout Examples
 
-#### 2.6.3.1 2-Column Layout Example
+## 7.1 2-Column Layout Example
 
 ![2-column-layout](/img/2-column-layout.png)
 
@@ -2509,7 +2130,7 @@ overflow: hidden;과 함께 많이 사용되는 방법은 [::after 가상 요소
 ```
 -->
 
-#### 2.6.3.2 3-Column Layout Example
+## 7.2 3-Column Layout Example
 
 ![3-column-layout](/img/3-column-layout.png)
 
@@ -2518,185 +2139,6 @@ overflow: hidden;과 함께 많이 사용되는 방법은 [::after 가상 요소
 
 ```
  -->
-
-# 3. 상속과 캐스케이딩
-
-## 3.1 상속(Inheritance)
-
-상속이란 상위(부모, 조상) 요소의 속성을 하위(자식, 자손) 요소가 물려 받는 것을 의미한다. 상속 기능이 없다면 각 요소의 Rule set에 속성을 매번 각각 지정해야 한다.
-
-하지만 모든 속성이 상속되는 것은 아니다. 속성 중에는 상속이 되는 것과 되지 않는 것이 있다.
-
-| property     | Inherit     |
-| :----------: |:-----------:|
-| width/height | no
-| margin       | no
-| padding      | no
-| border       | no
-| box-sizing   | no
-| display      | no
-| visibility   | yes
-| opacity      | yes
-| background   | no
-| font         | yes
-| color        | yes
-| line-height  | yes
-| text-align   | yes
-| vertical-align  | no
-| text-decoration | no
-| white-space | yes
-| position    | no
-| top/right/bottom/left | no
-| z-index     | no
-| overflow    | no
-| float       | no
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <style>
-    .text-red {
-      color: red;
-      border: 1px solid #bcbcbc;
-      padding: 10px;
-    }
-  </style>
-</head>
-<body>
-  <div class="text-red">
-    <h1>Heading</h1>
-    <p>Paragraph<strong>strong</strong></p>
-    <button>Button</button>
-  </div>
-</body>
-</html>
-```
-
-color는 상속되는 속성으로 자식 요소는 물론 자손 요소까지 적용된다. 하지만 button처럼 상속 받지 않는 요소도 존재한다.
-
-border, padding은 상속되지 않는 요소로 하위 요소에 적용되지 않는다. [Full property table](https://www.w3.org/TR/CSS21/propidx.html)의 Inherited?가 yes인 속성만 상속된다.
-
-![css inheritance](/img/css_inheritance.png)
-
-상속되지 않는 경우(상속받지 않는 요소 또는 상속되지 않는 속성), inherit 키워드를 사용하여 명시적으로 상속받게 할 수 있다.
-
-```css
-button {
-  color: inherit;
-}
-p {
-  border: inherit;
-  padding: inherit;
-}
-```
-
-## 3.2 캐스캐이딩(Cascading)
-
-요소는 하나 이상의 CSS 선언에 영향을 받을 수 있다. 이때 충돌을 피하기 위해 ***CSS 적용 우선순위*** 가 필요한데 이를 캐스케이딩(Cascading Order)이라고 한다.
-
-캐스케이딩에는 다음과 같이 세가지 규칙이 있다.
-
-- 중요도 : CSS가 어디에 선언 되었는지에 따라서 우선순위가 달라진다.
-
-- 명시도 : 대상을 명확하게 특정할수록 명시도가 높아지고 우선순위가 높아진다.
-
-- 선언순서 : 선언된 순서에 따라 우선 순위가 적용된다. 즉, 나중에 선언된 스타일이 우선 적용된다.
-
-**중요도**
-
-CSS가 어디에 선언 되었는지에 따라서 우선순위가 달라진다.
-
-1. head 요소 내의 style 요소
-2. head 요소 내의 style 요소 내의 @import 문
-3. \<link\> 로 연결된 CSS 파일
-4. \<link\> 로 연결된 CSS 파일 내의 @import 문
-5. 브라우저 디폴트 스타일시트
-
-```css
-/* style.css */
-body {
-  background-color: blue;
-  color: red;
-}
-```
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    body {
-      background-color: beige;
-      color: navy;
-    }
-  </style>
-</head>
-<body>
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-</body>
-</html>
-```
-
-```css
-/* style.css */
-body {
-  background-color: red;
-  color: white;
-}
-```
-
-**명시도**
-
-대상을 명확하게 특정할수록 명시도가 높아지고 우선순위가 높아진다.
-
-```
-!important > 인라인 스타일 > 아이디 선택자 > 클래스/속성/가상 선택자 > 태그 선택자 > 전체 선택자 > 상위 요소에 의해 상속된 속성
-```
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <style>
-    p        { color: red !important; }
-    div.food { color: chocolate; }
-    #thing   { color: blue; }
-    .food    { color: green; }
-    div      { color: orange; }
-  </style>
-</head>
-<body>
-  <p id="thing">Will be Red.</p>
-  <div class="food">Will be Chocolate.</div>
-</body>
-</html>
-```
-
-**선언순서**
-
-선언된 순서에 따라 우선 순위가 적용된다. 즉, 나중에 선언된 스타일이 우선 적용된다.
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <style>
-    p { color: blue; }
-    p { color: red; }
-
-    .red { color: red; }
-    .blue { color: blue; }
-  </style>
-</head>
-<body>
-  <p>Will be RED.</p>
-  <p class="blue red">Will be BLUE.</p>
-</body>
-</html>
-```
 
 # Reference
 

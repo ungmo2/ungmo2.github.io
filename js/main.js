@@ -25,6 +25,11 @@ $(document).ready(function(){
       $(document).bind("contextmenu",function(){return false;});
       $(document).bind("mousedown",function(){return false;});
   }
+
+  // for archive page
+  $('.has-children').click(function() {
+    $(this).find('.sub-title').slideToggle(300);
+  });
 });
 
 // $(document).ready(function(){

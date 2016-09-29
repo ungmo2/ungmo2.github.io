@@ -552,10 +552,15 @@ header.header-post .post-heading .post-subheading {
 .archive-wrap li {
   list-style: none;
   padding: 18px 22px 0;
+  margin: 0;
 }
 
 .has-children .sub-title {
   display: none;
+}
+
+.has-children > a {
+  text-transform: uppercase;
 }
 
 .arrow::after {

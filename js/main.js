@@ -28,8 +28,8 @@ $(document).ready(function(){
 
   // for archive page
   $('.has-children > a').click(function() {
-    $(this).siblings().find('.sub-title').slideUp();
-    $(this).find('.sub-title').slideToggle();
+    $(this).parent().siblings().find('.sub-title').slideUp();
+    $(this).parent().find('.sub-title').slideToggle();
   });
 });
 

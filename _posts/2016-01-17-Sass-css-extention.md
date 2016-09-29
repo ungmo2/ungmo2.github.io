@@ -363,7 +363,6 @@ $i: 6;
 
 컴파일 결과는 아래와 같다.
 
-
 ```css
 .item-6 {
   width: 12em;
@@ -380,12 +379,133 @@ $i: 6;
 
 # 4. Mixin
 
-@extend와 유사하나 함수와 같이 argument를 받을 수 있다.
+Mixin은 Sass의 매우 유용한 기능으로 @extend와 유사하나 함수와 같이 argument를 받을 수 있다.
+
+@mixin 뒤에 이름의 정의하고 @include로 불러들인다.
+
+```scss
+@mixin circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+}
+
+.box {
+  @include circle;
+  background: #fc0;
+}
+```
+
+컴파일 결과는 아래와 같다.
+
+```css
+.box {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background: #fc0;
+}
+```
+
+@extend와 차이가 없어 보이나 Mixin은 함수와 같이 argument를 사용할 있다.
+
+```scss
+@mixin circle($size) {
+  width: $size;
+  height: $size;
+  border-radius: 100%;
+}
+
+.box {
+  @include circle(100px);
+  background: #fc0;
+}
+```
+
+컴파일 결과는 아래와 같다.
+
+```css
+.box {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  background: #fc0;
+}
+```
+
+argument의 초기값을 설정할 수도 있다.
+
+```scss
+@mixin circle($size: 10px) {
+  width: $size;
+  height: $size;
+  border-radius: 100%;
+}
+
+.box {
+  @include circle(); // or @include circle;
+  background: #fc0;
+}
+```
+
+Mixin을 사용한 유용한 예제를 살펴보자.
+
+**vendor prefix**
+
+```scss
+@mixin css3($property, $value) {
+  @each $prefix in -webkit-, -moz-, -ms-, -o-, '' {
+    #{$prefix}#{$property}: $value;
+  }
+}
+
+.border_radius {
+  @include css3(transition, 0.5s);
+}
+```
+
+**opacity**
+
+```scss
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacityIE: $opacity * 100;
+  filter: alpha(opacity=$opacityIE);
+}
+
+.box {
+  @include opacity(0.5);
+}
+```
+
+**absolute position**
+
+```scss
+@mixin absPosition ($top: auto, $right: auto, $bottom: auto, $left: auto) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+.box {
+  @include absPosition(5px, 20px, 10px, 15px);
+}
+```
+
+이와 같이 Mixin을 작성하여 사용할 수도 있으나 Sass Framework/Library를 사용하는 것은 매우 바람직한 방법이다.
+
+- [Bourbon: Sass Mixins Library](http://bourbon.io/)
+
+- [Compass: CSS Authoring Framework](http://compass-style.org/)
+
+- [Susy: Sass grid framework](http://susy.oddbird.net/)
 
 
+# 5. Function
 
-
-# 5. Comment
+# 6. Comment
 
 # Reference
 
@@ -395,10 +515,12 @@ $i: 6;
 
 * [Getting Started with SASS ](https://scotch.io/tutorials/getting-started-with-sass)
 
-* [Sass & Compass Color Functions](http://jackiebalzer.com/color)
-
 * [Using pure Sass functions to make reusable logic more useful](http://thesassway.com/advanced/pure-sass-functions)
 
-* [The Sass Ampersand](https://css-tricks.com/the-sass-ampersand/)
-
 * [Approaches to Media Queries in Sass](https://css-tricks.com/approaches-media-queries-sass/)
+
+* [Bourbon: Sass Mixins Library](http://bourbon.io/)
+
+* [Compass: CSS Authoring Framework](http://compass-style.org/)
+
+* [Susy: Sass grid framework](http://susy.oddbird.net/)

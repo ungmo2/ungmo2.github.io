@@ -28,9 +28,14 @@ $(document).ready(function(){
 
   // for archive page
   $('.has-children').click(function() {
-    console.log($(this).siblings().find('.sub-title'));
-    $(this).siblings().find('.sub-title').slideUp();
-    $(this).find('.sub-title').slideToggle();
+    // console.log($(this).siblings().find('.sub-title'));
+    console.log($(this).not(this).find('.sub-title'));
+    $(this).not(this).find('.sub-title').hide();
+    $(this).find('ul').toggle();
+
+
+    // $(this).siblings().find('.sub-title').slideUp();
+    // $(this).find('.sub-title').slideToggle();
   });
 });
 

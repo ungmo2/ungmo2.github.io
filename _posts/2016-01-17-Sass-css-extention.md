@@ -100,10 +100,10 @@ $family: unquote("Droid+Sans");
 @import "foo";
 ```
 
-partial된 Sass 파일명 선두에 붙인 &#95의 의미는 import는 수행하되 CSS로의 컴파일은 수행하지 말라는 의미를 갖는다. 따라서 partial은 import시에는 CSS 파일로 컴파일되지 않기 때문에 최종적으로 CSS로 컴파일을 수행할 Sass 파일로 import된다.
+partial된 Sass 파일명 선두에 붙인 &#95;의 의미는 import는 수행하되 CSS로의 컴파일은 수행하지 말라는 의미를 갖는다. 따라서 partial은 import시에는 CSS 파일로 컴파일되지 않기 때문에 최종적으로 CSS로 컴파일을 수행할 Sass 파일로 import된다.
 
 ![partial](/img/partial.png)
-{: style="max-width:500px; margin:10px auto;"}
+{: style="max-width:550px; margin:10px auto;"}
 
 
 

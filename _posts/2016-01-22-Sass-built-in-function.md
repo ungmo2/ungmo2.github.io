@@ -17,14 +17,14 @@ tags: []
 
 ## 1.1 숫자값을 %로 변환
 
-```scss
+```
 percentage(0.2)          => 20%
 percentage(100px / 50px) => 200%
 ```
 
 ## 1.2 소숫점 이하 반올림
 
-```scss
+```
 round(10.4px) => 10px
 round(10.6px) => 11px
 ```
@@ -35,7 +35,7 @@ round(10.6px) => 11px
 ceil($value)
 ```
 
-```scss
+```
 ceil(10.4px) => 11px
 ceil(10.6px) => 11px
 ```
@@ -46,47 +46,42 @@ ceil(10.6px) => 11px
 floor($value)
 ```
 
-```scss
+```
 floor(10.4px) => 10px
 floor(10.6px) => 10px
 ```
 
-숫자값の절대값を취득したい
+## 1.5 절대값 취득
 
-abs($value)
+```
+abs(10px) => 10px
+abs(-10px) => 10px
+```
 
-1
-abs(-10px)
-2
-↓
-3
-10px
+# 2. Introspection Functions
 
+## 2.1 Data type 취득
 
-Introspection Functions
-값의 타입 취득
+```
+type-of(100px)  => number
+type-of(asdf)   => string
+type-of("asdf") => string
+type-of(true)   => bool
+type-of(#fff)   => color
+type-of(blue)   => color
+```
 
-type-of($value)
+## 2.2 Data unit 취득
 
-1
-type-of(#fff)
-2
-↓
-3
-color
+```
+unit(100) => ""
+unit(100px) => "px"
+unit(3em) => "em"
+unit(10px * 5em) => "em*px"
+unit(10px * 5em / 30cm / 1rem) => "em*px/cm*rem"
+```
 
-값의 단위を취득
-
-unit($number)
-
-1
-unit(100px)
-2
-↓
-3
-"px"
-
-値に단위がついていないかどうかを취득したい
+## 2.3 値に단위がついていないかどうかを취득したい
 
 unit($number)
 

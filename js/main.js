@@ -28,8 +28,9 @@ $(document).ready(function(){
 
   // for archive page
   $('.has-children').click(function() {
-    $(this).siblings().find('.sub-title').slideUp(300);
-    $(this).find('.sub-title').slideToggle(300);
+    console.log($(this).find('.sub-title').siblings());
+    $(this).find('.sub-title').siblings().slideUp();
+    $(this).find('.sub-title').slideToggle();
   });
 });
 

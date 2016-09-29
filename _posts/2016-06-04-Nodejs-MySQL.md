@@ -23,6 +23,12 @@ Node.js(express)와 MySQL 연동을 위한 모듈 중 대표적인 [node-mysql](
 
 우선 간단한 [express Hello world example](http://expressjs.com/en/starter/hello-world.html)을 만들어 보자.
 
+Express에 대한 자세한 내용은 아래의 포스트를 참조하기 바란다.
+
+- [Express Basics](http://poiemaweb.com/express/Express-Basics/)  
+- [Express Error Handling](http://poiemaweb.com/express/Express-Error-handling/)  
+- [Express Session Handling](http://poiemaweb.com/express/Express-Session-handling/)
+
 어플리케이션 디렉터리를 생성하고 `npm init`를 실행한다. 일단 기본 설정(yes option)으로 `package.json`을 생성한다.
 
 ```bash
@@ -128,6 +134,8 @@ The solution is:  [ RowDataPacket { id: 1, name: 'John Doe', age: 20 } ]
 
 클라이언트 요청에 대응하는 route를 설정해보자.
 
+- routing에 대한 자세한 내용은 [Express routing](http://poiemaweb.com/express/Express-Basics/#routing)을 참조하기 바란다.
+
 index.js를 아래와 같이 변경한다.
 
 ```javascript
@@ -182,3 +190,10 @@ $ npm start
 localhost:3000/persons에 접속하여 결과를 확인한다.
 
 ![node mysql routing](/img/nodejs-mysql-routing.png)
+
+# Reference
+
+* [Express Basics](http://poiemaweb.com/express/Express-Basics/)  
+* [Express Error Handling](http://poiemaweb.com/express/Express-Error-handling/)  
+* [Express Session Handling](http://poiemaweb.com/express/Express-Session-handling/)
+* [Node.js에서 비밀 설정 정보(Secrets) 관리](http://ungmo2.github.io/node.js/Nodejs-Kepping-Secrets/)  

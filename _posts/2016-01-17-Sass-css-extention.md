@@ -75,6 +75,25 @@ Nesting은 속성에도 사용할 수 있다.
 
 # 2. @import
 
+Sass는 @import directive를 사용하여 분리된 stylesheet 파일을 import할 수 있다. 기존의 [CSS @import](https://developer.mozilla.org/ko/docs/Web/CSS/@import)보다 편리한 기능을 제공한다.
+
+```scss
+@import "foo.scss";
+
+// 확장자는 생략 가능하다
+@import "foo";
+
+// import multiple files
+@import "rounded-corners", "text-shadow";
+
+$family: unquote("Droid+Sans");
+@import url("http://fonts.googleapis.com/css?family=#{$family}");
+```
+
+.scss 파일명의 선두에 underscore(&#95;)를 붙이면 해당 파일은 컴파일되지 않는다. 이를 partial이라 한다.
+
+
+
 # Reference
 
 * [Sass](http://sass-lang.com/)

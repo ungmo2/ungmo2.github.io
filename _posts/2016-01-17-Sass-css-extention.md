@@ -94,7 +94,7 @@ $family: unquote("Droid+Sans");
 
 여러개의 파일로 분할하는 것 또는 분항된 파일을 **partial** 이라 하며 partial된 Sass 파일명의 선두에 underscore(&#95;)를 붙인다. (&#95;reset.scss, &#95;module.scss, &#95;print.scss)
 
-예를 들어 "&#95;foo.scss"라는 partial된 Sass 파일이 있고 이 파일을 import하는 경우 아래와 같이 기술한다. 파일명 선두의 &#95와 확장자는 생략할 수 있다.
+예를 들어 "&#95;foo.scss"라는 partial된 Sass 파일이 있고 이 파일을 import하는 경우 아래와 같이 기술한다. 파일명 선두의 &#95;와 확장자는 생략할 수 있다.
 
 ```scss
 @import "foo";

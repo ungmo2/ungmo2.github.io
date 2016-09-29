@@ -3,6 +3,8 @@
 /*@import url("monokai.css");*/
 @import url(https://fonts.googleapis.com/earlyaccess/kopubbatang.css);
 
+@import url(https://fonts.googleapis.com/css?family=Baloo+Tamma);
+
 /* --- General --- */
 /** {
   -webkit-user-select: none;
@@ -539,4 +541,32 @@ header.header-post .post-heading .post-subheading {
 
 .text-muted {
   color: #BBC7CC;
+}
+
+/*for archibe page*/
+
+.archive-wrap {
+  font-family: 'Baloo Tamma', 'KoPub Batang', cursive;
+}
+
+.archive-wrap li {
+  list-style: none;
+  padding: 18px 22px 0;
+}
+
+.has-children .sub-title {
+  display: none;
+}
+
+.arrow::after {
+  content: "\f107";
+  font-family: 'FontAwesome';
+  padding: 10px;
+  color: #FFFA3B;
+  position: relative;
+}
+
+.arrow:hover::after {
+  cursor: pointer;
+  color: #fff;
 }

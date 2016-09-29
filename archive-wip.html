@@ -8,7 +8,7 @@ subtitle:
   <ul>
   {% for category in site.categories %}
     <li class="has-children">
-      <a href="#">{{ category | first }}</a>
+      <a>{{ category | first }}</a>
       <span class="arrow"></span>
       <ul class="sub-title">
       {% for posts in category %}

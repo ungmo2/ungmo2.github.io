@@ -38,7 +38,7 @@ categories: html
 HTML5 문서는 반드시 `<!DOCTYPE html>`으로 시작하여 문서 형식(document type)을 HTML5로 지정한다.
 
 실제적인 HTML document은 2행부터 시작되는데 `<html>` 과 `</html>` 사이에 기술한다.  
-`<head>` 와 `</head>` 사이에는 document title, 외부파일의 참조, metadata의 설정 등이 위치하며 이 정보들은 브라우저에 표시되지 않는다. 브라우저에 출력되는 대부분의 요소는 `<body>` 과 `</body>` 사이 위치한다.
+`<head>` 와 `</head>` 사이에는 document title, 외부파일의 참조, metadata의 설정 등이 위치하며 이 정보들은 브라우저에 표시되지 않는다. 브라우저에 출력되는 모든 요소는 `<body>` 과 `</body>` 사이 위치한다.
 
 ```html
 <!DOCTYPE html>

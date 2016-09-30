@@ -260,6 +260,9 @@ body {
 </html>
 ```
 
+<p data-height="711" data-theme-id="0" data-slug-hash="dpzKKB" data-default-tab="result" data-user="ungmo2" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ungmo2/pen/dpzKKB/">background-position example</a> by Ungmo Lee (<a href="http://codepen.io/ungmo2">@ungmo2</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
 # 6. Background Color 속성
 
 [background-color](https://developer.mozilla.org/en-US/docs/Web/CSS/background-color)

@@ -379,9 +379,11 @@ $i: 6;
 
 # 4. Mixin
 
-Mixin은 Sass의 매우 유용한 기능으로 @extend와 유사하나 함수와 같이 argument를 받을 수 있다.
+Mixin은 Sass의 매우 유용한 기능으로 중복 기술을 방지하기 위해 사용 빈도가 높은 마크업을 사전에 정의하여 필요할 때에 불러 사용하는 방법이다.
 
-@mixin 선언하고 @include로 불러들인다.
+@extend와 유사하나 프로그래밍언어의 함수와 같이 argument를 받을 수 있다.
+
+사용법은 매우 간단하다. @mixin 선언하고 @include로 불러들인다.
 
 ```scss
 @mixin circle {
@@ -519,11 +521,12 @@ $gutter-width: 10px;
   @return $n * $grid-width + ($n - 1) * $gutter-width;
 }
 
-#sidebar { width: grid-width(5); }
+#sidebar { width: grid-width(5); }  // width: 240px;
 ```
 
-
 # 6. Comment
+
+CSS는 멀티 라인 주석 /&#42; &#42;/만을 지원하지만 Sass는 /&#42; &#42;/와 // 모두 사용할 수 있다.
 
 # Reference
 

@@ -9,7 +9,6 @@ categories: html
 2016년 현재 전세계적으로 웹사이트는 10억개, 인터넷 사용자 수는 33억명이다.
 
 ![Total number of Websites](/img/Total-number-of-Websites.png)
-{: style="max-width: 550px; margin: 10px;"}
 
 [인터넷 라이브 스탯](http://www.internetlivestats.com/)
 {: style="color:gray; font-size: 80%; text-align: center; margin-top: 5px;"}

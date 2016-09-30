@@ -69,31 +69,53 @@ body {
 
 [background-size](https://developer.mozilla.org/en-US/docs/Web/CSS/background-size)
 
-배경 이미지의 크기를 조절하고 싶은 경우, `background-size` 속성을 사용한다. px값을 지정할 경우, 배경이미지 크기가 지정된 px값으로 조정되고 100%를 지정하며 화면 크기에 맞추어 이미지를 출력한다. 이때 지정한 값은 width를 의미한다. width만 지정한 경우 height는 auto로 지장된다.
+배경 이미지의 크기를 조절하고 싶은 경우, `background-size` 속성을 사용한다.
+
+속성값은 px, %, cover, contain 등을 사용한다.
+
+배경이미지의 width, height를 모두 설정할 수 있다. 이때 첫번째 값은 width, 두번째 값은 height를 의미한다. 하나의 값만을 지정한 경우, 지정한 값은 width를 의미하게 되며 height는 auto로 지정된다.
+
+**1. px값 지정**
+
+배경이미지 크기가 지정된 px값 그대로 설정된다.
 
 ```css
-body {
-  background-image: url("img/dot.png");
-  background-repeat: no-repeat;
-  /* One-value syntax */
-  /* the width of the image (height set to 'auto') */
-  background-size: 100%;
+.bg {
+  background-size: 700px 500px;
 }
 ```
 
-배경이미지의 width, height를 모두 설정할 수 있다. 이때 첫번째 값은 width, 두번째 값은 height를 의미한다.
+**2. %값 지정**
+
+배경이미지 크기가 지정된 %값에 비례하여 설정된다. 화면을 줄이거나 늘리면 배경이미지의 크기도 따라서 변경되어 찌그러지는 현상이 나타난다.
 
 ```css
-body {
-  background-image: url("img/dot.png");
-  background-repeat: no-repeat;
-  /* Two-value syntax */
-  /* first value: width of the image, second value: height */
-  background-size: 100% 500px;
+.bg {
+  background-size: 100% 100%;
 }
 ```
 
-이때 쉼표로 값을 구분하면 다른 배경이미지의 너비를 지정하는 것으로 인식된다.
+**3. cover 지정**
+
+배경이미지의 크기 비율을 유지한 상태에서 부모 요소의 width, height 중 큰값에 배경이미지를 맞춘다. 따라서 이미지의 일부가 보이지 않을 수 있다.
+
+```css
+.bg {
+  background-size: cover;
+}
+```
+
+**4. contain 지정**
+
+배경이미지의 크기 비율을 유지한 상태에서 부모 요소의 영역에 배경이미지가 보이지 않는 부분없이 전체가 들어갈 수 있도록 이미지 스케일을 조정한다.
+
+```css
+.bg {
+  background-size: contain;
+}
+```
+
+width, height의 속성값은 공백으로 구분하여야 한다. 속성값을 쉼표로 구분하면 다른 배경이미지의 너비를 지정하는 것으로 인식되기 때문에 주의가 필요하다.
 
 ```css
 body {

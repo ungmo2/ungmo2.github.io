@@ -122,7 +122,7 @@ watch command는 scss 파일의 변경을 감지하여 변경될 때마다 css �
 $ cd my-project
 $ ls -l
 css/ sass/
-$ sass --watch sass:css
+$ sass --watch stylesheets/sass:stylesheets
 ```
 
 파일 단위의 watch
@@ -131,7 +131,7 @@ $ sass --watch sass:css
 $ cd my-project
 $ ls -l
 css/ sass/
-$ sass --watch sass/my.scss:css/my.css
+$ sass --watch stylesheets/sass/my.scss:stylesheets/my.css
 ```
 
 하나의 파일이 아닌 디렉터리 단위로 변경을 모니터링할 수도 있다.

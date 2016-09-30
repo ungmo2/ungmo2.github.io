@@ -327,22 +327,36 @@ p.#{$name} {            // p.foo
 
 # 7. Ampersand(&)
 
-`&`는 부모의 셀렉터를 참조한다.
+`&`는 부모요소를 참조하는 셀렉터이다.
 
 ```scss
-.button {
-  &:visited { }
-  &:hover { }
-  &:active { }
+a {
+  color: #ccc;
+
+  &.home {
+    color: #f0f;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 ```
 
 위 Sass의 컴파일 결과는 아래와 같다.
 
 ```css
-.button:visited { }
-.button:hover { }
-.button:active { }
+a {
+  color: #ccc;
+}
+
+a.home {
+  color: #f0f;
+}
+
+a:hover {
+  text-decoration: none;
+}
 ```
 
 상세한 내용은 [The Sass Ampersand](https://css-tricks.com/the-sass-ampersand/)을 참조하기 바란다.

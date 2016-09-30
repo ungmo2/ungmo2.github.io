@@ -142,27 +142,34 @@ body {
 <html>
 <head>
   <style>
-    body {
-      /*overflow: hidden;*/
+    *, *:after, *:before {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
-    .bg {
-      background-image: url("img/bg.jpg");
-      background-size: 100% 100%;
-      background-repeat: no-repeat;
+    html, body {
+      width:100%;
+      height:100%;
+    }
+
+    .bg-wrap {
+      height: 100%;
+
+      background-image: url("http://poiemaweb.com/img/bg/stock-photo-125979219.jpg");
+      /* Create the parallax scrolling effect */
       background-attachment: fixed;
-      float: left;
-      width: 100vw;
-      height: 100vh;
-      overflow: auto;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+
+      overflow:auto;
     }
 
     #page-wrap {
-      width: 300px;
+      width: 400px;
       margin: 50px auto;
-      padding: 20px;
+      padding: 30px;
       background: white;
       box-shadow: 0 0 20px black;
       /* size/line-height | family */
@@ -170,9 +177,8 @@ body {
     }
   </style>
 </head>
-
 <body>
-  <div class="bg">
+  <div class="bg-wrap">
     <div id="page-wrap">
       <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est.</p>
       <p>Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus acus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
@@ -181,6 +187,9 @@ body {
 </body>
 </html>
 ```
+
+<p data-height="425" data-theme-id="0" data-slug-hash="qaXYyx" data-default-tab="result" data-user="ungmo2" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ungmo2/pen/qaXYyx/">background:attachment - example</a> by Ungmo Lee (<a href="http://codepen.io/ungmo2">@ungmo2</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 # 5. Background Position 속성
 

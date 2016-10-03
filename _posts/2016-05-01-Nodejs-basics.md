@@ -4,9 +4,11 @@ title: Node.js - Basics
 categories: node.js
 ---
 
+![node-logo](node-logo.png)
+
 Node.js는 [Chrome V8 JavaScript 엔진](https://developers.google.com/v8/)으로 빌드된 JavaScript 런타임으로 주로 서버 사이드 애플리케이션 개발에 사용되는 소프트웨어 플랫폼이다.
 
-언어로는 자바스크립트를 사용하며 Non-blocking I/O와 단일 스레드 이벤트 루프를 통한 높은 처리 성능을 가지고 있다.
+언어로는 자바스크립트를 사용하며 Non-blocking I/O와 단일 스레드 이벤트 루프를 통한 높은 Request 처리 성능을 가지고 있다.
 
 데이터베이스로부터 대량의 데이터를 취득하여 웹페이지에 표시하는 처리의 경우, 일반적으로 데이터베이스 처리에 대기시간(blocking)이 발생하기 때문에 웹페이지 표시가 지연되는 현상이 발생한다.
 
@@ -87,7 +89,7 @@ createServer 메서드는 HTTP 서버 객체를 반환한다. 반환된 HTTP 서
 
 위 코드를 실행시키고 브라우저로 http://localhost:3000/에 접속하면 Hello World가 출력되는 것을 확인할 수 있다.
 
-```hash
+```bash
 $ node app.js
 ```
 

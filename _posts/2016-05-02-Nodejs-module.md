@@ -4,7 +4,7 @@ title: Node.js - module
 categories: node.js
 ---
 
-![node-logo](node-logo.png)
+![node-logo](/img/node-logo.png)
 
 Node.js는 [common.js](http://www.commonjs.org/) 방식의 module loading system으로 디펜던시를 로드할 수 있다.
 

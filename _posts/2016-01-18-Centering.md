@@ -107,7 +107,7 @@ padding을 사용할 수 없는 경우, 요소의 height와 line-height 속성�
 
 ### 2.1.3 Flexbox
 
-table 속성을 사용하여야 하므로 번거로울 수 있다. 좀 더 간단한 방법은 flexbox를 사용하는 것이다.
+vertical-align 속성을 사용하는 방법은 table 속성을 사용하여야 하므로 번거로울 수 있다. 좀 더 간단한 방법은 flexbox를 사용하는 것이다.
 
 ```css
 .container {
@@ -204,7 +204,7 @@ Flexbox를 사용한 방법은 아래와 같다.
 }
 ```
 
-<p data-height="620" data-theme-id="0" data-slug-hash="QKpgzj" data-default-tab="result" data-user="ungmo2" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ungmo2/pen/QKpgzj/">centering-vertical-horizontal-align</a> by Ungmo Lee (<a href="http://codepen.io/ungmo2">@ungmo2</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<p data-height="632" data-theme-id="0" data-slug-hash="ALRwvA" data-default-tab="result" data-user="ungmo2" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ungmo2/pen/ALRwvA/">centering-vertical-horizontal-align</a> by Ungmo Lee (<a href="http://codepen.io/ungmo2">@ungmo2</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 # Reference

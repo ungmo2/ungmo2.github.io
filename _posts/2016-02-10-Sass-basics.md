@@ -153,7 +153,13 @@ Sass는 SASS 표기법(.sass)과 SCSS 표기법(.scss)이 있다. 이전 버전�
 
 SASS 표기법은 보다 코딩을 간략화할 수 있는 장점이 있지만 CSS 친화적인 SCSS 표기법를 사용하는 경우가 더 많으므로 본 Post에서는 SCSS 표기법을 기준으로 한다.
 
-Sass의 문법에 대한 설명은 [Sass Syntax](http://poiemaweb.com/css/Sass-syntax/)를 참조하기 바란다.
+Sass의 문법에 대한 설명은 아래 포스트를 참조하기 바란다.
+
+- [Sass SassScript](http://poiemaweb.com/sass/Sass-SassScript/)
+
+- [Sass Built-in Function](http://poiemaweb.com/sass/Sass-built-in-function/)
+
+- [Sass CSS Extensions](http://poiemaweb.com/sass/Sass-css-extention/)
 
 # Reference
 

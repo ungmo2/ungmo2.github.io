@@ -222,18 +222,29 @@ Bootstrap은 Mobile-first 방식을 기본 지원하므로 [Media query](http://
 
 @screen-\*의 @는 [LESS](http://lesscss.org/)의 변수를 의미한다. LESS는 CSS 프리프로세서(Preprocessor)로서 Bootstrap의 소스코드는 Less와 Sass를 기반으로 작성되었다.
 
-```css
+```scss
 @nice-blue: #5B83AD;
 @light-blue: @nice-blue + #111;
 
 #header { color: @light-blue; }
 ```
 
-위 LESS 코드를 컴파일하면 아래와 같은 CSS로 변환된다.
+위 코드를 컴파일하면 아래와 같은 CSS로 변환된다.
 
 ```css
 #header { color: #6c94be; }
 ```
+
+Sass에 대한 자세한 내용은 아래의 포스트를 참조하기 바란다.
+
+- [Sass Basics](http://poiemaweb.com/sass/Sass-basics/)
+
+- [Sass SassScript](http://poiemaweb.com/sass/Sass-SassScript/)
+
+- [Sass Built-in Function](http://poiemaweb.com/sass/Sass-built-in-function/)
+
+- [Sass CSS Extensions](http://poiemaweb.com/sass/Sass-css-extention/)
+
 
 # 5. Container
 

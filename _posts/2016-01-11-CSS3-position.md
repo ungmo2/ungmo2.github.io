@@ -85,27 +85,32 @@ static은 position 속성의 기본값으로 position 속성을 지정하지 않
 <head>
   <style>
     body { margin: 0;}
-    div {
-      color: #fff;
-      text-align: center;
-      height: 150px; width: 150px;
+    .parent {
+      width: 150px;
+      height: 150px;
       background: #bcbcbc;
       border: 1px solid #bcbcbc;
     }
     .static-box {
       position: static;
-      background: #2db34a;
+      background: #2E303D;
+      color: #e55c3c;
+      font-weight: bold;
+      text-align: center;
       line-height: 150px;
     }
   </style>
 </head>
 <body>
-  <div>
+  <div class="parent">
     <div class="static-box">static box</div>
   </div>
 </body>
 </html>
 ```
+
+<p data-height="270" data-theme-id="0" data-slug-hash="gwGqLJ" data-default-tab="result" data-user="ungmo2" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ungmo2/pen/gwGqLJ/">position: static - example</a> by Ungmo Lee (<a href="http://codepen.io/ungmo2">@ungmo2</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 ## 1.2 relative (상대위치)
 
@@ -117,28 +122,34 @@ static은 position 속성의 기본값으로 position 속성을 지정하지 않
 <head>
   <style>
     body { margin: 0;}
-    div {
-      color: #fff;
-      text-align: center;
-      line-height: 150px;
-      height: 150px; width: 150px;
+    .parent {
+      width: 150px;
+      height: 150px;
       background: #bcbcbc;
       border: 1px solid #bcbcbc;
+      margin: 50px;
     }
     .relative-box {
       position: relative;
       top: 50px; left: 50px;
-      background: #2db34a;
+      background: #2E303D;
+      color: #e55c3c;
+      font-weight: bold;
+      text-align: center;
+      line-height: 150px;
     }
   </style>
 </head>
 <body>
-  <div>
+  <div class="parent">
     <div class="relative-box">relative box</div>
   </div>
 </body>
 </html>
 ```
+
+<p data-height="350" data-theme-id="0" data-slug-hash="amLXVY" data-default-tab="result" data-user="ungmo2" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ungmo2/pen/amLXVY/">position: relative - example </a> by Ungmo Lee (<a href="http://codepen.io/ungmo2">@ungmo2</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 ## 1.3 absolute (절대위치)
 
@@ -158,32 +169,36 @@ static은 position 속성의 기본값으로 position 속성을 지정하지 않
 <head>
   <style>
     body { margin: 0;}
-    div {
-      color: #fff;
-      text-align: center;
-      line-height: 200px;
-      height: 300px; width: 300px;
+    .parent {
+      width: 200px;
+      height: 200px;
       background: #bcbcbc;
       border: 1px solid #bcbcbc;
+      margin: 50px 0 0 300px;
       position: relative;
-      top: 200px; left: 200px;
     }
     .absolute-box {
-      background: #2db34a;
-      height: 200px; width: 200px;
       position: absolute;
+      height: 200px; width: 200px;
       top: 50px; left: 50px;
+      color: #e55c3c;
+      font-weight: bold;
+      text-align: center;
+      background: #2E303D;
+      line-height: 200px;
     }
   </style>
 </head>
 <body>
-  <div>
-    <div class="absolute-box">absolute box1</div>
+  <div class="parent">
+    <div class="absolute-box">absolute box (in parent)</div>
   </div>
-  <div class="absolute-box">absolute box2</div>
-</body>
+  <div class="absolute-box">absolute box (no parent)</div></body>
 </html>
 ```
+
+<p data-height="400" data-theme-id="0" data-slug-hash="kkGVEo" data-default-tab="result" data-user="ungmo2" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ungmo2/pen/kkGVEo/">position: absolute - example  </a> by Ungmo Lee (<a href="http://codepen.io/ungmo2">@ungmo2</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 ## 1.4 fixed (고정위치)
 
@@ -199,34 +214,39 @@ static은 position 속성의 기본값으로 position 속성을 지정하지 않
 <head>
   <style>
     body { margin: 0;}
-    div {
-      color: #fff;
+    .fixed-box {
+      position: fixed;
+      color: #e55c3c;
+      font-weight: bold;
       text-align: center;
-      line-height: 150px;
-      height: 150px; width: 150px;
-      background: #bcbcbc;
-      border: 1px solid #bcbcbc;
+      background: #2E303D;
     }
-    .fixed-box1 {
-      position: fixed;
-      background: #2db34a;
-      bottom: 0; left: 0;
+    .sidebar {
+      width: 50px;
+      height: 100%;
+      top: 0;
+      right: 0;
+      padding-top: 100px;
     }
-    .fixed-box2 {
-      position: fixed;
-      background: #2db34a;
-      top: 0; right: 0;
+    .footer {
+      width: 200px;
+      width: 100%;
+      height: 50px;
+      bottom: 0;
+      left: 0;
+      line-height: 50px;
     }
   </style>
 </head>
 <body>
-  <div>
-    <div class="fixed-box1">fixed box1</div>
-  </div>
-  <div class="fixed-box2">fixed box2</div>
+  <div class="fixed-box sidebar">fixed box (side-bar)</div>
+  <div class="fixed-box footer">fixed box (footer)</div>
 </body>
 </html>
 ```
+
+<p data-height="400" data-theme-id="0" data-slug-hash="gwGqBb" data-default-tab="result" data-user="ungmo2" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ungmo2/pen/gwGqBb/">position: fixed - example </a> by Ungmo Lee (<a href="http://codepen.io/ungmo2">@ungmo2</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 # 2. z-index 속성
 

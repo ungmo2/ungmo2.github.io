@@ -8,7 +8,7 @@ subtitle: Javascript, Node.js, Express, etc.
 
 {% assign counter = '0' %}
 {% assign category = site.categories %}
-category.size: {{ category.size }}
+category | size: {{ category | size }}
 <br>
 
 <hr>
@@ -18,6 +18,7 @@ category.size: {{ category.size }}
     {% for post in posts %}
       {{ post.title }}<br>
       {% if post.chapter == "basics" %}
+      EQ!!!
         {% increment counter %}
       {% endif %}
     {% endfor %}

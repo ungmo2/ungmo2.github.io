@@ -16,7 +16,7 @@ category | size: {{ category | size }}
 {% for p in site.posts %}
   {% if p.chapter %}
     {{ p.chapter }}
-    {% if post.chapter contains "basics" %}
+    {% if p.chapter contains "basics" %}
       {% assign counter = counter | plus: 1 %}
     {% endif %}
   {% endif %}

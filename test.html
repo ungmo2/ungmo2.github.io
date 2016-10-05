@@ -23,7 +23,8 @@ subtitle: Javascript, Node.js, Express, etc.
 
 <!-- listing all category -->
 {% for category in site.categories %}
-  <li>{{ category | first }}
+  <!-- <li>{{ category | first }} -->
+  <li>{{ category | last }}
     <ul>
     {% for posts in category %}
       {% for post in posts %}

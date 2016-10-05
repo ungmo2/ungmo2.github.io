@@ -17,8 +17,8 @@ subtitle: Javascript, Node.js, Express, etc.
 {% if category contains "mongodb" %}
   <li>{{ category | first }}
     <ul>
-    {% for posts in category reversed %}
-      {% for post in posts %}
+    {% for posts in category %}
+      {% for post in posts reversed %}
         {% if post.url %}
           <li><a href="{{ post.url }}">{{ post.title }}</a></li>
         {% endif %}

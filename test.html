@@ -56,10 +56,17 @@ subtitle: Javascript, Node.js, Express, etc.
 {% endfor %}
 
 
-<h1>test</h1>
+<h1>Count post</h1>
 <ul>
   {% for category in site.categories %}
     <div><a href="{{ site.baseurl }}/category/{{ category[0] }}">{{ category[0] | capitalize }} <span> ({{ category[1].size }}) </span></a></div>
+  {% endfor %}
+</ul>
+
+<h1>Count post</h1>
+<ul>
+  {% for category in site.categories %}
+    {{ category[0] }} : {{ category[1].size }}
   {% endfor %}
 </ul>
 

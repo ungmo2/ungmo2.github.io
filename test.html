@@ -66,10 +66,16 @@ subtitle: Javascript, Node.js, Express, etc.
 <h1>Count post</h1>
 <ul>
   {% for category in site.categories %}
-    {{ category[0] }} : {{ category[1].size }}
+    <li>{{ category[0] }} : {{ category[1].size }} lessons</li>
   {% endfor %}
 </ul>
 
+<h1>Count post</h1>
+<ul>
+  {% for category in site.categories %}
+    <li>{{ category[0].size }} sections {{ category[0] }} : {{ category[1].size }} lessons</li>
+  {% endfor %}
+</ul>
 
 
 <!-- filtering by category -->

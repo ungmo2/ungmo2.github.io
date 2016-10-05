@@ -5,12 +5,29 @@ subtitle: Javascript, Node.js, Express, etc.
 ---
 
 <!-- listing categories -->
-<!-- filtering by category -->
+<h1>listing categories</h1>
 <ul>
 {% for category in site.categories %}
   <li>{{ category | first }}</li>
 {% endfor %}
 </ul>
+
+<h1>listing pages by categories (i.g. mongodb)</h1>
+{% if category contains "mongodb" %}
+  <li>{{ category | first }}
+    <ul>
+    {% for posts in category %}
+      {% for post in posts %}
+        {% if post.url %}
+          <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+    </ul>
+  </li>
+{% endif %}
+{% endfor %}
+
 
 <!-- filtering by category -->
 <!-- {% for category in site.categories %}

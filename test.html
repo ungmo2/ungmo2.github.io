@@ -17,7 +17,7 @@ subtitle: Javascript, Node.js, Express, etc.
 {% if category contains "mongodb" %}
   <li>{{ category | first }}
     <ul>
-    {% for posts in category %}
+    {% for posts in category reversed %}
       {% for post in posts %}
         {% if post.url %}
           <li><a href="{{ post.url }}">{{ post.title }}</a></li>
@@ -29,23 +29,7 @@ subtitle: Javascript, Node.js, Express, etc.
 {% endif %}
 {% endfor %}
 
-<h1>listing pages by categories (i.g. mongodb)</h1>
-{% for category in site.categories %}
-{% if category contains "mongodb" %}
-  <li>{{ category | first }}
-    <ul>
-    {% assign sorted_posts = posts in category | sort:"date" | reverse %}
-    <!-- {% for posts in category %} -->
-      {% for post in sorted_posts %}
-        {% if post.url %}
-          <li><a href="{{ post.url }}">{{ post.title }}</a></li>
-        {% endif %}
-      {% endfor %}
-    {% endfor %}
-    </ul>
-  </li>
-{% endif %}
-{% endfor %}
+
 
 
 

@@ -16,7 +16,8 @@ category.size: {{ category.size }}
 {% for category in site.categories %}
   {% for posts in category %}
     {% for post in posts %}
-      {% if category contains "basics" %}
+      {{ post.title }}<br>
+      {% if post.chapter == "basics" %}
         {% increment counter %}
       {% endif %}
     {% endfor %}

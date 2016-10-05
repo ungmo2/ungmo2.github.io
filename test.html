@@ -15,8 +15,9 @@ category | size: {{ category | size }}
 
 {% for p in site.posts %}
   {{ p.chapter }}
+  {% assign counter = counter | plus: 1 %}
 {% endfor %}
-
+<b>chapter count: {{ counter }}</b>
 
 {% for category in site.categories %}
   {% for posts in category %}

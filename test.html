@@ -6,12 +6,32 @@ subtitle: Javascript, Node.js, Express, etc.
 
 <!-- listing categories -->
 
-{% assign counter = '0' %}
+
 {% assign category = site.categories %}
 category | size: {{ category | size }}
 <br>
 
 <hr>
+
+<h1>mongodb category의 chapter count</h1>
+{% assign category_counter = '0' %}
+{% assign chapter_counter = '0' %}
+{% assign post_counter = '0' %}
+
+{% for category in site.categories %}
+  {% if category contains "mongodb" %}
+    {% for posts in category %}
+      {% for post in posts reversed %}
+        {% if post.chapter %}
+          {{ post.chapter }}
+          {% assign chapter_counter = counter | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+<b>chapter count: {{ chapter_counter }}</b>
+
 
 {% for p in site.posts %}
   {% if p.chapter %}
@@ -23,6 +43,8 @@ category | size: {{ category | size }}
 {% endfor %}
 <b>chapter count: {{ counter }}</b>
 
+
+{% assign counter = '0' %}
 {% for category in site.categories %}
   {% for posts in category %}
     {% for post in posts %}

@@ -15,28 +15,23 @@ category | size: {{ category | size }}
 {{ site.categories | size }}
 <hr>
 
-{% for p in site.posts %}
-  {% if p.chapter %}
-    {{ p.chapter }}
-    {% if p.chapter contains "basics" %}
-      {% assign counter = counter | plus: 1 %}
-    {% endif %}
-  {% endif %}
-{% endfor %}
-<b>chapter count: {{ counter }}</b>
-
-
+<ul>
 {% assign counter = '0' %}
 {% for category in site.categories %}
+  <li>{{ category | first }}
   {% for posts in category %}
+    <ul>
     {% for post in posts %}
-      {{ post.title }}<br>
+      <li>{{ post.title }}</li>
       {% if post.chapter contains "basics" %}
         {% assign counter = counter | plus: 1 %}
       {% endif %}
     {% endfor %}
+  </ul>
   {% endfor %}
+</li>
 {% endfor %}
+</ul>
 
 <b>{{ counter }}</b>
 

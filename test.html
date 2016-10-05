@@ -19,7 +19,7 @@ category | size: {{ category | size }}
       {{ post.title }}<br>
       {% if post.chapter == "basics" %}
       EQ!!!
-        {% increment counter %}
+        {% capture counter %}{% increment counter %}{% endcapture %}
       {% endif %}
     {% endfor %}
   {% endfor %}

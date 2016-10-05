@@ -13,6 +13,7 @@ subtitle: Javascript, Node.js, Express, etc.
 </ul>
 
 <h1>listing pages by categories (i.g. mongodb)</h1>
+{% for category in site.categories %}
 {% if category contains "mongodb" %}
   <li>{{ category | first }}
     <ul>

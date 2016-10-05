@@ -2,6 +2,7 @@
 layout: post
 title: MongoDB Shell - CRUD
 categories: mongodb
+chapter: crud
 tags: []
 ---
 

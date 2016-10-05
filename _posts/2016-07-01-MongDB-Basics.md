@@ -2,6 +2,7 @@
 layout: post
 title: MongoDB Basics - Install
 categories: mongodb
+chapter: basics
 tags: []
 ---
 

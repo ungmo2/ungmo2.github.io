@@ -9,9 +9,27 @@ subtitle: Javascript, Node.js, Express, etc.
 {% assign counter = '0' %}
 {% assign category = site.categories %}
 category.size: {{ category.size }}
+<br>
 
-{% assign chapter = page.chapter %}
-chapter.size: {{ chapter.size }}
+<hr>
+
+{% for category in site.categories %}
+  {% for posts in category %}
+    {% for post in posts %}
+      {% if category contains "basics" %}
+        {% increment counter %}
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+{% endfor %}
+
+{{ counter }}
+
+
+
+
+
+
 
 <!-- listing categories -->
 <h1>listing categories</h1>

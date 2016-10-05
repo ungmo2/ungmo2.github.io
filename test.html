@@ -13,19 +13,23 @@ category | size: {{ category | size }}
 
 <hr>
 
+{% for p in site.posts %}
+  {{ p.url }}
+{% endfor %}
+
+
 {% for category in site.categories %}
   {% for posts in category %}
     {% for post in posts %}
       {{ post.title }}<br>
-      {% if post.chapter == "basics" %}
-      EQ!!!
-        {% capture counter %}{% increment counter %}{% endcapture %}
+      {% if post.chapter contains "basics" %}
+        {% assign counter = counter | plus: 1 %}
       {% endif %}
     {% endfor %}
   {% endfor %}
 {% endfor %}
 
-{{ counter }}
+<b>{{ counter }}</b>
 
 
 

@@ -56,6 +56,14 @@ subtitle: Javascript, Node.js, Express, etc.
 {% endfor %}
 
 
+<h1>test</h1>
+<ul>
+  {% for category in site.categories %}
+    <div><a href="{{ site.baseurl }}/category/{{ category[0] }}">{{ category[0] | capitalize }} <span> ({{ category[1].size }}) </span></a></div>
+  {% endfor %}
+</ul>
+
+
 
 <!-- filtering by category -->
 <!-- {% for category in site.categories %}

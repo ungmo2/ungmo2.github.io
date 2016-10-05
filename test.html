@@ -5,16 +5,16 @@ subtitle: Javascript, Node.js, Express, etc.
 ---
 
 <!-- listing categories -->
+<!-- filtering by category -->
+<ul>
 {% for category in site.categories %}
-<li>{{ category | first }}
-  <ul>
-    <li><a href="#">{{ category }}</a></li>
-  </ul>
-</li>
+  <li>{{ category | first }}</li>
+{% endif %}
 {% endfor %}
+</ul>
 
 <!-- filtering by category -->
-{% for category in site.categories %}
+<!-- {% for category in site.categories %}
 {% if category contains "mongodb" %}
   <li>{{ category | first }}
     <ul>
@@ -28,10 +28,10 @@ subtitle: Javascript, Node.js, Express, etc.
     </ul>
   </li>
 {% endif %}
-{% endfor %}
+{% endfor %} -->
 
 
-<section>
+<!-- <section>
   <table>
     {% for post in site.posts %}
       <tr>
@@ -41,4 +41,4 @@ subtitle: Javascript, Node.js, Express, etc.
       </tr>
   	{% endfor %}
   </table>
-</section>
+</section> -->

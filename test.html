@@ -8,9 +8,10 @@ subtitle: Javascript, Node.js, Express, etc.
 
 {% assign counter = '0' %}
 {% assign category = site.categories %}
+category.size: {{ category.size }}
 
-{{ category.size }}
-
+{% assign chapter = site.chapter %}
+chapter.size: {{ chapter.size }}
 
 <!-- listing categories -->
 <h1>listing categories</h1>

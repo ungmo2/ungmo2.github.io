@@ -9,28 +9,9 @@ subtitle: Javascript, Node.js, Express, etc.
 
 {% assign category = site.categories %}
 category | size: {{ category | size }}
-<br>
-
 <hr>
-
-<h1>mongodb category의 chapter count</h1>
-{% assign category_counter = '0' %}
-{% assign chapter_counter = '0' %}
-{% assign post_counter = '0' %}
-
-{% for category in site.categories %}
-  {% if category contains "mongodb" %}
-    {% for posts in category %}
-      {% for post in posts reversed %}
-        {% if post.chapter %}
-          {{ post.chapter }}
-          {% assign chapter_counter = counter | plus: 1 %}
-        {% endif %}
-      {% endfor %}
-    {% endfor %}
-  {% endif %}
-{% endfor %}
-<b>chapter count: {{ chapter_counter }}</b>
+{{ page.categories | array_to_sentence_string }}
+{{ page.categories | size }}
 
 
 {% for p in site.posts %}

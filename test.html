@@ -12,7 +12,9 @@ subtitle: Javascript, Node.js, Express, etc.
 {% endfor %}
 </ul>
 
-<h1>listing pages by categories (i.g. mongodb)</h1>
+
+<!-- listing posts title by categories -->
+<h1>listing posts title by categories (i.g. mongodb)</h1>
 {% for category in site.categories %}
 {% if category contains "mongodb" %}
   <li>{{ category | first }}
@@ -62,53 +64,3 @@ subtitle: Javascript, Node.js, Express, etc.
     <div><a href="{{ site.baseurl }}/category/{{ category[0] }}">{{ category[0] | capitalize }} <span> ({{ category[1].size }}) </span></a></div>
   {% endfor %}
 </ul>
-
-<h1>Count post</h1>
-<ul>
-  {% for category in site.categories %}
-    <li>{{ category[0] }} : {{ category[1].size }} lessons</li>
-  {% endfor %}
-</ul>
-
-<h1>Count post</h1>
-<ul>
-  {% for category in site.categories %}
-    <li>{{ category[0] }} : {{ category[1].size }} lessons</li>
-    <ul>
-      {% for posts in category %}
-      <li>{{ posts[0] }} : {{ posts[1].size }} lessons</li>
-      {% endfor %}
-    </ul>
-  {% endfor %}
-</ul>
-
-
-<!-- filtering by category -->
-<!-- {% for category in site.categories %}
-{% if category contains "mongodb" %}
-  <li>{{ category | first }}
-    <ul>
-    {% for posts in category %}
-      {% for post in posts %}
-        {% if post.url %}
-          <li><a href="{{ post.url }}">{{ post.title }}</a></li>
-        {% endif %}
-      {% endfor %}
-    {% endfor %}
-    </ul>
-  </li>
-{% endif %}
-{% endfor %} -->
-
-
-<!-- <section>
-  <table>
-    {% for post in site.posts %}
-      <tr>
-        <td><i class="icon-clock"></i> <time datetime="{{post.date|date:"%F"}}">{{post.date|date:"%b %d, %Y"}}</time></td>
-        <td><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
-        <td><span class="category"><i class="icon-tag"></i> {{post.categories | category_links}}</span></td>
-      </tr>
-  	{% endfor %}
-  </table>
-</section> -->

@@ -30,7 +30,11 @@ subtitle: Javascript, Node.js, Express, etc.
 {% endfor %}
 
 {% assign sortedcats = site.categories | sort %}
-{{ sortedcats }}
+<ul>
+  {% for category in sortedcats %}
+    <li>{{ category | first }}</li>
+  {% endfor %}
+  </ul>
 
 
 <!-- filtering by category -->

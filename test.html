@@ -10,9 +10,9 @@ subtitle: Javascript, Node.js, Express, etc.
 {% assign category = site.categories %}
 category | size: {{ category | size }}
 <hr>
-{{ page.categories | lstrip }}
-{{ page.categories | size }}
-
+{{ site.categories | lstrip }}
+{{ site.categories | size }}
+<hr>
 
 {% for p in site.posts %}
   {% if p.chapter %}

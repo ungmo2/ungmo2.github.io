@@ -10,7 +10,7 @@ subtitle: Javascript, Node.js, Express, etc.
 {% assign category = site.categories %}
 category | size: {{ category | size }}
 <hr>
-{{ page.categories | array_to_sentence_string }}
+{{ page.categories | lstrip }}
 {{ page.categories | size }}
 
 

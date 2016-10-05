@@ -29,6 +29,9 @@ subtitle: Javascript, Node.js, Express, etc.
 {% endif %}
 {% endfor %}
 
+{% assign sortedcats = site.categories | sort %}
+{{ sortedcats }}
+
 
 <!-- filtering by category -->
 <!-- {% for category in site.categories %}

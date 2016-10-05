@@ -14,8 +14,12 @@ category | size: {{ category | size }}
 <hr>
 
 {% for p in site.posts %}
-  {{ p.chapter }}
-  {% assign counter = counter | plus: 1 %}
+  {% if p.chapter %}
+    {{ p.chapter }}
+    {% if post.chapter contains "basics" %}
+      {% assign counter = counter | plus: 1 %}
+    {% endif %}
+  {% endif %}
 {% endfor %}
 <b>chapter count: {{ counter }}</b>
 

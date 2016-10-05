@@ -5,13 +5,20 @@ subtitle: Javascript, Node.js, Express, etc.
 ---
 
 <!-- listing categories -->
+
+{% assign counter = '0' %}
+{% assign category = site.categories %}
+
+{{ category.size }}
+
+
+<!-- listing categories -->
 <h1>listing categories</h1>
 <ul>
 {% for category in site.categories %}
   <li>{{ category | first }}</li>
 {% endfor %}
 </ul>
-
 
 <!-- listing posts title by categories -->
 <h1>listing posts title by categories (i.g. mongodb)</h1>

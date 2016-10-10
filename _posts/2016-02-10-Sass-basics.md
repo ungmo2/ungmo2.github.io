@@ -89,7 +89,7 @@ Sass 3.4.22 (Selective Steve)
 
 ## 3.2 compile
 
-컴파일할 scss 파일의 패스와 컴파일 후 생성될 css 파일의 패스를 지정한다.
+컴파일할 SCSS 파일의 패스와 컴파일 후 생성될 css 파일의 패스를 지정한다.
 
 ```bash
 $ cd my-project
@@ -103,7 +103,7 @@ $ sass my.scss my.css
 }
 ```
 
-위 scss 파일을 컴파일하면 아래와 같은 css 파일이 생성된다.
+위 SCSS 파일을 컴파일하면 아래와 같은 css 파일이 생성된다.
 
 ```css
 #main h1 {
@@ -112,9 +112,47 @@ $ sass my.scss my.css
   font-size: 90%; }
 ```
 
-## 3.3 watch
+## 3.3 style
 
-watch command는 scss 파일의 변경을 감지하여 변경될 때마다 css 파일을 자동 업데이트한다.
+SCSS 파일을 컴파일하여 CSS 파일을 생성할 때 4가지 스타일 중 하나를 선택할 수 있다.
+
+**nested**
+
+sass 형식과 유사하게 nested된 css 파일이 생성된다.
+
+기본값으로 옵션을 추가하지 않아도 기본 적용된다.
+
+```bash
+sass my.scss:my.css --style nested
+```
+
+**expanded**
+
+표준적인 스타일의 css 파일이 생성된다.
+
+```bash
+sass my.scss:my.css --style expanded
+```
+
+**compact**
+
+여러 속성을 한줄로 나타내는 스타일의 css 파일이 생성된다.
+
+```bash
+sass my.scss:my.css --style compact
+```
+
+**compressed**
+
+가능한 빈공간이 없는 압축된 스타일의 css 파일이 생성된다.
+
+```bash
+sass my.scss:my.css --style compressed
+```
+
+## 3.4 watch
+
+watch command는 SCSS 파일의 변경을 감지하여 변경될 때마다 css 파일을 자동 업데이트한다.
 
 디렉터리 단위 또는 파일 단위의 모니터링이 가능하다.
 

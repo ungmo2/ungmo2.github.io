@@ -1,0 +1,508 @@
+.content {
+  padding: 30px;
+
+  @include desktop {
+    font-size: 1rem;
+    padding: 60px;
+  }
+
+  img {
+    display: block;
+    margin: 20px auto;
+
+    @include desktop {
+      max-width: 550px;
+      margin: 30px auto;
+    }
+  }
+
+  .desc-img {
+    color:gray;
+    font-size: 85%;
+    text-align: center;
+    margin-top: -20px;
+  }
+
+  code {
+    background-color: #222;
+    border-radius: 3px;
+    color: #66d9ef;
+    // font-size: $small;
+    font-size: 15px;
+    padding: 3px 5px 3px;
+    position: relative;
+    top: -1px;
+
+    // codeblock ``
+    &.highlighter-rouge {
+      margin: 0;
+    }
+  }
+
+  .result {
+    @include label("Result");
+
+    // font-family: $family-monospace;
+    font-family: sans-serif;
+    border: 1px solid $yellow;
+    color: black;
+    margin: 30px 0;
+    padding: 15px;
+
+    a {
+      &:link, &:visited {
+        // color: -webkit-link;
+        color: inherit;
+        text-decoration: underline;
+        cursor: auto;
+      }
+      &:link:active, &:visited:active {
+        // color: -webkit-link;
+        color: inherit;
+      }
+    }
+
+    &:before {
+      top: -15px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  & > dl {
+    background: $background;
+    color: $text;
+    font-size: $small;
+
+    dt {
+      font-weight: 700;
+      padding: 15px;
+      padding-bottom: 0;
+    }
+
+    dd {
+      padding: 15px;
+      padding-top: 0;
+
+      & + dt {
+        border-top: 1px solid white;
+      }
+    }
+  }
+
+  h1 {
+    @include heading(1.8rem);
+  }
+
+  h2 {
+    @include heading(1.5rem);
+
+    @include mobile {
+      .header-link {
+        top: 35px;
+      }
+    }
+  }
+
+  h3 {
+    @include heading(1.3rem);
+
+    @include mobile {
+      .header-link {
+        top: 34px;
+      }
+    }
+  }
+
+  h4 {
+    @include heading(1.1rem);
+  }
+
+  h5 {
+    @include heading(1rem);
+  }
+
+  p {
+    margin: 1em 0;
+    font-size: 1rem;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &.w-190 {
+      img {
+        @include desktop {
+          max-width: 100px;
+        }
+      }
+    }
+
+    &.w-250 {
+      img {
+        @include desktop {
+          max-width: 250px;
+        }
+      }
+    }
+
+    &.w-300 {
+      img {
+        @include desktop {
+          max-width: 300px;
+        }
+      }
+    }
+
+    &.w-350 {
+      img {
+        @include desktop {
+          max-width: 350px;
+        }
+      }
+    }
+
+    &.w-400 {
+      img {
+        @include desktop {
+          max-width: 400px;
+        }
+      }
+    }
+
+    &.w-450 {
+      img {
+        @include desktop {
+          max-width: 450px;
+        }
+      }
+    }
+
+    &.w-650 {
+      img {
+        @include desktop {
+          max-width: 650px;
+        }
+      }
+    }
+  }
+
+  #markdown-toc {
+    @extend .info;
+
+    list-style-type: none;
+    padding: 30px 30px 15px;
+
+    ul {
+      list-style-type: none;
+      margin: 10px 0;
+
+      ul {
+        list-style-type: none;
+      }
+    }
+
+    @include desktop {
+      padding: 40px 40px 20px;
+    }
+  }
+
+  li + li {
+    margin-top: 5px;
+  }
+
+  ul {
+    list-style: disc outside;
+    margin: 15px 0;
+    padding-left: 1.5em;
+
+    ul {
+      list-style-type: circle;
+
+      ul {
+        list-style-type: square;
+      }
+    }
+
+    &.files {
+      font-family: $family-monospace;
+      font-weight: 400;
+    }
+
+    &.software {
+      @include clear;
+
+      list-style: none;
+      padding-left: 0;
+      text-align: center;
+
+      li {
+        float: left;
+        margin-bottom: 15px;
+        width: 50%;
+
+        img {
+          max-height: 64px;
+        }
+
+        strong {
+          display: block;
+          line-height: 1;
+          margin-top: 5px;
+        }
+
+        @include desktop {
+          margin: 0;
+          width: 20%;
+        }
+      }
+    }
+  }
+
+  ol {
+    margin: 15px 0;
+    padding-left: 1.5em;
+  }
+
+  // Code highlight
+  .highlighter-rouge {
+    margin: 30px -30px;
+    overflow: auto;
+    outline: none;
+
+    @include desktop {
+      margin: 30px -60px;
+    }
+
+    .highlight {
+      code {
+        @include label;
+
+        background: inherit;
+        color: inherit;
+        display: block;
+        padding: 30px;
+        top: 0;
+
+        @include desktop {
+          padding: 30px 60px;
+        }
+      }
+    }
+
+    &.language-html {
+      code {
+        @include label("HTML", $html, white);
+      }
+    }
+
+    &.language-css {
+      code {
+        @include label("CSS", $css, white);
+      }
+    }
+
+    &.language-scss {
+      code {
+        @include label("Sass", $sass, white);
+      }
+    }
+
+    &.language-javascript {
+      code {
+        @include label("JavaScript", $html, white);
+      }
+    }
+
+    &.language-bash {
+      code {
+        @include label("bash", $bootstrap, white);
+      }
+    }
+
+    &.language-c {
+      code {
+        @include label("C", $bootstrap, white);
+      }
+    }
+
+    &.language-java {
+      code {
+        @include label("Java", $sass, white);
+      }
+    }
+
+    &.language-sql {
+      code {
+        @include label("SQL", $html, white);
+      }
+    }
+
+    &.language-json {
+      code {
+        @include label("json", $css, white);
+      }
+    }
+  }
+/*
+  figure.highlight {
+    margin: 30px -30px;
+    overflow: auto;
+
+    pre code {
+      @include label;
+
+      background: inherit;
+      color: inherit;
+      display: block;
+      padding: 30px;
+      top: 0;
+
+      &.language-html {
+        @include label("HTML", $html, white);
+      }
+
+      &.language-css {
+        @include label("CSS", $css, white);
+      }
+
+      &.language-scss {
+        @include label("SCSS", $sass, white);
+
+        &.language-css {
+          @include label("SCSS CSS", $sass, white);
+        }
+      }
+
+      @include desktop {
+        padding: 30px 60px;
+      }
+    }
+
+    @include desktop {
+      margin: 30px -60px;
+    }
+  }
+*/
+  .answer,
+  .important,
+  .info,
+  blockquote p,
+  blockquote ol {
+    background: rgba($blue, 0.1);
+    border-left: 0.25em solid $blue;
+    color: rgba(black, 0.5);
+    padding: 25px;
+
+    @include desktop {
+      padding: 35px;
+    }
+  }
+
+  .answer {
+    background: rgba($green, 0.1);
+    border-left-color: $green;
+
+    .question {
+      color: $dark;
+      display: block;
+      font-weight: 700;
+
+      + br {
+        display: none;
+      }
+    }
+  }
+
+  .important {
+    background: rgba($red, 0.1);
+    border-left-color: $red;
+  }
+
+  // .result {
+  //   @include label("Result");
+  //
+  //   border: 1px solid $yellow;
+  //   color: black;
+  //   margin: 30px 0;
+  //   padding: 15px;
+  //
+  //   &:before {
+  //     top: -15px;
+  //   }
+  // }
+
+  table {
+    font-size: .9rem;
+    width: 100%;
+    background: #fafafa;
+    // margin: 30px -30px;
+    overflow: auto;
+
+    th,
+    td {
+      border: 1px solid #ccc;
+      padding: 0.5em 1em;
+      vertical-align: top;
+
+      &.empty {
+        background: white;
+        border: none;
+      }
+
+      &.no {
+        color: $red;
+      }
+
+      &.yes span {
+        background: $green;
+        color: white;
+        padding: 2px 5px;
+      }
+    }
+
+    th {
+      background: #eee;
+      font-weight: 400;
+      text-align: left;
+      white-space: nowrap;
+
+      strong {
+        display: block;
+      }
+    }
+
+    code {
+      display: inline-block;
+      margin-bottom: 5px;
+      vertical-align: top;
+    }
+
+    pre {
+      margin: 0;
+      padding: 0;
+
+      &:before {
+        display: none;
+      }
+    }
+
+    @include desktop {
+      margin: 30px 0;
+    }
+  }
+
+  .footnotes {
+    border-top: 1px solid $border;
+    font-size: $small;
+    margin-top: 1em;
+    padding: 1em 1em 0;
+  }
+}

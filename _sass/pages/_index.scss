@@ -1,0 +1,25 @@
+.index-hello {
+  display: table;
+  height: 100vh;
+  padding: 100px 0;
+  width: 100%;
+
+  @include desktop {
+    height: 860px;
+    padding: 0;
+  }
+}
+
+.index-hello-content {
+  display: table-cell;
+  vertical-align: middle;
+
+  .share-buttons {
+    margin: 30px 0;
+    opacity: 0;
+  }
+
+  @include desktop {
+    padding: 120px 0;
+  }
+}

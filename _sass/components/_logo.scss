@@ -1,0 +1,27 @@
+.logo {
+  // @include replace(url("/images/marksheet-logo.png"), 230px, 48px);
+
+  font-family: 'Baloo Tamma', cursive;
+	font-size: 1.8em;
+	color: white;
+  // text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+
+  float: left;
+  left: 10px;
+  position: absolute;
+  top: 15px;
+
+  transition: text-shadow 0.5s ease;
+
+  &:visited {
+    color: white;
+  }
+
+  &:hover {
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+  }
+
+  @include mobile {
+    font-size: 1.5em;
+  }
+}

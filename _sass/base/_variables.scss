@@ -1,0 +1,74 @@
+$hero-1: #f4a35b;
+$hero-2: #f4655b;
+$hero-3: #d16098;
+$hero-4: #ca3469;
+
+// $web: #6ecd56;
+// $html5: #f16529;
+// $css3: #33a9dc;
+// $sass: #c69;
+
+$html: #6ecd56;
+$css: #f16529;
+$bootstrap: #33a9dc;
+// $sass: #c69;
+// $sass: #3574FB;**
+$sass: #616db3;
+
+$blue: $bootstrap;
+$green: $html;
+$red: crimson;
+$yellow: #f4f1ce;
+
+$background: #f5f7f9;
+$border: #ebeff5;
+$border-dark: #d3d6db;
+// $dark: #273032;
+$dark: #2e303e;
+$link: $hero-3;
+$visited: #aeb1b5;
+// $text: #69707a;
+$text: #333333;
+$light: #aeb1b5;
+// $strong: #222325;
+$strong: #434b4f;
+
+$radius: 3px;
+
+$font-size: 16px;
+$small: 0.875em;
+
+$family-serif: "Lora", 'KoPub Batang', 'Times New Roman', serif;
+$family-sans-serif: "Source Sans Pro", 'Noto Sans KR', "Roboto", "Open Sans", Arial, sans-serif;
+$family-monospace: "Source Code Pro", 'Noto Sans KR', "Inconsolata", monospace;
+$family-lexisaebom: "Lora", 'LexiSaebom', 'Times New Roman', serif;
+
+$height-header: 69px;
+
+$shadow-black: 0 1px 1px rgba(black, 0.2);
+$shadow-black-inset: inset 0 1px 2px rgba(black, 0.2);
+$shadow-inset: 0 1px 0 0 white;
+
+.page-close {
+  z-index: 2002;
+}
+
+.page-menu {
+  z-index: 2001;
+}
+
+.page-header {
+  z-index: 1999;
+}
+
+.page-overlay {
+  z-index: 2000;
+}
+
+.breadcrumb.affix {
+  z-index: 1986;
+}
+
+.elevator {
+  z-index: 29;
+}

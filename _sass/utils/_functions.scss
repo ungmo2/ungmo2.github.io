@@ -1,0 +1,150 @@
+@mixin clear {
+  &:after {
+    clear: both;
+    content: " ";
+    display: table;
+  }
+}
+
+@mixin center($size) {
+  left: 50%;
+  margin-left: -($size / 2);
+  margin-top: -($size / 2);
+  position: absolute;
+  top: 50%;
+}
+
+@mixin fa($size, $dimensions) {
+  display: block;
+  font-size: $size;
+  // height: $dimensions;
+  // line-height: $dimensions;
+  text-align: center;
+  width: $dimensions;
+}
+
+// Title of code highlighter
+@mixin label($text: "Code", $background: $yellow, $color: rgba(black, 0.5)) {
+  position: relative;
+
+  &:before {
+    background: $background;
+    color: $color;
+    content: $text;
+    display: inline-block;
+    font-family: $family-sans-serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+    height: 1rem;
+    left: -1px;
+    letter-spacing: 0.1em;
+    line-height: 1rem;
+    padding: 0 0.5em;
+    position: absolute;
+    text-transform: uppercase;
+    top: 0;
+  }
+}
+
+@mixin overlay($offset: 0) {
+  bottom: $offset;
+  left: $offset;
+  position: absolute;
+  right: $offset;
+  top: $offset;
+}
+
+@mixin replace($bg, $w, $h) {
+  background: $bg center center no-repeat;
+  background-size: $w $h;
+  display: block;
+  height: $h;
+  outline: none;
+  overflow: hidden;
+  text-indent: -290486px;
+  width: $w;
+}
+
+@mixin from($device) {
+  @media screen and (min-width: $device) {
+    @content;
+  }
+}
+
+@mixin until($device) {
+  @media screen and (max-width: $device - 1px) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media screen and (max-width: 959px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: 960px) {
+    @content;
+  }
+}
+
+@mixin heading($font-size: 32px) {
+  color: $strong;
+  font-size: $font-size;
+  font-weight: 700;
+  // line-height: 1;
+  margin: 30px 0;
+  padding-top: 30px;
+  position: relative;
+  top: 1px;
+
+  a {
+    font-weight: 300;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    position: absolute;
+    right: 100%;
+    text-align: center;
+    text-decoration: none;
+    top: 40px;
+    width: 30px;
+
+    &:hover {
+      color: $strong;
+    }
+  }
+
+  &:first-child {
+    margin-top: 0;
+    padding-top: 0;
+
+    a {
+      top: 0;
+    }
+  }
+
+  @include desktop {
+    a {
+      background: rgba(white, 0.86);
+      border-radius: 25px;
+      box-shadow: 0 1px 2px rgba(black, 0.2);
+      height: 50px;
+      line-height: 50px;
+      margin-right: 35px;
+      top: 25px;
+      width: 50px;
+
+      &:hover {
+        background: white;
+      }
+    }
+
+    &:first-child {
+      a {
+        top: -5px;
+      }
+    }
+  }
+}

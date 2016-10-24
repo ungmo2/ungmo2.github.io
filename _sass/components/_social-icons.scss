@@ -1,0 +1,31 @@
+.social-icons {
+  min-width: 200px;
+  padding: 20px 0;
+  text-align: center;
+  text-shadow: 0 2px 3px rgba(black, 0.3);
+
+  a {
+    color: $yellow;
+    display: inline-block;
+    height: 28px;
+    margin: 0 10px;
+    vertical-align: top;
+    width: 28px;
+
+    &:hover {
+      color: white;
+
+      @include transform(scale(1.2));
+    }
+
+    &:active {
+      text-shadow: none;
+
+      @include transform(scale(1.1));
+    }
+  }
+
+  .fa {
+    @include fa(28px, 32px);
+  }
+}

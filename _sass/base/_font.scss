@@ -1,0 +1,11 @@
+@import url(http://fonts.googleapis.com/earlyaccess/kopubbatang.css);
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import 'https://fonts.googleapis.com/css?family=Baloo+Tamma|Source+Sans+Pro:300,300i,400,400i,700,700i|Source+Code+Pro|Lora:400,400i,700,700i|Montserrat|Open+Sans:300,400';
+
+@font-face {
+  font-family:"LexiSaebom";
+  src:url("font/LexiSaebom/LexiSaebomR.eot"); /*IE 9 호환성 보기 모드 대응*/
+  src:local("☺"),             /*local font 사용 방지. 생략 가능*/
+      url("font/LexiSaebom/LexiSaebomR.eot?#iefix") format('embedded-opentype'), /*IE 6~8*/
+      url("font/LexiSaebom/LexiSaebomR.woff") format('woff'); /*표준 브라우저*/
+}

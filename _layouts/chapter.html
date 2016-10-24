@@ -1,0 +1,33 @@
+---
+layout: default
+route: chapter
+---
+
+<main class="page-container">
+  <section class="heading">
+    <div class="container">
+      <h1>
+        <em>{{ page.date | date: "%m.%-d" | remove_first: '0' }}</em>
+        {{ page.title }}
+      </h1>
+      <h2>{{ page.subtitle }}</h2>
+    </div>
+  </section>
+
+  <div class="page-content">
+    <div class="container">
+      <article class="content">
+        {{ content }}
+      </article>
+
+      <nav class="pagination">
+        {% if page.next %}
+          <a class="pagination-start" href="{{ page.next.url }}">
+            <em>Start &rarr;</em>
+            <strong>{{ page.next.title }}</strong>
+          </a>
+        {% endif %}
+      </nav>
+    </div>
+  </div>
+</main>

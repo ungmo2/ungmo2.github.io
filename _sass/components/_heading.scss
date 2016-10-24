@@ -1,0 +1,50 @@
+.heading {
+  color: white;
+  line-height: 1.2;
+  text-align: center;
+  text-shadow: 0 2px 3px rgba(black, 0.3);
+
+  .container {
+    padding: 60px 30px;
+  }
+
+  strong {
+    color: inherit;
+  }
+
+  h1,
+  h2 {
+    font-weight: 300;
+  }
+
+  h1 {
+    color: $yellow;
+    font-size: 28px;
+
+    em {
+      font-style: normal;
+      font-weight: 300;
+    }
+  }
+
+  h2 {
+    font-size: 36px;
+    font-family: $family-lexisaebom;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+
+  @include desktop {
+    h1 {
+      font-size: 28px;
+    }
+
+    h2 {
+      font-size: 48px;
+    }
+
+    .container {
+      padding: 120px;
+    }
+  }
+}

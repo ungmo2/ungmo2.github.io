@@ -1,0 +1,89 @@
+html {
+  // +scrollbar(5px, 10px)
+  // background: $link;
+  font-size: $font-size;
+  min-width: 320px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+body {
+  @include display(flex);
+
+  @include flex-direction(column);
+
+  position: relative;
+  color: $text;
+  font-size: 1rem;
+  font-weight: 400;
+  // line-height: 1.6;
+  line-height: 1.8;
+  min-height: 100vh;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: $link;
+  cursor: pointer;
+  text-decoration: none;
+
+  transition: all .3s;
+
+  // &:visited {
+  //   color: $visited;
+  // }
+
+  &:hover {
+    color: $red;
+  }
+}
+
+input[type="checkbox"] {
+  vertical-align: baseline;
+}
+
+strong {
+  color: $strong;
+  font-weight: 600;
+}
+
+pre {
+  /*
+  white-space: pre-wrap
+  line break	space/tab	wrapping(자동줄바꿈)
+  반영	      반영	            O
+  */
+  white-space: pre-wrap;
+  word-wrap: normal;
+}
+
+body,
+button,
+input,
+textarea {
+  font-family: $family-lexisaebom;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Montserrat', 'Noto Sans KR', Arial, sans-serif;
+}
+
+img {
+  max-width: 90%;
+
+  @include from(400px) {
+    max-width: 90%;
+  }
+
+  @include from(600px) {
+    max-width: 70%;
+  }
+}
+
+code,
+pre {
+  font-family: $family-monospace;
+  font-weight: 400;
+}

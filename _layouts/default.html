@@ -1,34 +1,27 @@
----
-common-css:
-  - "/css/bootstrap.min.css"
-  - "/css/main.css"
-common-ext-css:
-  - "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-common-googlefonts:
-  - "Lora:400,700,400italic,700italic"
-  - "Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
-common-js:
-  - "/js/jquery-1.11.2.min.js"
-  - "/js/bootstrap.min.js"
-  - "/js/main.js"
----
-
 <!DOCTYPE html>
-<html>
-
+<html class="route-{{ page.route | downcase }} route-{{ page.layout | downcase }}{% if page.section %} section-{{ page.section | downcase }}{% endif %}">
   {% include head.html %}
-
   <body>
-
-    {% include nav.html %}
-
-    <div role="main" class="container main-content">
+    <!-- {% include facebook.html %} -->
+    <div class="page-hero"></div>
+    <!-- {% include banner.html %} -->
+    <div class="page-body">
+      {% include header.html %}
       {{ content }}
     </div>
-
+    <!-- {% include newsletter.html %} -->
     {% include footer.html %}
-
-    {% include footer-scripts.html %}
-
+    {% if page.layout == 'post' %}
+      <div id="overlay" class="page-overlay"></div>
+      <div class="page-menu">
+        {% include table-of-contents.html %}
+      </div>
+      <div id="close" class="page-close">
+        <a class="page-close-button">
+          Close
+        </a>
+      </div>
+    {% endif %}
+    {% include scripts.html %}
   </body>
 </html>

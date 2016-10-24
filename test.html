@@ -1,100 +1,45 @@
----
-layout: page
-title: Archive
-subtitle: Javascript, Node.js, Express, etc.
----
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://poiemaweb.com/assets/css/ajax.css">
+  </head>
+  <body>
+    <div id="content"></div>
 
-<!-- listing categories -->
-{% assign category = site.categories %}
-category | size: {{ category | size }}
-<hr>
-{{ site.categories }}
-<br>
-{{ site.categories | size }}
-<hr>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script>
+    $.ajax({
+      url: "http://poiemaweb.com/assets/data/data-jsonp.js",
+      // url: "http://poiemaweb.com/assets/data/data-jsonp.json",
+      // url: "http://poiemaweb.com/assets/data/data-jsonp",
+      dataType: "jsonp",
+      jsonpCallback: "showTours"
+    })
+      .done(function(data, textStatus, jqXHR){
+        console.log("done: ", data);
+        // DOM Manipulation
+        var newContent = '';
+        newContent += '<div id="tours">';
+        newContent += '<h1>Guided Tours</h1>';
+        newContent += '<ul>';
+        for (var i = 0; i < data.tours.length; i++) {
+          newContent += '<li class="' + data.tours[i].region + ' tour">';
+          newContent += '<h2>' + data.tours[i].location + '</h2>';
+          newContent += '<span class="details">' + data.tours[i].details + '</span>';
+          newContent += '<button class="book">Book Now</button>';
+          newContent += '</li>';
+        }
+        newContent += '</ul></div>';
 
-<ul>
-{% assign counter = '0' %}
-{% for category in site.categories %}
-  <li>{{ category | first }}
-  {% for posts in category %}
-    <ul>
-    {% for post in posts %}
-      <li>{{ post.title }}</li>
-      {% if post.chapter contains "basics" %}
-        {% assign counter = counter | plus: 1 %}
-      {% endif %}
-    {% endfor %}
-  </ul>
-  {% endfor %}
-</li>
-{% endfor %}
-</ul>
-
-<b>{{ counter }}</b>
-
-
-
-
-
-
-
-<!-- listing categories -->
-<h1>listing categories</h1>
-<ul>
-{% for category in site.categories %}
-  <li>{{ category | first }}</li>
-{% endfor %}
-</ul>
-
-<!-- listing posts title by categories -->
-<h1>listing posts title by categories (i.g. mongodb)</h1>
-{% for category in site.categories %}
-{% if category contains "mongodb" %}
-  <li>{{ category | first }}
-    <ul>
-    {% for posts in category %}
-      <!-- sorting post by date  -->
-      {% for post in posts reversed %}
-        {% if post.url %}
-          <li><a href="{{ post.url }}">{{ post.title }}</a></li>
-        {% endif %}
-      {% endfor %}
-    {% endfor %}
-    </ul>
-  </li>
-{% endif %}
-{% endfor %}
-
-
-<h1>listing pages by categories (i.g. mongodb)</h1>
-{% for category in site.categories %}
-{% if category contains "mongodb" %}
-  <li>{{ category | first }}
-    <ul>
-    {% for posts in category %}
-      <!-- sorting post by date  -->
-      {% for post in posts reversed %}
-
-      {% if post.chapter %}
-      {{ post.chapter }}
-      {% endif %}
-
-
-        {% if post.url %}
-          <li><a href="{{ post.url }}">{{ post.title }}</a></li>
-        {% endif %}
-      {% endfor %}
-    {% endfor %}
-    </ul>
-  </li>
-{% endif %}
-{% endfor %}
-
-
-<h1>Count post</h1>
-<ul>
-  {% for category in site.categories %}
-    <div><a href="{{ site.baseurl }}/category/{{ category[0] }}">{{ category[0] | capitalize }} <span> ({{ category[1].size }}) </span></a></div>
-  {% endfor %}
-</ul>
+        $("#content").html(newContent);
+      })
+      .fail(function(jqXHR, textStatus, errorThrown){
+        console.log("fail: ", jqXHR);
+      })
+      .always(function(data, textStatus, jqXHR){
+        console.log("always: ", data);
+      });
+    </script>
+  </body>
+</html>

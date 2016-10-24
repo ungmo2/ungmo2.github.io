@@ -1,0 +1,184 @@
+<section class="toc-component">
+  <div class="container">
+
+    <article class="toc-section toc-section--html">
+      <div class="toc-heading">
+        <!-- <i class="fa fa-html5"></i> -->
+        <i class="devicon-html5-plain"></i>
+        <h3>HTML5</h3>
+        <small><span>{{ site.categories.html | size }}</span> lessons</small>
+      </div>
+      <ol class="toc-content">
+      {% assign counter = 0 %}
+      {% for post in site.categories.html reversed %}
+        {% assign counter = counter | plus: 1 %}
+        <li class="toc-month">
+          <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
+        </li>
+      {% endfor %}
+      </ol>
+    </article>
+
+    <article class="toc-section toc-section--css">
+      <div class="toc-heading">
+        <!-- <i class="fa fa-css3"></i> -->
+        <i class="devicon-css3-plain"></i>
+        <h3>CSS3</h3>
+        <small><span>{{ site.categories.css | size }}</span> lessons</small>
+      </div>
+      <ol class="toc-content">
+      {% assign counter = 0 %}
+      {% for post in site.categories.css reversed %}
+        {% assign counter = counter | plus: 1 %}
+          <li class="toc-month">
+            <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
+          </li>
+      {% endfor %}
+      </ol>
+    </article>
+
+    <article class="toc-section toc-section--bootstrap">
+      <div class="toc-heading">
+        <!-- <i class="fa fa-globe"></i> -->
+        <i class="devicon-bootstrap-plain"></i>
+        <h3>Bootstrap</h3>
+        <small><span>{{ site.categories.bootstrap | size }}</span> lessons</small>
+      </div>
+      <ol class="toc-content">
+      {% assign counter = 0 %}
+      {% for post in site.categories.bootstrap reversed %}
+        {% assign counter = counter | plus: 1 %}
+          <li class="toc-month">
+            <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
+          </li>
+      {% endfor %}
+      </ol>
+    </article>
+
+    <article class="toc-section toc-section--sass">
+      <div class="toc-heading">
+        <!-- <i class="fa fa-rocket"></i> -->
+        <i class="devicon-sass-plain"></i>
+        <h3>Sass</h3>
+        <small><span>{{ site.categories.Sass | size }}</span> lessons</small>
+      </div>
+      <ol class="toc-content">
+      {% assign counter = 0 %}
+      {% for post in site.categories.Sass reversed %}
+        {% assign counter = counter | plus: 1 %}
+          <li class="toc-month">
+            <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
+          </li>
+      {% endfor %}
+      </ol>
+    </article>
+
+    <article class="toc-section toc-section--javascript">
+      <div class="toc-heading">
+        <!-- <i class="fa fa-rocket"></i> -->
+        <i class="devicon-javascript-plain"></i>
+        <h3>JavaScript</h3>
+        <small><span>{{ site.categories.javascript | size }}</span> lessons</small>
+      </div>
+      <ol class="toc-content">
+      {% assign counter = 0 %}
+      {% for post in site.categories.javascript reversed %}
+        {% assign counter = counter | plus: 1 %}
+          <li class="toc-month">
+            <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
+          </li>
+      {% endfor %}
+      </ol>
+    </article>
+
+    <article class="toc-section toc-section--jquery">
+      <div class="toc-heading">
+        <!-- <i class="fa fa-rocket"></i> -->
+        <i class="devicon-jquery-plain"></i>
+        <h3>jQuery</h3>
+        <small><span>{{ site.categories.jquery | size }}</span> lessons</small>
+      </div>
+      <ol class="toc-content">
+      {% assign counter = 0 %}
+      {% for post in site.categories.jquery reversed %}
+        {% assign counter = counter | plus: 1 %}
+          <li class="toc-month">
+            <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
+          </li>
+      {% endfor %}
+      </ol>
+    </article>
+
+    <article class="toc-section toc-section--nodejs">
+      <div class="toc-heading">
+        <!-- <i class="fa fa-rocket"></i> -->
+        <i class="devicon-nodejs-plain"></i>
+        <h3>Node.js</h3>
+        <small><span>{{ site.categories.nodejs | size }}</span> lessons</small>
+      </div>
+      <ol class="toc-content">
+      {% assign counter = 0 %}
+      {% for post in site.categories.nodejs reversed %}
+        {% assign counter = counter | plus: 1 %}
+          <li class="toc-month">
+            <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
+          </li>
+      {% endfor %}
+      </ol>
+    </article>
+
+    <article class="toc-section toc-section--express">
+      <div class="toc-heading">
+        <!-- <i class="fa fa-rocket"></i> -->
+        <i class="devicon-nodejs-plain"></i>
+        <h3>Express</h3>
+        <small><span>{{ site.categories.express | size }}</span> lessons</small>
+      </div>
+      <ol class="toc-content">
+      {% assign counter = 0 %}
+      {% for post in site.categories.express reversed %}
+        {% assign counter = counter | plus: 1 %}
+          <li class="toc-month">
+            <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
+          </li>
+      {% endfor %}
+      </ol>
+    </article>
+
+    <article class="toc-section toc-section--mongodb">
+      <div class="toc-heading">
+        <!-- <i class="fa fa-rocket"></i> -->
+        <i class="devicon-mongodb-plain"></i>
+        <h3>MongoDB</h3>
+        <small><span>{{ site.categories.mongodb | size }}</span> lessons</small>
+      </div>
+      <ol class="toc-content">
+      {% assign counter = 0 %}
+      {% for post in site.categories.mongodb reversed %}
+        {% assign counter = counter | plus: 1 %}
+          <li class="toc-month">
+            <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
+          </li>
+      {% endfor %}
+      </ol>
+    </article>
+
+    <article class="toc-section toc-section--jekyll">
+      <div class="toc-heading">
+        <!-- <i class="fa fa-rocket"></i> -->
+        <i class="devicon-nodejs-plain"></i>
+        <h3>Jekyll</h3>
+        <small><span>{{ site.categories.jekyll | size }}</span> lessons</small>
+      </div>
+      <ol class="toc-content">
+      {% assign counter = 0 %}
+      {% for post in site.categories.jekyll reversed %}
+        {% assign counter = counter | plus: 1 %}
+          <li class="toc-month">
+            <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
+          </li>
+      {% endfor %}
+      </ol>
+    </article>
+  </div>
+</section>

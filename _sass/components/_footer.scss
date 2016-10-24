@@ -1,0 +1,52 @@
+footer {
+  font-size: 14px;
+  text-align: center;
+  color: snow;
+  // background: $dark;
+  background: #E90052;
+  position: relative;
+  text-shadow: 0 1px 2px rgba(black, 0.2);
+
+  .container {
+    padding: 30px;
+  }
+
+  .social-icons {
+    a {
+      color: white;
+    }
+  }
+
+  a {
+    color: snow;
+
+    &:hover {
+      // color: $red;
+      color: white;
+    }
+  }
+
+  strong {
+    color: white;
+  }
+
+  @include mobile {
+    form {
+      text-align: center;
+    }
+
+    p {
+      margin-top: 1em;
+    }
+  }
+
+  @include desktop {
+    .container {
+      padding: 60px 0;
+    }
+  }
+
+  @media print {
+    display: none;
+  }
+}

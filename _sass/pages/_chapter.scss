@@ -1,0 +1,81 @@
+html.section-html, html.section-javascript, html.section-mongodb {
+  background-color: $html;
+
+  .page-hero {
+    background-color: $html;
+    background-image: linear-gradient(142deg, adjust-hue($html, -40deg), adjust-hue($html, -20deg) 31%, $html 65%, adjust-hue($html, 20deg));
+  }
+}
+
+html.section-css, html.section-jquery, html.section-jekyll {
+  background-color: $css;
+
+  .page-hero {
+    background-color: $css;
+    background-image: linear-gradient(142deg, adjust-hue($css, 20deg), adjust-hue($css, 10deg) 31%, $css 65%, adjust-hue($css, -10deg));
+  }
+}
+
+html.section-bootstrap, html.section-nodejs {
+  background-color: $bootstrap;
+
+  .page-hero {
+    background-color: $bootstrap;
+    background-image: linear-gradient(142deg, adjust-hue($bootstrap, -20deg), adjust-hue($bootstrap, -10deg) 31%, $bootstrap 65%, adjust-hue($bootstrap, 10deg));
+  }
+}
+
+html.section-sass, html.section-express {
+  background-color: $sass;
+
+  .page-hero {
+    background-color: $sass;
+    background-image: linear-gradient(142deg, adjust-hue($sass, -20deg), adjust-hue($sass, -10deg) 31%, $sass 65%, adjust-hue($sass, 10deg));
+  }
+}
+
+html.route-chapter {
+  .heading .container {
+    @include desktop {
+      padding: 120px 180px;
+    }
+  }
+
+  .page-content .container {
+    background: none;
+    box-shadow: none;
+
+    @include desktop {
+      padding: 0 120px;
+    }
+  }
+
+  .content {
+    color: white;
+    font-size: 1rem;
+    padding: 0 30px;
+    text-shadow: 0 2px 3px rgba(black, 0.3);
+
+    strong {
+      color: $yellow;
+    }
+
+    @include desktop {
+      font-size: 32px;
+      padding: 0 60px;
+    }
+  }
+
+  .pagination {
+    background: none;
+    box-shadow: none;
+
+    @include desktop {
+      padding: 60px 60px 120px;
+    }
+  }
+
+  .page-footer {
+    display: none;
+  }
+}

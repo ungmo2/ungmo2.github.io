@@ -1,50 +1,119 @@
 ---
 layout: default
+route: post
 ---
 
-<header class="header-post">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-      <div class="post-heading">
-        <h1>{{ page.title }}</h1>
-        {% if page.subtitle %}
-        <h2 class="post-subheading">{{ page.subtitle }}</h2>
-        {% endif %}
-        <span class="post-meta">Posted on {{ page.date | date: "%B %-d, %Y" }}&nbsp;&nbsp;&nbsp;<i class="fa fa-tags"></i>&nbsp;{{ page.categories }}</span>
+<main class="page-container">
+  <section class="heading">
+    <div class="container">
+      <h1>
+        <!-- <em>{{ page.date | date: "%m.%-d" | remove_first: '0' }}</em> -->
+        <em>{{ page.date | date: "%-m.%-d" }}</em>
+        {{ page.title }}
+      </h1>
+      <h2>{{ page.subtitle }}</h2>
+      <!-- {% include carbon.html %} -->
+    </div>
+  </section>
+
+  <div class="page-content">
+    <div class="container">
+      <div class="breadcrumb-holder">
+        <header id="breadcrumb" class="breadcrumb" data-spy="affix">
+          <a id="open" class="breadcrumb-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </a>
+
+          <span class="breadcrumb-section">
+            {% case page.section %}
+            {% when "html" %}
+              <i class="devicon-html5-plain"></i>
+            {% when "css" %}
+              <i class="devicon-css3-plain"></i>
+            {% when "bootstrap" %}
+              <i class="devicon-bootstrap-plain"></i>
+            {% when "Sass" %}
+              <i class="devicon-sass-plain"></i>
+            {% when "javascript" %}
+              <i class="devicon-javascript-plain"></i>
+            {% when "jquery" %}
+              <i class="devicon-jquery-plain"></i>
+            {% when "nodejs" %}
+              <i class="devicon-nodejs-plain"></i>
+            {% when "express" %}
+              <i class="devicon-nodejs-plain"></i>
+            {% when "mongodb" %}
+              <i class="devicon-mongodb-plain"></i>
+            {% when "jekyll" %}
+              <i class="devicon-ruby-plain"></i>
+            {% endcase %}
+            {{ page.section }}
+
+
+            <!-- {% case page.section %}
+            {% when "web" %}
+              <i class="fa fa-globe"></i>
+            {% when "html" %}
+              <i class="fa fa-html5"></i>
+            {% when "css" %}
+              <i class="fa fa-css3"></i>
+            {% when "Sass" %}
+              <i class="fa fa-rocket"></i>
+            {% endcase %}
+            {{ page.section }} -->
+          </span>
+
+          {% if page.next %}
+            <a class="breadcrumb-next" href="{{ page.next.url }}">
+              <i class="fa fa-angle-right"></i>
+              <span>Next article</span>
+            </a>
+          {% endif %}
+
+          {% if page.previous %}
+            <a class="breadcrumb-previous" href="{{ page.previous.url }}">
+              <i class="fa fa-angle-left"></i>
+              <span>Previous article</span>
+            </a>
+          {% endif %}
+
+          <!-- <a class="breadcrumb-toc" href="javascript:void(0)">
+            <i class="fa fa-list-ol"></i>
+            <span>Go to tablr of contents</span>
+          </a> -->
+        </header>
       </div>
-     </div>
-  </div>
-</header>
 
-<article>
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-	  {{ content }}
-	</div>
-  </div>
-</article>
+      <nav id="menu" class="menu">
+        <ul></ul>
+      </nav>
 
-<div class="row">
-  <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-    <ul class="pager blog-pager">
-      {% if page.previous.url %}
-      <li class="previous">
-        <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title}}">&larr; Previous Post</a>
-      </li>
-      {% endif %}
-      {% if page.next.url %}
-      <li class="next">
-        <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}">Next Post &rarr;</a>
-      </li>
-      {% endif %}
-    </ul>
-  </div>
-</div>
+      <article class="content">
+        {{ content }}
+      </article>
 
-{% if page.comments %}
-<div class="row disqus-comments">
-  <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-    {% include disqus.html %}
+      <nav class="pagination">
+        {% if page.previous %}
+          <a class="pagination-previous" href="{{ page.previous.url }}">
+            <em>&larr; Previous</em>
+            <strong>{{ page.previous.title }}</strong>
+          </a>
+        {% endif %}
+
+        {% if page.next %}
+          <a class="pagination-next" href="{{ page.next.url }}">
+            <em>Next &rarr;</em>
+            <strong>{{ page.next.title }}</strong>
+          </a>
+        {% endif %}
+      </nav>
+    </div>
   </div>
-</div>
-{% endif %}
+</main>
+
+<a id="top" class="elevator">
+  <i class="fa fa-angle-up"></i>
+  <span>Back to top</span>
+</a>

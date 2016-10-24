@@ -1,0 +1,305 @@
+.toc-head {
+  height: 40px;
+  // margin-top: -40px;
+
+  .container {
+    background-color: rgba(black, 0.2);
+    // background-image: linear-gradient(rgba(black, 0), rgba(black, 0.2));
+    border-radius: 3px 3px 0 0;
+    box-shadow: inset 0 -3px 3px rgba(black, 0.1), 0 -1px 0 rgba(white, 0.1);
+    height: 40px;
+    color: white;
+  }
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.toc-column {
+  position: absolute;
+  top: 8px;
+  width: auto;
+  strong {
+    color: white;
+  }
+}
+
+.toc-column--sections {
+  @extend .toc-column;
+
+  left: 50px;
+}
+
+.toc-column--lessons {
+  @extend .toc-column;
+
+  left: 325px;
+}
+
+.toc-component {
+  position: relative;
+
+  .container {
+    background: white;
+  }
+
+  @include desktop {
+    .container {
+      box-shadow: 0 20px 40px rgba(black, 0.2);
+    }
+  }
+}
+
+.toc-section {
+  min-height: 120px;
+  position: relative;
+
+  @include mobile {
+    &:last-child {
+      margin-bottom: 50px;
+    }
+  }
+}
+
+.toc-heading {
+  background: $dark;
+  padding: 25px;
+
+  .fa {
+    @include fa(21px, 25px);
+
+    left: 15px;
+    position: absolute;
+  }
+
+  i {
+    @include fa(21px, 25px);
+
+    left: 15px;
+    position: absolute;
+  }
+
+  h3 {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1;
+
+    a {
+      color: white;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  small {
+    color: $light;
+    display: block;
+  }
+
+  em {
+    display: block;
+    font-style: normal;
+    line-height: 1.2;
+    margin-top: 10px;
+
+    strong {
+      color: $light;
+    }
+  }
+
+  @include mobile {
+    .fa, i {
+      display: none;
+    }
+  }
+
+
+  @include desktop {
+    @include overlay;
+
+    border-bottom: 1px solid lighten($dark, 10%);
+    padding-left: 50px;
+    right: auto;
+    width: 270px;
+  }
+}
+
+.toc-content {
+  font-family: 'Montserrat', 'Noto Sans KR', Arial, sans-serif;
+  padding: 15px;
+  position: relative;
+
+  li {
+    display: block;
+  }
+
+  a {
+    border: 1px solid transparent;
+    border-radius: 3px;
+    display: block;
+    padding: 5px 10px 7px;
+
+    strong {
+      font-weight: 400;
+    }
+
+    &:visited {
+      color: $visited;
+
+      strong {
+        color: $visited;
+      }
+    }
+
+    &:hover {
+      background: linear-gradient(white, $background);
+      border-color: $border-dark;
+      box-shadow: 0 1px 2px rgba(black, 0.07);
+    }
+
+    &:active,
+    &:focus {
+      background: $background;
+      box-shadow: none;
+    }
+  }
+
+  .toc-month {
+    a {
+      &,
+      &:hover {
+        color: $strong;
+        font-weight: 700;
+
+        em {
+          font-style: normal;
+        }
+      }
+    }
+  }
+
+  @include desktop {
+    border-bottom: 1px solid $border;
+    margin-left: 270px;
+    padding: 20px 25px;
+    min-height: 120px;
+
+    li {
+      a {
+        padding-left: 230px;
+      }
+    }
+
+    .toc-month {
+      // left: 10px;
+      // position: absolute;
+      // width: 220px;
+      width: 100%;
+      z-index: 1;
+
+      a {
+        padding-left: 10px;
+      }
+    }
+  }
+}
+
+.toc-section--html, .toc-section--javascript, .toc-section--mongodb {
+  i,
+  .fa,
+  .toc-heading small span,
+  .toc-content .toc-month em {
+    color: $html;
+    margin-right: 5px;
+  }
+}
+
+.toc-section--css, .toc-section--jquery, .toc-section--jekyll {
+  i,
+  .fa,
+  .toc-heading small span,
+  .toc-content .toc-month em {
+    color: $css;
+    margin-right: 5px;
+  }
+}
+
+.toc-section--bootstrap, .toc-section--nodejs {
+  i,
+  .fa,
+  .toc-heading small span,
+  .toc-content .toc-month em {
+    color: $bootstrap;
+    margin-right: 5px;
+  }
+}
+
+.toc-section--sass, .toc-section--express {
+  i,
+  .fa,
+  .toc-heading small span,
+  .toc-content .toc-month em {
+    color: $sass;
+    margin-right: 5px;
+  }
+
+  // .toc-heading,
+  // .toc-content {
+  //   border-bottom: none;
+  // }
+}
+
+.menu {
+  display: none;
+
+  margin: 0 auto;
+  padding: 60px;
+  width: 100%;
+  height: 100%;
+
+  // position: fixed;
+  position: absolute;
+  top: 40px;
+  left: 0px;
+
+  background: rgba(0,0,0,0.8);
+  z-index: 2000;
+
+  @include from(1100px) {
+    max-width: 1080px;
+  }
+
+  @include from(1200px) {
+    max-width: 1140px;
+  }
+
+  li {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  a {
+    display: block;
+    color: white;
+  }
+}
+
+#markdown-toc {
+  display: none;
+  margin: 0 0 50px;
+
+  @include label("Table of Contents", #33a9dc, white);
+
+  a {
+    color: #008AFF;
+
+    &:hover {
+      color: #3f51b5;
+    }
+  }
+
+}

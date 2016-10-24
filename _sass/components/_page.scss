@@ -1,0 +1,444 @@
+.page-hero {
+  @include overlay;
+
+  background-color: $hero-3;
+  background-image: linear-gradient(142deg, $hero-1, $hero-2 31%, $hero-3 65%, $hero-4);
+  position: fixed;
+  transform: translateZ(0);
+}
+
+.page-hero-pattern {
+  @include overlay;
+
+  background: rgba(black, 0.1);
+  content: "";
+  display: block;
+  mix-blend-mode: multiply;
+  opacity: 0;
+
+  @include from(700px) {
+    background: url("/images/pattern.png") repeat;
+    mix-blend-mode: multiply;
+  }
+}
+
+.page-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  .container {
+    border-bottom: 1px solid rgba(black, 0.1);
+    box-shadow: 0 1px 0 rgba(white, 0.1);
+    height: $height-header;
+  }
+
+  @include desktop {
+    .share-buttons {
+      right: 0;
+    }
+  }
+}
+/*
+.page-header-icons {
+  padding: 20px 0;
+  text-align: center;
+  text-shadow: 0 2px 3px rgba(black, 0.3);
+
+  a {
+    color: $yellow;
+    display: inline-block;
+    height: 28px;
+    margin: 0 5px;
+    vertical-align: top;
+    width: 28px;
+
+    &:hover {
+      color: white;
+
+      @include transform(scale(1.2));
+    }
+
+    &:active {
+      text-shadow: none;
+
+      @include transform(scale(1.1));
+    }
+  }
+
+  .fa {
+    @include fa(28px, 32px);
+  }
+
+  @include mobile {
+    display: none;
+  }
+}
+*/
+.page-body {
+  position: relative;
+
+  .index-hello {
+    position: relative;
+    min-height: 100vh;
+
+    background-image: url("http://poiemaweb.com/img/bg/1920x1080.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    .hello {
+      width: 100%;
+      font-family: 'Montserrat', sans-serif;
+      color: white;
+      font-size: 6vw;
+      text-align: center;
+      margin-bottom: 20px;
+      // text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
+
+      position: absolute;
+      top: 47%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      h1 {
+        font-family: "Open Sans", Helvetica, Arial, sans-serif;
+        color: #f4f1ce;
+        font-size: 3vw;
+        font-weight: 300;
+      }
+    }
+
+    .social-icons {
+      position: absolute;
+      bottom: 10px;
+      right: 50px;
+      transition: all .5s;
+
+      @include mobile {
+        // display: none;
+        bottom: 10px;
+        left: 50%;
+        transform: translate(-50%, 0);
+      }
+    }
+  }
+
+  #scroll-icon {
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    font-size: 36px;
+    color: white;
+    cursor: pointer;
+    opacity: 1;
+    animation: glow 4s infinite;
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  @keyframes glow {
+    0% {
+      opacity:1;
+    }
+
+    50% {
+      opacity:0.3;
+      transform:translateY(10px);
+    }
+  }
+
+  .index-title {
+    color: beige;
+    font-weight: bold;
+    padding: 50px 0;
+    text-align: center;
+    font-size: 3.5vw;
+
+    @include mobile {
+      display: none;
+    }
+  }
+}
+
+.page-container {
+  padding-top: $height-header;
+}
+
+.page-content {
+  .container {
+    background: white;
+
+    @include desktop {
+      border-radius: 3px 3px 0 0;
+      box-shadow: 0 30px 60px rgba(black, 0.3);
+    }
+  }
+}
+
+.page-newsletter {
+  background-color: $red;
+  background-image: linear-gradient(142deg, adjust-hue($red, -20deg), adjust-hue($red, -10deg) 31%, $red 65%, adjust-hue($red, 10deg));
+  color: $yellow;
+  padding: 30px;
+  position: relative;
+
+  strong {
+    color: inherit;
+  }
+
+  @include desktop {
+    padding: 60px 40px 80px;
+  }
+}
+
+.page-newsletter-heading {
+  position: relative;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(black, 0.2);
+
+  .icons {
+    display: block;
+    height: 120px;
+    margin: 0 auto;
+    position: relative;
+    width: 120px;
+
+    .fa {
+      @include fa(42px, 120px);
+
+      @include overlay;
+    }
+
+    .fa-television {
+      font-size: 84px;
+    }
+
+    .fa-play-circle {
+      color: white;
+      left: -3px;
+      top: -6px;
+    }
+  }
+
+  h3 {
+    color: white;
+    font-size: 32px;
+    line-height: 1;
+    position: relative;
+  }
+
+  p {
+    font-size: 18px;
+  }
+
+  @include desktop {
+    h3 {
+      font-size: 40px;
+    }
+
+    p {
+      font-size: 20px;
+      margin-top: 5px;
+    }
+  }
+}
+
+.page-newsletter-form {
+  margin: 30px auto 0;
+  max-width: 480px;
+}
+
+.page-newsletter-group {
+  position: relative;
+
+  .fa {
+    color: $light;
+    font-size: 14px;
+    pointer-events: none;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+  }
+
+  label.error {
+    cursor: default;
+    display: block;
+    font-size: 14px;
+    margin: 5px 0 10px;
+  }
+
+  @include desktop {
+    padding-right: 100px;
+  }
+}
+
+.page-newsletter-input {
+  border: none;
+  border-radius: $radius;
+  display: block;
+  outline: none;
+  padding: 6px 12px 8px 32px;
+  width: 100%;
+
+  @include mobile {
+    margin-bottom: 10px;
+  }
+}
+
+.page-newsletter-button {
+  @extend %button--dark;
+
+  &.loading {
+    background: $dark;
+    border-color: transparent;
+    box-shadow: none;
+    color: rgba(white, 0.3);
+    cursor: progress;
+  }
+
+  @include desktop {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+.page-overlay {
+  @include overlay;
+
+  background: rgba(black, 0.7);
+  display: none;
+  position: fixed;
+}
+
+.page-menu {
+  @include overlay;
+
+  -webkit-overflow-scrolling: touch;
+  bottom: 78px;
+  display: none;
+  min-height: calc(100vh - 30px);
+  overflow: scroll;
+  overflow-x: hidden;
+  position: fixed;
+
+  @include desktop {
+    bottom: 0;
+    box-shadow: 0 30px 60px rgba(black, 0.86);
+    left: 50%;
+    margin-left: -480px;
+    right: auto;
+    position: fixed;
+    width: 960px;
+  }
+
+  @include from(1100px) {
+    margin-left: -540px;
+    width: 1080px;
+  }
+
+  @include from(1200px) {
+    margin-left: -570px;
+    width: 1140px;
+  }
+}
+
+.page-close {
+  @include overlay;
+
+  background: $background;
+  box-shadow: inset 0 2px 3px rgba(black, 0.05), inset 0 1px 0 rgba(black, 0.05);
+  display: none;
+  padding: 15px;
+  position: fixed;
+  top: auto;
+
+  @include desktop {
+    display: none;
+  }
+}
+
+.page-close-button {
+  @extend %button--primary;
+
+  display: block;
+  padding: 15px;
+  text-align: center;
+}
+
+html.has-menu-open {
+  overflow: hidden;
+
+  .page-overlay,
+  .page-menu,
+  .page-close {
+    display: block;
+  }
+
+  @include desktop {
+    .page-close {
+      display: none;
+    }
+  }
+}
+
+.share-buttons {
+  height: 20px;
+  overflow: hidden;
+  position: relative;
+
+  .twitter-share-button {
+    position: absolute;
+
+    &,
+    &:visited {
+      color: transparent;
+    }
+  }
+}
+
+%share-button {
+  color: transparent;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0 10px;
+  position: absolute;
+  text-shadow: none;
+  top: 0;
+  vertical-align: top;
+
+  a {
+    &,
+    &:visited {
+      color: transparent;
+    }
+  }
+}
+
+.share-button--twitter {
+  @extend %share-button;
+
+  right: 50%;
+}
+
+.share-button--facebook {
+  @extend %share-button;
+
+  left: 50%;
+}
+
+.fb_iframe_widget {
+  display: inline-block;
+  vertical-align: top;
+
+  span {
+    display: inline-block;
+    vertical-align: top !important;
+  }
+}

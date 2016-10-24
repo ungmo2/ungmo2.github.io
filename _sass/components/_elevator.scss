@@ -1,0 +1,30 @@
+.elevator {
+  @extend %button--dark;
+
+  display: block;
+  font-size: 16px;
+  height: auto;
+  line-height: 24px;
+  margin: 15px;
+  padding: 20px;
+  text-align: center;
+
+  @include desktop {
+    bottom: 0;
+    position: fixed;
+    right: 0;
+
+    .fa {
+      left: 50%;
+      margin-left: -12px;
+    }
+
+    span {
+      display: none;
+    }
+  }
+
+  @media print {
+    display: none;
+  }
+}

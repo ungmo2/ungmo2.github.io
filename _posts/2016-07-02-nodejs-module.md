@@ -11,9 +11,13 @@ section: nodejs
 
 ![node-logo](/img/node-logo.png)
 
-Node.js는 [common.js](http://www.commonjs.org/) 방식의 module loading system으로 디펜던시를 로드할 수 있다.
+Node.js는 [CommonJS](http://www.commonjs.org/) 방식의 module loading system으로 디펜던시를 로드할 수 있다.
 
-별도의 파일로 정의된 모듈을 `require` 메서드를 사용하여 로드하는 방식이다.
+CommonJS는 JavaScript를 브라우저에서만 아니라 서버사이드 애플리케이션이나 데스크톱 애플리케이션에서도 사용할 수 있도록 조직한 자발적 워킹 그룹으로 JavaScript를 범용적으로 사용하기 위해 필요한 명세(Specification)를 만드는 일을 한다.
+
+모듈은 자신만의 <strong>독립적인 실행 영역(Scope)</strong>가 있어야 하며 모듈 정의는 <strong>exports 객체</strong>, 모듈 사용은 <strong>require 함수</strong>를 사용한다.
+
+Node.js는 파일마다 독립적인 파일 Scope가 있기 때문에 클라리언트 사이드 JavaScript와는 달리 전역변수의 중복 문제가 발생하지 않는다.
 
 몇가지의 구체적인 예제를 통해 Node.js의 module loading system을 살펴보자.
 

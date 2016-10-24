@@ -212,7 +212,7 @@ Bootstrap은 Mobile-first 방식을 기본 지원하므로 [Media query](./css3-
 
 기본적으로 4개의 breakpoint로 구간을 나눈다.
 
-```
+```css
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */
 
@@ -470,6 +470,7 @@ container(.container 또는 .container-fluid) 내에 `.row` class를 사용하�
 </div>
 
 ![Grid options](/img/bs_grid_options.png)
+{: .w-650}
 
 부트스트랩의 그리드 시스템은 12열까지 지원한다. 두번째 \*에는 1부터 12까지의 숫자 중의 하나를 지정한다.
 

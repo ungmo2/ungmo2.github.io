@@ -337,6 +337,7 @@ console.log(bar.constructor); // ② Object()
 ```
 
 ![changing prototype](/img/changing_prototype.png)
+{: .w-700}
 
 ① 프로토타입 객체는 constructor 프로퍼티를 갖는다. 프로토타입 객체 변경 전, Person() 생성자 함수의 [[Prototype]] 프로퍼티가 가리키는 프로토타입 객체도 물론 constructor 프로퍼티를 가지며 이 constructor 프로퍼티는 Person() 생성자 함수를 가리킨다.
 

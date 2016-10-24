@@ -95,8 +95,9 @@ console.log(bar(10, 10)); // 100
 변수 bar와 변수 foo는 동일한 익명 함수의 참조값을 갖는다.
 
 ![anonymous function](/img/anonymous_function.png)
+{: .w-400}
 
-<b style="text-decoration:underline">함수가 할당된 변수를 사용해 함수를 호출하지 않고 기명 함수의 함수명을 사용해 호출하게 되면 에러가 발생한다. 이는 함수표현식에서 사용한 함수명은 외부 코드에서 접근 불가능하기 때문이다.</b> (사실은 함수선언식의 경우도 마찬가지이다.)
+**함수가 할당된 변수를 사용해 함수를 호출하지 않고 기명 함수의 함수명을 사용해 호출하게 되면 에러가 발생한다. 이는 함수표현식에서 사용한 함수명은 외부 코드에서 접근 불가능하기 때문이다.** (사실은 함수선언식의 경우도 마찬가지이다.)
 
 함수표현식과 함수선언식에서 사용한 함수명은 함수 몸체에서 자신을 재귀적 호출하거나 자바스크립트 디버거가 해당 함수를 구분할 수 있는 식별자의 역할을 한다.
 
@@ -147,7 +148,9 @@ function square(number) {
 
 위 코드를 보면 함수선언식으로 함수가 정의되기 이전에 함수 호출이 가능하다. 함수 선언의 위치와는 상관없이 코드 내 어느 곳에서든지 호출이 가능한데 이것을 함수 호이스팅(Function Hoisting)이라 한다.
 
-자바스크립트는 선언문을 모두 호이스팅(Hoisting)한다. 호이스팅란 var 구문이나 function 선언문을 해당 [Scope](./js-scope.html)의 맨 위로 옮기는 것을 말한다. 즉 자바스크립트는 코드를 실행하기 전에 var 구문과 function 선언문을 해당 스코프의 맨위로 옮긴다.
+**자바스크립트는 선언문을 모두 호이스팅(Hoisting)한다.**
+
+호이스팅이란 var 구문이나 function 선언문을 해당 [Scope](./js-scope.html)의 맨 위로 옮기는 것을 말한다. 즉 자바스크립트는 코드를 실행하기 전에 var 구문과 function 선언문을 해당 스코프의 맨위로 옮긴다.
 
 함수 호이스팅이 발생하는 원인은 자바스크립트 변수 생성과 초기화가 분리되어 진행되기 때문이다. 이는 [Execution Context](./js-execution-context.html#variable-instantiation-)에서 자세히 설명한다.
 
@@ -326,6 +329,7 @@ console.dir(square);
 ```
 
 ![function property](/img/function_property.png)
+{: .w-450}
 
 여러가지 속성을 확인할 수 있는데 이들 중 length, prototype 속성은 ECMAScript spec에서 정한 표준 속성이다. 나머지 속성은 ECMAScript 표준 spec은 아니다.
 
@@ -351,7 +355,7 @@ console.log(multiply(1,2,3));// { '0': 1, '1': 2, '2': 3 }
 
 매개변수(parameter)는 인수(argument)로 초기화된다.
 
-- 매개변수의 갯수보다 인수를 적게 전달했을 때(multiply(), multiply(1)) 인수가 전달되지 않은 매개변수는 `undefined`로 초기화된다.
+- 매개변수의 갯수보다 인수를 적게 전달했을 때(multiply(), multiply(1)) 인수가 전달되지 않은 매개변수는 `undefined`으로 초기화된다.
 
 - 매개변수의 갯수보다 인수를 더 많이 전달한 경우, 초과된 인수는 무시된다.
 

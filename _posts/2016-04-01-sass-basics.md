@@ -43,6 +43,7 @@ CSS와 비교하여 Sass는 아래와 같은 장점이 있다.
 [Ruby Installer](http://rubyinstaller.org/downloads/)로 이동하여 최신 Installer를 설치한다.
 
 ![ruby-installer-set-path.jpg](/img/ruby-installer.png)
+{: .w-400}
 
 설치 도중 Path 추가를 체크한다.
 

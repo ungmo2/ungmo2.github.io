@@ -137,7 +137,7 @@
       margin-bottom: 0;
     }
 
-    &.w-190 {
+    &.w-100 {
       img {
         @include desktop {
           max-width: 100px;
@@ -189,6 +189,14 @@
       img {
         @include desktop {
           max-width: 650px;
+        }
+      }
+    }
+
+    &.w-700 {
+      img {
+        @include desktop {
+          max-width: 700px;
         }
       }
     }
@@ -351,46 +359,7 @@
       }
     }
   }
-/*
-  figure.highlight {
-    margin: 30px -30px;
-    overflow: auto;
 
-    pre code {
-      @include label;
-
-      background: inherit;
-      color: inherit;
-      display: block;
-      padding: 30px;
-      top: 0;
-
-      &.language-html {
-        @include label("HTML", $html, white);
-      }
-
-      &.language-css {
-        @include label("CSS", $css, white);
-      }
-
-      &.language-scss {
-        @include label("SCSS", $sass, white);
-
-        &.language-css {
-          @include label("SCSS CSS", $sass, white);
-        }
-      }
-
-      @include desktop {
-        padding: 30px 60px;
-      }
-    }
-
-    @include desktop {
-      margin: 30px -60px;
-    }
-  }
-*/
   .answer,
   .important,
   .info,
@@ -426,19 +395,6 @@
     border-left-color: $red;
   }
 
-  // .result {
-  //   @include label("Result");
-  //
-  //   border: 1px solid $yellow;
-  //   color: black;
-  //   margin: 30px 0;
-  //   padding: 15px;
-  //
-  //   &:before {
-  //     top: -15px;
-  //   }
-  // }
-
   table {
     font-size: .9rem;
     background: #fafafa;
@@ -448,7 +404,7 @@
     // mobile에서 테이블이 컨테이너 밖으로 삐져나오는 문제
     @include mobile {
       table-layout: fixed;
-      word-break:break-all;
+      word-break: break-all;
     }
 
     th,
@@ -477,7 +433,7 @@
       background: #eee;
       font-weight: 400;
       text-align: left;
-      white-space: nowrap;
+      // white-space: nowrap;
 
       strong {
         display: block;

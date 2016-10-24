@@ -12,7 +12,6 @@ route: post
         {{ page.title }}
       </h1>
       <h2>{{ page.subtitle }}</h2>
-      <!-- {% include carbon.html %} -->
     </div>
   </section>
 
@@ -50,19 +49,6 @@ route: post
               <i class="devicon-ruby-plain"></i>
             {% endcase %}
             {{ page.section }}
-
-
-            <!-- {% case page.section %}
-            {% when "web" %}
-              <i class="fa fa-globe"></i>
-            {% when "html" %}
-              <i class="fa fa-html5"></i>
-            {% when "css" %}
-              <i class="fa fa-css3"></i>
-            {% when "Sass" %}
-              <i class="fa fa-rocket"></i>
-            {% endcase %}
-            {{ page.section }} -->
           </span>
 
           {% if page.next %}
@@ -78,11 +64,6 @@ route: post
               <span>Previous article</span>
             </a>
           {% endif %}
-
-          <!-- <a class="breadcrumb-toc" href="javascript:void(0)">
-            <i class="fa fa-list-ol"></i>
-            <span>Go to tablr of contents</span>
-          </a> -->
         </header>
       </div>
 

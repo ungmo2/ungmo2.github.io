@@ -89,6 +89,11 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
 
+    @include mobile {
+      // You shouldn't use background-attachment: fixed; on mobile browsers, it's buggy and the repaint is too costly.
+      background-attachment: scroll;
+    }
+
     .hello {
       width: 100%;
       font-family: 'Montserrat', sans-serif;

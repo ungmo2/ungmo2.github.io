@@ -441,10 +441,15 @@
 
   table {
     font-size: .9rem;
-    width: 100%;
     background: #fafafa;
-    // margin: 30px -30px;
+    width: 100%;
     overflow: auto;
+
+    // mobile에서 테이블이 컨테이너 밖으로 삐져나오는 문제
+    @include mobile {
+      table-layout: fixed;
+      word-break:break-all;
+    }
 
     th,
     td {

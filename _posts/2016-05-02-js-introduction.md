@@ -40,7 +40,7 @@ The rank of top languages on Github.com over time
 
 * Javascript는 Interpreter language이기 때문에 compile이 필요없어 HTML파일 안에 직접 기술이 가능하다.
 
-* ECMAScript Version <sup id="a1">[`[1]`](#f1)</sup>
+* ECMAScript Version <sup id="a1">[[1]](#f1)</sup>
   * ECMAScript 3
   : [ECMA-262 3rd edition](http://www.ecma-international.org/publications/files/ECMA-ST-ARCH/ECMA-262,%203rd%20edition,%20December%201999.pdf) (1999.12)
   가장 범용적으로 지원되는 버전이다.
@@ -49,7 +49,7 @@ The rank of top languages on Github.com over time
   HTML5와 함께 출현한 표준안이다. 인터넷 익스플로러 9이상이나 그 외 브라우저에서만 작동한다.
   * ECMAScript 6
   : [ECMA-262 6th edition](http://www.ecma-international.org/ecma-262/6.0/ECMA-262.pdf.) (2015.06)
-  Symbol type, let keyword, module system, Arrow Function, class 등이 추가되었다. <sup id="a2">[`[2]`](#f2)</sup>
+  Symbol type, let keyword, module system, Arrow Function, class 등이 추가되었다. <sup id="a2">[[2]](#f2)</sup>
 
 ***
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: HTML5 Tag - Forms
-subtitle: 인터랙티브한 웹페이지를 만드는 태그
+subtitle: 사용자와의 커뮤니케이션을 위한 태그
 category: html
 section: html
 ---

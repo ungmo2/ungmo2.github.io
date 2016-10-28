@@ -222,18 +222,18 @@ section: html
 
 # Reference
 
-* [HTML elements: ordered list](https://www.w3.org/TR/html-markup/ol.html)
+* [HTML elements: ordered list](https://www.w3.org/TR/html-markup/ol)
 
-* [HTML elements: unordered list](https://www.w3.org/TR/html-markup/ul.html)
+* [HTML elements: unordered list](https://www.w3.org/TR/html-markup/ul)
 
-* [HTML elements: list item](https://www.w3.org/TR/html-markup/li.html)
+* [HTML elements: list item](https://www.w3.org/TR/html-markup/li)
 
-* [HTML elements: list item](https://www.w3.org/TR/html-markup/li.html)
+* [HTML elements: list item](https://www.w3.org/TR/html-markup/li)
 
-* [HTML elements: table](https://www.w3.org/TR/html-markup/table.html)
+* [HTML elements: table](https://www.w3.org/TR/html-markup/table)
 
-* [HTML elements: table](https://www.w3.org/TR/html-markup/table.html)
+* [HTML elements: table](https://www.w3.org/TR/html-markup/table)
 
-* [HTML elements: table row](https://www.w3.org/TR/html-markup/tr.html)
+* [HTML elements: table row](https://www.w3.org/TR/html-markup/tr)
 
-* [HTML elements: table cell](https://www.w3.org/TR/html-markup/td.html)
+* [HTML elements: table cell](https://www.w3.org/TR/html-markup/td)

@@ -11,7 +11,7 @@ section: javascript
 
 # 1. 클로저(closure)의 개념
 
-클로저(closure)는 자바스크립트에서 중요한 개념 중 하나로 자바스크립트에 관심을 가지고 있다면 한번쯤은 들어보았을 내용이다. [execution context](./js-execution-context.html)에 대한 사전 지식이 있으면 이해하기 어렵지 않은 개념이다. 클로저는 자바스크립트 고유의 개념이 아니라 함수를 일급 객체로 취급하는 함수형 언어(Functional language: Python, Haskell, Erlang, Perl, D, R...)에서 사용되는 중요한 특성이다.
+클로저(closure)는 자바스크립트에서 중요한 개념 중 하나로 자바스크립트에 관심을 가지고 있다면 한번쯤은 들어보았을 내용이다. [execution context](./js-execution-context)에 대한 사전 지식이 있으면 이해하기 어렵지 않은 개념이다. 클로저는 자바스크립트 고유의 개념이 아니라 함수를 일급 객체로 취급하는 함수형 언어(Functional language: Python, Haskell, Erlang, Perl, D, R...)에서 사용되는 중요한 특성이다.
 
 클로저는 내부함수를 위한 외부함수의 지역변수가 외부함수에 의해 내부함수가 반환된 이후에도 life-cycle이 유지되는 것을 의미한다.
 
@@ -50,7 +50,7 @@ inner();
 
 클로저에 의해 참조되는 외부함수의 변수 즉 outerFunc 함수의 변수 x를 <strong>자유변수(Free variable)</strong>라고 부른다. 클로저라는 이름은 자유변수에 함수가 닫혀있다(closed)라는 의미로 의역하면 자유변수에 엮여있는 함수라는 뜻이다.
 
-[실행 컨텍스트](./js-execution-context.html)의 관점에 설명하면, 내부함수가 유효한 상태에서 외부함수가 종료하여 외부함수의 실행 컨텍스트가 반환되어도, 외부함수 실행 컨텍스트 내의 <strong>Activation object</strong>(변수, 함수정의 등의 정보를 가지고 있다)는 유효하여 내부함수가 <strong>Scope-chain</strong>을 통해 참조할 수 있는 것을 의미한다.
+[실행 컨텍스트](./js-execution-context)의 관점에 설명하면, 내부함수가 유효한 상태에서 외부함수가 종료하여 외부함수의 실행 컨텍스트가 반환되어도, 외부함수 실행 컨텍스트 내의 <strong>Activation object</strong>(변수, 함수정의 등의 정보를 가지고 있다)는 유효하여 내부함수가 <strong>Scope-chain</strong>을 통해 참조할 수 있는 것을 의미한다.
 
 따라서 외부함수가 이미 반환되었어도 외부함수 내의 변수는 이를 필요로 하는 내부함수가 하나 이상 존재하는 경우 계속 유지된다. 이때 내부함수가 외부함수에 있는 변수의 복사본이 아니라 실제 변수에 접근한다는 것에 주의하여야 한다.
 

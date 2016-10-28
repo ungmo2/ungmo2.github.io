@@ -15,7 +15,7 @@ section: javascript
 
 Java, C++과 같은 객체지향 프로그래밍 언어는 클래스를 정의하고 이를 통해 객체(인스턴스)를 생성한다. 하지만 자바스크립트는 클래스 없이도 (ECMAScript 6에서 클래스가 추가되었다) 객체를 생성할 수 있다.
 
-[Javascript Object](./js-object.html) 참고
+[Javascript Object](./js-object) 참고
 
 자바스크립트의 모든 객체는 자신의 부모 역할을 하는 객체와 연결되어 있다. 그리고 이것은 마치 객체 지향의 상속 개념과 같이 부모 객체의 프로퍼티 또는 메서드를 상속받아 사용할 수 있게 한다. 이러한 부모 객체를 <strong>Prototype(프로토타입) 객체</strong> 또는 줄여서 Prototype(프로토타입)이라 한다.
 
@@ -120,7 +120,7 @@ console.log(Object.prototype.hasOwnProperty('hasOwnProperty')); // true
 
 ## 3.1 객체 리터럴 방식으로 생성된 객체의 프로토타입 체인
 
-[객체 생성 방법](./js-object.html#section)은 3가지가 있다.
+[객체 생성 방법](./js-object#section)은 3가지가 있다.
 
 - 객체 리터럴  
 - 생성자 함수  
@@ -156,7 +156,7 @@ console.log(Function.prototype.__proto__ === Object.prototype); // ④ true
 
 생성자 함수로 객체를 생성하기 위해서는 우선 생성자 함수를 정의하여야 한다.
 
-[함수를 정의하는 방식](./js-function.html#section)은 3가지가 있다.
+[함수를 정의하는 방식](./js-function#section)은 3가지가 있다.
 
 - 함수선언식(Function declaration)
 - 함수표현식(Function expression)
@@ -261,7 +261,7 @@ console.dir(String.prototype);
 
 앞서 살펴본 바와 같이 모든 객체는 프로토타입 체인에 의해 Object.prototype 객체의 메서드를 사용할 수 있었다. Object.prototype 객체는 프로토타입 체인의 종점으로 모든 객체가 사용할 수 있는 메서드를 갖는다.
 
-이후 살펴보게 될 [Built-in object(내장 객체)](./js-built-in-object.html)의 [Global objects (Standard Built-in Objects)](./js-standard-built-in-objects.html#standard-built-in-objects-global-objects)인 String, Number, Array 객체 등이 가지고 있는 표준 메서드는 프로토타입 객체인 String.prototype, Number.prototype, Array.prototype 등에 정의되어 있다. 이들 프로토타입 객체 또한 Object.prototype를 프로토타입 체인에 의해 자신의 프로토타입 객체로 연결한다.
+이후 살펴보게 될 [Built-in object(내장 객체)](./js-built-in-object)의 [Global objects (Standard Built-in Objects)](./js-standard-built-in-objects#standard-built-in-objects-global-objects)인 String, Number, Array 객체 등이 가지고 있는 표준 메서드는 프로토타입 객체인 String.prototype, Number.prototype, Array.prototype 등에 정의되어 있다. 이들 프로토타입 객체 또한 Object.prototype를 프로토타입 체인에 의해 자신의 프로토타입 객체로 연결한다.
 
 자바스크립트는 표준 내장 객체의 프로토타입 객체에 개발자가 정의한 메서드의 추가를 허용한다.
 

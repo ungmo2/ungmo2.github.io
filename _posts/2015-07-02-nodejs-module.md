@@ -159,7 +159,7 @@ module.exports 객체는 모듈 시스템에 의해 생성된다.
 
 exports는 module.exports에의 참조이며 module.exports의 alias이다. 즉 exports는 module.exports와 같다고 보아도 무방하다.
 
-Node.js의 [document](https://nodejs.org/dist/latest-v6.x/docs/api/modules.html#modules_exports_alias)에는 만약 exports와 module.exports의 관계가 어렵게 느껴진다면 exports를 무시하고 module.exports만을 사용하라고 되어 있다.
+Node.js의 [document](https://nodejs.org/dist/latest-v6.x/docs/api/modules#modules_exports_alias)에는 만약 exports와 module.exports의 관계가 어렵게 느껴진다면 exports를 무시하고 module.exports만을 사용하라고 되어 있다.
 
 As a guideline, if the relationship between exports and module.exports seems like magic to you, ignore exports and only use module.exports.
 {: .info}

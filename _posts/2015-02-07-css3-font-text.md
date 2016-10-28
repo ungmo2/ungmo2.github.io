@@ -390,7 +390,7 @@ html의 white space는 공백(space), 들여쓰기(tab), 줄바꿈(line break)�
 
 # 10. word-wrap 속성
 
-한 단어의 길이가 길어서 부모 영역을 벗어난 텍스트의 처리 방법을 정의한다. link 등을 표기할 때(e.g. http://poiemaweb.com/css3-font-text.html) 그 길이가 매우 길어지는데 이 속성을 사용하지 않으면 부모 영역을 넘어가게 된다.
+한 단어의 길이가 길어서 부모 영역을 벗어난 텍스트의 처리 방법을 정의한다. link 등을 표기할 때(e.g. http://poiemaweb.com/css3-font-text) 그 길이가 매우 길어지는데 이 속성을 사용하지 않으면 부모 영역을 넘어가게 된다.
 
 ```html
 <!DOCTYPE html>
@@ -412,8 +412,8 @@ html의 white space는 공백(space), 들여쓰기(tab), 줄바꿈(line break)�
   </head>
   <body>
     <h1>word-wrap</h1>
-    <div>Floccinaucinihilipilification http://poiemaweb.com/css3-font-text.html</div>
-    <div class="word-wrap">Floccinaucinihilipilification http://poiemaweb.com/css3-font-text.html</div>
+    <div>Floccinaucinihilipilification http://poiemaweb.com/css3-font-text</div>
+    <div class="word-wrap">Floccinaucinihilipilification http://poiemaweb.com/css3-font-text</div>
   </body>
 </html>
 ```
@@ -446,13 +446,13 @@ html의 white space는 공백(space), 들여쓰기(tab), 줄바꿈(line break)�
   </style>
 </head>
 <body>
-  <div>Floccinaucinihilipilification http://poiemaweb.com/css3-font-text.html</div>
+  <div>Floccinaucinihilipilification http://poiemaweb.com/css3-font-text</div>
 
   <h1>word-wrap</h1>
-  <div class="word-wrap">Floccinaucinihilipilification http://poiemaweb.com/css3-font-text.html</div>
+  <div class="word-wrap">Floccinaucinihilipilification http://poiemaweb.com/css3-font-text</div>
 
   <h1>word-break</h1>
-  <div class="word-break">Floccinaucinihilipilification http://poiemaweb.com/css3-font-text.html</div>
+  <div class="word-break">Floccinaucinihilipilification http://poiemaweb.com/css3-font-text</div>
 </body>
 </html>
 ```

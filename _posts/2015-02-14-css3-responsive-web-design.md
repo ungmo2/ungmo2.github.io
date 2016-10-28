@@ -9,7 +9,7 @@ section: css
 * TOC
 {:toc}
 
-[앞에서 살펴본 layout](./css3-layout.html) 에는 사실 몇가지 문제가 숨겨져 있다. 그 문제를 해결할 열쇠는 바로 Responsive Web Design이다.
+[앞에서 살펴본 layout](./css3-layout) 에는 사실 몇가지 문제가 숨겨져 있다. 그 문제를 해결할 열쇠는 바로 Responsive Web Design이다.
 
 먼저 어떤 문제가 있는지 알아본다. 화면폭을 좁히면 아래 그림과 같이 화면이 망가지는데 이것는 HTML 요소에 고정폭을 지정하여 가로 스크롤을 발생시키지 않으면 해결이 어렵다.
 
@@ -45,7 +45,7 @@ viewport란 웹페이지의 가시영역을 의미한다. viewport는 디바이�
 
 ![viewport](/img/viewport.png)
 
-[meta tag](./html5-tag-basic.html#meta-tag)는 브라우저 혹은 검색엔진최적화(SEO)를 위해 검색엔진에게 메타데이터를 전달하기 위해 사용된다.
+[meta tag](./html5-tag-basic#meta-tag)는 브라우저 혹은 검색엔진최적화(SEO)를 위해 검색엔진에게 메타데이터를 전달하기 위해 사용된다.
 
 viewport meta tag는 브라우저의 화면 설정과 관련된 정보를 제공한다.
 
@@ -257,7 +257,7 @@ viewport의 width 속성을 이용하여 viewport 너비에 따라 반응하는 
 
 # 2. Responsive Navigation Bar
 
-이제까지의 내용을 바탕으로 [앞서 만들어본 예제](./css3-layout.html#header--navigation-bar)를 Responsive Web Design에 맞추어 수정해 보자.
+이제까지의 내용을 바탕으로 [앞서 만들어본 예제](./css3-layout#header--navigation-bar)를 Responsive Web Design에 맞추어 수정해 보자.
 
 디바이스 해상도에 따라 반응할 수 있도록 viewport meta tag와 media query를 추가한다.
 
@@ -300,7 +300,7 @@ viewport의 width 속성을 이용하여 viewport 너비에 따라 반응하는 
 
 최대 viewport width를 480px로 한정하였다는 것은 화면 크기가 480px 이하인 디바이스(스마트폰)를 위한 정의란 의미가 된다. 위 예제 내에 정의 되는 스타일은 화면 크기가 480px 이하인 디바이스에서 웹사이트가 표시될 때 실행된다.
 
-[CSS 적용 우선 순위 (Cascading Order)](./css3-inheritance-cascading.html#cascading) 에 따라 나중에 선언된 스타일이 우선 적용된다. 따라서 Media Query는 기술 순서에 의미가 있다. 만일 스마트폰 용 스타일을 태블릿용 스타일 보다 먼저 기술하면 최종적으로 태블릿용 스타일이 적용된다. 일반적으로 Mobile-first 방식은 해상도가 작은 순서로, Non Mobile-first 방식은 해상도 큰 순서로 기술한다.
+[CSS 적용 우선 순위 (Cascading Order)](./css3-inheritance-cascading#cascading) 에 따라 나중에 선언된 스타일이 우선 적용된다. 따라서 Media Query는 기술 순서에 의미가 있다. 만일 스마트폰 용 스타일을 태블릿용 스타일 보다 먼저 기술하면 최종적으로 태블릿용 스타일이 적용된다. 일반적으로 Mobile-first 방식은 해상도가 작은 순서로, Non Mobile-first 방식은 해상도 큰 순서로 기술한다.
 
 ## 2.1 Responsive Navigation Bar - Tablet
 
@@ -364,7 +364,7 @@ viewport width가 800px 이하가 되면 header 영역을 2단(logo영역과 nav
 ![res-layout-practice-2](/img/res-layout-practice-2.png)
 {: .w-350}
 
-우측 navigation icon을 클릭하면 navigation bar가 수직 정렬되어 화면에 나타나도록 한다. 한번 더 클릭하면 화면에서 사라지도록 한다. 이때 navigation icon에 [animation](./css3-effect.html#animation) 효과를 부여한다.
+우측 navigation icon을 클릭하면 navigation bar가 수직 정렬되어 화면에 나타나도록 한다. 한번 더 클릭하면 화면에서 사라지도록 한다. 이때 navigation icon에 [animation](./css3-effect#animation) 효과를 부여한다.
 
 ![res-layout-practice-3](/img/res-layout-practice-3.png)
 {: .w-350}
@@ -425,7 +425,7 @@ navigation icon은 header 우측의 절대 위치에 배치되어야 하므로 `
 
 위 그림과 같이 navigation icon의 내부 막대 1개가 표기된다.  
 
-[가상 요소 선택자 (Pseudo-Element Selector)](./css3-selector.html#pseudo-class-selector) 를 사용하여 navigation icon의 내부 막대 앞뒤 공간에 내부 막대를 추가한다.
+[가상 요소 선택자 (Pseudo-Element Selector)](./css3-selector#pseudo-class-selector) 를 사용하여 navigation icon의 내부 막대 앞뒤 공간에 내부 막대를 추가한다.
 
 ```css
 .navicon-bar::before,
@@ -530,9 +530,9 @@ navigation icon을 클릭하면 의도하지 않게 이미지가 선택되는 �
 }
 ```
 
-navigation icon과 checkbox input tag는 스마트폰 layout 이외의 경우, 화면에 표시되어서는 않된다. 따라서 `display: none;`으로 화면에 표시되지 않도록 한다. `display: none;`은 해당 공간조차 점유하지 않지만 `visibility: hidden;`을 사용하면 해당 공간은 남아있고 표시만 되지 않는다. [참고 : CSS display](./css3-display.html)
+navigation icon과 checkbox input tag는 스마트폰 layout 이외의 경우, 화면에 표시되어서는 않된다. 따라서 `display: none;`으로 화면에 표시되지 않도록 한다. `display: none;`은 해당 공간조차 점유하지 않지만 `visibility: hidden;`을 사용하면 해당 공간은 남아있고 표시만 되지 않는다. [참고 : CSS display](./css3-display)
 
-[CSS 적용 우선 순위 (Cascading Order)](./css3-inheritance-cascading.html#cascading) 를 고려하여 가장 마지막에 정의하는 것이 안전하다. 일반적으로 media query를 가장 마지막에 정의하므로 media query 정의부 직전에 위치시킨다.
+[CSS 적용 우선 순위 (Cascading Order)](./css3-inheritance-cascading#cascading) 를 고려하여 가장 마지막에 정의하는 것이 안전하다. 일반적으로 media query를 가장 마지막에 정의하므로 media query 정의부 직전에 위치시킨다.
 
 ```css
 .nav-toggle {

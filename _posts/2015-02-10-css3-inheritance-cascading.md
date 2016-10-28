@@ -67,7 +67,7 @@ section: css
 
 color는 상속되는 속성으로 자식 요소는 물론 자손 요소까지 적용된다. 하지만 button처럼 상속 받지 않는 요소도 존재한다.
 
-border, padding은 상속되지 않는 요소로 하위 요소에 적용되지 않는다. [Full property table](https://www.w3.org/TR/CSS21/propidx.html)의 Inherited?가 yes인 속성만 상속된다.
+border, padding은 상속되지 않는 요소로 하위 요소에 적용되지 않는다. [Full property table](https://www.w3.org/TR/CSS21/propidx)의 Inherited?가 yes인 속성만 상속된다.
 
 ![css inheritance](/img/css_inheritance.png)
 

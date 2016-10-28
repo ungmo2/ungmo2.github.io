@@ -19,7 +19,7 @@ Node.js는 [Chrome V8 JavaScript 엔진](https://developers.google.com/v8/)으�
 
 Non-blocking I/O는 비동기 처리를 실시하므로 데이터베이스 처리와 웹페이지 표시를 별도 진행하여 스트레스없이 웹페이지 표시가 기능하다.
 
-Node.js에는 [Socket.io](./nodejs-socketio.html)라는 실시간 통신을 실현하는 라이브러리를 사용할 수 있어서 대량의 데이터 처리와 실시간 통신을 구현할 수 기능을 모두 갖추고 있다.
+Node.js에는 [Socket.io](./nodejs-socketio)라는 실시간 통신을 실현하는 라이브러리를 사용할 수 있어서 대량의 데이터 처리와 실시간 통신을 구현할 수 기능을 모두 갖추고 있다.
 
 # Install
 

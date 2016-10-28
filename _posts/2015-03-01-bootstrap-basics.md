@@ -208,7 +208,7 @@ javascript 파일을 2개 포함시켰다. 하나는 bootstrap의 자바스크�
 
 # 4. Media Query
 
-Bootstrap은 Mobile-first 방식을 기본 지원하므로 [Media query](./css3-responsive-web-design.html#media-)에 포함되지 않은 모든 정의는 768px 미만 디바이스를 위한 것이다.
+Bootstrap은 Mobile-first 방식을 기본 지원하므로 [Media query](./css3-responsive-web-design#media-)에 포함되지 않은 모든 정의는 768px 미만 디바이스를 위한 것이다.
 
 기본적으로 4개의 breakpoint로 구간을 나눈다.
 
@@ -243,13 +243,13 @@ Bootstrap은 Mobile-first 방식을 기본 지원하므로 [Media query](./css3-
 
 Sass에 대한 자세한 내용은 아래의 포스트를 참조하기 바란다.
 
-- [Sass Basics](./sass-basics.html)
+- [Sass Basics](./sass-basics)
 
-- [Sass SassScript](./sass-script.html)
+- [Sass SassScript](./sass-script)
 
-- [Sass Built-in Function](./sass-built-in-function.html)
+- [Sass Built-in Function](./sass-built-in-function)
 
-- [Sass CSS Extensions](sass-css-extention.html)
+- [Sass CSS Extensions](sass-css-extention)
 
 
 # 5. Container
@@ -658,7 +658,7 @@ viewport 너비가 1200px 이상일 때 적용된다. 1200px 미만일 때는 me
 }
 ```
 
-viewport 너비가 768px 이상인 경우 요소에 지정된 두개의 클래스는 경합하게 된다. 이때 **[우선순위](./css3-inheritance-cascading.html#cascading)는 CSS 파일 내에서 후위에 지정된 css가 더 높다.** 따라서 CSS 파일(bootstrap.css) 내에서 .col-xs-보다 후위에 정의된 col-sm-6가 적용되게 된다.
+viewport 너비가 768px 이상인 경우 요소에 지정된 두개의 클래스는 경합하게 된다. 이때 **[우선순위](./css3-inheritance-cascading#cascading)는 CSS 파일 내에서 후위에 지정된 css가 더 높다.** 따라서 CSS 파일(bootstrap.css) 내에서 .col-xs-보다 후위에 정의된 col-sm-6가 적용되게 된다.
 
 ```html
 <!DOCTYPE html>

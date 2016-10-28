@@ -17,7 +17,7 @@ section: jquery
 
 - 어떠한 브라우저에서도 동일하게 동작한다. 이것은 브라우저 호환성을 고려하여 대체 코드를 작성할 필요가 없다는 것을 의미한다.
 
-- CSS 스타일의 selector를 이용하여 요소를 선택할 수 있다. 이것은 [자바스크립트 DOM 쿼리](./js-dom.html#dom-query--traversing--)보다 쉽고 강력하며 유연하다.
+- CSS 스타일의 selector를 이용하여 요소를 선택할 수 있다. 이것은 [자바스크립트 DOM 쿼리](./js-dom#dom-query--traversing--)보다 쉽고 강력하며 유연하다.
 
 - 자바스크립트 DOM query를 사용하여 여러개의 요소를 선택하기 위해서는 반복문을 사용하여야 한다. 이때 HTMLCollection이 실시간으로 Node의 상태 변경을 반영하기 때문에 반복문을 역방향으로 돌리는 등 번거로운 처리가 필요하다. jQuery는 반복문 없이 해당하는 모든 요소를 선택/조작할 수 있다. 이를 묵시적 반복(implicit iteration)이라 한다.
 
@@ -40,7 +40,7 @@ section: jquery
 
 요소의 내용을 변경하기 위해서는 우선 대상 요소를 선택(Select)하여야 한다.
 
-모든 브라우저는 HTML 문서를 로드할 때 [DOM](./js-dom.html)을 생성한다. DOM은 HTML과 XML 문서를 위한 API로 웹페이지의 각 요소에 접근하고 수정하는 방법을 제시한다.
+모든 브라우저는 HTML 문서를 로드할 때 [DOM](./js-dom)을 생성한다. DOM은 HTML과 XML 문서를 위한 API로 웹페이지의 각 요소에 접근하고 수정하는 방법을 제시한다.
 
 DOM은 객체의 트리로 구성되는 <strong>DOM tree</strong>를 생성하고 이것을 통하여 HTML 문서 내의 각 요소에 접근 / 수정할 수 있는 메서드와 속성들을 제공한다. DOM이 수정되면 브라우저를 통해 사용자가 보게 될 Contents 또한 변경된다.
 
@@ -144,13 +144,13 @@ $(function() {
 
 # 5. Selection
 
-jQuery는 [CSS 스타일의 Selector](./css3-selector.html)를 이용하여 요소를 선택할 수 있다. 이것은 [자바스크립트 DOM 쿼리](./js-dom.html#dom-query--traversing--)보다 쉽고 강력하며 유연하다.
+jQuery는 [CSS 스타일의 Selector](./css3-selector)를 이용하여 요소를 선택할 수 있다. 이것은 [자바스크립트 DOM 쿼리](./js-dom#dom-query--traversing--)보다 쉽고 강력하며 유연하다.
 
 ## 5.1 태그 / ID / Class 선택자
 
 자바스크립트 DOM query를 사용하여 여러개의 요소를 선택하기 위해서는 반복문을 사용하여야 한다.
 
-이때 [HTMLCollection](./js-dom.html#dom-query-1)이 실시간으로 Node의 상태 변경을 반영하기 때문에 반복문을 역방향으로 돌리는 등 번거로운 처리가 필요하다. jQuery는 반복문 없이 해당하는 모든 요소를 선택/조작할 수 있다.
+이때 [HTMLCollection](./js-dom#dom-query-1)이 실시간으로 Node의 상태 변경을 반영하기 때문에 반복문을 역방향으로 돌리는 등 번거로운 처리가 필요하다. jQuery는 반복문 없이 해당하는 모든 요소를 선택/조작할 수 있다.
 
 이를 <strong>묵시적 반복(implicit iteration)</strong>이라 한다.
 

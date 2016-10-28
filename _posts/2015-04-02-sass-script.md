@@ -55,7 +55,7 @@ $foundation-palette: (
 ```
 
 
-Data type은 [Built-in function unit](./sass-built-in-function.html#data-unit-)으로 취득할 수 있다.
+Data type은 [Built-in function unit](./sass-built-in-function#data-unit-)으로 취득할 수 있다.
 
 # 2. 변수
 
@@ -302,11 +302,11 @@ p:before {
 
 ## 4.5 리스트 연산자
 
-리스트를 위한 별도의 연산자는 제공되지 않지만 [리스트 함수](http://www.sass-lang.com/documentation/Sass/Script/Functions.html#list-functions)를 사용하여 필요한 처리를 수행할 수 있다.
+리스트를 위한 별도의 연산자는 제공되지 않지만 [리스트 함수](http://www.sass-lang.com/documentation/Sass/Script/Functions#list-functions)를 사용하여 필요한 처리를 수행할 수 있다.
 
 # 5. 함수
 
-[Sass Built-in Functions](./sass-built-in-function.html)를 참조하기 바란다.
+[Sass Built-in Functions](./sass-built-in-function)를 참조하기 바란다.
 
 # 6. Interpolation: #{}
 

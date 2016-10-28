@@ -30,9 +30,9 @@ Node.js(express)와 MySQL 연동을 위한 모듈 중 대표적인 [mysql](https
 
 Express에 대한 자세한 내용은 아래의 포스트를 참조하기 바란다.
 
-- [Express Basics](./express-basics.html)  
-- [Express Error Handling](./express-error-handling.html)  
-- [Express Session Handling](./express-session-handling.html)
+- [Express Basics](./express-basics)  
+- [Express Error Handling](./express-error-handling)  
+- [Express Session Handling](./express-session-handling)
 
 적당한 위치에 애플리케이션 디렉터리를 생성하고 `npm init`를 실행한다. 일단 기본 설정(yes option)으로 package.json을 생성한다.
 
@@ -106,7 +106,7 @@ SELECT * FROM Persons;
 
 index.js를 아래와 같이 변경한다.
 
-`createConnection` 메서드의 인자로 전달되는 객체에 자신의 데이터베이스 정보(유저명과 패스워드 등)를 입력하여야 한다. 설정 정보의 관리에 대해서는 [Node.js에서 비밀 설정 정보(Secrets) 관리](./nodejs-kepping-secrets.html)를 참조하기 바란다.
+`createConnection` 메서드의 인자로 전달되는 객체에 자신의 데이터베이스 정보(유저명과 패스워드 등)를 입력하여야 한다. 설정 정보의 관리에 대해서는 [Node.js에서 비밀 설정 정보(Secrets) 관리](./nodejs-kepping-secrets)를 참조하기 바란다.
 
 ```javascript
 var mysql      = require('mysql');
@@ -140,7 +140,7 @@ The solution is:  [ RowDataPacket { id: 1, name: 'John Doe', age: 20 } ]
 
 클라이언트 요청에 대응하는 route를 설정해보자.
 
-- routing에 대한 자세한 내용은 [Express routing](./express-basics.html#routing)을 참조하기 바란다.
+- routing에 대한 자세한 내용은 [Express routing](./express-basics#routing)을 참조하기 바란다.
 
 index.js를 아래와 같이 변경한다.
 
@@ -176,7 +176,7 @@ app.listen(app.get('port'), function () {
 
 데이터베이스 설정 정보를 아래와 같이 작성한 후 루트 디렉터리 아래 config 디렉터리에 저장한다.
 
-- module에 대한 자세한 내용은 [Node.js - module](./nodejs-module.html)을 참조하기 바란다.
+- module에 대한 자세한 내용은 [Node.js - module](./nodejs-module)을 참조하기 바란다.
 
 ```javascript
 // config/database.js
@@ -201,8 +201,8 @@ localhost:3000/persons에 접속하여 결과를 확인한다.
 
 # Reference
 
-* [Node.js - module](./nodejs-module.html)  
-* [Express Basics](./express-basics.html)  
-* [Express Error Handling](./express-error-handling.html)  
-* [Express Session Handling](./express-session-handling.html)
-* [Node.js에서 비밀 설정 정보(Secrets) 관리](./nodejs-kepping-secrets.html)  
+* [Node.js - module](./nodejs-module)  
+* [Express Basics](./express-basics)  
+* [Express Error Handling](./express-error-handling)  
+* [Express Session Handling](./express-session-handling)
+* [Node.js에서 비밀 설정 정보(Secrets) 관리](./nodejs-kepping-secrets)  

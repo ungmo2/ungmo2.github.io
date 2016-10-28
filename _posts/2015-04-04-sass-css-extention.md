@@ -38,7 +38,7 @@ CSS는 자식요소를 선택하여 선언하는 경우 부모요소를 기술�
 }
 ```
 
-부모요소의 참조가 필요한 경우 `&`를 사용한다. 예를들어 :hover 또는 ::before 등의 [가상 클래스 선택자 (Pseudo-Class Selector)](./css3-selector.html#pseudo-class-selector)를 지정하는 경우 부모요소의 참조가 필요하다.
+부모요소의 참조가 필요한 경우 `&`를 사용한다. 예를들어 :hover 또는 ::before 등의 [가상 클래스 선택자 (Pseudo-Class Selector)](./css3-selector#pseudo-class-selector)를 지정하는 경우 부모요소의 참조가 필요하다.
 
 ```scss
 a.myAnchor {
@@ -222,7 +222,7 @@ input-red {
 
 Sass는 Javascript 같은 프로그래밍 언어와 같이 제어문(Control flow statement)을 사용할 수 있는 기능을 제공한다.
 
-- [Javascript Control Flow](./js-control-flow.html)
+- [Javascript Control Flow](./js-control-flow)
 
 ## 3.1 if()
 

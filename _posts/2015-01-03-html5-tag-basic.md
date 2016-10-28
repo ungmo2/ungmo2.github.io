@@ -215,6 +215,6 @@ HTML 문서에는 오직 하나의 body 요소만이 존재할 수 있다.
 
 * [HTML 요소 레퍼런스](https://developer.mozilla.org/ko/docs/Web/HTML/Element)
 
-* [HTML elements](https://www.w3.org/TR/html-markup/elements.html)
+* [HTML elements](https://www.w3.org/TR/html-markup/elements)
 
-* [HTML attributes](https://www.w3.org/TR/html-markup/global-attributes.html#common.attrs.core)
+* [HTML attributes](https://www.w3.org/TR/html-markup/global-attributes#common.attrs.core)

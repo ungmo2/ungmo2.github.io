@@ -101,4 +101,4 @@ target 속성은 링크를 클릭했을 때 윈도우를 어떻게 오픈할 지
 
 # Reference
 
-* [HTML elements: a – hyperlink](https://www.w3.org/TR/html-markup/a.html#a)
+* [HTML elements: a – hyperlink](https://www.w3.org/TR/html-markup/a#a)

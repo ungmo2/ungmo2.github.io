@@ -19,7 +19,7 @@ section: css
 
 브라우저는 박스 모델의 크기(dimension)와 속성(색, 배경, 모양 등), 위치를 근거로 하여 렌더링을 실시하게 된다.
 
-웹디자인은 컨텐츠를 담을 [박스 모델을 정의](./css3-display.html#display-)하고 CSS 속성을 통해 스타일([배경](./css3-background.html), [폰트와 텍스트](./css3-font-text.html) 등)과 [위치](./css3-position.html) 및 [정렬](./css3-float.html)을 부여하는 것이라고 할 수 있다.
+웹디자인은 컨텐츠를 담을 [박스 모델을 정의](./css3-display#display-)하고 CSS 속성을 통해 스타일([배경](./css3-background), [폰트와 텍스트](./css3-font-text) 등)과 [위치](./css3-position) 및 [정렬](./css3-float)을 부여하는 것이라고 할 수 있다.
 
 | 명칭     | 설명
 |:--------|:-----------------------------------------------------------
@@ -71,7 +71,7 @@ width와 height 속성은 요소의 내용(content)가 위치하는 영역의 �
 
 - 전체 높이 = height + top padding + bottom padding + top border + bottom border + top margin + bottom margin
 
-width / height 속성을 비롯한 모든 박스모델 관련 속성(margin, padding, border, box-sizing 등)은 [상속](./css3-inheritance-cascading.html)되지 않는다.
+width / height 속성을 비롯한 모든 박스모델 관련 속성(margin, padding, border, box-sizing 등)은 [상속](./css3-inheritance-cascading)되지 않는다.
 {: .info}
 
 # 2. margin / padding 속성
@@ -155,7 +155,7 @@ margin / padding 속성은 content의 4개 방향(top, right, left, bottom)에 �
 
 margin 속성에 `auto` 키워드를 설정하면 해당 요소를 브라우저 중앙에 위치 시킬 수 있다.
 
-보다 자세한 중앙 정렬 방법에 대해서는 [Horizontal & Vertical Centering](./centering.html)을 참조하기 바란다.
+보다 자세한 중앙 정렬 방법에 대해서는 [Horizontal & Vertical Centering](./centering)을 참조하기 바란다.
 
 ```html
 <!DOCTYPE html>

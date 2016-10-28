@@ -15,7 +15,7 @@ section: html
 
 공간을 분할할 수 있는 태그는 `div`, `span`, `table` 등이 있는데, 과거에는 table 태그를 사용하여 레이아웃을 구성하기도 하였으나 모던 웹에서는 주로 `div`를 사용하여 레이아웃을 구성한다.
 
-그런데 `div` 태그는 [의미론적으로](./html5-semantic-Web.html) 어떠한 의미도 가지고 있지 않기 때문에 아래와 같이 HTML5에서 새롭게 추가된 시맨틱 태그를 사용하는 것이 더 나은 방법이다.
+그런데 `div` 태그는 [의미론적으로](./html5-semantic-Web) 어떠한 의미도 가지고 있지 않기 때문에 아래와 같이 HTML5에서 새롭게 추가된 시맨틱 태그를 사용하는 것이 더 나은 방법이다.
 
 | tag      | Description |
 |:-------- |:------------|
@@ -35,4 +35,4 @@ HTML Semantic element
 
 `div`와 `span`의 차이는 `block` 레벨 요소와 `inline` 레벨 요소를 이해하여야 한다.
 
-이에 대한 자세한 내용은 [display 속성](./css3-display.html#display-)을 참조하기 바란다.
+이에 대한 자세한 내용은 [display 속성](./css3-display#display-)을 참조하기 바란다.

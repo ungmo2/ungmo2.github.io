@@ -125,8 +125,8 @@ audio 태그와 마찬가지로 파일 형식의 차이 문제가 발생할 수 
 
 # Reference
 
-* [HTML elements: image](https://www.w3.org/TR/html-markup/img.html)
+* [HTML elements: image](https://www.w3.org/TR/html-markup/img)
 
-* [HTML elements: audio](https://www.w3.org/TR/html-markup/audio.html)
+* [HTML elements: audio](https://www.w3.org/TR/html-markup/audio)
 
-* [HTML elements: video](https://www.w3.org/TR/html-markup/video.html)
+* [HTML elements: video](https://www.w3.org/TR/html-markup/video)

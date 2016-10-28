@@ -26,7 +26,7 @@ Standard Built-in Objects(표준 빌트인 객체)를 Global Objects로 표현�
   this === global // true
   ```
 
-- 전역 객체는 [실행 컨텍스트](./js-execution-context.html)에 컨트롤이 들어가기 이전에 생성이 되며 constructor가 없기 때문에 new 연산자를 이용하여 새롭게 생성할 수 없다. 즉, 개발자가 전역 객체를 생성하는 것은 불가능하다.
+- 전역 객체는 [실행 컨텍스트](./js-execution-context)에 컨트롤이 들어가기 이전에 생성이 되며 constructor가 없기 때문에 new 연산자를 이용하여 새롭게 생성할 수 없다. 즉, 개발자가 전역 객체를 생성하는 것은 불가능하다.
 
 - 전역 객체는 전역 스코프(Global Scope)를 갖게 된다.
 
@@ -100,7 +100,7 @@ console.log(typeof NaN);    // number
 
 ### 1.1.3 undefined
 
-변수에 값이 대입되지 않았음을 나타내는 값이다. 초기값은 [기본 자료형(primitive data type)](./js-data-type-variable.html#primitive-data-type-) `undefined`이다.
+변수에 값이 대입되지 않았음을 나타내는 값이다. 초기값은 [기본 자료형(primitive data type)](./js-data-type-variable#primitive-data-type-) `undefined`이다.
 
 ```javascript
 var foo;
@@ -295,7 +295,7 @@ Javascript는 프로그램 전체의 영역에서 공통적으로 필요한 기�
 
 ## 2.1 Object  
 
-[객체 생성자(Object constructor)](./js-object.html#object--)는 레퍼(wrapper) 객체를 생성한다. 만약 생성자 인수값이 null이거나 undefined이면 빈 객체를 반환한다.
+[객체 생성자(Object constructor)](./js-object#object--)는 레퍼(wrapper) 객체를 생성한다. 만약 생성자 인수값이 null이거나 undefined이면 빈 객체를 반환한다.
 
 ```javascript
 // 변수 o에 빈 객체를 저장한다
@@ -345,7 +345,7 @@ console.log(typeof boolObj + ': ', boolObj);
 var o = {};
 ```
 
-객체에 대한 자세한 내용은 [Javascript Object](./js-object.html)을 참조 바란다.
+객체에 대한 자세한 내용은 [Javascript Object](./js-object)을 참조 바란다.
 
 ## 2.2 Function
 
@@ -357,7 +357,7 @@ var adder = new Function('a', 'b', 'return a + b');
 adder(2, 6);  // 8
 ```
 
-함수에 대한 자세한 내용은 [Javascript Function](./js-function.html)을 참조 바란다.
+함수에 대한 자세한 내용은 [Javascript Function](./js-function)을 참조 바란다.
 
 ## 2.3 Boolean
 
@@ -385,27 +385,27 @@ if (x) { // x는 객체로서 존재한다. 따라서 참으로 간주된다.
 
 ## 2.4 Number
 
-* [Number](./js-number.html)
+* [Number](./js-number)
 
 ## 2.5 Math
 
-* [Math](./js-math.html)
+* [Math](./js-math)
 
 ## 2.6 Date
 
-* [Date](./js-date.html)
+* [Date](./js-date)
 
 ## 2.7 String
 
-* [Date](./js-string.html)
+* [Date](./js-string)
 
 ## 2.8 RegExp
 
-* [RegExp](./js-regexp.html)
+* [RegExp](./js-regexp)
 
 ## 2.9 Array
 
-* [Array](./js-array.html)
+* [Array](./js-array)
 
 ## 2.10 Error
 
@@ -450,7 +450,7 @@ console.log(num.toFixed()); // 2
 
 이는 기본자료형의 값에 대해 Standard Built-in Object의 메서드를 호출할 때, **기본자료형의 값은 연관된 객체(Wrapper 객체)로 일시 변환** 되기 때문에 가능한 것이다. 그리고 메서드 호출이 종료되면 객체로 변환된 기본자료형의 값은 다시 기본자료형의 값으로 복귀한다.
 
-자세한 내용은 [Prototype: 4.기본자료형(Primitive data type)의 확장](./js-prototype.html#primitive-data-type-)을 참조 바란다.
+자세한 내용은 [Prototype: 4.기본자료형(Primitive data type)의 확장](./js-prototype#primitive-data-type-)을 참조 바란다.
 
 Wrapper 객체는 String, Number, Boolean이 있다.
 

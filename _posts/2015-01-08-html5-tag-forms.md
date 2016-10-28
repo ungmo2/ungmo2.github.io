@@ -299,14 +299,14 @@ fieldset 태그는 관련된 입력 양식들을 그룹화할 때 사용한다. 
 
 # Reference
 
-* [HTML elements: form](https://www.w3.org/TR/html-markup/form.html)
+* [HTML elements: form](https://www.w3.org/TR/html-markup/form)
 
-* [HTML elements: input](https://www.w3.org/TR/html-markup/input.html)
+* [HTML elements: input](https://www.w3.org/TR/html-markup/input)
 
-* [HTML elements: select](https://www.w3.org/TR/html-markup/select.html)
+* [HTML elements: select](https://www.w3.org/TR/html-markup/select)
 
-* [HTML elements: textarea](https://www.w3.org/TR/html-markup/textarea.html)
+* [HTML elements: textarea](https://www.w3.org/TR/html-markup/textarea)
 
-* [HTML elements: button](https://www.w3.org/TR/html-markup/button.html)
+* [HTML elements: button](https://www.w3.org/TR/html-markup/button)
 
-* [HTML elements: legend](https://www.w3.org/TR/html-markup/legend.html)
+* [HTML elements: legend](https://www.w3.org/TR/html-markup/legend)

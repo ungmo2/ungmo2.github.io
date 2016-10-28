@@ -150,9 +150,9 @@ function square(number) {
 
 **자바스크립트는 선언문을 모두 호이스팅(Hoisting)한다.**
 
-호이스팅이란 var 구문이나 function 선언문을 해당 [Scope](./js-scope.html)의 맨 위로 옮기는 것을 말한다. 즉 자바스크립트는 코드를 실행하기 전에 var 구문과 function 선언문을 해당 스코프의 맨위로 옮긴다.
+호이스팅이란 var 구문이나 function 선언문을 해당 [Scope](./js-scope)의 맨 위로 옮기는 것을 말한다. 즉 자바스크립트는 코드를 실행하기 전에 var 구문과 function 선언문을 해당 스코프의 맨위로 옮긴다.
 
-함수 호이스팅이 발생하는 원인은 자바스크립트 변수 생성과 초기화가 분리되어 진행되기 때문이다. 이는 [Execution Context](./js-execution-context.html#variable-instantiation-)에서 자세히 설명한다.
+함수 호이스팅이 발생하는 원인은 자바스크립트 변수 생성과 초기화가 분리되어 진행되기 때문이다. 이는 [Execution Context](./js-execution-context#variable-instantiation-)에서 자세히 설명한다.
 
 간단히 설명하면 함수선언식으로 정의된 함수는 자바스크립트 엔진이 스크립트가 로딩되는 시점에 바로 초기화하고 이를 VO(variable object)에 저장한다. 그렇기 때문에 함수 선언의 위치와는 상관없이 소스 내 어느 곳에서든지 호출이 가능하다.
 

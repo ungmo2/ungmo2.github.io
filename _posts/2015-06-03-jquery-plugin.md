@@ -41,7 +41,7 @@ $.fn.greenify = function() {
 $("a").greenify(); // Makes all the links green.
 ```
 
-위 코드내의 [this](./js-this.html#method-invocation-pattern)는 greenify 메서드를 호출한 객체 `$("a")`에 바인딩된다. greenify 메서드를 호출한 객체는 언제나 jQuery 객체이므로 `$(this)`를 사용할 필요가 없다.
+위 코드내의 [this](./js-this#method-invocation-pattern)는 greenify 메서드를 호출한 객체 `$("a")`에 바인딩된다. greenify 메서드를 호출한 객체는 언제나 jQuery 객체이므로 `$(this)`를 사용할 필요가 없다.
 
 주의할 것은 each(), append() 메서드 등의 callback 함수 내에서 사용된 this는 DOM 요소를 의미한다. 따라서 callback 함수 내에서 DOM 요소에 대해 jQuery 메서드를 사용하기 위해서는 this를 jQuery 객체화하여야 한다.
 

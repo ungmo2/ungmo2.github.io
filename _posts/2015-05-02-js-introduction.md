@@ -51,6 +51,9 @@ The rank of top languages on Github.com over time
   : [ECMA-262 6th edition](http://www.ecma-international.org/ecma-262/6.0/ECMA-262.pdf.) (2015.06)
   Symbol type, let keyword, module system, Arrow Function, class 등이 추가되었다. <sup id="a2">[[2]](#f2)</sup>
 
+![history javascript evolution es6](/img/history-javascript-evolution-es6.png)
+{: .w-650}
+
 ***
 
 <b id="f1">1.</b> [ECMAScript Version](https://developer.mozilla.org/ko/docs/Web/JavaScript/%EC%96%B8%EC%96%B4_%EB%A6%AC%EC%86%8C%EC%8A%A4) [↩](#a1)  

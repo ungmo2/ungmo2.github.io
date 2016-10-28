@@ -129,7 +129,7 @@ HTML Attribute
 | tabindex    | 사용자가 키보드로 페이지를 내비게이션 시 이동 순서를 지정한다.
 | title       | 요소에 관한 제목을 지정한다.
 
-* [Global attributes](https://www.w3.org/TR/html-markup/global-attributes.html)
+* [Global attributes](https://www.w3.org/TR/html-markup/global-attributes)
 
 # 주석 (Comments)
 

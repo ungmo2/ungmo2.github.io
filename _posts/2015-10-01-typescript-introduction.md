@@ -15,7 +15,7 @@ section: typescript
 
 JavaScript는 1995년 Brendan Eich(Nescape)이 Navigator 2를 위하여 웹페이지에 포함되는 스크립트 언어로서 개발되었으며 초창기 Javascript는 웹페이지 제작에 있어서 보조적인 기능을 수행하기 위해 <strong>한정적인 용도</strong>로 주로 사용되었다. 이 시기에 대부분 로직은 주로 웹서버에서 실행되었고 브라우저(클라이언트)는 서버로 부터 전달받은 HTML과 CSS를 렌더링하는 수준이었다.
 
-[HTML5](./html5-syntax.html)이 등장하기 이전까지 웹 애플리케이션은 Flash, Silverlight, ActiveX 등 <strong>Plug-ins</strong>에 의존하여 인터랙티브한 웹페이지를 구축해왔다.
+[HTML5](./html5-syntax)이 등장하기 이전까지 웹 애플리케이션은 Flash, Silverlight, ActiveX 등 <strong>Plug-ins</strong>에 의존하여 인터랙티브한 웹페이지를 구축해왔다.
 
 HTML5의 등장은 Plug-ins에 의존하는 기존의 구축 방식을 JavaScript로 대체시켰다. 이에 따라 과거 서버측이 담당하던 업무의 많은 부분이 클라이언트측으로 이동하게 하였고 JavaScript는 웹의 Assembly 언어로 불려질만큼 중요한 언어로 그 위상이 높아지게 되었다.
 
@@ -27,15 +27,15 @@ JavaScript is the Assembly Language of the Web.
 
 또한 JavaScript는 다른 C-family 언어와는 다른 특성을 가지고 있다.
 
-- [Prototype-based Object Oriented Language](js-prototype.html)  
-- [Scope](./js-scope.html)와 [this](./js-this.html)  
-- [동적 타입(dynamic typed) 언어 혹은 느슨한 타입(loosely typed) 언어](./js-data-type-variable.html)
+- [Prototype-based Object Oriented Language](js-prototype)  
+- [Scope](./js-scope)와 [this](./js-this)  
+- [동적 타입(dynamic typed) 언어 혹은 느슨한 타입(loosely typed) 언어](./js-data-type-variable)
 
 이와 같은 특성은 Class 기반 객체지향 언어(Java, C++, C#, Python, PHP, Ruby, Object-C)에 익숙한 개발자를 혼란스럽게 하며 코드가 복잡해질 수 있고 디버그와 테스트 공수가 증가하는 등의 문제를 야기시킬 수 있어 특히 대규모 개발은 주의하여야 한다.
 
 이와 같은 JavaScript의 태생적 문제를 극복하기 위한 노력의 일환으로 [CoffeeScript](http://coffeescript.org/), [Dart](https://www.dartlang.org/), [Haxe](https://haxe.org/)와 같은 <strong>AltJS</strong>(JavaScript의 대체언어)이 등장하였다.
 
-TypeScript 또한 AltJS의 하나로써 <strong>JavaScript(ES5)의 Superset(상위확장)</strong>이다. TypeScript 컴파일러(tsc)가 JavaScript를 생성하며 ECMAScript 2015(ES6)의 정적 타이핑, 클래스, 모듈 등과 ES7의 Decorators 등을 지원한다.
+TypeScript 또한 AltJS의 하나로써 <strong>JavaScript(ES5)의 Superset(상위확장)</strong>이다. TypeScript 컴파일러(tsc)가 JavaScript를 생성하며 ES6(ECMAScript 2015)의 정적 타이핑, 클래스, 모듈 등과 ES7의 Decorators 등을 지원한다.
 
 ![typescript superset](/img/typescript-superset.png)
 {: .w-300}
@@ -56,7 +56,7 @@ TypeScript를 JavaScript의 [Syntactic sugar](https://en.wikipedia.org/wiki/Synt
 
 ## 2.1 Node.js 설치
 
-- [Installing Node.js](./nodejs-basics.html#install)
+- [Installing Node.js](./nodejs-basics#install)
 
 ## 2.2 TypeScript 설치
 
@@ -141,6 +141,10 @@ Atom editor에서 TypeScript plugin을 설치한다. 다음과 같이 터미널(
 ```bash
 $ apm install atom-typescript
 ```
+
+또는 Atom > Preferences 메뉴의 Install에서 atom-typescript를 입력하여 설치할 수도 있다.
+
+![atom-typescript](/img/atom-typescript.png)
 
 프로젝트 루트에 tsconfig.json을 작성한다.
 

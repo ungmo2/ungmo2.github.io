@@ -6,6 +6,6 @@ markdown: kramdown
 kramdown:
   input: GFM
 exclude: ['images/original']
-permalink: :title.html
+permalink: :title
 sass:
   style: expanded

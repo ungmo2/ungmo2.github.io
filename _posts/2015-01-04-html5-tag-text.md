@@ -17,7 +17,7 @@ section: html
 
 Heading 태그는 제목을 지정할 때 사용하며 h1에서 h6까지의 태그가 있다. h1이 가장 중요한 제목을 의미하며 글자의 크기도 가장 크다.
 
-[시맨틱 웹](./html5-semantic-Web.html)의 의미를 살려서 제목 이외에는 사용하지 않는 것이 좋다. 검색엔진은 제목 태그를 중요한 의미로 받아들일 가능성이 크다.
+[시맨틱 웹](./html5-semantic-Web)의 의미를 살려서 제목 이외에는 사용하지 않는 것이 좋다. 검색엔진은 제목 태그를 중요한 의미로 받아들일 가능성이 크다.
 
 ```html
 <!DOCTYPE html>
@@ -339,6 +339,6 @@ HTML에서는 1개 이상의 연속된 공백(space)을 삽입하여도 1개의 
 
 * [HTML 요소 레퍼런스](https://developer.mozilla.org/ko/docs/Web/HTML/Element)
 
-* [HTML elements](https://www.w3.org/TR/html-markup/elements.html)
+* [HTML elements](https://www.w3.org/TR/html-markup/elements)
 
-* [HTML attributes](https://www.w3.org/TR/html-markup/global-attributes.html#common.attrs.core)
+* [HTML attributes](https://www.w3.org/TR/html-markup/global-attributes#common.attrs.core)

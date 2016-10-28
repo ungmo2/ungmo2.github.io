@@ -30,7 +30,7 @@ Standard Built-in Objects(표준 빌트인 객체)를 <strong>Global Objects</st
 
 전역 객체(Global Object)는 모든 객체의 최상위 객체를 의미하며 일반적으로 Browser-side에서는 `window`, Server-side(Node.js)에서는 `global` 객체를 의미한다.
 
-자세한 내용은 [Javascript Standard Built-in Objects](./js-standard-built-in-objects.html)를 참조하기 바란다.
+자세한 내용은 [Javascript Standard Built-in Objects](./js-standard-built-in-objects)를 참조하기 바란다.
 
 # 2. BOM (Browser Object Model)
 
@@ -48,7 +48,7 @@ Standard Built-in Objects(표준 빌트인 객체)를 <strong>Global Objects</st
 ![DOM](/img/DOM.png)
 {: .w-400}
 
-자세한 내용은 [Javascript DOM](./js-dom.html)를 참조하기 바란다.
+자세한 내용은 [Javascript DOM](./js-dom)를 참조하기 바란다.
 
 # Reference
 

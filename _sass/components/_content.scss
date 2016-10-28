@@ -358,6 +358,17 @@
         @include label("json", $css, white);
       }
     }
+
+
+    &.language-typescript {
+      code {
+        @include label("typescript", $sass, white);
+
+        .err {
+          background-color: transparent;
+        }
+      }
+    }
   }
 
   .answer,

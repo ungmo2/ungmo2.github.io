@@ -110,6 +110,7 @@
 
       @include mobile {
         font-size: 7vw;
+        top: 42%;
       }
 
       h1 {
@@ -132,7 +133,8 @@
 
       @include mobile {
         // display: none;
-        bottom: 10px;
+        // bottom: 10px;
+        bottom: 50px;
         left: 50%;
         transform: translate(-50%, 0);
       }

@@ -83,7 +83,7 @@ TypeScript 컴파일러(tsc)는 TypeScript 파일(.ts)을 JavaScript 파일로 �
 
 컴파일을 실행해보기 위해 다음과 같은 파일을 작성한다. TypeScript의 확장자는 .ts이다.
 
-```javascript
+```typescript
 // greeter.ts
 class Greeter {
   greeting: string;

@@ -13,7 +13,6 @@
 @import "utils/functions";
 @import "utils/controls";
 
-// @import "pages/index";
 @import "pages/chapter";
 
 @import "components/base";
@@ -30,4 +29,6 @@
 @import "components/elevator";
 @import "components/pagination";
 @import "components/pygments-monokai-extended";
+// @import "components/pygments-default-extended";
+// @import "components/pygments-github-extended";
 @import "components/footer";

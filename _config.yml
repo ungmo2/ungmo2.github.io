@@ -5,7 +5,6 @@ keywords: 자바스크립트, 노드, 익스프레스, HTML5, CSS3, Saaa, Javasc
 markdown: kramdown
 kramdown:
   input: GFM
-exclude: ['images/original']
 permalink: :title
 sass:
   style: expanded

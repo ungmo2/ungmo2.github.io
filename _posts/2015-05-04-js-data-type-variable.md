@@ -208,7 +208,7 @@ console.log(x); // logs "undefined"
 console.log(y); // throws ReferenceError exception
 ```
 
-# 3. Dynamic Type (동적 타입)
+# 3. Dynamic Typing (동적 타이핑)
 
 프로그래밍은 변수를 통해 값을 저장하고 참조하며 연산자로 값을 연산, 평가하고 조건문과 반복문에 의한 흐름제어로 데이터의 흐름을 제어하고 함수로 구문의 집합을 만들며 객체, 배열 등으로 자료를 구조화하는 것이다.
 
@@ -220,7 +220,7 @@ console.log(y); // throws ReferenceError exception
 
 예를 들어 1byte로 표현할 수 있는 값의 총수는 256개(2<sup>8</sup>), 4byte로 표현할 수 있는 값의 총수는 4,294,967,296개(2<sup>32</sup>)이다.
 
-C나 Java같은 언어는 변수 선언 시 변수에 저장할 값의 종류에 따라 사전에 자료형을 지정해 주어야 한다.
+C나 Java같은 C-family 언어는 Static Typing(정적 타이핑) 언어로 변수 선언 시 변수에 저장할 값의 종류에 따라 사전에 자료형을 지정(Type annotation)하여야 한다.
 
 ```c
 int num; // 4byte 정수형
@@ -228,7 +228,7 @@ int num; // 4byte 정수형
 
 ![int num](/img/int_num.png)
 
-또한 자료형에 맞는 값을 대입(할당)하여야한다. (statically typed languages)
+또한 자료형에 맞는 값을 대입(할당)하여야한다.
 
 ```c
 int main(void) {
@@ -241,7 +241,7 @@ int main(void) {
 }
 ```
 
-Javascript는 동적 타입(dynamic typed) 언어 혹은 느슨한 타입(loosely typed) 언어이다. 이것은 변수의 data type을 미리 선언할 필요없이 값이 할당되는 과정에서 자동으로 data type이 결정될 것이라는 뜻이다. 따라서 같은 변수에 여러 data type의 값을 대입할 수 있다.
+JavaScript는 동적 타입(dynamic typed) 언어 혹은 느슨한 타입(loosely typed) 언어이다. 이것은 변수의 Type annotation이 필요없이 값이 할당되는 과정에서 자동으로 자료형이 결정(Type Inference)될 것이라는 뜻이다. 따라서 같은 변수에 여러 data type의 값을 대입할 수 있다. 이를 동적 타이핑(Dynamic Typing)이라 한다.
 
 ```javascript
 var foo;

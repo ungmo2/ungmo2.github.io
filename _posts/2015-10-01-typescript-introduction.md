@@ -23,7 +23,7 @@ JavaScript is the Assembly Language of the Web.
 - Scott Hanselman
 {: .info}
 
-대부분의 프로그래밍 언어가 좋은 점과 나쁜 점을 모두 가지고 있지만 JavaScript는 언어가 잘 정제되기 이전에 서둘러 출시된 문제와 과거 웹페이지 제작에 있어서 보조적인 기능을 수행하기 위해 한정적인 용도로 만들어진 <strong>태생적 한계</strong>로 나쁜 점이 더 많은 것이 사실이다.
+대부분의 프로그래밍 언어가 좋은 점과 나쁜 점을 모두 가지고 있다. JavaScript도 언어가 잘 정제되기 이전에 서둘러 출시된 문제와 과거 웹페이지 제작에 있어서 보조적인 기능을 수행하기 위해 한정적인 용도로 만들어진 <strong>태생적 한계</strong>로 좋은 점도, 나쁜 점도 많은 것이 사실이다.
 
 또한 JavaScript는 다른 C-family 언어와는 다른 특성을 가지고 있다.
 
@@ -35,10 +35,14 @@ JavaScript is the Assembly Language of the Web.
 
 이와 같은 JavaScript의 태생적 문제를 극복하기 위한 노력의 일환으로 [CoffeeScript](http://coffeescript.org/), [Dart](https://www.dartlang.org/), [Haxe](https://haxe.org/)와 같은 <strong>AltJS</strong>(JavaScript의 대체언어)이 등장하였다.
 
-TypeScript 또한 AltJS의 하나로써 <strong>JavaScript(ES5)의 Superset(상위확장)</strong>이다. TypeScript 컴파일러(tsc)가 JavaScript를 생성하며 ES6(ECMAScript 2015)의 정적 타이핑, 클래스, 모듈 등과 ES7의 Decorators 등을 지원한다.
+TypeScript 또한 AltJS의 하나로써 <strong>JavaScript(ES5)의 Superset(상위확장)</strong>이다. ES6(ECMAScript 2015)의 정적 타이핑, 클래스, 모듈 등과 ES7의 Decorators 등을 지원한다.
 
 ![typescript superset](/img/typescript-superset.png)
 {: .w-300}
+
+TypeScript는 ES5의 Superset이므로 기존의 JavaScript 문법 그대로 사용할 수 있으며 ES6의 새로운 기능들을 사용하기 위해 [Babel](https://babeljs.io/)과 같은 별도 Transpiler를 사용하지 않아도 ES6의 새로운 기능을 기존 브라우저에서 실행할 수 있다.
+
+이후 [ECMAScript의 새로운 기능을 지속적으로 추가할 예정](https://github.com/Microsoft/TypeScript/wiki/Roadmap)이여서 매년 upgrade될 ECMAScript의 표준을 따라갈 수 있는 좋은 수단이 될 것이다.
 
 더욱이 [AngularJS 2의 TypeScript 정식 채용](https://blogs.msdn.microsoft.com/typescript/2015/03/05/angular-2-built-on-typescript/)으로 TypeScript에 관심이 커져가고 있다.
 
@@ -75,6 +79,8 @@ $ tsc -v
 Version 2.0.6
 ```
 
+TypeScript 컴파일러(tsc)는 TypeScript 파일(.ts)을 JavaScript 파일로 트랜스파일한다.
+
 컴파일을 실행해보기 위해 다음과 같은 파일을 작성한다. TypeScript의 확장자는 .ts이다.
 
 ```javascript
@@ -100,7 +106,7 @@ console.log(greeter.greet());
 $ tsc greeter.ts
 ```
 
-컴파일 실행 결과, 같은 디렉터리에 greeter.ts가 greeter.js로 트랜스파일된다. Node.js로 트랜스파일된 greeter.js를 실행해보자.
+컴파일 실행 결과, 같은 디렉터리에 greeter.js가 생성된다. Node.js로 트랜스파일된 greeter.js를 실행해보자.
 
 ```bash
 $ node greeter

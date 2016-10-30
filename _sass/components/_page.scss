@@ -108,11 +108,19 @@
       left: 50%;
       transform: translate(-50%, -50%);
 
+      @include mobile {
+        font-size: 7vw;
+      }
+
       h1 {
         font-family: "Open Sans", Helvetica, Arial, sans-serif;
         color: #f4f1ce;
         font-size: 3vw;
         font-weight: 300;
+
+        @include mobile {
+          font-size: 4vw;
+        }
       }
     }
 

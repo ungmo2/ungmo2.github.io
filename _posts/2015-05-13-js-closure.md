@@ -134,7 +134,9 @@ add 함수가 호출될 때마다 지역변수 counter가 초기화되기 때문
   <script>
     var add = (function () {
       var counter = 0;
-      return function () {return counter += 1;}
+      return function () {
+        return counter += 1;
+      }
     })();
 
     function myFunction(){

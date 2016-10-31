@@ -40,7 +40,7 @@ TypeScript 또한 AltJS의 하나로써 <strong>JavaScript(ES5)의 Superset(상�
 ![typescript superset](/img/typescript-superset.png)
 {: .w-300}
 
-TypeScript는 ES5의 Superset이므로 기존의 JavaScript 문법 그대로 사용할 수 있으며 ES6의 새로운 기능들을 사용하기 위해 [Babel](https://babeljs.io/)과 같은 별도 Transpiler를 사용하지 않아도 ES6의 새로운 기능을 기존 브라우저에서 실행할 수 있다.
+TypeScript는 ES5의 Superset이므로 기존의 JavaScript 문법 그대로 사용할 수 있으며 ES6의 새로운 기능들을 사용하기 위해 [Babel](https://babeljs.io/)과 같은 별도 Transpiler를 사용하지 않아도 ES6의 새로운 기능을 기존의 JavaScript 엔진(현재의 브라우저 또는 Node.js)에서 실행할 수 있다.
 
 이후 [ECMAScript의 새로운 기능을 지속적으로 추가할 예정](https://github.com/Microsoft/TypeScript/wiki/Roadmap)이여서 매년 upgrade될 ECMAScript의 표준을 따라갈 수 있는 좋은 수단이 될 것이다.
 

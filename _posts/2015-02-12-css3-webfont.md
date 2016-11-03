@@ -10,9 +10,6 @@ section: css
 
 웹디자인 관점에서 폰트의 선택은 중요한 의미를 갖는다. 대부분의 정보는 텍스트와 이미지로 전달되고 아직은 텍스트가 주를 이루기 때문에 더욱 그러하다. 이전에는 웹에서 사용할 수 있는 아름다운 한글 폰트가 적어 포토샵 등으로 로컬 폰트를 사용하여 텍스트를 이미지로 만들어 사용하였다. 이것은 많은 트래픽을 유발하고 웹크롤러가 정보를 수집할 수 없어 SEO관점에서도 바람직하지 않다. 아름답고 정돈된 폰트를 사용한다면 그 자체만으로도 훌륭한 웹디자인이 가능하다.
 
-<!-- ![only-text-website](/img/only-text-website.jpg)
-{: style="max-width:550px; margin: 10px auto;"} -->
-
 ![only-text-website](/img/only-text-website2.png)
 
 typekit.com
@@ -28,7 +25,7 @@ typekit.com
 
 웹폰트를 사용하는 방법 중 가장 간단한 방법은 CDN 링크를 사용하는 것이다. 다음은 구글에서 제공하는 웹폰트를 사용하는 방법이다.
 
-[Google Font](https://www.google.com/fonts) 에서 사용하고자 하는 웹폰트를 선택한다. 한글 웹페이지에 자주 사용되는 나눔고딕은 [Google Font Early Access](https://www.google.com/fonts/earlyaccess) 에서 찾을 수 있다. 아래 구문을 CSS 파일에 추가한다.
+[Google Font](https://www.google.com/fonts) 에서 사용하고자 하는 웹폰트를 선택한다. 한글 웹페이지에 자주 사용되는 나눔고딕은 [Google Font Early Access](https://www.google.com/fonts/earlyaccess)에서 찾을 수 있다. 아래 구문을 CSS 파일에 추가한다.
 
 ```css
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
@@ -40,7 +37,7 @@ typekit.com
 
 ## 서버 폰트 로딩 방식
 
-Google Font를 사용하기 위해 CDN 링크를 사용하는 방법은 간편한 방법이지만 로딩 속도가 느린 단점이 있다. 여러개의 폰트를 사용한다면 로딩에 더욱 시간이 걸릴 것이다. 또한 CDN 링크를 제공하지 폰트는 사용할 방법이 없다. 이러한 단점을 보완한 방법이 서버 폰트 로딩 방식이다.
+Google Font를 사용하기 위해 CDN 링크를 사용하는 방법은 간편한 방법이지만 로딩 속도가 느린 단점이 있다. 여러개의 폰트를 사용한다면 로딩에 더욱 시간이 걸릴 것이다. 또한 CDN 링크를 제공하지 않는 폰트는 사용할 방법이 없다. 이러한 단점을 보완한 방법이 서버 폰트 로딩 방식이다.
 
 @font-face 규칙으로 폰트를 등록하고 font-family 속성으로 폰트를 선택하여 사용할 수 있다.
 

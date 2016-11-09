@@ -17,11 +17,11 @@ section: html
 
 - HTML5 문서는 반드시 `<!DOCTYPE html>`으로 시작하여 문서 형식(document type)을 HTML5로 지정한다.
 
-- 실제적인 HTML document은 2행부터 시작되는데 `<html>` 과 `</html>` 사이에 기술한다.
+- 실제적인 HTML document은 2행부터 시작되는데 `<html>`과 `</html>` 사이에 기술한다.
 
-- `<head>` 와 `</head>` 사이에는 document title, 외부파일의 참조, metadata의 설정 등이 위치하며 이 정보들은 브라우저에 표시되지 않는다.
+- `<head>`와 `</head>` 사이에는 document title, 외부파일의 참조, [metadata](https://ko.wikipedia.org/wiki/%EB%A9%94%ED%83%80%EB%8D%B0%EC%9D%B4%ED%84%B0)의 설정 등이 위치하며 이 정보들은 브라우저에 표시되지 않는다.
 
-- 웹브라우저에 출력되는 모든 요소는 `<body>` 과 `</body>` 사이 위치한다.
+- 웹브라우저에 출력되는 모든 요소는 `<body>`와 `</body>` 사이에 위치한다.
 
 ```html
 <!DOCTYPE html>
@@ -158,3 +158,5 @@ HTML Attribute
 * [Browser Wars](https://ko.wikipedia.org/wiki/%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80_%EC%A0%84%EC%9F%81)
 
 * [웹 호환성 문제](https://ko.wikipedia.org/wiki/%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD%EC%9D%98_%EC%9B%B9_%ED%98%B8%ED%99%98%EC%84%B1_%EB%AC%B8%EC%A0%9C)
+
+* [Global CSS Property Usage](https://developer.microsoft.com/en-us/microsoft-edge/platform/usage/)

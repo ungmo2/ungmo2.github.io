@@ -250,7 +250,7 @@ body {
 
 # 5. background-position 속성
 
-일반적으로 `background-image`는 좌상단부터 이미지를 출력한다. 이때 `background-position` 속성을 사용하면 이미지의 좌표를 지정 할 수 있다.
+일반적으로 `background-image`는 좌상단부터 이미지를 출력한다. 이때 `background-position` 속성을 사용하면 이미지의 좌표(xpos, ypos)를 지정 할 수 있다.
 
 - [MDN: background-position](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position)
 
@@ -294,7 +294,10 @@ body {
       background-position: 25% 75%;
     }
     .example7 {
-      /* <length> values */
+      /*
+        <length> values
+        xpos ypos     
+      */
       background-position: 10px 20px;
     }
     .example8 {

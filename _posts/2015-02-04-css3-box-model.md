@@ -65,13 +65,72 @@ Chrome DevTools에서 확인한 Box-model
 
 # 1. width / height 속성
 
-width와 height 속성은 요소의 내용(content)가 위치하는 영역의 너비와 높이를 의미한다. 따라서 박스 전체 크기는 다음과 같이 계산할 수 있다.
+width와 height 속성은 요소의 너비와 높이를 지정하기 위해 사용된다. 이때 지정되는 요소의 너비와 높이는 <strong>컨텐츠 영역</strong>을 대상으로 한다.
 
-- 전체 너비 = width + left padding + right padding + left border + right border + left margin + right margin
+따라서 박스 전체 크기는 다음과 같이 계산할 수 있다.
 
-- 전체 높이 = height + top padding + bottom padding + top border + bottom border + top margin + bottom margin
+전체 너비
+: width + left padding + right padding + left border + right border + left margin + right margin
 
-width / height 속성을 비롯한 모든 박스모델 관련 속성(margin, padding, border, box-sizing 등)은 [상속](./css3-inheritance-cascading)되지 않는다.
+전체 높이
+: height + top padding + bottom padding + top border + bottom border + top margin + bottom margin
+
+![](/img/box-model-calc.png)
+
+Width
+: 492px = 20px + 6px + 20px + 400px + 20px + 6px + 20px
+
+Height
+: 192px = 20px + 6px + 20px + 100px + 20px + 6px + 20px
+
+
+width와 height 속성의 초기값은 `auto`로써 이것은 브라우저가 상황에 따라 적당한 width와 height 값을 계산할 것을 의미한다.
+
+예를 들어 block 요소의 경우, width는 100%, height는 컨텐츠의 높이가 지정된다.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    div {
+      background-color: beige;
+    }
+  </style>
+</head>
+<body>
+  <div>This is a div</div>
+</body>
+</html>
+```
+
+<div class='result'></div>
+
+명시적으로 width와 height를 지정하기 위해서는 px, % 등의 [크기 단위](./css3-units#section-1)를 사용한다.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    div {
+      background-color: beige;
+      height: 100px;
+      width: 50%;
+    }
+  </style>
+</head>
+<body>
+  <div>This is a div</div>
+</body>
+</html>
+```
+
+<div class='result'></div>
+
+width와 height 속성을 비롯한 모든 박스모델 관련 속성(margin, padding, border, box-sizing 등)은 [상속](./css3-inheritance-cascading)되지 않는다.
 {: .info}
 
 # 2. margin / padding 속성
@@ -201,7 +260,7 @@ margin 속성에 `auto` 키워드를 설정하면 해당 요소를 브라우저 
 
 `max-width` 속성을 사용하면 브라우저 너비가 요소의 너비보다 좁아질 때 자동으로 요소의 너비가 줄어든다.
 
-`max-width` 속성은 요소 너비의 최대값을,  `min-width` 속성은 요소 너비의 최소값을 지정한다. 예를 들어 `max-width: 300px;`의 경우 브라우저의 너비가 300px보다 작아지면 요소 너비는 브라우저의 너비에 따라서 작아진다. `min-width: 300px;`의 경우 브라우저의 너비가 300px보다 작아져고 요소 너비는 지정 너비(300px)을 유지한다.
+`max-width` 속성은 요소 너비의 최대값을, `min-width` 속성은 요소 너비의 최소값을 지정한다. 예를 들어 `max-width: 300px;`의 경우 브라우저의 너비가 300px보다 작아지면 요소 너비는 브라우저의 너비에 따라서 작아진다. `min-width: 300px;`의 경우 브라우저의 너비가 300px보다 작아져도 요소 너비는 지정 너비(300px)을 유지한다. 또한 width 속성과 함께 사용될 경우 `max-width`, `min-width` 속성은 width 속성보다 우선 적용된다.
 {: .info}
 
 # 3. border 속성

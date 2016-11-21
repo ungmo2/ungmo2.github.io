@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Horizontal & Vertical Centering
-subtitle: CSS를 사용한 HTML 요소의 수평 수직 중앙 정렬
-categories: css
-section: css
+title: Snippet - Centering
+subtitle: CSS를 사용한 HTML 요소의 수평 수직 중앙 정렬 (Horizontal & Vertical Centering)
+categories: snippet
+section: snippet
 ---
 
 * TOC

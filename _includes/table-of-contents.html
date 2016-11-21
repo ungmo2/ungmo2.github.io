@@ -103,6 +103,23 @@
       </ol>
     </article>
 
+    <article class="toc-section toc-section--snippet">
+      <div class="toc-heading">
+        <i class="devicon-nodewebkit-plain"></i>
+        <h3>Snippet</h3>
+        <small><span>{{ site.categories.snippet | size }}</span> lessons</small>
+      </div>
+      <ol class="toc-content">
+      {% assign counter = 0 %}
+      {% for post in site.categories.snippet reversed %}
+        {% assign counter = counter | plus: 1 %}
+          <li class="toc-month">
+            <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
+          </li>
+      {% endfor %}
+      </ol>
+    </article>
+
     <article class="toc-section toc-section--nodejs">
       <div class="toc-heading">
         <i class="devicon-nodejs-plain"></i>

@@ -123,7 +123,29 @@ section: css
 
 <div class="result"></div>
 
-# 4. line-height 속성
+# 4. font Shorthand
+
+Shorthand Syntax
+
+```
+font : font-style(optional) font-variant(optional) font-weight(optional) font-size(mandatory) line-height(optional) font-family(mandatory)
+```
+
+```
+/* size | family */
+font: 2em "Open Sans", sans-serif;
+
+/* style | size | family */
+font: italic 2em "Open Sans", sans-serif;
+
+/* style | variant | weight | size/line-height | family */
+font: italic small-caps bolder 16px/3 cursive;
+
+/* style | variant | weight | stretch | size/line-height | family */
+font: italic small-caps bolder condensed 16px/3 cursive;
+```
+
+# 5. line-height 속성
 
 텍스트의 높이를 지정한다. 텍스트 수직 정렬에도 응용되어 사용된다.
 
@@ -178,60 +200,67 @@ section: css
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      .button {
-        width: 150px;
-        height: 70px;
-        background-color: #FF6A00;
-        border: 10px solid #FFFFFF;
-        border-radius: 30px;
-        box-shadow: 5px 5px 5px #A9A9A9;
-      }
-      .button > a {
-        display: block;
-        font-size: 2em;
-        font-style: italic;
-        font-weight: bold;
-        text-align: center;
-        text-decoration: none;
-        line-height: 70px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="button">
-      <a href="#">Click</a>
-    </div>
-  </body>
+<head>
+  <style>
+    .button {
+      width: 150px;
+      height: 70px;
+      background-color: #FF6A00;
+      border: 10px solid #FFFFFF;
+      border-radius: 30px;
+      box-shadow: 5px 5px 5px #A9A9A9;
+    }
+    .button > a {
+      display: block;
+      font-size: 2em;
+      font-style: italic;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      line-height: 70px;
+    }
+  </style>
+</head>
+<body>
+  <div class="button">
+    <a href="#">Click</a>
+  </div>
+</body>
 </html>
 ```
 
 <div class="result"></div>
 
-# 5. font Shorthand
+# 6. letter-spacing 속성
 
-Shorthand Syntax
+글자 사이의 간격을 지정한다.
 
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .loose {
+      letter-spacing: 2px;
+    }
+    .tight {
+      letter-spacing: -1px;
+    }
+  </style>
+</head>
+<body>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+  <p class="loose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+  <p class="tight">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+</body>
+</html>
 ```
-font : font-style(optional) font-variant(optional) font-weight(optional) font-size(mandatory) line-height(optional) font-family(mandatory)
-```
 
-```
-/* size | family */
-font: 2em "Open Sans", sans-serif;
+<div class="result"></div>
 
-/* style | size | family */
-font: italic 2em "Open Sans", sans-serif;
-
-/* style | variant | weight | size/line-height | family */
-font: italic small-caps bolder 16px/3 cursive;
-
-/* style | variant | weight | stretch | size/line-height | family */
-font: italic small-caps bolder condensed 16px/3 cursive;
-```
-
-# 6. text-align 속성
+# 7. text-align 속성
 
 텍스트의 수평 정렬을 정의한다.
 
@@ -264,35 +293,35 @@ font: italic small-caps bolder condensed 16px/3 cursive;
 
 위 예제의 a 요소에 대한 중앙 정렬은 적용되지 않았다. 이는 a 요소는 inline 요소이기 때문이다. inline 요소는 width 속성이 없으므로 중앙 개념이 존재하지 않는다. a 요소에 `display: block;`을 지정한다면 중앙 정렬이 가능할 것이다.
 
-# 7. text-decoration 속성
+# 8. text-decoration 속성
 
 `text-decoration` 속성을 사용하여 링크 underline을 제거할 수 있다. 또는 텍스트에 underline, overline, line-through를 추가할 수도 있다.
 
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      a { text-decoration: none; }
+<head>
+  <style>
+    a { text-decoration: none; }
 
-      p:nth-of-type(1) { text-decoration: overline; }
-      p:nth-of-type(2) { text-decoration: line-through; }
-      p:nth-of-type(3) { text-decoration: underline; }
-    </style>
-  </head>
-  <body>
-    <a href='#'>text-decoration: none</a>
+    p:nth-of-type(1) { text-decoration: overline; }
+    p:nth-of-type(2) { text-decoration: line-through; }
+    p:nth-of-type(3) { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <a href='#'>text-decoration: none</a>
 
-    <p>text-decoration: overline</p>
-    <p>text-decoration: line-through</p>
-    <p>text-decoration: underline</p>
-  </body>
+  <p>text-decoration: overline</p>
+  <p>text-decoration: line-through</p>
+  <p>text-decoration: underline</p>
+</body>
 </html>
 ```
 
 <div class="result"></div>
 
-# 8. white-space 속성
+# 9. white-space 속성
 
 html의 white space는 공백(space), 들여쓰기(tab), 줄바꿈(line break)을 의미한다. html은 기본적으로 연속된 공백(space), 들여쓰기(tab)는 1번만 실행되며 줄바꿈(line break)은 무시된다. 또한 텍스트는 부모 가로 영역을 벗어나지 않고 자동 줄바꿈(wrap)된다. `white-space` 속성은 이러한 기본 동작을 제어하기 위한 속성이다.
 
@@ -349,7 +378,7 @@ html의 white space는 공백(space), 들여쓰기(tab), 줄바꿈(line break)�
 
 <div class="result"></div>
 
-# 9. text-overflow 속성
+# 10. text-overflow 속성
 
 부모 영역을 벗어난 wrapping(자동줄바꿈)이 되지 않은 텍스트의 처리 방법을 정의한다. 이 속성을 사용하기 위해서는 overflow 속성에 반드시 "visible" 이외의 값이 지정되어 있어야 한다.
 
@@ -392,39 +421,39 @@ html의 white space는 공백(space), 들여쓰기(tab), 줄바꿈(line break)�
 
 <div class="result"></div>
 
-# 10. word-wrap 속성
+# 11. word-wrap 속성
 
 한 단어의 길이가 길어서 부모 영역을 벗어난 텍스트의 처리 방법을 정의한다. link 등을 표기할 때(e.g. http://poiemaweb.com/css3-font-text) 그 길이가 매우 길어지는데 이 속성을 사용하지 않으면 부모 영역을 넘어가게 된다.
 
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <style>
-      div {
-        width: 150px;
-        height: 150px;
-        padding: 10px;
-        margin: 40px;
-        border-radius: 6px;
-        border-color: gray;
-        border-style: dotted;
-      }
-      .word-wrap { word-wrap: break-word; }
-    </style>
-  </head>
-  <body>
-    <h1>word-wrap</h1>
-    <div>Floccinaucinihilipilification http://poiemaweb.com/css3-font-text</div>
-    <div class="word-wrap">Floccinaucinihilipilification http://poiemaweb.com/css3-font-text</div>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <style>
+    div {
+      width: 150px;
+      height: 150px;
+      padding: 10px;
+      margin: 40px;
+      border-radius: 6px;
+      border-color: gray;
+      border-style: dotted;
+    }
+    .word-wrap { word-wrap: break-word; }
+  </style>
+</head>
+<body>
+  <h1>word-wrap</h1>
+  <div>Floccinaucinihilipilification http://poiemaweb.com/css3-font-text</div>
+  <div class="word-wrap">Floccinaucinihilipilification http://poiemaweb.com/css3-font-text</div>
+</body>
 </html>
 ```
 
 <div class="result"></div>
 
-# 11. word-break 속성
+# 12. word-break 속성
 
 한 단어의 길이가 길어서 부모 영역을 벗어난 텍스트의 처리 방법을 정의한다.
 

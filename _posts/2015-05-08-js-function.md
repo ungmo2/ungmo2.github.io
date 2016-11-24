@@ -48,10 +48,10 @@ function square(number) {
 
 자바스크립트의 함수는 [일급 객체](https://ko.wikipedia.org/wiki/%EC%9D%BC%EA%B8%89_%EA%B0%9D%EC%B2%B4)이므로 아래와 같은 특징이 있다.
 
-- 무명의 리터럴로 표현이 가능하다.
-- 변수나 자료 구조(객체, 배열…)에 저장할 수 있다.
-- 함수의 파라미터로 전달 할 수 있다.
-- 반환값(return value)으로 사용할 수 있다.
+> 1. 무명의 리터럴로 표현이 가능하다.
+> 2. 변수나 자료 구조(객체, 배열...)에 저장할 수 있다.
+> 3. 함수의 파라미터로 전달 할 수 있다.
+> 4. 반환값(return value)으로 사용할 수 있다.
 
 함수의 일급객체 특성을 이용하여 함수 리터럴 방식으로 함수를 정의하고 변수에 할당할 수 있는데 이러한 방식을 함수표현식(Function expression)이라 한다.
 
@@ -536,25 +536,7 @@ var foo = 100;
 console.log(foo);
 ```
 
-## 7.2 콜백 함수 (Callback function)
-
-콜백함수는 함수를 명시적으로 호출하는 방식이 아니라 특정 이벤트가 발생했을 때 시스템에 의해 호출되는 함수를 말한다.
-
-콜백함수가 자주 사용되는 대표적인 예는 이벤트 핸들러 처리이다.
-
-```html
-<!DOCTYPE html>
-<html>
-<body>
-  <button id="myBtn">Click me</button>
-  <script>
-    document.getElementById("myBtn").onclick = function(){ alert("button clicked!"); };
-  </script>
-</body>
-</html>
-```
-
-## 7.3 내부 함수 (Inner function)
+## 7.2 내부 함수 (Inner function)
 
 함수 내부에 정의된 함수를 내부함수라 한다.
 
@@ -586,3 +568,50 @@ function sayHello(name){
 sayHello('lee');  // Hello lee
 logHello('lee');  // logHello is not defined
 ```
+
+## 7.3 콜백 함수 (Callback function)
+
+콜백함수는 함수를 명시적으로 호출하는 방식이 아니라 특정 이벤트가 발생했을 때 시스템에 의해 호출되는 함수를 말한다.
+
+콜백함수가 자주 사용되는 대표적인 예는 이벤트 핸들러 처리이다.
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+  <button id="myButton">Click me</button>
+  <script>
+    var button = document.getElementById('myButton');
+    button.addEventListener('click', function() {
+      console.log('button clicked!');
+    });
+  </script>
+</body>
+</html>
+```
+Javascript의 함수는 [일급객체](./js-function#first-class-object--)이다. 따라서 Javascript의 함수는 흡사 변수와 같이 사용될 수 있다.
+
+콜백 함수는 매개변수를 통해 전달되고 전달받은 함수의 내부에서 <strong>어느 특정시점</strong>에 실행된다. 이는 마치 함수 내에서 어느 특정시점 또는 조건 하에 특정 행위를 하는 내부 함수를 실행하는 것과 유사하다.
+
+특정 행위를 하는 콜백 함수를 외부에서 전달하여 각기 다른 동작을 하도록 콜백 함수에 처리를 위임하는 것이다.
+
+콜백 함수는 내부 함수이므로 콜백함수를 전달받은 함수의 변수에 접근할 수 있다.
+
+```javascript
+function doSomething(callback) {
+  var name = 'Lee';
+  // Call the callback
+  if (typeof callback === "function") {
+    callback('My name is ' + name);
+  }
+}
+
+function foo(str) {
+  console.log(str);
+}
+
+doSomething(foo); // My name is Lee
+```
+
+> 1. 콜백함수를 매개변수를 통해 전달할 때 함수의 참조(foo)를 넘겨야 한다.  
+> 2. 콜백함수는 내부 함수이므로 콜백함수 내의 this는 전역객체를 가리킨다.

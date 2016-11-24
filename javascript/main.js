@@ -47,7 +47,7 @@ jQuery(document).ready(function ($) {
     loop: true
   });
 
-  // Scrooll to next
+  // Scroll to next section
   $('#scroll-icon').click( function() {
     $('html, body').animate({
       scrollTop: ($('.index-title').offset().top)

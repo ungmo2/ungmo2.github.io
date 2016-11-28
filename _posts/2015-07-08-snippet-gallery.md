@@ -185,7 +185,7 @@ section: snippet
 <p data-height="500" data-theme-id="0" data-slug-hash="GNvbZG" data-default-tab="result" data-user="ungmo2" data-embed-version="2" data-pen-title="zooming-background-image" class="codepen">See the Pen <a href="http://codepen.io/ungmo2/pen/GNvbZG/">zooming-background-image</a> by Ungmo Lee (<a href="http://codepen.io/ungmo2">@ungmo2</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
-# 2.
+# 2. Masonry Grid Animation & Fancybox
 
 ```html
 <!DOCTYPE html>
@@ -459,5 +459,5 @@ $(function() {
 </html>
 ```
 
-<p data-height="600" data-theme-id="0" data-slug-hash="QGqjmW" data-default-tab="result" data-user="ungmo2" data-embed-version="2" data-pen-title="Masonry Grid Animation & Fancybox" class="codepen">See the Pen <a href="http://codepen.io/ungmo2/pen/QGqjmW/">Masonry Grid Animation & Fancybox</a> by Ungmo Lee (<a href="http://codepen.io/ungmo2">@ungmo2</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<p data-height="1000" data-theme-id="0" data-slug-hash="QGqjmW" data-default-tab="result" data-user="ungmo2" data-embed-version="2" data-pen-title="Masonry Grid Animation & Fancybox" class="codepen">See the Pen <a href="http://codepen.io/ungmo2/pen/QGqjmW/">Masonry Grid Animation & Fancybox</a> by Ungmo Lee (<a href="http://codepen.io/ungmo2">@ungmo2</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>

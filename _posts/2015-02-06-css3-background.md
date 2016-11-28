@@ -252,6 +252,8 @@ body {
 
 일반적으로 `background-image`는 좌상단부터 이미지를 출력한다. 이때 `background-position` 속성을 사용하면 이미지의 좌표(xpos, ypos)를 지정 할 수 있다.
 
+기본값은 `background-position: 0% 0%;`로 배경이미지는 우측 상단에 위치하게 된다.
+
 - [MDN: background-position](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position)
 
 ```html
@@ -308,6 +310,7 @@ body {
 </head>
 
 <body>
+  <div>default(0% 0%)</div>
   <div class="example1">top</div>
   <div class="example2">bottom</div>
   <div class="example3">center</div>

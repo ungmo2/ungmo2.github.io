@@ -15,7 +15,7 @@ section: jquery
 
 [jQuery](http://jquery.com/)는 빠르고 다양한 기능을 제공하는 경량의 자바스크립트 라이브러리이다. HTML 문서의 탐색이나 조작, 이벤트 핸들링, 애니메이션, Ajax등을 멀티 브라우저를 지원하는 API를 통해 더욱 간편하게 사용할 수 있다.
 
-- 어떠한 브라우저에서도 동일하게 동작한다. 이것은 브라우저 호환성을 고려하여 대체 코드를 작성할 필요가 없다는 것을 의미한다.
+- 어떠한 브라우저에서도 동일하게 동작한다. 이것은 브라우저 호환성을 고려하여 대체 코드(Polyfill)를 작성할 필요가 없다는 것을 의미한다.
 
 - CSS 스타일의 selector를 이용하여 요소를 선택할 수 있다. 이것은 [자바스크립트 DOM 쿼리](./js-dom#dom-query--traversing--)보다 쉽고 강력하며 유연하다.
 
@@ -38,9 +38,9 @@ section: jquery
 </html>
 ```
 
-요소의 내용을 변경하기 위해서는 우선 대상 요소를 선택(Select)하여야 한다.
+요소의 내용을 변경하기 위해서는 우선 대상 요소를 <strong>선택(Select)</strong>하여야 한다.
 
-모든 브라우저는 HTML 문서를 로드할 때 [DOM](./js-dom)을 생성한다. DOM은 HTML과 XML 문서를 위한 API로 웹페이지의 각 요소에 접근하고 수정하는 방법을 제시한다.
+모든 브라우저는 HTML 문서를 로드할 때 [DOM](./js-dom)을 생성한다. DOM은 HTML과 XML 문서를 위한 API로 웹페이지의 각 요소에 <strong>접근하고 수정</strong>하는 방법을 제시한다.
 
 DOM은 객체의 트리로 구성되는 <strong>DOM tree</strong>를 생성하고 이것을 통하여 HTML 문서 내의 각 요소에 접근 / 수정할 수 있는 메서드와 속성들을 제공한다. DOM이 수정되면 브라우저를 통해 사용자가 보게 될 Contents 또한 변경된다.
 
@@ -131,7 +131,7 @@ $(function() {
 });
 ```
 
-위 코드는 DOM이 완전히 로드되기 전까지 대기하다가 로드가 완료되면 매개변수로 전달된 함수가 실행된다. app.js에 이것을 반영하면 아래와 같다.
+위 코드는 DOM이 완전히 로드되기 전까지 대기하다가 로드가 완료되면 매개변수로 전달된 콜백함수(./js-function#callback-function)가 실행된다. app.js에 이것을 반영하면 아래와 같다.
 
 ```javascript
 // js/app.js
@@ -148,9 +148,9 @@ jQuery는 [CSS 스타일의 Selector](./css3-selector)를 이용하여 요소를
 
 ## 5.1 태그 / ID / Class 선택자
 
-자바스크립트 DOM query를 사용하여 여러개의 요소를 선택하기 위해서는 반복문을 사용하여야 한다.
+자바스크립트의 getElementsByClassName 메서드 등을 사용하여 선택한 요소들에 개별적으로 접근하기 위해서는 반복문을 사용하여야 한다.
 
-이때 [HTMLCollection](./js-dom#dom-query-1)이 실시간으로 Node의 상태 변경을 반영하기 때문에 반복문을 역방향으로 돌리는 등 번거로운 처리가 필요하다. jQuery는 반복문 없이 해당하는 모든 요소를 선택/조작할 수 있다.
+이때 getElementsByClassName 메서드가 반환하는 [HTMLCollection](./js-dom#dom-query-1)이 실시간으로 Node의 상태 변경을 반영하기 때문에 경우에 따라(예를 들어 클래스명이 변경될 때) 반복문을 역방향으로 돌리는 등 번거로운 처리가 필요하다. jQuery는 반복문 없이 해당하는 모든 요소에 접근/조작할 수 있다.
 
 이를 <strong>묵시적 반복(implicit iteration)</strong>이라 한다.
 
@@ -411,6 +411,13 @@ Manipulation 관련 메서드는 [jQuery Manipulation](https://api.jquery.com/ca
 ```javascript
 .on( events [, selector ] [, data ], handler )
 ```
+
+| Parameter | Description
+|:----------|:------------------------------------
+| events    | 1개 또는 2개 이상의 공백으로 구분된 이벤트명
+| selector  | 이벤트를 바인딩할 매치드셋의 후손 선택자
+| data      | 이벤트핸들러에 전달할 데이터. 이벤트핸들러의 매개변수 event.data에 담겨 전달된다.
+| handler   | 이벤트가 발생했을 때 실행될 함수. 첫번째 인자로 이벤트 객체가 암묵적으로 전달된다.
 
 ```javascript
 $(function() {

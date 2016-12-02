@@ -76,7 +76,7 @@ $.fn.greenify = function() {
 $("a").greenify().addClass("greenified");
 ```
 
-$ 변수는 jQuery 뿐만 아니라 javascript library에서 자주 사용된다. jQuery와 다른 라이브러리를 함께 사용하는 경우, 중복이 발생하여 문제가 될 수 있으므로 IIEF를 사용하여 plugin 전체를 wrap하고 jQuery 객체를 인자로 전달하는 것이 필요하다. 또한 이 방법은 전역 namespace의 오염를 방지할 수 있기 때문에 매우 유용하다.
+$ 변수는 jQuery 뿐만 아니라 javascript library에서 자주 사용된다. jQuery와 다른 라이브러리를 함께 사용하는 경우, 중복이 발생하여 문제가 될 수 있으므로 IIEF를 사용하여 plugin 전체를 wrap하고 jQuery 객체를 인자로 전달하는 것이 필요하다. 또한 이 방법은 전역 namespace의 오염을 방지할 수 있기 때문에 매우 유용하다.
 
 ```javascript
 (function ($) {

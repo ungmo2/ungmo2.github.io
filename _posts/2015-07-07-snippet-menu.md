@@ -182,7 +182,7 @@ section: snippet
 </body>
 <script src="assets/vendor/jquery/dist/jquery.js"></script>
 <script>
-  $(function() {
+  (function ($) {
     $.fn.accordion = function(opt) {
       // var settings = $.extend({
       //   multi: false
@@ -204,7 +204,9 @@ section: snippet
 
       return this;
     };
+  }(jQuery));
 
+  $(function() {
     $('#accordion').accordion({
       multi: false
     });

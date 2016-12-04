@@ -19,7 +19,7 @@ section: jquery
 
 - CSS 스타일의 selector를 이용하여 요소를 선택할 수 있다. 이것은 [자바스크립트 DOM 쿼리](./js-dom#dom-query--traversing--)보다 쉽고 강력하며 유연하다.
 
-- 자바스크립트 DOM query를 사용하여 여러개의 요소를 선택하기 위해서는 반복문을 사용하여야 한다. 이때 HTMLCollection이 실시간으로 Node의 상태 변경을 반영하기 때문에 반복문을 역방향으로 돌리는 등 번거로운 처리가 필요하다. jQuery는 반복문 없이 해당하는 모든 요소를 선택/조작할 수 있다. 이를 묵시적 반복(implicit iteration)이라 한다.
+- 자바스크립트의 getElementsByClassName 메서드 등을 사용하여 복수의 요소를 선택한 후 각각의 요소에 개별적으로 접근하기 위해서는 반복문을 사용하여야 한다. 이때 getElementsByClassName 메서드가 반환하는 [HTMLCollection](./js-dom#dom-query-1)은 실시간으로 Node의 상태 변경을 반영하기 때문에 경우에 따라(예를 들어 클래스명이 변경될 때) 반복문을 역방향으로 돌리는 등 번거로운 처리가 필요하다. jQuery는 반복문 없이 해당하는 모든 요소를 선택/조작할 수 있다. 이를 묵시적 반복(implicit iteration)이라 한다.
 
 - DOM Manipulation(조작)과 Animation 효과, 이벤트 처리를 쉽게 사용할 수 있다.
 
@@ -181,9 +181,9 @@ Pure Javascript API를 사용하여 위의 기능을 작성하면 아래와 같�
 
 ```javascript
 var targets = document.getElementsByTagName("li");
-for(i=0; targets.length; i++){
+for(var i=0; i<targets.length; i++){
   //Set text
-  one.firstChild.nodeValue = 'Orlando';
+  targets[i].firstChild.nodeValue = 'Orlando';
 }
 ```
 

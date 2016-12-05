@@ -4,6 +4,7 @@ title: CSS3 <strong>Selector</strong>
 subtitle: Styling 대상을 특정하는 선택자
 category: css
 section: css
+description: CSS3 Selector 전체 태그 ID 선택자 클래스 속성 복합 선택자 후손 자식 형제(동위) 인접 형제 가상 링크 동적 부정 가상 요소 선택자
 ---
 
 * TOC

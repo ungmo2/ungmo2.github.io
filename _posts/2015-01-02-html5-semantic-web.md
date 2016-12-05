@@ -4,6 +4,7 @@ title: <strong>Semantic</strong> Web
 subtitle: <strong>의미</strong>를 가지는 시맨틱 요소(Semantic element)와 검색 엔진
 category: html
 section: html
+description: 시맨틱 웹 Semantic Web 크롤링 인덱싱
 ---
 
 # 시맨틱 웹(Semantic Web)

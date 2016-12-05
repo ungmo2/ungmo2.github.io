@@ -4,6 +4,7 @@ title: HTML5 Tag - Basic
 subtitle: 웹페이지의 기본을 구성하는 태그
 category: html
 section: html
+description:  문서 형식 정의 tag html head title style link script meta body
 ---
 
 * TOC

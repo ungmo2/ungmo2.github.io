@@ -4,6 +4,7 @@ title: HTML5 Tag - Text
 subtitle: 텍스트 관련 태그
 category: html
 section: html
+description: tag 제목 (Headings) 글자 형태 (Text Formatting) b strong i em small mark del ins sub / sup 본문 p br pre hr q blockquote
 ---
 
 * TOC

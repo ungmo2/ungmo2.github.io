@@ -4,6 +4,7 @@ title: HTML5 Tag - Structure
 subtitle: 웹페이지의 레이아웃을 구성하기 위해 공간을 분할하는 태그
 category: html
 section: html
+description: 웹페이지의 레이아웃을 구성하기 위해 공간을 분할하는 태그
 ---
 
 * TOC

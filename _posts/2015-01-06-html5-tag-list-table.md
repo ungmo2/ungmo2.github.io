@@ -4,6 +4,7 @@ title: HTML5 Tag - List & Table
 subtitle: 목록(List)와 표(Table) 형식 표현을 위한 태그
 category: html
 section: html
+description: 목록(List)와 표(Table) 형식 표현을 위한 태그 순서없는 목록 (Unordered List) 순서있는 목록 (Ordered List) 중첩 목록 테이블
 ---
 
 * TOC

@@ -4,6 +4,7 @@ title: HTML5 Tag - Forms
 subtitle: 사용자와의 커뮤니케이션을 위한 태그
 category: html
 section: html
+description: 사용자와의 커뮤니케이션을 위한 태그 form input select textarea button filedset / legend
 ---
 
 * TOC

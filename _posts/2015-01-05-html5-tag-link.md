@@ -4,6 +4,7 @@ title: HTML5 Tag - Link
 subtitle: HTML의 핵심 개념인 <strong>Hyperlink</strong>
 category: html
 section: html
+description: HTML의 핵심 개념인 Hyperlink href 속성 target 속성
 ---
 
 * TOC

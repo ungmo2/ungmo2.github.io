@@ -4,6 +4,7 @@ title: HTML5 <strong>Syntax</strong>
 subtitle: Web page의 내용과 구조를 담당하는 HyperText Markup Language
 category: html
 section: html
+description: html5 요소 Element 속성 Attribute 글로벌 속성 주석 Version
 ---
 
 * TOC

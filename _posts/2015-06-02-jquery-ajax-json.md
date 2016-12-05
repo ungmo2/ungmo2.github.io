@@ -4,7 +4,7 @@ title: jQuery <strong>Ajax & JSON</strong>
 subtitle: 비동기식 처리 모델(Asynchronous processing model)을 위한 Ajax와 JSON
 categories: jquery
 section: jquery
-description: jQuery Ajax & JSON : 비동기식 처리 모델(Asynchronous processing model)을 위한 Ajax와 JSON
+description: jQuery Ajax & JSON 비동기식 처리 모델(Asynchronous processing model)을 위한 Ajax와 JSON
 ---
 
 * TOC

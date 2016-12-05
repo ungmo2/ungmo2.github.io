@@ -4,6 +4,7 @@ title: jQuery <strong>Plugin</strong>
 subtitle: jQuery의 확장
 categories: jquery
 section: jquery
+description: jQuery Plugin jQuery의 확장
 ---
 
 jQuery plugin이란 custom jQuery 메서드로써 jQuery를 확장한 것을 말한다. jQuery plugin을 정의하기 위해서는 **$.fn** object에 custom 메서드를 추가하여 확장한다.

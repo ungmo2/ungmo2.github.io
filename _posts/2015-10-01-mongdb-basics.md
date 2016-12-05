@@ -4,6 +4,7 @@ title: MongoDB Basics - <strong>Install</strong>
 subtitle: MongoDB의 기본 개념과 설치
 categories: mongodb
 section: mongodb
+description: MongoDB의 기본 개념과 설치 RDMS와 MongoDB의 비교
 ---
 
 * TOC

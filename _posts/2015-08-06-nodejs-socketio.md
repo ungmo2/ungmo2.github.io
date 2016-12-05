@@ -4,6 +4,7 @@ title: Node.js(express)와 <strong>Socket.io</strong>
 subtitle: Socket.io를 사용한 실시간 채팅 애플리케이션
 categories: nodejs
 section: nodejs
+description: WebSocket, Socket.io를 사용한 실시간 채팅 애플리케이션 
 ---
 
 ![socket.io logo](/img/socketio-logo.png)

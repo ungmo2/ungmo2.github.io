@@ -4,6 +4,7 @@ title: Node.js - <strong>Basics</strong>
 subtitle: 네트워크 애플리케이션을 위한 JavaScript runtime
 categories: nodejs
 section: nodejs
+description: Node.js는 Chrome V8 JavaScript 엔진으로 빌드된 JavaScript 런타임으로 주로 서버 사이드 애플리케이션 개발에 사용되는 소프트웨어 플랫폼이다.
 ---
 
 * TOC

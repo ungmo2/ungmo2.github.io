@@ -4,6 +4,7 @@ title: Node.js - <strong>module</strong>
 subtitle: Node.js의 module loading system
 categories: nodejs
 section: nodejs
+description: Node.js의 module loading system module.exports vs. exports
 ---
 
 * TOC

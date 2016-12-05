@@ -4,6 +4,7 @@ title: Express <strong>Error Handling</strong>
 subtitle: Express의 기본적인 에러 처리 방식
 categories: express
 section: express
+description: Express의 기본적인 에러 처리 방식
 ---
 
 Web application은 에러가 발생하였을 경우 반드시 Client에 에러 관련 정보를 알려야 한다. 에러는 Client에 의한 것(e.g, 부적절한 input data)일 수도 있고 Server에 의한 것(e.g, 코드내의 버그)일 수도 있다.

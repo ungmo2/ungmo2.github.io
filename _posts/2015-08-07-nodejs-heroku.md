@@ -4,6 +4,7 @@ title: Deploying Node.js(Express) & <strong>MongoDB to Heroku</strong>
 subtitle: Heroku에서의 Node.js와 MongoDB 설치
 categories: nodejs
 section: nodejs
+description: Heroku에서의 Node.js와 MongoDB 설치
 ---
 
 * TOC

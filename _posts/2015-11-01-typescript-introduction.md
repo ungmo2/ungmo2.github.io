@@ -4,6 +4,7 @@ title: TypeScript - <strong>Intro & Install</strong>
 subtitle: TypeScript의 소개와 개발 환경
 categories: typescript
 section: typescript
+description: TypeScript의 소개와 개발 환경 Node.js 설치 TypeScript 설치 Command line TypeScript Compiler Atom editor에서의 TypeScript 개발 환경
 ---
 
 * TOC

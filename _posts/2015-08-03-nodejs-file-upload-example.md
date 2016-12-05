@@ -3,6 +3,7 @@ layout: post
 title: Node.js <strong>file upload</strong> example
 categories: nodejs
 section: nodejs
+description: Node.js file upload example
 ---
 
 Node.js는 Server-side Javascript이다. 즉 백엔드에서 자바스크립트를 실행할 수 있게 한다. 또한 유용한 모듈을 내부에 탑재하고 있고 필요에 따라 `npm` 등을 사용하여 외부에서 필요한 모듈을 import하여 사용할 수 있어 높은 생산성과 스피디한 개발을 가능케 해준다. 따라서 Node.js는 Server-side Javascript와 모듈(라이브러리)로 구성되어 있고 말할 수 있다.

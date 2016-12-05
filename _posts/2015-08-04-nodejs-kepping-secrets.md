@@ -3,6 +3,7 @@ layout: post
 title: Node.js에서 <strong>비밀 설정 정보(Secrets)</strong> 관리
 categories: nodejs
 section: nodejs
+description: Node.js에서 비밀 설정 정보(Secrets) 관리
 ---
 
 어플리케이션을 개발할 때, 외부에 알려지면 않되는 민감한 정보들를 사용할 때가 있다.  

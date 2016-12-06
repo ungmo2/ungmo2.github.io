@@ -25,26 +25,27 @@ section: snippet
       background: red;
       transition: all 2s;
     }
-    /*div:hover {
+    div:hover, div:focus {
+      border-radius: 50%;
+      background: blue;
+    }
+    /*.hover {
       border-radius: 50%;
       background: blue;
     }*/
-    .hover {
-      border-radius: 50%;
-      background: blue;  
   </style>
 </head>
 <body>
   <div></div>
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script>
-  $(function() {
-    $('div').on('touchstart', function(){
-      $(this).addClass('hover');
-    }).on('touchend', function(){
-      $(this).removeClass('hover');
-    });
-  });
+  // $(function() {
+  //   $('div').on('touchstart', function(){
+  //     $(this).addClass('hover');
+  //   }).on('touchend', function(){
+  //     $(this).removeClass('hover');
+  //   });
+  // });
 </script>
 </body>
 </html>

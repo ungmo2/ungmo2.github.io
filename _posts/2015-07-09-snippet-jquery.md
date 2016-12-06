@@ -25,11 +25,13 @@ section: snippet
       background: red;
       transition: all 2s;
     }
-    div:hover,
-    div.hover {
+    div:hover {
       border-radius: 50%;
       background: blue;
     }
+    .hover {
+      border-radius: 50%;
+      background: blue;  
   </style>
 </head>
 <body>

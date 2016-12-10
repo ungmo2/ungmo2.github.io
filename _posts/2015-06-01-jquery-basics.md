@@ -132,7 +132,7 @@ $(function() {
 });
 ```
 
-위 코드는 DOM이 완전히 로드되기 전까지 대기하다가 로드가 완료되면 매개변수로 전달된 콜백함수(./js-function#callback-function)가 실행된다. app.js에 이것을 반영하면 아래와 같다.
+위 코드는 DOM이 완전히 로드되기 전까지 대기하다가 로드가 완료되면 매개변수로 전달된 [콜백함수](./js-function#callback-function)가 실행된다. app.js에 이것을 반영하면 아래와 같다.
 
 ```javascript
 // js/app.js

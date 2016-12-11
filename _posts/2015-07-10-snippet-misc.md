@@ -73,8 +73,6 @@ section: snippet
 </html>
 ```
 
-<div class="result"></div>
-
 이와 같은 현상이 발생하는 이유는 뒤로가기를 실행할 때 보다 빠른 처리를 위해 [BFCache]( https://developer.mozilla.org/en-US/docs/Working_with_BFCache)를 사용하여 저장된 이전 페이지를 로드하기 때문이다.
 
 이 현상을 극복하기 위한 대안은 pageshow/pagehide 이벤트를 사용하는 것이다. pageshow 이벤트는 load 이벤트에 대응되고 pagehide 이벤트는 unload 이벤트에 대응된다.
@@ -100,5 +98,3 @@ section: snippet
 </body>
 </html>
 ```
-
-<div class="result"></div>

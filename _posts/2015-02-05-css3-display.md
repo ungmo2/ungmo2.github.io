@@ -185,30 +185,31 @@ So that leaves all default values up to the browser and how the developers actua
 <html>
 <head>
   <style>
-    .box {
-      width: 150px;
-      height: 75px;
-      margin: 10px;
+    .wrapper {
+      font-size: 0; /*요소간 간격을 제거*/
     }
-    .floating {
+    .box1 {
+      width: 300px;
+      height: 70px;
+      font-size: 16px;
+    }
+    .box2 {
+      width: 300px;
+      height: 150px;
+      font-size: 16px;
+    }
+    .inline-block {
       display: inline-block;
+      vertical-align: middle; /*inline-block 요소 수직 정렬*/
       border: 3px solid #73AD21;
-    }
-    .after {
-      border: 3px solid red;
     }
   </style>
 </head>
 <body>
-  <div class="floating box">Floating box</div>
-  <div class="floating box">Floating box</div>
-  <div class="floating box">Floating box</div>
-  <div class="floating box">Floating box</div>
-  <div class="floating box">Floating box</div>
-  <div class="floating box">Floating box</div>
-  <div class="floating box">Floating box</div>
-
-  <div class="after box">Another box, after the floating boxes...</div>
+  <div class="wrapper">
+    <div class="inline-block box1">inline-block height 70px</div>
+    <div class="inline-block box2">inline-block height 150px</div>
+  </div>
 </body>
 </html>
 ```

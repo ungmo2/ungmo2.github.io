@@ -24,7 +24,18 @@ description: jQuery의 설치 Basic Usage DOM Ready Selector Traversing Manipula
 
 - DOM Manipulation(조작)과 Animation 효과, 이벤트 처리를 쉽게 사용할 수 있다.
 
-다음 예제를 살펴보자. h1 요소의 텍스트를 변경하고 싶은 경우이다.
+- 다양한 플러그인이 존재하며 다른 라이브러리들과 충돌을 일으키지 않는다.
+
+# 2. jQuery의 설치
+
+[jquery.com](http://jquery.com/download/)에서 jQuery를 다운로드한다.
+
+jQuery 1.x과 jQuery 2.x 두가지 버전이 존재한다. 두가지 버전 모두 동일한 API을 제공하지만 jQuery 2.x는 IE 8 이하를 지원하지 않으므로 주의가 필요하다.
+
+2016년 6월 9일 [jQuery 3.0이 릴리스](http://blog.jquery.com/2016/06/09/jquery-3-0-final-released/)되었다. jQuery 1.x는 jQuery Compat 3.0, jQuery 2.x는 jQuery 3.0으로 계승되어 두가지 버전 모두 jQuery 3.0으로 통일되었다.
+{: .info}
+
+동작 확인을 위해 간단한 예제를 만들어 보자. h1 요소의 텍스트를 변경하고 싶은 경우이다.
 
 ```html
 <!DOCTYPE html>
@@ -39,28 +50,78 @@ description: jQuery의 설치 Basic Usage DOM Ready Selector Traversing Manipula
 </html>
 ```
 
-요소의 내용을 변경하기 위해서는 우선 대상 요소를 <strong>선택(Select)</strong>하여야 한다.
-
-모든 브라우저는 HTML 문서를 로드할 때 [DOM](./js-dom)을 생성한다. DOM은 HTML과 XML 문서를 위한 API로 웹페이지의 각 요소에 <strong>접근하고 수정</strong>하는 방법을 제시한다.
-
-DOM은 객체의 트리로 구성되는 <strong>DOM tree</strong>를 생성하고 이것을 통하여 HTML 문서 내의 각 요소에 접근 / 수정할 수 있는 메서드와 속성들을 제공한다. DOM이 수정되면 브라우저를 통해 사용자가 보게 될 Contents 또한 변경된다.
+모든 브라우저는 HTML 문서를 로드할 때 [DOM(문서 객체 모델: Document Object Model)](./js-dom)을 생성한다. DOM은 HTML과 XML 문서를 위한 API로 웹페이지의 각 요소에 접근하고 수정하는 방법을 제시한다. DOM은 객체의 트리로 구성되는데 이러한 구조를 <strong>DOM tree</strong>라 한다.
 
 위 HTML이 로드되어 생성된 DOM tree는 다음과 같은 이미지를 갖는다. HTML 요소는 DOM tree내에서 <strong>node</strong>로 불린다.
 
 ![DOM tree.png](/img/jq_dom_tree.png)
 
-DOM 접근 또는 조작하기 위해 브라우저는 Javascript API(Application Programming Interface)를 제공한다. 이 API는 브라우저 별로 다를 수 있는데 jQuery는 브라우저 호환성을 고려하여 설계되어 있어 사용자는 일관된 방법으로 DOM에 접근/조작할 수 있다.
+이렇게 생성된 DOM tree를 기반으로 브라우저는 viewport에 그 내용을 렌더링하게 된다. 따라서 DOM이 변경되면 브라우저를 통해 사용자가 보게 될 Content 또한 변경된다.
 
-# 2. jQuery의 설치
+DOM을 수정하기 위해서는, 좀 더 구체적으로 말해 기존 HTML 상의 요소를 동적으로 변경하기 위해서는 우선 대상 요소를 <strong>선택(Select)</strong>하여야 한다.
 
-[jquery.com](http://jquery.com/download/)에서 jQuery를 다운로드한다.
+```javascript
+var elem = document.getElementsByTagName('h1')[0];
+```
 
-jQuery 1.x과 jQuery 2.x 두가지 버전이 존재한다. 두가지 버전 모두 동일한 API을 제공하지만 jQuery 2.x는 IE 8 이하를 지원하지 않으므로 주의가 필요하다.
+대상 요소가 선택되었으면 요소의 텍스트를 변경해 보자.
 
-2016년 6월 9일 [jQuery 3.0이 릴리스](http://blog.jquery.com/2016/06/09/jquery-3-0-final-released/)되었다. jQuery 1.x는 jQuery Compat 3.0, jQuery 2.x는 jQuery 3.0으로 계승되어 두가지 버전 모두 jQuery 3.0으로 통일되었다.
-{: .info}
+```javascript
+elem.textContent = 'Hello';
+```
 
-# 3. Basic Usage
+만약 h1 요소가 3개라면 어떻게 될까? 위 코드라면 첫번째 h1 요소의 텍스트만 변경된다. 모든 h1 요소의 텍스트를 일괄 변경하기 위해서는 반복문을 사용하여야 한다.
+
+```javascript
+var elem = document.getElementsByTagName('h1');
+for (var i=0; i<elem.length; i++) {
+  elem[i].textContent = 'Hello';
+}
+```
+
+위 코드를 jQuery로 작성해 보자.
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>jQuery</title>
+  </head>
+  <body>
+    <h1>Where do you want to go?</h1>
+    <p>Plan your next adventure.</p>
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="app.js"></script>
+  </body>
+</html>
+```
+
+```javascript
+// app.js
+$('h1').text('Hello');
+```
+
+app.js는 jQuery를 사용하므로 app.js 로드 이전에 jQuery가 로드되어야 한다. jQuery는 body 요소의 마지막 부분 또는 head 요소 내에서 로드하는 것이 일반적인데 이것은 DOM이 완전히 생성되기 이전에 자바스크립트가 로드될 가능성을 내포한다. DOM이 완전히 생성되기 이전에 자바스크립트가 실행되면 예기치 못한 현상이 발생할 수 있다.
+
+# 3. jQuery 함수
+
+jQuery를 사용하기 위해서는 먼저 jQuery 객체를 생성하여야 한다. 생성된 jQuery 객체는 다양한 메서드를 가지는데 jQuery를 학습한다고 하는 것은 대체로 이 메서드를 사용하는 방법을 익히는 것이다.
+
+jQuery 객체를 생성하기 위해서는 jQuery 함수를 사용한다.
+
+```javascript
+jQuery()
+```
+
+jQuery() 함수를 축약형(Shorthand)으로 기술하면 다음과 같다.
+
+```javascript
+$()
+```
+
+jQuery() 함수는 전달되는 인수의 종류에 따라 조금 다른 움직임을 하지만 결국 **jQuery 객체를 반환한다.**
+
+## 3.1 CSS 스타일의 selector를 인수로 전달받을 때
 
 jQuery는 CSS 스타일의 selector를 이용하여 요소를 선택할 수 있다.
 
@@ -70,27 +131,61 @@ jQuery는 CSS 스타일의 selector를 이용하여 요소를 선택할 수 있�
 jQuery('h1');
 ```
 
-jQuery() 함수를 사용하는데 인수로 (CSS-like) 태그 선택자를 지정하였다. 이때 **jQuery() 함수는 jQuery 객체를 반환한다.** jQuery() 함수를 축약형(Shorthand)으로 기술하면 다음과 같다.
+jQuery() 함수의 인수로 CSS의 태그 선택자를 지정하였다. 이때 **jQuery() 함수는 jQuery 객체를 반환한다.** jQuery() 함수를 축약형(Shorthand)으로 기술하면 다음과 같다.
 
 ```javascript
 $('h1');
 ```
 
-jQuery() 함수에 의해 생성된 객체를 <strong>Matched set 또는 jQuery selection</strong>이라 한다. 이 객체에는 선택한 요소에 대한 참조가 저장되어 있다. jQuery가 제공하는 프로퍼티와 메서드는 prototype 객체를 통해 접근할 수 있다.
+jQuery() 함수에 의해 생성된 객체를 <strong>Matched set 또는 jQuery selection</strong>이라 한다. 이 객체에는 선택한 요소에 대한 참조가 저장되어 있는데 선택된 요소는 1개일수도 있지만 여러개일 수도 있다. jQuery가 제공하는 프로퍼티와 메서드는 prototype 객체를 통해 접근할 수 있다.
 
 ```javascript
 $('h1').text();
 ```
 
-text() 메서드는 jQuery가 제공하는 메서드로 해당 요소의 텍스트를 반환한다. 해당 요소의 텍스트를 변경하는 방법은 아래와 같다.
+text() 메서드는 jQuery 객체가 제공하는 메서드로 해당 요소(Matched set)의 텍스트를 반환한다. 해당 요소의 텍스트를 변경하는 방법은 아래와 같다.
 
 ```javascript
-$('h1').text('Where to?');
+$('h1').text('Hello!');
 ```
 
-# 4. DOM Ready
+## 3.2 HTML을 인수로 전달받을 때
 
-완성된 코드를 살펴보자.
+HTML 문자열을 인수로 받으면 새로운 요소를 생성한다.
+
+```javascript
+$('<p id="test">My <em>new</em> text</p>').appendTo('body');
+```
+
+## 3.3 JavaScript 객체를 인수로 전달받을 때
+
+JavaScript 객체(요소, 일반 객체, 매치드셋 등)를 인수로 받으면 그 객체를 jQuery 객체로 wrap한 객체를 반환한다.
+
+```javascript
+$("div.foo").click(function() {
+  $(this).slideUp();
+});
+```
+
+```javascript
+// Define a plain object
+var foo = { foo: "bar", hello: "world" };
+
+// Pass it to the jQuery function
+var $foo = $( foo );
+
+// Test accessing property values
+var test1 = $foo.prop( "foo" ); // bar
+
+// Test setting property values
+$foo.prop( "foo", "foobar" );
+
+var test2 = $foo.prop( "foo" ); // foobar
+```
+
+## 3.4 콜백함수를 인수로 전달받을 때
+
+다음 코드를 살펴보자.
 
 ```html
 <!DOCTYPE html>
@@ -109,7 +204,7 @@ $('h1').text('Where to?');
 
 ```javascript
 // js/app.js
-$('h1').text('Where to?');
+$('h1').text('Hello');
 ```
 
 app.js는 jQuery를 사용하므로 app.js 로드 이전에 jQuery가 로드되어야 한다. jQuery는 body 요소의 마지막 부분 또는 head 요소 내에서 로드하는 것이 일반적인데 이것은 DOM이 완전히 생성되기 이전에 자바스크립트가 로드될 가능성을 내포한다. DOM이 완전히 생성되기 이전에 자바스크립트가 실행되면 예기치 못한 현상이 발생될 수 있다.
@@ -143,11 +238,11 @@ $(function() {
 
 부가적으로 위 방법은 function-level scope를 지원하는 자바스크립트의 특성에 부합한다. 즉 전역 변수의 생성이 억제되어 스크립트 간의 전역 변수 이름의 충돌을 미연에 방지할 수 있다.
 
-# 5. Selector
+# 4. Selector
 
 jQuery는 [CSS 스타일의 Selector](./css3-selector)를 이용하여 요소를 선택할 수 있다. 이것은 [자바스크립트 DOM 쿼리](./js-dom#dom-query--traversing--)보다 쉽고 강력하며 유연하다.
 
-## 5.1 태그 / ID / Class 선택자
+## 4.1 태그 / ID / Class 선택자
 
 자바스크립트의 getElementsByClassName 메서드 등을 사용하여 선택한 요소들에 개별적으로 접근하기 위해서는 반복문을 사용하여야 한다.
 
@@ -225,7 +320,7 @@ $('#container');
 $('.articles');
 ```
 
-## 5.2 후손 선택자 (Descendant Selector)
+## 4.2 후손 선택자 (Descendant Selector)
 
 자신의 1 level 상위에 속하는 요소를 부모 요소, 1 level 하위에 속하는 요소를 자식 요소라고 한다. 자신보다 n level 하위에 속하는 요소는 후손 요소(하위 요소)라 한다. 후손 요소는 자손 요소를 포함하는 개념이다.
 
@@ -246,7 +341,7 @@ id가 destinations인 ul 요소의 후손을 모두 선택한다.
 $('#destinations li');
 ```
 
-## 5.3 자손 선택자 (Child Selector)
+## 4.3 자손 선택자 (Child Selector)
 
 ```html
 <h1>Where do you want to go?</h1>
@@ -275,7 +370,7 @@ $('#destinations li');
 $('#destinations > li');
 ```
 
-## 5.4 복합 선택자 (Multiple Selector)
+## 4.4 복합 선택자 (Multiple Selector)
 
 ```html
 <h1>Where do you want to go?</h1>
@@ -296,7 +391,7 @@ $('#destinations > li');
 $('.promo, #france');
 ```
 
-## 5.5 가상 클래스 선택자 (Pseudo-Class Selector)
+## 4.5 가상 클래스 선택자 (Pseudo-Class Selector)
 
 ```html
 <h1>Where do you want to go?</h1>
@@ -408,7 +503,7 @@ Forms
 - [:text](https://api.jquery.com/text-selector/)
 
 
-# 6. Traversing
+# 5. Traversing
 
 Selector를 사용하여 matched set을 생성한 이후, matched set의 요소들과 관련있는 다른 요소에 접근할 수 있다. 이를 DOM 탐색(DOM Traversing)이라 한다.
 
@@ -477,11 +572,11 @@ Tree Traversal
 - [.siblings()](https://api.jquery.com/siblings/)
 
 
-# 7. Manipulation
+# 6. Manipulation
 
 DOM에 새로운 요소를 추가/삭제, 복사, 속성 변경 등을 실시할 수 있다. 이를 DOM 조작(DOM Manipulation)이라 한다.
 
-## 7.1. Appending
+## 6.1. Appending
 
 ```html
 <li class="vacation">
@@ -517,7 +612,7 @@ $(function() {
 });
 ```
 
-## 7.2. Removing
+## 6.2. Removing
 
 요소의 제거는 remove() 메서드를 사용한다.
 
@@ -568,6 +663,54 @@ DOM Replacement
 :  
 - [.replaceAll()](https://api.jquery.com/replaceAll/)
 - [.replaceWith()](https://api.jquery.com/replaceWith/)
+
+# 7. CSS / Attributes
+
+CSS와 요소의 속성에 관련된 메서드는 다음을 참조하기 바란다.
+
+Attributes
+:  
+- [.attr()](https://api.jquery.com/attr/)
+- [.prop()](https://api.jquery.com/prop/)
+- [.removeAttr()](https://api.jquery.com/removeAttr/)
+- [.removeProp()](https://api.jquery.com/removeProp/)
+- [.val()](https://api.jquery.com/val/)
+
+CSS
+:  
+- [.addClass()](https://api.jquery.com/addClass/)
+- [.css()](https://api.jquery.com/css/)
+- [jQuery.cssHooks](https://api.jquery.com/jQuery.cssHooks/)
+- [jQuery.cssNumber](https://api.jquery.com/jQuery.cssNumber/)
+- [jQuery.escapeSelector()](https://api.jquery.com/jQuery.escapeSelector/)
+- [.hasClass()](https://api.jquery.com/hasClass/)
+- [.removeClass()](https://api.jquery.com/removeClass/)
+- [.toggleClass()](https://api.jquery.com/toggleClass/)
+
+Dimensions
+:  
+- [.height()](https://api.jquery.com/height/)
+- [.innerHeight()](https://api.jquery.com/innerHeight/)
+- [.innerWidth()](https://api.jquery.com/innerWidth/)
+- [.outerHeight()](https://api.jquery.com/outerHeight/)
+- [.outerWidth()](https://api.jquery.com/outerWidth/)
+- [.width()](https://api.jquery.com/width/)
+
+Offset
+:  
+- [.offset()](https://api.jquery.com/offset/)
+- [.offsetParent()](https://api.jquery.com/offsetParent/)
+- [.position()](https://api.jquery.com/position/)
+- [.scrollLeft()](https://api.jquery.com/scrollLeft/)
+- [.scrollTop()](https://api.jquery.com/scrollTop/)
+
+Data
+:  
+- [jQuery.data()](https://api.jquery.com/jQuery.data/)
+- [.data()](https://api.jquery.com/data/)
+- [jQuery.hasData()](https://api.jquery.com/jQuery.hasData/)
+- [jQuery.removeData()](https://api.jquery.com/jQuery.removeData/)
+- [.removeData()](https://api.jquery.com/removeData/)
 
 # 8. Event
 

@@ -178,7 +178,7 @@ So that leaves all default values up to the browser and how the developers actua
 
 - block 속성처럼 width, height, margin, padding 속성을 모두 정의할 수 있다. 상, 하 여백을 margin과 line-height 두가지 속성 모두를 통해 제어할 수 있다.
 
-- inline-block 속성 요소를 연속 사용되는 경우, 좌우에 정의하지 않은 space(4px)가 자동 지정된다.
+- inline-block 속성 요소를 연속 사용되는 경우, 좌우에 정의하지 않은 space(4px)가 자동 지정된다. 회피 방법은 [Fighting the Space Between Inline Block Elements](https://css-tricks.com/fighting-the-space-between-inline-block-elements/inline-block)를 참조하기 바란다.
 
 ```html
 <!DOCTYPE html>

@@ -14,7 +14,7 @@ description: Heroku에서의 Node.js와 MongoDB 설치
 
 [Heroku](https://www.heroku.com/)는 AWS의 IaaS 상에 구축된 PaaS이다. Git로 deploy가 가능하며 Web app 개발에서 공개까지 간단히 사용할 수 있는 Platform이다.
 
-소규모 사이크나 개인 블로그 정도는 충분히 무료로 사용할 수 있는 공간이 주어진다.
+소규모 사이트나 개인 블로그 정도는 충분히 무료로 사용할 수 있는 공간이 주어진다.
 
 # 1. Heroku account 취득
 
@@ -22,7 +22,7 @@ description: Heroku에서의 Node.js와 MongoDB 설치
 
 # 2. Node.js & npm install 확인
 
-node.js와 npm, git이 install되어 있어야 한다. install 여부를 확인한다.
+node.js와 npm, git가 사전에 install되어 있어야 한다. install 여부를 확인한다.
 
 ```bash
 $ node -v

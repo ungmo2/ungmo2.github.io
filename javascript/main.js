@@ -134,4 +134,22 @@ jQuery(document).ready(function ($) {
     return $this;
   });
 */
+
+  // Div opacity based on scrollbar position
+  var fadeStart = 100;
+  var fadeUntil = 350;
+  var $fadingTarget = $('.hello');
+
+  $(window).on('scroll', function(){
+    var offset = $(document).scrollTop(),
+        opacity = 0;
+
+    if( offset <= fadeStart ){
+      opacity = 1;
+    }else if( offset <= fadeUntil ){
+      opacity = 1 - offset/fadeUntil;
+    }
+
+    $fadingTarget.css('opacity', opacity);
+  });
 });

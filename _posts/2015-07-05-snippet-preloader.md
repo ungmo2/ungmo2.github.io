@@ -536,5 +536,6 @@ section: snippet
 </body>
 </html>
 ```
-<p data-height="750" data-theme-id="0" data-slug-hash="JbqJGZ" data-default-tab="result" data-user="ungmo2" data-embed-version="2" data-pen-title="Page Preloader" class="codepen">See the Pen <a href="http://codepen.io/ungmo2/pen/JbqJGZ/">Page Preloader</a> by Ungmo Lee (<a href="http://codepen.io/ungmo2">@ungmo2</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+
+<p data-height="750" data-theme-id="0" data-slug-hash="JbqJGZ" data-default-tab="result" data-user="ungmo2" data-embed-version="2" data-pen-title="Page Preloader" data-preview="true" class="codepen">See the Pen <a href="http://codepen.io/ungmo2/pen/JbqJGZ/">Page Preloader</a> by Ungmo Lee (<a href="http://codepen.io/ungmo2">@ungmo2</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>

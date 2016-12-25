@@ -2,17 +2,6 @@
 <html class="route-{{ page.route | downcase }} route-{{ page.layout | downcase }}{% if page.section %} section-{{ page.section | downcase }}{% endif %}">
   {% include head.html %}
   <body>
-    <!-- facebook like button start -->
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.8&appId=1777080295904196";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-    <!-- facebook like button end -->
-
     <div class="page-hero"></div>
     <div class="page-body">
       {% include header.html %}

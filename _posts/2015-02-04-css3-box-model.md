@@ -214,7 +214,7 @@ margin / padding 속성은 content의 4개 방향(top, right, left, bottom)에 �
 
 margin 속성에 `auto` 키워드를 설정하면 해당 요소를 브라우저 중앙에 위치 시킬 수 있다.
 
-보다 자세한 중앙 정렬 방법에 대해서는 [Horizontal & Vertical Centering](./centering)을 참조하기 바란다.
+보다 자세한 중앙 정렬 방법에 대해서는 [Horizontal & Vertical Centering](./snippet-centering)을 참조하기 바란다.
 
 ```html
 <!DOCTYPE html>

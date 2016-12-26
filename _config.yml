@@ -1,6 +1,6 @@
 name: PoiemaWeb
 url: http://poiemaweb.com
-description: Front End Web Development Tutorial
+description: Front-end Web Development Tutorial
 keywords: 자바스크립트, 노드, 익스프레스, HTML5, CSS3, Saaa, Javascript, node.js, express, MongoDB, SocketIO
 markdown: kramdown
 kramdown:

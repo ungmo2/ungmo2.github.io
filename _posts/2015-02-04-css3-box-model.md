@@ -82,6 +82,7 @@ width와 height 속성은 요소의 너비와 높이를 지정하기 위해 사�
       width: 300px;
       height: 100px;
       background-color: cornsilk;
+      border: 5px solid navy;
     }
   </style>
 </head>

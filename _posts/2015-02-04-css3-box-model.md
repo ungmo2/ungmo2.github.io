@@ -67,7 +67,37 @@ Chrome DevTools에서 확인한 Box-model
 
 width와 height 속성은 요소의 너비와 높이를 지정하기 위해 사용된다. 이때 지정되는 요소의 너비와 높이는 <strong>컨텐츠 영역</strong>을 대상으로 한다.
 
-따라서 박스 전체 크기는 다음과 같이 계산할 수 있다.
+이는 [box-sizing 속성](./css3-box-model#box-sizing-)에 기본값인 <strong>content-box</strong>가 적용되었기 때문이다. box-sizing 속성에 속성값  <strong>border-box</strong>를 적용하면 컨텐츠 영역, padding, border가 포함된 영역을 width / height 속성의 대상으로 지정 할 수 있다.
+{: .info}
+
+만일 width와 height로 지정한 컨텐츠 영역보다 실제 컨텐츠가 크면 컨텐츠 영역을 넘치게 된다는 것에 유의하여야 한다.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    div {
+      width: 300px;
+      height: 100px;
+      background-color: cornsilk;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </div>
+</body>
+</html>
+```
+<div class='result'></div>
+
+[overflow: hidden;](./css3-position#overflow-)을 지정하면 넘친 컨텐츠를 감출 수 있다.
+{: .info}
+
+기본적으로 width와 height 속성은 <strong>컨텐츠 영역</strong>을 대상으로 요소의 너비와 높이를 지정하므로 박스 전체 크기는 다음과 같이 계산할 수 있다.
 
 전체 너비
 : width + left padding + right padding + left border + right border + left margin + right margin

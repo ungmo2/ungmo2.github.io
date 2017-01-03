@@ -451,7 +451,8 @@ argument의 초기값을 설정할 수도 있다.
 
 Mixin을 사용한 유용한 예제를 살펴보자.
 
-**vendor prefix**
+vendor prefix
+{: .title}
 
 ```scss
 @mixin css3($property, $value) {
@@ -465,7 +466,8 @@ Mixin을 사용한 유용한 예제를 살펴보자.
 }
 ```
 
-**opacity**
+opacity
+{: .title}
 
 ```scss
 @mixin opacity($opacity) {
@@ -479,7 +481,8 @@ Mixin을 사용한 유용한 예제를 살펴보자.
 }
 ```
 
-**absolute position**
+absolute position
+{: .title}
 
 ```scss
 @mixin absPosition ($top: auto, $right: auto, $bottom: auto, $left: auto) {

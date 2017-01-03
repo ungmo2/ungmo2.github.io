@@ -408,7 +408,7 @@ Mixin은 Sass의 매우 유용한 기능으로 중복 기술을 방지하기 위
 }
 ```
 
-@extend와 차이가 없어 보이나 Mixin은 함수와 같이 argument를 사용할 있다.
+@extend와 차이가 없어 보이나 Mixin은 함수와 같이 argument를 사용할 수 있다.
 
 ```scss
 @mixin circle($size) {

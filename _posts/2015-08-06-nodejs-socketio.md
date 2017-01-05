@@ -4,15 +4,15 @@ title: Node.js(express)와 <strong>Socket.io</strong>
 subtitle: Socket.io를 사용한 실시간 채팅 애플리케이션
 categories: nodejs
 section: nodejs
-description: WebSocket, Socket.io를 사용한 실시간 채팅 애플리케이션 
+description: WebSocket, Socket.io를 사용한 실시간 채팅 애플리케이션
 ---
+
+* TOC
+{:toc}
 
 ![socket.io logo](/img/socketio-logo.png)
 
 HTTP는 무상태 프로토콜(stateless protocol)으로 어떠한 이전 요청과도 무관한 각각의 요청을 독립적인 트랜잭션으로 취급하는 통신 프로토콜이다. 이러한 HTTP의 한계에서 벗어나 Node.js에서 손쉽게 Real-time communication(RTC, 실시간 양방향 통신) 웹 애플리케이션을 작성할 수 있는 Socket.io를 간단한 채팅 애플리케이션 작성을 통해 알아본다.
-
-* TOC
-{:toc}
 
 # 1. WebSocket
 

@@ -13,7 +13,7 @@ section: javascript
 
 자바스크립트는 Java, C++과 같은 객체지향 프로그래밍 언어와 달리 프로토타입 기반 객체지향 프로그래밍 언어이다. 따라서 자바스크립트의 동작 원리를 이해하기 위해서는 프로토타입의 개념을 잘 이해하고 있어야 한다.
 
-Java, C++과 같은 객체지향 프로그래밍 언어는 클래스를 정의하고 이를 통해 객체(인스턴스)를 생성한다. 하지만 자바스크립트는 클래스 없이도 (ECMAScript 6에서 클래스가 추가되었다) 객체를 생성할 수 있다.
+Java, C++과 같은 객체지향 프로그래밍 언어는 클래스를 정의하고 이를 통해 객체(인스턴스)를 생성한다. 하지만 자바스크립트는 클래스 없이도 ([ECMAScript 6에서 클래스가 추가되었다](./js-es6#class)) 객체를 생성할 수 있다.
 
 [Javascript Object](./js-object) 참고
 
@@ -32,7 +32,7 @@ console.dir(student);
 ![Google chrome에서 student 객체 출력 결과](/img/printout_student_obj_from_chrome.png)
 
 Google chrome에서 student 객체 출력 결과
-{: desc-img}
+{: .desc-img}
 
 ECMAScript spec에서는 **자바스크립트의 모든 객체는 자신의 프로토타입을 가리키는 [[Prototype]]이라는 숨겨진 프로퍼티를 가진다** 라고 되어있다. 크롬, 파이어폭스 등에서는 숨겨진 [[Prototype]] 프로퍼티가 \_\_proto\_\_ 프로퍼티로 구현되어 있다. 즉 \_\_proto\_\_과 [[Prototype]]은 같은 개념이다.
 

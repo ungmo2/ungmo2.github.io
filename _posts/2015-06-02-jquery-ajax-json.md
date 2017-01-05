@@ -354,20 +354,20 @@ jQuery.ajax( url [, settings ] )  // Returns: jqXHR
 jQuery.ajax( [settings ] )        // Returns: jqXHR
 ```
 
-settings는 Ajax 요청 설정 정보로서 key/value의 쌍으로 이루어진 값이다. 모든 settings는 옵션이다.
+settings는 Ajax 요청 설정 정보로서 key/value의 쌍으로 이루어진 객체이다. 모든 settings는 옵션이다.
 
 대표적인 settings는 아래와 같다.
 
 | settings	  | Description                    | 비고
 | :---------- |:------------------------------ |:-----------------
 | url         | 요청이 전송될 url                 |
-| method      | http 요청 방식 (default: 'GET')  |　version added: 1.9.0
+| method      | http 요청 방식 (default: 'GET')  | version added: 1.9.0
 | type        | method의 alias (default: 'GET') | 1.9.0 이전 버전에서 사용
 | data        | 서버로 전달될 데이터
 | dataType    | 서버로부터 반환될 데이터의 type. default: Intelligent Guess (xml, json, jsonp, script, html)
-| async       | 요청 시 동기화 여부. 기본은 비동기(asynchronous) 요청이다. (default: true)
+| async       | 요청 시 동기화 여부. 기본은 비동기(asynchronous) 요청 (default: true)
 | timeout     | 요청 제한 시간. 제한 시간 안에 요청이 완료되지 않으면 요청을 취소하거나 error 콜백을 호출.
-| jsonpCallback | JSONP 요청을 위한 콜백 함수 이름.
+| jsonpCallback | JSONP 요청을 위한 콜백 함수 이름
 | success     | 요청 성공 이벤트 핸들러
 | error       | 요청 실패 이벤트 핸들러
 | complete    | 요청 완료 이벤트 핸들러

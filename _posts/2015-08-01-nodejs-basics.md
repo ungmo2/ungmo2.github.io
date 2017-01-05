@@ -66,7 +66,7 @@ var result = add(1, 2);
 console.log(result); // => 3
 ```
 
-node 명령어를 사용하여 app.js를 실행하여 3이 출력되는 것을 확인한다.
+node 명령어를 사용하여 main.js를 실행하여 3이 출력되는 것을 확인한다.
 
 ```bash
 $ node main.js

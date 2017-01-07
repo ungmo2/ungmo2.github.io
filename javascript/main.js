@@ -134,6 +134,26 @@ jQuery(document).ready(function ($) {
     return $this;
   });
 */
+  var createCookie = function(name, value, days) {
+    var expires = "";
+    if (days) {
+      var date = new Date();
+      date.setTime(date.getTime() + (days*24*60*60*1000));
+      expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + value + expires + "; path=/";
+  };
+
+  var readCookie = function(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0)==' ') c = c.substring(1,c.length);
+      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+  };
 
   // Div opacity based on scrollbar position
   var fadeStart = 100;
@@ -151,5 +171,37 @@ jQuery(document).ready(function ($) {
     }
 
     $fadingTarget.css('opacity', opacity);
+
+    // Facebook like box
+    var $content = $('.content');
+    var $fbLikeBox = $('.fb-like-box');
+    var slideStart = $content.innerHeight() - 400;
+
+    if(offset > slideStart) {
+      // $fbLikeBox.fadeIn('slow');
+      if(!$fbLikeBox.hasClass('active')) {
+        var cancel = readCookie('c');
+        if(!cancel) {
+          $fbLikeBox.addClass('active');
+        }
+      }
+    } else {
+      // $fbLikeBox.fadeOut('slow');
+      $fbLikeBox.removeClass('active');
+    }
+  });
+
+  // Face like plugin 닫기 버튼
+  $('.close').on('click touch', function(event) {
+    event.preventDefault();
+    // Get Cookie
+    var cancel = readCookie('c');
+    console.log(cancel);
+
+    if(!cancel) {
+      // Set Cookie
+      createCookie('c', '1');
+    }
+    $('.fb-like-box').removeClass('active');
   });
 });

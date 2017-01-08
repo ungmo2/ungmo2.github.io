@@ -50,7 +50,7 @@ console.log(student.__proto__ === Object.prototype); // true
 
 # 2. [[Prototype]] 프로퍼티 vs prototype 프로퍼티
 
-[[Prototype]] 프로퍼티는 모든 객체는 자신의 프로토타입 객체를 가리키는 숨겨진 프로퍼티이다.
+[[Prototype]] 프로퍼티는 자신의 프로토타입 객체를 가리키는 숨겨진 프로퍼티이다.
 
 [[Prototype]] 프로퍼티는 \_\_proto\_\_ 프로퍼티로 구현되어 있어 \_\_proto\_\_과 [[Prototype]]은 같은 개념이다.
 

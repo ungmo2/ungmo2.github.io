@@ -189,8 +189,8 @@ setTimeout() 함수는 첫번째 parameter에 실행하고자 하는 함수를 �
 <div class='result'></div>
 
 ① fade()는 document.body를 전달받아 호출된다.  
-② fade()의 지역변수 level은 1로 초기화되어 있다. 함수 step()은 내부함수로 외부함수 fade()의 지역변수 level을 사용한다.  
-③ 100ms 후 step()은 호출되고 fade()는 종료한다.  
+② fade()의 지역변수 level은 1로 초기화되어 있다. 함수 step()은 내부함수이며 외부함수 fade()의 지역변수 level을 사용한다.  
+③ 100ms 후 함수 step()은 호출되고 fade()는 종료한다.  
 ④ 함수 step()은 지역변수 hex을 갖는다. 이것은 16진수 문자열을 값으로 갖는다.   
 ⑤ 함수 fade()의 매개변수 node(document.body)의 배경색을 변경한다.  
 ⑥ 변수 level이 15보다 작으면 즉 16진수 범위안(1~F)인지 확인한다.  

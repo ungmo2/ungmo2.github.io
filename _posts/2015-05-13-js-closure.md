@@ -157,12 +157,13 @@ add 함수가 호출될 때마다 지역변수 counter가 초기화되기 때문
 
 ## 2.2 setTimeout()에 지정되는 함수
 
-setTimeout() 함수는 내장함수로 첫번째 parameter에 실행하고자 하는 함수를 두번째 parameter에 지정한 시간 간격(ms: 1000분의 1초)으로 해당 함수를 호출한다.
+setTimeout() 함수는 첫번째 parameter에 실행하고자 하는 함수를 전달하고, 두번째 parameter에 시간 간격(ms: 1000분의 1초)을 지정한다. 즉 지정된 시간 간격으로 해당 함수를 호출한다.
 
 ```html
 <!DOCTYPE html>
 <html>
 <body>
+  <p>새로고침으로 다시 실행해 보세요</p>
   <script>
     var fade = function(node) {
       var level = 1; // ②

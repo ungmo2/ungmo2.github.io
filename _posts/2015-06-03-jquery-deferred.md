@@ -193,10 +193,10 @@ Deferred 객체가 반환하는 promise 객체의 `then()`는 비동기 처리�
 ```javascript
 sleep(1000)
   .then(function() {
-      /* resolvedで実行 */
+      /* resolved */
       console.log('resolved');
     }, function(e){
-      /* rejectedで実行 */
+      /* rejected */
       console.log('rejected');
     }
   );

@@ -15,7 +15,7 @@ description: Node.js(express)와 MySQL 연동
 
 [MySQL](https://www.mysql.com/)은 오픈 소스의 관계형 데이터베이스 관리 시스템(RDBMS)이다. [Wordpress](https://wordpress.org/)의 기본 데이터베이스이며 알려진 대부분의 프로그래밍 언어를 위한 드라이버를 지원하고 있다. AMP(Apache-MySQL-PHP) 플랫폼의 데이터베이스 구성체로 작동한다.
 
-SUN 인수 이후, 중소기업이나 개인용 사이트뿐만 아니라 대기업에서도 점차 관심을 보이고 있다. 현재 Wikipedia, Goggle(검색 엔진 제외), Facebook, Tweeter, Youtube 등에서 MySQL을 사용하고 있다.
+SUN이 인수한(SUN Microsystems에 10억 달러에 인수되었으나, Oracle이 SUN Microsystems를 인수하였다.) 이후, 중소기업이나 개인용 사이트뿐만 아니라 대기업에서도 점차 관심을 보이고 있다. 현재 Wikipedia, Goggle(검색 엔진 제외), Facebook, Tweeter, Youtube 등에서 MySQL을 사용하고 있다.
 
 MySQL은 GPL/Commercial License의 듀얼 라이선스가 적용된다.
 

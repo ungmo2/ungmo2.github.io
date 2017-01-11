@@ -15,18 +15,21 @@ description:  문서 형식 정의 tag html head title style link script meta bo
 문서 형식 정의(Document Type Definition, DTD) 태그는 출력할 웹 페이지의 형식을 브라우저에게 전달한다. 문서의 최상위에 위치해야 하며 대소문자를 구별하지 않는다. 문서별 기술 양식은 아래와 같다.
 
 HTML5
+{: .title}
 
 ```html
 <!DOCTYPE html>
 ```
 
 HTML 4.01
+{: .title}
 
 ```html
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 ```
 
 XHTML 1.0
+{: .title}
 
 ```html
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -40,11 +43,12 @@ html 태그는 모든 HTML 요소의 부모 요소이다. 즉 모든 요소는 h
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title>Title of the document</title>
+    <meta charset="utf-8">
+    <title>문서 제목</title>
   </head>
 
   <body>
-    The content of the document......
+    화면에 표시할 모든 컨텐츠는 이곳에 기술한다
   </body>
 </html>
 ```
@@ -69,11 +73,12 @@ title 요소는 문서의 제목을 정의한다. 정의된 제목은 브라우�
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Page Title</title>
+    <meta charset="utf-8">
+    <title>문서 제목</title>
   </head>
 
   <body>
-    The content of the document......
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   </body>
 </html>
 ```
@@ -86,7 +91,8 @@ style 요소에는 HTML 문서를 위한 style 정보를 정의한다.
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Page Title</title>
+    <meta charset="utf-8">
+    <title>문서 제목</title>
     <style>
       body {
         background-color: yellow;
@@ -96,7 +102,7 @@ style 요소에는 HTML 문서를 위한 style 정보를 정의한다.
   </head>
 
   <body>
-    The content of the document......
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   </body>
 </html>
 ```
@@ -111,12 +117,13 @@ link 요소에는 외부 리소스와의 연계 정보를 정의한다. 주로 H
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Page Title</title>
+    <meta charset="utf-8">
+    <title>문서 제목</title>
     <link rel="stylesheet" href="style.css">
   </head>
 
   <body>
-    The content of the document......
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   </body>
 </html>
 ```
@@ -129,6 +136,7 @@ script 요소에는 client-side JavaScript를 정의한다.
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
     <script>
       document.addEventListener('click', function() {
         alert('Clicked!');
@@ -137,7 +145,7 @@ script 요소에는 client-side JavaScript를 정의한다.
   </head>
 
   <body>
-    The content of the document......
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   </body>
 </html>
 ```
@@ -154,7 +162,7 @@ meta 요소는 description, keywords, author, 기타 메타데이터 정의에 �
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
   </head>
 
   <body>
@@ -203,11 +211,12 @@ HTML 문서에는 오직 하나의 body 요소만이 존재할 수 있다.
 ```html
 <html>
   <head>
-    <title>Title of the document</title>
+    <meta charset="utf-8">
+    <title>문서 제목</title>
   </head>
 
   <body>
-    The content of the document......
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   </body>
 </html>
 ```

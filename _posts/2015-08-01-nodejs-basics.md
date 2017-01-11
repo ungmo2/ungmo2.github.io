@@ -95,7 +95,7 @@ console.log('Server running at http://127.0.0.1:3000/');
 
 3. createServer 메서드는 HTTP 서버 객체를 반환한다. 반환된 HTTP 서버 객체의 listen 메서드에 포트번호 3000를 전달하여 서버를 기동시킨다.
 
-위 코드를 실행시키고 브라우저로 http://localhost:3000/에 접속하면 Hello World가 출력되는 것을 확인할 수 있다.
+위 코드를 실행시키고 브라우저로 http://localhost:3000/ 에 접속하면 Hello World가 출력되는 것을 확인할 수 있다.
 
 ```bash
 $ node app.js

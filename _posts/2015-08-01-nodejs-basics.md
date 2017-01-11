@@ -45,7 +45,7 @@ Node.js는 module 단위로 각 기능을 분할할 수 있다.
 
 module은 파일과 1대1의 대응 관계를 가지며 하나의 모듈은 독자적인 유효범위를 가지게 된다. 그리고 `module.exports` 또는 `exports` 객체를 통해 외부로 공개된다.
 
-함수를 가지는 foo 모듈을 생성한다.
+함수를 가지는 모듈 foo를 생성해보자.
 
 ```javascript
 // foo.js
@@ -66,7 +66,7 @@ var result = add(1, 2);
 console.log(result); // => 3
 ```
 
-node 명령어를 사용하여 main.js를 실행하여 3이 출력되는 것을 확인한다.
+node 명령어를 사용하여 main.js를 실행하면 3이 출력되는 것을 확인할 수 있다.
 
 ```bash
 $ node main.js
@@ -78,20 +78,22 @@ $ node main.js
 
 ```javascript
 // app.js
-var http = require('http');
+var http = require('http'); // 1
 
-http.createServer(function (request, response) {
+http.createServer(function (request, response) { // 2
   response.statusCode = 200;
   response.setHeader('Content-Type', 'text/plain');
   response.end('Hello World\n');
-}).listen(3000);
+}).listen(3000); // 3
 
 console.log('Server running at http://127.0.0.1:3000/');
 ```
 
-http 모듈을 로딩하여 변수 http에 할당하였다. 이후 http 모듈의 createServer 메서드에 HTTP request를 처리하여 response를 반환하는 HTTP 서버 애플리케이션으로서의 처리를 정의한 함수를 전달한다.
+1. http 모듈을 로딩하여 변수 http에 할당하였다.
 
-createServer 메서드는 HTTP 서버 객체를 반환한다. 반환된 HTTP 서버 객체의 listen 메서드에 포트번호 3000를 전달하여 서버를 기동시킨다.
+2. 이후 http 모듈의 createServer 메서드에 HTTP request를 처리하여 response를 반환하는 HTTP 서버 애플리케이션으로서의 처리를 정의한 함수를 전달한다.
+
+3. createServer 메서드는 HTTP 서버 객체를 반환한다. 반환된 HTTP 서버 객체의 listen 메서드에 포트번호 3000를 전달하여 서버를 기동시킨다.
 
 위 코드를 실행시키고 브라우저로 http://localhost:3000/에 접속하면 Hello World가 출력되는 것을 확인할 수 있다.
 

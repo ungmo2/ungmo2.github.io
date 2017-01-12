@@ -205,9 +205,9 @@ sleep(1000)
 `$.when()`을 사용하면 연속된 복수의 비동기 처리를 병렬로 처리할 수 있다.
 
 ```javascript
-$.when(sleep(1000), sleep(1000), sleep(1000))
-  .done(function() {
-    console.log('all resolved');
+$.when($.ajax('/example1'), $.ajax('/example2') )
+  .done(function( example1Result, example2Result ) {
+    // Do something with example1Result, example2Result
   })
   .fail(function() {
     console.log('rejected');

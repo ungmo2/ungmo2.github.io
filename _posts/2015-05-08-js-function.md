@@ -593,7 +593,20 @@ Javascript의 함수는 [일급객체](./js-function#first-class-object--)이다
 
 콜백 함수는 매개변수를 통해 전달되고 전달받은 함수의 내부에서 <strong>어느 특정시점</strong>에 실행된다. 이는 마치 함수 내에서 어느 특정시점 또는 조건 하에 특정 행위를 하는 내부 함수를 실행하는 것과 유사하다.
 
-특정 행위를 하는 콜백 함수를 외부에서 전달하여 각기 다른 동작을 하도록 콜백 함수에 처리를 위임하는 것이다.
+setTimeout()의 콜백 함수를 살펴보자. 두번째 매개변수에 전달된 시간이 경과되면 첫번째 매개변수에 전달한 콜백 함수가 호출된다.
+
+```javascript
+setTimeout(function(){
+  console.log('1초 후 출력된다.');
+}, 1000);
+```
+
+![callback function](./img/callback.png)
+
+콜백 함수의 호출
+{: .desc-img}
+
+콜백 함수는 주로 비동기식 처리 모델(Asynchronous processing model)에 사용된다. 비동기식 처리 모델이란 처리가 종료하면 호출될 함수(콜백함수)를 미리 매개변수에 전달하고 처리가 종료하면 콜백함수를 호출하는 것이다.
 
 콜백 함수는 내부 함수이므로 콜백함수를 전달받은 함수의 변수에 접근할 수 있다.
 
@@ -601,7 +614,7 @@ Javascript의 함수는 [일급객체](./js-function#first-class-object--)이다
 function doSomething(callback) {
   var name = 'Lee';
   // Call the callback
-  if (typeof callback === "function") {
+  if (typeof callback === 'function') {
     callback('My name is ' + name);
   }
 }

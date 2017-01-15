@@ -17,7 +17,7 @@ description: Promise를 위한 jQuery Deferred Object
 [콜백함수](./js-function#callback-function)를 사용한 비동기식 처리 모델은 JavaScript에서 빈번히 사용된다. 비동기식 처리 모델이란 처리가 종료하면 호출될 함수(콜백함수)를 미리 parameter로 전달하고 처리가 종료하면 콜백함수를 호출하는 것이다.
 
 ```javascript
-asyncFunction(param, function(result) {
+asyncFunc(param, function(result) {
   /*
   처리가 종료하면 호출될 콜백함수
   result에 처리 결과가 전달된다
@@ -54,7 +54,7 @@ Promise는 비동기 처리가 성공(fulfilled)하였는지 또는 실패(rejec
 
 ```javascript
 //Promise 선언
-var _promise = function(param) {
+function asyncFunc(param) {
   return new Promise(function(resolve, reject) {
     setTimeout(function() { // 비동기 함수
       param ? resolve("resolved!") : reject(new Error("Error occurred!"));
@@ -63,7 +63,7 @@ var _promise = function(param) {
 };
 
 //Promise 실행
-_promise(true)
+asyncFunc(true)
   .then(function(data) {
     // resolve가 실행된 경우(성공), resolve 함수에 전달된 값이 data에 저장된다
     console.log(data);

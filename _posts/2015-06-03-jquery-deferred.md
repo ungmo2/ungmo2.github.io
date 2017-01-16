@@ -48,7 +48,22 @@ step1(function(value1) {
 });
 ``` -->
 
-Callback Hell은 코드의 가독성이 나쁘게 하여 이해하기 어렵고 에러 처리가 어려우며 실수를 유발시킬 확률이 높다. 이러한 문제를 극복하기 위해 [Promise](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise)가 제안되었다. (ES6의 [Generator](http://wiki.ecmascript.org/doku.php?id=harmony:generators)를 사용하여 Callback Hell 문제를 없애는 방법도 있다.) Promise는 [ES6](./js-es6)에 정식 채택되어 2017년 1월 현재 IE를 제외한 대부분의 브라우저가 지원하고 있다.
+Callback Hell은 코드의 가독성을 나쁘게 하여 실수를 유발시킬 확률이 높아지며 <strong>에러 처리가 곤란</strong>하다.
+
+에러 처리가 곤란한 것은 콜백 방식 비동기 처리가 갖는 문제이다. exception은 caller 방향으로 전파된다. 그리고 비동기 처리의 콜백함수는 콜백 큐에 들어가 있다가 해당 이벤트가 발생하면 호출된다. 이때 콜백함수를 호출한 것은 콜백함수를 갖는 비동기 함수가 아니기 때문에 아래와 같은 에러는 catch되지 않아 프로세스가 종료된다.
+
+```javascript
+try {
+  setTimeout(function(){
+    throw 'Error!';
+  }, 1000);
+} catch(e) {
+  console.log('에러를 캐치하지 못한다..');
+  console.log(e);
+}
+```
+
+이러한 문제를 극복하기 위해 [Promise](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise)가 제안되었다. (ES6의 [Generator](http://wiki.ecmascript.org/doku.php?id=harmony:generators)를 사용하여 Callback Hell 문제를 없애는 방법도 있다.) Promise는 [ES6](./js-es6)에 정식 채택되어 2017년 1월 현재 IE를 제외한 대부분의 브라우저가 지원하고 있다.
 
 Promise는 비동기 처리가 성공(fulfilled)하였는지 또는 실패(rejected)하였는지 등의 상태 정보와 처리 종료 후 실행될 콜백함수(then())담고 있는 객체이다.
 

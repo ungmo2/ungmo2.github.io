@@ -591,7 +591,7 @@ logHello('lee');  // logHello is not defined
 ```
 Javascript의 함수는 [일급객체](./js-function#first-class-object--)이다. 따라서 Javascript의 함수는 흡사 변수와 같이 사용될 수 있다.
 
-콜백 함수는 매개변수를 통해 전달되고 전달받은 함수의 내부에서 <strong>어느 특정시점</strong>에 실행된다. 이는 마치 함수 내에서 어느 특정시점 또는 조건 하에 특정 행위를 하는 내부 함수를 실행하는 것과 유사하다.
+콜백 함수는 매개변수를 통해 전달되고 전달받은 함수의 내부에서 <strong>어느 특정시점</strong>에 실행된다. 이는 마치 함수 내에서 어느 특정시점 또는 조건 하에 특정 행위를 하는 [클로저](./js-closure)를 호출하는 것과 유사하다.
 
 setTimeout()의 콜백 함수를 살펴보자. 두번째 매개변수에 전달된 시간이 경과되면 첫번째 매개변수에 전달한 콜백 함수가 호출된다.
 
@@ -608,23 +608,19 @@ setTimeout(function(){
 
 콜백 함수는 주로 비동기식 처리 모델(Asynchronous processing model)에 사용된다. 비동기식 처리 모델이란 처리가 종료하면 호출될 함수(콜백함수)를 미리 매개변수에 전달하고 처리가 종료하면 콜백함수를 호출하는 것이다.
 
-콜백 함수는 내부 함수이므로 콜백함수를 전달받은 함수의 변수에 접근할 수 있다.
+콜백함수는 콜백 큐에 들어가 있다가 해당 이벤트가 발생하면 호출된다. 콜백 함수는 클로저이므로 콜백 큐에 단독으로 존재하다가 호출되어도 콜백함수를 전달받은 함수의 변수에 접근할 수 있다.
 
 ```javascript
-function doSomething(callback) {
+function doSomething() {
   var name = 'Lee';
-  // Call the callback
-  if (typeof callback === 'function') {
-    callback('My name is ' + name);
-  }
+
+  setTimeout(function() {
+    console.log('My name is ' + name);
+  }, 100);
 }
 
-function foo(str) {
-  console.log(str);
-}
-
-doSomething(foo); // My name is Lee
+doSomething(); // My name is Lee
 ```
 
-> 1. 콜백함수를 매개변수를 통해 전달할 때 함수의 참조(foo)를 넘겨야 한다.  
-> 2. 콜백함수는 내부 함수이므로 콜백함수 내의 this는 전역객체를 가리킨다.
+<!-- > 1. 콜백함수를 매개변수를 통해 전달할 때 함수의 참조(foo)를 넘겨야 한다.  
+> 2. 콜백함수는 내부 함수이므로 콜백함수 내의 this는 전역객체를 가리킨다. -->

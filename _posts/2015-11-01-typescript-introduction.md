@@ -56,7 +56,7 @@ Google은 AtScript라는 TypeScript의 superset을 Angular2에 채용하려 하�
 TypeScript의 spec에 포함시키는 것으로 TypeScript 진영과 합의한 것으로 전해진다.
 
 ![AtScript superset](/img/atscript.png)
-{: .w-300}
+{: .w-650}
 
 TypeScript를 JavaScript의 [Syntactic sugar](https://en.wikipedia.org/wiki/Syntactic_sugar)로 부르기도 하는데 이는 그만큼 JavaScript를 문법적으로 더욱 사용하기 편하게 돕는다는 비유적 표현이다.
 

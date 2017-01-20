@@ -14,7 +14,9 @@ description: Node.js는 Chrome V8 JavaScript 엔진으로 빌드된 JavaScript �
 
 Node.js는 [Chrome V8 JavaScript 엔진](https://developers.google.com/v8/)으로 빌드된 JavaScript 런타임으로 주로 서버 사이드 애플리케이션 개발에 사용되는 소프트웨어 플랫폼이다.
 
-언어로는 자바스크립트를 사용하며 Non-blocking I/O와 단일 스레드 이벤트 루프를 통한 높은 Request 처리 성능을 가지고 있다.
+언어로는 자바스크립트를 사용한다. Front-end와 Back-end에서 자바스크립트를 사용할 수 있다는 동형성(isomorphic)은 별도의 언어 학습 시간을 단축시켜 주는 장점을 갖는다.
+
+Node.js는 Non-blocking I/O와 단일 스레드 이벤트 루프를 통한 높은 Request 처리 성능을 가지고 있다.
 
 데이터베이스로부터 대량의 데이터를 취득하여 웹페이지에 표시하는 처리의 경우, 일반적으로 데이터베이스 처리에 대기시간(blocking)이 발생하기 때문에 웹페이지 표시가 지연되는 현상이 발생한다.
 
@@ -24,17 +26,52 @@ Node.js에는 [Socket.io](./nodejs-socketio)라는 실시간 통신을 실현하
 
 # Install
 
-[http://nodejs.org/](https://nodejs.org/)로 이동하여 installer를 다운로드한다. installer를 실행하면 다음의 디렉터리에 Node.js가 설치된다.
+[http://nodejs.org/](https://nodejs.org/)로 이동한다.
+
+![node-homepage](./img/node-homepage.png)
+
+2017년 1월 20일 현재 최신 버전은 6.9.4이다
+{: .desc-img}
+
+LTS(Long Term Supported) 버전은 장기적으로 안정된 지원이 보장되는 버전이다.
+
+![lts-schedule](./img/lts-schedule.png)
+
+LTS Release Schedule ([https://github.com/nodejs/LTS](https://github.com/nodejs/LTS))
+{: .desc-img}
+
+Current 버전은 변경이 발생하고 있는 버전으로 안정적이지 않을 수 있다. 따라서 최신의 LTS 버전을 다운로드하도록 한다.
+
+녹색의 "v6.9.4 LTS Recommended For Most Users" 버튼을 클릭하면 사용자의 OS에 가장 적합한 installer를 다운로드 할 수 있다. "others Downloads"를 클릭하면 다음 화면으로 이동한다.
+
+![node-download](./img/node-download.png)
+
+사용자의 OS에 적합한 installer 또는 소스코드를 선택한다.
+{: .desc-img}
+
+사용자의 OS에 적합한 installer 또는 소스코드를 선택하여 인스톨한다. 이때 `npm`도 동시에 인스톨된다.
+
+인스톨이 완료되면 실행하면 다음의 디렉터리에 Node.js가 설치된다. (버전에 따라 설치 경로는 바뀔 수 있다)
 
 - Windows : C:\Program Files (x86)\nodejs\node.exe
 
 - Mac : /usr/local/bin/node
 
-Node.js의 버전을 출력하여 제대로 설치되었는지 확인한다.
+Node.js와 npm의 버전을 출력하여 제대로 설치되었는지 확인한다.
 
 ```bash
 $ node -v
-v6.4.0
+v6.9.4
+$ npm -v
+3.10.10
+```
+
+npm은 Node.js보다 자주 업데이트되므로 최신 버전이 아닐 수 있다. npm을 업데이트한다.
+
+```bash
+$ sudo npm install npm@latest -g
+$ npm -v
+4.1.1
 ```
 
 # module

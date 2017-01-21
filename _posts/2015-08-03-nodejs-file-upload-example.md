@@ -12,9 +12,9 @@ file upload 예제를 통해서 Node.js의 기본과 Routing, 모듈화, Request
 
 # *Install*
 
-아래의 페이지에 방문하여 자신의 개발환경에 맞는 설치파일을 다운로드하여 설치한다.
+먼저 Node.js를 설치하도록 한다. 아래의 링크를 참조하여 자신의 개발환경에 맞는 설치파일을 다운로드하여 설치한다.
 
-[https://nodejs.org/en/download](https://nodejs.org/en/download/)
+[Node.js의 설치](/nodejs-basics#install)
 
 # *Hello World*
 

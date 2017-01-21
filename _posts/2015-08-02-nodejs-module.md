@@ -18,7 +18,7 @@ CommonJS는 JavaScript를 브라우저에서만 아니라 서버사이드 애플
 
 모듈은 자신만의 <strong>독립적인 실행 영역(Scope)</strong>가 있어야 하며 모듈 정의는 <strong>exports 객체</strong>, 모듈 사용은 <strong>require 함수</strong>를 사용한다.
 
-Node.js는 파일마다 독립적인 파일 Scope가 있기 때문에 클라리언트 사이드 JavaScript와는 달리 전역변수의 중복 문제가 발생하지 않는다.
+Node.js는 파일마다 독립적인 파일 Scope가 있기 때문에 클라이언트 사이드 JavaScript와는 달리 전역변수의 중복 문제가 발생하지 않는다.
 
 몇가지의 구체적인 예제를 통해 Node.js의 module loading system을 살펴보자.
 

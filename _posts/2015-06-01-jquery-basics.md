@@ -18,11 +18,13 @@ description: jQuery의 설치 Basic Usage DOM Ready Selector Traversing Manipula
 
 - 어떠한 브라우저에서도 동일하게 동작한다. 이것은 브라우저 호환성을 고려하여 대체 코드(Polyfill)를 작성할 필요가 없다는 것을 의미한다.
 
-- CSS 스타일의 selector를 이용하여 요소를 선택할 수 있다. 이것은 [자바스크립트 DOM 쿼리](./js-dom#dom-query--traversing--)보다 쉽고 강력하며 유연하다.
+- [네이티브 DOM API](./js-dom)(DOM Query, Traversing, Manipulation 등)보다 직관적인 API를 제공한다. CSS 스타일의 selector를 사용할 수 있으며 조작 또한 간편하며 직관적이다.
 
-- 자바스크립트의 getElementsByClassName 메서드 등을 사용하여 복수의 요소를 선택한 후 각각의 요소에 개별적으로 접근하기 위해서는 반복문을 사용하여야 한다. 이때 getElementsByClassName 메서드가 반환하는 [HTMLCollection](./js-dom#dom-query-1)은 실시간으로 Node의 상태 변경을 반영하기 때문에 경우에 따라(예를 들어 클래스명이 변경될 때) 반복문을 역방향으로 돌리는 등 번거로운 처리가 필요하다. jQuery는 반복문 없이 해당하는 모든 요소를 선택/조작할 수 있다. 이를 묵시적 반복(implicit iteration)이라 한다.
+<!-- - CSS 스타일의 selector를 이용하여 요소를 선택할 수 있다. 이것은 [자바스크립트 DOM 쿼리](./js-dom#dom-query--traversing--)보다 쉽고 강력하며 유연하다.
 
-- DOM Manipulation(조작)과 Animation 효과, 이벤트 처리를 쉽게 사용할 수 있다.
+- 자바스크립트의 getElementsByClassName 메서드 등을 사용하여 복수의 요소를 선택한 후 각각의 요소에 개별적으로 접근하기 위해서는 반복문을 사용하여야 한다. 이때 getElementsByClassName 메서드가 반환하는 [HTMLCollection](./js-dom#dom-query-1)은 실시간으로 Node의 상태 변경을 반영하기 때문에 경우에 따라(예를 들어 클래스명이 변경될 때) 반복문을 역방향으로 돌리는 등 번거로운 처리가 필요하다. jQuery는 반복문 없이 해당하는 모든 요소를 선택/조작할 수 있다. 이를 묵시적 반복(implicit iteration)이라 한다. -->
+
+- Animation 효과, 이벤트 처리를 쉽게 사용할 수 있다.
 
 - 다양한 플러그인이 존재하며 다른 라이브러리들과 충돌을 일으키지 않는다.
 

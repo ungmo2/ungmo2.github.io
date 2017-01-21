@@ -82,7 +82,7 @@ $ npm install -g typescript
 
 ```bash
 $ tsc -v
-Version 2.0.6
+Version 2.1.5
 ```
 
 TypeScript 컴파일러(tsc)는 TypeScript 파일(.ts)을 JavaScript 파일로 트랜스파일한다.
@@ -116,7 +116,7 @@ $ tsc greeter.ts
 
 ```bash
 $ node greeter
-hello
+Hello, world
 ```
 
 복수의 파일을 한번에 컴파일할 수도 있다.

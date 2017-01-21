@@ -19,6 +19,7 @@ Node.js는 [Chrome V8 JavaScript 엔진](https://developers.google.com/v8/)으�
 언어로는 자바스크립트를 사용한다. Front-end와 Back-end에서 자바스크립트를 사용할 수 있다는 동형성(isomorphic)은 별도의 언어 학습 시간을 단축시켜 주는 장점을 갖는다.
 
 ![Isomorphic-JavaScript](./img/Isomorphic-JavaScript.png)
+{: .w-450}
 
 Isomorphic JavaScript
 {: .desc-img}
@@ -81,7 +82,37 @@ $ npm -v
 4.1.1
 ```
 
-# module
+# REPL
+
+REPL(Read Eval Print Loop: 입력 수행 출력 반복)은 Node.js는 물론 대부분의 언어(Java, Python 등)이 제공하는 가상환경으로 간단한 코드를 직접 실행해 결과를 확인해 볼 수 있다. 터미널(윈도우의 경우 커맨드창)에 다음과 명령어를 실행시켜 보자.
+
+```bash
+$ node
+```  
+
+프롬프트가 >로 변경되면 Node.js 또는 JavaScript 코드를 입력하고 실행시켜 볼 수 있다.
+
+```bash
+> 1 * 0
+0
+> x = 10
+10
+> console.log('Hello World')
+Hello World
+undefined
+```
+
+Node.js 파일을 실행하려면 node 명령어 뒤에 파일명을 입력한다.
+
+```bash
+$ node index.js
+```  
+
+CTRL + C 키를 두번 실행하면 REPL을 종료시킨다.
+
+자세한 내용은 [Node.js Documentation : REPL](https://nodejs.org/dist/latest-v6.x/docs/api/repl.html)을 참조하기 바란다.
+
+<!-- # module
 
 브라우저 상에서 동작하는 JavaScript는 script tag로 로드하며 복수의 JavaScript 파일을 로드할 경우 하나의 파일로 merge되며 동일한 유효범위를 갖게 된다.
 
@@ -114,7 +145,7 @@ node 명령어를 사용하여 main.js를 실행하면 3이 출력되는 것을 
 
 ```bash
 $ node main.js
-```
+``` -->
 
 # HTTP Server
 

@@ -14,7 +14,14 @@ description: Node.js는 Chrome V8 JavaScript 엔진으로 빌드된 JavaScript �
 
 Node.js는 [Chrome V8 JavaScript 엔진](https://developers.google.com/v8/)으로 빌드된 JavaScript 런타임으로 주로 서버 사이드 애플리케이션 개발에 사용되는 소프트웨어 플랫폼이다.
 
+2009년 발표된 Node.js는 폭발적인 관심을 받아왔고 Node.js를 사용하는 기업수도 대폭 증가했다. 이후 엔터프라이즈 영역에서 기존 Java나 .NET을 Node.js로 대체하려는 검토가 활발히 진행될 것으로 예상된다.
+
 언어로는 자바스크립트를 사용한다. Front-end와 Back-end에서 자바스크립트를 사용할 수 있다는 동형성(isomorphic)은 별도의 언어 학습 시간을 단축시켜 주는 장점을 갖는다.
+
+![Isomorphic-JavaScript](./img/Isomorphic-JavaScript.png)
+
+Isomorphic JavaScript
+{: .desc-img}
 
 Node.js는 Non-blocking I/O와 단일 스레드 이벤트 루프를 통한 높은 Request 처리 성능을 가지고 있다.
 

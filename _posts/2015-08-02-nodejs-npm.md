@@ -20,7 +20,7 @@ C언어는 #include, Java는 import 등 대부분의 언어는 모듈 기능을 
 
 JavaScript를 Client-side에 국한하지 않고 범용적으로 사용하고자 하는 움직임이 생기면서 모듈 기능은 반드시 해결해야하는 핵심 과제가 되었고 이런 상황에서 제안된 것이 [CommonJS](http://www.commonjs.org/)이다. CommonJS는 사양(spec)으로 CommonJS라는 라이브러리가 존재하는 것은 아니다.
 
-Node.js는 사실상 module loading system의 실질적 표준(de facto standard)인 CommonJS를 채택하였고 현재는 독자적인 진화를 거쳐 CommonJS 사양과 100% 동일하지는 않지만 기본적으로 CommonJS 방식을 따르고 있다.
+Node.js는 사실상 module loading system의 사실상 표준(de facto standard)인 CommonJS를 채택하였고 현재는 독자적인 진화를 거쳐 CommonJS 사양과 100% 동일하지는 않지만 기본적으로 CommonJS 방식을 따르고 있다.
 
 모듈화에 대한 자세한 사항은 다음을 참고하기 바란다.
 

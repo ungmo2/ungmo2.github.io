@@ -22,6 +22,8 @@ JavaScript를 Client-side에 국한하지 않고 범용적으로 사용하고자
 
 Node.js는 사실상 module loading system의 사실상 표준(de facto standard)인 CommonJS를 채택하였고 현재는 독자적인 진화를 거쳐 CommonJS 사양과 100% 동일하지는 않지만 기본적으로 CommonJS 방식을 따르고 있다.
 
+[Node.js module](./nodejs-module)
+
 모듈화에 대한 자세한 사항은 다음을 참고하기 바란다.
 
 - [JavaScript 표준을 위한 움직임: CommonJS와 AMD](http://d2.naver.com/helloworld/12864)

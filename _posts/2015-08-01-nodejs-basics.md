@@ -12,6 +12,8 @@ description: Node.js는 Chrome V8 JavaScript 엔진으로 빌드된 JavaScript �
 
 ![node-logo](/img/node-logo.png)
 
+# 1. Introduction
+
 Node.js는 [Chrome V8 JavaScript 엔진](https://developers.google.com/v8/)으로 빌드된 JavaScript 런타임으로 주로 서버 사이드 애플리케이션 개발에 사용되는 소프트웨어 플랫폼이다.
 
 2009년 발표된 Node.js는 폭발적인 관심을 받아왔고 Node.js를 사용하는 기업수도 대폭 증가했다. 이후 엔터프라이즈 영역에서 기존 Java나 .NET을 Node.js로 대체하려는 검토가 활발히 진행될 것으로 예상된다.
@@ -32,7 +34,7 @@ Non-blocking I/O는 비동기 처리를 실시하므로 데이터베이스 처�
 
 Node.js에는 [Socket.io](./nodejs-socketio)라는 실시간 통신을 실현하는 라이브러리를 사용할 수 있어서 대량의 데이터 처리와 실시간 통신을 구현할 수 기능을 모두 갖추고 있다.
 
-# Install
+# 2. Install
 
 [http://nodejs.org/](https://nodejs.org/)로 이동한다.
 
@@ -57,9 +59,9 @@ Current 버전은 변경이 발생하고 있는 버전으로 안정적이지 않
 사용자의 OS에 적합한 installer 또는 소스코드를 선택한다.
 {: .desc-img}
 
-사용자의 OS에 적합한 installer 또는 소스코드를 선택하여 인스톨한다. 이때 `npm`도 동시에 인스톨된다.
+사용자의 OS에 적합한 installer 또는 소스코드를 선택하여 설치한다. 이때 `npm`도 동시에 설치된다.
 
-인스톨이 완료되면 실행하면 다음의 디렉터리에 Node.js가 설치된다. (버전에 따라 설치 경로는 바뀔 수 있다)
+설치가 완료되면 다음의 디렉터리에 Node.js가 설치된다. (버전에 따라 설치 경로는 바뀔 수 있다)
 
 - Windows : C:\Program Files (x86)\nodejs\node.exe
 
@@ -74,15 +76,15 @@ $ npm -v
 3.10.10
 ```
 
-npm은 Node.js보다 자주 업데이트되므로 최신 버전이 아닐 수 있다. npm을 업데이트한다.
+npm은 Node.js에 포함되어 있어 Node.js 설치시 자동 설치되므로 별도의 설치가 필요없다. 하지만 Node.js보다 자주 업데이트되므로 최신 버전이 아닐 수 있다. 최신의 npm 버전으로 업데이트하도록 한다. macOS의 경우, sudo를
 
 ```bash
-$ sudo npm install npm@latest -g
+$ npm install npm@latest -g
 $ npm -v
 4.1.1
 ```
 
-# REPL
+# 3. REPL
 
 REPL(Read Eval Print Loop: 입력 수행 출력 반복)은 Node.js는 물론 대부분의 언어(Java, Python 등)이 제공하는 가상환경으로 간단한 코드를 직접 실행해 결과를 확인해 볼 수 있다. 터미널(윈도우의 경우 커맨드창)에 다음과 명령어를 실행시켜 보자.
 
@@ -147,9 +149,164 @@ node 명령어를 사용하여 main.js를 실행하면 3이 출력되는 것을 
 $ node main.js
 ``` -->
 
-# HTTP Server
+# 4. 모듈화와 npm
 
-이번에는 간단한 HTTP Server를 작성해 보자.
+## 4.1 모듈화
+
+자바스크립트는 웹페이지에 있어서 보조적인 기능을 수행하기 위해 한정적인 용도로 만들어진 태생적 한계로 다른 언어에 비해 부족한(나쁜) 부분이 있는 것이 사실이다. 그 대표적인 것이 모듈 기능이 없는 것이다.
+
+C언어는 #include, Java는 import 등 대부분의 언어는 모듈 기능을 가지고 있다. 하지만 Client-side JavaScript의 경우, script 태크를 사용하여 외부의 스크립트 파일을 가져올 수는 있지만 파일마다 독립적인 파일 Scope를 갖지 않고 하나의 전역 객체(Global Object)에 바인딩되기 때문에 전역변수가 중복되는 등의 문제가 발생할 수 있다. 이것으로는 모듈화를 구현할 수 없다.
+
+JavaScript를 Client-side에 국한하지 않고 범용적으로 사용하고자 하는 움직임이 생기면서 모듈 기능은 반드시 해결해야하는 핵심 과제가 되었고 이런 상황에서 제안된 것이 [CommonJS](http://www.commonjs.org/)이다. CommonJS는 사양(spec)으로 CommonJS라는 라이브러리가 존재하는 것은 아니다.
+
+Node.js는 사실상 module loading system의 실질적 표준(de facto standard)인 CommonJS를 채택하였고 현재는 독자적인 진화를 거쳐 CommonJS 사양과 100% 동일하지는 않지만 기본적으로 CommonJS 방식을 따르고 있다.
+
+모듈화에 대한 자세한 사항은 다음을 참고하기 바란다.
+
+- [JavaScript 표준을 위한 움직임: CommonJS와 AMD](http://d2.naver.com/helloworld/12864)
+
+## 4.2 npm
+
+[npm(node package manager)](https://www.npmjs.com/)은 자바스크립트 패키지 매니저이다. Node.js에서 사용할 수 있는 모듈들을 패키지화하여 모아둔 저장소 역할과 패키지 설치 및 관리를 위한 CLI를 제공한다. 자신이 작성한 패키지를 공개할 수도 있고 필요한 패키지를 검색하여 재사용할 수도 있다.
+
+패키지를 설치할 때에는 `npm install` 명령어 뒤에 설치하고자 하는 패키지 명을 지정한다.
+
+```bash
+$ npm install <package>
+```
+
+Node.js 환경에서 emoji를 지원하는 [node-emoji](https://www.npmjs.com/package/node-emoji)를 설치해 보자. 먼저 적당한 위치에 프로젝트 디렉터리를 생성하고 프로젝트 디렉터리로 이동한다.
+
+```bash
+$ mkdir emoji && cd emoji
+```
+
+npm install 명령어로 node-emoji 패키지를 설치한다.
+
+```bash
+$ npm install node-emoji
+/Users/leeungmo/Desktop/emoji
+└─┬ node-emoji@1.5.1
+  └── string.prototype.codepointat@0.2.0
+
+npm WARN enoent ENOENT: no such file or directory, open '/Users/leeungmo/Desktop/emoji/package.json'
+npm WARN emoji No description
+npm WARN emoji No repository field.
+npm WARN emoji No README data
+npm WARN emoji No license field.
+```
+
+node-emoji 패키지가 설치되었다. 설치된 패키지는 프로젝트 디렉터리 내의 Node_modules 디렉터리에 설치된다.
+
+npm install 명령어에는 지역(local)과 전역(global)이라는 두가지 옵션이 존재한다. 전역에 패키지를 설치하려면 `-g` 옵션을 지정한다. 전역에 설치된 패키지는 macOS의 경우 /usr/local/lib/node_modules에 설치되며 윈도우의 경우 c:\Users\%USERNAME%\AppData\Roaming\npm\node_modules에 설치된다. 전역으로 설치된 패키지는 전역에서 참조가 가능하게 된다. 예를 들어 npm의 경우 모든 프로젝트가 사용하기 때문에 지역으로 설치하는 것보다 전역에 설치하는 것이 일반적이다.
+
+node 명령어로 Node.js REPL을 기동시키고 node-emoji를 로드한 후 emoji를 출력해 보자.
+
+```bash
+$ node
+> var emoji = require('node-emoji').emoji;
+undefined
+> console.log(emoji.heart);
+❤️
+undefined
+```
+
+하지만 npm install 명령어로 node-emoji 패키지를 설치할 때 package.json을 찾을 수 없었다는 경고가 발생하였다.
+
+Node.js 프로젝트에서는 많은 패키지를 사용하게 되고 패키지의 버전도 빈번하게 업데이트되기 때문에 프로젝트가 의존하고 있는 모듈의 관리가 필요하게 된다. npm은 `package.json` 파일을 통해서 모듈의 의존성을 관리한다. 이미 작성된 package.json은 팀 내에 배포하여 동일한 개발 환경을 빠르게 구축할 수 있는 장점을 가진다.
+
+package.json을 생성하기 위해서는 `npm init` 명령어를 사용한다.
+
+```bash
+$ npm init
+This utility will walk you through creating a package.json file.
+It only covers the most common items, and tries to guess sensible defaults.
+
+See `npm help json` for definitive documentation on these fields
+and exactly what they do.
+
+Use `npm install <pkg> --save` afterwards to install a package and
+save it as a dependency in the package.json file.
+
+Press ^C at any time to quit.
+name: (emoji)
+```
+
+npm init 명령어를 사용하면 프로젝트에 대한 여러가지 정보를 입력하도록 요구받게 된다. 입력된 정보를 바탕으로 npm은 package.json 파일을 생성한다. 일단 파일로 생성된 package.json을 수정하는 방법이 더 편리할 수 있으므로 `--yes` 옵션으로 디폴트 설정으로 package.json을 생성해 보자.
+
+```bash
+$ npm init --yes
+Wrote to /Users/leeungmo/Desktop/emoji/package.json:
+
+{
+  "name": "emoji",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "node-emoji": "^1.5.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+```
+
+package.json에서 가장 중요한 항목은 `name`과 `version`이다. 이것으로 패키지의 고유성을 판단하게 되기 때문에 생략할 수 없으며 필수로 입력하여야 한다.
+
+`dependencies`에는 해당 프로젝트가 의존하는 패키지들의 이름과 버전을 명시한다. npm install 명령어에 `--save` 옵션을 사용하면 패키지 설치와 함께 package.json의 dependencies에 설치된 패키지와 버전이 기록된다.
+
+```bash
+$ npm install <package> --save
+```
+
+npm install 명령어에 `--save-exact` 옵션을 지정하면 설치된 버전을 범위 지정없이 기록한다.
+
+npm install 명령어의 패키명 뒤에 \@버전을 추가하면 패키지 버전을 지정할 수 있다.
+
+버전의 기술 방식을 아래와 같다.
+
+| 표기법      | Description                     |
+|:--------- |:--------------------------------|
+| version   | 명시된 version과 일치         
+| >version  | 명시된 version보다 높은 버전
+| >=version | 명시된 version과 같거나 높은 버전
+| <version  | 명시된 version보다 낮은 버전
+| <=version | 명시된 version과 같거나 낮은 버전
+| ~version  | 명시된 version과 근사한 버전
+| ^version  | 명시된 version과 호환되는 버전
+
+버전에 대한 보다 자세한 사항은 [semver : The semantic versioner for npm](https://docs.npmjs.com/misc/semver)를 참조하기 바란다.
+
+`devDependencies`에는 개발 시에만 사용하는 의존 패키지를 명시한다. 예를 들어 TypeScript와 같은 트랜스파일러는 개발단계에서만 필요하고 배포할 필요는 없으므로 devDependencies에 포함시킨다. npm install 명령어에 `--save-dev` 옵션을 사용하면 패키지 설치와 함께 package.json의 devDependencies에 설치된 패키지와 버전이 기록된다.
+
+```bash
+$ npm install <package> --save-dev
+```
+
+npm install 명령어를 사용하면 package.json에 명시된 의존 패키지를 한번에 설치할 수 있다.
+
+```bash
+$ npm install
+```
+
+package.json의 자세한 설명은 [https://docs.npmjs.com/files/package.json](https://docs.npmjs.com/files/package.json)을 참조하기 바란다.
+
+`npm help` 명령어를 사용하면 npm CLI 명령어에 대한 설명을 참조할 수 있다.
+
+```bash
+$ npm help <command>
+```
+
+npm의 명령어에 대한 자세한 설명은 [npm CLI 명령어](https://docs.npmjs.com/#cli)을 참조하기 바란다.
+
+# 5. Node.js 맛보기 : HTTP Server
+
+이번에는 간단한 HTTP Server를 작성해 보자. Node.js는 http 서버 모듈을 내장하고 있어서 아피치와 같은 별도의 웹서버를 설치할 필요가 없다
 
 ```javascript
 // app.js
@@ -179,3 +336,5 @@ $ node app.js
 # Reference
 
 * [Node.js](https://nodejs.org/)
+
+* [npm](https://www.npmjs.com/)

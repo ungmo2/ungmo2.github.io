@@ -165,35 +165,6 @@ $ npm help <command>
 
 npm의 명령어에 대한 자세한 설명은 [npm CLI 명령어](https://docs.npmjs.com/#cli)을 참조하기 바란다.
 
-# 5. Node.js 맛보기 : HTTP Server
-
-이번에는 간단한 HTTP Server를 작성해 보자. Node.js는 http 서버 모듈을 내장하고 있어서 아피치와 같은 별도의 웹서버를 설치할 필요가 없다
-
-```javascript
-// app.js
-var http = require('http'); // 1
-
-http.createServer(function (request, response) { // 2
-  response.statusCode = 200;
-  response.setHeader('Content-Type', 'text/plain');
-  response.end('Hello World\n');
-}).listen(3000); // 3
-
-console.log('Server running at http://127.0.0.1:3000/');
-```
-
-1. http 모듈을 로딩하여 변수 http에 할당하였다.
-
-2. 이후 http 모듈의 createServer 메서드에 HTTP request를 처리하여 response를 반환하는 HTTP 서버 애플리케이션으로서의 처리를 정의한 함수를 전달한다.
-
-3. createServer 메서드는 HTTP 서버 객체를 반환한다. 반환된 HTTP 서버 객체의 listen 메서드에 포트번호 3000를 전달하여 서버를 기동시킨다.
-
-위 코드를 실행시키고 브라우저로 http://localhost:3000/ 에 접속하면 Hello World가 출력되는 것을 확인할 수 있다.
-
-```bash
-$ node app.js
-```
-
 # Reference
 
 * [CommonJS](http://www.commonjs.org/)

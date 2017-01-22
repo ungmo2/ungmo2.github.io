@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Node.js(express)와 <strong>MySQL 연동</strong>
+title: Node.js(Express)와 <strong>MySQL 연동</strong>
 categories: express
 section: express
 description: Node.js(express)와 MySQL 연동

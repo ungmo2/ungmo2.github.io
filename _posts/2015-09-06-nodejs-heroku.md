@@ -2,8 +2,8 @@
 layout: post
 title: Deploying Node.js(Express) & <strong>MongoDB to Heroku</strong>
 subtitle: Heroku에서의 Node.js와 MongoDB 설치
-categories: nodejs
-section: nodejs
+categories: express
+section: express
 description: Heroku에서의 Node.js와 MongoDB 설치
 ---
 

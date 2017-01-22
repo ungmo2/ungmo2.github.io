@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Node.js(express)와 <strong>MySQL 연동</strong>
-categories: nodejs
-section: nodejs
+categories: express
+section: express
 description: Node.js(express)와 MySQL 연동
 ---
 

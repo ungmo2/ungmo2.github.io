@@ -72,7 +72,7 @@ TypeScript 사용을 위해서는 Node.js와 TypeScript를 설치하여야 한�
 
 ### 2.2.1 Command line TypeScript Compiler
 
-Node.js를 설치하면 [npm](https://www.npmjs.com/)도 같이 설치된다. 다음과 같이 터미널(윈도우의 경우 커맨드창)에서 npm을 사용하여 TypeScript를 설치한다.
+Node.js를 설치하면 [npm](./nodejs-npm)도 같이 설치된다. 다음과 같이 터미널(윈도우의 경우 커맨드창)에서 npm을 사용하여 TypeScript를 설치한다.
 
 ```bash
 $ npm install -g typescript
@@ -85,9 +85,9 @@ $ tsc -v
 Version 2.1.5
 ```
 
-TypeScript 컴파일러(tsc)는 TypeScript 파일(.ts)을 JavaScript 파일로 트랜스파일한다.
+TypeScript 컴파일러(tsc)는 TypeScript 파일(.ts)을 JavaScript 파일로 트랜스파일링한다.
 
-컴파일을 실행해보기 위해 다음과 같은 파일을 작성해 보자. TypeScript의 확장자는 .ts이다.
+트랜스파일링을 실행해보기 위해 다음과 같은 파일을 작성해 보자. TypeScript의 확장자는 .ts이다.
 
 ```typescript
 // greeter.ts
@@ -112,38 +112,42 @@ console.log(greeter.greet());
 $ tsc greeter.ts
 ```
 
-컴파일 실행 결과, 같은 디렉터리에 greeter.js가 생성된다. Node.js로 트랜스파일된 greeter.js를 실행해보자.
+컴파일 실행 결과, 같은 디렉터리에 greeter.js가 생성된다. 이때 트랜스파일링된 greeter.js의 자바스크립트 버전은 ES3이다. 자바스크립트 버전을 변경하려면 `-t` 옵션을 사용한다. 현재 tsc가 지원하는 자바스크립트 버전은 "ES5", "ES6", "ES2016", "ES2017"("ESNext")이다.
+
+```bash
+$ tsc greeter.ts -t ES5
+```
+
+Node.js REPL로 트랜스파일링된 greeter.js를 실행해보자.
 
 ```bash
 $ node greeter
 Hello, world
 ```
 
-복수의 파일을 한번에 컴파일할 수도 있다.
+복수의 파일을 한번에 트랜스파일링할 수도 있다.
 
 ```bash
 $ tsc main.ts greeter.ts
 ```
 
-또는 와일드카드를 사용하여 모든 TypeScript 파일을 한꺼번에 컴파일할 수도 있다.
+또는 와일드카드를 사용하여 모든 TypeScript 파일을 한꺼번에 트랜스파일링할 수도 있다.
 
 ```bash
 $ tsc *.ts
 ```
 
-\--watch option을 사용하면 대상 파일이 변경되었을 때 이를 감지하여 자동으로 컴파일을 수행한다.
+`--watch(-w)` 옵션을 사용하면 대상 파일이 변경되었을 때 이를 감지하여 자동으로 트랜스파일링을 수행한다.
 
 ```bash
 tsc main.ts --watch
 ```
 
-컴파일 옵션은 다음을 참조하기 바란다.
+컴파일 옵션에 대해서는 [TypeScript Documentation: Compiler Options](https://www.typescriptlang.org/docs/handbook/compiler-options.html)을 참조하기 바란다.
 
-- [Compiler Options](https://www.typescriptlang.org/docs/handbook/compiler-options.html)
+컴파일할 때마다 다양한 옵션을 매번 지정하는 것은 번거러우므로 <strong>[tsconfig.json](http://www.typescriptlang.org/docs/handbook/tsconfig-json.html)</strong>을 사용하는 편이 좋다.
 
-여러 옵션을 컴파일할 때마다 매번 지정하는 것은 번거러우므로 <strong>[tsconfig.json](http://www.typescriptlang.org/docs/handbook/tsconfig-json.html)</strong>을 사용하는 편이 좋다.
-
-[tsconfig.json](https://github.com/TypeStrong/atom-typescript/blob/master/docs/tsconfig.md)은 TypeScript를 위한 프로젝트 단위의 환경 파일로써 컴파일 시의 컴파일 옵션과 컴파일 대상 ts 코드에 대한 설정을 기술한 것이다.
+[tsconfig.json](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)은 TypeScript를 위한 프로젝트 단위의 환경 파일로써 컴파일 시의 컴파일 옵션과 컴파일 대상 ts 코드에 대한 설정을 기술한 것이다.
 {: .info}
 
 ### 2.2.2 Atom editor에서의 TypeScript 개발 환경

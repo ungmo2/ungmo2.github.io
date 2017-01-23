@@ -219,7 +219,7 @@ Ctrl + Shft + P(⇧⌘P) 단축기 또는 메뉴의 보기 > 명령 팔레트를
 "TypeScript - tsconfig.json" 선택
 {: .desc-img}
 
-아래와 같은 `tasks.json` 파일이 생성된다.
+.vscode라는 숨겨진 폴더에 아래와 같은 `tasks.json` 파일이 생성된다.
 
 ```json
 {

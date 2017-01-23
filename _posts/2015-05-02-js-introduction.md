@@ -20,9 +20,9 @@ section: javascript
 
 * 구글의 V8 Javascript Engine을 기초로 한 <strong>Node.js</strong>를 통해 이제는 웹 브라우저를 벗어난 환경에서도 개발이 가능해졌고 이로 인해 다양한 프레임워크 및 도구들까지 생겨나면서 그간 웹 브라우저에서만 동작하는 반쪽짜리 언어 취급을 받던 자바스크립트가 이제는 완벽한 Full stack 개발 언어로 생태계를 구축해나가고 있음은 물론 크로스 플랫폼을 위한 모바일 웹/앱 개발 분야에서도 주목받고 있다.
 
-* 최근에는 SPA(Single Page Application) 웹 앱이 대중화되면서 [AngularJS](https://www.angularjs.org/), [Backbone.js](http://backbonejs.org/), [Ember.js](http://emberjs.com/) 등 다양한 SPA Framework와 안정적 성능과 뛰어난 편의성을 가진 [JQuery](https://jquery.com/)와 같은 라이브러리 또한 많은 사용층을 확보하고 있다.
+* 최근에는 SPA(Single Page Application) 웹 앱이 대중화되면서 [Angular](https://angular.io/), [Backbone.js](http://backbonejs.org/), [Ember.js](http://emberjs.com/) 등 다양한 SPA Framework와 안정적 성능과 뛰어난 편의성을 가진 [jQuery](https://jquery.com/)와 같은 라이브러리 또한 많은 사용층을 확보하고 있다.
 
-* Front-end 영역은 이미 JQuery, AngulaJS, React, Backbone과 같은 Javascript Framework가 강세를 나타내고 있으며 Back-end 영역 역시 node.js, express, SocketIO 등의 Javascript Framework가 두각을 나타내고 있고 Front-end와  Back-end를 아우르는 웹 프로그래밍 언어의 표준으로 자리잡고 있다.
+* Front-end 영역은 이미 jQuery, Angula, React, Backbone과 같은 Javascript Framework가 강세를 나타내고 있으며 Back-end 영역 역시 Node.js, express, SocketIO 등의 Javascript Framework가 두각을 나타내고 있고 Front-end와  Back-end를 아우르는 웹 프로그래밍 언어의 표준으로 자리잡고 있다.
 
 ![Most Popular Technologies](/img/most-Popular-technologies.png)
 

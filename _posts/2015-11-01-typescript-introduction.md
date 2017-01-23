@@ -70,8 +70,6 @@ TypeScript 사용을 위해서는 Node.js와 TypeScript를 설치하여야 한�
 
 ## 2.2 TypeScript 설치
 
-### 2.2.1 Command line TypeScript Compiler
-
 Node.js를 설치하면 [npm](./nodejs-npm)도 같이 설치된다. 다음과 같이 터미널(윈도우의 경우 커맨드창)에서 npm을 사용하여 TypeScript를 설치한다.
 
 ```bash
@@ -156,7 +154,7 @@ VS Code와 Atom 이외의 에디터 또는 IDE에서도 TypeScript 개발 환경
 
 ![Get TypeScript](/img/get-typescript.png)
 
-### 2.2.2 Visual Studio Code에서의 TypeScript 개발 환경
+## 2.3 Visual Studio Code에서의 TypeScript 개발 환경
 
 [Visual Studio Code(VS Code)](https://code.visualstudio.com/)는 마이크로소프트가 제공하는 경량의 코드 에디터이다. 마이크로소프트는 TypeScript를 개발한 회사이기도 하여서 VS Code는 TypeScript 지원이 탁월하다. IntelliSense, debugging, Git 등의 기능을 지원하며 다양한 Extension(확장 플러그인)을 제공하여 자신의 프로젝트에 맞는 개발 환경을 구축할 수 있다.
 
@@ -294,7 +292,7 @@ Hello Angular2
 
 VS Code에서의 TypeScript의 사용에 대한 보다 자세한 내용은 [Visual Studio Code: Editing TypeScript](https://code.visualstudio.com/Docs/languages/typescript)을 참조하기 바란다.
 
-### 2.2.3 Atom에서의 TypeScript 개발 환경
+## 2.4 Atom에서의 TypeScript 개발 환경
 
 [Atom](https://atom.io/)은 Github에서 제공하는 오픈소스 텍스트 에디터이다. 다양한 패키지(확장 플러그인)를 사용하여 자신의 프로젝트에 맞는 개발 환경 구축이 용이한다.
 
@@ -341,12 +339,6 @@ tsconfig.json을 사용하면 컴파일 옵션과 파일 경로를 전달하여 
 ```
 
 Atom에서의 컴파일은 Package > TypeScript > Build 또는 tsconfig.json의 `"compileOnSave": true`로 설정하여 파일 저장시 자동으로 컴파일을 실행하도록 한다.
-
-### 2.2.4 Atom 이외의 editor에서 TypeScript 개발 환경
-
-Atom 이외의 에디터 또는 IDE에서도 TypeScript 개발 환경을 구축할 수 있다. [Get TypeScript](http://www.typescriptlang.org/index.html)를 참조하기 바란다.
-
-![Get TypeScript](/img/get-typescript.png)
 
 # Reference
 

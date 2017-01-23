@@ -147,12 +147,158 @@ tsc main.ts --watch
 
 컴파일할 때마다 다양한 옵션을 매번 지정하는 것은 번거러우므로 <strong>[tsconfig.json](http://www.typescriptlang.org/docs/handbook/tsconfig-json.html)</strong>을 사용하는 편이 좋다.
 
-[tsconfig.json](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)은 TypeScript를 위한 프로젝트 단위의 환경 파일로써 컴파일 시의 컴파일 옵션과 컴파일 대상 ts 코드에 대한 설정을 기술한 것이다.
+[tsconfig.json](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)은 TypeScript를 위한 프로젝트 단위의 환경 파일로써 컴파일 시의 컴파일 옵션과 컴파일 대상 ts 코드에 대한 설정 등을 기술한 것이다.
 {: .info}
 
-### 2.2.2 Atom editor에서의 TypeScript 개발 환경
+다음은 Visual Studio Code(VS Code)와 Atom에서 TypeScript 개발 환경을 구축하는 방법에 대해 알아보도록 하자.
 
-Atom editor에서 TypeScript plugin을 설치한다. 다음과 같이 터미널(윈도우의 경우 커맨드창)에서 Atom Package Manager를 사용하여 plugin을 설치한다.
+VS Code와 Atom 이외의 에디터 또는 IDE에서도 TypeScript 개발 환경을 구축할 수 있다.
+
+![Get TypeScript](/img/get-typescript.png)
+
+### 2.2.2 Visual Studio Code에서의 TypeScript 개발 환경
+
+[Visual Studio Code(VS Code)](https://code.visualstudio.com/)는 마이크로소프트가 제공하는 경량의 코드 에디터이다. 마이크로소프트는 TypeScript를 개발한 회사이기도 하여서 VS Code는 TypeScript 지원이 탁월하다. IntelliSense, debugging, Git 등의 기능을 지원하며 다양한 Extension(확장 플러그인)을 제공하여 자신의 프로젝트에 맞는 개발 환경을 구축할 수 있다.
+
+VS Code를 설치한 후, 적당한 위치에 프로젝트 폴더를 생성한다. 좌측 맨위의 파일 모양의 "탐색기" 아이콘을 선택하면 프로젝트 폴더를 선택할 수 있는 버튼이 표시된다.
+
+![vscode-open-folder](./img/vscode-open-folder.png)
+
+탐색기 선택
+{: .desc-img}
+
+
+"폴더 열기" 버튼을 클릭하고 적당한 위치에 프로젝트 폴더를 생성한다.
+
+![vscode-create-folder](./img/vscode-create-folder.png)
+
+프로젝트 폴더 성성
+{: .desc-img}
+
+프로젝트 폴더에 tsconfig.json 파일을 생성한다. tsconfig.json은 TypeScript를 위한 프로젝트 단위의 환경 파일로써 컴파일 시의 컴파일 옵션과 컴파일 대상 ts 코드에 대한 설정 등을 기술한 것이다. tsconfig.json에 아래와 같이 컴파일 설정을 편집한다.
+
+```json
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "sourceMap": true
+  }
+}
+```
+
+이제 간단한 TypeScript 코드를 작성해보자. 파일명은 HelloWorld.ts로 지정한다.
+
+```typescript
+class Startup {
+  public static main(): number {
+    console.log('Hello World');
+    return 0;
+  }
+}
+
+Startup.main();
+```
+
+VS Code는 [task runner](https://code.visualstudio.com/docs/editor/tasks)로 외부의 툴을 통합시킬 수 있다. CLI로 실행되는 툴들을 VS Code에서 실행시킬 수 있는 수 있도록 하는 것이다.
+
+![tasks_tasks_hero](./img/tasks_tasks_hero.png)
+
+task runner
+{: .desc-img}
+
+Ctrl + Shft + P(⇧⌘P) 단축기 또는 메뉴의 보기 > 명령 팔레트를 선택하고 "Configure Task Runner"를 입력한다.
+
+![Configure-Task-Runner](./img/Configure-Task-Runner.png)
+
+명령 팔레트에서 "Configure Task Runner" 입력
+{: .desc-img}
+
+"TypeScript - tsconfig.json"을 선택한다.
+
+![typescript-tsconfig](./img/typescript-tsconfig.png)
+
+"TypeScript - tsconfig.json" 선택
+{: .desc-img}
+
+아래와 같은 `tasks.json` 파일이 생성된다.
+
+```json
+{
+  "version": "0.1.0",
+  "command": "tsc",
+  "isShellCommand": true,
+  "args": ["-p", "."],
+  "showOutput": "silent",
+  "problemMatcher": "$tsc"
+}
+```
+
+이제 ts 파일을 js 파일로 컴파일 해보자. Ctrl + Shft + B(⇧⌘B) 단축키를 누르면 HelloWorld.js와 HelloWorld.js.map이 생성된다.
+
+터미널에서 트래스파일링된 HelloWorld.js를 실행해보자.
+
+```bash
+$ node HelloWorld.js
+Hello World
+```
+
+보기 > 통합 터미널 (⌃\`)을 선택하면 VS Code의 내장 터미널을 사용할 수도 있다.
+
+개발시에는 코드가 빈번히 변경되므로 코드의 변경을 감시하도록 task runner의 설정을 변경해 보자.
+
+아래와 같이 `tasks.json` 파일을 수정한다.
+
+```json
+{
+  "version": "0.1.0",
+  "command": "tsc",
+  "isShellCommand": true,
+  "args": ["-w", "-p", "."],
+  "showOutput": "always",
+  "isWatching": true,
+  "problemMatcher": "$tsc-watch"
+}
+```
+
+Ctrl + Shft + B(⇧⌘B) 단축키로 다시 빌드를 수행한다.
+
+```bash
+9:09:09 PM - Compilation complete. Watching for file changes.
+```
+
+이제 파일의 변경을 감시하기 시작하며 변경이 발생하면 자동으로 재빌드를 수행한다. ts 파일을 수정해 보자.
+
+```typescript
+class Startup {
+  public static main(): number {
+    console.log('Hello Angular2');
+    return 0;
+  }
+}
+
+Startup.main();
+```
+
+```bash
+9:17:01 PM - File change detected. Starting incremental compilation...
+9:17:02 PM - Compilation complete. Watching for file changes.
+```
+
+터미널에서 트래스파일링된 HelloWorld.js를 실행하여 파일 변경이 반영된 것을 확인한다.
+
+```bash
+$ node HelloWorld.js
+Hello Angular2
+```
+
+VS Code에서의 TypeScript의 사용에 대한 보다 자세한 내용은 [Visual Studio Code: Editing TypeScript](https://code.visualstudio.com/Docs/languages/typescript)을 참조하기 바란다.
+
+### 2.2.3 Atom에서의 TypeScript 개발 환경
+
+[Atom](https://atom.io/)은 Github에서 제공하는 오픈소스 텍스트 에디터이다. 다양한 패키지(확장 플러그인)를 사용하여 자신의 프로젝트에 맞는 개발 환경 구축이 용이한다.
+
+Atom에서 TypeScript plugin을 설치한다. 다음과 같이 터미널(윈도우의 경우 커맨드창)에서 Atom Package Manager를 사용하여 plugin을 설치한다.
 
 ```bash
 $ apm install atom-typescript
@@ -196,7 +342,7 @@ tsconfig.json을 사용하면 컴파일 옵션과 파일 경로를 전달하여 
 
 Atom에서의 컴파일은 Package > TypeScript > Build 또는 tsconfig.json의 `"compileOnSave": true`로 설정하여 파일 저장시 자동으로 컴파일을 실행하도록 한다.
 
-### 2.2.3 Atom 이외의 editor에서 TypeScript 개발 환경
+### 2.2.4 Atom 이외의 editor에서 TypeScript 개발 환경
 
 Atom 이외의 에디터 또는 IDE에서도 TypeScript 개발 환경을 구축할 수 있다. [Get TypeScript](http://www.typescriptlang.org/index.html)를 참조하기 바란다.
 
@@ -205,3 +351,5 @@ Atom 이외의 에디터 또는 IDE에서도 TypeScript 개발 환경을 구축�
 # Reference
 
 * [TypeScript](http://www.typescriptlang.org/index.html)
+
+* [Visual Studio Code](https://code.visualstudio.com)

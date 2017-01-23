@@ -77,7 +77,7 @@ public class MainClass {
 
 이로 인해 때때로 class 기반 언어에 익숙한 프로그래머들은 혼란을 일으킨다. 자바스크립트에서는 함수 객체로 많은 것을 할 수 있는데 클래스, 생성자, 메서드도 모두 함수로 구현이 가능하다.
 
-[ECMAScript 6](./js-es6)에서 새롭게 [클래스](./js-es6#class)가 도입되었다. 프로토타입 기반 프로그래밍은 클래스가 존재하지 않는 객체지향 프로그래밍 스타일로 프로토타입 체인과 클로저 등으로 객체 지향 언어의 상속, 캡슐화(정보 은닉) 등의 개념을 구현할 수 있다. 하지만 class 기반 언어에 익숙한 프로그래머들은 혼란을 일으킬 수 있으며 JavaScript를 어렵게 느끼게하는 하나의 장벽처럼 인식되었다. ES6의 Class는 기존 prototype 기반 객체지향 프로그래밍보다 Class 기반 언어에 익숙한 프로그래머가 보다 빠르게 학습할 수 있는 단순하고 깨끗한 새로운 문법을 제시하고 있다. ES6의 Class가 새로운 객체지향 모델을 제공하는 것이 아니며 Class도 사실 함수이고 기존 prototype 기반 패턴의 [Syntactic sugar](https://en.wikipedia.org/wiki/Syntactic_sugar)이다.
+[ECMAScript 6](./js-es6)에서 새롭게 [클래스](./js-es6#class)가 도입되었다. ES6의 Class는 기존 prototype 기반 객체지향 프로그래밍보다 Class 기반 언어에 익숙한 프로그래머가 보다 빠르게 학습할 수 있는 단순하고 깨끗한 새로운 문법을 제시하고 있다. ES6의 Class가 새로운 객체지향 모델을 제공하는 것이 아니며 Class도 사실 함수이고 기존 prototype 기반 패턴의 [Syntactic sugar](https://en.wikipedia.org/wiki/Syntactic_sugar)이다.
 {: .info}
 
 ```javascript

@@ -188,9 +188,9 @@ var me = new Person()
 me instanceof Person // true
 ```
 
-# 6. !! 연산자
+# 6. !!
 
-!! 연산자의 역할은 피연산자를 불린값으로 변환하는 것이다.
+`!!`의 역할은 피연산자를 불린값으로 변환하는 것이다.
 
 ```javascript
 console.log(!!1);         // true
@@ -205,7 +205,7 @@ console.log(!![]);        // true
 
 객체(배열 포함)의 경우 빈 객체라도 존재하기만하면 true로 변환된다.
 
-객체의 존재 확인 후 그 결과를 반환해야 하는 경우, !! 연산자를 사용하면 강제로 피연산자를 boolean으로 형 변환 할 수 있다.
+객체의 존재 확인 후 그 결과를 반환해야 하는 경우, !!를 사용하면 강제로 피연산자를 boolean으로 형 변환 할 수 있다.
 
 ```javascript
 function checkExist(obj) {

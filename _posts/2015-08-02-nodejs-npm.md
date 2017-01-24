@@ -74,7 +74,7 @@ undefined
 
 하지만 npm install 명령어로 node-emoji 패키지를 설치할 때 package.json을 찾을 수 없었다는 경고가 발생하였다.
 
-Node.js 프로젝트에서는 많은 패키지를 사용하게 되고 패키지의 버전도 빈번하게 업데이트되기 때문에 프로젝트가 의존하고 있는 모듈의 관리가 필요하게 된다. npm은 `package.json` 파일을 통해서 모듈의 의존성을 관리한다. 이미 작성된 package.json은 팀 내에 배포하여 동일한 개발 환경을 빠르게 구축할 수 있는 장점을 가진다.
+Node.js 프로젝트에서는 많은 패키지를 사용하게 되고 패키지의 버전도 빈번하게 업데이트되기 때문에 프로젝트가 의존하고 있는 모듈의 관리가 필요하게 된다. npm은 `package.json` 파일을 통해서 프로젝트 정보와 모듈의 의존성(dependency)을 관리한다. 이미 작성된 package.json은 팀 내에 배포하여 동일한 개발 환경을 빠르게 구축할 수 있는 장점을 가진다. package.json은 Java의 maven에서 pom.xml와 비슷한 역할을 한다.
 
 package.json을 생성하기 위해서는 `npm init` 명령어를 사용한다.
 

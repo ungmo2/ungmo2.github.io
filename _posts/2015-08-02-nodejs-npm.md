@@ -174,3 +174,5 @@ npm의 명령어에 대한 자세한 설명은 [npm CLI 명령어](https://docs.
 * [package.json](https://docs.npmjs.com/files/package.json)
 
 * [npm CLI 명령어](https://docs.npmjs.com/#cli)
+
+* [ES Modules와 Node.js: 쉽지 않은 선택](https://nodejs.github.io/nodejs-ko/articles/2016/06/09/es-modules-and-node-js-hard-choices/)

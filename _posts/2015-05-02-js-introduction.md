@@ -45,7 +45,7 @@ JavaScript는 1995년 Brendan Eich(Nescape)이 Navigator 2를 위하여 웹페�
 
 1997년 7월 ECMA-262라 불리는 명세가 완성되었고 상표권의 문제로 JavaScript는 <strong>ECMAScript</strong>로 명명되었다. 이후 1999년 ECMAScript 3(ES3)이 공개되었고 10년만인 2009년 출시된 ECMAScript 5(ES5)는 HTML5와 함께 출현한 표준안이다.
 
-2015년 [ECMAScript 6(ES6)](./js-es6)가 공개되었고 let keyword, module system, Arrow Function, class 등이 추가되었다
+2015년 [ECMAScript 6(ES6)](./js-es6)가 공개되었고 let keyword, module system, Arrow Function, class 등이 추가되었다. ES5에서 ES6로의 버전업은 기능 상의 큰 변화가 있었고 이후의 버전업은 작은 기능의 추가 레벨로 매년 공개할 것으로 예고되었다.
 
 * ECMAScript Version <sup id="a1">[[1]](#f1)</sup>
   * ECMAScript 3
@@ -60,6 +60,18 @@ JavaScript는 1995년 Brendan Eich(Nescape)이 Navigator 2를 위하여 웹페�
 
 ![history javascript evolution es6](/img/history-javascript-evolution-es6.png)
 {: .w-650}
+
+# 3. Browsers Support
+
+2017년 1월, 대부분의 브라우저는 ES6를 지원하고 있지만 100%는 아니다. 그리고 Node.js의 경우 v4부터 지원을 시작하였다.
+
+![kangax](/img/kangax.png)
+{: .w-650}
+
+[ES6 compat table](https://kangax.github.io/compat-table/es6/)
+{: .desc-img}
+
+브라우저의 ES6 지원은 점차 확대될 것으로 기대되지만 지금 당장 ES6를 사용하고자 한다면 [babel](https://babeljs.io/), [traceur](https://github.com/google/traceur-compiler) 또는 [typescript](./typescript-introduction)와 같은 Transpiler를 사용하여야 한다.
 
 ***
 

@@ -11,9 +11,9 @@ section: javascript
 
 # 1. 프로토타입 객체
 
-자바스크립트는 Java, C++과 같은 객체지향 프로그래밍 언어와 달리 프로토타입 기반 객체지향 프로그래밍 언어이다. 따라서 자바스크립트의 동작 원리를 이해하기 위해서는 프로토타입의 개념을 잘 이해하고 있어야 한다.
+Java, C++과 같은 클래스 기반 객체지향 프로그래밍 언어와 달리 자바스크립트는 프로토타입 기반 객체지향 프로그래밍 언어이다. 따라서 자바스크립트의 동작 원리를 이해하기 위해서는 프로토타입의 개념을 잘 이해하고 있어야 한다.
 
-Java, C++과 같은 객체지향 프로그래밍 언어는 클래스를 정의하고 이를 통해 객체(인스턴스)를 생성한다. 하지만 자바스크립트는 클래스 없이도 ([ECMAScript 6에서 클래스가 추가되었다](./js-es6#class)) 객체를 생성할 수 있다.
+클래스 기반 객체지향 프로그래밍 언어는 객체 생성 이전에 클래스를 정의하고 이를 통해 객체(인스턴스)를 생성한다. 하지만 프로토타입 기반 객체지향 프로그래밍 언어는 클래스 없이(Claa-less)도 ([ECMAScript 6에서 클래스가 추가되었다](./js-es6#class)) 객체를 생성할 수 있다.
 
 [Javascript Object](./js-object) 참고
 
@@ -152,6 +152,9 @@ console.log(Function.prototype.__proto__ === Object.prototype); // ④ true
 
 ![Object literal Prototype chaining](/img/object_literal_prototype_chaining.png)
 
+객체 리터럴 방식으로 생성된 객체의 프로토타입 체인
+{: .desc-img}
+
 ## 3.2 생성자 함수로 생성된 객체의 프로토타입 체인
 
 생성자 함수로 객체를 생성하기 위해서는 우선 생성자 함수를 정의하여야 한다.
@@ -208,6 +211,9 @@ console.log(Function.prototype.__proto__  === Object.prototype); // ⑤ true
 ```
 
 ![constructor function prototype chaining](/img/constructor_function_prototype_chaining.png)
+
+생성자 함수로 생성된 객체의 프로토타입 체인
+{: .desc-img}
 
 foo 객체의 프로토타입 객체 Person.prototype 객체와 Person() 생성자 함수의 프로토타입 객체인 Function.prototype의 프로토타입 객체는 Object.prototype 객체이다.
 

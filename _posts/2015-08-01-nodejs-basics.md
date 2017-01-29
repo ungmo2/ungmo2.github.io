@@ -92,7 +92,7 @@ REPL(Read Eval Print Loop: 입력 수행 출력 반복)은 Node.js는 물론 대
 $ node
 ```  
 
-프롬프트가 >로 변경되면 Node.js 또는 JavaScript 코드를 입력하고 실행시켜 볼 수 있다.
+프롬프트가 >로 변경되면 Node.js 코드를 실행시켜 볼 수 있다.
 
 ```bash
 > 1 * 0

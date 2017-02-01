@@ -290,6 +290,41 @@ $ node HelloWorld.js
 Hello Angular2
 ```
 
+디버깅을 위해서는 좌측 상단의 벌레 모양 아이콘을 클릭한 후 화면 상단의 디버그 버튼을 클릭하면 `launch.json` 파일이 생성된다.
+
+![debug](./img/ts-debug.png)
+
+configurations 속성의 program 속성값을 디버깅할 파일명으로 변경한다.
+
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "프로그램 시작",
+      "program": "${workspaceRoot}/HelloWorld.ts",
+      "cwd": "${workspaceRoot}",
+      "outFiles": [],
+      "sourceMaps": true
+    },
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "프로세스에 연결",
+      "port": 5858,
+      "outFiles": [],
+      "sourceMaps": true
+    }
+  ]
+}
+```
+
+중단점을 설정하고 디버그 버튼을 클릭하면 디버깅이 시작된다.
+
+![debug](./img/ts-debug-start.png)
+
 VS Code에서의 TypeScript의 사용에 대한 보다 자세한 내용은 [Visual Studio Code: Editing TypeScript](https://code.visualstudio.com/Docs/languages/typescript)을 참조하기 바란다.
 
 ## 2.4 Atom에서의 TypeScript 개발 환경

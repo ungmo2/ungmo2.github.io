@@ -48,7 +48,7 @@ http 프로토콜의 상태 비유지(stateless) 문제를 보완하여 클라�
 
 **Cookie-Based Session**
 
-쿠키에 보안에 관련된 정보를 저장하는 것은 바람직하지 않다. 쿠키에는 Session ID만을 저장하고 전송된 Session ID를 사용하여 Session에 저장된 정보를 사용하는 방법이다.
+쿠키에는 Session ID만을 저장하고 전송된 Session ID를 사용하여 Session에 저장된 정보를 사용하는 방법이다. 쿠키에 보안에 관련된 정보를 저장하는 것은 바람직하지 않다.
 
 ![cookie_session](/img/session.png)
 

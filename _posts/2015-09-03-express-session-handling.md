@@ -54,10 +54,6 @@ http 프로토콜의 상태 비유지(stateless) 문제를 보완하여 클라�
 
 # 3. MemoryStore를 사용한 세션 관리
 
-세션 데이터는 쿠키에 저장되지 않고 server-side에 저장된다. 쿠키에는 session ID만이 저장된다.
-
-개발을 위한 MemoryStore, server-side session storage의 사용은 문제될 것이 없지만 production 환경에서 MemoryStore의 사용은 적절하지 않으며 복수 서버 상에서의 Session data 공유도 MemoryStore에서는 불가능하다.
-
 Express 4.x에서는 express-session middleware가 express에서 분리되었으므로 별도의 npm install이 필요하다.
 
 express-session 1.5.0 이후 버전부터는 cookie-parser middleware가 필요하지 않다.
@@ -103,6 +99,10 @@ app.listen(3000, function() {
 ```
 
 session secret는 쿠키에 저장될 Session ID 서명에 사용된다. session secret는 랜덤한 일정 길이 이상의 문자열을 사용하는 것이 좋다.
+
+세션 데이터는 쿠키에 저장되지 않고 server-side에 저장된다. 쿠키에는 session ID만이 저장된다.
+
+개발을 위한 MemoryStore, server-side session storage의 사용은 문제될 것이 없지만 production 환경에서 MemoryStore의 사용은 적절하지 않으며 복수 서버 상에서의 Session data 공유도 MemoryStore에서는 불가능하다.
 
 # 4. Redis를 사용한 세션 관리
 

@@ -70,7 +70,7 @@ TypeScript 컴파일러는 npm으로 설치할 수 있다. Visual Studio 2015 �
 
 - [Installing Node.js](./nodejs-basics#install)
 
-## 2.2 TypeScript 설치
+## 2.2 TypeScript 컴파일러 설치 및 사용법
 
 Node.js를 설치하면 [npm](./nodejs-npm)도 같이 설치된다. 다음과 같이 터미널(윈도우의 경우 커맨드창)에서 npm을 사용하여 TypeScript를 설치한다.
 
@@ -197,7 +197,7 @@ Hello, Lee
 Lee is studying.
 ```
 
-`--watch(-w)` 옵션을 사용하면 대상 파일이 변경되었을 때 이를 감지하여 자동으로 트랜스파일링을 수행한다.
+`--watch` 또는 `-w` 옵션을 사용하면 대상 파일이 변경되었을 때 이를 감지하여 자동으로 트랜스파일링을 수행한다.
 
 ```bash
 $ tsc student.ts --watch
@@ -231,29 +231,64 @@ console.log(student.study());
 ```
 
 ```bash
-node student
+$ node student
 Hello, Lee
 Lee is studying!!
 ```
 
 컴파일 옵션에 대해서는 [TypeScript Documentation: Compiler Options](https://www.typescriptlang.org/docs/handbook/compiler-options.html)을 참조하기 바란다.
 
-컴파일할 때마다 다양한 옵션을 매번 지정하는 것은 번거러우므로 <strong>[tsconfig.json](http://www.typescriptlang.org/docs/handbook/tsconfig-json.html)</strong>을 사용하는 편이 좋다.
+## 2.3 tsconfig.json
 
-[tsconfig.json](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)은 TypeScript를 위한 프로젝트 단위의 환경 파일로써 컴파일 시의 컴파일 옵션과 컴파일 대상 ts 코드에 대한 설정 등을 기술한 것이다.
-{: .info}
+컴파일할 때마다 다양한 옵션을 매번 지정하는 것은 번거러우므로 <strong>[tsconfig.json](http://www.typescriptlang.org/docs/handbook/tsconfig-json.html)</strong>을 사용하는 편이 좋다. tsconfig.json은 TypeScript를 위한 프로젝트 단위의 환경 파일로써 컴파일 옵션과 컴파일 대상에 대한 설정 등을 기술한 것이다.
 
-다음은 Visual Studio Code(VS Code)와 Atom에서 TypeScript 개발 환경을 구축하는 방법에 대해 알아보도록 하자.
+`compilerOptions` 속성에는 [컴파일 옵션](https://www.typescriptlang.org/docs/handbook/compiler-options.html)을 설정한다. 생략한 경우에는 기본 컴파일 옵션이 사용된다.
 
-VS Code와 Atom 이외의 에디터 또는 IDE에서도 TypeScript 개발 환경을 구축할 수 있다.
+```json
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "sourceMap": true
+  }
+}
+```
 
-![Get TypeScript](/img/get-typescript.png)
+컴파일 대상 파일을 지정하기 위해서 `files` 또는 `include` 속성을 사용한다. 만약 files 속성을 정의하였다면 include 속성은 무시된다.
+
+`files` 속성에는 컴파일 대상 파일의 상대 경로 또는 절대 경로를 명시적으로 설정한다.
+
+```json
+{
+  "files": [
+    "src/file1.ts",
+    "src/file2.ts"
+  ]
+}
+```
+
+`include` 속성에는 컴파일 대상 파일 리스트를 설정한다. `exclude` 속성에는 컴파일 대상에서 제외할 파일 리스트를 설정한다.
+
+```json
+{
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
+}
+```
+
+`src/\*\*/\*`는 src 폴더 내에 있는 모든 서브 폴더 내의 모든 파일(.ts, .tsx)을 의미한다. 컴파일 옵션 `"allowJs": true`를 설정하면 .js와 .jsx 파일도 컴파일 대상이 된다.
+
 
 ## 2.3 Visual Studio Code에서의 TypeScript 개발 환경
 
-[Visual Studio Code(VS Code)](https://code.visualstudio.com/)는 마이크로소프트가 제공하는 경량의 코드 에디터이다. 마이크로소프트는 TypeScript를 개발한 회사이기도 하여서 VS Code는 TypeScript 지원이 탁월하다. IntelliSense, debugging, Git 등의 기능을 지원하며 다양한 Extension(확장 플러그인)을 제공하여 자신의 프로젝트에 맞는 개발 환경을 구축할 수 있다.
+[Visual Studio Code(VSCode)](https://code.visualstudio.com/)는 마이크로소프트가 제공하는 경량의 코드 에디터이다. 마이크로소프트는 TypeScript를 개발한 회사이기도 하여서 VSCode는 TypeScript 지원이 탁월하다. IntelliSense, debugging, Git 등의 기능을 지원하며 다양한 Extension(확장 플러그인)을 제공하여 자신의 프로젝트에 맞는 개발 환경을 쉽게 구축할 수 있다.
 
-VS Code를 설치한 후, 적당한 위치에 프로젝트 폴더를 생성한다. 좌측 맨위의 파일 모양의 "탐색기" 아이콘을 선택하면 프로젝트 폴더를 선택할 수 있는 버튼이 표시된다.
+VSCode를 설치한 후, 적당한 위치에 프로젝트 폴더를 생성한다. 좌측 맨위의 파일 모양의 "탐색기" 아이콘을 선택하면 프로젝트 폴더를 선택할 수 있는 버튼이 표시된다.
 
 ![vscode-open-folder](./img/vscode-open-folder.png)
 
@@ -268,7 +303,7 @@ VS Code를 설치한 후, 적당한 위치에 프로젝트 폴더를 생성한�
 프로젝트 폴더 성성
 {: .desc-img}
 
-프로젝트 폴더에 tsconfig.json 파일을 생성한다. tsconfig.json은 TypeScript를 위한 프로젝트 단위의 환경 파일로써 컴파일 시의 컴파일 옵션과 컴파일 대상 ts 코드에 대한 설정 등을 기술한 것이다. tsconfig.json에 아래와 같이 컴파일 설정을 편집한다.
+프로젝트 폴더에 tsconfig.json 파일을 생성한다. tsconfig.json은 TypeScript를 위한 프로젝트 단위의 환경 파일로써 컴파일 옵션과 컴파일 대상 ts 코드에 대한 설정 등을 기술한 것이다. tsconfig.json에 아래와 같이 컴파일 설정을 편집한다.
 
 ```json
 {
@@ -293,7 +328,7 @@ class Startup {
 Startup.main();
 ```
 
-VS Code는 [task runner](https://code.visualstudio.com/docs/editor/tasks)로 외부의 툴을 통합시킬 수 있다. CLI로 실행되는 툴들을 VS Code에서 실행시킬 수 있는 수 있도록 하는 것이다.
+VSCode는 [task runner](https://code.visualstudio.com/docs/editor/tasks)로 외부의 툴을 통합시킬 수 있다. CLI로 실행되는 툴들을 VSCode에서 실행시킬 수 있는 수 있도록 하는 것이다.
 
 ![tasks_tasks_hero](./img/tasks_tasks_hero.png)
 
@@ -329,14 +364,14 @@ Ctrl + Shft + P(⇧⌘P) 단축기 또는 메뉴의 보기 > 명령 팔레트를
 
 이제 ts 파일을 js 파일로 컴파일 해보자. Ctrl + Shft + B(⇧⌘B) 단축키를 누르면 HelloWorld.js와 HelloWorld.js.map이 생성된다.
 
-터미널에서 트래스파일링된 HelloWorld.js를 실행해보자.
+터미널에서 트랜스파일링된 HelloWorld.js를 실행해보자.
 
 ```bash
 $ node HelloWorld.js
 Hello World
 ```
 
-보기 > 통합 터미널 (⌃\`)을 선택하면 VS Code의 내장 터미널을 사용할 수도 있다.
+보기 > 통합 터미널 (⌃\`)을 선택하면 VSCode의 내장 터미널을 사용할 수도 있다.
 
 개발시에는 코드가 빈번히 변경되므로 코드의 변경을 감시하도록 task runner의 설정을 변경해 보자.
 
@@ -378,7 +413,7 @@ Startup.main();
 9:17:02 PM - Compilation complete. Watching for file changes.
 ```
 
-터미널에서 트래스파일링된 HelloWorld.js를 실행하여 파일 변경이 반영된 것을 확인한다.
+터미널에서 트랜스파일링된 HelloWorld.js를 실행하여 파일 변경이 반영된 것을 확인한다.
 
 ```bash
 $ node HelloWorld.js
@@ -420,7 +455,7 @@ configurations 속성의 program 속성값을 디버깅할 파일명으로 변�
 
 ![debug](./img/ts-debug-start.png)
 
-VS Code에서의 TypeScript의 사용에 대한 보다 자세한 내용은 [Visual Studio Code: Editing TypeScript](https://code.visualstudio.com/Docs/languages/typescript)을 참조하기 바란다.
+VSCode에서의 TypeScript의 사용에 대한 보다 자세한 내용은 [Visual Studio Code: Editing TypeScript](https://code.visualstudio.com/Docs/languages/typescript)을 참조하기 바란다.
 
 ## 2.4 Atom에서의 TypeScript 개발 환경
 

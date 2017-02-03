@@ -62,7 +62,9 @@ TypeScript를 JavaScript의 [Syntactic sugar](https://en.wikipedia.org/wiki/Synt
 
 # 2. 개발환경 구축
 
-TypeScript 사용을 위해서는 Node.js와 TypeScript를 설치하여야 한다.
+TypeScript 파일(.ts)은 브라우저에서 동작하지 않으므로 TypeScript 컴파일러를 통해 자바스크립트 파일로 변환이 필요하다. 이를 컴파일 또는 트랜스파일링(transfilling)이라 한다.
+
+TypeScript 컴파일러는 npm으로 설치할 수 있다. Visual Studio 2015 또는 Visual Studio 2013 Update 2 사용자라면 별도의 컴파일러 설치없이 Visual Studio 내장 컴파일러를 사용할 수 있다.
 
 ## 2.1 Node.js 설치
 
@@ -88,57 +90,150 @@ TypeScript 컴파일러(tsc)는 TypeScript 파일(.ts)을 JavaScript 파일로 �
 트랜스파일링을 실행해보기 위해 다음과 같은 파일을 작성해 보자. TypeScript의 확장자는 .ts이다.
 
 ```typescript
-// greeter.ts
-class Greeter {
-  greeting: string;
-  constructor(message: string) {
-    this.greeting = message;
+// person.ts
+class Person {
+
+  name: string;
+
+  constructor(name: string) {
+    this.name = name;
   }
-  greet() {
-    return "Hello, " + this.greeting;
+  sayHello() {
+    return "Hello, " + this.name;
   }
 }
 
-let greeter = new Greeter("world");
+const person = new Person('Lee');
 
-console.log(greeter.greet());
+console.log(person.sayHello());
 ```
 
 컴파일을 실행한다.
 
 ```bash
-$ tsc greeter.ts
+$ tsc person.ts
 ```
 
-컴파일 실행 결과, 같은 디렉터리에 greeter.js가 생성된다. 이때 트랜스파일링된 greeter.js의 자바스크립트 버전은 ES3이다. 자바스크립트 버전을 변경하려면 `-t` 옵션을 사용한다. 현재 tsc가 지원하는 자바스크립트 버전은 "ES5", "ES6", "ES2016", "ES2017"("ESNext")이다.
+컴파일 실행 결과, 같은 디렉터리에 person.js가 생성된다.
 
-```bash
-$ tsc greeter.ts -t ES5
+```javascript
+// person.js
+var Person = (function () {
+  function Person(name) {
+    this.name = name;
+  }
+  Person.prototype.sayHello = function () {
+    return "Hello, " + this.name;
+  };
+  return Person;
+}());
+var person = new Person('Lee');
+console.log(person.sayHello());
 ```
 
-Node.js REPL로 트랜스파일링된 greeter.js를 실행해보자.
+이때 트랜스파일링된 person.js의 자바스크립트 버전은 ES3이다. 이는 TypeScript 컴파일 타겟 자바스크립트 기본 버전이 ES3이기 때문이다.
+
+자바스크립트 버전을 변경하려면 `--target` 또는 `-t` 옵션을 사용한다. 현재 tsc가 지원하는 자바스크립트 버전은 ES3, ES5, ES6(ES2015), ES2016, ES2017(ESNext)이다.
 
 ```bash
-$ node greeter
-Hello, world
+$ tsc person.ts -t ES5
 ```
 
-복수의 파일을 한번에 트랜스파일링할 수도 있다.
+Node.js REPL로 트랜스파일링된 person.js를 실행해보자.
 
 ```bash
-$ tsc main.ts greeter.ts
+$ node person.js
+Hello, Lee
+```
+
+복수의 파일을 한번에 트랜스파일링할 수도 있다. 두개의 TypeScript class를 작성해보자.
+
+```typescript
+// person.ts
+export class Person {
+
+  name: string;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+  sayHello() {
+    return "Hello, " + this.name;
+  }
+}
+```
+
+```typescript
+// student.ts
+import { Person } from './Person';
+
+class Student extends Person {
+  study() {
+    return `${this.name} is studying.`;
+  }
+}
+
+const student = new Student('Lee');
+
+console.log(student.sayHello());
+console.log(student.study());
+```
+
+두개의 TypeScript 파일을 한번에 컴파일한다.
+
+```bash
+$ tsc person.ts student.ts
+$ node student
+Hello, Lee
+Lee is studying.
 ```
 
 또는 와일드카드를 사용하여 모든 TypeScript 파일을 한꺼번에 트랜스파일링할 수도 있다.
 
 ```bash
 $ tsc *.ts
+$ node student
+Hello, Lee
+Lee is studying.
 ```
 
 `--watch(-w)` 옵션을 사용하면 대상 파일이 변경되었을 때 이를 감지하여 자동으로 트랜스파일링을 수행한다.
 
 ```bash
-tsc main.ts --watch
+$ tsc student.ts --watch
+14:27:59 - Compilation complete. Watching for file changes.
+```
+
+student.ts를 변경해 보자.
+
+```typescript
+// student.ts
+
+import { Person } from './Person';
+
+class Student extends Person {
+  study() {
+    return `${this.name} is studying!!`;
+  }
+}
+
+const student = new Student('Lee');
+
+console.log(student.sayHello());
+console.log(student.study());
+```
+
+아래와 같이 파일 변경이 감지되고 자동으로 트랜스파일링이 수행된다.
+
+```bash
+14:29:07 - File change detected. Starting incremental compilation...
+14:29:08 - Compilation complete. Watching for file changes.
+```
+
+```bash
+node student
+Hello, Lee
+Lee is studying!!
 ```
 
 컴파일 옵션에 대해서는 [TypeScript Documentation: Compiler Options](https://www.typescriptlang.org/docs/handbook/compiler-options.html)을 참조하기 바란다.

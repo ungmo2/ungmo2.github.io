@@ -288,7 +288,12 @@ Lee is studying!!
 
 [Visual Studio Code(VSCode)](https://code.visualstudio.com/)는 마이크로소프트가 제공하는 경량의 코드 에디터이다. 마이크로소프트는 TypeScript를 개발한 회사이기도 하여서 VSCode는 TypeScript 지원이 탁월하다. IntelliSense, debugging, Git 등의 기능을 지원하며 다양한 Extension(확장 플러그인)을 제공하여 자신의 프로젝트에 맞는 개발 환경을 쉽게 구축할 수 있다.
 
-VSCode를 설치한 후, 적당한 위치에 프로젝트 폴더를 생성한다. 좌측 맨위의 파일 모양의 "탐색기" 아이콘을 선택하면 프로젝트 폴더를 선택할 수 있는 버튼이 표시된다.
+VSCode 설치는 간단하다. 자신의 OS에 맞는 인스톨러를 다운로드하여 설치하도록 하자.
+
+- [Running VS Code on Windows](https://code.visualstudio.com/docs/setup/windows)
+- [Running VS Code on Mac](https://code.visualstudio.com/docs/setup/mac)
+
+VSCode를 설치가 완료되었으면 적당한 위치에 프로젝트 폴더를 생성한다. 좌측 맨위의 파일 모양의 "탐색기" 아이콘을 선택하면 프로젝트 폴더를 선택할 수 있는 버튼이 표시된다.
 
 ![vscode-open-folder](./img/vscode-open-folder.png)
 
@@ -328,7 +333,9 @@ class Startup {
 Startup.main();
 ```
 
-VSCode는 [task runner](https://code.visualstudio.com/docs/editor/tasks)로 외부의 툴을 통합시킬 수 있다. CLI로 실행되는 툴들을 VSCode에서 실행시킬 수 있는 수 있도록 하는 것이다.
+위 코드를 자바스크립트로 트랜스파일링하기 위해서는 TypeScript 컴파일러를 실행시켜야한다. 컴파일러는 VSCode 외부에 존재하므로 VSCode와 TypeScript 컴파일러 간의 연동이 필요하다.
+
+VSCode는 [task runner](https://code.visualstudio.com/docs/editor/tasks)로 외부의 툴을 VSCode와 연동시킬 수 있다. CLI로 실행되는 툴들을 VSCode에서 실행시킬 수 있는 수 있도록 하는 것이다.
 
 ![tasks_tasks_hero](./img/tasks_tasks_hero.png)
 

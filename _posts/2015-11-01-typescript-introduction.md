@@ -431,6 +431,60 @@ $ node HelloWorld.js
 Hello Angular2
 ```
 
+## 3.4 외부 라이브러리의 사용을 위한 TypeScript Definition 설치
+
+TypeScript를 사용하는 이유는 여러가지 있지만 가장 큰 장점은 다양한 도구의 지원을 받을 수 있다는 것이다. TypeScript는 정적 타입을 지원하므로 높은 수준의 IntelliSense나 리팩토링 등을 지원하며 이러란 도구의 지원은 대규모 프로젝트를 위한 필수적 요소이기도 하다.
+
+프로젝트 내에는 필수적으로 다양한 라이브러리가 포함되는데 이 라이브러리들은 JavaScript로 작성되어있다. TypeScript는 ES5의 Superset(상위확장)이므로 기존의 JavaScript를 그대로 사용할 수 있지만 그렇게 사용하는 경우, JavaScript는 정적 타입이 없으므로 VSCode에서 제공하는 IntelliSense와 같은 다양한 도구의 지원을 받을 수 없게 된다.
+
+TypeScript Definition Manager인 [Typings](https://github.com/typings/typings)를 사용하여 해당 라이브러리의 타입 정보를 추가할 수 있다.
+
+TypeScript 프로젝트에 jQuery를 사용하는 경우를 살펴보자.
+
+먼저 npm으로 jQuery를 설치한다. 참고로 라이브러리의 설치와 타입 정보의 설치는 별도로 진행한다.
+
+```bash
+$ npm init -y
+$ npm install jquery --save
+```
+
+jQuery를 사용하는 간단한 TypeScript 코드를 작성한다.
+
+```typescript
+$(function() {
+  console.log('Hello');
+})
+```
+
+jQuery의 타입정보가 없으므로 아래와 같이 에러가 발생한다.
+
+![before-typings](./img/before-typings.png)
+
+typings 설치 전
+{: .desc-img}
+
+이제 typings를 설치한다.
+
+```bash
+$ npm install -g typings
+$ typings -v
+2.1.0
+```
+
+jQuery의 타입 정보를 설치한다.
+
+```bash
+$ typings init
+$ typings install dt~jquery --global --save
+```
+
+![after-typings](./img/after-typings.png)
+
+typings 설치 후
+{: .desc-img}
+
+## 3.5 디버깅
+
 디버깅을 위해서는 좌측 상단의 벌레 모양 아이콘을 클릭한 후 화면 상단의 디버그 버튼을 클릭하면 `launch.json` 파일이 생성된다.
 
 ![debug](./img/ts-debug.png)

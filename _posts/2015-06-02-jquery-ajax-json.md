@@ -117,7 +117,7 @@ Ajax는 웹서버와의 통신이 필요하므로 예제를 실행하기 위해�
 
 * [MAMP download](https://www.mamp.info/en/downloads/)
 
-위 링크에서 자신의 OS에 맞는 MAMP를 다운로드하여 설치한다. MAMP PRO는 유로 버전이니 MAMP를 설치하도록 한다.
+위 링크에서 자신의 OS에 맞는 MAMP를 다운로드하여 설치한다. MAMP PRO는 유료버전이니 MAMP를 설치하도록 한다.
 
 [http://localhost:8888/](http://localhost:8888/)에 접속하여 본다. 문제가 없으면 설치가 성공한 것이다.
 

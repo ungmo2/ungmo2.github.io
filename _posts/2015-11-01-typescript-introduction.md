@@ -58,21 +58,27 @@ TypeScript의 spec에 포함시키는 것으로 TypeScript 진영과 합의한 �
 ![AtScript superset](/img/atscript.png)
 {: .w-650}
 
+# 2. TypeScript를 사용하는 이유
+
 TypeScript를 JavaScript의 [Syntactic sugar](https://en.wikipedia.org/wiki/Syntactic_sugar)로 부르기도 하는데 이는 그만큼 JavaScript를 문법적으로 더욱 사용하기 편하게 돕는다는 비유적 표현이다.
 
-TypeScript를 사용하는 이유는 여러가지 있지만 가장 큰 장점은 다양한 도구의 지원을 받을 수 있다는 것이다. TypeScript는 정적 타입을 지원하므로 높은 수준의 IntelliSense나 리팩토링 등을 지원하며 이러한 도구의 지원은 대규모 프로젝트를 위한 필수적 요소이기도 하다. 또한 명시적인 정적 타입은 코드의 가독성을 높이고, 인터페이스는 추상화를 가능하게 하여 대규모 프로젝트를 위한 JavaScript 개발을 가능하게 돕는다.
+TypeScript를 사용하는 이유는 여러가지 있지만 가장 큰 장점은 다양한 도구의 지원을 받을 수 있다는 것이다. TypeScript는 정적 타입을 지원하므로 높은 수준의 IntelliSense나 리팩토링 등을 지원하며 이러한 도구의 지원은 대규모 프로젝트를 위한 필수적 요소이기도 하다. 또한 명시적인 정적 타입 지정은 코드의 가독성을 향상 시키고 예측을 가능하게 하며 디버깅을 쉽게 한다. 모듈, 네임스페이스, 강력한 OOP 지원으로 크고 복잡한 프로젝트의 코드 기반을 쉽게 구성 할 수 있으며 컴파일 단계에서 오류를 포착할 수 있는 장점을 가지고 있다.
 
-# 2. 개발환경 구축
+컴파일러 등의 개발환경 구축이 필요없이 브라우저만 있으면 바로 사용할 수 있는 ES5와 비교할 때 개발환경 구축의 관점에서 다소 복잡해진 측면이 있으나 현재 ES6를 완전히 지원하지 않고 있는 브라우저를 고려하여 Babel등의 트랜스파일러를 사용해야 하는 현 상황을 고려하면 TypeScript 개발환경 구축에 드는 수고는 그다지 아깝지 않을 것이다.
+
+마지막으로 Angular2는 TypeScript 뿐만 아니라 JavaScript, Dart로도 작성할 수 있지만 Angular2 문서, 커뮤니티 활동에서 가장 많이 사용되고 있는 것이 TypeScript이다. Angular2 관련 문서의 예제 등도 TypeScript로 작성된 것이 가장 많아 관련 정보 취득에도 이점이 있으며 이러한 현상은 앞으로도 지속될 것으로 예상된다.
+
+# 3. 개발환경 구축
 
 TypeScript 파일(.ts)은 브라우저에서 동작하지 않으므로 TypeScript 컴파일러를 통해 자바스크립트 파일로 변환이 필요하다. 이를 컴파일 또는 트랜스파일링(transfilling)이라 한다.
 
 TypeScript 컴파일러는 npm으로 설치할 수 있다. Visual Studio 2015 또는 Visual Studio 2013 Update 2 사용자라면 별도의 컴파일러 설치없이 Visual Studio 내장 컴파일러를 사용할 수 있다.
 
-## 2.1 Node.js 설치
+## 3.1 Node.js 설치
 
 - [Installing Node.js](./nodejs-basics#install)
 
-## 2.2 TypeScript 컴파일러 설치 및 사용법
+## 3.2 TypeScript 컴파일러 설치 및 사용법
 
 Node.js를 설치하면 [npm](./nodejs-npm)도 같이 설치된다. 다음과 같이 터미널(윈도우의 경우 커맨드창)에서 npm을 사용하여 TypeScript를 설치한다.
 
@@ -522,7 +528,7 @@ configurations 속성의 program 속성값을 디버깅할 파일명으로 변�
 
 VSCode에서의 TypeScript의 사용에 대한 보다 자세한 내용은 [Visual Studio Code: Editing TypeScript](https://code.visualstudio.com/Docs/languages/typescript)을 참조하기 바란다.
 
-<!-- ## 2.6 Atom에서의 TypeScript 개발 환경
+<!-- ## Atom에서의 TypeScript 개발 환경
 
 [Atom](https://atom.io/)은 Github에서 제공하는 오픈소스 텍스트 에디터이다. 다양한 패키지(확장 플러그인)를 사용하여 자신의 프로젝트에 맞는 개발 환경 구축이 용이한다.
 

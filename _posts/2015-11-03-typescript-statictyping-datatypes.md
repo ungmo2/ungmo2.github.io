@@ -1,7 +1,7 @@
 ---
 layout: post
-title: TypeScript - <strong>Static Typing & Data Types</strong>
-subtitle: TypeScript 정적 타이핑과 데이터 타입
+title: TypeScript <strong>Static Typing & Data Types</strong>
+subtitle: 정적 타이핑과 데이터 타입
 categories: typescript
 section: typescript
 ---

@@ -1,13 +1,10 @@
 ---
 layout: post
-title: TypeScript - <strong>Interface</strong>
-subtitle: TypeScript 인터페이스
+title: TypeScript <strong>Interface</strong>
+subtitle: 인터페이스
 categories: typescript
 section: typescript
 ---
-
-* TOC
-{:toc}
 
 ![typescript Logo](/img/typescript-logo.png)
 

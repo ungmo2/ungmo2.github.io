@@ -1,6 +1,6 @@
 ---
 layout: post
-title: TypeScript - <strong>Visual Studio Code Setup</strong>
+title: TypeScript <strong>Visual Studio Code Setup</strong>
 subtitle: Visual Studio Code에서의 TypeScript 개발 환경 구축
 categories: typescript
 section: typescript

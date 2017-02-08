@@ -1,6 +1,6 @@
 ---
 layout: post
-title: TypeScript - <strong>Intro & Install</strong>
+title: TypeScript <strong>Intro & Install</strong>
 subtitle: TypeScript의 소개와 개발 환경 구축
 categories: typescript
 section: typescript

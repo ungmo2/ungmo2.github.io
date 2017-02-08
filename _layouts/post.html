@@ -7,7 +7,12 @@ route: post
   <section class="heading">
     <div class="container">
       <h1>
-        <em>{{ page.date | date: "%-m.%-d" }}</em>
+        {% assign year = page.date | date: "%-y"  %}
+        {% case year %}
+          {% when '16' or '17' %}<em>{{ page.date | date: "%-m" | plus:'12' }}.{{ page.date | date: "%-d" }}</em>
+          {% else %}<em>{{ page.date | date: "%-m.%-d" }}</em>
+        {% endcase %}
+        <!-- <em>{{ page.date | date: "%-m.%-d" }}</em> -->
         {{ page.title }}
       </h1>
       <h2>{{ page.subtitle }}</h2>
@@ -50,6 +55,11 @@ route: post
               <i class="devicon-javascript-plain"></i>
             {% when "jekyll" %}
               <i class="devicon-ruby-plain"></i>
+<!-- angular2 -->
+            {% when "angular" %}
+              <i class="devicon-angularjs-plain"></i>
+<!-- angular2 -->
+
             {% endcase %}
             {{ page.section }}
           </span>

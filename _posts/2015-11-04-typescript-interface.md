@@ -109,7 +109,7 @@ makeNoise(new RedheadDuck()); // q~uack! // 5
 (4) 클래스 RedheadDuck은 인터페이스 IDuck을 구현하지는 않았지만 quack() 메서드를 갖는다.  
 (5) makeNoise() 함수에 인터페이스 IDuck을 구현하지 않은 클래스 RedheadDuck의 인스턴스를 인자로 전달하여도 에러없이 처리된다.
 
-TypeScript는 해당 인터페이스에서 정의한 값(멤버변수나 메서드)을 가지고 있다면 그 인터페이스를 구현한 것으로 인정한다. 이것을 [덕 타이핑(duck typing)](https://ko.wikipedia.org/wiki/%EB%8D%95_%ED%83%80%EC%9D%B4%ED%95%91)이라 한다.
+TypeScript는 해당 인터페이스에서 정의한 값(멤버변수나 메서드)을 가지고 있다면 그 인터페이스를 구현한 것으로 인정한다. 이것을 [덕 타이핑(duck typing)](https://ko.wikipedia.org/wiki/%EB%8D%95_%ED%83%80%EC%9D%B4%ED%95%91) 또는 구조적 타이핑(structural typing)이라 한다.
 
 인터페이스를 일반 변수에 사용할 경우에도 덕 타이핑은 적용된다.
 

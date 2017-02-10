@@ -11,16 +11,24 @@ section: typescript
 
 ![typescript Logo](/img/typescript-logo.png)
 
-# 1. 자료형 (Data Type)
+# 1. 타입 선언
 
-TypeScript에서 자료형 선언 방법은 아래와 같이 변수명 뒤에 자료형을 명시한다. 자료형과 일치하지 않는 값이 할당되면 에러가 발생한다. 이러한 자료형의 선언은 코드를 예측 가능하도록 돕는다. 또한 컴파일 시점에서의 에러 검출은 런타임 시점에서의 에러 발생을 감소시킨다.
+TypeScript는 아래와 같이 변수명 뒤에 타입(자료형)을 명시하는 것으로 타입을 선언할 수 있다.
 
 ```typescript
 let foo: string = 'hello';
 let bar: number = true; // error TS2322: Type 'true' is not assignable to type 'number'.
 ```
 
-함수의 매개변수와 반환값에 대한 자료형 선언 방법은 아래와 같다. 변수와 마찬가지로 선언된 자료형에 일치하지 않는 값이 주어지면 에러가 발생한다.
+타입 선언은 코드 예측성을 향상시킨다. 또한 타입 선언은 강력한 타입 체크를 가능하게 하여 문법 에러나 타입과 일치하지 않는 값의 할당 등 기본적인 오류를 런타임 이전에 검출한다. VSCode와 같은 툴을 사용하면 코드 작성 시점에 에러를 검출할 수 있어서 개발효율이 대폭 향상된다.
+
+![type-error](./img/type-error.png)
+{: .w-350}
+
+Visual Studio Code의 에러 사전 검출
+{: .desc-img}
+
+함수의 매개변수와 반환값에 대한 타입 선언 방법은 아래와 같다. 일반 변수와 마찬가지로 선언된 타입에 일치하지 않는 값이 주어지면 에러가 발생한다.
 
 ```typescript
 // 함수선언식
@@ -37,9 +45,9 @@ console.log(multiply2(10, 3));
 console.log(multiply1(true, 1)); // error TS2345: Argument of type 'true' is not assignable to parameter of type 'number'.
 ```
 
-TypeScript는 ES5, ES6의 Superset(상위확장)이므로 [JavaScript의 자료형](./js-data-type-variable#data-type-)을 그대로 사용할 수 있다. JavaScript의 자료형 이외에도 TypeScript 고유의 자료형이 추가로 제공된다.
+TypeScript는 ES5, ES6의 Superset(상위확장)이므로 [JavaScript의 타입](./js-data-type-variable#data-type-)을 그대로 사용할 수 있다. JavaScript의 타입 이외에도 TypeScript 고유의 타입이 추가로 제공된다.
 
-| 자료형        | JS | TS | Description      |
+| Type        | JS | TS | Description      |
 |:------------|:--:|:--:|:-----------------|
 | boolean     |◯   |    | true와 false
 | null        |◯   |    | primitives 또는 object형 변수에 값이 없다는 것을 명시          
@@ -85,7 +93,7 @@ const obj = {};
 let list1: number[] = [1, 2, 3];
 let list2: Array<number> = [1, 2, 3]; // Generic array type
 
-// tuple : 고정된 요소수 만큼의 자료형을 미리 선언후 배열을 표현
+// tuple : 고정된 요소수 만큼의 타입을 미리 선언후 배열을 표현
 // Declare a tuple type
 let x: [string, number];
 // Initialize it
@@ -133,13 +141,11 @@ function error(message: string): never {
 }
 ```
 
-TypeScript 자료형에 관한 자세한 내용은 [TypeScript: Basic Types](http://www.typescriptlang.org/docs/handbook/basic-types.html)을 참조하기 바란다.
-
 # 2. Static Typing (정적 타이핑)
 
-C나 Java같은 C-family 언어는 변수 선언 시 변수에 저장할 값의 종류에 따라 사전에 자료형을 선언(Type declaration)하여야 하며 지정한 자료형에 맞는 값을 할당하여 한다. 이를 정적 타이핑(Static Typing)이라한다.
+C나 Java같은 C-family 언어는 변수 선언 시 변수에 저장할 값의 종류에 따라 사전에 타입을 선언(Type declaration)하여야 하며 지정한 타입에 맞는 값을 할당하여 한다. 이를 정적 타이핑(Static Typing)이라한다.
 
-JavaScript는 동적 타입(dynamic typed) 언어 혹은 느슨한 타입(loosely typed) 언어이다. 이것은 변수의 자료형 선언이 없이 값이 할당되는 과정에서 동적으로 자료형이 추론(형추론 Type Inference)될 것이라는 뜻이다. 따라서 같은 변수에 여러 data type의 값을 대입할 수 있다. 이를 동적 타이핑(Dynamic Typing)이라 한다.
+JavaScript는 동적 타입(dynamic typed) 언어 혹은 느슨한 타입(loosely typed) 언어이다. 이것은 변수의 타입 선언없이 값이 할당되는 과정에서 동적으로 타입이 추론(타입추론 Type Inference)될 것이라는 뜻이다. 따라서 같은 변수에 여러 타입의 값을 교차하여 대입할 수 있다. 이를 동적 타이핑(Dynamic Typing)이라 한다.
 
 ```javascript
 var foo;
@@ -165,7 +171,7 @@ foo = true;
 console.log(typeof foo);  // boolean
 ```
 
-TypeScript의 가장 독특한 특징은 <strong>정적 타이핑</strong>을 지원한다는 것이다. 즉 변수의 자료형(type)을 선언할 수 있으며 잘못된 자료형의 값이 할당되면 컴파일러는 이를 감지한다.
+TypeScript의 가장 독특한 특징은 <strong>정적 타이핑</strong>을 지원한다는 것이다. 즉 변수의 타입을 선언할 수 있으며 잘못된 타입의 값이 할당되면 컴파일러는 이를 감지한다.
 
 ```typescript
 let foo: string,   // String
@@ -177,7 +183,7 @@ bar = 123;
 baz = 'true'; // error: Type '"true"' is not assignable to type 'boolean'.
 ```
 
-만약 자료형의 선언을 생략하면 값이 할당되는 과정에서 동적으로 자료형이 결정(타입 추론: Type Inference)된다. 하지만 타입 추론으로 자료형이 결정된 이후 다른 자료형의 값을 할당하면 에러가 발생한다.
+만약 타입 선언을 생략하면 값이 할당되는 과정에서 동적으로 타입이 결정(타입추론: Type Inference)된다. 하지만 타입 추론으로 자료형이 결정된 이후 다른 타입의 값을 할당하면 에러가 발생한다.
 
 ```typescript
 let foo = 123; // let foo: number와 동치
@@ -210,7 +216,7 @@ console.log(add('10', '10'));
 
 참고로 정적 타이핑과 동적 타이핑 중 무엇이 우위인지에 대한 논쟁은 사실 큰 의미가 없다. 정적 타이핑과 동적 타이핑의 가장 큰 차이를 컴파일 시의 에러 검출과 런타임 시의 에러 검출로 볼 수 있는데 Java와 같은 정적 타이핑 언어도 런타임에만 검출되는 에러가 존재하기 때문이다.
 
-정적 타이팅의 장점은 <strong>코드 가독성 향상</strong>과 <strong>안정성의 향상</strong>이라고 볼 수 있는데 이는 대규모 프로젝트에 적합하다.
+정적 타이팅의 장점은 <strong>코드 가독성과 예측성 향상</strong>과 <strong>안정성의 향상</strong>이라고 볼 수 있는데 이는 대규모 프로젝트에 매우 적합하다.
 
 # Reference
 

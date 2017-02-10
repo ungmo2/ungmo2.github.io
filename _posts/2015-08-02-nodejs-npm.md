@@ -103,10 +103,10 @@ Press ^C at any time to quit.
 name: (emoji)
 ```
 
-npm init 명령어를 사용하면 프로젝트에 대한 여러가지 정보를 입력하도록 요구받게 된다. 입력된 정보를 바탕으로 npm은 package.json 파일을 생성한다. 일단 파일로 생성된 package.json을 수정하는 방법이 더 편리할 수 있으므로 `--yes` 옵션으로 디폴트 설정으로 package.json을 생성해 보자.
+npm init 명령어를 사용하면 프로젝트에 대한 여러가지 정보를 입력하도록 요구받게 된다. 입력된 정보를 바탕으로 npm은 package.json 파일을 생성한다. 일단 파일로 생성된 package.json을 수정하는 방법이 더 편리할 수 있으므로 `--yes` 또는 `-y` 옵션으로 디폴트 설정으로 package.json을 생성해 보자.
 
 ```bash
-$ npm init --yes
+$ npm init -y
 Wrote to /Users/leeungmo/Desktop/emoji/package.json:
 
 {
@@ -132,12 +132,16 @@ package.json에서 가장 중요한 항목은 `name`과 `version`이다. 이것�
 `dependencies`에는 해당 프로젝트가 의존하는 패키지들의 이름과 버전을 명시한다. npm install 명령어에 `--save` 옵션을 사용하면 패키지 설치와 함께 package.json의 dependencies에 설치된 패키지와 버전이 기록된다.
 
 ```bash
-$ npm install <package> --save
+$ npm install node-emoji --save
 ```
 
 npm install 명령어에 `--save-exact` 옵션을 지정하면 설치된 버전을 범위 지정없이 기록한다.
 
 npm install 명령어의 패키명 뒤에 \@버전을 추가하면 패키지 버전을 지정할 수 있다.
+
+```bash
+$ npm install node-emoji@1.5.1 --save
+```
 
 버전의 기술 방식을 아래와 같다.
 
@@ -150,6 +154,8 @@ npm install 명령어의 패키명 뒤에 \@버전을 추가하면 패키지 버
 | <=version | 명시된 version과 같거나 낮은 버전
 | ~version  | 명시된 version과 근사한 버전
 | ^version  | 명시된 version과 호환되는 버전
+
+버전 정보는 메이저 버전 번호, 마이너 버전 번호, 패치 버전 번호로 구성된다. 메이저 버전만 일치시키고 싶은 경우 `^x.y.x`, 마이어 버전까지 일치시키고 싶은 경우 `~x.y.x`의 형식으로 기술한다.
 
 버전에 대한 보다 자세한 사항은 [semver : The semantic versioner for npm](https://docs.npmjs.com/misc/semver)를 참조하기 바란다.
 

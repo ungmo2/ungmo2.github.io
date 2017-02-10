@@ -63,9 +63,13 @@ npm WARN emoji No README data
 npm WARN emoji No license field.
 ```
 
-node-emoji 패키지가 설치되었다. 설치된 패키지는 프로젝트 디렉터리 내의 Node_modules 디렉터리에 설치된다.
+경고가 발생하였으나 node-emoji 패키지는 잘 설치되었다.
 
-npm install 명령어에는 지역(local)과 전역(global)이라는 두가지 옵션이 존재한다. 전역에 패키지를 설치하려면 `-g` 옵션을 지정한다. 전역에 설치된 패키지는 macOS의 경우 /usr/local/lib/node_modules에 설치되며 윈도우의 경우 c:\Users\%USERNAME%\AppData\Roaming\npm\node_modules에 설치된다. 전역으로 설치된 패키지는 전역에서 참조가 가능하게 된다. 예를 들어 npm의 경우 모든 프로젝트가 사용하기 때문에 지역으로 설치하는 것보다 전역에 설치하는 것이 일반적이다.
+npm install 명령어에는 지역(local)과 전역(global)이라는 두가지 옵션이 존재한다.
+
+옵션을 별도로 지정하지 않으면 지역으로 설치되며 프로젝트 디렉터리 내에 Node_modules 디렉터리가 자동 생성되고 그안에 설치한 패키지가 설치된다. 지역으로 설치된 패키지는 해당 프로젝트 내에서만 사용할 수 있다.
+
+전역에 패키지를 설치하려면 `-g` 옵션을 지정한다. 전역에 설치된 패키지는 macOS의 경우 /usr/local/lib/node_modules에 설치되며 윈도우의 경우 c:\Users\%USERNAME%\AppData\Roaming\npm\node_modules에 설치된다. 전역으로 설치된 패키지는 전역에서 참조가 가능하게 된다. 예를 들어 npm의 경우 모든 프로젝트가 사용하기 때문에 지역으로 설치하는 것보다 전역에 설치하는 것이 일반적이다.
 
 node 명령어로 Node.js REPL을 기동시키고 node-emoji를 로드한 후 emoji를 출력해 보자.
 

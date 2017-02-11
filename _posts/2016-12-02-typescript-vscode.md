@@ -233,8 +233,8 @@ import * as _ from "lodash";
 
 class Startup {
   public static main(): number {
-    console.log(_.defaults({ 'a': 1 }, { 'a': 3, 'b': 2 }));
-    // → { 'a': 1, 'b': 2 }
+    const group = _.groupBy(['one', 'two', 'three'], 'length');
+    console.log(group); // => { '3': ['one', 'two'], '5': ['three'] }
     return 0;
   }
 }

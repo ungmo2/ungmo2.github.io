@@ -15,6 +15,27 @@ section: typescript
 
 인터페이스는 일반적으로 <strong>타입 검사를 위해 사용되며 일반 변수, 함수, 클래스에 사용</strong>할 수 있다. 인터페이스는 여러가지 자료형을 갖는 속성으로 이루어진 새로운 자료형을 정의하는 것과 유사하다. 인터페이스에 선언된 프로퍼티 또는 메소드의 사용을 강제하여 일관성을 유지할 수 있도록 하는 것이다. ES6는 인터페이스를 지원하지 않지만 TypeScript는 인터페이스를 지원한다.
 
+# Interface 상속
+
+인터페이스는 extends 키워드를 사용하여 상속이 가능하다.
+
+```typescript
+interface IPerson {
+  name: string;
+}
+
+interface IStudent extends IPerson {
+  grade: number;
+}
+
+const person: IStudent =  {
+  name: 'Lee',
+  grade: 3
+}
+```
+
+
+
 연관성을 가지는 데이터들의 타입을 인터페이스로 정의하여 사용하면 함수에 여러개의 매개변수를 전달하여야 할 때 복잡한 매개변수 체크가 필요없어서 매우 유용하다.
 
 ```typescript

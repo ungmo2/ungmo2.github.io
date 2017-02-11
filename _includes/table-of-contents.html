@@ -85,7 +85,24 @@
       {% endfor %}
       </ol>
     </article>
-
+    <!-- es6 -->
+        <article class="toc-section toc-section--es6">
+          <div class="toc-heading">
+            <i class="devicon-javascript-plain"></i>
+            <h3>ECMAScript6</h3>
+            <small><span>{{ site.categories.es6 | size }}</span> lessons</small>
+          </div>
+          <ol class="toc-content">
+          {% assign counter = 0 %}
+          {% for post in site.categories.es6 reversed %}
+            {% assign counter = counter | plus: 1 %}
+              <li class="toc-month">
+                <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
+              </li>
+          {% endfor %}
+          </ol>
+        </article>
+    <!-- es6 -->
     <article class="toc-section toc-section--jquery">
       <div class="toc-heading">
         <i class="devicon-jquery-plain"></i>

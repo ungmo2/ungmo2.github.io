@@ -205,11 +205,13 @@ Hello Angular2
 
 TypeScript를 사용하는 이유는 여러가지 있지만 가장 큰 장점은 다양한 도구의 지원을 받을 수 있다는 것이다. TypeScript는 정적 타입을 지원하므로 높은 수준의 IntelliSense나 리팩토링 등을 지원하며 이러란 도구의 지원은 대규모 프로젝트를 위한 필수적 요소이기도 하다.
 
-프로젝트 내에는 필수적으로 다양한 라이브러리가 포함되는데 이 라이브러리들은 JavaScript로 작성되어있다. TypeScript는 ES5의 Superset(상위확장)이므로 기존의 JavaScript를 그대로 사용할 수 있지만 그렇게 사용하는 경우, JavaScript는 정적 타입이 없으므로 VSCode에서 제공하는 IntelliSense와 같은 다양한 도구의 지원을 받을 수 없게 된다.
+프로젝트 내에는 필수적으로 다양한 라이브러리가 포함되는데 이 라이브러리들은 JavaScript로 작성되어있다. TypeScript는 ES5의 Superset(상위확장)이므로 JavaScript를 그대로 사용할 수 있다. 하지만 정적 타입이 없는 JavaScript를 그대로 사용하면 VSCode에서 제공하는 IntelliSense와 같은 다양한 도구의 지원을 받을 수 없다.
 
-TypeScript Definition Manager인 [Typings](https://github.com/typings/typings)를 사용하여 해당 라이브러리의 타입 정보를 추가할 수 있다.
+따라서 외부 JavaScript 라이브러리에 대해서도 타입체크를 수행하려면 해당 라이브러리의 타입이 정의되어 있는 <strong>정의 파일(Definition file)</strong>을 제공해야 한다.
 
-TypeScript 프로젝트에 jQuery를 사용하는 경우를 살펴보자.
+라이브러리의 정의 파일을 직접 수작업으로 만드는 것은 어려운 일이다. 다행스러운 것은 정의 파일의 npm과 유사한 TypeScript Definition Manager [Typings](https://github.com/typings/typings)를 사용하면 해당 라이브러리의 타입 정보를 추가할 수 있다.
+
+예를 들어 TypeScript 프로젝트에 jQuery를 사용하는 경우를 살펴보자.
 
 먼저 npm으로 jQuery를 설치한다. 참고로 라이브러리의 설치와 타입 정보의 설치는 별도로 진행한다.
 

@@ -209,6 +209,45 @@ TypeScript를 사용하는 이유는 여러가지 있지만 가장 큰 장점은
 
 따라서 외부 JavaScript 라이브러리에 대해서도 타입체크를 수행하려면 해당 라이브러리의 타입이 정의되어 있는 <strong>정의 파일(Definition file)</strong>을 제공해야 한다.
 
+라이브러리의 정의 파일을 직접 수작업으로 만드는 것은 어려운 일이다. 다행스럽게도 npm에서 정의 파일을 설치할 수 있다.
+
+위의 예제에서 유틸리티 라이브러리 [lodash](https://lodash.com/)를 사용해 보자.
+
+우선 lodash를 설치한다.
+
+```bash
+$ npm init -y
+$ npm install lodash --save
+```
+
+npm에서 lodash 정의 파일을 설치한다.
+
+```bash
+$ npm install @types/lodash --save-dev
+```
+
+ts 파일을 수정해 보자.
+
+```typescript
+import * as _ from "lodash";
+
+class Startup {
+  public static main(): number {
+		console.log(_.defaults({ 'a': 1 }, { 'a': 3, 'b': 2 }));
+		// → { 'a': 1, 'b': 2 }
+    return 0;
+  }
+}
+
+Startup.main();
+```
+
+이제 lodash 라이브러리에 대해 IntelliSense가 작동하는 것을 확인할 수 있다.
+
+![types-lodash](./img/types-lodash.png)
+
+<!-- ## 4.2 Typings로 정의 파일 설치
+
 라이브러리의 정의 파일을 직접 수작업으로 만드는 것은 어려운 일이다. 다행스러운 것은 정의 파일의 npm과 유사한 TypeScript Definition Manager [Typings](https://github.com/typings/typings)를 사용하면 해당 라이브러리의 타입 정보를 추가할 수 있다.
 
 예를 들어 TypeScript 프로젝트에 jQuery를 사용하는 경우를 살펴보자.
@@ -253,7 +292,7 @@ $ typings install dt~jquery --global --save
 ![after-typings](./img/after-typings.png)
 
 typings 설치 후
-{: .desc-img}
+{: .desc-img} -->
 
 # 5. 디버깅
 

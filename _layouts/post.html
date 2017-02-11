@@ -9,7 +9,7 @@ route: post
       <h1>
         {% assign year = page.date | date: "%-y"  %}
         {% case year %}
-          {% when '16' or '17' %}<em>{{ page.date | date: "%-m" | plus:'12' }}.{{ page.date | date: "%-d" }}</em>
+          {% when '17' %}<em>{{ page.date | date: "%-m" | plus:'12' }}.{{ page.date | date: "%-d" }}</em>
           {% else %}<em>{{ page.date | date: "%-m.%-d" }}</em>
         {% endcase %}
         <!-- <em>{{ page.date | date: "%-m.%-d" }}</em> -->

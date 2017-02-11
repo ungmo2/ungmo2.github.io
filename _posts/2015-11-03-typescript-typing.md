@@ -1,7 +1,7 @@
 ---
 layout: post
 title: TypeScript <strong>Typing</strong>
-subtitle: 자료형과 정적 타이핑
+subtitle: 타입 선언과 정적 타이핑
 categories: typescript
 section: typescript
 ---
@@ -11,7 +11,7 @@ section: typescript
 
 ![typescript Logo](/img/typescript-logo.png)
 
-# 1. 타입 선언
+# 1. 타입 선언 (Type Declaration)
 
 TypeScript는 아래와 같이 변수명 뒤에 타입(자료형)을 명시하는 것으로 타입을 선언할 수 있다.
 
@@ -141,7 +141,7 @@ function error(message: string): never {
 }
 ```
 
-# 2. Static Typing (정적 타이핑)
+# 2. 정적 타이핑 (Static Typing)
 
 C나 Java같은 C-family 언어는 변수 선언 시 변수에 저장할 값의 종류에 따라 사전에 타입을 선언(Type declaration)하여야 하며 지정한 타입에 맞는 값을 할당하여 한다. 이를 정적 타이핑(Static Typing)이라한다.
 

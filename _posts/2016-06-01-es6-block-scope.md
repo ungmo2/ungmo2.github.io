@@ -15,7 +15,7 @@ description: ECMAScript6 ES6 블록 레벨 스코프 let const
 
 # 1. let
 
-ES5에서 변수를 선언할 수 있는 유일한 방법은 [var 키워드](./js-data-type-variable#variable-)를 사용하는 것이었다. var 키워드를 사용하여 선언한 변수는 중복 선언이 가능하며 호이스팅되며 [Function-level scope](./js-scope#function-scope)를 갖게 되는데 이것은 다른 C-family 언어와는 차별되는 특징이다.
+ES5에서 변수를 선언할 수 있는 유일한 방법은 [var 키워드](./js-data-type-variable#variable-)를 사용하는 것이었다. var 키워드를 사용하여 선언한 변수는 중복 선언이 가능하며 [Function-level scope](./js-scope#function-scope)를 갖게 되는데 이것은 다른 C-family 언어와는 차별되는 특징이다.
 
 기본적으로 JavaScript의 변수는 Function-level scope를 갖는다.
 

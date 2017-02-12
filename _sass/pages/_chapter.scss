@@ -1,4 +1,4 @@
-html.section-html, html.section-javascript, html.section-mongodb {
+html.section-html, html.section-javascript, html.section-nodejs, html.section-jekyll {
   background-color: $html;
 
   .page-hero {
@@ -7,7 +7,7 @@ html.section-html, html.section-javascript, html.section-mongodb {
   }
 }
 
-html.section-css, html.section-jquery, html.section-jekyll {
+html.section-css, html.section-es6, html.section-express {
   background-color: $css;
 
   .page-hero {
@@ -16,7 +16,7 @@ html.section-css, html.section-jquery, html.section-jekyll {
   }
 }
 
-html.section-bootstrap, html.section-nodejs {
+html.section-bootstrap, html.section-jquery, html.section-mongodb {
   background-color: $bootstrap;
 
   .page-hero {
@@ -25,7 +25,7 @@ html.section-bootstrap, html.section-nodejs {
   }
 }
 
-html.section-sass, html.section-express {
+html.section-sass, html.section-snippet, html.section-typescript {
   background-color: $sass;
 
   .page-hero {

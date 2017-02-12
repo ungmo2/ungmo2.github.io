@@ -1,9 +1,10 @@
 ---
 layout: post
-title: Responsive Web Design
+title: CSS3 <strong>Responsive Web Design</strong>
 subtitle: 브라우저의 크기에 반응하는 웹사이트를 위한 기술
 categories: css
 section: css
+description: CSS3 'Responsive Web Design' '반응형 웹디자인' viewport @media
 ---
 
 * TOC

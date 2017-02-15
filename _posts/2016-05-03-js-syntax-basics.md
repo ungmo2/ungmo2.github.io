@@ -4,6 +4,7 @@ title: Javascript <strong>Syntax Basics</strong>
 subtitle: javascript Hello World
 categories: javascript
 section: javascript
+description: javascript 자바스크립트 문법 구문 표현식 변수 값 연산자 키워드
 ---
 
 * TOC
@@ -15,9 +16,8 @@ section: javascript
 <!DOCTYPE html>
 <html>
 <body>
-  <h1>My Web Page</h1>
-  <p id="demo">A Paragraph</p>
-  <button type="button" onclick="myFunction()">Try it</button>
+  <h1 id="demo">My Web Page</h1>
+  <button type="button" onclick="myFunction()">Click me</button>
   <script>
     function myFunction() {
       var myParagraph = document.getElementById("demo");
@@ -30,25 +30,24 @@ section: javascript
 
 <div class='result'></div>
 
-
 Javascript는 interactive한 웹페이지 작성을 가능하게 한다. 즉, 웹 브라우저가 웹페이지를 로드한 후 그 내용을 변경할 수 있다.
 예를 들면, Contents에 접근하여 수정할 수 있으며 이벤트(e.g. 버튼 클릭, 웹페이지 로딩 완료 등)에 반응하여 특정 스크립트를 실행할 수 있다.
 
-# 2. External JavaScript
+# 2. 외부의 자바스크립트 실행하기 (External JavaScript)
 
 ```html
 <!DOCTYPE html>
 <html>
 <body>
-  <h1>My Web Page</h1>
-  <p id="demo">A Paragraph</p>
-  <button type="button" onclick="myFunction()">Try it</button>
+  <h1 id="demo">My Web Page</h1>
+  <button type="button" onclick="myFunction()">Click me</button>
   <script src="extern.js"></script>
 </body>
 </html>
 ```
 
 ```javascript
+// extern.js
 function myFunction() {
   var myParagraph = document.getElementById("demo");
   myParagraph.innerHTML = "Hello world!";
@@ -61,8 +60,7 @@ HTML에서 javascript가 실행될 때 이하와 같은 동작을 할 것이다.
 2. 브라우저는 src 속성에 정의된 자바스크립트 파일을 로드한다.
 3. 스크립트를 실행한 뒤 다음 작업을 진행한다.
 
-`<body>`요소의 가장 아래에 스크립트를 위치시키는 것은 좋은 아이디어이다.
-HTML 요소들이 스크립트 로딩 지연으로 인해 렌더링에 지장 받는 일이 발생하지 않아 페이지 로딩 시간이 단축된다.
+`<body>`요소의 가장 아래에 스크립트를 위치시키는 것은 좋은 아이디어이다. HTML 요소들이 스크립트 로딩 지연으로 인해 렌더링에 지장 받는 일이 발생하지 않아 페이지 로딩 시간이 단축된다.
 
 # 3. JavaScript Output
 
@@ -91,7 +89,7 @@ Javascript에서 data를 표시하는 방법은 아래와 같다.
 </html>
 ```
 
-# 4. Statement
+# 4. 구문 (Statement)
 
 프로그램(스크립트)은 컴퓨터(Client-side Javascript의 경우, 엄밀히 말하면 웹 브라우저)에 의해 단계별로 수행될 명령들의 집합이다.
 
@@ -134,7 +132,7 @@ console.log(greeting);
 
 다른 언어와 달리 자바스크립트에서는 블록 유효범위(Block-level scope)를 생성하지 않는다. 함수 단위의 유효범위(Function-level scope)만이 생성된다.
 
-# 5. Expression
+# 5. 표현식 (Expression)
 
 표현식(Expression)은 값, 변수, 연산자의 조합이며 이 조합은 값을 연산한다. 즉, 표현식은 하나의 값으로 평가될 수 있는 문장이다.
 아래의 예에서 5 * 10은 50으로 평가(연산)된다.
@@ -144,7 +142,7 @@ console.log(greeting);
 "John" + " " + "Doe"  // "John Doe"
 ```
 
-# 6. Variable
+# 6. 변수 (Variable)
 
 programming language에서 변수는 data를 저장(할당), 참조하기 위해 사용된다. 한번 쓰고 버리는 값이 아닌 값(value)을 유지할 필요가 있는 경우에 변수를 사용한다.
 
@@ -153,7 +151,7 @@ programming language에서 변수는 data를 저장(할당), 참조하기 위�
 아래의 예에서 x는 변수로 선언되었고 변수 x에는 정수값 6이 할당되었다.
 
 ```javascript
-var x; // 변수의 선언
+var x; // 변수의 선언과 초기화
 x = 6; // 정수값의 할당
 ```
 
@@ -177,7 +175,7 @@ String str = "Hello World";
 * `Object`
 
 리터럴이란 값을 표현하는 방식을 의미한다.
-자바스크립트는 값(value)을 표현하기 위해 리터럴을 사용한다. 그리고 대부분 값은 변수에 저장된다 (변수도 값이다!)
+자바스크립트는 값(value)을 표현하기 위해 리터럴을 사용한다. 그리고 대부분 값은 변수에 저장된다.
 
 ```javascript
 // literal : Number
@@ -185,17 +183,17 @@ String str = "Hello World";
 1001
 
 // literal : String
-"John Doe"
-'John Doe'
+"Hello"
+'World'
 
 // literal : Object
 { name: 'Lee', gender: 'male' }
 
 // literal : Array
-[ "French Roast", "Colombian", "Kona" ];
+[ "Black", "Gray", "White" ];
 ```
 
-# 8. Operator
+# 8. 연산자 (Operator)
 
 연산자(Operators)는 하나 혹은 그 이상의 값을 하나의 값으로 만들 때 사용한다.
 
@@ -216,7 +214,7 @@ var buy = 3 > 5; // false
 var buy = (5 > 3) && (2 < 4);  // true
 ```
 
-# 9. keyword
+# 9. 키워드 (keyword)
 
 키워드(keyword)는 수행되어져할 동작을 규정한 것이다.
 예를 들어 `var` keyword는 브라우저에게 새로운 변수를 생성할 것을 지시한다.
@@ -256,7 +254,7 @@ var y = x * 10;
 | try | typeof | var | void | volatile |
 | while | with | yield |
 
-# 10. Comment
+# 10. 주석 (Comment)
 
 주석(Comment)은 작성된 코드의 의미를 설명하기 위해 사용한다. 코드는 읽기(이해하기) 쉬워야 한다(가독성이 좋아야 한다)
 

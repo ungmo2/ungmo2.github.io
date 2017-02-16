@@ -101,7 +101,7 @@ greeter(me); // Hello Lee
 
 ```typescript
 interface IDuck { // 1
-	quack(): void;
+  quack(): void;
 }
 
 class MallardDuck implements IDuck { // 3

@@ -4,6 +4,7 @@ title: TypeScript <strong>Interface</strong>
 subtitle: 인터페이스
 categories: typescript
 section: typescript
+description: TypeScript Interface 인터페이스 덕타이핑 '선택적 프로퍼티'
 ---
 
 * TOC
@@ -33,8 +34,6 @@ const person: IStudent =  {
   grade: 3
 }
 ``` -->
-
-
 
 연관성을 가지는 데이터들의 타입을 인터페이스로 정의하여 사용하면 함수에 여러개의 매개변수를 전달하여야 할 때 복잡한 매개변수 체크가 필요없어서 매우 유용하다.
 

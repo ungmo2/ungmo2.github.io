@@ -4,6 +4,7 @@ title: TypeScript <strong>Typing</strong>
 subtitle: 타입 선언과 정적 타이핑
 categories: typescript
 section: typescript
+description: TypeScript '타입 선언' '정적 타이핑'
 ---
 
 * TOC
@@ -90,7 +91,7 @@ let greeting: string = `Hello, my name is ${ myName }.` // ES6 템플릿 대입�
 const obj = {};
 
 // array
-let list1: number[] = [1, 2, 3];
+let list1: any[] = [1, 'two', true];
 let list2: Array<number> = [1, 2, 3]; // Generic array type
 
 // tuple : 고정된 요소수 만큼의 타입을 미리 선언후 배열을 표현

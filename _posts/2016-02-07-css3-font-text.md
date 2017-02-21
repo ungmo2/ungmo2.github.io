@@ -380,7 +380,13 @@ html의 white space는 공백(space), 들여쓰기(tab), 줄바꿈(line break)�
 
 # 10. text-overflow 속성
 
-부모 영역을 벗어난 wrapping(자동줄바꿈)이 되지 않은 텍스트의 처리 방법을 정의한다. 이 속성을 사용하기 위해서는 overflow 속성에 반드시 "visible" 이외의 값이 지정되어 있어야 한다.
+부모 영역을 벗어난 wrapping(자동줄바꿈)이 되지 않은 텍스트의 처리 방법을 정의한다. 이 속성을 사용하기 위해서는 아래의 조건이 필요하다.
+
+- overflow 속성에 반드시 "visible" 이외의 값이 지정되어 있어야 한다.
+- width 속성이 지정되어 있어야 한다. 이를 위해 필요할 경우 block 속성으로 변경하여야한다.
+- 자동 줄바꿈을 방지하려면 white-space 속성을 nowrap으로 설정한다.
+
+text-overflow 속성에 설정할 수 있는 속성값은 아래와 같다.
 
 | 속성값	     | Description
 |:----------|:-----------------
@@ -395,15 +401,15 @@ html의 white space는 공백(space), 들여쓰기(tab), 줄바꿈(line break)�
   <meta charset="utf-8">
   <style>
     div {
-      width: 150px;
+      width: 150px; /* width 속성이 지정되어 있어야 한다. */
       height: 150px;
       padding: 10px;
       margin: 40px;
       border-radius: 6px;
       border-color: gray;
       border-style: dotted;
-      white-space: nowrap;
-      overflow: hidden;  /*반드시 "visible" 이외의 값이 지정되어 있어야 한다.*/
+      white-space: nowrap; /* 자동 줄바꿈을 방지 */
+      overflow: hidden;    /* 반드시 "visible" 이외의 값이 지정되어 있어야 한다. */
     }
     .clip     { text-overflow: clip; }
     .ellipsis { text-overflow: ellipsis; }

@@ -320,9 +320,9 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 <html>
 <head>
   <style>
-    /* div 요소 중에 class 속성값에 "test"를 포함하는 요소 */
+    /* div 요소 중에서 class 속성값에 "test"를 포함하는 요소 */
     div[class*="test"] { color: red; }
-    /* div 요소 중에 title 속성값에 "test"를 단어로 포함하는 요소 */
+    /* div 요소 중에서 class 속성값에 "test"를 단어로 포함하는 요소 */
     div[class~="test"] { background-color: yellow; }
   </style>
 </head>

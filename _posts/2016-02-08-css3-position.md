@@ -155,9 +155,11 @@ static은 position 속성의 기본값으로 position 속성을 지정하지 않
 
 ## 1.3 absolute (절대위치)
 
-<strong>부모 또는 조상 요소에 relative 속성이 선언되어 있으면 그 요소를 기준으로 하여 좌표 속성(top, bottom, left, right)만큼 이동한다.</strong>
+<strong>가장 가까이 있는 부모 또는 조상 요소(static 제외)를 기준으로 좌표 속성(top, bottom, left, right)만큼 이동한다. 즉 relative, absolute, fixed 속성이 선언되어 있는 부모 또는 조상 요소를 기준으로 위치가 결정된다.</strong>
 
-<strong>relative 속성이 선언되어 있는 부모 또는 조상 요소가 없다면 부모 요소와 관계없이 document body를 기준으로 하여 좌표 속성대로 위치하게 된다.</strong>
+<!-- <strong>부모 또는 조상 요소에 relative 속성이 선언되어 있으면 그 요소를 기준으로 하여 좌표 속성(top, bottom, left, right)만큼 이동한다.</strong> -->
+
+<strong>만일 부모 또는 조상 요소가 static인 경우, document body를 기준으로 하여 좌표 속성대로 위치하게 된다.</strong>
 
 따라서 부모 요소를 배치의 기준으로 삼기 위해서는 부모 요소에 relative 속성을 정의하여야 한다.
 

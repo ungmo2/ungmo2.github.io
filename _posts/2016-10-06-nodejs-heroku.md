@@ -26,20 +26,24 @@ node.js와 npm, git가 사전에 install되어 있어야 한다. install 여부�
 
 ```bash
 $ node -v
-v6.4.0
+v6.9.4
 $ npm -v
-3.10.3
+4.2.0
 $ git --version
 git version 2.6.4 (Apple Git-63)
 ```
 
-# 3. Install Heroku Toolbelt
+# 3. Heroku CLI 설치
 
-Heroku Toolbelt는 Heroku Command Line Interface(CLI)를 제공한다.
+[Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)(a.k.a. Heroku Toolbelt)는 command line/shell에서 Heroku 어플리케이션을 생성하고 관리할 수 있는 도구이다.
 
-[Heroku Toolbelt](https://toolbelt.heroku.com/)에서 자신의 사양에 맞는 toolbelt를 설치한다.
+자신의 사양에 맞는 Heroku CLI를 설치한다.
 
-# 4. Login to Heroku
+<!-- Heroku Toolbelt는 Heroku Command Line Interface(CLI)를 제공한다.
+
+[Heroku Toolbelt](https://toolbelt.heroku.com/)에서 자신의 사양에 맞는 toolbelt를 설치한다. -->
+
+# 4. Heroku 로그인
 
 터미널에서 Heroku에 로그인한다.
 
@@ -51,24 +55,40 @@ Password (typing will be hidden):
 Logged in as ungmo2@gmail.com
 ```
 
-# 5. Prepare sample app
+# 5. sample app의 준비
 
-Sample app을 clone한다.
+Sample app을 clone한다. app의 이름은 나중에 수정이 가능하므로 지금은 heroku-express-example이라는 이름의 app을 생성한다.
 
 ```bash
 $ git clone https://github.com/heroku/node-js-getting-started.git heroku-express-example
 $ cd heroku-express-example
+$ ls -al
+total 56
+drwxr-xr-x  12 leeungmo  staff   408  2 24 00:23 .
+drwxr-xr-x+ 71 leeungmo  staff  2414  2 24 00:23 ..
+-rw-r--r--   1 leeungmo  staff     8  2 24 00:23 .env
+drwxr-xr-x  13 leeungmo  staff   442  2 24 00:23 .git
+-rw-r--r--   1 leeungmo  staff   133  2 24 00:23 .gitignore
+-rw-r--r--   1 leeungmo  staff    19  2 24 00:23 Procfile
+-rw-r--r--   1 leeungmo  staff  1371  2 24 00:23 README.md
+-rw-r--r--   1 leeungmo  staff   301  2 24 00:23 app.json
+-rw-r--r--   1 leeungmo  staff   460  2 24 00:23 index.js
+-rw-r--r--   1 leeungmo  staff   485  2 24 00:23 package.json
+drwxr-xr-x   5 leeungmo  staff   170  2 24 00:23 public
+drwxr-xr-x   4 leeungmo  staff   136  2 24 00:23 views
 ```
 
 # 6. Deploy App
 
-Sample app을 Heroku에 deploy한다. app의 이름을 지정하지 않으면 random한 이름이 자동으로 생성된다.
+app을 Heroku에 생성한다. app의 이름을 지정하지 않으면 random한 이름이 자동으로 생성된다.
 
 ```bash
 $ heroku create heroku-express-example
 Creating ⬢ heroku-express-example... done
 https://heroku-express-example.herokuapp.com/ | https://git.heroku.com/heroku-express-example.git
 ```
+
+이제 app이 Heroku에 생성되었고 Heroku와 로컬 git 저장소는 연결된다.
 
 이때 .git/config 파일에 아래 내용이 추가된다.
 
@@ -80,7 +100,7 @@ https://heroku-express-example.herokuapp.com/ | https://git.heroku.com/heroku-ex
 
 ![heroku create app](/img/heroku-create-app.png)
 
-Sample app을 Heroku로 push한다.
+Sample app을 Heroku로 push한다. 이것이 바로 deploy이다.
 
 ```bash
 $ git push heroku master
@@ -190,6 +210,7 @@ instance가 동작하고 있지 않으면 다음 명령어로 기동시킨다.
 
 ```bash
 $ heroku ps:scale web=1
+Scaling dynos... done, now running web at 1:Free
 ```
 
 이제 생성된 app이 동작하는 [URL](https://heroku-express-example.herokuapp.com/)으로 방문하여 동작을 확인한다. 또는 아래의 명령어로 방문할 수 있다.
@@ -222,7 +243,23 @@ web은 process type을 의미한다.
 
 local 환경에서 code를 수정하고 local 환경에서 app을 기동하여 수정사항을 확인한 후 Heroku에 수정사항을 반영한다.
 
-local 환경을 구축하기 위하여 pakage.json의 dependency 설정을 사용하여 local 환경에 필요 dependency를 설치한다.
+local 환경을 구축하기 위하여 필요에 따라 pakage.json의 dependency 설정을 변경하고 local 환경에 필요 dependency를 설치한다.
+
+```json
+{
+  "name": "node-js-getting-started",
+  "version": "0.2.5",
+  ...
+  "engines": {
+    "node": "5.9.1"
+  },
+  "dependencies": {
+    "ejs": "2.4.1",
+    "express": "4.13.3"
+  },
+  ...
+}
+```
 
 ```bash
 $ cd heroku-express-example
@@ -237,7 +274,7 @@ $ heroku local web
 17:15:52 web.1   |  Node app is running on port 5000
 ```
 
-반듯이 heroku 명령어를 사용해야 하는 것은 아니다. 아래와 같이 일반적인 방법도 가능하다.
+반드시 heroku 명령어를 사용해야 하는 것은 아니다. 아래와 같이 일반적인 방법도 가능하다.
 
 ```bash
 $ npm start

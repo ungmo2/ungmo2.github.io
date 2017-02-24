@@ -73,7 +73,7 @@ $.ajax({
 
 위의 클라이언트 요청에 대응하는 route를 설정해보자.
 
-먼저 request body를 파싱 미들웨어인 body-parser를 설치한다.
+먼저 request body parsing 미들웨어인 body-parser를 설치한다.
 
 ```bash
 $ npm install body-parser --save

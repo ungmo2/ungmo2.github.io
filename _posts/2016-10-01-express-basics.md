@@ -374,11 +374,9 @@ app.listen(3000);
 
 # 5. 정적 파일의 제공
 
-HTML, CSS, Javascript, 이미지 파일과 같은 정적 파일을 제공하기 위해 Express의 기본 제공 미들웨어 함수인 express.static을 사용한다.
+HTML, CSS, Javascript, 이미지 파일과 같은 정적 파일을 제공하기 위해 Express의 기본 제공 미들웨어 함수인 `express.static`을 사용한다. 정적 파일들이 저장되어 있는 디렉터리명을 express.static 함수에 전달하면 정적 파일 서비스를 사용할 수 있다.
 
-정적 파일들이 저장되어 있는 디렉터리명을 `express.static` 함수에 전달하면 정적 파일 서비스를 사용할 수 있다.
-
-아래는 루트 리렉터리에 있는 public 디렉터리에 있는 정적 파일을 제공하는 예이다.
+아래는 public 디렉터리에 있는 정적 파일을 제공하는 예이다.
 
 ```javascript
 app.use(express.static('public'));

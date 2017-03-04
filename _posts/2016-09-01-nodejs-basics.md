@@ -63,7 +63,7 @@ Current 버전은 변경이 발생하고 있는 버전으로 안정적이지 않
 
 설치가 완료되면 다음의 디렉터리에 Node.js가 설치된다. (버전에 따라 설치 경로는 바뀔 수 있다)
 
-- Windows : C:\Program Files (x86)\nodejs\node.exe
+- Windows : C:\Program Files\nodejs\node.exe
 
 - Mac : /usr/local/bin/node
 

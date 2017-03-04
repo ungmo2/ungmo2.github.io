@@ -190,6 +190,13 @@ C:\Program Files\MongoDB\Server\3.2\bin>mkdir C:\mongodb\log
 mongod.cfg 환경설정 파일을 생성하여 C:\\mongodb 내에 저장한다.
 
 ```bash
+cd C:\\mongodb
+C:\\mongodb echo >> mongod.cfg
+```
+
+mongod.cfg 파일을 열어서 아래와 같이 편집한다.
+
+```bash
 ##Which IP address(es) mongod should bind to.
 bind_ip = 127.0.0.1
 

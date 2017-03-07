@@ -148,9 +148,9 @@ function square(number) {
 
 위 코드를 보면 함수선언식으로 함수가 정의되기 이전에 함수 호출이 가능하다. 함수 선언의 위치와는 상관없이 코드 내 어느 곳에서든지 호출이 가능한데 이것을 함수 호이스팅(Function Hoisting)이라 한다.
 
-**자바스크립트는 선언문을 모두 호이스팅(Hoisting)한다.**
+**자바스크립트는 ES6의 let, const를 포함하여 모든 선언(var, let, const, function, function*, class)을 호이스팅(Hoisting)한다.**
 
-호이스팅이란 var 선언문이나 function 선언문을 해당 [Scope](./js-scope)의 맨 위로 옮기는 것을 말한다. 즉 자바스크립트는 코드를 실행하기 전에 var 선언문과 function 선언문을 해당 스코프의 맨위로 옮긴다.
+호이스팅이란 var 선언문이나 function 선언문 등을 해당 [Scope](./js-scope)의 맨 위로 옮기는 것을 말한다. 즉 자바스크립트는 코드를 실행하기 전에 var 선언문과 function 선언문을 해당 스코프의 맨위로 옮긴다.
 
 함수 호이스팅이 발생하는 원인은 자바스크립트 변수 생성과 초기화가 분리되어 진행되기 때문이다. 이는 [Execution Context](./js-execution-context#variable-instantiation-)에서 자세히 설명한다.
 
@@ -166,7 +166,10 @@ var square = function(number) {
 }
 ```
 
-함수선언식의 경우와는 달리 TypeError가 발생하였다. **함수표현식의 경우 함수 호이스팅이 발생하지 않는다.**
+함수선언식의 경우와는 달리 TypeError가 발생하였다. **함수표현식의 경우 함수 호이스팅이 아니라 [변수 호이스팅](./js-data-type-variable#4-변수-호이스팅variable-hoisting)이 발생한다.**
+
+변수 호이스팅은 변수 생성과 할당이 분리되어 진행된다. 즉 변수 선언만 호이스팅되고 값의 초기화는 변수 선언문에서 이루어 진다.
+{: .info}
 
 함수표현식은 함수선언식과는 달리 스크립트 로딩 시점에 VO에 함수를 저장하지 않고 runtime에 해석되고 실행되므로 이 두가지를 구분하는 것은 중요하다.
 

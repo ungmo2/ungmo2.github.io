@@ -275,7 +275,7 @@ app.get('/example/d', [cb0, cb1], function (req, res, next) {
 <td>다양한 유형의 응답을 전송한다.</td>
 </tr>
 <tr>
-<td><a href="http://expressjs.com/ko/4x/api.html#res.sendFile">res.sendFile</a></td>
+<td><a href="http://expressjs.com/ko/4x/api.html#res.sendFile">res.sendFile()</a></td>
 <td>파일을 옥텟 스트림(이메일이나 http에서 사용되는 content-type에서 application의 형식이 지정되어 있지 않은 경우에 octet-stream이라고 한다)의 형태로 전송한다.</td>
 </tr>
 <tr>
@@ -292,10 +292,10 @@ res.end();
 res.status(404).end();
 
 res.json(null);
-res.json({ user: 'tobi' });
+res.json({ user: 'Lee' });
 res.status(500).json({ error: 'message' });
 
-res.jsonp({ user: 'tobi' });
+res.jsonp({ user: 'Lee' });
 res.status(500).jsonp({ error: 'message' });
 
 res.redirect('/foo/bar');
@@ -310,7 +310,7 @@ res.render('index', function(err, html) {
   res.send(html);
 });
 // pass a local variable to the view
-res.render('user', { name: 'Tobi' }, function(err, html) {
+res.render('user', { name: 'Lee' }, function(err, html) {
   // ...
 });
 

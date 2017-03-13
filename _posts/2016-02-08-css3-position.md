@@ -210,6 +210,59 @@ relative 속성은 기본 위치(static으로 지정되었을 때의 위치)를 
 
 absolute 속성은 부모에 static 이외의 position 속성이 지정되어 있을 경우에만 부모를 기준으로 위치하게 된다. 만일 부모, 조상이 모두 static 속성인 경우, document body를 기준으로 위치하게 된다
 
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { margin: 0;}
+    .parent {
+      width: 150px;
+      height: 150px;
+      background: #bcbcbc;
+      border: 1px solid #bcbcbc;
+      margin: 50px;
+      float: left;
+      /*position: relative;*/
+    }
+    .relative-box {
+      position: relative;
+      top: 10px; left: 10px;
+      width: 150px;
+      height: 150px;
+      background: #2E303D;
+      color: #e55c3c;
+      font-weight: bold;
+      text-align: center;
+      line-height: 150px;
+    }
+    .absolute-box {
+      position: absolute;
+      top: 10px; left: 10px;
+      width: 150px;
+      height: 150px;
+      background: #2E303D;
+      color: #e55c3c;
+      font-weight: bold;
+      text-align: center;
+      line-height: 150px;
+    }
+  </style>
+</head>
+<body>
+  <div class="parent">
+    <div class="absolute-box">absolute box</div>
+  </div>
+  <div class="parent">
+    <div class="relative-box">relative box</div>
+  </div>
+</body>
+</html>
+```
+
+<p data-height="400" data-theme-id="0" data-slug-hash="pewbWo" data-default-tab="result" data-user="ungmo2" data-embed-version="2" data-pen-title="position: absolute vs position: relative" class="codepen">See the Pen <a href="http://codepen.io/ungmo2/pen/pewbWo/">position: absolute vs position: relative</a> by Ungmo Lee (<a href="http://codepen.io/ungmo2">@ungmo2</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
 ## 1.4 fixed (고정위치)
 
 부모 요소와 관계없이 브라우저의 viewport를 기준으로 좌표속성(top, bottom, left, right)을 사용하여 위치를 이동시킨다.

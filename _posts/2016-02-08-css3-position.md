@@ -204,6 +204,12 @@ static은 position 속성의 기본값으로 position 속성을 지정하지 않
 <p data-height="400" data-theme-id="0" data-slug-hash="kkGVEo" data-default-tab="result" data-user="ungmo2" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ungmo2/pen/kkGVEo/">position: absolute - example  </a> by Ungmo Lee (<a href="http://codepen.io/ungmo2">@ungmo2</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
+<strong>relative 속성과 absolute 속성의 차이점</strong>은 아래와 같다.
+
+relative 속성은 기본 위치(static으로 지정되었을 때의 위치)를 기준으로 좌표 속성(top, bottom, left, right)을 사용하여 위치를 이동시킨다. 따라서 <strong>무조건 부모를 기준으로 위치</strong>하게 된다.
+
+absolute 속성은 부모에 static 이외의 position 속성이 지정되어 있을 경우에만 부모를 기준으로 위치하게 된다. 만일 부모, 조상이 모두 static 속성인 경우, document body를 기준으로 위치하게 된다
+
 ## 1.4 fixed (고정위치)
 
 부모 요소와 관계없이 브라우저의 viewport를 기준으로 좌표속성(top, bottom, left, right)을 사용하여 위치를 이동시킨다.

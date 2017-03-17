@@ -12,12 +12,8 @@ description: jQuery Cheat Sheet
 ![jQuery cheat sheet](https://websitesetup.org/wp-content/uploads/2017/02/Jquery-Cheat-Sheet-WSU.png)
 {: .w-650}
 
-[jQuery cheat sheet](https://websitesetup.org/jquery-cheat-sheet/)
+[jQuery cheat sheet : websitesetup.org](https://websitesetup.org/jquery-cheat-sheet/)
 {: .desc-img}
-
-
-<!-- <a href="https://websitesetup.org/jquery-cheat-sheet/"><img src="https://websitesetup.org/wp-content/uploads/2017/02/Jquery-Cheat-Sheet-WSU.png" alt="jQuery Cheat Sheet" border="0" class="w-650"></a> -->
-
 
 
 # Reference

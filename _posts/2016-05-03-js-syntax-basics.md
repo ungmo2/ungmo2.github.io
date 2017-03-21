@@ -155,7 +155,7 @@ var x; // 변수의 선언과 초기화
 x = 6; // 정수값의 할당
 ```
 
-# 7. Value
+# 7. 값 (Value)
 
 ```java
 String str = "Hello World";

@@ -14,6 +14,13 @@ description:
 
 Angular 어플리케이션은 컴포넌트로 구성된다. 컴포넌트는 뷰(화면을 구성하는 한부분)를 표현하는 HTML 템플릿과 뷰를 컨트롤하는 컴포넌트 클래스로 구성된다.
 
+컴포넌트는 다른 컴포넌트를 포함할 수 있으며 최상위 컴포넌트를 루트 컴포넌트라 한다.
+
+![component-tree](./img/component-tree.png)
+
+Component Tree
+{: .desc-img}
+
 ```typescript
 // app.component.ts
 import { Component } from '@angular/core';

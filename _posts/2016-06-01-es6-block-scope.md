@@ -63,7 +63,7 @@ let bar = 123;
 let bar = 456;  // Error: Identifier 'bar' has already been declared
 ```
 
-자바스크립트는 ES6의 let, const를 포함하여 모든 선언(var, let, const, function, [function*](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/function*), class)을 호이스팅(Hoisting)한다.
+자바스크립트는 ES6의 let, const를 포함하여 모든 선언(var, let, const, function, [function*](http://hacks.mozilla.or.kr/2015/08/es6-in-depth-generators/), class)을 호이스팅(Hoisting)한다.
 
 하지만 var 키워드로 선언된 변수와는 달리 let 키워드로 선언된 변수를 선언문 이전에 참조하면 ReferenceError가 발생한다. 이는 let 키워드로 선언된 변수는 코드블록의 시작에서 변수의 선언까지 <strong>일시적 사각지대(Temporal Dead Zone; TDZ)</strong>에 빠지게 되기 때문이다.
 

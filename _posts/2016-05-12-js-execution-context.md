@@ -231,7 +231,7 @@ Variable Instantiation 실행이 끝나면 다음은 this value가 결정된다.
 
 Global Code의 함수 foo가 실행되기 시작하면 새로운 실행 컨텍스트이 생성된다. 함수 foo의 실행 컨텍스트로  컨트롤이 이동하면 Global Code의 경우와 마찬가지로 <strong>1. Scope Chain의 생성과 초기화</strong>, <strong>2. Variable Instantiation 실행</strong>, <strong>3. this value 결정</strong>이 순차적으로 실행된다.
 
-단, Global Code와 다른 점은 이번 실행되는 코드는 Function Code이라는 것이다. 따라서 <strong>1. Scope Chain의 생성과 초기화</strong>, v2. Variable Instantiation 실행</strong>, <strong>3. this value 결정</strong>은 Global Code의 룰이 아닌 Function Code의 룰이 적용된다.
+단, Global Code와 다른 점은 이번 실행되는 코드는 Function Code이라는 것이다. 따라서 <strong>1. Scope Chain의 생성과 초기화</strong>, <strong>2. Variable Instantiation 실행</strong>, <strong>3. this value 결정</strong>은 Global Code의 룰이 아닌 Function Code의 룰이 적용된다.
 
 <img src="/img/ec_11.jpg">
 

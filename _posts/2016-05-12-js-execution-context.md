@@ -316,7 +316,7 @@ Variable Declaration된 변수 z를 Variable Object(AO_2)에 set한다(프로퍼
 이 단계에서 `console.log(x + y + z);` 구문의 실행 결과는 xxxyyyzzz가 된다.  
 
 > * x : AO_2에서 x 검색 실패 → AO_1에서 x 검색 실패 → GO에서 x 검색 성공 (값은 'xxx')  
-> * y : AO_2에서 y 검색 실패 → AO_2에서 y 검색 성공 (값은 'yyy')  
+> * y : AO_2에서 y 검색 실패 → AO_1에서 y 검색 성공 (값은 'yyy')  
 > * z : AO_2에서 z 검색 성공 (값은 'zzz')  
 
 # Reference

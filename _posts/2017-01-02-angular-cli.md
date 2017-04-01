@@ -634,7 +634,14 @@ export const environment = {
 ```bash
 $ ng build --target=production
 # 위 명령어의 축약형은 아래와 같다
-$ ng build --prod
+$ ng build -prod
+Hash: 1cad5bec7bb3e1d4a7b2
+Time: 11992ms
+chunk    {0} polyfills.2d45a4c73c85e24fe474.bundle.js (polyfills) 158 kB {4} [initial] [rendered]
+chunk    {1} main.700b9df7f924a01845ef.bundle.js (main) 20.8 kB {3} [initial] [rendered]
+chunk    {2} styles.d41d8cd98f00b204e980.bundle.css (styles) 69 bytes {4} [initial] [rendered]
+chunk    {3} vendor.57570798817e1962b74d.bundle.js (vendor) 1.1 MB [initial] [rendered]
+chunk    {4} inline.7454b5fa5b319102345e.bundle.js (inline) 0 bytes [entry] [rendered]
 ```
 
 프로덕션 빌드 시에는 src/environments/environment.prod.ts 파일을 참조하여 빌드를 수행한다.
@@ -648,7 +655,7 @@ AoT 컴파일이란 TypeScript의 트랜스파일링과 같이 빌드 시에 컴
 프로덕션 빌드시 AoT 컴파일을 수행하기 위한 명령어는 다음과 같다.
 
 ```bash
-$ ng build --prod --aot
+$ ng build -prod -aot
 ```
 
 AoT 컴파일에 대한 보다 상세한 내용은 [AoT 컴파일](https://angular.io/docs/ts/latest/cookbook/aot-compiler.html)을 참조하기 바란다.

@@ -650,7 +650,7 @@ AoT 컴파일이란 TypeScript의 트랜스파일링과 같이 빌드 시에 컴
 프로덕션 빌드시 AoT 컴파일을 수행하기 위한 명령어는 다음과 같다.
 
 ```bash
-$ ng buld --prod --aot
+$ ng build --prod --aot
 ```
 
 AoT 컴파일에 대한 보다 상세한 내용은 [AoT 컴파일](https://angular.io/docs/ts/latest/cookbook/aot-compiler.html)을 참조하기 바란다.

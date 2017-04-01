@@ -592,7 +592,7 @@ Angular CLI 빌드 기능은 내부적으로 모듈 번들러 [webpack](https://
 - 디버깅 용도의 map 파일 생성
 - 의존 모듈과 HTML, CSS, JavaScript 번들링
 - [AoT 컴파일](https://angular.io/docs/ts/latest/cookbook/aot-compiler.html)
-- 소그코드의 문법 체크
+- 소스코드의 문법 체크
 - 코드 규약 준수 여부 체크
 - 불필요한 코드의 삭제 및 압축
 
@@ -629,7 +629,7 @@ export const environment = {
 };
 ```
 
-빌드가 완료되면 dist 폴더가 추가되며 그 내부에 빌드 결과물이 생성된다. 이때 실행된 빌드는 개발환경 빌드로 프로덕션 용으로 최적화되어 있지 않다. 프로덕션 빌드를 수행하기 위해서는 아래의 명령어를 실행한다.
+빌드가 완료되면 dist 폴더가 추가되며 그 내부에 빌드 결과물이 생성된다. 이때 실행된 빌드는 개발환경 빌드로 프로덕션 용도로 최적화되어 있지 않다. 프로덕션 빌드를 수행하기 위해서는 아래의 명령어를 실행한다.
 
 ```bash
 $ ng build --target=production

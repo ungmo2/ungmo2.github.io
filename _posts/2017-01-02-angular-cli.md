@@ -289,9 +289,9 @@ installing component
 : 컴포넌트는 URL 경로의 단위가 되기 때문에 폴더로 구분된다.
 - src/app/new-component 폴더에 4개의 파일을 추가한다.
   - new-component.component.css
-  : 컴포넌트 템플릿의 스타일링을 위한 CSS 파일
+  : 컴포넌트 HTML 템플릿의 스타일링을 위한 CSS 파일
   - new-component.component.html
-  : 컴포넌트 템플릿을 위한 HTML 파일
+  : 컴포넌트 HTML 템플릿을 위한 HTML 파일
   - new-component.component.spec.ts
   : 컴포넌트 유닛 테스트를 위한 스펙 파일
   - new-component.component.ts
@@ -395,7 +395,7 @@ $ ng new my-app --prefix app2
 templateUrl, styleUrls 속성은 외부 파일을 로드하기 위해 사용한다.
 
 - templateUrl  
-: 외부 파일로 작성된 템플릿(컴포넌트의 뷰를 정의)의 경로
+: 외부 파일로 작성된 HTML 템플릿(컴포넌트의 뷰를 정의)의 경로
 
 - styleUrls  
 : 외부 파일로 작성된 CSS 파일의 경로
@@ -411,7 +411,7 @@ templateUrl, styleUrls 속성은 외부 파일을 로드하기 위해 사용한�
 ...
 ```
 
-위 예제의 경우 컴포넌트는 같은 폴더 내의 외부 파일 my-component.component.html과 my-component.component.css을 템플릿과 CSS로 사용한다. 템플릿 또는 CSS가 간단한 경우에는 메터데이터 내부에 직접 기술할 수도 있다. 이때 templateUrl, styleUrls 속성 대신 template, styles 속성을 사용한다.
+위 예제의 경우 컴포넌트는 같은 폴더 내의 외부 파일 my-component.component.html과 my-component.component.css을 HTML 템플릿과 CSS로 사용한다. HTML 템플릿 또는 CSS가 간단한 경우에는 메터데이터 내부에 직접 기술할 수도 있다. 이때 templateUrl, styleUrls 속성 대신 template, styles 속성을 사용한다.
 
 
 ```typescript
@@ -431,14 +431,14 @@ templateUrl, styleUrls 속성은 외부 파일을 로드하기 위해 사용한�
 ...
 ```
 
-ng g component 명령어를 사용하여 컴포넌트를 추가할 때 템플릿과 CSS를 외부 파일로 생성하지 않고 인라인 템플릿과 CSS를 사용하고자 하는 경우에는 아래의 명령어를 사용한다.
+ng g component 명령어를 사용하여 컴포넌트를 추가할 때 HTML 템플릿과 CSS를 외부 파일로 생성하지 않고 인라인 HTML 템플릿과 CSS를 사용하고자 하는 경우에는 아래의 명령어를 사용한다.
 
 ```bash
-# 인라인 템플릿을 사용하는 경우
+# 인라인 HTML 템플릿을 사용하는 경우
 $ ng g component my-component --inline-template
 # 인라인 CSS를 사용하는 경우
 $ ng g component my-component --inline-style
-# 인라인 템플릿과 인라인 CSS를 사용하는 경우
+# 인라인 HTML 템플릿과 인라인 CSS를 사용하는 경우
 $ ng g component my-component --inline-template --inline-style
 ```
 
@@ -648,7 +648,7 @@ chunk    {4} inline.7454b5fa5b319102345e.bundle.js (inline) 0 bytes [entry] [ren
 
 ## 6.3 AoT(Ahead-of Time) 컴파일
 
-Angular CLI의 빌드 기능은 TypeScript를 JavaScript로 트랜스파일링한다. 사실은 TypeScript뿐만 아니라 컴포넌트의 템플릿 또한 컴파일이 필요하다. 데이터바인딩과 이벤트를 위한 템플릿은 컴파일이 필요하기 때문이다. 하지만 템플릿은 빌드 시에 컴파일되지 않고 런타임에 JIT(Just-In-Time) 컴파일된다.
+Angular CLI의 빌드 기능은 TypeScript를 JavaScript로 트랜스파일링한다. 사실은 TypeScript뿐만 아니라 컴포넌트의 HTML 템플릿 또한 컴파일이 필요하다. 데이터바인딩과 이벤트를 위한 HTML 템플릿은 컴파일이 필요하기 때문이다. 하지만 HTML 템플릿은 빌드 시에 컴파일되지 않고 런타임에 JIT(Just-In-Time) 컴파일된다.
 
 AoT 컴파일이란 TypeScript의 트랜스파일링과 같이 빌드 시에 컴파일되는 것을 의미한다. 빌드에 소요되는 시간이 조금 더 걸리더라도 런타임에 컴파일이 실행되지 않기 때문에 실제 어플리케이션이 동작 시간은 단축되는 효과가 있다. 또한 JIT 컴파일러를 포함할 필요가 없어지기 때문에 어플리케이션 전체 용량도 줄어드는 효과가 있다.
 

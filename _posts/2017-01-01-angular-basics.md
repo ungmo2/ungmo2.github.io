@@ -10,7 +10,7 @@ description:
 * TOC
 {:toc}
 
-![angular Logo](/img/angular-logo.png)
+![angular logo](/img/angular-logo.png)
 
 # 1. Introduction
 
@@ -34,9 +34,9 @@ AngularJS의 Controller와 $scope 기반 개발에서 컴포넌트 기반 개발
 
 Angular은 AngularJS의 후속 버전이기는 하지만 호환성이 없는 새로운 프레임워크로 이해하는 것이 좋다. Angular는 AngularJS보다 배우기 쉬우며 성능이 향상되었고 어플리케이션 구조는 보다 단순해졌다.
 
-# 3. Angular의 특징
+# 3. Angular의 장점
 
-Angular의 특징을 개발 생산성의 측면과 성능의 관점에서 살펴보도록 하자.
+Angular의 장점을 개발 생산성의 측면과 성능의 관점에서 살펴보도록 하자.
 
 ## 3.1 개선된 개발 생산성
 

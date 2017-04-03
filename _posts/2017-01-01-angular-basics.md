@@ -12,9 +12,9 @@ description:
 
 ![angular logo](/img/angular-logo.png)
 
-# 1. Introduction
+# 1. Angular 소개
 
-[Angular](https://angular.io/)는 모바일과 데스크탑 어플리케이션 개발을 위한 구글의 오픈소스 자바스크립트 프레임워크이다. 프론트엔드 개발에 필요한 대부분의 기능을 갖추고 있으며 정적 타입을 제공하는 TypeScript를 주력 언어로 채택하여 대규모 어플리케이션 개발에 보다 적합한 환경을 제공한다.
+[Angular](https://angular.io/)는 웹, 모바일 웹, 네이티브 모바일과 데스크탑 어플리케이션 개발을 위한 구글의 오픈소스 자바스크립트 프레임워크이다. 프론트엔드 개발에 필요한 대부분의 기능을 갖추고 있으며 정적 타입을 제공하는 TypeScript를 주력 언어로 채택하여 대규모 어플리케이션 개발에 보다 적합한 환경을 제공한다.
 
 이전 버전인 [AngularJS](https://angularjs.org/)는 2009년 구글의 미스코 헤브리(Miško Hevery)가 시작한 개인 프로젝트로 시작하여 2012년 AngularJS 1.0이 공개되었으며 2017년 1.6.2이 공개되는 등 Angular 정식 버전이 공개된 이후에도 지속적으로 업데이트를 진행하고 있다.
 
@@ -27,6 +27,8 @@ Angular는 AngularJS의 후속 버전이지만 호환성이 없을 뿐아니라 
 이와 같이 Angular는 버전업이 빠르게 진행중이며 앞으로도 빈번한 변경이 예상된다. 특히 호환성이 없는 메이저 버전업에 대해서는 주의가 필요하다. 다행인 것은 Angular1에서 Angular2로의 버전업에서 나타난 것과 같은 큰 변경이 향후 버전에서는 없을 것이라는 것이다.
 
 # 2. Angular와 AngulaJS의 차이점
+
+Angular는 AngulaJS의 단순한 업그레이드 버전이 아니다. Angular는 ES 6 스펙을 충족시키기 위해 TypeScript로 재작성되었고 AngulaJS와는 호환성이 없는 브레이킹 체인지를 다수 포함하고 있다.
 
 AngularJS의 Controller와 $scope 기반 개발에서 컴포넌트 기반 개발로 전환되었고 지시자(Directive), 의존성 주입(dependency injection)은 간소화 되었으며 주력 개발 언어로써 TypeScript를 도입하여 대규모 개발에 적합한 정적 타이핑 지원, 인터페이스 등의 OOP 지원, 모듈, 클래스 등의 ECMAScript6 지원 및 인텔리센스 등의 개발 도구를 지원한다.
 

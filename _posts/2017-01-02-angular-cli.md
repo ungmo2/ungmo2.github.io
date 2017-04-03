@@ -26,16 +26,22 @@ Angular CLI가 지원하는 기능은 아래와 같다.
 - Unit/E2E(end-to-end) 테스트 환경 지원
 - 배포를 위한 Angular 프로젝트 패키징
 
-Angular CLI를 사용하기 위해서는 어떠한 절차가 필요한지 그리고 무엇을 할 수 있는지 알아보자.
+Angular는 Angular CLI를 위한 별도의 웹페이지 [https://cli.angular.io/](https://cli.angular.io/)를 제공한다.
 
-2017년 3월 24일 출시된 Angular CLI 1.0.0을 기준으로 한다. Angular CLI의 변경이력은 [CHANGELOG](https://github.com/angular/angular-cli/blob/master/CHANGELOG.md)를 참조하기 바란다.
+![angular-cli-website](./img/angular-cli-website.png)
+
+각종 명령어와 옵션, Angular CLI의 설정 파일인 .angular-cli.json에 대한 상세한 문서를 제공하고 있으므로 참고하기 바란다.
+
+2017년 3월 24일 출시된 Angular CLI 1.0.0을 기준으로 한다. Angular CLI의 변경이력은 [CHANGELOG](https://github.com/angular/angular-cli/blob/master/CHANGELOG.md)에서 참조 가능하다.
 {: .info}
+
+Angular CLI를 사용하기 위해서는 어떠한 절차가 필요한지 그리고 무엇을 할 수 있는지 알아보자.
 
 # 2. Angular CLI 설치
 
 Angular CLI 1.0.0의 경우 Node.js 6.9.0, npm 3.0.0 이상이 필요하다.
 
-아래의 명령어를 실행하여 Angular CLI를 설치한다.
+Angular CLI는 npm으로 설치할 수 있다. 아래의 명령어를 실행하여 Angular CLI를 설치한다.
 
 ```bash
 $ npm install -g @angular/cli

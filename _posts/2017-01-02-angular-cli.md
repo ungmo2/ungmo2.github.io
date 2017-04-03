@@ -525,6 +525,7 @@ import { NewServiceService } from './new-module.module';
   bootstrap: [AppComponent]
 })
 ```
+
 ## 5.4 서비스 추가
 
 프로젝트에 새로운 서비스를 추가하기 위해서는 `ng g service` 명령어를 사용한다.
@@ -563,6 +564,25 @@ import { NewServiceService } from './new-service.service';
   ],
   bootstrap: [AppComponent]
 })
+```
+
+## 5.5 클래스 추가
+
+프로젝트에 새로운 클래스를 추가하기 위해서는 ng g class 명령어를 사용한다.
+
+```bash
+$ ng g class new-class
+installing class
+  create src/app/new-class.ts
+```
+
+테스트를 위한 스펙 파일을 함께 생성하기 위해서는 `--spec` 옵션을 추가한다.
+
+```bash
+$ ng g class new-class --spec
+installing class
+  create src/app/new-class.spec.ts
+  create src/app/new-class.ts
 ```
 
 # 6. 프로젝트 빌드

@@ -12,7 +12,7 @@ description:
 
 ![angular Logo](/img/angular-logo.png)
 
-Angular 어플리케이션은 컴포넌트로 구성된다. 컴포넌트는 <strong>뷰</strong>(화면을 구성하는 한부분)를 표현하는 HTML 템플릿과 뷰 컨트롤 <strong>로직</strong>을 포함한 컴포넌트 클래스로 구성된다.
+Angular 어플리케이션은 컴포넌트로 구성된다. 컴포넌트는 <strong>뷰</strong>(화면을 구성하는 한부분)를 표현하는 HTML 템플릿과 뷰 컨트롤 <strong>로직</strong>을 포함하는 컴포넌트 클래스로 구성된다.
 
 ```typescript
 // app.component.ts

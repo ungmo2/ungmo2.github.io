@@ -607,7 +607,7 @@ Angular CLI 빌드 기능은 내부적으로 모듈 번들러 [webpack](https://
 - 코드 규약 준수 여부 체크
 - 불필요한 코드의 삭제 및 압축
 
-Angular CLI 빌드 기능은 의존 모듈을 번들링한다. 이때 번들링되는 코드는 JavaScript뿐만이 아니라 HTML, CSS까지 JavaScript 파일 내에 번들링된다. 또한 index.html에 번들링된 파일 4개를 로드하기 위한 태그를 추가한다.
+Angular CLI 빌드 기능은 소스코드와 의존 모듈을 번들링한다. 이때 번들링되는 코드는 JavaScript뿐만이 아니라 HTML, CSS까지 JavaScript 파일 내에 번들링된다. 또한 index.html에 번들링된 파일 4개를 로드하기 위한 태그를 추가한다.
 
 빌드 이전과 빌드 이후의 index.html을 비교하여 보자.
 
@@ -629,6 +629,13 @@ Angular CLI 빌드 기능은 의존 모듈을 번들링한다. 이때 번들링�
 </html>
 ```
 
+빌드가 완료되면 dist 폴더가 추가되며 그 내부에 빌드 결과물이 생성된다.
+
+![build-dist](./img/build-dist.png)
+
+빌드 처리의 흐름
+{: .desc-img}
+
 ## 6.2 프로덕션 빌드
 
 ng build 명령어를 실행하면 Angular CLI는 src/environments/environments.ts 파일을 참조하여 빌드를 수행한다.
@@ -639,10 +646,6 @@ export const environment = {
   production: false
 };
 ```
-
-빌드가 완료되면 dist 폴더가 추가되며 그 내부에 빌드 결과물이 생성된다.
-
-![build-dist](./img/build-dist.png)
 
 이때 실행된 빌드는 개발환경 빌드로 프로덕션 용도로 최적화되어 있지 않다. 프로덕션 빌드를 수행하기 위해서는 아래의 명령어를 실행한다.
 

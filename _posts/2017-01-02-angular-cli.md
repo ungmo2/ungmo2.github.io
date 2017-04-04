@@ -171,37 +171,16 @@ my-app/
 ├── .git/
 ├── .gitignore
 ├── e2e/
-│   ├── app.e2e-spec.ts
-│   ├── app.po.ts
-│   └── tsconfig.e2e.json
-├── karma.conf.js
 ├── node_modules/
 ├── package.json
 ├── protractor.conf.js
 ├── README.md
 ├── src/
-│   ├── app/
-│   │   ├── app.component.css
-│   │   ├── app.component.html
-│   │   ├── app.component.spec.ts
-│   │   ├── app.component.ts
-│   │   └── app.module.ts
-│   ├── assets/
-│   ├── environments/
-│   │   ├── environment.prod.ts
-│   │   └── environment.ts
-│   ├── favicon.ico
-│   ├── index.html
-│   ├── main.ts
-│   ├── polyfills.ts
-│   ├── styles.css
-│   ├── test.ts
-│   ├── tsconfig.app.json
-│   ├── tsconfig.spec.json
-│   └── typings.d.ts
 ├── tsconfig.json
 └── tslint.json
 ```
+
+Angular 프로젝트의 파일 구조 및 구성요소에 대한 설명은 다음 장에서 설명한다.  
 
 # 4. 프로젝트 실행
 
@@ -224,6 +203,12 @@ webpack: Compiled successfully.
 Angular CLI에는 개발용 서버가 내장되어 있다. ng serve 명령어를 실행하면 개발용 서버가 동작한다. 브라우저에서 로컬호스트 포트 4200으로 서버에 접속한다.
 
 - [http://localhost:4200](http://localhost:4200)
+
+--open(축약형 -o) 옵션을 추가하면 자동으로 브라우저를 실행하여 준다.
+
+```bash
+$ ng serve --open
+```
 
 ![app works](./img/ng-serve-1.png)
 
@@ -606,7 +591,7 @@ chunk    {3} vendor.bundle.js, vendor.bundle.js.map (vendor) 2.07 MB [initial] [
 chunk    {4} inline.bundle.js, inline.bundle.js.map (inline) 0 bytes [entry] [rendered]
 ```
 
-## 6.1 트랜스파일릴과 의존 모듈 번들링
+## 6.1 트랜스파일링과 의존 모듈 번들링
 
 TypeScript 기반으로 개발이 진행되는 Angular 어플리케이션은 TypeScript를 JavaScript로 변환하여야 한다. 또한 의존 모듈의 해결이 필요한데 수작업으로 프로젝트 의존 모듈을 HTML의 script 태그에 기술하는 것은 매우 곤란한 일이다.
 
@@ -655,7 +640,11 @@ export const environment = {
 };
 ```
 
-빌드가 완료되면 dist 폴더가 추가되며 그 내부에 빌드 결과물이 생성된다. 이때 실행된 빌드는 개발환경 빌드로 프로덕션 용도로 최적화되어 있지 않다. 프로덕션 빌드를 수행하기 위해서는 아래의 명령어를 실행한다.
+빌드가 완료되면 dist 폴더가 추가되며 그 내부에 빌드 결과물이 생성된다.
+
+![build-dist](./img/build-dist.png)
+
+이때 실행된 빌드는 개발환경 빌드로 프로덕션 용도로 최적화되어 있지 않다. 프로덕션 빌드를 수행하기 위해서는 아래의 명령어를 실행한다.
 
 ```bash
 $ ng build --target=production

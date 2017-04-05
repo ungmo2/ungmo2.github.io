@@ -36,9 +36,9 @@ Node.js는 사실상 모듈 시스템의 사실상 표준(de facto standard)인 
 
 # 2. npm
 
-[npm(node package manager)](https://www.npmjs.com/)은 자바스크립트 패키지 매니저이다. Node.js에서 사용할 수 있는 모듈들을 패키지화하여 모아둔 저장소 역할과 패키지 설치 및 관리를 위한 CLI를 제공한다. 자신이 작성한 패키지를 공개할 수도 있고 필요한 패키지를 검색하여 재사용할 수도 있다.
+[npm(node package manager)](https://www.npmjs.com/)은 자바스크립트 패키지 매니저이다. Node.js에서 사용할 수 있는 모듈들을 패키지화하여 모아둔 저장소 역할과 패키지 설치 및 관리를 위한 CLI(Command line interface)를 제공한다. 자신이 작성한 패키지를 공개할 수도 있고 필요한 패키지를 검색하여 재사용할 수도 있다.
 
-패키지를 설치할 때에는 `npm install` 명령어 뒤에 설치하고자 하는 패키지 명을 지정한다.
+패키지를 설치할 때에는 `npm install` 명령어 뒤에 설치할 패키지 이름을 지정한다.
 
 ```bash
 $ npm install <package>
@@ -65,13 +65,19 @@ npm WARN emoji No README data
 npm WARN emoji No license field.
 ```
 
-경고가 발생하였으나 node-emoji 패키지는 잘 설치되었다.
+경고가 발생하였으나 node-emoji 패키지는 잘 설치되었다. 경고에 대해서는 잠시후 설명한다.
 
-npm install 명령어에는 지역(local)과 전역(global)이라는 두가지 옵션이 존재한다.
+npm install 명령어에는 지역(local) 설치와 전역(global) 설치 옵션이 존재한다.
 
 옵션을 별도로 지정하지 않으면 지역으로 설치되며 프로젝트 디렉터리 내에 Node_modules 디렉터리가 자동 생성되고 그안에 설치한 패키지가 설치된다. 지역으로 설치된 패키지는 해당 프로젝트 내에서만 사용할 수 있다.
 
-전역에 패키지를 설치하려면 `-g` 옵션을 지정한다. 전역에 설치된 패키지는 macOS의 경우 /usr/local/lib/node_modules에 설치되며 윈도우의 경우 c:\Users\%USERNAME%\AppData\Roaming\npm\node_modules에 설치된다. 전역으로 설치된 패키지는 전역에서 참조가 가능하게 된다. 예를 들어 npm의 경우 모든 프로젝트가 사용하기 때문에 지역으로 설치하는 것보다 전역에 설치하는 것이 일반적이다.
+전역에 패키지를 설치하려면 `-g` 옵션을 지정한다. 전역으로 설치된 패키지는 전역에서 참조가 가능하게 된다. 예를 들어 npm의 경우 모든 프로젝트가 사용하기 때문에 지역으로 설치하는 것보다 전역에 설치하는 것이 일반적이다.
+
+전역에 설치된 패키지는 OS에 따라 설치 장소가 다르다.
+- macOS의 경우  
+: /usr/local/lib/node_modules
+- 윈도우의 경우  
+: c:\Users\%USERNAME%\AppData\Roaming\npm\node_modules
 
 node 명령어로 Node.js REPL을 기동시키고 node-emoji를 로드한 후 emoji를 출력해 보자.
 
@@ -86,7 +92,13 @@ undefined
 
 하지만 npm install 명령어로 node-emoji 패키지를 설치할 때 package.json을 찾을 수 없었다는 경고가 발생하였다.
 
-Node.js 프로젝트에서는 많은 패키지를 사용하게 되고 패키지의 버전도 빈번하게 업데이트되기 때문에 프로젝트가 의존하고 있는 모듈의 관리가 필요하게 된다. npm은 `package.json` 파일을 통해서 프로젝트 정보와 모듈의 의존성(dependency)을 관리한다. 이미 작성된 package.json은 팀 내에 배포하여 동일한 개발 환경을 빠르게 구축할 수 있는 장점을 가진다. package.json은 Java의 maven에서 pom.xml와 비슷한 역할을 한다.
+```bash
+...
+npm WARN enoent ENOENT: no such file or directory, open '/Users/leeungmo/Desktop/emoji/package.json'
+...
+```
+
+Node.js 프로젝트에서는 많은 의존 패키지를 사용하게 되고 패키지의 버전도 빈번하게 업데이트되기 때문에 프로젝트가 의존하고 있는 패키지의 관리가 필요하다. npm은 `package.json` 파일을 통해서 프로젝트 정보와 패키지의 의존성(dependency)을 관리한다. 이미 작성된 package.json은 팀 내에 배포하여 동일한 개발 환경을 빠르게 구축할 수 있는 장점을 가진다. package.json은 Java의 maven에서 pom.xml와 비슷한 역할을 한다.
 
 package.json을 생성하기 위해서는 `npm init` 명령어를 사용한다.
 

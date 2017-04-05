@@ -184,7 +184,7 @@ Angular 프로젝트의 파일 구조 및 구성요소에 대한 설명은 다�
 
 # 4. 프로젝트 실행
 
-프로젝트를 실행(preview)하기 위해서는 `ng serve` 명령어를 사용한다.
+프로젝트를 로컬 환경에서 실행(preview)하기 위해서는 `ng serve` 명령어를 사용한다.
 
 ```bash
 $ cd my-app
@@ -200,7 +200,9 @@ chunk    {4} inline.bundle.js, inline.bundle.js.map (inline) 0 bytes [entry] [re
 webpack: Compiled successfully.
 ```
 
-Angular CLI에는 개발용 서버가 내장되어 있다. ng serve 명령어를 실행하면 개발용 서버가 동작한다. 브라우저에서 로컬호스트 포트 4200으로 서버에 접속한다.
+ng serve 명령어를 실행하면 Angular CLI가 내장하고 있는 개발용 서버를 실행하고 Webpack을 사용하여 소스코드를 번들링(Bundling)한다.
+
+브라우저에서 localhost:4200으로 개발용 서버에 접속한다.
 
 - [http://localhost:4200](http://localhost:4200)
 
@@ -218,7 +220,7 @@ $ ng serve --open
 $ ng serve --port 4201
 ```
 
-Angular CLI에 내장되어 있는 개발용 서버는 코드의 변경을 감지하여 자동으로 브라우저를 리로드하는 LiveReload 기능을 제공한다. 따라서 코드 수정 후 파일을 저장하면 자동으로 브라우저가 리로드되어 변경을 즉시 확인할 수 있다.
+Angular CLI가 내장하고 있는 개발용 서버는 코드의 변경을 감지하여 자동으로 브라우저를 리로드하는 LiveReload 기능을 제공한다. 따라서 코드 수정 후 파일을 저장하면 자동으로 코드의 변경을 반영하여 번들링이 수행되고 브라우저가 리로드되어 코드 변경 결과를 즉시 확인할 수 있다.
 
 브라우저와 서버를 종료시키지 않은 상태에서 코드를 수정해 보자.
 

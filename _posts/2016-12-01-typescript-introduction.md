@@ -70,7 +70,7 @@ TypeScript를 사용하는 이유는 여러가지 있지만 가장 큰 장점은
 
 # 3. 개발환경 구축
 
-TypeScript 파일(.ts)은 브라우저에서 동작하지 않으므로 TypeScript 컴파일러를 통해 자바스크립트 파일로 변환이 필요하다. 이를 컴파일 또는 트랜스파일링(transfilling)이라 한다.
+TypeScript 파일(.ts)은 브라우저에서 동작하지 않으므로 TypeScript 컴파일러를 통해 자바스크립트 파일로 변환이 필요하다. 이를 컴파일 또는 트랜스파일링이라 한다.
 
 TypeScript 컴파일러는 npm으로 설치할 수 있다. Visual Studio 2015 또는 Visual Studio 2013 Update 2 사용자라면 별도의 컴파일러 설치없이 Visual Studio 내장 컴파일러를 사용할 수 있다.
 

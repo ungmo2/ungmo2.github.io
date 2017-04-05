@@ -157,7 +157,14 @@ npm install 명령어의 패키명 뒤에 \@버전을 추가하면 패키지 버
 $ npm install node-emoji@1.5.1 --save
 ```
 
-버전의 기술 방식을 아래와 같다.
+npm은 semantic versioning(유의적 버전)을 지원한다. 버전 정보는 메이저 버전 번호, 마이너 버전 번호, 패치 버전 번호로 구성된다.
+
+![sementic-versioning](./img/sementic-versioning.png)
+
+semantic versioning(유의적 버전)
+{: .desc-img}
+
+버전 정보 앞에는 기호를 부여하여 업데이트 범위를 지정할 수 있다. 기술 방식은 아래와 같다.
 
 | 표기법      | Description                     |
 |:--------- |:--------------------------------|
@@ -169,17 +176,19 @@ $ npm install node-emoji@1.5.1 --save
 | ~version  | 명시된 version과 근사한 버전
 | ^version  | 명시된 version과 호환되는 버전
 
-버전 정보는 메이저 버전 번호, 마이너 버전 번호, 패치 버전 번호로 구성된다. `~(틸트)`와 `^(캐럿)`의 차이는 아래와 같다.
+`~(틸트)`와 `^(캐럿)`의 차이는 아래와 같다.
 
 ~(틸트)는 패치 버전 범위 내에서 업데이트한다.
 :  
-  - ~0.0.1 : >=0.0.1 <0.1.0
-  - ~0.1.1 : >=0.1.1 <0.2.0
+  - ~0.0.1 : 0.0.1 <= version < 0.1.0
+  - ~0.1.1 : 0.1.1 <= version < 0.2.0
 
 ^(캐럿)는 마이너 버전 범위 내에서 업데이트한다.
 :  
-  - ^0.1.2 : >=0.1.2 <0.2.0
-  - ^1.0.2 : >=1.0.2 <2.0
+  - ^0.1.2 : 0.1.2 <= version < 0.2.0
+  - ^1.0.2 : 1.0.2 <= version < 2.0
+
+[npm semver calculator](https://semver.npmjs.com/)에 방문하면 패키지 별로 버전 표기법을 사용하여 업데이트 버전 범위를 확인할 수 있다.
 
 버전에 대한 보다 자세한 사항은 [semver : The semantic versioner for npm](https://docs.npmjs.com/misc/semver)를 참조하기 바란다.
 

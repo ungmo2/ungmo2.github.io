@@ -315,7 +315,7 @@ $ ng g component MyComponent
 $ ng g component my-component
 ```
 
-이와 같은 파일명의 암묵적 변경은 컴포넌트뿐만이 아니라 ng g 명령어로 추가되는 모든 구성요소에 모두 적용된다. 혼란을 방지하는 위해 ng g 명령어에 지정하는 구성요소 명칭은 하이픈으로 구별된 명칭을 사용하는 것이 좋다.
+이와 같은 파일명의 암묵적 변경은 컴포넌트뿐만이 아니라 ng g 명령어로 추가되는 모든 구성요소에 모두 적용된다. 혼란을 방지하는 위해 ng g 명령어에 지정하는 구성요소 명칭은 하이픈으로 구별된 케밥 표기법(kebab-case) 명칭을 사용하는 것이 좋다.
 
 ### 5.1.2 selector 속성값의 접두사(prefix)와 컴포넌트 클래스 이름
 
@@ -354,7 +354,7 @@ export class MyComponentComponent implements OnInit {
 <app-my-component></app-my-component>
 ```
 
-selector 속성값 'app-my-component'는 `ng g component my-component` 명령어에서 지정한 컴포넌트명 앞에 접두사(prefix) app이 자동으로 추가된 값이다. Angular는 다른 어플리케이션 selector 또는 HTML 요소와 충돌을 방지하기 위해 접두사를 추가하도록 권장하고 있다. 자세한 내용은 [Angular Style Guide: Custom prefix for components](https://angular.io/docs/ts/latest/guide/style-guide.html#!#02-07)을 참조하기 바란다.
+selector 속성값 'app-my-component'는 `ng g component my-component` 명령어에서 지정한 컴포넌트명 앞에 접두사(prefix) app이 자동으로 추가된 값이다. Angular는 다른 어플리케이션 selector 또는 HTML 요소와 충돌을 방지하기 위해 접두사를 추가하여 케밥 표기법으로 명명하는 것을 권장하고 있다. 자세한 내용은 [Angular Style Guide: Custom prefix for components](https://angular.io/docs/ts/latest/guide/style-guide.html#!#02-07)을 참조하기 바란다.
 
 기본 접두사는 app이며 이것은 .angular-cli.json에서 확인할 수 있다.
 

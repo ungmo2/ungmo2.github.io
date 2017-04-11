@@ -206,7 +206,7 @@ ng serve 명령어를 실행하면 Angular CLI가 내장하고 있는 개발용 
 
 - [http://localhost:4200](http://localhost:4200)
 
---open(축약형 -o) 옵션을 추가하면 자동으로 브라우저를 실행하여 준다.
+`--open`(축약형 -o) 옵션을 추가하면 자동으로 브라우저를 실행하여 준다.
 
 ```bash
 $ ng serve --open
@@ -214,7 +214,7 @@ $ ng serve --open
 
 ![app works](./img/ng-serve-1.png)
 
-이미 포트 4200번을 사용하고 있다면 Angular CLI 내장 서버를 실행할 수 없다. 포트번호를 변경하고자는 경우에는 다음과 같이 옵션을 추가한다.
+이미 포트 4200번을 사용하고 있다면 Angular CLI 내장 서버를 실행할 수 없다. 포트번호를 변경하고자는 경우에는 다음과 같이 `--port`(축약형 -p) 옵션을 추가한다.
 
 ```bash
 $ ng serve --port 4201

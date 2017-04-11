@@ -41,7 +41,29 @@ console.log(plus(1, 2)); // 3
 
 # 2. Rest 파라미터 (Rest Parameter)
 
-인자의 갯수를 사전에 알 수 없는 가변 인자 함수의 경우, 함수를 호출할 때 인수들과 함께 암묵적으로 arguments 객체가 함수 내부로 전달되는 함수 객체의 [arguments 속성](./js-function#arguments-)을 사용하여 인자값을 확인하여야 한다.
+ES6 이전에는 인자의 갯수를 사전에 알 수 없는 가변 인자 함수의 경우, [arguments 객체](http://poiemaweb.com/js-function#61-arguments-속성)를 통해 인자값을 확인한다. arguments 객체는 함수 호출 시 전달된 인수들의 정보를 배열의 형태로 담고 있는 객체로 함수 내부에서 지역변수처럼 사용된다.
+
+```javascript
+function variadic() {
+  console.log(arguments);
+}
+
+variadic(1,2,3); // { '0': 1, '1': 2, '2': 3 }
+```
+
+arguments 객체는 유사배열객체(array-like object)로 이것를 배열로 변환하려면 call 메서드를 사용한다.
+
+```javascript
+function variadic() {
+  // console.log(arguments);
+  var array = Array.prototype.slice.call(arguments);
+  console.log(array);
+}
+
+variadic(1,2,3); // [ 1, 2, 3 ]
+```
+
+ES6의 Rest 파라미터는 가변인자를 함수 내부에 <string>배열</string>로 전달한다. 따라서 유사 배열인 arguments 객체를 배열로 변환하는 등의 번거로움을 피할 수 있다.
 
 ```javascript
 // ES5
@@ -54,8 +76,6 @@ function sum() {
 
 console.log(sum(1, 2, 3, 4, 5));
 ```
-
-ES6의 Rest 파라미터는 가변인자를 함수 내부에 <string>배열</string>로 전달한다. 따라서 유사 배열인 arguments 객체를 배열로 변환하는 등의 번거로움을 피할 수 있다.
 
 ```javascript
 // ES6

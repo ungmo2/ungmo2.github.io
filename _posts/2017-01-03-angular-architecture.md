@@ -89,7 +89,7 @@ Angular 프로젝트는 컴포넌트, 디렉티브, 서비스, 모듈 등 Angula
 : 프로젝트의 메인 진입점. platformBrowserDynamic()에 의해 JIT 컴파일러가 실행되고 루트 모듈(AppModule)을 부트스트랩한다.
 
 - polyfills.ts  
-: ES6와 크로스 브라우저 웹 표준 지원을 위한 폴리필. 자세한 내용은 [Browser support](https://angular.io/docs/ts/latest/guide/browser-support.html) 참조.
+: Change Detection을 위한 zone.js와 ES6/ES7와 크로스 브라우저 웹 표준 지원을 위한 폴리필을 임포트한다. 자세한 내용은 [Browser support](https://angular.io/docs/ts/latest/guide/browser-support.html) 참조.
 
 - styles.css  
 : 어플리케이션 전역에 적용되는 글로벌 CSS.

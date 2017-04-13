@@ -4,7 +4,7 @@ title: Angular <strong>Architecture</strong>
 subtitle: Angular의 파일 구조와 구성 요소
 categories: angular
 section: angular
-description:
+description: Angular CLI를 사용하여 프로젝트를 생성하면 아래와 같은 파일 구조의 스캐폴딩이 생성된다. Angular 프로젝트는 컴포넌트, 디렉티브, 서비스, 모듈 등 Angular 구성요소와 각종 설정 파일로 구성된다.
 ---
 
 * TOC

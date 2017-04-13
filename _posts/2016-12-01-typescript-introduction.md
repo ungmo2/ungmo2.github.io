@@ -36,7 +36,7 @@ HTML5의 등장은 Plug-in에 의존하는 기존의 구축 방식을 JavaScript
 
 이같은 JavaScript의 태생적 문제를 극복하기 위한 노력의 일환으로 [CoffeeScript](http://coffeescript.org/), [Dart](https://www.dartlang.org/), [Haxe](https://haxe.org/)와 같은 <strong>AltJS</strong>(JavaScript의 대체언어)가 등장하였다.
 
-TypeScript 또한 AltJS의 하나로써 <strong>JavaScript(ES5)의 Superset(상위확장)</strong>이다. C#의 창시자인 [Anders Hejlsberg(아네르스 하일스베르)](https://en.wikipedia.org/wiki/Anders_Hejlsberg)가 개발을 주도한 TypeScript는 Microsoft에서 2012년에 발표한 오픈소스로 정적 타이핑을 지원하며 ES6(ECMAScript 2015)의 클래스, 모듈 등과 ES7의 Decorators 등을 지원한다.
+TypeScript 또한 AltJS의 하나로써 <strong>JavaScript(ES5)의 Superset(상위확장)</strong>이다. C#의 창시자인 덴마크 출신 소프트웨어 엔지니어 [Anders Hejlsberg(아네르스 하일스베르)](https://en.wikipedia.org/wiki/Anders_Hejlsberg)가 개발을 주도한 TypeScript는 Microsoft에서 2012년에 발표한 오픈소스로 정적 타이핑을 지원하며 ES6(ECMAScript 2015)의 클래스, 모듈 등과 ES7의 Decorators 등을 지원한다.
 
 ![typescript superset](/img/typescript-superset.png)
 {: .w-300}
@@ -45,28 +45,31 @@ TypeScript는 ES5의 Superset이므로 기존의 JavaScript(ES5) 문법을 그�
 
 이후 [ECMAScript의 새로운 기능을 지속적으로 추가할 예정](https://github.com/Microsoft/TypeScript/wiki/Roadmap)이여서 매년 upgrade될 ECMAScript의 표준을 따라갈 수 있는 좋은 수단이 될 것이다.
 
-더욱이 [Angular2의 TypeScript 정식 채용](https://blogs.msdn.microsoft.com/typescript/2015/03/05/angular-2-built-on-typescript/)으로 TypeScript에 관심이 커져가고 있다.
+더욱이 AngularJS의 후속 버전인 [Angular의 TypeScript 정식 채용](https://blogs.msdn.microsoft.com/typescript/2015/03/05/angular-2-built-on-typescript/)으로 TypeScript에 관심이 커져가고 있다.
 
 ![Google Trends](/img/typescript-google-trends.png)
 {: .w-650}
 [Google Trends](https://www.google.com/trends/explore?date=all&q=TypeScript)
 {: .desc-img}
 
-Google은 AtScript라는 TypeScript의 superset을 Angular2에 채용하려 하였지만 TypeScript을 채용하는 것으로 방향을 전환하였다. 이후 Angular2에 필요한 기능을
-TypeScript의 spec에 포함시키는 것으로 TypeScript 진영과 합의한 것으로 전해진다.
+Google은 당초 AtScript라는 TypeScript의 superset을 Angular에 채용하려 하였지만 TypeScript을 채용하는 것으로 방향을 전환하였다.
 
 ![AtScript superset](/img/atscript.png)
 {: .w-650}
+
+그 배경으로 Angular에 필요한 기능을 TypeScript의 사양에 포함시키는 것을 TypeScript 진영과 합의한 것으로 전해진다.
+
+또한 Google은 2년간의 검토 끝에 2017년 3월 사내 표준 언어(Canonical Languages)로 TypeScript의 사용을 승인하였다. Google은 구글애널리틱스, 파이어베이스, 구글클라우드플랫폼 등 대규모 프로젝트와 버그추적, 채용검토, 제품 승인 및 출시 도구와 같은 핵심적인 내부 툴에 TypeScript와 TypeScript 기반 Angular를 사용한다고 한다.
 
 # 2. TypeScript를 사용하는 이유
 
 <!-- TypeScript를 JavaScript의 [Syntactic sugar](https://en.wikipedia.org/wiki/Syntactic_sugar)로 부르기도 하는데 이는 그만큼 JavaScript를 문법적으로 더욱 사용하기 편하게 돕는다는 비유적 표현이다. -->
 
-TypeScript를 사용하는 이유는 여러가지 있지만 가장 큰 장점은 다양한 <strong>도구의 지원</strong>을 받을 수 있다는 것이다. TypeScript는 정적 타입을 지원하므로 높은 수준의 IntelliSense, 코드 어시스트, 타입 체크, 리팩토링 등을 지원하며 이러한 도구의 지원은 대규모 프로젝트를 위한 필수적 요소이기도 하다. 또한 명시적인 정적 타입 지정은 코드의 가독성을 향상 시키고 예측을 가능하게 하며 디버깅을 쉽게 한다. 모듈, 네임스페이스, 강력한 OOP 지원으로 크고 복잡한 프로젝트의 코드 기반을 쉽게 구성 할 수 있으며 컴파일 단계에서 오류를 포착할 수 있는 장점을 가지고 있다.
+TypeScript를 사용하는 이유는 여러가지 있지만 가장 큰 장점은 IDE(통합개발환경)를 포함한 다양한 <strong>도구의 지원</strong>을 받을 수 있다는 것이다. TypeScript는 정적 타입을 지원하므로 높은 수준의 IntelliSense, 코드 어시스트, 타입 체크, 리팩토링 등을 지원하며 이러한 도구의 지원은 대규모 프로젝트를 위한 필수적 요소이기도 하다. 또한 명시적인 정적 타입 지정은 코드의 가독성을 향상 시키고 예측을 가능하게 하며 디버깅을 쉽게 한다. 모듈, 네임스페이스, 강력한 OOP 지원으로 크고 복잡한 프로젝트의 코드 기반을 쉽게 구성 할 수 있으며 컴파일 단계에서 오류를 포착할 수 있는 장점을 가지고 있다.
 
 컴파일러 등의 개발환경 구축이 필요없이 브라우저만 있으면 바로 사용할 수 있는 ES5와 비교할 때 개발환경 구축의 관점에서 다소 복잡해진 측면이 있으나 현재 ES6를 완전히 지원하지 않고 있는 브라우저를 고려하여 Babel등의 트랜스파일러를 사용해야 하는 현 상황을 고려하면 TypeScript 개발환경 구축에 드는 수고는 그다지 아깝지 않을 것이다.
 
-마지막으로 Angular2는 TypeScript 뿐만 아니라 JavaScript, Dart로도 작성할 수 있지만 Angular2 문서, 커뮤니티 활동에서 가장 많이 사용되고 있는 것이 TypeScript이다. Angular2 관련 문서의 예제 등도 TypeScript로 작성된 것이 가장 많아 관련 정보 취득에도 이점이 있으며 이러한 현상은 앞으로도 지속될 것으로 예상된다.
+마지막으로 Angular는 TypeScript 뿐만 아니라 JavaScript, Dart로도 작성할 수 있지만 Angular 문서, 커뮤니티 활동에서 가장 많이 사용되고 있는 것이 TypeScript이다. Angular 관련 문서의 예제 등도 TypeScript로 작성된 것이 가장 많아 관련 정보 취득에 이점이 있으며 이러한 현상은 앞으로도 지속될 것으로 예상된다.
 
 # 3. 개발환경 구축
 

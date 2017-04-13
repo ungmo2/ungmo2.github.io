@@ -4,7 +4,7 @@ title: Angular <strong>CLI</strong>
 subtitle: Angular CLI를 사용한 프로젝트의 생성, 구성요소 추가와 빌드
 categories: angular
 section: angular
-description:
+description: Angular CLI는 간단한 명령어를 사용하여 Angular 프로젝트 스캐폴딩(scaffolding)을 생성, 실행, 빌드할 수 있으며 다양한 구성 요소를 선별적으로 추가할 수 있는 커맨드-라인 인터페이스(command line interface)이다. 개발용 서버를 내장하고 있어서 빌드없이 프로젝트를 실행하고 확인할 수 있다.
 ---
 
 * TOC
@@ -677,6 +677,8 @@ AoT 컴파일이란 TypeScript의 트랜스파일링과 같이 빌드 시에 컴
 ```bash
 $ ng build -prod -aot
 ```
+
+Angular5에서는 기본 컴파일 옵션이 AoT로 변경될 에정이다.
 
 AoT 컴파일에 대한 보다 상세한 내용은 [AoT 컴파일](https://angular.io/docs/ts/latest/cookbook/aot-compiler.html)을 참조하기 바란다.
 

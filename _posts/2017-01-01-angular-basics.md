@@ -4,7 +4,7 @@ title: Angular <strong>Basics</strong>
 subtitle: Angular의 소개와 특징
 categories: angular
 section: angular
-description:
+description: Angular는 웹, 모바일 웹, 네이티브 모바일과 데스크탑 어플리케이션 개발을 위한 구글의 오픈소스 자바스크립트 프레임워크이다. 프론트엔드 개발에 필요한 대부분의 기능을 갖추고 있으며 정적 타입을 제공하는 TypeScript를 주력 언어로 채택하여 대규모 어플리케이션 개발에 보다 적합한 환경을 제공한다.
 ---
 
 * TOC

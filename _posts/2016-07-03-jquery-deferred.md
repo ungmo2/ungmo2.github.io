@@ -72,7 +72,7 @@ Promise는 비동기 처리가 성공(fulfilled)하였는지 또는 실패(rejec
 function asyncFunc(param) {
   return new Promise(function(resolve, reject) {
     setTimeout(function() { // 비동기 함수
-      param ? resolve("resolved!") : reject(new Error("Error occurred!"));
+      param ? resolve("resolved!") : reject("rejected!");
     }, 2000);
   });
 };
@@ -82,8 +82,11 @@ asyncFunc(true)
   .then(function(data) {
     // resolve가 실행된 경우(성공), resolve 함수에 전달된 값이 data에 저장된다
     console.log(data);
+  },function(reason) {
+    // reject가 실행된 경우(실패), reject 함수에 전달된 값이 reason에 저장된다
+    console.log(reason);
+    throw "Error:" + reason;
   }).catch(function(error) {
-    // reject가 실행된 경우(실패), reject 함수에 전달된 값이 error에 저장된다
     console.error(error);
   });
 ```

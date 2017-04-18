@@ -354,7 +354,7 @@ export class MyComponentComponent implements OnInit {
 <app-my-component></app-my-component>
 ```
 
-selector 속성값 'app-my-component'는 `ng g component my-component` 명령어에서 지정한 컴포넌트명 앞에 접두사(prefix) app이 자동으로 추가된 값이다. Angular는 다른 어플리케이션 selector 또는 HTML 요소와 충돌을 방지하기 위해 접두사를 추가하여 케밥 표기법으로 명명하는 것을 권장하고 있다. 자세한 내용은 [Angular Style Guide: Custom prefix for components](https://angular.io/docs/ts/latest/guide/style-guide.html#!#02-07)을 참조하기 바란다.
+selector 속성값 'app-my-component'는 `ng g component my-component` 명령어에서 지정한 컴포넌트명 앞에 접두사(prefix) app이 자동으로 추가된 값이다. Angular는 다른 애플리케이션 selector 또는 HTML 요소와 충돌을 방지하기 위해 접두사를 추가하여 케밥 표기법으로 명명하는 것을 권장하고 있다. 자세한 내용은 [Angular Style Guide: Custom prefix for components](https://angular.io/docs/ts/latest/guide/style-guide.html#!#02-07)을 참조하기 바란다.
 
 기본 접두사는 app이며 이것은 .angular-cli.json에서 확인할 수 있다.
 
@@ -595,7 +595,7 @@ chunk    {4} inline.bundle.js, inline.bundle.js.map (inline) 0 bytes [entry] [re
 
 ## 6.1 트랜스파일링과 의존 모듈 번들링
 
-TypeScript 기반으로 개발이 진행되는 Angular 어플리케이션은 TypeScript를 JavaScript로 변환하여야 한다. 또한 의존 모듈의 해결이 필요한데 수작업으로 프로젝트 의존 모듈을 HTML의 script 태그에 기술하는 것은 매우 곤란한 일이다.
+TypeScript 기반으로 개발이 진행되는 Angular 애플리케이션은 TypeScript를 JavaScript로 변환하여야 한다. 또한 의존 모듈의 해결이 필요한데 수작업으로 프로젝트 의존 모듈을 HTML의 script 태그에 기술하는 것은 매우 곤란한 일이다.
 
 Angular CLI로 새로운 프로젝트를 생성할 경우, 의존 모듈의 설치는 기본 패키지 매니저인 npm으로 자동화되어 진행된다. 이때 설치되는 의존 모듈은 약 1,000여 개로 의존성 관리를 위해 수작업은 현실적이지 않다. Angular CLI의 빌드 기능은 의존성 관리를 위한 작업을 자동화하여 진행한다.
 
@@ -670,7 +670,7 @@ chunk    {4} inline.7454b5fa5b319102345e.bundle.js (inline) 0 bytes [entry] [ren
 
 Angular CLI의 빌드 기능은 TypeScript를 JavaScript로 트랜스파일링한다. 사실은 TypeScript뿐만 아니라 컴포넌트의 HTML 템플릿 또한 컴파일이 필요하다. 데이터바인딩과 이벤트를 위한 HTML 템플릿은 컴파일이 필요하기 때문이다. 하지만 HTML 템플릿은 빌드 시에 컴파일되지 않고 런타임에 JIT(Just-In-Time) 컴파일된다.
 
-AoT 컴파일이란 TypeScript의 트랜스파일링과 같이 빌드 시에 컴파일되는 것을 의미한다. 빌드에 소요되는 시간이 조금 더 걸리더라도 런타임에 컴파일이 실행되지 않기 때문에 실제 어플리케이션이 동작 시간은 단축되는 효과가 있다. 또한 JIT 컴파일러를 포함할 필요가 없어지기 때문에 어플리케이션 전체 용량도 줄어드는 효과가 있다.
+AoT 컴파일이란 TypeScript의 트랜스파일링과 같이 빌드 시에 컴파일되는 것을 의미한다. 빌드에 소요되는 시간이 조금 더 걸리더라도 런타임에 컴파일이 실행되지 않기 때문에 실제 애플리케이션이 동작 시간은 단축되는 효과가 있다. 또한 JIT 컴파일러를 포함할 필요가 없어지기 때문에 애플리케이션 전체 용량도 줄어드는 효과가 있다.
 
 프로덕션 빌드시 AoT 컴파일을 수행하기 위한 명령어는 다음과 같다.
 

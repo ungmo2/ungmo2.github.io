@@ -14,7 +14,7 @@ description: TypeScript의 소개와 개발 환경 구축, TypeScript 설치, Ty
 
 # 1. Introduction
 
-JavaScript는 1995년 Brendan Eich(Nescape)이 Navigator 2를 위하여 웹페이지에 포함되는 스크립트 언어로서 개발되었으며 초창기 Javascript는 웹페이지에 있어서 보조적인 기능을 수행하기 위해 <strong>한정적인 용도</strong>로 주로 사용되었다. 이 시기에 대부분의 로직은 주로 웹서버에서 실행되었고 브라우저(클라이언트)는 서버로 부터 전달받은 HTML과 CSS를 렌더링하는 수준이었다.
+JavaScript는 1995년 Brendan Eich(Nescape)이 Navigator 2를 위하여 웹페이지에 포함되는 스크립트 언어로서 개발되었으며 초창기 Javascript는 웹페이지에 있어서 보조적인 기능을 수행하기 위해 <strong>한정적인 용도</strong>로 사용되었다. 이 시기에 대부분의 로직은 주로 웹서버에서 실행되었고 브라우저(클라이언트)는 서버로 부터 전달받은 HTML과 CSS를 렌더링하는 수준이었다.
 
 [HTML5](./html5-syntax)이 등장하기 이전까지 웹 애플리케이션은 Flash, Silverlight, ActiveX 등 <strong>Plug-in</strong>에 의존하여 인터랙티브한 웹페이지를 구축해왔다.
 
@@ -36,10 +36,13 @@ HTML5의 등장은 Plug-in에 의존하는 기존의 구축 방식을 JavaScript
 
 이같은 JavaScript의 태생적 문제를 극복하기 위한 노력의 일환으로 [CoffeeScript](http://coffeescript.org/), [Dart](https://www.dartlang.org/), [Haxe](https://haxe.org/)와 같은 <strong>AltJS</strong>(JavaScript의 대체언어)가 등장하였다.
 
-TypeScript 또한 AltJS의 하나로써 <strong>JavaScript(ES5)의 Superset(상위확장)</strong>이다. C#의 창시자인 덴마크 출신 소프트웨어 엔지니어 [Anders Hejlsberg(아네르스 하일스베르)](https://en.wikipedia.org/wiki/Anders_Hejlsberg)가 개발을 주도한 TypeScript는 Microsoft에서 2012년에 발표한 오픈소스로 정적 타이핑을 지원하며 ES6(ECMAScript 2015)의 클래스, 모듈 등과 ES7의 Decorators 등을 지원한다.
+TypeScript 또한 AltJS의 하나로써 <strong>JavaScript(ES5)의 Superset(상위확장)</strong>이다. C#의 창시자인 덴마크 출신 소프트웨어 엔지니어 [Anders Hejlsberg(아네르스 하일스베르)](https://en.wikipedia.org/wiki/Anders_Hejlsberg)가 개발을 주도한 TypeScript는 2012년 Microsoft에서 발표한 오픈소스로 정적 타이핑을 지원하며 ES6(ECMAScript 2015)의 클래스, 모듈 등과 ES7의 Decorator 등을 지원한다.
 
 ![typescript superset](/img/typescript-superset.png)
 {: .w-300}
+
+Typescript superset
+{: .desc-img}
 
 TypeScript는 ES5의 Superset이므로 기존의 JavaScript(ES5) 문법을 그대로 사용할 수 있으며 ES6의 새로운 기능들을 사용하기 위해 [Babel](https://babeljs.io/)과 같은 별도 Transpiler를 사용하지 않아도 ES6의 새로운 기능을 기존의 JavaScript 엔진(현재의 브라우저 또는 Node.js)에서 실행할 수 있다.
 
@@ -57,6 +60,9 @@ Google은 당초 AtScript라는 TypeScript의 superset을 Angular에 채용하�
 ![AtScript superset](/img/atscript.png)
 {: .w-650}
 
+AtScript superset
+{: .desc-img}
+
 그 배경으로 Angular에 필요한 기능을 TypeScript의 사양에 포함시키는 것을 TypeScript 진영과 합의한 것으로 전해진다.
 
 또한 Google은 2년간의 검토 끝에 2017년 3월 사내 표준 언어(Canonical Languages)로 TypeScript의 사용을 승인하였다. Google은 구글애널리틱스, 파이어베이스, 구글클라우드플랫폼 등 대규모 프로젝트와 버그추적, 채용검토, 제품 승인 및 출시 도구와 같은 핵심적인 내부 툴에 TypeScript와 TypeScript 기반 Angular를 사용한다고 한다.
@@ -67,7 +73,7 @@ Google은 당초 AtScript라는 TypeScript의 superset을 Angular에 채용하�
 
 TypeScript를 사용하는 이유는 여러가지 있지만 가장 큰 장점은 IDE(통합개발환경)를 포함한 다양한 <strong>도구의 지원</strong>을 받을 수 있다는 것이다. TypeScript는 정적 타입을 지원하므로 높은 수준의 IntelliSense, 코드 어시스트, 타입 체크, 리팩토링 등을 지원하며 이러한 도구의 지원은 대규모 프로젝트를 위한 필수적 요소이기도 하다. 또한 명시적인 정적 타입 지정은 코드의 가독성을 향상 시키고 예측을 가능하게 하며 디버깅을 쉽게 한다. 모듈, 네임스페이스, 강력한 OOP 지원으로 크고 복잡한 프로젝트의 코드 기반을 쉽게 구성 할 수 있으며 컴파일 단계에서 오류를 포착할 수 있는 장점을 가지고 있다.
 
-컴파일러 등의 개발환경 구축이 필요없이 브라우저만 있으면 바로 사용할 수 있는 ES5와 비교할 때 개발환경 구축의 관점에서 다소 복잡해진 측면이 있으나 현재 ES6를 완전히 지원하지 않고 있는 브라우저를 고려하여 Babel등의 트랜스파일러를 사용해야 하는 현 상황을 고려하면 TypeScript 개발환경 구축에 드는 수고는 그다지 아깝지 않을 것이다.
+컴파일러 등의 개발환경 구축이 필요없이 브라우저만 있으면 바로 사용할 수 있는 ES5와 비교할 때 개발환경 구축의 관점에서 다소 복잡해진 측면이 있으나 현재 ES6를 완전히 지원하지 않고 있는 브라우저를 고려하여 Babel등의 트랜스파일러를 사용해야 하는 현 상황에서 TypeScript 개발환경 구축에 드는 수고는 그다지 아깝지 않을 것이다.
 
 마지막으로 Angular는 TypeScript 뿐만 아니라 JavaScript, Dart로도 작성할 수 있지만 Angular 문서, 커뮤니티 활동에서 가장 많이 사용되고 있는 것이 TypeScript이다. Angular 관련 문서의 예제 등도 TypeScript로 작성된 것이 가장 많아 관련 정보 취득에 이점이 있으며 이러한 현상은 앞으로도 지속될 것으로 예상된다.
 
@@ -109,6 +115,7 @@ class Person {
   constructor(name: string) {
     this.name = name;
   }
+
   sayHello() {
     return "Hello, " + this.name;
   }
@@ -119,13 +126,13 @@ const person = new Person('Lee');
 console.log(person.sayHello());
 ```
 
-컴파일을 실행한다.
+컴파일을 실행해 보자. tsc 명령어 뒤에 컴파일 대상 파일명을 지정한다.
 
 ```bash
 $ tsc person.ts
 ```
 
-컴파일 실행 결과, 같은 디렉터리에 person.js가 생성된다.
+컴파일 실행 결과, 같은 디렉터리에 자바스크립트 파일(person.js)이 생성된다.
 
 ```javascript
 // person.js
@@ -146,18 +153,20 @@ console.log(person.sayHello());
 
 자바스크립트 버전을 변경하려면 `--target` 또는 `-t` 옵션을 사용한다. 현재 tsc가 지원하는 자바스크립트 버전은 ES3, ES5, ES6(ES2015), ES2016, ES2017(ESNext)이다.
 
+ES5 버전으로 다시 컴파일을 실행한다.
+
 ```bash
 $ tsc person.ts -t ES5
 ```
 
-Node.js REPL로 트랜스파일링된 person.js를 실행해보자.
+Node.js REPL로 컴파일된 person.js를 실행해보자.
 
 ```bash
 $ node person.js
 Hello, Lee
 ```
 
-복수의 파일을 한번에 트랜스파일링할 수도 있다. 두개의 TypeScript class를 작성해보자.
+복수의 파일을 한번에 컴파일할 수도 있다. 두개의 TypeScript class를 작성해보자.
 
 ```typescript
 // person.ts
@@ -199,7 +208,7 @@ Hello, Lee
 Lee is studying.
 ```
 
-또는 와일드카드를 사용하여 모든 TypeScript 파일을 한꺼번에 트랜스파일링할 수도 있다.
+또는 와일드카드를 사용하여 모든 TypeScript 파일을 한꺼번에 컴파일할 수도 있다.
 
 ```bash
 $ tsc *.ts
@@ -208,7 +217,7 @@ Hello, Lee
 Lee is studying.
 ```
 
-`--watch` 또는 `-w` 옵션을 사용하면 대상 파일이 변경되었을 때 이를 감지하여 자동으로 트랜스파일링을 수행한다.
+`--watch` 또는 `-w` 옵션을 사용하면 대상 파일이 변경되었을 때 이를 감지하여 자동으로 컴파일이 실행된다.
 
 ```bash
 $ tsc student.ts --watch
@@ -219,7 +228,6 @@ student.ts를 변경해 보자.
 
 ```typescript
 // student.ts
-
 import { Person } from './Person';
 
 class Student extends Person {
@@ -234,7 +242,7 @@ console.log(student.sayHello());
 console.log(student.study());
 ```
 
-아래와 같이 파일 변경이 감지되고 자동으로 트랜스파일링이 수행된다.
+아래와 같이 파일 변경이 감지되고 자동으로 컴파일이 실행된다.
 
 ```bash
 14:29:07 - File change detected. Starting incremental compilation...

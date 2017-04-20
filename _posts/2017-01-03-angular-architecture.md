@@ -150,14 +150,19 @@ Angular는 컴포넌트를 중심으로 Angular 구성요소를 조합하여 애
 
 Angular의 핵심 구성요소는 아래와 같다.
 
-- 컴포넌트 (Component)
-- 모듈 (Module)
-- 디렉티브 (Directive)
-- 서비스 (Service)
+- 컴포넌트 (Component)  
+: 애플리케이션의 화면을 구성하는 <strong>뷰(View)</strong>를 생성하고 관리한다. 컴포넌트는 템플릿과 메타데이터, 컴포넌트 클래스로 구성된다.
 
-컴포넌트는 Angular 고유의 마크업인 템플릿 문법을 사용하여 작성된 HTML 템플릿과 이러한 템플릿을 관리하기 위해 컴포넌트 클래스로 구성된다. 애플리케이션에서 공통으로 사용하는 애플리케이션 로직은 컴포넌트에서 분리하여 서비스에 작성하고 컴포넌트와 서비스 등의 구성요소를 모듈에 등록한다. 애플리케이션은 루트 모듈을 부트스트랩핑하는 것으로 동작한다.
+- 모듈 (Module)  
+: 관련된 구성 요소를 하나로 묶어 애플리케이션을 구성하는 하나의 단위로 만드는 역할을 한다.
 
-![angular-element](./img/angular-element.png)
+- 디렉티브 (Directive)  
+: DOM을 변환하여 템플릿을 렌더링한다. 구조 디렉티브(Structural directive)와 속성 디렉티브(Attribute directive)가 있다.
+
+- 서비스 (Service)  
+: 애플리케이션의 다양한 목적의 비즈니스 로직을 담당한다. 컴포넌트에서 공통 처리 로직을 분리하기 위해 사용하며 의존성 주입(Dependency Injection)이 가능한 클래스로 작성된다.
+
+![angular-archtecture](./img/angular-archtecture.png)
 
 Angular의 구성요소와 아키텍처
 {: .desc-img}

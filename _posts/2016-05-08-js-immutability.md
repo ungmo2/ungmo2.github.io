@@ -4,15 +4,19 @@ title: Javascript <strong>Immutability</strong>
 subtitle: 객체와 변경불가성(Immutability)
 categories: javascript
 section: javascript
-description: Immutability(변경불가성)은 함수형 프로그래밍의 핵심 원리이다. Immutability는 인스턴스화 된 후 무언가를 변경할 수 없는 디자인 패턴이다. 그 값을 변경하려면 새로운 값을 다시 만들어야한다. Javascript의 기본 자료형(primitive data type)은 변경 불가능한 값(immutable value)이다. 
+description: Immutability(변경불가성)은 함수형 프로그래밍의 핵심 원리이다. Immutability는 인스턴스화 된 후 무언가를 변경할 수 없는 디자인 패턴이다. 그 값을 변경하려면 새로운 값을 다시 만들어야한다. 객체는 변경 가능하기 때문에 의도치 않게 변경될 가능성이 있어서 데이터의 일관성을 유지하는 것이 곤란하다. 이는 규모가 작은 애플리케이션이라면 큰 문제가 되지 않을 수 있만 이는 커지면 커질 수록 문제가 될 수 있다. 객체를 변경 불가능한 값(immutable value)으로 만들어 사용하면 이러한 문제를 해결할 수 있다. ES6에서는 불변 데이터 패턴(immutable data pattern)을 쉽게 구현할 수 있는 새로운 기능이 추가되었다.
 ---
 
 * TOC
 {:toc}
 
-# 1. Immutability(변경불가성)이란?
-
 Immutability(변경불가성)은 함수형 프로그래밍의 핵심 원리이다. Immutability는 인스턴스화 된 후 무언가를 변경할 수 없는 디자인 패턴이다. 그 값을 변경하려면 새로운 값을 다시 만들어야한다.
+
+객체는 변경 가능하기 때문에 의도치 않게 변경될 가능성이 있어서 데이터의 일관성을 유지하는 것이 곤란하다. 이는 규모가 작은 애플리케이션이라면 큰 문제가 되지 않을 수 있만 이는 커지면 커질 수록 문제가 될 수 있다.
+
+객체를 변경 불가능한 값(immutable value)으로 만들어 사용하면 이러한 문제를 해결할 수 있다. ES6에서는 불변 데이터 패턴(immutable data pattern)을 쉽게 구현할 수 있는 새로운 기능이 추가되었다.
+
+# 1. Immutability(변경불가성)이란?
 
 Javascript의 기본 자료형(primitive data type)은 변경 불가능한 값(immutable value)이다.
 
@@ -53,45 +57,45 @@ console.log(arr.length); // 1
 다른 예를 알아보자. 
 
 ```javascript
-var person = {
+var user = {
   name: 'Lee',
-  age: 20
+  address: {
+    city: 'Seoul'
+  }
 };
 
-var myAge = person.age; // 변수 myAge는 number 타입이다.
+var myName = user.name; // 변수 myName은 string 타입이다.
 
-person.age = 30;
+user.name = 'Kim';
 
-console.log(myAge); // 20
+console.log(myName); // Lee
 ```
 
-person.age의 값을 변경했지만 myAge의 값은 변경되지 않았다. 이는 person.age의 타입 number가 변경 불가능하기 때문이다.
+user.name의 값을 변경했지만 변수 myName의 값은 변경되지 않았다. 이는 user.name의 타입 string이 변경 불가능하기 때문이다.
 
 ```javascript
-var person1 = {
+var user1 = {
   name: 'Lee',
-  age: 20
+  address: {
+    city: 'Seoul'
+  }
 };
 
-var person2 = person1; // 변수 person2는 객체 타입이다.
+var user2 = user1; // 변수 user2는 객체 타입이다.
 
-person2.age = 30;
+user2.name = 'Kim';
 
-console.log(person1.age); // 30
-console.log(person2.age); // 30
+console.log(user1.name); // Kim
+console.log(user2.name); // Kim
 ```
 
-위의 경우 객체 person2의 age의 값을 변경하면 객체 person1의 값도 변경된다. 이는 person1과 person2가 객체 타입이고 객체는 변경 가능하기 때문이다.
+위의 경우 객체 user2의 name 프로퍼티의 값을 변경하면 객체 user1의 값도 변경된다. 이는 user1과 user2가 객체 타입이고 객체는 변경 가능하기 때문이다.
 
 ![immutability](/img/immutability.png)
 {: .w-400}
 
 Pass-by-reference
 {: .desc-img}
-
-객체는 변경 가능하기 때문에 의도치 않게 값이 변경될 가능성이 있어서 데이터의 일관성을 유지하는 것이 곤란하다. 이는 규모가 작은 애플리케이션이라면 큰 문제가 되지 않을 수 있만 이는 커지면 커질 수록 문제가 될 수 있다.
-
-객체를 변경 불가능한 값(immutable value)으로 만들어 사용하면 이러한 문제를 해결할 수 있다. ES6에서는 불변 데이터 패턴(immutable data pattern)을 쉽게 구현할 수 있는 새로운 기능이 추가되었다.
 
 # 2. 불변 데이터 패턴(immutable data pattern)
 
@@ -130,33 +134,109 @@ console.log(merge2); // { a: 1, b: 2, c: 3 }
 console.log(o4);     // { a: 1 }
 ```
 
-Object.assign을 사용하여 기존 객체를 변경하지 않고 객체를 복사 할 수 있다.
+Object.assign을 사용하여 기존 객체를 변경하지 않고 객체를 복사하여 사용할 수 있다.
 
 ```javascript
-const person1 = {
+const user1 = {
   name: 'Lee',
-  age: 20
+  address: {
+    city: 'Seoul'
+  }
 };
 
-const person2 = Object.assign({}, person1); // person1을 {}에 Copy
+const user2 = Object.assign({}, user1); // user1을 {}에 Copy
 
-person2.age = 30;
+user2.name = 'Kim';
 
 // 상기 2행은 아래와 동치이다.
-// {age: 30}은 person1에 병합되는 것이 아니라 첫번째 인자인 {}에 병합된다. 
-// const person2 = Object.assign({}, person1, {age: 30});
+// {name: 'Kim'}은 user1에 병합되는 것이 아니라 첫번째 인자인 {}에 병합된다.
+// const user2 = Object.assign({}, user1, {name: 'Kim'});
 
-console.log(person1.age); // 20
-console.log(person2.age); // 30
+console.log(user1.name); // Lee
+console.log(user2.name); // Kim
 ```
 
-person1 객체를 빈객체에 복사하여 새로운 객체 person2를 생성하였다. person1과 person2는 어드레스를 공유하지 않으므로 한 객체를 변경하여도 다른 객체에 아무런 영향을 주지 않는다.
+user1 객체를 빈객체에 복사하여 새로운 객체 user2를 생성하였다. user1과 user2는 어드레스를 공유하지 않으므로 한 객체를 변경하여도 다른 객체에 아무런 영향을 주지 않는다.
 
-하지만 person1 객체는 const로 선언되어있지만 객체의 프로퍼티는 보호되지 않는다. 다시 말하자면 재할당은 불가능하지만 할당된 객체의 내용은 변경할 수 있다. [Object.freeze()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze)를 사용하여 불변(immutable) 객체로 만들수 있지만 객체 내부의 객체(Nested Object)는 변경가능하다. 또한 Object.freeze()은 성능상 이슈가 있어서 큰 배열에는 사용하지 않아야 한다. 
+주의할 것은 user1 객체는 const로 선언되어 재할당은 할 수 없지만 객체의 프로퍼티는 보호되지 않는다. 다시 말하자면 객체의 내용은 변경할 수 있다.
 
-## 2.2 Immutable.js
+## 2.2 Object.freeze
 
-Object.assign()과 Object.freeze()로 불변(immutable) 객체를 만드는 것은 완전하지 않다. Facebook이 제공하는 [Immutable.js](https://facebook.github.io/immutable-js/)는 이러한 문제를 해결해 준다.
+[Object.freeze()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze)를 사용하여 불변(immutable) 객체로 만들수 있다.
+
+```javascript
+const user1 = {
+  name: 'Lee',
+  address: {
+    city: 'Seoul'
+  }
+};
+
+const user2 = Object.assign({}, user1, {name: 'Kim'});
+
+console.log(user1.name); // Lee
+console.log(user2.name); // Kim
+
+Object.freeze(user1);
+
+user1.name = 'Kim'; // 무시된다!
+
+console.log(user1); // { name: 'Lee', address: { city: 'Seoul' } }
+
+console.log(Object.isFrozen(user1)); // true
+```
+
+하지만 객체 내부의 객체(Nested Object)는 변경가능하다.
+
+```javascript
+const user = {
+  name: 'Lee',
+  address: {
+    city: 'Seoul'
+  }
+};
+
+Object.freeze(user);
+
+user.address.city = 'Busan'; // 변경된다!
+console.log(user); // { name: 'Lee', address: { city: 'Busan' } }
+```
+
+내부 객체까지 변경 불가능하게 만들려면 Deep freeze를 하여야 한다.
+
+```javascript
+function deepFreeze(obj) {
+  const props = Object.getOwnPropertyNames(obj);
+
+  props.forEach((name) => {
+    const prop = obj[name];
+    if(typeof prop === 'object' && prop !== null) {
+      deepFreeze(prop);
+    }
+  });
+  return Object.freeze(obj);
+}
+
+const user = {
+  name: 'Lee',
+  address: {
+    city: 'Seoul'
+  }
+};
+
+deepFreeze(user);
+
+user.name = 'Kim';           // 무시된다
+user.address.city = 'Busan'; // 무시된다
+
+console.log(user); // { name: 'Lee', address: { city: 'Seoul' } }
+```
+
+## 2.3 Immutable.js
+
+Object.assign과 Object.freeze을 사용하여 불변 객체를 만드는 방법은 번거러울 뿐더러 성능상 이슈가 있어서 큰 객체에는 사용하지 않는 것이 좋다.
+
+또 다른 대안으로 Facebook이 제공하는 [Immutable.js](https://facebook.github.io/immutable-js/)를 사용하는 방법이 있다.
 
 Immutable.js는 List, Stack, Map, OrderedMap, Set, OrderedSet, Record와 같은 영구 불변 (Permit Immutable) 데이터 구조를 제공한다.
 

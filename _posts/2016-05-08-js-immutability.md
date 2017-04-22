@@ -14,11 +14,11 @@ Immutability(변경불가성)는 객체가 생성된 이후 그 상태를 변경
 
 객체는 참조(reference) 형태로 전달하고 전달 받는다. 객체가 참조를 통해 공유되어 있다면 그 상태가 언제든지 변경될 가능성도 커지므로 문제가 된다. 그 이유는 객체의 참조를 가지고 있는 어떤 장소에서 객체를 변경하면 참조를 공유하는 모든 장소에서 그 영향을 받기 때문이다. 이것이 의도한 동작이 아니라면 참조를 가지고 있는 다른 장소에 변경 사실을 통지하고 대처하는 추가 대응이 필요하다. 
 
-이런 경우 비용은 조금 들지만 참조가 아닌 객체 전체를 방어적 복사(defensive copy)하는 방법으로 대응할 수 있다. 또는 Observer 패턴으로 객체의 변경에 대처할 수도 있다.
+의도하지 않은 객체의 변경이 발생하는 원인의 대다수는 "레퍼런스를 참조한 다른 객체에서 객체를 변경"하기 때문이다. 이 문제의 해결 방법은 비용은 조금 들지만 객체를 불변객체로 만들어 프로퍼티의 변경을 방지하며 객체의 변경이 필요한 경우에는 참조가 아닌 객체의 방어적 복사(defensive copy)를 통해 새로운 객체를 생성한 후 변경한다. 또는 Observer 패턴으로 객체의 변경에 대처할 수도 있다.
 
 불변 객체를 사용하면 복제나 비교를 위한 조작을 단순화 할 수 있고 성능 개선에도 도움이 된다. 하지만 객체가 변경 가능한 데이터를 많이 가지고 있는 경우 오히려 부적절한 경우가 있다. 
 
-ES6에서는 불변 데이터 패턴(immutable data pattern)을 쉽게 구현할 수 있는 새로운 기능이 추가되었다.
+ES6에서는 불변 데이터 패턴(immutable data pattern)을 쉽게 구현할 수 있는 새로운 기능이 추가되었다. 
 
 # 1. immutable value vs. mutable value
 
@@ -103,9 +103,19 @@ console.log(user2.name); // Kim
 Pass-by-reference
 {: .desc-img}
 
-이것이 의도한 동작이 아니라면 참조를 가지고 있는 다른 장소에 변경 사실을 통지하고 대처하는 추가 대응이 필요하다. 또는 객체를 방어적 복사(defensive copy)하는 방법으로도 대응할 수 있다.
+이것이 의도한 동작이 아니라면 참조를 가지고 있는 다른 장소에 변경 사실을 통지하고 대처하는 추가 대응이 필요하다.
 
 # 2. 불변 데이터 패턴(immutable data pattern)
+
+의도하지 않은 객체의 변경이 발생하는 원인의 대다수는 "레퍼런스를 참조한 다른 객체에서 객체를 변경"하기 때문이다. 이 문제의 해결 방법은 비용은 조금 들지만 객체를 불변객체로 만들어 프로퍼티의 변경을 방지하며 객체의 변경이 필요한 경우에는 참조가 아닌 객체의 방어적 복사(defensive copy)를 통해 새로운 객체를 생성한 후 변경한다.
+
+이를 정리하면 아래와 같다.
+
+- 객체의 방어적 복사(defensive copy)
+: Object.assign
+
+- 불변객체화를 통한 객체 변경 방지
+: Object.freeze
 
 ## 2.1 Object.assign
 
@@ -239,6 +249,22 @@ user.address.city = 'Busan'; // 무시된다
 
 console.log(user); // { name: 'Lee', address: { city: 'Seoul' } }
 ```
+
+<!--프로토타입을 통한 우회
+```javascript
+var parent = { name: 'Lee' }; // prototype
+
+var me = Object.create(parent);
+
+console.log(me.name); // prototype chain
+
+Object.freeze(me);
+
+parent.name = 'Kim';
+
+console.log(me.name);
+```
+-->
 
 ## 2.3 Immutable.js
 

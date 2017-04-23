@@ -54,7 +54,7 @@ LTS Release Schedule ([https://github.com/nodejs/LTS](https://github.com/nodejs/
 
 Current 버전은 변경이 발생하고 있는 버전으로 안정적이지 않을 수 있다. 따라서 최신의 LTS 버전을 다운로드하도록 한다.
 
-녹색의 "v6.9.4 LTS Recommended For Most Users" 버튼을 클릭하면 사용자의 OS에 가장 적합한 installer를 다운로드 할 수 있다. "others Downloads"를 클릭하면 다음 화면으로 이동한다.
+녹색의 "v6.9.4 LTS Recommended For Most Users" 버튼을 클릭하면 사용자의 OS에 가장 적합한 installer를 다운로드 할 수 있다. "other Downloads"를 클릭하면 다음 화면으로 이동한다.
 
 ![node-download](./img/node-download.png)
 

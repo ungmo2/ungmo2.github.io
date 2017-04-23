@@ -42,57 +42,60 @@ use case를 만족시키기 위해 구현되어야 할 기술적 사항은 아�
 
 * 웹페이지를 제공해야 한다. 따라서 HTTP 서버가 필요하다.
 * 서버는 URL 요청(request)별로 다르게 응답해야 한다. 따라서, 요청과 요청을 처리할 핸들러들을 연결짓기 위한 라우터(router) 같은 것이 필요하다.
-* 서버로 도착한 요청들, 그리고 라우터를 이용해서 라우팅된 요청들을 만족시키기 위해서 실제적인 요청 핸들러(request handlers)가 필요하다.
-* 라우터는 들어오는 어떠한 POST 데이터들도 다룰 수 있어야 한다. 그리고 해당 데이터를 다루기 편한 형태로 만들어 request handler 들에게 넘겨야 한다. 따라서 요청 데이터 핸들링(request data handling)이 필요하다.
-* URL에 대한 요청을 다루는 것뿐 아니라 URL이 요청되었을 때 내용을 표시할 필요도 있다. 이 말은 즉, request handler 들이 사용자 브라우저로 콘텐트를 보내기 위해 사용할 수 있는 뷰 로직(view logic)이 필요하다.
-* 사용자가 이미지들을 업로드 할 수 있어야 하므로, 세부 사항을 다루는 업로드 핸들링(upload handling)이 필요하다.
+* 서버로 도착한 요청들, 그리고 라우터를 이용해서 라우팅된 요청들을 만족시키기 위해서 실제적인 요청 핸들러(request handler)가 필요하다.
+* 라우터는 들어오는 어떠한 POST 데이터들도 다룰 수 있어야 한다. 그리고 해당 데이터를 다루기 편한 형태로 만들어 요청 핸들러(request handler) 들에게 넘겨야 한다. 따라서 요청 데이터 핸들링(request data handling)이 필요하다.
+* URL에 대한 요청을 다루는 것뿐 아니라 URL이 요청되었을 때 내용을 표시할 필요도 있다. 즉 요청 핸들러(request handler)는 사용자 브라우저로 컨텐트를 보내기 위한한 뷰 로직(view logic)이 필요하다.
+* 사용자가 이미지들을 업로드 할 수 있어야 하므로 세부 사항을 다루는 업로드 핸들링(upload handling)이 필요하다.
 
 # *Building the application stack*
 
 ## *Basic HTTP server*
 
-우선 HTTP server와 client를 사용하기 위하여 `http` 모듈을 로드한다.
+우선 HTTP server를 생성하기 위하여 `http` 모듈을 로드한다.
 
 `http.createServer([requestListener])`는 `http.Server`의 새로운 인스턴스를 반환한다. 반환된 인스턴스의 메서드 `listen`을 호출하여 접속 대기를 시작한다.
 
-다음은 8888 포트를 Listen 하는 HTTP 서버를 시작한 다음 아무일도 안 하는 코드이다. 어떤 요청이 들어오더라도 웹 브라우저는 대기상태에 빠지게 된다.
+다음은 8888 포트를 Listen 하는 HTTP 서버를 시작한 다음 대기기하는 코드이다. 어떤 요청이 들어오더라도 HTTP 서버는 아무 일도 하지기 때문에 웹 브라우저는 대기상태에 빠지게 된다.
 
 ```javascript
 // server.js
 
-// Node.js에 기본 포함되어 있는 http 모듈을 로드한다
+// Node.js에 기본 내장되어 있는 http 모듈을 로드한다
 var http = require("http");
 
-// http 모듈의 createServer 메서드를 호출
+// http 모듈의 createServer 메서드를 호출하여 HTTP 서버 생성
 var server = http.createServer();
 server.listen(8888);
 ```
+
 ```bash
 $ node server.js
 ```
+
 요청이 발생 했을 때, 서버가 특정 동작을 수행하게 하려면 콜백함수를 지정하여야 한다.
 `requestListener`는 `request` event가 발생했을 때 자동 호출될 콜백 함수이다.
 
 ```javascript
 // server.js
 
-// Node.js에 기본 포함되어 있는 http 모듈을 로드한다
+// Node.js에 기본 내장되어 있는 http 모듈을 로드한다
 var http = require("http");
 
-// http 모듈의 createServer 메서드를 호출
+// http 모듈의 createServer 메서드를 호출하여 HTTP 서버 생성
 http.createServer(function(request, response) {
-  response.writeHead(200, {"Content-Type": "text/plain"});
-  response.write("Hello World");
-  response.end();
+  response.writeHead(200, {"Content-Type": "text/plain"}); // (1)
+  response.write("Hello World");  // (2)
+  response.end();                 // (3)
 }).listen(8888);
 ```
+
 ```bash
 $ node server.js
 ```
 
-* 요청(request)이 올 때마다 response.writeHead() 함수를 사용해서 HTTP status 200 과 content-type을 응답 헤더로 보내고,
-* response.write() 함수로 “Hello World” 텍스트를 HTTP 응답 바디로 보낸다.
-* 마지막으로 response.end()로 응답을 마무리한다.
+* (1) 요청(request)이 올 때마다 response.writeHead() 함수를 사용해서 HTTP status 200 과 content-type을 응답 헤더로 보내고,
+* (2) response.write()로 HTTP 응답 바디에 “Hello World” 텍스트를 담아 보낸다.
+* (3) 마지막으로 response.end()로 응답을 마무리한다.
 
 ## *Event-driven callbacks*
 
@@ -102,7 +105,7 @@ Node.js는 event-driven, non-blocking I/O model을 지원한다. 자세한 사�
 
 Javascript의 함수는 일급 객체이다.
 
-일급 객체(first-class object)란, 생성, 대입, 연산, 인자 또는 반환값으로서의 전달 등, 프로그래밍언어의 기본적 조작을 제한없이 사용할 수 있는 대상을 의미한다.
+일급 객체(first-class object)란 생성, 대입, 연산, 인자 또는 반환값으로서의 전달 등, 프로그래밍언어의 기본적 조작을 제한없이 사용할 수 있는 대상을 의미한다.
 
 다음 조건을 만족하면 일급 객체로 간주한다.
 
@@ -168,11 +171,14 @@ http.createServer(onRequest).listen(8888);
 
 console.log("Server has started.");
 ```
+
 HTTP 요청(비동기적 이벤트)이 발생하면 callback(onRequest)이 호출된다. 이 때 두 개의 파라미터 `reqeust`와 `response` 가 callback 함수 onRequest에 전달된다. 요청에 대한 처리를 callback에서 처리한다.
 
 한번의 브라우저 요청에 “Request received.” 메시지가 두번 STDOUT으로 찍히는 것은 대부분의 브라우저가 http://localhost:8888/ 을 요청할 때 http://localhost:8888/favicon.ico 를 로드하려 하기 때문이다.
 
 ## *모듈화*
+
+지금까지 작성한 HTTP 서버 생성 로직을 모듈화한다. 모듈화는 모듈을 필요로 하는 스크립트에 제공할 기능의 일부를 export 하는 것이다. HTTP 서버 생성 로직을 함수에 담아 export한다.
 
 ```javascript
 // server.js
@@ -193,6 +199,8 @@ function start() {
 exports.start = start;
 ```
 
+HTTP 서버 생성 모듈을 로드한다. 모듈을 로드하면 HTTP 서버 생성 함수을 담고 있는 객체가 반환된다.
+
 ```javascript
 // index.js
 var server = require("./server");
@@ -203,9 +211,9 @@ server.start();
 ```bash
 $ node index.js
 ```
-모듈을 만든다는 것은 모듈을 필요로 하는 스크립트에 제공할 기능의 일부를 export 하는 것이다.
 
 ## *Routing*
+
 요청 URL과 GET/POST 파라미터를 router로 전달하면 router는 어떤 코드를 실행할지 결정할 수 있어야 한다.
 
 즉, 전달된 요청 URL과 파라미터에 따라 서버의 할 일이 정해지는데 서버의 할 일을 수행하는 함수를 request handler라 한다.

@@ -73,7 +73,7 @@ $.ajax({
 
 위의 클라이언트 요청에 대응하는 route를 설정해보자.
 
-먼저 request body parsing 미들웨어인 body-parser를 설치한다.
+먼저 request body parsing 미들웨어인 body-parser를 설치한다. body-parser 미들웨어는 POST 요청 데이터를 request 객체의 body 속성에 바인딩한다.
 
 ```bash
 $ npm install body-parser --save

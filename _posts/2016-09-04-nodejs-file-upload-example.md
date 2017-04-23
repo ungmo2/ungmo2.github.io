@@ -218,7 +218,7 @@ $ node index.js
 
 즉, 전달된 요청 URL과 파라미터에 따라 서버의 할 일이 정해지는데 서버의 할 일을 수행하는 함수를 request handler라 한다.
 
-우선, 요청 URL과 파라미터를 취득할 수 있어야 한다.
+우선 요청 URL과 파라미터를 취득할 수 있어야 한다.
 
 ```
 // url & querystring modules
@@ -238,13 +238,14 @@ http://localhost:8888/start?foo=bar&hello=world
                 querystring.parse(string)["hello"]
 ```
 
-우리에게 필요한 모든 정보는 request 객체(callback 함수 onRequest의 첫 번째 파라미터)를 통해 접근할 수 있습니다. 하지만 이 정보를 얻어내기 위해 `url`과 `querystring` 이라는 모듈이 추가로 필요하다.
+우리에게 필요한 모든 정보는 request 객체(callback 함수 onRequest의 첫 번째 인자)를 통해 접근할 수 있다. 하지만 이 정보를 얻어내기 위해 `url`과 `querystring` 모듈이 추가로 필요하다.
 
-`url` 모듈은 URL의 각각의 부분 (예를들면 URL path와 query string) 을 뽑아낼 수 있는 메소드를 제공한다.
+`url` 모듈은 URL의 각각의 부분 (예를 들면 URL path와 query string)을 추출할 수 있는 메소드를 제공한다.
 
-`querystring`은 query string을 request 파라미터로 파싱 하는데 사용한다. 또한, POST 요청의 body를 파싱하는 데도 사용된다.
+`querystring` 모듈은 query string을 request 파라미터로 파싱 하는데 사용한다. 또한, POST 요청의 body를 파싱하는 데도 사용된다.
 
 ### *Get path name & request parameters*
+
 ```javascript
 var http = require("http");
 var url = require("url");
@@ -295,11 +296,7 @@ function start() {
 exports.start = start;
 ```
 
-`url`모듈을 사용하여 URL path를 기준으로 요청을 구분할 수 있게 되었다.
-
-이것을 이용하면 URL path를 기반으로 요청을 request handler로 매핑하는 router를 만들 수 있다.
-
-router의 역할은 클라이언트의 요청과 request handler를 매핑하는 것이다.
+`url`모듈을 사용하여 URL path를 기준으로 요청을 구분할 수 있게 되었다. 이것을 이용하면 URL path를 기반으로 요청을 request handler로 매핑하는 router를 만들 수 있다. router의 역할은 클라이언트의 요청과 request handler를 매핑하는 것이다.
 
 예를 들어, /start 요청과 /upload 요청에 각각 달리 반응하는 request handler를 매핑할 수 있다. 우선은 URL path를 전달받는 router를 구현한다.
 
@@ -313,9 +310,10 @@ exports.route = route;
 ```
 
 ## *Dependency injection*
+
 router를 server와 어떻게 엮을지 고려해야 한다.
 
-HTTP server가 router를 사용한다는 것을 알게 해야 한다.  [dependency injection](http://martinfowler.com/articles/injection.html)을 통해 server와 router를 느슨하게 결합한다.
+HTTP server가 router를 사용한다는 것을 알게 해야 한다. [dependency injection](http://martinfowler.com/articles/injection.html)을 통해 server와 router를 느슨하게 결합한다.
 
 먼저 router 함수를 파라미터로 넘길 수 있도록 server의 start() 함수를 확장한다.
 
@@ -351,24 +349,29 @@ exports.start = start;
 var server = require("./server");
 var router = require("./router");
 
-server.start(router.route);
+server.start(router.route); // DI
 ```
+
 ```
 $ node index
 ```
+
 ```
 http://localhost:8888/foo
 ```
+
 ```
 Server has started.
 Request for /foo received.
 About to route a request for /foo
 ```
-server는 router 객체의 route 메서드를 전달(주입/inject)받아 server는 이 객체의 메서드를 호출할 수 있게 되었다.
+
+server는 router 객체의 route 메서드를 주입(inject)받아 route 메서드를 호출할 수 있게 되었다.
 
 ## *Request handler*
-`server`는 `router`를 주입받아 사용할 수 있게 되었다.
-`router`는 `server`로 부터 `pathname`을 전달 받는데 이 `pathname`에 따라 각각의 `Request handler`를 호출하면 요청에 따라 행동하는 서버를 만들 수 있다.
+
+`server`는 `router.route`를 주입받아 사용할 수 있게 되었다.
+`router.route`는 `server`로 부터 `pathname`을 전달 받는데 이 `pathname`에 따라 각각의 `Request handler`를 호출하면 요청에 따라 행동하는 서버를 만들 수 있다.
 
 그러면 `Request handler`를 만들어 본다.
 
@@ -392,7 +395,6 @@ exports.upload = upload;
 `server`와 `router` 이외에 request와 handler의 관계를 알고 있는 무언가를 만들어 `router`에 주입하면 깔끔한 연결이 될 것이다.
 
 request와 handler의 관계를 알고 있는 무언가는 키와 값의 쌍인 Javascript object의 성질과 잘 맞아 떨어진다.
-
 
 ```javascript
 // index.js
@@ -420,6 +422,7 @@ function start(route, handle) {
     var pathname = url.parse(request.url).pathname;
     console.log("Request for " + pathname + " received.");
 
+    // handle은 pathname와 request handler의 관계를 담고 있는 객체
     route(handle, pathname);
 
     response.writeHead(200, {"Content-Type": "text/plain"});
@@ -469,6 +472,7 @@ function upload() {
 exports.start = start;
 exports.upload = upload;
 ```
+
 ```javascript
 // router.js
 
@@ -484,6 +488,7 @@ function route(handle, pathname) {
 
 exports.route = route;
 ```
+
 ```javascript
 // server.js
 
@@ -511,6 +516,7 @@ exports.start = start;
 http://localhost:8888/start 를 요청하면 “Hello Start”가 출력되고, http://localhost:8888/upload 는 “Hello Upload”가, http://localhost:8888/foo 는 “404 Not found”가 출력된다.
 
 ## *Blocking vs Non-Blocking*
+
 위의 코드는 문제없이 잘 동작하는 것처럼 보이지만 치명적 결함을 가지고 있다.
 `request handler`에 비동기 방식의 코드를 포함시키면 문제가 발생한다.
 
@@ -592,6 +598,7 @@ http://localhost:8888/start 에 접속하면 현재 디렉토리에 있는 모�
 이 시점에 content는 여전히 'empty'이며 화면에 'empty'가 출력된다.
 
 ## *Non-blocking 방식 request handler*
+
 지금까지는 handler가 작성한 content를 여러 layer를 거쳐 server에 전달하였다.
 
 ```
@@ -626,6 +633,7 @@ function start(route, handle) {
 
 exports.start = start;
 ```
+
 ```javascript
 // router.js
 
@@ -731,6 +739,7 @@ request.addListener("end", function() {
   // called when all chunks of data have been received
 });
 ```
+
 참고로 `request.addListener` 대신 `request.on`도 가능하다.
 
 > .on() is exactly the same as .addListener() in the EventEmitter object.  
@@ -834,6 +843,7 @@ exports.upload = upload;
 ```
 
 ## *Handling file uploads*
+
 우리 계획은 사용자가 이미지 파일을 업로드 하면 업로드된 이미지를 브라우저에 출력하는 것이었다.
 
 파일 데이터를 받아서 처리하는 것은 단지 POST 데이터를 처리하는 것이지만, 그 처리가 단순하지 않고 복잡하기 때문에, 여기서는 미리 만들어진 `formidable` 오픈소스 모듈을 사용한다.

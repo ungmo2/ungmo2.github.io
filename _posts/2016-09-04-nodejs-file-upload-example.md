@@ -1228,7 +1228,7 @@ http.createServer(function (req, res) {
 console.log('Server running at http://127.0.0.1:8888/');
 ```
 
-`http` 모듈로 웹서버를 생성하면 일반적 웹서버가 수행하여야 할 많은 일들을 직접 처리해야 하는데 이것이 꽤 번거러운 일이다. 위의 예제와 같이 정적 파일을 제공하기 위해서는 직접 구현하든지 아니면  [node-static](https://www.npmjs.com/package/node-static), [serve-static](https://www.npmjs.com/package/serve-static) 등의 외부 module을 사용하여야 한다.
+`http` 모듈로 웹서버를 생성하면 일반적 웹서버가 수행하여야 할 많은 일들을 직접 처리해야 하는데 이것이 꽤 번거러운 일이다. 위의 예제와 같이 정적 파일을 제공하기 위해서는 직접 구현하든지 아니면 [node-static](https://www.npmjs.com/package/node-static), [serve-static](https://www.npmjs.com/package/serve-static) 등의 외부 module을 사용하여야 한다.
 
 그러나 `Express`와 같은 framework를 사용하면 이러한 문제는 쉽게 해결할 수 있다. 지금까지 살펴본 코드를 이해할 수 있다면 `Express`는 쉽게 사용할 수 있다. `Express`을 사용하면 Routing, Error handling, static file 제공 등 일반적 웹서버가 제공해야 하는 서비스를 쉽게 구현할 수 있는 장점이 있다.
 

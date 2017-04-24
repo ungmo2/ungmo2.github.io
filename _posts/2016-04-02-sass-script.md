@@ -21,11 +21,11 @@ SassScript는 CSS에서는 불가능한 연산, 변수, 함수 등의 확장 기
 : e.g. 1.2, 13, 10px
 
 문자열
-: CSS는 2종류의 문자열을 사용할 수 있다. 따옴표를 사용하는 경우("Lucida Grande", 'http://sass-lang.com')와 사용하지 않는 경우(bold, sans-serif)가 있다. Sass는 모든 문자열도 인식할 수 있으므로 컴파일 후의 CSS는 Sass에서 사용한 문자열이 그대로 출력된다.  
+: CSS는 2종류의 문자열을 사용할 수 있다. 따옴표를 사용하는 경우("Lucida Grande", 'http://sass-lang.com')와 사용하지 않는 경우(bold, sans-serif)가 있다. Sass는 2종류의 문자열 모두를 인식할 수 있으며 컴파일 후의 CSS에는 Sass에서 사용한 문자열이 그대로 출력된다.  
 	e.g. "Lucida Grande", 'http://sass-lang.com', sans-serif
 
 컬러
-: e.g. blue, #04a3f9, rgba(255, 0, 0, 0.5))
+: e.g. blue, #04a3f9, rgba(255, 0, 0, 0.5)
 
 boolean  
 : e.g. true, false
@@ -151,7 +151,7 @@ footer {
 $width: 100px;
 
 #foo {
-  width: $width + 10; // 100px
+  width: $width + 10; // 110px
 }
 
 #bar {
@@ -217,7 +217,7 @@ p {
   $width: 1000px;
   width: $width/2;            // 변수에 대해 사용 →　width: 500px;
   height: (500px/2);          // 괄호 내에서 사용 →　height: 250px;
-  margin-left: 5px + 8px/2px; //다른 연산의 일부로서 사용 →　margin-left: 9px;
+  margin-left: 5px + 8px/2px; // 다른 연산의 일부로서 사용 →　margin-left: 9px;
 }
 ```
 
@@ -233,18 +233,22 @@ p {
 
 ## 4.2 컬러 연산자
 
-모든 산술 연산자은 컬러 값에도 사용할 수 있다.
+모든 산술 연산자는 컬러 값에도 사용할 수 있다.
 
 ```scss
 p {
   color: #010203 + #040506;
-  // 01 + 04 = 05, 02 + 05 = 07, 03 + 06 = 09
+  // R: 01 + 04 = 05
+  // G: 02 + 05 = 07
+  // B: 03 + 06 = 09
   // #050709
 }
 
 p {
   color: #010203 * 2;
-  // 01 * 2 = 02, 02 * 2 = 04, 03 * 2 = 06
+  // R: 01 * 2 = 02
+  // G: 02 * 2 = 04
+  // B: x03 * 2 = 06
   // #020406
 }
 

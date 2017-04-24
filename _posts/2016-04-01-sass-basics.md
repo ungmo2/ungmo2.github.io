@@ -4,6 +4,7 @@ title: Sass - Basics
 subtitle: Sass의 소개, 설치와 간단한 명령어 사용법
 categories: Sass
 section: Sass
+description: Sass(Syntactically Awesome StyleSheets)는 CSS pre-processor로서 CSS의 한계와 결함을 보정하여 보다 간결한 CSS를 생성하기 위한 CSS의 확장(extension)이다.
 ---
 
 * TOC
@@ -111,7 +112,31 @@ $ sass my.scss my.css
   font-size: 90%; }
 ```
 
-## 3.3 style
+## 3.3 watch
+
+watch command는 SCSS 파일의 변경을 감지하여 변경될 때마다 css 파일을 자동 업데이트한다.
+
+디렉터리 단위 또는 파일 단위의 모니터링이 가능하다.
+
+디렉터리 단위의 watch
+
+```bash
+$ cd my-project
+$ ls -l
+css/ sass/
+$ sass --watch stylesheets/sass:stylesheets
+```
+
+파일 단위의 watch
+
+```bash
+$ cd my-project
+$ ls -l
+css/ sass/
+$ sass --watch stylesheets/sass/my.scss:stylesheets/my.css
+```
+
+## 3.4 style
 
 SCSS 파일을 컴파일하여 CSS 파일을 생성할 때 4가지 스타일 중 하나를 선택할 수 있다.
 
@@ -148,32 +173,6 @@ sass my.scss:my.css --style compact
 ```bash
 sass my.scss:my.css --style compressed
 ```
-
-## 3.4 watch
-
-watch command는 SCSS 파일의 변경을 감지하여 변경될 때마다 css 파일을 자동 업데이트한다.
-
-디렉터리 단위 또는 파일 단위의 모니터링이 가능하다.
-
-디렉터리 단위의 watch
-
-```bash
-$ cd my-project
-$ ls -l
-css/ sass/
-$ sass --watch stylesheets/sass:stylesheets
-```
-
-파일 단위의 watch
-
-```bash
-$ cd my-project
-$ ls -l
-css/ sass/
-$ sass --watch stylesheets/sass/my.scss:stylesheets/my.css
-```
-
-하나의 파일이 아닌 디렉터리 단위로 변경을 모니터링할 수도 있다.
 
 # 4. SASS vs. SCSS
 

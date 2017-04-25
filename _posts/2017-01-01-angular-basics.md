@@ -30,9 +30,9 @@ Angular는 AngularJS의 후속 버전이지만 호환성이 없을 뿐아니라 
 
 Angular는 AngulaJS의 단순한 업그레이드 버전이 아니다. Angular는 ES 6 스펙을 충족시키기 위해 TypeScript로 재작성되었고 AngulaJS와는 호환성이 없는 브레이킹 체인지를 다수 포함하고 있다.
 
-AngularJS의 Controller와 $scope 기반 개발에서 컴포넌트 기반 개발로 전환되었고 지시자(Directive), 의존성 주입(dependency injection)은 간소화 되었으며 주력 개발 언어로써 TypeScript를 도입하여 대규모 개발에 적합한 정적 타이핑 지원, 인터페이스 등의 OOP 지원, 모듈, 클래스 등의 ECMAScript6 지원 및 인텔리센스 등의 개발 도구를 지원한다.
+AngularJS의 Controller와 $scope 기반 개발에서 컴포넌트 기반 개발로 전환되었다. 선택적 바인딩(one-way, two-way) 지원하고 디렉티브(Directive)와 서비스, 의존성 주입(dependency injection)은 간소화 되었으며 주력 개발 언어로써 TypeScript를 도입하여 대규모 개발에 적합한 정적 타이핑과 인터페이스 등의 OOP, ECMAScript6에서 새롭게 도입된 모듈, 클래스 등을 지원하며 개발환경 지원 도구인 Angular CLI를 제공한다.
 
-또한 AngularJS의 angular.module과 jQlite 보다 향상된 모듈 시스템과 DOM 제어 기능을 제공하며 API 또한 단순화되었다.
+또한 AngularJS의 angular.module과 jQlite보다 향상된 모듈 시스템과 DOM 제어 기능을 제공하며 API 또한 단순화되었다.
 
 Angular은 AngularJS의 후속 버전이기는 하지만 호환성이 없는 새로운 프레임워크로 이해하는 것이 좋다. Angular는 AngularJS보다 배우기 쉬우며 성능이 향상되었고 애플리케이션 구조는 보다 단순해졌다.
 
@@ -48,7 +48,7 @@ AngularJS의 경우 Controller와 $scope가 개발의 중심이었지만 Angular
 
 ### 3.1.2 TypeScript의 도입
 
-[TypeScript](http://poiemaweb.com/typescript-introduction)는 Microsoft에서 2012년에 발표한 오픈소스로 정적 타이핑을 지원하며 ES6(ECMAScript 2015)의 클래스, 모듈 등과 ES7의 Decorators 등을 지원한다.
+[TypeScript](./typescript-introduction)는 Microsoft에서 2012년에 발표한 오픈소스로 강력한 정적 타이핑 그리고 ES6(ECMAScript 2015)의 클래스, 모듈 등과 ES7의 Decorators 등을 지원한다.
 
 TypeScript를 사용하는 이유는 여러가지 있지만 가장 큰 장점은 다양한 도구의 지원을 받을 수 있다는 것이다. TypeScript는 정적 타이핑을 지원하므로 높은 수준의 IntelliSense, 코드 어시스트, 타입 체크, 리팩토링 등을 지원하며 이러한 도구의 지원은 대규모 프로젝트를 위한 필수적 요소이기도 하다.
 
@@ -60,7 +60,7 @@ Angular는 TypeScript 뿐만 아니라 JavaScript, Dart로도 작성할 수 있�
 
 ### 3.1.3 개발 도구의 통합 및 개발 환경 구축 자동화
 
-프레임워크를 도입할 때 개발 환경 구축은 하나의 큰 장벽이다. 폴더 구조와 기본 파일 생성, 빌드를 위한 설정, 디펜던시, 트랜스파일러, 번들러, 테스팅 환경과 디버깅, 배포 등 setup 해야 할 도구는 많고 설정은 익숙하지 않기 때문이다.
+프레임워크를 도입할 때 개발 환경 구축은 하나의 큰 장벽이다. 폴더 구조와 기본 파일 생성, 빌드를 위한 설정, 디펜던시, 트랜스파일러, 번들러, 테스팅 환경과 디버깅, 배포 등 설정해야 할 도구는 많고 설정 방법은 익숙하지 않기 때문이다.
 
 Angular CLI contributor인 Mike Brocchi‏의 보고에 따르면 개발 환경 구축이 Angular의 도입의 큰 장벽 중 하나로 조사되었다.
 
@@ -76,7 +76,7 @@ AngularJS의 단점 중 대표적인 것이 Digest Loop로 인한 성능저하�
 
 ### 3.2.2 AoT 컴파일(ahead of time compilation)
 
-AoT 컴파일은 사전 컴파일 방식을 의미한다. 예를 들어 ngIf, ngFor, ngSwitch와 같은 구조 지시자(Structural directive)를 브라우저가 실행 가능한 코드로 변환하여야 하는데 이러한 과정을 런타임에서 실시하지 않고 사전에 컴파일하여 실행 속도를 향상시키는 기법이다. AoT 컴파일의 또다른 이점은 JIT(just-in-time) 컴파일러를 필요로 하지 않기 때문에 프레임워크 크기를 기존 AngularJS보다 50% 정도 줄일 수 있다는 것이다.
+AoT 컴파일은 사전 컴파일 방식을 의미한다. 예를 들어 ngIf, ngFor, ngSwitch와 같은 구조 디렉티브(Structural directive)를 브라우저가 실행 가능한 코드로 변환하여야 하는데 이러한 과정을 런타임에서 실시하지 않고 사전에 컴파일하여 실행 속도를 향상시키는 기법이다. AoT 컴파일의 또다른 이점은 JIT(just-in-time) 컴파일러를 필요로 하지 않기 때문에 프레임워크 크기를 기존 AngularJS보다 50% 정도 줄일 수 있다는 것이다.
 
 ### 3.2.3 Lazy Loading
 

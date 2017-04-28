@@ -228,7 +228,7 @@ if(!x)
 
 이때 자바스크립트는 암묵적 강제 형 변환을 통해 조건식을 평가한다.
 
-## 3.1 암묵적 강제 형 변환 (Type coercion)
+## 4.1 암묵적 강제 형 변환 (Type coercion)
 
 Javascript는 context(문맥)을 고려하여 내부적으로 자료형을 암묵적으로 강제 변환하여 작업을 완료할 수 있다. 이는 의도하지 않은 값을 만들어낼 수 있어 주의가 필요하다.
 
@@ -242,15 +242,15 @@ console.log(undefined == null);  // logs true
 console.log(undefined === null); // logs false
 ```
 
-## 3.2 Type Conversion Table
+## 4.2 Type Conversion Table
 
 |Original Value|Converted to Number	|Converted to String |Converted to Boolean|
 |:-------------|:------------------:|:------------------:|:------------------:|
-| false        | <b style='color:red'>0</b> | "false"	   | <b style='color:red'>false</b>
+| false        | <b style='color:red'>0</b> | "false"	   | false
 | true         | <b style='color:red'>1</b> | "true"	   | true
 | 0	           | 0	                | "0"	               | <b style='color:red'>false</b>
 | 1	           | 1  	              | "1"	               | true
-| "0"	         | <b style='color:red'>0</b>	| "0"	       | true
+| "0"	         | <b style='color:red'>0</b>	| "0"	       | <b style='color:red'>true</b>
 | "1"	         | <b style='color:red'>1</b>	| "1"        | true
 | NaN	         | NaN	              | "NaN"	             | <b style='color:red'>false</b>
 | Infinity	   | Infinity	          | "Infinity"	       | true
@@ -276,7 +276,26 @@ console.log("String : " + String(x));
 console.log("Boolean: " + Boolean(x));
 ```
 
-## 3.3 Truthy & Falsy values
+## 4.3 Data type conversion
+
+```javascript
+var val = '123';
+console.log(typeof val + ':' + val); // string
+
+// sting -> number
+val = +val; 
+// val *= 1;
+// val = Number(val);
+// val = parseInt(val);
+console.log(typeof val + ':' + val); // number
+
+// number -> sting 
+val += '';
+// val = String(val);
+console.log(typeof val + ':' + val); // string
+```
+
+## 4.4 Truthy & Falsy values
 
 아래 값들은 Boolean context에서 `false`로 평가된다.
 
@@ -311,7 +330,7 @@ x = "";
 if (!x)  console.log(x+" is falsy value");
 ```
 
-## 3.4 Checking equality
+## 4.5 Checking equality
 
 ```javascript
 // logs false !!!
@@ -326,7 +345,7 @@ console.log(NaN == NaN);
 
 두 값을 비교할 때에 동등연산자(==, !=)보다 일치연산자(===, !==)를 사용하여야 한다.
 
-## 3.5 Checking existence
+## 4.6 Checking existence
 
 단항 연산자를 활용한 존재 확인이 가능하다. 즉, 객체나 배열(배열도 객체이다)이 값을 가지고 있으면 truthy value로 취급된다.받는다. 이를 이용하여 존재여부를 확인할 수 있다.
 

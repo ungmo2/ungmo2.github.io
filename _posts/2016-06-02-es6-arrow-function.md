@@ -135,9 +135,7 @@ class Prefixer {
 
 # 3. Arrow Function을 사용해서는 안되는 경우
 
-Arrow Function는 Lexical this를 지원하므로 콜백함수에 사용하기 편리하다. 하지만 Arrow Function을 사용하는 것이 오히려 혼란을 불러오는 경우도 있기 때문에 주의하여야 한다.
-
-## 3.1 객체 메서드
+Arrow Function는 Lexical this를 지원하므로 콜백함수에 사용하기 편리하다. 하지만 Arrow Function을 사용하는 것이 오히려 혼란을 불러오는 경우도 있기 때문에 주의하여야 한다. 특히 메서드 정의 시 Arrow Function을 사용하는 것은 피해야 한다.
 
 Arrow Function으로 메서드를 정의하여 보자.
 
@@ -165,9 +163,7 @@ const obj = {
 obj.sayHi(); // Hi Lee
 ```
 
-## 3.2 prototype
-
-Arrow Function으로 prototype에 메서드를 할당하여 보자.
+prototype에 메서드를 할당하는 경우도 동일한 문제가 발생한다. Arrow Function으로 prototype에 메서드를 할당하여 보자.
 
 ```javascript
 const obj = {

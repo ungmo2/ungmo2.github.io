@@ -7,10 +7,15 @@ section: es6
 description: ECMAScript6 ES6 '화살표 함수' 'Arrow function'
 ---
 
+* TOC
+{:toc}
+
 ![es6 Logo](/img/es6.png)
 {: .w-650}
 
-Arrow function(화살표 함수)은 익명함수를 좀 더 간략하게 표현할 수 있으며 Lexical this를 제공한다.
+Arrow function(화살표 함수)은 익명함수를 간략하게 표현할 수 있으며 Lexical this를 제공한다.
+
+# 1. Syntex
 
 Arrow function은 항상 익명으로 사용한다. 문법은 아래와 같다.
 
@@ -25,9 +30,7 @@ x => { return x * x }  // block
 x => x * x             // 위 표현과 동일하다.
 ```
 
-Arrow function의 장점은 크게 2가지로 이야기할 수 있다.
-
-첫번째 일반적인 함수 표현식보다 표현이 간단하다.
+Arrow function은 일반적인 함수 표현식보다 표현이 간단하다.
 
 ```javascript
 // ES5
@@ -48,9 +51,11 @@ const pow = arr.map(x => x * x);
 console.log(pow); // [ 1, 4, 9 ]
 ```
 
-두번째 장점으로 직관적인 [this](./js-this)를 사용할 수 있다.
+# 2. this
 
-JavaScript this는 해당 함수 호출 패턴에 따라 this에 바인딩되는 객체가 달라진다. 콜백함수 내부의 this는 전역 객체 window를 가리킨다.
+function 키워드를 사용하여 생성한 일반 함수와 Arrow function와의 가장 큰 차이점은 this이다. 
+
+일반 함수의 경우, 해당 함수 호출 패턴에 따라 [this](./js-this)에 바인딩되는 객체가 달라진다. 콜백함수 내부의 this는 전역 객체 window를 가리킨다.
 
 Arrow function은 위의 규칙을 따르지 않고 언제나 자신을 포함하는 외부 scope에서 this를 계승 받는다. 이를 <strong>Lexical this</strong>라 한다.
 
@@ -70,7 +75,8 @@ var pre = new Prefixer('Hi ');
 console.log(pre.prefixArray(['Lee', 'Kim']));
 ```
 
-(A)에서 사용한 this는 아마도 생성자 함수 Prefixer가 생성한 객체(위 예제의 경우 pre)일 것으로 기대하였겠지만 이곳에서 this는 전역 객체 window를 가리키므로 기대한 대로 동작하지 않는다. (B)에서의 this는 생성자 함수 Prefixer가 생성한 객체(위 예제의 경우 pre)이다.
+(A)에서 사용한 this는 아마도 생성자 함수 Prefixer가 생성한 객체(위 예제의 경우 pre)일 것으로 기대하였겠지만 이곳에서 this는 전역 객체 window를 가리키므로 기대한 대로 동작하지 않는다.  
+(B)에서의 this는 생성자 함수 Prefixer가 생성한 객체(위 예제의 경우 pre)이다.
 
 위 설명이 잘 이해되지 않는다면 [this](./js-this)를 참조하기 바란다.
 
@@ -125,6 +131,66 @@ class Prefixer {
     return arr.map(x => this.prefix + x); // (A)
   }
 }
+```
+
+# 3. Arrow Function을 사용해서는 안되는 경우
+
+Arrow Function는 Lexical this를 지원하므로 콜백함수에 사용하기 편리하다. 하지만 Arrow Function을 사용하는 것이 오히려 혼란을 불러오는 경우도 있기 때문에 주의하여야 한다.
+
+# 3.1 객체 메서드
+
+Arrow Function으로 메서드를 정의하여 보자.
+
+```javascript
+const obj = {
+  name: 'Lee',
+  sayHi: () => console.log(`Hi ${this.name}`)
+};
+
+obj.sayHi(); // Hi undefined
+```
+
+해당 메서드를 소유한 객체 즉 해당 메서드를 호출한 객체에 this를 바인딩하지 않고 window에 바인딩된다. 따라서 Arrow Function으로 메서드를 정의하는 것은 바람직하지 않다.
+
+ES6의 축약 메서드 정의 또는 일반 메서드 정의 방식으로 위 예제를 수정하여 보자. ES6의 축약 메서드 정의는 메서드명에 할당된 함수를 위한 단축 표기법이다.
+
+```javascript
+const obj = {
+  name: 'Lee',
+  sayHi() { // === sayHi: function() {
+    console.log(`Hi ${this.name}`);
+  }
+};
+
+obj.sayHi(); // Hi Lee
+```
+
+# 3.1 prototype
+
+Arrow Function으로 prototype에 메서드를 할당하여 보자.
+
+```javascript
+const obj = {
+  name: 'Lee',
+};
+
+Object.prototype.sayHi = () => console.log(`Hi ${this.name}`);
+
+obj.sayHi(); // Hi undefined
+```
+
+Arrow Function으로 객체 메서드를 정의하였을 때와 같은 문제가 발생한다. 일반 함수를 할당한다.
+
+```javascript
+const obj = {
+  name: 'Lee',
+};
+
+Object.prototype.sayHi = function() {
+  console.log(`Hi ${this.name}`);
+};
+
+obj.sayHi(); // Hi Lee
 ```
 
 # Reference

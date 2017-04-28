@@ -128,8 +128,10 @@ Object.assign(target, ...sources)
 
 ```javascript
 // Copy
-const copy = Object.assign({}, { a: 1 });
+const obj = { a: 1 };
+const copy = Object.assign({}, obj);
 console.log(copy); // { a: 1 }
+console.log(obj == copy); // false
 
 // Merge
 const o1 = { a: 1 };

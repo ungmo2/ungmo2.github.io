@@ -7,12 +7,7 @@ section: typescript
 description:
 ---
 
-* TOC
-{:toc}
-
 ![typescript Logo](/img/typescript-logo.png)
-
-# 1. Introduction
 
 Java나 C# 같은 정적 타입 언어의 경우, 함수 또는 클래스를 선언하는 시점에 매개변수나 반환값의 타입을 명시하여야 한다. TypeScript 또한 정적 타입 언어이기 때문에 함수 또는 클래스를 선언하는 시점에 매개변수나 반환값의 타입을 명시하여야 한다.
 
@@ -120,10 +115,10 @@ function reverse<T>(items: T[]): T[] {
   return items.reverse();
 }
 
-const obj = [{name: 'Lee'}, {name: 'Kim'}, {name: 'Park'}];
+const arg = [{name: 'Lee'}, {name: 'Kim'}, {name: 'Park'}];
 
 // 인수에 의해 타입매개변수가 결정된다 
-const reversed = reverse(obj); // reversed: {name: string}[] 
+const reversed = reverse(arg); // reversed: {name: string}[] 
 console.log(reversed);
 
 reversed.push({name: 100}); // Error

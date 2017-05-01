@@ -4,7 +4,7 @@ title: TypeScript <strong>Typing</strong>
 subtitle: 타입 선언과 정적 타이핑
 categories: typescript
 section: typescript
-description: TypeScript '타입 선언' '정적 타이핑'
+description:
 ---
 
 * TOC

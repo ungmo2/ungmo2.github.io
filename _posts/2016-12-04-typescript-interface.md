@@ -4,7 +4,7 @@ title: TypeScript <strong>Interface</strong>
 subtitle: 인터페이스
 categories: typescript
 section: typescript
-description: TypeScript Interface 인터페이스 덕타이핑 '선택적 프로퍼티'
+description:
 ---
 
 * TOC

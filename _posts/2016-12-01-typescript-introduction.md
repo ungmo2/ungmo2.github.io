@@ -4,7 +4,7 @@ title: TypeScript <strong>Intro & Install</strong>
 subtitle: TypeScript의 소개와 개발 환경 구축
 categories: typescript
 section: typescript
-description: TypeScript의 소개와 개발 환경 구축, TypeScript 설치, TypeScript 컴파일러
+description:
 ---
 
 * TOC

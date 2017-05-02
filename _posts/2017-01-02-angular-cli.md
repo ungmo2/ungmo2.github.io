@@ -14,9 +14,9 @@ description: Angular CLI는 간단한 명령어를 사용하여 Angular 프로�
 
 # 1. Angular CLI란?
 
-[Angular CLI](https://cli.angular.io/)는 간단한 명령어를 사용하여 Angular 프로젝트 스캐폴딩(scaffolding)을 생성, 실행, 빌드할 수 있으며 다양한 구성 요소를 선별적으로 추가할 수 있는 커맨드-라인 인터페이스(command line interface)이다. 개발용 서버를 내장하고 있어서 빌드없이 프로젝트를 실행하고 확인할 수 있다.
+[Angular CLI](https://cli.angular.io/)는 간단한 명령어를 사용하여 Angular 프로젝트 스캐폴딩(scaffolding)을 생성, 실행, 빌드할 수 있으며 다양한 구성 요소를 선별적으로 추가할 수 있는 커맨드-라인 인터페이스(command line interface)이다. 개발용 서버를 내장하고 있어서 간단히 프로젝트를 실행시켜서 동작을 확인할 수 있다.
 
-프레임워크의 개발환경을 구축하는 것은 쉽지 않은 일이다. 프로젝트 구성요소를 일일이 생성하여야 하며 프로젝트 의존성 관리나 다양한 프로젝트 설정 구성 또한 만만한 작업이 아니다. 또한 익숙치 않은 프레임워크의 파일 구조나 코딩 컨벤션 등의 스타일 가이드를 작성하는 일은 많은 시행착오를 거쳐야 하는 작업이다. Angular CLI는 Angular 프로젝트 스캐폴딩을 간단한 명령어로 생성해 주어 개발환경 구축에 소요되는 시간을 최소화할 뿐 아니라 표준적인 스타일 가이드를 제공한다.
+프레임워크의 개발환경을 구축하는 것은 쉽지 않은 일이다. 프로젝트 구성요소를 프레임워크 구조에 맞게 하나하나 생성하여야 하며 프로젝트 의존성 관리나 다양한 프로젝트 설정 구성 또한 만만한 작업이 아니다. 또한 익숙치 않은 프레임워크의 파일 구조나 코딩 컨벤션 등의 스타일 가이드를 작성하는 일은 많은 시행착오를 거쳐야 하는 작업이다. Angular CLI는 Angular 프로젝트 스캐폴딩을 간단한 명령어로 생성해 주어 개발환경 구축에 소요되는 시간을 최소화할 뿐 아니라 표준적인 스타일 가이드를 제공한다.
 
 Angular CLI가 지원하는 기능은 아래와 같다.
 
@@ -40,6 +40,8 @@ Angular CLI를 사용하기 위해서는 어떠한 절차가 필요한지 그리
 # 2. Angular CLI 설치
 
 Angular CLI 1.0.0의 경우 Node.js 6.9.0, npm 3.0.0 이상이 필요하다.
+
+- [Node.js 설치와 npm 업데이트](http://poiemaweb.com/nodejs-basics#2-install)
 
 Angular CLI는 npm으로 설치할 수 있다. 아래의 명령어를 실행하여 Angular CLI를 설치한다.
 
@@ -91,7 +93,13 @@ $ ng help
 
 # 3. 프로젝트 생성
 
-Angular 프로젝트를 생성하기 위해서는 `ng new` 명령어를 사용한다. ng new 명령어 다음에 프로젝트명을 지정하면 프로젝트명과 일치하는 새로운 프로젝트 폴더가 생성되고 스캐폴딩(프로젝트 기본 골격)이 작성된다.
+Angular 프로젝트를 생성하기 위해서는 `ng new` 명령어를 사용한다. 
+
+```bash
+$ ng new <project-name>
+```
+
+ng new 명령어 다음에 프로젝트명을 지정하면 프로젝트명과 일치하는 새로운 프로젝트 폴더가 생성되고 스캐폴딩(프로젝트 기본 골격)이 작성된다.
 
 프로젝트명을 my-app로 지정하여 프로젝트를 생성하여 보자.
 
@@ -162,7 +170,7 @@ info No lockfile found.
 success Saved lockfile.
 ```
 
-프로젝트가 생성되면 아래와 같은 파일 구조의 스캐폴딩이 생성된다. 이것은 [Angular 스타일 가이드](https://angular.io/styleguide)를 준수하여 생성되기 때문에 Angular 프로젝트 코딩 컨벤션의 기준이 될 수 있어 매우 유용하다.
+프로젝트가 생성되면 아래와 같은 파일 구조의 스캐폴딩이 생성된다. 이것은 [Angular 스타일 가이드](https://angular.io/styleguide)의 기본 애플리케이션 구조, 네이밍 룰, 코딩 컨벤션 등을 준수하여 생성된 것이다.
 
 ```
 my-app/
@@ -180,11 +188,18 @@ my-app/
 └── tslint.json
 ```
 
-Angular 프로젝트의 파일 구조 및 구성요소에 대한 설명은 다음 장에서 설명한다.  
+Angular 프로젝트의 파일 구조 및 구성요소에 대한 설명은 [Angular의 파일 구조와 구성 요소](http://poiemaweb.com/angular-architecture)을 참조하기 바란다.
 
 # 4. 프로젝트 실행
 
 프로젝트를 로컬 환경에서 실행(preview)하기 위해서는 `ng serve` 명령어를 사용한다.
+
+```bash
+$ cd <project-name>
+$ ng serve
+```
+
+앞에서 생성한 my-app을 실행하여 보자.
 
 ```bash
 $ cd my-app
@@ -222,7 +237,7 @@ $ ng serve --port 4201
 
 Angular CLI가 내장하고 있는 개발용 서버는 코드의 변경을 감지하여 자동으로 브라우저를 리로드하는 LiveReload 기능을 제공한다. 따라서 코드 수정 후 파일을 저장하면 자동으로 코드의 변경을 반영하여 번들링이 수행되고 브라우저가 리로드되어 코드 변경 결과를 즉시 확인할 수 있다.
 
-브라우저와 서버를 종료시키지 않은 상태에서 코드를 수정해 보자.
+브라우저와 서버를 종료시키지 않은 상태에서 코드(my-app/src/app/app.component.ts)를 수정해 보자.
 
 ```typescript
 // my-app/src/app/app.component.ts

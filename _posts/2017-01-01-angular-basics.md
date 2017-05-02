@@ -14,7 +14,7 @@ description: Angular는 웹, 모바일 웹, 네이티브 모바일과 데스크�
 
 # 1. Angular 소개
 
-[Angular](https://angular.io/)는 웹, 모바일 웹, 네이티브 모바일과 데스크탑 애플리케이션 개발을 위한 구글의 오픈소스 자바스크립트 프레임워크이다. 프론트엔드 개발에 필요한 대부분의 기능을 갖추고 있으며 정적 타입을 제공하는 TypeScript를 주력 언어로 채택하여 대규모 애플리케이션 개발에 보다 적합한 환경을 제공한다.
+[Angular](https://angular.io/)는 SPA(Sigle Page Application) 개발을 위한 구글의 오픈소스 자바스크립트 프레임워크이다. 웹뿐만 아니라 모바일 웹, 네이티브 모바일과 데스크탑 애플리케이션까지 프론트엔드 개발에 필요한 대부분의 기능을 갖추고 있다. 정적 타입을 제공하는 TypeScript를 주력 언어로 채택하여 대규모 애플리케이션 개발에 보다 적합한 환경을 제공한다.
 
 이전 버전인 [AngularJS](https://angularjs.org/)는 2009년 구글의 미스코 헤브리(Miško Hevery)가 시작한 개인 프로젝트로 시작하여 2012년 AngularJS 1.0이 공개되었으며 2017년 1.6.2이 공개되는 등 Angular 정식 버전이 공개된 이후에도 지속적으로 업데이트를 진행하고 있다.
 
@@ -28,13 +28,23 @@ Angular는 AngularJS의 후속 버전이지만 호환성이 없을 뿐아니라 
 
 # 2. Angular와 AngulaJS의 차이점
 
-Angular는 AngulaJS의 단순한 업그레이드 버전이 아니다. Angular는 ES 6 스펙을 충족시키기 위해 TypeScript로 재작성되었고 AngulaJS와는 호환성이 없는 브레이킹 체인지를 다수 포함하고 있다.
+Angular는 AngulaJS의 단순한 업그레이드 버전이 아니다. Angular는 정적 타이핑과 ECMAScript6 스펙을 충족시키기 위해 TypeScript로 재작성되었고 AngulaJS와는 호환성이 없는 브레이킹 체인지를 다수 포함하고 있다.
 
-AngularJS의 Controller와 $scope 기반 개발에서 컴포넌트 기반 개발로 전환되었다. 선택적 바인딩(one-way, two-way) 지원하고 디렉티브(Directive)와 서비스, 의존성 주입(dependency injection)은 간소화 되었으며 주력 개발 언어로써 TypeScript를 도입하여 대규모 개발에 적합한 정적 타이핑과 인터페이스 등의 OOP, ECMAScript6에서 새롭게 도입된 모듈, 클래스 등을 지원하며 개발환경 지원 도구인 Angular CLI를 제공한다.
+Angular와 AngulaJS의 차이점을 정리하면 아래와 같다.
 
-또한 AngularJS의 angular.module과 jQlite보다 향상된 모듈 시스템과 DOM 제어 기능을 제공하며 API 또한 단순화되었다.
+- AngularJS의 Controller와 $scope 기반 개발에서 컴포넌트 기반 개발로 전환되었다.
 
-Angular은 AngularJS의 후속 버전이기는 하지만 호환성이 없는 새로운 프레임워크로 이해하는 것이 좋다. Angular는 AngularJS보다 배우기 쉬우며 성능이 향상되었고 애플리케이션 구조는 보다 단순해졌다.
+- AngularJS의 angular.module과 jQlite보다 향상된 모듈 시스템과 DOM 제어 기능을 제공하며 API 또한 단순화되었다.
+
+- 선택적 바인딩(one-way, two-way) 지원하고 디렉티브(Directive)와 서비스, 의존성 주입(dependency injection)은 간소화 되었다.
+
+- 주력 개발 언어로써 TypeScript를 도입하여 대규모 개발에 적합한 정적 타입과 인터페이스, 제네릭 등 타입 체크 지원 기능을 제공한다. 
+
+- ECMAScript6에서 새롭게 도입된 모듈, 클래스 등과 ECMAScript7의 데코레이터를 지원한다.
+
+- 강력한 개발환경 지원 도구인 Angular CLI를 제공한다.
+
+Angular은 AngularJS의 후속 버전이기는 하지만 호환성이 없는 새로운 프레임워크로 이해하는 것이 좋다. Angular는 AngularJS보다 배우기 쉬우며 성능은 향상되었고 애플리케이션 구조는 보다 단순해졌다.
 
 # 3. Angular의 장점
 
@@ -48,13 +58,13 @@ AngularJS의 경우 Controller와 $scope가 개발의 중심이었지만 Angular
 
 ### 3.1.2 TypeScript의 도입
 
-[TypeScript](./typescript-introduction)는 Microsoft에서 2012년에 발표한 오픈소스로 강력한 정적 타이핑 그리고 ES6(ECMAScript 2015)의 클래스, 모듈 등과 ES7의 Decorators 등을 지원한다.
+[TypeScript](./typescript-introduction)는 Microsoft에서 2012년에 발표한 오픈소스로 강력한 정적 타이핑 그리고 ECMAScript6(ECMAScript 2015)의 클래스, 모듈 등과 ECMAScript7의 데코레이터를 지원한다.
 
 TypeScript를 사용하는 이유는 여러가지 있지만 가장 큰 장점은 다양한 도구의 지원을 받을 수 있다는 것이다. TypeScript는 정적 타이핑을 지원하므로 높은 수준의 IntelliSense, 코드 어시스트, 타입 체크, 리팩토링 등을 지원하며 이러한 도구의 지원은 대규모 프로젝트를 위한 필수적 요소이기도 하다.
 
-또한 명시적인 정적 타입 지정은 코드의 가독성을 향상 시키고 예측을 가능하게 하며 컴파일 단계에서 오류를 포착할 수 있는 장점을 가지고 있다.
+또한 명시적인 정적 타입 지정은 코드의 가독성을 향상시키고 예측을 가능하게 하며 컴파일 단계에서 오류를 포착할 수 있는 장점을 가지고 있다.
 
-TypeScript의 모듈, 클래스, 인터페이스 등의 강력한 Object Oriented Programming 지원은 크고 복잡한 프로젝트의 코드 기반을 쉽게 구성 할 수 있도록 돕는다.
+TypeScript의 모듈, 클래스, 인터페이스 등의 강력한 Object Oriented Programming 지원은 크고 복잡한 프로젝트의 코드 기반을 쉽게 구성할 수 있도록 돕는다.
 
 Angular는 TypeScript 뿐만 아니라 JavaScript, Dart로도 작성할 수 있지만 Angular 공식 문서, 커뮤니티 활동에서 가장 많이 사용되고 있는 것은 TypeScript이다. Angular 공식 문서의 예제 등도 TypeScript로 작성된 것이 가장 많아 관련 정보 취득에도 이점이 있으며 이러한 현상은 앞으로도 지속될 것으로 예상된다.
 
@@ -66,7 +76,7 @@ Angular CLI contributor인 Mike Brocchi‏의 보고에 따르면 개발 환경 
 
 ![largest-barrier-to-getting-started-with-Angular 2](img/largest-barrier-to-getting-started-with-Angular2.png)
 
-Angular는 [Angular CLI](https://cli.angular.io/)라는 도구를 지원하여 간편한 개발 환경 구축을 지원한다. 간단한 명령어를 사용하여 매우 간편하게 프로젝트 생성에서 빌드, 구성요소 추가할 수 있으며 개발용 서버를 내장하고 있어 실행까지 가능하다. 이것은 개발환경 구축에 소요되는 시간을 최소화할 수 있어서 개발작업에 집중할 수 있도록 돕는다.
+Angular는 [Angular CLI](https://cli.angular.io/)를 통해 간편한 개발 환경 구축을 지원한다. 간단한 명령어를 사용하여 간편하게 프로젝트 생성에서 빌드, 테스트, 구성요소 추가를 할 수 있으며 개발용 서버를 내장하고 있어 실행까지 가능하다. 이것은 개발환경 구축에 소요되는 시간을 최소화할 수 있어서 개발작업에 집중할 수 있도록 돕는다.
 
 ## 3.2 성능의 향상
 
@@ -85,11 +95,6 @@ Lazy Loading(지연 로딩)은 SPA의 태생적 단점을 극복하기 위한 �
 ### 3.2.4 코드 최적화
 
 Angular 코드 자체도 지속적인 최적화가 수행되고 있어 45KB 정도의 크기로 축소되었다고 한다. Angular는 Mobile First를 지향하는 고성능 프레임워크를 표방하고 있기 때문에 지속적인 코드 최적화가 진행될 것으로 예상된다.
-
-<!-- Angular 추가 지원
-선택적 바인딩 지원(one-way, two-way)
-ECMAScript6 모듈 사용 지원
-Child route 지원 -->
 
 # Reference
 

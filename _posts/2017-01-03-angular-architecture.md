@@ -4,7 +4,7 @@ title: Angular <strong>Architecture</strong>
 subtitle: Angular의 파일 구조와 구성 요소
 categories: angular
 section: angular
-description: Angular CLI를 사용하여 프로젝트를 생성하면 아래와 같은 파일 구조의 스캐폴딩이 생성된다. Angular 프로젝트는 컴포넌트, 디렉티브, 서비스, 모듈 등 Angular 구성요소와 각종 설정 파일로 구성된다.
+description: Angular는 프레임워크이므로 웹 애플리케이션에 필요한 기본적인 기능의 구현체를 정형화된 구조로 제공한다. 이것을 바탕으로 우리의 애플리케이션에 요구되는 기능을 추가하는 방식으로 애플리케이션을 완성해 간다. 따라서 프레임워크의 학습은 정형화된 프레임워크의 구조에 익숙해지는 것으로 시작한다. Angular가 제공하는 기본 구조와 각 파일의 기능을 살펴보도록 하자. Angular CLI를 사용하여 프로젝트를 생성하면 아래와 같은 파일 구조의 스캐폴딩이 생성된다. Angular 프로젝트는 컴포넌트, 디렉티브, 서비스, 모듈 등 Angular 구성요소와 각종 설정 파일로 구성된다.
 ---
 
 * TOC
@@ -12,7 +12,7 @@ description: Angular CLI를 사용하여 프로젝트를 생성하면 아래와 
 
 ![angular Logo](/img/angular-logo.png)
 
-# 1. 프로젝트 파일의 구조
+# 1. Angular 애플리케이션의 파일 구조
 
 Angular는 프레임워크이므로 웹 애플리케이션에 필요한 기본적인 기능의 구현체를 정형화된 구조로 제공한다. 이것을 바탕으로 우리의 애플리케이션에 요구되는 기능을 추가하는 방식으로 애플리케이션을 완성해 간다. 따라서 프레임워크의 학습은 정형화된 프레임워크의 구조에 익숙해지는 것으로 시작한다. Angular가 제공하는 기본 구조와 각 파일의 기능을 살펴보도록 하자.
 
@@ -151,7 +151,7 @@ src 폴더 밖의 파일들은 테스트, 빌드, 배포 등을 위한 각종 �
 - tslint.json  
 : [TSLint](https://palantir.github.io/tslint/)가 사용하는 linting(구문 체크) 설정 파일. ng lint 명령어 실행시 참조된다.
 
-# 2. Angular 애플리케이션의 흐름
+# 2. Angular 애플리케이션의 처리 흐름
 
 Angular 프로젝트 파일들은 Angular의 독자적인 처리 흐름에 의해 처리된다. 지금까지 살펴본 프로젝트 파일들이 어떠한 흐름으로 로드되고 실행되는지 살펴보도록 하자.
 

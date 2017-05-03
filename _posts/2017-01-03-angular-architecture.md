@@ -20,6 +20,7 @@ Angular CLI를 사용하여 프로젝트를 생성하면 아래와 같은 파일
 
 ```bash
 $ ng new my-app
+$ cd my-app
 ```
 
 ```
@@ -72,7 +73,7 @@ Angular 프로젝트는 컴포넌트, 디렉티브, 서비스, 모듈 등 Angula
 `src/app` 폴더에는 Angular 구성요소가 위치하게 된다. 현재는 컴포넌트와 모듈만 존재하지만 구성요소가 추가되면 이 폴더에 위치하게 된다. 개발자가 작성하는 대부분의 파일은 이곳에 포함된다.
 
 - app/app.component.{ts, html, css, spec.ts}  
-: 컴포넌트를 구성하는 AppComponent, HTML 템플릿, CSS, 유닛 테스트 파일. 다른 컴포넌트가 추가되면 컴포넌트 트리에서 루트 컴포넌트로 역할을 담당하게 된다.
+: 컴포넌트를 구성하는 AppComponent, HTML 템플릿, CSS, 유닛 테스트 파일. 컴포넌트 트리에서 루트 컴포넌트로 역할을 담당하게 된다.
 
 - app/app.module.ts  
 : Angular 구성요소를 등록하는 루트 모듈 AppModule.
@@ -87,7 +88,13 @@ Angular 프로젝트는 컴포넌트, 디렉티브, 서비스, 모듈 등 Angula
 : 파비콘
 
 - index.html  
-: 웹사이트에 방문시 처음으로 로딩되는 디폴트 페이지. 루트 컴포넌트의 샐렉터에 의해 <app-root> 내에 템플릿이 표시되며 빌드 시 번들링된 JavaScript 파일이 자동 추가된다.
+: 웹사이트에 방문시 처음으로 로딩되는 디폴트 페이지. 루트 컴포넌트(/src/app/app.component.*)의 셀렉터인 \<app-root\>에 의해 루트 컴포넌트의 뷰가 로드되어 브라우저에 표시된다. 빌드 시에는 번들링된 JavaScript 파일이 자동 추가된 /dist/index.html이 생성된다.
+
+![index.html](img/index.html.png)
+{: .w-700}
+
+빌드 시에 index.html에 자동 추가되는 JavaScript 파일
+{: .desc-img}
 
 - main.ts  
 : 프로젝트의 메인 진입점. platformBrowserDynamic()에 의해 JIT 컴파일러가 실행되고 루트 모듈(AppModule)을 부트스트랩한다.
@@ -144,14 +151,84 @@ src 폴더 밖의 파일들은 테스트, 빌드, 배포 등을 위한 각종 �
 - tslint.json  
 : [TSLint](https://palantir.github.io/tslint/)가 사용하는 linting(구문 체크) 설정 파일. ng lint 명령어 실행시 참조된다.
 
-# 2. Angular의 구성 요소
+# 2. Angular 애플리케이션의 흐름
+
+Angular 프로젝트 파일들은 Angular의 독자적인 처리 흐름에 의해 처리된다. 지금까지 살펴본 프로젝트 파일들이 어떠한 흐름으로 로드되고 실행되는지 살펴보도록 하자.
+
+![angular-process](img/angular-process.png)
+{: .w-700}
+
+Angular 애플리케이션의 흐름
+{: .desc-img}
+
+## 2.1 index.html
+
+웹 브라우저에 의해 가장 먼저 로딩되는 프로젝트 파일은 /my-app/dist/index.html이다. 이것은 ng build 명령어로 프로젝트 빌드를 실행하였을 때 /my-app/src/index.html에 번들링된 JavaScript 파일이 추가되어 자동으로 생성되는 파일이다.
+
+Angular 애플리케이션을 기동하기 위해서는 많은 의존성 모듈(@angular/*, core-js, zone.js, RxJS 등)을 로드할 필요가 있는데 Angular는 모듈 번들러 [webpack](https://webpack.js.org/)을 사용하여 로드가 필요한 의존성 모듈을 번들링한 후, 수작업이 없이 간편하게 의존성 모듈을 로드할 수 있도록  자동화 기능을 제공한다.
+
+2016년 08월 1.0.0-beta.11부터 Angular의 빌드 시스템은 SystemJS에서 Webpack으로 변경되었다.  
+[We moved the build system from SystemJS to Webpack.](https://github.com/angular/angular-cli/blob/ed5f47dc22d5eb4a5d4b4ae2c8f7cb0ec1a999f3/CHANGELOG.md#100-beta11-webpack-2016-08-02)
+{: .info}
+
+의존성 모듈을 번들링하여 생성된 JavaScript 파일들이 로드되어 실행되면서 Angular 애플리케이션은 기동하기 시작한다. 번들링된 JavaScript 파일의 내용은 아래와 같다.
+
+inline.bundle.js
+: Webpack 유틸리티가 포함된 Webpack loader
+
+polifills.bundle.js
+: polyfill 의존성 모듈(core-js, zone.js)을 번들링한 파일
+
+styles.bundle.js
+: 스타일 정의를 번들링한 파일
+
+vendor.bundle.js
+: Angular 의존성 모듈(@angular/*, RxJS)을 번들링한 파일
+
+main.bundle.js
+: 개발자가 작성한 HTML, Javascript 등 소스코드를 번들링한 파일
+
+## 2.2 main.ts
+
+main.ts는 프로젝트의 메인 진입점(main entry point)으로 platformBrowserDynamic()에 의해 JIT 컴파일러가 실행되고 루트 모듈 AppModule(/src/app/app.module.ts)을 부트스트랩한다.
+
+main.ts는 .angular-cli.json의 main 속성의 설정에 의해 로드된다.
+
+```json
+...
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+...
+```
+
+## 2.3 app.module.ts
+
+app.module.ts은 @NgModule 데코레이터의 인자로 전달되는 메타 데이타에 애플리케이션 전체의 설정 정보를 기술한 루트 모듈 AppModule이다.
+
+루트 모듈 AppModule은 루트 컴포넌트 AppComponent(/src/app/app.component.ts)를 부트스트랩한다.
+
+## 2.4 app.component.ts
+
+app.component.ts은 애플리케이션의 화면을 구성하는 뷰(View)를 생성하고 관리하는 컴포넌트(AppComponent)이다. 컴포넌트는 템플릿과 메타데이터, 컴포넌트 클래스로 구성되며 템플릿과 컴포넌트 클래스는 데이터 바인딩에 의해 연결된다. 메타데이터 객체의 selector 속성에 설정된 문자열(app-root)에 의해 HTML 요소와 같이 로드할 수 있다.
+
+my-app 프로젝트의 경우 /dist/index.html의 \<app-root\>에 의해 AppComponent 컴포넌트의 뷰가 로드되어 \<app-root\>의 컨텐츠로 브라우저에 표시된다.
+
+# 3. Angular의 구성 요소
 
 Angular는 컴포넌트를 중심으로 Angular 구성요소를 조합하여 애플리케이션을 구축한다.
 
 Angular의 핵심 구성요소는 아래와 같다.
 
 - 컴포넌트 (Component)  
-: 애플리케이션의 화면을 구성하는 <strong>뷰(View)</strong>를 생성하고 관리한다. 컴포넌트는 템플릿과 메타데이터, 컴포넌트 클래스로 구성된다.
+: 애플리케이션의 화면을 구성하는 <strong>뷰(View)</strong>를 생성하고 뷰의 상태와 이벤트를 관리한다. 컴포넌트는 템플릿과 메타데이터, 컴포넌트 클래스로 구성된다.
 
 - 모듈 (Module)  
 : 관련된 구성 요소를 하나로 묶어 애플리케이션을 구성하는 하나의 단위로 만드는 역할을 한다.
@@ -160,14 +237,14 @@ Angular의 핵심 구성요소는 아래와 같다.
 : DOM을 변환하여 템플릿을 렌더링한다. 구조 디렉티브(Structural directive)와 속성 디렉티브(Attribute directive)가 있다.
 
 - 서비스 (Service)  
-: 애플리케이션의 다양한 목적의 비즈니스 로직을 담당한다. 컴포넌트에서 공통 처리 로직을 분리하기 위해 사용하며 의존성 주입(Dependency Injection)이 가능한 클래스로 작성된다.
+: 다양한 목적의 애플리케이션 공통 로직을 담당한다. 컴포넌트에서 애플리케이션 전역 관심사를 분리하기 위해 사용하며 의존성 주입(Dependency Injection)이 가능한 클래스로 작성된다.
 
 ![angular-archtecture](./img/angular-archtecture.png)
 
 Angular의 구성요소와 아키텍처
 {: .desc-img}
 
-## 2.1 컴포넌트
+## 3.1 컴포넌트
 
 컴포넌트는 애플리케이션의 화면을 구성하는 <strong>뷰(View)</strong>를 생성하고 관리한다. 컴포넌트가 생성하는 뷰는 화면을 구성하는 한부분으로 재사용이 쉬운 구조로 분할할 수 있으며 분할된 컴포넌트를 조합하여 화면을 생성한다.
 
@@ -213,7 +290,7 @@ export class AppComponent {
 
 ![component-code-binding](/img/component-code-binding.png)
 
-## 2.2 모듈
+## 3.2 모듈
 
 모듈은 관련된 구성 요소를 하나로 묶어 애플리케이션을 구성하는 하나의 단위로 만드는 역할을 한다.
 
@@ -250,7 +327,7 @@ export class AppModule { }
 
 모듈은 @NgModule 데코레이터를 가지고 있는 클래스이다. @NgModule 데코레이터 함수는 메타 데이터 객체를 전달받아 모듈을 정의한다.
 
-## 2.3 디렉티브
+## 3.3 디렉티브
 
 Angular는 디렉티브에 의해 DOM을 변환하여 템플릿을 렌더링한다. 디렉티브는 컴포넌트의 템플릿에서 HTML 요소 또는 HTML 요소의 속성과 유사하게 사용된다.
 
@@ -266,7 +343,7 @@ Angular는 디렉티브에 의해 DOM을 변환하여 템플릿을 렌더링한�
 
 디렉티브는 @Directive 데코레이터를 가지고 있는 클래스이다. 사실은 컴포넌트도 디렉티브이다. 컴포넌트와 디렉티브의 차이는 템플릿을 가지고 있는가이다. 즉 컴포넌트는 템플릿이 있는 디렉티브이다.
 
-## 2.4 서비스
+## 3.4 서비스
 
 애플리케이션의 다양한 목적의 비즈니스 로직을 담당하는 클래스이다. 컴포넌트에서 공통 처리 로직을 분리하기 위해 사용하며 의존성 주입(Dependency Injection)이 가능한 클래스로 작성된다. 서비스의 사용 사례는 아래와 같다.
 

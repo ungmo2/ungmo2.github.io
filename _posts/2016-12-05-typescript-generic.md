@@ -60,7 +60,8 @@ class NumberQueue extends Queue {
 
 const queue = new NumberQueue();
 queue.push(0);
-queue.push('1'); // 의도하지 않은 실수를 사전 검출 가능: '1' -> +'1'
+queue.push('1');     // 의도하지 않은 실수를 사전 검출 가능
+// queue.push(+'1'); // 실수를 사전 인지하고 수정할 수 있다
 
 console.log(queue.pop().toPrecision(1)); // 0
 console.log(queue.pop().toPrecision(1)); // 1
@@ -82,7 +83,8 @@ class Queue<T> {
 // number 전용 Queue
 const numberQueue = new Queue<number>();
 numberQueue.push(0);
-numberQueue.push(+'1'); // 의도하지 않은 실수를 사전 검출 가능: '1' -> +'1'
+numberQueue.push('1');     // 의도하지 않은 실수를 사전 검출 가능
+// numberQueue.push(+'1'); // 실수를 사전 인지하고 수정할 수 있다
 
 console.log(numberQueue.pop().toPrecision(1)); // 0
 console.log(numberQueue.pop().toPrecision(1)); // 1

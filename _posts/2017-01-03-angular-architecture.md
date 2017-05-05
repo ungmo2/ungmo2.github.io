@@ -165,6 +165,9 @@ Angular 애플리케이션의 흐름
 
 웹 브라우저에 의해 가장 먼저 로딩되는 프로젝트 파일은 /my-app/dist/index.html이다. 이것은 ng build 명령어로 프로젝트 빌드를 실행하였을 때 /my-app/src/index.html에 번들링된 JavaScript 파일이 추가되어 자동으로 생성되는 파일이다.
 
+/my-app/dist/index.html는 빌드(ng build)의 결과물로 실제 배포시에는 서버로 이관된다. ng serve 명령어에 의해 내장개발 서버를 사용하여 로컬 환경에서 프로젝트를 실행(preview)하는 경우, Angular CLI 내부적으로 빌드를 자동 수행하므로 빌드(ng build)를 별도 실행하여 /my-app/dist/index.html를 생성할 필요는 없다. 내장개발 서버가 자동으로 빌드되어 가상 드라이브에 저장되어 있는 index.html를 로드한다고 이해하면 된다.
+{: .info}
+
 Angular 애플리케이션을 기동하기 위해서는 많은 의존성 모듈(@angular/*, core-js, zone.js, RxJS 등)을 로드할 필요가 있는데 Angular는 모듈 번들러 [webpack](https://webpack.js.org/)을 사용하여 로드가 필요한 의존성 모듈을 번들링한 후, 수작업이 없이 간편하게 의존성 모듈을 로드할 수 있도록  자동화 기능을 제공한다.
 
 2016년 08월 1.0.0-beta.11부터 Angular의 빌드 시스템은 SystemJS에서 Webpack으로 변경되었다.  

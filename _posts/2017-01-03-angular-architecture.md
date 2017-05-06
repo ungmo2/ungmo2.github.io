@@ -201,12 +201,7 @@ main.ts는 .angular-cli.json의 main 속성의 설정에 의해 로드된다.
 ...
   "apps": [
     {
-      "root": "src",
-      "outDir": "dist",
-      "assets": [
-        "assets",
-        "favicon.ico"
-      ],
+      ...
       "index": "index.html",
       "main": "main.ts",
 ...
@@ -228,6 +223,13 @@ my-app 프로젝트의 경우 /dist/index.html의 \<app-root\>에 의해 AppComp
 
 Angular는 컴포넌트를 중심으로 Angular 구성요소를 조합하여 애플리케이션을 구축한다.
 
+컴포넌트는 화면을 구성하는 뷰(View)를 생성하고 관리한다. 컴포넌트는 템플릿과 컴포넌트 클래스로 구성되며 데이터 바인딩에 의해 연결된다. 하나의 화면은 1개 이상의 컴포넌트를 조립하여 구성되고 라우터(Router)에 의해 화면 간 이동을 구현한다. 디렉티브와 서비스를 사용하여 애플리케이션 전역 관심사를 분리하고 컴포넌트는 필요 시 디렉티브와 서비스를 사용한다.
+
+![angular-archtecture](./img/angular-archtecture.png)
+
+Angular의 구성요소와 아키텍처
+{: .desc-img}
+
 Angular의 핵심 구성요소는 아래와 같다.
 
 - 컴포넌트 (Component)  
@@ -237,15 +239,15 @@ Angular의 핵심 구성요소는 아래와 같다.
 : 관련된 구성 요소를 하나로 묶어 애플리케이션을 구성하는 하나의 단위로 만드는 역할을 한다.
 
 - 디렉티브 (Directive)  
-: DOM을 변환하여 템플릿을 렌더링한다. 구조 디렉티브(Structural directive)와 속성 디렉티브(Attribute directive)가 있다.
+: 템플릿 내에서 HTML 요소 또는 HTML 요소의 속성과 유사하게 사용되며 DOM의 표현이나 구조를 변경할 수도 있고 로직을 가질 수도 있다. 컴포넌트와의 차이는 뷰(템플릿)를 소유하지 않는다는 것이다.  구조 디렉티브(Structural directive)와 속성 디렉티브(Attribute directive)가 있다.
 
 - 서비스 (Service)  
 : 다양한 목적의 애플리케이션 공통 로직을 담당한다. 컴포넌트에서 애플리케이션 전역 관심사를 분리하기 위해 사용하며 의존성 주입(Dependency Injection)이 가능한 클래스로 작성된다.
 
-![angular-archtecture](./img/angular-archtecture.png)
+<!--
+Angular는 컴포넌트 기반~~~~~~~~~~~~~
 
-Angular의 구성요소와 아키텍처
-{: .desc-img}
+컴포넌트는 Angular 고유의 마크업인 템플릿 문법을 사용하여 작성된 HTML 템플릿과 이러한 템플릿을 관리하기 위해 컴포넌트 클래스로 구성된다. 애플리케이션에서 공통으로 사용하는 애플리케이션 로직은 컴포넌트에서 분리하여 서비스에 작성하고 컴포넌트와 서비스 등의 구성요소를 모듈에 등록한다. 애플리케이션은 루트 모듈을 부트스트랩핑하는 것으로 동작한다.
 
 ## 3.1 컴포넌트
 
@@ -255,7 +257,7 @@ Angular의 구성요소와 아키텍처
 
 ![component-code](/img/component-code.png)
 
-<!--
+
 ```typescript
 // 모듈 임포트
 import { Component } from '@angular/core';
@@ -279,7 +281,7 @@ export class AppComponent {
   }
 }
 ```
--->
+
 
 컴포넌트는 @Component 데코레이터를 가지고 있는 클래스이다. @Component 데코레이터는 바로 아래에 있는 클래스를 컴포넌트 클래스로 식별하며 컴포넌트와 뷰를 생성하는데 필요한 메타데이터 객체를 전달받아 컴포넌트를 정의한다. 
 
@@ -354,7 +356,7 @@ Angular는 디렉티브에 의해 DOM을 변환하여 템플릿을 렌더링한�
 - 데이터 공유 서비스
 - 사용자 인증 서비스
 
-
+-->
 # Reference
 
 * [Angular](https://angular.io/)

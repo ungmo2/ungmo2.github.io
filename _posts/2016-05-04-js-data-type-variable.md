@@ -217,6 +217,9 @@ console.log(y); // throws ReferenceError exception
 
 ![memory_address](/img/memory_address.png)
 
+변수 값 할당의 구조
+{: .desc-img}
+
 변수(memory address에 접근하기 위한 식별자)를 통해 메모리에 값을 저장하기 위해서는 우선 필요한 저장 단위(byte)를 알아야한다. 이는 값의 종류(데이터의 종류 = 자료형)에 따라 필요한 메모리의 크기가 다르기 때문이다.
 
 예를 들어 1byte로 표현할 수 있는 값의 총수는 256개(2<sup>8</sup>), 4byte로 표현할 수 있는 값의 총수는 4,294,967,296개(2<sup>32</sup>)이다.
@@ -228,6 +231,9 @@ int num; // 4byte 정수형
 ```
 
 ![int num](/img/int_num.png)
+
+변수 선언과 메모리의 확보
+{: .desc-img}
 
 또한 자료형에 맞는 값을 대입(할당)하여야한다.
 

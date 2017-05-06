@@ -355,9 +355,9 @@ export class MyComponentComponent implements OnInit {
 
 이번 장에서 주목할 것은 ng g component 명령어에 지정한 컴포넌트명에 의해 자동 생성된 5행 selector 속성값 'app-my-component'과 9행 컴포넌트 클래스명이다.
 
-우선 elector 속성값 'app-my-component'에 대해 알아보자.
+우선 selector 속성값 'app-my-component'에 대해 알아보자.
 
-@Component 데코레이터 함수에 <strong>메타데이터</strong>가 전달되었다. 이 메타데이터는 컴포넌트에 관련된 설정 정보를 담고 있는 객체이다. 컴포넌트의 상세한 내용은 이후에 살펴보기로 하고 이번 장에서는 메타데이터의 설정 정보 생성에 관해서만 집중하도록 하자.
+@Component 데코레이터 함수에 <strong>메타데이터</strong>가 전달되었다. 이 메타데이터는 컴포넌트에 관련된 설정 정보를 담고 있는 객체이다. 컴포넌트의 상세한 내용은 이후에 살펴보기로 하고 이번 장에서는 Angular CLI에 의한 메타데이터의 설정 정보 생성에 관해서만 집중하도록 하자.
 
 5행을 보면 메타데이터 객체의 selector 속성에 속성값 'app-my-component'가 설정되어 있다. selector 속성은 컴포넌트를 마크업으로 표현할 때 사용하는 이름이다. 예를 들어 루트 컴포넌트인 src/app/app.component.ts에서 my-component 컴포넌트를 사용하려면 src/app/app.component.html를 아래와 같이 수정한다.
 
@@ -369,7 +369,7 @@ export class MyComponentComponent implements OnInit {
 <app-my-component></app-my-component>
 ```
 
-selector 속성값 'app-my-component'는 `ng g component my-component` 명령어에서 지정한 컴포넌트명 앞에 접두사(prefix) app이 자동으로 추가된 값이다. Angular는 다른 애플리케이션 selector 또는 HTML 요소와 충돌을 방지하기 위해 접두사를 추가하여 케밥 표기법으로 명명하는 것을 권장하고 있다. 자세한 내용은 [Angular Style Guide: Custom prefix for components](https://angular.io/docs/ts/latest/guide/style-guide.html#!#02-07)을 참조하기 바란다.
+selector 속성값 'app-my-component'는 `ng g component my-component` 명령어에서 지정한 컴포넌트명 my-component 앞에 접두사(prefix) app이 자동으로 추가된 값이다. Angular는 다른 애플리케이션의 selector 또는 HTML 요소와 충돌을 방지하기 위해 접두사를 추가하여 케밥 표기법으로 명명하는 것을 권장하고 있다. 자세한 내용은 [Angular Style Guide: Custom prefix for components](https://angular.io/docs/ts/latest/guide/style-guide.html#!#02-07)을 참조하기 바란다.
 
 기본 접두사는 app이며 이것은 .angular-cli.json에서 확인할 수 있다.
 
@@ -420,7 +420,6 @@ templateUrl, styleUrls 속성은 외부 파일을 로드하기 위해 사용한�
 ```
 
 위 예제의 경우 컴포넌트는 같은 폴더 내의 외부 파일 my-component.component.html과 my-component.component.css을 HTML 템플릿과 CSS로 사용한다. HTML 템플릿 또는 CSS가 간단한 경우에는 메터데이터 내부에 직접 기술할 수도 있다. 이때 templateUrl, styleUrls 속성 대신 template, styles 속성을 사용한다.
-
 
 ```typescript
 // src/app/my-component/my-component.component.ts

@@ -37,7 +37,7 @@ VSCode를 설치가 완료되었으면 적당한 위치에 프로젝트 폴더�
 
 # 2. tsconfig.json
 
-컴파일할 때마다 다양한 옵션을 반복적으로 지정하는 것은 번거러운 일이다. <strong>[tsconfig.json](http://www.typescriptlang.org/docs/handbook/tsconfig-json.html)</strong>을 사용하는 편이 좋다. tsconfig.json은 TypeScript를 위한 프로젝트 단위의 환경 파일로써 컴파일 옵션과 컴파일 대상에 대한 설정 등을 기술한 것이다.
+컴파일할 때마다 다양한 옵션을 반복적으로 지정하는 것은 번거러운 일이므로 <strong>[tsconfig.json](http://www.typescriptlang.org/docs/handbook/tsconfig-json.html)</strong>을 사용하는 편이 좋다. tsconfig.json은 TypeScript를 위한 프로젝트 단위의 환경 파일로써 컴파일 옵션과 컴파일 대상에 대한 설정 등을 기술한 것이다.
 
 `compilerOptions` 속성에는 [컴파일 옵션](https://www.typescriptlang.org/docs/handbook/compiler-options.html)을 설정한다. 생략한 경우에는 기본 컴파일 옵션이 사용된다.
 

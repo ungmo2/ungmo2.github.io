@@ -215,7 +215,7 @@ chunk    {4} inline.bundle.js, inline.bundle.js.map (inline) 0 bytes [entry] [re
 webpack: Compiled successfully.
 ```
 
-ng serve 명령어를 실행하면 Angular CLI가 내장하고 있는 개발용 서버를 실행하고 Webpack을 사용하여 소스코드를 번들링(Bundling)한다.
+ng serve 명령어를 실행하면 Webpack을 사용하여 소스코드와 의존 모듈을 번들링(Bundling)하고 Angular CLI가 내장하고 있는 개발용 서버를 실행한다.
 
 브라우저에서 localhost:4200으로 개발용 서버에 접속한다.
 

@@ -18,7 +18,7 @@ let template = `Template strings can include 'single quotes' and "double quotes"
 console.log(template);
 ```
 
-일반적인 문자열과 달리 템플릿 문자열은 여러 줄에 걸쳐 표현할 수 있으며 줄바꿈과 들여쓰기 등 템플릿 문자열 속의 모든 white-space는 있는 그대로 적용된다.
+일반적인 문자열과 달리 템플릿 문자열은 여러 줄에 걸쳐 표현할 수 있으며 줄바꿈과 들여쓰기 등 템플릿 문자열 내의 모든 white-space가 있는 그대로 적용된다.
 
 ```javascript
 let template =`<ul class="nav-items">

@@ -23,7 +23,7 @@ description: 자료형(Data Type)은 프로그래밍 언어에서 객체, 정수
 
 예를 들어 1byte로 표현할 수 있는 값의 총수는 256개(2<sup>8</sup>), 4byte로 표현할 수 있는 값의 총수는 4,294,967,296개(2<sup>32</sup>)이다.
 
-C나 Java같은 C-family 언어는 Static Typing(정적 타이핑) 언어로 변수 선언 시 변수에 저장할 값의 종류에 따라 사전에 자료형을 지정(Type annotation)하여야 한다.
+C나 Java같은 C-family 언어는 Static Typing(정적 타이핑) 언어로 변수 선언 시 변수에 저장할 값의 종류에 따라 사전에 자료형을 지정(Type annotation)하여야 한다. 다음은 C에서 정수형 변수를 선언하는 예이다.
 
 ```c
 int num; // 4byte 정수형
@@ -34,7 +34,7 @@ int num; // 4byte 정수형
 변수 선언과 메모리의 확보
 {: .desc-img}
 
-또한 자료형에 맞는 값을 대입(할당)하여야한다.
+또한 자료형에 맞는 값을 대입(할당)하여야한다. 다음은 C에서 정수형 변수에 문자열을 할당한 예이다.
 
 ```c
 int main(void) {
@@ -48,6 +48,17 @@ int main(void) {
 ```
 
 JavaScript는 동적 타이핑(Dynamic Typing) 언어로 변수의 Type annotation이 필요없이 값이 할당되는 과정에서 자동으로 자료형이 결정(Type Inference)된다. 따라서 같은 변수에 여러 data type의 값을 대입할 수 있다.
+
+```javascript
+var str  = 'Hello';
+var num  = 1;
+var bool = true;
+
+var foo = 'string';
+console.log(typeof foo); // string
+foo = 1;
+console.log(typeof foo); // number
+```
 
 JavaScript에는 어떠한 자료형이 있는지 그리고 변수는 어떻게 사용하는지 알아보도록 하자.
 

@@ -4,17 +4,58 @@ title: Javascript <strong>Data type & Variable</strong>
 subtitle: 자료형과 변수
 categories: javascript
 section: javascript
-description: javascript 자바스크립트 자료형 타입 변수 '동적 타이핑' 호이스팅
+description: 자료형(Data Type)은 프로그래밍 언어에서 객체, 정수, 불린 등 여러 종류의 데이터를 식별하는 분류를 말한다. 모든 프로그래밍 언어의 학습은 자료형을 파악하는 것으로부터 시작된다. 프로그래밍은 변수를 통해 값을 저장하고 참조하며 연산자로 값을 연산, 평가하고 조건문과 반복문에 의한 흐름제어로 데이터의 흐름을 제어하고 함수로 구문의 집합을 만들며 객체, 배열 등으로 자료를 구조화하는 것이다. 변수는 위치(주소)를 기억하는 저장소이다. 위치란 메모리 상의 주소(address)를 의미한다. 즉 변수란 메모리 주소(Memory address)에 접근하기 위해 사람이 이해할 수 있는 언어로 지정한 식별자(identifier)이다.
 ---
 
 * TOC
 {:toc}
 
+프로그래밍은 변수를 통해 값을 저장하고 참조하며 연산자로 값을 연산, 평가하고 조건문과 반복문에 의한 흐름제어로 데이터의 흐름을 제어하고 함수로 재사용이 가능한 구문의 집합을 만들며 객체, 배열 등으로 자료를 구조화하는 것이다.
+
+변수는 위치(주소)를 기억하는 저장소이다. 위치란 메모리 상의 주소(address)를 의미한다. 즉 변수란 메모리 주소(Memory address)에 접근하기 위해 사람이 이해할 수 있는 언어로 지정한 식별자(identifier)이다.
+
+![memory_address](/img/memory_address.png)
+
+변수 값 할당의 구조
+{: .desc-img}
+
+변수(memory address에 접근하기 위한 식별자)를 통해 메모리에 값을 저장하기 위해서는 우선 필요한 저장 단위(byte)를 알아야한다. 이는 값의 종류에 따라 값을 저장하기 위해 확보해야할 메모리의 크기가 다르기 때문이다. 이때 값의 종류 즉 데이터의 종류를 자료형(Data Type)이라 한다.
+
+예를 들어 1byte로 표현할 수 있는 값의 총수는 256개(2<sup>8</sup>), 4byte로 표현할 수 있는 값의 총수는 4,294,967,296개(2<sup>32</sup>)이다.
+
+C나 Java같은 C-family 언어는 Static Typing(정적 타이핑) 언어로 변수 선언 시 변수에 저장할 값의 종류에 따라 사전에 자료형을 지정(Type annotation)하여야 한다.
+
+```c
+int num; // 4byte 정수형
+```
+
+![int num](/img/int_num.png)
+
+변수 선언과 메모리의 확보
+{: .desc-img}
+
+또한 자료형에 맞는 값을 대입(할당)하여야한다.
+
+```c
+int main(void) {
+  int num = 46;
+  char * str = "String";
+
+  num = "String"; // warning: incompatible pointer to integer conversion assigning to 'int' from 'char [7]'
+
+  return 0;
+}
+```
+
+JavaScript는 동적 타이핑(Dynamic Typing) 언어로 변수의 Type annotation이 필요없이 값이 할당되는 과정에서 자동으로 자료형이 결정(Type Inference)된다. 따라서 같은 변수에 여러 data type의 값을 대입할 수 있다.
+
+JavaScript에는 어떠한 자료형이 있는지 그리고 변수는 어떻게 사용하는지 알아보도록 하자.
+
 # 1. Data Type (자료형)
 
-모든 프로그래밍 언어의 학습은 Data Type(자료형)을 파악하는 것으로부터 시작된다.
+자료형(Data Type)은 프로그래밍 언어에서 문자열, 숫자, 불린, 객체 등 여러 종류의 데이터를 식별하는 분류를 말한다. 모든 프로그래밍 언어의 학습은 자료형을 파악하는 것으로부터 시작된다.
 
-자료형은 프로그래밍 언어에서 객체, 정수, 불린 등 여러 종류의 데이터를 식별하는 분류를 말한다. 최신 ECMAScript 표준(ECMAScript 2015 (6th Edition, ECMA-262) / 2015.06)은 7개의 data type을 정의한다
+최신 ECMAScript 표준(ECMAScript 2015 (6th Edition, ECMA-262) / 2015.06)은 7개의 Data type을 정의한다
 
 * 기본 자료형 (primitive data type)
   * `Boolean`
@@ -29,7 +70,7 @@ Javascript의 자료형은 크게 기본 자료형(primitive data type)과 Objec
 
 ## 1.1 Primitive Data Type (기본자료형)
 
-기본자료형(Primitive data type)의 값은 변경 불가능한 값(immutable value)이다. 또한 이들은 **[pass-by-value](./js-object#pass-by-value)** 이다.
+기본자료형(Primitive data type)의 값은 [변경 불가능한 값(immutable value)](./js-immutability)이다. 또한 이들은 **[pass-by-value](./js-object#pass-by-value)** 이다.
 
 ### 1.1.1 Boolean
 
@@ -170,7 +211,7 @@ ECMAScript 6(Javascript 2015) 에서 추가되었다. Symbol은 유일하고 �
 
 # 2. Variable (변수)
 
-어플리케이션에서 값(value)을 유지할 필요가 있을 때 변수를 사용한다.  
+애플리케이션에서 값(value)을 유지할 필요가 있을 때 변수를 사용한다.  
 
 변수는 값을 저장, 조회, 조작(변경)하는 데 사용되며 다른 사용자가 변수의 존재 목적을 쉽게 이해할 수 있도록 의미있는 이름을 지정하여야한다.
 
@@ -210,43 +251,6 @@ console.log(y); // throws ReferenceError exception
 ```
 
 # 3. Dynamic Typing (동적 타이핑)
-
-프로그래밍은 변수를 통해 값을 저장하고 참조하며 연산자로 값을 연산, 평가하고 조건문과 반복문에 의한 흐름제어로 데이터의 흐름을 제어하고 함수로 구문의 집합을 만들며 객체, 배열 등으로 자료를 구조화하는 것이다.
-
-변수는 위치(주소)를 기억하는 저장소이다. 위치란 메모리 상의 주소(address)를 의미한다. 즉 변수란 메모리 주소(Memory address)에 접근하기 위해 사람이 이해할 수 있는 언어로 지정한 식별자(identifier)이다.
-
-![memory_address](/img/memory_address.png)
-
-변수 값 할당의 구조
-{: .desc-img}
-
-변수(memory address에 접근하기 위한 식별자)를 통해 메모리에 값을 저장하기 위해서는 우선 필요한 저장 단위(byte)를 알아야한다. 이는 값의 종류(데이터의 종류 = 자료형)에 따라 필요한 메모리의 크기가 다르기 때문이다.
-
-예를 들어 1byte로 표현할 수 있는 값의 총수는 256개(2<sup>8</sup>), 4byte로 표현할 수 있는 값의 총수는 4,294,967,296개(2<sup>32</sup>)이다.
-
-C나 Java같은 C-family 언어는 Static Typing(정적 타이핑) 언어로 변수 선언 시 변수에 저장할 값의 종류에 따라 사전에 자료형을 지정(Type annotation)하여야 한다.
-
-```c
-int num; // 4byte 정수형
-```
-
-![int num](/img/int_num.png)
-
-변수 선언과 메모리의 확보
-{: .desc-img}
-
-또한 자료형에 맞는 값을 대입(할당)하여야한다.
-
-```c
-int main(void) {
-  int num = 46;
-  char * str = "String";
-
-  num = "String"; // warning: incompatible pointer to integer conversion assigning to 'int' from 'char [7]'
-
-  return 0;
-}
-```
 
 JavaScript는 동적 타입(dynamic typed) 언어 혹은 느슨한 타입(loosely typed) 언어이다. 이것은 변수의 Type annotation이 필요없이 값이 할당되는 과정에서 자동으로 자료형이 결정(Type Inference)될 것이라는 뜻이다. 따라서 같은 변수에 여러 data type의 값을 대입할 수 있다. 이를 동적 타이핑(Dynamic Typing)이라 한다.
 

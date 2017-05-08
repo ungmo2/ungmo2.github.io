@@ -488,7 +488,7 @@ export class NewDirectiveDirective {
 }
 ```
 
-이것은 .angular-cli.json의 기본 접두사는 app과 ng g directive 명령어에 지정한 디렉티브명으로 합성된 디렉티브 셀렉터 이름으로 카멜표기법(camelCase)으로 작성된다.
+이것은 .angular-cli.json의 기본 접두사는 app과 ng g directive 명령어에 지정한 디렉티브명으로 합성된 디렉티브 셀렉터 이름으로 카멜 표기법(camelCase)으로 작성된다.
 
 커스텀 디렉티브의 이름은 HTML의 속성처럼 사용된다. 디렉티브의 상세한 내용은 이후 자세히 다루도록 한다.
 

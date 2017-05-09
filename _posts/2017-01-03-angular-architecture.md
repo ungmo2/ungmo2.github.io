@@ -165,16 +165,16 @@ Angular 애플리케이션의 흐름
 
 웹 브라우저에 의해 가장 먼저 로딩되는 프로젝트 파일은 /my-app/dist/index.html이다. 이것은 ng build 명령어로 프로젝트 빌드를 실행하였을 때 /my-app/src/index.html에 번들링된 JavaScript 파일이 추가되어 자동으로 생성되는 파일이다.
 
-/my-app/dist/index.html는 빌드(ng build)의 결과물로 실제 배포시에는 서버로 이관된다. ng serve 명령어에 의해 내장개발 서버를 사용하여 로컬 환경에서 프로젝트를 실행(preview)하는 경우, Angular CLI 내부적으로 빌드를 자동 수행하므로 빌드(ng build)를 별도 실행하여 /my-app/dist/index.html를 생성할 필요는 없다. 내장개발 서버가 자동으로 빌드되어 가상 드라이브에 저장되어 있는 index.html를 로드한다고 이해하면 된다.
+/my-app/dist/index.html는 빌드(ng build)의 결과물로 실제 배포시에는 서버로 이관된다. ng serve 명령어에 의해 내장개발 서버를 사용하여 로컬 환경에서 프로젝트를 실행(preview)하는 경우, Angular CLI 내부적으로 빌드를 자동 수행하므로 빌드(ng build)를 별도 실행하여 /my-app/dist/index.html를 생성할 필요는 없다. 자동으로 빌드되어 가상 드라이브에 저장되어 있는 index.html를 내장개발 서버가 로드한다고 이해하면 된다.
 {: .info}
 
-Angular 애플리케이션을 기동하기 위해서는 많은 의존성 모듈(@angular/*, core-js, zone.js, RxJS 등)을 로드할 필요가 있는데 Angular는 모듈 번들러 [webpack](https://webpack.js.org/)을 사용하여 로드가 필요한 의존성 모듈을 번들링한 후, 수작업이 없이 간편하게 의존성 모듈을 로드할 수 있도록  자동화 기능을 제공한다.
+Angular 애플리케이션을 기동하기 위해서는 수많은 의존성 모듈(@angular/*, core-js, zone.js, RxJS 등)과 TypeScript 파일의 컴파일 결과물인 JavaScript 파일을 로드할 필요가 있다. Angular는 모듈 번들러 [webpack](https://webpack.js.org/)을 사용하여 의존성 모듈과 JavaScript 파일을 번들링한 후, 수작업없이 간편하게 로드할 수 있도록 자동화 기능을 제공한다.
 
 2016년 08월 1.0.0-beta.11부터 Angular의 빌드 시스템은 SystemJS에서 Webpack으로 변경되었다.  
 [We moved the build system from SystemJS to Webpack.](https://github.com/angular/angular-cli/blob/ed5f47dc22d5eb4a5d4b4ae2c8f7cb0ec1a999f3/CHANGELOG.md#100-beta11-webpack-2016-08-02)
 {: .info}
 
-의존성 모듈을 번들링하여 생성된 JavaScript 파일들이 로드되어 실행되면서 Angular 애플리케이션은 기동하기 시작한다. 번들링된 JavaScript 파일의 내용은 아래와 같다.
+번들링의 결과물로 생성된 JavaScript 파일들이 로드되어 실행되면서 Angular 애플리케이션은 기동하기 시작한다. 번들링된 JavaScript 파일은 아래와 같다.
 
 inline.bundle.js
 : Webpack 유틸리티가 포함된 Webpack loader
@@ -189,11 +189,11 @@ vendor.bundle.js
 : Angular 의존성 모듈(@angular/*, RxJS)을 번들링한 파일
 
 main.bundle.js
-: 개발자가 작성한 HTML, Javascript 등 소스코드를 번들링한 파일
+: 개발자가 작성한 컴포넌트, 디렉티브, 서비스 등 소스코드를 번들링한 파일
 
 ## 2.2 main.ts
 
-main.ts는 프로젝트의 메인 진입점(main entry point)으로 platformBrowserDynamic()에 의해 JIT 컴파일러가 실행되고 루트 모듈 AppModule(/src/app/app.module.ts)을 부트스트랩한다.
+main.ts는 프로젝트의 메인 진입점(main entry point)이다. platformBrowserDynamic()에 의해 JIT 컴파일러가 실행되고 루트 모듈 AppModule(/src/app/app.module.ts)을 부트스트랩한다.
 
 main.ts는 .angular-cli.json의 main 속성의 설정에 의해 로드된다.
 
@@ -209,7 +209,7 @@ main.ts는 .angular-cli.json의 main 속성의 설정에 의해 로드된다.
 
 ## 2.3 app.module.ts
 
-app.module.ts은 @NgModule 데코레이터의 인자로 전달되는 메타 데이타에 애플리케이션 전체의 설정 정보를 기술한 루트 모듈 AppModule이다.
+app.module.ts은 @NgModule 데코레이터의 인자로 전달되는 메타데이타에 애플리케이션 전체의 설정 정보를 기술한 루트 모듈 AppModule이다.
 
 루트 모듈 AppModule은 루트 컴포넌트 AppComponent(/src/app/app.component.ts)를 부트스트랩한다.
 

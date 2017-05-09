@@ -146,7 +146,7 @@ export class AppComponent {
 jQuery에 의한 DOM 조작(Procedural programming)
 {: .desc-img}
 
-하지만 Angular는 DOM에 직접 접근하지 않고 컴포넌트 클래스와 뷰의 상호 관계를 선언하는 방식([선언형 프로그래밍: Declarative programming](https://ko.wikipedia.org/wiki/%EC%84%A0%EC%96%B8%ED%98%95_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D))으로 뷰를 관리한다. 이때 사용되는 것이 템플릿 문법이다. 템플릿 문법과 HTML로 기술된 템플릿은 JIT 또는 AOT 컴파일러에 의해 브라우저가 이해할 수 있는 JavaScript와 HTML로 컴파일된다. 아래 그림과 같이 템플릿 내의 {{ "{{title" }}}}은 컴포넌트 클래스의 title를 취득하여 HTML 내에 삽입한다.
+하지만 Angular는 DOM에 직접 접근하지 않고 컴포넌트 클래스와 뷰의 상호 관계를 선언하는 방식([선언형 프로그래밍: Declarative programming](https://ko.wikipedia.org/wiki/%EC%84%A0%EC%96%B8%ED%98%95_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D))으로 뷰를 관리한다. 이때 사용되는 것이 템플릿 문법이다. 템플릿 문법과 HTML로 기술된 템플릿은 JIT 또는 AOT 컴파일러에 의해 브라우저가 이해할 수 있는 JavaScript와 HTML로 컴파일된다. 아래 그림과 같이 템플릿 내의 {{ "{{title" }}}}은 컴포넌트 클래스의 변수 title의 값을 취득하여 HTML 내에 삽입한다.
 
 ![declarative-programming](./img/declarative-programming.png)
 

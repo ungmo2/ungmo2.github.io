@@ -144,11 +144,13 @@ export class AppComponent {
 jQuery에 의한 DOM 조작(Procedural programming)
 {: .desc-img}
 
-하지만 Angular는 DOM에 직접 접근하지 않고 컴포넌트 클래스와 뷰의 상호 관계를 선언하는 방식([선언형 프로그래밍: Declarative programming](https://ko.wikipedia.org/wiki/%EC%84%A0%EC%96%B8%ED%98%95_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D))으로 뷰를 관리한다. 이때 사용되는 것이 템플릿 문법이다. 템플릿 문법과 HTML로 기술된 템플릿은 JIT 또는 AOT 컴파일러에 의해 브라우저가 이해할 수 있는 JavaScript와 HTML로 컴파일된다. 아래 그림과 같이 템플릿 내의 {{ "{{title" }}}}은 컴포넌트 클래스의 변수 title의 값을 취득하여 HTML 내에 삽입한다.
+하지만 Angular는 DOM에 직접 접근하지 않고 컴포넌트 클래스와 뷰의 상호 관계를 선언하는 방식([선언형 프로그래밍: Declarative programming](https://ko.wikipedia.org/wiki/%EC%84%A0%EC%96%B8%ED%98%95_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D))으로 뷰를 관리한다. 이때 사용되는 것이 데이터 바인딩이며 이를 통해 템플릿은 컴포넌트 클래스와 연결된다. 데이터 바인딩은 템플릿 문법으로 기술된다. HTML과 템플릿 문법으로 기술된 템플릿은 JIT 또는 AOT 컴파일러에 의해 브라우저가 이해할 수 있는 JavaScript로 컴파일된다. 
+
+아래 그림과 같이 템플릿 내의 {{ "{{title" }}}}은 컴포넌트 클래스의 변수 title의 값을 취득하여 HTML 내에 삽입한다.
 
 ![declarative-programming](./img/declarative-programming.png)
 
-Angular 데이터 바인딩에 의한 뷰 관리(Declarativeprogramming)
+Angular 데이터 바인딩에 의한 뷰와 데이터의 연결(Declarative programming)
 {: .desc-img}
 
 컴포넌트의 기본적인 동작 구조는 아래와 같다.
@@ -433,7 +435,7 @@ export class HelloComponent {}
 
 지금까지 템플릿에 스타일을 적용하는 방법을 알아보았다. hello 컴포넌트의 경우 템플릿과 스타일 모두 간단하므로 한눈에 알아보기 좋도록 인라인 방식으로 진행하도록 하자.
 
-주의하여야 할 것은 컴포넌트 스타일의 CSS 셀렉터(선택자)는 해당 컴포넌트의 템플릿 내에서만 적용된다는 것이다. 위의 예제에서 h2 셀렉터는 hello 컴포넌트의 템플릿 내의 h2 요소만을 선택하고 다른 컴포넌트에 속해있는 h2요소는 선택하지 않는다. 이와 같은 특징은 웹 컴포넌트의 Shadow DOM을 구현한 것으로 컴포넌트의 DOM을 캡슐화(Encapsulation)하여 외부로부터의 간섭을 제어한다.
+컴포넌트 스타일은 컴포넌트만을 위한 것이다. 즉 컴포넌트 스타일의 CSS 셀렉터(선택자)는 해당 컴포넌트의 템플릿 내에서만 적용된다는 것이다. 위의 예제에서 h2 셀렉터는 hello 컴포넌트의 템플릿 내의 h2 요소만을 선택하고 다른 컴포넌트에 속해있는 h2요소는 선택하지 않는다. 이와 같은 특성은 웹 컴포넌트의 Shadow DOM을 구현한 것으로 컴포넌트의 DOM을 캡슐화(Encapsulation)하여 외부로부터의 간섭을 제어한다. 이것은 마치 변수의 스코프와 유사하다. 기존 CSS는 전역변수와 같이 동작하지만 컴포넌트의 CSS는 지역변수와 같이 동작한다.
 {: .info}
 
 ## 3.6 컴포넌트 클래스와 템플릿의 연동

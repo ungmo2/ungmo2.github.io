@@ -82,7 +82,7 @@ Angular는 [Angular CLI](https://cli.angular.io/)를 통해 간편한 개발 환
 
 ### 3.2.1 Digest Loop로 인한 성능저하 문제의 해결
 
-AngularJS의 단점 중 대표적인 것이 Digest Loop로 인한 성능저하였다. 양방향 바인딩(Two-way binding)을 위해서는 watcher가 추가되어야 하는데 watcher가 늘어날수록 성능은 저하하게 된다. Angular에서는 Digest Loop로 인한 성능저하가 개선되어 AngularJS에 비교할 때 첫 페이지 로딩시간은 2.5배, 리렌더링도 4.2배 정도 빨라졌다.(ng-conf 2016 기준)
+AngularJS의 단점 중 대표적인 것이 Digest Loop(Model의 변화를 View에 반영시키는 과정)로 인한 성능저하였다. 양방향 바인딩(Two-way binding)을 위해서는 watcher가 추가되어야 하고 watcher에 대해 Digest Loop가 실행되기 때문에 watcher가 늘어날수록 성능은 저하하게 된다. Angular에서는 Digest Loop로 인한 성능저하가 개선되어 AngularJS에 비교할 때 첫 페이지 로딩시간은 2.5배, 리렌더링도 4.2배 정도 빨라졌다.(ng-conf 2016 기준)
 
 ### 3.2.2 AoT 컴파일(ahead of time compilation)
 

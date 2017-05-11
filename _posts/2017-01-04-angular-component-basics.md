@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Angular <strong>Component - Basics</strong>
+title: Angular Component - <strong>Basics</strong>
 subtitle: 컴포넌트 소개와 기본 구조
 categories: angular
 section: angular
@@ -30,7 +30,7 @@ description: 컴포넌트는 Angular의 핵심 구성 요소로서 Angular 애�
 웹 컴포넌트는 웹 애플리케이션에서 재사용이 가능하도록 캡슐화된 HTML 요소를 생성하는 웹 플랫폼 API의 집합이다. 웹 컴포넌트가 제공하여야 하는 기능은 아래와 같다. 
 
 1. 컴포넌트의 뷰를 생성할 수 있어야 하며(HTML Template) 
-2. 외부로부터의 간섭을 제어하기 위해 스코프(scope)를 분리하여 DOM을 캡슐화(encapsulation)할 수 있어야 하며(Shadow DOM) 
+2. 외부로부터의 간섭을 제어하기 위해 스코프(scope)를 분리하여 DOM을 캡슐화(Encapsulation)할 수 있어야 하며(Shadow DOM) 
 3. 외부에서 컴포넌트를 호출할 수 있어야 하고(HTML import) 
 4. 컴포넌트를 명시적으로 호출하기 위한 명칭(alias)를 선언하여 마치 HTML 요소와 같이 사용할 수 있어야 한다(Custom Element).
 
@@ -305,7 +305,7 @@ templateUrl 속성에는 외부 파일로 작성한 템플릿의 상대 경로�
 
 아직 살펴보지 않은 템플릿 문법이 포함되어 있지만 일단은 템플릿을 선언하는 방법에만 집중하도록 하자.
 
-템플릿을 외부 파일로 분리하는 것은 관심사가 다른 뷰(템플릿)와 로직(컴포넌트 클래스)을 분리한다는 측면에서 바람직하다. 템플릿이 간단한 경우, 위와 같이 템플릿을 외부 파일로 작성하지 않고 메타데이터의 template 속성에 문자열의 형태로 직접 기술할 수도 있다. 이것을 인라인 템플릿이라 한다. 
+템플릿을 외부 파일로 분리하는 것은 관심사가 다른 뷰(템플릿)와 로직(컴포넌트 클래스)을 분리한다는 측면에서 바람직하다. 템플릿이 간단한 경우, 위와 같이 템플릿을 외부 파일로 작성하지 않고 메타데이터의 template 속성에 문자열의 형태로 직접 기술할 수도 있다. 이것을 인라인 템플릿(Inline template)이라 한다. 
 
 ```typescript
 import { Component } from '@angular/core';
@@ -340,7 +340,17 @@ export class HelloComponent {}
 
 templateUrl 속성과 마찬가지로 외부 파일로 정의된 스타일을 사용하는 경우 styleUrls 속성을 사용한다.
 
-styleUrls 속성에는 외부 파일로 작성한 템플릿의 상대 경로를 배열로 지정한다. 배열로 외부 CSS파일을 지정하기 때문에 여러개의 CSS파일을 한꺼번에 지정할 수 있다. 
+styleUrls 속성에는 외부 파일로 작성한 CSS 파일의 상대 경로를 배열로 지정한다. 배열로 상대경로를 지정하기 때문에 아래와 같이 여러개의 CSS 파일을 한꺼번에 지정할 수 있다. 
+
+```typescript
+@Component({
+  styleUrls: [
+    './base.component.css',
+    './main.component.css',
+    './page.component.css'
+  ]
+})
+```
 
 외부 파일로 작성한 템플릿(src/app/hello/hello.component.css)은 아래와 같다. 
 
@@ -375,7 +385,7 @@ button:hover {
 }
 ```
 
-위와 같이 CSS를 외부 파일로 작성하지 않고 메타데이터의 styles 속성에 문자열의 형태로 직접 기술할 수도 있다. 이것을 인라인 스타일이라 한다. 
+위와 같이 CSS를 외부 파일로 작성하지 않고 메타데이터의 styles 속성에 문자열의 형태로 직접 기술할 수도 있다. 이것을 인라인 스타일(Inline style)이라 한다. 
 
 ```typescript
 import { Component } from '@angular/core';
@@ -421,7 +431,10 @@ import { Component } from '@angular/core';
 export class HelloComponent {}
 ```
 
-hello 컴포넌트의 경우, 템플릿과 스타일 모두 간단하고 한눈에 알아보기 좋도록 인라인 방식으로 진행하도록 하자.
+지금까지 템플릿에 스타일을 적용하는 방법을 알아보았다. hello 컴포넌트의 경우 템플릿과 스타일 모두 간단하므로 한눈에 알아보기 좋도록 인라인 방식으로 진행하도록 하자.
+
+주의하여야 할 것은 컴포넌트 스타일의 CSS 셀렉터(선택자)는 해당 컴포넌트의 템플릿 내에서만 적용된다는 것이다. 위의 예제에서 h2 셀렉터는 hello 컴포넌트의 템플릿 내의 h2 요소만을 선택하고 다른 컴포넌트에 속해있는 h2요소는 선택하지 않는다. 이와 같은 특징은 웹 컴포넌트의 Shadow DOM을 구현한 것으로 컴포넌트의 DOM을 캡슐화(Encapsulation)하여 외부로부터의 간섭을 제어한다.
+{: .info}
 
 ## 3.6 컴포넌트 클래스와 템플릿의 연동
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Angular Component - <strong>Data biding & Change detection</strong>
+title: Angular Component - <strong>Data binding & Change detection</strong>
 subtitle: 데이터 바인딩과 변화 감지
 categories: angular
 section: angular
@@ -19,7 +19,7 @@ Angular는 뷰를 담당하는 템플릿과 로직을 담당하는 컴포넌트 
 데이터 바인딩과 변화 감지
 {: .desc-img}
 
-# 1. 데이터 바인딩(Data biding)
+# 1. 데이터 바인딩(Data binding)
 
 구조화된 웹 애플리케이션을 구축하기 위해서는 뷰와 모델의 분리가 필수적이다. 하지만 분리된 뷰와 모델은 유기적으로 동작하여야 한다. 데이터 바인딩은 이러한 모순의 해결을 가능하게 한다.
 

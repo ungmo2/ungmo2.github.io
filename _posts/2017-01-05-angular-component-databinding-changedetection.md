@@ -78,4 +78,4 @@ zone.js는 위의 이벤트 핸들러 등록 함수(addEventListener), Timer 함
 
 * [zone.js](https://github.com/angular/zone.js/)
 
-* [zone.js with Miško Hevery]https://www.youtube.com/watch?v=V9Bbp6Hh2YE
+* [zone.js with Miško Hevery](https://www.youtube.com/watch?v=V9Bbp6Hh2YE)

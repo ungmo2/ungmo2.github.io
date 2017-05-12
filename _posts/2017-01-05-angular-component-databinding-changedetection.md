@@ -72,7 +72,10 @@ AngularJS는 양방향 바인딩(2-way binding)만을 지원하였고 AngularJS�
 
 - Ajax success callback 함수에 의한 데이터 fetch
 
+zone.js는 위의 이벤트 핸들러 등록 함수(addEventListener), Timer 함수, XMLHttpRequest 등을 몽키패치한 후 이들이 호출되면 패치를 통해 호출을 후킹한다. 호출을 후킹할 수 있다는 것은 변화를 감지할 수 있다는 의미가 되므로 후킹 로직에서 변화 감지가 시작되도록 하는 것이다.
 
 # Reference
 
 * [zone.js](https://github.com/angular/zone.js/)
+
+* [zone.js with Miško Hevery]https://www.youtube.com/watch?v=V9Bbp6Hh2YE

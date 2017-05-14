@@ -4,7 +4,7 @@ title: Angular Component - <strong>Data binding & Change detection</strong>
 subtitle: 데이터 바인딩과 변화 감지
 categories: angular
 section: angular
-description: Angular는 뷰를 담당하는 템플릿과 로직을 담당하는 컴포넌트 클래스를 분리하여 작성한다. 템플릿과 컴포넌트 클래스는 데이터 바인딩(Data binding)에 의해 긴밀히 연결되고 유지된다. 뷰는 모델에 의해 동적으로 변화되는데 이전의 웹 애플리케이션은 DOM을 직접 조작하는 방식으로 모델의 변화를 뷰에 반영하였다. 이와 같은 방식으로는 뷰와 모델의 관계를 느슨하게 결합하기 어렵다. Angular는 데이터 바인딩에 뷰와 모델의 관계를 선언적 방식으로 관리하여 이와 같은 문제를 해결하였다. 또한 모델의 변화를 감지하고 이를 뷰에 자동으로 반영하는 변화 감지(Change detection) 전략을 통해 직접 DOM에 접근하여 조작하는 번거로운 코드를 매번 작성할 필요가 없어져 코드량을 획기적으로 줄여준다.
+description: Angular는 뷰를 담당하는 템플릿과 로직을 담당하는 컴포넌트 클래스를 분리하여 작성한다. 템플릿과 컴포넌트 클래스는 데이터 바인딩(Data binding)에 의해 긴밀히 연결되고 유지된다. 뷰는 모델에 의해 동적으로 변화되는데 이전의 웹 애플리케이션은 DOM을 직접 조작하는 방식으로 모델의 변화를 뷰에 반영하였다. 이와 같은 방식으로는 뷰와 모델의 결합도를 낮추기 어렵다. Angular는 데이터 바인딩에 뷰와 모델의 관계를 선언적 방식으로 관리하여 이와 같은 문제를 해결하였다. 또한 모델의 변화를 감지하고 이를 뷰에 자동으로 반영하는 변화 감지(Change detection) 전략을 통해 직접 DOM에 접근하여 조작하는 번거로운 코드를 매번 작성할 필요가 없어져 코드량을 획기적으로 줄여준다.
 ---
 
 * TOC
@@ -12,7 +12,7 @@ description: Angular는 뷰를 담당하는 템플릿과 로직을 담당하는 
 
 ![angular Logo](/img/angular-logo.png)
 
-Angular는 뷰를 담당하는 템플릿과 로직을 담당하는 컴포넌트 클래스를 분리하여 작성한다. 템플릿과 컴포넌트 클래스는 데이터 바인딩(Data binding)에 의해 긴밀히 연결되고 유지된다. 뷰는 모델에 의해 동적으로 변화되는데 이전의 웹 애플리케이션은 DOM을 직접 조작하는 방식으로 모델의 변화를 뷰에 반영하였다. 이와 같은 방식으로는 뷰와 모델의 관계를 느슨하게 결합하기 어렵다. Angular는 데이터 바인딩에 뷰와 모델의 관계를 선언적 방식으로 관리하여 이와 같은 문제를 해결하였다. 또한 모델의 변화를 감지하고 이를 뷰에 자동으로 반영하는 변화 감지(Change detection) 전략을 통해 직접 DOM에 접근하여 조작하는 번거로운 코드를 매번 작성할 필요가 없어져 코드량을 획기적으로 줄여준다.
+Angular는 뷰를 담당하는 템플릿과 로직을 담당하는 컴포넌트 클래스를 분리하여 작성한다. 템플릿과 컴포넌트 클래스는 데이터 바인딩(Data binding)에 의해 긴밀히 연결되고 유지된다. 뷰는 모델에 의해 동적으로 변화되는데 이전의 웹 애플리케이션은 DOM을 직접 조작하는 방식으로 모델의 변화를 뷰에 반영하였다. 이와 같은 방식으로는 뷰와 모델의 결합도를 낮추기 어렵다. Angular는 데이터 바인딩에 뷰와 모델의 관계를 선언적 방식으로 관리하여 이와 같은 문제를 해결하였다. 또한 모델의 변화를 감지하고 이를 뷰에 자동으로 반영하는 변화 감지(Change detection) 전략을 통해 직접 DOM에 접근하여 조작하는 번거로운 코드를 매번 작성할 필요가 없어져 코드량을 획기적으로 줄여준다.
 
 ![databinding & change detection](./img/databinding-changedetection.png)
 
@@ -66,11 +66,13 @@ AngularJS는 양방향 바인딩(2-way binding)만을 지원하였고 AngularJS�
 
 사실 모델이 변화할 가능성이 있는 경우는 그다지 많지 않다. 아래의 경우 Angular는 모델의 변화가 뷰에 반영되도록 감시하는데 이 과정을 Digest loop라고 한다.
 
-- DOM 이벤트에 의한 이벤트 핸들러 실행
+- DOM 이벤트(click, key press, mouse move 등) 핸들러
 
-- Timer(setTimeout(), setInterval()) 함수의 tick 이벤트에 의한 핸들러 실행
+- Timer(setTimeout, setInterval)의 tick 이벤트 핸들러
 
-- Ajax success callback 함수에 의한 데이터 fetch
+- Ajax result callback 함수
+
+- Promise resolution callback 함수
 
 zone.js는 위의 이벤트 핸들러 등록 함수(addEventListener), Timer 함수, XMLHttpRequest 등을 몽키패치한 후 이들이 호출되면 패치를 통해 호출을 후킹한다. 호출을 후킹할 수 있다는 것은 변화를 감지할 수 있다는 의미가 되므로 후킹 로직에서 변화 감지가 시작되도록 하는 것이다.
 

@@ -130,30 +130,14 @@ export class AppComponent {
 </h1>
 ```
 
-템플릿은 컴포넌트의 뷰를 정의하기 위해 HTML과 Angular 고유의 템플릿 문법(Template Syntax)로 구성한다. {{ "{{title" }}}}은 템플릿 문법 중 하나인 인터폴레이션(Interpolation)으로 컴포넌트 클래스의 데이터를 템플릿에 바인딩한다. 좀 더 자세히 설명하자면 템플릿이 컴포넌트 클래스의 변수를 취득하여 HTML 내에 삽입한 것이다. 이러한 방식을 <strong>데이터 바인딩</strong>이라고 한다. 데이터 바인딩을 통해 템플릿은 컴포넌트 클래스와 연결된다. 
+템플릿은 컴포넌트의 뷰를 정의하기 위해 HTML과 Angular 고유의 템플릿 문법(Template Syntax)로 구성한다. {{ "{{title" }}}}은 템플릿 문법 중 하나인 인터폴레이션(Interpolation)으로 컴포넌트 클래스의 데이터를 템플릿에 바인딩한다. 이러한 방식을 <strong>데이터 바인딩</strong>이라고 한다.
 
 ![data binding](./img/data-binding.png)
 
 데이터 바인딩(Data Binding)
 {: .desc-img}
 
-기존의 웹 프로그래밍은 JavaScript DOM API를 사용하여 DOM을 직접 조작(Manipulation)하는 방식이다. 
-
-![procedural-programming](./img/procedural-programming.png)
-
-jQuery에 의한 DOM 조작(Procedural programming)
-{: .desc-img}
-
-하지만 Angular는 DOM에 직접 접근하지 않고 컴포넌트 클래스와 뷰의 상호 관계를 선언하는 방식([선언형 프로그래밍: Declarative programming](https://ko.wikipedia.org/wiki/%EC%84%A0%EC%96%B8%ED%98%95_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D))으로 뷰를 관리한다. 이때 사용되는 것이 데이터 바인딩이며 이를 통해 템플릿은 컴포넌트 클래스와 연결된다. 데이터 바인딩은 템플릿 문법으로 기술된다. HTML과 템플릿 문법으로 기술된 템플릿은 JIT 또는 AOT 컴파일러에 의해 브라우저가 이해할 수 있는 JavaScript로 컴파일된다. 
-
-아래 그림과 같이 템플릿 내의 {{ "{{title" }}}}은 컴포넌트 클래스의 변수 title의 값을 취득하여 HTML 내에 삽입한다.
-
-![declarative-programming](./img/declarative-programming.png)
-
-Angular 데이터 바인딩에 의한 뷰와 데이터의 연결(Declarative programming)
-{: .desc-img}
-
-컴포넌트의 기본적인 동작 구조는 아래와 같다.
+컴포넌트는 데이터 바인딩에 의해 템플릿과 컴포넌트 클래스의 데이터를 유기적으로 연계한다. 기본적인 동작 구조는 아래와 같다.
 
 ![component](./img/component.png)
 

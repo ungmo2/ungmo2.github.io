@@ -1,10 +1,10 @@
 ---
 layout: post
-title: TypeScript <strong>Interface</strong>
+title: TypeScript - <strong>Interface</strong>
 subtitle: 인터페이스
 categories: typescript
 section: typescript
-description:
+description: 인터페이스는 일반적으로 타입 체크를 위해 사용되며 일반 변수, 함수, 클래스에 사용</strong>할 수 있다. 인터페이스는 여러가지 자료형을 갖는 속성으로 이루어진 새로운 자료형을 정의하는 것과 유사하다. 인터페이스에 선언된 프로퍼티 또는 메소드의 사용을 강제하여 일관성을 유지할 수 있도록 하는 것이다. ES6는 인터페이스를 지원하지 않지만 TypeScript는 인터페이스를 지원한다.
 ---
 
 * TOC
@@ -14,7 +14,7 @@ description:
 
 # 1. Introduction
 
-인터페이스는 일반적으로 <strong>타입 검사를 위해 사용되며 일반 변수, 함수, 클래스에 사용</strong>할 수 있다. 인터페이스는 여러가지 자료형을 갖는 속성으로 이루어진 새로운 자료형을 정의하는 것과 유사하다. 인터페이스에 선언된 프로퍼티 또는 메소드의 사용을 강제하여 일관성을 유지할 수 있도록 하는 것이다. ES6는 인터페이스를 지원하지 않지만 TypeScript는 인터페이스를 지원한다.
+인터페이스는 일반적으로 <strong>타입 체크를 위해 사용되며 일반 변수, 함수, 클래스에 사용</strong>할 수 있다. 인터페이스는 여러가지 자료형을 갖는 속성으로 이루어진 새로운 자료형을 정의하는 것과 유사하다. 인터페이스에 선언된 프로퍼티 또는 메소드의 사용을 강제하여 일관성을 유지할 수 있도록 하는 것이다. ES6는 인터페이스를 지원하지 않지만 TypeScript는 인터페이스를 지원한다.
 
 <!-- # Interface 상속
 

@@ -1,10 +1,10 @@
 ---
 layout: post
-title: TypeScript <strong>Visual Studio Code Setup</strong>
+title: TypeScript - <strong>Visual Studio Code Setup</strong>
 subtitle: Visual Studio Code에서의 TypeScript 개발 환경 구축
 categories: typescript
 section: typescript
-description: Visual Studio Code에서의 TypeScript 개발 환경 구축
+description: Visual Studio Code(VSCode)는 마이크로소프트가 제공하는 오픈소스 코드 에디터이다. 마이크로소프트는 TypeScript를 개발한 회사이기도 하여서 VSCode는 TypeScript 지원이 탁월하다. IntelliSense, debugging, Git 등의 기능을 지원하며 다양한 Extension(확장 플러그인)을 제공하여 자신의 프로젝트에 맞는 개발 환경을 쉽게 구축할 수 있다.
 ---
 
 * TOC

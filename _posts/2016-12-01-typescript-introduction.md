@@ -1,10 +1,10 @@
 ---
 layout: post
-title: TypeScript <strong>Intro & Install</strong>
+title: TypeScript - <strong>Intro & Install</strong>
 subtitle: TypeScript의 소개와 개발 환경 구축
 categories: typescript
 section: typescript
-description:
+description: TypeScript 또한 AltJS의 하나로써 JavaScript(ES5)의 Superset(상위확장)이다. C#의 창시자인 덴마크 출신 소프트웨어 엔지니어 Anders Hejlsberg(아네르스 하일스베르)가 개발을 주도한 TypeScript는 Microsoft에서 2012년 발표한 오픈소스로 정적 타이핑을 지원하며 ES6(ECMAScript 2015)의 클래스, 모듈 등과 ES7의 Decorator 등을 지원한다. TypeScript는 ES5의 Superset이므로 기존의 JavaScript(ES5) 문법을 그대로 사용할 수 있으며 ES6의 새로운 기능들을 사용하기 위해 Babel과 같은 별도 Transpiler를 사용하지 않아도 ES6의 새로운 기능을 기존의 JavaScript 엔진(현재의 브라우저 또는 Node.js)에서 실행할 수 있다.
 ---
 
 * TOC

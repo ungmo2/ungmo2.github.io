@@ -1,10 +1,10 @@
 ---
 layout: post
-title: TypeScript <strong>Generic</strong>
+title: TypeScript - <strong>Generic</strong>
 subtitle: 제네릭
 categories: typescript
 section: typescript
-description:
+description: 제네릭은 선언 시점이 아니라 생성 시점에 타입을 명시하여 하나의 타입만이 아닌 다양한 타입을 사용할 수 있도록 하는 기법이다. 한번의 선언으로 다양한 타입에 재사용이 가능하다는 장점이 있다. T는 제네릭을 선언할 때 관용적으로 사용되는 식별자로 타입 매개변수(Type parameter)라 한다. T는 Type의 약자로 반드시 T를 사용하여야 하는 것은 아니다.
 ---
 
 ![typescript Logo](/img/typescript-logo.png)

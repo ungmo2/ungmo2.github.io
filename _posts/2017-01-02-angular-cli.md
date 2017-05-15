@@ -312,22 +312,22 @@ installing component
 주의해야 할 것은 ng generate component 명령어 다음에 지정한 컴포넌트명이 실제 생성된 파일명과 다를 수 있다는 것이다. 예를 들어 아래와 같이 새로운 컴포넌트를 추가해 보자.
 
 ```bash
-$ ng g c myComponent
+$ ng g c newComponent
 installing component
-  create src/app/my-component/my-component.component.css
-  create src/app/my-component/my-component.component.html
-  create src/app/my-component/my-component.component.spec.ts
-  create src/app/my-component/my-component.component.ts
+  create src/app/new-component/new-component.component.css
+  create src/app/new-component/new-component.component.html
+  create src/app/new-component/new-component.component.spec.ts
+  create src/app/new-component/new-component.component.ts
 ```
 
-컴포넌트명을 myComponent로 지정하였음에도 불구하고 실제로 생성된 파일명은 my-component.component.\*이다. Angular CLI는 지정된 컴포넌트명의 대소문자를 구별하여 정해진 규칙에 따라 암묵적으로 변경한다.
+컴포넌트명을 newComponent로 지정하였음에도 불구하고 실제로 생성된 파일명은 new-component.component.\*이다. Angular CLI는 지정된 컴포넌트명의 대소문자를 구별하여 정해진 규칙에 따라 파일명을 암묵적으로 변경한다.
 
-아래의 컴포넌트명은 Angular CLI에 의해 결국 같은 파일명 my-component.component.\*으로 변경된다.
+아래의 컴포넌트명은 Angular CLI에 의해 결국 같은 파일명 new-component.component.\*으로 변경된다.
 
 ```bash
-$ ng g c myComponent
-$ ng g c MyComponent
-$ ng g c my-component
+$ ng g c newComponent
+$ ng g c NewComponent
+$ ng g c new-component
 ```
 
 이와 같은 파일명의 암묵적 변경은 컴포넌트뿐만이 아니라 ng generate 명령어로 추가되는 모든 구성요소에 모두 적용된다. 혼란을 방지하는 위해 ng generate 명령어에 지정하는 구성요소 명칭은 하이픈으로 구별된 케밥 표기법(kebab-case) 명칭을 사용하는 것이 좋다.
@@ -354,10 +354,6 @@ export class MyComponentComponent implements OnInit {
 ```
 
 이번 장에서 주목할 것은 ng generate component 명령어에 지정한 컴포넌트명에 의해 자동 생성된 5행 selector 속성값 'app-my-component'과 9행 컴포넌트 클래스명 MyComponentComponent이다.
-
-우선 selector 속성값 'app-my-component'에 대해 알아보자.
-
-@Component 데코레이터 함수에 <strong>메타데이터</strong>가 전달되었다. 이 메타데이터는 컴포넌트에 관련된 설정 정보를 담고 있는 객체이다. 컴포넌트의 상세한 내용은 이후에 살펴보기로 하고 이번 장에서는 Angular CLI에 의한 메타데이터의 설정 정보에 관해서만 집중하도록 하자.
 
 5행을 보면 메타데이터 객체의 selector 속성에 'app-my-component'가 설정되어 있다. selector 속성은 컴포넌트를 마크업으로 표현할 때 사용하는 이름이다. 예를 들어 루트 컴포넌트인 src/app/app.component.ts에서 my-component 컴포넌트를 사용하려면 src/app/app.component.html를 아래와 같이 수정한다.
 
@@ -419,7 +415,7 @@ templateUrl, styleUrls 속성은 외부 파일을 로드하기 위해 사용한�
 ...
 ```
 
-위 예제의 경우 컴포넌트는 같은 폴더 내의 외부 파일 my-component.component.html과 my-component.component.css을 HTML 템플릿과 CSS로 사용한다. HTML 템플릿 또는 CSS가 간단한 경우에는 메터데이터 내부에 직접 기술할 수도 있다. 이때 templateUrl, styleUrls 속성 대신 template, styles 속성을 사용한다.
+위 예제의 경우 컴포넌트는 같은 폴더 내의 외부 파일 my-component.component.html과 my-component.component.css을 템플릿과 CSS로 사용한다. 템플릿 또는 CSS가 간단한 경우에는 메터데이터 내부에 직접 기술할 수도 있다. 이때 templateUrl, styleUrls 속성 대신 template, styles 속성을 사용한다.
 
 ```typescript
 // src/app/my-component/my-component.component.ts
@@ -473,7 +469,7 @@ ng generate directive my-component 명령어를 실행하면 Angular CLI는 아�
 
 컴포넌트를 추가할 때와는 달리 디렉티브를 위한 폴더는 생성되지 않으며 기본적으로 src/app/에 추가된다.  
 
-@Directive 데코레이터 함수에 전달된 메타데이터 객체의 selector 속성값으로 'appNewDirective'이 설정되었다.
+@Directive 데코레이터 함수에 전달된 메타데이터 객체의 selector 속성값으로 'appMyDirective'이 설정되었다.
 
 ```typescript
 import { Directive } from '@angular/core';
@@ -493,7 +489,7 @@ export class MyDirectiveDirective {
 커스텀 디렉티브의 이름은 HTML 어트리뷰트처럼 사용된다. 디렉티브의 상세한 내용은 이후 자세히 다루도록 한다.
 
 ```html
-<p appMyDirective>New Directive!</p>
+<p appMyDirective>My Directive!</p>
 ```
 
 ## 5.3 모듈 추가

@@ -43,7 +43,7 @@ jQuery에 의한 DOM 조작(Procedural programming)
 데이터 바인딩에 의한 뷰와 모델의 연결(Declarative programming)
 {: .desc-img}
 
-위의 예제의 경우, DOM에 접근하고 조작하는 코드를 작성할 필요가 없다. 따라서 컴포넌트 클래스는 HTML의 구조를 파악하고 있을 필요가 없으며 템플릿의 변경되어도 컴포넌트 클래스를 변경할 필요가 없다. 예를 들어 h1 요소가 p 요소로 변경되어도 컴포넌트 클래스는 변경이 필요없다.
+위의 예제의 경우, 템플릿에서 직접 컴포넌트 클래스의 프로퍼티를 참조하기 때문에 DOM에 접근하고 조작하는 코드를 작성할 필요가 없다. 따라서 컴포넌트 클래스는 HTML의 구조를 파악하고 있을 필요가 없으며 템플릿의 변경되어도 컴포넌트 클래스를 변경할 필요가 없다. 예를 들어 h1 요소가 p 요소로 변경되어도 컴포넌트 클래스는 변경이 필요없다.
 
 Angular의 데이터 바인딩은 뷰와 모델의 관계를 기존의 웹 애플리케이션 방식보다 느슨하게 결합하므로 뷰와 데이터를 보다 깔끔하게 분리할 수 있을 뿐만 아니라 기존의 웹 애플리케이션 개발 방식보다 간결한 코드로 개발이 가능하다.
 
@@ -55,7 +55,7 @@ AngularJS는 양방향 바인딩(2-way binding)만을 지원하였고 AngularJS�
 
 변화 감지의 작동 원리에 대해 간단히 살펴보자.
 
-뷰의 변화 감지는 DOM 이벤트를 캐치하는 것으로 감지 할 수 있다. 하지만 모델은 HTML 요소가 아니므로 이벤트가 발생하지 않는다. 따라서 모델의 변화 감지를 위해서는 별도의 조치가 필요하다. 모델이 변경된다는 것은 사실 모델 객체에 값이 할당되는 것을 의미한다.
+뷰의 변화 감지는 DOM 이벤트를 캐치하는 것으로 감지 할 수 있다. 하지만 모델은 HTML 요소가 아니므로 이벤트가 발생하지 않는다. 따라서 모델의 변화 감지를 위해서는 별도의 조치가 필요하다. 모델이 변경된다는 것은 사실 모델 객체의 프로퍼티 값이 변경되는 것을 의미한다.
 
 ![change detection](./img/change-detection.png)
 
@@ -74,7 +74,23 @@ AngularJS는 양방향 바인딩(2-way binding)만을 지원하였고 AngularJS�
 
 - Promise resolution callback 함수
 
-zone.js는 위의 이벤트 핸들러 등록 함수(addEventListener), Timer 함수, XMLHttpRequest 등을 몽키패치한 후 이들이 호출되면 패치를 통해 호출을 후킹한다. 호출을 후킹할 수 있다는 것은 변화를 감지할 수 있다는 의미가 되므로 후킹 로직에서 변화 감지가 시작되도록 하는 것이다.
+zone.js는 위의 이벤트 핸들러 등록 함수(addEventListener), Timer 함수, XMLHttpRequest, promise 등을 몽키패치한다.
+
+```javascript
+function zoneAwareAddEventListener() {...}
+function zoneAwareRemoveEventListener() {...}
+function zoneAwarePromise() {...}
+function patchTimeout() {...}
+...
+
+window.prototype.addEventListener = zoneAwareAddEventListener;
+window.prototype.removeEventListener = zoneAwareRemoveEventListener;
+window.prototype.promise = zoneAwarePromise;
+window.prototype.setTimeout = patchTimeout;
+...
+```
+
+zone.js는 위와 같이 일부 함수를 재정의하고 기본값을 프록시로 대체한다. 즉 이벤트 또는 promise가 프록시에서 랩핑되는데 이 개념을 몽키패치라고 한다. 이들이 호출되면 패치를 통해 호출을 후킹한다. 호출을 후킹할 수 있다는 것은 변화를 감지할 수 있다는 의미가 되므로 후킹 로직에서 변화 감지가 시작되도록 하는 것이다.
 
 # Reference
 

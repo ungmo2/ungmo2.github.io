@@ -265,24 +265,24 @@ export class AppComponent {
 
 | 추가 대상 구성요소 | 명령어                         | 축약형
 |:-------|:-----------------------------|:----------
-| 컴포넌트 | ng g component new-component | ng g c new-component
-| 디렉티브 | ng g directive new-directive | ng g d new-directive
-| 파이프   | ng g pipe new-pipe           | ng g p new-pipe   
-| 서비스   | ng g service new-service    | ng g s new-service
-| 모듈    | ng g module new-module       | ng g m new-module
-| 가드    | ng g guard new-guard         | ng g g new-guard
-| 클래스   | ng g class new-class        | ng g cl new-class
-| 인터페이스 |	ng g interface new-interface | ng g i new-interface
-| Enum	 | ng g enum new-enum           | ng g e new-enum
+| 컴포넌트 | ng generate component component-name | ng g c component-name
+| 디렉티브 | ng generate directive directive-name | ng g d directive-name
+| 파이프   | ng generate pipe pipe-name           | ng g p pipe-name   
+| 서비스   | ng generate service service-name    | ng g s service-name
+| 모듈    | ng generate module module-name       | ng g m module-name
+| 가드    | ng generate guard guard-name         | ng g g guard-name
+| 클래스   | ng generate class class-name        | ng g cl class-name
+| 인터페이스 |	ng generate interface interface-name | ng g i interface-name
+| Enum	 | ng generate enum enum-name           | ng g e enum-name
 
 추가 대상 구성요소 중에서 컴포넌트, 디렉티브, 서비스, 모듈의 추가 방법을 알아보도록 한다.
 
 ## 5.1 컴포넌트 추가
 
-프로젝트에 새로운 컴포넌트를 추가하기 위해서는 `ng g component` 명령어를 사용한다.
+프로젝트에 새로운 컴포넌트를 추가하기 위해서는 `ng generate component` 명령어를 사용한다.
 
 ```bash
-$ ng g component new-component
+$ ng g c my-component
 installing component
   create src/app/my-component/my-component.component.css
   create src/app/my-component/my-component.component.html
@@ -291,28 +291,28 @@ installing component
   identical src/app/app.module.ts
 ```
 
-`ng g component new-component` 명령어를 실행하면 Angular CLI는 아래와 같이 동작한다.
+`ng generate component my-component` 명령어를 실행하면 Angular CLI는 아래와 같이 동작한다.
 
-- src/app/new-component 폴더를 생성한다.
+- src/app/my-component 폴더를 생성한다.
 : 컴포넌트는 URL 경로의 단위가 되기 때문에 폴더로 구분된다.
-- src/app/new-component 폴더에 4개의 파일을 추가한다.
-  - new-component.component.css
+- src/app/my-component 폴더에 4개의 파일을 추가한다.
+  - my-component.component.css
   : 컴포넌트 HTML 템플릿의 스타일링을 위한 CSS 파일
-  - new-component.component.html
+  - my-component.component.html
   : 컴포넌트 HTML 템플릿을 위한 HTML 파일
-  - new-component.component.spec.ts
+  - my-component.component.spec.ts
   : 컴포넌트 유닛 테스트를 위한 스펙 파일
-  - new-component.component.ts
+  - my-component.component.ts
   : 컴포넌트 파일
 - 루트 모듈 src/app/app.module.ts에 새롭게 추가된 컴포넌트를 반영한다.
 : 컴포넌트 클래스를 import하고 @NgModule 데코레이터의 declarations 속성에 컴포넌트 클래스를 추가
 
 ### 5.1.1 파일명의 암묵적 변경
 
-주의해야 할 것은 ng g component 명령어 다음에 지정한 컴포넌트명이 실제 생성된 파일명과 다를 수 있다는 것이다. 예를 들어 아래와 같이 새로운 컴포넌트를 추가해 보자.
+주의해야 할 것은 ng generate component 명령어 다음에 지정한 컴포넌트명이 실제 생성된 파일명과 다를 수 있다는 것이다. 예를 들어 아래와 같이 새로운 컴포넌트를 추가해 보자.
 
 ```bash
-$ ng g component myComponent
+$ ng g c myComponent
 installing component
   create src/app/my-component/my-component.component.css
   create src/app/my-component/my-component.component.html
@@ -325,12 +325,12 @@ installing component
 아래의 컴포넌트명은 Angular CLI에 의해 결국 같은 파일명 my-component.component.\*으로 변경된다.
 
 ```bash
-$ ng g component myComponent
-$ ng g component MyComponent
-$ ng g component my-component
+$ ng g c myComponent
+$ ng g c MyComponent
+$ ng g c my-component
 ```
 
-이와 같은 파일명의 암묵적 변경은 컴포넌트뿐만이 아니라 ng g 명령어로 추가되는 모든 구성요소에 모두 적용된다. 혼란을 방지하는 위해 ng g 명령어에 지정하는 구성요소 명칭은 하이픈으로 구별된 케밥 표기법(kebab-case) 명칭을 사용하는 것이 좋다.
+이와 같은 파일명의 암묵적 변경은 컴포넌트뿐만이 아니라 ng generate 명령어로 추가되는 모든 구성요소에 모두 적용된다. 혼란을 방지하는 위해 ng generate 명령어에 지정하는 구성요소 명칭은 하이픈으로 구별된 케밥 표기법(kebab-case) 명칭을 사용하는 것이 좋다.
 
 ### 5.1.2 selector 속성값의 접두사(prefix)와 컴포넌트 클래스 이름
 
@@ -353,13 +353,13 @@ export class MyComponentComponent implements OnInit {
 }
 ```
 
-이번 장에서 주목할 것은 ng g component 명령어에 지정한 컴포넌트명에 의해 자동 생성된 5행 selector 속성값 'app-my-component'과 9행 컴포넌트 클래스명이다.
+이번 장에서 주목할 것은 ng generate component 명령어에 지정한 컴포넌트명에 의해 자동 생성된 5행 selector 속성값 'app-my-component'과 9행 컴포넌트 클래스명 MyComponentComponent이다.
 
 우선 selector 속성값 'app-my-component'에 대해 알아보자.
 
-@Component 데코레이터 함수에 <strong>메타데이터</strong>가 전달되었다. 이 메타데이터는 컴포넌트에 관련된 설정 정보를 담고 있는 객체이다. 컴포넌트의 상세한 내용은 이후에 살펴보기로 하고 이번 장에서는 Angular CLI에 의한 메타데이터의 설정 정보 생성에 관해서만 집중하도록 하자.
+@Component 데코레이터 함수에 <strong>메타데이터</strong>가 전달되었다. 이 메타데이터는 컴포넌트에 관련된 설정 정보를 담고 있는 객체이다. 컴포넌트의 상세한 내용은 이후에 살펴보기로 하고 이번 장에서는 Angular CLI에 의한 메타데이터의 설정 정보에 관해서만 집중하도록 하자.
 
-5행을 보면 메타데이터 객체의 selector 속성에 속성값 'app-my-component'가 설정되어 있다. selector 속성은 컴포넌트를 마크업으로 표현할 때 사용하는 이름이다. 예를 들어 루트 컴포넌트인 src/app/app.component.ts에서 my-component 컴포넌트를 사용하려면 src/app/app.component.html를 아래와 같이 수정한다.
+5행을 보면 메타데이터 객체의 selector 속성에 'app-my-component'가 설정되어 있다. selector 속성은 컴포넌트를 마크업으로 표현할 때 사용하는 이름이다. 예를 들어 루트 컴포넌트인 src/app/app.component.ts에서 my-component 컴포넌트를 사용하려면 src/app/app.component.html를 아래와 같이 수정한다.
 
 ```html
 <!-- src/app/app.component.html -->
@@ -369,7 +369,7 @@ export class MyComponentComponent implements OnInit {
 <app-my-component></app-my-component>
 ```
 
-selector 속성값 'app-my-component'는 `ng g component my-component` 명령어에서 지정한 컴포넌트명 my-component 앞에 접두사(prefix) app이 자동으로 추가된 값이다. Angular는 다른 애플리케이션의 selector 또는 HTML 요소와 충돌을 방지하기 위해 접두사를 추가하여 케밥 표기법으로 명명하는 것을 권장하고 있다. 자세한 내용은 [Angular Style Guide: Custom prefix for components](https://angular.io/docs/ts/latest/guide/style-guide.html#!#02-07)을 참조하기 바란다.
+selector 속성값 'app-my-component'는 `ng generate component my-component` 명령어에서 지정한 컴포넌트명 my-component 앞에 접두사(prefix) app이 자동으로 추가된 값이다. Angular는 다른 애플리케이션의 selector 또는 HTML 요소와 충돌을 방지하기 위해 접두사를 추가하여 케밥 표기법으로 명명하는 것을 권장하고 있다. 자세한 내용은 [Angular Style Guide: Custom prefix for components](https://angular.io/docs/ts/latest/guide/style-guide.html#!#02-07)을 참조하기 바란다.
 
 기본 접두사는 app이며 이것은 .angular-cli.json에서 확인할 수 있다.
 
@@ -396,7 +396,7 @@ selector 속성값 'app-my-component'는 `ng g component my-component` 명령어
 $ ng new my-app --prefix app2
 ```
 
-컴포넌트 클래스의 이름은 ng g component 명령어에 지정한 컴포넌트 이름을 파스칼 표기법(PascalCase)으로 자동 변경하여 생성된다. 컴포넌트 클래스 이름은 루트 모듈에 자동으로 import되고 @NgModule 데코레이터의 declarations 속성에 자동으로 추가된다.
+컴포넌트 클래스(MyComponentComponent)의 이름은 ng generate component 명령어에 지정한 컴포넌트 이름을 파스칼 표기법(PascalCase)으로 자동 변경하여 생성된다. 컴포넌트 클래스 이름은 루트 모듈에 자동으로 import되고 @NgModule 데코레이터의 declarations 속성에 자동으로 추가된다.
 
 ### 5.1.3 templateUrl, styleUrls 속성과 template, styles 속성
 
@@ -438,35 +438,35 @@ templateUrl, styleUrls 속성은 외부 파일을 로드하기 위해 사용한�
 ...
 ```
 
-ng g component 명령어를 사용하여 컴포넌트를 추가할 때 HTML 템플릿과 CSS를 외부 파일로 생성하지 않고 인라인 HTML 템플릿과 CSS를 사용하고자 하는 경우에는 아래의 명령어를 사용한다.
+ng generate component 명령어를 사용하여 컴포넌트를 추가할 때 HTML 템플릿과 CSS를 외부 파일로 생성하지 않고 인라인 HTML 템플릿과 CSS를 사용하고자 하는 경우에는 아래의 명령어를 사용한다.
 
 ```bash
 # 인라인 HTML 템플릿을 사용하는 경우
-$ ng g component my-component --inline-template
+$ ng g c my-component --inline-template
 # 인라인 CSS를 사용하는 경우
-$ ng g component my-component --inline-style
+$ ng g c my-component --inline-style
 # 인라인 HTML 템플릿과 인라인 CSS를 사용하는 경우
-$ ng g component my-component --inline-template --inline-style
+$ ng g c my-component --inline-template --inline-style
 ```
 
 ## 5.2 디렉티브 추가
 
-프로젝트에 새로운 디렉티브를 추가하기 위해서는 `ng g directive` 명령어를 사용한다.
+프로젝트에 새로운 디렉티브를 추가하기 위해서는 `ng generate directive` 명령어를 사용한다.
 
 ```bash
-$ ng g directive new-directive
+$ ng g d my-directive
 installing directive
-  create src/app/new-directive.directive.spec.ts
-  create src/app/new-directive.directive.ts
+  create src/app/my-directive.directive.spec.ts
+  create src/app/my-directive.directive.ts
   update src/app/app.module.ts
 ```
 
-ng g directive new-component 명령어를 실행하면 Angular CLI는 아래와 같이 동작한다.
+ng generate directive my-component 명령어를 실행하면 Angular CLI는 아래와 같이 동작한다.
 
 - 루트 폴더에 2개의 파일을 추가한다.
-  - new-directive.directive.spec.ts  
+  - my-directive.directive.spec.ts  
   : 디렉티브 유닛 테스트를 위한 스펙 파일
-  - new-directive.directive.ts
+  - my-directive.directive.ts
   : 디렉티브 파일
 - 루트 모듈 src/app/app.module.ts에 새롭게 추가된 디렉티브를 반영한다.  
 : 디렉티브를 import하고 @NgModule 데코레이터의 declarations 속성에 디렉티브를 추가
@@ -479,39 +479,38 @@ ng g directive new-component 명령어를 실행하면 Angular CLI는 아래와 
 import { Directive } from '@angular/core';
 
 @Directive({
-  selector: '[appNewDirective]'
+  selector: '[appMyDirective]'
 })
-export class NewDirectiveDirective {
+export class MyDirectiveDirective {
 
   constructor() { }
 
 }
 ```
 
-이것은 .angular-cli.json의 기본 접두사는 app과 ng g directive 명령어에 지정한 디렉티브명으로 합성된 디렉티브 셀렉터 이름으로 카멜 표기법(camelCase)으로 작성된다.
+이것은 .angular-cli.json의 기본 접두사는 app과 ng generate directive 명령어에 지정한 디렉티브명으로 합성된 디렉티브 셀렉터 이름으로 카멜 표기법(camelCase)으로 작성된다.
 
-커스텀 디렉티브의 이름은 HTML의 속성처럼 사용된다. 디렉티브의 상세한 내용은 이후 자세히 다루도록 한다.
+커스텀 디렉티브의 이름은 HTML 어트리뷰트처럼 사용된다. 디렉티브의 상세한 내용은 이후 자세히 다루도록 한다.
 
 ```html
-<p appNewDirective>New Directive!</p>
+<p appMyDirective>New Directive!</p>
 ```
 
 ## 5.3 모듈 추가
 
-프로젝트에 새로운 모듈을 추가하기 위해서는 `ng g module` 명령어를 사용한다.
+프로젝트에 새로운 모듈을 추가하기 위해서는 `ng generate module` 명령어를 사용한다.
 
 ```bash
-$ ng g module new-module
+$ ng g m my-module
 installing module
-  create src/app/new-module/new-module.module.ts
+  create src/app/my-module/my-module.module.ts
 ```
 
-ng g module new-module 명령어를 실행하면 Angular CLI는 아래와 같이 동작한다.
+ng generate module my-module 명령어를 실행하면 Angular CLI는 아래와 같이 동작한다.
 
-- src/app/new-module 폴더를 생성한다.  
-: 컴포넌트는 URL 경로의 단위가 되기 때문에 폴더로 구분된다.
-- src/app/new-module 폴더에 1개의 파일을 추가한다.
-  - new-module.module.ts   
+- src/app/my-module 폴더를 생성한다.  
+- src/app/my-module 폴더에 1개의 파일을 추가한다.
+  - my-module.module.ts   
   : 모듈 파일
 
 모듈을 사용하기 위해 다른 모듈의 imports 속성에 모듈을 추가하여야 한다.
@@ -521,13 +520,13 @@ ng g module new-module 명령어를 실행하면 Angular CLI는 아래와 같이
 ```typescript
 // src/app/app.module.ts
 ...
-import { NewServiceService } from './new-module.module';
+import { MyModuleModule } from './my-module.module';
 
 @NgModule({
   ...
   imports: [
     ...
-    NewModuleModule
+    MyModuleModule
   ],
   bootstrap: [AppComponent]
 })
@@ -535,22 +534,22 @@ import { NewServiceService } from './new-module.module';
 
 ## 5.4 서비스 추가
 
-프로젝트에 새로운 서비스를 추가하기 위해서는 `ng g service` 명령어를 사용한다.
+프로젝트에 새로운 서비스를 추가하기 위해서는 `ng generate service` 명령어를 사용한다.
 
 ```bash
-$ ng g service new-service
+$ ng g s my-service
 installing service
-  create src/app/new-service.service.spec.ts
-  create src/app/new-service.service.ts
+  create src/app/my-service.service.spec.ts
+  create src/app/my-service.service.ts
   WARNING Service is generated but not provided, it must be provided to be used
 ```
 
-ng g service new-service 명령어를 실행하면 Angular CLI는 아래와 같이 동작한다.
+ng generate service my-service 명령어를 실행하면 Angular CLI는 아래와 같이 동작한다.
 
 - 루트 폴더에 2개의 파일을 추가한다.
-  - new-service.service.spec.ts  
+  - my-service.service.spec.ts  
   : 서비스 유닛 테스트를 위한 스펙 파일
-  - new-service.service.ts
+  - my-service.service.ts
   : 서비스 파일
 
 
@@ -561,13 +560,13 @@ ng g service new-service 명령어를 실행하면 Angular CLI는 아래와 같�
 ```typescript
 // src/app/app.module.ts
 ...
-import { NewServiceService } from './new-service.service';
+import { MyServiceService } from './my-service.service';
 
 @NgModule({
   ...
   providers: [
     ...
-    NewServiceService
+    MyServiceService
   ],
   bootstrap: [AppComponent]
 })
@@ -575,21 +574,21 @@ import { NewServiceService } from './new-service.service';
 
 ## 5.5 클래스 추가
 
-프로젝트에 새로운 클래스를 추가하기 위해서는 ng g class 명령어를 사용한다.
+프로젝트에 새로운 클래스를 추가하기 위해서는 `ng generate class` 명령어를 사용한다.
 
 ```bash
-$ ng g class new-class
+$ ng g cl my-class
 installing class
-  create src/app/new-class.ts
+  create src/app/my-class.ts
 ```
 
 테스트를 위한 스펙 파일을 함께 생성하기 위해서는 `--spec` 옵션을 추가한다.
 
 ```bash
-$ ng g class new-class --spec
+$ ng g cl my-class --spec
 installing class
-  create src/app/new-class.spec.ts
-  create src/app/new-class.ts
+  create src/app/my-class.spec.ts
+  create src/app/my-class.ts
 ```
 
 # 6. 프로젝트 빌드

@@ -191,11 +191,11 @@ SASS 표기법은 보다 코딩을 간략화할 수 있는 장점이 있지만 C
 
 Sass의 문법에 대한 설명은 아래 포스트를 참조하기 바란다.
 
-- [Sass SassScript](http://poiemaweb.com/sass/Sass-SassScript/)
+- [SassScript](./sass-script)
 
-- [Sass Built-in Function](http://poiemaweb.com/sass/Sass-built-in-function/)
+- [Sass Built-in Function](./sass-built-in-function)
 
-- [Sass CSS Extensions](http://poiemaweb.com/sass/Sass-css-extention/)
+- [Sass CSS Extensions](./sass-css-extention)
 
 # Reference
 

@@ -4,7 +4,7 @@ title: Angular Component - <strong>Template Basics</strong>
 subtitle: 데이터 바인딩(Data binding)과 변화 감지(Change detection)
 categories: angular
 section: angular
-description: 템플릿은 컴포넌트의 뷰를 정의하기 위한 것으로 HTML과 Angular 고유의 템플릿 문법(Template Syntax)로 구성한다. MVC(Model-View-Controller) 또는 MVVM(Model-View-ViewModel)에서 템플릿은 뷰(View)를 나타내고 컴포넌트 클래스는 Controller와 ViewModel의 일부를 담당한다. 템플릿은 Angular에만 존재하는 개념이 아니다. 브라우저의 요청에 동적으로 대응하여야 하는 웹 애플리케이션의 경우 서버 측에서 템플릿을 사용하는 경우가 많다. 예를 들어 Express를 사용해 본 경험이 있다면 [Pug](https://pugjs.org), [Handlebars](http://handlebarsjs.com/), [EJS](http://ejs.co/) 등의 템플릿 엔진을 사용해 보았을 것이다. Java의 JSP(Java Server Page)도 템플릿의 일종이다.
+description: 템플릿은 HTML과 Angular 고유의 템플릿 문법(Template Syntax)을 사용하여 UI의 최소 단위인 컴포넌트의 뷰를 정의한다. Angular는 템플릿과 컴포넌트 클래스로 뷰와 모델(데이터와 비즈니스 로직)을 분리한다. Angular는 컴포넌트 기반 개발(CBD, Component Based Development) 프레임워크이기 때문에 MVC(Model-View-Controller) 또는 MVVM(Model-View-ViewModel) 패턴과 일치하지는 않지만, 템플릿은 뷰(View)를 나타내고 컴포넌트 클래스는 Controller와 ViewModel의 일부를 담당한다고 할 수 있다.
 ---
 
 * TOC
@@ -14,11 +14,27 @@ description: 템플릿은 컴포넌트의 뷰를 정의하기 위한 것으로 H
 
 # 1. 템플릿(Template)이란?
 
-템플릿은 컴포넌트의 뷰를 정의하기 위한 것으로 HTML과 Angular 고유의 템플릿 문법(Template Syntax)로 구성한다. MVC(Model-View-Controller) 또는 MVVM(Model-View-ViewModel)에서 템플릿은 뷰(View)를 나타내고 컴포넌트 클래스는 Controller와 ViewModel의 일부를 담당한다.
+템플릿은 HTML과 Angular 고유의 템플릿 문법(Template Syntax)을 사용하여 UI의 최소 단위인 컴포넌트의 뷰를 정의한다.
+
+Angular는 템플릿과 컴포넌트 클래스로 뷰와 모델(데이터와 비즈니스 로직)을 분리한다. Angular는 컴포넌트 기반 개발(CBD, Component Based Development) 프레임워크이기 때문에 MVC(Model-View-Controller) 또는 MVVM(Model-View-ViewModel) 패턴과 일치하지는 않지만, 템플릿은 뷰(View)를 나타내고 컴포넌트 클래스는 Controller와 ViewModel의 일부를 담당한다고 할 수 있다.
 
 ![mvc-mvvm](./img/mvc-mvvm.png)
 
 MVC(Model-View-Controller)과 MVVM(Model-View-ViewModel)
+{: .desc-img}
+
+DOM은 상태(state. 예를 들어 input요소에 입력 또는 checkbox요소를 체크한 상태)를 가지고 있으며 이 상태는 변화하는 살아있는 것이다. 상태는 분리된 뷰와 모델 간의 데이터 동기화를 통해 공유되어야 한다. DOM의 상태가 변화하면 템플릿은 변화를 감지하고 상태를 컴포넌트 클래스로 전달한다. 컴포넌트 클래스는 비즈니스 로직을 실행하여 템플릿에 실행 결과를 공유하고 템플릿은 DOM을 업데이트한다.
+
+![angular-view-model](./img/angular-view-model.png)
+
+Angular의 뷰와 모델
+{: .desc-img}
+
+이전의 웹 애플리케이션은 DOM을 직접 조작하는 방식으로 동작하지만 템플릿은 선언형 프로그래밍(Declarative programming) 방식으로 뷰와 모델의 관계를 관리한다. Angular는 변화 감지(Change detection) 메커니즘 위에서 동작하는 데이터 바인딩(Data binding)을 통해 템플릿과 컴포넌트 클래스를 긴밀히 연결하고 동기화를 유지한다.
+
+![databinding & change detection](./img/databinding-changedetection.png)
+
+데이터 바인딩과 변화 감지
 {: .desc-img}
 
 템플릿은 Angular에만 존재하는 개념이 아니다. 브라우저의 요청에 동적으로 대응하여야 하는 웹 애플리케이션의 경우 서버 측에서 템플릿을 사용하는 경우가 많다. 예를 들어 Express를 사용해 본 경험이 있다면 [Pug](https://pugjs.org), [Handlebars](http://handlebarsjs.com/), [EJS](http://ejs.co/) 등의 템플릿 엔진을 사용해 보았을 것이다. Java의 JSP(Java Server Page)도 템플릿의 일종이다.
@@ -33,15 +49,6 @@ MVC(Model-View-Controller)과 MVVM(Model-View-ViewModel)
   </div>
 </div>
 ```-->
-
-뷰는 상태(state. 예를 들어 input요소에 입력 또는 checkbox요소를 체크한 상태)를 가지고 있으며 이 상태는 변화하는 살아있는 것이다. <!--뷰와 모델(Angular는 Component based framework로 MVC 또는 MVVM 패턴과 일치하지는 않는다. 편의상 탬플릿을 뷰, 컴포넌트 클래스를 모델로 부르기로 한다.)은 느슨하게 결합(loose coupling)하여야 하지만 긴밀히 연결되어야 한다.--> 뷰의 상태가 변화하면 경우에 따라 컴포넌트 클래스의 데이터를 변경하여야 하고 뷰 자신 또한 동적으로 변화되어야 할 필요가 있다. 이전의 웹 애플리케이션은 이벤트에 의해 상태 변화를 감지한 후 모델을 변경하고 뷰의 변경을 위해 DOM을 직접 조작하는 방식으로 동작한다.
-
-Angular는 변화 감지(Change detection) 메커니즘 위에서 동작하는 데이터 바인딩(Data binding)을 통해 뷰와 컴포넌트 클래스를 긴밀히 연결하고 동기화를 유지한다.
-
-![databinding & change detection](./img/databinding-changedetection.png)
-
-데이터 바인딩과 변화 감지
-{: .desc-img}
 
 # 2. 데이터 바인딩(Data binding)
 

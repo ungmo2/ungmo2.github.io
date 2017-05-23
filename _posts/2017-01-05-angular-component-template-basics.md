@@ -37,7 +37,7 @@ Angular의 뷰와 모델
 데이터 바인딩과 변화 감지
 {: .desc-img}
 
-템플릿은 Angular에만 존재하는 개념이 아니다. 브라우저의 요청에 동적으로 대응하여야 하는 웹 애플리케이션의 경우 서버 측에서 템플릿을 사용하는 경우가 많다. 예를 들어 Express를 사용해 본 경험이 있다면 [Pug](https://pugjs.org), [Handlebars](http://handlebarsjs.com/), [EJS](http://ejs.co/) 등의 템플릿 엔진을 사용해 보았을 것이다. Java의 JSP(Java Server Page)도 템플릿의 일종이다.
+템플릿은 Angular에만 존재하는 개념이 아니다. 브라우저의 요청에 동적으로 대응하여야 하는 웹 애플리케이션의 경우 서버 측에서 템플릿을 사용하는 경우가 많다. 예를 들어 Express를 사용해 본 경험이 있다면 [Pug](https://pugjs.org), [Handlebars](http://handlebarsjs.com/), [EJS](http://ejs.co/) 등의 템플릿 엔진을 사용해 보았을 것이다. Java의 JSP(Java Server Page)도 템플릿의 일종이다. 이들은 서버에서 컴파일된 후 HTML의 형태로 클라이언트로 전송되는 서버 사이드 렌더링 방식을 취한다. 하지만 Angular의 템플릿은 클라이언트 사이드 렌더링 방식으로 뷰를 생성한다. 
 
 <!--아래는 Handlebars의 예제이다. Angular의 템플릿과 매우 유사하다.
 

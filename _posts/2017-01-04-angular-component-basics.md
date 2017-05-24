@@ -4,7 +4,7 @@ title: Angular Component - <strong>Basics</strong>
 subtitle: 컴포넌트 소개와 기본 구조
 categories: angular
 section: angular
-description: 컴포넌트는 Angular의 핵심 구성 요소로서 Angular 애플리케이션은 컴포넌트를 중심으로 구성된다. 컴포넌트의 역할은 애플리케이션의 화면을 구성하는 뷰(View)를 생성하고 관리하는 것이다. 컴포넌트는 다른 컴포넌트에 간섭을 받지 않는 독립적인 뷰를 소유하며 동작이 가능한 하나의 부품이다. Angular는 이러한 컴포넌트를 조합하여 하나의 완성된 애플리케이션을 작성한다.
+description: 컴포넌트는 Angular의 핵심 구성 요소로서 Angular 애플리케이션은 컴포넌트를 중심(CBD, Component Based Development)으로 구성된다. 컴포넌트의 역할은 애플리케이션의 화면을 구성하는 뷰(View)를 생성하고 관리하는 것이다. 컴포넌트는 동작 가능한 하나의 부품으로서 다른 컴포넌트에 간섭을 받지 않는 독립적인 뷰를 소유한다. Angular는 이러한 컴포넌트를 조합하여 하나의 완성된 애플리케이션을 작성한다.
 ---
 
 * TOC
@@ -14,20 +14,22 @@ description: 컴포넌트는 Angular의 핵심 구성 요소로서 Angular 애�
 
 # 1. 컴포넌트 소개
 
-컴포넌트는 Angular의 핵심 구성 요소로서 Angular 애플리케이션은 컴포넌트를 중심으로 구성된다. 컴포넌트의 역할은 애플리케이션의 화면을 구성하는 <strong>뷰(View)</strong>를 생성하고 관리하는 것이다.
-
-컴포넌트는 다른 컴포넌트에 간섭을 받지 않는 독립적인 뷰를 소유하며 동작이 가능한 하나의 부품이다. Angular는 이러한 컴포넌트를 조합하여 하나의 완성된 애플리케이션을 작성한다.
+컴포넌트는 Angular의 핵심 구성 요소로서 Angular 애플리케이션은 컴포넌트를 중심(CBD, Component Based Development)으로 구성된다. 컴포넌트의 역할은 애플리케이션의 화면을 구성하는 <strong>뷰(View)</strong>를 생성하고 관리하는 것이다.
 
 ## 1.1 웹 컴포넌트
 
-웹 애플리케이션의 뷰는 내용(content)과 구조(structure)을 담당하는 HTML과 스타일(디자인, 레이아웃 등)을 담당하는 CSS의 조합으로 생성되며 DOM의 동적 조작을 위해서 JavaScript가 필요하다. <strong>컴포넌트는 화면을 구성하는 뷰를 생성하기 위해 필요한 "HTML, CSS, JavaScript를 하나의 단위로 묶는 것"</strong>으로 W3C 표준인 [웹 컴포넌트(Web Component)](https://www.webcomponents.org/introduction)를 기반으로 한다.
+웹 애플리케이션의 뷰는 내용(content)과 구조(structure)을 담당하는 HTML과 스타일(디자인, 레이아웃 등)을 담당하는 CSS의 조합으로 생성되며 DOM의 동적 조작을 위해서 JavaScript가 필요하다. 
+
+기존의 객체지향개발(Object Oriented Programming)의 경우 로직을 클래스 단위로 부품화할 수 있지만 뷰를 부품화는 것은 곤란하다. HTML의 경우는 어느 정도 템플릿화가 가능하지만 CSS의 경우 HTML 요소간 상속(Inheritance)과 캐스케이딩(Cascading)이 적용되어 HTML 요소가 배치되는 위치에 따라 스타일이 영향을 받기 때문이다.
+
+컴포넌트는 동작 가능한 하나의 부품이다. 부품화를 위해서는 다른 컴포넌트에 간섭을 받지 않는 독립적인 뷰를 소유한다. <strong>컴포넌트는 다른 컴포넌트에 간섭을 받지 않는 독립적인 뷰를 생성하기 위하여 "HTML, CSS, JavaScript를 하나의 단위로 묶는 것"</strong>으로 W3C 표준인 [웹 컴포넌트(Web Component)](https://www.webcomponents.org/introduction)를 기반으로 한다. Angular는 이러한 컴포넌트를 조립하여 하나의 완성된 애플리케이션을 작성한다.
 
 ![web-component](/img/web-component.png)
 
 웹 컴포넌트(Web Component)
 {: .desc-img}
 
-웹 컴포넌트는 웹 애플리케이션에서 재사용이 가능하도록 캡슐화된 HTML 요소를 생성하는 웹 플랫폼 API의 집합이다. 웹 컴포넌트가 제공하여야 하는 기능은 아래와 같다. 
+웹 컴포넌트는 웹 애플리케이션에서 재사용이 가능하도록 캡슐화된 HTML 커스텀 요소(Custom element)를 생성하는 웹 플랫폼 API의 집합이다. 웹 컴포넌트가 제공하여야 하는 기능은 아래와 같다. 
 
 1. 컴포넌트의 뷰를 생성할 수 있어야 하며(HTML Template) 
 2. 외부로부터의 간섭을 제어하기 위해 스코프(scope)를 분리하여 DOM을 캡슐화(Encapsulation)할 수 있어야 하며(Shadow DOM) 
@@ -36,11 +38,14 @@ description: 컴포넌트는 Angular의 핵심 구성 요소로서 Angular 애�
 
 위에서 설명한 HTML Template, Shadow DOM, HTML import, Custom Element가 바로 웹 컴포넌트의 4대 기술 스펙이다.
 
-기존의 객체지향개발(Object Oriented Programming)의 경우 로직을 클래스 단위로 부품화할 수 있지만 뷰를 부품화는 것은 곤란하다. HTML의 경우는 어느 정도 템플릿화가 가능하지만 CSS의 경우 HTML 요소간 상속(Inheritance)과 캐스케이딩(Cascading)이 적용되어 HTML 요소가 배치되는 위치에 따라 스타일이 영향을 받기 때문이다.
+![web component browser support](./img/web-component-browser-support.png)
+
+[각 브라우저의 웹컴포넌트 지원 상황](https://www.webcomponents.org/)
+{: .desc-img}
 
 ## 1.2 컴포넌트 트리
 
-어떠한 복잡한 화면이라도 컴포넌트 하나로 생성하고 관리할 수 있다. 하지만 재사용이 가능한 부분이 존재하기 마련이기 때문에 하나의 컴포넌트로 화면 전체를 구성하지 않고 여러개의 컴포넌트로 나누어 구성하는 것이 일반적이다. 컴포넌트가 생성하는 뷰는 화면을 구성하는 한부분으로 재사용이 용이한 구조로 분할할 수 있으며 이렇게 분할된 컴포넌트를 조합하여 중복없이 화면을 생성한다.
+어떠한 복잡한 화면이라도 컴포넌트 하나로 생성하고 관리할 수 있다. 하지만 재사용이 가능한 부분이 존재하기 마련이기 때문에 하나의 컴포넌트로 화면 전체를 구성하는 것은 컴포넌트를 사용하는 취지에 부합하지 않는다. 컴포넌트는 재사용이 용이한 구조로 분할하여 작성하며 이렇게 분할된 컴포넌트를 조립하여 중복없이 화면을 생성한다.
 
 대부분의 웹 애플리케이션은 아래와 같이 블록 구조(Block structure)를 갖는다. HTML5의 시멘틱 태그를 사용하면 의미론적으로 명확한 구조를 가질수 있다.
 

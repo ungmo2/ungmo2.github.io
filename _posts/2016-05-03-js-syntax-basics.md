@@ -10,7 +10,19 @@ description: Javascript는 interactive한 웹페이지 작성을 가능하게 �
 * TOC
 {:toc}
 
-# 1. Hello World
+# 1. 브라우저 동작 원리
+
+브라우저의 주요 기능은 사용자가 참조하고자 하는 웹페이지를 서버에 요청(Request)하고 응답(Response)을 받아 브라우저에 표시하는 것이다. 브라우저는 서버로부터 html, css, javascript 파일을 응답받는다. html, css 파일은 렌더링 엔진의 HTML 파서와 CSS 파서에 의해 파싱(Parsing)되어 DOM, CSSOM 트리로 변환되고 렌더 트리로 결합된다. 
+
+HTML 파서는 script 태그를 만나면 DOM 생성 프로세스를 중지하고 자바스크립트 엔진에 제어 권한을 넘긴다. 자바스크립트 엔진의 실행이 완료된 후 브라우저가 중지했던 시점부터 DOM 생성을 재개한다.
+
+![브라우저 동작 원리](./img/client-server.png)
+{: .w-700}
+
+브라우저 동작 원리
+{: .desc-img}
+
+# 2. Hello World
 
 Javascript는 interactive한 웹페이지 작성을 가능하게 한다. 예를 들면, 이벤트(e.g. 버튼 클릭, 웹페이지 로딩 완료 등)에 반응하여 HTML 요소에 접근하고 HTML 요소를 조작할 수 있다. 정적인 HTML을 동적으로 변경할 수 있는 유일한 방법은 Javascript를 사용하는 것이다. 
 
@@ -34,7 +46,7 @@ Javascript는 interactive한 웹페이지 작성을 가능하게 한다. 예를 
 
 <div class='result'></div>
 
-# 2. 외부의 Javascript 실행하기 (External JavaScript)
+# 3. 외부의 Javascript 실행하기 (External JavaScript)
 
 HTML은 웹페이지의 내용(content)과 구조(structure)을 담당한다. Javascript의 역할은 정적인 HTML을 동적으로 변경하는 것이다. 즉 HTML과 Javascript는 역할(관심사 Concern)이 다르므로 분리된 파일로 작성하는 것이 바람직하다.
 
@@ -65,7 +77,7 @@ function myFunction() {
 
 `<body>`요소의 가장 아래에 스크립트를 위치시키는 것은 좋은 아이디어이다. HTML 요소들이 스크립트 로딩 지연으로 인해 렌더링에 지장 받는 일이 발생하지 않아 페이지 로딩 시간이 단축된다.
 
-# 3. JavaScript Output
+# 4. JavaScript Output
 
 Javascript에서 data를 표시하는 방법은 아래와 같다.
 
@@ -92,9 +104,9 @@ Javascript에서 data를 표시하는 방법은 아래와 같다.
 </html>
 ```
 
-# 4. Javascript Syntax Basics
+# 5. Javascript Syntax Basics
 
-## 4.1 구문 (Statement)
+## 5.1 구문 (Statement)
 
 프로그램(스크립트)은 컴퓨터(Client-side Javascript의 경우, 엄밀히 말하면 웹 브라우저)에 의해 단계별로 수행될 명령들의 집합이다.
 
@@ -137,7 +149,7 @@ console.log(greeting);
 
 다른 언어와 달리 자바스크립트에서는 블록 유효범위(Block-level scope)를 생성하지 않는다. 함수 단위의 유효범위(Function-level scope)만이 생성된다.
 
-## 4.2 표현식 (Expression)
+## 5.2 표현식 (Expression)
 
 표현식(Expression)은 값, 변수, 연산자의 조합이며 이 조합은 연산을 통해 하나의 값을 만든다. 즉, 표현식은 하나의 값으로 평가될 수 있는 문장이다.
 아래의 예에서 5 * 10은 50으로 평가(연산)된다.
@@ -147,7 +159,7 @@ console.log(greeting);
 'Hello' + ' ' + 'world'  // 'Hello world'
 ```
 
-## 4.3 변수 (Variable)
+## 5.3 변수 (Variable)
 
 programming language에서 변수는 data를 저장(할당), 참조하기 위해 사용된다. 한번 쓰고 버리는 값이 아닌 값(value)을 유지할 필요가 있는 경우에 변수를 사용한다.
 
@@ -160,7 +172,7 @@ var x; // 변수의 선언과 초기화
 x = 6; // 정수값의 할당
 ```
 
-## 4.4 값 (Value)
+## 5.4 값 (Value)
 
 ```java
 String str = "Hello World";
@@ -198,7 +210,7 @@ String str = "Hello World";
 [ 'Black', 'Gray', 'White' ];
 ```
 
-## 4.5 연산자 (Operator)
+## 5.5 연산자 (Operator)
 
 연산자(Operators)는 하나 혹은 그 이상의 값을 하나의 값으로 만들 때 사용한다.
 
@@ -219,7 +231,7 @@ var buy = 3 > 5; // false
 var buy = (5 > 3) && (2 < 4);  // true
 ```
 
-## 4.6 키워드 (keyword)
+## 5.6 키워드 (keyword)
 
 키워드(keyword)는 수행되어져할 동작을 규정한 것이다.
 예를 들어 `var` keyword는 브라우저에게 새로운 변수를 생성할 것을 지시한다.
@@ -259,7 +271,7 @@ var y = x * 10;
 | try | typeof | var | void | volatile |
 | while | with | yield |
 
-## 4.7 주석 (Comment)
+## 5.7 주석 (Comment)
 
 주석(Comment)은 작성된 코드의 의미를 설명하기 위해 사용한다. 코드는 읽기(이해하기) 쉬워야 한다.(가독성이 좋아야 한다)
 
@@ -283,3 +295,7 @@ document.getElementById('myP').innerHTML = 'My Paragraph.';
 # Reference
 
 * [브라우저는 어떻게 동작하는가?](http://d2.naver.com/helloworld/59361)
+
+* [Render-tree Construction, Layout, and Paint](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction?hl=ko)
+
+* [Adding interactivity with javascript](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/adding-interactivity-with-javascript?hl=ko)

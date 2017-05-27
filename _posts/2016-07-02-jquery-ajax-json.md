@@ -16,23 +16,91 @@ description: jQuery Ajax & JSON 비동기식 처리 모델(Asynchronous processi
 
 ![Request & Response](/img/req_res.png)  
 
-서버는 요청받은 페이지를 반환하는데 이때 페이지 내에 포함된 CSS나 javascript 파일들도 같이 반환된다. 클라이언트의 요청에 따라 서버는 정적인 파일을 반환할 수도 있고 서버 사이드 프로그램이 만들어낸 파일이나 데이터를 반환할 수도 있다.
+서버는 요청받은 페이지를 반환하는데 이때 페이지 내에 포함된 CSS나 javascript 파일들도 같이 반환된다. 클라이언트의 요청에 따라 서버는 정적인 파일을 반환할 수도 있고 서버 사이드 프로그램이 만들어낸 파일이나 데이터를 반환할 수도 있다. 서버로부터 웹페이지가 반환되면 클라이언트(브라우저)는 이를 렌더링하여 화면에 표시한다.
 
-서버로부터 웹페이지가 반환되면 클라이언트(브라우저)는 이를 렌더링하여 화면에 표시한다.
+![traditional-webpage-lifecycle](./img/traditional-webpage-lifecycle.png)
+{: .w-400}
 
-Ajax(Asynchronous JavaScript and XML)는 자바스크립트를 이용해서 비동기적으로 서버와 브라우저가 데이터를 교환할 수 있는 통신 방식을 의미한다.
+Traditional Web Page Lifecycle
+{: .desc-img}
+
+Ajax(Asynchronous JavaScript and XML)는 자바스크립트를 이용해서 <strong>비동기적(Asynchronous)</strong>으로 서버와 브라우저가 데이터를 교환할 수 있는 통신 방식을 의미한다.
 
 서버로부터 웹페이지가 반환되면 화면 전체를 갱신해야 하는데 페이지 일부만을 갱신하고도 동일한 효과를 볼 수 있도록 하는 것이 Ajax이다. 페이지 전체를 로드하여 렌더링할 필요가 없고 갱신이 필요한 일부만 로드하여 갱신하면 되므로 빠른 퍼포먼스와 부드러운 화면 표시 효과를 기대할 수 있다.
 
+![ajax-webpage-lifecycle](./img/ajax-webpage-lifecycle.png)
+{: .w-400}
+
+Ajax Lifecycle
+{: .desc-img}
+
 서버는 HTML, XML, JSON등을 반환하는데 Ajax을 위한 데이터 형식은 JSON(JavaScript Object Notation)을 사용하는 것이 일반적이다.
 
-# 2. 동기식 vs 비동기식
-
-동기식 처리 모델(Synchronous processing model)은 직렬적으로 작업을 수행한다. 즉 어떤 작업이 수행 중이면 다음 작업은 대기하게 된다. 예를 들어 서버에서 데이터를 가져와 화면에 표시하는 작업을 수행할 경우 서버에 데이터를 요청하고 데이터가 전달될 때까지 이후 작업들은 중단(Blocking)된다.
-
-비동기식 처리 모델(Asynchronous processing model or Non-Blocking processing model)은 병렬적으로 작업을 수행한다. 예를 들어 서버에서 데이터를 가져와 화면에 표시하는 작업을 수행할 경우 서버에 데이터를 요청한 이후 데이터가 전달될 때까지 대기하지 않고(Non-Blocking) 즉시 다음 작업을 수행한다. 이후 서버로부터 데이터가 전달되면 이벤트가 발생되고 이벤트 핸들러가 데이터를 가지고 수행할 작업을 계속하여 수행한다.
+# 2. 동기식 처리 모델 vs 비동기식 처리 모델
 
 <img src='/img/block_nonblock.png'>
+
+동기식 처리 모델과 비동기식 처리 모델
+{: .desc-img}
+
+동기식 처리 모델(Synchronous processing model)은 직렬적으로 작업을 수행한다. 즉 작업은 순차적으로 실행되며 어떤 작업이 수행 중이면 다음 작업은 대기하게 된다. 예를 들어 서버에서 데이터를 가져와 화면에 표시하는 작업을 수행할 경우 서버에 데이터를 요청하고 데이터가 전달될 때까지 이후 작업들은 중단(Blocking)된다.
+
+![synchronous](./img/synchronous.png)
+
+동기식 처리 모델(Synchronous processing model)
+{: .desc-img}
+
+아래는 동기식으로 동작하는 코드이다. 순차적으로 실행된다.
+
+```javascript
+function func1() {
+  console.log('func1');
+  func2();
+}
+
+function func2() {
+  console.log('func2');
+  func3();
+}
+
+function func3() {
+  console.log('func3');
+}
+
+func1();
+```
+
+비동기식 처리 모델(Asynchronous processing model or Non-Blocking processing model)은 병렬적으로 작업을 수행한다. 즉 작업이 종료되지 않은 상태임에도 불구하고 다음 작업을 실행한다는 의미이다. 예를 들어 서버에서 데이터를 가져와 화면에 표시하는 작업을 수행할 경우 서버에 데이터를 요청한 이후 서버로부터 데이터가 전달될 때까지 대기하지 않고(Non-Blocking) 즉시 다음 작업을 수행한다. 이후 서버로부터 데이터가 전달되면 이벤트가 발생되고 이벤트 핸들러가 데이터를 가지고 수행할 작업을 계속하여 수행한다.
+
+자바스크립트의 대부분의 DOM 이벤트와 Timer 함수(setTimeout, setInterval), Ajax  요청은 비동기적으로 동작한다.
+
+![asynchronous](./img/asynchronous.png)
+
+비동기식 처리 모델(Asynchronous processing model)
+{: .desc-img}
+
+아래는 비동기식으로 동작하는 코드이다. 순차적으로 실행되지 않는다.
+
+```javascript
+function func1() {
+  console.log('func1');
+  func2();
+}
+
+function func2() {
+  setTimeout(function() {
+    console.log('func2');
+  }, 0);
+
+  func3();
+}
+
+function func3() {
+  console.log('func3');
+}
+
+func1();
+```
 
 # 3. Ajax 요청 및 응답 처리
 

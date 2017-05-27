@@ -4,7 +4,7 @@ title: jQuery <strong>Deferred Object</strong>
 subtitle: Promise를 위한 jQuery Deferred Object
 categories: jquery
 section: jquery
-description: Promise를 위한 jQuery Deferred Object
+description: jQuery Deferred는 각각의 비동기식 처리에 Promise 객체를 연계하여 그 상태를 전파하는 것으로 promise를 구현한 jQuery 객체이다. 브라우저 호환성과 편의성을 고려하여 만든 Promise 모듈이라고 생각하면 무리가 없을 듯하다. jQuery Deferred에서 각각의 비동기식 처리를 Deferred 객체로 wrapping한다. Deferred 객체는 상태를 가지고 있는데 이는 비동기식 처리의 상태가 변경되는 시점에 특정 함수(resolve(), reject())를 호출하여 Deferred 객체에 상태를 부여하기 때문이다. deferred.state()로 상태를 확인할 수 있다.
 ---
 
 * TOC
@@ -65,7 +65,7 @@ try {
 
 이러한 문제를 극복하기 위해 [Promise](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise)가 제안되었다. (ES6의 [Generator](http://wiki.ecmascript.org/doku.php?id=harmony:generators)를 사용하여 Callback Hell 문제를 없애는 방법도 있다.) Promise는 [ES6](./js-es6)에 정식 채택되어 2017년 1월 현재 IE를 제외한 대부분의 브라우저가 지원하고 있다.
 
-Promise는 비동기 처리가 성공(fulfilled)하였는지 또는 실패(rejected)하였는지 등의 상태 정보와 처리 종료 후 실행될 콜백함수(then())담고 있는 객체이다.
+Promise는 비동기 처리가 성공(fulfilled)하였는지 또는 실패(rejected)하였는지 등의 상태 정보와 처리 종료 후 실행될 콜백함수(then, catch)담고 있는 객체이다.
 
 ```javascript
 //Promise 선언

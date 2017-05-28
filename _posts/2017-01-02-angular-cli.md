@@ -144,16 +144,27 @@ Project 'my-app' successfully created.
 
 프로젝트가 생성되고 Angular CLI의 기본 패키지 매니저인 npm을 사용하여 프로젝트 의존 모듈도 설치되었다. 프로젝트 의존 모듈 설치에 소요되는 시간을 줄이려면 npm 대신 [yarn](https://yarnpkg.com)을 사용하는 방법도 있다.
 
+기본 패키지 매니저는 npm으로 설정되어 있다. 아래의 명령어로 확인할 수 있다.
+
+```bash
+$ ng get --global packageManager
+npm
+```
+
 기본 패키지 매니저를 yarn으로 변경하기 위해서는 아래의 명령어를 실행한다.
 
 ```bash
 $ ng set --global packageManager=yarn
+$ ng get --global packageManager
+yarn
 ```
 
 이후 기본 패키지 매니저를 npm로 변경하고자 할 때에는 아래의 명령어를 사용한다.  
 
 ```bash
 $ ng set --global packageManager=npm
+$ ng get --global packageManager
+npm
 ```
 
 기본 패키지 매니저를 변경하지 않고 yarn을 사용하려면 프로젝트 생성 시에 의존 모듈의 설치를 스킵하고 프로젝트 생성 이후 yarn으로 의존 모듈의 설치를 실행한다.

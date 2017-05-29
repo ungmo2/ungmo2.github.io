@@ -853,30 +853,49 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `
+    <!-- user를 추가한다 -->
+    <input type="text" #name placeholder="이름을 입력하세요">
+    <button (click)="addUser(name.value)">add user</button>
     <ul>
-      <!-- users 배열의 length만큼 반복하며 li 요소를 DOM에 추가한다 -->
+      <!-- users 배열의 length만큼 반복하며 li 요소와 하위 요소를 DOM에 추가한다 -->
       <li *ngFor="let user of users; let i=index">
         {{ "{{ i " }}}}: {{ "{{ user.name " }}}} <span *ngIf="user.admin">(admin)</span>
+        <!-- 해당 user를 제거한다 -->
+        <button (click)="removeUser(user)">X</button>
       </li>
     </ul>
+    <pre>{{ "{{ users | json " }}}}</pre>
   `
 })
 export class AppComponent {
-  users: any[];
-
-  constructor() {
-    this.users = [
-      { id: 1, name: 'Lee',  admin: true },
-      { id: 2, name: 'Kim',  admin: false },
-      { id: 3, name: 'Park', admin: false },
-      { id: 4, name: 'Choi', admin: false },
-      { id: 5, name: 'Baek', admin: true }
+  users = [
+      { id: 1, name: 'Lee' },
+      { id: 2, name: 'Kim' },
+      { id: 3, name: 'Baek' }
     ];
+
+  // user를 추가한다
+  addUser(name): void {
+    if (name) {
+      this.users.push({ id: this.getLastId() + 1, name: name });
+    }
+  }
+
+  // 해당 user를 제거한다.
+  removeUser(user) {
+    this.users = this.users.filter(({ id }) => id !== user.id);
+  }
+
+  // users의 요소 중 가장 큰 id를 반환한다
+  getLastId(): number {
+    let lastId = 1;
+    this.users.map(({ id }) => id > lastId ? lastId = id : id);
+    return lastId;
   }
 }
 ```
 
-users 배열의 length만큼 반복하며 li 요소를 DOM에 추가한다. user 변수는 users 배열의 개별요소를 일시적으로 저장하며 호스트 요소의 하위 요소인 li 요소에서만 유효한 로컬 변수이다.
+users 배열의 length만큼 반복하며 li 요소와 하위 요소를 DOM에 추가한다. 템플릿의 for of 구문에서 사용된 user 변수는 users 배열의 개별요소를 일시적으로 저장하며 호스트 요소의 하위 요소에서만 유효한 로컬 변수이다.
 
 ngFor 디렉티브는 컬렉션 데이터(users)가 변경되면 컬렉션과 연결된 모든 DOM 요소를 제거하고 다시 생성한다. 이는 컬렉션의 변경 사항을 추적(tracking)할 수 없기 때문이다. 때문에 크기가 매우 큰 컬렉션을 다루는 경우, 퍼포먼스 상의 문제를 발생시킬 수 있다. ngFor 디렉티브는 퍼포먼스를 향상시키기 위한 기능으로 `trackBy`를 제공한다. 
 
@@ -887,6 +906,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `
+    <!-- user를 추가한다 -->
+    <input type="text" #name placeholder="이름을 입력하세요">
+    <button (click)="addUser(name.value)">add user</button>
     <ul>
       <!-- users 배열의 length만큼 반복하며 li 요소를 DOM에 추가한다 -->
       <!-- 변경을 트랙킹을 할 수 있도록 trackBy를 추가하였다. -->
@@ -896,22 +918,24 @@ import { Component } from '@angular/core';
         <button (click)="removeUser(user)">X</button>
       </li>
     </ul>
+    <pre>{{ "{{ users | json " }}}}</pre>
   `
 })
 export class AppComponent {
-  users: any[];
-
-  constructor() {
-    this.users = [
-      { id: 1, name: 'Lee',  admin: true },
-      { id: 2, name: 'Kim',  admin: false },
-      { id: 3, name: 'Park', admin: false },
-      { id: 4, name: 'Choi', admin: false },
-      { id: 5, name: 'Baek', admin: true }
+  users = [
+      { id: 1, name: 'Lee' },
+      { id: 2, name: 'Kim' },
+      { id: 3, name: 'Baek' }
     ];
+
+  // user를 추가한다
+  addUser(name): void {
+    if (name) {
+      this.users.push({ id: this.getLastId() + 1, name: name });
+    }
   }
 
-  // 해당 user를 제거한다. 이때 ngFor의 대상 컬렉션 users가 변경되고 ngFor는 DOM을 다시 생성한다.
+  // 해당 user를 제거한다.
   removeUser(user) {
     this.users = this.users.filter(({ id }) => id !== user.id);
   }
@@ -921,14 +945,21 @@ export class AppComponent {
     // user.id를 기준으로 변경을 트래킹한다.
     return user.id; // or index
   }
+
+  // users의 요소 중 가장 큰 id를 반환한다
+  getLastId(): number {
+    let lastId = 1;
+    this.users.map(({ id }) => id > lastId ? lastId = id : id);
+    return lastId;
+  }
 }
 ```
 
 user 객체의 id 프로퍼티를 사용하여 변경을 트랙킹할 수 있도록 trackByUserId 메서드를 추가하였다. 이때 user 객체의 id 프로퍼티는 유니크하여야 한다. user 객체의 id 프로퍼티를 사용하지 않고 trackByUserId에 인자로 전달된 index를 사용하여도 무방하다.
 
-X 버튼을 클릭하면 해당 user를 제거한다. 예를 들어 3번째 user인 'Park'을 제거하면 users의 변경을 DOM에 반영하여야 한다. 이때 trackBy를 사용하지 않는 경우 ngFor는 DOM을 다시 생성한다. trackBy를 사용한 경우 user.id를 기준으로 컬렉션의 변경을 트래킹하기 때문에 퍼포맨스가 향상된다. 
+add user 또는 X 버튼을 클릭하면 해당 user를 추가/제거한다. 예를 들어 3번째 user 객체를 제거하면 users의 변경을 DOM에 반영하여야 한다. 이때 trackBy를 사용하지 않는 경우 ngFor는 DOM을 다시 생성한다. trackBy를 사용한 경우 user.id를 기준으로 컬렉션의 변경을 트래킹하기 때문에 퍼포먼스가 향상된다. 
 
-일반적인 경우 ngFor는 충분히 빠르기 때문에 trackBy에 의한 퍼포먼스 최적화는 기본적으로 필요하지 않다. trackBy는 퍼포먼스에 문제가 발생한 경우에만 사용한다.
+일반적인 경우 ngFor는 충분히 빠르기 때문에 trackBy에 의한 퍼포먼스 최적화는 기본적으로 필요하지 않다. trackBy는 퍼포먼스에 문제가 있는 경우에만 사용한다.
 
 <!--X 버튼을 클릭하면 해당 user를 제거한다. 예를 들어 3번째 user인 'Park'을 제거하면 users의 변경을 DOM에 반영하여야 한다. 이때 Angular는 변경을 트래킹할 수 없다.
 

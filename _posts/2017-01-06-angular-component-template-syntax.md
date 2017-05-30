@@ -859,7 +859,7 @@ import { Component } from '@angular/core';
     <ul>
       <!-- users 배열의 length만큼 반복하며 li 요소와 하위 요소를 DOM에 추가한다 -->
       <li *ngFor="let user of users; let i=index">
-        {{ "{{ i " }}}}: {{ "{{ user.name " }}}} <span *ngIf="user.admin">(admin)</span>
+        {{ "{{ i " }}}}: {{ "{{ user.name " }}}}
         <!-- 해당 user를 제거한다 -->
         <button (click)="removeUser(user)">X</button>
       </li>
@@ -913,7 +913,7 @@ import { Component } from '@angular/core';
       <!-- users 배열의 length만큼 반복하며 li 요소를 DOM에 추가한다 -->
       <!-- 변경을 트랙킹을 할 수 있도록 trackBy를 추가하였다. -->
       <li *ngFor="let user of users; let i=index; trackBy: trackByUserId">
-        {{ "{{ i " }}}}: {{ "{{ user.name " }}}} <span *ngIf="user.admin">(admin)</span>
+        {{ "{{ i " }}}}: {{ "{{ user.name " }}}}
         <!-- 해당 user를 제거한다 -->
         <button (click)="removeUser(user)">X</button>
       </li>

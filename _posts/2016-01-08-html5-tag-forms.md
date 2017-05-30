@@ -50,7 +50,7 @@ form elements (input, checkbox, radio button, submit button...)
 
 submit button이 클릭되면 input 태그에 입력된 데이터가 form 태그의 method 속성에 지정된 방식으로 action 속성에 지정된 서버측의 처리 로직에 전달된다.
 
-# 2.1 input
+# 2. input
 
 input 태그는 form 태그 중에서 가장 중요한 태그로 사용자로부터 데이터를 입력받기 위해 사용된다.
 

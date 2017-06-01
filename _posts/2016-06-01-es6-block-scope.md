@@ -177,7 +177,7 @@ const obj = { foo: 123 };
 obj = { bar: 456 }; // TypeError: Assignment to constant variable.
 ```
 
-하지만 **객체의 프로퍼티는 보호되지 않는다.** 다시 말하자면 재할당은 불가능하지만 할당된 객체의 내용은 변경할 수 있다.
+const는 객체에 대한 참조를 수정하지 못하게 한다. 하지만 **객체의 프로퍼티는 보호되지 않는다.** 다시 말하자면 재할당은 불가능하지만 할당된 객체의 내용은 변경할 수 있다.
 
 ```javascript
 const user = {

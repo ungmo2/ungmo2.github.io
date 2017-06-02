@@ -1,7 +1,7 @@
 ---
 layout: post
 title: <strong>Semantic</strong> Web
-subtitle: 요소의 <strong>의미</strong>를 명확히 하는 시맨틱 요소(Semantic element)와 검색 엔진
+subtitle: 요소의 <strong>의미</strong>를 명확히 설명하는 시맨틱 요소(Semantic element)와 검색 엔진
 category: html
 section: html
 description: 검색엔진은 대체로 h1 요소 내의 컨텐츠를 웹문서의 중요한 제목으로 인식하고 인덱스에 포함시킬 확률이 높다. 또한 사람도 h1 요소 내의 컨텐츠가 제목임을 인식할 수 있다. 시맨틱 요소로 구성되어 있는 웹페이지는 검색엔진에 보다 의미론적으로 문서 정보를 전달할 수 있고 검색엔진 또한 시맨틱 요소를 이용하여 보다 효과적인 크롤링과 인덱싱이 가능하게 되었다. 즉, 시맨틱 태그란 브라우저, 검색엔진, 개발자 모두에게 컨텐츠의 의미를 명확히 설명하는 역할을 한다.

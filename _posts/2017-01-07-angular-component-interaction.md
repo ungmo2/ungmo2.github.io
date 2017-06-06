@@ -195,19 +195,11 @@ export class AppComponent {
 $ ng g cl models/user.model
 ```
 
-models폴더에 user.model.ts이 생성되었다. 이 파일을 아래와 같이 수정한다.
+models폴더에 user.model.ts이 생성되었다. 이 파일을 아래와 같이 수정한다. typescript에서 생성자 파라미터에 접근 제한자를 사용하면 파라미터는 암묵적으로 프로퍼티로 정의되고 생성자 내부에서 별도의 프로퍼티 초기화가 없어도 암묵적으로 초기화가 수행된다. 
 
 ```typescript
 export class User {
-  id: number;
-  name: string;
-  role: string;
-
-  constructor(id: number, name: string, role: string) {
-    this.id = id;
-    this.name = name;
-    this.role = role;
-  }
+  constructor(public id: number, public name: string, public role: string) { }
 }
 ```
 

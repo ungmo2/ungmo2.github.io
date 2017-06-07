@@ -122,7 +122,7 @@ Pass-by-reference
 Object.assign은 타킷 객체로 소스 객체의 프로퍼티를 복사한다. 이때 소스 객체의 프로퍼티와 동일한 프로퍼티를 가진 타켓 객체의 프로퍼티들은 소스 객체의 프로퍼티로 덮어쓰기된다. 리턴값으로 타킷 객체를 반환한다. ES6에서 추가된 메서드이며 Internet Explorer는 지원하지 않는다.
 
 ```javascript
-// Syntex
+// Syntax
 Object.assign(target, ...sources)
 ```
 

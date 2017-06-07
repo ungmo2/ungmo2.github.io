@@ -15,7 +15,7 @@ description: ECMAScript6 ES6 '화살표 함수' 'Arrow function'
 
 Arrow function(화살표 함수)은 익명함수를 간략하게 표현할 수 있으며 Lexical this를 제공한다.
 
-# 1. Syntex
+# 1. Syntax
 
 Arrow function은 항상 익명으로 사용한다. 문법은 아래와 같다.
 

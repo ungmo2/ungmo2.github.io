@@ -1111,8 +1111,8 @@ import { Component } from '@angular/core';
     {{ "{{ obj " }}}}
     <!-- ERROR TypeError: Cannot read property 'id' of undefined -->
     {{ "{{ obj.id " }}}}
-    <!-- null 또는 undefined의 프로퍼티를 만나면 처리를 종료하고 에러를 발생시키지 않는다. -->
-    {{ "{{ obj.id " }}}}
+    <!-- 세이프 네비게이션 연산자는 null 또는 undefined의 프로퍼티를 만나면 처리를 종료하고 에러를 발생시키지 않는다. -->
+    {{ "{{ obj?.id " }}}}
   `
 })
 export class AppComponent { }

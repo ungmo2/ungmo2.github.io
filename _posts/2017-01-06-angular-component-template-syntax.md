@@ -838,7 +838,7 @@ ngFor 디렉티브는 컴포넌트 클래스의 컬렉션을 반복하여 호스
 <element *ngFor="let item of items">...</element>
 ```
 
-위 코드는 컴포넌트 클래스의 프로퍼티 items을 바인딩한 후 items의 갯수만큼 순회하며 개별 항목을 item에 할당한다. item(템플릿 입력 변수, template input variable)은 호스트 요소 및 하위 요소에서만 유효한 로컬 변수이다. items에 해당하는 바인딩 객체는 일반적으로 배열을 사용하지만 반드시 배열만 사용할 수 있는 것은 아니다. ES6의 [for...of](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/for...of)에서 사용할 수 있는 [반복 가능한(iterable) 객체](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Iteration_protocols#iterable)라면 사용이 가능하다. 단 문자열, Map, 배열이 아닌 일반 객체는 사용할 수 없다.
+위 코드는 컴포넌트 클래스의 프로퍼티 items을 바인딩한 후 items의 갯수만큼 순회하며 개별 항목을 item에 할당한다. item(템플릿 입력 변수, template input variable)은 호스트 요소 및 하위 요소에서만 유효한 로컬 변수이다. items에 해당하는 바인딩 객체는 일반적으로 배열을 사용하지만 반드시 배열만 사용할 수 있는 것은 아니다. ES6의 [for...of](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/for...of)에서 사용할 수 있는 [반복 가능한 객체(iterable object)](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Iteration_protocols#iterable)라면 사용이 가능하다. 단 문자열, Map, 배열이 아닌 일반 객체는 사용할 수 없다.
 
 인덱스를 취득할 필요가 있는 경우, 인덱스를 의미하는 index를 사용하여 변수에 인덱스를 저장할 수 있다. index 이외에도 first, last, even, odd와 같은 로컬 변수가 제공된다. 자세한 내용은 [NgFor API reference](https://angular.io/docs/ts/latest/api/common/index/NgFor-directive.html)를 참조하기 바란다.
 

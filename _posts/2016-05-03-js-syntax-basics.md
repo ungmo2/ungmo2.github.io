@@ -149,7 +149,7 @@ console.log(greeting);
 
 ## 4.3 변수 (Variable)
 
-programming language에서 변수는 data를 저장(할당), 참조하기 위해 사용된다. 한번 쓰고 버리는 값이 아닌 값(value)을 유지할 필요가 있는 경우에 변수를 사용한다.
+programming language에서 변수는 값을 저장(할당), 참조하기 위해 사용된다. 한번 쓰고 버리는 값이 아닌 값(value)을 유지할 필요가 있는 경우에 변수를 사용한다.
 
 변수를 선언할 때 `var` keyword가 사용된다. 등호(=, equal sign)는 변수에 값을 할당하기 위해 사용된다.
 
@@ -166,7 +166,7 @@ x = 6; // 정수값의 할당
 String str = "Hello World";
 < 1 > < 2 >      < 3 >
 ```
-위의 Java 예제에서 <1> 은 데이터 타입, <2>는 변수명, <3>은 (String) 리터럴(literal)이다.
+위의 Java 예제에서 <1> 은 데이터 타입, <2>는 변수명, <3>은 문자열 리터럴(literal)이다. 리터럴(literal)이란 변수 또는 상수에 저장되는 값 자체를 의미한다. 변수명은 메모리에 할당된 공간을 가리키는 식별자(identifier)이며 리터럴은 이 공간에 저장되는 값이다. 
 
 자바스크립트는 7가지 데이터 타입을 제공한다.
 
@@ -179,8 +179,7 @@ String str = "Hello World";
   * `Symbol` (New in ECMAScript 6)
 * `Object`
 
-리터럴이란 값을 표현하는 방식을 의미한다.
-자바스크립트는 값(value)을 표현하기 위해 리터럴을 사용한다. 그리고 대부분 값은 변수에 저장된다.
+자바스크립트는 자바와는 달리 값의 자료형에 따라 변수에 데이터 타입을 명시하지 않는다.
 
 ```javascript
 // literal : Number

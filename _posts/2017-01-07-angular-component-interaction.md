@@ -607,7 +607,7 @@ A 컴포넌트에서 변경된 상태를 C 컴포넌트에서도 공유할 필�
 # Reference
 
 * [Angular Component Interaction
-](https://angular.io/docs/ts/latest/cookbook/component-communication.html)
+](https://angular.io/guide/component-interaction)
 
 * [Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
 

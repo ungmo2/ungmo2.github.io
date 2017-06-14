@@ -376,7 +376,7 @@ export class MyComponentComponent implements OnInit {
 <app-my-component></app-my-component>
 ```
 
-selector 속성값 'app-my-component'는 `ng generate component my-component` 명령어에서 지정한 컴포넌트명 my-component 앞에 접두사(prefix) app이 자동으로 추가된 값이다. Angular는 다른 애플리케이션의 selector 또는 HTML 요소와 충돌을 방지하기 위해 접두사를 추가하여 케밥 표기법으로 명명하는 것을 권장하고 있다. 자세한 내용은 [Angular Style Guide: Custom prefix for components](https://angular.io/docs/ts/latest/guide/style-guide.html#!#02-07)을 참조하기 바란다.
+selector 속성값 'app-my-component'는 `ng generate component my-component` 명령어에서 지정한 컴포넌트명 my-component 앞에 접두사(prefix) app이 자동으로 추가된 값이다. Angular는 다른 애플리케이션의 selector 또는 HTML 요소와 충돌을 방지하기 위해 접두사를 추가하여 케밥 표기법으로 명명하는 것을 권장하고 있다. 자세한 내용은 [Angular Style Guide: Custom prefix for components](https://angular.io/guide/styleguide#custom-prefix-for-components)을 참조하기 바란다.
 
 기본 접두사는 app이며 이것은 .angular-cli.json에서 확인할 수 있다.
 
@@ -624,7 +624,7 @@ Angular CLI 빌드 기능은 내부적으로 모듈 번들러 [webpack](https://
 - TypeScript에서 JavaScript로의 트랜스파일링
 - 디버깅 용도의 map 파일 생성
 - 의존 모듈과 HTML, CSS, JavaScript 번들링
-- [AoT 컴파일](https://angular.io/docs/ts/latest/cookbook/aot-compiler.html)
+- [AoT 컴파일](https://angular.io/guide/aot-compiler)
 - 소스코드의 문법 체크
 - 코드 규약 준수 여부 체크
 - 불필요한 코드의 삭제 및 압축
@@ -703,20 +703,20 @@ Angular CLI의 빌드 기능은 TypeScript를 JavaScript로 트랜스파일링�
 ```bash
 # AoT 컴파일
 $ ng build -aot
-# 프로덕션 빌드시는 AoT 컴파일이 자동 적용된다.
+# 프로덕션 빌드: AoT 컴파일이 자동 적용된다.
 $ ng build -prod
 ```
 
 AoT 컴파일이란 템플릿을 빌드 시에 미리 컴파일해 두는 것을 말한다. 빌드에 소요되는 시간이 조금 더 걸리더라도 런타임에 컴파일이 실행되지 않기 때문에 실제 애플리케이션이 동작 시간은 단축되는 효과가 있다. 또한 템플릿을 JIT 컴파일하지 않고 미리 컴파일하기 때문에 템플릿에서 발생하는 에러를 사전에 감지할 수 있는 장점과 JIT 컴파일러를 포함할 필요가 없어지기 때문에 애플리케이션 전체 용량도 줄어드는 효과가 있다.
 
-Angular5에서는 기본 컴파일 옵션이 AoT로 변경될 에정이다.
+Angular5에서는 기본 컴파일 옵션이 AoT로 변경될 예정이다.
 
-AoT 컴파일에 대한 보다 상세한 내용은 [AoT 컴파일](https://angular.io/docs/ts/latest/cookbook/aot-compiler.html)을 참조하기 바란다.
+AoT 컴파일에 대한 보다 상세한 내용은 [AoT 컴파일](https://angular.io/guide/aot-compiler)을 참조하기 바란다.
 
 # Reference
 
 * [Angular CLI](https://cli.angular.io/)
 
-* [Angular Style Guide](https://angular.io/docs/ts/latest/guide/style-guide.html)
+* [Angular Style Guide](https://angular.io/guide/styleguide)
 
-* [AoT 컴파일](https://angular.io/docs/ts/latest/cookbook/aot-compiler.html)
+* [AoT 컴파일](https://angular.io/guide/aot-compiler)

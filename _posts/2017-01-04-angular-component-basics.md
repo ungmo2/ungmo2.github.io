@@ -534,4 +534,4 @@ $ ng serve
 
 * [Angular Style Guide](https://angular.io/styleguide)
 
-* [Angular Template Syntax](https://angular.io/docs/ts/latest/guide/template-syntax.html)
+* [Angular Template Syntax](https://angular.io/guide/template-syntax)

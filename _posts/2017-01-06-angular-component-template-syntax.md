@@ -1156,7 +1156,7 @@ Angular는 uppercase 이외에도 아래와 같은 빌트인 파이프를 지원
 
 # Reference
 
-* [Angular Template Syntax](https://angular.io/docs/ts/latest/guide/template-syntax.html)
+* [Angular Template Syntax](https://angular.io/guide/template-syntax)
 
 * [ngFor— Not only for Arrays](https://netbasal.com/angular-2-ngfor-array-with-unique-values-6b15478d6484)
 

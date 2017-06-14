@@ -235,7 +235,7 @@ export class AppComponent {
 @ViewChildren(ChildComponent) myChildren: QueryList<ChildComponent>;
 ```
 
-@ViewChildren의 탐색 결과가 바인딩된 myChildren 프로퍼티의 타입은 [QueryList](https://angular.io/docs/ts/latest/api/core/index/QueryList-class.html)이다. QueryList 클래스는 배열과 같이 순회가능한 이터러블(iterable) 객체이다. iterable 인터페이스를 구현하므로 ES6의 for of 루프에 사용할 수 있고 [ngFor](./angular-component-template-syntax#222-ngfor)와 함께 템플릿 내에서도 사용할 수 있다. 또한 클래스 내부에는 탐색 결과를 저장하는 배열 _result 프로퍼티를 가지고 있고 이 프로퍼티를 사용하는 [자바스크립트 배열 메서드](./js-array#5-array-method)와 동일하게 동작하는 map, filter, find, reduce, forEach, some 등의 메서드를 소유하고 있어서 QueryList는 마치 자바스크립트 배열과 같이 사용할 수 있다. QueryList는 옵저버블(Observable)한 컬렉션으로 변경 사항을 구독(subscribe)할 수 있다. 옵저버블에 대해서는 RxJS에서 살펴볼 것이다.
+@ViewChildren의 탐색 결과가 바인딩된 myChildren 프로퍼티의 타입은 [QueryList](https://angular.io/api/core/QueryList)이다. QueryList 클래스는 배열과 같이 순회가능한 이터러블(iterable) 객체이다. iterable 인터페이스를 구현하므로 ES6의 for of 루프에 사용할 수 있고 [ngFor](./angular-component-template-syntax#222-ngfor)와 함께 템플릿 내에서도 사용할 수 있다. 또한 클래스 내부에는 탐색 결과를 저장하는 배열 _result 프로퍼티를 가지고 있고 이 프로퍼티를 사용하는 [자바스크립트 배열 메서드](./js-array#5-array-method)와 동일하게 동작하는 map, filter, find, reduce, forEach, some 등의 메서드를 소유하고 있어서 QueryList는 마치 자바스크립트 배열과 같이 사용할 수 있다. QueryList는 옵저버블(Observable)한 컬렉션으로 변경 사항을 구독(subscribe)할 수 있다. 옵저버블에 대해서는 RxJS에서 살펴볼 것이다.
 
 QueryList 클래스의 map 메서드를 사용하여 자식 컴포넌트 ChildComponent의 인스턴스들이 바인딩되어 있는 myChildren를 순회하며 자식 컴포넌트 ChildComponent의 프로퍼티에 접근하여 값을 변경한다.
 
@@ -302,7 +302,7 @@ export class AppComponent {
 템플릿 참조 변수를 사용한 DOM 접근 예제 실행 화면
 {: .desc-img}
 
-@ViewChild와 @ViewChildren 데코레이터를 사용하여 자식 컴포넌트를 탐색하는 경우, 탐색 결과로 자식 컴포넌트의 인스턴스를 취득할 수 있었다. 취득한 인스턴스는 당연히 인스턴스를 생성한 컴포넌트 클래스가 타입이 된다. 템플릿 참조 변수를 사용하여 네이티브 DOM을 탐색한 경우, 탐색 결과로 [ElementRef](https://angular.io/docs/ts/latest/api/core/index/ElementRef-class.html) 타입의 인스턴스가 바인딩된다. ElementRef는 네이티브 DOM의 프로퍼티를 담고 있는 nativeElement 프로퍼티를 소유한다. 따라서 ElementRef.nativeElement로 접근하면 네이티브 DOM의 프로퍼티에 접근할 수 있다.
+@ViewChild와 @ViewChildren 데코레이터를 사용하여 자식 컴포넌트를 탐색하는 경우, 탐색 결과로 자식 컴포넌트의 인스턴스를 취득할 수 있었다. 취득한 인스턴스는 당연히 인스턴스를 생성한 컴포넌트 클래스가 타입이 된다. 템플릿 참조 변수를 사용하여 네이티브 DOM을 탐색한 경우, 탐색 결과로 [ElementRef](https://angular.io/api/core/ElementRef) 타입의 인스턴스가 바인딩된다. ElementRef는 네이티브 DOM의 프로퍼티를 담고 있는 nativeElement 프로퍼티를 소유한다. 따라서 ElementRef.nativeElement로 접근하면 네이티브 DOM의 프로퍼티에 접근할 수 있다.
 
 ngAfterViewInit 메서드는 뷰 초기화가 종료됐을 때 호출되는 컴포넌트 생명주기 메서드이다. @ViewChild와 @ViewChildren를 통해 바인딩한 프로퍼티에는 컴포넌트 생명주기 메서드 ngAfterViewInit가 호출된 시점부터 접근할 수 있었다. 컴포넌트 생명주기에 대해서는 다른 장에서 자세히 다룰 것이다.
 
@@ -522,10 +522,10 @@ UserListComponent는 @ContentChild와 @ContentChildren 데코레이터를 통해
 # Reference
 
 * [Angular Component Interaction
-](https://angular.io/docs/ts/latest/cookbook/component-communication.html)
+](https://angular.io/guide/component-interaction)
 
-* [QueryList](https://angular.io/docs/ts/latest/api/core/index/QueryList-class.html)
+* [QueryList](https://angular.io/api/core/QueryList)
 
 * [ES6 In Depth: 이터레이터(iterator)와 for-of 루프 구문](http://hacks.mozilla.or.kr/2015/08/es6-in-depth-iterators-and-the-for-of-loop/)
 
-* [ElementRef](https://angular.io/docs/ts/latest/api/core/index/ElementRef-class.html)
+* [ElementRef](https://angular.io/api/core/ElementRef)

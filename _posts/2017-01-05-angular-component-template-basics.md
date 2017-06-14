@@ -158,4 +158,4 @@ function addEventListener(eventName, callback) {
 
 * [How the hell does zone.js really work?](http://blog.kwintenp.com/how-the-hell-do-zones-really-work/)
 
-* [Angular Template Syntax](https://angular.io/docs/ts/latest/guide/template-syntax.html)
+* [Angular Template Syntax](https://angular.io/guide/template-syntax)

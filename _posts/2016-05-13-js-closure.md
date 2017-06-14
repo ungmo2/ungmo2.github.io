@@ -164,6 +164,49 @@ add 함수가 호출될 때마다 지역변수 counter는 0으로 초기화되�
 
 변수 counter는 외부에서 직접 접근할 수 없는 `private` 변수이므로 전역 변수를 사용했을 때와 같이 의도되지 않은 변경을 걱정할 필요도 없다.
 
+<!--
+싱글톤 클래스를 사용한 방법
+```html
+<!DOCTYPE html>
+<html>
+<body>
+  <p>지역 변수를 사용한 Counting</p>
+
+  <button type="button" onclick="myFunction()">Count!</button>
+
+  <p id="demo">0</p>
+
+  <script>
+
+	let instance = null;
+
+	class Counter {
+		constructor() {
+			this.counter = 0;
+			// Singleton
+			if (!instance) {
+      	instance = this;
+      }
+			return instance;
+		}
+
+		add() {
+			this.counter += 1;
+			return this.counter; 
+		}
+	}
+	
+	const counter = new Counter();
+	    
+	function myFunction(){
+    document.getElementById('demo').innerHTML = counter.add();
+  }
+  </script>
+  </body>
+</html>
+```
+-->
+
 ## 2.2 setTimeout()에 지정되는 함수
 
 setTimeout() 함수는 첫번째 parameter에 실행하고자 하는 함수를 전달하고, 두번째 parameter에 시간 간격(ms: 1000분의 1초)을 지정한다. 즉 지정된 시간 간격으로 해당 함수를 호출한다.
@@ -197,13 +240,13 @@ setTimeout() 함수는 첫번째 parameter에 실행하고자 하는 함수를 �
 
 <div class='result'></div>
 
-① fade()는 document.body를 인자로 전달받아 호출된다.  
-② fade()의 지역변수 level은 1로 초기화되어 있다. 함수 step()은 내부함수이며 외부함수 fade()의 지역변수 level을 사용한다.  
-③ 100ms 후 함수 step()은 호출되고 fade()는 종료한다.  
-④ 함수 step()은 지역변수 hex을 갖는다. 이것은 16진수 문자열을 값으로 갖는다.   
-⑤ 함수 fade()의 매개변수 node(document.body)의 배경색을 변경한다.  
-⑥ 변수 level이 15보다 작으면 즉 16진수 범위안(1~F)인지 확인한다.  
-⑦ level을 1 증가시키고 다시 함수 step()을 호출하여 같은 작업을 반복한다.
+① 함수 fade는 document.body를 인자로 전달받아 호출된다.  
+② 함수 fade의 지역변수 level은 1로 초기화되어 있다. 함수 step은 내부함수이며 외부함수 fade의 지역변수 level을 사용한다. level은 자유변수이다.  
+③ 100ms 후 함수 step은 호출되고 fade는 종료한다.  
+④ 함수 step은 지역변수 hex을 갖는다. 이것은 16진수 문자열을 값으로 갖는다.   
+⑤ 함수 fade의 매개변수 node(document.body)의 배경색을 변경한다.  
+⑥ 변수 level이 15보다 작은지 다시말해 16진수 범위 내(1~F)인지 확인한다.  
+⑦ level을 1 증가시키고 다시 함수 step을 호출하여 같은 작업을 반복한다.
 
 이때 fade 함수는 이미 반환되었지만 외부함수 fade 내의 변수는 이를 필요로 하는 내부함수가 하나 이상 존재하는 경우 계속 유지된다. 이때 내부함수가 외부함수에 있는 변수의 복사본이 아니라 실제 변수에 접근한다는 것에 주의하여야 한다.
 
@@ -212,15 +255,15 @@ setTimeout() 함수는 첫번째 parameter에 실행하고자 하는 함수를 �
 아래의 예제는 클로저를 사용할 때 자주 발생할 수 있는 실수에 관련한 예제다.
 
 ```javascript
-var arr = []
+var arr = [];
 
-for(var i = 0; i < 5; i++){
-  arr[i] = function(){
+for (var i = 0; i < 5; i++) {
+  arr[i] = function () {
     return i;
-  }
+  };
 }
 
-for(var index in arr) {
+for (var index = 0; index < arr.length; index++) {
   console.log(arr[index]());
 }
 ```
@@ -230,15 +273,15 @@ for(var index in arr) {
 ```javascript
 var arr = [];
 
-for(var i = 0; i < 5; i++){
-  arr[i] = function (id) { // ②
+for (var i = 0; i < 5; i++){
+  arr[i] = (function (id) { // ②
     return function () {
       return id; // ③
-    }
-  }(i); // ①
+    };
+  })(i); // ①
 }
 
-for(var index in arr) {
+for (var index = 0; index < arr.length; index++) {
   console.log(arr[index]());
 }
 ```
@@ -248,6 +291,22 @@ for(var index in arr) {
 ② 이때 즉시실행함수는 i를 인자로 전달받고 매개변수 id에 할당한 후 내부 함수를 반환하고 life-cycle이 종료된다. 매개변수 id는 자유변수가 된다.
 
 ③ 배열 arr에 할당된 함수는 id를 반환한다. 이때 id는 상위 스코프의 자유변수이므로 그 값이 유지된다.
+
+위 예제는 자바스크립트의 함수 레벨 스코프 특성으로 인해 for 루프의 초기문에서 사용된 변수의 스코프가 전역이 되기 때문에 발생하는 현상이다. [ES6의 let 키워드](./es6-block-scope)를 사용하면 이와 같은 문제는 말끔히 해결된다.
+
+```javascript
+const arr = [];
+
+for (let i = 0; i < 5; i++) {
+  arr[i] = function () {
+    return i;
+  };
+}
+
+for (let i = 0; i < arr.length; i++) {
+  console.log(arr[i]());
+}
+```
 
 <!--
 ```html

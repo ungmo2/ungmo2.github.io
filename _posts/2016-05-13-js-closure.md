@@ -178,16 +178,16 @@ add 함수가 호출될 때마다 지역변수 counter는 0으로 초기화되�
 
   <script>
 
-	let instance = null;
+	let _instance = null;
 
 	class Counter {
 		constructor() {
 			this.counter = 0;
 			// Singleton
-			if (!instance) {
-      	instance = this;
+			if (!_instance) {
+      	_instance = this;
       }
-			return instance;
+			return _instance;
 		}
 
 		add() {

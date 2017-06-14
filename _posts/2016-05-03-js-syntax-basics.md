@@ -63,13 +63,13 @@ function myFunction() {
 2. src 어트리뷰트에 정의된 자바스크립트 파일을 로드한 후 실행한다.
 3. 중단된 웹페이지의 파싱을 계속 진행한다.
 
-`<body>`요소의 가장 아래에 스크립트를 위치시키는 것은 좋은 아이디어이다. HTML 요소들이 스크립트 로딩 지연으로 인해 렌더링에 지장 받는 일이 발생하지 않아 페이지 로딩 시간이 단축된다.
+body 요소의 가장 아래에 스크립트를 위치시키는 것은 좋은 아이디어이다. HTML 요소들이 스크립트 로딩 지연으로 인해 렌더링에 지장 받는 일이 발생하지 않아 페이지 로딩 시간이 단축된다.
 
 이와 같이 스크립트 로딩 지연으로 인한 병목 현상을 근본적으로 방지하기 위해 HTML5부터 script 태그에 `async`와 `defer` 어트리뷰트가 추가되었다. 
 
 ```html
-<script async src="script.js"></script>
-<script defer src="script.js"></script>
+<script async src="extern.js"></script>
+<script defer src="extern.js"></script>
 ```
 
 async와 defer 어트리뷰트는 웹페이지 파싱과 외부 스크립트 파일의 다운로드가 동시에 진행된다는 면에서는 동일하다. 하지만 스크립트의 실행 시점이 다르다.

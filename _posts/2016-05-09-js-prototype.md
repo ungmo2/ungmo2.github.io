@@ -4,6 +4,7 @@ title: Javascript <strong>Prototype</strong>
 subtitle: 프로토타입과 객체지향
 categories: javascript
 section: javascript
+description: 자바스크립트의 모든 객체는 자신의 부모 역할을 하는 객체와 연결되어 있다. 그리고 이것은 마치 객체 지향의 상속 개념과 같이 부모 객체의 프로퍼티 또는 메서드를 상속받아 사용할 수 있게 한다. 이러한 부모 객체를 Prototype(프로토타입) 객체 또는 줄여서 Prototype(프로토타입)이라 한다.
 ---
 
 * TOC
@@ -144,7 +145,7 @@ var person = {
 
 console.dir(person);
 
-console.log(Person.__proto__ === Object.prototype);   // ① true
+console.log(person.__proto__ === Object.prototype);   // ① true
 console.log(Object.prototype.constructor === Object); // ② true
 console.log(Object.__proto__ === Function.prototype); // ③ true
 console.log(Function.prototype.__proto__ === Object.prototype); // ④ true

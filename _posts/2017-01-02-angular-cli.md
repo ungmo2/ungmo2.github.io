@@ -694,7 +694,7 @@ chunk    {4} inline.7454b5fa5b319102345e.bundle.js (inline) 0 bytes [entry] [ren
 | --sourcemaps     | true  | false
 | --extract-css    | false | true
 
-또한 프로덕션 빌드 시에는 UglifyJS를 통하여 데드 코드의 제거가 실행된다.
+또한 프로덕션 빌드 시에는 UglifyJS를 통하여 데드 코드의 제거가 자동 실행된다.
 
 ## 6.3 AoT(Ahead-of Time) 컴파일
 

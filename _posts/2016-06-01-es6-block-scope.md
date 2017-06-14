@@ -17,7 +17,7 @@ description: ECMAScript6 ES6 블록 레벨 스코프 let const
 
 ES5에서 변수를 선언할 수 있는 유일한 방법은 [var 키워드](./js-data-type-variable#variable-)를 사용하는 것이었다. var 키워드를 사용하여 선언한 변수는 중복 선언이 가능하며 [Function-level scope](./js-scope#function-scope)를 갖게 되는데 이것은 다른 C-family 언어와는 차별되는 특징이다.
 
-기본적으로 JavaScript의 변수는 Function-level scope를 갖는다.
+대부분의 C-family 언어는 Block-level scope를 지원하지만 JavaScript는 Function-level scope를 갖는다.
 
 Function-level scope
 : 함수내에서 선언된 변수는 함수 내에서만 유효하며 함수 외부에서는 참조할 수 없다.
@@ -37,7 +37,7 @@ console.log(foo); // 123
 console.log(foo); // 456
 ```
 
-var 키워드를 사용하여 선언한 변수는 중복 선언이 가능하기 때문에 위의 코드는 문법적으로 문제가 없다. 하지만 코드블럭 내의 변수 foo는 전역변수이기 때문에 전역에서 선언된 변수 foo의 값을 대체하는 새로운 값을 재할당한다.
+var 키워드를 사용하여 선언한 변수는 중복 선언이 가능하기 때문에 위의 코드는 문법적으로 문제가 없다. 하지만 Block-level scope를 지원하지 않는 JavaScript의 특성 상, 코드블럭 내의 변수 foo는 전역변수이기 때문에 전역에서 선언된 변수 foo의 값을 대체하는 새로운 값을 재할당한다.
 
 ES6는 <strong>Block-level scope</strong>를 갖는 변수를 선언하기 위해 `let` 키워드를 제공한다.
 
@@ -51,7 +51,7 @@ console.log(foo); // 123
 console.log(bar); // ReferenceError: bar is not defined
 ```
 
-위 코드의 변수 bar는 Block-level scope를 갖는 지역 변수이다.
+let 키워드로 선언된 변수는 Block-level scope를 갖는다. 위 예제에서 코드블록 내에 선언된 변수 foo는 Block-level scope를 갖는 지역 변수이다. 전역에서 선언된 변수 foo와는 다른 변수이다. 또한 변수 bar도 Block-level scope를 갖는 지역 변수이다. 따라서 전역에서는 변수 bar를 참조할 수 없다. 
 
 var는 중복 선언이 가능하였으나 let은 <strong>중복 선언 시 에러</strong>가 발생한다.
 
@@ -63,7 +63,7 @@ let bar = 123;
 let bar = 456;  // Error: Identifier 'bar' has already been declared
 ```
 
-자바스크립트는 ES6의 let, const를 포함하여 모든 선언(var, let, const, function, [function*](http://hacks.mozilla.or.kr/2015/08/es6-in-depth-generators/), class)을 호이스팅(Hoisting)한다.
+자바스크립트는 ES6에서 도입된 let, const를 포함하여 모든 선언(var, let, const, function, [function*](http://hacks.mozilla.or.kr/2015/08/es6-in-depth-generators/), class)을 호이스팅(Hoisting)한다.
 
 하지만 var 키워드로 선언된 변수와는 달리 let 키워드로 선언된 변수를 선언문 이전에 참조하면 ReferenceError가 발생한다. 이는 let 키워드로 선언된 변수는 코드블록의 시작에서 변수의 선언까지 <strong>일시적 사각지대(Temporal Dead Zone; TDZ)</strong>에 빠지게 되기 때문이다.
 
@@ -79,50 +79,53 @@ Block-level scope를 지원하는 let은 var보다 더욱 직관적이다. 다�
 
 ```javascript
 var funcs = [];
-// create a bunch of functions
+
+// 함수의 배열을 생성한다
+// i는 전역 변수이다
 for (var i = 0; i < 3; i++) {
-  funcs.push(function() {
-    console.log(i);
-  })
+  funcs.push(function () { console.log(i); });
 }
-// call them
+
+// 배열에서 함수를 꺼내어 호출한다
 for (var j = 0; j < 3; j++) {
   funcs[j]();
 }
 ```
 
-위 코드의 실행 결과로 0,1,2를 기대할 수도 있지만 결과는 3이 3번 출력된다. 그 이유는 for문의 var i가 전역 변수이기 때문이다. 0,1,2을 출력시키기 위해서는 아래와 같은 코드가 필요하다.
+위 코드의 실행 결과로 0, 1, 2를 기대할 수도 있지만 결과는 3이 3번 출력된다. 그 이유는 for문의 var i가 전역 변수이기 때문이다. 0, 1, 2를 출력시키기 위해서는 아래와 같은 코드가 필요하다.
 
 ```javascript
 var funcs = [];
-// create a bunch of functions
+
+// 함수의 배열을 생성한다
+// i는 전역 변수이다
 for (var i = 0; i < 3; i++) {
-  (function() {
+  (function () {
     var local = i;
-    funcs.push(function() {
-      console.log(local);
-    })
-  })();
+    funcs.push(function () { console.log(local); });
+  }());
 }
-// call them
+
+// 배열에서 함수를 꺼내어 호출한다
 for (var j = 0; j < 3; j++) {
   funcs[j]();
 }
 ```
 
-JavaScript의 Function-level scope로 인한 문제를 회피하는 한 수단으로 [클로저](./js-closure)를 활용한 방법이다.
+JavaScript의 Function-level scope로 인하여 for loop의 초기화식에 사용된 변수가 전역 스코프를 갖게되어 발생하는 문제를 회피하기 위해 [클로저](./js-closure)를 활용한 방법이다.
 
 반복문에서 ES6의 let 키워드를 사용하면 동일한 동작을 한다.
 
 ```javascript
 var funcs = [];
-// create a bunch of functions
-for (let i = 0; i < 3; i++) { // Note the use of let
-  funcs.push(function() {
-    console.log(i);
-  })
+
+// 함수의 배열을 생성한다
+// i는 for loop에서만 유효한 지역변수이다
+for (let i = 0; i < 3; i++) {
+  funcs.push(function () { console.log(i); });
 }
-// call them
+
+// 배열에서 함수를 꺼내어 호출한다
 for (var j = 0; j < 3; j++) {
   funcs[j]();
 }
@@ -155,7 +158,7 @@ const FOO; // SyntaxError: Missing initializer in const declaration
 console.log(FOO); // ReferenceError: FOO is not defined
 ```
 
-const는 가독성의 향상과 유지보수의 편의를 위해 적극적으로 사용해야 한다. 예를 들어 아래 코드를 살펴보자.
+상수는 가독성의 향상과 유지보수의 편의를 위해 적극적으로 사용해야 한다. 예를 들어 아래 코드를 살펴보자.
 
 ```javascript
 // Low readability
@@ -168,7 +171,7 @@ if (x > MAXROWS) {
 }
 ```
 
-조건문 내의 10은 어떤 의미로 사용하였는지 파악하기가 곤란한다. 하지만 네이밍이 적절한 상수로 선언하면 가독성과 유지보수성이 대폭 향상된다.
+조건문 내의 10은 어떤 의미로 사용하였는지 파악하기가 곤란하다. 하지만 네이밍이 적절한 상수로 선언하면 가독성과 유지보수성이 대폭 향상된다.
 
 const는 객체에도 사용할 수 있다. 물론 재할당은 금지된다.
 
@@ -210,14 +213,14 @@ console.log(user); // { name: 'Lee', address: { city: 'Seoul' } }
 console.log(Object.isFrozen(user)); // true
 ```
 
-단 객체 내부의 객체는 변경가능하다.
+단 객체의 프로퍼티 값인 객체는 변경가능하다.
 
 ```javascript
 user.address.city = 'Busan'; // 변경된다!
 console.log(user); // { name: 'Lee', address: { city: 'Busan' } }
 ```
 
-내부 객체까지 변경 불가능하게 만들려면 Deep freeze를 하여야 한다.
+객체의 프로퍼티 값인 객체까지 변경 불가능하게 만들려면 Deep freeze를 하여야 한다.
 
 ```javascript
 function deepFreeze(obj) {
@@ -253,7 +256,6 @@ ES6를 사용한다면 var의 사용은 가급적 지양하고 아래와 같이 
 - 변경이 발생하지 않는(재할당이 필요없는) primitive형 변수와 객체형 변수에는 const를 사용
 
 객체형 변수에 const를 사용하는 이유는 객체의 속성값이 변경된다하더라도 객체형 변수에 저장되는 주소값은 변경되지 않기 때문이다. 자바스크립트의 값은 대부분 객체(primitive형 변수를 제외한 모든 값은 객체이다)이므로 결국 대부분의 경우 const를 사용하게 된다.
-
 
 # Reference
 

@@ -694,6 +694,8 @@ chunk    {4} inline.7454b5fa5b319102345e.bundle.js (inline) 0 bytes [entry] [ren
 | --sourcemaps     | true  | false
 | --extract-css    | false | true
 
+또한 프로덕션 빌드 시에는 UglifyJS를 통하여 데드 코드의 제거가 실행된다.
+
 ## 6.3 AoT(Ahead-of Time) 컴파일
 
 Angular CLI의 빌드 기능은 TypeScript를 JavaScript로 트랜스파일링한다. 사실은 TypeScript뿐만 아니라 컴포넌트의 템플릿 또한 컴파일이 필요하다. 템플릿은 빌드 시에 컴파일되지 않고 런타임에 JIT(Just-In-Time) 컴파일된다. 단, 프로덕션 빌드시는 AoT 컴파일이 자동 적용된다.

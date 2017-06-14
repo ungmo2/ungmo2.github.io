@@ -590,7 +590,7 @@ removeUser(user: User) {
 
 따라서 애플리케이션의 상태 정보를 저장하고 변경할 수 있는 <strong>Stateful 컴포넌트</strong>(Smart 컴포넌트)와 상태 정보를 참조하여 화면에 출력할 뿐 직접 변경하지 않는 <strong>Stateless 컴포넌트</strong>(Dumb 컴포넌트)로 구분할 필요가 있다. 위 예제에서 부모 컴포넌트는 Stateful 컴포넌트이고 자식 컴포넌트는 Stateless 컴포넌트로 설계되었다.
 
-Stateful 컴포넌트는 애플리케이션의 현재 상태 정보를 관리하며 필요에 따라 서버 자원에 접근할 수 있고 Stateless 컴포넌트를 사용하여 뷰를 표현한다. Stateless 컴포넌트는 인자를 받아 결과를 반환하는 함수와 유사하게 단순히 프로퍼티 바인딩을 통해 상태 정보를 전달받아서 뷰를 렌더링하고 필요에 따라 이벤트를 방출한다.
+Stateful 컴포넌트는 애플리케이션의 현재 상태 정보를 관리하며 필요에 따라 서버 자원에 접근할 수 있고 Stateless 컴포넌트를 사용하여 뷰를 표현한다. Stateless 컴포넌트는 인자를 받아 결과를 반환하는 순수 함수(Pure function)와 유사하게 단순히 프로퍼티 바인딩을 통해 상태 정보를 전달받아서 뷰를 렌더링하고 필요에 따라 이벤트를 방출할 뿐 그 외의 부수 효과(Side effect)는 없다.
 
 # 4. 원거리 컴포넌트 간의 상태 공유
 
@@ -610,3 +610,5 @@ A 컴포넌트에서 변경된 상태를 C 컴포넌트에서도 공유할 필�
 ](https://angular.io/docs/ts/latest/cookbook/component-communication.html)
 
 * [Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
+
+* [함수형 프로그래밍](https://ko.wikipedia.org/wiki/%ED%95%A8%EC%88%98%ED%98%95_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D)

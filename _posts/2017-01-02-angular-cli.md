@@ -684,19 +684,28 @@ chunk    {3} vendor.57570798817e1962b74d.bundle.js (vendor) 1.1 MB [initial] [re
 chunk    {4} inline.7454b5fa5b319102345e.bundle.js (inline) 0 bytes [entry] [rendered]
 ```
 
-프로덕션 빌드 시에는 src/environments/environment.prod.ts 파일을 참조하여 빌드를 수행한다.
+프로덕션 빌드 시에는 src/environments/environment.prod.ts 파일을 참조하여 빌드를 수행한다. 프로덕션 빌드와 개발환경 빌드에 기본 적용되는 옵션의 차이는 아래와 같다.
+
+| Flag             | -dev  | -prod    |
+|:-----------------|:-----:|:--------:|
+| --aot            | false | true
+| --environment    | dev   | prod
+| --output-hashing | media | all
+| --sourcemaps     | true  | false
+| --extract-css    | false | true
 
 ## 6.3 AoT(Ahead-of Time) 컴파일
 
-Angular CLI의 빌드 기능은 TypeScript를 JavaScript로 트랜스파일링한다. 사실은 TypeScript뿐만 아니라 컴포넌트의 HTML 템플릿 또한 컴파일이 필요하다. 데이터바인딩과 이벤트를 위한 HTML 템플릿은 컴파일이 필요하기 때문이다. 하지만 HTML 템플릿은 빌드 시에 컴파일되지 않고 런타임에 JIT(Just-In-Time) 컴파일된다.
-
-AoT 컴파일이란 TypeScript의 트랜스파일링과 같이 빌드 시에 컴파일되는 것을 의미한다. 빌드에 소요되는 시간이 조금 더 걸리더라도 런타임에 컴파일이 실행되지 않기 때문에 실제 애플리케이션이 동작 시간은 단축되는 효과가 있다. 또한 JIT 컴파일러를 포함할 필요가 없어지기 때문에 애플리케이션 전체 용량도 줄어드는 효과가 있다.
-
-프로덕션 빌드시 AoT 컴파일을 수행하기 위한 명령어는 다음과 같다.
+Angular CLI의 빌드 기능은 TypeScript를 JavaScript로 트랜스파일링한다. 사실은 TypeScript뿐만 아니라 컴포넌트의 템플릿 또한 컴파일이 필요하다. 템플릿은 빌드 시에 컴파일되지 않고 런타임에 JIT(Just-In-Time) 컴파일된다. 단, 프로덕션 빌드시는 AoT 컴파일이 자동 적용된다.
 
 ```bash
-$ ng build -prod -aot
+# AoT 컴파일
+$ ng build -aot
+# 프로덕션 빌드시는 AoT 컴파일이 자동 적용된다.
+$ ng build -prod
 ```
+
+AoT 컴파일이란 템플릿을 빌드 시에 미리 컴파일해 두는 것을 말한다. 빌드에 소요되는 시간이 조금 더 걸리더라도 런타임에 컴파일이 실행되지 않기 때문에 실제 애플리케이션이 동작 시간은 단축되는 효과가 있다. 또한 템플릿을 JIT 컴파일하지 않고 미리 컴파일하기 때문에 템플릿에서 발생하는 에러를 사전에 감지할 수 있는 장점과 JIT 컴파일러를 포함할 필요가 없어지기 때문에 애플리케이션 전체 용량도 줄어드는 효과가 있다.
 
 Angular5에서는 기본 컴파일 옵션이 AoT로 변경될 에정이다.
 

@@ -59,11 +59,32 @@ function myFunction() {
 
 브라우저는 위 코드를 아래와 같이 실행할 것이다.
 
-1. script 요소를 만나면 문서의 파싱을 잠시 중단한다.
-2. src 어트리뷰트에 정의된 자바스크립트 파일을 로드한다.
-3. 스크립트를 실행한 뒤 다음 작업으로 진행한다.
+1. script 요소를 만나면 웹페이지의 파싱을 잠시 중단한다.
+2. src 어트리뷰트에 정의된 자바스크립트 파일을 로드한 후 실행한다.
+3. 중단된 웹페이지의 파싱을 계속 진행한다.
 
 `<body>`요소의 가장 아래에 스크립트를 위치시키는 것은 좋은 아이디어이다. HTML 요소들이 스크립트 로딩 지연으로 인해 렌더링에 지장 받는 일이 발생하지 않아 페이지 로딩 시간이 단축된다.
+
+이와 같이 스크립트 로딩 지연으로 인한 병목 현상을 근본적으로 방지하기 위해 HTML5부터 script 태그에 `async`와 `defer` 어트리뷰트가 추가되었다. 
+
+```html
+<script async src="script.js"></script>
+<script defer src="script.js"></script>
+```
+
+async와 defer 어트리뷰트는 웹페이지 파싱과 외부 스크립트 파일의 다운로드가 동시에 진행된다는 면에서는 동일하다. 하지만 스크립트의 실행 시점이 다르다.
+
+async
+: 웹페이지 파싱과 외부 스크립트 파일의 다운로드가 동시에 진행된다. 스크립트는 다운로드 완료 직후 실행된다. IE9 이하 버전은 지원하지 않는다.
+
+defer
+: 웹페이지 파싱과 외부 스크립트 파일의 다운로드가 동시에 진행된다. 스크립트는 웹페이지 파싱 완료 직후 실행된다. IE9 이하 버전에서 정상적으로 동작하지 않을 수 있다.
+
+![script-execution](./img/script-execution.jpg)
+{: .w-650}
+
+script 태그의 async, defer 어트리뷰트 (출처: [Peter Beverloo](http://peter.sh/experiments/asynchronous-and-deferred-javascript-execution-explained/))
+{: .desc-img}
 
 # 3. JavaScript Output
 

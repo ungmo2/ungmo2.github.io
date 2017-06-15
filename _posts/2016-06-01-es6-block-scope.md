@@ -4,7 +4,7 @@ title: ECMAScript6 - <strong>let, const</strong>
 subtitle: let, const와 블록 레벨 스코프
 categories: es6
 section: es6
-description: ECMAScript6 ES6 블록 레벨 스코프 let const
+description: ES5에서 변수를 선언할 수 있는 유일한 방법은 var 키워드를 사용하는 것이었다. var 키워드로 선언된 변수는 아래와 같은 특징을 갖는다. 이는 다른 C-family 언어와는 차별되는 특징(설계상 오류)으로 주의를 기울이지 않으면 심각한 문제를 발생시킨다. 대부분의 문제는 전역 변수로 인해 발생한다. 전역 변수는 간단한 애플리케이션의 경우, 사용이 편리한 면이 있지만 불가피한 상황을 제외하고 사용을 억제해야 한다. 전역 변수는 범위(scope)가 넓어서 어디에서 어떻게 사용될 지 파악하기 힘들다. 이는 의도치 않은 변수의 변경이 발생할 수 있는 가능성이 증가한다. 또한 여러 함수와 상호 의존하는 등 side effect가 있을 수 있어서 복잡성이 증가한다. 변수의 범위(scope)는 좁을수록 좋다. ES6는 이러한 var의 단점을 보완하기 위해 let과 const 키워드를 도입하였다. 
 ---
 
 * TOC
@@ -17,11 +17,13 @@ ES5에서 변수를 선언할 수 있는 유일한 방법은 [var 키워드](./j
 
 1. [Function-level scope](./js-scope#function-scope)
   - 전역 변수의 남발
-  - for loop 초기화식에서 사용한 변수의 전역화
+  - for loop 초기화식에서 사용한 변수를 for loop 외부 또는 전역에서 참조할 수 있다.
 2. var 키워드 생략 허용
   - 의도하지 않은 변수의 전역화
 3. 중복 선언 허용
   - 의도하지 않은 변수값 변경
+4. [변수 호이스팅](./js-data-type-variable#4-변수-호이스팅variable-hoisting)
+  - 변수를 선언하기 전에 참조가 가능하다. 
 
 대부분의 문제는 전역 변수로 인해 발생한다. 전역 변수는 간단한 애플리케이션의 경우, 사용이 편리한 면이 있지만 불가피한 상황을 제외하고 사용을 억제해야 한다. 전역 변수는 범위(scope)가 넓어서 어디에서 어떻게 사용될 지 파악하기 힘들다. 이는 의도치 않은 변수의 변경이 발생할 수 있는 가능성이 증가한다. 또한 여러 함수와 상호 의존하는 등 side effect가 있을 수 있어서 복잡성이 증가한다.
 
@@ -36,7 +38,7 @@ ES6는 이러한 var의 단점을 보완하기 위해 let과 const 키워드를 
 대부분의 C-family 언어는 Block-level scope를 지원하지만 JavaScript는 Function-level scope를 갖는다.
 
 Function-level scope
-: 함수내에서 선언된 변수는 함수 내에서만 유효하며 함수 외부에서는 참조할 수 없다.
+: 함수내에서 선언된 변수는 함수 내에서만 유효하며 함수 외부에서는 참조할 수 없다. 즉, 함수 내부에서 선언한 변수는 지역 변수이며 함수 외부에서 선언한 변수는 모두 전역 변수이다.
 
 Block-level scope
 : 코드 블럭 내에서 선언된 변수는 코드 블럭 내에서만 유효하며 코드 블럭 외부에서는 참조할 수 없다.
@@ -149,10 +151,9 @@ var funcs = [];
 // 함수의 배열을 생성한다
 // i는 전역 변수이다
 for (var i = 0; i < 3; i++) {
-  (function () {
-    var local = i;
-    funcs.push(function () { console.log(local); });
-  }());
+  (function (index) { // index는 자유변수이다.
+    funcs.push(function () { console.log(index); });
+  }(i));
 }
 
 // 배열에서 함수를 꺼내어 호출한다
@@ -180,7 +181,7 @@ for (var j = 0; j < 3; j++) {
 }
 ```
 
-for loop의 let i는 전역 변수가 아니며 for loop의 지역 변수이다. 또한 i는 자유변수로서 for loop의 생명주기가 종료하여도 변수 i를 참조하는 함수가 존재하는 한 계속 유지된다.
+for loop의 let i는 for loop에서만 유효한 지역 변수이다. 또한 i는 자유변수로서 for loop의 생명주기가 종료하여도 변수 i를 참조하는 함수가 존재하는 한 계속 유지된다.
 
 ![for-let](./img/for-let.png)
 {: .w-450}
@@ -263,7 +264,7 @@ const obj = { foo: 123 };
 obj = { bar: 456 }; // TypeError: Assignment to constant variable.
 ```
 
-## 2.3 const와 불변객체
+## 2.3 const와 객체
 
 const는 객체에 대한 참조의 변경을 금지한다. 하지만 **객체의 프로퍼티는 보호되지 않는다.** 다시 말하자면 재할당은 불가능하지만 할당된 객체의 내용은 변경할 수 있다.
 
@@ -279,6 +280,33 @@ user.name = 'Kim'; // 허용된다!
 
 console.log(user); // { name: 'Kim', address: { city: 'Seoul' } }
 ```
+
+객체 타입 변수 선언에는 const를 사용하는 것이 좋다. 이유는 위 예제에서 확인한 바와 같이 const를 사용한다 하더라도 객체의 내용을 변경할 수 있으며 이때 변수에 할당된 주소값은 변경되지 않기 때문이다.
+
+자바스크립트의 값은 대부분 객체(primitive형 변수를 제외한 모든 값은 객체이다)이므로 결국 대부분의 경우 const를 사용하게 된다.
+
+<!--
+## 2.4 const와 불변 객체
+
+const는 재할당을 금지하므로 참조하고 있는 값이 변하지 않는다. 즉, const 변수의 값은 상수이다. 하지만 객체의 경우, 의도하지 않은 객체의 변경이 발생할 수 있다. 같은 객체를 참조하고 있는 다른 변수가 객체의 내용을 변경하는 경우이다.
+
+```javascript
+const user1 = {
+  name: 'Lee',
+  address: {
+    city: 'Seoul'
+  }
+};
+
+const user2 = user1;
+
+user2.name = 'Kim';
+
+console.log(user1.name); // Kim
+console.log(user2.name); // Kim
+```
+
+의도하지 않은 객체의 변경이 발생하는 원인의 대다수는 “레퍼런스를 참조한 다른 무언가가 객체를 변경”하기 때문이다. 이 문제의 해결 방법은 비용은 조금 들지만 객체를 불변객체로 만들어 프로퍼티의 변경을 방지하며 객체의 변경이 필요한 경우에는 참조가 아닌 객체의 방어적 복사(defensive copy)를 통해 새로운 객체를 생성한 후 변경한다.
 
 객체의 프로퍼티까지 보호하여 primitive data와 같이 변경이 불가능한 값(immutable value)으로 만들고 싶다면 Object.freeze() 메서드를 사용한다.
 
@@ -334,15 +362,19 @@ user.address.city = 'Busan';
 
 console.log(user); // { name: 'Lee', address: { city: 'Seoul' } }
 ```
+-->
 
 # 3. var vs. let vs. const
 
-ES6를 사용한다면 var의 사용은 가급적 지양하고 아래와 같이 경우에 따라 let과 const를 사용하는 것을 추천한다.
+아래와 같이 var, let, const 사용하는 것을 추천한다.
 
-- primitive형 변수에는 let를 사용
-- 변경이 발생하지 않는(재할당이 필요없는) primitive형 변수와 객체형 변수에는 const를 사용
+- ES6를 사용한다면 var 키워드는 사용하지 않는다.
 
-객체형 변수에 const를 사용하는 이유는 객체의 속성값이 변경된다하더라도 객체형 변수에 저장되는 주소값은 변경되지 않기 때문이다. 자바스크립트의 값은 대부분 객체(primitive형 변수를 제외한 모든 값은 객체이다)이므로 결국 대부분의 경우 const를 사용하게 된다.
+- 변경이 발생하지 않는(재할당이 필요없는) primitive형 변수와 객체형 변수에는 const를 사용한다.
+
+- 재할당이 필요한 primitive형 변수에는 let를 사용한다.
+
+객체형 변수에 const를 사용하는 이유는 객체의 프로퍼티 값이 변경된다하더라도 객체형 변수에 저장되는 주소값은 변경되지 않기 때문이다. 자바스크립트의 값은 대부분 객체(primitive형 변수를 제외한 모든 값은 객체이다)이므로 결국 대부분의 경우 const를 사용하게 된다.
 
 # Reference
 

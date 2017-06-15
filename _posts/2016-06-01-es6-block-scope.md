@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ECMAScript6 - <strong>Block-level scope</strong>
+title: ECMAScript6 - <strong>let, const</strong>
 subtitle: let, const와 블록 레벨 스코프
 categories: es6
 section: es6
@@ -13,11 +13,25 @@ description: ECMAScript6 ES6 블록 레벨 스코프 let const
 ![es6 Logo](/img/es6.png)
 {: .w-650}
 
+ES5에서 변수를 선언할 수 있는 유일한 방법은 [var 키워드](./js-data-type-variable#variable-)를 사용하는 것이었다. var 키워드로 선언된 변수는 아래와 같은 특징을 갖는다. 이는 다른 C-family 언어와는 차별되는 특징(설계상 오류)으로 주의를 기울이지 않으면 심각한 문제를 발생시킨다.
+
+1. [Function-level scope](./js-scope#function-scope)
+  - 전역 변수의 남발
+  - for loop 초기화식에서 사용한 변수의 전역화
+2. var 키워드 생략 허용
+  - 의도하지 않은 변수의 전역화
+3. 중복 선언 허용
+  - 의도하지 않은 변수값 변경
+
+대부분의 문제는 전역 변수로 인해 발생한다. 전역 변수는 간단한 애플리케이션의 경우, 사용이 편리한 면이 있지만 불가피한 상황을 제외하고 사용을 억제해야 한다. 전역 변수는 범위(scope)가 넓어서 어디에서 어떻게 사용될 지 파악하기 힘들다. 이는 의도치 않은 변수의 변경이 발생할 수 있는 가능성이 증가한다. 또한 여러 함수와 상호 의존하는 등 side effect가 있을 수 있어서 복잡성이 증가한다.
+
+변수의 범위(scope)는 좁을수록 좋다.
+
+ES6는 이러한 var의 단점을 보완하기 위해 let과 const 키워드를 도입하였다. 
+
 # 1. let
 
 ## 1.1 Block-level scope
-
-ES5에서 변수를 선언할 수 있는 유일한 방법은 [var 키워드](./js-data-type-variable#variable-)를 사용하는 것이었다. var 키워드를 사용하여 선언한 변수는 중복 선언이 가능하며 [Function-level scope](./js-scope#function-scope)를 갖게 되는데 이것은 다른 C-family 언어와는 차별되는 특징이다.
 
 대부분의 C-family 언어는 Block-level scope를 지원하지만 JavaScript는 Function-level scope를 갖는다.
 
@@ -57,21 +71,21 @@ let 키워드로 선언된 변수는 Block-level scope를 갖는다. 위 예제�
 
 ## 1.2 중복 선언 금지
 
-var는 중복 선언이 가능하였으나 let은 <strong>중복 선언 시 에러</strong>가 발생한다.
+var는 중복 선언이 가능하였으나 let은 <strong>중복 선언 시 SyntaxError</strong>가 발생한다.
 
 ```javascript
 var foo = 123;
 var foo = 456;  // OK
 
 let bar = 123;
-let bar = 456;  // Error: Identifier 'bar' has already been declared
+let bar = 456;  // Uncaught SyntaxError: Identifier 'bar' has already been declared
 ```
 
 ## 1.3 호이스팅(Hoisting)
 
-자바스크립트는 ES6에서 도입된 let, const를 포함하여 모든 선언(var, let, const, function, [function*](http://hacks.mozilla.or.kr/2015/08/es6-in-depth-generators/), class)을 호이스팅(Hoisting)한다.
+자바스크립트는 ES6에서 도입된 let, const를 포함하여 모든 선언(var, let, const, function, [function*](http://hacks.mozilla.or.kr/2015/08/es6-in-depth-generators/), class)을 호이스팅(Hoisting)한다. 호이스팅이란 var 선언문이나 function 선언문 등을 해당 스코프의 선두로 옮기는 것을 말한다.
 
-하지만 var 키워드로 선언된 변수와는 달리 let 키워드로 선언된 변수를 선언문 이전에 참조하면 ReferenceError가 발생한다. 이는 let 키워드로 선언된 변수는 코드블록의 시작에서 변수의 선언까지 <strong>일시적 사각지대(Temporal Dead Zone; TDZ)</strong>에 빠지게 되기 때문이다. 
+하지만 var 키워드로 선언된 변수와는 달리 let 키워드로 선언된 변수를 선언문 이전에 참조하면 ReferenceError가 발생한다. 이는 let 키워드로 선언된 변수는 스코프의 시작에서 변수의 선언까지 <strong>일시적 사각지대(Temporal Dead Zone; TDZ)</strong>에 빠지기 때문이다. 
 
 ```javascript
 console.log(foo); // undefined
@@ -92,7 +106,7 @@ let bar;
 할당 단계(Assignment phase)
 : undefined로 초기화된 변수에 실제값을 할당한다.
 
-var 키워드로 선언된 변수는 선언 단계와 초기화 단계가 한번에 이루어진다. 이후 변수선언문에 접근하면 실제값으로 할당이 이루어진다. 따라서 변수 선언문 이전에 변수에 접근하여도 에러가 발생하지 않는다. 다만 undefined를 반환한다.
+var 키워드로 선언된 변수는 선언 단계와 초기화 단계가 한번에 이루어진다. 즉, 스코프에 변수가 등록되고 변수는 undefined로 초기화된다. 따라서 변수 선언문 이전에 변수에 접근하여도 에러가 발생하지 않는다. 다만 undefined를 반환한다. 이후 변수 할당문에 도달하면 비로서 값의 할당이 이루어진다. 
 
 ![var lifecycle](./img/var-lifecycle.png)
 {: .w-450}
@@ -100,7 +114,7 @@ var 키워드로 선언된 변수는 선언 단계와 초기화 단계가 한번
 var 키워드로 선언된 변수의 생명 주기
 {: .desc-img}
 
-let 키워드로 선언된 변수는 선언 단계와 초기화 단계가 분리되어 진행된다. 즉 선언단계가 진행되고 변수 선언문에 접근하면 비로서 초기화 단계에 진입한다. 이 시점(선언 단계 ~ 초기화 단계 이전)에 변수에 접근하려고 하면 `ReferenceError: variable is not defined.` 에러가 발생한다. 이는 변수가 초기화되지 않았기 때문인데 코드블록의 시작부터 이 지점까지를 일시적 사각지대(Temporal Dead Zone; TDZ)라고 부른다. 
+let 키워드로 선언된 변수는 선언 단계와 초기화 단계가 분리되어 진행된다. 즉, 스코프에 변수가 등록되지만 초기화는 변수 선언문에 도달힜을 때 이루어진다. 초기화 이전에 변수에 접근하려고 하면 ReferenceError 에러가 발생한다. 이는 변수가 아직 초기화되지 않았기 때문인데 스코프의 시작 지점부터 초기화 시작 지점까지를 일시적 사각지대(Temporal Dead Zone; TDZ)라고 부른다. 
 
 ![let lifecycle](./img/let-lifecycle.png)
 {: .w-450}
@@ -108,7 +122,7 @@ let 키워드로 선언된 변수는 선언 단계와 초기화 단계가 분리
 let 키워드로 선언된 변수의 생명 주기
 {: .desc-img}
 
-## 1.4 스코프와 클로저 
+## 1.4 클로저 
 
 Block-level scope를 지원하는 let은 var보다 직관적이다. 다음 코드를 살펴보자.
 
@@ -166,13 +180,45 @@ for (var j = 0; j < 3; j++) {
 }
 ```
 
+for loop의 let i는 전역 변수가 아니며 for loop의 지역 변수이다. 또한 i는 자유변수로서 for loop의 생명주기가 종료하여도 변수 i를 참조하는 함수가 존재하는 한 계속 유지된다.
+
+![for-let](./img/for-let.png)
+{: .w-450}
+
+let과 클로저
+{: .desc-img}
+
+## 1.5 전역 객체와 let
+
+전역 객체는 모든 객체의 유일한 최상위 객체를 의미하며 일반적으로 Browser-side에서는 window 객체, Server-side(Node.js)에서는 global 객체를 의미한다.
+
+var 키워드로 선언된 변수를 전역 변수로 사용하면 전역 객체(Global Object)의 프로퍼티가 된다.
+
+```javascript
+var foo = 123; // 전역변수
+
+console.log(window.foo); // 123
+```
+
+let 키워드로 선언된 변수를 전역 변수로 사용하는 경우, let 전역 변수는 전역 객체의 프로퍼티가 아니다. 즉 window.foo와 같이 접근할 수 없다. let 전역 변수는 
+
+```javascript
+let foo = 123; // 전역변수
+
+console.log(window.foo); // undefined
+```
+
+글로벌 let 변수는 글로벌 객체의 속성이 아닙니다. 즉, 그렇게 정의한 변수를 window.variableName 코드로 접근할 수 없습니다. 그렇게 정의한 변수는 웹 페이지 안에서 실행되는 모든 JS 코드들을 둘러싸는 보이지 않는 개념적인 블럭 안에 존재합니다.
+
 # 2. const
 
 const는 상수(변하지 않는 값)를 위해 사용한다. 하지만 반드시 상수만을 위해 사용하지는 않는다. 이에 대해서는 후반부에 설명한다.
 
+const는 let과 대부분 동일한 특징을 갖는다. let과 다른 점만 살펴보도록 하자.
+
 ## 2.1 선언과 초기화
 
-const는 let과 대부분 동일한 특징을 갖는다. 단 let은 초기화 이후 다른 값으로 재할당이 자유로우나 const는 초기화 이후 재할당이 금지된다.
+let은 초기화 이후 다른 값으로 재할당이 자유로우나 const는 초기화 이후 재할당이 금지된다.
 
 ```javascript
 const FOO = 123;
@@ -219,9 +265,9 @@ const obj = { foo: 123 };
 obj = { bar: 456 }; // TypeError: Assignment to constant variable.
 ```
 
-## 2.3 객체와 const
+## 2.3 const와 불변객체
 
-const는 객체에 대한 참조를 수정하지 못하게 한다. 하지만 **객체의 프로퍼티는 보호되지 않는다.** 다시 말하자면 재할당은 불가능하지만 할당된 객체의 내용은 변경할 수 있다.
+const는 객체에 대한 참조의 변경을 금지한다. 하지만 **객체의 프로퍼티는 보호되지 않는다.** 다시 말하자면 재할당은 불가능하지만 할당된 객체의 내용은 변경할 수 있다.
 
 ```javascript
 const user = {
@@ -254,14 +300,14 @@ console.log(user); // { name: 'Lee', address: { city: 'Seoul' } }
 console.log(Object.isFrozen(user)); // true
 ```
 
-단 객체의 프로퍼티 값인 객체는 변경가능하다.
+단 Object.freeze() 메서드로 동결한 객체의 경우에도 객체의 프로퍼티 값인 객체는 변경가능하다.
 
 ```javascript
 user.address.city = 'Busan'; // 변경된다!
 console.log(user); // { name: 'Lee', address: { city: 'Busan' } }
 ```
 
-객체의 프로퍼티 값인 객체까지 변경 불가능하게 만들려면 Deep freeze를 하여야 한다.
+객체의 프로퍼티 값인 객체까지 변경 불가능하게 만들려면 Deep freeze를 하여야 한다. Deep freeze의 실제 구현을 소개한다.
 
 ```javascript
 function deepFreeze(obj) {

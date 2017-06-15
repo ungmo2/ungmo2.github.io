@@ -13,30 +13,51 @@ description: ECMAScript6 ES6 '화살표 함수' 'Arrow function'
 ![es6 Logo](/img/es6.png)
 {: .w-650}
 
-Arrow function(화살표 함수)은 익명함수를 간략하게 표현할 수 있으며 Lexical this를 제공한다.
+Arrow function(화살표 함수)은 function 키워드 대신 화살표(=>)를 사용하여 간략한 방법으로 함수를 선언할 수 있다. 하지만 모든 경우 사용할 수 있는 것은 아니다.
 
 # 1. Syntax
 
 Arrow function은 항상 익명으로 사용한다. 문법은 아래와 같다.
 
 ```javascript
-// 매개변수 지정
+// 매개변수 지정 방법
     () => { ... } // 매개변수가 없을 경우
-     x => { ... } // 매개변수가 한개인 경우는 괄호를 생략할 수 있다.
+     x => { ... } // 매개변수가 한개인 경우, 소괄호를 생략할 수 있다.
 (x, y) => { ... } // 매개변수가 여러개인 경우
 
-// 함수 몸체 지정
-x => { return x * x }  // block
-x => x * x             // 위 표현과 동일하다.
+// 함수 몸체 지정 방법
+x => { return x * x }  // single line block
+x => x * x             // 위 표현과 동일하다. 자동으로 return된다.
+
+() => { return { a: 1 }; }
+() => ({ a: 1 })  // 위 표현과 동일하다. 객체 반환시 소괄호를 사용한다.
+
+() => {           // multi line block
+  const x = 10;
+  return x * x;
+};
 ```
 
-Arrow function은 일반적인 함수 표현식보다 표현이 간단하다.
+Arrow function은 익명 함수로만 사용할 수 있다. 따라서 Arrow function을 호출하기 위해서는 함수표현식을 사용한다.
+
+```javascript
+// ES5
+var pow = function (x) { return x * x; };
+console.log(pow(10)); // 100
+```
+
+```javascript
+// ES6
+const pow = x => x * x;
+console.log(pow(10)); // 100
+```
+
+또는 콜백함수로 사용할 수 있다. 이 경우 일반적인 함수 표현식보다 표현이 간결하다.
 
 ```javascript
 // ES5
 var arr = [1, 2, 3];
-var pow = arr.map(function(x) {
-  // x는 요소값
+var pow = arr.map(function (x) { // x는 요소값
   return x * x;
 });
 

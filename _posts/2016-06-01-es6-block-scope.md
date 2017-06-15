@@ -200,15 +200,13 @@ var foo = 123; // 전역변수
 console.log(window.foo); // 123
 ```
 
-let 키워드로 선언된 변수를 전역 변수로 사용하는 경우, let 전역 변수는 전역 객체의 프로퍼티가 아니다. 즉 window.foo와 같이 접근할 수 없다. let 전역 변수는 
+let 키워드로 선언된 변수를 전역 변수로 사용하는 경우, let 전역 변수는 전역 객체의 프로퍼티가 아니다. 즉 window.foo와 같이 접근할 수 없다. let 전역 변수는 보이지 않는 개념적인 블럭 내에 존재하게 된다.
 
 ```javascript
 let foo = 123; // 전역변수
 
 console.log(window.foo); // undefined
 ```
-
-글로벌 let 변수는 글로벌 객체의 속성이 아닙니다. 즉, 그렇게 정의한 변수를 window.variableName 코드로 접근할 수 없습니다. 그렇게 정의한 변수는 웹 페이지 안에서 실행되는 모든 JS 코드들을 둘러싸는 보이지 않는 개념적인 블럭 안에 존재합니다.
 
 # 2. const
 

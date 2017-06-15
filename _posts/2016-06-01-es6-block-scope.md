@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ECMAScript6 - <strong>Block-level scope</strong>
-subtitle: 블록 레벨 스코프
+subtitle: let, const와 블록 레벨 스코프
 categories: es6
 section: es6
 description: ECMAScript6 ES6 블록 레벨 스코프 let const

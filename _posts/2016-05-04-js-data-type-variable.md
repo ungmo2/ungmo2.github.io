@@ -308,18 +308,35 @@ var 키워드를 사용하여 선언한 변수는 중복 선언이 가능하기 
 
 이것은 다른 C-family 언어와는 차별되는 자바스크립트의 특징으로 <strong>모든 선언문은 호이스팅(Hoisting)되기 때문</strong>이다.
 
-호이스팅이란 var 선언문이나 function 선언문을 해당 [Scope](./js-scope)의 맨 위로 옮기는 것을 말한다. 즉 자바스크립트는 코드를 실행하기 전에 var 선언문과 function 선언문을 해당 스코프의 맨위로 옮긴다.
+호이스팅이란 var 선언문이나 function 선언문을 해당 [Scope](./js-scope)의 선두로 옮기는 것을 말한다. 즉 자바스크립트는 코드를 실행하기 전에 var 선언문과 function 선언문을 해당 스코프의 맨위로 옮긴다.
 
-변수 호이스팅이 발생하는 원인은 자바스크립트 변수 생성과 할당이 분리되어 진행되기 때문이다. 이는 [Execution Context](./js-execution-context)에서 자세히 설명한다.
+변수가 어떻게 생성되며 호이스팅은 어떻게 이루어지는지 좀더 자세히 살펴보자. 변수는 3단계에 걸쳐 생성된다. 자세한 내용은 [Execution Context](./js-execution-context)을 참조하기 바란다.
 
-①이 실행되기 이전에 `var foo = 123;`이 호이스팅되어 ①구문 앞에 `var foo;`가 옮겨진다. 하지만 변수 생성과 할당이 분리되어 진행되기 때문에 변수 foo에 값이 할당되는 것은 2행에서 실시된다.
+선언 단계(Declaration phase)
+: 스코프(Variable Object)에 변수를 등록한다.
 
-②에서는 변수의 생성과 할당이 완료되었기 때문에 123이 출력된다.
+초기화 단계(Initialization phase)
+: 스코프에 있는 변수를 메모리에 할당한다. 이 단계에서 변수는 undefined로 초기화된다.
 
-JavaScript의 변수는 다른 C-family와는 달리 <strong>block-level scope</strong>를 가지지 않고 <strong>function-level scope</strong>를 갖는다. 단, ECMAScript 6에서 도입된 [let](/js-es6#block-level-scope-variable) keyword를 사용하면 block-level scope를 사용할 수 있다. 자세한 내용은 [Scope](./js-scope)를 참조하기 바란다.
+할당 단계(Assignment phase)
+: undefined로 초기화된 변수에 실제값을 할당한다.
+
+var 키워드로 선언된 변수는 선언 단계와 초기화 단계가 한번에 이루어진다. 즉, 스코프에 변수가 등록되고 변수는 undefined로 초기화된다. 따라서 변수 선언문 이전에 변수에 접근하여도 에러가 발생하지 않는다. 다만 undefined를 반환한다. 이후 변수 할당문에 도달하면 비로서 값의 할당이 이루어진다. 
+
+![var lifecycle](./img/var-lifecycle.png)
+{: .w-450}
+
+var 키워드로 선언된 변수의 생명 주기
+{: .desc-img}
+
+①이 실행되기 이전에 `var foo = 123;`이 호이스팅되어 ①구문 앞에 `var foo;`가 옮겨진다. 하지만 변수 선언과 초기화가 할당이 분리되어 진행되기 때문에 변수 foo에 값이 할당되는 것은 2행에서 실시된다.
+
+②에서는 변수에 값이 할당되었기 때문에 123이 출력된다.
+
+JavaScript의 변수는 다른 C-family와는 달리 <strong>block-level scope</strong>를 가지지 않고 <strong>function-level scope</strong>를 갖는다. 단, ECMAScript 6에서 도입된 [let, const](./es6-block-scope) 키워드를 사용하면 block-level scope를 사용할 수 있다. 자세한 내용은 [Scope](./js-scope)를 참조하기 바란다.
 
 Function-level scope
-: 함수내에서 선언된 변수는 함수 내에서만 유효하며 함수 외부에서는 참조할 수 없다.
+: 함수내에서 선언된 변수는 함수 내에서만 유효하며 함수 외부에서는 참조할 수 없다. 즉, 함수 내부에서 선언한 변수는 지역 변수이며 함수 외부에서 선언한 변수는 모두 전역 변수이다.
 
 Block-level scope
 : 코드 블럭 내에서 선언된 변수는 코드 블럭 내에서만 유효하며 코드 블럭 외부에서는 참조할 수 없다.

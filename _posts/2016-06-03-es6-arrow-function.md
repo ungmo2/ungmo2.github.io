@@ -191,12 +191,19 @@ Prefixer.prototype.prefixArray = function (arr) {
 Arrow function은 언제나 자신을 포함하는 외부 scope에서 this를 계승 받는다. 다시 말해 Arrow function은 자신만의 this를 생성하지 않고 자신을 포함하고 있는 컨텍스트로 부터 this를 계승 받는다. 이를 <strong>Lexical this</strong>라 한다. Arrow function은 Solution 3의 Syntactic sugar이다. 
 
 ```javascript
+function Prefixer(prefix) {
+  this.prefix = prefix;
+}
+
 Prefixer.prototype.prefixArray = function (arr) {
-  return arr.map((x) => this.prefix + ' ' + x;);
+  return arr.map(x => `${this.prefix}  ${x}`);
 };
+
+const pre = new Prefixer('Hi');
+console.log(pre.prefixArray(['Lee', 'Kim']));
 ```
 
-이것을 class로 표현하면 아래와 같다.
+<!--이것을 class로 표현하면 아래와 같다.
 
 ```javascript
 class Prefixer {
@@ -204,13 +211,13 @@ class Prefixer {
     this.prefix = prefix;
   }
   prefixArray(arr) {
-    return arr.map(x => this.prefix + x); // (A)
+    return arr.map(x => `${this.prefix}  ${x}`); // (A)
   }
 }
 
-const pre = new Prefixer('Hi ');
+const pre = new Prefixer('Hi');
 console.log(pre.prefixArray(['Lee', 'Kim']));
-```
+```-->
 
 # 3. Arrow Function을 사용해서는 안되는 경우
 

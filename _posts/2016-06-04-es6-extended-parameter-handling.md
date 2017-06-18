@@ -324,5 +324,3 @@ console.log(arr);  // [ 1, 2, 3 ]
 * [Spread operator](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Spread_operator)
 
 * [Javascript Array](./js-array)
-
-* [ES6 compat table](https://kangax.github.io/compat-table/es6/)

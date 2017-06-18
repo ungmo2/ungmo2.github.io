@@ -78,18 +78,19 @@ arguments 객체는 함수 호출 시 전달된 인수(argument)들의 정보를
 
 ```javascript
 // ES5
-var foo = function (x, y) {
+var foo = function () {
   console.log(arguments);
 };
 
 foo(1, 2); // { '0': 1, '1': 2 }
 ```
 
-ES5에서 매개변수 갯수가 확정되지 않은 가변 인자 함수를 구현할 때 arguments 객체가 유용하게 사용된다. 하지만 arguments 객체는 유사 배열 객체이기 때문에 배열 메서드를 사용하려면 [Function.prototype.call](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/call), [Function.prototype.apply](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/apply)를 사용하여야 하는 번거로움이 있다.
+ES5에서 매개변수 갯수가 확정되지 않은 가변 인자 함수를 구현할 때 arguments 객체가 유용하게 사용된다. 가변 인자 함수의 경우, 파라미터를 통해 인수를 전달받는 것이 불가능하므로 arguments 객체를 활용하여 인수를 전달받는다. 하지만 arguments 객체는 유사 배열 객체이기 때문에 배열 메서드를 사용하려면 [Function.prototype.call](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/call), [Function.prototype.apply](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/apply)를 사용하여야 하는 번거로움이 있다.
 
 ```javascript
 // ES5
 function sum() {
+  // 가변 인자 함수의 경우, 파라미터를 통해 인수를 전달받는 것이 불가능하므로 arguments 객체를 활용하여 인수를 전달받는다. 
   // arguments 객체를 배열로 변환
   var array = Array.prototype.slice.call(arguments);
   return array.reduce(function (pre, cur) {
@@ -110,14 +111,17 @@ const es6 = () => {};
 console.log(es6.hasOwnProperty('arguments')); // false
 ```
 
-ES6에서는 [rest 파라미터](./es6-extended-parameter-handling#2-rest-파라미터-rest-parameter)를 사용하여 가변인자를 함수 내부에 배열로 전달한다.
+ES6에서는 [rest 파라미터](./es6-extended-parameter-handling#2-rest-파라미터-rest-parameter)를 사용하여 가변인자를 함수 내부에 배열로 전달할 수 있다. arguments 프로퍼티가 없는 Arrow function에서 가변 인자 함수를 구현하는 경우, rest 파라미터를 사용하여야 한다.
 
 ```javascript
 // ES6
-function sum(...args) {
+const sum = (...args) => {
+  // console.log(arguments); // Uncaught ReferenceError: arguments is not defined
   console.log(Array.isArray(args)); // true
+
   return args.reduce((pre, cur) => pre + cur);
-}
+};
+
 console.log(sum(1, 2, 3, 4, 5)); // 15
 ```
 

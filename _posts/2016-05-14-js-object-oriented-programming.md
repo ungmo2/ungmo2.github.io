@@ -798,6 +798,10 @@ console.log(you.getName());
 
 * [JavaScript Immutability](http://poiemaweb.com/js-immutability)
 
+* [Object Literal Inheritance](https://j201.github.io/posts/2013-06-22-JS-Object-Literal-Inheritance.html)
+
+* [Common Misconceptions About Inheritance in JavaScript](https://medium.com/javascript-scene/common-misconceptions-about-inheritance-in-javascript-d5d9bab29b0a)
+
 * [ECMAScript6 Class](http://poiemaweb.com/es6-class)
 
 * [Object.create()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/create)

@@ -344,7 +344,7 @@ console.log(him); // Person { name: 'choi' }
   * 의존관계 역전 원칙 (Dependency inversion principle)  
     프로그래머는 “추상화에 의존해야지, 구체화에 의존하면 안된다.” 의존성 주입은 이 원칙을 따르는 방법 중 하나다. -->
 
-# 2. Inheritance (상속)
+# 5. 상속 (Inheritance)
 
 Java같은 클래스 기반 언어에서 상속(또는 확장)은 코드 재사용의 관점에서 매우 유용하다. 새롭게 정의할 클래스가 기존에 있는 클래스와 매우 유사하다면, 상속을 통해 다른 점만 구현하면 된다. 코드 재사용은 개발 비용을 현저히 줄일 수 있는 잠재력이 있기 때문에 매우 중요하다.
 
@@ -352,7 +352,7 @@ Java같은 클래스 기반 언어에서 상속(또는 확장)은 코드 재사�
 
 자바스크립트의 상속 구현 방식은 크게 두 가지로 구분할 수 있다. 하나는 클래스 기반 언어의 상속 방식을 흉내 내는 것(의사 클래스 패턴 상속. Pseudo-classical Inheritance)이고, 두번째는 프로토타입으로 상속을 구현하는 것(프로토타입 패턴 상속. Prototypal Inheritance)이다.
 
-## 2.1 의사 클래스 패턴 상속 (Pseudo-classical Inheritance)
+## 5.1 의사 클래스 패턴 상속 (Pseudo-classical Inheritance)
 
 의사 클래스 패턴은 자식 생성자 함수의 prototype 프로퍼티를 부모 생성자 함수의 인스턴스로 교체하여 상속을 구현하는 방법이다. 부모와 자식 모두 생성자 함수를 정의하여야 한다.
 
@@ -447,7 +447,7 @@ var o = {};
 console.log(o.__proto__ === Object.prototype); // true
 ```
 
-## 2.2 프로토타입 패턴 상속 (Prototypal Inheritance)
+## 5.2 프로토타입 패턴 상속 (Prototypal Inheritance)
 
 프로토타입 패턴 상속은 [Object.create 함수](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/create)를 사용하여 객체에서 다른 객체로 직접 상속을 구현하는 방식이다. 프로토타입 패턴 상속은 개념적으로 의사 클래스 패턴 상속보다 더 간단하다. 또한 의사 클래스 패턴의 단점인 new 연산자가 필요없으며, 생성자 링크도 파괴되지 않으며, 객체리터럴에도 사용할 수 있다.
 
@@ -536,7 +536,7 @@ if (!Object.create) {
 Object.create 함수의 폴리필
 {: .desc-img}
 
-# 3. Encapsulation(캡슐화)와 Module Pattern(모듈 패턴)
+# 6. 캡슐화(Encapsulation)와 모듈 패턴(Module Pattern)
 
 캡슐화는 기본적으로 관련된 여러 정보를 하나의 틀 안에 담는 것으로 객체 지향 언어에서 상당히 중요한 개념이다. 관련있는 멤버 변수와 메서드를 클래스와 같은 하나의 틀 안에 담고 외부에 공개될 필요가 없는 정보는 숨길 수 있는데 이를 정보 은닉(information hiding)이라고 한다.
 

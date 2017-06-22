@@ -4,7 +4,7 @@ title: ECMAScript6 - <strong>Destructuring</strong>
 subtitle: 디스트럭처링
 categories: es6
 section: es6
-description: 디스트럭처링(Destructuring)은 배열 또는 객체에 저장되어 있는 데이터를 개별적인 변수로 추출할 수 있는 표현식이다.
+description: 디스트럭처링(Destructuring)은 기존에 구조로 가지고 있던 객체(배열 또는 객체)를 분석하여 개별적인 변수에 할당하는 것이다. 배열 또는 객체 리터럴에서 필요한 값만을 추출하여 변수에 할당하거나 반환할 때 유용하다.
 ---
 
 * TOC
@@ -13,7 +13,7 @@ description: 디스트럭처링(Destructuring)은 배열 또는 객체에 저장
 ![es6 Logo](/img/es6.png)
 {: .w-650}
 
-디스트럭처링(Destructuring)은 배열 또는 객체에 저장되어 있는 데이터를 개별적인 변수로 추출할 수 있는 표현식이다.
+디스트럭처링(Destructuring)은 기존에 구조로 가지고 있던 객체(배열 또는 객체)를 분석하여 개별적인 변수에 할당하는 것이다. 배열 또는 객체 리터럴에서 필요한 값만을 추출하여 변수에 할당하거나 반환할 때 유용하다.
 
 # 1. 배열 디스트럭처링 (Array destructuring)
 
@@ -30,12 +30,13 @@ var three = arr[2];
 console.log(one, two, three); // 1 2 3
 ```
 
-배열 디스트럭처링은 배열의 각 요소를 배열로부터 분리하여 변수 리스트에 할당한다. 이때 할당 기준은 인덱스이다.
+배열 디스트럭처링은 배열의 각 요소를 배열로부터 추출하여 변수 리스트에 할당한다. 이때 추출/할당 기준은 <strong>인덱스</strong>이다.
 
 ```javascript
 // ES6 Destructuring
 const arr = [1, 2, 3];
 
+// 인덱스를 기준으로 배열로부터 요소를 추출하여 변수에 할당
 const [one, two, three] = arr;
 
 console.log(one, two, three); // 1 2 3
@@ -73,7 +74,7 @@ console.log(x, z); // 1 3
 console.log(x, y); // 1 [ 2, 3 ]
 ```
 
-배열 디스트럭처링은 배열에서 필요한 요소만 추출하고 싶은 경우 편리하다.
+배열 디스트럭처링은 배열에서 필요한 요소만 추출하여 변수에 할당하고 싶은 경우에 유용하다.
 
 ```javascript
 const arr = [1, 2, 3, 4];
@@ -103,7 +104,7 @@ name.lastName  = obj.lastName;
 console.log(name); // { firstName: 'Jane', lastName: 'Doe' }
 ```
 
-객체 디스트럭처링은 객체의 각 프로퍼티를 객체로부터 분리하여 변수 리스트에 할당한다. 이때 할당 기준은 프로퍼티 명(키)이다.
+객체 디스트럭처링은 객체의 각 프로퍼티를 객체로부터 추출하여 변수 리스트에 할당한다. 이때 할당 기준은 <strong>프로퍼티 명(키)</strong>이다.
 
 ```javascript
 // ES6 Destructuring
@@ -125,7 +126,7 @@ const { prop1, prop2 } = { prop1: 'a', prop2: 'b' };
 console.log({ prop1, prop2 });
 ```
 
-객체 디스트럭처링은 객체에서 필요한 프로퍼티 값만을 추출할 수 있다.
+객체 디스트럭처링은 객체에서 프로퍼티 명(키)으로 필요한 프로퍼티 값만을 추출할 수 있다.
 
 ```javascript
 function margin() {

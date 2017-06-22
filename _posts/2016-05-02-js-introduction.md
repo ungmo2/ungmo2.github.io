@@ -4,7 +4,7 @@ title: Javascript <strong>Introduction</strong>
 subtitle: 자바스크립트란 무엇인가? 또 어떻게 동작하는가?
 categories: javascript
 section: javascript
-description: Javascript는 HTML, CSS와 함께 웹을 구성하는 요소중 하나로 웹브라우저에서 동작하는 유일한 언어로 1995년 Brendan Eich(Nescape)이 Navigator 2를 위하여 웹페이지에 포함되는 스크립트 언어로서 개발되었다. JavaScript는 멀티-패러다임 언어로 명령형 (imperative), 함수형 (functional), 프로토타입 기반 (prototype-based) 객체지향형 언어다. 비록 다른 객체지향적인 언어들과의 차이점에 대한 논쟁들이 있긴 하지만, JavaScript는 강력한 객체지향 프로그래밍 능력들을 지니고 있다. 간혹 클래스가 없어서 객체지향이 아니라고 생각하는 사람들도 있으나 <strong>프로토타입 객체지향 방식의 객체지향 언어<strong>이다.
+description: Javascript는 HTML, CSS와 함께 웹을 구성하는 요소중 하나로 웹브라우저에서 동작하는 유일한 언어로 1995년 Brendan Eich(Nescape)가 Navigator 2를 위하여 개발한 웹페이지에 포함되는 스크립트 언어이다. JavaScript는 멀티-패러다임 언어로 명령형 (imperative), 함수형 (functional), 프로토타입 기반 (prototype-based) 객체지향형 언어다. 비록 다른 객체지향적인 언어들과의 차이점에 대한 논쟁들이 있긴 하지만, JavaScript는 강력한 객체지향 프로그래밍 능력들을 지니고 있다. 간혹 클래스가 없어서 객체지향이 아니라고 생각하는 사람들도 있으나 프로토타입 기반의 객체지향 언어이다.
 ---
 
 * TOC
@@ -12,9 +12,9 @@ description: Javascript는 HTML, CSS와 함께 웹을 구성하는 요소중 하
 
 # 1. Introduction
 
-* Javascript는 HTML, CSS와 함께 웹을 구성하는 요소중 하나로 <strong>웹브라우저에서 동작하는 유일한 언어</strong>로 1995년 Brendan Eich(Nescape)이 Navigator 2를 위하여 웹페이지에 포함되는 스크립트 언어로서 개발되었다.
+* Javascript는 HTML, CSS와 함께 웹을 구성하는 요소중 하나로 <strong>웹브라우저에서 동작하는 유일한 언어</strong>이다. 1995년 Brendan Eich(Nescape)가 Navigator 2를 위하여 개발한 웹페이지에 포함되는 스크립트 언어이다.
 
-* JavaScript는 멀티-패러다임 언어로 명령형 (imperative), 함수형 (functional), 프로토타입 기반 (prototype-based) 객체지향형 언어다. 비록 다른 객체지향적인 언어들과의 차이점에 대한 논쟁들이 있긴 하지만, JavaScript는 강력한 객체지향 프로그래밍 능력들을 지니고 있다. 간혹 클래스가 없어서 객체지향이 아니라고 생각하는 사람들도 있으나 <strong>프로토타입 객체지향 방식의 객체지향 언어<strong>이다. ([가장 많은 오해를 받는 언어이기도 하다](http://javascript.crockford.com/javascript.html))
+* JavaScript는 멀티-패러다임 언어로 명령형 (imperative), 함수형 (functional), 프로토타입 기반 (prototype-based) 객체지향형 언어다. 비록 다른 객체지향적인 언어들과의 차이점에 대한 논쟁들이 있긴 하지만, JavaScript는 강력한 객체지향 프로그래밍 능력들을 지니고 있다. 간혹 클래스가 없어서 객체지향이 아니라고 생각하는 사람들도 있으나 <strong>프로토타입 기반의 객체지향 언어</strong>이다. ([가장 많은 오해를 받는 언어이기도 하다](http://javascript.crockford.com/javascript.html))
 
 * Javascript는 C-family languag로 C, Java에서 많은 문법을 차용했으며 Awk, Perl, Python으로부터도 영향을 받았고, Interpreter language이기 때문에 compile이 필요없어 HTML파일 안에 직접 기술이 가능하다.
 
@@ -22,7 +22,7 @@ description: Javascript는 HTML, CSS와 함께 웹을 구성하는 요소중 하
 
 * 구글의 Chrome V8 JavaScript 엔진으로 빌드된 JavaScript 런타임 환경(Runtime Environment)인 <strong>Node.js</strong>의 등장으로 JavaScript는 웹 브라우저를 벗어나 서버 사이드 어플리케이션 개발에서도 사용되는 Full stack 개발 언어가 되었다. 웹 브라우저에서만 동작하는 반쪽짜리 언어 취급을 받던 JavaScript는 Front-end 영역은 물론 Back-end 영역까지 아우르는 웹 프로그래밍 언어의 표준으로 자리잡고 있다.
 
-* Javascript는 크로스 플랫폼을 위한 모바일 웹/앱 개발 분야에서도 가장 중요한 언어로 주목받고 있다. 웹은 물론 모바일 하이브리드 앱(PhoneGap, Sencha Touch, jQuery Mobile, Appcelerator), 서버 사이드([NodeJS](https://nodejs.org/) or Wakanda), Desk-top(Electron, NW.js, AppJS), 로봇 제어(NodeBots or noduino) 언어로서 세계에서 가장 인기있는 언어이다.
+* Javascript는 크로스 플랫폼을 위한 모바일 웹/앱 개발 분야에서도 가장 중요한 언어로 주목받고 있다. 웹은 물론 모바일 하이브리드 앱([PhoneGap](http://phonegap.com), [Sencha Touch](https://www.sencha.com/products/touch), [Ionic](https://ionicframework.com)), 서버 사이드([NodeJS](https://nodejs.org/)), Desktop([Electron](https://electron.atom.io/), [AppJS](http://appjs.com/)), 로봇 제어([Cylon.js](https://cylonjs.com/), [NodeBots](http://nodebots.io/)) 언어로서 세계에서 가장 인기있는 언어이다.
 
 * SPA(Single Page Application) 웹 앱이 대중화되면서 [Angular](https://angular.io/), [React](https://facebook.github.io/react/), [Vue.js](https://vuejs.org/) 등 다양한 SPA Framework/Library 또한 많은 사용층을 확보하고 있다.
 
@@ -63,15 +63,15 @@ JavaScript는 1995년 Brendan Eich(Nescape)이 Navigator 2를 위하여 웹페�
 2015년 [ECMAScript 6(ES6)](./js-es6)가 공개되었고 let keyword, module system, Arrow Function, class 등이 추가되었다. ES5에서 ES6로의 버전업은 기능 상의 큰 변화가 있었고 이후의 버전업은 작은 기능의 추가 레벨로 매년 공개할 것으로 예고되었다.
 
 * ECMAScript Version
-  * ECMAScript 3
-  : [ECMA-262 3rd edition](http://www.ecma-international.org/publications/files/ECMA-ST-ARCH/ECMA-262,%203rd%20edition,%20December%201999.pdf) (1999.12)
-  가장 범용적으로 지원되는 버전이다.
-  * ECMAScript 5
-  : [ECMA-262 5th edition](http://www.ecma-international.org/publications/files/ECMA-ST-ARCH/ECMA-262%205th%20edition%20December%202009.pdf) (2009.12)
-  HTML5와 함께 출현한 표준안이다. 인터넷 익스플로러 9이상이나 그 외 브라우저에서만 작동한다.
-  * ECMAScript 6
-  : [ECMA-262 6th edition](http://www.ecma-international.org/ecma-262/6.0/ECMA-262.pdf.) (2015.06)
-  Symbol type, let keyword, module system, Arrow Function, class 등이 추가되었다.
+
+ECMAScript 3 : [ECMA-262 3rd edition](http://www.ecma-international.org/publications/files/ECMA-ST-ARCH/ECMA-262,%203rd%20edition,%20December%201999.pdf) (1999.12)
+: 가장 범용적으로 지원되는 버전이다.
+
+ECMAScript 5 : [ECMA-262 5th edition](http://www.ecma-international.org/publications/files/ECMA-ST-ARCH/ECMA-262%205th%20edition%20December%202009.pdf) (2009.12)
+: HTML5와 함께 출현한 표준안이다. JSON(JavaScript Object Notation)과 Strict Mode가 추가되었다. 인터넷 익스플로러 9이상이나 그 외 브라우저에서만 작동한다.
+
+ECMAScript 6 : [ECMA-262 6th edition](http://www.ecma-international.org/ecma-262/6.0/ECMA-262.pdf.) (2015.06)
+: Symbol 타입, let, const 키워드, Arrow Function, class 등이 추가되었다.
 
 ![history javascript evolution es6](/img/history-javascript-evolution-es6.png)
 {: .w-650}

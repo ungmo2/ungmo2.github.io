@@ -69,6 +69,16 @@ console.log(x, y); // 1 2
 [x, , z] = [1, 2, 3];
 console.log(x, z); // 1 3
 
+[x, y, z = 3] = [1, 2];
+console.log(x, z); // 1 3
+
+// default value
+[x, y, z = 3] = [1, 2];
+console.log(x, y, z); // 1 2 3
+
+[x, y = 10, z = 3] = [1, 2];
+console.log(x, y, z); // 1 2 3
+
 // spread operator
 [x, ...y] = [1, 2, 3];
 console.log(x, y); // 1 [ 2, 3 ]
@@ -119,11 +129,15 @@ console.log(firstName, lastName); // Ungmo Lee
 
 ```javascript
 const { prop1: p1, prop2: p2 } = { prop1: 'a', prop2: 'b' };
-console.log({ prop1: p1, prop2: p2 });
+console.log({ prop1: p1, prop2: p2 }); // { prop1: 'a', prop2: 'b' }
 
 // 아래는 위의 축약형이다
 const { prop1, prop2 } = { prop1: 'a', prop2: 'b' };
-console.log({ prop1, prop2 });
+console.log({ prop1, prop2 }); // { prop1: 'a', prop2: 'b' }
+
+// default value
+const { prop1, prop2, prop3 = 'c' } = { prop1: 'a', prop2: 'b' };
+console.log({ prop1, prop2, prop3 }); // { prop1: 'a', prop2: 'b', prop3: 'c' }
 ```
 
 객체 디스트럭처링은 객체에서 프로퍼티 명(키)으로 필요한 프로퍼티 값만을 추출할 수 있다.

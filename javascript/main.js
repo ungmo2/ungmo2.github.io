@@ -37,8 +37,7 @@ jQuery(document).ready(function ($) {
   // TYPED.JS
   $("#typed").typed({
     strings: [
-      "HTML5.", "CSS3.", "Sass.", "Bootstrap.", "JavaScript.", "jQuery.",
-      "Node.js.", "Express.", "Socket.io.", "MongoDB.", "TypeScript.", "Angular."
+      "HTML5.", "CSS3.", "Sass.", "Bootstrap.", "JavaScript.", "ES6.", "jQuery.", "Node.js.", "Express.", "Socket.io.", "MongoDB.", "TypeScript.", "Angular."
     ],
     typeSpeed: 120,
     startDelay: 0,

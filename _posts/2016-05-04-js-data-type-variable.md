@@ -14,7 +14,7 @@ description: 자료형(Data Type)은 프로그래밍 언어에서 객체, 정수
 
 변수는 위치(주소)를 기억하는 저장소이다. 위치란 메모리 상의 주소(address)를 의미한다. 즉 변수란 메모리 주소(Memory address)에 접근하기 위해 사람이 이해할 수 있는 언어로 지정한 식별자(identifier)이다.
 
-![memory_address](/img/memory_address.png)
+![memory_address](./img/memory_address.png)
 
 변수 값 할당의 구조
 {: .desc-img}
@@ -29,12 +29,12 @@ C나 Java같은 C-family 언어는 Static Typing(정적 타이핑) 언어로 변
 int num; // 4byte 정수형
 ```
 
-![int num](/img/int_num.png)
+![int num](./img/int_num.png)
 
 변수 선언과 메모리의 확보
 {: .desc-img}
 
-또한 자료형에 맞는 값을 대입(할당)하여야한다. 다음은 C에서 정수형 변수에 문자열을 잘못 할당한 예이다.
+위 선언을 만나면 시스템은 이후 할당될 값과는 상관없이 4byte의 메모리를 할당해준다. 따라서 자료형에 맞는 값을 대입(할당)하여야한다. 다음은 C에서 정수형 변수에 문자열을 잘못 할당한 예이다.
 
 ```c
 int main(void) {
@@ -47,7 +47,7 @@ int main(void) {
 }
 ```
 
-JavaScript는 동적 타이핑(Dynamic Typing) 언어로 변수의 Type annotation이 필요없이 값이 할당되는 과정에서 자동으로 자료형이 결정(Type Inference)된다. 따라서 같은 변수에 여러 data type의 값을 대입할 수 있다.
+JavaScript는 동적 타이핑(Dynamic Typing) 언어로 변수의 Type annotation이 필요없이 값이 할당되는 과정에서 자동으로 자료형이 결정(Type Inference)된다. 따라서 같은 변수에 여러 자료형의 값을 대입할 수 있다.
 
 ```javascript
 var str  = 'Hello';
@@ -205,7 +205,16 @@ console.log(str); // STR
 
 ### 1.1.6 Symbol
 
-ECMAScript 6(Javascript 2015) 에서 추가되었다. Symbol은 유일하고 변경 불가능한 (immutable) 기본값 (primitive value) 이다. 또한, 객체 속성의 key 값으로도 사용될 수 있다. 몇몇 프로그래밍 언어에서는 Symbol을 atom 이라고 부른다. C 언어의 이름있는 열거형 (enum) 과도 비슷하다.
+ECMAScript 6(Javascript 2015) 에서 추가되었다. Symbol은 고유하고 변경 불가능한 (immutable) 기본값 (primitive value)이다. 주로 객체의 프로퍼티 key로 사용한다.
+
+```javascript
+var key = Symbol('key');
+console.log(typeof key); // symbol
+
+var obj = {};
+obj[key] = 'value';
+console.log(obj[key]); // value
+```
 
 ## 1.2 Object (객체형, 참조형)
 

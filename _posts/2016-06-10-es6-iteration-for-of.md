@@ -25,11 +25,21 @@ ES6에는 이터러블(iterable)과 이터레이터(iterator)를 정의한 이�
 
 ES6에서 제공하는 빌트인 이터러블은 아래와 같다. 아래의 객체들은 Symbol.iterator를 key로 사용한 메서드를 구현하고 있다.
 
-- Array
-- String
-- Map
-- Set
-- DOM data structures (NodeList...)
+Array 
+: Array.prototype[Symbol.iterator]
+
+String 
+: String.prototype[Symbol.iterator]
+
+Map 
+: Map.prototype[Symbol.iterator]
+
+Set 
+: Set.prototype[Symbol.iterator]
+
+DOM data structures 
+: NodeList.prototype[Symbol.iterator]  
+HTMLCollection.prototype[Symbol.iterator]
 
 이터레이션 프로토콜은 다양한 데이터 소스에 순차적으로 접근할 수 있는 일관된 방법을 제시한다.
 
@@ -105,3 +115,5 @@ Symbol.iterator를 key로 사용한 메서드는 next() 함수를 프로퍼티�
 * [MDN: for...of](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/for...of)
 
 * [Iterables and iterators](http://exploringjs.com/es6/ch_iteration.html)
+
+* [심볼(Symbol)](http://poiemaweb.com/es6-symbol)

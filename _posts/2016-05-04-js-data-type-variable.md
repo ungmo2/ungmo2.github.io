@@ -74,10 +74,11 @@ JavaScript에는 어떠한 자료형이 있는지 그리고 변수는 어떻게 
   * `undefined`
   * `Number`
   * `String`
-  * `Symbol` (New in ECMAScript 6)
-* `Object`
+  * `Symbol` (ECMAScript 6에서 추가)
+* 객체형 (Object type)
+  * `Object`
 
-Javascript의 자료형은 크게 기본 자료형(primitive data type)과 Object(객체형, 참조형)으로 구분할 수 있다.
+Javascript의 자료형은 크게 기본 자료형(primitive data type)과 객체형(참조형)으로 구분할 수 있다.
 
 ## 1.1 Primitive Data Type (기본자료형)
 
@@ -172,7 +173,7 @@ var answer = "It's alright";          // Single quote inside double quotes
     answer = 'He is called "Johnny"'; // Double quotes inside single quotes
 ```
 
-C와 같은 언어와는 다르게, 자바스크립트의 문자열은 변경 불가능(immutable) 하다. 이것은 한 번 문자열이 생성되면, 그 문자열을 변경할 수 없다는걸 의미한다.
+C와 같은 언어와는 다르게, 자바스크립트의 문자열은 변경 불가능(immutable)하다. 이것은 한 번 문자열이 생성되면, 그 문자열을 변경할 수 없다는걸 의미한다.
 
 ```javascript
 var str = 'string';
@@ -205,7 +206,7 @@ console.log(str); // STR
 
 ### 1.1.6 Symbol
 
-ECMAScript 6(Javascript 2015) 에서 추가되었다. Symbol은 고유하고 변경 불가능한 (immutable) 기본값 (primitive value)이다. 주로 객체의 프로퍼티 key로 사용한다.
+[Symbol](./es6-symbol)은 ES6에서 새롭게 추가된 7번째 타입이다. Symbol은 애플리케이션 전체에서 유일하며 변경 불가능한(immutable) 기본 자료형(primitive)이다. 주로 객체의 프로퍼티 키(property key)로 사용한다.
 
 ```javascript
 var key = Symbol('key');
@@ -216,7 +217,7 @@ obj[key] = 'value';
 console.log(obj[key]); // value
 ```
 
-## 1.2 Object (객체형, 참조형)
+## 1.2 객체형 (Object type, 참조형)
 
 [객체](./js-object)는 데이터와 그 데이터에 관련되는 동작(절차,방법,기능)을 모두 포함할 수 있는 개념적 존재이다. 달리 말해, 이름과 값을 가지는 데이터를 의미하는 속성(property)와 동작을 의미하는 메서드(method)를 포함하고 있는 독립적 주체이다.
 
@@ -229,7 +230,7 @@ console.log(obj[key]); // value
 
 이것들은 모두 객체이다. 또한 객체는 <strong>pass-by-reference</strong>이다.
 
-# 2. Variable (변수)
+# 2. 변수 (Variable)
 
 애플리케이션에서 값(value)을 유지할 필요가 있을 때 변수를 사용한다.  
 
@@ -270,7 +271,7 @@ console.log(x); // logs "undefined"
 console.log(y); // throws ReferenceError exception
 ```
 
-# 3. Dynamic Typing (동적 타이핑)
+# 3. 동적 타이핑 (Dynamic Typing)
 
 JavaScript는 동적 타입(dynamic typed) 언어 혹은 느슨한 타입(loosely typed) 언어이다. 이것은 변수의 Type annotation이 필요없이 값이 할당되는 과정에서 자동으로 자료형이 결정(Type Inference)될 것이라는 뜻이다. 따라서 같은 변수에 여러 data type의 값을 대입할 수 있다. 이를 동적 타이핑(Dynamic Typing)이라 한다.
 

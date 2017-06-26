@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ECMAScript6 - <strong>iteration protocol & for-of</strong>
+title: ECMAScript6 - <strong>Iteration protocol & for-of</strong>
 subtitle: 이터레이션 프로토콜(iteration protocol)과 for-of 루프
 categories: es6
 section: es6
@@ -13,7 +13,7 @@ description: ES6에는 이터러블(iterable)과 이터레이터(iterator)를 �
 ![es6 Logo](./img/es6.png)
 {: .w-650}
 
-# 1. 이터레이션 프로토콜(iteration protocol)
+# 1. 이터레이션 프로토콜(Iteration protocol)
 
 ES6에는 이터러블(iterable)과 이터레이터(iterator)를 정의한 이터레이션 프로토콜(iteration protocol)이 추가되었다.
 

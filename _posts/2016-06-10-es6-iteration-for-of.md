@@ -89,18 +89,18 @@ for (const val of new Set([1, 2, 3])) {
 }
 ```
 
-객체는 이터러블이 아니다. 이터레이션 프로토콜을 준수하여 이터러블 객체를 만들수 있다. 
+# 3. 커스텀 이터러블
 
-피보나치 수열을 구현한 간단한 이터러블 객체를 만들어 보자.
+객체는 이터러블이 아니다. 하지만 이터레이션 프로토콜을 준수하여 이터러블 객체를 만들수 있다. 
+
+피보나치 수열을 구현한 간단한 이터러블 객체를 만들어 보자. Symbol.iterator를 key로 사용한 메서드를 구현하는 것에 의해 순회 가능한 자료 구조인 이터러블이 된다.
 
 ```javascript
 const fibonacci = {
-  maxStep: 10,
   [Symbol.iterator]() {
-    let prev = 0;
-    let curr = 1;
+    let [prev, curr] = [0, 1];
     let step = 0;
-    const maxStep = this.maxStep;
+    const maxStep = 10;
     return {
       next() {
         [prev, curr] = [curr, prev + curr];

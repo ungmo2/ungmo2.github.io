@@ -54,14 +54,21 @@ HTMLCollection.prototype[Symbol.iterator]
 const iterable = ['a', 'b', 'c'];
 
 // 이터레이터
-// 이터러블의 Symbol.iterator를 key로 사용한 메서드는 이터레이터를 반환한다. 이터레이터는 순회 가능한 자료 구조인 이터러블의 요소를 탐색하기 위한 포인터로서 value, done 프로퍼티를 갖는 객체를 반환하는 next() 함수를 메서드로 갖는 객체이다. 이터레이터의 next() 메서드를 통해 이터러블 객체를 순회할 수 있다.
+// 이터러블의 Symbol.iterator를 key로 사용한 메서드는 이터레이터를 반환한다. 
 const iterator = iterable[Symbol.iterator]();
 
-console.log(iterator.next()); // Object{value: "a", done: false}
-console.log(iterator.next()); // Object{value: "b", done: false}
-console.log(iterator.next()); // Object{value: "c", done: false}
-console.log(iterator.next()); // Object{value: undefined, done: true}
+// 이터레이터는 순회 가능한 자료 구조인 이터러블의 요소를 탐색하기 위한 포인터로서 value, done 프로퍼티를 갖는 객체를 반환하는 next() 함수를 메서드로 갖는 객체이다. 이터레이터의 next() 메서드를 통해 이터러블 객체를 순회할 수 있다.
+console.log(iterator.next()); // { value: 'a', done: false }
+console.log(iterator.next()); // { value: 'b', done: false }
+console.log(iterator.next()); // { value: 'c', done: false }
+console.log(iterator.next()); // { value: undefined, done: true }
 ```
+
+<!--for (;;) {
+  const res = iterator.next();
+  console.log(res);
+  if (res.done) break;
+}-->
 
 # 2. for-of 루프
 

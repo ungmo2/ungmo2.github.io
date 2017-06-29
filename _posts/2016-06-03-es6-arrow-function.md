@@ -74,7 +74,7 @@ console.log(pow); // [ 1, 4, 9 ]
 
 # 3. arguments와 rest 파라미터
 
-arguments 객체는 함수 호출 시 전달된 인수(argument)들의 정보를 담고 있는 순회가능한(iterable) 유사 배열 객체(array-like object)이다. 함수 객체의 arguments 프로퍼티는 arguments 객체를 값으로 가지며 함수 내부에서 지역변수처럼 사용된다.
+arguments 객체는 함수 호출 시 전달된 인수(argument)들의 정보를 담고 있는 순회가능한([iterable](./es6-iteration-for-of)) 유사 배열 객체(array-like object)이다. 함수 객체의 arguments 프로퍼티는 arguments 객체를 값으로 가지며 함수 내부에서 지역변수처럼 사용된다.
 
 ```javascript
 // ES5
@@ -159,10 +159,14 @@ console.log(pre.prefixArray(['Lee', 'Kim']));
 
 ```javascript
 // Solution 1: that = this
+function Prefixer(prefix) {
+  this.prefix = prefix;
+}
+
 Prefixer.prototype.prefixArray = function (arr) {
   var that = this;  // this: Prefixer 생성자 함수의 인스턴스
   return arr.map(function (x) {
-    return this.prefix + ' ' + x;
+    return that.prefix + ' ' + x;
   });
 };
 
@@ -172,22 +176,36 @@ console.log(pre.prefixArray(['Lee', 'Kim']));
 
 ```javascript
 // Solution 2: map(func, this)
+function Prefixer(prefix) {
+  this.prefix = prefix;
+}
+
 Prefixer.prototype.prefixArray = function (arr) {
   return arr.map(function (x) {
-    return this.prefix + ' ' + x;;
+    return this.prefix + ' ' + x;
   }, this); // this: Prefixer 생성자 함수의 인스턴스
 };
+
+var pre = new Prefixer('Hi ');
+console.log(pre.prefixArray(['Lee', 'Kim']));
 ```
 
 ES5에 추가된 [Function.prototype.bind()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)로 this를 바인딩한다. [call(), apply()도 사용 가능하다.](./js-this#apply--apply-invocation-pattern)
 
 ```javascript
 // Solution 3: bind(this)
+function Prefixer(prefix) {
+  this.prefix = prefix;
+}
+
 Prefixer.prototype.prefixArray = function (arr) {
   return arr.map(function (x) {
     return this.prefix + ' ' + x;;
   }.bind(this)); // this: Prefixer 생성자 함수의 인스턴스
 };
+
+var pre = new Prefixer('Hi ');
+console.log(pre.prefixArray(['Lee', 'Kim']));
 ```
 
 ## 4.2 Arrow function의 this

@@ -69,9 +69,6 @@ console.log(x, y); // 1 2
 [x, , z] = [1, 2, 3];
 console.log(x, z); // 1 3
 
-[x, y, z = 3] = [1, 2];
-console.log(x, z); // 1 3
-
 // default value
 [x, y, z = 3] = [1, 2];
 console.log(x, y, z); // 1 2 3

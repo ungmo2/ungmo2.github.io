@@ -73,7 +73,7 @@ HTML document는 .html 확장자를 갖는 순수한 텍스트 파일이다. 따
 * [Brackets](http://brackets.io/)  
 * [Sublime text](https://www.sublimetext.com/)  
 
-# 3. HTML5의 용어
+# 3. HTML5의 기본 용어
 
 ## 3.1 요소 (Element)
 
@@ -173,19 +173,34 @@ HTML Attribute
 
 <p class="result"></p>
 
-# 5. HTML Versions
+# 5. HTML History
 
-| Version	    | Year      |
-| :---------: |:---------:|
-| HTML5       | 2014
-| XHTML	      | 2000
-| HTML 4.01   | 1999
-| HTML 3.2    | 1997
-| HTML 2.0    | 1995
-| HTML        | 1991
+| Year      | Version	             
+|:----------|:------------------------
+| 1989.06   | 팀 버너스리가 월드와이드웹(WWW)의 하이퍼텍스트 시스템, URL, HTTP, HTML 설계/개발.
+| 1993.06   | HTML 1.0       
+| 1995.11   | HTML 2.0       
+| 1996      | CSS 1 + JavaScript       
+| 1997.01   | HTML 3.2        
+| 1997.12   | HTML 4.0        
+| 1998      | CSS 2
+| 1998.10   | DOM Level 1
+| 1999.12   | HTML 4.01
+| 2000.01   | XHTML 1.0
+| 2000.11   | DOM Level 2 Core
+| 2001.05   | XHTML 1.1
+| 2007.11   | HTML5 디자인 원칙 초안
+| 2010.01   | HTML5 초안 공개(FPWD. First Publication Working Draft)
+| 2014.10   | HTML5 최종 표준안 공개(Rec. Recommendation)       
 
 # Reference
+
+* [HTML5: W3C Recommendation](https://www.w3.org/TR/html5/)
+
+* [The Evolution of the Web](http://evolutionofweb.appspot.com/)
 
 * [Browser Wars](https://ko.wikipedia.org/wiki/%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80_%EC%A0%84%EC%9F%81)
 
 * [웹 호환성 문제](https://ko.wikipedia.org/wiki/%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD%EC%9D%98_%EC%9B%B9_%ED%98%B8%ED%99%98%EC%84%B1_%EB%AC%B8%EC%A0%9C)
+
+* [플래쉬를 버리고 HTML5를 채택한 기술적 이유에 대해서-스티브 잡스(2010년)](https://www.facebook.com/poiemaweb/videos/179322715885247)

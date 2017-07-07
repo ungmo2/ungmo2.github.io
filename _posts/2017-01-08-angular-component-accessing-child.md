@@ -310,15 +310,31 @@ ngAfterViewInit 메서드는 뷰 초기화가 종료됐을 때 호출되는 컴�
 
 ## 2.1 컨텐트 프로젝션(Content Projection)
 
-HTML 요소는 시작 태그와 종료 태그 사이에 컨텐트(Content)를 포함할 수 있다. 이 컨텐트는 텍스트일 수도 있고 또 다른 요소일 수도 있다.  
+HTML 요소는 시작 태그와 종료 태그 사이에 컨텐츠(Contents)를 포함할 수 있다. 이 컨텐츠는 텍스트일 수도 있고 또 다른 요소일 수도 있다.  
 
 ![HTML 요소](./img/tag.png)
 {: .w-300}
 
-HTML 요소와 컨텐트
+HTML 요소와 컨텐츠
 {: .desc-img}
 
-Angular는 컨텐트 프로젝션(Content projection)을 통해 자식 컴포넌트에게 컨텐트를 지정할 수 있으며 자식 컴포넌트는 `ng-content`를 사용하여 컨텐트를 표시할 위치를 지정할 수 있다.
+Angular는 컨텐트 프로젝션(Content projection)을 통해 자식 컴포넌트의 컨텐츠를 지정할 수 있다. AngularJS에서 트랜스클루전(transclusion)이라고 불렀던 컨텐트 프로젝션은 부모 컴포넌트가 자식 컴포넌트에게 부모 컴포넌트의 템플릿 일부를 컨텐츠로 전달할 수 있는 기능이다. 자식 컴포넌트는 부모 컴포넌트가 전달한 컨텐츠를 전달받아 표시할 위치를 ngContent 디렉티브를 사용하여 지정한다. 
+ 
+예를 들어 아래와 같이 부모 컴포넌트는 자식 컴포넌트를 템플릿에 추가하면서 자식 컴포넌트에 컨텐츠를 지정하였다. 이 컨텐츠(<p>Contents</p>)는 자식 컴포넌트에 전달된다.
+
+```html
+<child>
+  <p>Contents</p>
+</child>
+```
+
+자식 컴포넌트는 ngContent 디렉티브를 사용하여 부모 컴포넌트가 전달한 템플릿 조각을 원하는 위치에 표시한다. ngContent 디렉티브는 부모 컴포넌트가 전달한 템플릿 조각으로 치환된다.
+
+```html
+...
+<ng-content></ng-content>
+...
+```
 
 예제를 통해 ng-content의 사용 방법을 알아보자. 새로운 애플리케이션을 생성하고 app.component.ts를 아래와 같이 수정한다. app.component.ts는 두개의 자식 컴포넌트를 사용할 것이다.
 
@@ -363,11 +379,11 @@ import { Component } from '@angular/core';
 export class SingleContentProjectionComponent {}
 ```
 
-부모 컴포넌트가 single-content-projection 컴포넌트를 사용할 때 시작 태그와 종료 태그 사이에 컨텐트를 추가하였다. 
+부모 컴포넌트가 single-content-projection 컴포넌트를 사용할 때 시작 태그와 종료 태그 사이에 컨텐츠를 추가하였다. 
 
 ```html
 <single-content-projection>
-  <!-- 컨텐트 -->
+  <!-- 컨텐츠 -->
   <strong>Single-slot</strong> <i>content projection</i>
 </single-content-projection>
 ```
@@ -376,12 +392,12 @@ export class SingleContentProjectionComponent {}
 
 ```html
 <div>
-  <!-- 부모 컴포넌트가 지정한 컨텐트와 치환된다. -->
+  <!-- 부모 컴포넌트가 지정한 컨텐츠와 치환된다. -->
   <ng-content></ng-content>
 <div>
 ```
 
-ng-content는 부모 컴포넌트가 지정한 컨텐트와 치환되어 결국 아래와 같은 DOM을 생성한다.
+ng-content는 부모 컴포넌트가 지정한 컨텐츠와 치환되어 결국 아래와 같은 DOM을 생성한다.
 
 ```html
 <div>
@@ -417,7 +433,7 @@ ng-content는 여러개의 컨텐츠를 한번에 받아들일 수 있는 멀티
 
 ## 2.1 @ContentChild와 @ContentChildren
 
-시작 태그와 종료 태그 사이에 있는 컨텐트를 ContentChild라고 한다. @ContentChild와 @ContentChildren 데코레이터는 이 ContentChild를 탐색할 때 사용한다. 이름에서 알 수 있듯이 @ContentChild는 탐색 조건에 부합하는 1개의 컨텐트를 취득할 수 있고, @ContentChildren는 탐색 조건에 부합하는 여러개의 컨텐트를 한꺼번에 취득할 수 있다.
+시작 태그와 종료 태그 사이에 있는 컨텐츠를 ContentChild라고 한다. @ContentChild와 @ContentChildren 데코레이터는 이 ContentChild를 탐색할 때 사용한다. 이름에서 알 수 있듯이 @ContentChild는 탐색 조건에 부합하는 1개의 컨텐츠를 취득할 수 있고, @ContentChildren는 탐색 조건에 부합하는 여러개의 컨텐츠를 한꺼번에 취득할 수 있다.
 
 예제를 통해 @ContentChild와 @ContentChildren의 사용 방법을 알아보자. 새로운 애플리케이션을 생성한 후 app.component.ts를 아래와 같이 수정한다.
 
@@ -456,13 +472,13 @@ import { UserComponent } from './user/user.component';
   `
 })
 export class UserListComponent {
-  // 부모 컴포넌트가 지정한 컨텐트 중 첫번째 컨텐트를 취득한다. 
+  // 부모 컴포넌트가 지정한 컨텐츠 중 첫번째 컨텐츠를 취득한다. 
   @ContentChild('first') firstChild: UserComponent;
-  // 부모 컴포넌트가 지정한 컨텐트 모두를 취득한다.
+  // 부모 컴포넌트가 지정한 컨텐츠 모두를 취득한다.
   @ContentChildren(UserComponent) children: QueryList<UserComponent>;
 
-  // ngAfterContentInit은 컨텐트가 초기화됐을 때 실행되는 컴포넌트 생명주기 메서드이다.
-  // Angular가 컨텐트를 초기화하기 이전에는 DOM에 접근할 수 없다.
+  // ngAfterContentInit은 컨텐츠가 초기화됐을 때 실행되는 컴포넌트 생명주기 메서드이다.
+  // Angular가 컨텐츠를 초기화하기 이전에는 DOM에 접근할 수 없다.
   ngAfterContentInit() {
     console.log(this.firstChild);
     this.children.forEach(child => console.log(child));
@@ -481,13 +497,13 @@ export class UserListComponent {
 UserListComponent는 부모 컴포넌트가 추가한 컨텐츠를 ng-content를 통해 프로젝션하였다. 프로젝션된 3개의 UserComponent를 @ContentChild와 @ContentChildren 데코레이터를 통해 탐색한다.
 
 ```typescript
-// 부모 컴포넌트가 지정한 컨텐트 중 첫번째 컨텐트를 취득한다. 
+// 부모 컴포넌트가 지정한 컨텐츠 중 첫번째 컨텐츠를 취득한다. 
 @ContentChild('first') firstChild: UserComponent;
-// 부모 컴포넌트가 지정한 컨텐트 모두를 취득한다.
+// 부모 컴포넌트가 지정한 컨텐츠 모두를 취득한다.
 @ContentChildren(UserComponent) children: QueryList<UserComponent>;
 ```
 
-이때 @ContentChild와 @ContentChildren를 사용하는 컴포넌트는 ng-content에 의해 어떤 요소가 프로젝션되는지에 대해 사전에 인지하고 있어야 한다. 이는 자식 컴포넌트가 부모 컴포넌트에 의존하고 있음을 의미한다. 따라서 부모 컴포넌트가 컨텐트로 지정한 요소가 변경되면 ng-content을 통한 프로젝션으로 이를 받아야 하는 자식 컴포넌트 또한 영향을 받기 때문에 주의가 필요하다.
+이때 @ContentChild와 @ContentChildren를 사용하는 컴포넌트는 ng-content에 의해 어떤 요소가 프로젝션되는지에 대해 사전에 인지하고 있어야 한다. 이는 자식 컴포넌트가 부모 컴포넌트에 의존하고 있음을 의미한다. 따라서 부모 컴포넌트가 컨텐츠로 지정한 요소가 변경되면 ng-content을 통한 프로젝션으로 이를 받아야 하는 자식 컴포넌트 또한 영향을 받기 때문에 주의가 필요하다.
 
 @ViewChild와 @ViewChildren를 통해 바인딩한 프로퍼티에는 컴포넌트 생명주기 메서드 ngAfterViewInit가 호출된 시점부터 접근할 수 있었다. 이와 마찬가지로 @ContentChild와 @ContentChildren를 통해 바인딩한 프로퍼티에는 컴포넌트 생명주기 메서드 ngAfterContentInit가 호출된 시점부터 접근이 가능하다. 컴포넌트 생명주기에 대해서는 다른 장에서 자세히 다룰 것이다.
 

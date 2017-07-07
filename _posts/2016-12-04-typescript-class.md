@@ -50,7 +50,7 @@ const person = new Foo('Lee');
 console.log(person.walk()); // Lee is walking
 ```
 
-# 2. 접근 제한자(Access modifier)
+# 2. 접근 제한자 (Access modifier)
 
 Typescript 클래스는 public, private, protected 접근 제한자를 지원한다. 접근 제한자를 생략한 프로퍼티는 암묵적으로 public 프로퍼티로 지정된다. 
 
@@ -145,8 +145,37 @@ console.log(Foo.instanceCounter);  // 2
 console.log(foo2.instanceCounter); // error TS2339: Property 'instanceCounter' does not exist on type 'Foo'.
 ```
 
+# 5. 추상 클래스 (Abstract class)
+
+추상 클래스는 추상 메서드(Abstract method)를 포함할 수 있는 클래스로서 직접 인스턴스를 생성할 수 없으며 상속만을 위해 사용된다. 추상 클래스를 상속하는 클래스는 추상 클래스의 추상 메서드를 반드시 구현하여야 한다.
+
+```typescript
+abstract class Animal {
+  // 추상 메서드
+  abstract makeSound(): void;
+  // 일반 메서드
+  move(): void {
+    console.log("roaming the earth...");
+  }
+}
+
+class Dog extends Animal {
+  // 추상 클래스의 추상 메서드를 반드시 구현하여야 한다
+  makeSound() {
+    console.log('bowwow~~');
+  }
+}
+
+const myDog = new Dog();
+myDog.makeSound();
+```
+
+[인터페이스](./typescript-interface)와는 모든 메서드가 추상 메서드이지만 추상 클래스는 추상 메서드와 구현이 되어 있는 일반 메서드를 포함할 수 있다.
+
 # Reference
 
-* [ECMAScript6 - Class](http://poiemaweb.com/es6-class)
+* [ECMAScript6 - Class](./es6-class)
 
 * [Typescript Class](https://www.typescriptlang.org/docs/handbook/classes.html)
+
+* [Typescript Interface](./typescript-interface)

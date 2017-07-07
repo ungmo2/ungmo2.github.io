@@ -322,11 +322,7 @@ HTML에서는 1개 이상의 연속된 공백(space)을 삽입하여도 1개의 
   <body>
     <p>Browsers usually indent blockquote elements.</p>
     <blockquote>
-      For 50 years, WWF has been protecting the future of nature.
-      The world's leading conservation organization,
-      WWF works in 100 countries and is supported by
-      1.2 million members in the United States and
-      close to 5 million globally.
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> 
     </blockquote>
   </body>
 </html>

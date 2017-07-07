@@ -327,12 +327,12 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `
-    <!-- 싱글 슬롯 컨턴트 프로젝션 -->
+    <!-- 싱글 슬롯 컨텐트 프로젝션 -->
     <single-content-projection>
       <strong>Single-slot</strong> <i>content projection</i>
     </single-content-projection>
 
-    <!-- 멀티 슬롯 컨턴트 프로젝션 -->
+    <!-- 멀티 슬롯 컨텐트 프로젝션 -->
     <multi-content-projection>
       <footer>Footer Content</footer>
       <header>Header Content</header>
@@ -367,7 +367,7 @@ export class SingleContentProjectionComponent {}
 
 ```html
 <single-content-projection>
-  <!-- 컨턴츠 -->
+  <!-- 컨텐트 -->
   <strong>Single-slot</strong> <i>content projection</i>
 </single-content-projection>
 ```
@@ -376,7 +376,7 @@ export class SingleContentProjectionComponent {}
 
 ```html
 <div>
-  <!-- 부모 컴포넌트가 지정한 컨턴트와 치환된다. -->
+  <!-- 부모 컴포넌트가 지정한 컨텐트와 치환된다. -->
   <ng-content></ng-content>
 <div>
 ```
@@ -407,12 +407,12 @@ import { Component } from '@angular/core';
 export class MultiContentProjectionComponent {}
 ```
 
-ng-content는 여러개의 컨텐츠를 한번에 받아들일 수 있는 멀티 슬롯 컨턴트 프로젝션을 지원한다. 이때 ng-content의 select 어트리뷰트를 사용하여 부모 컴포넌트가 지정한 컨텐츠 내의 요소가 프로젝션될 위치를 지정한다.
+ng-content는 여러개의 컨텐츠를 한번에 받아들일 수 있는 멀티 슬롯 컨텐트 프로젝션을 지원한다. 이때 ng-content의 select 어트리뷰트를 사용하여 부모 컴포넌트가 지정한 컨텐츠 내의 요소가 프로젝션될 위치를 지정한다.
 
 ![multi-slot-content-projection](./img/multi-slot-content-projection.png)
 {: .w-650}
 
-멀티 슬롯 컨턴트 프로젝션
+멀티 슬롯 컨텐트 프로젝션
 {: .desc-img}
 
 ## 2.1 @ContentChild와 @ContentChildren

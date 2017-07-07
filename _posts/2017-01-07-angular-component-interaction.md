@@ -270,7 +270,7 @@ import { User } from '../models/user.model';
   `
 })
 export class UserListComponent {
-  // 부모 컴포넌트가 전달한 상태를 접수한다.
+  // 부모 컴포넌트가 전달한 상태 정보를 입력 프로퍼티에 바인딩한다.
   @Input() users: User[];
 }
 ```
@@ -298,17 +298,17 @@ export class UserListComponent {
 @Input 데코레이터에 전달한 문자열은 부모 컴포넌트에서 실행한 프로퍼티 바인딩의 프로퍼티명과 반드시 일치하여야 한다.
 {: .desc-img}
 
-### 2.1.2 @Input 데코레이터와 setter를 이용한 input 프로퍼티 조작
+### 2.1.2 @Input 데코레이터와 setter를 이용한 입력 프로퍼티 조작
 
-[ECMAScript 6의 setter와 getter](https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Obsolete_Pages/Core_JavaScript_1.5_Guide/Creating_New_Objects/Defining_Getters_and_Setters)를 사용하여 부모 컴포넌트가 전달한 값을 자식 컴포넌트가 필요한 형태로 간편하게 변환할 수 있다.
+[setter와 getter](./es6-class#6-getter-setter)를 사용하여 부모 컴포넌트가 전달한 데이터가 자식 컴포넌트의 입력 프로퍼티에 바인딩되는 시점에 필요한 로직을 동작시킬 수 있다.
 
 ![@input-property-3](./img/@input-property-3.png)
 {: .w-400}
 
-setter를 이용한 input 프로퍼티 조작
+setter를 이용한 입력 프로퍼티 조작
 {: .desc-img}
 
-지금까지 살펴본 예제에 사용자 역할(role)별 카운트 기능을 추가해 보자. user-list.component.ts를 아래와 같이 수정한다.
+지금까지 살펴본 예제에 사용자 역할(role)별로 사용자를 카운트하는 기능을 추가해 보자. user-list.component.ts를 아래와 같이 수정한다.
 
 ```typescript
 // user-list.component.ts
@@ -346,8 +346,9 @@ import { User } from '../models/user.model';
   `
 })
 export class UserListComponent {
-  // 부모 컴포넌트가 전달한 상태를 접수한다.
+  // 부모 컴포넌트가 전달한 상태 정보를 입력 프로퍼티에 바인딩한다.
   // @Input() users: User[];
+  // _users는 내부에서만 사용할 private 프로퍼티이다.
   private _users: User[];
 
   // 역할별 사용자 카운터
@@ -355,7 +356,7 @@ export class UserListComponent {
   cntDeveloper: number;
   cntDesigner: number;
 
-  // 부모 컴포넌트가 전달한 상태를 접수한다.
+  // 부모 컴포넌트가 전달한 정보에서 필요한 정보를 추출하여 컴포넌트 프로퍼티에 바인딩한다.
   @Input()
   set users(users: User[]) {
     if (!users) { return; }
@@ -368,34 +369,37 @@ export class UserListComponent {
       = users.filter(({role}) => role === 'Designer').length;
     this._users = users;
   }
+
   get users(): User[] {
     return this._users;
   }
 }
 ```
 
-위 예제에서 setter는 @Input 데코레이터가 부모 컴포넌트로부터 값을 전달받을 때 동작한다. 단순히 값을 전달받아서 상태 프로퍼티에 할당하는 것에 그치지 않고, setter를 사용하여 부모 컴포넌트가 전달한 users에서 역할 별로 사용자를 카운트하여 프로퍼티에 할당하였다. 이와 같이 부모 컴포넌트로 부터 전달된 값에서 필요한 값을 추출하거나 변형할 때 setter는 매우 유용하다.
+위 예제에서 setter는 부모 컴포넌트가 전달한 데이터가 @Input 데코레이터에 의해 입력 프로퍼티로 바인딩될 때 동작한다. 단순히 데이터를 전달받아서 입력 프로퍼티에 바인딩하는 것에 그치지 않고, setter를 사용하여 부모 컴포넌트가 전달한 users에서 역할 별로 사용자를 카운트하여 컴포넌트 프로퍼티에 할당하였다. 이와 같이 부모 컴포넌트가 전달한 데이터에서 필요한 값을 추출하거나 검사 또는 변형할 때 setter는 매우 유용하다.
 
 실행 결과는 아래와 같다.
 
 ![component-iteraction-screenshot](./img/component-iteraction-screenshot-3.png)
 
-setter를 이용한 input 프로퍼티 조작
+setter를 이용한 입력 프로퍼티 조작
 {: .desc-img}
 
 ## 2.2 자식 컴포넌트에서 부모 컴포넌트로 상태 전달
 
 ### 2.2.1 @Output 데코레이터와 EventEmitter
 
-지금까지 @Input 데코레이터를 통해 부모 컴포넌트에서 자식 컴포넌트로 상태를 전달하는 방법에 대해 알아보았다. 이와는 반대로 자식 컴포넌트에서 부모 컴포넌트로 상태를 전달하는 방법에 대해 알아보도록 하자.
+지금까지 @Input 데코레이터를 통해 부모 컴포넌트에서 자식 컴포넌트로 상태 정보를 전달하는 방법에 대해 알아보았다. 이와는 반대로 자식 컴포넌트에서 부모 컴포넌트로 상태 정보를 전달하는 방법에 대해 알아보도록 하자.
 
-자식 컴포넌트는 <strong>@Output 데코레이터</strong>와 함께 선언된 프로퍼티(출력 프로퍼티)를 EventEmitter 객체로 초기화한다. 그리고 부모 컴포넌트로 상태를 전달하기 위해 emit() 메서드를 사용하여 이벤트를 발생시킨다. 부모 컴포넌트는 자식 컴포넌트가 전달한 상태를 <strong>이벤트 바인딩</strong>을 통해 접수한다.
+자식 컴포넌트는 <strong>@Output 데코레이터</strong>와 함께 선언된 컴포넌트 프로퍼티(출력 프로퍼티)를 EventEmitter 객체로 초기화한다. 그리고 부모 컴포넌트로 상태를 전달하기 위해 emit() 메서드를 사용하여 이벤트를 발생시킨다. 부모 컴포넌트는 자식 컴포넌트가 전달한 상태를 <strong>이벤트 바인딩</strong>을 통해 접수한다. 
 
 ![child to parent](./img/childtoparent.png)
-{: .w-400}
+
 
 자식 컴포넌트에서 부모 컴포넌트로 상태 전달
 {: .desc-img}
+
+이때 이벤트를 방출할 컴포넌트는 어떤 컴포넌트에 이벤트가 전달되는지 알 필요가 없다. 이것은 다른 컴포넌트와 결합도를 낮게 유지하면서 다른 컴포넌트와 상태 정보를 교환할 수 있다는 것을 의미한다.
 
 자식 컴포넌트에서 부모 컴포넌트로 상태를 전달하여 보자. user-list.component.ts을 아래와 같이 수정한다.
 
@@ -444,7 +448,7 @@ import { User } from '../models/user.model';
   `
 })
 export class UserListComponent {
-  // 부모 컴포넌트가 전달한 상태를 접수한다.
+  // 부모 컴포넌트가 전달한 상태 정보를 입력 프로퍼티에 바인딩한다.
   private _users: User[];
 
   // 역할별 사용자 카운터
@@ -452,7 +456,7 @@ export class UserListComponent {
   cntDeveloper: number;
   cntDesigner: number;
 
-  // 부모 컴포넌트가 전달한 상태를 접수한다.
+  // 부모 컴포넌트가 전달한 정보에서 필요한 정보를 추출하여 컴포넌트 프로퍼티에 바인딩한다.
   @Input()
   set users(users: User[]) {
     if (!users) { return; }
@@ -465,22 +469,23 @@ export class UserListComponent {
       = users.filter(({role}) => role === 'Designer').length;
     this._users = users;
   }
+
   get users(): User[] {
     return this._users;
   }
 
-  // 부모 컴포넌트에게 상태를 전달하기 위해 EventEmitter 객체를 생성한다.
+  // 부모 컴포넌트에게 상태 정보를 전달하기 위해 출력 프로퍼티를 EventEmitter 객체로 초기화한다.
   @Output() remove = new EventEmitter<User>();
 }
 ```
 
-예제를 보면 부모 컴포넌트에게 상태를 전달하기 위해 User 타입의 EventEmitter 객체를 생성하였다. 
+예제를 보면 부모 컴포넌트에게 상태 정보를 전달하기 위해 User 타입의 EventEmitter 객체를 생성하였다. 
 
 ```typescript
 @Output() remove = new EventEmitter<User>();
 ```
 
-EventEmitter 객체는 커스텀 이벤트를 발생시키는 emit() 메서드를 가지고 있다. 사용자 삭제 버튼이 클릭되면 emit() 메서드를 통해 이벤트를 발생시키고 emit() 메서드에 인자를 전달하여 부모 컴포넌트에게 상태를 전달한다.
+EventEmitter 객체는 커스텀 이벤트를 발생시키는 emit() 메서드를 가지고 있다. 사용자 삭제 버튼이 클릭되면 emit() 메서드를 통해 커스텀 이벤트를 발생시키고 emit() 메서드에 인자를 전달하여 부모 컴포넌트에게 상태 정보를 전달한다.
 
 ```html
 <button 
@@ -490,7 +495,7 @@ EventEmitter 객체는 커스텀 이벤트를 발생시키는 emit() 메서드�
 </button>
 ```
 
-이제 부모 컴포넌트에서 자식 컴포넌트가 전달한 상태를 접수하여 보자. app.component.ts를 아래와 같이 수정한다.
+이제 부모 컴포넌트에서 자식 컴포넌트가 전달한 상태 정보를 접수하여 보자. app.component.ts를 아래와 같이 수정한다.
 
 ```typescript
 // app.component.ts

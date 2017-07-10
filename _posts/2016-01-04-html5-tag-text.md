@@ -4,7 +4,7 @@ title: HTML5 Tag - Text
 subtitle: 텍스트 관련 태그
 category: html
 section: html
-description: tag 제목 (Headings) 글자 형태 (Text Formatting) b strong i em small mark del ins sub / sup 본문 p br pre hr q blockquote
+description: 최근의 웹 트랜드는 텍스트를 줄이고 이미지나 동영상 등으로 컨텐츠를 구성하는 것이지만 HTML 컨텐츠의 대부분은 텍스트로 구성된다. 제목이나 본문, 글자의 형태와 중요도를 나타내는 텍스트에 관련된 태그들을 알아보도록 하자. Heading 태그는 제목을 나타낼 때 사용하며 h1에서 h6까지의 태그가 있다. h1이 가장 중요한 제목을 의미하며 글자의 크기도 가장 크다.
 ---
 
 * TOC
@@ -16,7 +16,7 @@ description: tag 제목 (Headings) 글자 형태 (Text Formatting) b strong i em
 
 # 1. 제목 (Headings) 태그
 
-Heading 태그는 제목을 지정할 때 사용하며 h1에서 h6까지의 태그가 있다. h1이 가장 중요한 제목을 의미하며 글자의 크기도 가장 크다.
+Heading 태그는 제목을 나타낼 때 사용하며 h1에서 h6까지의 태그가 있다. h1이 가장 중요한 제목을 의미하며 글자의 크기도 가장 크다.
 
 [시맨틱 웹](./html5-semantic-Web)의 의미를 살려서 제목 이외에는 사용하지 않는 것이 좋다. 검색엔진은 제목 태그를 중요한 의미로 받아들일 가능성이 크다.
 
@@ -24,12 +24,12 @@ Heading 태그는 제목을 지정할 때 사용하며 h1에서 h6까지의 태�
 <!DOCTYPE html>
 <html>
   <body>
-    <h1>This is heading 1</h1>
-    <h2>This is heading 2</h2>
-    <h3>This is heading 3</h3>
-    <h4>This is heading 4</h4>
-    <h5>This is heading 5</h5>
-    <h6>This is heading 6</h6>
+    <h1>heading 1</h1>
+    <h2>heading 2</h2>
+    <h3>heading 3</h3>
+    <h4>heading 4</h4>
+    <h5>heading 5</h5>
+    <h6>heading 6</h6>
   </body>
 </html>
 ```
@@ -47,7 +47,7 @@ bold체를 지정한다. 제목 태그와 같이 의미론적(Semantic) 중요�
 <html>
   <body>
     <p>This text is normal.</p>
-    <p><b>This text is bold.</b></p>
+    <b>This text is bold.</b>
   </body>
 </html>
 ```
@@ -58,14 +58,14 @@ bold체를 지정한다. 제목 태그와 같이 의미론적(Semantic) 중요�
 
 b tag와 동일하게 bold체를 지정한다. 하지만 의미론적(Semantic) 중요성의 의미를 갖는다.
 
-b tag와 표현되는 외양은 동일하지만 웹표준을 준수하고자 한다면 strong를 사용하는 것이 바람직하다.
+표현되는 외양은 b tag와 동일하지만 웹표준을 준수하고자 한다면 strong를 사용하는 것이 바람직하다.
 
 ```html
 <!DOCTYPE html>
 <html>
   <body>
     <p>This text is normal.</p>
-    <p><strong>This text is strong.</strong></p>
+    <strong>This text is strong.</strong>
   </body>
 </html>
 ```
@@ -81,7 +81,7 @@ Italic체를 지정한다. 의미론적(Semantic) 중요성의 의미는 없다.
 <html>
   <body>
     <p>This text is normal.</p>
-    <p><i>This text is italic.</i></p>
+    <i>This text is italic.</i>
   </body>
 </html>
 ```
@@ -97,7 +97,7 @@ emphasized(강조, 중요한) text를 지정한다. i tag와 동일하게 Italic
 <html>
   <body>
     <p>This text is normal.</p>
-    <p><em>This text is emphasized.</em></p>
+    <em>This text is emphasized.</em>
   </body>
 </html>
 ```
@@ -260,15 +260,13 @@ HTML에서는 1개 이상의 연속된 공백(space)을 삽입하여도 1개의 
 <html>
   <body>
     <p>In HTML, spaces and new lines are ignored:</p>
-    <pre>
-      My Bonnie lies over the ocean.
+    <pre>My Bonnie lies over the ocean.
 
-      My Bonnie  lies over the sea.
+My Bonnie  lies over the sea.
 
-      My Bonnie   lies over the ocean.
+My Bonnie   lies over the ocean.
 
-      Oh,           bring back my Bonnie to me.
-    </pre>
+Oh,           bring back my Bonnie to me.</pre>
   </body>
 </html>
 ```
@@ -285,9 +283,7 @@ HTML에서는 1개 이상의 연속된 공백(space)을 삽입하여도 1개의 
   <body>
     <h1>HTML</h1>
     <p>HTML is a language for describing web pages.</p>
-
     <hr>
-
     <h1>CSS</h1>
     <p>CSS defines how to display HTML elements.</p>
   </body>

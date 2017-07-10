@@ -4,7 +4,7 @@ title: HTML5 Tag - Forms
 subtitle: 사용자와의 커뮤니케이션을 위한 태그
 category: html
 section: html
-description: 사용자와의 커뮤니케이션을 위한 태그 form input select textarea button filedset / legend
+description: form 태그는 사용자가 입력한 데이터를 수집하기 위해 사용되며 input, textarea, button, select, checkbox, radio button, submit button 등의 입력 양식 태그를 포함할 수 있다.
 ---
 
 * TOC
@@ -32,8 +32,8 @@ form elements (input, checkbox, radio button, submit button...)
 <html>
   <body>
     <form action="demo_form.php" method="get">
-      First name: <input type="text" name="FirstName" value="Mickey"><br>
-      Last name: <input type="text" name="LastName" value="Mouse"><br>
+      First name: <input type="text" name="FirstName" value="Ungmo"><br>
+      Last name: <input type="text" name="LastName" value="Lee"><br>
       <input type="submit" value="Submit">
     </form>
   </body>
@@ -42,8 +42,8 @@ form elements (input, checkbox, radio button, submit button...)
 
 <div class='result'>
 <form method="get">
-  First name: <input type="text" name="FirstName" value="Mickey"><br>
-  Last name: <input type="text" name="LastName" value="Mouse"><br>
+  First name: <input type="text" name="FirstName" value="Ungmo"><br>
+  Last name: <input type="text" name="LastName" value="Lee"><br>
   <input type="submit" value="Submit">
 </form>
 </div>
@@ -54,7 +54,7 @@ submit button이 클릭되면 input 태그에 입력된 데이터가 form 태그
 
 input 태그는 form 태그 중에서 가장 중요한 태그로 사용자로부터 데이터를 입력받기 위해 사용된다.
 
-input 태그는 다양한 종류가 있는데 type 속성에 의해 구분된다. form 태그 내에 존재하여야 입력 데이터를 전송할 수 있으나 [ajax](./jquery-ajax-json/)를 사용할 시에는 form 태그 내에 존재하지 않아도 된다.
+input 태그는 다양한 종류가 있는데 type 속성에 의해 구분된다. form 태그 내에 존재하여야 입력 데이터를 전송할 수 있으나 [ajax](./js-ajax)를 사용할 시에는 form 태그 내에 존재하지 않아도 된다.
 
 | type 속성값      | Description            | HTML5 추가 | IE | FF | CR | SF | OP |
 | :------------- |:-----------------------|:---------:|:--:|:--:|:--:|:--:|:--:|
@@ -93,7 +93,7 @@ input 태그는 다양한 종류가 있는데 type 속성에 의해 구분된다
       <hr>
 
       <h3>checkbox</h3>
-      <input type="checkbox" name="fruit1" value="apple"> 사과<br>
+      <input type="checkbox" name="fruit1" value="apple" checked> 사과<br>
       <input type="checkbox" name="fruit2" value="grape"> 포도<br>
       <input type="checkbox" name="fruit3" value="peach"> 복숭아<br>
       <hr>
@@ -144,7 +144,7 @@ input 태그는 다양한 종류가 있는데 type 속성에 의해 구분된다
       <hr>
 
       <h3>radio</h3>
-      <input type="radio" name="gender" value="male"> 남자<br>
+      <input type="radio" name="gender" value="male" checked> 남자<br>
       <input type="radio" name="gender" value="female"> 여자<br>
       <hr>
 
@@ -211,7 +211,7 @@ input 태그는 다양한 종류가 있는데 type 속성에 의해 구분된다
       <option value="audi">Audi</option>
     </select>
 
-    <select name="cars2" multiple>
+    <select name="cars2" size="4" multiple>
       <option value="volvo">Volvo</option>
       <option value="saab">Saab</option>
       <option value="fiat">Fiat</option>
@@ -243,9 +243,7 @@ textarea 태그는 여러 줄의 글자를 입력할 때 사용한다.
 <html>
   <body>
     <form action="action_page.php">
-      <textarea name="message" rows="10" cols="30">
-      The cat was playing in the garden.
-      </textarea>
+      <textarea name="message" rows="10" cols="30">Write something here</textarea>
       <br>
       <input type="submit">
     </form>
@@ -261,8 +259,6 @@ button 태그는 클릭할 수 있는 버튼을 생성한다. `<input type="butt
 
 type 속성은 반드시 지정하는 것이 바람직하며 속성값으로 button, reset, submit를 지정할 수 있다.
 
-form 내에서 button 요소를 사용할 경우, 브라우저에 따라 submit되는 값이 다를 수 있다. 따라서 form 내에서 버튼을 생성할 경우에는 input 태그를 사용하는 것이 바람직하다.
-
 ```html
 <!DOCTYPE html>
 <html>
@@ -275,6 +271,14 @@ form 내에서 button 요소를 사용할 경우, 브라우저에 따라 submit�
 ```
 
 <div class='result'></div>
+
+button 태그는 어트리뷰트만을 받아들이는 input 태그와 달리 컨텐츠로 문자열은 물론 HTML 요소를 받을 수도 있다는 장점이 있다. 주의할 것은 IE의 경우, submit되는 값이 다를 수 있는 것이다. 
+
+```html
+<button type="submit" name="myButton" value="foo">Click me</button>
+```
+
+위 예제의 경우, IE6, IE7에는 'foo' 대신 'Click me'를 서버로 전송한다. 따라서 오래된 IE를 지원해야 한다면 input 태그를 사용하는 것이 바람직하다.
 
 # 6. filedset / legend
 

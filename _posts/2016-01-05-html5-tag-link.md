@@ -44,8 +44,8 @@ href 어트리뷰트는 이동하고자 하는 파일의 위치(경로)를 값�
 
 홈 디렉터리
 : 시스템의 사용자에게 각각 할당된 개별 디렉터리이다.   
-- Unix: ~  
-- Windows: C:\Users\\{계정명}\
+- Unix: /Users/{계정명}  
+- Windows: C:\Users\\{계정명}
 
 작업 디렉터리
 : 작업 중인 파일의 위치한 디렉터리이다.  
@@ -57,7 +57,7 @@ href 어트리뷰트는 이동하고자 하는 파일의 위치(경로)를 값�
 
 ## 1.2 파일 경로(File path)
 
-경로에는 절대경로와 상대경로가 있다.
+파일 경로는 파일 시스템에서 파일의 위치를 나타내는 방법이다. 경로에는 절대경로와 상대경로가 있다.
 
 절대경로(Absolute path)
 : 현재 작업 디렉터리와 관계없이 특정 파일의 절대적인 위치를 가리킨다. 루트 디렉터리를 기준으로 파일의 위치를 나타낸다.  
@@ -67,9 +67,12 @@ href 어트리뷰트는 이동하고자 하는 파일의 위치(경로)를 값�
 
 상대경로(Relative path)
 : 현재 작업 디렉터리를 기준으로 특정 파일의 상대적인 위치를 가리킨다.  
-- ./index.html  
-- html/index.html  
+- /index.html  
+- ./index.html   
 - ../dist/index.js  
+- ../../dist/index.js  
+- index.html 
+- html/index.html 
 
 href 어트리뷰트에 사용 가능한 값은 아래와 같다.
 
@@ -78,7 +81,7 @@ href 어트리뷰트에 사용 가능한 값은 아래와 같다.
 | 절대 URL             | 웹사이트 URL (href="http://www.example.com/default.html")
 | 상대 URL             | 자신의 위치를 기준으로한 대상의 URL (href="html/default.html")
 | fragment identifier | 페이지 내의 특정 id를 갖는 요소에의 링크 (href="#top")
-| 기타 프로토콜          | https://, ftp://, mailto:, file:, etc..
+| 기타 프로토콜          | ftp://, mailto:, file:, etc..
 | script              | href="javascript:alert('Hello');"
 
 ```html

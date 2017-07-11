@@ -4,13 +4,13 @@ title: CSS3 <strong>Selector</strong>
 subtitle: Styling 대상을 특정하는 셀렉터
 category: css
 section: css
-description: CSS (Cascading Style Sheets)는 HTML 요소(Element)의 style(design, layout etc)을 정의한다. 그리하려면 HTML이 존재하여야 하고 또한 style을 적용하고자하는 HTML 요소를 특정할 필요가 있다. 이러한 목적으로 사용되는 것이 셀렉터(Selector)이다. 즉, style을 적용하고자하는 HTML 요소를 셀렉터로 특정하고 선택된 요소에 스타일을 정의하는 것이다.
+description: CSS(Cascading Style Sheets)는 HTML 요소(Element)의 style(design, layout etc)을 정의한다. 그리하려면 HTML이 존재하여야 하고 또한 style을 적용하고자하는 HTML 요소를 특정할 필요가 있다. 이러한 목적으로 사용되는 것이 셀렉터(Selector)이다. 즉, style을 적용하고자하는 HTML 요소를 셀렉터로 특정하고 선택된 요소에 스타일을 정의하는 것이다.
 ---
 
 * TOC
 {:toc}
 
-CSS (Cascading Style Sheets)는 HTML 요소(Element)의 style(design, layout etc)을 정의한다. 그리하려면 HTML이 존재하여야 하고 또한 <strong>style을 적용하고자하는 HTML 요소를 특정</strong>할 필요가 있다.
+CSS(Cascading Style Sheets)는 HTML 요소(Element)의 style(design, layout etc)을 정의한다. 그리하려면 HTML이 존재하여야 하고 또한 <strong>style을 적용하고자하는 HTML 요소를 특정</strong>할 필요가 있다.
 
 이러한 목적으로 사용되는 것이 셀렉터(Selector)이다. 즉, style을 적용하고자하는 HTML 요소를 셀렉터로 특정하고 선택된 요소에 스타일을 정의하는 것이다.
 
@@ -572,19 +572,19 @@ selector:pseudo-class {
 <html>
 <head>
   <style>
-    /* unvisited link */
+    /* a 요소가 방문하지 않은 링크일 때 */
     a:link { color: orange; }
 
-    /* visited link */
+    /* a 요소가 방문한 링크일 때 */
     a:visited { color: green; }
 
-    /* mouse over link */
+    /* a 요소에 마우스가 올라와 있을 때 */
     a:hover { font-weight: bold; }
 
-    /* selected link */
+    /* a 요소가 클릭된 상태일 때 */
     a:active { color: blue; }
 
-    /* focus in */
+    /* text input 요소와 password input 요소에 포커스가 들어와 있을 때 */
     input[type=text]:focus,
     input[type=password]:focus {
       color: red;
@@ -609,19 +609,24 @@ selector:pseudo-class {
 | :enabled     | 셀렉터가 사용 가능한 상태일 때
 | :disabled    | 셀렉터가 사용 불가능한 상태일 때
 
-
 ```html
 <!DOCTYPE html>
 <html>
 <head>
   <style>
+    /* input 요소가 사용 가능한 상태일 때, 
+       input 요소 바로 뒤에 위치하는 인접 형제 span 요소를 선택 */
     input:enabled + span {
       color: blue;
     }
+    /* input 요소가 사용 불가능한 상태일 때, 
+       input 요소 바로 뒤에 위치하는 인접 형제 span 요소를 선택 */
     input:disabled + span {
       color: gray;
       text-decoration: line-through;
     }
+    /* input 요소가 체크 상태일 때, 
+       input 요소 바로 뒤에 위치하는 인접 형제 span 요소를 선택 */
     input:checked + span {
       color: red;
     }
@@ -645,18 +650,20 @@ selector:pseudo-class {
 
 | pseudo-class       | Description                          |
 |:-------------------|:-------------------------------------|
-| :first-child       | 셀렉터에 해당하는 모든 요소 중 첫번째 자식인 요소를 선택
-| :last-child        | 셀렉터에 해당하는 모든 요소 중 마지막 자식인 요소를 선택
+| :first-child       | 셀렉터에 해당하는 모든 요소 중 첫번째 자식인 요소를 선택한다.
+| :last-child        | 셀렉터에 해당하는 모든 요소 중 마지막 자식인 요소를 선택한다.
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
   <style>
-    /* 첫번째 자식 요소인 p 요소를 선택 */
+    /* p 요소 중에서 첫번째 자식을 선택 */
     p:first-child { color: red; }
-    /* 마지막 자식 요소인 p 요소를 선택 */
-    /* body 요소의 두번째 p 요소는 마지막 자식 요소가 아니다. body 요소의 마지막 자식 요소는 div 요소이다. */
+
+    /* p 요소 중에서 마지막 자식을 선택 */
+    /* body 요소의 두번째 p 요소는 마지막 자식 요소가 아니다. 
+       body 요소의 마지막 자식 요소는 div 요소이다. */
     p:last-child { color: blue; }
   </style>
 </head>
@@ -678,8 +685,8 @@ selector:pseudo-class {
 
 | pseudo-class       | Description                          |
 |:-------------------|:-------------------------------------|
-| :nth-child(n)      | 셀렉터에 해당하는 모든 요소 중 앞에서 n번째 자식인 요소를 선택
-| :nth-last-child(n) | 셀렉터에 해당하는 모든 요소 중 뒤에서 n번째 자식인 요소를 선택
+| :nth-child(n)      | 셀렉터에 해당하는 모든 요소 중 앞에서 n번째 자식인 요소를 선택한다.
+| :nth-last-child(n) | 셀렉터에 해당하는 모든 요소 중 뒤에서 n번째 자식인 요소를 선택한다.
 
 n은 1부터 시작하는 정수이다.
 
@@ -688,18 +695,22 @@ n은 1부터 시작하는 정수이다.
 <html>
 <head>
   <style>
-    /* 짝수번째 요소 */
+    /* ol 요소의 자식 요소인 li 요소 중에서 짝수번째 요소만을 선택 */
     ol > li:nth-child(2n)   { color: orange; }
-    /* 홀수번째 요소 */
+    /* ol 요소의 자식 요소인 li 요소 중에서 홀수번째 요소만을 선택 */
     ol > li:nth-child(2n+1) { color: green; }
+
+    /* ol 요소의 자식 요소인 li 요소 중에서 첫번쨰 요소만을 선택 */
     ol > li:first-child     { color: red; }
+    /* ol 요소의 자식 요소인 li 요소 중에서 마지막 요소만을 선택 */
     ol > li:last-child      { color: blue; }
-    /* 4번째 요소 */
+
+    /* ol 요소의 자식 요소인 li 요소 중에서 4번째 요소 요소만을 선택 */
     ol > li:nth-child(4)    { background: brown; }
 
-    /* 뒤에서부터 시작하여 홀수번째 요소 */
+    /* ul 요소의 모든 자식 요소 중에서 뒤에서부터 시작하여 홀수번째 요소만을 선택 */
     ul > :nth-last-child(2n+1) { color: red; }
-    /* 뒤에서부터 시작하여 짝수번째 요소 */
+    /* ul 요소의 모든 자식 요소 중에서 뒤에서부터 시작하여 짝수번째 요소만을 선택 */
     ul > :nth-last-child(2n)   { color: blue; }
   </style>
 </head>
@@ -727,27 +738,28 @@ n은 1부터 시작하는 정수이다.
 
 <div class="result"></div>
 
-| pseudo-class          | Description                          |
-|:----------------------|:-------------------------------------|
-| :first-of-type        | 셀렉터에 해당하는 요소의 부모의 자식 중 첫번째 등장하는 요소를 선택
-| :last-of-type         | 셀렉터에 해당하는 요소의 부모의 자식 중 마지막에 등장하는 요소를 선택
-| :nth-of-type (n)      | 셀렉터에 해당하는 요소의 부모의 자식 중 앞에서 n번째에 등장하는 요소를 선택
-| :nth-last-of-type (n) | 셀렉터에 해당하는 요소의 부모의 자식 중 뒤에서 n번째에 등장하는 요소를 선택
+| pseudo-class         | Description                          |
+|:---------------------|:-------------------------------------|
+| :first-of-type       | 셀렉터에 해당하는 요소의 부모 요소의 자식 요소 중 첫번째 등장하는 요소를 선택한다.
+| :last-of-type        | 셀렉터에 해당하는 요소의 부모 요소의 자식 요소 중 마지막에 등장하는 요소를 선택한다.
+| :nth-of-type(n)      | 셀렉터에 해당하는 요소의 부모 요소의 자식 요소 중 앞에서 n번째에 등장하는 요소를 선택한다.
+| :nth-last-of-type(n) | 셀렉터에 해당하는 요소의 부모 요소의 자식 요소 중 뒤에서 n번째에 등장하는 요소를 선택한다.
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
   <style>
-    /* p 요소의 부모의 자식 중 첫번째 등장하는 p 요소 */
+    /* p 요소의 부모 요소의 자식 요소 중 첫번째 등장하는 p 요소 */
     p:first-of-type  { color: red; }
-    /* p 요소의 부모의 자식 중 마지막 등장하는 p 요소 */
+    /* p 요소의 부모 요소의 자식 요소 중 마지막 등장하는 p 요소 */
     p:last-of-type   { color: blue; }
-    /* p 요소의 부모의 자식 중 앞에서 2번째 등장하는 p 요소 */
+    /* p 요소의 부모 요소의 자식 요소 중 앞에서 2번째에 등장하는 p 요소 */
     p:nth-of-type(2) { color: green; }
-    /* p 요소의 부모의 자식 중 뒤에서 2번째 등장하는 p 요소 */
+    /* p 요소의 부모 요소의 자식 요소 중 뒤에서 2번째에 등장하는 p 요소 */
     p:nth-last-of-type(2) { color: orange;}
 
+    /* p 요소 중에서 첫번째 자식을 선택 */
     p:first-child { background: brown;}
   </style>
 </head>
@@ -774,13 +786,14 @@ n은 1부터 시작하는 정수이다.
 
 | pseudo-class          | Description                          |
 |:----------------------|:-------------------------------------|
-| :not(셀렉터)            | 셀렉터에 해당하지 않는 모든 요소
+| :not(셀렉터)            | 셀렉터에 해당하지 않는 모든 요소를 선택한다.
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
   <style>
+    /* input 요소 중에서 type 어트리뷰트의 값이 password가 아닌 요소를 선택 */
     input:not([type=password]) {
       background: yellow;
     }
@@ -805,24 +818,29 @@ n은 1부터 시작하는 정수이다.
       margin: 0;
     }
     div {
-      width: 32vw;
+      float: left;
+      width: 32%;
       height: 200px;
       background-color: red;
-      margin-bottom: 2vw;
-      float: left;
+      margin-bottom: 2%;
+      color: #fff;
+      font-size: 3em;
+      line-height: 200px;
+      text-align: center;
     }
+    /* div 요소 중에서 1, 4, 7...번째 등장하는 요소가 아닌 요소만을 선택 */
     div:not(:nth-of-type(3n-2)) {
-      margin-left: 2vw;
+      margin-left: 2%;
     }
   </style>
 </head>
 <body>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
 </body>
 </html>
 ```
@@ -833,9 +851,9 @@ n은 1부터 시작하는 정수이다.
 
 가상 요소는 요소의 특정 부분에 스타일을 적용하기 위하여 사용된다. 특정 부분이란 예를 들어 다음과 같다.
 
-- 요소의 첫글자 또는 첫줄
+- 요소 콘텐츠의 첫글자 또는 첫줄
 
-- 요소의 content 앞 또는 뒤
+- 요소 콘텐츠의 앞 또는 뒤
 
 가상 요소에는 두개의 콜론(::)을 사용한다. CSS 표준에 의해 미리 정의된 이름이 있기 때문에 임의의 이름을 사용할 수 없다.
 
@@ -847,33 +865,34 @@ selector::pseudo-element {
 
 | pseudo-element        | Description                          |
 |:----------------------|:-------------------------------------|
-| ::first-letter        | 첫글자를 선택한다.
-| ::first-line          | 첫줄을 선택한다. 블록 요소에만 적용할 수 있다.
-| ::after               | 태그 뒤에 위치하는 공간을 선택한다. 일반적으로 content 어트리뷰트와 함께 사용된다.
-| ::before              | 태그 앞에 위치하는 공간을 선택한다. 일반적으로 content 어트리뷰트와 함께 사용된다.
-| ::selection           | 드래그한 글자를 선택한다. iOS의 Safari와 Chrome에서는 동작 않는다. Firefox에서는 -moz- 프리픽스를 사용하여야 한다.
+| ::first-letter        | 콘텐츠의 첫글자를 선택한다.
+| ::first-line          | 콘텐츠의 첫줄을 선택한다. 블록 요소에만 적용할 수 있다.
+| ::after               | 콘텐츠의 뒤에 위치하는 공간을 선택한다. 일반적으로 content 어트리뷰트와 함께 사용된다.
+| ::before              | 콘텐츠의 앞에 위치하는 공간을 선택한다. 일반적으로 content 어트리뷰트와 함께 사용된다.
+| ::selection           | 드래그한 콘텐츠를 선택한다. iOS Safari 등 일부 브라우저에서 동작 않는다.
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
   <style>
+    /* p 요소 콘텐츠의 첫글자를 선택 */
     p::first-letter { font-size: 3em; }
+    /* p 요소 콘텐츠의 첫줄을 선택 */
     p::first-line   { color: red; }
 
+    /* h1 요소 콘텐츠의 앞 공간에 content 어트리뷰트 값을 삽입한다 */
     h1::before {
       content: " HTML!!! ";
       color: blue;
     }
+    /* h1 요소 콘텐츠의 뒷 공간에 content 어트리뷰트 값을 삽입한다 */
     h1::after {
       content: " CSS3!!!";
       color: red;
     }
 
-    ::-moz-selection { /* Code for Firefox */
-      color: red;
-      background: yellow;
-    }
+    /* 드래그한 콘텐츠를 선택한다 */
     ::selection {
       color: red;
       background: yellow;
@@ -882,7 +901,7 @@ selector::pseudo-element {
 </head>
 <body>
   <h1>This is a heading</h1>
-  <p>You can use the ::first-line pseudo-element to add a special effect to the first line of a text. Some more text. And even more, and more, and more, and more, and more, and more, and more, and more, and more, and more, and more, and more.</p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo illum sunt distinctio sed, tempore, repellat rerum et ea laborum voluptatum! Quisquam error fugiat debitis maiores officiis, tenetur ullam amet in!</p>
 </body>
 </html>
 ```

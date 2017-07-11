@@ -273,7 +273,7 @@ textarea 태그는 여러 줄의 글자를 입력할 때 사용한다.
 
 # 5. button
 
-button 태그는 클릭할 수 있는 버튼을 생성한다. `<input type="button">`과 유사하지만 input 태그는 빈 태그인 반면 button 태그는 그렇지 않다. 따라서 button 요소에는 텍스트나 이미지 같은 컨텐츠를 사용할 수 있다.
+button 태그는 클릭할 수 있는 버튼을 생성한다. `<input type="button">`과 유사하지만 input 태그는 빈 태그인 반면 button 태그는 그렇지 않다. 따라서 button 요소에는 텍스트나 이미지 같은 콘텐츠를 사용할 수 있다.
 
 type 속성은 반드시 지정하는 것이 바람직하며 속성값으로 button, reset, submit를 지정할 수 있다.
 
@@ -290,7 +290,7 @@ type 속성은 반드시 지정하는 것이 바람직하며 속성값으로 but
 
 <div class='result'></div>
 
-button 태그는 어트리뷰트만을 받아들이는 input 태그와 달리 컨텐츠로 문자열은 물론 HTML 요소를 받을 수도 있다는 장점이 있다. 주의할 것은 IE의 경우, submit되는 값이 다를 수 있는 것이다. 
+button 태그는 어트리뷰트만을 받아들이는 input 태그와 달리 콘텐츠로 문자열은 물론 HTML 요소를 받을 수도 있다는 장점이 있다. 주의할 것은 IE의 경우, submit되는 값이 다를 수 있는 것이다. 
 
 ```html
 <button type="submit" name="myButton" value="foo">Click me</button>

@@ -13,13 +13,13 @@ section: css
 
 ![typesetting](/img/typesetting.jpg)
 
-이 Box는 마진(Margin), 테두리(Border), 패딩(Padding), 컨텐츠(Contents)로 구성된다.
+이 Box는 마진(Margin), 테두리(Border), 패딩(Padding), 콘텐츠(Contents)로 구성된다.
 
 ![css box model](/img/box-model.png)
 
 브라우저는 박스 모델의 크기(dimension)와 속성(색, 배경, 모양 등), 위치를 근거로 하여 렌더링을 실시하게 된다.
 
-웹디자인은 컨텐츠를 담을 [박스 모델을 정의](./css3-display#display-)하고 CSS 속성을 통해 스타일([배경](./css3-background), [폰트와 텍스트](./css3-font-text) 등)과 [위치](./css3-position) 및 [정렬](./css3-float)을 부여하는 것이라고 할 수 있다.
+웹디자인은 콘텐츠를 담을 [박스 모델을 정의](./css3-display#display-)하고 CSS 속성을 통해 스타일([배경](./css3-background), [폰트와 텍스트](./css3-font-text) 등)과 [위치](./css3-position) 및 [정렬](./css3-float)을 부여하는 것이라고 할 수 있다.
 
 | 명칭     | 설명
 |:--------|:-----------------------------------------------------------
@@ -34,9 +34,9 @@ section: css
 <head>
   <style>
     div {
-      /* 배경색의 지정: 컨텐츠영역과 패딩영역에 적용된다. */
+      /* 배경색의 지정: 콘텐츠영역과 패딩영역에 적용된다. */
       background-color: lightgrey;
-      /* 컨텐츠영역의 너비 */
+      /* 콘텐츠영역의 너비 */
       width: 300px;
       /* 패딩영역의 두께 */
       padding: 25px;
@@ -65,12 +65,12 @@ Chrome DevTools에서 확인한 Box-model
 
 # 1. width / height 속성
 
-width와 height 속성은 요소의 너비와 높이를 지정하기 위해 사용된다. 이때 지정되는 요소의 너비와 높이는 <strong>컨텐츠 영역</strong>을 대상으로 한다.
+width와 height 속성은 요소의 너비와 높이를 지정하기 위해 사용된다. 이때 지정되는 요소의 너비와 높이는 <strong>콘텐츠 영역</strong>을 대상으로 한다.
 
-이는 [box-sizing 속성](./css3-box-model#box-sizing-)에 기본값인 <strong>content-box</strong>가 적용되었기 때문이다. box-sizing 속성에 속성값  <strong>border-box</strong>를 적용하면 컨텐츠 영역, padding, border가 포함된 영역을 width / height 속성의 대상으로 지정 할 수 있다.
+이는 [box-sizing 속성](./css3-box-model#box-sizing-)에 기본값인 <strong>content-box</strong>가 적용되었기 때문이다. box-sizing 속성에 속성값  <strong>border-box</strong>를 적용하면 콘텐츠 영역, padding, border가 포함된 영역을 width / height 속성의 대상으로 지정 할 수 있다.
 {: .info}
 
-만일 width와 height로 지정한 컨텐츠 영역보다 실제 컨텐츠가 크면 컨텐츠 영역을 넘치게 된다는 것에 유의하여야 한다.
+만일 width와 height로 지정한 콘텐츠 영역보다 실제 콘텐츠가 크면 콘텐츠 영역을 넘치게 된다는 것에 유의하여야 한다.
 
 ```html
 <!DOCTYPE html>
@@ -95,10 +95,10 @@ width와 height 속성은 요소의 너비와 높이를 지정하기 위해 사�
 ```
 <div class='result'></div>
 
-[overflow: hidden;](./css3-position#overflow-)을 지정하면 넘친 컨텐츠를 감출 수 있다.
+[overflow: hidden;](./css3-position#overflow-)을 지정하면 넘친 콘텐츠를 감출 수 있다.
 {: .info}
 
-기본적으로 width와 height 속성은 <strong>컨텐츠 영역</strong>을 대상으로 요소의 너비와 높이를 지정하므로 박스 전체 크기는 다음과 같이 계산할 수 있다.
+기본적으로 width와 height 속성은 <strong>콘텐츠 영역</strong>을 대상으로 요소의 너비와 높이를 지정하므로 박스 전체 크기는 다음과 같이 계산할 수 있다.
 
 전체 너비
 : width + left padding + right padding + left border + right border + left margin + right margin
@@ -117,7 +117,7 @@ Height
 
 width와 height 속성의 초기값은 `auto`로써 이것은 브라우저가 상황에 따라 적당한 width와 height 값을 계산할 것을 의미한다.
 
-예를 들어 block 요소의 경우, width는 100%, height는 컨텐츠의 높이가 지정된다.
+예를 들어 block 요소의 경우, width는 100%, height는 콘텐츠의 높이가 지정된다.
 
 ```html
 <!DOCTYPE html>

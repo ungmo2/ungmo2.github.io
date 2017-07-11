@@ -217,7 +217,7 @@ app.module.ts은 @NgModule 데코레이터의 인자로 전달되는 메타데�
 
 app.component.ts은 애플리케이션의 화면을 구성하는 뷰(View)를 생성하고 관리하는 컴포넌트(AppComponent)이다. 컴포넌트는 템플릿과 메타데이터, 컴포넌트 클래스로 구성되며 템플릿과 컴포넌트 클래스는 데이터 바인딩에 의해 연결된다. 메타데이터 객체의 selector 속성에 설정된 문자열(app-root)에 의해 HTML 요소와 같이 로드할 수 있다.
 
-my-app 프로젝트의 경우 /dist/index.html의 \<app-root\>에 의해 AppComponent 컴포넌트의 뷰가 로드되어 \<app-root\>의 컨텐츠로 브라우저에 표시된다.
+my-app 프로젝트의 경우 /dist/index.html의 \<app-root\>에 의해 AppComponent 컴포넌트의 뷰가 로드되어 \<app-root\>의 콘텐츠로 브라우저에 표시된다.
 
 # 3. Angular의 구성 요소
 

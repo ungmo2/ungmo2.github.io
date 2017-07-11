@@ -454,7 +454,7 @@ exports.route = route;
 
 브라우저에 표시된 "Hello World"는 `server.js`의 `onRequest`함수 내에서 처리하고 있다. 사실 이 처리는 `request handler`가 처리하여야 한다.
 
-먼저 떠오르는 아이디어는 `request handler`가 화면에 표시할 컨텐츠를 반환해 주면 컨텐츠를 sever가 `response.write`로 처리하는 것일 것이다.
+먼저 떠오르는 아이디어는 `request handler`가 화면에 표시할 콘텐츠를 반환해 주면 콘텐츠를 sever가 `response.write`로 처리하는 것일 것이다.
 
 ```javascript
 // requestHandlers.js

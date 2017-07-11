@@ -25,7 +25,7 @@ description: CSS3 'Responsive Web Design' '반응형 웹디자인' viewport @med
 
 사용자가 어떤 디바이스로 웹사이트를 방문할 지 알 수 없다. layout은 방문자의 화면 해상도를 고려하여야 한다. 가로폭이 너무 큰 layout을 작성하면 작은 해상도 모니터로 방문하였을 때 가로 스크롤이 생겨서 사용이 불편할 수도 있다.
 
-또한 스마트폰이나 태블릿 등 모바일 기기는 화면이 작기 때문에 가독성에 더욱 신경써야 한다. 보통 웹사이트가 축소되어 가로 스크롤 없이 컨텐츠를 볼 수 있으나 글자가 너무 작아지기 때문이다. 데스크탑용, 테블릿용, 모바일용 웹사이트를 별도 구축할 수도 있지만 One Source Multi Use의 관점에서 올바른 해결책은 아니다.
+또한 스마트폰이나 태블릿 등 모바일 기기는 화면이 작기 때문에 가독성에 더욱 신경써야 한다. 보통 웹사이트가 축소되어 가로 스크롤 없이 콘텐츠를 볼 수 있으나 글자가 너무 작아지기 때문이다. 데스크탑용, 테블릿용, 모바일용 웹사이트를 별도 구축할 수도 있지만 One Source Multi Use의 관점에서 올바른 해결책은 아니다.
 
 이러한 문제를 해결하는 방법 중의 하나가 반응형 웹디자인(Responsive Web Design)이다. 화면 해상도에 따라 가로폭이나 배치를 변경하여 가독성을 높이는 것이다. 즉 하나의 웹사이트를 구축하여 다양한 디바이스의 화면 해상도에 최적화된 웹사이트를 제공하는 것이다.
 
@@ -390,7 +390,7 @@ nav 요소 내에 클릭할 수 있는 navigation icon을 만들기 위한 html 
 
 input checkbox 요소의 id 속성값과 label 요소의 for 속성값을 일치시켜 연동하면 label 요소를 클릭하여도 input checkbox 요소가 클릭된다.
 
-이것을 이용하여 label 요소의 컨텐츠를 커스텀 navigation icon으로 만들어 주고 input checkbox 요소의 기본 외관을 비표시하는 방법이다.
+이것을 이용하여 label 요소의 콘텐츠를 커스텀 navigation icon으로 만들어 주고 input checkbox 요소의 기본 외관을 비표시하는 방법이다.
 
 그럼 navigation icon을 만들어 보자.
 
@@ -570,7 +570,7 @@ tablet용 layout에서 header height를 2배로 하였으므로 mobile용 layout
 }
 ```
 
-컨텐츠 영역이 아직 tablet layout에 맞추어 아래로 내려가 있다. header 영역 바로 아래로 다시 끌어 올린다.
+콘텐츠 영역이 아직 tablet layout에 맞추어 아래로 내려가 있다. header 영역 바로 아래로 다시 끌어 올린다.
 
 ```css
 @media screen and (max-width: 480px) {

@@ -1,10 +1,10 @@
 ---
 layout: post
 title: CSS3 <strong>Selector</strong>
-subtitle: Styling 대상을 특정하는 선택자
+subtitle: Styling 대상을 특정하는 셀렉터
 category: css
 section: css
-description: CSS3 Selector 전체 태그 ID 선택자 클래스 속성 복합 선택자 후손 자식 형제(동위) 인접 형제 가상 링크 동적 부정 가상 요소 선택자
+description: CSS (Cascading Style Sheets)는 HTML 요소(Element)의 style(design, layout etc)을 정의한다. 그리하려면 HTML이 존재하여야 하고 또한 style을 적용하고자하는 HTML 요소를 특정할 필요가 있다. 이러한 목적으로 사용되는 것이 셀렉터(Selector)이다. 즉, style을 적용하고자하는 HTML 요소를 셀렉터로 특정하고 선택된 요소에 스타일을 정의하는 것이다.
 ---
 
 * TOC
@@ -12,9 +12,9 @@ description: CSS3 Selector 전체 태그 ID 선택자 클래스 속성 복합 �
 
 CSS (Cascading Style Sheets)는 HTML 요소(Element)의 style(design, layout etc)을 정의한다. 그리하려면 HTML이 존재하여야 하고 또한 <strong>style을 적용하고자하는 HTML 요소를 특정</strong>할 필요가 있다.
 
-이러한 목적으로 사용되는 것이 선택자(Selector)이다. 즉, style을 적용하고자하는 HTML 요소를 선택자로 특정하고 선택된 요소에 스타일을 정의하는 것이다.
+이러한 목적으로 사용되는 것이 셀렉터(Selector)이다. 즉, style을 적용하고자하는 HTML 요소를 셀렉터로 특정하고 선택된 요소에 스타일을 정의하는 것이다.
 
-![css selector](/img/css-syntax.png)
+![css selector](./img/css-syntax.png)
 
 CSS Rule Set
 {: .desc-img}
@@ -37,21 +37,24 @@ CSS Rule Set
 
 <div class="result"></div>
 
-복수개의 선택자를 연속하여 지정할 수 있으며 쉼표( , )로 구분한다.
+복수개의 셀렉터를 연속하여 지정할 수 있으며 쉼표( , )로 구분한다.
 
 ```css
 h1, p { color: red; }
 ```
 
-# 1. 전체 선택자 (Universal Selector)
+# 1. 전체 셀렉터 (Universal Selector)
 
-HTML 문서 내의 모든 요소를 선택한다. html 요소를 포함한 모든 요소가 선택된다. (head 요소도 포함된다)
+| 패턴    | Description
+|:-------|:------------
+| *      | HTML 문서 내의 모든 요소를 선택한다. html 요소를 포함한 모든 요소가 선택된다. (head 요소도 포함된다)
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
   <style>
+    /* 모든 요소를 선택 */
     * { color: red; }
   </style>
 </head>
@@ -68,7 +71,11 @@ HTML 문서 내의 모든 요소를 선택한다. html 요소를 포함한 모�
 
 <div class="result"></div>
 
-# 2. 태그 선택자 (Type Selector)
+# 2. 태그 셀렉터 (Type Selector)
+
+| 패턴    | Description
+|:-------|:-------------------------------
+| 태그명   | 지정된 태그명을 가지는 요소를 선택한다.
 
 지정된 태그명을 가지는 요소를 선택한다.
 
@@ -77,6 +84,7 @@ HTML 문서 내의 모든 요소를 선택한다. html 요소를 포함한 모�
 <html>
 <head>
   <style>
+    /* 모든 p 태그 요소를 선택 */
     p { color: red; }
   </style>
 </head>
@@ -93,15 +101,18 @@ HTML 문서 내의 모든 요소를 선택한다. html 요소를 포함한 모�
 
 <div class="result"></div>
 
-# 3. ID 선택자 (ID Selector)
+# 3. ID 셀렉터 (ID Selector)
 
-id 속성값을 지정하여 일치하는 요소를 선택한다. id 속성값은 중복되지 않는 유일한 값이어야 한다.
+| 패턴           | Description
+|:--------------|:-------------------------------
+| #id 어트리뷰트 값 | id 어트리뷰트 값을 지정하여 일치하는 요소를 선택한다. id 어트리뷰트 값은 중복될 수 없는 유일한 값이다.
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
   <style>
+    /* id 어트리뷰트 값이 p1인 요소를 선택 */
     #p1 { color: red; }
   </style>
 </head>
@@ -118,15 +129,19 @@ id 속성값을 지정하여 일치하는 요소를 선택한다. id 속성값�
 
 <div class="result"></div>
 
-# 4. 클래스 선택자 (Class Selector)
+# 4. 클래스 셀렉터 (Class Selector)
 
-class 속성값을 지정하여 일치하는 요소를 선택한다. class 속성값은 중복될 수 있는 값이다.
+| 패턴              | Description
+|:-----------------|:-------------------------------
+| .class 어트리뷰트 값 | class 어트리뷰트 값을 지정하여 일치하는 요소를 선택한다. class 어트리뷰트 값은 중복될 수 있다.
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
   <style>
+    /* class 어트리뷰트 값이 container인 모든 요소를 선택 */
+    /* color 어트리뷰트는 자식 요소에 상속된다. */
     .container { color: red; }
   </style>
 </head>
@@ -143,52 +158,45 @@ class 속성값을 지정하여 일치하는 요소를 선택한다. class 속�
 
 <div class="result"></div>
 
-class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
+HTML 요소에 class 어트리뷰트 값은 공백으로 구분하여 여러개 지정할 수 있다. 아래와 같이 클래스 셀렉터를 사용하여 미리 스타일을 정의해 두고, HTML 요소는 이미 정의되어 있는 클래스를 지정하는 것으로 필요한 스타일을 지정할 수 있다. 이것은 <strong>재사용</strong>의 측면에서 유용하다. 
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
   <style>
+    /* class 어트리뷰트 값이 text-center인 모든 요소를 선택 */
     .text-center { text-align: center; }
-    .text-large  { font-size: 300%; }
+    /* class 어트리뷰트 값이 text-large인 모든 요소를 선택 */
+    .text-large  { font-size: 200%; }
+    /* class 어트리뷰트 값이 text-red인 모든 요소를 선택 */
     .text-red    { color: red; }
+    /* class 어트리뷰트 값이 text-blue인 모든 요소를 선택 */
     .text-blue   { color: blue; }
   </style>
 </head>
 <body>
-  <h1 class="text-center">Heading</h1>
-  <p class="text-large text-red">paragraph 1</p>
-  <p class="text-center text-large text-blue">paragraph 2</p>
+  <p class="text-center">Center</p>
+  <p class="text-large text-red">Large Red</p>
+  <p class="text-center text-large text-blue">Center Large Blue</p>
 </body>
 </html>
 ```
 
 <div class="result"></div>
 
-# 5. 속성 선택자 (Attribute Selector)
+# 5. 어트리뷰트 셀렉터 (Attribute Selector)
 
-특정 속성을 지정하여 일치하는 요소를 선택한다.
-
-| 패턴                 | Description |
-|:--------------------|:------------|
-| 선택자[속성]           | 지정 속성이 포함된 요소 선택
-| 선택자[속성="값"]       | 지정 속성과 값이 일치하는 요소 선택
-| 선택자[속성~="값"]      | 지정 속성의 값에 지정 속성값을 (공백으로 분리된 단어로) 포함하는 요소 선택
-| 선택자[속성\|="값"]     | 지정 속성값과 일치하거나 지정 속성값 뒤 연이은 하이픈("값-")으로 시작하는 요소 선택
-| 선택자[속성^="값"]      | 지정 속성값으로 시작하는 요소 선택
-| 선택자[속성$="값"]      | 지정 속성값으로 끝나는 요소 선택
-| 선택자[속성*="값"]      | 지정 속성값을 포함하는 요소 선택
-
-선택자[속성]
-: 지정 속성이 포함된 요소 선택한다.
+| 패턴             | Description
+|:----------------|:------------
+| 셀렉터[어트리뷰트]  | 지정된 어트리뷰트를 가지는 요소를 선택한다.
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
   <style>
-    /* a 요소 중에 href 속성을 가지는 요소 */
+    /* a 요소 중에 href 어트리뷰트를 가지는 요소 */
     a[href] { color: red; }
   </style>
 </head>
@@ -202,15 +210,16 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 
 <div class="result"></div>
 
-선택자[속성="값"]
-: 지정 속성과 값이 일치하는 요소를 선택한다.
+| 패턴                 | Description
+|:--------------------|:------------
+| 셀렉터[어트리뷰트="값"]  | 지정된 어트리뷰트를 가지며 지정된 값과 어트리뷰트의 값이 일치하는 요소를 선택한다.
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
   <style>
-    /* a 요소 중에 target 속성값이 "_blank"인 요소 */
+    /* a 요소 중에 target 어트리뷰트의 값이 "_blank"인 요소 */
     a[target="_blank"] { color: red; }
   </style>
 </head>
@@ -224,15 +233,16 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 
 <div class="result"></div>
 
-선택자[속성~="값"]
-: 지정 속성의 값에 지정 속성값을 (공백으로 분리된 단어로) 포함하는 요소를 선택한다.
+| 패턴                  | Description
+|:---------------------|:------------
+| 셀렉터[어트리뷰트~="값"]  | 지정된 어트리뷰트의 값이 지정된 값을 (공백으로 분리된) 단어로 포함하는 요소를 선택한다.
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
   <style>
-    /* h1 요소 중에 title 속성값에 "first"를 단어로 포함하는 요소 */
+    /* h1 요소 중에 title 어트리뷰트 값에 "first"를 단어로 포함하는 요소 */
     h1[title~="first"] { color: red; }
   </style>
 </head>
@@ -246,16 +256,17 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 
 <div class="result"></div>
 
-선택자[속성\|="값"]
-: 지정 속성값과 일치하거나 지정 속성값 뒤 연이은 하이픈("값-")으로 시작하는 요소를 선택한다.
+| 패턴                   | Description
+|:----------------------|:------------
+| 셀렉터[어트리뷰트\|="값"]  | 지정된 어트리뷰트의 값과 일치하거나 지정 어트리뷰트 값 뒤 연이은 하이픈("값-")으로 시작하는 요소를 선택한다.
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
   <style>
-    /* lang 속성값이 "en"과 일치하거나 "en-"로 시작하는 요소 */
-    [lang|="en"] { color: red; }
+    /* p 요소 중에 lang 어트리뷰트 값이 "en"과 일치하거나 "en-"로 시작하는 요소 */
+    p[lang|="en"] { color: red; }
   </style>
 </head>
 <body>
@@ -270,15 +281,16 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 
 <div class="result"></div>
 
-선택자[속성^="값"]
-: 지정 속성값으로 시작하는 요소를 선택한다.
+| 패턴                 | Description
+|:--------------------|:------------
+| 셀렉터[어트리뷰트^="값"] | 지정된 어트리뷰트 값으로 시작하는 요소를 선택한다.
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
   <style>
-    /* a 요소 중에 href 속성값이 "https://"로 시작하는 요소 */
+    /* a 요소 중에 href 어트리뷰트 값이 "https://"로 시작하는 요소 */
     a[href^="https://"] { color: red; }
   </style>
 </head>
@@ -291,15 +303,16 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 
 <div class="result"></div>
 
-선택자[속성$="값"]
-: 지정 속성값으로 끝나는 요소를 선택한다.
+| 패턴                 | Description
+|:--------------------|:------------
+| 셀렉터[어트리뷰트$="값"] | 지정된 어트리뷰트 값으로 끝나는 요소를 선택한다.
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
   <style>
-    /* a 요소 중에 href 속성값이 ".html"로 끝나는 요소 */
+    /* a 요소 중에 href 어트리뷰트 값이 ".html"로 끝나는 요소 */
     a[href$=".html"] { color: red; }
   </style>
 </head>
@@ -312,17 +325,18 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 
 <div class="result"></div>
 
-선택자[속성*="값"]
-: 지정 속성값을 포함하는 요소를 선택한다.
+| 패턴                 | Description
+|:--------------------|:------------
+| 셀렉터[어트리뷰트*="값"] | 지정된 어트리뷰트 값을 포함하는 요소를 선택한다.
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
   <style>
-    /* div 요소 중에서 class 속성값에 "test"를 포함하는 요소 */
+    /* div 요소 중에서 class 어트리뷰트 값에 "test"를 포함하는 요소 */
     div[class*="test"] { color: red; }
-    /* div 요소 중에서 class 속성값에 "test"를 단어로 포함하는 요소 */
+    /* div 요소 중에서 class 어트리뷰트 값에 "test"를 단어로 포함하는 요소 */
     div[class~="test"] { background-color: yellow; }
   </style>
 </head>
@@ -337,9 +351,9 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 
 <div class="result"></div>
 
-# 6. 복합 선택자 (Combinator)
+# 6. 복합 셀렉터 (Combinator)
 
-## 6.1 후손 선택자 (Descendant Combinator)
+## 6.1 후손 셀렉터 (Descendant Combinator)
 
 ![css descendant child combinator](/img/descendant-child.png)
 
@@ -347,10 +361,10 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 
 자신보다 n level 하위에 속하는 요소는 <strong>후손 요소(하위 요소)</strong>라 한다.
 
-후손 선택자는 선택자A의 모든 후손(하위) 요소 중 선택자B와 일치하는 요소를 선택한다.
+후손 셀렉터는 셀렉터A의 모든 후손(하위) 요소 중 셀렉터B와 일치하는 요소를 선택한다.
 
 ```
-선택자A 선택자B
+셀렉터A 셀렉터B
 ```
 
 ```html
@@ -376,12 +390,12 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 
 <div class="result"></div>
 
-## 6.2 자식 선택자 (Child Combinator)
+## 6.2 자식 셀렉터 (Child Combinator)
 
-자손 선택자는 선택자A의 모든 자식 요소 중 선택자B와 일치하는 요소를 선택한다.
+자손 셀렉터는 셀렉터A의 모든 자식 요소 중 셀렉터B와 일치하는 요소를 선택한다.
 
 ```
-선택자A > 선택자B
+셀렉터A > 셀렉터B
 ```
 
 ```html
@@ -407,18 +421,18 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 
 <div class="result"></div>
 
-## 6.3 형제(동위) 선택자 (Sibling Combinator)
+## 6.3 형제(동위) 셀렉터 (Sibling Combinator)
 
-형제(동위) 선택자는 형제 관계(동위 관계)에서 뒤에 위치하는 요소를 선택할 때 사용한다.
+형제(동위) 셀렉터는 형제 관계(동위 관계)에서 뒤에 위치하는 요소를 선택할 때 사용한다.
 
 ![Sibling Combinator](/img/Sibling_Combinator.png)
 
-## 6.3.1 인접 형제 선택자(Adjacent Sibling Combinator)
+## 6.3.1 인접 형제 셀렉터(Adjacent Sibling Combinator)
 
-선택자A의 형제 요소 중 선택자A 바로 뒤에 위치하는 선택자B 요소를 선택한다. A와 B 사이에 다른 요소가 존재하면 선택되지 않는다.
+셀렉터A의 형제 요소 중 셀렉터A 바로 뒤에 위치하는 셀렉터B 요소를 선택한다. A와 B 사이에 다른 요소가 존재하면 선택되지 않는다.
 
 ```
-선택자A + 선택자B
+셀렉터A + 셀렉터B
 ```
 
 ```html
@@ -457,12 +471,12 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 
 <div class="result"></div>
 
-## 6.3.2 일반 형제 선택자(General Sibling Combinator)
+## 6.3.2 일반 형제 셀렉터(General Sibling Combinator)
 
-선택자A의 형제 요소 중 선택자A 뒤에 위치하는 선택자B 요소를 모두 선택한다.
+셀렉터A의 형제 요소 중 셀렉터A 뒤에 위치하는 셀렉터B 요소를 모두 선택한다.
 
 ```
-선택자A ~ 선택자B
+셀렉터A ~ 셀렉터B
 ```
 
 ```html
@@ -501,7 +515,7 @@ class 속성값은 복수개 지정할 수 있다.(공백으로 구분)
 
 <div class="result"></div>
 
-# 7. 가상 클래스 선택자 (Pseudo-Class Selector)
+# 7. 가상 클래스 셀렉터 (Pseudo-Class Selector)
 
 가상 클래스는 요소의 특정 상태에 따라 스타일을 정의할 때 사용된다. 특정 상태란 예를 들어 다음과 같다.
 
@@ -521,15 +535,17 @@ selector:pseudo-class {
 }
 ```
 
-다음은 div 요소가 hover 상태일 때(마우스가 올라와 있을 때) background-color를 blue로 지정하는 예이다.
+다음은 div 요소가 hover 상태일 때(마우스가 올라와 있을 때) background-color를 yellow로 지정하는 예이다.
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
   <style>
+    /* a 요소가 hover 상태일 때 */
     a:hover { color: red; }
-    input:focus { background-color: red; }
+    /* input 요소가 focus 상태일 때 */
+    input:focus { background-color: yellow; }
   </style>
 </head>
 <body>
@@ -541,15 +557,15 @@ selector:pseudo-class {
 
 <div class="result"></div>
 
-## 7.1 링크 선택자(Link pseudo-classes), 동적 선택자(User action pseudo-classes)
+## 7.1 링크 셀렉터(Link pseudo-classes), 동적 셀렉터(User action pseudo-classes)
 
 | pseudo-class | Description   |
 |:-------------|:--------------|
-| :link        | 선택자가 방문하지 않은 링크일 때
-| :visited     | 선택자가 방문한 링크일 때
-| :hover       | 선택자에 마우스가 올라와 있을 때
-| :active      | 선택자가 클릭된 상태일 때
-| :focus       | 선택자에 포커스가 들어와 있을 때
+| :link        | 셀렉터가 방문하지 않은 링크일 때
+| :visited     | 셀렉터가 방문한 링크일 때
+| :hover       | 셀렉터에 마우스가 올라와 있을 때
+| :active      | 셀렉터가 클릭된 상태일 때
+| :focus       | 셀렉터에 포커스가 들어와 있을 때
 
 ```html
 <!DOCTYPE html>
@@ -585,13 +601,13 @@ selector:pseudo-class {
 
 <div class="result"></div>
 
-## 7.2 UI 요소 상태 선택자(UI element states pseudo-classes)
+## 7.2 UI 요소 상태 셀렉터(UI element states pseudo-classes)
 
 | pseudo-class | Description   |
 |:-------------|:--------------|
-| :checked     | 선택자가 체크 상태일 때
-| :enabled     | 선택자가 사용 가능한 상태일 때
-| :disabled    | 선택자가 사용 불가능한 상태일 때
+| :checked     | 셀렉터가 체크 상태일 때
+| :enabled     | 셀렉터가 사용 가능한 상태일 때
+| :disabled    | 셀렉터가 사용 불가능한 상태일 때
 
 
 ```html
@@ -625,12 +641,12 @@ selector:pseudo-class {
 
 <div class="result"></div>
 
-## 7.3 구조 가상 클래스 선택자(Structural pseudo-classes)
+## 7.3 구조 가상 클래스 셀렉터(Structural pseudo-classes)
 
 | pseudo-class       | Description                          |
 |:-------------------|:-------------------------------------|
-| :first-child       | 선택자에 해당하는 모든 요소 중 첫번째 자식인 요소를 선택
-| :last-child        | 선택자에 해당하는 모든 요소 중 마지막 자식인 요소를 선택
+| :first-child       | 셀렉터에 해당하는 모든 요소 중 첫번째 자식인 요소를 선택
+| :last-child        | 셀렉터에 해당하는 모든 요소 중 마지막 자식인 요소를 선택
 
 ```html
 <!DOCTYPE html>
@@ -662,8 +678,8 @@ selector:pseudo-class {
 
 | pseudo-class       | Description                          |
 |:-------------------|:-------------------------------------|
-| :nth-child(n)      | 선택자에 해당하는 모든 요소 중 앞에서 n번째 자식인 요소를 선택
-| :nth-last-child(n) | 선택자에 해당하는 모든 요소 중 뒤에서 n번째 자식인 요소를 선택
+| :nth-child(n)      | 셀렉터에 해당하는 모든 요소 중 앞에서 n번째 자식인 요소를 선택
+| :nth-last-child(n) | 셀렉터에 해당하는 모든 요소 중 뒤에서 n번째 자식인 요소를 선택
 
 n은 1부터 시작하는 정수이다.
 
@@ -713,10 +729,10 @@ n은 1부터 시작하는 정수이다.
 
 | pseudo-class          | Description                          |
 |:----------------------|:-------------------------------------|
-| :first-of-type        | 선택자에 해당하는 요소의 부모의 자식 중 첫번째 등장하는 요소를 선택
-| :last-of-type         | 선택자에 해당하는 요소의 부모의 자식 중 마지막에 등장하는 요소를 선택
-| :nth-of-type (n)      | 선택자에 해당하는 요소의 부모의 자식 중 앞에서 n번째에 등장하는 요소를 선택
-| :nth-last-of-type (n) | 선택자에 해당하는 요소의 부모의 자식 중 뒤에서 n번째에 등장하는 요소를 선택
+| :first-of-type        | 셀렉터에 해당하는 요소의 부모의 자식 중 첫번째 등장하는 요소를 선택
+| :last-of-type         | 셀렉터에 해당하는 요소의 부모의 자식 중 마지막에 등장하는 요소를 선택
+| :nth-of-type (n)      | 셀렉터에 해당하는 요소의 부모의 자식 중 앞에서 n번째에 등장하는 요소를 선택
+| :nth-last-of-type (n) | 셀렉터에 해당하는 요소의 부모의 자식 중 뒤에서 n번째에 등장하는 요소를 선택
 
 ```html
 <!DOCTYPE html>
@@ -754,11 +770,11 @@ n은 1부터 시작하는 정수이다.
 
 <div class="result"></div>
 
-## 7.4 부정 선택자(Negation pseudo-class)
+## 7.4 부정 셀렉터(Negation pseudo-class)
 
 | pseudo-class          | Description                          |
 |:----------------------|:-------------------------------------|
-| :not(선택자)            | 선택자에 해당하지 않는 모든 요소
+| :not(셀렉터)            | 셀렉터에 해당하지 않는 모든 요소
 
 ```html
 <!DOCTYPE html>
@@ -813,7 +829,7 @@ n은 1부터 시작하는 정수이다.
 
 <div class="result"></div>
 
-# 8. 가상 요소 선택자 (Pseudo-Element Selector)
+# 8. 가상 요소 셀렉터 (Pseudo-Element Selector)
 
 가상 요소는 요소의 특정 부분에 스타일을 적용하기 위하여 사용된다. 특정 부분이란 예를 들어 다음과 같다.
 
@@ -833,8 +849,8 @@ selector::pseudo-element {
 |:----------------------|:-------------------------------------|
 | ::first-letter        | 첫글자를 선택한다.
 | ::first-line          | 첫줄을 선택한다. 블록 요소에만 적용할 수 있다.
-| ::after               | 태그 뒤에 위치하는 공간을 선택한다. 일반적으로 content 속성과 함께 사용된다.
-| ::before              | 태그 앞에 위치하는 공간을 선택한다. 일반적으로 content 속성과 함께 사용된다.
+| ::after               | 태그 뒤에 위치하는 공간을 선택한다. 일반적으로 content 어트리뷰트와 함께 사용된다.
+| ::before              | 태그 앞에 위치하는 공간을 선택한다. 일반적으로 content 어트리뷰트와 함께 사용된다.
 | ::selection           | 드래그한 글자를 선택한다. iOS의 Safari와 Chrome에서는 동작 않는다. Firefox에서는 -moz- 프리픽스를 사용하여야 한다.
 
 ```html

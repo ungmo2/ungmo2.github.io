@@ -191,15 +191,18 @@ section: snippet
       var $links = this.find('.link');
 
       $links.on('click', function() {
+        // click 이벤트를 발생시킨 <div class="link"> 요소
         var $this = $(this),
+        // click 이벤트를 발생시킨 <div class="link"> 요소 아래의 <ul class="submenu"> 요소
             $next = $this.next();
 
         $this.parent().toggleClass('open');
         $next.slideToggle();
 
+        // opt.multi이 false이면 서브메뉴가 오픈되었을 때 다른 서브메뉴를 클로즈한다.
         if (!opt.multi) {
-          $this.find('.submenu').not($next).slideUp().parent().removeClass('open');
-        };
+          $('.submenu').not($next).slideUp().parent().removeClass('open');
+        }
       });
 
       return this;

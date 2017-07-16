@@ -73,7 +73,7 @@ HTML document는 .html 확장자를 갖는 순수한 텍스트 파일이다. 따
 * [Brackets](http://brackets.io/)  
 * [Sublime text](https://www.sublimetext.com/)  
 
-# 3. HTML5의 기본 용어
+# 3. HTML5의 기본 문법
 
 ## 3.1 요소 (Element)
 

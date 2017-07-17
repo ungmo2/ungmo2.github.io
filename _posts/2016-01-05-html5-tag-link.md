@@ -63,11 +63,11 @@ href 어트리뷰트는 이동하고자 하는 파일의 위치(경로)를 값�
 : 현재 작업 디렉터리와 관계없이 특정 파일의 절대적인 위치를 가리킨다. 루트 디렉터리를 기준으로 파일의 위치를 나타낸다.  
 - http://www.mysite.com/index.html  
 - /Users/leeungmo/Desktop/myImage.jpg  
-- C:\users\leeungmo\Desktop\myImage.jpg  
+- C:\users\leeungmo\Desktop\myImage.jpg 
+- /index.html   
 
 상대경로(Relative path)
 : 현재 작업 디렉터리를 기준으로 특정 파일의 상대적인 위치를 가리킨다.  
-- /index.html  
 - ./index.html   
 - ../dist/index.js  
 - ../../dist/index.js  
@@ -76,27 +76,27 @@ href 어트리뷰트는 이동하고자 하는 파일의 위치(경로)를 값�
 
 href 어트리뷰트에 사용 가능한 값은 아래와 같다.
 
-| Value               | Description                                                 |
-| :-----------------: |:------------------------------------------------------------|
+| Value               | Description 
+| :-----------------: |:------------------------------------------
 | 절대 URL             | 웹사이트 URL (href="http://www.example.com/default.html")
 | 상대 URL             | 자신의 위치를 기준으로한 대상의 URL (href="html/default.html")
 | fragment identifier | 페이지 내의 특정 id를 갖는 요소에의 링크 (href="#top")
-| 기타 프로토콜          | ftp://, mailto:, file:, etc..
+| 메일                 | mailto:
 | script              | href="javascript:alert('Hello');"
 
 ```html
-<a href="http://www.google.com">URL</a>
-<a href="html/my.html">Local file</a>
-<a href="#top">fragment identifier</a>
-<a href="mailto:someone@example.com?Subject=Hello%20again">Send Mail</a>
+<!DOCTYPE html>
+<html>
+  <body>
+    <a href="http://www.google.com">URL</a><br>
+    <a href="html/my.html">Local file</a><br>
+    <a href="file/my.pdf" download>Download file</a><br>
+    <a href="#">fragment identifier</a><br>
+    <a href="mailto:someone@example.com?Subject=Hello again">Send Mail</a><br>
+    <a href="javascript:alert('Hello');">Javascript</a>
+  </body>
+</html>
 ```
-
-<div class='result'>
-<a href="http://www.google.com">URL</a>
-<a href="html/my.html">Local file</a>
-<a href="#top">fragment identifier</a>
-<a href="mailto:someone@example.com?Subject=Hello%20again">Send Mail</a>
-</div>
 
 fragment identifier를 이용한 페이지 내부 이동 방법은 다음과 같다.
 
@@ -125,10 +125,8 @@ target 어트리뷰트는 링크를 클릭했을 때 윈도우를 어떻게 오�
 
 | Value       | Description                                          |
 | :---------: |:-----------------------------------------------------|
-| `_blank`    | 링크를 클릭했을 때 연결문서를 새로운 윈도우나 탭에서 오픈한다
 | `_self`     | 링크를 클릭했을 때 연결문서를 현재 윈도우에서 오픈한다 (기본값)
-| `_parent`   | 링크를 클릭했을 때 연결문서를 부모(상위레벨) 윈도우에서 오픈한다
-| `_top`      | 링크를 클릭했을 때 연결문서를 최상위 윈도우에서 오픈한다.
+| `_blank`    | 링크를 클릭했을 때 연결문서를 새로운 윈도우나 탭에서 오픈한다
 
 ```html
 <!DOCTYPE html>

@@ -18,8 +18,7 @@ description: 목록(List)와 표(Table) 형식 표현을 위한 태그 순서없
 <!DOCTYPE html>
 <html>
   <body>
-    <h2>Unordered List with Default Bullets</h2>
-
+    <h2>순서없는 목록 (Unordered List)</h2>
     <ul>
       <li>Coffee</li>
       <li>Tea</li>
@@ -37,8 +36,7 @@ description: 목록(List)와 표(Table) 형식 표현을 위한 태그 순서없
 <!DOCTYPE html>
 <html>
   <body>
-    <h2>Ordered List</h2>
-
+    <h2>순서있는 목록 (Ordered List)</h2>
     <ol>
       <li>Coffee</li>
       <li>Tea</li>
@@ -50,7 +48,7 @@ description: 목록(List)와 표(Table) 형식 표현을 위한 태그 순서없
 
 <div class="result"></div>
 
-<strong>type</strong> 속성을 사용하여 순서를 나타내는 문자를 조정할 수 있다
+<strong>type</strong> 어트리뷰트를 사용하여 순서를 나타내는 문자를 지정할 수 있다
 
 | Value       | Description |
 | :---------: |:------------|
@@ -82,7 +80,7 @@ description: 목록(List)와 표(Table) 형식 표현을 위한 태그 순서없
 
 <div class="result"></div>
 
-<strong>reversed</strong> 속성을 지정하면 리스트의 순서값을 역으로 표현한다.
+<strong>reversed</strong> 어트리뷰트를 지정하면 리스트의 순서값을 역으로 표현한다.
 
 ```html
 <ol reversed>
@@ -100,8 +98,7 @@ description: 목록(List)와 표(Table) 형식 표현을 위한 태그 순서없
 <!DOCTYPE html>
 <html>
   <body>
-    <h2>A Nested List</h2>
-
+    <h2>중첩 목록</h2>
     <ul>
       <li>Coffee</li>
       <li>Tea
@@ -122,10 +119,11 @@ description: 목록(List)와 표(Table) 형식 표현을 위한 태그 순서없
 
 # 2. 테이블
 
-표(table)을 만들 때 사용하는 태그이다. 과거에는 테이블 태그를 사용하여 레이아웃을 구성하기도 하였으나 모던 웹에서는 주로 공간 분할 태그인 div 태그를 사용하여 레이아웃을 구성한다.
+표(table)를 만들 때 사용하는 태그이다. 과거에는 테이블 태그를 사용하여 레이아웃을 구성하기도 하였으나 모던 웹에서는 주로 공간 분할 태그인 div 태그를 사용하여 레이아웃을 구성한다.
 
 | tag       | Description |
 | :-------: |:------------|
+| table     | 표를 감싸는 태그
 | tr        | 표 내부의 행 (table row)
 | th        | 행 내부의 제목 셀 (table heading)
 | td        | 행 내부의 일반 셀 (table data)
@@ -164,7 +162,7 @@ description: 목록(List)와 표(Table) 형식 표현을 위한 태그 순서없
 
 <div class="result"></div>
 
-테이블 태그의 속성은 아래와 같다.
+테이블 태그의 어트리뷰트는 아래와 같다.
 
 | attribute     | Description |
 | :-----------: |:------------|
@@ -179,16 +177,15 @@ description: 목록(List)와 표(Table) 형식 표현을 위한 태그 순서없
     <style>
       table, th, td {
         border: 1px solid black;
-        border-collapse: collapse;
+        border-collapse: collapse; 
       }
       th, td {
         padding: 5px;
-        text-align: left;    
       }
     </style>
   </head>
   <body>
-    <h2>Cell that spans two columns:</h2>
+    <h2>2개의 culumn을 span</h2>
     <table>
       <tr>
         <th>Name</th>
@@ -201,7 +198,7 @@ description: 목록(List)와 표(Table) 형식 표현을 위한 태그 순서없
       </tr>
     </table>
 
-    <h2>Cell that spans two rows:</h2>
+    <h2>2개의 row를 span</h2>
     <table>
       <tr>
         <th>Name:</th>

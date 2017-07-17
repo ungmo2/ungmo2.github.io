@@ -48,6 +48,7 @@ bold체를 지정한다. 제목 태그와 같이 의미론적(Semantic) 중요�
   <body>
     <p>This text is normal.</p>
     <b>This text is bold.</b>
+    <p style="font-weight: bold;">This text is bold.</p>
   </body>
 </html>
 ```
@@ -82,6 +83,7 @@ Italic체를 지정한다. 의미론적(Semantic) 중요성의 의미는 없다.
   <body>
     <p>This text is normal.</p>
     <i>This text is italic.</i>
+    <p style="font-style: italic;">This text is italic.</i>
   </body>
 </html>
 ```
@@ -222,15 +224,15 @@ HTML에서는 1개 이상의 연속된 공백(space)을 삽입하여도 1개의 
 <!DOCTYPE html>
 <html>
   <body>
-    <p>In HTML, spaces and new lines are ignored:</p>
+    <p>HTML은 1개 이상의 연속된 공백(space)과 1개 이상의 연속된 줄바꿈(enter)을 1개의 공백으로 표시한다.</p>
     <p>
-      My Bonnie lies over the ocean.
+      var myArray = [];
+      console.log(myArray.length); // 0
 
-      My Bonnie  lies over the sea.
+      myArray[1000] = true;  // [ , , ... , , true ]
 
-      My Bonnie   lies over the ocean.
-
-      Oh,           bring back my Bonnie to me.
+      console.log(myArray.length); // 1001
+      console.log(myArray[0]);     // undefined
     </p>
   </body>
 </html>
@@ -259,14 +261,16 @@ HTML에서는 1개 이상의 연속된 공백(space)을 삽입하여도 1개의 
 <!DOCTYPE html>
 <html>
   <body>
-    <p>In HTML, spaces and new lines are ignored:</p>
-    <pre>My Bonnie lies over the ocean.
+    <p>HTML은 1개 이상의 연속된 공백(space)과 1개 이상의 연속된 줄바꿈(enter)을 1개의 공백으로 표시한다.</p>
+    <pre>
+var myArray = [];
+console.log(myArray.length); // 0
 
-My Bonnie  lies over the sea.
+myArray[1000] = true;  // [ , , ... , , true ]
 
-My Bonnie   lies over the ocean.
-
-Oh,           bring back my Bonnie to me.</pre>
+console.log(myArray.length); // 1001
+console.log(myArray[0]);     // undefined
+    </pre>
   </body>
 </html>
 ```

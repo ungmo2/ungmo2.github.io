@@ -14,7 +14,7 @@ HyperText의 Hyper는 컴퓨터 용어로서 텍스트 등의 정보가 동일 �
 
 이것은 HTML의 가장 중요한 특징인 link의 개념과 연결되는데 기존 문서나 텍스트의 [선형성](https://ko.wikipedia.org/wiki/%EC%84%A0%ED%98%95%EC%84%B1), 고정성의 제약에서 벗어나 사용자가 원하는 순서대로 원하는 정보를 취득할 수 있는 기능을 제공한다. 한 텍스트에서 다른 텍스트로 건너뛰어 읽을 수 있는 이 기능을 <strong>하이퍼링크(hyper link)</strong>라 한다.
 
-HTML link는 hyperlink를 의미하며 a tag가 그 역할을 담당한다.
+HTML link는 hyperlink를 의미하며 a(anchor) tag가 그 역할을 담당한다.
 
 ```html
 <!DOCTYPE html>

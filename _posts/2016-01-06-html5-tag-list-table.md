@@ -180,7 +180,7 @@ description: 목록(List)와 표(Table) 형식 표현을 위한 태그 순서없
         border-collapse: collapse; 
       }
       th, td {
-        padding: 5px;
+        padding: 15px;
       }
     </style>
   </head>

@@ -143,6 +143,8 @@ h1, p { color: red; }
     /* class 어트리뷰트 값이 container인 모든 요소를 선택 */
     /* color 어트리뷰트는 자식 요소에 상속된다. */
     .container { color: red; }
+    /* not supported in IE */
+    #p2 { color: initial; }
   </style>
 </head>
 <body>
@@ -189,14 +191,14 @@ HTML 요소에 class 어트리뷰트 값은 공백으로 구분하여 여러개 
 
 | 패턴             | Description
 |:----------------|:------------
-| 셀렉터[어트리뷰트]  | 지정된 어트리뷰트를 가지는 요소를 선택한다.
+| 셀렉터[어트리뷰트]  | 지정된 어트리뷰트를 갖는 모든 요소를 선택한다.
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
   <style>
-    /* a 요소 중에 href 어트리뷰트를 가지는 요소 */
+    /* a 요소 중에 href 어트리뷰트를 갖는 모든 요소 */
     a[href] { color: red; }
   </style>
 </head>
@@ -212,14 +214,14 @@ HTML 요소에 class 어트리뷰트 값은 공백으로 구분하여 여러개 
 
 | 패턴                 | Description
 |:--------------------|:------------
-| 셀렉터[어트리뷰트="값"]  | 지정된 어트리뷰트를 가지며 지정된 값과 어트리뷰트의 값이 일치하는 요소를 선택한다.
+| 셀렉터[어트리뷰트="값"]  | 지정된 어트리뷰트를 가지며 지정된 값과 어트리뷰트의 값이 일치하는 모든 요소를 선택한다.
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
   <style>
-    /* a 요소 중에 target 어트리뷰트의 값이 "_blank"인 요소 */
+    /* a 요소 중에 target 어트리뷰트의 값이 "_blank"인 모든 요소 */
     a[target="_blank"] { color: red; }
   </style>
 </head>
@@ -248,6 +250,7 @@ HTML 요소에 class 어트리뷰트 값은 공백으로 구분하여 여러개 
 </head>
 <body>
   <h1 title="heading first">Heading first</h1>
+  <h1 title="heading-first">Heading-first</h1>
   <h1 title="heading second">Heading second</h1>
   <h1 title="heading third">Heading third</h1>
 </body>
@@ -829,6 +832,7 @@ n은 1부터 시작하는 정수이다.
       text-align: center;
     }
     /* div 요소 중에서 1, 4, 7...번째 등장하는 요소가 아닌 요소만을 선택 */
+    /* 1, 4, 7... : 공차가 3인 등차수열 */
     div:not(:nth-of-type(3n-2)) {
       margin-left: 2%;
     }
@@ -911,3 +915,5 @@ selector::pseudo-element {
 # Reference
 
 * [W3C CSS Document](https://www.w3.org/TR/CSS/)
+
+* [W3C CSS Document](https://flukeout.github.io/)

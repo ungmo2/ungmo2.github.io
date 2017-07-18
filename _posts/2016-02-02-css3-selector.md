@@ -916,4 +916,4 @@ selector::pseudo-element {
 
 * [W3C CSS Document](https://www.w3.org/TR/CSS/)
 
-* [W3C CSS Document](https://flukeout.github.io/)
+* [Select Sushi](https://flukeout.github.io/)

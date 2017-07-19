@@ -836,7 +836,7 @@ n은 0부터 시작하는 정수이다.
       width: 32%;
       height: 200px;
       background-color: red;
-      margin-bottom: 2%;
+      /* margin-bottom: 2%; */
       color: #fff;
       font-size: 3em;
       line-height: 200px;

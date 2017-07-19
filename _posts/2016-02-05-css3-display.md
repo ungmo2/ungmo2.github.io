@@ -144,8 +144,10 @@ display 프로퍼티는 상속되지 않는다.
       background-color: red;
       color: white;
       padding: 10px;
+      /* width, height, margin-top, margin-bottom 프로퍼티를 지정할 수 없다. */
       /* width: 200px; */
       /* margin: 10px; */
+      /* 상, 하 여백은 line-height로 지정한다. */
       /* line-height: 50px; */
     }
   </style>
@@ -193,7 +195,7 @@ inline 레벨 요소 뒤에 공백(엔터, 스페이스 등)이 있는 경우, �
     }
     .inline-block {
       display: inline-block;
-      vertical-align: middle; /*inline-block 요소 수직 정렬*/
+      vertical-align: middle; /* inline-block 요소 수직 정렬 */
       border: 3px solid #73AD21;
       font-size: 16px;
     }
@@ -334,10 +336,14 @@ inline 레벨 요소 뒤에 공백(엔터, 스페이스 등)이 있는 경우, �
 <head>
   <style>
     div, img {
+      float: left;
+      width: 150px;
+      height: 150px;
+      margin: 30px;
       background-color: blue;
       color: white;
       opacity: 0.5;
-      /* transition: opacity 1s; */
+      transition: opacity 1s; 
     }
     div:hover, img:hover {
       opacity: 1.0;
@@ -346,7 +352,7 @@ inline 레벨 요소 뒤에 공백(엔터, 스페이스 등)이 있는 경우, �
 </head>
 <body>
   <div>opacity: 0.5</div>
-  <img src="http://poiemaweb.com/img/doug.jpg" width="150" height="150" alt="doug">
+  <img src="http://poiemaweb.com/img/doug.jpg" alt="doug">
 </body>
 </html>
 ```

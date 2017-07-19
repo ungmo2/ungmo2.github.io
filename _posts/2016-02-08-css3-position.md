@@ -211,7 +211,9 @@ static은 position 프로퍼티의 기본값으로 position 프로퍼티를 지�
 
 relative 프로퍼티는 기본 위치(static으로 지정되었을 때의 위치)를 기준으로 좌표 프로퍼티(top, bottom, left, right)을 사용하여 위치를 이동시킨다. 따라서 <strong>무조건 부모를 기준으로 위치</strong>하게 된다.
 
-absolute 프로퍼티는 부모에 static 이외의 position 프로퍼티이 지정되어 있을 경우에만 부모를 기준으로 위치하게 된다. 만일 부모, 조상이 모두 static 프로퍼티인 경우, document body를 기준으로 위치하게 된다
+absolute 프로퍼티는 부모에 static 이외의 position 프로퍼티이 지정되어 있을 경우에만 부모를 기준으로 위치하게 된다. 만일 부모, 조상이 모두 static 프로퍼티인 경우, document body를 기준으로 위치하게 된다.
+
+따라서 absolute 프로퍼티 요소는 부모 요소의 영역을 벗어나 자유롭게 어디든지 위치할 수 있다.
 
 ```html
 <!DOCTYPE html>
@@ -270,7 +272,7 @@ absolute 프로퍼티는 부모에 static 이외의 position 프로퍼티이 지
 
 부모 요소와 관계없이 브라우저의 viewport를 기준으로 좌표프로퍼티(top, bottom, left, right)을 사용하여 위치를 이동시킨다.
 
-스크롤이 되더라도 화면에서 사라지지 않고 항상 같은 곳에 위치한다.
+<strong>스크롤이 되더라도 화면에서 사라지지 않고 항상 같은 곳에 위치한다.</strong>
 
 <strong>fixed 프로퍼티 선언 시, block 요소의 width는 inline 요소와 같이 content에 맞게 변화되므로 적절한 width를 지정하여야 한다.</strong>
 

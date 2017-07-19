@@ -160,6 +160,7 @@ font: italic 2em "Open Sans", sans-serif;
 font: italic small-caps bolder 16px/1.2 monospace;
 
 /* style | variant | weight | size/line-height | family */
+/* font-variant: small-caps; 소문자를 대문자로 만든다. 단 크기는 일반 대문자에 비해 더 작다.*/
 font: italic small-caps bolder 16px/3 cursive;
 ```
 

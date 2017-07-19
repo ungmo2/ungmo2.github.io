@@ -31,7 +31,7 @@ Background 관련 프로퍼티는 해당 요소의 배경으로 이미지 또는
   </style>
 </head>
 <body>
-  <h1>Background Image</h1>
+  <h3>Background Image</h3>
 </body>
 </html>
 ```
@@ -60,8 +60,7 @@ x축으로만 배경 이미지를 반복할 경우, `background-repeat` 프로�
   </style>
 </head>
 <body>
-  <h1>Hello World!</h1>
-  <p>This page has an image as the background!</p>
+  <h3>background-repeat: repeat-x;</h3>
 </body>
 </html>
 ```
@@ -82,7 +81,7 @@ x축으로만 배경 이미지를 반복할 경우, `background-repeat` 프로�
   </style>
 </head>
 <body>
-  <h1>Background Image</h1>
+  <h3>background-repeat: no-repeat;</h3>
 </body>
 </html>
 ```
@@ -103,7 +102,7 @@ background-image에 복수개의 이미지를 설정할 경우, 먼저 설정된
   </style>
 </head>
 <body>
-  <h1>Background Image</h1>
+  <h3>background-repeat: no-repeat, repeat;</h3>
 </body>
 </html>
 ```
@@ -283,7 +282,7 @@ body {
       margin-bottom: 2vw;
       float: left;
     }
-    div:not(:nth-of-type(3n-2)) {
+    div:not(:nth-of-type(3n+1)) {
       margin-left: 2vw;
     }
     .example1 {

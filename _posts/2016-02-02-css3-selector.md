@@ -847,6 +847,10 @@ n은 0부터 시작하는 정수이다.
     div:not(:nth-of-type(3n+1)) {
       margin-left: 2%;
     }
+    /* div 요소 중에서 4번째 이후 등장하는 요소가 아닌 요소만을 선택 */    
+    div:not(:nth-of-type(n+4)) {
+      margin-bottom: 2%;
+    }
   </style>
 </head>
 <body>

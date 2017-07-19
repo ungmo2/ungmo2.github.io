@@ -67,7 +67,7 @@ Chrome DevTools에서 확인한 Box-model
 
 width와 height 프로퍼티는 요소의 너비와 높이를 지정하기 위해 사용된다. 이때 지정되는 요소의 너비와 높이는 <strong>콘텐츠 영역</strong>을 대상으로 한다.
 
-이는 [box-sizing 프로퍼티](./css3-box-model#box-sizing-)에 기본값인 <strong>content-box</strong>가 적용되었기 때문이다. box-sizing 프로퍼티에 <strong>border-box</strong>를 적용하면 콘텐츠 영역, padding, border가 포함된 영역을 width / height 프로퍼티의 대상으로 지정할 수 있다.
+이는 [box-sizing 프로퍼티](./css3-box-model#4-box-sizing-프로퍼티)에 기본값인 <strong>content-box</strong>가 적용되었기 때문이다. box-sizing 프로퍼티에 <strong>border-box</strong>를 적용하면 콘텐츠 영역, padding, border가 포함된 영역을 width / height 프로퍼티의 대상으로 지정할 수 있다.
 {: .info}
 
 만일 width와 height로 지정한 콘텐츠 영역보다 실제 콘텐츠가 크면 콘텐츠 영역을 넘치게 된다는 것에 유의하여야 한다.
@@ -95,7 +95,7 @@ width와 height 프로퍼티는 요소의 너비와 높이를 지정하기 위�
 ```
 <div class='result'></div>
 
-[overflow: hidden;](./css3-position#overflow-)을 지정하면 넘친 콘텐츠를 감출 수 있다.
+[overflow: hidden;](./css3-position#3-overflow-프로퍼티)을 지정하면 넘친 콘텐츠를 감출 수 있다.
 {: .info}
 
 기본적으로 width와 height 프로퍼티는 <strong>콘텐츠 영역</strong>을 대상으로 요소의 너비와 높이를 지정하므로 박스 전체 크기는 다음과 같이 계산할 수 있다.
@@ -117,7 +117,7 @@ Height
 
 width와 height 프로퍼티의 초기값은 `auto`로써 이것은 브라우저가 상황에 따라 적당한 width와 height 값을 계산할 것을 의미한다.
 
-예를 들어 block 요소의 경우, width는 100%, height는 콘텐츠의 높이가 지정된다.
+예를 들어 block 요소의 경우, width는 부모 요소의 100%, height는 콘텐츠의 높이(+ 약간의 여분)가 지정된다.
 
 ```html
 <!DOCTYPE html>
@@ -202,25 +202,25 @@ margin / padding 프로퍼티는 content의 4개 방향(top, right, left, bottom
 
 4개의 값을 지정할 때  
 : margin: 25px 50px 75px 100px;
-- top margin : 25px
-- right margin : 50px
-- bottom margin : 75px
-- left margin : 100px
+- margin-top: 25px;
+- margin-right: 50px;
+- margin-bottom: 75px;
+- margin-left: 100px;
 
 3개의 값을 지정할 때  
 : margin: 25px 50px 75px;
-- top margin : 25px
-- right, left margin : 50px
-- bottom margin : 75px
+- margin-top: 25px;
+- margin-right: 50px; margin-left: 50px;
+- margin-bottom: 75px
 
 2개의 값을 지정할 때  
 : margin: 25px 50px;
-- top, bottom margin : 25px
-- right, left margin : 50px
+- margin-top: 25px; margin-bottom: 25px;
+- margin-right: 50px; margin-left: 50px;
 
 1개의 값을 지정할 때  
 : margin: 25px;
-- top, right, bottom, left margin : 25px
+- margin-top: 25px; margin-right: 25px; margin-bottom: 25px; margin-left: 25px;
 
 ```html
 <!DOCTYPE html>
@@ -255,7 +255,7 @@ margin 프로퍼티에 `auto` 키워드를 설정하면 해당 요소를 브라�
       div {
         border: 5px solid red;
         width: 600px;
-        margin: auto; /* == margin: 0 auto;*/
+        margin: 0 auto;
       }
     </style>
   </head>
@@ -291,7 +291,7 @@ margin 프로퍼티에 `auto` 키워드를 설정하면 해당 요소를 브라�
 
 `max-width` 프로퍼티를 사용하면 브라우저 너비가 요소의 너비보다 좁아질 때 자동으로 요소의 너비가 줄어든다.
 
-`max-width` 프로퍼티는 요소 너비의 최대값을, `min-width` 프로퍼티는 요소 너비의 최소값을 지정한다. 예를 들어 `max-width: 300px;`의 경우, 브라우저의 너비가 300px보다 작아지면 요소 너비는 브라우저의 너비에 따라서 작아진다. `min-width: 300px;`의 경우 브라우저의 너비가 300px보다 작아져도 요소 너비는 지정 너비(300px)을 유지한다. 또한 width 프로퍼티와 함께 사용될 경우, `max-width`, `min-width` 프로퍼티는 width 프로퍼티보다 우선 적용된다.
+`max-width` 프로퍼티는 요소 너비의 최대값을, `min-width` 프로퍼티는 요소 너비의 최소값을 지정한다. 예를 들어 `max-width: 300px;`의 경우, 브라우저의 너비가 300px보다 작아지면 요소 너비는 브라우저의 너비에 따라서 작아진다. `min-width: 300px;`의 경우 브라우저의 너비가 300px보다 작아져도 요소 너비는 지정 너비(300px)을 유지한다. <!-- 또한 width 프로퍼티와 함께 사용될 경우, `max-width`, `min-width` 프로퍼티는 width 프로퍼티보다 우선 적용된다. -->
 {: .info}
 
 # 3. border 프로퍼티
@@ -356,7 +356,7 @@ margin 프로퍼티에 `auto` 키워드를 설정하면 해당 요소를 브라�
       padding: 10px;
     }
     p.d1 {
-      /* Apply to all four sides */
+      /* four sides */
       border-style: dashed;
     }
     p.d2 {
@@ -374,10 +374,10 @@ margin 프로퍼티에 `auto` 키워드를 설정하면 해당 요소를 브라�
   </style>
 </head>
 <body>
-  <p class="d1">Apply to all four sides</p>
-  <p class="d2">horizontal | vertical</p>
-  <p class="d3">top | horizontal | bottom</p>
-  <p class="d4">top | right | bottom | left</p>
+  <p class="d1">border-style: dashed;</p>
+  <p class="d2">border-style: dotted solid;</p>
+  <p class="d3">border-style: hidden double dashed;</p>
+  <p class="d4">border-style: none solid dotted dashed;</p>
   </body>
 </html>
 ```
@@ -469,9 +469,9 @@ margin 프로퍼티에 `auto` 키워드를 설정하면 해당 요소를 브라�
   <body>
     <h2>border-color Property</h2>
 
-    <p class="one">red</p>
-    <p class="two">green</p>
-    <p class="three">red green blue yellow</p>
+    <p class="one">border-color: red</p>
+    <p class="two">border-color: green</p>
+    <p class="three">border-color: red green blue yellow</p>
   </body>
 </html>
 ```
@@ -672,18 +672,25 @@ margin 프로퍼티에 `auto` 키워드를 설정하면 해당 요소를 브라�
     div {
       background: #eaeaed;
       color: #666;
-      width: 400px;
+      width: 450px;
       height: 150px;
-      line-height: 150px;
-      text-align: center;
+      padding: 10px;
     }
     .border-rounded {
-      border-radius: 50px 50px 0 0 / 25px 25px 0 0;
+      border-radius: 10px 20px 30px 40px / 5px 10px 15px 20px;
     }
   </style>
 </head>
 <body>
-  <div class="border-rounded">border-radius: 50px 50px 0 0 / 25px 25px 0 0;</div>
+  <div class="border-rounded">
+    border-radius: 10px 20px 30px 40px / 5px 10px 15px 20px;
+    <ul>
+      <li>border-top-left-radius: 10px 5px;</li>
+      <li>border-top-right-radius: 20px 10px;</li>
+      <li>border-bottom-right-radius: 30px 15px;</li>
+      <li>border-bottom-left-radius: 40px 20px;</li>
+    </ul>
+  </div>
 </body>
 </html>
 ```
@@ -712,7 +719,7 @@ p {
 
 `box-sizing` 프로퍼티는 width, height 프로퍼티의 대상 영역을 변경할 수 있다.
 
-box-sizing 프로퍼티의 기본값은 content-box으로 이는 width, height 프로퍼티의 대상 영역이 content 영역을 의미한다. box-sizing 프로퍼티의 값을 border-box로 지정하면 마진을 제외한 박스 모델 전체를 width, height 프로퍼티의 대상 영역으로 지정할 수 있어서 CSS Layout을 직관적으로 사용할 수 있게 한다.
+box-sizing 프로퍼티의 기본값은 content-box이다. 이는 width, height 프로퍼티의 대상 영역이 content 영역을 의미한다. box-sizing 프로퍼티의 값을 border-box로 지정하면 마진을 제외한 박스 모델 전체를 width, height 프로퍼티의 대상 영역으로 지정할 수 있어서 CSS Layout을 직관적으로 사용할 수 있게 한다.
 
 | 키워드           | 설명
 |:----------------|:-----------------------------------------------------------

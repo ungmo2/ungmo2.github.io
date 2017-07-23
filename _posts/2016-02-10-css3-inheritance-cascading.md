@@ -4,6 +4,7 @@ title: CSS3 <strong>Inheritance & Cascading</strong>
 subtitle: 스타일의 상속과 적용 우선 순위
 categories: css
 section: css
+description: 상속이란 상위(부모, 조상) 요소의 속성(프로퍼티)을 하위(자식, 자손) 요소가 물려 받는 것을 의미한다. 상속 기능이 없다면 각 요소의 Rule set에 프로퍼티를 매번 각각 지정해야 한다. 하지만 모든 프로퍼티가 상속되는 것은 아니다. 프로퍼티 중에는 상속이 되는 것과 되지 않는 것이 있다.
 ---
 
 * TOC
@@ -12,9 +13,9 @@ section: css
 
 # 1. 상속(Inheritance)
 
-상속이란 상위(부모, 조상) 요소의 속성을 하위(자식, 자손) 요소가 물려 받는 것을 의미한다. 상속 기능이 없다면 각 요소의 Rule set에 속성을 매번 각각 지정해야 한다.
+상속이란 상위(부모, 조상) 요소의 속성(프로퍼티)을 하위(자식, 자손) 요소가 물려 받는 것을 의미한다. 상속 기능이 없다면 각 요소의 Rule set에 프로퍼티를 매번 각각 지정해야 한다.
 
-하지만 모든 속성이 상속되는 것은 아니다. <strong>속성 중에는 상속이 되는 것과 되지 않는 것이 있다.</strong>
+하지만 모든 프로퍼티가 상속되는 것은 아니다. <strong>프로퍼티 중에는 상속이 되는 것과 되지 않는 것이 있다.</strong>
 
 | property     | Inherit     |
 | :----------: |:-----------:|
@@ -65,23 +66,48 @@ section: css
 
 <div class="result"></div>
 
-color는 상속되는 속성으로 자식 요소는 물론 자손 요소까지 적용된다. 하지만 button처럼 상속 받지 않는 요소도 존재한다.
+color는 상속되는 프로퍼티로서 자식 요소는 물론 자손 요소까지 적용된다. 하지만 button처럼 요소에 따라 상속 받지 않는 경우도 존재한다.
 
-border, padding은 상속되지 않는 요소로 하위 요소에 적용되지 않는다. [Full property table](https://www.w3.org/TR/CSS21/propidx)의 Inherited?가 yes인 속성만 상속된다.
+border, padding은 상속되지 않는 요소로 하위 요소에 적용되지 않는다. W3C가 제공하는 [Full property table](https://www.w3.org/TR/CSS21/propidx)의 Inherited?가 yes인 프로퍼티만 상속된다.
 
 ![css inheritance](/img/css_inheritance.png)
 
-상속되지 않는 경우(상속받지 않는 요소 또는 상속되지 않는 속성), `inherit` 키워드를 사용하여 명시적으로 상속받게 할 수 있다.
+상속되지 않는 프로퍼티
+{: .desc-img}
 
-```css
-button {
-  color: inherit;
-}
-p {
-  border: inherit;
-  padding: inherit;
-}
+상속되지 않는 경우(상속받지 않는 요소 또는 상속되지 않는 프로퍼티), `inherit` 키워드를 사용하여 명시적으로 상속받게 할 수 있다.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    .text-red {
+      color: red;
+      border: 1px solid #bcbcbc;
+      padding: 10px;
+    }
+    .text-red button {
+      color: inherit;
+    }
+    .text-red p {
+      border: inherit;
+      padding: inherit;
+    }
+  </style>
+</head>
+<body>
+  <div class="text-red">
+    <h1>Heading</h1>
+    <p>Paragraph<strong>strong</strong></p>
+    <button>Button</button>
+  </div>
+</body>
+</html>
 ```
+
+<div class="result"></div>
 
 # 2. 캐스캐이딩(Cascading)
 
@@ -111,8 +137,8 @@ CSS가 어디에 선언 되었는지에 따라서 우선순위가 달라진다.
 ```css
 /* style.css */
 body {
-  background-color: blue;
-  color: red;
+  background-color: red;
+  color: white;
 }
 ```
 
@@ -134,14 +160,6 @@ body {
 </html>
 ```
 
-```css
-/* style.css */
-body {
-  background-color: red;
-  color: white;
-}
-```
-
 ## 2.2 명시도
 
 대상을 명확하게 특정할수록 명시도가 높아지고 우선순위가 높아진다.
@@ -156,8 +174,9 @@ body {
 <head>
   <style>
     p        { color: red !important; }
-    div.food { color: chocolate; }
     #thing   { color: blue; }
+
+    div.food { color: chocolate; }
     .food    { color: green; }
     div      { color: orange; }
   </style>

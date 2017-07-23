@@ -158,7 +158,7 @@ static은 position 프로퍼티의 기본값으로 position 프로퍼티를 지�
 
 ## 1.3 absolute (절대위치)
 
-<strong>부모 요소 또는 가장 가까이 있는 조상 요소(static 제외)를 기준으로 좌표 프로퍼티(top, bottom, left, right)만큼 이동한다. 즉 relative, absolute, fixed 프로퍼티이 선언되어 있는 부모 또는 조상 요소를 기준으로 위치가 결정된다.</strong>
+<strong>부모 요소 또는 가장 가까이 있는 조상 요소(static 제외)를 기준으로 좌표 프로퍼티(top, bottom, left, right)만큼 이동한다. 즉 relative, absolute, fixed 프로퍼티가 선언되어 있는 부모 또는 조상 요소를 기준으로 위치가 결정된다.</strong>
 
 <!-- <strong>부모 또는 조상 요소에 relative 속성이 선언되어 있으면 그 요소를 기준으로 하여 좌표 속성(top, bottom, left, right)만큼 이동한다.</strong> -->
 
@@ -211,7 +211,7 @@ static은 position 프로퍼티의 기본값으로 position 프로퍼티를 지�
 
 relative 프로퍼티는 기본 위치(static으로 지정되었을 때의 위치)를 기준으로 좌표 프로퍼티(top, bottom, left, right)을 사용하여 위치를 이동시킨다. 따라서 <strong>무조건 부모를 기준으로 위치</strong>하게 된다.
 
-absolute 프로퍼티는 부모에 static 이외의 position 프로퍼티이 지정되어 있을 경우에만 부모를 기준으로 위치하게 된다. 만일 부모, 조상이 모두 static 프로퍼티인 경우, document body를 기준으로 위치하게 된다.
+absolute 프로퍼티는 부모에 static 이외의 position 프로퍼티가 지정되어 있을 경우에만 부모를 기준으로 위치하게 된다. 만일 부모, 조상이 모두 static 프로퍼티인 경우, document body를 기준으로 위치하게 된다.
 
 따라서 absolute 프로퍼티 요소는 부모 요소의 영역을 벗어나 자유롭게 어디든지 위치할 수 있다.
 

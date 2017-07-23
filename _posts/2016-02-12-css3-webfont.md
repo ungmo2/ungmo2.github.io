@@ -4,6 +4,7 @@ title: CSS3 <strong>Web Font</strong>
 subtitle: 웹디자인 타이포그래피(Typography)
 categories: css
 section: css
+description: 웹디자인 관점에서 폰트의 선택은 중요한 의미를 갖는다. 대부분의 정보는 텍스트와 이미지로 전달되고 아직은 텍스트가 주를 이루기 때문에 더욱 그러하다. 이전에는 웹에서 사용할 수 있는 아름다운 한글 폰트가 적어 포토샵 등으로 로컬 폰트를 사용하여 텍스트를 이미지로 만들어 사용하였다. 이것은 많은 트래픽을 유발하고 웹크롤러가 정보를 수집할 수 없어 SEO관점에서도 바람직하지 않다. 아름답고 정돈된 폰트를 사용한다면 그 자체만으로도 훌륭한 웹디자인이 가능하다.
 ---
 
 # 웹폰트 (Web Font)
@@ -37,12 +38,12 @@ typekit.com
 
 ## 서버 폰트 로딩 방식
 
-Google Font를 사용하기 위해 CDN 링크를 사용하는 방법은 간편한 방법이지만 로딩 속도가 느린 단점이 있다. 여러개의 폰트를 사용한다면 로딩에 더욱 시간이 걸릴 것이다. 또한 CDN 링크를 제공하지 않는 폰트는 사용할 방법이 없다. 이러한 단점을 보완한 방법이 서버 폰트 로딩 방식이다.
+Google Font를 사용하기 위해 CDN 링크를 사용하는 방법은 간편한 방법이지만 로딩 속도가 느린 단점이 있다.(로컬 폰트를 사용하는 것에 비해 느리다는 의미이다. 서버 폰트 로딩 방식보다는 빠를수 있다.) 여러개의 폰트를 사용한다면 로딩에 더욱 시간이 걸릴 것이다. 또한 CDN 링크를 제공하지 않는 폰트는 사용할 방법이 없다. 이러한 단점을 보완한 방법이 서버 폰트 로딩 방식이다.
 
-@font-face 규칙으로 폰트를 등록하고 font-family 속성으로 폰트를 선택하여 사용할 수 있다.
+@font-face 규칙으로 폰트를 등록하고 font-family 프로퍼티로 폰트를 선택하여 사용할 수 있다.
 
 ```css
-/*IE 9~ & all browsers*/
+/* IE 9~ & all browsers */
 @font-face {
   font-family: myFontName;
   src: url("myFont.woff");
@@ -67,10 +68,10 @@ Google Font를 사용하기 위해 CDN 링크를 사용하는 방법은 간편�
 ```css
 @font-face {
   font-family:"Nanum Gothic";
-  src:url("NanumGothic.eot"); /*IE 9 호환성 보기 모드 대응*/
-  src:local("☺"),             /*local font 사용 방지. 생략 가능*/
-      url("NanumGothic.eot?#iefix") format('embedded-opentype'), /*IE 6~8*/
-      url("NanumGothic.woff") format('woff'); /*표준 브라우저*/
+  src:url("NanumGothic.eot"); /* IE 9 호환성 보기 모드 대응 */
+  src:local("☺"),             /* local font 사용 방지. 생략 가능 */
+      url("NanumGothic.eot?#iefix") format('embedded-opentype'), /* IE 6~8 */
+      url("NanumGothic.woff") format('woff'); /* 표준 브라우저 */
 }
 
 * { font-family: "Nanum Gothic", sans-serif; }

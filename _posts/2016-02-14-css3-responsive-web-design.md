@@ -885,7 +885,7 @@ tablet용 layout에서 header height를 2배로 하였으므로 mobile용 layout
 <body>
   <div id="wrap">
     <header>
-      <a class="logo" href="#home"><img src="img/logo.png"></a>
+      <a class="logo" href="#home"><img src="http://poiemaweb.com/img/logo.png"></a>
       <nav>
         <input class="nav-toggle" id="nav-toggle" type="checkbox">
         <label class="navicon" for="nav-toggle"><span class="navicon-bar"></span></label>
@@ -1299,7 +1299,7 @@ mobile layout을 작성한다. 480px 이하로 화면이 작아지면 고정 배
   <body>
     <div id="wrap">
       <header>
-        <a class="logo" href="#home"><img src="img/logo.png"></a>
+        <a class="logo" href="#home"><img src="http://poiemaweb.com/img/logo.png"></a>
         <nav>
           <input class="nav-toggle" id="nav-toggle" type="checkbox">
           <label class="navicon" for="nav-toggle"><span class="navicon-bar"></span></label>

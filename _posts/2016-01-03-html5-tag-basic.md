@@ -164,7 +164,7 @@ src 어트리뷰트를 사용하면 외부 JavaScript 파일을 로드할 수 �
 
 ## 3.5 meta tag
 
-meta 요소는 description, keywords, author, 기타 메타데이터 정의에 사용된다. 메터데이터는 브라우저, 검색엔진(keywords) 등에 의해 사용된다.
+meta 요소는 description, keywords, author, 기타 메타데이터 정의에 사용된다. 메타데이터는 브라우저, 검색엔진(keywords) 등에 의해 사용된다.
 
 charset 어트리뷰트는 브라우저가 사용할 문자셋을 정의한다.
 

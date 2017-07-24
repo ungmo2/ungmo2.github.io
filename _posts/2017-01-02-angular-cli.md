@@ -426,7 +426,7 @@ templateUrl, styleUrls 속성은 외부 파일을 로드하기 위해 사용한�
 ...
 ```
 
-위 예제의 경우 컴포넌트는 같은 폴더 내의 외부 파일 my-component.component.html과 my-component.component.css을 템플릿과 CSS로 사용한다. 템플릿 또는 CSS가 간단한 경우에는 메터데이터 내부에 직접 기술할 수도 있다. 이때 templateUrl, styleUrls 속성 대신 template, styles 속성을 사용한다.
+위 예제의 경우 컴포넌트는 같은 폴더 내의 외부 파일 my-component.component.html과 my-component.component.css을 템플릿과 CSS로 사용한다. 템플릿 또는 CSS가 간단한 경우에는 메타데이터 내부에 직접 기술할 수도 있다. 이때 templateUrl, styleUrls 속성 대신 template, styles 속성을 사용한다.
 
 ```typescript
 // src/app/my-component/my-component.component.ts

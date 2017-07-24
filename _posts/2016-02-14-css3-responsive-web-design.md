@@ -46,11 +46,11 @@ viewport란 웹페이지의 가시영역을 의미한다. viewport는 디바이�
 
 ![viewport](/img/viewport.png)
 
-[meta tag](./html5-tag-basic#meta-tag)는 브라우저 혹은 검색엔진최적화(SEO)를 위해 검색엔진에게 메타데이터를 전달하기 위해 사용된다.
+[meta tag](./html5-tag-basic#35-meta-tag)는 브라우저 혹은 검색엔진최적화(SEO)를 위해 검색엔진에게 메타데이터를 전달하기 위해 사용된다.
 
 viewport meta tag는 브라우저의 화면 설정과 관련된 정보를 제공한다.
 
-| 속성	          | Description      | 사용예
+| 프로퍼티	       | Description      | 사용예
 |:---------------|:-----------------|:--------------
 | width          | viewport 너비(px). 기본값: 980px | width=240
 |                |                  | width=device-width
@@ -61,7 +61,7 @@ viewport meta tag는 브라우저의 화면 설정과 관련된 정보를 제공
 | maximum-scale  | viewport 최대 배율 | maximum-scale=2.0
 | minimum-scale  | viewport 최소 배율 | minimum-scale=1.0
 
-meta tag에서는 px단위를 사용하며 단위 표현은 생략한다. 복수개의 속성을 사용할 때는 쉼표(,)로 구분한다.
+meta tag에서는 px단위를 사용하며 단위 표현은 생략한다. 복수개의 프로퍼티를 사용할 때는 쉼표(,)로 구분한다.
 
 <strong>일반적으로 viewport meta tag는 모바일 디바이스에서만 적용된다.</strong>
 
@@ -73,7 +73,7 @@ meta tag에서는 px단위를 사용하며 단위 표현은 생략한다. 복수
 
 위 예제는 가장 일반적인 viewport 설정이다. 가로폭을 디바이스의 가로폭에 맞추고 초기 화면 배율을 100%로 설정하는 것을 의미한다.
 
-## 1.2 @media 속성
+## 1.2 @media
 
 이것은 서로 다른 미디어 타입(print, screen...)에 따라 각각의 styles을 지정하는 것을 가능하게 한다. 다음은 일반 화면(screen)과 인쇄장치 별로 서로 다른 style을 지정하는 예이다.
 
@@ -120,7 +120,9 @@ meta tag에서는 px단위를 사용하며 단위 표현은 생략한다. 복수
 }
 ```
 
-| 속성	               |  Description
+아래의 표는 Media Query의 표현식에서 사용할 수 있는 프로퍼티이다.
+
+| 프로퍼티	            |  Description
 |:--------------------|:-----------------
 | width               | viewport 너비(px)
 | height              | viewport 높이(px)
@@ -132,13 +134,13 @@ meta tag에서는 px단위를 사용하며 단위 표현은 생략한다. 복수
 | monochrome          | 흑백 디바이스의 픽셀 당 비트수
 | resolution          | 디바이스 해상도
 
-orientation을 제외한 모든 속성은 min/max 접두사를 사용할 수 있다.
+orientation을 제외한 모든 프로퍼티는 min/max 접두사를 사용할 수 있다.
 
 [W3C > Media Queries > Media features](https://www.w3.org/TR/css3-mediaqueries/#media1)
 
-일반적으로 반응형 웹 디자인은 viewport 너비(width 속성)를 기준으로 한다.
+일반적으로 반응형 웹 디자인은 viewport 너비(width 프로퍼티)를 기준으로 한다.
 
-viewport의 width 속성을 이용하여 viewport 너비에 따라 반응하는 범위(breakpoint)를 지정할 수 있다.
+viewport의 width 프로퍼티를 이용하여 viewport 너비에 따라 반응하는 범위(breakpoint)를 지정할 수 있다.
 
 ```css
 /*==========  Mobile First Method  ==========*/
@@ -335,7 +337,7 @@ viewport width가 800px 이하가 되면 header 영역을 2단(logo영역과 nav
 }
 ```
 
-가로로 나란히 정렬되어 있던 logo image과 navigation bar를 상단과 하단으로 분리 배치하기 위하여 navigation bar의 `float: right;` 속성을 해제한다. 그러면 navigation bar는 `block` 속성을 가지게 되어 logo image의 아래 영역으로 내려가게 된다.
+가로로 나란히 정렬되어 있던 logo image과 navigation bar를 상단과 하단으로 분리 배치하기 위하여 navigation bar의 `float: right;` 프로퍼티를 해제한다. 그러면 navigation bar는 `block` 프로퍼티를 가지게 되어 logo image의 아래 영역으로 내려가게 된다.
 
 ```css
 @media screen and (max-width: 800px) {
@@ -370,7 +372,7 @@ viewport width가 800px 이하가 되면 header 영역을 2단(logo영역과 nav
 ![res-layout-practice-3](/img/res-layout-practice-3.png)
 {: .w-350}
 
-nav 요소 내에 클릭할 수 있는 navigation icon을 만들기 위한 html tag를 추가한다. label tag의 for 속성값과 input tag의 id 속성값이 일치하여야 한다.
+nav 요소 내에 클릭할 수 있는 navigation icon을 만들기 위한 html tag를 추가한다. label tag의 for 프로퍼티값과 input tag의 id 프로퍼티값이 일치하여야 한다.
 
 ```html
 <nav>
@@ -388,7 +390,7 @@ nav 요소 내에 클릭할 수 있는 navigation icon을 만들기 위한 html 
 <input type="checkbox" name="remeber_pw" id="remeber_pw">
 ```
 
-input checkbox 요소의 id 속성값과 label 요소의 for 속성값을 일치시켜 연동하면 label 요소를 클릭하여도 input checkbox 요소가 클릭된다.
+input checkbox 요소의 id 프로퍼티값과 label 요소의 for 프로퍼티값을 일치시켜 연동하면 label 요소를 클릭하여도 input checkbox 요소가 클릭된다.
 
 이것을 이용하여 label 요소의 콘텐츠를 커스텀 navigation icon으로 만들어 주고 input checkbox 요소의 기본 외관을 비표시하는 방법이다.
 
@@ -408,7 +410,7 @@ navigation icon의 style은 다음과 같이 정의한다.
 }
 ```
 
-navigation icon은 header 우측의 절대 위치에 배치되어야 하므로 `position: absolute;`를 지정한다. absolute 속성은 relative 속성을 가진 부모 요소를 기준으로 배치된다. 마침 html 요소에 relative 속성이 적용되어 있으므로 별도 지정은 필요없다.
+navigation icon은 header 우측의 절대 위치에 배치되어야 하므로 `position: absolute;`를 지정한다. absolute 프로퍼티는 relative 프로퍼티를 가진 부모 요소를 기준으로 배치된다. 마침 html 요소에 relative 프로퍼티가 적용되어 있으므로 별도 지정은 필요없다.
 
 다음은 label tag 내의 span tag의 style을 정의한다. span tag는 navigation icon의 내부 막대 3개(클릭 시에는 X 표시)를 표현하기 위해 정의하였다.
 
@@ -463,7 +465,7 @@ navigation icon은 header 우측의 절대 위치에 배치되어야 하므로 `
 
 아직 navigation icon을 클릭하여도 아무런 반응이 없다. navigation icon을 클릭하면 클릭되었음을 사용자가 확인할 수 있도록 navigation icon의 style을 변화시킨다.
 
-input checkbox tag의 가상 클래스 선택자 checked 속성을 이용하여 클릭되었을 때(input:checked)와 그렇지 않을 때를 구분할 수 있다.
+input checkbox tag의 가상 클래스 선택자 checked를 이용하여 클릭되었을 때(input:checked)와 그렇지 않을 때를 구분할 수 있다.
 
 ```css
 .nav-toggle:checked ~ .navicon > .navicon-bar {
@@ -507,14 +509,14 @@ navigation icon에 transition 효과를 부여하여 좀더 부드럽게 움직�
 }
 ```
 
-transition 속성은 property, duration, delay 순으로 정의한다.
+transition 프로퍼티는 property, duration, delay 순으로 정의한다.
 
 navigation icon을 클릭하면 의도하지 않게 이미지가 선택되는 현상이 발생할 수 있다.
 
 ![res-layout-practice-7](/img/res-layout-practice-7.png)
 {: .w-350}
 
-이것은 navigation icon이 텍스트이기 때문에 발생하는 문제이다. 이 문제는 텍스트 선택을 차단하는 방법인 `user-select: none;` 속성을 지정하여 회피할 수 있다. user-select 속성은 현재 W3C(World Wide Web 컨소시엄) CSS 사양에 포함되어 있지 않기 때문에 벤더프리픽스(vendor prefix)를 사용하여야 한다.
+이것은 navigation icon이 텍스트이기 때문에 발생하는 문제이다. 이 문제는 텍스트 선택을 차단하는 방법인 `user-select: none;` 프로퍼티를 지정하여 회피할 수 있다. user-select 프로퍼티는 현재 W3C(World Wide Web 컨소시엄) CSS 사양에 포함되어 있지 않기 때문에 벤더프리픽스(vendor prefix)를 사용하여야 한다.
 
 ```css
 .navicon {

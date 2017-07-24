@@ -1003,18 +1003,12 @@ mobile layout을 작성한다. 480px 이하로 화면이 작아지면 고정 배
         margin: 0; padding: 0;
         box-sizing: border-box;
       }
-      html {
-        /*footer의 position: absolute;에 대응 (for sticky footer)*/
-        /*mobile layout의 .navicon의 position: absolute;에 대응*/
-        position: relative;
-        min-height: 100%;   /*footer가 bottom에 붙게한다*/
-        -webkit-font-smoothing: antialiased;
-        -webkit-text-size-adjus: 100%;  /*iphone font size 변경 방지*/
-      }
       body {
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         color: #58666e;
         background-color: #f0f3f4;
+        -webkit-font-smoothing: antialiased;
+        -webkit-text-size-adjus: 100%;  /*iphone font size 변경 방지*/
       }
       li { list-style: none; }
       a { text-decoration: none; }
@@ -1176,8 +1170,6 @@ mobile layout을 작성한다. 480px 이하로 화면이 작아지면 고정 배
       /*footer*/
       footer {
         position: absolute;
-        left: 0;
-        bottom: 0;
         height: 60px;
         width: 100%;
         padding: 0 25px;

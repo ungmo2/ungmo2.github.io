@@ -996,7 +996,9 @@ mobile layout을 작성한다. 480px 이하로 화면이 작아지면 고정 배
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
       /*Simple Reset CSS*/
       * {

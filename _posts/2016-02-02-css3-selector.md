@@ -932,3 +932,5 @@ selector::pseudo-element {
 * [W3C CSS Document](https://www.w3.org/TR/CSS/)
 
 * [Select Sushi](https://flukeout.github.io/)
+
+* [CSS selectors](https://quirksmode.org/css/selectors/)

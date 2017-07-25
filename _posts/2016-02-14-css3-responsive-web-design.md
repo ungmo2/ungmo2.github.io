@@ -1358,3 +1358,7 @@ mobile layout을 작성한다. 480px 이하로 화면이 작아지면 고정 배
 ```
 
 <div class="result"></div>
+
+# Reference
+
+* [Media queries](https://quirksmode.org/css/mediaqueries/mobile.html)

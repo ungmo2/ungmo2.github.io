@@ -318,7 +318,7 @@ absolute 프로퍼티는 부모에 static 이외의 position 프로퍼티가 지
 
 # 2. z-index 프로퍼티
 
-z-index 프로퍼티에 큰 숫자값을 지정할수록 화면 전면에 출력된다.
+z-index 프로퍼티에 큰 숫자값을 지정할수록 화면 전면에 출력된다. positon 프로퍼티가 static 이외인 요소에만 적용된다.
 
 ![z-index](/img/z-index.jpeg)
 

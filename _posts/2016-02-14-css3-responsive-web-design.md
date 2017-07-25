@@ -356,6 +356,7 @@ viewport width가 800px 이하가 되면 header 영역을 2단(logo영역과 nav
     text-align: center;
   }
   #wrap {
+    /* margin-top = header height */
     margin-top: 120px;
   }
   aside {
@@ -377,6 +378,7 @@ viewport width가 800px 이하가 되면 header 영역을 2단(logo영역과 nav
     /*margin-right: 0;*/
   }
   #wrap {
+    /* margin-top = header height */
     margin-top: 120px;
   }
   aside {
@@ -609,6 +611,7 @@ tablet용 layout에서 header height를 2배로 하였으므로 mobile용 layout
 @media screen and (max-width: 480px) {
   /*...*/
   #wrap {
+    /* margin-top = header height */
     margin-top: 60px;
   }
   aside {
@@ -649,7 +652,7 @@ tablet용 layout에서 header height를 2배로 하였으므로 mobile용 layout
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <style>
-    /*Simple Reset CSS*/
+    /* Simple Reset CSS */
     * {
       margin: 0; padding: 0;
       box-sizing: border-box;
@@ -659,7 +662,7 @@ tablet용 layout에서 header height를 2배로 하였으므로 mobile용 layout
       color: #58666e;
       background-color: #f0f3f4;
       -webkit-font-smoothing: antialiased;
-      -webkit-text-size-adjus: 100%;  /*iphone font size 변경 방지*/
+      -webkit-text-size-adjus: 100%;  /* iphone font size 변경 방지 */
     }
     li { list-style: none; }
     a { text-decoration: none; }
@@ -669,18 +672,14 @@ tablet용 layout에서 header height를 2배로 하였으므로 mobile용 layout
     h1 { font-size: 1.8em; }
 
     #wrap {
-      /*
-      for full width
-      top = header height
-      bottom = footer height
-      */
       width: 100%;
-      margin: 60px 0 60px;
+      /* margin-top = header height */
+      margin-top: 60px;
     }
 
-    /*Navigation bar*/
+    /* Navigation bar */
     header {
-      /*for sticky header*/
+      /* for sticky header */
       position: fixed;
       top: 0;
 
@@ -703,18 +702,18 @@ tablet용 layout에서 header height를 2배로 하였으므로 mobile용 layout
       margin-right: 20px;
     }
     .nav-items > li {
-      display: inline-block; /*가로정렬*/
+      display: inline-block; /* 가로정렬 */
     }
     .nav-items > li > a {
-      line-height: 60px; /*for Vertical Centering*/
-      padding: 0 30px;   /*nav item간 간격*/
+      line-height: 60px; /* for Vertical Centering */
+      padding: 0 30px;   /* nav item간 간격 */
       color: rgba(0,0,0,0.4);
     }
     .nav-items > li > a:hover {
       color: rgba(0,0,0,0.8);
     }
 
-    /*navigation icon for Mobile Layout*/
+    /* navigation icon for Mobile Layout */
     .navicon {
       cursor: pointer;
       height: 60px;
@@ -727,12 +726,12 @@ tablet용 layout에서 header height를 2배로 하였으므로 mobile용 layout
       -ms-user-select: none;      /* IE 10+ */
       user-select: none;          /* Likely future */
     }
-    /*nav icon의 내부 막대*/
+    /* nav icon의 내부 막대 */
     .navicon-bar {
       background-color: #333;
       display: block;
       position: relative;
-      /*navigation icon animation*/
+      /* navigation icon animation */
       transition: background-color .2s ease-out;
       width: 20px;
       height: 3px;
@@ -745,7 +744,7 @@ tablet용 layout에서 header height를 2배로 하였으므로 mobile용 layout
       height: 100%;
       width: 100%;
       position: absolute;
-      /*navigation icon animation*/
+      /* navigation icon animation */
       transition: all .2s ease-out;
     }
     .navicon-bar::before {
@@ -754,7 +753,7 @@ tablet용 layout에서 header height를 2배로 하였으므로 mobile용 layout
     .navicon-bar::after {
       top: 7px;
     }
-    /*toggle navigation icon*/
+    /* toggle navigation icon */
     .nav-toggle:checked ~ .navicon > .navicon-bar {
       background: transparent;
     }
@@ -767,21 +766,24 @@ tablet용 layout에서 header height를 2배로 하였으므로 mobile용 layout
       top: 0;
     }
 
-    /*contents*/
-    #content-wrap {
-      overflow: hidden; /*height가 접히는 문제*/
+    /* contents */
+    /* clearfix */
+    #content-wrap:after {
+      content: "";
+      display: block;
+      clear: both;
     }
     aside {
-      /*for fixed side bar*/
+      /* for fixed side bar */
       position: fixed;
       top: 60px;
       bottom: 0;
 
-      width: 200px;  /*너비 고정*/
+      width: 200px;  /* 너비 고정 */
       padding-top: 25px;
       background-color: #333;
     }
-    /*aside navigation*/
+    /* aside navigation */
     aside > ul {
       width: 200px;
     }
@@ -800,7 +802,7 @@ tablet용 layout에서 header height를 2배로 하였으므로 mobile용 layout
       padding: 20px 0 20px 20px;
       color: #fff;
     }
-    /*Section*/
+    /* Section */
     section {
       float: right;
       margin-left: 200px;  /*aside width*/
@@ -810,8 +812,9 @@ tablet용 layout에서 header height를 2배로 하였으므로 mobile용 layout
       padding: 25px;
       background-color: white;
     }
-    /*footer*/
+    /* footer */
     footer {
+      /* footer를 aside위에 올리기 위해 사용(부유객체) */
       position: absolute;
       left: 0;
       bottom: 0;
@@ -831,8 +834,8 @@ tablet용 layout에서 header height를 2배로 하였으므로 mobile용 layout
       display: none;
     }
 
-    /*Media Query*/
-    /* for tablet */
+    /* Media Query */
+    /* for tablet: ~ 800px */
     @media screen and (max-width: 800px) {
       header {
         height: 120px;
@@ -843,13 +846,14 @@ tablet용 layout에서 header height를 2배로 하였으므로 mobile용 layout
         margin-right: 0;
       }
       #wrap {
+        /* margin-top = header height */
         margin-top: 120px;
       }
       aside {
         top: 120px;
       }
     }
-    /* for smartphone */
+    /* for smartphone: ~ 480px */
     @media screen and (max-width: 480px) {
       header {
         height: 60px;
@@ -861,12 +865,13 @@ tablet용 layout에서 header height를 2배로 하였으므로 mobile용 layout
         display: block;
       }
       #wrap {
+        /* margin-top = header height */
         margin-top: 60px;
       }
       aside {
         top: 60px;
       }
-      /*View navigation item*/
+      /* View navigation item */
       .nav-toggle:checked ~ .nav-items {
         display: block;
         width: 100%;
@@ -1003,7 +1008,7 @@ mobile layout을 작성한다. 480px 이하로 화면이 작아지면 고정 배
     width: 100%;
     padding: 5px 0;
   }
-  /*aside navigation*/
+  /* aside navigation */
   aside > ul {
     width: 100%;
   }
@@ -1029,7 +1034,7 @@ mobile layout을 작성한다. 480px 이하로 화면이 작아지면 고정 배
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
-      /*Simple Reset CSS*/
+      /* Simple Reset CSS */
       * {
         margin: 0; padding: 0;
         box-sizing: border-box;
@@ -1039,7 +1044,7 @@ mobile layout을 작성한다. 480px 이하로 화면이 작아지면 고정 배
         color: #58666e;
         background-color: #f0f3f4;
         -webkit-font-smoothing: antialiased;
-        -webkit-text-size-adjus: 100%;  /*iphone font size 변경 방지*/
+        -webkit-text-size-adjus: 100%;  /* iphone font size 변경 방지 */
       }
       li { list-style: none; }
       a { text-decoration: none; }
@@ -1049,18 +1054,14 @@ mobile layout을 작성한다. 480px 이하로 화면이 작아지면 고정 배
       h1 { font-size: 1.8em; }
 
       #wrap {
-        /*
-        for full width
-        top = header height
-        bottom = footer height
-        */
         width: 100%;
-        margin: 60px 0 60px;
+        /* margin-top = header height */
+        margin-top: 60px;
       }
 
-      /*Navigation bar*/
+      /* Navigation bar */
       header {
-        /*for sticky header*/
+        /* for sticky header */
         position: fixed;
         top: 0;
 
@@ -1083,18 +1084,18 @@ mobile layout을 작성한다. 480px 이하로 화면이 작아지면 고정 배
         margin-right: 20px;
       }
       .nav-items > li {
-        display: inline-block; /*가로정렬*/
+        display: inline-block; /* 가로정렬 */
       }
       .nav-items > li > a {
-        line-height: 60px; /*for Vertical Centering*/
-        padding: 0 30px;   /*nav item간 간격*/
+        line-height: 60px; /* for Vertical Centering */
+        padding: 0 30px;   /* nav item간 간격 */
         color: rgba(0,0,0,0.4);
       }
       .nav-items > li > a:hover {
         color: rgba(0,0,0,0.8);
       }
 
-      /*navigation icon for Mobile Layout*/
+      /* navigation icon for Mobile Layout */
       .navicon {
         cursor: pointer;
         height: 60px;
@@ -1107,12 +1108,12 @@ mobile layout을 작성한다. 480px 이하로 화면이 작아지면 고정 배
         -ms-user-select: none;      /* IE 10+ */
         user-select: none;          /* Likely future */
       }
-      /*nav icon의 내부 막대*/
+      /* nav icon의 내부 막대 */
       .navicon-bar {
         background-color: #333;
         display: block;
         position: relative;
-        /*navigation icon animation*/
+        /* navigation icon animation */
         transition: background-color .2s ease-out;
         width: 20px;
         height: 3px;
@@ -1124,7 +1125,7 @@ mobile layout을 작성한다. 480px 이하로 화면이 작아지면 고정 배
         display: block;
         height: 100%;
         position: absolute;
-        /*navigation icon animation*/
+        /* navigation icon animation */
         transition: all .2s ease-out;
         width: 100%;
       }
@@ -1134,7 +1135,7 @@ mobile layout을 작성한다. 480px 이하로 화면이 작아지면 고정 배
       .navicon-bar::after {
         top: 7px;
       }
-      /*toggle navigation icon*/
+      /* toggle navigation icon */
       .nav-toggle:checked ~ .navicon > .navicon-bar {
         background: transparent;
       }
@@ -1147,21 +1148,24 @@ mobile layout을 작성한다. 480px 이하로 화면이 작아지면 고정 배
         top: 0;
       }
 
-      /*contents*/
-      #content-wrap {
-        overflow: hidden; /*height가 접히는 문제*/
+      /* contents */
+      /* clearfix */
+      #content-wrap:after {
+        content: "";
+        display: block;
+        clear: both;
       }
       aside {
-        /*for fixed side bar*/
+        /* for fixed side bar */
         position: fixed;
         top: 60px;
         bottom: 0;
 
-        width: 200px;  /*너비 고정*/
+        width: 200px;  /* 너비 고정 */
         padding-top: 25px;
         background-color: #333;
       }
-      /*aside navigation*/
+      /* aside navigation */
       aside > ul {
         width: 200px;
       }
@@ -1180,7 +1184,7 @@ mobile layout을 작성한다. 480px 이하로 화면이 작아지면 고정 배
         padding: 20px 0 20px 20px;
         color: #fff;
       }
-      /*Section*/
+      /* Section */
       section {
         float: right;
         margin-left: 200px;  /*aside width*/
@@ -1198,8 +1202,9 @@ mobile layout을 작성한다. 480px 이하로 화면이 작아지면 고정 배
       article:nth-of-type(n+3) {
         margin-top: 0;
       }
-      /*footer*/
+      /* footer */
       footer {
+        /* footer를 aside위에 올리기 위해 사용(부유객체) */
         position: absolute;
         height: 60px;
         width: 100%;
@@ -1217,8 +1222,8 @@ mobile layout을 작성한다. 480px 이하로 화면이 작아지면 고정 배
         display: none;
       }
 
-      /*Media Query*/
-      /* for tablet */
+      /* Media Query */
+      /* for tablet: ~ 800px */
       @media screen and (max-width: 800px) {
         header {
           height: 120px;
@@ -1229,6 +1234,7 @@ mobile layout을 작성한다. 480px 이하로 화면이 작아지면 고정 배
           margin-right: 0;
         }
         #wrap {
+          /* margin-top = header height */
           margin-top: 120px;
         }
         aside {
@@ -1248,7 +1254,7 @@ mobile layout을 작성한다. 480px 이하로 화면이 작아지면 고정 배
           margin-top: 0;
         }
       }
-      /* for smartphone */
+      /* for smartphone: ~ 480px */
       @media screen and (max-width: 480px) {
         header {
           height: 60px;
@@ -1260,6 +1266,7 @@ mobile layout을 작성한다. 480px 이하로 화면이 작아지면 고정 배
           display: block;
         }
         #wrap {
+          /* margin-top = header height */
           margin-top: 60px;
         }
         aside {
@@ -1268,7 +1275,7 @@ mobile layout을 작성한다. 480px 이하로 화면이 작아지면 고정 배
           width: 100%;
           padding: 5px 0;
         }
-        /*aside navigation*/
+        /* aside navigation */
         aside > ul {
           width: 100%;
         }
@@ -1280,7 +1287,7 @@ mobile layout을 작성한다. 480px 이하로 화면이 작아지면 고정 배
           float: none;
           margin-left: 0;
         }
-        /*View navigation item*/
+        /* View navigation item */
         .nav-toggle:checked ~ .nav-items {
           display: block;
           width: 100%;

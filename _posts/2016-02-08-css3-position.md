@@ -327,31 +327,40 @@ z-index 프로퍼티에 큰 숫자값을 지정할수록 화면 전면에 출력
 <html>
 <head>
   <style>
-    .box {
+    .normal-box {
+      width: 100px; height: 100px;
+    }
+    .absolute-box {
       width: 100px; height: 100px;
       position: absolute;
     }
+    /* z-index는 positon 프로퍼티가 static 이외인 요소에만 적용된다. */
+    .orange {
+      background-color: orange;
+      z-index: 1000;      
+    }
     .red {
       background-color: red;
-      left: 10px; top: 10px;
+      left: 50px; top: 50px;
       z-index: 100;
     }
     .green {
       background-color: green;
-      left: 50px; top: 50px;
+      left: 100px; top: 100px;
       z-index: 10;
     }
     .blue {
       background-color: blue;
-      left: 90px; top: 90px;
+      left: 150px; top: 150px;
       z-index: 1;
     }
   </style>
 </head>
 <body>
-  <div class="box red"></div>
-  <div class="box green"></div>
-  <div class="box blue"></div>
+  <div class="normal-box orange"></div>
+  <div class="absolute-box red"></div>
+  <div class="absolute-box green"></div>
+  <div class="absolute-box blue"></div>
 </body>
 </html>
 ```

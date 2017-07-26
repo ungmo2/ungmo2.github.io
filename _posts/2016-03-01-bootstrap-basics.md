@@ -112,9 +112,7 @@ Browser compatibility
 
 # 2. Bootstrap의 설치
 
-Bootstrap을 사용하기 위한 방법은 Bootstrap을 다운로드 받은 후 자신의 환경에 위치시킨 후 사용하는 방법과 CDN(Content Delivery Network)을 사용하는 방법이 있다.
-
-물론 [npm](./nodejs-npm)을 통해 설치하는 방법도 가능하다. 이 글에서는 npm을 사용하는 방법에 대해서는 논하지 않는 것으로 한다.
+Bootstrap을 사용하기 위한 방법은 Bootstrap을 다운로드 받은 후 자신의 환경에 위치시킨 후 사용하는 방법과 CDN(Content Delivery Network)을 사용하는 방법이 있다. 물론 [npm](./nodejs-npm)을 통해 설치하는 방법도 가능하다.
 
 ## 2.1 Bootstrap Download
 
@@ -158,6 +156,19 @@ CDN이란 html 파일에서 참조하는 css, javascript 파일이나 다른 리
 <!-- Latest compiled JavaScript -->
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 ```
+
+## 2.3 npm
+
+프로젝트 폴더로 이동한 후, npm 명령어를 사용하여 bootstrap을 설치한다. 
+
+```bash
+$ cd <project-folder>
+## package.json이 존재하지 않는 경우
+$ npm init --y
+$ npm install --save bootstrap
+```
+
+설치가 완료되면 프로젝트 폴더의 루트에 node\_modules 폴더가 생성되고 node\_modules/bootstrap/dist 폴더에 설치파일이 존재한다.
 
 # 3. Browser support
 

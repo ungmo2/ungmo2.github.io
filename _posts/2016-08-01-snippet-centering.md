@@ -14,7 +14,7 @@ description: CSS를 사용한 HTML 요소의 수평 수직 중앙 정렬 (Horizo
 
 ## 1.1 inline/inline-block 요소
 
-정렬 대상 요소(텍스트 또는 링크 등)의 부모 요소에 `text-align: center;`를 지정한다.
+정렬 대상 요소(텍스트 또는 링크 등의 inline 레벨 요소 또는 inline-block 레벨 요소)의 부모 요소에 `text-align: center;`를 지정한다.
 
 ```css
 .container {
@@ -53,7 +53,7 @@ description: CSS를 사용한 HTML 요소의 수평 수직 중앙 정렬 (Horizo
 
 ## 1.4 Flexbox
 
-[flexbox](http://poiemaweb.com/css/Flexbox/)를 사용할 수도 있다.
+[flexbox](http://poiemaweb.com/css/Flexbox/)를 사용할 수도 있다. 정렬 대상의 부모 요소에 아래의 룰셋을 선언한다.
 
 ```css
 .flex-center {
@@ -71,7 +71,7 @@ description: CSS를 사용한 HTML 요소의 수평 수직 중앙 정렬 (Horizo
 
 ### 2.1.1 Single line
 
-padding-top과 padding-bottom 프로퍼티값을 동일하게 적용한다.
+정렬 대상의 부모 요소에 padding-top과 padding-bottom 프로퍼티값을 동일하게 적용한다.
 
 ```css
 .container {

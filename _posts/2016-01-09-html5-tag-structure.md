@@ -36,4 +36,4 @@ HTML Semantic element
 
 `div`와 `span`의 차이는 `block` 레벨 요소와 `inline` 레벨 요소를 이해하여야 한다.
 
-이에 대한 자세한 내용은 [display 속성](/css3-display#1-display-프로퍼티)을 참조하기 바란다.
+이에 대한 자세한 내용은 [display 프로퍼티](/css3-display#1-display-프로퍼티)를 참조하기 바란다.

@@ -309,7 +309,7 @@ server.listen(3000, function() {
 
 다음은 클라이언트 측 코드를 작성한다. 루트 디렉터리에 index.html을 생성한다.
 
-클라이어트 라이브러리는 script tag의 src 속성값으로 "/socket.io/socket.io.js"을 지정하면 된다. 실제 path에 socket.io.js 파일을 배치할 필요는 없다. 그 이유는 socket.io가 서버 기동 시에 socket.io.js 라이브러리를 자동 생성해 주기 때문이다.
+클라이어트 라이브러리는 script tag의 src 어트리뷰트값으로 "/socket.io/socket.io.js"을 지정하면 된다. 실제 path에 socket.io.js 파일을 배치할 필요는 없다. 그 이유는 socket.io가 서버 기동 시에 socket.io.js 라이브러리를 자동 생성해 주기 때문이다.
 
 ```html
 <script src="/socket.io/socket.io.js"></script>

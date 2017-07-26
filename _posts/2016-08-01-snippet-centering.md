@@ -24,7 +24,7 @@ description: CSS를 사용한 HTML 요소의 수평 수직 중앙 정렬 (Horizo
 
 ## 1.2 block 요소
 
-정렬 대상 요소에 너비를 명시적으로 지정하고 margin-right와 margin-left 속성에 auto를 지정한다.
+정렬 대상 요소에 너비를 명시적으로 지정하고 margin-right와 margin-left 프로퍼티에 auto를 지정한다.
 
 정렬 대상 요소에 너비를 명시적으로 지정하지 않으면 너비는 full width가 되므로 중앙 정렬이 필요없다.
 
@@ -71,7 +71,7 @@ description: CSS를 사용한 HTML 요소의 수평 수직 중앙 정렬 (Horizo
 
 ### 2.1.1 Single line
 
-padding-top과 padding-bottom 속성값을 동일하게 적용한다.
+padding-top과 padding-bottom 프로퍼티값을 동일하게 적용한다.
 
 ```css
 .container {
@@ -79,7 +79,7 @@ padding-top과 padding-bottom 속성값을 동일하게 적용한다.
 }
 ```
 
-padding을 사용할 수 없는 경우, 요소의 height와 line-height 속성값을 동일하게 적용한다. 단 이 방법은 행간이 지나치게 넓어지거나 Click Dead Zone 이슈가 발생하는 등 여러 줄의 텍스트에는 사용할 수 없다.
+padding을 사용할 수 없는 경우, 요소의 height와 line-height 프로퍼티값을 동일하게 적용한다. 단 이 방법은 행간이 지나치게 넓어지거나 Click Dead Zone 이슈가 발생하는 등 여러 줄의 텍스트에는 사용할 수 없다.
 
 ![click-dead-zone](/img/click-dead-zone.gif)
 
@@ -92,9 +92,9 @@ padding을 사용할 수 없는 경우, 요소의 height와 line-height 속성�
 
 ### 2.1.2 Multiple lines
 
-여러 줄의 텍스트의 경우, padding-top과 padding-bottom 속성값을 동일하게 적용하는 방법도 가능하다.
+여러 줄의 텍스트의 경우, padding-top과 padding-bottom 프로퍼티값을 동일하게 적용하는 방법도 가능하다.
 
-또 다른 방법으로 vertical-align 속성을 사용한 방법도 가능하다. 이 방법은 table 속성을 사용하여야 한다.
+또 다른 방법으로 vertical-align 프로퍼티를 사용한 방법도 가능하다. 이 방법은 table 속성을 사용하여야 한다.
 
 ```css
 .parent {
@@ -109,7 +109,7 @@ padding을 사용할 수 없는 경우, 요소의 height와 line-height 속성�
 
 ### 2.1.3 Flexbox
 
-vertical-align 속성을 사용하는 방법은 table 속성을 사용하여야 하므로 번거로울 수 있다. 좀 더 간단한 방법은 flexbox를 사용하는 것이다.
+vertical-align 프로퍼티를 사용하는 방법은 table 프로퍼티를 사용하여야 하므로 번거로울 수 있다. 좀 더 간단한 방법은 flexbox를 사용하는 것이다.
 
 ```css
 .container {

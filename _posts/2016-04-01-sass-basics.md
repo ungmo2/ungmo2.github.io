@@ -160,7 +160,7 @@ sass my.scss:my.css --style expanded
 
 **compact**
 
-여러 속성을 한줄로 나타내는 스타일의 css 파일이 생성된다.
+여러 룰셋을 한줄로 나타내는 스타일의 css 파일이 생성된다.
 
 ```bash
 sass my.scss:my.css --style compact

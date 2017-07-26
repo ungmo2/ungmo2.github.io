@@ -68,7 +68,7 @@ description: 목록(List)와 표(Table) 형식 표현을 위한 태그 순서없
 
 <div class="result"></div>
 
-<strong>start</strong> 속성으로 리스트의 시작값을 지정할 수 있다.
+<strong>start</strong> 어트리뷰트로 리스트의 시작값을 지정할 수 있다.
 
 ```html
 <ol start="3">

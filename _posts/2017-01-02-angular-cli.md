@@ -316,7 +316,7 @@ installing component
   - my-component.component.ts
   : 컴포넌트 파일
 - 루트 모듈 src/app/app.module.ts에 새롭게 추가된 컴포넌트를 반영한다.
-: 컴포넌트 클래스를 import하고 @NgModule 데코레이터의 declarations 속성에 컴포넌트 클래스를 추가
+: 컴포넌트 클래스를 import하고 @NgModule 데코레이터의 declarations 프로퍼티에 컴포넌트 클래스를 추가
 
 ### 5.1.1 파일명의 암묵적 변경
 
@@ -343,7 +343,7 @@ $ ng g c new-component
 
 이와 같은 파일명의 암묵적 변경은 컴포넌트뿐만이 아니라 ng generate 명령어로 추가되는 모든 구성요소에 모두 적용된다. 혼란을 방지하는 위해 ng generate 명령어에 지정하는 구성요소 명칭은 하이픈으로 구별된 케밥 표기법(kebab-case) 명칭을 사용하는 것이 좋다.
 
-### 5.1.2 selector 속성값의 접두사(prefix)와 컴포넌트 클래스 이름
+### 5.1.2 selector 프로퍼티값의 접두사(prefix)와 컴포넌트 클래스 이름
 
 생성된 컴포넌트 파일 src/app/my-component/my-component.component.ts을 살펴보자.
 
@@ -364,9 +364,9 @@ export class MyComponentComponent implements OnInit {
 }
 ```
 
-이번 장에서 주목할 것은 ng generate component 명령어에 지정한 컴포넌트명에 의해 자동 생성된 5행 selector 속성값 'app-my-component'과 9행 컴포넌트 클래스명 MyComponentComponent이다.
+이번 장에서 주목할 것은 ng generate component 명령어에 지정한 컴포넌트명에 의해 자동 생성된 5행 selector 프로퍼티값 'app-my-component'과 9행 컴포넌트 클래스명 MyComponentComponent이다.
 
-5행을 보면 메타데이터 객체의 selector 속성에 'app-my-component'가 설정되어 있다. selector 속성은 컴포넌트를 마크업으로 표현할 때 사용하는 이름이다. 예를 들어 루트 컴포넌트인 src/app/app.component.ts에서 my-component 컴포넌트를 사용하려면 src/app/app.component.html를 아래와 같이 수정한다.
+5행을 보면 메타데이터 객체의 selector 프로퍼티에 'app-my-component'가 설정되어 있다. selector 프로퍼티는 컴포넌트를 마크업으로 표현할 때 사용하는 이름이다. 예를 들어 루트 컴포넌트인 src/app/app.component.ts에서 my-component 컴포넌트를 사용하려면 src/app/app.component.html를 아래와 같이 수정한다.
 
 ```html
 <!-- src/app/app.component.html -->
@@ -376,7 +376,7 @@ export class MyComponentComponent implements OnInit {
 <app-my-component></app-my-component>
 ```
 
-selector 속성값 'app-my-component'는 `ng generate component my-component` 명령어에서 지정한 컴포넌트명 my-component 앞에 접두사(prefix) app이 자동으로 추가된 값이다. Angular는 다른 애플리케이션의 selector 또는 HTML 요소와 충돌을 방지하기 위해 접두사를 추가하여 케밥 표기법으로 명명하는 것을 권장하고 있다. 자세한 내용은 [Angular Style Guide: Custom prefix for components](https://angular.io/guide/styleguide#custom-prefix-for-components)을 참조하기 바란다.
+selector 프로퍼티값 'app-my-component'는 `ng generate component my-component` 명령어에서 지정한 컴포넌트명 my-component 앞에 접두사(prefix) app이 자동으로 추가된 값이다. Angular는 다른 애플리케이션의 selector 또는 HTML 요소와 충돌을 방지하기 위해 접두사를 추가하여 케밥 표기법으로 명명하는 것을 권장하고 있다. 자세한 내용은 [Angular Style Guide: Custom prefix for components](https://angular.io/guide/styleguide#custom-prefix-for-components)을 참조하기 바란다.
 
 기본 접두사는 app이며 이것은 .angular-cli.json에서 확인할 수 있다.
 
@@ -397,17 +397,17 @@ selector 속성값 'app-my-component'는 `ng generate component my-component` �
 }
 ```
 
-.angular-cli.json의 prefix 속성값을 수정하면 이후 생성되는 컴포넌트의 셀렉터 접두사는 수정된 값으로 변경된다. 프로젝트 생성 단계에서부터 컴포넌트의 기본 셀렉터 접두사를 변경하고 싶은 경우에는 ng new 명령어로 프로젝트 생성 시에 `--prefix` 옵션을 추가한다.
+.angular-cli.json의 prefix 프로퍼티값을 수정하면 이후 생성되는 컴포넌트의 셀렉터 접두사는 수정된 값으로 변경된다. 프로젝트 생성 단계에서부터 컴포넌트의 기본 셀렉터 접두사를 변경하고 싶은 경우에는 ng new 명령어로 프로젝트 생성 시에 `--prefix` 옵션을 추가한다.
 
 ```bash
 $ ng new my-app --prefix app2
 ```
 
-컴포넌트 클래스(MyComponentComponent)의 이름은 ng generate component 명령어에 지정한 컴포넌트 이름을 파스칼 표기법(PascalCase)으로 자동 변경하여 생성된다. 컴포넌트 클래스 이름은 루트 모듈에 자동으로 import되고 @NgModule 데코레이터의 declarations 속성에 자동으로 추가된다.
+컴포넌트 클래스(MyComponentComponent)의 이름은 ng generate component 명령어에 지정한 컴포넌트 이름을 파스칼 표기법(PascalCase)으로 자동 변경하여 생성된다. 컴포넌트 클래스 이름은 루트 모듈에 자동으로 import되고 @NgModule 데코레이터의 declarations 프로퍼티에 자동으로 추가된다.
 
-### 5.1.3 templateUrl, styleUrls 속성과 template, styles 속성
+### 5.1.3 templateUrl, styleUrls 프로퍼티와 template, styles 프로퍼티
 
-templateUrl, styleUrls 속성은 외부 파일을 로드하기 위해 사용한다.
+templateUrl, styleUrls 프로퍼티는 외부 파일을 로드하기 위해 사용한다.
 
 - templateUrl  
 : 외부 파일로 작성된 HTML 템플릿(컴포넌트의 뷰를 정의)의 경로
@@ -426,7 +426,7 @@ templateUrl, styleUrls 속성은 외부 파일을 로드하기 위해 사용한�
 ...
 ```
 
-위 예제의 경우 컴포넌트는 같은 폴더 내의 외부 파일 my-component.component.html과 my-component.component.css을 템플릿과 CSS로 사용한다. 템플릿 또는 CSS가 간단한 경우에는 메타데이터 내부에 직접 기술할 수도 있다. 이때 templateUrl, styleUrls 속성 대신 template, styles 속성을 사용한다.
+위 예제의 경우 컴포넌트는 같은 폴더 내의 외부 파일 my-component.component.html과 my-component.component.css을 템플릿과 CSS로 사용한다. 템플릿 또는 CSS가 간단한 경우에는 메타데이터 내부에 직접 기술할 수도 있다. 이때 templateUrl, styleUrls 프로퍼티 대신 template, styles 프로퍼티를 사용한다.
 
 ```typescript
 // src/app/my-component/my-component.component.ts
@@ -476,11 +476,11 @@ ng generate directive my-component 명령어를 실행하면 Angular CLI는 아�
   - my-directive.directive.ts
   : 디렉티브 파일
 - 루트 모듈 src/app/app.module.ts에 새롭게 추가된 디렉티브를 반영한다.  
-: 디렉티브를 import하고 @NgModule 데코레이터의 declarations 속성에 디렉티브를 추가
+: 디렉티브를 import하고 @NgModule 데코레이터의 declarations 프로퍼티에 디렉티브를 추가
 
 컴포넌트를 추가할 때와는 달리 디렉티브를 위한 폴더는 생성되지 않으며 기본적으로 src/app/에 추가된다.  
 
-@Directive 데코레이터 함수에 전달된 메타데이터 객체의 selector 속성값으로 'appMyDirective'이 설정되었다.
+@Directive 데코레이터 함수에 전달된 메타데이터 객체의 selector 프로퍼티값으로 'appMyDirective'이 설정되었다.
 
 ```typescript
 import { Directive } from '@angular/core';
@@ -520,7 +520,7 @@ ng generate module my-module 명령어를 실행하면 Angular CLI는 아래와 
   - my-module.module.ts   
   : 모듈 파일
 
-모듈을 사용하기 위해 다른 모듈의 imports 속성에 모듈을 추가하여야 한다.
+모듈을 사용하기 위해 다른 모듈의 imports 프로퍼티에 모듈을 추가하여야 한다.
 
 다음은 루트 모듈에 모듈를 추가하는 예제이다.
 
@@ -560,7 +560,7 @@ ng generate service my-service 명령어를 실행하면 Angular CLI는 아래�
   : 서비스 파일
 
 
-컴포넌트를 추가할 때와는 달리 서비스를 위한 폴더는 생성되지 않으며 기본적으로 src/app/에 추가된다. 그리고 서비스를 사용하기 위해 모듈 또는 컴포넌트의 providers 속성에 서비스를 추가하여야 한다.
+컴포넌트를 추가할 때와는 달리 서비스를 위한 폴더는 생성되지 않으며 기본적으로 src/app/에 추가된다. 그리고 서비스를 사용하기 위해 모듈 또는 컴포넌트의 providers 프로퍼티에 서비스를 추가하여야 한다.
 
 다음은 루트 모듈에 서비스를 추가하는 예제이다.
 

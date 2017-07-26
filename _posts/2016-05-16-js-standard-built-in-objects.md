@@ -73,9 +73,9 @@ Standard Built-in Objects(표준 빌트인 객체)를 Global Objects로 표현�
   alert('Hello world!');
   ```
 
-## 1.1 Global property (전역 속성)
+## 1.1 Global property (전역 프로퍼티)
 
-Global property(전역 속성)은 간단한 값을 나타내며 다른 속성이나 메서드를 가지고 있지 않다. 아래의 Global property(전역 속성)은 모두 Global Object(전역 객체)의 속성이다.
+Global property(전역 프로퍼티)은 간단한 값을 나타내며 다른 프로퍼티나 메서드를 가지고 있지 않다. 아래의 전역 프로퍼티는 모두 Global Object(전역 객체)의 프로퍼티이다.
 
 ### 1.1.1 Infinity  
 
@@ -90,7 +90,7 @@ console.log(typeof Infinity); // number
 
 ### 1.1.2 NaN  
 
-숫자가 아님(Not-a-Number)을 나타내는 숫자값이다. NaN 속성은 Number.NaN 속성과 같다.
+숫자가 아님(Not-a-Number)을 나타내는 숫자값이다. NaN 프로퍼티는 Number.NaN 프로퍼티와 같다.
 
 ```javascript
 console.log(Number('xyz')); // NaN
@@ -110,7 +110,7 @@ console.log(typeof undefined); // undefined
 
 ## 1.2 Global function (전역 함수)
 
-Global function(전역 함수)는 전역에서 호출할 수 있으며 호출한 곳(caller)으로 결과값을 반환한다. 아래의 Global function(전역 함수)는 모두 Global Object(전역 객체)의 함수 속성이다.
+Global function(전역 함수)는 전역에서 호출할 수 있으며 호출한 곳(caller)으로 결과값을 반환한다. 아래의 Global function(전역 함수)는 모두 Global Object(전역 객체)의 함수 프로퍼티이다.
 
 ### 1.2.1 eval()
 

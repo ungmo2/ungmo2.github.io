@@ -101,7 +101,7 @@ function sum() {
 console.log(sum(1, 2, 3, 4, 5)); // 15
 ```
 
-ES6의 Arrow function에는 함수 객체의 [arguments](/js-function#61-arguments-속성) 프로퍼티가 없다.
+ES6의 Arrow function에는 함수 객체의 [arguments](/js-function#61-arguments-프로퍼티) 프로퍼티가 없다.
 
 ```javascript
 var es5 = function () {};

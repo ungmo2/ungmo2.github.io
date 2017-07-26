@@ -15,10 +15,10 @@ SassScript는 CSS에서는 불가능한 연산, 변수, 함수 등의 확장 기
 
 # 1. Data Type
 
-속성값으로 사용할 수 있는 값에는 각각의 자료형(Data Type)이 존재한다. SassScript가 제공하는 자료형은 7가지가 있다.
+프로퍼티값으로 사용할 수 있는 값에는 각각의 자료형(Data Type)이 존재한다. SassScript가 제공하는 자료형은 7가지가 있다.
 
 숫자형
-: e.g. 1.2, 13, 10px
+: e.g) 1.2, 13, 10px
 
 문자열
 : CSS는 2종류의 문자열을 사용할 수 있다. 따옴표를 사용하는 경우("Lucida Grande", 'http://sass-lang.com')와 사용하지 않는 경우(bold, sans-serif)가 있다. Sass는 2종류의 문자열 모두를 인식할 수 있으며 컴파일 후의 CSS에는 Sass에서 사용한 문자열이 그대로 출력된다.  
@@ -34,7 +34,7 @@ null
 : &nbsp; &nbsp;  
 
 list
-: margin과 padding 속성값 지정에 사용되는 0 auto와 font-family 속성값 지정에 사용되는 Helvetica, Arial, sans-serif 등은 공백 또는 콤마 구분된 값의 list이다.  
+: margin과 padding 프로퍼티값 지정에 사용되는 0 auto와 font-family 프로퍼티값 지정에 사용되는 Helvetica, Arial, sans-serif 등은 공백 또는 콤마 구분된 값의 list이다.  
 	e.g. 1.5em 1em 0 2em, Helvetica, Arial, sans-serif
 
 map  
@@ -314,7 +314,7 @@ p:before {
 
 # 6. Interpolation: #{}
 
-변수는 속성값으로만 사용할 수 있으나 `#{}`을 사용하면 속성값은 물론 셀렉터와 속성명에도 사용할 수 있다. 또한 연산의 대상으로 취급되지 않도록 할 수도 있다.
+변수는 프로퍼티값으로만 사용할 수 있으나 `#{}`을 사용하면 프로퍼티값은 물론 셀렉터와 프로퍼티명에도 사용할 수 있다. 또한 연산의 대상으로 취급되지 않도록 할 수도 있다.
 
 ```scss
 $name: foo;

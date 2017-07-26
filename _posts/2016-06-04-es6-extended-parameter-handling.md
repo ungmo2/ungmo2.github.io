@@ -85,7 +85,7 @@ foo(1, 2, 3, 4, 5);
 
 ## 2.2 arguments와 rest 파라미터
 
-ES6 이전에는 인자의 갯수를 사전에 알 수 없는 가변 인자 함수의 경우, [arguments 객체](./js-function#61-arguments-속성)를 통해 인자값을 확인한다. arguments 객체는 함수 호출 시 전달된 인수(argument)들의 정보를 담고 있는 순회가능한(iterable) 유사 배열 객체(array-like object)이다. 함수 객체의 arguments 프로퍼티는 arguments 객체를 값으로 가지며 함수 내부에서 지역변수처럼 사용된다.
+ES6 이전에는 인자의 갯수를 사전에 알 수 없는 가변 인자 함수의 경우, [arguments 객체](./js-function#61-arguments-프로퍼티)를 통해 인자값을 확인한다. arguments 객체는 함수 호출 시 전달된 인수(argument)들의 정보를 담고 있는 순회가능한(iterable) 유사 배열 객체(array-like object)이다. 함수 객체의 arguments 프로퍼티는 arguments 객체를 값으로 가지며 함수 내부에서 지역변수처럼 사용된다.
 
 ```javascript
 // ES5

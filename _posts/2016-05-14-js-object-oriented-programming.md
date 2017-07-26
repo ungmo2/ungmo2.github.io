@@ -235,7 +235,7 @@ console.log(him); // Person { name: 'choi' }
 
 ## 1.3 Property
 
-객체의 속성으로 field, member, attribute 등과 같은 의미이다.
+객체의 프로퍼티로 field, member, attribute 등과 같은 의미이다.
 
   프로퍼티란 객체의 일부로서 이름과 값의 쌍을 가지는 정보를 의미한다. 객체는 프로퍼티들을 포함하는 컨테이너라고 할 수 있다.
 

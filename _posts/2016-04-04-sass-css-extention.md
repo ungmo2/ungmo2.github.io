@@ -52,7 +52,7 @@ a.myAnchor {
 }
 ```
 
-Nesting은 속성에도 사용할 수 있다.
+Nesting은 프로퍼티에도 사용할 수 있다.
 
 ```scss
 .funky {
@@ -142,7 +142,7 @@ partial된 Sass 파일명 선두에 붙인 &#95;의 의미는 import는 수행�
 </div>
 ```
 
-기존에 선언되어 있는 error class를 사용하면서 일부 속성에 대해서는 다른 선언이 필요한 경우 자주 사용하는 방법이다.
+기존에 선언되어 있는 error class를 사용하면서 일부 rule set에 대해서는 다른 선언이 필요한 경우 자주 사용하는 방법이다.
 
 이러한 경우 사용할 수 있는 방법이 상속이다. 상속되는 rule set을 그대로 상속받아 다른 부분만 별도 선언하면 된다. 중복을 피할수 있어 매우 유용하다.
 
@@ -154,11 +154,11 @@ partial된 Sass 파일명 선두에 붙인 &#95;의 의미는 import는 수행�
 .seriousError {
   @extend .error;
   border-width: 3px;
-  border-color: darkblue ;
+  border-color: darkblue;
 }
 ```
 
-위 코드의 컴파일 결과는 아래와 같다.
+위 코드의 컴파일 결과는 아래와 같다. .error와 .seriousError가 공통으로 사용하는 프로퍼티를 묶어 합리적인 룰셋을 생성한다.
 
 ```css
 .error, .seriousError {
@@ -179,6 +179,26 @@ partial된 Sass 파일명 선두에 붙인 &#95;의 의미는 import는 수행�
   Oh no! You've been hacked!
 </div>
 ```
+
+@extend을 @media 블록과 같이 사용하는 경우, 제대로 작동하지 않는다. 다시말해 @media 안에서 외부의 선택자를 @extend할 수 없다.
+
+```scss
+.foo {
+  color: red;
+}
+
+@media print {
+  .bar {
+    // ERROR  
+    @extend .foo;
+  }
+}
+```
+
+컴파일 후 자신의 셀렉터가 어디에 첨부될 것인지 예상하기 어렵고, 예상치 못했던 부작용이 발생할 수 있기 때문에 @extend는 가급적 사용을 자제하는 편이 좋다. 
+{: .info}
+
+- [@extend의 부작용](https://sass-guidelin.es/ko/#extend)
 
 ## 2.3 Placeholder Selectors
 
@@ -316,7 +336,6 @@ p {
 ```
 
 컴파일 결과는 아래와 같다.
-
 
 ```css
 .puma-icon {

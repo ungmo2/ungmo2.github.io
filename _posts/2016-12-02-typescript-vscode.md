@@ -39,7 +39,7 @@ VSCode를 설치가 완료되었으면 적당한 위치에 프로젝트 폴더�
 
 컴파일할 때마다 다양한 옵션을 반복적으로 지정하는 것은 번거러운 일이므로 <strong>[tsconfig.json](http://www.typescriptlang.org/docs/handbook/tsconfig-json.html)</strong>을 사용하는 편이 좋다. tsconfig.json은 TypeScript를 위한 프로젝트 단위의 환경 파일로써 컴파일 옵션과 컴파일 대상에 대한 설정 등을 기술한 것이다.
 
-`compilerOptions` 속성에는 [컴파일 옵션](https://www.typescriptlang.org/docs/handbook/compiler-options.html)을 설정한다. 생략한 경우에는 기본 컴파일 옵션이 사용된다.
+`compilerOptions` 프로퍼티에는 [컴파일 옵션](https://www.typescriptlang.org/docs/handbook/compiler-options.html)을 설정한다. 생략한 경우에는 기본 컴파일 옵션이 사용된다.
 
 ```json
 {
@@ -51,9 +51,9 @@ VSCode를 설치가 완료되었으면 적당한 위치에 프로젝트 폴더�
 }
 ```
 
-컴파일 대상 파일을 지정하기 위해서 `files` 또는 `include` 속성을 사용한다. 만약 files 속성을 정의하였다면 include 속성은 무시된다.
+컴파일 대상 파일을 지정하기 위해서 `files` 또는 `include` 프로퍼티를 사용한다. 만약 files 프로퍼티를 정의하였다면 include 프로퍼티는 무시된다.
 
-`files` 속성에는 컴파일 대상 파일의 상대 경로 또는 절대 경로를 명시적으로 설정한다.
+`files` 프로퍼티에는 컴파일 대상 파일의 상대 경로 또는 절대 경로를 명시적으로 설정한다.
 
 ```json
 {
@@ -64,7 +64,7 @@ VSCode를 설치가 완료되었으면 적당한 위치에 프로젝트 폴더�
 }
 ```
 
-`include` 속성에는 컴파일 대상 파일 리스트를 설정한다. `exclude` 속성에는 컴파일 대상에서 제외할 파일 리스트를 설정한다.
+`include` 프로퍼티에는 컴파일 대상 파일 리스트를 설정한다. `exclude` 프로퍼티에는 컴파일 대상에서 제외할 파일 리스트를 설정한다.
 
 ```json
 {
@@ -300,7 +300,7 @@ typings 설치 후
 
 ![debug](./img/ts-debug.png)
 
-configurations 속성의 program 속성값을 디버깅할 파일명으로 변경한다.
+configurations 프로퍼티의 program 프로퍼티값을 디버깅할 파일명으로 변경한다.
 
 ```json
 {

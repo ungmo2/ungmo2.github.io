@@ -62,7 +62,7 @@ Flexbox는 모던 웹을 위하여 제안된 기존 layout보다 더 세련된 �
 <p data-height="457" data-theme-id="0" data-slug-hash="RGGgXa" data-default-tab="result" data-user="ungmo2" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ungmo2/pen/RGGgXa/">Flexbox layout example-before</a> by Ungmo Lee (<a href="http://codepen.io/ungmo2">@ungmo2</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
-div 요소는 block 요소이므로 수직 정렬된다. 이를 수평 정렬하려면 자식요소(flex-item)를 inline-block으로 지정하거나 float 속성을 지정한다.
+div 요소는 block 요소이므로 수직 정렬된다. 이를 수평 정렬하려면 자식요소(flex-item)를 inline-block으로 지정하거나 float 프로퍼티를 지정한다.
 
 ```css
 .flex-item {

@@ -195,7 +195,7 @@ main.bundle.js
 
 main.ts는 프로젝트의 메인 진입점(main entry point)이다. platformBrowserDynamic()에 의해 JIT 컴파일러가 실행되고 루트 모듈 AppModule(/src/app/app.module.ts)을 부트스트랩한다.
 
-main.ts는 .angular-cli.json의 main 속성의 설정에 의해 로드된다.
+main.ts는 .angular-cli.json의 main 프로퍼티의 설정에 의해 로드된다.
 
 ```json
 ...
@@ -215,7 +215,7 @@ app.module.ts은 @NgModule 데코레이터의 인자로 전달되는 메타데�
 
 ## 2.4 app.component.ts
 
-app.component.ts은 애플리케이션의 화면을 구성하는 뷰(View)를 생성하고 관리하는 컴포넌트(AppComponent)이다. 컴포넌트는 템플릿과 메타데이터, 컴포넌트 클래스로 구성되며 템플릿과 컴포넌트 클래스는 데이터 바인딩에 의해 연결된다. 메타데이터 객체의 selector 속성에 설정된 문자열(app-root)에 의해 HTML 요소와 같이 로드할 수 있다.
+app.component.ts은 애플리케이션의 화면을 구성하는 뷰(View)를 생성하고 관리하는 컴포넌트(AppComponent)이다. 컴포넌트는 템플릿과 메타데이터, 컴포넌트 클래스로 구성되며 템플릿과 컴포넌트 클래스는 데이터 바인딩에 의해 연결된다. 메타데이터 객체의 selector 프로퍼티에 설정된 문자열(app-root)에 의해 HTML 요소와 같이 로드할 수 있다.
 
 my-app 프로젝트의 경우 /dist/index.html의 \<app-root\>에 의해 AppComponent 컴포넌트의 뷰가 로드되어 \<app-root\>의 콘텐츠로 브라우저에 표시된다.
 
@@ -227,7 +227,7 @@ Angular의 핵심 구성요소는 아래와 같다.
 : 컴포넌트는 템플릿과 메타데이터, 컴포넌트 클래스로 구성되며 데이터 바인딩에 의해 연결된다. 컴포넌트는 화면을 구성하는 <strong>뷰(View)</strong>를 생성하고 관리하는 것이 주된 역할이며 화면은 1개 이상의 컴포넌트를 조립하여 구성한다.
 
 디렉티브 (Directive)  
-: 템플릿 내에서 HTML 요소 또는 HTML 요소의 속성과 유사하게 사용되며 DOM의 표현이나 구조를 변경할 수도 있고 로직을 가질 수도 있다. 컴포넌트와의 차이는 뷰(템플릿)를 소유하지 않는다는 것이다. 디렉티브는 구조 디렉티브(Structural directive)와 속성 디렉티브(Attribute directive), 커스텀 디렉티브(Cunstom directive)로 구분할 수 있다.
+: 템플릿 내에서 HTML 요소 또는 HTML 요소의 어트리뷰트와 유사하게 사용되며 DOM의 표현이나 구조를 변경할 수도 있고 로직을 가질 수도 있다. 컴포넌트와의 차이는 뷰(템플릿)를 소유하지 않는다는 것이다. 디렉티브는 구조 디렉티브(Structural directive)와 어트리뷰트 디렉티브(Attribute directive), 커스텀 디렉티브(Cunstom directive)로 구분할 수 있다.
 
 서비스 (Service)  
 : 다양한 목적의 애플리케이션 공통 로직을 담당한다. 컴포넌트에서 애플리케이션 전역 관심사를 분리하기 위해 사용하며 의존성 주입(Dependency Injection)이 가능한 클래스로 작성된다.

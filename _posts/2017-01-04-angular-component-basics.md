@@ -120,14 +120,14 @@ export class AppComponent {
 : 컴포넌트에 필요한 외부 모듈을 임포트한다. Angular 라이브러리 모듈의 경우 @가 붙어있으며 경로를 명시하지 않는다. Angular 모듈이 아닌 외부 모듈의 경우 상대 경로를 명시하여야 한다.
 
 @Component 데코레이터 영역
-: @Component 데코레이터에는 <strong>메타데이터</strong> 객체가 인자로 전달된다. 메타데이터는 컴포넌트 생성에 필요한 정보(셀렉터, 템플릿, 스타일 정의 등)를 담고 있는 객체이다. 메타데이터 객체의 templateUrl 속성에는 컴포넌트의 뷰를 정의한 html 파일인 <strong>템플릿</strong>의 상대경로를 설정한다.
+: @Component 데코레이터에는 <strong>메타데이터</strong> 객체가 인자로 전달된다. 메타데이터는 컴포넌트 생성에 필요한 정보(셀렉터, 템플릿, 스타일 정의 등)를 담고 있는 객체이다. 메타데이터 객체의 templateUrl 프로퍼티에는 컴포넌트의 뷰를 정의한 html 파일인 <strong>템플릿</strong>의 상대경로를 설정한다.
 
 컴포넌트 클래스 영역
 : 컴포넌트 뷰를 관리하기 위한 로직을 정의한다. @Component 데코레이터는 자신의 바로 아래에 위치한 클래스를 컴포넌트 클래스로 인식한다. 컴포넌트 클래스는 컴포넌트의 내부 관심사인 뷰의 관리에 집중해야 하며 애플리케이션 공통 관심사는 서비스로 분리하여야 한다.
 
 ## 2.2 컴포넌트의 기본 동작 구조
 
-@Component 데코레이터의 templateUrl 속성에 설정된 템플릿 src/app.component.html을 살펴보자.
+@Component 데코레이터의 templateUrl 프로퍼티에 설정된 템플릿 src/app.component.html을 살펴보자.
 
 ```html
 <h1>
@@ -249,9 +249,9 @@ export class HelloComponent {}
 
 일반 클래스를 컴포넌트화하기 위해서는 @Component 데코레이터를 해당 클래스 바로 앞에서 호출하여 Angular에게 해당 클래스가 일반 클래스가 아니라 컴포넌트 클래스임을 알려야 한다. @Component 데코레이터의 또하나의 역할은 컴포넌트 설정 정보를 담고 있는 메타데이터 객체를 인자로 전달받아서 컴포넌트 클래스에 반영하는 것이다. @Component 데코레이터에게 전달되는 메타데이터 객체의 중요 프로퍼티는 아래와 같다.
 
-### 3.5.1 seletor 속성
+### 3.5.1 seletor 프로퍼티
 
-seletor는 컴포넌트의 뷰를 마크업으로 표현할 때 사용하는 이름으로 HTML 요소명과 같이 사용된다. Angular는 다른 애플리케이션의 selector 또는 HTML 요소와 충돌을 방지하기 위해 접두사(prefix)를 추가하여 케밥 표기법(예를 들어 app-todo)으로 seletor를 명명하도록 권장하고 있다. 기본 접두사는 app이며 이것은 .angular-cli.json에서 확인할 수 있다. 프로젝트의 성격에 맞추어 독자적인 접두사를 사용하는 것이 좋으나 우선은 기본 접두사를 app을 사용하도록 한다.
+seletor는 컴포넌트의 뷰를 마크업으로 표현할 때 사용하는 이름으로 템플릿에서 HTML 요소명처럼 사용한다. Angular는 다른 애플리케이션의 selector 또는 HTML 요소와 충돌을 방지하기 위해 접두사(prefix)를 추가하여 케밥 표기법(예를 들어 app-todo)으로 seletor를 명명하도록 권장하고 있다. 기본 접두사는 app이며 이것은 .angular-cli.json에서 확인할 수 있다. 프로젝트의 성격에 맞추어 독자적인 접두사를 사용하는 것이 좋으나 우선은 기본 접두사를 app을 사용하도록 한다.
 
 seletor를 추가해 보자.
 
@@ -264,15 +264,15 @@ import { Component } from '@angular/core';
 export class HelloComponent {}
 ```
 
-hello 컴포넌트는 다른 컴포넌트의 템플릿에서 아래와 같이 호출된다. 이때 호출된 컴포넌트(hello 컴포넌트)는 호출한 컴포넌트의 자식 컴포넌트가 된다.
+hello 컴포넌트는 다른 컴포넌트의 템플릿에서 아래와 같이 HTML 요소명처럼 사용하여 컴포넌트의 뷰를 호출한다. 이때 호출된 컴포넌트(hello 컴포넌트)는 호출한 컴포넌트의 자식 컴포넌트가 된다.
 
 ```html
 <app-hello></app-hello>
 ```
 
-### 3.5.2 template/templateUrl 속성
+### 3.5.2 template/templateUrl 프로퍼티
 
-hello 컴포넌트에는 아직 뷰가 존재하지 않는다. 컴포넌트는 화면을 구성하는 뷰를 생성하고 관리하는 것이 역할이므로 반드시 뷰를 가져야 한다. 컴포넌트의 뷰는 template 또는 templateUrl 속성에 정의하며 이것을 템플릿이라 부른다.
+hello 컴포넌트에는 아직 뷰가 존재하지 않는다. 컴포넌트는 화면을 구성하는 뷰를 생성하고 관리하는 것이 역할이므로 반드시 뷰를 가져야 한다. 컴포넌트의 뷰는 template 또는 templateUrl 프로퍼티에 정의하며 이것을 템플릿이라 부른다.
 
 템플릿을 추가해 보자.
 
@@ -286,7 +286,7 @@ import { Component } from '@angular/core';
 export class HelloComponent {}
 ```
 
-templateUrl 속성에는 외부 파일로 작성한 템플릿의 상대 경로를 지정한다. 외부 파일로 작성한 템플릿(src/app/hello/hello.component.html)은 아래와 같다. 
+templateUrl 프로퍼티에는 외부 파일로 작성한 템플릿의 상대 경로를 지정한다. 외부 파일로 작성한 템플릿(src/app/hello/hello.component.html)은 아래와 같다. 
 
 ```html
 <h2>안녕하세요 {{ "{{name" }}}}</h2>
@@ -296,7 +296,7 @@ templateUrl 속성에는 외부 파일로 작성한 템플릿의 상대 경로�
 
 아직 살펴보지 않은 템플릿 문법이 포함되어 있지만 일단은 템플릿을 선언하는 방법에만 집중하도록 하자.
 
-템플릿을 외부 파일로 분리하는 것은 관심사가 다른 뷰(템플릿)와 로직(컴포넌트 클래스)을 분리한다는 측면에서 바람직하다. 템플릿이 간단한 경우, 위와 같이 템플릿을 외부 파일로 작성하지 않고 메타데이터의 template 속성에 문자열의 형태로 직접 기술할 수도 있다. 이것을 인라인 템플릿(Inline template)이라 한다. 
+템플릿을 외부 파일로 분리하는 것은 관심사가 다른 뷰(템플릿)와 로직(컴포넌트 클래스)을 분리한다는 측면에서 바람직하다. 템플릿이 간단한 경우, 위와 같이 템플릿을 외부 파일로 작성하지 않고 메타데이터의 template 프로퍼티에 문자열의 형태로 직접 기술할 수도 있다. 이것을 인라인 템플릿(Inline template)이라 한다. 
 
 ```typescript
 import { Component } from '@angular/core';
@@ -312,11 +312,11 @@ import { Component } from '@angular/core';
 export class HelloComponent {}
 ```
 
-template 속성은 속성값으로 문자열을 취하는데 백틱(backtick) 문자 `` ` ``를 사용하였다. 이것은 ECMAScript6에서 도입된 새로운 문자열 표기법인 [템플릿 문자열(template string) 표기법](./es6-template-string)으로 일반적인 문자열과 달리 줄바꿈과 들여쓰기 등 템플릿 문자열 내의 모든 white-space가 있는 그대로 적용된다.
+template 프로퍼티는 프로퍼티값으로 문자열을 취하는데 백틱(backtick) 문자 `` ` ``를 사용하였다. 이것은 ECMAScript6에서 도입된 새로운 문자열 표기법인 [템플릿 문자열(template string) 표기법](./es6-template-string)으로 일반적인 문자열과 달리 줄바꿈과 들여쓰기 등 템플릿 문자열 내의 모든 white-space가 있는 그대로 적용된다.
 
-### 3.5.3 styles/styleUrls 속성
+### 3.5.3 styles/styleUrls 프로퍼티
 
-styles/styleUrls 속성에는 템플릿을 위한 스타일을 정의한다. 스타일을 추가하여 보자.
+styles/styleUrls 프로퍼티에는 템플릿을 위한 스타일을 정의한다. 스타일을 추가하여 보자.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -329,9 +329,9 @@ import { Component } from '@angular/core';
 export class HelloComponent {}
 ```
 
-templateUrl 속성과 마찬가지로 외부 파일로 정의된 스타일을 사용하는 경우 styleUrls 속성을 사용한다.
+templateUrl 프로퍼티와 마찬가지로 외부 파일로 정의된 스타일을 사용하는 경우 styleUrls 프로퍼티를 사용한다.
 
-styleUrls 속성에는 외부 파일로 작성한 CSS 파일의 상대 경로를 배열로 지정한다. 배열로 상대경로를 지정하기 때문에 아래와 같이 여러개의 CSS 파일을 한꺼번에 지정할 수 있다. 
+styleUrls 프로퍼티에는 외부 파일로 작성한 CSS 파일의 상대 경로를 배열로 지정한다. 배열로 상대경로를 지정하기 때문에 아래와 같이 여러개의 CSS 파일을 한꺼번에 지정할 수 있다. 
 
 ```typescript
 @Component({
@@ -376,7 +376,7 @@ button:hover {
 }
 ```
 
-위와 같이 CSS를 외부 파일로 작성하지 않고 메타데이터의 styles 속성에 문자열의 형태로 직접 기술할 수도 있다. 이것을 인라인 스타일(Inline style)이라 한다. 
+위와 같이 CSS를 외부 파일로 작성하지 않고 메타데이터의 styles 프로퍼티에 문자열의 형태로 직접 기술할 수도 있다. 이것을 인라인 스타일(Inline style)이라 한다. 
 
 ```typescript
 import { Component } from '@angular/core';
@@ -504,20 +504,20 @@ import { HelloComponent } from './hello/hello.component'; // 1
 export class AppModule { }
 ```
 
-우선 1)과 같이 hello 컴포넌트의 컴포넌트 클래스를 임포트한다. 그 후 @NgModule 데코레이터에 인자로 전달되는 메타데이터의 declarations 속성에 컴포넌트 클래스 HelloComponent를 추가한다. 
+우선 1)과 같이 hello 컴포넌트의 컴포넌트 클래스를 임포트한다. 그 후 @NgModule 데코레이터에 인자로 전달되는 메타데이터의 declarations 프로퍼티에 컴포넌트 클래스 HelloComponent를 추가한다. 
 
-declarations 속성에는 모듈에 소속될 구성요소(컴포넌트, 디렉티브, 파이프)의 리스트를 지정한다. 모듈은 이후에 자세히 살펴보도록 하고 이번에는 @NgModule 데코레이터에 인자로 전달되는 메타데이터 객체의 중요 프로퍼티만 간단히 알아보도록 하자.  
+declarations 프로퍼티에는 모듈에 소속될 구성요소(컴포넌트, 디렉티브, 파이프)의 리스트를 지정한다. 모듈은 이후에 자세히 살펴보도록 하고 이번에는 @NgModule 데코레이터에 인자로 전달되는 메타데이터 객체의 중요 프로퍼티만 간단히 알아보도록 하자.  
 
-declarations 속성
+declarations 프로퍼티
 : 모듈에 소속될 구성요소(컴포넌트, 디렉티브, 파이프) 리스트
 
-imports 속성  
+imports 프로퍼티  
 : 모듈에 소속된 구성요소가 필요로 하는 다른 모듈
 
-providers 속성
+providers 프로퍼티
 : 모듈에 소속된 구성요소가 사용할 서비스
 
-bootstrap 속성
+bootstrap 프로퍼티
 : 최초로 호출될 컴포넌트
 
 이제 프로젝트를 실행하여 보자.

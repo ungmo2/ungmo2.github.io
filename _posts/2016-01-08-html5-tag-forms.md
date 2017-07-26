@@ -60,17 +60,17 @@ POST
 
 <div class='result'></div>
 
-submit button이 클릭되면 input 태그에 입력된 데이터가 form 태그의 method 속성에 지정된 방식으로 action 속성에 지정된 서버측의 처리 로직에 전달된다.
+submit button이 클릭되면 input 태그에 입력된 데이터가 form 태그의 method 어트리뷰트에 지정된 방식으로 action 어트리뷰트에 지정된 서버측의 처리 로직에 전달된다.
 
 # 2. input
 
 input 태그는 form 태그 중에서 가장 중요한 태그로 사용자로부터 데이터를 입력받기 위해 사용된다.
 
-input 태그는 다양한 종류가 있는데 type 속성에 의해 구분된다. form 태그 내에 존재하여야 입력 데이터를 전송할 수 있으나 [ajax](./js-ajax)를 사용할 시에는 form 태그 내에 존재하지 않아도 된다.
+input 태그는 다양한 종류가 있는데 type 어트리뷰트에 의해 구분된다. form 태그 내에 존재하여야 입력 데이터를 전송할 수 있으나 [ajax](./js-ajax)를 사용할 시에는 form 태그 내에 존재하지 않아도 된다.
 
 서버에 전송되는 데이터는 name 어트리뷰트를 키로, value 어트리뷰트를 값으로하여 key=value의 형태로 전송된다.
 
-| type 속성값      | Description            | HTML5 추가 | IE | FF | CR | SF | OP |
+| type 어트리뷰트값 | Description            | HTML5 추가 | IE | FF | CR | SF | OP |
 | :------------- |:-----------------------|:---------:|:--:|:--:|:--:|:--:|:--:|
 | button         | 버튼 생성                 |          | ◯  | ◯  | ◯  | ◯  | ◯  |
 | checkbox       | checkbox 생성            |          | ◯  | ◯  | ◯  | ◯  | ◯  |
@@ -266,7 +266,7 @@ textarea 태그는 여러 줄의 글자를 입력할 때 사용한다.
 
 button 태그는 클릭할 수 있는 버튼을 생성한다. `<input type="button">`과 유사하지만 input 태그는 빈 태그인 반면 button 태그는 그렇지 않다. 따라서 button 요소에는 텍스트나 이미지 같은 콘텐츠를 사용할 수 있다.
 
-type 속성은 반드시 지정하는 것이 바람직하며 속성값으로 button, reset, submit를 지정할 수 있다.
+type 어트리뷰트는 반드시 지정하는 것이 바람직하며 어트리뷰트값으로 button, reset, submit를 지정할 수 있다.
 
 ```html
 <!DOCTYPE html>

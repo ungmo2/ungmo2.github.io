@@ -62,7 +62,7 @@ JavaScript는 1995년 Brendan Eich(Nescape)이 Navigator 2를 위하여 웹페�
 
 1997년 7월 ECMA-262라 불리는 명세가 완성되었고 상표권의 문제로 JavaScript는 <strong>ECMAScript</strong>로 명명되었다. 이후 1999년 ECMAScript 3(ES3)이 공개되었고 10년만인 2009년 출시된 ECMAScript 5(ES5)는 HTML5와 함께 출현한 표준안이다.
 
-2015년 [ECMAScript 6(ES6)](./js-es6)가 공개되었고 let keyword, module system, Arrow Function, class 등이 추가되었다. ES5에서 ES6로의 버전업은 기능 상의 큰 변화가 있었고 이후의 버전업은 작은 기능의 추가 레벨로 매년 공개할 것으로 예고되었다.
+2015년 ECMAScript 6(ES6)가 공개되었고 [let/const keyword](./es6-block-scope), [module system](./es6-module), [Arrow Function](./es6-arrow-function), [class](./es6-class) 등이 추가되었다. ES5에서 ES6로의 버전업은 기능 상의 큰 변화가 있었고 이후의 버전업은 작은 기능의 추가 레벨로 매년 공개할 것으로 예고되었다.
 
 * ECMAScript Version
 
@@ -73,7 +73,7 @@ ECMAScript 5 : [ECMA-262 5th edition](http://www.ecma-international.org/publicat
 : HTML5와 함께 출현한 표준안이다. JSON(JavaScript Object Notation)과 Strict Mode가 추가되었다. 인터넷 익스플로러 9이상이나 그 외 브라우저에서만 작동한다.
 
 ECMAScript 6 : [ECMA-262 6th edition](http://www.ecma-international.org/ecma-262/6.0/ECMA-262.pdf.) (2015.06)
-: Symbol 타입, let, const 키워드, Arrow Function, class 등이 추가되었다.
+: let, const 키워드, Arrow Function, class, Symbol 타입 등이 추가되었다.
 
 ![history javascript evolution es6](/img/history-javascript-evolution-es6.png)
 {: .w-650}

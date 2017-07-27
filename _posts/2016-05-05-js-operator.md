@@ -163,7 +163,7 @@ var n2 = !false; // true
 var n3 = !"Cat"; // false
 ```
 
-# 5. 타입 연산자(Type Operators)
+# 5. 타입 연산자 (Type Operators)
 
 | Operator	  | Description
 | :---------: |:-------------- |

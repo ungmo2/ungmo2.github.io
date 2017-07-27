@@ -121,7 +121,7 @@ Javascript에서 data를 표시하는 방법은 아래와 같다.
 
 각각의 명령을 statement(구문)이라 하며 statement가 실행되면 무슨 일인가가 일어나게 된다.
 
-구문은 값(Values), 연산자(Operators), 표현식(Expressions), Keywords, 주석(Comments)으로 구성되며 세미콜론( ; )으로 끝나야 한다.
+구문은 값(Value), 연산자(Operator), 표현식(Expression), 키워드(Keyword), 주석(Comment)으로 구성되며 세미콜론( ; )으로 끝나야 한다.
 
 ```javascript
 var x = 5;
@@ -134,8 +134,19 @@ document.getElementById('demo').innerHTML = z;
 그룹화의 목적은 함께 실행되어져야 하는 구문을 정의하기 위함이다. (e.g. function)
 
 ```javascript
+// Function
 function myFunction(x, y) {
   return x + y;
+}
+
+// if statement
+if(x > 0) {
+  // do something
+}
+
+// for statement
+for (var i = 0; i < 10; i++) {
+  // do something
 }
 ```
 
@@ -164,13 +175,13 @@ console.log(greeting);
 아래의 예에서 5 * 10은 50으로 평가(연산)된다.
 
 ```javascript
-5 * 10                // 50
+5 * 10                   // 50
 'Hello' + ' ' + 'world'  // 'Hello world'
 ```
 
 ## 4.3 변수 (Variable)
 
-programming language에서 변수는 값을 저장(할당), 참조하기 위해 사용된다. 한번 쓰고 버리는 값이 아닌 값(value)을 유지할 필요가 있는 경우에 변수를 사용한다.
+programming language에서 변수는 값(value)을 저장(할당), 참조하기 위해 사용된다. 한번 쓰고 버리는 값이 아닌 유지할 필요가 있는 값의 경우, 변수를 사용한다.
 
 변수를 선언할 때 `var` keyword가 사용된다. 등호(=, equal sign)는 변수에 값을 할당하기 위해 사용된다.
 
@@ -220,7 +231,7 @@ String str = "Hello World";
 
 ## 4.5 연산자 (Operator)
 
-연산자(Operators)는 하나 혹은 그 이상의 값을 하나의 값으로 만들 때 사용한다.
+연산자(Operator)는 하나 혹은 그 이상의 값을 하나의 값으로 만들 때 사용한다.
 
 ```javascript
 // 대입 연산자
@@ -230,13 +241,13 @@ var color = 'red';
 var area = 5 * 4;
 
 // 문자열 연산자
-var greeting = 'Hi! ' + 'My name is Lee';
+var str = 'Hi! ' + 'My name is Lee';
 
 // 비교 연산자
-var buy = 3 > 5; // false
+var foo = 3 > 5; // false
 
 // 논리 연산자
-var buy = (5 > 3) && (2 < 4);  // true
+var bar = (5 > 3) && (2 < 4);  // true
 ```
 
 ## 4.6 키워드 (keyword)
@@ -283,8 +294,7 @@ var y = x * 10;
 
 주석(Comment)은 작성된 코드의 의미를 설명하기 위해 사용한다. 코드는 읽기(이해하기) 쉬워야 한다.(가독성이 좋아야 한다)
 
-여러분이 작성한 코드를 다른 누군가가 읽는다면 “아니, 이게 뭐하는 코드야?”라고 생각하는 순간이 있기 마련이다.
-여러분이 해야 하는 일은 바로 그런 부분에 주석을 다는 것이다. (읽기 좋은 코드가 좋은 코드이다)
+여러분이 작성한 코드를 다른 누군가가 읽는다면 “아니, 이게 뭐하는 코드야?”라고 생각하는 순간이 있기 마련이다. 여러분이 해야 하는 일은 바로 그런 부분에 주석을 다는 것이다. (읽기 좋은 코드가 좋은 코드이다)
 
 한줄 주석은 `//` 다음에 작성하며 여러 줄 주석은 `/*`과 `*/`의 사이에 작성한다. 주석은 해석기가 무시하며 실행되지 않는다.
 

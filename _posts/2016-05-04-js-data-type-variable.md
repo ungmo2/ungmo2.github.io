@@ -164,13 +164,13 @@ console.log(typeof bar); // number
 String(문자열) 타입은 텍스트 데이터를 나타내는데 사용한다. 이는 0개 또는 그 이상의 유니코드(16비트 부호없는 정수 값) 문자들의 집합이다. 문자열은 작은 따옴표('') 또는 큰 따옴표("") 안에 텍스트를 넣어 생성한다.
 
 ```javascript
-var name = "John Doe";    // Using double quotes
-    name = 'John Doe';    // Using single quotes
-console.log(typeof name); // string
+var str = "string";      // double quotes
+    str = 'string';      // single quotes
+console.log(typeof str); // string
 
-var answer = "It's alright";          // Single quote inside double quotes
-    answer = "He is called 'Johnny'"; // Single quotes inside double quotes
-    answer = 'He is called "Johnny"'; // Double quotes inside single quotes
+var answer = "It's alright";        // Single quote inside double quotes
+    answer = "He is called 'John'"; // Single quotes inside double quotes
+    answer = 'He is called "John"'; // Double quotes inside single quotes
 ```
 
 C와 같은 언어와는 다르게, 자바스크립트의 문자열은 변경 불가능(immutable)하다. 이것은 한 번 문자열이 생성되면, 그 문자열을 변경할 수 없다는걸 의미한다.
@@ -254,8 +254,8 @@ name = 'Lee'; // 변수 name에 값 'Lee'가 저장(할당)되었다.
 
 var age = 30; // 선언과 할당
 
-var person = "Lee",
-    address = "Seoul",
+var person = 'Lee',
+    address = 'Seoul',
     price = 200;
 
 var price = 10;
@@ -267,8 +267,8 @@ var total = price + tax;
 
 ```javascript
 var x;
-console.log(x); // logs "undefined"
-console.log(y); // throws ReferenceError exception
+console.log(x); // undefined
+console.log(y); // ReferenceError
 ```
 
 # 3. 동적 타이핑 (Dynamic Typing)
@@ -291,7 +291,7 @@ console.log(typeof foo);  // number
 foo = 3.14;
 console.log(typeof foo);  // number
 
-foo = "Hi there";            
+foo = 'Hi';            
 console.log(typeof foo);  // string
 
 foo = true;                  

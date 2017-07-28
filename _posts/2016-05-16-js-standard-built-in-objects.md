@@ -52,7 +52,7 @@ Standard Built-in Objects(표준 빌트인 객체)를 Global Objects로 표현�
 - 전역 객체는 전역 변수(Global variable)를 프로퍼티로 가지게 된다.
 
   ```javascript
-  var ga = "Global variable";
+  var ga = 'Global variable';
   console.log(ga);
   console.log(window.ga);
   ```
@@ -61,7 +61,7 @@ Standard Built-in Objects(표준 빌트인 객체)를 Global Objects로 표현�
 
   ```javascript
   function foo() {
-    console.log("invoked!");
+    console.log('invoked!');
   }
   window.foo();
   ```
@@ -141,8 +141,8 @@ isFinite(testValue)
 ```javascript
 console.log(isFinite(Infinity));  // false
 console.log(isFinite(NaN));       // false
-console.log(isFinite("Hello"));   // false
-console.log(isFinite("2005/12/12"));   // false
+console.log(isFinite('Hello'));   // false
+console.log(isFinite('2005/12/12'));   // false
 
 console.log(isFinite(0));         // true
 console.log(isFinite(2e64));      // true
@@ -169,17 +169,17 @@ isNaN(testValue)
 isNaN(NaN)       // true
 isNaN(undefined) // true: undefined -> NaN
 isNaN({})        // true: {} -> NaN
-isNaN("blabla")  // true: "blabla" -> NaN
+isNaN('blabla')  // true: 'blabla' -> NaN
 
 isNaN(true)      // false: true -> 1
 isNaN(null)      // false: null -> 0
 isNaN(37)        // false
 
 // strings
-isNaN("37")      // false: "37" -> 37
-isNaN("37.37")   // false: "37.37" -> 37.37
-isNaN("")        // false: "" -> 0
-isNaN(" ")       // false: " " -> 0
+isNaN('37')      // false: '37' -> 37
+isNaN('37.37')   // false: '37.37' -> 37.37
+isNaN('')        // false: '' -> 0
+isNaN(' ')       // false: ' ' -> 0
 
 // dates
 isNaN(new Date())             // false: new Date() -> Number
@@ -198,12 +198,12 @@ parseFloat(string)
 매개변수 문자열의 첫 숫자만 반환되며 전후 공백은 무시된다. 그리고 첫문자를 숫자로 변환할 수 없다면 NaN을 반환한다.
 
 ```javascript
-parseFloat("3.14");     // 3.14
-parseFloat("10.00");    // 10
-parseFloat("34 45 66"); // 34
-parseFloat(" 60 ");     // 60
-parseFloat("40 years"); // 40
-parseFloat("He was 40") // NaN
+parseFloat('3.14');     // 3.14
+parseFloat('10.00');    // 10
+parseFloat('34 45 66'); // 34
+parseFloat(' 60 ');     // 60
+parseFloat('40 years'); // 40
+parseFloat('He was 40') // NaN
 ```
 
 ### 1.2.5 parseInt()  
@@ -221,18 +221,18 @@ parseInt(string, radix);
 2번재 매개변수에 진법을 나타내는 기수를 지정할 수 있다. 1번째 매개변수 문자열이 0x로 시작되면 기수를 생략하여도 16진수로 인식한다, 하지만 0으로 시작되면 10진수로 인식하므로 8진수로 인식시키기 위해서는 반드시 기수 8을 지정하여야 한다.
 
 ```javascript
-parseInt("10");       // 10
-parseInt("10.33");    // 10
-parseInt("34 45 66"); // 34
-parseInt(" 60 ");     // 60
-parseInt("40 years"); // 40
-parseInt("He was 40") // NaN
+parseInt('10');       // 10
+parseInt('10.33');    // 10
+parseInt('34 45 66'); // 34
+parseInt(' 60 ');     // 60
+parseInt('40 years'); // 40
+parseInt('He was 40') // NaN
 
-parseInt("0x20");     // 32
-parseInt("020", 8);   // 16
-parseInt("020");      // 20
-parseInt("10", 16);   // 16
-parseInt("10", 8);    // 8
+parseInt('0x20');     // 32
+parseInt('020', 8);   // 16
+parseInt('020');      // 20
+parseInt('10', 16);   // 16
+parseInt('10', 8);    // 8
 ```
 
 ### 1.2.6 encodeURI() / decodeURI()  
@@ -259,7 +259,7 @@ decodeURI(encodedURI)
 ```
 
 ```javascript
-var uri = "http://www.test.com/자바스크립트/test.php?who=나&target=너#전역 객체";
+var uri = 'http://www.test.com/자바스크립트/test.php?who=나&target=너#전역 객체';
 var enc = encodeURI(uri);
 var dec = decodeURI(enc);
 console.log(enc);
@@ -282,7 +282,7 @@ decodeURIComponent(encodedURI)
 ```
 
 ```javascript
-var uriComp = "who=나&target=너#전역 객체";
+var uriComp = 'who=나&target=너#전역 객체';
 var enc = encodeURI(uriComp);
 var dec = decodeURI(enc);
 console.log(enc);
@@ -365,11 +365,11 @@ Boolean 객체는 기본자료형 boolean을 위한 레퍼(wrapper) 객체이다
 
 ```javascript
 var foo = new Boolean(true);    // true
-var foo = new Boolean("false"); // true
+var foo = new Boolean('false'); // true
 
 var foo = new Boolean(false); // false
 var foo = new Boolean();      // false
-var foo = new Boolean("");    // false
+var foo = new Boolean('');    // false
 var foo = new Boolean(0);     // false
 var foo = new Boolean(null);  // false
 ```
@@ -413,9 +413,9 @@ Error 생성자는 error 객체를 생성한다. error 객체의 인스턴스는
 
 ```javascript
 try {
-  throw new Error("Whoops!");
+  throw new Error('Whoops!');
 } catch (e) {
-  console.log(e.name + ": " + e.message);
+  console.log(e.name + ': ' + e.message);
 }
 ```
 
@@ -440,7 +440,7 @@ Symbol은 ECMAScript 6(Javascript 2015) 에서 추가된 유일하고 변경 불
 그런데 기본자료형의 값에 대해 Standard Built-in Object의 메서드를 호출하면 정상적으로 작동한다.
 
 ```javascript
-var str = "Hello world!";
+var str = 'Hello world!';
 var res = str.toUpperCase();
 console.log(res); // 'HELLO WORLD!'
 

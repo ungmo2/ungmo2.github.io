@@ -167,25 +167,25 @@ $('<p id="test">My <em>new</em> text</p>').appendTo('body');
 JavaScript 객체(요소, 일반 객체, 매치드셋 등)를 인수로 받으면 그 객체를 jQuery 객체로 wrap한 객체를 반환한다.
 
 ```javascript
-$("div.foo").click(function() {
+$('div.foo').click(function() {
   $(this).slideUp();
 });
 ```
 
 ```javascript
 // Define a plain object
-var foo = { foo: "bar", hello: "world" };
+var foo = { foo: 'bar', hello: 'world' };
 
 // Pass it to the jQuery function
 var $foo = $( foo );
 
 // Test accessing property values
-var test1 = $foo.prop( "foo" ); // bar
+var test1 = $foo.prop( 'foo' ); // bar
 
 // Test setting property values
-$foo.prop( "foo", "foobar" );
+$foo.prop( 'foo', 'foobar' );
 
-var test2 = $foo.prop( "foo" ); // foobar
+var test2 = $foo.prop( 'foo' ); // foobar
 ```
 
 ## 3.4 콜백함수를 인수로 전달받을 때
@@ -264,7 +264,7 @@ jQuery는 [CSS 스타일의 Selector](./css3-selector)를 이용하여 요소를
 <ul id='destinations'>
   <li>Rome</li>
   <li>Paris</li>
-  <li class='promo'>Rio</li>
+  <li class="promo">Rio</li>
 </ul>
 ```
 
@@ -281,7 +281,7 @@ $('li').text('Orlando');
 Pure Javascript API를 사용하여 위의 기능을 작성하면 아래와 같다.
 
 ```javascript
-var targets = document.getElementsByTagName("li");
+var targets = document.getElementsByTagName('li');
 for(var i=0; i<targets.length; i++){
   //Set text
   targets[i].firstChild.nodeValue = 'Orlando';
@@ -338,7 +338,7 @@ id가 destinations인 ul 요소의 후손을 모두 선택한다.
 <ul id="destinations">
   <li>Rome</li>
   <li>Paris</li>
-  <li class='promo'>Rio</li>
+  <li class="promo">Rio</li>
 </ul>
 ```
 
@@ -359,7 +359,7 @@ $('#destinations li');
       <li>Paris</li>
     </ul>
   </li>
-  <li class='promo'>Rio</li>
+  <li class="promo">Rio</li>
 </ul>
 ```
 
@@ -388,7 +388,7 @@ $('#destinations > li');
       <li>Paris</li>
     </ul>
   </li>
-  <li class='promo'>Rio</li>
+  <li class="promo">Rio</li>
 </ul>
 ```
 
@@ -405,7 +405,7 @@ $('.promo, #france');
 <ul id="destinations">
   <li>Rome</li>
   <li>Paris</li>
-  <li class='promo'>Rio</li>
+  <li class="promo">Rio</li>
 </ul>
 ```
 
@@ -519,13 +519,13 @@ Selector를 사용하여 matched set을 생성한 이후, matched set의 요소�
 <ul id="destinations">
   <li>Rome</li>
   <li>Paris</li>
-  <li class='promo'>Rio</li>
+  <li class="promo">Rio</li>
 </ul>
 ```
 
 ```javascript
-$("#destinations li");         // Descendant Selector
-$("#destinations").find("li"); // Traversing
+$('#destinations li');         // Descendant Selector
+$('#destinations').find('li'); // Traversing
 ```
 
 위 두 코드는 결과적으로 ul 요소의 후손 중 li 요소를 선택한다. 그러나 Traversing은 선택자 방식보다 더 빠르다.

@@ -36,12 +36,12 @@ Javascript의 기본 자료형(primitive data type)은 변경 불가능한 값(i
 예를 들어 살펴보자. C 언어와는 다르게 Javascript의 문자열은 변경 불가능한 값(immutable value) 이다. 이런 값을 "primitive values" 라 한다. (변경이 불가능하다는 뜻은 메모리 영역에서의 변경이 불가능하다는 뜻이다. 재할당은 가능하다)
 
 ```javascript
-var statement = "I am an immutable value"; // string은 immutable value
+var statement = 'I am an immutable value'; // string은 immutable value
 
 var otherStr = statement.slice(8, 17);
 
-console.log(otherStr);   // "immutable"
-console.log(statement);  // "I am an immutable value"
+console.log(otherStr);   // 'immutable'
+console.log(statement);  // 'I am an immutable value'
 ```
 
 2행에서 Stirng 객체의 slice() 메서드는 statement 변수에 저장된 문자열을 변경하는 것이 아니라 사실은 새로운 문자열을 생성하여 반환하고 있다. 그 이유는 문자열은 변경할 수 없는 immutable value이기 때문이다.

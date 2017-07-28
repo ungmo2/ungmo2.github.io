@@ -38,9 +38,9 @@ z = ++x;    // 7 선증가후대입
 z = x--;    // 7 선대입후감소
 z = --x;    // 5 선감소후대입
 
-var str1 = "5" + 5;      // '55'
-var str2 = 5 + "5";      // '55'
-var str3 = "Hello" + 5;  // 'Hello5'
+var str1 = '5' + 5;      // '55'
+var str2 = 5 + '5';      // '55'
+var str3 = 'Hello' + 5;  // 'Hello5'
 ```
 
 `+ 연산자`는 덧셈 연산과 문자열 연결 연산을 수행한다.
@@ -69,12 +69,12 @@ x *= 5;   // 50
 x /= 5;   // 10
 x %= 5;   // 0
 
-var txt1 = "Good";
-var txt2 = "Morning";
-var txt3 = txt1 + " " + txt2; // Good Morning
+var txt1 = 'Good';
+var txt2 = 'Morning';
+var txt3 = txt1 + ' ' + txt2; // Good Morning
 
-txt1 = "What a very ";
-txt1 += "nice day"; // What a very nice day
+txt1 = 'What a very ';
+txt1 += 'nice day'; // What a very nice day
 ```
 
 # 3. 비교 연산자 (Comparison Operators)
@@ -127,7 +127,7 @@ x <= 8    // true
 
 //삼항연산자(ternary operator)
 var now = new Date();
-var greeting = "Good" + ((now.getHours() > 17) ? " evening." : " day.");
+var greeting = 'Good' + ((now.getHours() > 17) ? ' evening.' : ' day.');
 ```
 
 # 4. 논리 연산자 (Logical Operators)
@@ -144,23 +144,23 @@ var a1 =  true && true;     // t && t returns true
 var a2 =  true && false;    // t && f returns false
 var a3 = false && true;     // f && t returns false
 var a4 = false && (3 == 4); // f && f returns false
-var a5 = "Cat" && "Dog";    // t && t returns Dog
-var a6 = false && "Cat";    // f && t returns false
-var a7 = "Cat" && false;    // t && f returns false
+var a5 = 'Cat' && 'Dog';    // t && t returns Dog
+var a6 = false && 'Cat';    // f && t returns false
+var a7 = 'Cat' && false;    // t && f returns false
 
 // || (논리 합) 연산자
 var o1 =  true || true;     // t || t returns true
 var o2 = false || true;     // f || t returns true
 var o3 =  true || false;    // t || f returns true
 var o4 = false || (3 == 4); // f || f returns false
-var o5 = "Cat" || "Dog";    // t || t returns Cat
-var o6 = false || "Cat";    // f || t returns Cat
-var o7 = "Cat" || false;    // t || f returns Cat
+var o5 = 'Cat' || 'Dog';    // t || t returns Cat
+var o6 = false || 'Cat';    // f || t returns Cat
+var o7 = 'Cat' || false;    // t || f returns Cat
 
 // ! (논리 부정) 연산자
 var n1 = !true;  // false
 var n2 = !false; // true
-var n3 = !"Cat"; // false
+var n3 = !'Cat'; // false
 ```
 
 # 5. 타입 연산자 (Type Operators)
@@ -171,7 +171,7 @@ var n3 = !"Cat"; // false
 | instanceof	| 객체가 동일 객체형의 인스턴스이면 `true`를 반환한다.
 
 ```javascript
-typeof "John"                 // returns string
+typeof 'John'                 // returns string
 typeof 3.14                   // returns number
 typeof NaN                    // returns number
 typeof false                  // returns boolean
@@ -233,19 +233,19 @@ console.log(checkExist(obj)); // true
 Boolean값으로 평가하기 위해 참조하여야 할 곳까지 진행하여 평가가 중지하게된 계기가 된 값을 리턴한다.
 
 ```javascript
-var foo = "Cat" && "Dog"  // t && t returns "Dog"
+var foo = 'Cat' && 'Dog'  // t && t returns 'Dog'
 ```
 
-이 경우, "Cat" 은 `true`로 평가되므로 "Dog"까지 평가해 보아야 한다. 평가가 중지하게된 계기가 된 값("Dog")을 리턴한다.
+이 경우, 'Cat' 은 `true`로 평가되므로 'Dog'까지 평가해 보아야 한다. 평가가 중지하게된 계기가 된 값('Dog')을 리턴한다.
 
 ```javascript
-var foo = false && "Cat"  // f && t returns false
+var foo = false && 'Cat'  // f && t returns false
 ```
 
 이 경우, `false`가 처음 등장했으므로 평가는 중지되고 `false`가 리턴된다
 
 ```javascript
-var foo = "Cat" || "Dog"  // t || t returns "Cat"
+var foo = 'Cat' || 'Dog'  // t || t returns 'Cat'
 ```
 
-이 경우, "Cat" 은 `true`로 평가 되므로 평가는 중지되고 `Cat`이 리턴된다.
+이 경우, 'Cat' 은 `true`로 평가 되므로 평가는 중지되고 `Cat`이 리턴된다.

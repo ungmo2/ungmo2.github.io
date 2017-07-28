@@ -24,7 +24,7 @@ Device Orientation는 HTML5가 제공하는 매우 유용한 기능으로 중력
 if (window.DeviceOrientationEvent) {
   // Our browser supports DeviceOrientation
 } else {
-  console.log("Sorry, your browser doesn't support Device Orientation");
+  console.log('Sorry, your browser doesn't support Device Orientation');
 }
 ```
 
@@ -33,7 +33,7 @@ if (window.DeviceOrientationEvent) {
 디바이스의 방향 변화는 3개의 각도( alpha, beta, gamma )를 사용하여 측정된다. `deviceorientation` 이벤트에 리스너를 등록하면 리스너 함수가 주기적으로 호출되어 업데이트된 방향 데이터를 제공한다. `deviceorientation` 이벤트는 다음 4가지의 값을 가진다.
 
 ```javascript
-window.addEventListener("deviceorientation", handleOrientation, false);
+window.addEventListener('deviceorientation', handleOrientation, false);
 
 function handleOrientation(event) {
   var absolute = event.absolute;

@@ -73,27 +73,27 @@ var greeting;
 
 // if 문
 if (hour < 18) {
-  greeting = "Good day";
+  greeting = 'Good day';
 }
 
 console.log(greeting);
 
 // else 문
 if (hour < 18) {
-  greeting = "Good day";
+  greeting = 'Good day';
 } else {
-  greeting = "Good evening";
+  greeting = 'Good evening';
 }
 
 console.log(greeting);
 
 // else if 문
 if (hour < 10) {
-  greeting = "Good morning";
+  greeting = 'Good morning';
 } else if (hour < 20) {
-  greeting = "Good day";
+  greeting = 'Good day';
 } else {
-  greeting = "Good evening";
+  greeting = 'Good evening';
 }
 
 console.log(greeting);
@@ -104,37 +104,37 @@ console.log(greeting);
 switch 문의 경우, `switch`변수의 값과 일치되는 `case`문으로 실행 순서가 이동하게 된다. `switch`변수의 값과 일치되는 `case`문이 없다면 실행 순서는 `default`로 이동한다.
 
 ```javascript
-var color = "red";
+var color = 'red';
 
 switch(color) {
-  case "yellow":
-    console.log("yellow color");
-  case "red":
-    console.log("red color");
-  case "blue":
-    console.log("blue color");
+  case 'yellow':
+    console.log('yellow color');
+  case 'red':
+    console.log('red color');
+  case 'blue':
+    console.log('blue color');
   default:
-    console.log("no known color specified");
+    console.log('no known color specified');
 }
 ```
 
 `break` keyword는 switch 구문에서 탈출하는 역할을 수행한다. `break`가 없다면 실행 순서는 다음 `case`문으로 이동한다.
 
 ```javascript
-var color = "red";
+var color = 'red';
 
 switch(color) {
-  case "yellow":
-    console.log("yellow color");
+  case 'yellow':
+    console.log('yellow color');
     break;
-  case "red":
-    console.log("red color");
+  case 'red':
+    console.log('red color');
     break;
-  case "blue":
-    console.log("blue color");
+  case 'blue':
+    console.log('blue color');
     break;
   default:
-    console.log("no known color specified");
+    console.log('no known color specified');
 }
 ```
 
@@ -190,7 +190,7 @@ do {
 var i = 0;
 while (1) {    // infinite loop
   if (i > 3) break;
-  console.log("The number is " + i );
+  console.log('The number is ' + i );
   i++;
 }
 ```
@@ -202,7 +202,7 @@ continue문 이후의 구문은 실행 생략하고 반복문의 조건검사 �
 ```javascript
 for (var i = 0; i < 5; i++) {
   if (i % 2 == 0) continue;
-  console.log("The number is " + i );
+  console.log('The number is ' + i );
 }
 ```
 
@@ -246,34 +246,34 @@ console.log(undefined === null); // logs false
 
 |Original Value|Converted to Number	|Converted to String |Converted to Boolean|
 |:-------------|:------------------:|:------------------:|:------------------:|
-| false        | <b style='color:red'>0</b> | "false"	   | false
-| true         | <b style='color:red'>1</b> | "true"	   | true
-| 0	           | 0	                | "0"	               | <b style='color:red'>false</b>
-| 1	           | 1  	              | "1"	               | true
-| "0"	         | <b style='color:red'>0</b>	| "0"	       | <b style='color:red'>true</b>
-| "1"	         | <b style='color:red'>1</b>	| "1"        | true
-| NaN	         | NaN	              | "NaN"	             | <b style='color:red'>false</b>
-| Infinity	   | Infinity	          | "Infinity"	       | true
-| -Infinity	   | -Infinity	        | "-Infinity"	       | true
-| ""	         | <b style='color:red'>0</b>| ""	         | <b style='color:red'>false</b>
-| "20"	       | 20	                | "20"	             | true
-| "twenty"	   | NaN	              | "twenty"	         | true
-| [ ]	         | <b style='color:red'>0</b>| ""	         | true
-| [20]	       | <b style='color:red'>20</b>| "20"	     | true
-| [10,20]	     | NaN	              | "10,20"	           | true
-| ["twenty"]	 | NaN	              | "twenty"	         | true
-| ["ten","twenty"]|	NaN	            | "ten,twenty"	     | true
-| function(){} | NaN	              | "function(){}"	   | true
-| { }	         | NaN	              | "[object Object]"	 | true
-| null	       | <b style='color:red'>0</b> | "null"	   | <b style='color:red'>false</b>
-| undefined    | <b style='color:red'>NaN</b> | "undefined"	| <b style='color:red'>false</b>
+| false        | <b style='color:red'>0</b> | 'false'	   | false
+| true         | <b style='color:red'>1</b> | 'true'	   | true
+| 0	           | 0	                | '0'	               | <b style='color:red'>false</b>
+| 1	           | 1  	              | '1'	               | true
+| '0'	         | <b style='color:red'>0</b>	| '0'	       | <b style='color:red'>true</b>
+| '1'	         | <b style='color:red'>1</b>	| '1'        | true
+| NaN	         | NaN	              | 'NaN'	             | <b style='color:red'>false</b>
+| Infinity	   | Infinity	          | 'Infinity'	       | true
+| -Infinity	   | -Infinity	        | '-Infinity'	       | true
+| ''	         | <b style='color:red'>0</b>| ''	         | <b style='color:red'>false</b>
+| '20'	       | 20	                | '20'	             | true
+| 'twenty'	   | NaN	              | 'twenty'	         | true
+| [ ]	         | <b style='color:red'>0</b>| ''	         | true
+| [20]	       | <b style='color:red'>20</b>| '20'	     | true
+| [10,20]	     | NaN	              | '10,20'	           | true
+| ['twenty']	 | NaN	              | 'twenty'	         | true
+| ['ten', 'twenty']|	NaN	            | 'ten, twenty'	     | true
+| function(){} | NaN	              | 'function(){}'	   | true
+| { }	         | NaN	              | '[object Object]'	 | true
+| null	       | <b style='color:red'>0</b> | 'null'	   | <b style='color:red'>false</b>
+| undefined    | <b style='color:red'>NaN</b> | 'undefined'	| <b style='color:red'>false</b>
 
 
 ```javascript
 var x = false;
-console.log("Number : " + Number(x));
-console.log("String : " + String(x));
-console.log("Boolean: " + Boolean(x));
+console.log('Number : ' + Number(x));
+console.log('String : ' + String(x));
+console.log('Boolean: ' + Boolean(x));
 ```
 
 ## 4.3 Data type conversion
@@ -304,7 +304,7 @@ console.log(typeof val + ':' + val); // string
 * `null`
 * `0`
 * `NaN` (Not a Number)
-* `""` (빈문자열)
+* `''` (빈문자열)
 
 이들을 Falsy values라 한다.
 
@@ -312,22 +312,22 @@ Falsy values 이외의 값들(object포함)은 모두 true로 평가된다. 이�
 
 ```javascript
 var x = false;
-if (!x)  console.log(x+" is falsy value");
+if (!x)  console.log(x+' is falsy value');
 
 x = undefined;
-if (!x)  console.log(x+" is falsy value");
+if (!x)  console.log(x+' is falsy value');
 
 x = null;
-if (!x)  console.log(x+" is falsy value");
+if (!x)  console.log(x+' is falsy value');
 
 x = 0;
-if (!x)  console.log(x+" is falsy value");
+if (!x)  console.log(x+' is falsy value');
 
 x = NaN;
-if (!x)  console.log(x+" is falsy value");
+if (!x)  console.log(x+' is falsy value');
 
-x = "";
-if (!x)  console.log(x+" is falsy value");
+x = '';
+if (!x)  console.log(x+' is falsy value');
 ```
 
 ## 4.5 Checking equality

@@ -154,7 +154,7 @@ $ npm install node-emoji --save
 
 npm install 명령어에 `--save-exact` 옵션을 지정하면 설치된 버전을 범위 지정없이 기록한다.
 
-npm install 명령어의 패키명 뒤에 \@버전을 추가하면 패키지 버전을 지정할 수 있다.
+npm install 명령어의 패키명 뒤에 @버전을 추가하면 패키지 버전을 지정할 수 있다.
 
 ```bash
 $ npm install node-emoji@1.5.1 --save

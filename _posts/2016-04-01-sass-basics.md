@@ -30,16 +30,16 @@ CSS의 간결한 문법은 배우기 쉬우며 명확하여 프로젝트 초기�
 CSS와 비교하여 Sass는 아래와 같은 장점이 있다.
 
 - CSS보다 심플한 표기법으로 CSS를 구조화하여 표현할 수 있다.
-- 스킬 레벨이 다른 팀원들과의 작업 시 발생할 수 있는 구문의 수준 차이을 평준화할 수 있다.
-- CSS에는 존재하지 않는 Mixin 등의 강력한 기능을 활용하여 CSS 유지보수 편의성를 큰 폭으로 향상시킬 수 있다.
+- 스킬 레벨이 다른 팀원들과의 작업 시 발생할 수 있는 구문의 수준 차이를 평준화할 수 있다.
+- CSS에는 존재하지 않는 Mixin 등의 강력한 기능을 활용하여 CSS 유지보수 편의성을 큰 폭으로 향상시킬 수 있다.
 
 # 2. Install
 
-브라우저는 Sass의 문법을 알지 못하기 때문에 Sass(.scss) 파일을 css 파일로 컴파일하여야 한다. 따라서 Sass 환경의 설치가 필요하다.
+브라우저는 Sass의 문법을 알지 못하기 때문에 Sass(.scss) 파일을 css 파일로 컴파일(트랜스파일링)하여야 한다. 따라서 Sass 환경의 설치가 필요하다.
 
 Sass는 2006년 Ruby로 처음 개발되었고 이후 다양한 포팅 버전이 등장했다. [Libsass](https://github.com/sass/libsass)도 Ruby Sass를 C++로 포팅한 버전이다. 2014년, Ruby Sass와 LibSass 팀은 두 버전의 동기화를 합의하였기 때문에 Ruby Sass와 LibSass는 완전한 호환에 근접해 있지만 Ruby Sass의 버전이 앞설 가능성이 있다. Ruby Sass와 LibSass의 호환성 문제는 [Sass Compatibility](http://sass-compatibility.github.io/)를 참조하기 바란다.
 
-따라서, Ruby Sass와 LibSass 두가지 버전 중 하나를 선택하여 설치하면 된다. Ruby 환경에 개발이 진행된다면 Ruby Sass를 선택하고, Node.js 환경에서 개발이 진행된다면 LibSass를 사용하는 편이 좋을 것이다.
+따라서, Ruby Sass와 LibSass 두가지 버전 중 하나를 선택하여 설치하면 된다. Ruby 환경에서 개발이 진행된다면 Ruby Sass를 선택하고, Node.js 환경에서 개발이 진행된다면 LibSass를 사용하는 편이 좋을 것이다.
 
 node-sass는 npm으로 설치할 수 있다. Ruby Sass의 경우, Ruby의 설치가 필요하다. 
 
@@ -119,11 +119,14 @@ libsass         3.5.0.beta.2    (Sass Compiler) [C/C++]
 
 ```bash
 $ cd my-project
+
+## 특정 파일을 특정 파일 이름으로 컴파일
 ## Compile foo.scss to bar.css
 $ node-sass foo.scss > bar.css
-## Compile src/sass/foo.scss to dist/css/foo.css
-## 출력용 폴더가 없을 때, 자동 생성한다
-$ node-sass src/sass/foo.scss -o dist/css
+
+## 폴더 내의 모든 파일을 컴파일
+## node-sass input-folder-path -o output-folder-path
+$ node-sass src/sass --output dist/css
 ```
 
 ## 3.3 style
@@ -132,12 +135,10 @@ scss 파일을 컴파일하여 css 파일을 생성할 때 4가지 스타일 중
 
 **nested**
 
-sass 형식과 유사하게 nested된 css 파일이 생성된다.
-
-기본값으로 옵션을 추가하지 않아도 기본 적용된다.
+sass 형식과 유사하게 nested된 css 파일이 생성된다. 기본값으로 옵션을 추가하지 않아도 기본 적용된다.
 
 ```bash
-$ node-sass --output-style nested foo.scss > foo.css
+$ node-sass --output-style nested src/sass --output dist/css
 ```
 
 **expanded**
@@ -145,7 +146,7 @@ $ node-sass --output-style nested foo.scss > foo.css
 표준적인 스타일의 css 파일이 생성된다.
 
 ```bash
-$ node-sass --output-style expanded foo.scss > foo.css
+$ node-sass --output-style expanded src/sass --output dist/css
 ```
 
 **compact**
@@ -153,7 +154,7 @@ $ node-sass --output-style expanded foo.scss > foo.css
 여러 룰셋을 한줄로 나타내는 스타일의 css 파일이 생성된다.
 
 ```bash
-$ node-sass --output-style compact foo.scss > foo.css
+$ node-sass --output-style compact src/sass --output dist/css
 ```
 
 **compressed**
@@ -161,7 +162,7 @@ $ node-sass --output-style compact foo.scss > foo.css
 가능한 빈공간이 없는 압축된 스타일의 css 파일이 생성된다.
 
 ```bash
-$ node-sass --output-style compressed foo.scss > foo.css
+$ node-sass --output-style compressed src/sass --output dist/css
 ```
 
 ## 3.4 watch
@@ -170,20 +171,21 @@ watch command는 scss 파일의 변경을 감지하여 변경될 때마다 scss 
 
 디렉터리 단위 또는 파일 단위의 모니터링이 가능하다.
 
-파일 단위의 watch
+**파일 단위의 watch**
 
 ```bash
 $ cd my-project
+
 ## watch src/sass/foo.scss -> dist/css
-$ node-sass src/sass/foo.scss -wo dist/css
+$ node-sass --watch src/sass/foo.scss --output dist/css
 ```
 
-디렉터리 단위의 watch
+**디렉터리 단위의 watch**
 
 ```bash
 $ cd my-project
 ## watch src/sass -> dist/css
-$ node-sass src/sass -wo dist/css
+$ node-sass --watch src/sass --output dist/css
 ```
 
 # 4. SASS vs. SCSS

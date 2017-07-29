@@ -124,7 +124,7 @@ switch (color) {
 }
 ```
 
-`break` keyword는 switch 구문에서 탈출하는 역할을 수행한다. `break`가 없다면 실행 순서는 다음 `case`문으로 이동한다.
+`break` keyword는 switch 구문에서 탈출하는 역할을 수행한다. break문이 없다면 case문의 조건과 일치하지 않더라도 실행 순서는 다음 case문으로 이동한다.
 
 ```javascript
 var color = 'red';
@@ -144,7 +144,7 @@ switch (color) {
 }
 ```
 
-`default`문에는 `break`는 생략하여도 무방하다. 이유는 `default`문이 가장 마지막에 위치하므로 다음 구문으로 이동할 수 없기 때문이다.
+`default`문에는 `break`를 생략하여도 무방하다. 이유는 `default`문이 가장 마지막에 위치하므로 다음 구문으로 이동할 수 없기 때문이다.
 
 # 3. 반복문(Loop)
 
@@ -154,7 +154,7 @@ switch (color) {
 
 JavaScript는 3가지의 반복문 `for`, `while`, `do while`을 제공한다.
 
-## 3.1 for문
+## 3.1 for 문
 
 for문은 특정 조건이 거짓으로 판별될 때까지 반복한다. 가장 일반적으로 사용되는 반복문이다.
 
@@ -192,7 +192,7 @@ for (;;) { // 무한루프
 }
 ```
 
-## 3.2 while문
+## 3.2 while 문
 
 while 문은 조건문이 참이면 코드 블럭을 계속해서 반복 실행한다. 조건문이 거짓이 되면 실행을 종료하고 반복문을 빠져나간다.
 

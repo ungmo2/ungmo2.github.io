@@ -126,22 +126,6 @@ $ node-sass foo.scss > bar.css
 $ node-sass src/sass/foo.scss -o dist/css
 ```
 
-```scss
-#main{
-  h1 { margin-bottom: 20px }
-  p { font-size:90% }
-}
-```
-
-위 scss 파일을 컴파일하면 아래와 같은 css 파일이 생성된다.
-
-```css
-#main h1 {
-  margin-bottom: 20px; }
-#main p {
-  font-size: 90%; }
-```
-
 ## 3.3 style
 
 scss 파일을 컴파일하여 css 파일을 생성할 때 4가지 스타일 중 하나를 선택할 수 있다.

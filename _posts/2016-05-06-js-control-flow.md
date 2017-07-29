@@ -156,7 +156,16 @@ JavaScript는 3가지의 반복문 `for`, `while`, `do while`을 제공한다.
 
 ## 3.1 for문
 
-가장 일반적으로 사용되는 반복문이다. 일정 횟수만큼 반복 실행하여야 할 때 사용한다.
+for문은 특정 조건이 거짓으로 판별될 때까지 반복한다. 가장 일반적으로 사용되는 반복문이다.
+
+```
+for ([초기문]; [조건문]; [증감문]) {
+  구문
+}
+  
+```
+
+아래의 for문은 변수 i가 0으로 초기화된 상태에서 i가 3보다 작아질 때까지 코드블럭을 반복 실행한다.
 
 ```javascript
 for (var i = 0; i < 3; i++) {
@@ -165,11 +174,12 @@ for (var i = 0; i < 3; i++) {
 ```
 
 ![for문](./img/for-statement.png)
+{: .w-350}
 
 for문의 실행 순서
 {: .desc-img}
 
-for문의 모든 식은 선택 사항이다. 즉, 반드시 사용할 필요는 없다.
+for문의 모든 식은 선택 사항이며 반드시 사용할 필요는 없다. 어떤 식도 선언하지 않으면 무한루프가 된다.
 
 ```javascript
 var i = 0;
@@ -182,22 +192,49 @@ for (;;) { // 무한루프
 }
 ```
 
-
 ## 3.2 while문
 
-반복 횟수를 정확히 알지 못할 때 사용한다.
+while 문은 조건문이 참이면 코드 블럭을 계속해서 반복 실행한다. 조건문이 거짓이 되면 실행을 종료하고 반복문을 빠져나간다.
+
+```javascript
+var n = 0;
+var x = 0;
+
+// n이 3보다 작을 때까지 계속 반복한다.
+while (n < 3) {
+  n++;    // n: 1 2 3
+  x += n; // x: 1 3 6
+  console.log(x);
+}
+```
+
+조건문이 언제나 참이면 무한루프가 된다.
 
 ```javascript
 var i = 0;
-while (i < 3) {
+// 무한루프
+while (true) {
   console.log(i);
   i++;
 }
 ```
 
+무한루프를 탈출하기 위해서는 break문을 사용한다. break문을 감싸는 반복문 하나를 탈출한다.
+
+```javascript
+var i = 0;
+// 무한루프
+while (true) {
+  console.log(i);
+  i++;
+  // i가 10이면 exit!
+  if (i === 10) break;
+}
+```
+
 ## 3.3 do while문
 
-While문과 매우 유사하나 코드블록은 최소 1회 이상 실행된다.
+While문과 유사하나 코드블록은 조건문을 확인하기 전에 무조건 1회 실행된다. 그후 조건문을 확인하여 실행 여부를 판별한다.
 
 ```javascript
 var i = 0;
@@ -207,27 +244,14 @@ do {
 } while (i < 3);
 ```
 
-## 3.4 break
+## 3.4 continue
 
-반복문을 탈출할 때 사용하는 키워드이다. break문을 감싸는 반복문 하나를 탈출한다.
-
-```javascript
-var i = 0;
-while (1) {    // infinite loop
-  if (i > 3) break;
-  console.log('The number is ' + i );
-  i++;
-}
-```
-
-## 3.5 continue
-
-continue문 이후의 구문은 실행 생략하고 반복문의 조건검사 위치로 이동한다.
+break문을 감싸는 반복문 하나를 탈출한다. continue문은 이후 구문의 실행을 스킵하고 반복문의 조건문으로 이동한다.
 
 ```javascript
 for (var i = 0; i < 5; i++) {
   if (i % 2 == 0) continue;
-  console.log('The number is ' + i );
+  console.log(i);
 }
 ```
 
@@ -238,17 +262,31 @@ for (var i = 0; i < 5; i++) {
 조건식(conditional expression)은 표현식(expression)의 일종이다. 따라서 피연산자와 이항연산자로 구성된 일반적 표현식뿐만 아니라 문자열이나 숫자와 같은 리터럴 값, 변수, 내장값들(true, false, null, undefined, Nan, Infinity...)등 또한 조건식으로 사용될 수 있다.
 
 ```javascript
-if(1)
+if (1) {
+  console.log('1');
+}
 
-if('str')
+if ('str') {
+  console.log('2');
+}
 
-if(x)
+if (true) {
+  console.log('3');
+}
 
-if(true)
+if (null) {
+  console.log('4');
+}
 
-if(null)
+var x = '';
 
-if(!x)
+if (x) {
+  console.log('5');
+}
+
+if (!x) {
+  console.log('6');
+}
 ```
 
 이때 자바스크립트는 암묵적 강제 형 변환을 통해 조건식을 평가한다.
@@ -258,13 +296,13 @@ if(!x)
 Javascript는 context(문맥)을 고려하여 내부적으로 자료형을 암묵적으로 강제 변환하여 작업을 완료할 수 있다. 이는 의도하지 않은 값을 만들어낼 수 있어 주의가 필요하다.
 
 ```javascript
-console.log('1' > 0);            // logs true
-console.log(1 + '2');            // logs '12'
-console.log(2 - '1');            // logs 1
-console.log('10' == 10);         // logs true
-console.log('10' === 10);        // logs false
-console.log(undefined == null);  // logs true
-console.log(undefined === null); // logs false
+console.log('1' > 0);            // true
+console.log(1 + '2');            // '12'
+console.log(2 - '1');            // 1
+console.log('10' == 10);         // true
+console.log('10' === 10);        // false
+console.log(undefined == null);  // true
+console.log(undefined === null); // false
 ```
 
 ## 4.2 Type Conversion Table

@@ -4,6 +4,7 @@ title: Javascript <strong>Control Flow</strong>
 subtitle: 제어문
 categories: javascript
 section: javascript
+description: 제어문(Control flow statement)은 조건에 따른 명령 실행(조건문)이나 반복 실행(반복문)이 필요할 때 사용된다. 일반적으로 코드는 위에서 아래 방향으로 순차적 실행을 하지만 실행 순서를 변경하거나 조건에 따라 실행 여부를 결정하기도 하고 반복할 수도 있다.
 ---
 
 * TOC
@@ -55,7 +56,7 @@ JavaScript는 2가지의 조건문 `if...else` 와 `switch`를 제공한다.
 
 ## 2.1 if 문
 
-`if` 문은 주어진 조건식을 평가하여 논리적 참, 거짓을 구별하는 구문이다.
+`if` 문은 주어진 조건식을 평가하여 논리적 참, 거짓을 구별하는 구문이다. 조건식은 표현식이기 때문에 하나의 값(true/false)으로 수렴될 수 있다.
 
 ```javascript
 if (조건식) {
@@ -65,7 +66,7 @@ if (조건식) {
 }
 ```
 
-조건문의 평가 결과가 참(`true`)일 경우, `if` 문 직후에 존재하는 코드 블럭이 실행된다. 거짓(`false`)일 경우, `else` 구문 직후에 존재하는 코드 블럭이 실행된다. (`else if`와 `else` 구문은 option이다.)
+조건문의 평가 결과가 참(true)일 경우, `if` 문 직후에 존재하는 코드 블럭이 실행된다. 거짓(false)일 경우, `else` 구문 직후에 존재하는 코드 블럭이 실행된다. (`else if`와 `else` 구문은 option이다.)
 
 ```javascript
 var hour = 20;
@@ -78,7 +79,7 @@ if (hour < 18) {
 
 console.log(greeting);
 
-// else 문
+// if-else 문
 if (hour < 18) {
   greeting = 'Good day';
 } else {
@@ -87,7 +88,7 @@ if (hour < 18) {
 
 console.log(greeting);
 
-// else if 문
+// if-else if 문
 if (hour < 10) {
   greeting = 'Good morning';
 } else if (hour < 20) {
@@ -106,15 +107,20 @@ switch 문의 경우, `switch`변수의 값과 일치되는 `case`문으로 실�
 ```javascript
 var color = 'red';
 
-switch(color) {
+// color = switch 변수
+switch (color) {
+  // color == 'yellow'인 경우
   case 'yellow':
     console.log('yellow color');
+  // color == 'red'인 경우
   case 'red':
     console.log('red color');
+  // color == 'blue'인 경우
   case 'blue':
     console.log('blue color');
+  // 그외의 경우
   default:
-    console.log('no known color specified');
+    console.log('unknown color');
 }
 ```
 
@@ -123,7 +129,7 @@ switch(color) {
 ```javascript
 var color = 'red';
 
-switch(color) {
+switch (color) {
   case 'yellow':
     console.log('yellow color');
     break;
@@ -134,11 +140,11 @@ switch(color) {
     console.log('blue color');
     break;
   default:
-    console.log('no known color specified');
+    console.log('unknown color');
 }
 ```
 
-`default`문의 `break`는 생략하여도 무방하다. 이유는 `default`문이 가장 마지막에 위치하므로 다음 구문으로 이동할 수 없기 때문이다.
+`default`문에는 `break`는 생략하여도 무방하다. 이유는 `default`문이 가장 마지막에 위치하므로 다음 구문으로 이동할 수 없기 때문이다.
 
 # 3. 반복문(Loop)
 
@@ -157,6 +163,25 @@ for (var i = 0; i < 3; i++) {
   console.log(i);
 }
 ```
+
+![for문](./img/for-statement.png)
+
+for문의 실행 순서
+{: .desc-img}
+
+for문의 모든 식은 선택 사항이다. 즉, 반드시 사용할 필요는 없다.
+
+```javascript
+var i = 0;
+for (;;) { // 무한루프
+  if (i >= 3) {
+    break;
+  }
+  console.log(i);
+  i++;
+}
+```
+
 
 ## 3.2 while문
 

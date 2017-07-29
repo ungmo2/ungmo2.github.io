@@ -144,7 +144,7 @@ HTML Attribute
 
 위의 예에서 어트리뷰트 src는 이미지 파일의 경로와 파일명, width는 이미지의 너비, height는 이미지의 높이 정보를 브라우저에 알려준다. 이 정보들을 사용하여 브라우저는 img 요소를 화면에 출력한다.
 
-### 4.2.1 글로벌 어트리뷰트 (HTML Global Attribute)
+### 3.2.1 글로벌 어트리뷰트 (HTML Global Attribute)
 
 글로벌 어트리뷰트는 모든 HTML 요소가 공통으로 사용할 수 있는 어트리뷰트다. 몇몇 요소에는 효과가 적용되지 않을 수 있지만, 글로벌 어트리뷰트는 대체로 모든 요소에 사용될 수 있다.
 
@@ -162,7 +162,7 @@ HTML Attribute
 
 * [Global attributes](https://www.w3.org/TR/html-markup/global-attributes)
 
-## 4.3 주석 (Comments)
+## 3.3 주석 (Comments)
 
 주석(comment)는 주로 개발자에게 코드를 설명하기 위해 사용되며 브라우저는 주석을 화면에 표시하지 않는다.
 
@@ -173,7 +173,7 @@ HTML Attribute
 
 <p class="result"></p>
 
-# 5. HTML History
+# 4. HTML History
 
 | Year      | Version	             
 |:----------|:------------------------

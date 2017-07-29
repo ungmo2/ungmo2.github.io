@@ -33,9 +33,9 @@ description: 이미지의 표현과 동영상, 음악 등 멀티미디어를 지
 
 <div class="result"></div>
 
-# 8. 미디어
+# 2. 미디어
 
-## 8.1 audio
+## 2.1 audio
 
 audio 태그는 HTML5에서 새롭게 추가된 태그이다. IE8 이하에서는 사용할 수 없다.
 
@@ -84,7 +84,7 @@ source 태그를 사용하여 파일 형식의 차이 문제를 해결 할 수 �
 
 <div class="result"></div>
 
-## 8.2 비디오
+## 2.2 비디오
 
 video 태그는 HTML5에서 새롭게 추가된 태그이다. IE8 이하에서는 사용할 수 없다.
 

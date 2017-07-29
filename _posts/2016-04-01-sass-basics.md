@@ -14,7 +14,7 @@ description: Sass(Syntactically Awesome StyleSheets)는 CSS pre-processor로서 
 
 # 1. Introduction
 
-[Sass(Syntactically Awesome StyleSheets)](http://sass-lang.com/)는 CSS pre-processor로서 CSS의 한계와 결함을 보정하여 보다 간결한 CSS를 생성하기 위한 CSS의 확장(extension)이다.
+[Sass(Syntactically Awesome StyleSheets)](http://sass-lang.com/)는 CSS pre-processor로서 CSS의 한계와 단점을 보완하여 보다 가독성이 높고 코드의 재사용에 유리한 CSS를 생성하기 위한 CSS의 확장(extension)이다.
 
 CSS의 간결한 문법은 배우기 쉬우며 명확하여 프로젝트 초기에는 문제가 없이 보이지만 프로젝트의 규모가 커지고 수정이 빈번히 발생함에 따라 쉽게 지저분해지고 유지보수도 어려워지는 단점도 가지고 있다.
 
@@ -35,13 +35,34 @@ CSS와 비교하여 Sass는 아래와 같은 장점이 있다.
 
 # 2. Install
 
-브라우저는 Sass의 문법을 알지 못하기 때문에 Sass(.scss) 파일을 css 파일로 컴파일하여야 한다. 따라서 Sass 환경의 설치가 필요하다. 또한 Sass는 Ruby로 작성되었기 때문에 Ruby의 설치도 필요하다.
+브라우저는 Sass의 문법을 알지 못하기 때문에 Sass(.scss) 파일을 css 파일로 컴파일하여야 한다. 따라서 Sass 환경의 설치가 필요하다.
 
-## 2.1 Windows
+Sass는 2006년 Ruby로 처음 개발되었고 이후 다양한 포팅 버전이 등장했다. [Libsass](https://github.com/sass/libsass)도 Ruby Sass를 C++로 포팅한 버전이다. 2014년, Ruby Sass와 LibSass 팀은 두 버전의 동기화를 합의하였기 때문에 Ruby Sass와 LibSass는 완전한 호환에 근접해 있지만 Ruby Sass의 버전이 앞설 가능성이 있다. Ruby Sass와 LibSass의 호환성 문제는 [Sass Compatibility](http://sass-compatibility.github.io/)를 참조하기 바란다.
+
+따라서, Ruby Sass와 LibSass 두가지 버전 중 하나를 선택하여 설치하면 된다. Ruby 환경에 개발이 진행된다면 Ruby Sass를 선택하고, Node.js 환경에서 개발이 진행된다면 LibSass를 사용하는 편이 좋을 것이다.
+
+node-sass는 npm으로 설치할 수 있다. Ruby Sass의 경우, Ruby의 설치가 필요하다. 
+
+## 2.1 node-sass
+
+Libsass를 사용하기 위해서는 Node.js 환경에서 사용하기 위해서는 [node-sass](https://github.com/sass/node-sass)를 설치하여야 한다. 따라서 Node.js와 npm이 install되어 있음을 전제로 한다.
+
+* [Node.js의 설치와 npm 업데이트](./nodejs-basics#2-install)
+
+```
+$ npm install -g node-sass
+$ node-sass -v
+node-sass	4.5.3	(Wrapper)	[JavaScript]
+libsass  	3.5.0.beta.2	(Sass Compiler)	[C/C++]
+```
+
+## 2.2 Ruby Sass
+
+### 2.2.1 Windows
 
 **1. Ruby Installer의 설치**
 
-[Ruby Installer](http://rubyinstaller.org/downloads/)로 이동하여 최신 Installer를 설치한다.
+[Ruby Installer](http://rubyinstaller.org/downloads/)로 이동하여 Installer를 설치한다. rubyinstaller.org에서는 2.2.x 버전을 권장하고 있다.
 
 ![ruby-installer-set-path.jpg](/img/ruby-installer.png)
 {: .w-400}
@@ -58,12 +79,14 @@ CSS와 비교하여 Sass는 아래와 같은 장점이 있다.
 gem install sass
 ```
 
-## 2.2 Mac
+### 2.2.2 Mac
 
 Mac의 경우 Ruby가 기본적으로 설치되어 있으므로 바로 sass를 설치한다.
 
 ```bash
 $ gem install sass
+$ sass -v
+Sass 3.5.1 (Bleeding Edge)
 ```
 
 ## 2.3 GUI App
@@ -80,20 +103,27 @@ GUI 환경에서 컴파일 기능 제공하는 App은 아래와 같다. App에 �
 
 # 3. Command
 
+node-sass를 사용하는 것을 기준으로 한다.
+
 ## 3.1 version
 
 ```bash
-$ sass -v
-Sass 3.4.22 (Selective Steve)
+$ node-sass -v
+node-sass       4.5.3   (Wrapper)       [JavaScript]
+libsass         3.5.0.beta.2    (Sass Compiler) [C/C++]
 ```
 
 ## 3.2 compile
 
-컴파일할 SCSS 파일의 패스와 컴파일 후 생성될 css 파일의 패스를 지정한다.
+컴파일할 SCSS 파일의 경로와 컴파일 후 생성될 css 파일의 경로를 지정한다.
 
 ```bash
 $ cd my-project
-$ sass my.scss my.css
+## Compile foo.scss to bar.css
+$ node-sass foo.scss > bar.css
+## Compile src/sass/foo.scss to dist/css/foo.css
+## 출력용 폴더가 없을 때, 자동 생성한다
+$ node-sass src/sass/foo.scss -o dist/css
 ```
 
 ```scss
@@ -103,7 +133,7 @@ $ sass my.scss my.css
 }
 ```
 
-위 SCSS 파일을 컴파일하면 아래와 같은 css 파일이 생성된다.
+위 scss 파일을 컴파일하면 아래와 같은 css 파일이 생성된다.
 
 ```css
 #main h1 {
@@ -112,33 +142,9 @@ $ sass my.scss my.css
   font-size: 90%; }
 ```
 
-## 3.3 watch
+## 3.3 style
 
-watch command는 SCSS 파일의 변경을 감지하여 변경될 때마다 css 파일을 자동 업데이트한다.
-
-디렉터리 단위 또는 파일 단위의 모니터링이 가능하다.
-
-디렉터리 단위의 watch
-
-```bash
-$ cd my-project
-$ ls -l
-css/ sass/
-$ sass --watch stylesheets/sass:stylesheets
-```
-
-파일 단위의 watch
-
-```bash
-$ cd my-project
-$ ls -l
-css/ sass/
-$ sass --watch stylesheets/sass/my.scss:stylesheets/my.css
-```
-
-## 3.4 style
-
-SCSS 파일을 컴파일하여 CSS 파일을 생성할 때 4가지 스타일 중 하나를 선택할 수 있다.
+scss 파일을 컴파일하여 css 파일을 생성할 때 4가지 스타일 중 하나를 선택할 수 있다.
 
 **nested**
 
@@ -147,7 +153,7 @@ sass 형식과 유사하게 nested된 css 파일이 생성된다.
 기본값으로 옵션을 추가하지 않아도 기본 적용된다.
 
 ```bash
-sass my.scss:my.css --style nested
+$ node-sass --output-style nested foo.scss > foo.css
 ```
 
 **expanded**
@@ -155,7 +161,7 @@ sass my.scss:my.css --style nested
 표준적인 스타일의 css 파일이 생성된다.
 
 ```bash
-sass my.scss:my.css --style expanded
+$ node-sass --output-style expanded foo.scss > foo.css
 ```
 
 **compact**
@@ -163,7 +169,7 @@ sass my.scss:my.css --style expanded
 여러 룰셋을 한줄로 나타내는 스타일의 css 파일이 생성된다.
 
 ```bash
-sass my.scss:my.css --style compact
+$ node-sass --output-style compact foo.scss > foo.css
 ```
 
 **compressed**
@@ -171,7 +177,29 @@ sass my.scss:my.css --style compact
 가능한 빈공간이 없는 압축된 스타일의 css 파일이 생성된다.
 
 ```bash
-sass my.scss:my.css --style compressed
+$ node-sass --output-style compressed foo.scss > foo.css
+```
+
+## 3.4 watch
+
+watch command는 scss 파일의 변경을 감지하여 변경될 때마다 scss 파일을 컴파일하여 css 파일을 자동 업데이트한다.
+
+디렉터리 단위 또는 파일 단위의 모니터링이 가능하다.
+
+파일 단위의 watch
+
+```bash
+$ cd my-project
+## watch src/sass/foo.scss -> dist/css
+$ node-sass src/sass/foo.scss -wo dist/css
+```
+
+디렉터리 단위의 watch
+
+```bash
+$ cd my-project
+## watch src/sass -> dist/css
+$ node-sass src/sass -wo dist/css
 ```
 
 # 4. SASS vs. SCSS
@@ -202,3 +230,7 @@ Sass의 문법에 대한 설명은 아래 포스트를 참조하기 바란다.
 * [Sass](http://sass-lang.com/)
 
 * [Sassmeister: sass to css converter](http://www.sassmeister.com/)
+
+* [node-sass](https://github.com/sass/node-sass)
+
+* [Libsass](https://github.com/sass/libsass)

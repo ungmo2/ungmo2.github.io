@@ -4,6 +4,7 @@ title: Sass - <strong>CSS Extensions</strong>
 subtitle: Nesting, import, extend, 조건과 반복, Mixin, Function
 categories: Sass
 section: Sass
+description: 
 ---
 
 * TOC
@@ -548,6 +549,8 @@ $gutter-width: 10px;
 # 6. Comment
 
 CSS는 멀티 라인 주석 /&#42; &#42;/만을 지원하지만 Sass는 /&#42; &#42;/와 // 모두 사용할 수 있다.
+
+한 줄 주석 //은 컴파일 후 CSS에서 사라지고, 멀티 라인 주석은 CSS에 나타난다.
 
 # Reference
 

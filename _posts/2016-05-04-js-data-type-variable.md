@@ -323,10 +323,10 @@ var 키워드를 사용하여 선언한 변수는 중복 선언이 가능하기 
 변수가 어떻게 생성되며 호이스팅은 어떻게 이루어지는지 좀더 자세히 살펴보자. 변수는 3단계에 걸쳐 생성된다. 자세한 내용은 [Execution Context](./js-execution-context)을 참조하기 바란다.
 
 선언 단계(Declaration phase)
-: 스코프(Variable Object)에 변수를 등록한다.
+: 변수 객체(Variable Object)에 변수를 등록한다. 이 변수 객체는 스코프가 참조하는 대상이 된다.
 
 초기화 단계(Initialization phase)
-: 스코프에 있는 변수를 메모리에 할당한다. 이 단계에서 변수는 undefined로 초기화된다.
+: 변수 객체(Variable Object)에 등록된 변수를 메모리에 할당한다. 이 단계에서 변수는 undefined로 초기화된다.
 
 할당 단계(Assignment phase)
 : undefined로 초기화된 변수에 실제값을 할당한다.

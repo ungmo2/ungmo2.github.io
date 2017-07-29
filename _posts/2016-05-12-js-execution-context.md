@@ -256,7 +256,20 @@ Variable Instantiation에서는 이하의 순서로 Variable Object에 프로퍼
 
 #### 3.1.2.3 변수 x의 선언 처리  
 
-변수 선언은 Variable Instantiation 실행 순서 3.과 같이 선언된 변수명( x )이 Variable Object의 프로퍼티로, undefined가 값으로 set된다. (아직 변수 x는 'xxx'로 초기화되지 않는다.)
+변수 선언은 Variable Instantiation 실행 순서 3.과 같이 선언된 변수명( x )이 Variable Object의 프로퍼티로, undefined가 값으로 set된다. 이것을 좀더 세분화 해보면 아래와 같다.
+
+선언 단계(Declaration phase)
+: 변수 객체(Variable Object)에 변수를 등록한다. 이 변수 객체는 스크프가 참조하는 대상이 된다.
+
+초기화 단계(Initialization phase)
+: 변수 객체(Variable Object)에 등록된 변수를 메모리에 할당한다. 이 단계에서 변수는 undefined로 초기화된다.
+
+할당 단계(Assignment phase)
+: undefined로 초기화된 변수에 실제값을 할당한다.
+
+이것은 var 키워드로 선언된 변수는 선언 단계와 초기화 단계가 한번에 이루어진다는 것을 의미한다. 즉,스코프에 변수가 등록되고 변수는 undefined로 초기화된다. 따라서 변수 선언문 이전에 변수에 접근하여도 Variable Object에 변수가 존재하기 때문에 에러가 발생하지 않는다. 다만 undefined를 반환한다. 이러한 현상을 변수 호이스팅(Variable Hoisting)이라한다.
+
+아직 변수 x는 'xxx'로 초기화되지 않았다. 이후 변수 할당문에 도달하면 비로서 값의 할당이 이루어진다.
 
 <img src="/img/ec_8.jpg">
 
@@ -270,7 +283,7 @@ Variable Instantiation에서는 이하의 순서로 Variable Object에 프로퍼
 
 ## 3.2. Global code의 실행
 
-코드의 실행은 지금부터 시작된다. 위 예제를 보면 전역 변수 x에 문자열 'xxx' 대입과 함수 foo의 호출이 실행된다.
+코드의 실행은 지금부터 시작된다. 위 예제를 보면 전역 변수 x에 문자열 'xxx' 할당과 함수 foo의 호출이 실행된다.
 
 ### 3.2.1 변수 값의 할당
 
@@ -316,11 +329,11 @@ Function code의 경우, this의 value는 자신을 호출한 객체로부터 �
 
 ## 3.3 foo function code의 실행
 
-이제 함수 foo의 코드블럭 내 구문이 실행된다. 위 예제를 보면 변수 y에 문자열 'yyy'의 대입과 함수 bar가 실행된다.
+이제 함수 foo의 코드블럭 내 구문이 실행된다. 위 예제를 보면 변수 y에 문자열 'yyy'의 할당과 함수 bar가 실행된다.
 
-### 3.3.1 변수 값의 대입  
+### 3.3.1 변수 값의 할당  
 
-전역 변수 y에 문자열 'yyy'를 대입할 때, 현재 실행 컨텍스트의 Scope Chain이 참조하고 있는 Variable Object를 선두(0)부터 검색하여 변수명에 해당하는 프로퍼티가 발견되면 값('yyy')을 저장한다.
+전역 변수 y에 문자열 'yyy'를 할당할 때, 현재 실행 컨텍스트의 Scope Chain이 참조하고 있는 Variable Object를 선두(0)부터 검색하여 변수명에 해당하는 프로퍼티가 발견되면 값('yyy')을 저장한다.
 
 <img src="/img/ec_17.jpg">
 
@@ -356,7 +369,7 @@ Function code의 경우, this의 value는 자신을 호출한 객체로부터 �
 
 ## 3.4. bar function code의 실행
 
-이제 함수 bar의 코드블럭 내 구문이 실행된다. Sample code를 보면 변수 z에 문자열 'zzz'의 대입된다.
+이제 함수 bar의 코드블럭 내 구문이 실행된다. Sample code를 보면 변수 z에 문자열 'zzz'의 할당된다.
 
 <img src="/img/ec_23.jpg">
 

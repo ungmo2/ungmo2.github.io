@@ -100,15 +100,17 @@ let bar;
 변수가 어떻게 생성되며 호이스팅은 어떻게 이루어지는지 좀더 자세히 살펴보자. 변수는 3단계에 걸쳐 생성된다. 자세한 내용은 [Execution Context](./js-execution-context)을 참조하기 바란다.
 
 선언 단계(Declaration phase)
-: 스코프(Variable Object)에 변수를 등록한다.
+: 변수 객체(Variable Object)에 변수를 등록한다. 이 변수 객체는 스코프가 참조하는 대상이 된다.
 
 초기화 단계(Initialization phase)
-: 스코프에 있는 변수를 메모리에 할당한다. 이 단계에서 변수는 undefined로 초기화된다.
+: 변수 객체(Variable Object)에 등록된 변수를 메모리에 할당한다. 이 단계에서 변수는 undefined로 초기화된다.
 
 할당 단계(Assignment phase)
 : undefined로 초기화된 변수에 실제값을 할당한다.
 
-var 키워드로 선언된 변수는 선언 단계와 초기화 단계가 한번에 이루어진다. 즉, 스코프에 변수가 등록되고 변수는 undefined로 초기화된다. 따라서 변수 선언문 이전에 변수에 접근하여도 에러가 발생하지 않는다. 다만 undefined를 반환한다. 이후 변수 할당문에 도달하면 비로서 값의 할당이 이루어진다. 
+이것은 var 키워드로 선언된 변수는 선언 단계와 초기화 단계가 한번에 이루어진다는 것을 의미한다. 즉,스코프에 변수가 등록되고 변수는 undefined로 초기화된다. 따라서 변수 선언문 이전에 변수에 접근하여도 Variable Object에 변수가 존재하기 때문에 에러가 발생하지 않는다. 다만 undefined를 반환한다. 이러한 현상을 변수 호이스팅(Variable Hoisting)이라한다.
+
+이후 변수 할당문에 도달하면 비로서 값의 할당이 이루어진다. 
 
 ![var lifecycle](./img/var-lifecycle.png)
 {: .w-450}

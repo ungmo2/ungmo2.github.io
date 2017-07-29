@@ -160,9 +160,8 @@ for문은 특정 조건이 거짓으로 판별될 때까지 반복한다. 가장
 
 ```
 for ([초기문]; [조건문]; [증감문]) {
-  구문
+  구문;
 }
-  
 ```
 
 아래의 for문은 변수 i가 0으로 초기화된 상태에서 i가 3보다 작아질 때까지 코드블럭을 반복 실행한다.
@@ -178,6 +177,54 @@ for (var i = 0; i < 3; i++) {
 
 for문의 실행 순서
 {: .desc-img}
+
+다음은 위 예제를 역으로 반복하는 for문의 예이다.
+
+```javascript
+for (var i = 2; i >= 0; i--) {
+  console.log(i);
+}
+```
+
+다음은 배열을 순회하는 for문의 예이다.
+
+```javascript
+var array = ['one', 'two', 'three', 'four'];
+
+for (var i = 0; i < array.length; i++) {
+  // console.log(array[i]);
+  console.log('[' + i + '] = ' + array[i]);
+}
+
+// for-in
+for (var index in array) {
+  console.log('[' + index + '] = ' + array[index]);
+}
+
+// foreach
+array.forEach(function (element, index, arr) {
+  console.log('[' + index + '] = ' + element);
+});
+
+// for-of (ES6)
+for (const element of array) {
+  console.log(element);
+}
+
+for (const [index, value] of array.entries()) {
+  console.log('[' + index + '] = ' + value);
+}
+```
+
+다음은 객체를 순회하는 for문의 예이다.
+
+```javascript
+var array = ['one', 'two', 'three', 'four'];
+
+for (var i = 0; i < array.length; i++) {
+  console.log(array[i]);
+}
+```
 
 for문의 모든 식은 선택 사항이며 반드시 사용할 필요는 없다. 어떤 식도 선언하지 않으면 무한루프가 된다.
 
@@ -234,7 +281,7 @@ while (true) {
 
 ## 3.3 do while문
 
-While문과 유사하나 코드블록은 조건문을 확인하기 전에 무조건 1회 실행된다. 그후 조건문을 확인하여 실행 여부를 판별한다.
+while문과 유사하나 코드블록은 조건문을 확인하기 전에 무조건 1회 실행된다. 그후 조건문을 확인하여 실행 여부를 판별한다.
 
 ```javascript
 var i = 0;

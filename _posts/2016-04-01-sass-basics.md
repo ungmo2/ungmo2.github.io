@@ -76,7 +76,7 @@ libsass  	3.5.0.beta.2	(Sass Compiler)	[C/C++]
 명령 프롬프트를 실행하고 아래 명령어를 실행한다.
 
 ```bash
-gem install sass
+> gem install sass
 ```
 
 ### 2.2.2 Mac
@@ -103,7 +103,7 @@ GUI 환경에서 컴파일 기능 제공하는 App은 아래와 같다. App에 �
 
 # 3. Command
 
-node-sass를 사용하는 것을 기준으로 한다.
+<strong>node-sass</strong>를 기준으로 설명한다.
 
 ## 3.1 version
 
@@ -184,6 +184,7 @@ $ node-sass --watch src/sass/foo.scss --output dist/css
 
 ```bash
 $ cd my-project
+
 ## watch src/sass -> dist/css
 $ node-sass --watch src/sass --output dist/css
 ```

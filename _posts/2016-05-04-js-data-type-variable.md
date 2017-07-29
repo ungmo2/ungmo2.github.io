@@ -16,7 +16,7 @@ description: 자료형(Data Type)은 프로그래밍 언어에서 객체, 정수
 
 ![memory_address](./img/memory_address.png)
 
-변수 값 할당의 구조
+변수 선언과 할당의 구조
 {: .desc-img}
 
 변수(memory address에 접근하기 위한 식별자)를 통해 메모리에 값을 저장하기 위해서는 우선 필요한 저장 단위(byte)를 알아야한다. 이는 값의 종류에 따라 값을 저장하기 위해 확보해야할 메모리의 크기가 다르기 때문이다. 이때 값의 종류 즉 데이터의 종류를 자료형(Data Type)이라 한다.

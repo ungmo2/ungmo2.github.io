@@ -4,6 +4,7 @@ title: Sass - <strong>SassScript</strong>
 subtitle: CSS를 프로그래밍 언어와 같이 작성할 수 있게 확장한 SassScript
 categories: Sass
 section: Sass
+description: SassScript는 CSS에서는 불가능한 연산, 변수, 함수 등의 확장 기능을 의미한다.
 ---
 
 * TOC
@@ -42,20 +43,23 @@ map
  	e.g. (key1: value1, key2: value2)
 
 ```scss
+// map
 $foundation-palette: (
   primary: #E44347,
   mars: #D7525C,
   saturn: #E4B884,
-  neptune: #5147D7,
-)
+  neptune: #5147D7
+);
 
 .mars {
-  color: map-get($foundation-palette, mars);
+  color: map-get($foundation-palette, mars); 
 }
+
+// => .mars { color: #D7525C; }
 ```
 
 
-Data type은 [Built-in function unit](./sass-built-in-function#data-unit-)으로 취득할 수 있다.
+Data type은 [Built-in function unit](./sass-built-in-function#32-data-unit-취득)으로 취득할 수 있다.
 
 # 2. 변수
 
@@ -80,6 +84,20 @@ footer {
   width: $width;
   margin: 0 auto;
 }
+```
+
+```css
+header {
+  width: 960px;
+  margin: 0 auto; }
+
+#main {
+  width: 960px;
+  margin: 20px auto; }
+
+footer {
+  width: 960px;
+  margin: 0 auto; }
 ```
 
 # 3. 변수의 Scope
@@ -122,7 +140,7 @@ footer {
 
 위 코드를 컴파일하면 Undefined variable: "$color"라는 에러가 발생한다. 이는 &#35;main에서 선언한 $color는 &#35;main 내에서만 유효한 지역변수이기 때문이다.
 
-코드블럭 내에서 선언한 변수를 전역변수화하는 방법은 아래와 같다.
+코드블럭 내에서 선언한 지역변수를 전역변수화하는 방법은 아래와 같다.
 
 ```scss
 #main {
@@ -161,6 +179,8 @@ $width: 100px;
 
 변수 $width의 값 100px에 10 또는 10em과 같이 다른 단위의 값을 연산하여도 에러없이 연산이 수행된다. 이때 연산자의 왼쪽 값을 기준으로 단위가 설정된다.
 
+$width에 10em을 더하면 어떻게 될까? 
+
 ```scss
 $width: 100px;
 
@@ -169,7 +189,7 @@ $width: 100px;
 }
 ```
 
-$width에 10em을 더하면 어떻게 될까? 컴파일 결과 Incompatible units: 'em' and 'px'.이라는 에러를 출력한다.
+컴파일 결과 Incompatible units: 'em' and 'px'.이라는 에러를 출력한다.
 
 Sass 연산은 대상을 변환하여 연산할 수 없는 경우, 에러를 출력한다.
 
@@ -183,7 +203,7 @@ Sass 연산은 대상을 변환하여 연산할 수 없는 경우, 에러를 출
 }
 ```
 
-CSS3의 calc 함수를 사용하면 이런 문제를 해결할 수 있다.
+CSS3의 calc 함수(IE9 이상 사용가능)를 사용하면 이런 문제를 해결할 수 있다.
 
 ```scss
 #foo {
@@ -195,7 +215,9 @@ CSS3의 calc 함수를 사용하면 이런 문제를 해결할 수 있다.
 
 ```css
 p {
-  /*font: font-style font-variant font-weight font-size/line-height font-family*/
+  /*
+    font: font-style font-variant font-weight font-size/line-height font-family
+  */
   font: italic bold 12px/30px Georgia, serif;
 }
 ```
@@ -212,22 +234,23 @@ CSS에서의 `/`는 나눗셈의 의미가 아니라 값을 분리하는 의미�
 p {
   // font와 border-radius의 '/'는 CSS문법에 맞는 표현이므로 연산되지 않는다.
   font: italic bold 12px/30px Georgia, serif;
-  border-radius: 10px 20px/20px;
+  // 타원형 둥근 모서리
+  border-radius: 10px 20px / 20px;
 
   $width: 1000px;
-  width: $width/2;            // 변수에 대해 사용 →　width: 500px;
-  height: (500px/2);          // 괄호 내에서 사용 →　height: 250px;
-  margin-left: 5px + 8px/2px; // 다른 연산의 일부로서 사용 →　margin-left: 9px;
+  width: $width / 2;            // 변수에 대해 사용 →　width: 500px;
+  height: (500px / 2);          // 괄호 내에서 사용 →　height: 250px;
+  margin-left: 5px + 8px / 2px; // 다른 연산의 일부로서 사용 →　margin-left: 9px;
 }
 ```
 
-변수를 CSS의 /와 함께 사용하고자 하는 경우 `#{}`를 사용한다.
+변수를 CSS의 /와 함께 사용하고자 하는 경우 `#{}`(Interpolation)를 사용한다.
 
 ```scss
 p {
   $font-size: 12px;
   $line-height: 30px;
-  font: #{$font-size}/#{$line-height};  // 12px/30px
+  font: #{$font-size} / #{$line-height};  // 12px/30px
 }
 ```
 
@@ -241,7 +264,7 @@ p {
   // R: 01 + 04 = 05
   // G: 02 + 05 = 07
   // B: 03 + 06 = 09
-  // #050709
+  // => #050709
 }
 
 p {
@@ -249,7 +272,7 @@ p {
   // R: 01 * 2 = 02
   // G: 02 * 2 = 04
   // B: x03 * 2 = 06
-  // #020406
+  // => #020406
 }
 
 p {
@@ -270,10 +293,10 @@ $translucent-red: rgba(255, 0, 0, 0.5);
 
 p {
   color: opacify($translucent-red, 0.3);
-  // color: rgba(255, 0, 0, 0.8);
+  // => color: rgba(255, 0, 0, 0.8);
 
   background-color: transparentize($translucent-red, 0.25);
-  // background-color: rgba(255, 0, 0, 0.25);
+  // => background-color: rgba(255, 0, 0, 0.25);
 }
 ```
 
@@ -287,7 +310,7 @@ p {
 }
 ```
 
-따옴표가 있는 문자열과 없는 문자열을 함께 사용하는 경우, 왼쪽의 문자열을 기준으로 따옴표를 처리한다.
+따옴표가 있는 문자열과 없는 문자열을 함께 사용하는 경우, 좌항의 문자열을 기준으로 따옴표를 처리한다.
 
 ```scss
 p:before {
@@ -327,7 +350,8 @@ p.#{$name} {            // p.foo
 .someclass {
   $font-size: 12px;
   $line-height: 30px;
-  font: #{$font-size}/#{$line-height}; // 12px/30px
+  // 연산의 대상으로 취급되지 않도록
+  font: #{$font-size} / #{$line-height}; // 12px / 30px
 }
 ```
 
@@ -346,6 +370,10 @@ a {
   &:hover {
     text-decoration: none;
   }
+
+  span {
+    color: red;
+  }
 }
 ```
 
@@ -362,6 +390,10 @@ a.home {
 
 a:hover {
   text-decoration: none;
+}
+
+a span {
+  color: red;
 }
 ```
 
@@ -393,7 +425,9 @@ $new_content: "First time reference" !default;
 }
 ```
 
-이러한 특성은 [partial](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#partials)에 매우 유용하다.
+이러한 특성은 [partial](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#Partials__partials)에 매우 유용하다.
+
+2개의 font.scss와 main.scss 파일을 생성해 보자. main.scss은 내부에서 font.scss을 import한다.
 
 ```scss
 // font.scss
@@ -402,21 +436,29 @@ $line-height: 1.5 !default;
 $font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif !default;
 
 body {
-  font: $font-size/#{$line-height} $font-family;
+  font: #{$font-size}/$line-height $font-family;
 }
 ```
 
 ```scss
+// main.scss
 $font-family: "Lucida Grande", "Lucida Sans Unicode", sans-serif;
 
 @import "font";
 ```
 
-위 코드의 컴파일 결과는 아래와 같다.
+위 코드의 컴파일 결과는 아래와 같다. !default는 변수에 값이 할당되지 않았을 때 사용할 기본값을 지정할 때 사용한다. 위 예제의 경우, main.scss에서 변수에 값을 할당하였기 때문에 !default와 같이 사용한 변수값은 무력화된다.
 
 ```css
 body {
   font: 16px/1.5 "Lucida Grande", "Lucida Sans Unicode", sans-serif; }
+```
+
+만일 font.scss의 $font-family 변수에 !default 설정이 없었다면 후위에 선언된 font.scss의 $font-family 변수값이 적용된어 아래와 같은 결과가 생성되었을 것이다
+
+```css
+body {
+  font: 16px/1.5 "Helvetica Neue", "Helvetica", "Arial", sans-serif; }
 ```
 
 # Reference
@@ -432,3 +474,5 @@ body {
 * [Using pure Sass functions to make reusable logic more useful](http://thesassway.com/advanced/pure-sass-functions)
 
 * [The Sass Ampersand](https://css-tricks.com/the-sass-ampersand/)
+
+* [partial](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#Partials__partials)

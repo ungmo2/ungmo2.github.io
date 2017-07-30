@@ -126,15 +126,17 @@ x <= 0    // false
 x <= 5    // true
 x <= 8    // true
 
-//삼항연산자(ternary operator)
+// 삼항연산자(ternary operator)
+// 조건 ? 조건이 ture일때 반환할 값 : 조건이 false일때 반환할 값
 var condition = true;
 var result = condition ? 'true' : 'false';
 console.log(result); // 'true'
 
+// id의 길이가 INPUT_ID_MIN_LEN보다 작으면 에러 메시지를 출력한다.
 var id = 'lee';
 var INPUT_ID_MIN_LEN = 5;
-var message = id.length > INPUT_ID_MIN_LEN ? '' : '아이디는 5자리 이상으로 입력하세요';
-console.log(message); // '아이디는 5자리 이상으로 입력하세요'
+var errMsg = id.length < INPUT_ID_MIN_LEN ? '아이디는 5자리 이상으로 입력하세요' : '성공';
+console.log(errMsg); // '아이디는 5자리 이상으로 입력하세요'
 ```
 
 # 4. 논리 연산자 (Logical Operators)

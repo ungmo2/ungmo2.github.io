@@ -54,14 +54,16 @@ class NumberQueue extends Queue {
     super.push(item);
   }
   pop(): number {
-    return this.pop();
+    return super.pop();
   }
 }
 
 const queue = new NumberQueue();
 queue.push(0);
-queue.push('1');     // 의도하지 않은 실수를 사전 검출 가능
-// queue.push(+'1'); // 실수를 사전 인지하고 수정할 수 있다
+// 의도하지 않은 실수를 사전 검출 가능
+// [ts] Argument of type '"1"' is not assignable to parameter of type 'number'.
+// queue.push('1');
+queue.push(+'1'); // 실수를 사전 인지하고 수정할 수 있다
 
 console.log(queue.pop().toPrecision(1)); // 0
 console.log(queue.pop().toPrecision(1)); // 1

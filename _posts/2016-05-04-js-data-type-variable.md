@@ -198,7 +198,7 @@ console.log(str); // String
 str += ' test';
 console.log(str); // String test
 
-str.substring(0, 3);
+str = str.substring(0, 3);
 console.log(str); // Str
 
 str = str.toUpperCase();
@@ -207,7 +207,7 @@ console.log(str); // STR
 
 ### 1.1.6 Symbol
 
-[Symbol](./es6-symbol)은 ES6에서 새롭게 추가된 7번째 타입이다. Symbol은 애플리케이션 전체에서 유일하며 변경 불가능한(immutable) 기본 자료형(primitive)이다. 주로 객체의 프로퍼티 키(property key)로 사용한다.
+[Symbol](./es6-symbol)은 ES6에서 새롭게 추가된 7번째 타입이다. Symbol은 애플리케이션 전체에서 유일하며 변경 불가능한(immutable) 기본 자료형(primitive)이다. 주로 객체의 프로퍼티 키(property key)로 사용한다. Symbol 값은 애플리케이션 전체에서 유일하기 때문에 Symbol 값을 키로 갖는 프로퍼티는 다른 어떠한 프로퍼티와도 충돌하지 않는다.
 
 ```javascript
 var key = Symbol('key');
@@ -289,6 +289,7 @@ console.log(typeof foo);  // object
 
 foo = 3;
 console.log(typeof foo);  // number
+
 foo = 3.14;
 console.log(typeof foo);  // number
 
@@ -355,3 +356,23 @@ Block-level scope
 : 코드 블럭 내에서 선언된 변수는 코드 블럭 내에서만 유효하며 코드 블럭 외부에서는 참조할 수 없다.
 
 따라서 코드블럭 내의 변수 foo는 전역변수이므로 전역에 선언된 변수 foo에 할당된 값을 재할당하기 때문에 ③의 결과는 456이 된다.
+
+# 5. var 키워드로 선언된 변수의 문제점
+
+ES5에서 변수를 선언할 수 있는 유일한 방법은 var 키워드를 사용하는 것이다. var 키워드로 선언된 변수는 아래와 같은 특징을 갖는다. 이는 다른 C-family 언어와는 차별되는 특징(설계상 오류)으로 주의를 기울이지 않으면 심각한 문제를 발생시킨다.
+
+1. [Function-level scope](./js-scope#3-function-scope)
+  - 전역 변수의 남발
+  - for loop 초기화식에서 사용한 변수를 for loop 외부 또는 전역에서 참조할 수 있다.
+2. var 키워드 생략 허용
+  - 의도하지 않은 변수의 전역화
+3. 중복 선언 허용
+  - 의도하지 않은 변수값 변경
+4. 변수 호이스팅
+  - 변수를 선언하기 전에 참조가 가능하다. 
+
+대부분의 문제는 전역 변수로 인해 발생한다. 전역 변수는 간단한 애플리케이션의 경우, 사용이 편리한 면이 있지만 불가피한 상황을 제외하고 사용을 억제해야 한다. 전역 변수는 범위(scope)가 넓어서 어디에서 어떻게 사용될 지 파악하기 힘들다. 이는 의도치 않은 변수의 변경이 발생할 수 있는 가능성이 증가한다. 또한 여러 함수와 상호 의존하는 등 side effect가 있을 수 있어서 복잡성이 증가한다.
+
+변수의 범위(scope)는 좁을수록 좋다.
+
+ES6는 이러한 var의 단점을 보완하기 위해 [let과 const 키워드](./es6-block-scope)를 도입하였다.

@@ -210,19 +210,9 @@ array.forEach(function (element, index, arr) {
 for (const element of array) {
   console.log(element);
 }
-
+// array.entries(): 배열의 key/value의 쌍을 반환하는 iterator를 반환
 for (const [index, value] of array.entries()) {
   console.log('[' + index + '] = ' + value);
-}
-```
-
-다음은 객체를 순회하는 for문의 예이다.
-
-```javascript
-var array = ['one', 'two', 'three', 'four'];
-
-for (var i = 0; i < array.length; i++) {
-  console.log(array[i]);
 }
 ```
 
@@ -293,7 +283,7 @@ do {
 
 ## 3.4 continue
 
-break문을 감싸는 반복문 하나를 탈출한다. continue문은 이후 구문의 실행을 스킵하고 반복문의 조건문으로 이동한다.
+break문은 반복문 하나를 탈출한다. continue문은 이후 구문의 실행을 스킵하고 반복문의 조건문으로 이동한다.
 
 ```javascript
 for (var i = 0; i < 5; i++) {

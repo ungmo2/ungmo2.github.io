@@ -127,36 +127,38 @@ x <= 5    // true
 x <= 8    // true
 
 //삼항연산자(ternary operator)
-var now = new Date();
-var greeting = 'Good' + ((now.getHours() > 17) ? ' evening.' : ' day.');
+var condition = true;
+var result = condition ? 'true' : 'false';
+console.log(result); // 'true'
+
+var id = 'lee';
+var INPUT_ID_MIN_LEN = 5;
+var message = id.length > INPUT_ID_MIN_LEN ? '' : '아이디는 5자리 이상으로 입력하세요';
+console.log(message); // '아이디는 5자리 이상으로 입력하세요'
 ```
 
 # 4. 논리 연산자 (Logical Operators)
 
+논리 연산자는 Boolean 값과 함께 사용하여 Boolean 값을 반환하는 것이 일반적이다. 사실 논리 연산자는 피연산자 중 하나를 반환한다.
+
 | Operator	  | Description
 | :---------: |:-------------:|
-| &&	        | and
 | &#124;&#124;| or
+| &&	        | and
 | !	          | not
 
 ```javascript
-// && (논리곱) 연산자
-var a1 =  true && true;     // t && t returns true
-var a2 =  true && false;    // t && f returns false
-var a3 = false && true;     // f && t returns false
-var a4 = false && (3 == 4); // f && f returns false
-var a5 = 'Cat' && 'Dog';    // t && t returns Dog
-var a6 = false && 'Cat';    // f && t returns false
-var a7 = 'Cat' && false;    // t && f returns false
-
 // || (논리 합) 연산자
 var o1 =  true || true;     // t || t returns true
 var o2 = false || true;     // f || t returns true
 var o3 =  true || false;    // t || f returns true
 var o4 = false || (3 == 4); // f || f returns false
-var o5 = 'Cat' || 'Dog';    // t || t returns Cat
-var o6 = false || 'Cat';    // f || t returns Cat
-var o7 = 'Cat' || false;    // t || f returns Cat
+
+// && (논리곱) 연산자
+var a1 =  true && true;     // t && t returns true
+var a2 =  true && false;    // t && f returns false
+var a3 = false && true;     // f && t returns false
+var a4 = false && (3 == 4); // f && f returns false
 
 // ! (논리 부정) 연산자
 var n1 = !true;  // false
@@ -164,7 +166,50 @@ var n2 = !false; // true
 var n3 = !'Cat'; // false
 ```
 
-# 5. 타입 연산자 (Type Operators)
+# 5. 단축 평가 (Short-Circuit Evaluation)
+
+논리연산자가 Boolean 값과 함께 사용되지 않을 경우, Boolean 값을 반환하지 않을 수 있다. 이는 논리 연산자가 피연산자 중 하나를 반환하기 때문이다. 논리연산자는 다음의 규칙을 따라서 "단축 평가"로 검사된다.
+
+| 평가식                 | 평가 결과        |
+| :-------------------: | :------------- |
+| true  &#124;&#124; anything     | true
+| false &#124;&#124; anything     | anything
+| true  && anything     | anything
+| false && anything     | false
+
+Boolean값으로 평가하기 위해 참조하여야 할 곳까지 진행하여 평가가 중지하게된 계기가 된 값을 리턴한다.
+
+```javascript
+var foo = 'Cat' && 'Dog'  // t && t returns 'Dog'
+```
+
+이 경우, 'Cat' 은 `true`로 평가되므로 연산 결과를 알기 위해서는 'Dog'까지 평가해 보아야 한다. 평가가 중지하게된 계기가 된 값('Dog')을 리턴한다.
+
+```javascript
+var foo = false && 'Cat'  // f && t returns false
+```
+
+이 경우, `false`가 처음 등장했으므로 평가는 중지되고 `false`가 리턴된다
+
+```javascript
+var foo = 'Cat' || 'Dog'  // t || t returns 'Cat'
+```
+
+이 경우, 'Cat' 은 `true`로 평가 되므로 평가는 중지되고 `Cat`이 리턴된다.
+
+```javascript
+// || (논리 합) 연산자
+var o1 = 'Cat' || 'Dog';    // t || t returns Cat
+var o2 = false || 'Cat';    // f || t returns Cat
+var o3 = 'Cat' || false;    // t || f returns Cat 
+
+// && (논리곱) 연산자
+var a1 = 'Cat' && 'Dog';    // t && t returns Dog
+var a2 = false && 'Cat';    // f && t returns false
+var a3 = 'Cat' && false;    // t && f returns false 
+```
+
+# 6. 타입 연산자 (Type Operators)
 
 | Operator	  | Description
 | :---------: |:-------------- |
@@ -189,7 +234,7 @@ var me = new Person()
 me instanceof Person // true
 ```
 
-# 6. !!
+# 7. !!
 
 `!!`의 역할은 피연산자를 불린값으로 변환하는 것이다.
 
@@ -209,44 +254,9 @@ console.log(!![]);        // true
 객체의 존재 확인 후 그 결과를 반환해야 하는 경우, !!를 사용하면 강제로 피연산자를 boolean으로 형 변환 할 수 있다.
 
 ```javascript
-function checkExist(obj) {
-  return !!obj;
-}
-
 var obj;
-console.log(checkExist(obj)); // false
+console.log(!!obj); // false
 
 obj = {};
-console.log(checkExist(obj)); // true
+console.log(!!obj); // true
 ```
-
-# 7. 단축 평가 (Short-Circuit Evaluation)
-
-논리 연산자가 왼쪽에서 오른쪽으로 평가될때, 논리연산자는 다음의 규칙을 따라서 "단축 평가"로 검사된다.
-
-| 평가식                 | 평가 결과        |
-| :-------------------: | :------------- |
-| true  &#124;&#124; anything     | true
-| false &#124;&#124; anything     | anything
-| true  && anything     | anything
-| false && anything     | false
-
-Boolean값으로 평가하기 위해 참조하여야 할 곳까지 진행하여 평가가 중지하게된 계기가 된 값을 리턴한다.
-
-```javascript
-var foo = 'Cat' && 'Dog'  // t && t returns 'Dog'
-```
-
-이 경우, 'Cat' 은 `true`로 평가되므로 'Dog'까지 평가해 보아야 한다. 평가가 중지하게된 계기가 된 값('Dog')을 리턴한다.
-
-```javascript
-var foo = false && 'Cat'  // f && t returns false
-```
-
-이 경우, `false`가 처음 등장했으므로 평가는 중지되고 `false`가 리턴된다
-
-```javascript
-var foo = 'Cat' || 'Dog'  // t || t returns 'Cat'
-```
-
-이 경우, 'Cat' 은 `true`로 평가 되므로 평가는 중지되고 `Cat`이 리턴된다.

@@ -54,7 +54,7 @@ class NumberQueue extends Queue {
     super.push(item);
   }
   pop(): number {
-    return this.pop();
+    return super.shift(); // or this.data.shift();
   }
 }
 

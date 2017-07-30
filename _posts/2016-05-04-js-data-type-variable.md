@@ -272,7 +272,7 @@ console.log(x); // undefined
 console.log(y); // ReferenceError
 ```
 
-# 3. 변수의 중복 선언
+## 2.1 변수의 중복 선언
 
 변수는 중복 선언이 가능하다.
 
@@ -287,7 +287,7 @@ console.log(x); // 100
 
 변수의 중복 선언은 문법적으로 허용되지만 의도하지 않게 변수의 값을 변경할 수 있으므로 사용하지 않는 것이 좋다.
 
-# 4. 변수 선언 시 var 키워드 생략 허용
+## 2.2 변수 선언 시 var 키워드 생략 허용
 
 변수 선언 시 var 키워드를 생략할 수 있다.
 
@@ -298,7 +298,7 @@ console.log(x); // 1
 
 var 키워드의 생략은 문법적으로 허용되지만 의도하지 않게 변수를 전역화할 수 있으므로 사용하지 않는 것이 좋다.
 
-# 5. 동적 타이핑 (Dynamic Typing)
+## 2.3 동적 타이핑 (Dynamic Typing)
 
 JavaScript는 동적 타입(dynamic typed) 언어 혹은 느슨한 타입(loosely typed) 언어이다. 이것은 변수의 Type annotation이 필요없이 값이 할당되는 과정에서 자동으로 자료형이 결정(Type Inference)될 것이라는 뜻이다. 따라서 같은 변수에 여러 data type의 값을 대입할 수 있다. 이를 동적 타이핑(Dynamic Typing)이라 한다.
 
@@ -326,7 +326,7 @@ foo = true;
 console.log(typeof foo);  // boolean
 ```
 
-# 6. 변수 호이스팅(Variable Hoisting)
+## 2.5 변수 호이스팅(Variable Hoisting)
 
 아래의 예제를 살펴보자.
 
@@ -383,7 +383,7 @@ Block-level scope
 
 따라서 코드블럭 내의 변수 foo는 전역변수이므로 전역에 선언된 변수 foo에 할당된 값을 재할당하기 때문에 ③의 결과는 456이 된다.
 
-# 7. var 키워드로 선언된 변수의 문제점
+## 2.6 var 키워드로 선언된 변수의 문제점
 
 ES5에서 변수를 선언할 수 있는 유일한 방법은 var 키워드를 사용하는 것이다. var 키워드로 선언된 변수는 아래와 같은 특징을 갖는다. 이는 다른 C-family 언어와는 차별되는 특징(설계상 오류)으로 주의를 기울이지 않으면 심각한 문제를 발생시킨다.
 

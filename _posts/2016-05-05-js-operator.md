@@ -179,25 +179,25 @@ var n3 = !'Cat'; // false
 | true  && anything     | anything
 | false && anything     | false
 
-Boolean값으로 평가하기 위해 참조하여야 할 곳까지 진행하여 평가가 중지하게된 계기가 된 값을 리턴한다.
+Boolean값으로 평가하기 위해 참조하여야 할 곳까지 진행한 후, 평가를 중지하게된 계기가 된 값을 반환한다.
 
 ```javascript
 var foo = 'Cat' && 'Dog'  // t && t returns 'Dog'
 ```
 
-이 경우, 'Cat' 은 `true`로 평가되므로 연산 결과를 알기 위해서는 'Dog'까지 평가해 보아야 한다. 평가가 중지하게된 계기가 된 값('Dog')을 리턴한다.
+이 경우, 'Cat' 은 `true`로 평가되므로 연산 결과를 알기 위해서는 'Dog'까지 평가해 보아야 한다. 따라서 평가를 중지하게된 계기가 된 값('Dog')을 반환한다.
 
 ```javascript
 var foo = false && 'Cat'  // f && t returns false
 ```
 
-이 경우, `false`가 처음 등장했으므로 평가는 중지되고 `false`가 리턴된다
+이 경우, `false`가 처음 등장하였다. 더 이상 진행하지 않아도 결과를 반환할 수 있으므로 평가는 중지되고 평가를 중지하게된 계기가 된 값인 `false`가 반환된다
 
 ```javascript
 var foo = 'Cat' || 'Dog'  // t || t returns 'Cat'
 ```
 
-이 경우, 'Cat' 은 `true`로 평가 되므로 평가는 중지되고 `Cat`이 리턴된다.
+이 경우, 'Cat'은 `true`로 평가되므로 평가는 중지되고 `Cat`이 반환된다.
 
 ```javascript
 // || (논리 합) 연산자
@@ -227,13 +227,12 @@ typeof [1, 2, 3, 4]           // returns object
 typeof {name:'John', age:34}  // returns object
 typeof new Date()             // returns object
 typeof function () {}         // returns function
-typeof myCar                  // returns undefined (if myCar is not declared)
-typeof null                   // returns object
-
+typeof myCar                  // returns undefined (설계적 결함)
+typeof null                   // returns object (설계적 결함)
 
 function Person(){}
 var me = new Person()
-me instanceof Person // true
+me instanceof Person // returns true
 ```
 
 # 7. !!

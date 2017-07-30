@@ -51,7 +51,7 @@ function square(number) {
 
 > 1. 무명의 리터럴로 표현이 가능하다.
 > 2. 변수나 자료 구조(객체, 배열...)에 저장할 수 있다.
-> 3. 함수의 파라미터로 전달 할 수 있다.
+> 3. 함수의 파라미터로 전달할 수 있다.
 > 4. 반환값(return value)으로 사용할 수 있다.
 
 함수의 일급객체 특성을 이용하여 함수 리터럴 방식으로 함수를 정의하고 변수에 할당할 수 있는데 이러한 방식을 함수표현식(Function expression)이라 한다.
@@ -155,7 +155,7 @@ function square(number) {
 
 <!--함수 호이스팅이 발생하는 원인은 자바스크립트 변수 생성과 초기화가 분리되어 진행되기 때문이다. 이는 [Execution Context](./js-execution-context#variable-instantiation-)에서 자세히 설명한다.-->
 
-함수선언식으로 정의된 함수는 자바스크립트 엔진이 스크립트가 로딩되는 시점에 바로 초기화하고 이를 VO(variable object)에 저장한다. 즉, 함수 선언, 초기화, 할당이 한번에 이루어진다. 그렇기 때문에 함수 선언의 위치와는 상관없이 소스 내 어느 곳에서든지 호출이 가능하다.
+함수선언식으로 정의된 함수는 자바스크립트 엔진이 스크립트가 로딩되는 시점에 바로 초기화하고 이를 VO(variable object)에 저장한다. 즉, **함수 선언, 초기화, 할당이 한번에 이루어진다.** 그렇기 때문에 함수 선언의 위치와는 상관없이 소스 내 어느 곳에서든지 호출이 가능하다.
 
 다음은 함수표현식으로 함수를 정의한 경우이다.
 
@@ -169,24 +169,24 @@ var square = function(number) {
 
 함수선언식의 경우와는 달리 TypeError가 발생하였다. **함수표현식의 경우 함수 호이스팅이 아니라 [변수 호이스팅](./js-data-type-variable#25-변수-호이스팅variable-hoisting)이 발생한다.**
 
-변수 호이스팅은 변수 생성과 할당이 분리되어 진행된다. 즉 변수 선언만 호이스팅되고 값의 초기화는 변수 선언문에서 이루어 진다. 호이스팅된 변수에는 undefined가 우선 할당되고 실제값의 할당은 할당문에서 이루어진다.
+변수 호이스팅은 변수 생성 및 초기화와 할당이 분리되어 진행된다. 호이스팅된 변수는 undefined로 초기화 되고 실제값의 할당은 할당문에서 이루어진다.
 {: .info}
 
-함수표현식은 함수선언식과는 달리 스크립트 로딩 시점에 VO에 함수를 저장하지 않고 runtime에 해석되고 실행되므로 이 두가지를 구분하는 것은 중요하다.
+함수표현식은 함수선언식과는 달리 스크립트 로딩 시점에 변수 객체(VO)에 함수를 할당하지 않고 runtime에 해석되고 실행되므로 이 두가지를 구분하는 것은 중요하다.
 
 [JavaScript : The Good Parts](http://www.yes24.com/24/goods/3071412?scode=032&OzSrank=1)의 저자이며 자바스크립트의 권위자인 더글러스 크락포드(Douglas Crockford)는 이와 같은 문제 때문에 함수표현식만을 사용할 것을 권고하고 있다. 함수 호이스팅이 함수 호출 전 반드시 함수를 선언하여야 한다는 규칙을 무시하므로 코드의 구조를 엉성하게 만들 수 있다고 지적한다.
 
-또한 함수선언식으로 함수를 정의하면 사용하기에 쉽지만 대규모 애플리케이션을 개발하는 경우 인터프리터가 너무 많은 코드를 VO에 저장하므로 애플리케이션의 응답속도는 현저히 떨어질 수 있으므로 주의해야 할 필요가 있다.
+또한 함수선언식으로 함수를 정의하면 사용하기에 쉽지만 대규모 애플리케이션을 개발하는 경우 인터프리터가 너무 많은 코드를 변수 객체(VO)에 저장하므로 애플리케이션의 응답속도는 현저히 떨어질 수 있으므로 주의해야 할 필요가 있다.
 
 # 3. First-class object (일급 객체)
 
-일급 객체(first-class object)란 생성, 대입, 연산, 인자 또는 반환값으로서의 전달 등 프로그래밍언어의 기본적 조작을 제한없이 사용할 수 있는 대상을 의미한다.
+일급 객체(first-class object)란 생성, 대입, 연산, 인자 또는 반환값으로서의 전달 등 프로그래밍 언어의 기본적 조작을 제한없이 사용할 수 있는 대상을 의미한다.
 
 다음 조건을 만족하면 일급 객체로 간주한다.
 
 > 1. 무명의 리터럴로 표현이 가능하다.
 > 2. 변수나 자료 구조(객체, 배열...)에 저장할 수 있다.
-> 3. 함수의 파라미터로 전달 할 수 있다.
+> 3. 함수의 파라미터로 전달할 수 있다.
 > 4. 반환값(return value)으로 사용할 수 있다.
 
 ```javascript
@@ -206,23 +206,23 @@ var obj = {
 };
 
 // 2. 함수의 파라미터로 전달 할 수 있다.
-function cal(func, num){
+function calc(func, num){
   return func(num);
 }
 
-console.log(cal(increase, 1));
-console.log(cal(decrease, 1));
+console.log(calc(increase, 1));
+console.log(calc(decrease, 1));
 
 // 3. 반환값(return value)으로 사용할 수 있다.
-function cal(mode){
+function calc(mode){
   var funcs = {
     plus:  function(left, right){ return left + right; },
     minus: function(left, right){ return left - right; }
   };
   return funcs[mode];
 }
-console.log(cal('plus')(2,1));
-console.log(cal('minus')(2,1));
+console.log(calc('plus')(2,1));
+console.log(calc('minus')(2,1));
 ```
 
 Javascript의 함수는 위의 조건을 모두 만족하므로 **Javascript의 함수는 일급객체이다.** 따라서 Javascript의 함수는 흡사 변수와 같이 사용할 수 있으며 코드의 어디에서든지 정의할 수 있다.  
@@ -235,7 +235,15 @@ Javascript의 함수는 위의 조건을 모두 만족하므로 **Javascript의 
 
 ## 4.1 매개변수(parameter, 인자) vs 인수(argument)
 
-매개변수는 함수 내에서 변수와 동일하게 메모리 공간을 확보하며 전달되어진 인수는 매개변수에 대입된다. 즉, 일반적인 변수는 `undefined`로 초기화되는 것과 달리 매개변수는 인수로 초기화된다.
+매개변수는 함수 내에서 변수와 동일하게 메모리 공간을 확보하며 전달되어진 인수는 매개변수에 할당된다. 만약 인수가 전달되지 않으면 매개변수는 undefined로 초기화된다.
+
+```javascript
+var foo = function (p1, p2) {
+  console.log(p1, p2);
+};
+
+foo(1); // 1 undefined
+```
 
 ## 4.2 Call-by-value
 
@@ -295,17 +303,17 @@ function calculateArea(width, height) {
   var area = width * height;
   return area; // 단일 값의 반환
 }
-var wallOne = calculateArea(3, 5);
-var wallTwo = calculateArea(8, 5);
+console.log(calculateArea(3, 5)); // 15
+console.log(calculateArea(8, 5)); // 40
 
 function getSize(width, height, depth) {
   var area = width * height;
   var volume = width * height * depth;
-  var sizes = [area, volume];
-  return sizes; // 복수 값의 반환
+  return [area, volume]; // 복수 값의 반환
 }
-var areaOne = getSize(3, 2, 3)[0];
-var volumeOne = getSize(3, 2, 3)[1];
+
+console.log('area is ' + getSize(3, 2, 3)[0]);   // area is 6
+console.log('volume is ' + getSize(3, 2, 3)[1]); // volume is 18
 ```
 
 # 6. 함수 객체의 프로퍼티
@@ -363,7 +371,7 @@ console.log(multiply(1,2,3));// { '0': 1, '1': 2, '2': 3 }
 
 이러한 자바스크립트의 특성때문에 런타임 시에 호출된 함수의 인자 갯수를 확인하고 이에 따라 동작을 달리 정의할 필요가 있을 수 있다. 이때 유용하게 사용되는 것이 arguments 객체이다.
 
-즉 arguments 객체는 매개변수 갯수가 확정되지 않은 가변 인자 함수를 구현할 때 유용하게 사용된다.
+즉 arguments 객체는 매개변수 갯수가 확정되지 않은 **가변 인자 함수**를 구현할 때 유용하게 사용된다.
 
 ```javascript
 function sum() {

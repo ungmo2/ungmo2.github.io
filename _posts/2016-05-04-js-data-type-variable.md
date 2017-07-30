@@ -26,7 +26,8 @@ description: 자료형(Data Type)은 프로그래밍 언어에서 객체, 정수
 C나 Java같은 C-family 언어는 Static Typing(정적 타이핑) 언어로 변수 선언 시 변수에 저장할 값의 종류에 따라 사전에 자료형을 지정(Type annotation)하여야 한다. 다음은 C에서 정수형 변수를 선언하는 예이다.
 
 ```c
-int num; // 4byte 정수형
+// 4byte 정수형: -2,124,483,648 ~ 2,124,483,647
+int num;
 ```
 
 ![int num](./img/int_num.png)
@@ -64,7 +65,7 @@ JavaScript에는 어떠한 자료형이 있는지 그리고 변수는 어떻게 
 
 # 1. Data Type (자료형)
 
-자료형(Data Type)은 프로그래밍 언어에서 문자열, 숫자, 불린, 객체 등 여러 종류의 데이터를 식별하는 분류를 말한다. 모든 프로그래밍 언어의 학습은 자료형을 파악하는 것으로부터 시작된다.
+자료형(Data Type)은 프로그래밍 언어에서 문자열, 숫자, 불리언, 객체 등 여러 종류의 데이터를 식별하는 분류를 말한다. 모든 프로그래밍 언어의 학습은 자료형을 파악하는 것으로부터 시작된다.
 
 최신 ECMAScript 표준(ECMAScript 2015 (6th Edition, ECMA-262) / 2015.06)은 7개의 Data type을 정의한다
 
@@ -82,7 +83,7 @@ Javascript의 자료형은 크게 기본 자료형(primitive data type)과 객�
 
 ## 1.1 Primitive Data Type (기본자료형)
 
-기본자료형(Primitive data type)의 값은 [변경 불가능한 값(immutable value)](./js-immutability)이다. 또한 이들은 **[pass-by-value](./js-object#pass-by-value)** 이다.
+기본자료형(Primitive data type)의 값은 [변경 불가능한 값(immutable value)](./js-immutability)이다. 또한 이들은 **[pass-by-value](./js-object#5-pass-by-value)** 이다.
 
 ### 1.1.1 Boolean
 

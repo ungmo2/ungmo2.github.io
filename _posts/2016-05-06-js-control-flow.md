@@ -20,14 +20,14 @@ description: 제어문(Control flow statement)은 조건에 따른 명령 실행
 블록 구문은 일반적으로 함수, 객체리터럴, 흐름 제어 구문(control flow statement)에서 사용된다. (e.g. if, for, while)
 
 ```javascript
-// 함수
+// 함수 선언문
 function foo() {
   var x = 1, y = 2;
   console.log(x + y);
 }
 foo();
 
-// 객체리터럴
+// 객체리터럴에 의한 객체 선언
 var obj = {
   x: 1,
   y: 2
@@ -164,10 +164,10 @@ for ([초기문]; [조건문]; [증감문]) {
 }
 ```
 
-아래의 for문은 변수 i가 0으로 초기화된 상태에서 i가 3보다 작아질 때까지 코드블럭을 반복 실행한다.
+아래의 for문은 변수 i가 0으로 초기화된 상태에서 i가 2보다 작아질 때까지 코드블럭을 반복 실행한다.
 
 ```javascript
-for (var i = 0; i < 3; i++) {
+for (var i = 0; i < 2; i++) {
   console.log(i);
 }
 ```
@@ -181,7 +181,7 @@ for문의 실행 순서
 다음은 위 예제를 역으로 반복하는 for문의 예이다.
 
 ```javascript
-for (var i = 2; i >= 0; i--) {
+for (var i = 1; i >= 0; i--) {
   console.log(i);
 }
 ```
@@ -238,9 +238,9 @@ var n = 0;
 var x = 0;
 
 // n이 3보다 작을 때까지 계속 반복한다.
-while (n < 3) {
-  n++;    // n: 1 2 3
-  x += n; // x: 1 3 6
+while (n < 3) { // n: 0 1 2
+  n++;          // n: 1 2 3
+  x += n;       // x: 1 3 6
   console.log(x);
 }
 ```
@@ -380,19 +380,18 @@ console.log('Boolean: ' + Boolean(x));
 
 ```javascript
 var val = '123';
-console.log(typeof val + ':' + val); // string
+console.log(typeof val + ': ' + val); // string: 123
 
 // sting -> number
-val = +val; 
-// val *= 1;
+val *= 1;
 // val = Number(val);
 // val = parseInt(val);
-console.log(typeof val + ':' + val); // number
+console.log(typeof val + ': ' + val); // number: 123
 
 // number -> sting 
 val += '';
 // val = String(val);
-console.log(typeof val + ':' + val); // string
+console.log(typeof val + ': ' + val); // string: 123
 ```
 
 ## 4.4 Truthy & Falsy values
@@ -460,12 +459,12 @@ if (document.getElementById('header')) {
 아래 예는 위의 예와는 다른 의미이다. 객체의 존재는 truthy value로 취급지만 boolean 값 true와 같지는 않다.
 
 ```javascript
-if (document.getElementById('header') == true) // this condition evaluates to false
+if (document.getElementById('header') == true) // false
 ```
 
 아래 예와 같은 경우를 주의해야 한다.
 
 ```javascript
 var b = new Boolean(false);
-if (b) // this condition evaluates to true
+if (b) // true
 ```

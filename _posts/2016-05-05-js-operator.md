@@ -82,8 +82,8 @@ txt1 += 'nice day'; // What a very nice day
 
 | Operator	  | Description
 | :---------: |:-------------- |
-| ==	        | 동등비교 (loose equality)
-| ===	        | 일치비교 (strict equality)
+| ==	        | 동등비교 (loose equality) 형변환 후, 비교한다.
+| ===	        | 일치비교 (strict equality) 타입까지 일치하여야 true를 반환한다.
 | !=	        | 부등비교
 | !==	        | 불일치비교
 | >	          | 관계비교

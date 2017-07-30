@@ -100,7 +100,7 @@ console.log(typeof NaN);    // number
 
 ### 1.1.3 undefined
 
-변수에 값이 대입되지 않았음을 나타내는 값이다. 초기값은 [기본 자료형(primitive data type)](./js-data-type-variable#primitive-data-type-) `undefined`이다.
+변수에 값이 대입되지 않았음을 나타내는 값이다. 초기값은 [기본 자료형(primitive data type)](./js-data-type-variable#11-primitive-data-type-기본자료형) `undefined`이다.
 
 ```javascript
 var foo;

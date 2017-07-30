@@ -167,7 +167,7 @@ var square = function(number) {
 }
 ```
 
-함수선언식의 경우와는 달리 TypeError가 발생하였다. **함수표현식의 경우 함수 호이스팅이 아니라 [변수 호이스팅](./js-data-type-variable#4-변수-호이스팅variable-hoisting)이 발생한다.**
+함수선언식의 경우와는 달리 TypeError가 발생하였다. **함수표현식의 경우 함수 호이스팅이 아니라 [변수 호이스팅](./js-data-type-variable#25-변수-호이스팅variable-hoisting)이 발생한다.**
 
 변수 호이스팅은 변수 생성과 할당이 분리되어 진행된다. 즉 변수 선언만 호이스팅되고 값의 초기화는 변수 선언문에서 이루어 진다. 호이스팅된 변수에는 undefined가 우선 할당되고 실제값의 할당은 할당문에서 이루어진다.
 {: .info}

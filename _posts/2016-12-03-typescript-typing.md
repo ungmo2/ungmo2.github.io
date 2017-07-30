@@ -46,7 +46,7 @@ console.log(multiply2(10, 3));
 console.log(multiply1(true, 1)); // error TS2345: Argument of type 'true' is not assignable to parameter of type 'number'.
 ```
 
-TypeScript는 ES5, ES6의 Superset(상위확장)이므로 [JavaScript의 타입](./js-data-type-variable#data-type-)을 그대로 사용할 수 있다. JavaScript의 타입 이외에도 TypeScript 고유의 타입이 추가로 제공된다.
+TypeScript는 ES5, ES6의 Superset(상위확장)이므로 [JavaScript의 타입](./js-data-type-variable#1-data-type-자료형)을 그대로 사용할 수 있다. JavaScript의 타입 이외에도 TypeScript 고유의 타입이 추가로 제공된다.
 
 | Type        | JS | TS | Description      |
 |:------------|:--:|:--:|:-----------------|

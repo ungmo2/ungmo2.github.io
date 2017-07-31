@@ -391,6 +391,7 @@ console.log(typeof val + ': ' + val); // number: 123
 // number -> sting 
 val += '';
 // val = String(val);
+// val = val.toString();
 console.log(typeof val + ': ' + val); // string: 123
 ```
 

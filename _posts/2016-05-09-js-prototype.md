@@ -14,11 +14,11 @@ description: 자바스크립트의 모든 객체는 자신의 부모 역할을 �
 
 Java, C++과 같은 클래스 기반 객체지향 프로그래밍 언어와 달리 자바스크립트는 프로토타입 기반 객체지향 프로그래밍 언어이다. 따라서 자바스크립트의 동작 원리를 이해하기 위해서는 프로토타입의 개념을 잘 이해하고 있어야 한다.
 
-클래스 기반 객체지향 프로그래밍 언어는 객체 생성 이전에 클래스를 정의하고 이를 통해 객체(인스턴스)를 생성한다. 하지만 프로토타입 기반 객체지향 프로그래밍 언어는 클래스 없이(Claa-less)도 ([ECMAScript 6에서 클래스가 추가되었다](./js-es6#class)) 객체를 생성할 수 있다.
+클래스 기반 객체지향 프로그래밍 언어는 객체 생성 이전에 클래스를 정의하고 이를 통해 객체(인스턴스)를 생성한다. 하지만 프로토타입 기반 객체지향 프로그래밍 언어는 클래스 없이(Class-less)도 ([ECMAScript 6에서 클래스가 추가되었다](./es6-class)) 객체를 생성할 수 있다.
 
-- [자바스크립트의 객체 생성 방법](./js-object#section)
+- [자바스크립트의 객체 생성 방법](./js-object#2-객체-생성-방법)
 
-자바스크립트의 모든 객체는 자신의 부모 역할을 하는 객체와 연결되어 있다. 그리고 이것은 마치 객체 지향의 상속 개념과 같이 부모 객체의 프로퍼티 또는 메서드를 상속받아 사용할 수 있게 한다. 이러한 부모 객체를 <strong>Prototype(프로토타입) 객체</strong> 또는 줄여서 Prototype(프로토타입)이라 한다.
+자바스크립트의 모든 객체는 자신의 부모 역할을 담당하는 객체와 연결되어 있다. 그리고 이것은 마치 객체 지향의 상속 개념과 같이 부모 객체의 프로퍼티 또는 메서드를 상속받아 사용할 수 있게 한다. 이러한 부모 객체를 <strong>Prototype(프로토타입) 객체</strong> 또는 줄여서 Prototype(프로토타입)이라 한다.
 
 ```javascript
 var student = {
@@ -26,7 +26,9 @@ var student = {
   score: 90
 };
 
+// student에는 hasOwnProperty 메서드가 없지만 아래 구문은 동작한다.
 console.log(student.hasOwnProperty('name')); // true
+
 console.dir(student);
 ```
 
@@ -103,6 +105,7 @@ var student = {
   score: 90
 }
 
+// Object.prototype.hasOwnProperty()
 console.log(student.hasOwnProperty('name')); // true
 ```
 
@@ -121,15 +124,15 @@ console.log(Object.prototype.hasOwnProperty('hasOwnProperty')); // true
 
 ## 3.1 객체 리터럴 방식으로 생성된 객체의 프로토타입 체인
 
-[객체 생성 방법](./js-object#section)은 3가지가 있다.
+[객체 생성 방법](./http://poiemaweb.com/js-object#2-객체-생성-방법)은 3가지가 있다.
 
 - 객체 리터럴  
 - 생성자 함수  
 - Object() 생성자 함수  
 
-객체 리터럴 방식으로 생성된 객체는 결국 내장 함수(Built-in)인 Object() 생성자 함수로 객체를 생성하는 것을 단순화 시킨 것이다. 자바스크립트 엔진은 객체 리터럴로 객체를 생성하는 코드를 만나면 내부적으로 Object() 생성자 함수를 사용하여 객체를 생성한다는 뜻이다.
+객체 리터럴 방식으로 생성된 객체는 결국 내장 함수(Built-in)인 Object() 생성자 함수로 객체를 생성하는 것을 단순화시킨 것이다. 자바스크립트 엔진은 객체 리터럴로 객체를 생성하는 코드를 만나면 내부적으로 Object() 생성자 함수를 사용하여 객체를 생성한다.
 
-Object() 생성자 함수는 물론 함수이다. 따라서 함수 객체는 일반 객체와 달리 prototype 프로퍼티가 있다.
+Object() 생성자 함수는 물론 함수이다. 따라서 함수 객체인 Object() 생성자 함수는 일반 객체와 달리 prototype 프로퍼티가 있다.
 
 - prototype 프로퍼티는 함수 객체가 생성자로 사용될 때 이 함수를 통해 생성된 객체의 부모 역할을 하는 객체를 가리킨다.  
 - [[Prototype]] 프로퍼티는 객체의 입장에서 자신의 부모 역할을 하는 프로토타입 객체을 가리킨다.
@@ -139,7 +142,7 @@ var person = {
   name: 'Lee',
   gender: 'male',
   sayHello: function(){
-    alert('Hi! my name is ' + this.name);
+    console.log('Hi! my name is ' + this.name);
   }
 };
 
@@ -160,7 +163,7 @@ console.log(Function.prototype.__proto__ === Object.prototype); // ④ true
 
 생성자 함수로 객체를 생성하기 위해서는 우선 생성자 함수를 정의하여야 한다.
 
-[함수를 정의하는 방식](./js-function#section)은 3가지가 있다.
+[함수를 정의하는 방식](./js-function#1-함수-정의)은 3가지가 있다.
 
 - 함수선언식(Function declaration)
 - 함수표현식(Function expression)
@@ -195,7 +198,7 @@ function Person(name, gender) {
   this.name = name;
   this.gender = gender;
   this.sayHello = function(){
-    alert('Hi! my name is ' + this.name);
+    console.log('Hi! my name is ' + this.name);
   };
 }
 
@@ -204,11 +207,11 @@ var foo = new Person('Lee', 'male');
 console.dir(Person);
 console.dir(foo);
 
-console.log(foo.__proto__ === Person.prototype);                 // ① true
-console.log(Person.prototype.__proto__  === Object.prototype);   // ② true
-console.log(Person.prototype.constructor === Person);            // ③ true
-console.log(Person.__proto__ === Function.prototype);            // ④ true
-console.log(Function.prototype.__proto__  === Object.prototype); // ⑤ true
+console.log(foo.__proto__ === Person.prototype);                // ① true
+console.log(Person.prototype.__proto__ === Object.prototype);   // ② true
+console.log(Person.prototype.constructor === Person);           // ③ true
+console.log(Person.__proto__ === Function.prototype);           // ④ true
+console.log(Function.prototype.__proto__ === Object.prototype); // ⑤ true
 ```
 
 ![constructor function prototype chaining](/img/constructor_function_prototype_chaining.png)
@@ -222,21 +225,21 @@ foo 객체의 프로토타입 객체 Person.prototype 객체와 Person() 생성�
 
 # 4. 기본자료형(Primitive data type)의 확장
 
-자바스크립트에서 기본자료형(숫자, 문자열, 불린, null, undefined)을 제외한 모든것은 객체이다. 그런데 기본자료형인 문자열이 흡사 객체와 같이 동작한다.
+자바스크립트에서 기본자료형(숫자, 문자열, boolean, null, undefined)을 제외한 모든것은 객체이다. 그런데 아랭 예제를 살펴보면 기본자료형인 문자열이 흡사 객체와 같이 동작한다.
 
 ```javascript
 var str = 'test';
-console.log(typeof str);
-console.log(str.constructor === String);
+console.log(typeof str);                 // string
+console.log(str.constructor === String); // true
 console.dir(str);
 
 var strObj = new String('test');
-console.log(typeof strObj);
-console.log(strObj.constructor === String);
+console.log(typeof strObj);                 // object
+console.log(strObj.constructor === String); // true
 console.dir(strObj);
 
-console.log(str.toUpperCase());
-console.log(strObj.toUpperCase());
+console.log(str.toUpperCase());    // TEST
+console.log(strObj.toUpperCase()); // TEST
 ```
 
 기본자료형 문자열과 String() 생성자 함수로 생성한 문자열 객체의 타입은 분명이 다르다. 기본 자료형은 객체가 아니므로 프로퍼티나 메소드를 가질수 없다. 하지만 **기본자료형으로 프로퍼티나 메소드를 호출할 때 기본자료형과 연관된 객체로 일시적으로 변환되어 프로토타입 객체를 공유하게 된다.**
@@ -246,7 +249,7 @@ console.log(strObj.toUpperCase());
 ```javascript
 var str = 'test';
 
-str.myMethod = function() {
+str.myMethod = function () {
   console.log('str.myMethod');
 };
 
@@ -258,17 +261,18 @@ str.myMethod(); // Uncaught TypeError: str.myMethod is not a function
 ```javascript
 var str = 'test';
 
-String.prototype.myMethod = function() {
-  return 'String.prototype.myMethod';
-}
+String.prototype.myMethod = function () {
+  return 'myMethod';
+};
 
-console.log(str.myMethod());
+console.log(str.myMethod());      // myMethod
+console.log('string'.myMethod()); // myMethod
 console.dir(String.prototype);
 ```
 
 앞서 살펴본 바와 같이 모든 객체는 프로토타입 체인에 의해 Object.prototype 객체의 메서드를 사용할 수 있었다. Object.prototype 객체는 프로토타입 체인의 종점으로 모든 객체가 사용할 수 있는 메서드를 갖는다.
 
-이후 살펴보게 될 [Built-in object(내장 객체)](./js-built-in-object)의 [Global objects (Standard Built-in Objects)](./js-standard-built-in-objects#standard-built-in-objects-global-objects)인 String, Number, Array 객체 등이 가지고 있는 표준 메서드는 프로토타입 객체인 String.prototype, Number.prototype, Array.prototype 등에 정의되어 있다. 이들 프로토타입 객체 또한 Object.prototype를 프로토타입 체인에 의해 자신의 프로토타입 객체로 연결한다.
+이후 살펴보게 될 [Built-in object(내장 객체)](./js-built-in-object)의 [Global objects (Standard Built-in Objects)](./js-standard-built-in-objects#2-standard-built-in-objects-global-objects)인 String, Number, Array 객체 등이 가지고 있는 표준 메서드는 프로토타입 객체인 String.prototype, Number.prototype, Array.prototype 등에 정의되어 있다. 이들 프로토타입 객체 또한 Object.prototype를 프로토타입 체인에 의해 자신의 프로토타입 객체로 연결한다.
 
 자바스크립트는 표준 내장 객체의 프로토타입 객체에 개발자가 정의한 메서드의 추가를 허용한다.
 
@@ -276,7 +280,7 @@ console.dir(String.prototype);
 var str = 'test';
 
 String.prototype.myMethod = function() {
-  return 'String.prototype.myMethod';
+  return 'myMethod';
 }
 
 console.log(str.myMethod());
@@ -346,9 +350,9 @@ console.log(bar.constructor); // ② Object()
 ![changing prototype](/img/changing_prototype.png)
 {: .w-700}
 
-① 프로토타입 객체는 constructor 프로퍼티를 갖는다. 프로토타입 객체 변경 전, Person() 생성자 함수의 [[Prototype]] 프로퍼티가 가리키는 프로토타입 객체도 물론 constructor 프로퍼티를 가지며 이 constructor 프로퍼티는 Person() 생성자 함수를 가리킨다.
+① 프로토타입 객체는 constructor 프로퍼티를 갖는다. 프로토타입 객체 변경 전, Person() 생성자 함수의 Prototype 프로퍼티가 가리키는 프로토타입 객체도 물론 constructor 프로퍼티를 가지며 이 constructor 프로퍼티는 Person() 생성자 함수를 가리킨다.
 
-② 프로토타입 객체 변경 후, Person() 생성자 함수의 [[Prototype]] 프로퍼티가 가리키는 프로토타입 객체는 일반 객체로 변경되었다. 그리고 constructor 프로퍼티도 삭제되었다. 따라서 프로토타입 체인에 의해 bar.constructor의 값은 Object.prototype.constructor 즉 Object() 생성자 함수가 된다.
+② 프로토타입 객체 변경 후, Person() 생성자 함수의 Prototype 프로퍼티가 가리키는 프로토타입 객체는 일반 객체로 변경되었다. 그리고 constructor 프로퍼티도 삭제되었다. 따라서 프로토타입 체인에 의해 bar.constructor의 값은 Object.prototype.constructor 즉 Object() 생성자 함수가 된다.
 
 # 7. 프로토타입 체인 동작 조건
 
@@ -366,13 +370,13 @@ Person.prototype.gender = 'male'; // ①
 var foo = new Person('Lee');
 var bar = new Person('Kim');
 
-console.log(foo.gender); // 'male'
-console.log(bar.gender); // 'male'
+console.log(foo.gender); // ① 'male'
+console.log(bar.gender); // ① 'male'
 
 foo.gender = 'female';   // ②
 
-console.log(foo.gender); // 'female'
-console.log(bar.gender); // 'male'
+console.log(foo.gender); // ② 'female'
+console.log(bar.gender); // ① 'male'
 ```
 
 ![condition of prototype chaining](/img/condition_prototype_chaining.png)

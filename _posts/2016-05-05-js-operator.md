@@ -209,6 +209,29 @@ var o3 = 'Cat' || false;    // t || f returns Cat
 var a1 = 'Cat' && 'Dog';    // t && t returns Dog
 var a2 = false && 'Cat';    // f && t returns false
 var a3 = 'Cat' && false;    // t && f returns false 
+
+// example
+function foo (str) {
+  str = str || '';
+  // do somethig with str
+  console.log(str.length);
+}
+
+foo();     // 0
+foo('hi'); // 2
+
+// example
+var obj = {
+  // foo: 'hi',
+  bar: 'hey'
+};
+
+console.log('obj.foo is ' + obj.foo); // obj.foo is undefined
+
+if (obj && obj.foo) {
+  // do somethig with obj.foo
+  console.log('obj.foo is ' + obj.foo);
+}
 ```
 
 # 6. 타입 연산자 (Type Operators)

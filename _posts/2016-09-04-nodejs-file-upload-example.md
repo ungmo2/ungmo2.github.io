@@ -53,7 +53,7 @@ use case를 만족시키기 위해 구현되어야 할 기술적 사항은 아�
 
 우선 HTTP server를 생성하기 위하여 `http` 모듈을 로드한다.
 
-`http.createServer([requestListener])`는 `http.Server`의 새로운 인스턴스를 반환한다. 반환된 인스턴스의 메서드 `listen`을 호출하여 접속 대기를 시작한다.
+`http.createServer([requestListener])`는 `http.Server`의 새로운 인스턴스를 반환한다. 반환된 인스턴스의 메소드 `listen`을 호출하여 접속 대기를 시작한다.
 
 다음은 8888 포트를 Listen 하는 HTTP 서버를 시작한 다음 대기기하는 코드이다. 어떤 요청이 들어오더라도 HTTP 서버는 아무 일도 하지기 때문에 웹 브라우저는 대기상태에 빠지게 된다.
 
@@ -63,7 +63,7 @@ use case를 만족시키기 위해 구현되어야 할 기술적 사항은 아�
 // Node.js에 기본 내장되어 있는 http 모듈을 로드한다
 var http = require("http");
 
-// http 모듈의 createServer 메서드를 호출하여 HTTP 서버 생성
+// http 모듈의 createServer 메소드를 호출하여 HTTP 서버 생성
 var server = http.createServer();
 server.listen(8888);
 ```
@@ -81,7 +81,7 @@ $ node server.js
 // Node.js에 기본 내장되어 있는 http 모듈을 로드한다
 var http = require("http");
 
-// http 모듈의 createServer 메서드를 호출하여 HTTP 서버 생성
+// http 모듈의 createServer 메소드를 호출하여 HTTP 서버 생성
 http.createServer(function(request, response) {
   response.writeHead(200, {"Content-Type": "text/plain"}); // (1)
   response.write("Hello World");  // (2)
@@ -366,7 +366,7 @@ Request for /foo received.
 About to route a request for /foo
 ```
 
-server는 router 객체의 route 메서드를 주입(inject)받아 route 메서드를 호출할 수 있게 되었다.
+server는 router 객체의 route 메소드를 주입(inject)받아 route 메소드를 호출할 수 있게 되었다.
 
 ## *Request handler*
 
@@ -892,7 +892,7 @@ http.createServer(function(req, res) {
 }).listen(8888);
 ```
 
-위 코드를 실행하면 `form.parse` 메서드의 callback에 파라미터로 넘어가는 `files` 객체가 어떻게 생겼는지 살펴볼 수 있다.
+위 코드를 실행하면 `form.parse` 메소드의 callback에 파라미터로 넘어가는 `files` 객체가 어떻게 생겼는지 살펴볼 수 있다.
 
 ```
 received upload:

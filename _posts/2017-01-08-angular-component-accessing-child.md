@@ -4,7 +4,7 @@ title: Angular Component - <strong>Accessing Child</strong>
 subtitle: 부모 컴포넌트에서 자식 요소로의 접근
 categories: angular
 section: angular
-description: Angular 애플리케이션을 작성하다보면 부모 컴포넌트에서 자식 요소(자식 컴포넌트, 디렉티브, 네이티브 DOM 요소)에 접근이 필요한 경우가 있다. 예를 들어 부모 컴포넌트에서 자식 컴포넌트의 프로퍼티를 직접 변경하고 싶다던지 메서드를 직접 실행하고 싶은 경우이다. Angular는 부모 컴포넌트에서 자식 요소에 접근할 수 있는 데코레이터들을 제공한다. 컴포넌트 템플릿에 배치된 자식요소(자식 컴포넌트, 디렉티브, 네이티브 DOM 요소)를 ViewChild라고 한다. 이름에서 알 수 있듯이 @ViewChild는 탐색 조건에 부합하는 1개의 요소를 취득할 수 있고, @ViewChildren는 탐색 조건에 부합하는 여러개의 요소를 한꺼번에 취득할 수 있다. 
+description: Angular 애플리케이션을 작성하다보면 부모 컴포넌트에서 자식 요소(자식 컴포넌트, 디렉티브, 네이티브 DOM 요소)에 접근이 필요한 경우가 있다. 예를 들어 부모 컴포넌트에서 자식 컴포넌트의 프로퍼티를 직접 변경하고 싶다던지 메소드를 직접 실행하고 싶은 경우이다. Angular는 부모 컴포넌트에서 자식 요소에 접근할 수 있는 데코레이터들을 제공한다. 컴포넌트 템플릿에 배치된 자식요소(자식 컴포넌트, 디렉티브, 네이티브 DOM 요소)를 ViewChild라고 한다. 이름에서 알 수 있듯이 @ViewChild는 탐색 조건에 부합하는 1개의 요소를 취득할 수 있고, @ViewChildren는 탐색 조건에 부합하는 여러개의 요소를 한꺼번에 취득할 수 있다. 
 ---
 
 * TOC
@@ -12,7 +12,7 @@ description: Angular 애플리케이션을 작성하다보면 부모 컴포넌�
 
 ![angular Logo](/img/angular-logo.png)
 
-Angular 애플리케이션을 작성하다보면 부모 컴포넌트에서 자식 요소(자식 컴포넌트, 디렉티브, 네이티브 DOM 요소)에 접근이 필요한 경우가 있다. 예를 들어 부모 컴포넌트에서 자식 컴포넌트의 프로퍼티를 직접 변경하고 싶다던지 메서드를 직접 실행하고 싶은 경우이다. Angular는 부모 컴포넌트에서 자식 요소에 접근할 수 있는 데코레이터들을 제공한다.
+Angular 애플리케이션을 작성하다보면 부모 컴포넌트에서 자식 요소(자식 컴포넌트, 디렉티브, 네이티브 DOM 요소)에 접근이 필요한 경우가 있다. 예를 들어 부모 컴포넌트에서 자식 컴포넌트의 프로퍼티를 직접 변경하고 싶다던지 메소드를 직접 실행하고 싶은 경우이다. Angular는 부모 컴포넌트에서 자식 요소에 접근할 수 있는 데코레이터들을 제공한다.
 
 - @ViewChild
 - @ViewChildren
@@ -46,7 +46,7 @@ Angular 애플리케이션을 작성하다보면 부모 컴포넌트에서 자�
 @ViewChild 예제 실행 화면
 {: .desc-img}
 
-Toggle Child 버튼을 클릭하면 부모 컴포넌트는 자식 컴포넌트의 프로퍼티를 직접 조작하여 자식 컴포넌트를 감추고 다시 클릭하면 자식 컴포넌트를 보여준다. Change Child's text 버튼을 클릭하면 부모 컴포넌트는 자식 컴포넌트의 메서드를 직접 실행하여 자식 컴포넌트의 프로퍼티를 변경시킨다.
+Toggle Child 버튼을 클릭하면 부모 컴포넌트는 자식 컴포넌트의 프로퍼티를 직접 조작하여 자식 컴포넌트를 감추고 다시 클릭하면 자식 컴포넌트를 보여준다. Change Child's text 버튼을 클릭하면 부모 컴포넌트는 자식 컴포넌트의 메소드를 직접 실행하여 자식 컴포넌트의 프로퍼티를 변경시킨다.
 
 새로운 Angular 애플리케이션을 작성하도록 하자.
 
@@ -87,7 +87,7 @@ export class ChildComponent {
   isShow = true;
   contentText = 'Child';
 
-  // 부모 컴포넌트가 자식 컴포넌트의 contentText 프로퍼티를 변경하기 위해 직접 접근할 메서드
+  // 부모 컴포넌트가 자식 컴포넌트의 contentText 프로퍼티를 변경하기 위해 직접 접근할 메소드
   changeText(text: string) {
     this.contentText = text;
   }
@@ -118,7 +118,7 @@ export class AppComponent {
   }
 
   changeText() {
-    // 자식 컴포넌트의 메서드를 직접 실행할 수 있다.
+    // 자식 컴포넌트의 메소드를 직접 실행할 수 있다.
     this.myChild.changeText('Hello');
   }
 }
@@ -131,7 +131,7 @@ export class AppComponent {
 ```
 
 @ViewChild 데코레이터는 1개의 자식 요소만을 가져올 수 있기 때문에 만일 자식 요소 중에 ChildComponent가 여러개 탐색되었을 경우, 첫번째 ChildComponent의 인스턴스를 가져온다. 
-프로퍼티 myChild에는 자식 컴포넌트 ChildComponent의 인스턴스가 바인딩되어 있으므로 프로퍼티 myChild를 통해 자식 컴포넌트의 프로퍼티, 메서드에 접근할 수 있다. 단 접근 제한자(Access modifier) public으로 공개된 프로퍼티, 메서드에만 접근할 수 있다. typescript는 public, protected, private와 같은 접근 제한자를 지정하지 않은 프로퍼티, 메서드를 기본설정인 public으로 지정한다. 
+프로퍼티 myChild에는 자식 컴포넌트 ChildComponent의 인스턴스가 바인딩되어 있으므로 프로퍼티 myChild를 통해 자식 컴포넌트의 프로퍼티, 메소드에 접근할 수 있다. 단 접근 제한자(Access modifier) public으로 공개된 프로퍼티, 메소드에만 접근할 수 있다. typescript는 public, protected, private와 같은 접근 제한자를 지정하지 않은 프로퍼티, 메소드를 기본설정인 public으로 지정한다. 
 
 ## 1.2 @ViewChildren
 
@@ -235,9 +235,9 @@ export class AppComponent {
 @ViewChildren(ChildComponent) myChildren: QueryList<ChildComponent>;
 ```
 
-@ViewChildren의 탐색 결과가 바인딩된 myChildren 프로퍼티의 타입은 [QueryList](https://angular.io/api/core/QueryList)이다. QueryList 클래스는 배열과 같이 순회가능한 이터러블(iterable) 객체이다. iterable 인터페이스를 구현하므로 ES6의 for of 루프에 사용할 수 있고 [ngFor](./angular-component-template-syntax#222-ngfor)와 함께 템플릿 내에서도 사용할 수 있다. 또한 클래스 내부에는 탐색 결과를 저장하는 배열 _result 프로퍼티를 가지고 있고 이 프로퍼티를 사용하는 [자바스크립트 배열 메서드](./js-array#5-array-method)와 동일하게 동작하는 map, filter, find, reduce, forEach, some 등의 메서드를 소유하고 있어서 QueryList는 마치 자바스크립트 배열과 같이 사용할 수 있다. QueryList는 옵저버블(Observable)한 컬렉션으로 변경 사항을 구독(subscribe)할 수 있다. 옵저버블에 대해서는 RxJS에서 살펴볼 것이다.
+@ViewChildren의 탐색 결과가 바인딩된 myChildren 프로퍼티의 타입은 [QueryList](https://angular.io/api/core/QueryList)이다. QueryList 클래스는 배열과 같이 순회가능한 이터러블(iterable) 객체이다. iterable 인터페이스를 구현하므로 ES6의 for of 루프에 사용할 수 있고 [ngFor](./angular-component-template-syntax#222-ngfor)와 함께 템플릿 내에서도 사용할 수 있다. 또한 클래스 내부에는 탐색 결과를 저장하는 배열 _result 프로퍼티를 가지고 있고 이 프로퍼티를 사용하는 [자바스크립트 배열 메소드](./js-array#5-array-method)와 동일하게 동작하는 map, filter, find, reduce, forEach, some 등의 메소드를 소유하고 있어서 QueryList는 마치 자바스크립트 배열과 같이 사용할 수 있다. QueryList는 옵저버블(Observable)한 컬렉션으로 변경 사항을 구독(subscribe)할 수 있다. 옵저버블에 대해서는 RxJS에서 살펴볼 것이다.
 
-QueryList 클래스의 map 메서드를 사용하여 자식 컴포넌트 ChildComponent의 인스턴스들이 바인딩되어 있는 myChildren를 순회하며 자식 컴포넌트 ChildComponent의 프로퍼티에 접근하여 값을 변경한다.
+QueryList 클래스의 map 메소드를 사용하여 자식 컴포넌트 ChildComponent의 인스턴스들이 바인딩되어 있는 myChildren를 순회하며 자식 컴포넌트 ChildComponent의 프로퍼티에 접근하여 값을 변경한다.
 
 ```typescript
 this.myChildren.map(child => child.checkbox.checked = this.active);
@@ -286,7 +286,7 @@ export class AppComponent {
     console.log(elementRef);
   }
 
-  // ngAfterViewInit은 뷰 초기화가 종료됐을 때 실행되는 컴포넌트 생명주기 메서드이다.
+  // ngAfterViewInit은 뷰 초기화가 종료됐을 때 실행되는 컴포넌트 생명주기 메소드이다.
   // Angular가 뷰를 초기화하기 이전에는 DOM에 접근할 수 없다.
   ngAfterViewInit() {
     console.log(this.myElem);
@@ -304,7 +304,7 @@ export class AppComponent {
 
 @ViewChild와 @ViewChildren 데코레이터를 사용하여 자식 컴포넌트를 탐색하는 경우, 탐색 결과로 자식 컴포넌트의 인스턴스를 취득할 수 있었다. 취득한 인스턴스는 당연히 인스턴스를 생성한 컴포넌트 클래스가 타입이 된다. 템플릿 참조 변수를 사용하여 네이티브 DOM을 탐색한 경우, 탐색 결과로 [ElementRef](https://angular.io/api/core/ElementRef) 타입의 인스턴스가 바인딩된다. ElementRef는 네이티브 DOM의 프로퍼티를 담고 있는 nativeElement 프로퍼티를 소유한다. 따라서 ElementRef.nativeElement로 접근하면 네이티브 DOM의 프로퍼티에 접근할 수 있다.
 
-ngAfterViewInit 메서드는 뷰 초기화가 종료됐을 때 호출되는 컴포넌트 생명주기 메서드이다. @ViewChild와 @ViewChildren를 통해 바인딩한 프로퍼티에는 컴포넌트 생명주기 메서드 ngAfterViewInit가 호출된 시점부터 접근할 수 있었다. 컴포넌트 생명주기에 대해서는 다른 장에서 자세히 다룰 것이다.
+ngAfterViewInit 메소드는 뷰 초기화가 종료됐을 때 호출되는 컴포넌트 생명주기 메소드이다. @ViewChild와 @ViewChildren를 통해 바인딩한 프로퍼티에는 컴포넌트 생명주기 메소드 ngAfterViewInit가 호출된 시점부터 접근할 수 있었다. 컴포넌트 생명주기에 대해서는 다른 장에서 자세히 다룰 것이다.
 
 # 2. @ContentChild와 @ContentChildren
 
@@ -477,7 +477,7 @@ export class UserListComponent {
   // 부모 컴포넌트가 지정한 콘텐츠 모두를 취득한다.
   @ContentChildren(UserComponent) children: QueryList<UserComponent>;
 
-  // ngAfterContentInit은 콘텐츠가 초기화됐을 때 실행되는 컴포넌트 생명주기 메서드이다.
+  // ngAfterContentInit은 콘텐츠가 초기화됐을 때 실행되는 컴포넌트 생명주기 메소드이다.
   // Angular가 콘텐츠를 초기화하기 이전에는 DOM에 접근할 수 없다.
   ngAfterContentInit() {
     console.log(this.firstChild);
@@ -505,7 +505,7 @@ UserListComponent는 부모 컴포넌트가 추가한 콘텐츠를 ng-content를
 
 이때 @ContentChild와 @ContentChildren를 사용하는 컴포넌트는 ng-content에 의해 어떤 요소가 프로젝션되는지에 대해 사전에 인지하고 있어야 한다. 이는 자식 컴포넌트가 부모 컴포넌트에 의존하고 있음을 의미한다. 따라서 부모 컴포넌트가 콘텐츠로 지정한 요소가 변경되면 ng-content을 통한 프로젝션으로 이를 받아야 하는 자식 컴포넌트 또한 영향을 받기 때문에 주의가 필요하다.
 
-@ViewChild와 @ViewChildren를 통해 바인딩한 프로퍼티에는 컴포넌트 생명주기 메서드 ngAfterViewInit가 호출된 시점부터 접근할 수 있었다. 이와 마찬가지로 @ContentChild와 @ContentChildren를 통해 바인딩한 프로퍼티에는 컴포넌트 생명주기 메서드 ngAfterContentInit가 호출된 시점부터 접근이 가능하다. 컴포넌트 생명주기에 대해서는 다른 장에서 자세히 다룰 것이다.
+@ViewChild와 @ViewChildren를 통해 바인딩한 프로퍼티에는 컴포넌트 생명주기 메소드 ngAfterViewInit가 호출된 시점부터 접근할 수 있었다. 이와 마찬가지로 @ContentChild와 @ContentChildren를 통해 바인딩한 프로퍼티에는 컴포넌트 생명주기 메소드 ngAfterContentInit가 호출된 시점부터 접근이 가능하다. 컴포넌트 생명주기에 대해서는 다른 장에서 자세히 다룰 것이다.
 
 UserListComponent의 자식 컴포넌트인 UserComponent는 아래와 같다. 
 
@@ -529,7 +529,7 @@ export class UserComponent {
 }
 ```
 
-UserListComponent는 @ContentChild와 @ContentChildren 데코레이터를 통해 UserComponent의 인스턴스를 취득하고 randomizeColor 메서드를 직접 호출하여 UserComponent의 배경색을 변경하였다.
+UserListComponent는 @ContentChild와 @ContentChildren 데코레이터를 통해 UserComponent의 인스턴스를 취득하고 randomizeColor 메소드를 직접 호출하여 UserComponent의 배경색을 변경하였다.
 
 위 예제의 실행 결과는 아래와 같다.
 

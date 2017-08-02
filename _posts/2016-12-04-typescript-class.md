@@ -16,7 +16,7 @@ description: ECMAScript 6에서 새롭게 도입된 클래스는 기존 prototyp
 
 # 1. 클래스 정의 (Class Definition)
 
-ECMAScript 6 클래스는 메서드만을 포함할 수 있다. 클래스 바디에 프로퍼티를 정의할 수 없고 반드시 생성자 내부에서 프로퍼티를 정의하고 초기화한다.
+ECMAScript 6 클래스는 메소드만을 포함할 수 있다. 클래스 바디에 프로퍼티를 정의할 수 없고 반드시 생성자 내부에서 프로퍼티를 정의하고 초기화한다.
 
 ```javascript
 class Person {
@@ -108,7 +108,7 @@ console.log(foo); // Foo { x: 'Hello' }
 
 # 4. static 프로퍼티
 
-ECMAScript 6 클래스에서 static 키워드는 클래스의 정적(static) 메서드를 정의한다. 정적 메서드는 클래스의 인스턴스화(instantiating)없이 호출하며 클래스의 인스턴스로 호출할 수 없다.
+ECMAScript 6 클래스에서 static 키워드는 클래스의 정적(static) 메소드를 정의한다. 정적 메소드는 클래스의 인스턴스화(instantiating)없이 호출하며 클래스의 인스턴스로 호출할 수 없다.
 
 ```javascript
 class Foo {
@@ -147,20 +147,20 @@ console.log(foo2.instanceCounter); // error TS2339: Property 'instanceCounter' d
 
 # 5. 추상 클래스 (Abstract class)
 
-추상 클래스는 추상 메서드(Abstract method)를 포함할 수 있는 클래스로서 직접 인스턴스를 생성할 수 없으며 상속만을 위해 사용된다. 추상 클래스를 상속하는 클래스는 추상 클래스의 추상 메서드를 반드시 구현하여야 한다.
+추상 클래스는 추상 메소드(Abstract method)를 포함할 수 있는 클래스로서 직접 인스턴스를 생성할 수 없으며 상속만을 위해 사용된다. 추상 클래스를 상속하는 클래스는 추상 클래스의 추상 메소드를 반드시 구현하여야 한다.
 
 ```typescript
 abstract class Animal {
-  // 추상 메서드
+  // 추상 메소드
   abstract makeSound(): void;
-  // 일반 메서드
+  // 일반 메소드
   move(): void {
     console.log("roaming the earth...");
   }
 }
 
 class Dog extends Animal {
-  // 추상 클래스의 추상 메서드를 반드시 구현하여야 한다
+  // 추상 클래스의 추상 메소드를 반드시 구현하여야 한다
   makeSound() {
     console.log('bowwow~~');
   }
@@ -170,7 +170,7 @@ const myDog = new Dog();
 myDog.makeSound();
 ```
 
-[인터페이스](./typescript-interface)와는 모든 메서드가 추상 메서드이지만 추상 클래스는 추상 메서드와 구현이 되어 있는 일반 메서드를 포함할 수 있다.
+[인터페이스](./typescript-interface)와는 모든 메소드가 추상 메소드이지만 추상 클래스는 추상 메소드와 구현이 되어 있는 일반 메소드를 포함할 수 있다.
 
 # Reference
 

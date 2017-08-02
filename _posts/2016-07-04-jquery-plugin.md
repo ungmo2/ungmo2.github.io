@@ -4,14 +4,14 @@ title: jQuery <strong>Plugin</strong>
 subtitle: jQuery의 확장
 categories: jquery
 section: jquery
-description: jQuery plugin이란 custom jQuery 메서드로써 jQuery를 확장한 것을 말한다. jQuery plugin을 정의하기 위해서는 **$.fn** object에 custom 메서드를 추가하여 확장한다. 우선 jQuery의 동작 원리에 대해 간단히 알아보자. $ 함수는 jQuery 객체를 반환하며 jQuery 객체는 css()와 같은 jQuery 메서드를 소유한다. pure javascript에서 built-in object의 메서드가 prototype에 담겨있는 것과 같이 jQuery 객체의 메서드들은 jQuery 객체의 prototype인 <strong>$.fn</strong>에 담겨 있다.
+description: jQuery plugin이란 custom jQuery 메소드로써 jQuery를 확장한 것을 말한다. jQuery plugin을 정의하기 위해서는 **$.fn** object에 custom 메소드를 추가하여 확장한다. 우선 jQuery의 동작 원리에 대해 간단히 알아보자. $ 함수는 jQuery 객체를 반환하며 jQuery 객체는 css()와 같은 jQuery 메소드를 소유한다. pure javascript에서 built-in object의 메소드가 prototype에 담겨있는 것과 같이 jQuery 객체의 메소드들은 jQuery 객체의 prototype인 <strong>$.fn</strong>에 담겨 있다.
 ---
 
-jQuery plugin이란 custom jQuery 메서드로써 jQuery를 확장한 것을 말한다. jQuery plugin을 정의하기 위해서는 **$.fn** object에 custom 메서드를 추가하여 확장한다.
+jQuery plugin이란 custom jQuery 메소드로써 jQuery를 확장한 것을 말한다. jQuery plugin을 정의하기 위해서는 **$.fn** object에 custom 메소드를 추가하여 확장한다.
 
 우선 jQuery의 동작 원리에 대해 간단히 알아보자.
 
-$ 함수는 jQuery 객체를 반환하며 jQuery 객체는 css()와 같은 jQuery 메서드를 소유한다. pure javascript에서 built-in object의 메서드가 prototype에 담겨있는 것과 같이 jQuery 객체의 메서드들은 jQuery 객체의 prototype인 <strong>$.fn</strong>에 담겨 있다.
+$ 함수는 jQuery 객체를 반환하며 jQuery 객체는 css()와 같은 jQuery 메소드를 소유한다. pure javascript에서 built-in object의 메소드가 prototype에 담겨있는 것과 같이 jQuery 객체의 메소드들은 jQuery 객체의 prototype인 <strong>$.fn</strong>에 담겨 있다.
 
 다음은 jQuery source code 초기 부분의 일부 발췌이다.
 
@@ -40,9 +40,9 @@ $.fn.greenify = function() {
 $('a').greenify(); // Makes all the links green.
 ```
 
-위 코드내의 [this](./js-this#method-invocation-pattern)는 greenify 메서드를 호출한 객체 `$('a')`에 바인딩된다. greenify 메서드를 호출한 객체는 언제나 jQuery 객체이므로 `$(this)`를 사용할 필요가 없다.
+위 코드내의 [this](./js-this#method-invocation-pattern)는 greenify 메소드를 호출한 객체 `$('a')`에 바인딩된다. greenify 메소드를 호출한 객체는 언제나 jQuery 객체이므로 `$(this)`를 사용할 필요가 없다.
 
-주의할 것은 each(), append() 메서드 등의 callback 함수 내에서 사용된 this는 DOM 요소를 의미한다. 따라서 callback 함수 내에서 DOM 요소에 대해 jQuery 메서드를 사용하기 위해서는 this를 jQuery 객체화하여야 한다.
+주의할 것은 each(), append() 메소드 등의 callback 함수 내에서 사용된 this는 DOM 요소를 의미한다. 따라서 callback 함수 내에서 DOM 요소에 대해 jQuery 메소드를 사용하기 위해서는 this를 jQuery 객체화하여야 한다.
 
 ```javascript
 (function($) {
@@ -60,9 +60,9 @@ $('a').greenify(); // Makes all the links green.
 $('a').showLinkLocation();
 ```
 
-Query() 함수에 의해 생성된 객체를 Matched set 또는 jQuery selection이라 한다. 이 객체에는 선택한 요소에 대한 참조가 저장되어 있다. jQuery가 제공하는 프로퍼티와 메서드는 prototype 객체를 통해 접근할 수 있다.
+Query() 함수에 의해 생성된 객체를 Matched set 또는 jQuery selection이라 한다. 이 객체에는 선택한 요소에 대한 참조가 저장되어 있다. jQuery가 제공하는 프로퍼티와 메소드는 prototype 객체를 통해 접근할 수 있다.
 
-위 코드는 잘 작동하지만 chaining(jQuery 함수에 의해 생성된 Matched set에 jQuery 메서드를 끝없이 연결하여 호출할 수 있게 하는 기법)을 지원하지 않고 있다.
+위 코드는 잘 작동하지만 chaining(jQuery 함수에 의해 생성된 Matched set에 jQuery 메소드를 끝없이 연결하여 호출할 수 있게 하는 기법)을 지원하지 않고 있다.
 
 chaining을 지원하기 위해 this를 return한다.
 

@@ -310,7 +310,7 @@ console.log(user2.name); // Kim
 
 의도하지 않은 객체의 변경이 발생하는 원인의 대다수는 “레퍼런스를 참조한 다른 무언가가 객체를 변경”하기 때문이다. 이 문제의 해결 방법은 비용은 조금 들지만 객체를 불변객체로 만들어 프로퍼티의 변경을 방지하며 객체의 변경이 필요한 경우에는 참조가 아닌 객체의 방어적 복사(defensive copy)를 통해 새로운 객체를 생성한 후 변경한다.
 
-객체의 프로퍼티까지 보호하여 primitive data와 같이 변경이 불가능한 값(immutable value)으로 만들고 싶다면 Object.freeze() 메서드를 사용한다.
+객체의 프로퍼티까지 보호하여 primitive data와 같이 변경이 불가능한 값(immutable value)으로 만들고 싶다면 Object.freeze() 메소드를 사용한다.
 
 ```javascript
 const user = {
@@ -328,7 +328,7 @@ console.log(user); // { name: 'Lee', address: { city: 'Seoul' } }
 console.log(Object.isFrozen(user)); // true
 ```
 
-단 Object.freeze() 메서드로 동결한 객체의 경우에도 객체의 프로퍼티 값인 객체는 변경가능하다.
+단 Object.freeze() 메소드로 동결한 객체의 경우에도 객체의 프로퍼티 값인 객체는 변경가능하다.
 
 ```javascript
 user.address.city = 'Busan'; // 변경된다!

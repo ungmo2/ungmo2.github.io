@@ -75,7 +75,7 @@ Standard Built-in Objects(표준 빌트인 객체)를 Global Objects로 표현�
 
 ## 1.1 Global property (전역 프로퍼티)
 
-Global property(전역 프로퍼티)은 간단한 값을 나타내며 다른 프로퍼티나 메서드를 가지고 있지 않다. 아래의 전역 프로퍼티는 모두 Global Object(전역 객체)의 프로퍼티이다.
+Global property(전역 프로퍼티)은 간단한 값을 나타내며 다른 프로퍼티나 메소드를 가지고 있지 않다. 아래의 전역 프로퍼티는 모두 Global Object(전역 객체)의 프로퍼티이다.
 
 ### 1.1.1 Infinity  
 
@@ -435,9 +435,9 @@ Symbol은 ECMAScript 6(Javascript 2015) 에서 추가된 유일하고 변경 불
 
 # 3. 기본자료형과 래퍼객체(Wrapper Object)
 
-앞서 살펴본 바와 같이 각 Standard Built-in Object는 각자의 프로퍼티와 메서드를 가진다. 정적(static) 프로퍼티, 메서드는 해당 인스턴스를 생성하지 않아도 사용할 수 있고 prototype에 속해있는 메소드는 해당 prototype을 상속받은 인스턴스가 있어야만 사용할 수 있다.
+앞서 살펴본 바와 같이 각 Standard Built-in Object는 각자의 프로퍼티와 메소드를 가진다. 정적(static) 프로퍼티, 메소드는 해당 인스턴스를 생성하지 않아도 사용할 수 있고 prototype에 속해있는 메소드는 해당 prototype을 상속받은 인스턴스가 있어야만 사용할 수 있다.
 
-그런데 기본자료형의 값에 대해 Standard Built-in Object의 메서드를 호출하면 정상적으로 작동한다.
+그런데 기본자료형의 값에 대해 Standard Built-in Object의 메소드를 호출하면 정상적으로 작동한다.
 
 ```javascript
 var str = 'Hello world!';
@@ -448,7 +448,7 @@ var num = 1.5;
 console.log(num.toFixed()); // 2
 ```
 
-이는 기본자료형의 값에 대해 Standard Built-in Object의 메서드를 호출할 때, **기본자료형의 값은 연관된 객체(Wrapper 객체)로 일시 변환** 되기 때문에 가능한 것이다. 그리고 메서드 호출이 종료되면 객체로 변환된 기본자료형의 값은 다시 기본자료형의 값으로 복귀한다.
+이는 기본자료형의 값에 대해 Standard Built-in Object의 메소드를 호출할 때, **기본자료형의 값은 연관된 객체(Wrapper 객체)로 일시 변환** 되기 때문에 가능한 것이다. 그리고 메소드 호출이 종료되면 객체로 변환된 기본자료형의 값은 다시 기본자료형의 값으로 복귀한다.
 
 자세한 내용은 [Prototype: 4.기본자료형(Primitive data type)의 확장](./js-prototype#primitive-data-type-)을 참조 바란다.
 

@@ -22,7 +22,7 @@ description: jQuery의 설치 Basic Usage DOM Ready Selector Traversing Manipula
 
 <!-- - CSS 스타일의 selector를 이용하여 요소를 선택할 수 있다. 이것은 [자바스크립트 DOM 쿼리](./js-dom#dom-query--traversing--)보다 쉽고 강력하며 유연하다.
 
-- 자바스크립트의 getElementsByClassName 메서드 등을 사용하여 복수의 요소를 선택한 후 각각의 요소에 개별적으로 접근하기 위해서는 반복문을 사용하여야 한다. 이때 getElementsByClassName 메서드가 반환하는 [HTMLCollection](./js-dom#dom-query-1)은 실시간으로 Node의 상태 변경을 반영하기 때문에 경우에 따라(예를 들어 클래스명이 변경될 때) 반복문을 역방향으로 돌리는 등 번거로운 처리가 필요하다. jQuery는 반복문 없이 해당하는 모든 요소를 선택/조작할 수 있다. 이를 묵시적 반복(implicit iteration)이라 한다. -->
+- 자바스크립트의 getElementsByClassName 메소드 등을 사용하여 복수의 요소를 선택한 후 각각의 요소에 개별적으로 접근하기 위해서는 반복문을 사용하여야 한다. 이때 getElementsByClassName 메소드가 반환하는 [HTMLCollection](./js-dom#dom-query-1)은 실시간으로 Node의 상태 변경을 반영하기 때문에 경우에 따라(예를 들어 클래스명이 변경될 때) 반복문을 역방향으로 돌리는 등 번거로운 처리가 필요하다. jQuery는 반복문 없이 해당하는 모든 요소를 선택/조작할 수 있다. 이를 묵시적 반복(implicit iteration)이라 한다. -->
 
 - Animation 효과, 이벤트 처리를 쉽게 사용할 수 있다.
 
@@ -107,7 +107,7 @@ app.js는 jQuery를 사용하므로 app.js 로드 이전에 jQuery가 로드되�
 
 # 3. jQuery 함수
 
-jQuery를 사용하기 위해서는 먼저 jQuery 객체를 생성하여야 한다. 생성된 jQuery 객체는 다양한 메서드를 가지는데 jQuery를 학습한다고 하는 것은 대체로 이 메서드를 사용하는 방법을 익히는 것이다.
+jQuery를 사용하기 위해서는 먼저 jQuery 객체를 생성하여야 한다. 생성된 jQuery 객체는 다양한 메소드를 가지는데 jQuery를 학습한다고 하는 것은 대체로 이 메소드를 사용하는 방법을 익히는 것이다.
 
 jQuery 객체를 생성하기 위해서는 jQuery 함수를 사용한다.
 
@@ -142,13 +142,13 @@ jQuery() 함수의 인수로 CSS의 태그 선택자를 지정하였다. 이때 
 $('h1');
 ```
 
-jQuery() 함수에 의해 생성된 객체를 <strong>Matched set 또는 jQuery selection</strong>이라 한다. 이 객체에는 선택한 요소에 대한 참조가 저장되어 있는데 선택된 요소는 1개일수도 있지만 여러개일 수도 있다. jQuery가 제공하는 프로퍼티와 메서드는 prototype 객체를 통해 접근할 수 있다.
+jQuery() 함수에 의해 생성된 객체를 <strong>Matched set 또는 jQuery selection</strong>이라 한다. 이 객체에는 선택한 요소에 대한 참조가 저장되어 있는데 선택된 요소는 1개일수도 있지만 여러개일 수도 있다. jQuery가 제공하는 프로퍼티와 메소드는 prototype 객체를 통해 접근할 수 있다.
 
 ```javascript
 $('h1').text();
 ```
 
-text() 메서드는 jQuery 객체가 제공하는 메서드로 해당 요소(Matched set)의 텍스트를 반환한다. 해당 요소의 텍스트를 변경하는 방법은 아래와 같다.
+text() 메소드는 jQuery 객체가 제공하는 메소드로 해당 요소(Matched set)의 텍스트를 반환한다. 해당 요소의 텍스트를 변경하는 방법은 아래와 같다.
 
 ```javascript
 $('h1').text('Hello!');
@@ -249,9 +249,9 @@ jQuery는 [CSS 스타일의 Selector](./css3-selector)를 이용하여 요소를
 
 ## 4.1 태그 / ID / Class 선택자
 
-자바스크립트의 getElementsByClassName 메서드 등을 사용하여 선택한 요소들에 개별적으로 접근하기 위해서는 반복문을 사용하여야 한다.
+자바스크립트의 getElementsByClassName 메소드 등을 사용하여 선택한 요소들에 개별적으로 접근하기 위해서는 반복문을 사용하여야 한다.
 
-이때 getElementsByClassName 메서드가 반환하는 [HTMLCollection](./js-dom#dom-query-1)이 실시간으로 Node의 상태 변경을 반영하기 때문에 경우에 따라(예를 들어 클래스명이 변경될 때) 반복문을 역방향으로 돌리는 등 번거로운 처리가 필요하다. jQuery는 반복문 없이 해당하는 모든 요소에 접근/조작할 수 있다.
+이때 getElementsByClassName 메소드가 반환하는 [HTMLCollection](./js-dom#dom-query-1)이 실시간으로 Node의 상태 변경을 반영하기 때문에 경우에 따라(예를 들어 클래스명이 변경될 때) 반복문을 역방향으로 돌리는 등 번거로운 처리가 필요하다. jQuery는 반복문 없이 해당하는 모든 요소에 접근/조작할 수 있다.
 
 이를 <strong>묵시적 반복(implicit iteration)</strong>이라 한다.
 
@@ -537,7 +537,7 @@ Traversing의 예를 들어보자.
 
 ![traversing](/img/jq_traversing2.png)
 
-Traversing 관련 메서드는 [jQuery Traversing](http://api.jquery.com/category/traversing/)을 참조하기 바란다.
+Traversing 관련 메소드는 [jQuery Traversing](http://api.jquery.com/category/traversing/)을 참조하기 바란다.
 
 Filtering
 :  
@@ -598,7 +598,7 @@ $(function() {
 });
 ```
 
-추가할 요소를 생성하였으면 DOM에 콘텐츠를 Insert하여야 한다. 이때 사용할 수 있는 메서드는 4가지이다.
+추가할 요소를 생성하였으면 DOM에 콘텐츠를 Insert하여야 한다. 이때 사용할 수 있는 메소드는 4가지이다.
 
 - append(<element>) : 선택 요소의 닫는 태그 앞에 콘텐츠를 삽입한다.
 
@@ -619,7 +619,7 @@ $(function() {
 
 ## 6.2. Removing
 
-요소의 제거는 remove() 메서드를 사용한다.
+요소의 제거는 remove() 메소드를 사용한다.
 
 ```javascript
 $(function() {
@@ -629,7 +629,7 @@ $(function() {
 });
 ```
 
-Manipulation 관련 메서드는 [jQuery Manipulation](https://api.jquery.com/category/manipulation/)을 참조하기 바란다.
+Manipulation 관련 메소드는 [jQuery Manipulation](https://api.jquery.com/category/manipulation/)을 참조하기 바란다.
 
 Copying
 :  
@@ -671,7 +671,7 @@ DOM Replacement
 
 # 7. CSS / Attributes
 
-CSS와 요소의 속성에 관련된 메서드는 다음을 참조하기 바란다.
+CSS와 요소의 속성에 관련된 메소드는 다음을 참조하기 바란다.
 
 Attributes
 :  
@@ -805,9 +805,9 @@ $(function() {
 });
 ```
 
-closest() 메서드는 매치드셋과 가장 근접한 상위 요소를 반환한다.
+closest() 메소드는 매치드셋과 가장 근접한 상위 요소를 반환한다.
 
-Event 관련 메서드는 [jQuery Event](https://api.jquery.com/category/events/)을 참조하기 바란다.
+Event 관련 메소드는 [jQuery Event](https://api.jquery.com/category/events/)을 참조하기 바란다.
 
 Browser Events
 :  

@@ -74,7 +74,7 @@ Javascript는 바로 실행 컨텍스트(Execution Context)이라는 또다른 �
 			return bar;
 		}
 		``` -->
-  * 메서드에서 this를 통해 접근할 수 있는 객체의 프로퍼티
+  * 메소드에서 this를 통해 접근할 수 있는 객체의 프로퍼티
 		<!-- ```javascript
 		var person = {
 			firstName: "John",
@@ -323,7 +323,7 @@ Function Code의 경우, <strong>Scope Chain의 생성과 초기화</strong>에�
 
 #### 3.2.2.3 this value 결정
 
-Function code의 경우, this의 value는 자신을 호출한 객체로부터 제공된다.(call 또는 apply 메서드로 this의 값을 지정할 수 있다). 만약 자신을 호출한 객체로부터 제공된 this의 값이 객체가 아니면(null인 경우도 포함) this의 값은 Global Object가 된다. 결국 this의 값은 전역 객체가 된다.
+Function code의 경우, this의 value는 자신을 호출한 객체로부터 제공된다.(call 또는 apply 메소드로 this의 값을 지정할 수 있다). 만약 자신을 호출한 객체로부터 제공된 this의 값이 객체가 아니면(null인 경우도 포함) this의 값은 Global Object가 된다. 결국 this의 값은 전역 객체가 된다.
 
 <img src="/img/ec_16.jpg">
 

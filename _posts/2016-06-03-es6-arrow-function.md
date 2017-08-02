@@ -85,7 +85,7 @@ var foo = function () {
 foo(1, 2); // { '0': 1, '1': 2 }
 ```
 
-ES5에서 매개변수 갯수가 확정되지 않은 가변 인자 함수를 구현할 때 arguments 객체가 유용하게 사용된다. 가변 인자 함수의 경우, 파라미터를 통해 인수를 전달받는 것이 불가능하므로 arguments 객체를 활용하여 인수를 전달받는다. 하지만 arguments 객체는 유사 배열 객체이기 때문에 배열 메서드를 사용하려면 [Function.prototype.call](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/call), [Function.prototype.apply](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/apply)를 사용하여야 하는 번거로움이 있다.
+ES5에서 매개변수 갯수가 확정되지 않은 가변 인자 함수를 구현할 때 arguments 객체가 유용하게 사용된다. 가변 인자 함수의 경우, 파라미터를 통해 인수를 전달받는 것이 불가능하므로 arguments 객체를 활용하여 인수를 전달받는다. 하지만 arguments 객체는 유사 배열 객체이기 때문에 배열 메소드를 사용하려면 [Function.prototype.call](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/call), [Function.prototype.apply](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/apply)를 사용하여야 하는 번거로움이 있다.
 
 ```javascript
 // ES5
@@ -151,11 +151,11 @@ console.log(pre.prefixArray(['Lee', 'Kim']));
 
 (A)에서의 this는 생성자 함수 Prefixer가 생성한 객체, 즉 생성자 함수의 인스턴스(위 예제의 경우 pre)이다.
 
-(B)에서 사용한 this는 아마도 생성자 함수 Prefixer가 생성한 객체(위 예제의 경우 pre)일 것으로 기대하였겠지만 이곳에서 this는 전역 객체 window를 가리킨다. 이는 생성자 함수와 객체의 메서드를 제외한 모든 함수(내부함수, 콜백함수 포함)의 내부의 this는 전역객체를 가리키기 때문이다.
+(B)에서 사용한 this는 아마도 생성자 함수 Prefixer가 생성한 객체(위 예제의 경우 pre)일 것으로 기대하였겠지만 이곳에서 this는 전역 객체 window를 가리킨다. 이는 생성자 함수와 객체의 메소드를 제외한 모든 함수(내부함수, 콜백함수 포함)의 내부의 this는 전역객체를 가리키기 때문이다.
 
 위 설명이 잘 이해되지 않는다면 [this](./js-this)를 참조하기 바란다.
 
-콜백함수 내부의 this가 메서드를 호출한 객체(생성자 함수의 인스턴스)를 가리키게 하기 위해서는 아래의 4가지 방법이 있다.
+콜백함수 내부의 this가 메소드를 호출한 객체(생성자 함수의 인스턴스)를 가리키게 하기 위해서는 아래의 4가지 방법이 있다.
 
 ```javascript
 // Solution 1: that = this
@@ -245,9 +245,9 @@ console.log(pre.prefixArray(['Lee', 'Kim']));
 
 Arrow Function는 Lexical this를 지원하므로 콜백함수에 사용하기 편리하다. 하지만 Arrow Function을 사용하는 것이 오히려 혼란을 불러오는 경우도 있기 때문에 주의하여야 한다. 
 
-## 3.1 메서드
+## 3.1 메소드
 
-메서드 정의 시 Arrow Function을 사용하는 것은 피해야 한다. Arrow Function으로 메서드를 정의하여 보자.
+메소드 정의 시 Arrow Function을 사용하는 것은 피해야 한다. Arrow Function으로 메소드를 정의하여 보자.
 
 ```javascript
 // Bad
@@ -259,9 +259,9 @@ const obj = {
 obj.sayHi(); // Hi undefined
 ```
 
-해당 메서드를 소유한 객체 즉 해당 메서드를 호출한 객체에 this를 바인딩하지 않고 전역 객체에 바인딩된다. 따라서 Arrow Function으로 메서드를 정의하는 것은 바람직하지 않다.
+해당 메소드를 소유한 객체 즉 해당 메소드를 호출한 객체에 this를 바인딩하지 않고 전역 객체에 바인딩된다. 따라서 Arrow Function으로 메소드를 정의하는 것은 바람직하지 않다.
 
-ES6의 축약 메서드 표현 방식으로 위 예제를 수정하여 보자. [ES6의 축약 메서드 표현](./es6-enhanced-object-property#3-메서드-축약-표현)은 메서드명에 할당된 함수를 위한 단축 표기법이다.
+ES6의 축약 메소드 표현 방식으로 위 예제를 수정하여 보자. [ES6의 축약 메소드 표현](./es6-enhanced-object-property#3-메소드-축약-표현)은 메소드명에 할당된 함수를 위한 단축 표기법이다.
 
 ```javascript
 // Good
@@ -277,7 +277,7 @@ obj.sayHi(); // Hi Lee
 
 ## 3.2 prototype
 
-prototype에 메서드를 할당하는 경우도 동일한 문제가 발생한다. prototype에 Arrow Function 메서드를 할당하여 보자.
+prototype에 메소드를 할당하는 경우도 동일한 문제가 발생한다. prototype에 Arrow Function 메소드를 할당하여 보자.
 
 ```javascript
 // Bad
@@ -290,7 +290,7 @@ Object.prototype.sayHi = () => console.log(`Hi ${this.name}`);
 obj.sayHi(); // Hi undefined
 ```
 
-Arrow Function으로 객체 메서드를 정의하였을 때와 같은 문제가 발생한다. 일반 함수를 할당한다.
+Arrow Function으로 객체 메소드를 정의하였을 때와 같은 문제가 발생한다. 일반 함수를 할당한다.
 
 ```javascript
 // Good

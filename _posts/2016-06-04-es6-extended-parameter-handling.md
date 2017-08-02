@@ -96,7 +96,7 @@ var foo = function () {
 foo(1, 2); // { '0': 1, '1': 2 }
 ```
 
-매개변수 갯수가 확정되지 않은 가변 인자 함수를 구현할 때 arguments 객체가 유용하게 사용된다. 가변 인자 함수의 경우, 파라미터를 통해 인수를 전달받는 것이 불가능하므로 arguments 객체를 활용하여 인수를 전달받는다. 하지만 arguments 객체는 유사 배열 객체이기 때문에 배열 메서드를 사용하려면 [Function.prototype.call](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/call), [Function.prototype.apply](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/apply)를 사용하여야 하는 번거로움이 있다.
+매개변수 갯수가 확정되지 않은 가변 인자 함수를 구현할 때 arguments 객체가 유용하게 사용된다. 가변 인자 함수의 경우, 파라미터를 통해 인수를 전달받는 것이 불가능하므로 arguments 객체를 활용하여 인수를 전달받는다. 하지만 arguments 객체는 유사 배열 객체이기 때문에 배열 메소드를 사용하려면 [Function.prototype.call](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/call), [Function.prototype.apply](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/apply)를 사용하여야 하는 번거로움이 있다.
 
 ```javascript
 // ES5
@@ -226,7 +226,7 @@ Spread 연산자를 배열에서 사용하는 경우, 보다 간결하고 가독
 
 ### 3.2.1 concat
 
-기존 배열을 새로운 배열의 일부로 만들고 싶은 경우, 배열 리터럴 구문만으로 해결할 수 없고 concat 등의 배열 메서드를 사용하여야 한다.
+기존 배열을 새로운 배열의 일부로 만들고 싶은 경우, 배열 리터럴 구문만으로 해결할 수 없고 concat 등의 배열 메소드를 사용하여야 한다.
 
 ```javascript
 // ES5

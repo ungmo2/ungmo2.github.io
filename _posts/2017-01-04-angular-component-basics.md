@@ -226,7 +226,7 @@ Angular에서 데코레이터는 중요한 개념으로 사용된다. Angular는
 프로퍼티 데코레이터
 : @Input, @Output
 
-메서드 데코레이터
+메소드 데코레이터
 : @HostListener
 
 파라미터 데코레이터

@@ -137,10 +137,10 @@ app.post('/api/books', function (req, res) {
 });
 ```
 
-app.all() 메서드는 모든 HTTP method에 대응한다. next()를 사용하면 후속 route handler로 제어를 전달할 수 있다.
+app.all() 메소드는 모든 HTTP method에 대응한다. next()를 사용하면 후속 route handler로 제어를 전달할 수 있다.
 
 ```javascript
-// 모든 요청 메서드에 대응
+// 모든 요청 메소드에 대응
 app.all('/', function (req, res, next) {
   console.log('All request to the root section ...');
   next(); // pass control to the next handler

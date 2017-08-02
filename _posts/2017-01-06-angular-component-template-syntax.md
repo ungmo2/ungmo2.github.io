@@ -642,7 +642,7 @@ import { Component } from '@angular/core';
       <li [ngClass]="ArrayCssClasses">italic red</li>
       <!-- 객체에 의한 클래스 지정  -->
       <li [ngClass]="ObjectCssClasses">bold red</li>
-      <!-- 컴포넌트 메서드에 의한 클래스 지정 -->
+      <!-- 컴포넌트 메소드에 의한 클래스 지정 -->
       <li [ngClass]="getCSSClasses('italic-blue')">italic blue</li>
     </ul>
   `,
@@ -668,7 +668,7 @@ export class AppComponent {
     'color-red': this.state
   };
 
-  // 클래스 목록을 반환하는 컴포넌트 메서드
+  // 클래스 목록을 반환하는 컴포넌트 메소드
   getCSSClasses(flag: string) {
     let classes;
     if (flag === 'italic-blue') {
@@ -957,7 +957,7 @@ export class AppComponent {
 }
 ```
 
-user 객체의 id 프로퍼티를 사용하여 변경을 트랙킹할 수 있도록 trackByUserId 메서드를 추가하였다. 이때 user 객체의 id 프로퍼티는 유니크하여야 한다. user 객체의 id 프로퍼티를 사용하지 않고 trackByUserId에 인자로 전달된 index를 사용하여도 무방하다.
+user 객체의 id 프로퍼티를 사용하여 변경을 트랙킹할 수 있도록 trackByUserId 메소드를 추가하였다. 이때 user 객체의 id 프로퍼티는 유니크하여야 한다. user 객체의 id 프로퍼티를 사용하지 않고 trackByUserId에 인자로 전달된 index를 사용하여도 무방하다.
 
 add user 또는 X 버튼을 클릭하면 해당 user를 추가/제거한다. 예를 들어 3번째 user 객체를 제거하면 users의 변경을 DOM에 반영하여야 한다. 이때 trackBy를 사용하지 않는 경우 ngFor는 DOM을 다시 생성한다. trackBy를 사용한 경우 user.id를 기준으로 컬렉션의 변경을 트래킹하기 때문에 퍼포먼스가 향상된다. 
 

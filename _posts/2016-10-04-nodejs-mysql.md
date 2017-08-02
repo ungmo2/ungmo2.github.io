@@ -107,7 +107,7 @@ SELECT * FROM Persons;
 
 index.js를 아래와 같이 변경한다.
 
-`createConnection` 메서드의 인자로 전달되는 객체에 자신의 데이터베이스 정보(유저명과 패스워드 등)를 입력하여야 한다. 설정 정보의 관리에 대해서는 [Node.js에서 비밀 설정 정보(Secrets) 관리](./nodejs-kepping-secrets)를 참조하기 바란다.
+`createConnection` 메소드의 인자로 전달되는 객체에 자신의 데이터베이스 정보(유저명과 패스워드 등)를 입력하여야 한다. 설정 정보의 관리에 대해서는 [Node.js에서 비밀 설정 정보(Secrets) 관리](./nodejs-kepping-secrets)를 참조하기 바란다.
 
 ```javascript
 var mysql      = require('mysql');

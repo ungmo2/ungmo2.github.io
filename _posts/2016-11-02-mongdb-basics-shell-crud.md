@@ -50,7 +50,7 @@ local             0.000GB
 
 이 시점에서 mongo-example database는 아직 생성되지 않았다. 최소 한개 이상의 document를 추가하여야 database가 생성된다.
 
-`insert()` 메서드를 사용하여 collection에 document를 insert한다. 이때 collection books도 생성된다.
+`insert()` 메소드를 사용하여 collection에 document를 insert한다. 이때 collection books도 생성된다.
 
 ```javascript
 db.collection.insert(
@@ -116,7 +116,7 @@ collection list를 확인하려면 아래 shell method를 실행한다.
 books
 ```
 
-또는 getCollectionNames() 메서드를 사용한다.
+또는 getCollectionNames() 메소드를 사용한다.
 
 ```bash
 > db.getCollectionNames()
@@ -125,7 +125,7 @@ books
 
 # 2. Read
 
-`find()` 메서드를 사용하여 collection 내의 document를 select한다.
+`find()` 메소드를 사용하여 collection 내의 document를 select한다.
 
 ```bash
 db.collection.find(query, projection)
@@ -305,7 +305,7 @@ db.books.find(
 
 # 3. Update
 
-`update()` 메서드를 사용하여 collection 내의 document를 update한다.
+`update()` 메소드를 사용하여 collection 내의 document를 update한다.
 
 ```bash
 db.<collection_name>.update(

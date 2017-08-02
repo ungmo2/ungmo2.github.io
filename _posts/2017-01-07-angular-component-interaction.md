@@ -391,7 +391,7 @@ setter를 이용한 입력 프로퍼티 조작
 
 지금까지 @Input 데코레이터를 통해 부모 컴포넌트에서 자식 컴포넌트로 상태 정보를 전달하는 방법에 대해 알아보았다. 이와는 반대로 자식 컴포넌트에서 부모 컴포넌트로 상태 정보를 전달하는 방법에 대해 알아보도록 하자.
 
-자식 컴포넌트는 <strong>@Output 데코레이터</strong>와 함께 선언된 컴포넌트 프로퍼티(출력 프로퍼티)를 EventEmitter 객체로 초기화한다. 그리고 부모 컴포넌트로 상태를 전달하기 위해 emit() 메서드를 사용하여 이벤트를 발생시킨다. 부모 컴포넌트는 자식 컴포넌트가 전달한 상태를 <strong>이벤트 바인딩</strong>을 통해 접수한다. 
+자식 컴포넌트는 <strong>@Output 데코레이터</strong>와 함께 선언된 컴포넌트 프로퍼티(출력 프로퍼티)를 EventEmitter 객체로 초기화한다. 그리고 부모 컴포넌트로 상태를 전달하기 위해 emit() 메소드를 사용하여 이벤트를 발생시킨다. 부모 컴포넌트는 자식 컴포넌트가 전달한 상태를 <strong>이벤트 바인딩</strong>을 통해 접수한다. 
 
 ![child to parent](./img/childtoparent.png)
 
@@ -485,7 +485,7 @@ export class UserListComponent {
 @Output() remove = new EventEmitter<User>();
 ```
 
-EventEmitter 객체는 커스텀 이벤트를 발생시키는 emit() 메서드를 가지고 있다. 사용자 삭제 버튼이 클릭되면 emit() 메서드를 통해 커스텀 이벤트를 발생시키고 emit() 메서드에 인자를 전달하여 부모 컴포넌트에게 상태 정보를 전달한다.
+EventEmitter 객체는 커스텀 이벤트를 발생시키는 emit() 메소드를 가지고 있다. 사용자 삭제 버튼이 클릭되면 emit() 메소드를 통해 커스텀 이벤트를 발생시키고 emit() 메소드에 인자를 전달하여 부모 컴포넌트에게 상태 정보를 전달한다.
 
 ```html
 <button 
@@ -571,7 +571,7 @@ export class AppComponent {
 </app-user-list>
 ```
 
-이때 자식 컴포넌트가 emit() 메서드의 인자로 전달한 상태는 $event에 들어 있다. 이벤트 핸들러를 통해 users에서 전달된 user를 삭제한다.
+이때 자식 컴포넌트가 emit() 메소드의 인자로 전달한 상태는 $event에 들어 있다. 이벤트 핸들러를 통해 users에서 전달된 user를 삭제한다.
 
 ```typescript
 removeUser(user: User) {

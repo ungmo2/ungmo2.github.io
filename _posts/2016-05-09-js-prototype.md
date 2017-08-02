@@ -4,7 +4,7 @@ title: Javascript <strong>Prototype</strong>
 subtitle: 프로토타입과 객체지향
 categories: javascript
 section: javascript
-description: 자바스크립트의 모든 객체는 자신의 부모 역할을 하는 객체와 연결되어 있다. 그리고 이것은 마치 객체 지향의 상속 개념과 같이 부모 객체의 프로퍼티 또는 메서드를 상속받아 사용할 수 있게 한다. 이러한 부모 객체를 Prototype(프로토타입) 객체 또는 줄여서 Prototype(프로토타입)이라 한다.
+description: 자바스크립트의 모든 객체는 자신의 부모 역할을 하는 객체와 연결되어 있다. 그리고 이것은 마치 객체 지향의 상속 개념과 같이 부모 객체의 프로퍼티 또는 메소드를 상속받아 사용할 수 있게 한다. 이러한 부모 객체를 Prototype(프로토타입) 객체 또는 줄여서 Prototype(프로토타입)이라 한다.
 ---
 
 * TOC
@@ -18,7 +18,7 @@ Java, C++과 같은 클래스 기반 객체지향 프로그래밍 언어와 달�
 
 - [자바스크립트의 객체 생성 방법](./js-object#2-객체-생성-방법)
 
-자바스크립트의 모든 객체는 자신의 부모 역할을 담당하는 객체와 연결되어 있다. 그리고 이것은 마치 객체 지향의 상속 개념과 같이 부모 객체의 프로퍼티 또는 메서드를 상속받아 사용할 수 있게 한다. 이러한 부모 객체를 <strong>Prototype(프로토타입) 객체</strong> 또는 줄여서 Prototype(프로토타입)이라 한다.
+자바스크립트의 모든 객체는 자신의 부모 역할을 담당하는 객체와 연결되어 있다. 그리고 이것은 마치 객체 지향의 상속 개념과 같이 부모 객체의 프로퍼티 또는 메소드를 상속받아 사용할 수 있게 한다. 이러한 부모 객체를 <strong>Prototype(프로토타입) 객체</strong> 또는 줄여서 Prototype(프로토타입)이라 한다.
 
 ```javascript
 var student = {
@@ -26,7 +26,7 @@ var student = {
   score: 90
 };
 
-// student에는 hasOwnProperty 메서드가 없지만 아래 구문은 동작한다.
+// student에는 hasOwnProperty 메소드가 없지만 아래 구문은 동작한다.
 console.log(student.hasOwnProperty('name')); // true
 
 console.dir(student);
@@ -102,7 +102,7 @@ console.dir(foo);    // prototype 프로퍼티가 없다.
 
 # 3. Prototype chain
 
-자바스크립트는 특정 객체의 프로퍼티나 메서드에 접근하려고 할 때 해당 객체에 접근하려는 프로퍼티 또는 메서드가 없다면 [[Prototype]] 프로퍼티가 가리키는 링크를 따라 자신의 부모 역할을 하는 프로토타입 객체의 프로퍼티나 메서드를 차례대로 검색한다. 이것을 프로토타입 체인이라 한다.
+자바스크립트는 특정 객체의 프로퍼티나 메소드에 접근하려고 할 때 해당 객체에 접근하려는 프로퍼티 또는 메소드가 없다면 [[Prototype]] 프로퍼티가 가리키는 링크를 따라 자신의 부모 역할을 하는 프로토타입 객체의 프로퍼티나 메소드를 차례대로 검색한다. 이것을 프로토타입 체인이라 한다.
 
 ```javascript
 var student = {
@@ -114,7 +114,7 @@ var student = {
 console.log(student.hasOwnProperty('name')); // true
 ```
 
-student 객체는 hasOwnProperty 메서드를 가지고 있지 않으므로 에러가 발생하여야 하나 정상적으로 결과가 출력되었다. 이는 student 객체의 [[Prototype]] 프로퍼티가 가리키는 링크를 따라가서 student 객체의 부모역할을 하는 프로토타입 객체(Object.prototype)의 메서드 hasOwnProperty를 호출하였기 때문에 가능한 것이다.
+student 객체는 hasOwnProperty 메소드를 가지고 있지 않으므로 에러가 발생하여야 하나 정상적으로 결과가 출력되었다. 이는 student 객체의 [[Prototype]] 프로퍼티가 가리키는 링크를 따라가서 student 객체의 부모역할을 하는 프로토타입 객체(Object.prototype)의 메소드 hasOwnProperty를 호출하였기 때문에 가능한 것이다.
 
 ```javascript
 var student = {
@@ -240,7 +240,7 @@ foo 객체의 프로토타입 객체 Person.prototype 객체와 Person() 생성�
 
 # 4. 프로토타입 객체의 확장
 
-생성자 함수로 객체를 생성할 때 생성자 함수의 prototype 프로퍼티에 연결된 프로토타입 객체는 constructor와 [[Prototype]] 프로퍼티를 갖는다. 프로토타입 객체도 객체이므로 일반 객체와 같이 프로퍼티를 추가/삭제할 수 있다. 그리고 이렇게 추가/삭제된 프로퍼티는 즉시 프로토타입 체인에 반영된다.
+프로토타입 객체도 객체이므로 일반 객체와 같이 프로퍼티를 추가/삭제할 수 있다. 그리고 이렇게 추가/삭제된 프로퍼티는 즉시 프로토타입 체인에 반영된다.
 
 ```javascript
 function Person(name) {
@@ -256,7 +256,7 @@ Person.prototype.sayHello = function(){
 foo.sayHello();
 ```
 
-생성자 함수 Person은 prototype 프로퍼티에 연결된 프로토타입 객체 Person.prototype를 갖는다. Person.prototype 객체는 일반 객체와 같이 프로퍼티를 추가/삭제가 가능하다. 위의 예에서는 Person.prototype 객체에 메서드 sayHello를 추가하였다. 이때 sayHello 메서드는 프로토타입 체인에 반영된다. 따라서 생성자 함수 Person에 의해 생성된 foo 객체는 프로토타입 체인에 의해 부모객체인 Person.prototype의 메서드를 사용할 수 있게 되었다.
+생성자 함수 Person은 prototype 프로퍼티에 연결된 프로토타입 객체 Person.prototype를 갖는다. Person.prototype 객체는 일반 객체와 같이 프로퍼티를 추가/삭제가 가능하다. 위의 예에서는 Person.prototype 객체에 메소드 sayHello를 추가하였다. 이때 sayHello 메소드는 프로토타입 체인에 반영된다. 따라서 생성자 함수 Person에 의해 생성된 모든 객체는 프로토타입 체인에 의해 부모객체인 Person.prototype의 메소드를 사용할 수 있게 되었다.
 
 ![extension of prototype](/img/extension_prototype.png)
 
@@ -281,11 +281,12 @@ console.log(strObj.toUpperCase()); // TEST
 
 기본자료형 문자열과 String() 생성자 함수로 생성한 문자열 객체의 타입은 분명이 다르다. 기본 자료형은 객체가 아니므로 프로퍼티나 메소드를 가질수 없다. 하지만 **기본자료형으로 프로퍼티나 메소드를 호출할 때 기본자료형과 연관된 객체로 일시적으로 변환되어 프로토타입 객체를 공유하게 된다.**
 
-기본자료형은 객체가 아니므로 프로퍼티나 메서드를 직접 추가할 수 없다.
+기본자료형은 객체가 아니므로 프로퍼티나 메소드를 직접 추가할 수 없다.
 
 ```javascript
 var str = 'test';
 
+// 에러가 발생하지 않는다.
 str.myMethod = function () {
   console.log('str.myMethod');
 };
@@ -307,11 +308,11 @@ console.log('string'.myMethod()); // myMethod
 console.dir(String.prototype);
 ```
 
-앞서 살펴본 바와 같이 모든 객체는 프로토타입 체인에 의해 Object.prototype 객체의 메서드를 사용할 수 있었다. Object.prototype 객체는 프로토타입 체인의 종점으로 모든 객체가 사용할 수 있는 메서드를 갖는다.
+앞서 살펴본 바와 같이 모든 객체는 프로토타입 체인에 의해 Object.prototype 객체의 메소드를 사용할 수 있었다. Object.prototype 객체는 프로토타입 체인의 종점으로 모든 객체가 사용할 수 있는 메소드를 갖는다.
 
-이후 살펴보게 될 [Built-in object(내장 객체)](./js-built-in-object)의 [Global objects (Standard Built-in Objects)](./js-standard-built-in-objects#2-standard-built-in-objects-global-objects)인 String, Number, Array 객체 등이 가지고 있는 표준 메서드는 프로토타입 객체인 String.prototype, Number.prototype, Array.prototype 등에 정의되어 있다. 이들 프로토타입 객체 또한 Object.prototype를 프로토타입 체인에 의해 자신의 프로토타입 객체로 연결한다.
+이후 살펴보게 될 [Built-in object(내장 객체)](./js-built-in-object)의 [Global objects (Standard Built-in Objects)](./js-standard-built-in-objects#2-standard-built-in-objects-global-objects)인 String, Number, Array 객체 등이 가지고 있는 표준 메소드는 프로토타입 객체인 String.prototype, Number.prototype, Array.prototype 등에 정의되어 있다. 이들 프로토타입 객체 또한 Object.prototype를 프로토타입 체인에 의해 자신의 프로토타입 객체로 연결한다.
 
-자바스크립트는 표준 내장 객체의 프로토타입 객체에 개발자가 정의한 메서드의 추가를 허용한다.
+자바스크립트는 표준 내장 객체의 프로토타입 객체에 개발자가 정의한 메소드의 추가를 허용한다.
 
 ```javascript
 var str = 'test';

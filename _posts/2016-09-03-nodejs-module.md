@@ -89,7 +89,7 @@ module.exports.minus = function (v1, v2) {
 
 # require
 
-require 메서드의 인수에는 파일뿐만 아니라 디렉터리를 지정할 수도 있다.
+require 메소드의 인수에는 파일뿐만 아니라 디렉터리를 지정할 수도 있다.
 
 require는 modules.exports에 할당된 객체를 반환한다.
 
@@ -104,7 +104,7 @@ project/
     └── print.js
 ```
 
-다음과 같이 파일을 명시하지 않고 require 메서드를 호출하면 해당 디렉터리의 index.js을 로드한다.
+다음과 같이 파일을 명시하지 않고 require 메소드를 호출하면 해당 디렉터리의 index.js을 로드한다.
 
 ```javascript
 var myModule = require('./module');

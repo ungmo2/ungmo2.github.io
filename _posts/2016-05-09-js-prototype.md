@@ -89,10 +89,15 @@ console.dir(foo);    // prototype 프로퍼티가 없다.
     console.log(Person.prototype === foo.__proto__);
     ```
 
-  - 함수가 생성될 때 만들어 지며 constructor 프로퍼티를 가지는 객체를 가리킨다. 이 constructor 프로퍼티는 함수 객체 자신을 가리킨다.
+  - 함수가 생성될 때 만들어 지며 constructor 프로퍼티를 가지는 객체를 가리킨다. 이 constructor 프로퍼티는 자신을 생성한 객체를 가리킨다. Person() 생성자 함수에 의해 생성된 객체를 생성한 객체는 Person() 생성자 함수이다. 따라서 prototype 객체의 constructor 프로퍼티는 생성자 함수 객체 자신을 가리킨다.
 
     ```javascript
+    // Person() 생성자 함수에 의해 생성된 객체를 생성한 객체는 Person() 생성자 함수 자기 자신이다.
     console.log(Person.prototype.constructor === Person);
+    // Person() 생성자 함수를 생성한 객체는 Function() 생성자 함수이다.
+    console.log(Person.constructor); // Function
+    // foo 객체를 생성한 객체는 Person() 생성자 함수이다.
+    console.log(foo.constructor);    // Person
     ```
 
 # 3. Prototype chain
@@ -197,7 +202,7 @@ var square = function square(number) {
 
 객체를 생성하는 방식은 3가지가 있다. 3가지 객체 생성 방식에 의해 생성된 객체의 prototype 객체를 정리해 보면 아래와 같다.
 
-| 객체 생성 방식        | 엔진의 객체 생성     | prototype 객체
+| 객체 생성 방식        | 엔진의 객체 생성     | 인스턴스의 prototype 객체
 |:------------------|:------------------|:----------------------
 | 객체 리터럴          | Object() 생성자 함수 | Object.prototype
 | Object() 생성자 함수 | Object() 생성자 함수 | Object.prototype
@@ -233,9 +238,31 @@ foo 객체의 프로토타입 객체 Person.prototype 객체와 Person() 생성�
 
 이는 객체 리터럴 방식이나 생성자 함수 방식이나 결국은 모든 객체의 부모 객체인 Object.prototype 객체에서 프로토타입 체인이 끝나기 때문이다. 이때 Object.prototype 객체를 <strong>프로토타입 체인의 종점(End of prototype chain)</strong>이라 한다.
 
-# 4. 기본자료형(Primitive data type)의 확장
+# 4. 프로토타입 객체의 확장
 
-자바스크립트에서 기본자료형(숫자, 문자열, boolean, null, undefined)을 제외한 모든것은 객체이다. 그런데 아랭 예제를 살펴보면 기본자료형인 문자열이 흡사 객체와 같이 동작한다.
+생성자 함수로 객체를 생성할 때 생성자 함수의 prototype 프로퍼티에 연결된 프로토타입 객체는 constructor와 [[Prototype]] 프로퍼티를 갖는다. 프로토타입 객체도 객체이므로 일반 객체와 같이 프로퍼티를 추가/삭제할 수 있다. 그리고 이렇게 추가/삭제된 프로퍼티는 즉시 프로토타입 체인에 반영된다.
+
+```javascript
+function Person(name) {
+  this.name = name;
+}
+
+var foo = new Person('Lee');
+
+Person.prototype.sayHello = function(){
+  console.log('Hi! my name is ' + this.name);
+};
+
+foo.sayHello();
+```
+
+생성자 함수 Person은 prototype 프로퍼티에 연결된 프로토타입 객체 Person.prototype를 갖는다. Person.prototype 객체는 일반 객체와 같이 프로퍼티를 추가/삭제가 가능하다. 위의 예에서는 Person.prototype 객체에 메서드 sayHello를 추가하였다. 이때 sayHello 메서드는 프로토타입 체인에 반영된다. 따라서 생성자 함수 Person에 의해 생성된 foo 객체는 프로토타입 체인에 의해 부모객체인 Person.prototype의 메서드를 사용할 수 있게 되었다.
+
+![extension of prototype](/img/extension_prototype.png)
+
+# 5. 기본자료형(Primitive data type)의 확장
+
+자바스크립트에서 기본자료형(숫자, 문자열, boolean, null, undefined)을 제외한 모든것은 객체이다. 그런데 아래 예제를 살펴보면 기본자료형인 문자열이 흡사 객체와 같이 동작한다.
 
 ```javascript
 var str = 'test';
@@ -304,28 +331,6 @@ console.log(Function.prototype.__proto__  === Object.prototype); // ⑤ true
 ```
 
 ![String constructor function prototype chaining](/img/string_constructor_function_prototype_chaining.png)
-
-# 5. 프로토타입 객체의 확장
-
-생성자 함수로 객체를 생성할 때 생성자 함수의 prototype 프로퍼티에 연결된 프로토타입 객체는 constructor와 [[Prototype]] 프로퍼티를 갖는다. 프로토타입 객체도 객체이므로 일반 객체와 같이 프로퍼티를 추가/삭제할 수 있다. 그리고 이렇게 추가/삭제된 프로퍼티는 즉시 프로토타입 체인에 반영된다.
-
-```javascript
-function Person(name) {
-  this.name = name;
-}
-
-var foo = new Person('Lee');
-
-Person.prototype.sayHello = function(){
-  console.log('Hi! my name is ' + this.name);
-};
-
-foo.sayHello();
-```
-
-생성자 함수 Person은 prototype 프로퍼티에 연결된 프로토타입 객체 Person.prototype를 갖는다. Person.prototype 객체는 일반 객체와 같이 프로퍼티를 추가/삭제가 가능하다. 위의 예에서는 Person.prototype 객체에 메서드 sayHello를 추가하였다. 이때 sayHello 메서드는 프로토타입 체인에 반영된다. 따라서 생성자 함수 Person에 의해 생성된 foo 객체는 프로토타입 체인에 의해 부모객체인 Person.prototype의 메서드를 사용할 수 있게 되었다.
-
-![extension of prototype](/img/extension_prototype.png)
 
 # 6. 프로토타입 객체의 변경
 

@@ -39,7 +39,7 @@ Google chrome에서 student 객체 출력 결과
 
 ECMAScript spec에서는 **자바스크립트의 모든 객체는 자신의 프로토타입을 가리키는 [[Prototype]]이라는 숨겨진 프로퍼티를 가진다** 라고 되어있다. 크롬, 파이어폭스 등에서는 숨겨진 [[Prototype]] 프로퍼티가 \_\_proto\_\_ 프로퍼티로 구현되어 있다. 즉 \_\_proto\_\_과 [[Prototype]]은 같은 개념이다.
 
-student 객체는 \_\_proto\_\_라는 프로퍼티에 자신의 부모 객체(프로토타입 객체)인 Object.prototype을 Link하고 있는 것이다.
+student 객체는 \_\_proto\_\_ 프로퍼티로 자신의 부모 객체(프로토타입 객체)인 Object.prototype을 가리키고 있다.
 
 ```javascript
 var student = {
@@ -69,8 +69,8 @@ function Person(name, gender) {
 
 var foo = new Person('Lee');
 
-console.dir(Person);
-console.dir(foo);
+console.dir(Person); // prototype 프로퍼티가 있다.
+console.dir(foo);    // prototype 프로퍼티가 없다.
 ```
 
 - [[Prototype]] 프로퍼티  
@@ -159,6 +159,9 @@ console.log(Function.prototype.__proto__ === Object.prototype); // ④ true
 객체 리터럴 방식으로 생성된 객체의 프로토타입 체인
 {: .desc-img}
 
+결론적으로 객체 리터럴을 사용하여 객체를 생성한 경우, 그 객체의 프로토타입 객체는 Object.prototype이다.
+{: .info}
+
 ## 3.2 생성자 함수로 생성된 객체의 프로토타입 체인
 
 생성자 함수로 객체를 생성하기 위해서는 우선 생성자 함수를 정의하여야 한다.
@@ -189,9 +192,16 @@ var square = function square(number) {
 
 따라서 함수선언식과 함수표현식은 모두 함수 리터럴 방식으로 함수를 정의하는데 이것은 결국 내장 함수 Function() 생성자 함수로 함수를 생성하는 것을 단순화 시킨 것이다.
 
-이는 앞서 살펴본 <strong>객체 리터럴 방식으로 생성된 객체의 프로토타입 체인</strong>의 경우, 객체의 생성은 내장 함수 Object() 생성자 함수를 사용하는 것과 유사하다. Object() 생성자 함수는 물론 함수이기 때문에 함수 객체는 일반 객체와 달리 prototype 프로퍼티가 있다고 했다.
+즉, 3가지 함수 정의 방식은 결국 Function() 생성자 함수를 통해 함수 객체를 생성한다, 따라서 어떠한 방식으로 함수 객체를 생성하여도 모든 함수 객체의 prototype 객체는 Function.prototype이다. 생성자 함수도 함수 객체이므로 생성자 함수의 prototype 객체는 Function.prototype이다.
+{: .info}
 
-내장 함수 Function() 생성자 함수도 물론 함수이기 때문에 일반 객체와 달리 prototype 프로퍼티가 있다.
+3가지 객체 생성 방식에 의해 생성된 객체의 prototype 객체를 정리해 보면 아래와 같다.
+
+| 객체 생성 방식        | 엔진의 객체 생성     | prototype 객체
+|:------------------|:------------------|:----------------------
+| 객체 리터럴          | Object() 생성자 함수 | Object.prototype
+| Object() 생성자 함수 | Object() 생성자 함수 | Object.prototype
+| 생성자 함수          | 생성자 함수          | 생성자 함수 이름.prototype
 
 ```javascript
 function Person(name, gender) {

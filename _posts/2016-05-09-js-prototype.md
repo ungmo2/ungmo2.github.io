@@ -63,7 +63,7 @@ console.log(student.__proto__ === Object.prototype); // true
 {: .info}
 
 ```javascript
-function Person(name, gender) {
+function Person(name) {
   this.name = name;
 }
 
@@ -75,7 +75,7 @@ console.dir(foo);    // prototype 프로퍼티가 없다.
 
 - [[Prototype]] 프로퍼티  
   - 함수를 포함한 모든 객체가 가지고 있는 프로퍼티이다.
-  - **객체의 입장에서 자신의 부모 역할을 하는 프로토타입 객체을 가리키며 함수 객체의 경우 `Function.prototype`를 가리킨다.**
+  - **객체의 입장에서 자신의 부모 역할을 하는 프로토타입 객체을 가리키며 함수 객체의 경우 `Function.prototype`를 가리킨다.** 그 이유에 대해서는 [3.2 생성자 함수로 생성된 객체의 프로토타입 체인](./js-prototype#32-생성자-함수로-생성된-객체의-프로토타입-체인)을 참조하기 바란다.
 
     ```javascript
     console.log(Person.__proto__ === Function.prototype);
@@ -83,24 +83,34 @@ console.dir(foo);    // prototype 프로퍼티가 없다.
 
 - prototype 프로퍼티  
   - 함수 객체만 가지고 있는 프로퍼티이다.
-  - **함수 객체가 생성자로 사용될 때 이 함수를 통해 생성된 객체의 부모 역할을 하는 객체를 가리킨다.**
+  - **함수 객체가 생성자로 사용될 때 이 함수를 통해 생성될 객체의 부모 역할을 하는 객체(프로토타입 객체)를 가리킨다.**
 
     ```javascript
     console.log(Person.prototype === foo.__proto__);
     ```
 
-  - 함수가 생성될 때 만들어 지며 constructor 프로퍼티를 가지는 객체를 가리킨다. 이 constructor 프로퍼티는 자신을 생성한 객체를 가리킨다. Person() 생성자 함수에 의해 생성된 객체를 생성한 객체는 Person() 생성자 함수이다. 따라서 prototype 객체의 constructor 프로퍼티는 생성자 함수 객체 자신을 가리킨다.
+# 3. constructor 프로퍼티
 
-    ```javascript
-    // Person() 생성자 함수에 의해 생성된 객체를 생성한 객체는 Person() 생성자 함수 자기 자신이다.
-    console.log(Person.prototype.constructor === Person);
-    // Person() 생성자 함수를 생성한 객체는 Function() 생성자 함수이다.
-    console.log(Person.constructor); // Function
-    // foo 객체를 생성한 객체는 Person() 생성자 함수이다.
-    console.log(foo.constructor);    // Person
-    ```
+프로토타입 객체는 constructor 프로퍼티를 갖는다. 이 constructor 프로퍼티는 객체의 입장에서 자신을 생성한 객체를 가리킨다. Person() 생성자 함수에 의해 생성된 객체를 생성한 객체는 Person() 생성자 함수이다. 따라서 prototype 객체의 constructor 프로퍼티는 객체를 생성하는 생성자 함수 객체를 가리킨다.
 
-# 3. Prototype chain
+```javascript
+function Person(name) {
+  this.name = name;
+}
+
+var foo = new Person('Lee');
+
+// Person() 생성자 함수에 의해 생성된 객체를 생성한 객체는 Person() 생성자 함수이다.
+console.log(Person.prototype.constructor === Person);
+
+// foo 객체를 생성한 객체는 Person() 생성자 함수이다.
+console.log(foo.constructor === Person);
+
+// Person() 생성자 함수를 생성한 객체는 Function() 생성자 함수이다.
+console.log(Person.constructor === Function);
+```
+
+# 4. Prototype chain
 
 자바스크립트는 특정 객체의 프로퍼티나 메소드에 접근하려고 할 때 해당 객체에 접근하려는 프로퍼티 또는 메소드가 없다면 [[Prototype]] 프로퍼티가 가리키는 링크를 따라 자신의 부모 역할을 하는 프로토타입 객체의 프로퍼티나 메소드를 차례대로 검색한다. 이것을 프로토타입 체인이라 한다.
 
@@ -127,7 +137,7 @@ console.log(student.__proto__ === Object.prototype); // true
 console.log(Object.prototype.hasOwnProperty('hasOwnProperty')); // true
 ```
 
-## 3.1 객체 리터럴 방식으로 생성된 객체의 프로토타입 체인
+## 4.1 객체 리터럴 방식으로 생성된 객체의 프로토타입 체인
 
 [객체 생성 방법](./http://poiemaweb.com/js-object#2-객체-생성-방법)은 3가지가 있다.
 
@@ -167,7 +177,7 @@ console.log(Function.prototype.__proto__ === Object.prototype); // ④ true
 결론적으로 객체 리터럴을 사용하여 객체를 생성한 경우, 그 객체의 프로토타입 객체는 Object.prototype이다.
 {: .info}
 
-## 3.2 생성자 함수로 생성된 객체의 프로토타입 체인
+## 4.2 생성자 함수로 생성된 객체의 프로토타입 체인
 
 생성자 함수로 객체를 생성하기 위해서는 우선 생성자 함수를 정의하여야 한다.
 
@@ -238,7 +248,7 @@ foo 객체의 프로토타입 객체 Person.prototype 객체와 Person() 생성�
 
 이는 객체 리터럴 방식이나 생성자 함수 방식이나 결국은 모든 객체의 부모 객체인 Object.prototype 객체에서 프로토타입 체인이 끝나기 때문이다. 이때 Object.prototype 객체를 <strong>프로토타입 체인의 종점(End of prototype chain)</strong>이라 한다.
 
-# 4. 프로토타입 객체의 확장
+# 5. 프로토타입 객체의 확장
 
 프로토타입 객체도 객체이므로 일반 객체와 같이 프로퍼티를 추가/삭제할 수 있다. 그리고 이렇게 추가/삭제된 프로퍼티는 즉시 프로토타입 체인에 반영된다.
 
@@ -260,7 +270,7 @@ foo.sayHello();
 
 ![extension of prototype](/img/extension_prototype.png)
 
-# 5. 기본자료형(Primitive data type)의 확장
+# 6. 기본자료형(Primitive data type)의 확장
 
 자바스크립트에서 기본자료형(숫자, 문자열, boolean, null, undefined)을 제외한 모든것은 객체이다. 그런데 아래 예제를 살펴보면 기본자료형인 문자열이 흡사 객체와 같이 동작한다.
 
@@ -333,7 +343,7 @@ console.log(Function.prototype.__proto__  === Object.prototype); // ⑤ true
 
 ![String constructor function prototype chaining](/img/string_constructor_function_prototype_chaining.png)
 
-# 6. 프로토타입 객체의 변경
+# 7. 프로토타입 객체의 변경
 
 객체를 생성할 때 프로토타입은 결정된다. 결정된 프로토타입 객체는 다른 임의의 객체로 변경할 수 있다. 이것은 부모 객체인 프로토타입을 동적으로 변경할 수 있다는 것을 의미한다. 이러한 특징을 활용하여 객체의 상속을 구현할 수 있다.
 
@@ -370,7 +380,7 @@ console.log(bar.constructor); // ② Object()
 
 ② 프로토타입 객체 변경 후, Person() 생성자 함수의 Prototype 프로퍼티가 가리키는 프로토타입 객체는 일반 객체로 변경되었다. 그리고 constructor 프로퍼티도 삭제되었다. 따라서 프로토타입 체인에 의해 bar.constructor의 값은 Object.prototype.constructor 즉 Object() 생성자 함수가 된다.
 
-# 7. 프로토타입 체인 동작 조건
+# 8. 프로토타입 체인 동작 조건
 
 객체의 프로퍼티를 읽으려 할 때 해당 객체에 프로퍼티가 없는 경우, 프로토타입 체인이 동작한다.
 

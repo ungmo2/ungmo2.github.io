@@ -75,7 +75,7 @@ console.dir(foo);    // prototype 프로퍼티가 없다.
 
 - [[Prototype]] 프로퍼티  
   - 함수를 포함한 모든 객체가 가지고 있는 프로퍼티이다.
-  - **객체의 입장에서 자신의 부모 역할을 하는 프로토타입 객체을 가리키며 함수 객체의 경우 `Function.prototype`를 가리킨다.** 그 이유에 대해서는 [3.2 생성자 함수로 생성된 객체의 프로토타입 체인](./js-prototype#32-생성자-함수로-생성된-객체의-프로토타입-체인)을 참조하기 바란다.
+  - **객체의 입장에서 자신의 부모 역할을 하는 프로토타입 객체을 가리키며 함수 객체의 경우 `Function.prototype`를 가리킨다.** 그 이유에 대해서는 [4.2 생성자 함수로 생성된 객체의 프로토타입 체인](./js-prototype#42-생성자-함수로-생성된-객체의-프로토타입-체인)을 참조하기 바란다.
 
     ```javascript
     console.log(Person.__proto__ === Function.prototype);
@@ -347,13 +347,13 @@ console.log(Function.prototype.__proto__  === Object.prototype); // ⑤ true
 
 객체를 생성할 때 프로토타입은 결정된다. 결정된 프로토타입 객체는 다른 임의의 객체로 변경할 수 있다. 이것은 부모 객체인 프로토타입을 동적으로 변경할 수 있다는 것을 의미한다. 이러한 특징을 활용하여 객체의 상속을 구현할 수 있다.
 
-이때 주의할 것은 객체 생성 시 같이 생성된 프로토타입 객체를 변경하면
+이때 주의할 것은 프로토타입 객체를 변경하면
 
 - 프로토타입 객체 변경 시점 이전에 생성된 객체  
-: 기존 프로토타입 객체에 [[Prototype]] 링크를 연결한다.
+: 기존 프로토타입 객체를 [[Prototype]] 프로퍼티에 바인딩한다.
 
 - 프로토타입 객체 변경 시점 이후에 생성된 객체  
-: 변경된 프로토타입 객체에 [[Prototype]] 링크를 연결한다.
+: 변경된 프로토타입 객체를 [[Prototype]] 프로퍼티에 바인딩한다.
 
 ```javascript
 function Person(name) {
@@ -362,7 +362,8 @@ function Person(name) {
 
 var foo = new Person('Lee');
 
-Person.prototype = { gender: 'male' }; // 프로토타입 객체의 변경
+// 프로토타입 객체의 변경
+Person.prototype = { gender: 'male' };
 
 var bar = new Person('Kim');
 
@@ -376,15 +377,15 @@ console.log(bar.constructor); // ② Object()
 ![changing prototype](/img/changing_prototype.png)
 {: .w-700}
 
-① 프로토타입 객체는 constructor 프로퍼티를 갖는다. 프로토타입 객체 변경 전, Person() 생성자 함수의 Prototype 프로퍼티가 가리키는 프로토타입 객체도 물론 constructor 프로퍼티를 가지며 이 constructor 프로퍼티는 Person() 생성자 함수를 가리킨다.
+① constructor 프로퍼티는 Person() 생성자 함수를 가리킨다.
 
-② 프로토타입 객체 변경 후, Person() 생성자 함수의 Prototype 프로퍼티가 가리키는 프로토타입 객체는 일반 객체로 변경되었다. 그리고 constructor 프로퍼티도 삭제되었다. 따라서 프로토타입 체인에 의해 bar.constructor의 값은 Object.prototype.constructor 즉 Object() 생성자 함수가 된다.
+② 프로토타입 객체 변경 후, Person() 생성자 함수의 Prototype 프로퍼티가 가리키는 프로토타입 객체를 일반 객체로 변경하면서 Person.prototype.constructor 프로퍼티도 삭제되었다. 따라서 프로토타입 체인에 의해 bar.constructor의 값은 프로토타입 체이닝에 의해 Object.prototype.constructor 즉 Object() 생성자 함수가 된다.
 
 # 8. 프로토타입 체인 동작 조건
 
-객체의 프로퍼티를 읽으려 할 때 해당 객체에 프로퍼티가 없는 경우, 프로토타입 체인이 동작한다.
+객체의 프로퍼티를 참조하는 경우, 해당 객체에 프로퍼티가 없는 경우, 프로토타입 체인이 동작한다.
 
-그런데 객체의 프로퍼티에 값을 쓰려고 하면 프로토타입 체인이 동작하지 않는다. 이는 객체에 해당 프로퍼티가 있는 경우, 값을 재할당하고 해당 프로퍼티가 없는 경우는 해당 객체에 프로퍼티를 동적으로 추가하기 때문이다.
+객체의 프로퍼티에 값을 할당하는 경우, 프로토타입 체인이 동작하지 않는다. 이는 객체에 해당 프로퍼티가 있는 경우, 값을 재할당하고 해당 프로퍼티가 없는 경우는 해당 객체에 프로퍼티를 동적으로 추가하기 때문이다.
 
 ```javascript
 function Person(name) {
@@ -399,6 +400,8 @@ var bar = new Person('Kim');
 console.log(foo.gender); // ① 'male'
 console.log(bar.gender); // ① 'male'
 
+// 1. foo 객체에 gender 프로퍼티가 없으면 프로퍼티 동적 추가
+// 2. foo 객체에 gender 프로퍼티가 있으면 해당 프로퍼티에 값 할당
 foo.gender = 'female';   // ②
 
 console.log(foo.gender); // ② 'female'

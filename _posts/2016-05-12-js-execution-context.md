@@ -56,7 +56,7 @@ Javascript는 바로 실행 컨텍스트(Execution Context)이라는 또다른 �
 **실행 컨텍스트는 실행 가능한 코드 블럭이 실행되는 환경** 이라고 말할수 있다. 여기서 말하는 실행 가능한 코드는 아래와 같다.
 
 - Global Code : 전역 영역에 존재하는 코드
-- Eval Code : [Eval 함수](./js-standard-built-in-objects#eval)로 실행되는 코드
+- Eval Code : [Eval 함수](./js-standard-built-in-objects#121-eval)로 실행되는 코드
 - Function Code : 함수 내에 존재하는 코드
 
 일반적으로 실행 가능한 코드는 전역 코드와 함수 내 코드이다.
@@ -123,7 +123,7 @@ foo();
 
 3. 함수를 호출하면 해당 함수의 실행 컨택스트가 생성되며 직전에 실행된 코드블럭의 실행 컨텍스트 위에 쌓인다.
 
-4. 함수 실행이 끝나면 해당 함수의 실행 컨텍스트를 파기하고 컨트롤을 직전의 실행 컨텍스트에 반환한다.
+4. 함수 실행이 끝나면 해당 함수의 실행 컨텍스트를 파기하고 직전의 실행 컨텍스트에 컨트롤을 반환한다.
 
 # 2. 실행 컨텍스트 객체의 프로퍼티
 
@@ -151,7 +151,7 @@ Variable Object는 실행 컨텍스트의 프로퍼티이기 때문에 값을 �
 Variable Object가 가리키는 객체는 아래와 같다.
 
 전역 컨텍스트의 경우
-: Variable Object는 유일하며 최상위에 위치하고 모든 전역 변수, 전역 함수 등을 포함하는 <strong>전역 객체(GO)</strong>를 가리킨다.
+: Variable Object는 유일하며 최상위에 위치하고 모든 전역 변수, 전역 함수 등을 포함하는 <strong>전역 객체(GO)</strong>를 가리킨다. 전역 객체는 전역에 선언된 전역 변수와 전역 함수를 프로퍼티로 소유한다.
 
 ![ec-vo-global](/img/ec-vo-global.png)
 {: .w-400}
@@ -170,11 +170,7 @@ Variable Object가 가리키는 객체는 아래와 같다.
 
 ## 2.2 Scope Chain (SC) 
 
-Scope Chain은 일종의 리스트로서 중첩된 함수의 스코프의 레퍼런스를 차례로 저장하고 있는 개념이다. 즉 Scope Chain는 현재 실행 컨텍스트의 AO를 선두로하여 순차적으로 상위 컨텍스트의 Activation Object를 가리키며 마지막 리스트는 전역 객체를 가리킨다.
-
-엔진은 이를 통해 변수의 스코프를 파악한다. 함수가 중첩 상태일 때 하위함수 내에서 상위함수의 유효범위까지 참조할 수 있는데 이것는 Scope Chain을 검색하였기 때문이다. 함수가 중첩되어 있으면 중첩될 때마다 부모 함수의 Scope가 자식 함수의 Scope Chain에 포함되게 되고, 함수 실행중에 로컬변수를 만나면 그 이름을 우선 현재 Scope, 즉 Activation Object에서 검색해보고, 만약 여기기에 존재하지 않으면, 스코프 체인에 담겨진 순서대로 그 검색을 이어가게 되는 것이다. 이것이 스코프 체인이라고 불리는 이유이다.
-
-예를 들어 함수 내의 코드에서 변수를 참조하면 엔진은 Scope Chain의 첫번째 리스트가 가리키는 AO에 접근하여 변수를 검색한다. 만일 검색에 실패하면 다음 리스트가 가리키는 Activation Object(또는 전역 객체)를 검색한다. 이와 같이 순차적으로 Scope Chain에서 변수를 검색하는데 결국 검색에 실패하면 정의되지 않은 변수에 접근하는 것으로 판단하여 Reference 에러를 발생시킨다. 스코프 체인은 [[scope]] 프로퍼티로 참조할 수 있다.
+Scope Chain은 일종의 리스트로서 중첩된 함수의 스코프의 레퍼런스를 차례로 저장하고 있는 개념이다. 즉 Scope Chain는 현재 실행 컨텍스트의 Activation Object를 선두로하여 순차적으로 상위 컨텍스트의 Activation Object를 가리키며 마지막 리스트는 전역 객체를 가리킨다.
 
 ![ec-sc](/img/ec-sc.png)
 {: .w-400}
@@ -182,9 +178,13 @@ Scope Chain은 일종의 리스트로서 중첩된 함수의 스코프의 레�
 Scope Chain
 {: .desc-img}
 
+엔진은 이를 통해 변수의 스코프를 파악한다. 함수가 중첩 상태일 때 하위함수 내에서 상위함수의 유효범위까지 참조할 수 있는데 이것는 Scope Chain을 검색하였기 때문이다. 함수가 중첩되어 있으면 중첩될 때마다 부모 함수의 Scope가 자식 함수의 Scope Chain에 포함되게 되고, 함수 실행중에 로컬변수를 만나면 그 이름을 우선 현재 Scope, 즉 Activation Object에서 검색해보고, 만약 여기기에 존재하지 않으면, 스코프 체인에 담겨진 순서대로 그 검색을 이어가게 되는 것이다. 이것이 스코프 체인이라고 불리는 이유이다.
+
+예를 들어 함수 내의 코드에서 변수를 참조하면 엔진은 Scope Chain의 첫번째 리스트가 가리키는 AO에 접근하여 변수를 검색한다. 만일 검색에 실패하면 다음 리스트가 가리키는 Activation Object(또는 전역 객체)를 검색한다. 이와 같이 순차적으로 Scope Chain에서 변수를 검색하는데 결국 검색에 실패하면 정의되지 않은 변수에 접근하는 것으로 판단하여 Reference 에러를 발생시킨다. 스코프 체인은 [[scope]] 프로퍼티로 참조할 수 있다.
+
 ## 2.3 this value 
 
-this 프로퍼티에는 this에 값이 할당된다. [this](./js-this)에 할당되는 값은 함수 호출 패턴에 따라 결정된다.
+this 프로퍼티에는 this 값이 할당된다. [this](./js-this)에 할당되는 값은 함수 호출 패턴에 의해 결정된다.
 
 # 3. 실행 컨텍스트의 생성 과정
 
@@ -202,29 +202,43 @@ function foo () {
   }
   bar();
 }
+
 foo();
 ```
 
 ## 3.1 Global Code에의 진입
 
-컨트롤이 실행 컨텍스트에 들어가기 이전에 유일한 전역 객체(Global Object)가 생성된다. 전역 객체는 단일 사본으로 존재하며 이 객체의 프로퍼티는 코드의 어떠한 곳에서도 접근할 수 있다. 코드가 종료되면 전역 객체의 라이프 사이클은 끝이 난다. 초기상태의 전역 객체에는 Built-in object(Math, String, Array 등)와 BOM(window 객체 등), DOM이 Set 되어있다.
+컨트롤이 실행 컨텍스트에 들어가기 이전에 유일한 전역 객체(Global Object)가 생성된다. 전역 객체는 단일 사본으로 존재하며 이 객체의 프로퍼티는 코드의 어떠한 곳에서도 접근할 수 있다. 코드가 종료되면 전역 객체의 라이프 사이클은 끝이 난다. 초기상태의 전역 객체에는 Built-in object(Math, String, Array 등)와 BOM, DOM이 Set 되어있다.
 
-<img src="/img/ec_3.jpg">
+![초기 상태의 실행 컨텍스트](/img/ec_3.png)
+{: .w-350}
+
+초기 상태의 실행 컨텍스트
+{: .desc-img}
 
 전역 객체가 생성된 이후, Global Code로 컨트롤이 이동하면 새로운 전역 실행 컨텍스트가 스택에 쌓인다.
+
+![전역 실행 컨텍스트의 생성](/img/ec_4.png)
+{: .w-350}
+
+전역 실행 컨텍스트의 생성
+{: .desc-img}
+
 그리고 이후 이 실행 컨텍스트를 바탕으로 이하의 처리가 실행된다.
 
 >1. Scope Chain의 생성과 초기화
 >2. Variable Instantiation 실행
 >3. this value 결정
 
-<img src="/img/ec_4.jpg">
-
 ### 3.1.1 Scope Chain의 생성과 초기화
 
 새로운 실행 컨텍스트에 들어가게 되면 우선 Scope Chain의 생성과 초기화가 실행된다. Global Code로 컨트롤이 이동하면 Scope Chain는 전역 객체의 레퍼런스를 포함하는 리스트가 된다.
 
-<img src="/img/ec_5.jpg">
+![Scope Chain의 생성과 초기화](/img/ec_5.png)
+{: .w-350}
+
+Scope Chain의 생성과 초기화
+{: .desc-img}
 
 ### 3.1.2 Variable Instantiation(변수 객체화) 실행
 
@@ -232,34 +246,50 @@ Scope Chain의 생성과 초기화가 끝나면 Variable Instantiation이 실행
 
 Variable Instantiation은 Variable Object에 프로퍼티와 값을 추가하는 것을 의미한다. 변수 객체화라고 번역하기도 하는데 이는 변수와 함수 선언을 Variable Object에 추가하여 객체화하기 때문이다.
 
-Global Code의 경우, Global Object는 Variable Object를 가리킨다.
+Global Code의 경우, Variable Object는 Global Object를 가리킨다.
 
-<img src="/img/ec_6.jpg">
+![Variable Instantiation](/img/ec_6.png)
+{: .w-350}
 
-#### 3.1.2.1 Variable Instantiation 실행 순서
+Variable Instantiation(변수 객체화): VO와 GO의 연결
+{: .desc-img}
 
-Variable Instantiation에서는 이하의 순서로 Variable Object에 프로퍼티와 값이 set된다.
+Variable Instantiation(변수 객체화)는 아래의 순서로 Variable Object에 프로퍼티와 값을 set한다.
 (반드시 1→2→3 순서로 실행된다.)
 
 >1. (Function Code인 경우) 매개변수(parameter)가 Variable Object의 프로퍼티로, 인수(argument)가 값으로 set된다.
->2. 대상 코드 내의 함수 선언(**함수 표현식 제외**)을 대상으로 함수명이 Variable Object의 프로퍼티로, 생성된 Function Object가 값으로 set된다.
->3. 대상 코드 내의  변수 선언을 대상으로 변수명이 Variable Object의 프로퍼티로, undefined가 값으로 set된다.    
+>2. 대상 코드 내의 함수 선언(함수 표현식 제외)을 대상으로 함수명이 Variable Object의 프로퍼티로, 생성된 Function Object가 값으로 set된다.(**함수 호이스팅**)
+>3. 대상 코드 내의 변수 선언을 대상으로 변수명이 Variable Object의 프로퍼티로, undefined가 값으로 set된다.(**변수 호이스팅**)
 
 위 예제 코드를 보면 Global Code의 변수 x 선언과 함수 foo의 선언(매개변수 없음)이 실행되었다. Variable Instantiation의 실행 순서 상,
 우선 2. 함수 foo의 선언이 처리되고(Function Code이 아닌 Global Code이기 때문에 1. 매개변수 처리는 실행되지 않는다.) 그 후 3. 변수 x의 선언이 처리된다.
 
-#### 3.1.2.2 함수 foo의 선언 처리
+#### 3.1.2.1 함수 foo의 선언 처리
 
-함수 선언은 Variable Instantiation 실행 순서 2.와 같이 선언된 함수명( foo )이 Variable Object( Global Code인 경우 Global Object )의 프로퍼티로, 생성된 Function Object가 값으로 set된다. 생성된 Function Object는 `[[Scope]]` 프로퍼티를 가지게 되고 값으로 현재 실행 컨텍스트의 Scope Chain이 참조하고 있는 객체와 같은 객체를 참조하는 리스트가 set된다.
+함수 선언은 Variable Instantiation 실행 순서 2.와 같이 선언된 함수명( foo )이 Variable Object( Global Code인 경우 Global Object )의 프로퍼티로, 생성된 Function Object가 값으로 set된다. 
 
-<img src="/img/ec_7.jpg">
+![함수 foo의 선언 처리](/img/ec_7.png)
+{: .w-450}
 
-#### 3.1.2.3 변수 x의 선언 처리  
+함수 foo의 선언 처리
+{: .desc-img}
+
+생성된 Function Object는 `[[Scopes]]` 프로퍼티를 가지게 된다. [[Scopes]] 프로퍼티는 값으로 현재 실행 컨텍스트의 Scope Chain이 참조하고 있는 객체와 같은 객체를 참조하는 리스트가 set된다.
+
+![함수 foo의 [[Scopes]]](/img/foo-scopes.png)
+{: .w-350}
+
+함수 foo의 [[Scopes]]
+{: .desc-img}
+
+지금까지 살펴본 실행 컨텍스트는 아직 코드가 실행되기 이전이다. 하지만 스코프 체인이 가리키는 변수 객체에 이미 함수가 등록되어 있으므로 이후 코드를 실행할 때 함수선언식 이전에 함수를 호출할 수 있게 되었다. 이러한 현상을 **[함수 호이스팅(Function Hoisting)](./js-function#2-함수-호이스팅function-hoisting)**이라 한다.
+
+#### 3.1.2.2 변수 x의 선언 처리  
 
 변수 선언은 Variable Instantiation 실행 순서 3.과 같이 선언된 변수명( x )이 Variable Object의 프로퍼티로, undefined가 값으로 set된다. 이것을 좀더 세분화 해보면 아래와 같다.
 
 선언 단계(Declaration phase)
-: 변수 객체(Variable Object)에 변수를 등록한다. 이 변수 객체는 스크프가 참조하는 대상이 된다.
+: 변수 객체(Variable Object)에 변수를 등록한다. 이 변수 객체는 스코프가 참조할 수 있는 대상이 된다.
 
 초기화 단계(Initialization phase)
 : 변수 객체(Variable Object)에 등록된 변수를 메모리에 할당한다. 이 단계에서 변수는 undefined로 초기화된다.
@@ -267,17 +297,25 @@ Variable Instantiation에서는 이하의 순서로 Variable Object에 프로퍼
 할당 단계(Assignment phase)
 : undefined로 초기화된 변수에 실제값을 할당한다.
 
-이것은 var 키워드로 선언된 변수는 선언 단계와 초기화 단계가 한번에 이루어진다는 것을 의미한다. 즉,스코프에 변수가 등록되고 변수는 undefined로 초기화된다. 따라서 변수 선언문 이전에 변수에 접근하여도 Variable Object에 변수가 존재하기 때문에 에러가 발생하지 않는다. 다만 undefined를 반환한다. 이러한 현상을 변수 호이스팅(Variable Hoisting)이라한다.
+**var 키워드로 선언된 변수는 선언 단계와 초기화 단계가 한번에 이루어진다.** 다시 말해 스코프 체인이 가리키는 변수 객체에 변수가 등록되고 변수는 undefined로 초기화된다. 따라서 변수 선언문 이전에 변수에 접근하여도 Variable Object에 변수가 존재하기 때문에 에러가 발생하지 않는다. 다만 undefined를 반환한다. 이러한 현상을 **[변수 호이스팅(Variable Hoisting)](./js-data-type-variable#25-변수-호이스팅variable-hoisting)**이라한다.
 
 아직 변수 x는 'xxx'로 초기화되지 않았다. 이후 변수 할당문에 도달하면 비로서 값의 할당이 이루어진다.
 
-<img src="/img/ec_8.jpg">
+![변수 x의 선언 처리](/img/ec_8.png)
+{: .w-450}
+
+변수 x의 선언 처리
+{: .desc-img}
 
 ### 3.1.3 this value 결정
 
 변수 선언 처리가 끝나면 다음은 this value가 결정된다. `this`는 모든 active한 실행 컨텍스트에 관련되어 있으며 호출한 객체와 실행된 코드의 종류에 따라 값이 결정된다. 그리고 결정된 값은 불변한다. Global Code의 경우, this의 value는 언제나 전역 객체이다.
 
-<img src="/img/ec_9.jpg">
+![this value 결정](/img/ec_9.png)
+{: .w-450}
+
+this value 결정
+{: .desc-img}
 
 **전역 컨텍스트(Global Code)의 경우, Variable Object, Scope Chain, this값은 언제나 전역 객체이다.**  
 
@@ -385,7 +423,6 @@ Function code의 경우, this의 value는 자신을 호출한 객체로부터 �
 
 # Reference
 
-* [http://maeharin.hatenablog.com/entry/20130313/javascript_scopechain](http://maeharin.hatenablog.com/entry/20130313/javascript_scopechain)  
 * [http://dmitrysoshnikov.com/ecmascript/chapter-1-execution-contexts/](http://dmitrysoshnikov.com/ecmascript/chapter-1-execution-contexts/)  
 * [http://dmitrysoshnikov.com/ecmascript/chapter-2-variable-object/](http://dmitrysoshnikov.com/ecmascript/chapter-2-variable-object/)  
 * [http://dmitrysoshnikov.com/ecmascript/chapter-3-this/](http://dmitrysoshnikov.com/ecmascript/chapter-3-this/)  

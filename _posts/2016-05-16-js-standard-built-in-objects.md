@@ -114,7 +114,7 @@ Global function(전역 함수)는 전역에서 호출할 수 있으며 호출한
 
 ### 1.2.1 eval()
 
-문자열 파라미터로서 전달된 code 또는 표현식(expression)을 평가 또는 실행한다. 사용자로 부터 입력받은 Contents(untrusted data)를 eval()로 실행하는 것은 보안에 매우 취약하다. 불필요한 eval()의 사용은 금지되어야 한다.
+파라미터로서 전달된 문자열 구문 또는 표현식을 평가 또는 실행한다. 사용자로 부터 입력받은 Contents(untrusted data)를 eval()로 실행하는 것은 보안에 매우 취약하다. eval()의 사용은 가급적으로 금지되어야 한다.
 
 ```javascript
 eval(string)

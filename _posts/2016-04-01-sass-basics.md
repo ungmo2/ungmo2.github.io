@@ -208,9 +208,9 @@ Sass의 문법에 대한 설명은 아래 포스트를 참조하기 바란다.
 
 - [SassScript](./sass-script)
 
-- [Sass Built-in Function](./sass-built-in-function)
-
 - [Sass CSS Extensions](./sass-css-extention)
+
+- [Sass Built-in Function](./sass-built-in-function)
 
 # Reference
 

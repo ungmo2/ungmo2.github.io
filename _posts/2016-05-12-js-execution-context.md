@@ -266,7 +266,7 @@ Variable Instantiation(변수 객체화)는 아래의 순서로 Variable Object�
 
 #### 3.1.2.1 함수 foo의 선언 처리
 
-함수 선언은 Variable Instantiation 실행 순서 2.와 같이 선언된 함수명( foo )이 Variable Object( Global Code인 경우 Global Object )의 프로퍼티로, 생성된 Function Object가 값으로 set된다. 
+함수 선언은 Variable Instantiation 실행 순서 2.와 같이 선언된 함수명( foo )이 Variable Object( Global Code인 경우 Global Object )의 프로퍼티로, 생성된 Function Object가 값으로 바인딩된다. 
 
 ![함수 foo의 선언 처리](/img/ec_7.png)
 {: .w-450}
@@ -274,7 +274,7 @@ Variable Instantiation(변수 객체화)는 아래의 순서로 Variable Object�
 함수 foo의 선언 처리
 {: .desc-img}
 
-생성된 Function Object는 `[[Scopes]]` 프로퍼티를 가지게 된다. [[Scopes]] 프로퍼티는 값으로 현재 실행 컨텍스트의 Scope Chain이 참조하고 있는 객체와 같은 객체를 참조하는 리스트가 set된다.
+생성된 Function Object는 `[[Scopes]]` 프로퍼티를 가지게 된다. [[Scopes]] 프로퍼티는 값으로 현재 실행 컨텍스트의 Scope Chain이 참조하고 있는 객체와 같은 객체를 참조하는 리스트가 바인딩된다.
 
 ![함수 foo의 [[Scopes]]](/img/foo-scopes.png)
 {: .w-350}
@@ -309,7 +309,9 @@ Variable Instantiation(변수 객체화)는 아래의 순서로 Variable Object�
 
 ### 3.1.3 this value 결정
 
-변수 선언 처리가 끝나면 다음은 this value가 결정된다. `this`는 모든 active한 실행 컨텍스트에 관련되어 있으며 호출한 객체와 실행된 코드의 종류에 따라 값이 결정된다. 그리고 결정된 값은 불변한다. Global Code의 경우, this의 value는 언제나 전역 객체이다.
+변수 선언 처리가 끝나면 다음은 this value가 결정된다. [this](./js-this)에 할당되는 값은 함수 호출 패턴에 의해 결정된다.
+
+Global Code의 경우, this의 value는 언제나 전역 객체이다.
 
 ![this value 결정](/img/ec_9.png)
 {: .w-450}
@@ -321,49 +323,97 @@ this value 결정
 
 ## 3.2. Global code의 실행
 
-코드의 실행은 지금부터 시작된다. 위 예제를 보면 전역 변수 x에 문자열 'xxx' 할당과 함수 foo의 호출이 실행된다.
+지금까지는 코드를 실행하기 위한 환경을 갖추기 위한 사전 준비였다. 코드의 실행은 지금부터 시작된다.
+
+```javascript
+var x = 'xxx';
+
+function foo () {
+  var y = 'yyy';
+
+  function bar () {
+    var z = 'zzz';
+    console.log(x + y + z);
+  }
+  bar();
+}
+
+foo();
+```
+
+위 예제를 보면 전역 변수 x에 문자열 'xxx' 할당과 함수 foo의 호출이 실행된다.
 
 ### 3.2.1 변수 값의 할당
 
-전역 변수 x에 문자열 'xxx'를 할당할 때, 현재 실행 컨텍스트의 Scope Chain이 참조하고 있는 Variable Object를 선두(0)부터 검색하여 변수명에 해당하는 프로퍼티가 발견되면 값('xxx')을 저장한다.
+전역 변수 x에 문자열 'xxx'를 할당할 때, 현재 실행 컨텍스트의 Scope Chain이 참조하고 있는 Variable Object를 선두(0)부터 검색하여 변수명에 해당하는 프로퍼티가 발견되면 값('xxx')을 할당한다.
 
-<img src="/img/ec_10.jpg">
+![변수 값의 할당](/img/ec_10.png)
+{: .w-450}
+
+변수 값의 할당
+{: .desc-img}
 
 ### 3.2.2 함수 foo의 실행
 
-Global Code의 함수 foo가 실행되기 시작하면 새로운 실행 컨텍스트가 생성된다. 함수 foo의 실행 컨텍스트로 컨트롤이 이동하면 Global Code의 경우와 마찬가지로 <strong>1. Scope Chain의 생성과 초기화</strong>, <strong>2. Variable Instantiation 실행</strong>, <strong>3. this value 결정</strong>이 순차적으로 실행된다.
+Global Code의 함수 foo가 실행되기 시작하면 새로운 함수 실행 컨텍스트가 생성된다. 함수 foo의 실행 컨텍스트로 컨트롤이 이동하면 Global Code의 경우와 마찬가지로 <strong>1. Scope Chain의 생성과 초기화</strong>, <strong>2. Variable Instantiation 실행</strong>, <strong>3. this value 결정</strong>이 순차적으로 실행된다.
 
 단, Global Code와 다른 점은 이번 실행되는 코드는 Function Code이라는 것이다. 따라서 <strong>1. Scope Chain의 생성과 초기화</strong>, <strong>2. Variable Instantiation 실행</strong>, <strong>3. this value 결정</strong>은 Global Code의 룰이 아닌 Function Code의 룰이 적용된다.
 
-<img src="/img/ec_11.jpg">
+![함수 foo의 실행 컨텍스트 생성](/img/ec_11.png)
+{: .w-450}
+
+함수 foo의 실행 컨텍스트 생성
+{: .desc-img}
 
 #### 3.2.2.1 Scope Chain의 생성과 초기화
 
-Function Code의 <strong>Scope Chain의 생성과 초기화</strong>는 우선 Activation Object에 대한 레퍼런스를 Scope Chain의 선두에 설정하는 것으로 시작된다.
+Function Code의 <strong>Scope Chain의 생성과 초기화</strong>는 우선 Activation Object에 대한 레퍼런스를 Scope Chain의 선두에 바인딩하는 것으로 시작된다.
 
-Activation Object는 우선 arguments 프로퍼티의 초기화를 실행하고 그 후, Variable Instantiation가 실행된다. Activation Object는 스펙 상의 개념으로 프로그램이 Activation Object에 직접 접근할 수 없다. (Activation Object의 프로퍼티에 접근은 가능하다)
+Activation Object는 우선 arguments 프로퍼티의 초기화를 실행하고 그 후, Variable Instantiation가 실행된다. Activation Object는 스펙 상의 개념으로 프로그램이 Activation Object에 직접 접근할 수 없다. (Activation Object의 프로퍼티로의 접근은 가능하다)
 
-<img src="/img/ec_12.jpg">
+![Scope Chain의 생성과 초기화](/img/ec_12.png)
+{: .w-450}
 
-그 후, Caller(global context)의 [[Scope]] 프로퍼티가 참조하고 있는 객체가 Scope Chain에 push된다. 따라서, 이 경우 함수 foo를 실행한 직후 실행 컨텍스트의 Scope Chain은 Activation Object(함수 foo의 실행으로 만들어진 AO_1)과 Global Object를 참조하게 된다.
+Scope Chain의 생성과 초기화: Activation Object의 생성과 바인딩
+{: .desc-img}
 
-<img src="/img/ec_13.jpg">
+그 후, Caller(global context)의 [[Scope]] 프로퍼티가 참조하고 있는 객체가 Scope Chain에 push된다. 따라서, 이 경우 함수 foo를 실행한 직후 실행 컨텍스트의 Scope Chain은 Activation Object(함수 foo의 실행으로 만들어진 AO-1)과 Global Object를 순차적으로 참조하게 된다.
+
+![Scope Chain의 생성과 초기화](/img/ec_13.png)
+{: .w-450}
+
+Scope Chain의 생성과 초기화: Caller의 [[Scope]]를 Scope Chain에 push
+{: .desc-img}
 
 #### 3.2.2.2 Variable Instantiation 실행
 
-Function Code의 경우, <strong>Scope Chain의 생성과 초기화</strong>에서 생성된 Activation Object를 Variable Object로서 Variable Instantiation가 실행된다. 이것을 제외하면 Global Code의 경우와 같은 처리가 실행된다. 즉, 함수 객체를 Variable Object(AO_1)에 set한다. (프로퍼티는 bar, 값은 새로 생성된 Function Object. bar function object의 [[Scope]] 프로퍼티 값은 AO_1과 Global Object를 참조하는 리스트）
+Function Code의 경우, <strong>Scope Chain의 생성과 초기화</strong>에서 생성된 Activation Object를 Variable Object로서 Variable Instantiation가 실행된다. 이것을 제외하면 Global Code의 경우와 같은 처리가 실행된다. 즉, 함수 객체를 Variable Object(AO-1)에 바인딩한다. (프로퍼티는 bar, 값은 새로 생성된 Function Object. bar function object의 [[Scope]] 프로퍼티 값은 AO-1과 Global Object를 참조하는 리스트）
 
-<img src="/img/ec_14.jpg">
+![Variable Instantiation 실행](/img/ec_14.png)
+{: .w-450}
 
-변수 y를 Variable Object(AO_1)에 set한다(프로퍼티는 y, 값은 undefined）
+Variable Instantiation 실행: 함수 bar의 선언 처리
+{: .desc-img}
 
-<img src="/img/ec_15.jpg">
+변수 y를 Variable Object(AO-1)에 set한다(프로퍼티는 y, 값은 undefined）
+
+![Variable Instantiation 실행](/img/ec_15.png)
+{: .w-450}
+
+Variable Instantiation 실행: 변수 y의 선언 처리
+{: .desc-img}
 
 #### 3.2.2.3 this value 결정
 
-Function code의 경우, this의 value는 자신을 호출한 객체로부터 제공된다.(call 또는 apply 메소드로 this의 값을 지정할 수 있다). 만약 자신을 호출한 객체로부터 제공된 this의 값이 객체가 아니면(null인 경우도 포함) this의 값은 Global Object가 된다. 결국 this의 값은 전역 객체가 된다.
+변수 선언 처리가 끝나면 다음은 this value가 결정된다. [this](./js-this)에 할당되는 값은 함수 호출 패턴에 의해 결정된다.
 
-<img src="/img/ec_16.jpg">
+내부 함수의 경우, this의 value는 전역 객체이다.
+
+![this value 결정](/img/ec_16.png)
+{: .w-450}
+
+this value 결정
+{: .desc-img}
 
 ## 3.3 foo function code의 실행
 
@@ -371,55 +421,37 @@ Function code의 경우, this의 value는 자신을 호출한 객체로부터 �
 
 ### 3.3.1 변수 값의 할당  
 
-전역 변수 y에 문자열 'yyy'를 할당할 때, 현재 실행 컨텍스트의 Scope Chain이 참조하고 있는 Variable Object를 선두(0)부터 검색하여 변수명에 해당하는 프로퍼티가 발견되면 값('yyy')을 저장한다.
+지역 변수 y에 문자열 'yyy'를 할당할 때, 현재 실행 컨텍스트의 Scope Chain이 참조하고 있는 Variable Object를 선두(0)부터 검색하여 변수명에 해당하는 프로퍼티가 발견되면 값 'yyy'를 할당한다.
 
-<img src="/img/ec_17.jpg">
+![변수 값의 할당](/img/ec_17.png)
+{: .w-450}
+
+변수 y에의 값 할당
+{: .desc-img}
 
 ### 3.3.2 함수 bar의 실행
 
-함수 bar가 실행되기 시작하면 새로운 실행 컨텍스트이 생성된다. 이전 함수 foo의 실행 과정과 동일하게  <strong>1. Scope Chain의 생성과 초기화</strong>, <strong>2. Variable Instantiation 실행</strong>, <strong>3. this value 결정</strong>이 순차적으로 실행된다.
+함수 bar가 실행되기 시작하면 새로운 실행 컨텍스트이 생성된다. 
 
-<img src="/img/ec_18.jpg">
+![함수 bar의 실행](/img/ec_18.png)
+{: .w-450}
 
-#### 3.3.2.1 Scope Chain의 생성과 초기화
+함수 bar의 실행
+{: .desc-img}
 
-함수 foo 실행 과정과 동일하게 새로운 Activation Object(AO_2)에 대한 레퍼런스를 Scope Chain의 선두에 설정하는 것으로 시작된다.
+이전 함수 foo의 실행 과정과 동일하게  <strong>1. Scope Chain의 생성과 초기화</strong>, <strong>2. Variable Instantiation 실행</strong>, <strong>3. this value 결정</strong>이 순차적으로 실행된다.
 
-<img src="/img/ec_19.jpg">
+![함수 bar의 실행 컨텍스트](/img/ec_19.png)
+{: .w-450}
 
-그 후, Caller(foo)의 [[Scope]] 프로퍼티가 참조하고 있는 객체가 Scope Chain에 push된다. 이 단계에서 함수 bar 실행 컨텍스트의 Scope Chain에는 선두부터 AO_2, AO_1, 전역 객체가 set된다.
-
-<img src="/img/ec_20.jpg">
-
-#### 3.3.2.2 Variable Instantiation 실행  
-
-변수 z를 Variable Object(AO_2)에 set한다(프로퍼티는 z, 값은 undefined）
-
-<img src="/img/ec_21.jpg">
-
-#### 3.3.2.3 this value 결정
-
-함수 foo의 경우와 동일하게 특별히 this 값이 지정되지 않았으므로 this의 값은 전역 객체가 된다.
-
-> 전역 함수를 호출할 때 `this`는 전역객체에 바인딩된다. 심지어 내부함수의 경우도 `this`는 외부함수가 아닌 전역객체에 바인딩된다. 이것은 설계 단계의 결함으로 메소드가 내부함수를 사용하여 자신의 작업을 돕게 할 수 없다는 것을 의미한다.
-
-<img src="/img/ec_22.jpg">
-
-## 3.4. bar function code의 실행
-
-이제 함수 bar의 코드블럭 내 구문이 실행된다. Sample code를 보면 변수 z에 문자열 'zzz'의 할당된다.
-
-<img src="/img/ec_23.jpg">
-
-이 시점에서 현재 active한 실행 컨텍스트(함수 bar의 실행 컨텍스트)는 이하와 같이 구성된다.
-
-<img src="/img/ec_24.jpg">
+함수 bar의 실행 컨텍스트
+{: .desc-img}
 
 이 단계에서 `console.log(x + y + z);` 구문의 실행 결과는 xxxyyyzzz가 된다.  
 
-> * x : AO_2에서 x 검색 실패 → AO_1에서 x 검색 실패 → GO에서 x 검색 성공 (값은 'xxx')  
-> * y : AO_2에서 y 검색 실패 → AO_1에서 y 검색 성공 (값은 'yyy')  
-> * z : AO_2에서 z 검색 성공 (값은 'zzz')  
+> * x : AO-2에서 x 검색 실패 → AO-1에서 x 검색 실패 → GO에서 x 검색 성공 (값은 'xxx')  
+> * y : AO-2에서 y 검색 실패 → AO-1에서 y 검색 성공 (값은 'yyy')  
+> * z : AO-2에서 z 검색 성공 (값은 'zzz')  
 
 # Reference
 

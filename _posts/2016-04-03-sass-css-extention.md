@@ -207,7 +207,7 @@ Placeholder Selector는 Sass 3.2부터 제공되는 기능으로 재이용이 �
 
 Placeholder Selector은 상속만을 위한 rule set으로 자신은 컴파일되지 않는다.
 
-```css
+```scss
 %input-style {
   font-size: 14px;
 }

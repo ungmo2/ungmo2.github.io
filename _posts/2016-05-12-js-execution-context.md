@@ -444,7 +444,7 @@ this value 결정
 ![함수 bar의 실행 컨텍스트](/img/ec_19.png)
 {: .w-450}
 
-함수 bar의 실행 컨텍스트
+완성된 실행 컨텍스트
 {: .desc-img}
 
 이 단계에서 `console.log(x + y + z);` 구문의 실행 결과는 xxxyyyzzz가 된다.  

@@ -39,7 +39,7 @@ CSS는 자식요소를 선택하여 선언하는 경우 부모요소를 기술�
 }
 ```
 
-부모요소의 참조가 필요한 경우 `&`를 사용한다. 예를들어 :hover 또는 ::before 등의 [가상 클래스 선택자 (Pseudo-Class Selector)](./css3-selector#pseudo-class-selector)를 지정하는 경우 부모요소의 참조가 필요하다.
+부모요소의 참조가 필요한 경우 `&`를 사용한다. 예를들어 :hover 또는 ::before 등의 [가상 클래스 선택자 (Pseudo-Class Selector)](./css3-selector#7-가상-클래스-셀렉터-pseudo-class-selector)를 지정하는 경우 부모요소의 참조가 필요하다.
 
 ```scss
 a.myAnchor {
@@ -79,7 +79,7 @@ Nesting은 프로퍼티에도 사용할 수 있다.
 
 ## 2.1 @import
 
-1개의 CSS 파일에 모든 스타일을 기술하는 것은 가독성을 나쁘게 한다. 따라서 룰을 정하여 파일을 분리하여 개발하는 것이 유지보수 측면에서 효과적이다.
+1개의 CSS 파일에 모든 스타일을 기술하는 것은 가독성을 나쁘게 한다. 또한 기능에 따라 CSS 파일을 분리하면 재사용 및 유지보수 측면에서 유리하다. 따라서 룰을 정하여 파일을 분리하여 개발하는 것은 효과적인 방법이다.
 
 Sass는 @import directive를 사용하여 분리된 stylesheet 파일을 import할 수 있다. 기존의 [CSS @import](https://developer.mozilla.org/ko/docs/Web/CSS/@import)보다 편리한 기능을 제공한다.
 
@@ -152,8 +152,10 @@ partial된 Sass 파일명 선두에 붙인 &#95;의 의미는 import는 수행�
   border: 1px #f00;
   background-color: blue;
 }
+
 .seriousError {
   @extend .error;
+
   border-width: 3px;
   border-color: darkblue;
 }
@@ -212,13 +214,15 @@ Placeholder Selector은 상속만을 위한 rule set으로 자신은 컴파일�
   font-size: 14px;
 }
 
-input-black {
+.input-black {
   @extend %input-style;
+
   color: black;
 }
 
-input-red {
+.input-red {
   @extend %input-style;
+
   color: red;
 }
 ```
@@ -226,15 +230,15 @@ input-red {
 컴파일 결과는 아래와 같다.
 
 ```css
-input-black, input-red {
+.input-black, .input-red {
   font-size: 14px;
 }
 
-input-black {
+.input-black {
   color: black;
 }
 
-input-red {
+.input-red {
   color: red;
 }
 ```
@@ -247,7 +251,7 @@ Sass는 Javascript 같은 프로그래밍 언어와 같이 제어문(Control flo
 
 ## 3.1 if()
 
-built-in if() 함수는 주어진 조건을 판단하여 결과를 리턴한다.
+built-in if() 함수는 주어진 조건을 판단하여 결과를 리턴한다. Javascript의 삼항연산자와 유사하게 동작한다.
 
 ```scss
 if(condition, if_true, if_false)

@@ -241,11 +241,13 @@ $base-color: #ad141e;
 $base-color: rgba(255, 0, 0, 0.5);
 
 // alpha +
+// 불투명도를 증가시킨다.(더 불투명해진다)
 .opacify {
   color: opacify($base-color, 0.3);
 }
 
 // alpha -
+// 불투명도를 감소시킨다.(더 투명해진다)
 .transparentize {
   color: transparentize($base-color, 0.25);
 }

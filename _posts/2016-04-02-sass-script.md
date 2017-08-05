@@ -59,7 +59,7 @@ $foundation-palette: (
 ```
 
 
-Data type은 [Built-in function unit](./sass-built-in-function#32-data-unit-취득)으로 취득할 수 있다.
+Data type은 [Built-in function unit](./sass-built-in-function#22-data-unit-취득)으로 취득할 수 있다.
 
 # 2. 변수
 
@@ -238,6 +238,7 @@ p {
   border-radius: 10px 20px / 20px;
 
   $width: 1000px;
+
   width: $width / 2;            // 변수에 대해 사용 →　width: 500px;
   height: (500px / 2);          // 괄호 내에서 사용 →　height: 250px;
   margin-left: 5px + 8px / 2px; // 다른 연산의 일부로서 사용 →　margin-left: 9px;
@@ -282,7 +283,7 @@ p {
 }
 ```
 
-alpha 값은 연산되지 않는다. alpha 값의 연산을 위해서는 opacify 함수 또는 transparentize 함수를 사용한다.
+alpha 값은 연산되지 않는다. alpha 값의 연산을 위해서는 [opacify 함수 또는 transparentize 함수](./sass-built-in-function#65-alpha-연산)를 사용한다.
 
 - opacify 함수: 첫번째 argument의 alpha값에 두번째 argument를 더해 불투명도를 증가시킨다.(더 불투명해진다)
 
@@ -327,9 +328,14 @@ p:before {
 | &#124;&#124;| or
 | !	          | not
 
+- [if](./sass-css-extention#31-if)  
+- [@if](./sass-css-extention#31-if) 
+
 ## 4.5 리스트 연산자
 
 리스트를 위한 별도의 연산자는 제공되지 않지만 [리스트 함수](http://www.sass-lang.com/documentation/Sass/Script/Functions#list-functions)를 사용하여 필요한 처리를 수행할 수 있다.
+
+-[list functions](./sass-built-in-function#4-list-functions)
 
 # 5. 함수
 

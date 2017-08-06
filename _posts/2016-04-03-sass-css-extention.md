@@ -145,7 +145,7 @@ partial된 Sass 파일명 선두에 붙인 &#95;의 의미는 import는 수행�
 
 기존에 선언되어 있는 error class를 사용하면서 일부 rule set에 대해서는 다른 선언이 필요한 경우 자주 사용하는 방법이다.
 
-이러한 경우 사용할 수 있는 방법이 상속이다. 상속되는 rule set을 그대로 상속받아 다른 부분만 별도 선언하면 된다. 중복을 피할수 있어 매우 유용하다.
+이러한 경우 사용할 수 있는 방법이 상속이다. 상속되는 rule set을 그대로 상속받아 다른 부분만 별도 선언하면 된다. 
 
 ```scss
 .error {
@@ -198,7 +198,7 @@ partial된 Sass 파일명 선두에 붙인 &#95;의 의미는 import는 수행�
 }
 ```
 
-컴파일 후 자신의 셀렉터가 어디에 첨부될 것인지 예상하기 어렵고, 예상치 못했던 부작용이 발생할 수 있기 때문에 @extend는 가급적 사용을 자제하는 편이 좋다. 
+컴파일 후 자신의 셀렉터가 어디에 첨부될 것인지 예상하기 어렵고, 예상치 못했던 부작용이 발생할 수 있다. 따라서 @extend의 사용은 가급적 자제하고 Mixin은 사용하는 것을 추천한다. 
 {: .info}
 
 - [@extend의 부작용](https://sass-guidelin.es/ko/#extend)
@@ -333,6 +333,9 @@ p {
 }
 
 // Map
+// $header; h1, $size: 2em
+// $header; h2, $size: 1.5em
+// $header; h3, $size: 1.2em
 @each $header, $size in (h1: 2em, h2: 1.5em, h3: 1.2em) {
   #{$header} {
     font-size: $size;
@@ -409,26 +412,29 @@ Mixin은 Sass의 매우 유용한 기능으로 중복 기술을 방지하기 위
 사용법은 매우 간단하다. `@mixin` 선언하고 `@include`로 불러들인다.
 
 ```scss
+// 지름이 50px인 원
 @mixin circle {
   width: 50px;
   height: 50px;
-  border-radius: 100%;
+  border-radius: 50%;
 }
 
+// 지름이 50px인 원을 위한 mixin을 include한 후, 배경을 추가 지정
 .box {
   @include circle;
-  background: #fc0;
+
+  background: #f00;
 }
 ```
 
-컴파일 결과는 아래와 같다.
+컴파일 결과는 아래와 같다. 배경이 red이고 지름이 50px인 원을 표시한다.
 
 ```css
 .box {
   width: 50px;
   height: 50px;
-  border-radius: 100%;
-  background: #fc0;
+  border-radius: 50%;
+  background: #f00;
 }
 ```
 
@@ -438,12 +444,13 @@ Mixin은 Sass의 매우 유용한 기능으로 중복 기술을 방지하기 위
 @mixin circle($size) {
   width: $size;
   height: $size;
-  border-radius: 100%;
+  border-radius: 50%;
 }
 
 .box {
   @include circle(100px);
-  background: #fc0;
+
+  background: #f00;
 }
 ```
 
@@ -453,8 +460,8 @@ Mixin은 Sass의 매우 유용한 기능으로 중복 기술을 방지하기 위
 .box {
   width: 100px;
   height: 100px;
-  border-radius: 100%;
-  background: #fc0;
+  border-radius: 50%;
+  background: #f00;
 }
 ```
 
@@ -464,12 +471,24 @@ argument의 초기값을 설정할 수도 있다.
 @mixin circle($size: 10px) {
   width: $size;
   height: $size;
-  border-radius: 100%;
+  border-radius: 50%;
 }
 
 .box {
-  @include circle(); // or @include circle;
-  background: #fc0;
+  // 인자가 없으면 초기값을 사용한다.
+  @include circle(); 
+  background: #f00;
+}
+```
+
+컴파일 결과는 아래와 같다.
+
+```css
+.box {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #f00;
 }
 ```
 
@@ -490,18 +509,37 @@ vendor prefix
 }
 ```
 
+```css
+.border_radius {
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+```
+
 opacity
 {: .title}
 
 ```scss
 @mixin opacity($opacity) {
-  opacity: $opacity;
+  opacity: $opacity; /* All modern browsers */
   $opacityIE: $opacity * 100;
-  filter: alpha(opacity=$opacityIE);
+  filter: alpha(opacity=$opacityIE); /* For IE5~IE9 */
 }
 
 .box {
   @include opacity(0.5);
+}
+```
+
+```css
+.box {
+  opacity: 0.5;
+  /* All modern browsers */
+  filter: alpha(opacity=50);
+  /* For IE5~IE9 */
 }
 ```
 
@@ -519,6 +557,16 @@ absolute position
 
 .box {
   @include absPosition(5px, 20px, 10px, 15px);
+}
+```
+
+```css
+.box {
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  bottom: 10px;
+  left: 15px;
 }
 ```
 

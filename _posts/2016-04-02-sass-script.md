@@ -68,36 +68,43 @@ Sass에서는 변수를 사용할 수 있다. 문자열, 숫자, 컬러(#aa443f)
 변수명은 `$`로 시작한다.
 
 ```scss
-$width: 960px;
+$site_max_width: 960px;
+$font_color: #333;
+$link_color: #00c;
+$font_family: Arial, sans-serif;
+$font_size: 16px;
+$line_height: percentage(20px / $font_size);
 
-header {
-  width: $width;
-  margin: 0 auto;
+body {
+  color: $font_color;
+
+  // Property Nesting
+  font: {
+    size: $font_size;
+    family: $font_family;
+  }
+
+  line-height: $line_height;
 }
 
 #main {
-  width: $width;
-  margin: 20px auto;
-}
-
-footer {
-  width: $width;
-  margin: 0 auto;
+  width: 100%;
+  max-width: $site_max_width;
 }
 ```
 
 ```css
-header {
-  width: 960px;
-  margin: 0 auto; }
+body {
+  color: #333;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  line-height: 125%;
+}
 
 #main {
-  width: 960px;
-  margin: 20px auto; }
-
-footer {
-  width: 960px;
-  margin: 0 auto; }
+  width: 100%;
+  max-width: 960px;
+}
 ```
 
 # 3. 변수의 Scope

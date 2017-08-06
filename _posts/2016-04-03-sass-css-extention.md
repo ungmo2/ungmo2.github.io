@@ -16,25 +16,69 @@ description:
 
 Sass의 유용한 확장 기능으로 선언을 중첩(Nesting)하는 것이다.
 
-CSS는 자식요소를 선택하여 선언하는 경우 부모요소를 기술하여야 한다.
+CSS는 [후손 셀렉터(Descendant Combinator)](./css3-selector#61-후손-셀렉터-descendant-combinator)의 경우, 부모요소를 기술하여야 한다.
 
 ```css
-.container {
-  width: 100%;
+#navbar {
+  width: 80%;
+  height: 23px;
 }
 
-.container h1 {
-  color: red;
+#navbar ul {
+  list-style-type: none;
+}
+
+#navbar li {
+  float: left;
+}
+
+#navbar li a {
+  font-weight: bold;
 }
 ```
 
-하지만 Sass는 Nesting으로 표현할 수 있다.
+Sass의 Nesting은 후손 셀렉터를 간단히 기술이 가능하다. 또한 HTML의 구조를 반영한 CSS를 기술할 수 있다.
 
 ```scss
-.container {
-  width: 100%;
-  h1 {
-    color: red;
+#navbar {
+  width: 80%;
+  height: 23px;
+
+  ul { list-style-type: none; }
+
+  li {
+    float: left;
+    a { font-weight: bold; }
+  }
+}
+```
+
+너무 깊은 Nesting은 가독성을 나쁘게 하고 셀렉터를 복잡하게 만든다.
+
+```scss
+// Bad case
+div#main {
+  #sidebar {
+    #navbar {
+      width: 80%;
+      height: 23px;
+
+      aside {
+        div {
+          ul {
+            list-style-type: none;
+
+            li {
+              float: left;
+
+              a {
+                font-weight: bold;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 ```
@@ -42,12 +86,16 @@ CSS는 자식요소를 선택하여 선언하는 경우 부모요소를 기술�
 부모요소의 참조가 필요한 경우 `&`를 사용한다. 예를들어 :hover 또는 ::before 등의 [가상 클래스 선택자 (Pseudo-Class Selector)](./css3-selector#7-가상-클래스-셀렉터-pseudo-class-selector)를 지정하는 경우 부모요소의 참조가 필요하다.
 
 ```scss
-a.myAnchor {
+.myAnchor {
   color: blue;
-  &:hover {   // a.myAnchor:hover
+
+  // .myAnchor:hover
+  &:hover {
     text-decoration: underline;
   }
-  &:visited { // a.myAnchor:visited
+
+  // .myAnchor:visited
+  &:visited {
     color: purple;
   }
 }

@@ -384,6 +384,11 @@ a {
     text-decoration: none;
   }
 
+  // & > span (X)
+  > span {
+    color: blue;
+  }
+
   span {
     color: red;
   }
@@ -403,6 +408,10 @@ a.home {
 
 a:hover {
   text-decoration: none;
+}
+
+a > span {
+  color: blue;
 }
 
 a span {

@@ -242,7 +242,7 @@ p {
   // font와 border-radius의 '/'는 CSS문법에 맞는 표현이므로 연산되지 않는다.
   font: italic bold 12px/30px Georgia, serif;
   // 타원형 둥근 모서리
-  border-radius: 10px 20px / 20px;
+  border-radius: 10px 20px/20px;
 
   $width: 1000px;
 
@@ -258,7 +258,7 @@ p {
 p {
   $font-size: 12px;
   $line-height: 30px;
-  font: #{$font-size} / #{$line-height};  // 12px/30px
+  font: #{$font-size}/#{$line-height};  // 12px/30px
 }
 ```
 
@@ -350,7 +350,9 @@ p:before {
 
 # 6. Interpolation: #{}
 
-변수는 프로퍼티값으로만 사용할 수 있으나 `#{}`을 사용하면 프로퍼티값은 물론 셀렉터와 프로퍼티명에도 사용할 수 있다. 또한 연산의 대상으로 취급되지 않도록 할 수도 있다.
+인터폴레이션은 변수의 값을 문자열 그대로 삽입한다. 인터폴레이션에 의해 삽입된 문자열은 연산의 대상으로 취급되지 않는다.
+
+변수는 프로퍼티값으로만 사용할 수 있으나 `#{}`을 사용하면 프로퍼티값은 물론 셀렉터와 프로퍼티명에도 사용할 수 있다.
 
 ```scss
 $name: foo;

@@ -451,10 +451,10 @@ $new_content: "First time reference" !default;
 
 이러한 특성은 [partial](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#Partials__partials)에 매우 유용하다.
 
-2개의 font.scss와 main.scss 파일을 생성해 보자. main.scss은 내부에서 font.scss을 import한다.
+2개의 _font.scss와 main.scss 파일을 생성해 보자. main.scss은 내부에서 _font.scss을 import한다.
 
 ```scss
-// font.scss
+// _font.scss
 $font-size: 16px !default;
 $line-height: 1.5 !default;
 $font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif !default;

@@ -229,8 +229,6 @@ parseInt('40 years'); // 40
 parseInt('He was 40') // NaN
 
 parseInt('0x20');     // 32
-parseInt('020', 8);   // 16
-parseInt('020');      // 20
 parseInt('10', 16);   // 16
 parseInt('10', 8);    // 8
 ```

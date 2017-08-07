@@ -610,28 +610,30 @@ person 함수는 객체를 반환한다. 이 객체 내의 메소드 getName, se
 - private 멤버가 객체나 배열일 경우, 반환된 해당 멤버의 변경이 가능하다.
 
 ```javascript
-var person = function(personInfo) {
+var person = function (personInfo) {
   var o = personInfo;
 
   return {
     getPersonInfo: function() {
       return o;
     }
-  }
-}
+  };
+};
 
-var me = person({name:'Lee',gender:'male'});
+var me = person({ name: 'Lee', gender: 'male' });
 
 var myInfo = me.getPersonInfo();
 console.log('myInfo: ', myInfo);
+// myInfo:  { name: 'Lee', gender: 'male' }
 
 myInfo.name = 'Kim';
 
 myInfo = me.getPersonInfo();
 console.log('myInfo: ', myInfo);
+// myInfo:  { name: 'Kim', gender: 'male' }
 ```
 
-객체를 반환하는 경우 반환값은 얕은 복사(shallow copy)로 private 멤버의 [참조값](./js-object#pass-by-reference)을 반환하게 된다. 따라서 외부에서도 private 멤버의 값을 변경할 수 있다. 이를 회피하기 위해서는 객체를 그대로 반환하지 않고 반환해야 할 객체의 정보를 새로운 객체에 담아 반환해야 한다. 반드시 객체 전체가 그대로 반환되어야 하는 경우에는 깊은 복사(deep copy)로 복사본을 만들어 반환한다.
+객체를 반환하는 경우 반환값은 얕은 복사(shallow copy)로 private 멤버의 [참조값](./js-object#4-pass-by-reference)을 반환하게 된다. 따라서 외부에서도 private 멤버의 값을 변경할 수 있다. 이를 회피하기 위해서는 객체를 그대로 반환하지 않고 반환해야 할 객체의 정보를 새로운 객체에 담아 반환해야 한다. 반드시 객체 전체가 그대로 반환되어야 하는 경우에는 깊은 복사(deep copy)로 복사본을 만들어 반환한다.
 
 <!--
 객체를 깊은 복사하는 방법은 아래와 같다.
@@ -683,6 +685,8 @@ console.log(me.__proto__ === Object.prototype); // true: 객체 리터럴 방식
 {: .w-450}
 
 반환된 객체가 함수 person의 프로토타입에 접근할 수 없다는 것은 person을 부모 객체로 상속할 수 없다는 것을 의미한다. <!-- 따라서 함수 person가 여러개의 객체를 반환할 경우 반환된 객체는 프로토타입 체인에 의해 프로토타입 객체의 메소드를 참조할 수 없으므로 메소드 setName, getName를 담은 객체가 중복되어 생성된다. -->
+
+함수 person을 부모 객체로 상속할 수 없다는 것은 함수 person이 반환하는 객체에 모든 메소드를 포함시켜야한다는 것을 의미한다.
 
 이 문제를 해결하기 위해서는 객체를 반환하는 것이 아닌 함수를 반환해야 한다.
 

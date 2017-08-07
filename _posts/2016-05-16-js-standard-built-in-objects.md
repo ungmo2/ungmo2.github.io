@@ -235,7 +235,7 @@ parseInt('10', 8);    // 8
 
 ### 1.2.6 encodeURI() / decodeURI()  
 
-encodeURI()은 매개변수로 전달된 URI(Uniform Resource Identifier)를 인코딩한다.
+encodeURI()은 매개변수로 전달된 URI(Uniform Resource Identifier)를 인코딩한다. 
 
 ![uri](/img/uri.png)
 
@@ -261,7 +261,9 @@ var uri = 'http://www.test.com/자바스크립트/test.php?who=나&target=너#�
 var enc = encodeURI(uri);
 var dec = decodeURI(enc);
 console.log(enc);
+// http://www.test.com/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/test.php?who=%EB%82%98&target=%EB%84%88#%EC%A0%84%EC%97%AD%20%EA%B0%9D%EC%B2%B4
 console.log(dec);
+// http://www.test.com/자바스크립트/test.php?who=나&target=너#전역 객체
 ```
 
 ### 1.2.7 encodeURIComponent() / decodeURIComponent()
@@ -270,7 +272,9 @@ encodeURIComponent()은 매개변수로 전달된 URI(Uniform Resource Identifie
 
 - 알파벳, 0~9의 숫자, - _ . ! ~ * ' ( )
 
-decodeURIComponent()은 매개변수로 전달된 URI component(구성 요소)를 디코딩한다.
+decodeURIComponent()은 매개변수로 전달된 URI component(구성 요소)를 디코딩한다. 
+
+encodeURIComponent()는 인수를 쿼리스트링의 일부라고 간주한다. 따라서 =, ?, &를 인코딩한다. 반면 encodeURI()는 인수를 URI 전체라고 간주하며 파라미터 구분자인 =, ?, &를 인코딩하지 않는다.
 
 ```javascript
 encodeURIComponent(URI)
@@ -281,10 +285,12 @@ decodeURIComponent(encodedURI)
 
 ```javascript
 var uriComp = 'who=나&target=너#전역 객체';
-var enc = encodeURI(uriComp);
-var dec = decodeURI(enc);
+var enc = encodeURIComponent(uriComp);
+var dec = decodeURIComponent(enc);
 console.log(enc);
+// who=%EB%82%98&target=%EB%84%88#%EC%A0%84%EC%97%AD%20%EA%B0%9D%EC%B2%B4
 console.log(dec);
+// who=나&target=너#전역 객체
 ```
 
 # 2. Standard Built-in Objects (Global objects)
@@ -411,6 +417,7 @@ Error 생성자는 error 객체를 생성한다. error 객체의 인스턴스는
 
 ```javascript
 try {
+  // foo();
   throw new Error('Whoops!');
 } catch (e) {
   console.log(e.name + ': ' + e.message);
@@ -448,7 +455,7 @@ console.log(num.toFixed()); // 2
 
 이는 기본자료형의 값에 대해 Standard Built-in Object의 메소드를 호출할 때, **기본자료형의 값은 연관된 객체(Wrapper 객체)로 일시 변환** 되기 때문에 가능한 것이다. 그리고 메소드 호출이 종료되면 객체로 변환된 기본자료형의 값은 다시 기본자료형의 값으로 복귀한다.
 
-자세한 내용은 [Prototype: 4.기본자료형(Primitive data type)의 확장](./js-prototype#primitive-data-type-)을 참조 바란다.
+자세한 내용은 [Prototype: 6.기본자료형(Primitive data type)의 확장](./js-prototype#6-기본자료형primitive-data-type의-확장)을 참조 바란다.
 
 Wrapper 객체는 String, Number, Boolean이 있다.
 

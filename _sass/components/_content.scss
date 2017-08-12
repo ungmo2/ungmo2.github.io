@@ -532,6 +532,8 @@
       height: 2px;
       margin-left: -12px;
       margin-top: -2px;
+      -ms-transform: rotate(45deg); /* IE 9 */
+      -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
       transform: rotate(45deg);
 
       &:hover {
@@ -540,6 +542,8 @@
     }
 
     &:after {
+      -ms-transform: rotate(-45deg); /* IE 9 */
+      -webkit-transform: rotate(-45deg); /* Chrome, Safari, Opera */
       transform: rotate(-45deg);
     }
   }

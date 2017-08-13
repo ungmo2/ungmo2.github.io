@@ -16,7 +16,7 @@ description: jQuery Ajax & JSON 비동기식 처리 모델(Asynchronous processi
 
 ![Request & Response](/img/req_res.png)  
 
-서버는 요청받은 페이지를 반환하는데 이때 페이지 내에 포함된 CSS나 javascript 파일들도 같이 반환된다. 클라이언트의 요청에 따라 서버는 정적인 파일을 반환할 수도 있고 서버 사이드 프로그램이 만들어낸 파일이나 데이터를 반환할 수도 있다. 서버로부터 웹페이지가 반환되면 클라이언트(브라우저)는 이를 렌더링하여 화면에 표시한다.
+서버는 요청받은 페이지(HTML)를 반환하는데 이때 HTML에서 로드하는 CSS나 JavaScript 파일들도 같이 반환된다. 클라이언트의 요청에 따라 서버는 정적인 파일을 반환할 수도 있고 서버 사이드 프로그램이 만들어낸 파일이나 데이터를 반환할 수도 있다. 서버로부터 웹페이지가 반환되면 클라이언트(브라우저)는 이를 렌더링하여 화면에 표시한다.
 
 ![traditional-webpage-lifecycle](./img/traditional-webpage-lifecycle.png)
 {: .w-400}

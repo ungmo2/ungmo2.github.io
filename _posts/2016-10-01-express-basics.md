@@ -4,7 +4,7 @@ title: Express <strong>Basics</strong>
 subtitle: Routing, Middleware, Static file, Template engine
 categories: express
 section: express
-description: Express Routing, Middleware, Static file, Template engine
+description: Express는 Node.js 환경에서 동작하는 Web application Framework이다. Express는 Web Application 구성에 필요한 Routing, View Helper, Session(영속적 Session관리를 위해서는 Redis 등의 Data store가 필요하다)등의 기능을 제공한다.
 ---
 
 * TOC
@@ -23,7 +23,7 @@ Express 4.14.0 버전을 기준으로 한다.
 ```bash
 $ mkdir myapp
 $ cd myapp
-$ npm init
+$ npm init -y
 $ npm install express --save
 ```
 

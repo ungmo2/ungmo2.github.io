@@ -21,7 +21,7 @@ console.log(template);
 일반적인 문자열에서 줄바꿈은 허용되지 않으며 공백(white-space)를 표현하기 위해서는 백슬래시(\\)로 시작하는 [이스케이프 시퀀스(Escape Sequence)](https://msdn.microsoft.com/ko-kr/library/2yfce773(v=vs.94).aspx#Anchor_1)를 사용하여야 한다. ES6 템플릿 리터럴은 일반적인 문자열과 달리 여러 줄에 걸쳐 문자열을 작성할 수 있으며 템플릿 리터럴 내의 모든 white-space는 있는 그대로 적용된다.
 
 ```javascript
-const template =`<ul class="nav-items">
+const template = `<ul class="nav-items">
   <li><a href="#home">Home</a></li>
   <li><a href="#news">News</a></li>
   <li><a href="#contact">Contact</a></li>
@@ -41,14 +41,14 @@ const last = 'Lee';
 console.log('My name is ' + first + ' ' + last + '.');
 
 // ES6 String Interpolation
-console.log(`My name is ${first} ${last}.`);
+console.log(`My name is ${first} ${last}.`); // My name is Ung-mo Lee.
 ```
 
 `${expression}`을 템플릿 대입문(template substitution)이라 한다. 템플릿 대입문에는 문자열뿐만 아니라 JavaScript 표현식을 사용할 수 있다.
 
 ```javascript
 // 템플릿 대입문에는 문자열뿐만 아니라 표현식도 사용할 수 있다.
-console.log(`1 + 1 = ${1 + 1}`);
+console.log(`1 + 1 = ${1 + 1}`); // 1 + 1 = 2
 
 const name = 'ungmo';
 

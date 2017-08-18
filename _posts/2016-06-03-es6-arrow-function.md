@@ -170,7 +170,7 @@ Prefixer.prototype.prefixArray = function (arr) {
   });
 };
 
-var pre = new Prefixer('Hi ');
+var pre = new Prefixer('Hi');
 console.log(pre.prefixArray(['Lee', 'Kim']));
 ```
 
@@ -186,11 +186,11 @@ Prefixer.prototype.prefixArray = function (arr) {
   }, this); // this: Prefixer 생성자 함수의 인스턴스
 };
 
-var pre = new Prefixer('Hi ');
+var pre = new Prefixer('Hi');
 console.log(pre.prefixArray(['Lee', 'Kim']));
 ```
 
-ES5에 추가된 [Function.prototype.bind()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)로 this를 바인딩한다. [call(), apply()도 사용 가능하다.](./js-this#apply--apply-invocation-pattern)
+ES5에 추가된 [Function.prototype.bind()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)로 this를 바인딩한다. [call(), apply()도 사용 가능하다.](./js-this#4-apply-호출-패턴apply-invocation-pattern)
 
 ```javascript
 // Solution 3: bind(this)
@@ -204,7 +204,7 @@ Prefixer.prototype.prefixArray = function (arr) {
   }.bind(this)); // this: Prefixer 생성자 함수의 인스턴스
 };
 
-var pre = new Prefixer('Hi ');
+var pre = new Prefixer('Hi');
 console.log(pre.prefixArray(['Lee', 'Kim']));
 ```
 

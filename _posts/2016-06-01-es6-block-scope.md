@@ -22,12 +22,10 @@ ES5에서 변수를 선언할 수 있는 유일한 방법은 [var 키워드](./j
   - 의도하지 않은 변수의 전역화
 3. 중복 선언 허용
   - 의도하지 않은 변수값 변경
-4. [변수 호이스팅](./js-data-type-variable#25-변수-호이스팅variable-hoisting)
+4. [변수 호이스팅](./js-data-type-variable#24-변수-호이스팅variable-hoisting)
   - 변수를 선언하기 전에 참조가 가능하다. 
 
-대부분의 문제는 전역 변수로 인해 발생한다. 전역 변수는 간단한 애플리케이션의 경우, 사용이 편리한 면이 있지만 불가피한 상황을 제외하고 사용을 억제해야 한다. 전역 변수는 범위(scope)가 넓어서 어디에서 어떻게 사용될 지 파악하기 힘들다. 이는 의도치 않은 변수의 변경이 발생할 수 있는 가능성이 증가한다. 또한 여러 함수와 상호 의존하는 등 side effect가 있을 수 있어서 복잡성이 증가한다.
-
-변수의 범위(scope)는 좁을수록 좋다.
+대부분의 문제는 전역 변수로 인해 발생한다. 전역 변수는 간단한 애플리케이션의 경우, 사용이 편리하다는 장점이 있지만 불가피한 상황을 제외하고 사용을 억제해야 한다. 전역 변수는 유효범위(scope)가 넓어서 어디에서 어떻게 사용될 것인지 파악하기 힘들며 [비순수 함수(Impure function)](https://github.com/nhnent/fe.javascript/wiki/April-11---April-15,-2016)에 의해 의도하지 않게 변경될 수도 있어서 복잡성을 증가시키는 요인이 된다. 따라서 변수의 유효범위(scope)는 좁을수록 좋다.
 
 ES6는 이러한 var의 단점을 보완하기 위해 let과 const 키워드를 도입하였다. 
 
@@ -85,7 +83,7 @@ let bar = 456;  // Uncaught SyntaxError: Identifier 'bar' has already been decla
 
 ## 1.3 호이스팅(Hoisting)
 
-자바스크립트는 ES6에서 도입된 let, const를 포함하여 모든 선언(var, let, const, function, [function*](http://hacks.mozilla.or.kr/2015/08/es6-in-depth-generators/), class)을 호이스팅(Hoisting)한다. 호이스팅이란 var 선언문이나 function 선언문 등을 해당 스코프의 선두로 옮기는 것을 말한다.
+자바스크립트는 ES6에서 도입된 let, const를 포함하여 모든 선언(var, let, const, function, [function*](./es6-generateor), class)을 호이스팅(Hoisting)한다. 호이스팅이란 var 선언문이나 function 선언문 등을 해당 스코프의 선두로 옮기는 것을 말한다.
 
 하지만 var 키워드로 선언된 변수와는 달리 let 키워드로 선언된 변수를 선언문 이전에 참조하면 ReferenceError가 발생한다. 이는 let 키워드로 선언된 변수는 스코프의 시작에서 변수의 선언까지 <strong>일시적 사각지대(Temporal Dead Zone; TDZ)</strong>에 빠지기 때문이다. 
 
@@ -108,7 +106,7 @@ let bar;
 할당 단계(Assignment phase)
 : undefined로 초기화된 변수에 실제값을 할당한다.
 
-이것은 var 키워드로 선언된 변수는 선언 단계와 초기화 단계가 한번에 이루어진다는 것을 의미한다. 즉,스코프에 변수가 등록되고 변수는 undefined로 초기화된다. 따라서 변수 선언문 이전에 변수에 접근하여도 Variable Object에 변수가 존재하기 때문에 에러가 발생하지 않는다. 다만 undefined를 반환한다. 이러한 현상을 변수 호이스팅(Variable Hoisting)이라한다.
+**var 키워드로 선언된 변수는 선언 단계와 초기화 단계가 한번에 이루어진다.** 즉,스코프에 변수가 등록(선언단계)되고 변수는 undefined로 초기화(초기화단계)된다. 따라서 변수 선언문 이전에 변수에 접근하여도 Variable Object에 변수가 존재하기 때문에 에러가 발생하지 않는다. 다만 undefined를 반환한다. 이러한 현상을 [변수 호이스팅(Variable Hoisting)](./js-data-type-variable#24-변수-호이스팅variable-hoisting)이라한다.
 
 이후 변수 할당문에 도달하면 비로서 값의 할당이 이루어진다. 
 
@@ -118,7 +116,7 @@ let bar;
 var 키워드로 선언된 변수의 생명 주기
 {: .desc-img}
 
-let 키워드로 선언된 변수는 선언 단계와 초기화 단계가 분리되어 진행된다. 즉, 스코프에 변수가 등록되지만 초기화는 변수 선언문에 도달힜을 때 이루어진다. 초기화 이전에 변수에 접근하려고 하면 ReferenceError 에러가 발생한다. 이는 변수가 아직 초기화되지 않았기 때문인데 스코프의 시작 지점부터 초기화 시작 지점까지를 일시적 사각지대(Temporal Dead Zone; TDZ)라고 부른다. 
+**let 키워드로 선언된 변수는 선언 단계와 초기화 단계가 분리되어 진행된다.** 즉, 스코프에 변수가 등록(선언단계)되지만 초기화 단계는 변수 선언문에 도달했을 때 이루어진다. 초기화 이전에 변수에 접근하려고 하면 ReferenceError 에러가 발생한다. 이는 변수가 아직 초기화되지 않았기 때문인데 스코프의 시작 지점부터 초기화 시작 지점까지를 일시적 사각지대(Temporal Dead Zone; TDZ)라고 부른다. 
 
 ![let lifecycle](./img/let-lifecycle.png)
 {: .w-450}
@@ -172,7 +170,7 @@ JavaScript의 Function-level scope로 인하여 for loop의 초기화식에 사�
 var funcs = [];
 
 // 함수의 배열을 생성한다
-// i는 for loop에서만 유효한 지역변수이다
+// i는 for loop에서만 유효한 지역변수이면서 자유변수이다
 for (let i = 0; i < 3; i++) {
   funcs.push(function () { console.log(i); });
 }
@@ -183,7 +181,7 @@ for (var j = 0; j < 3; j++) {
 }
 ```
 
-for loop의 let i는 for loop에서만 유효한 지역 변수이다. 또한 i는 자유변수로서 for loop의 생명주기가 종료하여도 변수 i를 참조하는 함수가 존재하는 한 계속 유지된다.
+for loop의 let i는 for loop에서만 유효한 지역 변수이다. 또한, i는 자유변수로서 for loop의 생명주기가 종료하여도 변수 i를 참조하는 함수가 존재하는 한 계속 유지된다.
 
 ![for-let](./img/for-let.png)
 {: .w-450}
@@ -268,7 +266,9 @@ obj = { bar: 456 }; // TypeError: Assignment to constant variable.
 
 ## 2.3 const와 객체
 
-const는 객체에 대한 참조의 변경을 금지한다. 하지만 **객체의 프로퍼티는 보호되지 않는다.** 다시 말하자면 재할당은 불가능하지만 할당된 객체의 내용은 변경할 수 있다.
+const는 재할당이 금지된다. 이는 const 변수의 값이 객체인 경우, 객체에 대한 참조의 변경을 금지한다는 것을 의미한다. 
+
+하지만 **객체의 프로퍼티는 보호되지 않는다.** 다시 말하자면 재할당은 불가능하지만 할당된 객체의 내용(프로퍼티)은 변경할 수 있다.
 
 ```javascript
 const user = {
@@ -278,12 +278,19 @@ const user = {
   }
 };
 
-user.name = 'Kim'; // 허용된다!
+// const 변수는 재할당이 금지된다.
+// user = {}; // TypeError: Assignment to constant variable.
+
+// 프로퍼티 값의 재할당은 허용된다!
+user.name = 'Kim';
 
 console.log(user); // { name: 'Kim', address: { city: 'Seoul' } }
 ```
 
-객체 타입 변수 선언에는 const를 사용하는 것이 좋다. 이유는 위 예제에서 확인한 바와 같이 const를 사용한다 하더라도 객체의 내용을 변경할 수 있으며 이때 변수에 할당된 주소값은 변경되지 않기 때문이다.
+**객체 타입 변수 선언에는 const를 사용하는 것이 좋다.** 이유는 아래와 같다.
+
+- 객체에 대한 참조는 변경될 필요가 없다. 즉, 재할당이 필요없다. 만일 새로운 객체에 대한 참조를 변수에 할당해야 한다면 새로운 변수를 사용하면 된다.
+- const를 사용한다 하더라도 객체의 프로퍼티를 변경할 수 있다.
 
 자바스크립트의 값은 대부분 객체(primitive형 변수를 제외한 모든 값은 객체이다)이므로 결국 대부분의 경우 const를 사용하게 된다.
 
@@ -376,7 +383,7 @@ console.log(user); // { name: 'Lee', address: { city: 'Seoul' } }
 
 - 재할당이 필요한 primitive형 변수에는 let를 사용한다.
 
-객체형 변수에 const를 사용하는 이유는 객체의 프로퍼티 값이 변경된다하더라도 객체형 변수에 저장되는 주소값은 변경되지 않기 때문이다. 자바스크립트의 값은 대부분 객체(primitive형 변수를 제외한 모든 값은 객체이다)이므로 결국 대부분의 경우 const를 사용하게 된다.
+<!-- 객체형 변수에 const를 사용하는 이유는 객체의 프로퍼티 값이 변경된다하더라도 객체형 변수에 저장되는 주소값은 변경되지 않기 때문이다. 자바스크립트의 값은 대부분 객체(primitive형 변수를 제외한 모든 값은 객체이다)이므로 결국 대부분의 경우 const를 사용하게 된다. -->
 
 # Reference
 

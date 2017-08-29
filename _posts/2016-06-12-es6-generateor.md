@@ -105,12 +105,12 @@ const generator = genFunc();
 // 처음 실행
 console.log(generator.next());
 // 제너레이터 함수 시작
-// { value: undefined, done: false }
+// { value: 1, done: false }
 
 // 두번째 실행
 console.log(generator.next());
 // 제너레이터 함수 재시작
-// { value: undefined, done: false }
+// { value: 2, done: false }
 
 // 마지막 실행
 console.log(generator.next());

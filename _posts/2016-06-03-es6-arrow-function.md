@@ -316,6 +316,28 @@ console.log(Foo.hasOwnProperty('prototype')); // false
 const foo = new Foo(); // TypeError: Foo is not a constructor
 ```
 
+## 3.4 addEventListener 함수의 콜백 함수
+
+addEventListener 함수의 콜백 함수를 화살표 함수로 정의하면 this가 상위 컨택스트를 가리킨다.
+
+```javascript
+var button = document.getElementById('myButton');  
+button.addEventListener('click', () => {  
+  console.log(this === window); // => true
+  this.innerHTML = 'Clicked button';
+});
+```
+
+addEventListener 함수의 콜백 함수는 function 키워드로 정의한 함수를 사용하여야 한다.
+
+```javascript
+var button = document.getElementById('myButton');  
+button.addEventListener('click', function() {  
+  console.log(this === button); // => true
+  this.innerHTML = 'Clicked button';
+});
+```
+
 # Reference
 
 * [ECMAScript 6](http://www.ecma-international.org/ecma-262/6.0/ECMA-262.pdf)

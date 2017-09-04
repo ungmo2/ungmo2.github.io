@@ -1100,9 +1100,9 @@ export class AppComponent {
 
 # 4. 템플릿 표현식 연산자(Template expression operator)
 
-## 4.1 세이프 네비게이션 연산자(Safe navigation operator)
+## 4.1 세이프 내비게이션 연산자(Safe navigation operator)
 
-세이프 네비게이션 연산자 `?`는 컴포넌트 클래스의 프로퍼티의 값이 null 또는 undefined인 경우 발생하는 에러를 회피하기 위해 사용한다. 
+세이프 내비게이션 연산자 `?`는 컴포넌트 클래스의 프로퍼티의 값이 null 또는 undefined인 경우 발생하는 에러를 회피하기 위해 사용한다. 
 
 ```typescript
 import { Component } from '@angular/core';
@@ -1113,7 +1113,7 @@ import { Component } from '@angular/core';
     {{ "{{ obj " }}}}
     <!-- ERROR TypeError: Cannot read property 'id' of undefined -->
     {{ "{{ obj.id " }}}}
-    <!-- 세이프 네비게이션 연산자는 null 또는 undefined의 프로퍼티를 만나면 처리를 종료하고 에러를 발생시키지 않는다. -->
+    <!-- 세이프 내비게이션 연산자는 null 또는 undefined의 프로퍼티를 만나면 처리를 종료하고 에러를 발생시키지 않는다. -->
     {{ "{{ obj?.id " }}}}
   `
 })

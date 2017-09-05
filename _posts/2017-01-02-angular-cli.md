@@ -34,12 +34,12 @@ Angular는 Angular CLI를 위한 별도의 웹페이지 [https://cli.angular.io/
 
 Angular CLI를 사용하기 위해서는 어떠한 절차가 필요한지 그리고 무엇을 할 수 있는지 알아보자.
 
-2017년 3월 24일 출시된 Angular CLI 1.0.0을 기준으로 한다. Angular CLI의 변경이력은 [CHANGELOG](https://github.com/angular/angular-cli/blob/master/CHANGELOG.md)에서 참조 가능하다.
+Angular CLI 1.3.2을 기준으로 한다. Angular CLI의 변경이력은 [angular-cli releases](https://github.com/angular/angular-cli/releases)에서 참조 가능하다.
 {: .info}
 
 # 2. Angular CLI 설치
 
-Angular CLI 1.0.0의 경우 Node.js 6.9.0, npm 3.0.0 이상이 필요하다.
+Angular CLI는 Node.js 6.9.0, npm 3.0.0 이상이 필요하다.
 
 - [Node.js 설치와 npm 업데이트](http://poiemaweb.com/nodejs-basics#2-install)
 
@@ -49,7 +49,7 @@ Angular CLI는 npm으로 설치할 수 있다. 아래의 명령어를 실행하�
 $ npm install -g @angular/cli
 ```
 
-만일 Angular CLI 1.0.0 이전 버전이 설치되어 있다면 다음과 같이 업데이트를 실행한다.
+만일 Angular CLI 1.3.2 이전 버전이 설치되어 있다면 다음과 같이 업데이트를 실행한다.
 
 Angular CLI 1.0.0 이전 버전의 경우 패키지명이 angular-cli이었으나 Angular CLI 1.0.0부터 @angular/cli으로 변경되었다.
 {: .info}
@@ -70,19 +70,21 @@ $ ng version
  / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
 /_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
                |___/
-@angular/cli: 1.0.0
-node: 6.9.4
+@angular/cli: 1.3.2
+node: 8.4.0
 os: darwin x64
-@angular/common: 4.0.0
-@angular/compiler: 4.0.0
-@angular/core: 4.0.0
-@angular/forms: 4.0.0
-@angular/http: 4.0.0
-@angular/platform-browser: 4.0.0
-@angular/platform-browser-dynamic: 4.0.0
-@angular/router: 4.0.0
-@angular/cli: 1.0.0
-@angular/compiler-cli: 4.0.0
+@angular/animations: 4.3.6
+@angular/common: 4.3.6
+@angular/compiler: 4.3.6
+@angular/core: 4.3.6
+@angular/forms: 4.3.6
+@angular/http: 4.3.6
+@angular/platform-browser: 4.3.6
+@angular/platform-browser-dynamic: 4.3.6
+@angular/router: 4.3.6
+@angular/cli: 1.3.2
+@angular/compiler-cli: 4.3.6
+@angular/language-service: 4.3.6
 ```
 
 Angular CLI의 사용법을 참조하기 위해서는 `ng help` 명령어를 사용한다.
@@ -185,16 +187,17 @@ success Saved lockfile.
 
 ```
 my-app/
-├── .angular-cli.json
-├── .editorconfig
 ├── .git/
-├── .gitignore
 ├── e2e/
 ├── node_modules/
+├── src/
+├── .angular-cli.json
+├── .editorconfig
+├── .gitignore
+├── karma.conf.js
 ├── package.json
 ├── protractor.conf.js
 ├── README.md
-├── src/
 ├── tsconfig.json
 └── tslint.json
 ```
@@ -215,14 +218,16 @@ $ ng serve
 ```bash
 $ cd my-app
 $ ng serve
-** NG Live Development Server is running on http://localhost:4200 **
-Hash: d8a5b2fd305c58aa1b88
-Time: 9626ms
-chunk    {0} polyfills.bundle.js, polyfills.bundle.js.map (polyfills) 158 kB {4} [initial] [rendered]
-chunk    {1} main.bundle.js, main.bundle.js.map (main) 3.62 kB {3} [initial] [rendered]
-chunk    {2} styles.bundle.js, styles.bundle.js.map (styles) 9.77 kB {4} [initial] [rendered]
-chunk    {3} vendor.bundle.js, vendor.bundle.js.map (vendor) 2.37 MB [initial] [rendered]
-chunk    {4} inline.bundle.js, inline.bundle.js.map (inline) 0 bytes [entry] [rendered]
+** NG Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200 **
+Date: 2017-09-05T04:59:30.590Z
+Hash: f25d82c5507ceb830af1
+Time: 10356ms
+chunk {inline} inline.bundle.js, inline.bundle.js.map (inline) 5.83 kB [entry] [rendered]
+chunk {main} main.bundle.js, main.bundle.js.map (main) 8.44 kB {vendor} [initial] [rendered]
+chunk {polyfills} polyfills.bundle.js, polyfills.bundle.js.map (polyfills) 209 kB {inline} [initial] [rendered]
+chunk {styles} styles.bundle.js, styles.bundle.js.map (styles) 11.3 kB {inline} [initial] [rendered]
+chunk {vendor} vendor.bundle.js, vendor.bundle.js.map (vendor) 2.27 MB [initial] [rendered]
+
 webpack: Compiled successfully.
 ```
 
@@ -713,6 +718,52 @@ Angular5에서는 기본 컴파일 옵션이 AoT로 변경될 예정이다.
 
 AoT 컴파일에 대한 보다 상세한 내용은 [AoT 컴파일](https://angular.io/guide/aot-compiler)을 참조하기 바란다.
 
+# 7. 기본 옵션 변경
+
+기본으로 적용되는 옵션을 변경하기 위해서는 [schema.json](https://github.com/angular/angular-cli/blob/398356503ab4729cf40587804c44b55eb5c99768/packages/%40angular/cli/lib/config/schema.json)에 기술되어 있는 옵션을 참조하여 .angular-cli.json을 수정한다. 
+
+예를 들어 컴포넌트를 생성할 때, 스팩 파일을 생성하지 않도록 기본 옵션을 변경하여 보자.
+
+schema.json를 참조하면 --spec 옵션은 component에서 사용하는 경우, 기본값이 true이다. 즉 컴포너트를 생성할 때, 기본으로 스팩 파일이 추가된다.
+
+```json
+  ...
+  "component": {
+    "description": "Options for generating a component.",
+    "type": "object",
+    "properties": {
+      "flat": {
+        "description": "Flag to indicate if a dir is created.",
+        "type": "boolean",
+        "default": false
+      },
+      "spec": {
+        "description": "Specifies if a spec file is generated.",
+        "type": "boolean",
+        "default": true
+      },
+  ...
+```
+
+컴포넌트를 생성할 때, 스팩 파일을 생성하지 않도록 하기 위해서는 아래의 명령어를 사용한다.
+
+```bash
+$ ng generate component <component-name> --spec false
+```
+
+매번 옵션을 추가하지 않기 위해서 기본 옵션을 변경하려면 .angular-cli.json을 아래와 같이 수정한다. 
+
+```json
+  ...
+  "defaults": {
+    "styleExt": "css",
+    "component": {
+      "spec": false
+    }
+  }
+}
+```
+
 # Reference
 
 * [Angular CLI](https://cli.angular.io/)
@@ -720,3 +771,5 @@ AoT 컴파일에 대한 보다 상세한 내용은 [AoT 컴파일](https://angul
 * [Angular Style Guide](https://angular.io/guide/styleguide)
 
 * [AoT 컴파일](https://angular.io/guide/aot-compiler)
+
+* [schema.json](https://github.com/angular/angular-cli/blob/398356503ab4729cf40587804c44b55eb5c99768/packages/%40angular/cli/lib/config/schema.json)

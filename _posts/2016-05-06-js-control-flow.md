@@ -383,13 +383,14 @@ var val = '123';
 console.log(typeof val + ': ' + val); // string: 123
 
 // sting -> number
-val *= 1;
+val = +val; // unary "+" operator
+// val = val * 1;
 // val = Number(val);
 // val = parseInt(val);
 console.log(typeof val + ': ' + val); // number: 123
 
-// number -> sting 
-val += '';
+// number -> sting
+val = val + '';
 // val = String(val);
 // val = val.toString();
 console.log(typeof val + ': ' + val); // string: 123

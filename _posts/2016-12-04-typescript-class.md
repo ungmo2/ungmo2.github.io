@@ -36,7 +36,7 @@ class Person {
 class Foo {
   // 프로퍼티 (public)
   name: string;
-  
+
   constructor(name: string) {
     this.name = name;
   }
@@ -52,9 +52,12 @@ console.log(person.walk()); // Lee is walking
 
 # 2. 접근 제한자 (Access modifier)
 
-Typescript 클래스는 public, private, protected 접근 제한자를 지원한다. 접근 제한자를 생략한 프로퍼티는 암묵적으로 public 프로퍼티로 지정된다. 
+Typescript 클래스는 Java, C#과 같은 클래스 기반 객체 지향 언어가 지원하는 public, private, protected 접근 제한자를 지원하며 의미 또한 기본적으로 동일하다.
 
-접근 제한자의 프로퍼티에 대한 접근 가능성은 아래와 같다. 
+단, 접근 제한자를 명시하지 않았을 때, 다른 OOP언어의 경우 암묵적으로 protected로 지정되어 패키지 레벨로 공개되지만
+Typescript의 경우, 접근 제한자를 생략한 프로퍼티와 메소드는 암묵적으로 public이 지정된다. 따라서 public으로 지정하고자 하는 프로퍼티와 메소드는 접근 제한자를 생략한다.
+
+접근 제한자의 프로퍼티에 대한 접근 가능성은 아래와 같다.
 
 | 접근 가능성    | public  | protected | private
 |:------------|:-------:|:---------:|:----------:
@@ -88,8 +91,30 @@ class Bar extends Foo {
     console.log(this.x);
     console.log(this.y);
     console.log(this.z); // error TS2341: Property 'z' is private and only accessible within class 'Foo'.
-  }  
+  }
 }
+```
+
+Typescript는 접근 제한자와 함께 `readonly` 키워드를 사용할 수 있다. readonly가 선언된 프로퍼티는 선언시 또는 생성자 내부에서만 값을 할당할 수 있다. 그 외의 경우에는 값을 할당할 수 없고 오직 읽기만 가능한 상태가 된다. 이를 이용하여 상수의 선언에 사용한다.
+
+```typescript
+class Foo {
+  private readonly MAX_LEN: number = 5;
+  private readonly MSG: string;
+
+  constructor() {
+    this.MSG = 'hello';
+  }
+
+  log() {
+    this.MAX_LEN = 10; // Cannot assign to 'MAX_LEN' because it is a constant or a read-only property.
+    this.MSG = 'Hi'; // Cannot assign to 'MSG' because it is a constant or a read-only property.
+    console.log(`MAX_LEN: ${this.MAX_LEN}`); // MAX_LEN: 5
+    console.log(`MSG: ${this.MSG}`); // MSG: hello
+  }
+}
+
+new Foo().log();
 ```
 
 # 3. 생성자 파라미터에 접근 제한자 사용
@@ -113,7 +138,7 @@ ECMAScript 6 클래스에서 static 키워드는 클래스의 정적(static) 메
 ```javascript
 class Foo {
   constructor(prop) {
-    this.prop = prop;      
+    this.prop = prop;
   }
   static staticMethod() {
     return 'staticMethod';

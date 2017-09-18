@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Angular - <strong>Style</strong>
+title: Angular Component - <strong>Style</strong>
 subtitle: 컴포넌트와 스타일
 categories: angular
 section: angular

@@ -18,22 +18,22 @@ description: 컴포넌트는 Angular의 핵심 구성 요소로서 Angular 애�
 
 ## 1.1 웹 컴포넌트
 
-웹 애플리케이션의 뷰는 내용(content)과 구조(structure)을 담당하는 HTML과 스타일(디자인, 레이아웃 등)을 담당하는 CSS의 조합으로 생성되며 DOM의 동적 조작을 위해서 JavaScript가 필요하다. 
+웹 애플리케이션의 뷰는 내용(content)과 구조(structure)을 담당하는 HTML과 스타일(디자인, 레이아웃 등)을 담당하는 CSS의 조합으로 생성되며 DOM과 이벤트의 관리를 위해서 JavaScript가 필요하다.
 
 기존의 객체지향개발(Object Oriented Programming)의 경우 로직을 클래스 단위로 부품화할 수 있지만 뷰를 부품화는 것은 곤란하다. HTML의 경우는 어느 정도 템플릿화가 가능하지만 CSS의 경우 HTML 요소간 상속(Inheritance)과 캐스케이딩(Cascading)이 적용되어 HTML 요소가 배치되는 위치에 따라 스타일이 영향을 받기 때문이다.
 
-컴포넌트는 동작 가능한 하나의 부품이다. 부품화를 위해서는 다른 컴포넌트에 간섭을 받지 않는 독립적인 뷰를 소유한다. <strong>컴포넌트는 다른 컴포넌트에 간섭을 받지 않는 독립적인 뷰를 생성하기 위하여 "HTML, CSS, JavaScript를 하나의 단위로 묶는 것"</strong>으로 W3C 표준인 [웹 컴포넌트(Web Component)](https://www.webcomponents.org/introduction)를 기반으로 한다. Angular는 이러한 컴포넌트를 조립하여 하나의 완성된 애플리케이션을 작성한다.
+컴포넌트는 동작 가능한 하나의 부품이다. 부품화를 위해서는 다른 컴포넌트에 간섭을 받지 않도록 독립된 스코프를 가져야 한다. 다시 말해 컴포넌트 내에서만 유효한 상태 정보와 로직, 스타일을 소유한 완결된 뷰를 생성하기 위한 것이 바로 컴포넌트이다. <strong>컴포넌트는 독립적이고 완결된 뷰를 생성하기 위하여 "HTML, CSS, JavaScript를 하나의 단위로 묶는 것"</strong>으로 W3C 표준인 [웹 컴포넌트(Web Component)](https://www.webcomponents.org/introduction)를 기반으로 한다. Angular는 이러한 컴포넌트를 조립하여 하나의 완성된 애플리케이션을 작성한다.
 
 ![web-component](/img/web-component.png)
 
 웹 컴포넌트(Web Component)
 {: .desc-img}
 
-웹 컴포넌트는 웹 애플리케이션에서 재사용이 가능하도록 캡슐화된 HTML 커스텀 요소(Custom element)를 생성하는 웹 플랫폼 API의 집합이다. 웹 컴포넌트가 제공하여야 하는 기능은 아래와 같다. 
+웹 컴포넌트는 웹 애플리케이션에서 재사용이 가능하도록 캡슐화된 HTML 커스텀 요소(Custom element)를 생성하는 웹 플랫폼 API의 집합이다. 웹 컴포넌트가 제공하여야 하는 기능은 아래와 같다.
 
-1. 컴포넌트의 뷰를 생성할 수 있어야 하며(HTML Template) 
-2. 외부로부터의 간섭을 제어하기 위해 스코프(scope)를 분리하여 DOM을 캡슐화(Encapsulation)할 수 있어야 하며(Shadow DOM) 
-3. 외부에서 컴포넌트를 호출할 수 있어야 하고(HTML import) 
+1. 컴포넌트의 뷰를 생성할 수 있어야 하며(HTML Template)
+2. 외부로부터의 간섭을 제어하기 위해 스코프(scope)를 분리하여 DOM을 캡슐화(Encapsulation)할 수 있어야 하며(Shadow DOM)
+3. 외부에서 컴포넌트를 호출할 수 있어야 하고(HTML import)
 4. 컴포넌트를 명시적으로 호출하기 위한 명칭(alias)를 선언하여 마치 HTML 요소와 같이 사용할 수 있어야 한다(Custom Element).
 
 위에서 설명한 HTML Template, Shadow DOM, HTML import, Custom Element가 바로 웹 컴포넌트의 4대 기술 스펙이다.
@@ -54,7 +54,7 @@ description: 컴포넌트는 Angular의 핵심 구성 요소로서 Angular 애�
 블록 구조(Block structure)
 {: .desc-img}
 
-위 블록 구조의 경우, 헤더(header), 사이드바(aside), 푸터(footer) 영역은 모든 화면에서 공통으로 사용되고 본문(section)만 변경될 가능성이 높다. 이러한 경우 컴포넌트를 분할하고 컴포넌트를 조립하여 화면을 구성하는 것은 재사용과 유지보수의 관점에서 매우 바람직하다. 
+위 블록 구조의 경우, 헤더(header), 사이드바(aside), 푸터(footer) 영역은 모든 화면에서 공통으로 사용되고 본문(section)만 변경될 가능성이 높다. 이러한 경우 컴포넌트를 분할하고 컴포넌트를 조립하여 화면을 구성하는 것은 재사용과 유지보수의 관점에서 매우 바람직하다.
 
 위의 블록 구조를 컴포넌트로 전환하면 아래와 같은 구조를 갖는다. 흡사 DOM 트리와 유사한 형태를 가지게 되는데 이를 <strong>컴포넌트 트리</strong>라고 한다.
 
@@ -69,7 +69,7 @@ Angular 애플리케이션은 분할된 컴포넌트로 구성되기 때문에 �
 
 ## 2.1 컴포넌트의 코드 구조
 
-컴포넌트의 기본 구조를 알아보기 위해 [Angular CLI](./angular-cli)로 프로젝트를 생성하여 보자. 
+컴포넌트의 기본 구조를 알아보기 위해 [Angular CLI](./angular-cli)로 프로젝트를 생성하여 보자.
 
 ng new 명령어 다음에 프로젝트명을 지정하면 프로젝트명과 일치하는 새로운 프로젝트 폴더가 생성되고 스캐폴딩(프로젝트 기본 골격)이 작성된다. 프로젝트명을 hello로 지정하여 프로젝트를 생성한다.
 
@@ -114,7 +114,7 @@ export class AppComponent {
 }
 ```
 
-컴포넌트는 임포트 영역과 @Component 데코레이터 영역 그리고 컴포넌트 클래스 영역으로 구분할 수 있다. 
+컴포넌트는 임포트 영역과 @Component 데코레이터 영역 그리고 컴포넌트 클래스 영역으로 구분할 수 있다.
 
 임포트 영역
 : 컴포넌트에 필요한 외부 모듈을 임포트한다. Angular 라이브러리 모듈의 경우 @가 붙어있으며 경로를 명시하지 않는다. Angular 모듈이 아닌 외부 모듈의 경우 상대 경로를 명시하여야 한다.
@@ -160,7 +160,7 @@ export class AppComponent {
 
 # 3. 컴포넌트 작성 실습
 
-새로운 컴포넌트를 작성하면서 컴포넌트의 구조와 역할에 관하여 좀 더 자세히 알아보도록 하자. 
+새로운 컴포넌트를 작성하면서 컴포넌트의 구조와 역할에 관하여 좀 더 자세히 알아보도록 하자.
 
 hello 프로젝트에 새로운 컴포넌트를 추가해 보자. ng g c 명령어로 컴포넌트를 간단히 추가할 수 있으나 과정을 알아보기 위해 직접 파일을 생성하여 추가하도록 한다.
 
@@ -193,9 +193,9 @@ src/app/hello/hello.component.ts 파일을 아래와 같이 수정하여 컴포�
 export class HelloComponent {}
 ```
 
-선언한 클래스를 모듈화하여 외부에 공개하기 위해 export 키워드를 사용하였다. TypeScript는 [ECMAScript6 Module](./es6-module)을 지원하며 export 키워드가 선언된 파일을 모듈로 간주한다. 
+선언한 클래스를 모듈화하여 외부에 공개하기 위해 export 키워드를 사용하였다. TypeScript는 [ECMAScript6 Module](./es6-module)을 지원하며 export 키워드가 선언된 파일을 모듈로 간주한다.
 
-ECMAScript6의 모듈과 Angular의 모듈은 다른 개념이므로 혼동에 주의하도록 하자. 
+ECMAScript6의 모듈과 Angular의 모듈은 다른 개념이므로 혼동에 주의하도록 하자.
 
 ECMAScript6의 모듈
 : 애플리케이션을 구성하는 개별적 요소를 말한다. 일반적으로 모듈은 파일 단위로 분리되어 있으며 필요에 따라 애플리케이션은 명시적으로 모듈을 로드한다. 모듈은 애플리케이션에 분리되어 개별적으로 존재하다가 어플리케이션의 로드에 의해 비로소 애플리케이션의 일원이 된다. 모듈은 기능별로 분리되어 작성되므로 개발효율성과 유지보수성의 향상을 기대할 수 있다.
@@ -286,17 +286,17 @@ import { Component } from '@angular/core';
 export class HelloComponent {}
 ```
 
-templateUrl 프로퍼티에는 외부 파일로 작성한 템플릿의 상대 경로를 지정한다. 외부 파일로 작성한 템플릿(src/app/hello/hello.component.html)은 아래와 같다. 
+templateUrl 프로퍼티에는 외부 파일로 작성한 템플릿의 상대 경로를 지정한다. 외부 파일로 작성한 템플릿(src/app/hello/hello.component.html)은 아래와 같다.
 
 ```html
 <h2>안녕하세요 {{ "{{name" }}}}</h2>
 <input type="text" placeholder="이름을 입력하세요" #inputYourName>
-<button (click)="setName(inputYourName.value)">등록</button>  
+<button (click)="setName(inputYourName.value)">등록</button>
 ```
 
 아직 살펴보지 않은 템플릿 문법이 포함되어 있지만 일단은 템플릿을 선언하는 방법에만 집중하도록 하자.
 
-템플릿을 외부 파일로 분리하는 것은 관심사가 다른 뷰(템플릿)와 로직(컴포넌트 클래스)을 분리한다는 측면에서 바람직하다. 템플릿이 간단한 경우, 위와 같이 템플릿을 외부 파일로 작성하지 않고 메타데이터의 template 프로퍼티에 문자열의 형태로 직접 기술할 수도 있다. 이것을 인라인 템플릿(Inline template)이라 한다. 
+템플릿을 외부 파일로 분리하는 것은 관심사가 다른 뷰(템플릿)와 로직(컴포넌트 클래스)을 분리한다는 측면에서 바람직하다. 템플릿이 간단한 경우, 위와 같이 템플릿을 외부 파일로 작성하지 않고 메타데이터의 template 프로퍼티에 문자열의 형태로 직접 기술할 수도 있다. 이것을 인라인 템플릿(Inline template)이라 한다.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -331,7 +331,7 @@ export class HelloComponent {}
 
 templateUrl 프로퍼티와 마찬가지로 외부 파일로 정의된 스타일을 사용하는 경우 styleUrls 프로퍼티를 사용한다.
 
-styleUrls 프로퍼티에는 외부 파일로 작성한 CSS 파일의 상대 경로를 배열로 지정한다. 배열로 상대경로를 지정하기 때문에 아래와 같이 여러개의 CSS 파일을 한꺼번에 지정할 수 있다. 
+styleUrls 프로퍼티에는 외부 파일로 작성한 CSS 파일의 상대 경로를 배열로 지정한다. 배열로 상대경로를 지정하기 때문에 아래와 같이 여러개의 CSS 파일을 한꺼번에 지정할 수 있다.
 
 ```typescript
 @Component({
@@ -343,14 +343,14 @@ styleUrls 프로퍼티에는 외부 파일로 작성한 CSS 파일의 상대 경
 })
 ```
 
-외부 파일로 작성한 템플릿(src/app/hello/hello.component.css)은 아래와 같다. 
+외부 파일로 작성한 템플릿(src/app/hello/hello.component.css)은 아래와 같다.
 
 ```css
 h2 {
   color: #673ab7;
 }
 input[type=text] {
-  width: 200px; 
+  width: 200px;
   height: 25px;
   padding-left: 10px;
   margin-top: 10px;
@@ -376,7 +376,7 @@ button:hover {
 }
 ```
 
-위와 같이 CSS를 외부 파일로 작성하지 않고 메타데이터의 styles 프로퍼티에 문자열의 형태로 직접 기술할 수도 있다. 이것을 인라인 스타일(Inline style)이라 한다. 
+위와 같이 CSS를 외부 파일로 작성하지 않고 메타데이터의 styles 프로퍼티에 문자열의 형태로 직접 기술할 수도 있다. 이것을 인라인 스타일(Inline style)이라 한다.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -386,14 +386,14 @@ import { Component } from '@angular/core';
   template: `
     <h2>안녕하세요 {{ "{{name" }}}}</h2>
     <input type="text" placeholder="이름을 입력하세요" #inputYourName>
-    <button (click)="setName(inputYourName.value)">등록</button>  
+    <button (click)="setName(inputYourName.value)">등록</button>
   `,
   styles: [`
     h2 {
       color: #673ab7;
     }
     input[type=text] {
-      width: 200px; 
+      width: 200px;
       height: 25px;
       padding-left: 10px;
       margin-top: 10px;
@@ -429,7 +429,7 @@ export class HelloComponent {}
 
 ## 3.6 컴포넌트 클래스와 템플릿의 연동
 
-이제 컴포넌트 클래스에 로직을 추가한다. 
+이제 컴포넌트 클래스에 로직을 추가한다.
 
 ```typescript
 ...
@@ -457,7 +457,7 @@ export class HelloComponent {
 
 3. 컴포넌트 클래스의 name 프로퍼티에 저장된 input 요소의 value가 인터폴레이션에 의해 h2 요소에 삽입된다.
 
-이제 hello 컴포넌트의 작성이 완성되었다. 하지만 hello 컴포넌트를 사용하기 위해서는 몇가지 작업이 필요하다. 
+이제 hello 컴포넌트의 작성이 완성되었다. 하지만 hello 컴포넌트를 사용하기 위해서는 몇가지 작업이 필요하다.
 
 ## 3.7 컴포넌트의 호출
 
@@ -504,14 +504,14 @@ import { HelloComponent } from './hello/hello.component'; // 1
 export class AppModule { }
 ```
 
-우선 1)과 같이 hello 컴포넌트의 컴포넌트 클래스를 임포트한다. 그 후 @NgModule 데코레이터에 인자로 전달되는 메타데이터의 declarations 프로퍼티에 컴포넌트 클래스 HelloComponent를 추가한다. 
+우선 1)과 같이 hello 컴포넌트의 컴포넌트 클래스를 임포트한다. 그 후 @NgModule 데코레이터에 인자로 전달되는 메타데이터의 declarations 프로퍼티에 컴포넌트 클래스 HelloComponent를 추가한다.
 
-declarations 프로퍼티에는 모듈에 소속될 구성요소(컴포넌트, 디렉티브, 파이프)의 리스트를 지정한다. 모듈은 이후에 자세히 살펴보도록 하고 이번에는 @NgModule 데코레이터에 인자로 전달되는 메타데이터 객체의 중요 프로퍼티만 간단히 알아보도록 하자.  
+declarations 프로퍼티에는 모듈에 소속될 구성요소(컴포넌트, 디렉티브, 파이프)의 리스트를 지정한다. 모듈은 이후에 자세히 살펴보도록 하고 이번에는 @NgModule 데코레이터에 인자로 전달되는 메타데이터 객체의 중요 프로퍼티만 간단히 알아보도록 하자.
 
 declarations 프로퍼티
 : 모듈에 소속될 구성요소(컴포넌트, 디렉티브, 파이프) 리스트
 
-imports 프로퍼티  
+imports 프로퍼티
 : 모듈에 소속된 구성요소가 필요로 하는 다른 모듈
 
 providers 프로퍼티

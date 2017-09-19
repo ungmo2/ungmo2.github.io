@@ -577,6 +577,8 @@ export class AppComponent {
 
 디렉티브(Directive 지시자)는 "DOM의 모든 것(모양이나 동작 등)을 관리하기 위한 지시(명령)"이다. HTML 요소 또는 어트리뷰트의 형태로 사용하여 디렉티브가 사용된 요소에게 무언가를 하라는 지시(directive)를 전달한다.
 
+**디렉티브는 애플리케이션 전역에서 사용할 수 있는 공통 관심사를 컴포넌트에서 분리하여 구현한 것으로 컴포넌트의 복잡도를 낮추고 가독성을 향상시킨다.** 컴포넌트도 뷰를 생성하고 이벤트를 처리하는 등 DOM을 관리하기 때문에 큰 의미에서 디렉티브로 볼 수 있다.
+
 간단한 예제를 살펴보자. textBlue 디렉티브는 해당 요소의 텍스트 컬러를 파란색으로 변경한다.
 
 ```typescript
@@ -605,20 +607,24 @@ export class AppComponent { }
 
 <iframe src="http://embed.plnkr.co/ObCeP8OmDzYcvTdEtDBO/?show=preview" frameborder="0" width="100%" height="400"></iframe>
 
-디렉티브는 애플리케이션 전역에서 사용할 수 있는 공통 관심사를 컴포넌트에서 분리하여 구현한 것으로 컴포넌트의 복잡도를 낮추고 가독성을 향상시킨다. 컴포넌트도 뷰를 생성하고 이벤트를 처리하는 등 DOM을 관리하기 때문에 큰 의미에서 디렉티브로 볼 수 있다.
+디렉티브는 애플리케이션 전역에서 사용할 수 있는 공통 관심사를 컴포넌트에서 분리하여 구현한 것으로 컴포넌트의 복잡도를 낮추고 가독성을 향상시킨다. **컴포넌트도 뷰를 생성하고 이벤트를 처리하는 등 DOM을 관리하기 때문에 큰 의미에서 디렉티브로 볼 수 있다.**
 
-<!--이전 버전인 AngularJS에는 70개 이상의 디렉티브가 존재하였으나 Angular의 디렉티브는 아래와 같이 크게 4가지로 구분할 수 있다.-->
+이전 버전인 AngularJS에는 70개 이상의 디렉티브가 존재하였으나 컴포넌트 기반의 Angular2 디렉티브는 단순화되어 아래와 같이 ngular는 3가지 유형의 디렉티브를 제공한다.
 
-- 컴포넌트(Component)
-- 어트리뷰트 디렉티브(Attribute directive)
-- 구조 디렉티브(Structural directive)
-- 커스텀 디렉티브(Custom directive)
+[컴포넌트 디렉티브(Component Directives)](./angular-component-basics)
+: 컴포넌트의 템플릿을 표시하기 위한 디렉티브이다. @component 데코레이터의 메타데이터 객체의 seletor 프로퍼티에서 임의의 디렉티브의 이름을 정의한다.
+
+[구조 디렉티브(Structural Directives)](./angular-component-template-syntax#22-빌트인-구조-디렉티브built-in-structural-directive)
+: 구조 디렉티브는 DOM 요소를 반복 생성(ngFor), 조건에 의한 추가 또는 제거를 수행(ngIf, ngSwitch)을 통해 뷰의 구조를 변경한다.
+
+[어트리뷰트 디렉티브(Attribute Directives)](./angular-component-template-syntax#21-빌트인-어트리뷰트-디렉티브built-in-attribute-directive)
+: 어트리뷰트 디렉티브는 HTML 요소의 어트리뷰트로 사용하여 해당 요소의 모양이나 동작을 제어한다. ngClass, ngStyle와 같은 빌트인 디렉티브가 있다.
 
 이 장에서는 템플릿에 관련한 빌트인 디렉티브인 어트리뷰트 디렉티브와 구조 디렉티브에 집중하기로 한다. 커스텀 디렉티브는 [다른 장](./angular-directive)에서 자세히 살펴보도록 하자.
 
 ## 2.1 빌트인 어트리뷰트 디렉티브(Built-in attribute directive)
 
-HTML 요소의 어트리뷰트로 사용하여 해당 요소의 모양이나 동작을 제어한다.
+어트리뷰트 디렉티브는 HTML 요소의 어트리뷰트로 사용하여 해당 요소의 모양이나 동작을 제어한다. ngClass, ngStyle와 같은 빌트인 디렉티브가 있다.
 
 ### 2.1.1 ngClass
 
@@ -745,7 +751,7 @@ export class AppComponent {
 
 ## 2.2 빌트인 구조 디렉티브(Built-in structural directive)
 
-HTML 요소의 어트리뷰트로 사용하여 DOM 요소를 반복 생성(ngFor), 조건에 의한 추가 또는 제거를 수행(ngIf, ngSwitch)하여 뷰의 구조를 변경한다.
+구조 디렉티브는 DOM 요소를 반복 생성(ngFor), 조건에 의한 추가 또는 제거를 수행(ngIf, ngSwitch)을 통해 뷰의 구조를 변경한다.
 
 - 구조 디렉티브에는 `*` 접두사를 추가하며 `[]`을 사용하지 않는다.
 - 하나의 호스트 요소(디렉티브가 적용된 요소)에는 하나의 구조 디렉티브만을 사용할 수 있다.

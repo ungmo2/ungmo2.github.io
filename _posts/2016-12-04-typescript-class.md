@@ -16,11 +16,12 @@ description: ECMAScript 6에서 새롭게 도입된 클래스는 기존 prototyp
 
 # 1. 클래스 정의 (Class Definition)
 
-ECMAScript 6 클래스는 메소드만을 포함할 수 있다. 클래스 바디에 프로퍼티를 정의할 수 없고 반드시 생성자 내부에서 프로퍼티를 정의하고 초기화한다.
+[ECMAScript 6 클래스](./es6-class#4-멤버-변수)는 메소드만을 포함할 수 있다. 클래스 바디에 멤버 변수(member variable)를 정의할 수 없고 반드시 생성자 내부에서 멤버 변수를 정의하고 초기화한다.
 
 ```javascript
 class Person {
   constructor(name) {
+    // 멤버 변수
     this.name = name;
   }
 
@@ -30,14 +31,15 @@ class Person {
 }
 ```
 
-위 예제는 ECMAScript 6에서는 문제없이 실행되는 코드이지만 Typescript에서 위 예제를 실행하면 Property 'name' does not exist on type 'Person'.이라는 에러가 발생한다. Typescript 클래스는 클래스 바디에 프로퍼티를 사전 정의하여야 한다.
+위 예제는 ECMAScript 6에서는 문제없이 실행되는 코드이지만 Typescript에서 위 예제를 실행하면 Property 'name' does not exist on type 'Person'.이라는 에러가 발생한다. Typescript 클래스는 클래스 바디에 멤버 변수를 사전 정의하여야 한다.
 
 ```typescript
 class Foo {
-  // 프로퍼티 (public)
+  // 멤버 변수 (public)
   name: string;
 
   constructor(name: string) {
+    // 멤버 변수에 값을 할당
     this.name = name;
   }
 
@@ -54,8 +56,7 @@ console.log(person.walk()); // Lee is walking
 
 Typescript 클래스는 Java, C#과 같은 클래스 기반 객체 지향 언어가 지원하는 public, private, protected 접근 제한자를 지원하며 의미 또한 기본적으로 동일하다.
 
-단, 접근 제한자를 명시하지 않았을 때, 다른 OOP언어의 경우 암묵적으로 protected로 지정되어 패키지 레벨로 공개되지만
-Typescript의 경우, 접근 제한자를 생략한 프로퍼티와 메소드는 암묵적으로 public이 지정된다. 따라서 public으로 지정하고자 하는 프로퍼티와 메소드는 접근 제한자를 생략한다.
+단, 접근 제한자를 명시하지 않았을 때, 다른 OOP언어의 경우 암묵적으로 protected로 지정되어 패키지 레벨로 공개되지만 Typescript의 경우, 접근 제한자를 생략한 멤버 변수와 메소드는 암묵적으로 public이 지정된다. 따라서 public으로 지정하고자 하는 멤버 변수와 메소드는 접근 제한자를 생략한다.
 
 접근 제한자의 프로퍼티에 대한 접근 가능성은 아래와 같다.
 
@@ -119,19 +120,47 @@ new Foo().log();
 
 # 3. 생성자 파라미터에 접근 제한자 사용
 
-접근 제한자는 생성자의 파라미터에서도 사용할 수 있다. 이때 접근 제한자가 사용된 생성자의 파라미터는 암묵적으로 프로퍼티로 정의되고 생성자 내부에서 별도의 프로퍼티 초기화가 없어도 암묵적으로 초기화가 수행된다.
+접근 제한자는 생성자의 파라미터에서도 사용할 수 있다. 이때 접근 제한자가 사용된 생성자의 파라미터는 암묵적으로 멤버 변수로 정의되고 생성자 내부에서 별도의 초기화가 없어도 암묵적으로 초기화가 수행된다.
+
+이때 private 접근 제한자가 사용되면 클래스 내부에서만 참조 가능하고 public 접근 제한자가 사용되면 클래스 외부에서도 참조가 가능하다.
 
 ```typescript
 class Foo {
-  // x는 프로퍼티로 정의되고 초기화가 수행된다
-  constructor(private x: string) { }
+  // 접근 제한자가 사용된 생성자의 파라미터 x는 멤버 변수로 정의되고 초기화가 수행된다
+  // public이 사용되었으므로 x는 클래스 외부에서도 참조가 가능하다
+  constructor(public x: string) { }
 }
 
 const foo = new Foo('Hello');
-console.log(foo); // Foo { x: 'Hello' }
+console.log(foo);   // Foo { x: 'Hello' }
+console.log(foo.x); // Hello
+
+class Bar {
+  // 접근 제한자가 사용된 생성자의 파라미터 x는 멤버 변수로 정의되고 초기화가 수행된다
+  // private이 사용되었으므로 x는 클래스 내부에서만 참조 가능하다
+  constructor(private x: string) { }
+}
+
+const bar = new Bar('Hello');
+console.log(bar);      // Bar { x: 'Hello' }
+// console.log(bar.x); // Property 'x' is private and only accessible within class 'Bar'.
 ```
 
-# 4. static 프로퍼티
+만일 생성자 파라미터에 접근 제한자를 사용하지 않으면 생성자 파라미터는 생성자 내부에서만 유효한 지역 변수가 되어 생성자 외부에서 참조가 불가능하게 된다.
+
+```typescript
+class Foo {
+  // x는 생성자 내부에서만 유효한 지역 변수이다.
+  constructor(x: string) {
+    console.log(x); // Hello
+  }
+}
+
+const foo = new Foo('Hello');
+console.log(foo); // Foo {}
+```
+
+# 4. static 키워드
 
 ECMAScript 6 클래스에서 static 키워드는 클래스의 정적(static) 메소드를 정의한다. 정적 메소드는 클래스의 인스턴스화(instantiating)없이 호출하며 클래스의 인스턴스로 호출할 수 없다.
 
@@ -154,7 +183,7 @@ console.log(Foo.staticMethod());
 console.log(foo.staticMethod()); // error TS2339: Property 'staticMethod' does not exist on type 'Foo'.
 ```
 
-Typescript 클래스에서 static 키워드는 프로퍼티에도 사용할 수 있다. ECMAScript 6와 마찬가지로 정적 프로퍼티는 클래스의 인스턴스화없이 호출하며 클래스의 인스턴스로 호출할 수 없다.
+Typescript 클래스에서 static 키워드는 멤버 변수에도 사용할 수 있다. ECMAScript 6와 마찬가지로 정적 프로퍼티는 클래스의 인스턴스화없이 호출하며 클래스의 인스턴스로 호출할 수 없다.
 
 ```typescript
 class Foo {

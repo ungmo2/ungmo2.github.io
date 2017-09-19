@@ -56,7 +56,7 @@ Angular는 단방향 데이터 바인딩(One-way data binding)과 양방향 데�
 Angular는 아래와 같이 7가지 데이터 바인딩을 제공한다.
 
 | 데이터 바인딩       | 데이타의 흐름          | 문법
-|:-----------------|:-------------------|:--------------- 
+|:-----------------|:-------------------|:---------------
 | 인터폴레이션        | 컴포넌트 클래스 ⟹ 템플릿 | {{ "{{ expression " }}}}
 | 프로퍼티 바인딩      | 컴포넌트 클래스 ⟹ 템플릿 | [property]="expression"
 | 어트리뷰트 바인딩    | 컴포넌트 클래스 ⟹ 템플릿 | [attr.attribute-name]="expression"
@@ -167,7 +167,7 @@ export class AppComponent {
 }
 ```
 
-인터폴레이션은 템플릿의 어디에서도 사용할 수 있다. 인터폴레이션은 순수한 문자열이며 HTML 콘텐츠로 사용할 수도 있고 HTML 어트리뷰트의 값으로 사용할 수도 있다. 
+인터폴레이션은 템플릿의 어디에서도 사용할 수 있다. 인터폴레이션은 순수한 문자열이며 HTML 콘텐츠로 사용할 수도 있고 HTML 어트리뷰트의 값으로 사용할 수도 있다.
 
 ```html
 <p>{{ "{{ contents " }}}}</p>
@@ -195,10 +195,10 @@ Angular는 인터폴레이션을 렌더링 이전에 프로퍼티 바인딩으�
 
 브라우저는 HTML 문서를 파싱하여 DOM 트리로 변환하고 메모리에 적재한다. 이때 HTML 요소는 DOM 노드 객체로, HTML 어트리뷰트는 DOM 노드 객체의 프로퍼티로 변환된다. HTML 어트리뷰트의 값은 언제나 문자열이지만 DOM 프로퍼티는 객체를 비롯하여 모든 값을 가질 수 있다. 주의하여야 할 것은 어트리뷰트와 프로퍼티가 언제나 1:1로 매핑되는 것은 아니라는 것이다. 예를 들어 살펴보자.
 
-- id 어트리뷰트와 id 프로퍼티와 1:1 매핑한다. 
-- class 어트리뷰트는 classList 프로퍼티로 변환된다. 
-- td 요소의 colspan 어트리뷰트의 경우 매핑하는 프로퍼티가 존재하지 않는다. 
-- [textContent](https://developer.mozilla.org/ko/docs/Web/API/Node/textContent) 프로퍼티의 경우 어트리뷰트가 존재하지 않는다. 
+- id 어트리뷰트와 id 프로퍼티와 1:1 매핑한다.
+- class 어트리뷰트는 classList 프로퍼티로 변환된다.
+- td 요소의 colspan 어트리뷰트의 경우 매핑하는 프로퍼티가 존재하지 않는다.
+- [textContent](https://developer.mozilla.org/ko/docs/Web/API/Node/textContent) 프로퍼티의 경우 어트리뷰트가 존재하지 않는다.
 - input 요소의 value 어트리뷰트는 value 프로퍼티와 1:1 매핑하지만 서로 다르게 동작한다.
 
 아래의 input 요소는 3개의 어트리뷰트를 가지고 있다.
@@ -213,7 +213,7 @@ Angular는 인터폴레이션을 렌더링 이전에 프로퍼티 바인딩으�
 document.getElementById('user').getAttribute('value') // ungmo2
 ```
 
-id 어트리뷰트는 id 프로퍼티와 1:1 매핑하므로 DOM 노드 객체 HTMLInputElement에는 id 프로퍼티가 생성되고 id 어트리뷰트의 값 'user'가 할당된다. 하지만 value 어트리뷰트는 value 프로퍼티와 1:1 매핑하지만 서로 다르게 동작한다. DOM 노드 객체에 value 프로퍼티가 생성되고 value 어트리뷰트의 값 'ungmo2'이 할당된다. 여기까지는 1:1 매핑하는 id 어트리뷰트와 동일하지만 사용자에 의해 input 요소에 새로운 값이 입력되면 다르게 동작하기 시작한다. 만약 사용자에 의해 "lee"가 입력되면 DOM 노드 객체의 value 프로퍼티는 "lee"로 변경된다. 하지만 value 어트리뷰트는 초기값 "ungmo2"인 상태에서 변경되지 않는다. 이는 HTML 요소가 DOM 노드 객체로 변환된 이후에 HTML 요소의 어트리뷰트는 변하지 않기 때문이다. 하지만 DOM 프로퍼티는 언제든지 바뀔 수 있다. 즉 어트리뷰트는 DOM 프로퍼티의 초기값을 의미하며 DOM 프로퍼티는 현재값을 의미한다. 
+id 어트리뷰트는 id 프로퍼티와 1:1 매핑하므로 DOM 노드 객체 HTMLInputElement에는 id 프로퍼티가 생성되고 id 어트리뷰트의 값 'user'가 할당된다. 하지만 value 어트리뷰트는 value 프로퍼티와 1:1 매핑하지만 서로 다르게 동작한다. DOM 노드 객체에 value 프로퍼티가 생성되고 value 어트리뷰트의 값 'ungmo2'이 할당된다. 여기까지는 1:1 매핑하는 id 어트리뷰트와 동일하지만 사용자에 의해 input 요소에 새로운 값이 입력되면 다르게 동작하기 시작한다. 만약 사용자에 의해 "lee"가 입력되면 DOM 노드 객체의 value 프로퍼티는 "lee"로 변경된다. 하지만 value 어트리뷰트는 초기값 "ungmo2"인 상태에서 변경되지 않는다. 이는 HTML 요소가 DOM 노드 객체로 변환된 이후에 HTML 요소의 어트리뷰트는 변하지 않기 때문이다. 하지만 DOM 프로퍼티는 언제든지 바뀔 수 있다. 즉 어트리뷰트는 DOM 프로퍼티의 초기값을 의미하며 DOM 프로퍼티는 현재값을 의미한다.
 
 지금까지 알아본 DOM 프로퍼티와 HTML 어트리뷰트를 차이점을 바탕으로 Angular는 아래의 코드를 어떻게 HTML로 출력할 것인지 예측하여 보자.
 
@@ -242,7 +242,7 @@ export class AppComponent {
 <input id="user" type="text" value="ungmo2">
 ```
 
-또 다른 경우를 살펴보자. td 요소의 colspan 어트리뷰트의 경우 매핑하는 프로퍼티가 존재하지 않는다. 
+또 다른 경우를 살펴보자. td 요소의 colspan 어트리뷰트의 경우 매핑하는 프로퍼티가 존재하지 않는다.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -260,9 +260,9 @@ import { Component } from '@angular/core';
     </table>
   `,
   styles: [`
-    table, td { 
+    table, td {
       width: 200px;
-      border: 1px solid black; 
+      border: 1px solid black;
       text-align: center;
     }
   `]
@@ -297,9 +297,9 @@ import { Component } from '@angular/core';
     </table>
   `,
   styles: [`
-    table, td { 
+    table, td {
       width: 200px;
-      border: 1px solid black; 
+      border: 1px solid black;
       text-align: center;
     }
   `]
@@ -309,7 +309,7 @@ export class AppComponent {
 }
 ```
 
-이와 같이 DOM의 프로퍼티는 HTML 요소의 어트리뷰트와는 다르게 동작하기 때문에 프로퍼티 바인딩과 어트리뷰트 바인딩은 구분되어 사용하여야 한다. 
+이와 같이 DOM의 프로퍼티는 HTML 요소의 어트리뷰트와는 다르게 동작하기 때문에 프로퍼티 바인딩과 어트리뷰트 바인딩은 구분되어 사용하여야 한다.
 
 <!--```html
 <input type="text" [data-username]="name">
@@ -319,7 +319,7 @@ export class AppComponent {
 
 ```
 Unhandled Promise rejection: Template parse errors:
-Can't bind to 'data-username' since it isn't a known property of 'input'. 
+Can't bind to 'data-username' since it isn't a known property of 'input'.
 ```
 
 이와 같이 어트리뷰트 바인딩은 DOM 프로퍼티에는 존재하지 않는 어트리뷰트에 사용한다.
@@ -352,8 +352,8 @@ import { Component } from '@angular/core';
     <div class="text-small color-red" [class.color-red]="isRed">text-small</div>
     <!-- 여러개의 클래스를 한번에 지정할 수 있다 -->
     <div [class]="myClasses">text-large color-red</div>
-    <!-- 클래스 바인딩은 기존 클래스 어트리뷰트보다 우선한다. 
-         따라서 기존 클래스 어트리뷰트는 클래스 바인딩에 의해 reset된다. 
+    <!-- 클래스 바인딩은 기존 클래스 어트리뷰트보다 우선한다.
+         따라서 기존 클래스 어트리뷰트는 클래스 바인딩에 의해 reset된다.
          클래스 바인딩의 위치는 관계없다. -->
     <div class="text-small color-blue" [class]="myClasses">text-large color-red</div>
   `,
@@ -383,7 +383,7 @@ export class AppComponent {
 <element [style.style-property]="expression">...</element>
 ```
 
-스타일 바인딩은 우변의 표현식을 평가한 후 HTML style 어트리뷰트를 변경한다. HTML style 어트리뷰트에 의해 이미 스타일이 지정되어 있을 때 스타일 바인딩은 중복되지 않은 스타일은 병합(merge)하여 그대로 사용하고 중복된 스타일은 스타일 바인딩의 스타일으로 덮어쓴다. 스타일 프로퍼티(border-radius 등)는 케밥표기법(kebab-case) 또는 카멜표기법(camelCase)을 사용한다. 사용 방법은 아래와 같다. 
+스타일 바인딩은 우변의 표현식을 평가한 후 HTML style 어트리뷰트를 변경한다. HTML style 어트리뷰트에 의해 이미 스타일이 지정되어 있을 때 스타일 바인딩은 중복되지 않은 스타일은 병합(merge)하여 그대로 사용하고 중복된 스타일은 스타일 바인딩의 스타일으로 덮어쓴다. 스타일 프로퍼티(border-radius 등)는 케밥표기법(kebab-case) 또는 카멜표기법(camelCase)을 사용한다. 사용 방법은 아래와 같다.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -391,8 +391,8 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <button class="btn"
-      [style.background-color]="isActive ? '#4CAF50' : '#f44336'" 
-      [style.font-size.em]="isActive ? 1.2 : 1" 
+      [style.background-color]="isActive ? '#4CAF50' : '#f44336'"
+      [style.font-size.em]="isActive ? 1.2 : 1"
       (click)="isActive=!isActive">Toggle</button>
   `,
   styles: [`
@@ -418,7 +418,7 @@ export class AppComponent {
 
 이벤트 바인딩은 뷰의 상태 변화(버튼 클릭, 체크박스 체크, input에 텍스트 입력 등)에 의해 이벤트가 발생하면 이벤트 핸들러를 호출하는 것을 말한다.
 
-지금까지 살펴본 데이터 바인딩은 컴포넌트 클래스에서 템플릿으로 데이터가 이동하였지만 이벤트 바인딩은 템플릿에서 컴포넌트 클래스로 데이터가 이동한다. 
+지금까지 살펴본 데이터 바인딩은 컴포넌트 클래스에서 템플릿으로 데이터가 이동하였지만 이벤트 바인딩은 템플릿에서 컴포넌트 클래스로 데이터가 이동한다.
 
 ```html
 <element (event)="statement">...</element>
@@ -494,7 +494,7 @@ export class AppComponent {
 
 ## 1.7 양방향 데이터 바인딩(Two-way binding)
 
-양방향 데이터 바인딩는 뷰와 컴포넌트 클래스의 상태 변화를 상호 반영하는 것을 말한다. 즉 뷰의 상태가 변화하면 컴포넌트 클래스의 상태도 변화하고 그 반대로 컴포넌트 클래스의 상태가 변화하면 뷰의 상태도 변화하는 것이다. 
+양방향 데이터 바인딩는 뷰와 컴포넌트 클래스의 상태 변화를 상호 반영하는 것을 말한다. 즉 뷰의 상태가 변화하면 컴포넌트 클래스의 상태도 변화하고 그 반대로 컴포넌트 클래스의 상태가 변화하면 뷰의 상태도 변화하는 것이다.
 
 ```html
 <element [(ngModel)]="property">...</element>
@@ -605,7 +605,7 @@ export class AppComponent { }
 
 <iframe src="http://embed.plnkr.co/ObCeP8OmDzYcvTdEtDBO/?show=preview" frameborder="0" width="100%" height="400"></iframe>
 
-디렉티브는 애플리케이션 전역에서 사용할 수 있는 공통 관심사를 컴포넌트에서 분리하여 구현한 것으로 컴포넌트의 복잡도를 낮추고 가독성을 향상시킨다. 컴포넌트도 뷰를 생성하고 이벤트를 처리하는 등 DOM을 관리하기 때문에 큰 의미에서 디렉티브로 볼 수 있다.  
+디렉티브는 애플리케이션 전역에서 사용할 수 있는 공통 관심사를 컴포넌트에서 분리하여 구현한 것으로 컴포넌트의 복잡도를 낮추고 가독성을 향상시킨다. 컴포넌트도 뷰를 생성하고 이벤트를 처리하는 등 DOM을 관리하기 때문에 큰 의미에서 디렉티브로 볼 수 있다.
 
 <!--이전 버전인 AngularJS에는 70개 이상의 디렉티브가 존재하였으나 Angular의 디렉티브는 아래와 같이 크게 4가지로 구분할 수 있다.-->
 
@@ -614,7 +614,7 @@ export class AppComponent { }
 - 구조 디렉티브(Structural directive)
 - 커스텀 디렉티브(Custom directive)
 
-이 장에서는 템플릿에 관련한 빌트인 디렉티브인 어트리뷰트 디렉티브와 구조 디렉티브에 집중하기호 한다. 커스텀 디렉티브는 다른 장에서 자세히 살펴보도록 하자.
+이 장에서는 템플릿에 관련한 빌트인 디렉티브인 어트리뷰트 디렉티브와 구조 디렉티브에 집중하기로 한다. 커스텀 디렉티브는 [다른 장](./angular-directive)에서 자세히 살펴보도록 하자.
 
 ## 2.1 빌트인 어트리뷰트 디렉티브(Built-in attribute directive)
 
@@ -718,10 +718,10 @@ import { Component } from '@angular/core';
     </div>
     <button (click)="isShow=!isShow">{{ "{{ isShow ? 'Hide' : 'Show' " }}}}</button>
     <!-- 스타일 지정  -->
-    <div 
+    <div
       [ngStyle]="{
-        'width.px': width, 
-        'height.px': height, 
+        'width.px': width,
+        'height.px': height,
         'background-color': bgColor,
         'visibility': isShow ? 'visible' : 'hidden'
       }">
@@ -745,9 +745,9 @@ export class AppComponent {
 
 ## 2.2 빌트인 구조 디렉티브(Built-in structural directive)
 
-HTML 요소의 어트리뷰트로 사용하여 DOM 요소를 반복 생성(ngFor), 조건에 의한 추가 또는 제거를 수행(ngIf, ngSwitch)하여 뷰의 구조를 변경한다. 
+HTML 요소의 어트리뷰트로 사용하여 DOM 요소를 반복 생성(ngFor), 조건에 의한 추가 또는 제거를 수행(ngIf, ngSwitch)하여 뷰의 구조를 변경한다.
 
-- 구조 디렉티브에는 `*` 접두사를 추가하며 `[]`을 사용하지 않는다.  
+- 구조 디렉티브에는 `*` 접두사를 추가하며 `[]`을 사용하지 않는다.
 - 하나의 호스트 요소(디렉티브가 적용된 요소)에는 하나의 구조 디렉티브만을 사용할 수 있다.
 
 ### 2.2.1 ngIf
@@ -769,7 +769,7 @@ import { Component } from '@angular/core';
     <p *ngIf="isShow">Lorem ipsum dolor sit amet</p>
     <!-- 스타일 바인딩에 의한 show/hide -->
     <p [style.display]="isShow ? 'block' : 'none'">Lorem ipsum dolor sit amet</p>
-    <button (click)="isShow=!isShow">{{ "{{ isShow ? 'Hide' : 'Show' " }}}}</button>    
+    <button (click)="isShow=!isShow">{{ "{{ isShow ? 'Hide' : 'Show' " }}}}</button>
   `,
   styles: [`
     p { background-color: #CDDC39; }
@@ -792,12 +792,12 @@ Angular 4부터 `ngIf else`가 추가되었다. ngIf 우변의 표현식이 참�
 ```html
 <!-- if else -->
 <element *ngIf="expression; else elseBlock">Truthy condition</element>
-<ng-template #elseBlock>Falsy condition</ng-template> 
+<ng-template #elseBlock>Falsy condition</ng-template>
 
 <!-- if else -->
 <element *ngIf="expression; then thenBlock else elseBlock"></element>
-<ng-template #thenBlock>Truthy condition</ng-template> 
-<ng-template #elseBlock>Falsy condition</ng-template> 
+<ng-template #thenBlock>Truthy condition</ng-template>
+<ng-template #elseBlock>Falsy condition</ng-template>
 
 <!-- if -->
 <element *ngIf="expression; then thenBlock"></element>
@@ -819,10 +819,10 @@ import { Component } from '@angular/core';
          <input type="radio" id="two" name="skill" [(ngModel)]="mySkill" value="CSS"> CSS
       </label>
     </div>
-    <div *ngIf="mySkill==='HTML'; else elseBlock">HTML</div>   
+    <div *ngIf="mySkill==='HTML'; else elseBlock">HTML</div>
     <ng-template #elseBlock>
-      <div>CSS</div> 
-    </ng-template>   
+      <div>CSS</div>
+    </ng-template>
   `
 })
 export class AppComponent {
@@ -899,9 +899,9 @@ export class AppComponent {
 
 users 배열의 length만큼 반복하며 li 요소와 하위 요소를 DOM에 추가한다. 템플릿의 for of 구문에서 사용된 user 변수는 users 배열의 개별요소를 일시적으로 저장하며 호스트 요소의 하위 요소에서만 유효한 로컬 변수이다.
 
-ngFor 디렉티브는 컬렉션 데이터(users)가 변경되면 컬렉션과 연결된 모든 DOM 요소를 제거하고 다시 생성한다. 이는 컬렉션의 변경 사항을 추적(tracking)할 수 없기 때문이다. 때문에 크기가 매우 큰 컬렉션을 다루는 경우, 퍼포먼스 상의 문제를 발생시킬 수 있다. ngFor 디렉티브는 퍼포먼스를 향상시키기 위한 기능으로 `trackBy`를 제공한다. 
+ngFor 디렉티브는 컬렉션 데이터(users)가 변경되면 컬렉션과 연결된 모든 DOM 요소를 제거하고 다시 생성한다. 이는 컬렉션의 변경 사항을 추적(tracking)할 수 없기 때문이다. 때문에 크기가 매우 큰 컬렉션을 다루는 경우, 퍼포먼스 상의 문제를 발생시킬 수 있다. ngFor 디렉티브는 퍼포먼스를 향상시키기 위한 기능으로 `trackBy`를 제공한다.
 
-trackBy 기능을 추가하여 위 예제를 수정하여 보자. 
+trackBy 기능을 추가하여 위 예제를 수정하여 보자.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -959,7 +959,7 @@ export class AppComponent {
 
 user 객체의 id 프로퍼티를 사용하여 변경을 트랙킹할 수 있도록 trackByUserId 메소드를 추가하였다. 이때 user 객체의 id 프로퍼티는 유니크하여야 한다. user 객체의 id 프로퍼티를 사용하지 않고 trackByUserId에 인자로 전달된 index를 사용하여도 무방하다.
 
-add user 또는 X 버튼을 클릭하면 해당 user를 추가/제거한다. 예를 들어 3번째 user 객체를 제거하면 users의 변경을 DOM에 반영하여야 한다. 이때 trackBy를 사용하지 않는 경우 ngFor는 DOM을 다시 생성한다. trackBy를 사용한 경우 user.id를 기준으로 컬렉션의 변경을 트래킹하기 때문에 퍼포먼스가 향상된다. 
+add user 또는 X 버튼을 클릭하면 해당 user를 추가/제거한다. 예를 들어 3번째 user 객체를 제거하면 users의 변경을 DOM에 반영하여야 한다. 이때 trackBy를 사용하지 않는 경우 ngFor는 DOM을 다시 생성한다. trackBy를 사용한 경우 user.id를 기준으로 컬렉션의 변경을 트래킹하기 때문에 퍼포먼스가 향상된다.
 
 일반적인 경우 ngFor는 충분히 빠르기 때문에 trackBy에 의한 퍼포먼스 최적화는 기본적으로 필요하지 않다. trackBy는 퍼포먼스에 문제가 있는 경우에만 사용한다.
 
@@ -971,7 +971,7 @@ add user 또는 X 버튼을 클릭하면 해당 user를 추가/제거한다. 예
 trackBy를 사용하지 않은 경우, 변경을 트래킹할 수 없다
 {: .desc-img}
 
-위의 그림과 같이 변경을 트래킹할 수 없기 때문에 Angular는 컬렉션과 연결된 모든 DOM 요소를 제거하고 다시 생성한다. 하지만 trackBy를 사용한 경우, Angular는 user 객체의 id 프로퍼티를 기준으로 아래와 같이 변경을 트랙킹한다. 
+위의 그림과 같이 변경을 트래킹할 수 없기 때문에 Angular는 컬렉션과 연결된 모든 DOM 요소를 제거하고 다시 생성한다. 하지만 trackBy를 사용한 경우, Angular는 user 객체의 id 프로퍼티를 기준으로 아래와 같이 변경을 트랙킹한다.
 
 ![trackby](./img/trackby.png)
 {: .w-700}
@@ -990,7 +990,7 @@ import { Component } from '@angular/core';
     <ul>
       <li *ngFor="let todo of todos">
         <label for="{{todo.id}}" [class.completed]="todo.completed">
-          <input type="checkbox" id="{{todo.id}}" 
+          <input type="checkbox" id="{{todo.id}}"
                  [checked]="todo.completed"
                  (change)="onChange(todo)"> {{todo.content}}
         </label>
@@ -1102,7 +1102,7 @@ export class AppComponent {
 
 ## 4.1 세이프 내비게이션 연산자(Safe navigation operator)
 
-세이프 내비게이션 연산자 `?`는 컴포넌트 클래스의 프로퍼티의 값이 null 또는 undefined인 경우 발생하는 에러를 회피하기 위해 사용한다. 
+세이프 내비게이션 연산자 `?`는 컴포넌트 클래스의 프로퍼티의 값이 null 또는 undefined인 경우 발생하는 에러를 회피하기 위해 사용한다.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -1122,7 +1122,7 @@ export class AppComponent { }
 
 ## 4.2 파이프 연산자(Pipe operator)
 
-파이프는 템플릿 내에서 값을 원하는 형식으로 변환하여 표시하는 기능이다. 
+파이프는 템플릿 내에서 값을 원하는 형식으로 변환하여 표시하는 기능이다.
 
 ```html
 {{ "{{ value | pipe " }}}}
@@ -1137,14 +1137,14 @@ import { Component } from '@angular/core';
     {{ "{{ name | uppercase " }}}}
   `
 })
-export class AppComponent { 
+export class AppComponent {
   name = 'lee';
 }
 ```
 
 Angular는 uppercase 이외에도 아래와 같은 빌트인 파이프를 지원한다. 파이프에 대한 상세한 내용은 다른 장에서 살펴볼 것이다.
 
-| 파이프      | 의미 
+| 파이프      | 의미
 |-----------|----------------
 | date      | 날짜 형식 변환 출력
 | uppercase | 대문자 변환 출력

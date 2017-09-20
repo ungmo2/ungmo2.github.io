@@ -138,7 +138,7 @@ h3 {
 
 위 예제를 확인하여 보면 자신에 적용한 스타일은 자신에만 영향을 주는 확인할 수 있다.
 
-# 2. 스타일 캡슐화 (Encapsulation)
+# 2. 뷰 캡슐화 (View Encapsulation)
 
 위 예제의 실행 결과를 크롬 개발자 도구를 사용하여 확인하여 보자.
 
@@ -149,15 +149,17 @@ Encapsulation
 
 위 결과를 살펴보면 ChildComponent의 컴포넌트 템플릿의 h3 요소에 어트리뷰트 _ngcontent-c1가 추가된 것을 확인할 수 있다. 이것은 Angular가 임의로 추가한 어트리뷰트로 이 어트리뷰트를 기존 CSS에 어트리뷰트 셀렉터를 추가하는 방식으로 해당 컴포넌트를 스코프로 한정하여 스타일이 적용될 수 있도록 한다.
 
-이와 같이 Angular는 임의의 어트리뷰트를 추가하는 방식으로 스타일 캡슐화를 구현하지만 브라우저가 웹 컴포넌트를 지원한다는 전제 하에 웹 컴포넌트의 Shadow DOM을 이용하여 스타일 캡슐화를 구현할 수도 있다. 이를 위해 @Component 메타데이터 객체에 `encapsulation` 프로퍼티에 [ViewEncapsulation](https://angular.io/api/core/ViewEncapsulation) 옵션을 지정한다. ViewEncapsulation은 열거형으로 아래의 3가지 방식을 제공한다.
+Angular는 컴포넌트의 CSS 스타일을 컴포넌트의 뷰에 캡슐화하여 다른 컴포넌트에는 영향을 주지 않는다. 위의 경우와 같이 Angular는 기본적으로 임의의 어트리뷰트를 추가하는 방식(Emulated)을 사용하여 뷰 캡슐화를 구현하지만 브라우저가 웹 컴포넌트를 지원한다는 전제 하에 웹 컴포넌트의 Shadow DOM을 이용하여 뷰 캡슐화를 구현할 수도 있다.
+
+이를 위해 @Component 메타데이터 객체에 `encapsulation` 프로퍼티에 [ViewEncapsulation](https://angular.io/api/core/ViewEncapsulation) 옵션을 지정하여 컴포넌트 별로 뷰 캡슐화 전략을 설정할 수 있다. ViewEncapsulation은 열거형으로 아래의 3가지 캡슐화 전략을 제공한다.
 
 | ViewEncapsulation  | 의미
 |:-------------------|:----------------------
-| Emulated           | 임의의 어트리뷰트를 추가하는 방식 (기본 전략)
-| Native             | 웹 컴포넌트의 Shadow DOM를 사용하는 방식
-| None               | 스타일 캡슐화를 지원하지 않는다.
+| Emulated           | 임의의 어트리뷰트를 추가하는 브라우저의 기본 쉐도우 DOM 구현 방식으로 컴포넌트의 스타일은 해당 컴포넌트에만 적용된다. (기본 전략)
+| Native             | 웹 컴포넌트의 Shadow DOM를 사용하는 방식으로 컴포넌트의 스타일은 해당 컴포넌트에만 적용된다.
+| None               | 스타일 캡슐화를 지원하지 않는다. 컴포넌트의 CSS는 전역에 지정되어 다른 다른 컴포넌트에 영향을 준다.
 
-위 예제를 웹 컴포넌트의 Shadow DOM를 사용하는 방식으로 변경하여 보자. AppComponent와 ChildComponent의 @Component 메타데이터 객체에 아래와 같이 encapsulation 프로퍼티를 추가하고 ViewEncapsulation.Native를 지정한다.
+위 예제를 웹 컴포넌트의 Shadow DOM를 사용하는 Native 전략으로 변경하여 보자. AppComponent와 ChildComponent의 @Component 메타데이터 객체에 아래와 같이 encapsulation 프로퍼티를 추가하고 ViewEncapsulation.Native를 지정한다.
 
 ```typescript
 // app.component.ts

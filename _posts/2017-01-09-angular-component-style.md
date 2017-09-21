@@ -382,6 +382,8 @@ Angular Material 패키지를 적용하려면 아래의 링크를 참조하기 �
 
 * [Angular Styles](https://angular.io/guide/component-styles)
 
+* [Shadow DOM](https://developers.google.com/web/fundamentals/getting-started/primers/shadowdom?hl=ko)
+
 * [ViewEncapsulation](https://angular.io/api/core/ViewEncapsulation)
 
 * [Angular Material](https://material.angular.io/)

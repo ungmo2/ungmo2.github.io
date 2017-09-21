@@ -18,7 +18,7 @@ Angular 애플리케이션은 컴포넌트를 중심(CBD, Component Based Develo
 
 분할된 컴포넌트를 조립한다는 것은 컴포넌트를 다른 컴포넌트 내부에서 사용하는 것을 말하는데 이는 컴포넌트 간에 계층(Hierarchy)적 구조가 형성될 수 있음을 의미한다. 따라서 분할된 컴포넌트를 조립하여 구성된 애플리케이션은 컴포넌트 간의 부모-자식 관계로 표현되는 계층적 트리 구조를 갖는다.
 
-컴포넌트 간의 부모-자식 관계는 데이터와 이벤트가 왕래하는 정보 흐름의 통로가 되며 이를 통해 상태 공유가 이루어지기 때문에 컴포넌트 간의 부모-자식 관계는 Angular 애플리케이션에서 중요한 의미를 갖는다. 이 계층적 구조는 DOM 트리와 유사한 형태를 가지게 되는데 이를 컴포넌트 트리라고 한다. 
+컴포넌트 간의 부모-자식 관계는 데이터와 이벤트가 왕래하는 정보 흐름의 통로가 되며 이를 통해 상태 공유가 이루어지기 때문에 컴포넌트 간의 부모-자식 관계는 Angular 애플리케이션에서 중요한 의미를 갖는다. 이 계층적 구조는 DOM 트리와 유사한 형태를 가지게 되는데 이를 컴포넌트 트리라고 한다.
 
 ![component-interaction](./img/component-interaction.png)
 {: .w-300}
@@ -31,7 +31,7 @@ Angular 애플리케이션은 컴포넌트를 중심(CBD, Component Based Develo
 - @Input, @Output 데코레이터
 - 상태 공유 Service
 - ViewChild와 ViewChildren
-- 외부 라이브러리([Redux](http://redux.js.org/) 등)
+- 외부 라이브러리([ngrx](https://github.com/ngrx), [Redux](http://redux.js.org/) 등)
 
 계층적 트리 구조에서 컴포넌트 간 상태 공유를 실습하기 위해 새로운 Angular 애플리케이션을 작성하도록 하자. 간단한 예제이므로 인라인 템플릿, 인라인 스타일을 사용하고 스펙 파일 없이 진행한다.
 
@@ -39,14 +39,14 @@ Angular 애플리케이션은 컴포넌트를 중심(CBD, Component Based Develo
 $ ng new component-interaction -it -is -st
 ```
 
-루트 컴포넌트의 자식 컴포넌트를 추가한다. 
+루트 컴포넌트의 자식 컴포넌트를 추가한다.
 
 ```bash
 $ cd component-interaction
 $ ng g c user-list -it -is -spec false
 ```
 
-아래와 같이 프로젝트가 생성되었다. 
+아래와 같이 프로젝트가 생성되었다.
 
 ```
 component-interaction/
@@ -154,8 +154,8 @@ import { User } from './models/user.model';
               <option>Developer</option>
               <option>Designer</option>
             </select>
-            <button 
-              class="btn btn-default" 
+            <button
+              class="btn btn-default"
               (click)="addUser(name.value, role.value)">Add user
             </button>
           </div>
@@ -193,13 +193,13 @@ export class AppComponent {
 }
 ```
 
-부모 컴포넌트의 프로퍼티 users를 위하여 User 모델 클래스를 추가한다. 모델 클래스는 일관성을 유지하기 위한 [인터페이스](./typescript-interface)의 역할을 수행한다. 
+부모 컴포넌트의 프로퍼티 users를 위하여 User 모델 클래스를 추가한다. 모델 클래스는 일관성을 유지하기 위한 [인터페이스](./typescript-interface)의 역할을 수행한다.
 
 ```bash
 $ ng g cl models/user.model
 ```
 
-models폴더에 user.model.ts이 생성되었다. 이 파일을 아래와 같이 수정한다. typescript에서 생성자 파라미터에 접근 제한자를 사용하면 파라미터는 암묵적으로 프로퍼티로 정의되고 생성자 내부에서 별도의 프로퍼티 초기화가 없어도 암묵적으로 초기화가 수행된다. 
+models폴더에 user.model.ts이 생성되었다. 이 파일을 아래와 같이 수정한다. typescript에서 생성자 파라미터에 접근 제한자를 사용하면 파라미터는 암묵적으로 프로퍼티로 정의되고 생성자 내부에서 별도의 프로퍼티 초기화가 없어도 암묵적으로 초기화가 수행된다.
 
 ```typescript
 export class User {
@@ -207,7 +207,7 @@ export class User {
 }
 ```
 
-User 모델 클래스를 컴포넌트에서 사용하기 위해서는 임포트를 하여야 한다. 
+User 모델 클래스를 컴포넌트에서 사용하기 위해서는 임포트를 하여야 한다.
 
 ```typescript
 import { User } from './models/user.model';
@@ -219,7 +219,7 @@ import { User } from './models/user.model';
 <app-user-list [users]="users"></app-user-list>
 ```
 
-자식 컴포넌트(user-list.component.ts)는 부모 컴포넌트가 전달한 상태 정보를 @Input 데코레이터를 통해 컴포넌트 프로퍼티 users에 바인딩한다. @Input 데코레이터는 '@angular/core' 모듈에 정의되어 있다. 
+자식 컴포넌트(user-list.component.ts)는 부모 컴포넌트가 전달한 상태 정보를 @Input 데코레이터를 통해 컴포넌트 프로퍼티 users에 바인딩한다. @Input 데코레이터는 '@angular/core' 모듈에 정의되어 있다.
 
 ```typescript
 // user-list.component.ts
@@ -391,7 +391,7 @@ setter를 이용한 입력 프로퍼티 조작
 
 지금까지 @Input 데코레이터를 통해 부모 컴포넌트에서 자식 컴포넌트로 상태 정보를 전달하는 방법에 대해 알아보았다. 이와는 반대로 자식 컴포넌트에서 부모 컴포넌트로 상태 정보를 전달하는 방법에 대해 알아보도록 하자.
 
-자식 컴포넌트는 <strong>@Output 데코레이터</strong>와 함께 선언된 컴포넌트 프로퍼티(출력 프로퍼티)를 EventEmitter 객체로 초기화한다. 그리고 부모 컴포넌트로 상태를 전달하기 위해 emit() 메소드를 사용하여 이벤트를 발생시킨다. 부모 컴포넌트는 자식 컴포넌트가 전달한 상태를 <strong>이벤트 바인딩</strong>을 통해 접수한다. 
+자식 컴포넌트는 <strong>@Output 데코레이터</strong>와 함께 선언된 컴포넌트 프로퍼티(출력 프로퍼티)를 EventEmitter 객체로 초기화한다. 그리고 부모 컴포넌트로 상태를 전달하기 위해 emit() 메소드를 사용하여 이벤트를 발생시킨다. 부모 컴포넌트는 자식 컴포넌트가 전달한 상태를 <strong>이벤트 바인딩</strong>을 통해 접수한다.
 
 ![child to parent](./img/childtoparent.png)
 
@@ -429,8 +429,8 @@ import { User } from '../models/user.model';
           <td>{{ "{{ user.role " }}}}</td>
           <!-- 추가 -->
           <td>
-           <button 
-              class="btn btn-danger btn-sm" 
+           <button
+              class="btn btn-danger btn-sm"
               (click)="remove.emit(user)">
               <span class="glyphicon glyphicon-remove"></span>
             </button>
@@ -479,7 +479,7 @@ export class UserListComponent {
 }
 ```
 
-예제를 보면 부모 컴포넌트에게 상태 정보를 전달하기 위해 User 타입의 EventEmitter 객체를 생성하였다. 
+예제를 보면 부모 컴포넌트에게 상태 정보를 전달하기 위해 User 타입의 EventEmitter 객체를 생성하였다.
 
 ```typescript
 @Output() remove = new EventEmitter<User>();
@@ -488,8 +488,8 @@ export class UserListComponent {
 EventEmitter 객체는 커스텀 이벤트를 발생시키는 emit() 메소드를 가지고 있다. 사용자 삭제 버튼이 클릭되면 emit() 메소드를 통해 커스텀 이벤트를 발생시키고 emit() 메소드에 인자를 전달하여 부모 컴포넌트에게 상태 정보를 전달한다.
 
 ```html
-<button 
-  class="btn btn-danger btn-sm" 
+<button
+  class="btn btn-danger btn-sm"
   (click)="remove.emit(user)">
   <span class="glyphicon glyphicon-remove"></span>
 </button>
@@ -516,13 +516,13 @@ import { User } from './models/user.model';
               <option>Developer</option>
               <option>Designer</option>
             </select>
-            <button 
-              class="btn btn-default" 
+            <button
+              class="btn btn-default"
               (click)="addUser(name.value, role.value)">Add user
             </button>
           </div>
-          <app-user-list 
-            [users]="users" 
+          <app-user-list
+            [users]="users"
             (remove)="removeUser($event)">
           </app-user-list>
         </form>
@@ -562,11 +562,11 @@ export class AppComponent {
 }
 ```
 
-부모 컴포넌트는 이벤트 바인딩을 통해 자식 컴포넌트가 발생시킨 이벤트를 접수한다.  
+부모 컴포넌트는 이벤트 바인딩을 통해 자식 컴포넌트가 발생시킨 이벤트를 접수한다.
 
 ```html
-<app-user-list 
-  [users]="users" 
+<app-user-list
+  [users]="users"
   (remove)="removeUser($event)">
 </app-user-list>
 ```
@@ -604,7 +604,7 @@ Stateful 컴포넌트는 애플리케이션의 현재 상태 정보를 관리하
 
 # 4. 원거리 컴포넌트 간의 상태 공유
 
-복잡한 컴포넌트 트리 구조의 애플리케이션의 경우, 부모-자식 관계를 뛰어넘어 컴포넌트 간의 상태 공유가 필요할 수 있다. 이와 같은 상황은 빈번히 발생한다. 예를 들어 아래와 같은 원거리 컴포넌트 간의 상태 공유를 살펴보자. 
+복잡한 컴포넌트 트리 구조의 애플리케이션의 경우, 부모-자식 관계를 뛰어넘어 컴포넌트 간의 상태 공유가 필요할 수 있다. 이와 같은 상황은 빈번히 발생한다. 예를 들어 아래와 같은 원거리 컴포넌트 간의 상태 공유를 살펴보자.
 
 ![complex-component](./img/complex-component.png)
 {: .w-300}

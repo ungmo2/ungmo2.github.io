@@ -559,5 +559,3 @@ ng-template는 [ngTemplateOutlet](https://angular.io/api/common/NgTemplateOutlet
 * [TemplateRef](https://angular.io/api/core/TemplateRef)
 
 * [ViewContainerRef](https://angular.io/api/core/ViewContainerRef)
-
-https://github.com/angular/angular/issues/11994

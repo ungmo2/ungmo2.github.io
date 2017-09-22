@@ -408,7 +408,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `
-  <h2 *myNgIf="condition">Hello {{name}}</h2>
+  <h2 *myNgIf="condition">Hello {{ "{{ name " }}}}</h2>
   <button (click)="condition = !condition">Click</button>
   `
 })
@@ -444,7 +444,72 @@ Angular는 *ngIf를 만나면 호스트 요소를 template 태그로 래핑하�
 
 위 코드의 ①과 ②를 살펴보자. 프로퍼티 바인딩에 의해 myNgIf 디렉티브의 상태 값이 true이면 createEmbeddedView 메소드에 ng-template 요소를 가리키는 templateRef 객체를 인자로 전달하여 ng-template 요소를 호스트 뷰에 추가한다. 상태 값이 false이면 clear 메소드를 호출하여 호스트 뷰에서 ng-template 요소를 제거한다. 제거된 ng-template 요소는 display: none으로 감추어진 것이 아니라 DOM에 남아있지 않고 완전히 제거되어 불필요한 자원의 낭비를 방지한다.
 
-### 3.2.3 Range 디렉티브 실습
+### 3.2.3 ng-template
+
+ng-template는 페이지에서 렌더링 될 요소를 div 또는 span 등의 요소와 함께 사용할 필요가 없는 요소들을 그룹화할 때 사용한다.
+
+NgIf, NgFor, NgSwtch 디렉티브의 경우, ng-template 요소로 변환된다.
+
+```html
+<ul>
+  <li *ngFor="let item of items">{{ "{{ item " }}}}</li>
+</ul>
+<!-- NgFor 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설탕(syntactic sugar)이다. 즉 위 코드는 아래의 코드로 변환된다. -->
+
+<ul>
+  <ng-template ngFor let-item [ngForOf]="items">
+    <li>{{ "{{ item " }}}}</li>
+  </ng-template>
+</ul>
+```
+
+이때 ng-template는 DOM에 어떠한 영향도 주지 않고 다만 li 요소를 반복하기 위한 ngFor, let-item, [ngForOf]을 담는 역할을 한다. ng-template는 렌더링 시에는 주석의 처리된다.
+
+일반적으로 ng-template는 [ngTemplateOutlet](https://angular.io/api/common/NgTemplateOutlet) 또는 myNgIf 예제에서 살펴본 바와 같이 createEmbeddedView를 사용하여 TemplateRef이 가리키는 템플릿화된 뷰 스니펫을 호스트 뷰에 추가해야 할 경우 사용한다.
+
+### 3.2.4 ng-container
+
+ng-container도 ng-template와 마찬가지로 페이지에서 렌더링 될 요소를 div 또는 span 등의 요소와 함께 사용할 필요가 없는 요소들을 그룹화할 때 사용한다.
+
+예를 들어 아래의 경우를 살펴보자
+
+```html
+<p>
+  안녕하세요!
+  <span *ngIf="user">
+    {{ "{{ user.name " }}}} 님
+  </span>
+  방갑습니다.
+</p>
+```
+
+만일 컴포넌트 클래스에 user 객체가 존재한다면 이름을 표시하는 코드가 있다고 할 때 *ngIf를 사용하기 위해서는 *ngIf를 위한 태그가 있어야 한다. 하지만 span 태그에 CSS가 지정되어 있으면 의도치 않게 스타일이 적용될 것이다. 위 코드에서 span 태그를 제외하려면 ng-container를 사용한다.
+
+```html
+<p>
+  안녕하세요!
+  <ng-container *ngIf="user">
+    {{ "{{ user.name " }}}} 님
+  </ng-container>
+  방갑습니다.
+</p>
+```
+
+이와 같이 span나 div와 같이 사용할 필요가 없이 단순히 디렉티브를 위한 태그가 필요할 경우가 있다. 이런 경우 사용하는 것이 ng-template과 ng-container이다.
+
+ng-container도 ng-template와 마찬가지로 DOM에 어떠한 영향도 주지 않고 div 또는 span 등을 사용하지 않고 요소들을 그룹화할 때 사용한다. 또한 ng-container는 *문법을 사용할 수 있기 때문에 ng-template 대신 사용할 수 있다.
+
+```html
+<ul>
+  <ng-container *ngFor="let item of items">
+    <element>...</element>
+  </ng-container>
+</ul>
+```
+
+일반적으로 ng-container는 *ngIf 또는 *ngFor와 같이 중첩 구조 디렉티브에 대한 헬퍼 요소가 필요하거나 구조 디렉티브 안에 둘 이상의 요소를 래핑하려는 경우, 사용한다.
+
+select 태그를 동적으로 구성하는 Range 커스텀 구조 디렉티브를 통해 ng-container에 사용 방법에 대해 알아보도록 하자.
 
 ```typescript
 // app.component.ts
@@ -460,14 +525,14 @@ import { Component } from '@angular/core';
   ng-container는 * 구문을 사용할 수 있다.
   -->
     <ng-container *range="[10, 19]; let num">
-      <option [ngValue]="num">{{num}}</option>
+      <option [ngValue]="num">{{ "{{ num " }}}}</option>
     </ng-container>
   </select>
 
   <h1>Year:</h1>
   <select>
     <ng-container *range="[2000, 2017]; let num">
-      <option [ngValue]="num">{{num}}</option>
+      <option [ngValue]="num">{{ "{{ num " }}}}</option>
     </ng-container>
   </select>
   `
@@ -514,35 +579,6 @@ export class RangeDirective {
   }
 }
 ```
-
-### 3.2.4 ng-template vs ng-container
-
-ng-template과 ng-container는 페이지에서 렌더링 될 요소를 div 또는 span 등의 다른 요소와 함께 사용할 필요가 없는 요소들을 그룹화할 때 사용한다.
-
-예를 들어 NgIf, NgFor, NgSwtch 디렉티브의 경우, ng-template 요소로 변환된다.
-
-```html
-<li *ngFor="let item of items">{{item}}</li>
-
-<!-- NgFor 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설탕(syntactic sugar)이다. 즉 위 코드는 아래의 코드로 변환된다. -->
-
-<ng-template ngFor let-item [ngForOf]="items">
-  <li>{{item}}</li>
-</ng-template>
-```
-
-ng-container는  * 구문을 사용할 수 있기 때문에 ng-template 대신 사용할 수 있다.
-
-```html
-<ng-container *ngFor="let item of items">
-  <element>...</element>
-</ng-container>
-```
-
-일반적으로 ng-container는 *ngIf 또는 *ngFor와 같이 중첩 구조 디렉티브에 대한 헬퍼 요소가 필요하거나 구조 디렉티브 안에 둘 이상의 요소를 래핑하려는 경우, 사용한다.
-
-ng-template는 [ngTemplateOutlet](https://angular.io/api/common/NgTemplateOutlet) 또는 createEmbeddedView를 사용하여 템플릿화된 뷰 스니펫을 보내야 할 경우, 사용한다.
-
 
 # Reference
 

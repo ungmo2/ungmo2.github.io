@@ -151,10 +151,13 @@ import { Component } from '@angular/core';
   template: `
     <!-- value 프로퍼티에 컴포넌트 클래스의 name 프로퍼티 바인딩 -->
     <input type="text" [value]="name">
+
     <!-- innerHTML 프로퍼티에 컴포넌트 클래스의 contents 프로퍼티 바인딩 -->
     <p [innerHTML]="contents"></p>
+
     <!-- src 프로퍼티에 컴포넌트 클래스의 imageUrl 프로퍼티 바인딩 -->
     <img [src]="imageUrl"><br>
+
     <!-- disabled 프로퍼티에 컴포넌트 클래스의 isUnchanged 프로퍼티 바인딩 -->
     <button [disabled]="isDisabled">disabled button</button>
   `
@@ -614,13 +617,13 @@ export class AppComponent { }
 [컴포넌트 디렉티브(Component Directives)](./angular-component-basics)
 : 컴포넌트의 템플릿을 표시하기 위한 디렉티브이다. @component 데코레이터의 메타데이터 객체의 seletor 프로퍼티에서 임의의 디렉티브의 이름을 정의한다.
 
-[구조 디렉티브(Structural Directives)](./angular-component-template-syntax#22-빌트인-구조-디렉티브built-in-structural-directive)
-: 구조 디렉티브는 DOM 요소를 반복 생성(ngFor), 조건에 의한 추가 또는 제거를 수행(ngIf, ngSwitch)을 통해 뷰의 구조를 변경한다.
-
 [어트리뷰트 디렉티브(Attribute Directives)](./angular-component-template-syntax#21-빌트인-어트리뷰트-디렉티브built-in-attribute-directive)
 : 어트리뷰트 디렉티브는 HTML 요소의 어트리뷰트로 사용하여 해당 요소의 모양이나 동작을 제어한다. ngClass, ngStyle와 같은 빌트인 디렉티브가 있다.
 
-이 장에서는 템플릿에 관련한 빌트인 디렉티브인 어트리뷰트 디렉티브와 구조 디렉티브에 집중하기로 한다. 커스텀 디렉티브는 [다른 장](./angular-directive)에서 자세히 살펴보도록 하자.
+[구조 디렉티브(Structural Directives)](./angular-component-template-syntax#22-빌트인-구조-디렉티브built-in-structural-directive)
+: 구조 디렉티브는 DOM 요소를 반복 생성(ngFor), 조건에 의한 추가 또는 제거(ngIf, ngSwitch)를 통해 DOM 레이아웃(layout)을 변경한다.
+
+이 장에서는 템플릿에 관련한 빌트인 디렉티브인 어트리뷰트 디렉티브와 구조 디렉티브에 집중하기로 한다. 커스텀 디렉티브는 [디렉티브](./angular-directive)에서 자세히 살펴보도록 하자.
 
 ## 2.1 빌트인 어트리뷰트 디렉티브(Built-in attribute directive)
 
@@ -764,6 +767,16 @@ ngIf 디렉티브는 우변 표현식의 연산 결과가 참이면 해당 요�
 <element *ngIf="expression">...</element>
 ```
 
+ngIf 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설탕(syntactic sugar)이다.
+
+```html
+<template [ngIf]="expression">
+  <element>...</element>
+</template>
+```
+
+Angular는 *ngIf를 만나면 호스트 요소를 template 태그로 래핑하고 ngIf를 프로퍼티 바인딩으로 변환한다.
+
 버튼 클릭에 의해 요소를 show/hide하는 간단한 예제를 살펴보자.
 
 ```typescript
@@ -773,6 +786,7 @@ import { Component } from '@angular/core';
   template: `
     <!-- ngIf에 의한 show/hide -->
     <p *ngIf="isShow">Lorem ipsum dolor sit amet</p>
+
     <!-- 스타일 바인딩에 의한 show/hide -->
     <p [style.display]="isShow ? 'block' : 'none'">Lorem ipsum dolor sit amet</p>
     <button (click)="isShow=!isShow">{{ "{{ isShow ? 'Hide' : 'Show' " }}}}</button>
@@ -786,7 +800,7 @@ export class AppComponent {
 }
 ```
 
-ngIf 디렉티브를 사용하지 않고 스타일 바인딩 또는 클래스 바인딩을 사용하여 요소의 표시/비표시를 구현할 수 있다. 스타일 바인딩 또는 클래스 바인딩에 의해 비표시된 요소는 브라우저에 의해 렌더링이 되지 않지만 DOM에 남아있다. ngIf 디렉티브에 의해 제거된 요소는 DOM에 남아있지 않고 완전히 제거되어 불필요한 자원의 낭비를 방지한다.
+ngIf 디렉티브를 사용하지 않고 스타일 바인딩 또는 클래스 바인딩을 사용하여 요소의 표시/비표시를 구현할 수 있다. 하지만 스타일 바인딩 또는 클래스 바인딩에 의해 비표시된 요소는 브라우저에 의해 렌더링이 되지 않지만 DOM에 남아있다. ngIf 디렉티브에 의해 제거된 요소는 DOM에 남아있지 않고 완전히 제거되어 불필요한 자원의 낭비를 방지한다.
 
 ![show-hide](./img/show-hide.png)
 
@@ -818,17 +832,16 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <div>
-      <label for="one">
-        <input type="radio" id="one" name="skill" [(ngModel)]="mySkill" value="HTML"> HTML
-      </label>
-      <label for="two">
-         <input type="radio" id="two" name="skill" [(ngModel)]="mySkill" value="CSS"> CSS
-      </label>
+      <input type="radio" id="one" name="skill" (click)="mySkill=$event.target.value" value="HTML"> <label for="one"> HTML</label>
+      <input type="radio" id="two" name="skill" (click)="mySkill=$event.target.value" value="CSS"> <label for="two"> CSS</label>
     </div>
+
     <div *ngIf="mySkill==='HTML'; else elseBlock">HTML</div>
-    <ng-template #elseBlock>
-      <div>CSS</div>
-    </ng-template>
+    <ng-template #elseBlock><div>CSS</div></ng-template>
+
+    <div *ngIf="mySkill==='HTML'; then thenBlock_1 else elseBlock_1"></div>
+    <ng-template #thenBlock_1><div>HTML</div></ng-template>
+    <ng-template #elseBlock_1><div>CSS</div></ng-template>
   `
 })
 export class AppComponent {
@@ -1035,11 +1048,11 @@ ngSwitch 디렉티브는 switch 조건에 따라 여러 요소 중에 하나의 
 
 ```html
 <element [ngSwitch]="expression">
-  <!-- switch 조건이 'case1'인 경우 DOM애 추가 -->
+  <!-- switch 조건이 'case1'인 경우 DOM에 추가 -->
   <element *ngSwitchCase="'case1'">...<element>
-  <!-- switch 조건이 'case2'인 경우 DOM애 추가 -->
+  <!-- switch 조건이 'case2'인 경우 DOM에 추가 -->
   <element *ngSwitchCase="'case2'">...<element>
-  <!-- switch 조건과 일치하는 ngSwitchCase가 없는 경우 DOM애 추가 -->
+  <!-- switch 조건과 일치하는 ngSwitchCase가 없는 경우 DOM에 추가 -->
   <element *ngSwitchDefault>...<element>
 </element>
 ```

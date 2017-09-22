@@ -759,23 +759,23 @@ export class AppComponent {
 - 구조 디렉티브에는 `*` 접두사를 추가하며 `[]`을 사용하지 않는다.
 - 하나의 호스트 요소(디렉티브가 적용된 요소)에는 하나의 구조 디렉티브만을 사용할 수 있다.
 
-### 2.2.1 ngIf
+### 2.2.1 NgIf
 
-ngIf 디렉티브는 우변 표현식의 연산 결과가 참이면 해당 요소(호스트 요소)를 DOM에 추가하고 거짓이면 해당 요소(호스트 요소)를 DOM에서 제거한다. 우변의 표현식은 true 또는 false로 평가될 수 있는 값을 사용한다.
+NgIf 디렉티브는 우변 표현식의 연산 결과가 참이면 해당 요소(호스트 요소)를 DOM에 추가하고 거짓이면 해당 요소(호스트 요소)를 DOM에서 제거한다. 우변의 표현식은 true 또는 false로 평가될 수 있는 값을 사용한다.
 
 ```html
 <element *ngIf="expression">...</element>
 ```
 
-ngIf 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설탕(syntactic sugar)이다.
+NgIf 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설탕(syntactic sugar)이다. 즉 위 코드는 아래의 코드로 변환된다.
 
 ```html
-<template [ngIf]="expression">
+<ng-template [ngIf]="expression">
   <element>...</element>
-</template>
+</ng-template>
 ```
 
-Angular는 *ngIf를 만나면 호스트 요소를 template 태그로 래핑하고 ngIf를 프로퍼티 바인딩으로 변환한다.
+Angular는 *ngIf를 만나면 호스트 요소를 template 태그로 래핑하고 *ngIf를 프로퍼티 바인딩으로 변환한다. NgFor와 NgSwitch 디렉티브도 동일한 패턴을 따른다.
 
 버튼 클릭에 의해 요소를 show/hide하는 간단한 예제를 살펴보자.
 
@@ -800,14 +800,14 @@ export class AppComponent {
 }
 ```
 
-ngIf 디렉티브를 사용하지 않고 스타일 바인딩 또는 클래스 바인딩을 사용하여 요소의 표시/비표시를 구현할 수 있다. 하지만 스타일 바인딩 또는 클래스 바인딩에 의해 비표시된 요소는 브라우저에 의해 렌더링이 되지 않지만 DOM에 남아있다. ngIf 디렉티브에 의해 제거된 요소는 DOM에 남아있지 않고 완전히 제거되어 불필요한 자원의 낭비를 방지한다.
+NgIf 디렉티브를 사용하지 않고 스타일 바인딩 또는 클래스 바인딩을 사용하여 요소의 표시/비표시를 구현할 수 있다. 하지만 스타일 바인딩 또는 클래스 바인딩에 의해 비표시된 요소는 브라우저에 의해 렌더링이 되지 않지만 DOM에 남아있다. NgIf 디렉티브에 의해 제거된 요소는 DOM에 남아있지 않고 완전히 제거되어 불필요한 자원의 낭비를 방지한다.
 
 ![show-hide](./img/show-hide.png)
 
-ngIf에 의해 제거된 요소는 DOM에 남아있지 않는다.
+NgIf에 의해 제거된 요소는 DOM에 남아있지 않는다.
 {: .desc-img}
 
-Angular 4부터 `ngIf else`가 추가되었다. ngIf 우변의 표현식이 참이면 호스트 요소를 DOM에 추가하고 거짓이면 else 이후에 기술한 ng-template 요소의 자식을 DOM에 추가한다.
+Angular 4부터 `ngIf else`가 추가되었다. NgIf 우변의 표현식이 참이면 호스트 요소를 DOM에 추가하고 거짓이면 else 이후에 기술한 ng-template 요소의 자식을 DOM에 추가한다.
 
 ```html
 <!-- if else -->
@@ -851,12 +851,26 @@ export class AppComponent {
 
 <iframe src="http://embed.plnkr.co/ty9JmDJ6rMFNpK7ijYUn/?show=preview" frameborder="0" width="100%" height="400"></iframe>
 
-### 2.2.2 ngFor
+### 2.2.2 NgFor
 
-ngFor 디렉티브는 컴포넌트 클래스의 컬렉션을 반복하여 호스트 요소(ngFor 디렉티브가 사용된 요소) 및 하위 요소를 DOM에 추가한다. 컬렉션은 일반적으로 배열을 사용한다.
+NgFor 디렉티브는 컴포넌트 클래스의 컬렉션을 반복하여 호스트 요소(NgFor 디렉티브가 사용된 요소) 및 하위 요소를 DOM에 추가한다. 컬렉션은 일반적으로 배열을 사용한다.
 
 ```html
-<element *ngFor="let item of items">...</element>
+<element *ngFor="let item of items; let i=index">...</element>
+
+<element *ngFor="let item of items; let i=index; let odd=odd; trackBy: trackById">...</element>
+```
+
+NgFor 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설탕(syntactic sugar)이다. 즉 위 코드는 아래의 코드로 변환된다.
+
+```html
+<ng-template ngFor let-item [ngForOf]="items">
+  <element>...</element>
+</ng-template>
+
+<ng-template ngFor let-item [ngForOf]="items" let-i="index" let-odd="odd" [ngForTrackBy]="trackById">
+  <element>...</element>
+</ng-template>
 ```
 
 위 코드는 컴포넌트 클래스의 프로퍼티 items을 바인딩한 후 items의 갯수만큼 순회하며 개별 항목을 item에 할당한다. item(템플릿 입력 변수, template input variable)은 호스트 요소 및 하위 요소에서만 유효한 로컬 변수이다. items에 해당하는 바인딩 객체는 일반적으로 배열을 사용하지만 반드시 배열만 사용할 수 있는 것은 아니다. ES6의 [for...of](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/for...of)에서 사용할 수 있는 [반복 가능한 객체(iterable object)](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Iteration_protocols#iterable)라면 사용이 가능하다. 단 문자열, Map, 배열이 아닌 일반 객체는 사용할 수 없다.
@@ -918,7 +932,7 @@ export class AppComponent {
 
 users 배열의 length만큼 반복하며 li 요소와 하위 요소를 DOM에 추가한다. 템플릿의 for of 구문에서 사용된 user 변수는 users 배열의 개별요소를 일시적으로 저장하며 호스트 요소의 하위 요소에서만 유효한 로컬 변수이다.
 
-ngFor 디렉티브는 컬렉션 데이터(users)가 변경되면 컬렉션과 연결된 모든 DOM 요소를 제거하고 다시 생성한다. 이는 컬렉션의 변경 사항을 추적(tracking)할 수 없기 때문이다. 때문에 크기가 매우 큰 컬렉션을 다루는 경우, 퍼포먼스 상의 문제를 발생시킬 수 있다. ngFor 디렉티브는 퍼포먼스를 향상시키기 위한 기능으로 `trackBy`를 제공한다.
+NgFor 디렉티브는 컬렉션 데이터(users)가 변경되면 컬렉션과 연결된 모든 DOM 요소를 제거하고 다시 생성한다. 이는 컬렉션의 변경 사항을 추적(tracking)할 수 없기 때문이다. 때문에 크기가 매우 큰 컬렉션을 다루는 경우, 퍼포먼스 상의 문제를 발생시킬 수 있다. NgFor 디렉티브는 퍼포먼스를 향상시키기 위한 기능으로 `trackBy`를 제공한다.
 
 trackBy 기능을 추가하여 위 예제를 수정하여 보자.
 
@@ -978,9 +992,9 @@ export class AppComponent {
 
 user 객체의 id 프로퍼티를 사용하여 변경을 트랙킹할 수 있도록 trackByUserId 메소드를 추가하였다. 이때 user 객체의 id 프로퍼티는 유니크하여야 한다. user 객체의 id 프로퍼티를 사용하지 않고 trackByUserId에 인자로 전달된 index를 사용하여도 무방하다.
 
-add user 또는 X 버튼을 클릭하면 해당 user를 추가/제거한다. 예를 들어 3번째 user 객체를 제거하면 users의 변경을 DOM에 반영하여야 한다. 이때 trackBy를 사용하지 않는 경우 ngFor는 DOM을 다시 생성한다. trackBy를 사용한 경우 user.id를 기준으로 컬렉션의 변경을 트래킹하기 때문에 퍼포먼스가 향상된다.
+add user 또는 X 버튼을 클릭하면 해당 user를 추가/제거한다. 예를 들어 3번째 user 객체를 제거하면 users의 변경을 DOM에 반영하여야 한다. 이때 trackBy를 사용하지 않는 경우 NgFor는 DOM을 다시 생성한다. trackBy를 사용한 경우 user.id를 기준으로 컬렉션의 변경을 트래킹하기 때문에 퍼포먼스가 향상된다.
 
-일반적인 경우 ngFor는 충분히 빠르기 때문에 trackBy에 의한 퍼포먼스 최적화는 기본적으로 필요하지 않다. trackBy는 퍼포먼스에 문제가 있는 경우에만 사용한다.
+일반적인 경우 NgFor는 충분히 빠르기 때문에 trackBy에 의한 퍼포먼스 최적화는 기본적으로 필요하지 않다. trackBy는 퍼포먼스에 문제가 있는 경우에만 사용한다.
 
 <!--X 버튼을 클릭하면 해당 user를 제거한다. 예를 들어 3번째 user인 'Park'을 제거하면 users의 변경을 DOM에 반영하여야 한다. 이때 Angular는 변경을 트래킹할 수 없다.
 
@@ -1042,9 +1056,9 @@ export class AppComponent {
 ```
 -->
 
-### 2.2.3 ngSwitch
+### 2.2.3 NgSwitch
 
-ngSwitch 디렉티브는 switch 조건에 따라 여러 요소 중에 하나의 요소를 선택하여 DOM에 추가한다. JavaScript의 switch문과 유사하게 동작한다.
+NgSwitch 디렉티브는 switch 조건에 따라 여러 요소 중에 하나의 요소를 선택하여 DOM에 추가한다. JavaScript의 switch문과 유사하게 동작한다.
 
 ```html
 <element [ngSwitch]="expression">
@@ -1057,7 +1071,23 @@ ngSwitch 디렉티브는 switch 조건에 따라 여러 요소 중에 하나의 
 </element>
 ```
 
-ngSwitch 디렉티브를 활용한 예제는 아래와 같다.
+NgSwitch 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설탕(syntactic sugar)이다. 즉 위 코드는 아래의 코드로 변환된다.
+
+```html
+<element [ngSwitch]="expression">
+  <ng-template [ngSwitchCase]="'case1'">
+    <element>...</element>
+  </ng-template>
+  <ng-template [ngSwitchCase]="'case2'">
+    <element>...</element>
+  </ng-template>
+  <ng-template ngSwitchDefault>
+    <element>...</element>
+  </ng-template>
+</element>
+```
+
+NgSwitch 디렉티브를 활용한 예제는 아래와 같다.
 
 ```typescript
 import { Component } from '@angular/core';

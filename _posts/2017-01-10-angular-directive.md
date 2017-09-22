@@ -1,0 +1,563 @@
+---
+layout: post
+title: Angular <strong>Directive</strong>
+subtitle: 디렉티브
+categories: angular
+section: angular
+description: 디렉티브(Directive 지시자)는 “DOM의 모든 것(모양이나 동작 등)을 관리하기 위한 지시(명령)”이다. HTML 요소 또는 어트리뷰트의 형태로 사용하여 디렉티브가 사용된 요소에게 무언가를 하라는 지시(directive)를 전달한다. 디렉티브는 애플리케이션 전역에서 사용할 수 있는 공통 관심사를 컴포넌트에서 분리하여 구현한 것으로 컴포넌트의 복잡도를 낮추고 가독성을 향상시킨다. 컴포넌트도 뷰를 생성하고 이벤트를 처리하는 등 DOM을 관리하기 때문에 큰 의미에서 디렉티브로 볼 수 있다. 디렉티브는 요소 또는 어트리뷰트와 유사하게 의미를 갖는 이름으로 표현된다. 이때 로직은 드러나지 않으며 단지 디렉티브를 순서에 맞게 배치한다. 이를 선언형 프로그래밍(Declarative programming)이라 한다.
+---
+
+* TOC
+{:toc}
+
+![angular Logo](/img/angular-logo.png)
+
+# 1. 디렉티브(directive)란?
+
+디렉티브(Directive 지시자)는 “DOM의 모든 것(모양이나 동작 등)을 관리하기 위한 지시(명령)”이다. HTML 요소 또는 어트리뷰트의 형태로 사용하여 디렉티브가 사용된 요소에게 무언가를 하라는 지시(directive)를 전달한다.
+
+**디렉티브는 애플리케이션 전역에서 사용할 수 있는 공통 관심사를 컴포넌트에서 분리하여 구현한 것으로 컴포넌트의 복잡도를 낮추고 가독성을 향상시킨다.** 컴포넌트도 뷰를 생성하고 이벤트를 처리하는 등 DOM을 관리하기 때문에 큰 의미에서 디렉티브로 볼 수 있다.
+
+디렉티브는 요소 또는 어트리뷰트와 유사하게 의미를 갖는 이름으로 표현된다. 이때 로직은 드러나지 않으며 단지 디렉티브를 순서에 맞게 배치한다. 이를 선언형 프로그래밍(Declarative programming)이라 한다.
+
+```html
+<todo-form></todo-form>
+<todo-nav></todo-nav>
+<todo-list [todos]="todos"></todo-list>
+<todo-footer></todo-footer>
+```
+
+디렉티브는 [@Directive](https://angular.io/api/core/Directive) 데코레이터로 장식된 클래스이다. @Directive 데코레이터는 함수이며 디렉티브의 설정 정보가 기술된 메타데이터 객체를 인자로 전달받아 디렉티브를 생성한다. 메타데이터 객체의 정보는 아래와 같다.
+
+```typescript
+@Directive({
+  selector?: string
+  inputs?: string[]
+  outputs?: string[]
+  host?: {[key: string]: string}
+  providers?: Provider[]
+  exportAs?: string
+  queries?: {[key: string]: any}
+})
+```
+
+# 2. 디렉티브 vs. 컴포넌트
+
+디렉티브는 애플리케이션 전역에서 사용할 수 있는 공통 관심사를 컴포넌트에서 분리하여 구현한 것으로 컴포넌트의 복잡도를 낮추고 가독성을 향상시킨다. **컴포넌트도 뷰를 생성하고 이벤트를 처리하는 등 DOM을 관리하기 때문에 큰 의미에서 디렉티브로 볼 수 있다.**
+
+컴포넌트는 뷰 단위의 관심사를 가지고 있다면 디렉티브는 요소의 공통 기능에 관심을 갖는다. 컴포넌트는 뷰를 구성하는 독립적인 구성 요소로서 다른 컴포넌트에 직접적인 관심을 두지 않는다. 디렉티브는 보편적이며 애플리케이션 전역에서 공통으로 사용 가능한 고유의 관심사를 기능으로 구현한다. 디렉티브는 단일 책임 원칙(Single responsibilty principle)에 의해 복합적인 기능보다는 여러 요소에서 공통적, 반복적으로 사용될 하나의 기능을 명확히 구현하는 것이 바람직하다.
+
+큰 의미에서 디렉티브인 컴포넌트는 뷰를 가지며 다른 컴포넌트를 자식으로 가질 수 있다. 하지만 디렉티브는 뷰를 가지고 있지 않기 때문에 자식으로 가질 수 없다. 다시 말해 컴포넌트는 자식 컴포넌트, 디렉티브, 파이프를 조합하여 뷰를 만들지만 디렉티브는 부모가 될 수 없고 컴포넌트에 의해 사용될 뿐이다.
+
+# 2. 디렉티브의 종류
+
+Angular는 3가지 유형의 디렉티브를 제공한다.
+
+[컴포넌트 디렉티브(Component Directives)](./angular-component-basics)
+: 컴포넌트의 템플릿을 표시하기 위한 디렉티브이다. @component 데코레이터의 메타데이터 객체의 seletor 프로퍼티에서 임의의 디렉티브의 이름을 정의한다.
+
+[어트리뷰트 디렉티브(Attribute Directives)](./angular-component-template-syntax#21-빌트인-어트리뷰트-디렉티브built-in-attribute-directive)
+: 어트리뷰트 디렉티브는 HTML 요소의 어트리뷰트로 사용하여 해당 요소의 모양이나 동작을 제어한다. ngClass, ngStyle와 같은 빌트인 디렉티브가 있다.
+
+[구조 디렉티브(Structural Directives)](./angular-component-template-syntax#22-빌트인-구조-디렉티브built-in-structural-directive)
+: 구조 디렉티브는 DOM 요소를 반복 생성(ngFor), 조건에 의한 추가 또는 제거(ngIf, ngSwitch)를 통해 DOM 레이아웃(layout)을 변경한다.
+
+# 3. 커스텀 디렉티브
+
+커스텀 디렉티브는 Angular의 빌트인 디렉티브가 아닌 사용자 정의 디렉티브이다. 커스텀 어트리뷰트 디렉티브와 커스텀 구조 디렉티브의 사용 방법에 대해 살펴보도록 하자.
+
+## 3.1 커스텀 어트리뷰트 디렉티브
+
+### 3.1.1 디렉티브의 생성
+
+예제를 통해 커스텀 어트리뷰트 디렉티브의 살펴보자. textBlue 디렉티브는 해당 요소의 텍스트 컬러를 파란색으로 변경한다. Angular CLI를 사용하여 디렉티브를 추가하도록 한다.
+
+```bash
+$ ng generate directive textBlue
+```
+
+```typescript
+// text-blue.directive.ts
+import { Directive, ElementRef } from '@angular/core';
+
+// 디렉티브의 식별자를 @Directive 데코레이터의 메타데이터 객체의 selector 프로퍼티에 지정한다.
+@Directive({
+  selector: '[textBlue]'
+})
+export class TextBlueDirective {
+  constructor(el: ElementRef) {
+    el.nativeElement.style.color = 'blue';
+  }
+}
+```
+
+디렉티브는 @Directive 데코레이터로 장식된 순수한 자바스크립트 클래스이다. @Directive 데코레이터의 메타데이터에는 디렉티브에 필요한 정보를 설정한다. selector 프로퍼티는 디렉티브의 이름을 설정하며 값에 대괄호는 이 디렉티브가 프로퍼티 바인딩으로 사용될 수 있음을 표현한 것이다.
+
+<!-- 생성자에 ElementRef와 Renderer가 주입(inject)되었다. ElementRef는 nativeElement 프로퍼티를 통해 DOM에 직접 접근할 수 있는 서비스이다. DOM에 직접 접근하는 경우, XSS 공격에 노출될 수 있는 단점이 있다. 따라서 ElementRef 대신 Renderer의 setElementStyle 메소드를 사용하여 요소의 스타일을 변경하도록 한다. -->
+
+생성자에 ElementRef 서비스가 주입(inject)되었다. ElementRef는 네이티브 DOM의 프로퍼티를 담고 있는 nativeElement 프로퍼티를 소유한다. 따라서 ElementRef.nativeElement로 접근하면 네이티브 DOM의 프로퍼티에 접근할 수 있다. 하지만 ElementRef를 사용하여 DOM에 직접 접근하는 경우, XSS 공격에 노출될 수 있는 단점이 있다. 따라서 ElementRef 대신 Renderer의 setElementStyle 메소드를 사용하여 요소의 스타일을 변경하도록 한다.
+
+```typescript
+// text-blue.directive.ts
+import { Directive, ElementRef, Renderer } from '@angular/core';
+
+// 디렉티브의 식별자를 @Directive 데코레이터의 메타데이터 객체의 selector 프로퍼티에 지정한다.
+@Directive({
+  selector: '[textBlue]'
+})
+export class TextBlueDirective {
+  constructor(el: ElementRef, ) {
+    // el.nativeElement.style.color = 'blue';
+    this.render.setElementStyle(el.nativeElement, 'color', 'blue');
+  }
+}
+```
+
+디렉티브는 모듈에 등록되어야 한다. @NgModule 데코레이터의 메타데이터 객체의 declarations 프로퍼티에 디렉티브를 추가한다.
+
+```typescript
+// app.module.ts
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+import { TextBlueDirective } from './text-blue.directive';
+
+@NgModule({
+  // 이 모듈에 소속하는 컴포넌트, 디렉티브, 파이프를 선언
+  declarations: [AppComponent, TextBlueDirective],
+  // 이 모듈에 속한 컴포넌트에서 사용하는 컴포넌트, 디렉티브, 파이프가 소속된 다른 모듈을 선언
+  imports: [BrowserModule],
+  // 어떠한 컴포넌트에서도 사용할 수 있는 애플리케이션 레벨의 서비스 선언
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+디렉티브를 모듈에 등록하면 컴포넌트에서 사용할 수 있다. Angular는 등록된 디렉티브를 템플릿에서 만나면 디렉티브로 인식한다.
+
+```typescript
+// app.component.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  template: `<p textBlue>textBlue directive</p>`
+})
+export class AppComponent { }
+```
+
+textBlue 디렉티브를 p 요소에 어트리뷰트로 적용한다. 이때 textBlue 디렉티브가 적용된 p 요소는 어트리뷰트 호스트(attribute host)가 된다.
+
+컴포넌트를 실행하면 textBlue 디렉티브에 의해 요소의 텍스트 컬러가 파란색으로 표시되는 것을 확인할 수 있다.
+
+### 3.1.2 이벤트 처리
+
+textBlue 디렉티브는 단순히 텍스트의 컬러를 파란색으로 표시한다. textBlue 디렉티브를 마우스 이벤트 mouseenter가 발생하면 텍스트의 컬러를 파란색으로 지정하고 마우스 이벤트 mouseleave가 발생하면 텍스트의 컬러에 지정된 파란색을 취소하도록 리팩토링하여 보자.
+
+```typescript
+// text-blue.directive.ts
+import { Directive, ElementRef, Renderer, HostListener } from '@angular/core';
+
+@Directive({ selector: '[textBlue]' })
+export class TextBlueDirective {
+  constructor(private el: ElementRef, private renderer: Renderer) {}
+
+  @HostListener('mouseenter') onMouseEnter() {
+    this.textColor('blue');
+  }
+
+  @HostListener('mouseleave') onMouseLeave() {
+    this.textColor(null);
+  }
+
+  private textColor(color: string) {
+    this.render.setElementStyle(this.el.nativeElement, 'color', color);
+  }
+}
+```
+
+먼저 생성자 내부에서만 유효하던 ElementRef을 주입받은 생성자 파라미터에 el에 접근 제한자 provate를 추가하여 클래스 내부에서 참조가능한 멤버 변수로 변경한다.
+
+커스텀 디렉티브에 이벤트 처리 기능을 추가하기 위해 [@HostListener](https://angular.io/api/core/HostListener) 데코레이터를 사용하여 컴포넌트 또는 요소의 이벤트에 대한 핸들러를 등록한다. @HostListener 데코레이터를 사용하는 대신 @Directive 데코레이터의 메타데이터 객체의 host 프로퍼티를 사용할 수도 있다. 하지만 코드의 가독성 측면에서 유리한 @HostListener 데코레이터를 사용하도록 한다. 이벤트 핸들러 onMouseEnter, onMouseLeave은 textColor 메서드를 호출하여 어트리뷰트 호스트의 텍스트 컬러를 변경한다.
+
+### 3.1.3 @Input 데이터 바인딩
+
+현재 textBlue 디렉티브는 이벤트에 의해 어트리뷰트 호스트의 텍스트 컬러를 파란색으로 변경한다. 이제 어트리뷰트 호스트에서 지정한 컬러를 사용하여 어트리뷰트 호스트의 텍스트 컬러를 변경하도록 리팩토링하여 보자. 이를 위해 어트리뷰트 호스트에서 지정한 값을 디렉티브로 가져올 수 있어야 한다.
+
+우선 컴포넌트 템플릿을 수정한다. 디렉티브의 이름을 textColor로 변경하고 어트리뷰트 호스트에서 프로퍼티 바인딩을 통해 디렉티브로 컬러 값을 전달한다.
+
+```typescript
+// app.component.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  template: `<p textColor [color]="color">Text Color</p>`
+})
+export class AppComponent {
+  color = 'red'
+}
+```
+
+새로운 TextColorDirective 디렉티브를 추가하고 아래와 같이 편집한다.
+
+```typescript
+// text-color.directive.ts
+import { Directive, ElementRef, Renderer, HostListener, Input } from '@angular/core';
+
+@Directive({
+  selector: '[textColor]'
+})
+export class TextColorDirective {
+
+  // 어트리뷰트 호스트에서 프로퍼티 바인딩한 값을 전달 받는다.
+  @Input() color: string;
+
+  constructor(private el: ElementRef, private renderer: Renderer) {}
+
+  @HostListener('mouseenter') onMouseEnter() {
+    this.textColor(this.color);
+  }
+
+  @HostListener('mouseleave') onMouseLeave() {
+    this.textColor(null);
+  }
+
+  private textColor(color: string) {
+    this.render.setElementStyle(this.el.nativeElement, 'color', color);
+  }
+}
+```
+
+디렉티브는 @Input 데코레이터를 사용하여 어트리뷰트 호스트에서 프로퍼티 바인딩한 값을 전달 받는다. @Input 데코레이터의 사용 방법은 [부모 컴포넌트에서 자식 컴포넌트로 상태 전달](./angular-component-interaction#21-부모-컴포넌트에서-자식-컴포넌트로-상태-전달) 시에 사용할 때와 동일하다.
+
+모듈에 TextColorDirective를 등록하고 컴포넌트를 실행하면 color 어트리뷰트에 바인딩한 컬러가 textColor 디렉티브로 전달되고 요소의 텍스트 컬러가 이벤트에 의해 변경되는 것을 확인할 수 있다.
+
+조금더 리팩터링를 해보자. 별도의 color 어트리뷰트에 바인딩한 컬러를 이번에는 textColor 디렉티브에 직접 바인딩하도록 수정한다.
+
+
+```typescript
+// app.component.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  template: `<p [textColor]="color">Text Color</p>`
+})
+export class AppComponent {
+  color = 'red'
+}
+```
+
+```typescript
+// text-color.directive.ts
+...
+export class TextColorDirective {
+
+  // 어트리뷰트 호스트에서 프로퍼티 바인딩한 값을 전달 받는다.
+  // color는 alias이다.
+  @Input('textColor') color: string;
+...
+```
+
+어트리뷰트 디렉티브는 요소의 어트리뷰트로 사용되기 때문에 프로퍼티 바인딩이 가능하다. @Input 데코레이터는 프로퍼티 바인딩을 통한 상태의 전달에 사용된다. 또한 일반 어트리뷰트의 정적인 값을 전달 받을 때도 사용할 수 있다.
+
+```typescript
+// 컴포넌트
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <button myDirective [inputValue]="msg" staticValue="hi!">Click me</button>
+  `
+})
+export class AppComponent {
+  msg = 'button click';
+}
+
+// 디렉티브
+import { Directive, Input, HostListener } from '@angular/core';
+
+@Directive({
+  selector: '[myDirective]'
+})
+export class MyDirectiveDirective {
+  // 프로퍼티 바인딩을 통한 상태 전달
+  @Input() inputValue: string;
+  // 일반 어트리뷰트의 정적 값의 전달
+  @Input() staticValue: string;
+
+  @HostListener('click')
+  onClick() {
+    console.log('inputValue: ' + this.inputValue);   // 'button click'
+    console.log('staticValue: ' + this.staticValue); // 'hi!'
+  }
+}
+```
+
+마지막으로 mouseenter 이벤트 발생 시에는 라디오 버튼에 의해 입력된 컬러에 의해 텍스트 컬러가 변경되도록 하고 mouseleave 이벤트 발생 시에는 어트리뷰트 호스트의 일반 어트리뷰트에 지정된 정적 값을 통해 텍스트 컬러가 변경되도록 수정하여 보자.
+
+```typescript
+// app.component.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  template: `
+  <h1>Attribute Directive</h1>
+
+  <h4>텍스트의 컬러를 선택하세요</h4>
+  <div>
+    <input type="radio" name="colors" (click)="color='red'">Red
+    <input type="radio" name="colors" (click)="color='blue'">Blue
+    <input type="radio" name="colors" (click)="color='green'">Green
+  </div>
+
+  <p [textColor]="color" defaultColor="violet">Text Color</p>
+  `
+})
+export class AppComponent {
+  // 라디오 버튼에 의해 지정된 텍스트 컬러
+  // 프로퍼티 바인딩에 의해 디렉티브로 전달된다.
+  color: string;
+}
+```
+
+```typescript
+// text-color.directive.ts
+import { Directive, ElementRef, Renderer, HostListener, Input, OnInit } from '@angular/core';
+
+@Directive({
+  selector: '[textColor]'
+})
+export class TextColorDirective implements OnInit  {
+
+  // 프로퍼티 바인딩을 통한 상태 전달
+  @Input('textColor') color: string;
+  // 일반 어트리뷰트의 정적 값의 전달
+  @Input() defaultColor: string;
+
+  constructor(private el: ElementRef, private renderer: Renderer) {}
+
+  // 기본 컬러를 초기 표시에 적용
+  ngOnInit() {
+    this.textColor(this.defaultColor);
+  }
+
+  @HostListener('mouseenter') onMouseEnter() {
+    this.textColor(this.color);
+  }
+
+  @HostListener('mouseleave') onMouseLeave() {
+    // this.textColor(null);
+    this.textColor(this.defaultColor);
+  }
+
+  private textColor(color: string) {
+    this.render.setElementStyle(this.el.nativeElement, 'color', color);
+  }
+}
+```
+
+## 3.2 커스텀 구조 디렉티브
+
+### 3.2.1 디렉티브의 생성
+
+ngIf 디렉티브의 기능을 그대로 재현하는 간단한 예제를 통해 커스텀 구조 디렉티브의 살펴보자. Angular CLI를 사용하여 디렉티브를 추가하도록 한다.
+
+```bash
+$ ng generate directive myNgIf
+```
+
+TemplateRef와 ViewContainerRef를 import 한 후, 아래와 같이 코드를 수정한다.
+
+```typescript
+// my-ng-if.directive.ts
+import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
+
+@Directive({
+  selector: '[myNgIf]'
+})
+export class MyNgIfDirective {
+
+  constructor(
+    private templateRef: TemplateRef<any>,
+    private viewContainer: ViewContainerRef) { }
+
+  @Input() set myNgIf(condition: boolean) {
+    if (condition) {
+      // 호스트 뷰에 ng-template 요소를 추가
+      this.viewContainer.createEmbeddedView(this.templateRef); // ①
+    } else {
+      // 호스트 뷰에서 ng-template 요소를 제거
+      this.viewContainer.clear(); // ②
+    }
+  }
+}
+```
+
+myNgIf 디렉티브를 사용하는 컴포넌트는 아래와 같다.
+
+```typescript
+// app.component.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  template: `
+  <h2 *myNgIf="condition">Hello {{name}}</h2>
+  <button (click)="condition = !condition">Click</button>
+  `
+})
+export class AppComponent {
+  condition = false;
+  name = 'Lee';
+}
+```
+
+### 3.2.2 TemplateRef와 ViewContainerRef
+
+NgIf, NgFor, NgSwitch와 같은 [빌트인 구조 디렉티브](./angular-component-template-syntax#22-빌트인-구조-디렉티브built-in-structural-directive)는 문법적 설탕(syntactic sugar)인 디렉티브 이름 앞에 붙은 *(asterisk)에 의해 `ng-template`으로 변환된다. 예를 들어 NgIf의 경우를 살펴보자.
+
+```html
+<element *ngIf="expression">...</element>
+```
+
+ngIf 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설탕(syntactic sugar)이다. 즉 위 코드는 아래의 코드로 변환된다.
+
+```html
+<ng-template [ngIf]="expression">
+  <element>...</element>
+</ng-template>
+```
+
+Angular는 *ngIf를 만나면 호스트 요소를 template 태그로 래핑하고 ngIf를 프로퍼티 바인딩으로 변환한다.
+
+[TemplateRef](https://angular.io/api/core/TemplateRef)는 ng-template 요소를 가리키는 객체이다. ng-template 요소는 프로퍼티 바인딩에 의해 상태 값을 갖는다.
+
+[ViewContainerRef](https://angular.io/api/core/ViewContainerRef)는 뷰를 포함시킬 수 있는 컨테이너이다. 이 컨테이너에는 두 종류의 뷰가 포함될 수 있다. 하나는 ViewContainerRef의 createComponent 메소드를 통해 컴포넌트를 인스턴스화하여 만든 호스트 뷰(Host View)이고 또 하나는 ViewContainerRef의 createEmbeddedView 메소드를 통해 ng-template을 인스턴스화하여 포함한 임베디브 뷰(Embedded View)이다.
+
+다시 말해 ViewContainerRef는 컴포넌트, 어트리뷰트 디렉티브, 구조 디렉티브의 호스트 뷰를 가리키며 createComponent, createEmbeddedView 메소드를 통해 새로운 요소(컴포넌트 템플릿 또는 ng-template 요소)를 담을 수 있는 DOM 요소이다.
+
+위 코드의 ①과 ②를 살펴보자. 프로퍼티 바인딩에 의해 myNgIf 디렉티브의 상태 값이 true이면 createEmbeddedView 메소드에 ng-template 요소를 가리키는 templateRef 객체를 인자로 전달하여 ng-template 요소를 호스트 뷰에 추가한다. 상태 값이 false이면 clear 메소드를 호출하여 호스트 뷰에서 ng-template 요소를 제거한다. 제거된 ng-template 요소는 display: none으로 감추어진 것이 아니라 DOM에 남아있지 않고 완전히 제거되어 불필요한 자원의 낭비를 방지한다.
+
+### 3.2.3 Range 디렉티브 실습
+
+```typescript
+// app.component.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  template: `
+  <h1>Your age:</h1>
+  <select>
+  <!--
+  ng-container는 페이지에서 렌더링 될 요소를 div 또는 span 등의 다른 요소와 함께 사용할 필요가 없는 요소들을 그룹화할 때 사용한다.
+  ng-container는 * 구문을 사용할 수 있다.
+  -->
+    <ng-container *range="[10, 19]; let num">
+      <option [ngValue]="num">{{num}}</option>
+    </ng-container>
+  </select>
+
+  <h1>Year:</h1>
+  <select>
+    <ng-container *range="[2000, 2017]; let num">
+      <option [ngValue]="num">{{num}}</option>
+    </ng-container>
+  </select>
+  `
+})
+export class AppComponent {}
+```
+
+```typescript
+// range.directive.ts
+import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
+
+@Directive({
+  selector: '[range]'
+})
+export class RangeDirective {
+  _range: number[];
+  // 프로퍼티 바인딩: 범위 취득
+  @Input() set range(value) {
+    this.viewContainer.clear();
+    this._range = this.generateRange(value[0], value[1]);
+
+    // 범위를 갖는 배열 _range를 순회하며 select 요소의 option 요소를 호스트 뷰에 추가한다.
+    this._range.forEach(num => {
+      // $implicit 프로퍼티 값 num은 ng-container의 num 변수에 할당되고 컴포넌트 템플릿 ngValue의 값이 된다.
+      this.viewContainer.createEmbeddedView(this.templateRef, {
+        $implicit: num
+      });
+    });
+  }
+
+  constructor(
+    private templateRef: TemplateRef<any>,
+    private viewContainer: ViewContainerRef) { }
+
+  // from과 to로 범위를 갖는 배열을 생성
+  private generateRange(from, to) {
+    const res = [];
+    let i = from;
+    while (i < to + 1) {
+      res.push(i);
+      i++;
+    }
+    return res;
+  }
+}
+```
+
+### 3.2.4 ng-template vs ng-container
+
+ng-template과 ng-container는 페이지에서 렌더링 될 요소를 div 또는 span 등의 다른 요소와 함께 사용할 필요가 없는 요소들을 그룹화할 때 사용한다.
+
+예를 들어 NgIf, NgFor, NgSwtch 디렉티브의 경우, ng-template 요소로 변환된다.
+
+```html
+<li *ngFor="let item of items">{{item}}</li>
+
+<!-- NgFor 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설탕(syntactic sugar)이다. 즉 위 코드는 아래의 코드로 변환된다. -->
+
+<ng-template ngFor let-item [ngForOf]="items">
+  <li>{{item}}</li>
+</ng-template>
+```
+
+ng-container는  * 구문을 사용할 수 있기 때문에 ng-template 대신 사용할 수 있다.
+
+```html
+<ng-container *ngFor="let item of items">
+  <element>...</element>
+</ng-container>
+```
+
+일반적으로 ng-container는 *ngIf 또는 *ngFor와 같이 중첩 구조 디렉티브에 대한 헬퍼 요소가 필요하거나 구조 디렉티브 안에 둘 이상의 요소를 래핑하려는 경우, 사용한다.
+
+ng-template는 [ngTemplateOutlet](https://angular.io/api/common/NgTemplateOutlet) 또는 createEmbeddedView를 사용하여 템플릿화된 뷰 스니펫을 보내야 할 경우, 사용한다.
+
+
+# Reference
+
+* [Angular NgModules](https://angular.io/guide/ngmodule)
+
+* [Angular Built-in directive](./angular-component-template-syntax#2-빌트인-디렉티브built-in-directive)
+
+* [@Directive](https://angular.io/api/core/Directive)
+
+* [@HostListener](https://angular.io/api/core/HostListener)
+
+* [ElementRef vs Renderer](http://www.code-sample.com/2017/06/angular-2-elementref-vs-renderer.html)
+
+* [TemplateRef](https://angular.io/api/core/TemplateRef)
+
+* [ViewContainerRef](https://angular.io/api/core/ViewContainerRef)
+
+https://github.com/angular/angular/issues/11994

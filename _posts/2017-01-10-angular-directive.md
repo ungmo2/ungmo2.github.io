@@ -62,13 +62,12 @@ Angular는 3가지 유형의 디렉티브를 제공한다.
 [구조 디렉티브(Structural Directives)](./angular-component-template-syntax#22-빌트인-구조-디렉티브built-in-structural-directive)
 : 구조 디렉티브는 DOM 요소를 반복 생성(ngFor), 조건에 의한 추가 또는 제거(ngIf, ngSwitch)를 통해 DOM 레이아웃(layout)을 변경한다.
 
-# 3. 커스텀 디렉티브
+커스텀 디렉티브
+: 커스텀 디렉티브는 Angular의 빌트인 디렉티브가 아닌 사용자 정의 디렉티브이다.
 
-커스텀 디렉티브는 Angular의 빌트인 디렉티브가 아닌 사용자 정의 디렉티브이다. 커스텀 어트리뷰트 디렉티브와 커스텀 구조 디렉티브의 사용 방법에 대해 살펴보도록 하자.
+# 3. 커스텀 어트리뷰트 디렉티브
 
-## 3.1 커스텀 어트리뷰트 디렉티브
-
-### 3.1.1 디렉티브의 생성
+## 3.1 디렉티브의 생성
 
 예제를 통해 커스텀 어트리뷰트 디렉티브의 살펴보자. textBlue 디렉티브는 해당 요소의 텍스트 컬러를 파란색으로 변경한다. Angular CLI를 사용하여 디렉티브를 추가하도록 한다.
 
@@ -152,7 +151,7 @@ textBlue 디렉티브를 p 요소에 어트리뷰트로 적용한다. 이때 tex
 
 컴포넌트를 실행하면 textBlue 디렉티브에 의해 요소의 텍스트 컬러가 파란색으로 표시되는 것을 확인할 수 있다.
 
-### 3.1.2 이벤트 처리
+## 3.2 이벤트 처리
 
 textBlue 디렉티브는 단순히 텍스트의 컬러를 파란색으로 표시한다. textBlue 디렉티브를 마우스 이벤트 mouseenter가 발생하면 텍스트의 컬러를 파란색으로 지정하고 마우스 이벤트 mouseleave가 발생하면 텍스트의 컬러에 지정된 파란색을 취소하도록 리팩토링하여 보자.
 
@@ -182,7 +181,7 @@ export class TextBlueDirective {
 
 커스텀 디렉티브에 이벤트 처리 기능을 추가하기 위해 [@HostListener](https://angular.io/api/core/HostListener) 데코레이터를 사용하여 컴포넌트 또는 요소의 이벤트에 대한 핸들러를 등록한다. @HostListener 데코레이터를 사용하는 대신 @Directive 데코레이터의 메타데이터 객체의 host 프로퍼티를 사용할 수도 있다. 하지만 코드의 가독성 측면에서 유리한 @HostListener 데코레이터를 사용하도록 한다. 이벤트 핸들러 onMouseEnter, onMouseLeave은 textColor 메서드를 호출하여 어트리뷰트 호스트의 텍스트 컬러를 변경한다.
 
-### 3.1.3 @Input 데이터 바인딩
+## 3.3 @Input 데이터 바인딩
 
 현재 textBlue 디렉티브는 이벤트에 의해 어트리뷰트 호스트의 텍스트 컬러를 파란색으로 변경한다. 이제 어트리뷰트 호스트에서 지정한 컬러를 사용하여 어트리뷰트 호스트의 텍스트 컬러를 변경하도록 리팩토링하여 보자. 이를 위해 어트리뷰트 호스트에서 지정한 값을 디렉티브로 가져올 수 있어야 한다.
 
@@ -362,9 +361,9 @@ export class TextColorDirective implements OnInit  {
 }
 ```
 
-## 3.2 커스텀 구조 디렉티브
+# 4. 커스텀 구조 디렉티브
 
-### 3.2.1 디렉티브의 생성
+## 4.1 디렉티브의 생성
 
 ngIf 디렉티브의 기능을 그대로 재현하는 간단한 예제를 통해 커스텀 구조 디렉티브의 살펴보자. Angular CLI를 사용하여 디렉티브를 추가하도록 한다.
 
@@ -418,7 +417,7 @@ export class AppComponent {
 }
 ```
 
-### 3.2.2 TemplateRef와 ViewContainerRef
+## 4.2 TemplateRef와 ViewContainerRef
 
 NgIf, NgFor, NgSwitch와 같은 [빌트인 구조 디렉티브](./angular-component-template-syntax#22-빌트인-구조-디렉티브built-in-structural-directive)는 문법적 설탕(syntactic sugar)인 디렉티브 이름 앞에 붙은 *(asterisk)에 의해 `ng-template`으로 변환된다. 예를 들어 NgIf의 경우를 살펴보자.
 
@@ -444,7 +443,7 @@ Angular는 *ngIf를 만나면 호스트 요소를 template 태그로 래핑하�
 
 위 코드의 ①과 ②를 살펴보자. 프로퍼티 바인딩에 의해 myNgIf 디렉티브의 상태 값이 true이면 createEmbeddedView 메소드에 ng-template 요소를 가리키는 templateRef 객체를 인자로 전달하여 ng-template 요소를 호스트 뷰에 추가한다. 상태 값이 false이면 clear 메소드를 호출하여 호스트 뷰에서 ng-template 요소를 제거한다. 제거된 ng-template 요소는 display: none으로 감추어진 것이 아니라 DOM에 남아있지 않고 완전히 제거되어 불필요한 자원의 낭비를 방지한다.
 
-### 3.2.3 ng-template
+## 4.3 ng-template
 
 ng-template는 페이지에서 렌더링 될 요소를 div 또는 span 등의 요소와 함께 사용할 필요가 없는 요소들을 그룹화할 때 사용한다.
 
@@ -467,7 +466,7 @@ NgIf, NgFor, NgSwtch 디렉티브의 경우, ng-template 요소로 변환된다.
 
 일반적으로 ng-template는 [ngTemplateOutlet](https://angular.io/api/common/NgTemplateOutlet) 또는 myNgIf 예제에서 살펴본 바와 같이 createEmbeddedView를 사용하여 TemplateRef이 가리키는 템플릿화된 뷰 스니펫을 호스트 뷰에 추가해야 할 경우 사용한다.
 
-### 3.2.4 ng-container
+## 4.4 ng-container
 
 ng-container도 ng-template와 마찬가지로 페이지에서 렌더링 될 요소를 div 또는 span 등의 요소와 함께 사용할 필요가 없는 요소들을 그룹화할 때 사용한다.
 

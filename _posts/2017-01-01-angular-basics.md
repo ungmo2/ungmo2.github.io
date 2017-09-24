@@ -38,7 +38,7 @@ Angular와 AngulaJS의 차이점을 정리하면 아래와 같다.
 
 - 선택적 바인딩(one-way, two-way) 지원하고 디렉티브(Directive)와 서비스, 의존성 주입(dependency injection)은 간소화 되었다.
 
-- 주력 개발 언어로써 TypeScript를 도입하여 대규모 개발에 적합한 정적 타입과 인터페이스, 제네릭 등 타입 체크 지원 기능을 제공한다. 
+- 주력 개발 언어로써 TypeScript를 도입하여 대규모 개발에 적합한 정적 타입과 인터페이스, 제네릭 등 타입 체크 지원 기능을 제공한다.
 
 - ECMAScript6에서 새롭게 도입된 모듈, 클래스 등과 ECMAScript7의 데코레이터를 지원한다.
 
@@ -96,6 +96,17 @@ Lazy Loading(지연 로딩)은 SPA의 태생적 단점을 극복하기 위한 �
 
 Angular 코드 자체도 지속적인 최적화가 수행되고 있어 45KB 정도의 크기로 축소되었다고 한다.(ng-conf 2016 기준) Angular는 Mobile First를 지향하는 고성능 프레임워크를 표방하고 있기 때문에 지속적인 코드 최적화가 진행될 것으로 예상된다.
 
+# 4. 브라우저 지원 범위
+
+Angular는 대부분의 모던 브라우저를 지원한다. IE의 경우, 9 이상을 지원한다.
+
+| Chrome | Firefox | Edge  | IE   | Safari | iOS   | Android                      |IE Mobile |
+|:------:|:-------:|:-----:|:----:|:------:|:-----:|:----------------------------:|:--------:|
+| latest | latest  | 14    | 11   | 10     | 10    | Nougat(7.0) Marshmallow(6.0) | 11       |
+|        |         | 13    | 10   | 9      | 9     | Lollipop(5.0, 5.1)           |          |
+|        |         |       | 9    | 8      | 8     | KitKat(4.4)                  |          |
+|        |         |       |      | 7      | 7     | Jelly Bean(4.1, 4.2, 4.3)    |          |
+
 # Reference
 
 * [Angular](https://angular.io/)
@@ -107,3 +118,5 @@ Angular 코드 자체도 지속적인 최적화가 수행되고 있어 45KB 정�
 * [Angular 버저닝과 출시 계획](http://angularjs.blogspot.kr/2016/10/versioning-and-releasing-angular.html)
 
 * [Made with Angular](https://www.madewithangular.com/#/categories/google)
+
+* [Browser support](https://angular.io/guide/browser-support)

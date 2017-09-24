@@ -84,9 +84,9 @@ JavaScript에는 어떠한 자료형이 있는지 그리고 변수는 어떻게 
 
 Javascript의 자료형은 크게 기본 자료형(primitive data type)과 객체형(참조형)으로 구분할 수 있다.
 
-## 1.1 Primitive Data Type (기본자료형)
+## 1.1 기본자료형 (Primitive Data Type)
 
-기본자료형(Primitive data type)의 값은 [변경 불가능한 값(immutable value)](./js-immutability)이다. 또한 이들은 **[pass-by-value](./js-object#5-pass-by-value)** 이다.
+기본자료형의 값은 [변경 불가능한 값(immutable value)](./js-immutability)이다. 또한 이들은 **[pass-by-value](./js-object#5-pass-by-value)** 이다.
 
 ### 1.1.1 Boolean
 
@@ -99,13 +99,13 @@ var bar = false;
 
 ### 1.1.2 null
 
-null 타입은 딱 한 가지 값, `null` 을 가질 수 있다. JavaScript는 case-sensitive하므로 `null`은 Null, NULL등과 다르다.
+null 타입은 딱 한 가지 값, `null`을 가질 수 있다. JavaScript는 case-sensitive하므로 `null`은 Null, NULL등과 다르다.
 
-Computer science에서 `null`은 의도적으로 기본형(primitives) 또는 object형 변수에 값이 없다는 것을 명시한 것이다.
+Computer science에서 `null`은 의도적으로 기본형(primitives) 또는 object형 변수에 값이 없다는 것을 명시한 것이다. 이는 변수와 메모리 어드레스의 참조 정보를 제거하는 것을 의미하며 자바스크립트 엔진은 참조가 없어진 메모리 영역에 대해 [가비지 콜렉션](https://developer.mozilla.org/ko/docs/Web/JavaScript/Memory_Management)을 수행할 것이다.
 
 ```javascript
 var foo = 'Lee';
-foo = null;  // 값 또는 참조 정보가 제거됨
+foo = null;  // 참조 정보가 제거됨
 ```
 
 주의할 것은 데이터 형식을 나타내는 문자열을 반환하는 typeof 연산자로 null값은 가진 변수를 연산해 보면 null이 아닌 object가 나온다. 이는 설계상의 문제이다.
@@ -131,11 +131,12 @@ console.log(foo === null);        // true
 var foo;
 console.log(foo); // undefined
 
-foo = {
+var bar = {
   name: 'Lee',
   gender: 'male'
-}
-console.log(foo.bar); // undefined
+};
+console.log(bar);     // { name: 'Lee', gender: 'male' }
+console.log(bar.baz); // undefined
 ```
 
 ### 1.1.4 Number
@@ -177,17 +178,20 @@ var answer = "It's alright";        // Single quote inside double quotes
     answer = 'He is called "John"'; // Double quotes inside single quotes
 ```
 
-C와 같은 언어와는 다르게, 자바스크립트의 문자열은 변경 불가능(immutable)하다. 이것은 한 번 문자열이 생성되면, 그 문자열을 변경할 수 없다는걸 의미한다.
+C와 같은 언어와는 다르게, 자바스크립트의 문자열은 기본자료형으로 변경 불가능(immutable)하다. 이것은 한 번 문자열이 생성되면, 그 문자열을 변경할 수 없다는걸 의미한다.
 
 ```javascript
 var str = 'string';
-console.log(str[0],str[1],str[2],str[3],str[4],str[5]);
+// 문자열은 유사배열이다
+console.log(str[0], str[1], str[2], str[3], str[4], str[5]);
 
 str[0] = 'S';
 console.log(str); // string
 ```
 
-문자열은 배열처럼 인덱스를 통해 접근할 수 있다. str[0] = 'S'처럼 이미 생성된 문자열에 새로운 문자를 대입하여 변경시켜도 반영되지 않는다(이때 에러가 발생하지 않는다). 한번 생성된 문자열은 read only로서 수정은 불가하다. 이것을 변경 불가능(immutable)이라 한다.
+문자열은 배열처럼 인덱스를 통해 접근할 수 있다. 이와 같은 성질을 **유사 배열**이라 한다.
+
+str[0] = 'S'처럼 이미 생성된 문자열에 새로운 문자를 대입하여 변경시켜도 반영되지 않는다(이때 에러가 발생하지 않는다). 한번 생성된 문자열은 read only로서 수정은 불가하다. 이것을 변경 불가능(immutable)이라 한다.
 
 그러나 새로운 문자열을 할당하는 것은 물론 가능하다. 이는 기존 문자열을 수정하는 것이 아닌 새로운 문자열을 할당하는 것이기 때문이다.
 
@@ -223,29 +227,24 @@ console.log(obj[key]); // value
 
 ## 1.2 객체형 (Object type, 참조형)
 
-[객체](./js-object)는 데이터와 그 데이터에 관련되는 동작(절차,방법,기능)을 모두 포함할 수 있는 개념적 존재이다. 달리 말해, 이름과 값을 가지는 데이터를 의미하는 프로퍼티(property)와 동작을 의미하는 메소드(method)를 포함하고 있는 독립적 주체이다.
+[객체](./js-object)는 데이터와 그 데이터에 관련되는 동작(절차,방법,기능)을 모두 포함할 수 있는 개념적 존재이다. 달리 말해, 이름과 값을 가지는 데이터를 의미하는 프로퍼티(property)와 동작을 의미하는 메소드(method)를 포함할 수 있는 독립적 주체이다.
 
-자바스크립트는 객체(object)기반의 스크립트 언어이며 자바스크립트를 이루고 있는 거의 “모든 것”은 객체이다. 기본자료형(Primitives)을 제외한 나머지 값들(배열, 함수, 정규표현식 등)은 모두 객체이다.
-
-* 함수 (Function)
-* 배열 (Array)
-* 날짜 (Date)
-* 정규식 (RegExp)
-
-이것들은 모두 객체이다. 또한 객체는 <strong>pass-by-reference</strong>이다.
+자바스크립트는 객체(object)기반의 스크립트 언어로서 자바스크립트를 이루고 있는 거의 "모든 것"이 객체이다. 기본자료형(Primitives)을 제외한 나머지 값들(배열, 함수, 정규표현식 등)은 모두 객체이다. 또한 객체는 <strong>pass-by-reference</strong>이다.
 
 # 2. 변수 (Variable)
 
-애플리케이션에서 값(value)을 유지할 필요가 있을 때 변수를 사용한다.
+애플리케이션에서 값(value)을 유지할 필요가 있을 때 변수를 사용한다. 변수는 위치(주소)를 기억하는 저장소이다. 위치란 메모리 상의 주소(address)를 의미한다. 즉 변수란 메모리 주소(Memory address)에 접근하기 위해 사람이 이해할 수 있는 언어로 지정한 식별자(identifier)이다.
 
-변수는 값을 저장, 조회, 조작(변경)하는 데 사용되며 다른 사용자가 변수의 존재 목적을 쉽게 이해할 수 있도록 의미있는 이름을 지정하여야한다.
+변수는 값(value)을 저장(할당), 참조하기 위해 사용된다. 한번 쓰고 버리는 값이 아닌 유지할 필요가 있는 값의 경우, 변수를 사용한다.
+
+변수는 다른 사용자가 변수의 존재 목적을 쉽게 이해할 수 있도록 의미있는 이름을 지정하여야한다.
 
 ```javascript
 var score = 100;  // OK
 var x = 3;        // NG
 ```
 
-변수명은 identifier(식별자)로 불리기도 하며 명명 규칙이 존재한다.
+변수명은 식별자(identifier)로 불리기도 하며 명명 규칙이 존재한다.
 
 * 반드시 영문자(특수문자 제외), underscore ( _ ), 또는 달러 기호($)로 시작하여야 한다. 이어지는 문자에는 숫자(0~9)도 사용할 수 있다.
 * JavaScript는 대/소문자를 구별하므로 사용할 수 있는 문자는 "A" ~ "Z" (대문자)와 "a" ~ "z" (소문자)이다.
@@ -254,7 +253,7 @@ var x = 3;        // NG
 
 ```javascript
 var name;     // 변수 name 선언
-name = 'Lee'; // 변수 name에 값 'Lee'가 저장(할당)되었다.
+name = 'Lee'; // 변수 name에 값 'Lee'가 할당(저장)되었다.
 
 var age = 30; // 선언과 할당
 
@@ -292,7 +291,7 @@ console.log(x); // 100
 
 ## 2.2 변수 선언 시 var 키워드 생략 허용
 
-변수 선언 시 var 키워드를 생략할 수 있다.
+변수 선언 시 var 키워드를 생략할 수 있다. 이때 변수는 전역 변수가 된다.
 
 ```javascript
 x = 1;
@@ -374,7 +373,7 @@ var 키워드로 선언된 변수의 생명 주기
 
 앞에서 살펴본 예제를 호이스팅 관점에서 다시 한번 알아보도록 하자.
 
-①이 실행되기 이전에 `var foo = 123;`이 호이스팅되어 ①구문 앞에 `var foo;`가 옮겨진다.(실제로 변수 선언이 코드 레벨로 옮겨진 것은 아니고 변수 객체에 등록되고 undefined로 초기화된 것이다.) 하지만 변수 선언 단계와 초기화 단계가 할당 단계와 분리되어 진행되기 때문에 이 단계에서는 foo에는 undefined가 할당되어 있다. 변수 foo에 값이 할당되는 것은 2행에서 실시된다.
+①이 실행되기 이전에 `var foo = 123;`이 호이스팅되어 ①구문 앞에 `var foo;`가 옮겨진다.(실제로 변수 선언이 코드 레벨로 옮겨진 것은 아니고 변수 객체(Variable object)에 등록되고 undefined로 초기화된 것이다.) 하지만 변수 선언 단계와 초기화 단계가 할당 단계와 분리되어 진행되기 때문에 이 단계에서는 foo에는 undefined가 할당되어 있다. 변수 foo에 값이 할당되는 것은 2행에서 실시된다.
 
 ②에서는 변수에 값이 할당되었기 때문에 123이 출력된다.
 
@@ -407,3 +406,7 @@ ES5에서 변수를 선언할 수 있는 유일한 방법은 var 키워드를 �
 변수의 범위(scope)는 좁을수록 좋다.
 
 ES6는 이러한 var의 단점을 보완하기 위해 [let과 const 키워드](./es6-block-scope)를 도입하였다.
+
+# Reference
+
+*[자바스크립트의 메모리관리](https://developer.mozilla.org/ko/docs/Web/JavaScript/Memory_Management)

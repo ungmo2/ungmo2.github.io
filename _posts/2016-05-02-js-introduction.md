@@ -77,7 +77,7 @@ ECMAScript 6 : [ECMA-262 6th edition](http://www.ecma-international.org/ecma-262
 [ES6 compat table](https://kangax.github.io/compat-table/es6/)
 {: .desc-img}
 
-브라우저의 ES6 지원은 점차 확대될 것으로 기대되지만 지금 당장 ES6를 사용하고자 한다면 [babel](https://babeljs.io/)과 같은 Transpiler를 사용하여야 한다.
+모던 브라우저의 ES6 지원은 97%로 거의 100%에 육박하지만 IE 지원을 고려한다면 [babel](https://babeljs.io/)과 같은 Transpiler를 사용하여야 한다.
 
 # Reference
 

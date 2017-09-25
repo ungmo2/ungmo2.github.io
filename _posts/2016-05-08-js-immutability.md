@@ -86,7 +86,7 @@ myName = user.name;  // 재할당
 console.log(myName); // Kim
 ```
 
-user.name의 값을 변경했지만 변수 myName의 값은 변경되지 않았다. 이는 user.name의 타입 string이 변경 불가능하기 때문이다.
+user.name의 값을 변경했지만 변수 myName의 값은 변경되지 않았다. 이는 변수 myName에 user.name을 할당했을 때 user.name의 참조를 할당하는 것이 아니라 immutable한 값 'Lee'가 메모리에 새로 생성되고 myName은 이것을 참조하기 때문이다. 따라서 user.name의 값이 변경된다 하더라도 변수 myName이 참조하고 있는 'Lee'는 변함이 없다.
 
 ```javascript
 var user1 = {

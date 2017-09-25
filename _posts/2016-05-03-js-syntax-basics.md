@@ -31,15 +31,16 @@ Javascript는 interactive한 웹페이지 작성을 가능하게 한다. 예를 
 <body>
   <h1 id="heading"></h1>
   <button id="my-btn">click me!</button>
-</body>
-<script>
-  var heading = document.getElementById('heading');
-  var myButton = document.getElementById('my-btn');
 
-  myButton.addEventListener('click', function () {
-    heading.innerHTML = 'Hello World!';
-  });
-</script>
+  <script>
+    var heading = document.getElementById('heading');
+    var myButton = document.getElementById('my-btn');
+
+    myButton.addEventListener('click', function () {
+      heading.innerHTML = 'Hello World!';
+    });
+  </script>
+</body>
 </html>
 ```
 
@@ -64,8 +65,9 @@ HTML은 웹페이지의 내용(content)과 구조(structure)을 담당한다. Ja
 <body>
   <h1 id="heading"></h1>
   <button id="my-btn">click me!</button>
+
+  <script src="main.js"></script>
 </body>
-<script src="main.js"></script>
 </html>
 ```
 

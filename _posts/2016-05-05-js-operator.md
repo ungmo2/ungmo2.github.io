@@ -203,12 +203,12 @@ var foo = 'Cat' || 'Dog'  // t || t returns 'Cat'
 // || (논리 합) 연산자
 var o1 = 'Cat' || 'Dog';    // t || t returns Cat
 var o2 = false || 'Cat';    // f || t returns Cat
-var o3 = 'Cat' || false;    // t || f returns Cat 
+var o3 = 'Cat' || false;    // t || f returns Cat
 
 // && (논리곱) 연산자
 var a1 = 'Cat' && 'Dog';    // t && t returns Dog
 var a2 = false && 'Cat';    // f && t returns false
-var a3 = 'Cat' && false;    // t && f returns false 
+var a3 = 'Cat' && false;    // t && f returns false
 
 // example
 function foo (str) {
@@ -238,24 +238,24 @@ if (obj && obj.foo) {
 
 | Operator	  | Description
 | :---------: |:-------------- |
-| typeof	    | 변수의 자료형을 문자열로 반환한다. null과 배열의 경우 object, 함수의 경우 function를 반환하는 것에 유의하여야 한다.
+| typeof	    | 피연산자의 데이터 타입(자료형)을 문자열로 반환한다. null과 배열의 경우 object, 함수의 경우 function를 반환하는 것에 유의하여야 한다.
 | instanceof	| 객체가 동일 객체형의 인스턴스이면 `true`를 반환한다.
 
 ```javascript
-typeof 'John'                 // returns string
-typeof 3.14                   // returns number
-typeof NaN                    // returns number
-typeof false                  // returns boolean
-typeof [1, 2, 3, 4]           // returns object
-typeof {name:'John', age:34}  // returns object
-typeof new Date()             // returns object
-typeof function () {}         // returns function
-typeof myCar                  // returns undefined (설계적 결함)
-typeof null                   // returns object (설계적 결함)
+console.log(typeof 'John');                 // string
+console.log(typeof 3.14);                   // number
+console.log(typeof NaN);                    // number
+console.log(typeof false);                  // boolean
+console.log(typeof [1, 2, 3, 4]);           // object
+console.log(typeof {name:'John', age:34});  // object
+console.log(typeof new Date());             // object
+console.log(typeof function () {});         // function
+console.log(typeof myCar);                  // undefined (설계적 결함)
+console.log(typeof null);                   // object (설계적 결함)
 
-function Person(){}
-var me = new Person()
-me instanceof Person // returns true
+function Person() {}
+var me = new Person();
+console.log(me instanceof Person); // true
 ```
 
 # 7. !!

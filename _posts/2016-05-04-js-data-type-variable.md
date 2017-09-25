@@ -111,14 +111,14 @@ foo = null;  // 참조 정보가 제거됨
 주의할 것은 데이터 형식을 나타내는 문자열을 반환하는 typeof 연산자로 null값은 가진 변수를 연산해 보면 null이 아닌 object가 나온다. 이는 설계상의 문제이다.
 
 ```javascript
-var foo  = null;
+var foo = null;
 console.log(typeof foo); // object
 ```
 
 따라서 null 타입 변수인지 확인할 때 typeof 연산자를 사용하면 안되고 일치 연산자(===)를 사용하여야 한다.
 
 ```javascript
-var foo  = null;
+var foo = null;
 console.log(typeof foo === null); // false
 console.log(foo === null);        // true
 ```
@@ -178,7 +178,14 @@ var answer = "It's alright";        // Single quote inside double quotes
     answer = 'He is called "John"'; // Double quotes inside single quotes
 ```
 
-C와 같은 언어와는 다르게, 자바스크립트의 문자열은 기본자료형으로 변경 불가능(immutable)하다. 이것은 한 번 문자열이 생성되면, 그 문자열을 변경할 수 없다는걸 의미한다.
+C와 같은 언어와는 다르게, 자바스크립트의 문자열은 기본자료형으로 변경 불가능(immutable)하다. 이것은 한 번 문자열이 생성되면, 그 문자열을 변경할 수 없다는 것을 의미한다. 아래의 코드를 살펴보자.
+
+```javascript
+var str = 'Hello';
+str = 'world';
+```
+
+첫번째 구문이 실행되면 메모리에 문자열 'Hello'가 생성되고 식별자 str은 메모리에 생성된 문자열 'Hello'의 메모리 주소를 가리킨다. 그리고 두번째 구문이 실행되면 이전에 생성된 문자열 'Hello'을 수정하는 것이 아니라 새로운 문자열 'world'를 메모리에 생성하고 식별자 str은 이것을 가리킨다. 이때 문자열 'Hello'와 'world'는 모두 메모리에 존재하고 있다. 변수 str은 문자열 'Hello'를 가리키고 있다가 문자열 'world'를 가리키도록 변경되었을 뿐이다.
 
 ```javascript
 var str = 'string';

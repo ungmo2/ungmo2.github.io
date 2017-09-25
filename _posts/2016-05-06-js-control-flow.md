@@ -50,7 +50,7 @@ console.log(x);
 
 데이터의 흐름을 제어한다는 것은 일정 조건에 따른 의사결정(decision)을 통해 다음 진행 흐름으로 유도(Control flow)하는 것이다. 이는 가장 원시적인 형태의 인공 지능(Artificial Intelligence)을 부여하는 것이라고 볼 수 있다. 즉 의사결정(상황판단)의 기준을 제시하고 그 결과에 따른 행위를 지시하는 것이다.
 
-조건문(conditional statement)를 통해 이를 수행할 수 있다. 조건문은 주어진 조건식(conditional expression)이 참(`true`)인지 거짓(`false`)인지에 따라 실행되어질 구문들의 집합이다.
+조건문(conditional statement)을 통해 이를 수행할 수 있다. 조건문은 주어진 조건식(conditional expression)이 참(`true`)인지 거짓(`false`)인지에 따라 실행되어질 구문들의 집합이다.
 
 JavaScript는 2가지의 조건문 `if...else` 와 `switch`를 제공한다.
 

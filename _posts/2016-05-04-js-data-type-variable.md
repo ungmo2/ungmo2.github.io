@@ -416,4 +416,4 @@ ES6는 이러한 var의 단점을 보완하기 위해 [let과 const 키워드](.
 
 # Reference
 
-*[자바스크립트의 메모리관리](https://developer.mozilla.org/ko/docs/Web/JavaScript/Memory_Management)
+* [자바스크립트의 메모리관리](https://developer.mozilla.org/ko/docs/Web/JavaScript/Memory_Management)

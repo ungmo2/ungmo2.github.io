@@ -349,7 +349,7 @@ console.dir(square);
 ![function property](/img/function_property.png)
 {: .w-450}
 
-여러가지 프로퍼티를 확인할 수 있는데 이들 중 length, prototype 프로퍼티는 ECMAScript spec에서 정한 표준 프로퍼티이다. 나머지 프로퍼티는 ECMAScript 표준 spec은 아니다.
+<!-- 여러가지 프로퍼티를 확인할 수 있는데 이들 중 length, prototype 프로퍼티는 ECMAScript spec에서 정한 표준 프로퍼티이다. 나머지 프로퍼티는 ECMAScript 표준 spec은 아니다. -->
 
 ## 6.1 arguments 프로퍼티
 
@@ -363,10 +363,10 @@ function multiply(x, y) {
   return x * y;
 }
 
-console.log(multiply());     // {}
-console.log(multiply(1));    // { '0': 1 }
-console.log(multiply(1,2));  // { '0': 1, '1': 2 }
-console.log(multiply(1,2,3));// { '0': 1, '1': 2, '2': 3 }
+multiply();        // {}
+multiply(1);       // { '0': 1 }
+multiply(1, 2);    // { '0': 1, '1': 2 }
+multiply(1, 2, 3); // { '0': 1, '1': 2, '2': 3 }
 ```
 
 매개변수(parameter)는 인수(argument)로 초기화된다.
@@ -377,22 +377,22 @@ console.log(multiply(1,2,3));// { '0': 1, '1': 2, '2': 3 }
 
 이러한 자바스크립트의 특성때문에 런타임 시에 호출된 함수의 인자 갯수를 확인하고 이에 따라 동작을 달리 정의할 필요가 있을 수 있다. 이때 유용하게 사용되는 것이 arguments 객체이다.
 
-즉 arguments 객체는 매개변수 갯수가 확정되지 않은 **가변 인자 함수**를 구현할 때 유용하게 사용된다.
+arguments 객체는 매개변수 갯수가 확정되지 않은 **가변 인자 함수**를 구현할 때 유용하게 사용된다.
 
 ```javascript
 function sum() {
   var res = 0;
 
-  for (var i=0; i<arguments.length; i++) {
+  for (var i = 0; i < arguments.length; i++) {
     res += arguments[i];
   }
 
   return res;
 }
 
-console.log(sum());      // 0
-console.log(sum(1,2));   // 3
-console.log(sum(1,2,3)); // 6
+console.log(sum());        // 0
+console.log(sum(1, 2));    // 3
+console.log(sum(1, 2, 3)); // 6
 ```
 
 자바스크립트는 함수를 호출할 때 인수들과 함께 암묵적으로 arguments 객체가 함수 내부로 전달된다. arguments 객체는 배열의 형태로 인자값 정보를 담고 있지만 실제 배열이 아닌 <strong>유사배열객체(array-like object)</strong>이다.
@@ -401,12 +401,20 @@ console.log(sum(1,2,3)); // 6
 
 ```javascript
 function sum() {
+  if (!arguments.length) return 0;
+
   // arguments 객체를 배열로 변환
   var array = Array.prototype.slice.call(arguments);
   return array.reduce(function (pre, cur) {
     return pre + cur;
   });
 }
+
+// ES6
+// function sum(...args) {
+//   if (!args.length) return 0;
+//   return args.reduce((pre, cur) => pre + cur);
+// }
 
 console.log(sum(1, 2, 3, 4, 5)); // 15
 ```
@@ -422,15 +430,11 @@ function foo(func) {
 }
 
 function bar() {
-  if (bar.caller == null) {
-    return 'The function was called from the top!';
-  } else {
-    return 'This function\'s caller :\n' + bar.caller;
-  }
+  return 'caller : ' + bar.caller;
 }
 
-console.log(foo(bar));
-console.log(bar());
+console.log(foo(bar)); // function foo(func) {...}
+console.log(bar());    // null (browser에서의 실행 결과)
 ```
 
 ## 6.3 length 프로퍼티
@@ -619,7 +623,7 @@ logHello('lee');  // logHello is not defined
 ```
 Javascript의 함수는 [일급객체](./js-function#3-first-class-object-일급-객체)이다. 따라서 Javascript의 함수는 흡사 변수와 같이 사용될 수 있다.
 
-콜백 함수는 매개변수를 통해 전달되고 전달받은 함수의 내부에서 <strong>어느 특정시점</strong>에 실행된다. 이는 마치 함수 내에서 어느 특정시점 또는 조건 하에 특정 행위를 하는 [클로저](./js-closure)를 호출하는 것과 유사하다.
+콜백 함수는 매개변수를 통해 전달되고 전달받은 함수의 내부에서 <strong>어느 특정시점</strong>에 실행된다.<!--  이는 마치 함수 내에서 어느 특정시점 또는 조건 하에 특정 행위를 하는 [클로저](./js-closure)를 호출하는 것과 유사하다. -->
 
 setTimeout()의 콜백 함수를 살펴보자. 두번째 매개변수에 전달된 시간이 경과되면 첫번째 매개변수에 전달한 콜백 함수가 호출된다.
 

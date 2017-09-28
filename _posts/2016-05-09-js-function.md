@@ -543,7 +543,7 @@ prototype 프로퍼티와 [[Prototype]] 프로퍼티는 모두 프로토타입 �
 }());
 
 // 익명 즉시실행함수(immediately-invoked function expression)
-(function() {
+(function () {
   var a = 3;
   var b = 5;
   return a * b;
@@ -559,7 +559,7 @@ prototype 프로퍼티와 [[Prototype]] 프로퍼티는 모두 프로토타입 �
 특히 jQuery와 같은 라이브러리의 경우 코드를 즉시실행함수 내에 정의해 두면 라이브러리의 변수들이 독립된 영역 내에 있게 되므로 여러 라이브러리들은 동시에 사용하더라도 변수명 충돌과 같은 문제를 방지할 수 있다.
 
 ```javascript
-(function() {
+(function () {
   var foo = 1;
   console.log(foo);
 }());

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Angular <strong>Lifecyle</strong>
+title: Angular <strong>Life cycle</strong>
 subtitle: 생명주기와 훅 메소드
 categories: angular
 section: angular

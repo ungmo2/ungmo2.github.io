@@ -4,7 +4,7 @@ title: Angular Component - <strong>Accessing Child</strong>
 subtitle: 부모 컴포넌트에서 자식 요소로의 접근
 categories: angular
 section: angular
-description: Angular 애플리케이션을 작성하다보면 부모 컴포넌트에서 자식 요소(자식 컴포넌트, 디렉티브, 네이티브 DOM 요소)에 접근이 필요한 경우가 있다. 예를 들어 부모 컴포넌트에서 자식 컴포넌트의 프로퍼티를 직접 변경하고 싶다던지 메소드를 직접 실행하고 싶은 경우이다. Angular는 부모 컴포넌트에서 자식 요소에 접근할 수 있는 데코레이터들을 제공한다. 컴포넌트 템플릿에 배치된 자식요소(자식 컴포넌트, 디렉티브, 네이티브 DOM 요소)를 ViewChild라고 한다. 이름에서 알 수 있듯이 @ViewChild는 탐색 조건에 부합하는 1개의 요소를 취득할 수 있고, @ViewChildren는 탐색 조건에 부합하는 여러개의 요소를 한꺼번에 취득할 수 있다. 
+description: Angular 애플리케이션을 작성하다보면 부모 컴포넌트에서 자식 요소(자식 컴포넌트, 디렉티브, 네이티브 DOM 요소)에 접근이 필요한 경우가 있다. 예를 들어 부모 컴포넌트에서 자식 컴포넌트의 프로퍼티를 직접 변경하고 싶다던지 메소드를 직접 실행하고 싶은 경우이다. Angular는 부모 컴포넌트에서 자식 요소에 접근할 수 있는 데코레이터들을 제공한다. 컴포넌트 템플릿에 배치된 자식요소(자식 컴포넌트, 디렉티브, 네이티브 DOM 요소)를 ViewChild라고 한다. 이름에서 알 수 있듯이 @ViewChild는 탐색 조건에 부합하는 1개의 요소를 취득할 수 있고, @ViewChildren는 탐색 조건에 부합하는 여러개의 요소를 한꺼번에 취득할 수 있다.
 ---
 
 * TOC
@@ -23,7 +23,7 @@ Angular 애플리케이션을 작성하다보면 부모 컴포넌트에서 자�
 
 # 1. @ViewChild와 @ViewChildren
 
-컴포넌트 템플릿에 배치된 자식요소(자식 컴포넌트, 디렉티브, 네이티브 DOM 요소)를 ViewChild라고 한다. 이름에서 알 수 있듯이 @ViewChild는 탐색 조건에 부합하는 1개의 요소를 취득할 수 있고, @ViewChildren는 탐색 조건에 부합하는 여러개의 요소를 한꺼번에 취득할 수 있다. 
+컴포넌트 템플릿에 배치된 자식요소(자식 컴포넌트, 디렉티브, 네이티브 DOM 요소)를 ViewChild라고 한다. 이름에서 알 수 있듯이 @ViewChild는 탐색 조건에 부합하는 1개의 요소를 취득할 수 있고, @ViewChildren는 탐색 조건에 부합하는 여러개의 요소를 한꺼번에 취득할 수 있다.
 
 ## 1.1 @ViewChild
 
@@ -41,7 +41,7 @@ Angular 애플리케이션을 작성하다보면 부모 컴포넌트에서 자�
 
 예제를 통해 @ViewChild를 사용하여 보자. 완성된 예제는 아래와 같다.
 
-![example-view-child](./img/example-view-child.png) 
+![example-view-child](./img/example-view-child.png)
 
 @ViewChild 예제 실행 화면
 {: .desc-img}
@@ -124,14 +124,14 @@ export class AppComponent {
 }
 ```
 
-부모 컴포넌트는 @ViewChild 데코레이터를 통해 자식 컴포넌트 ChildComponent를 탐색하여 취득한 자식 컴포넌트 ChildComponent의 인스턴스를 myChild 프로퍼티에 바인딩하였다. 
+부모 컴포넌트는 @ViewChild 데코레이터를 통해 자식 컴포넌트 ChildComponent를 탐색하여 취득한 자식 컴포넌트 ChildComponent의 인스턴스를 myChild 프로퍼티에 바인딩하였다.
 
 ```typescript
 @ViewChild(ChildComponent) myChild: ChildComponent;
 ```
 
-@ViewChild 데코레이터는 1개의 자식 요소만을 가져올 수 있기 때문에 만일 자식 요소 중에 ChildComponent가 여러개 탐색되었을 경우, 첫번째 ChildComponent의 인스턴스를 가져온다. 
-프로퍼티 myChild에는 자식 컴포넌트 ChildComponent의 인스턴스가 바인딩되어 있으므로 프로퍼티 myChild를 통해 자식 컴포넌트의 프로퍼티, 메소드에 접근할 수 있다. 단 접근 제한자(Access modifier) public으로 공개된 프로퍼티, 메소드에만 접근할 수 있다. typescript는 public, protected, private와 같은 접근 제한자를 지정하지 않은 프로퍼티, 메소드를 기본설정인 public으로 지정한다. 
+@ViewChild 데코레이터는 1개의 자식 요소만을 가져올 수 있기 때문에 만일 자식 요소 중에 ChildComponent가 여러개 탐색되었을 경우, 첫번째 ChildComponent의 인스턴스를 가져온다.
+프로퍼티 myChild에는 자식 컴포넌트 ChildComponent의 인스턴스가 바인딩되어 있으므로 프로퍼티 myChild를 통해 자식 컴포넌트의 프로퍼티, 메소드에 접근할 수 있다. 단 접근 제한자(Access modifier) public으로 공개된 프로퍼티, 메소드에만 접근할 수 있다. typescript는 public, protected, private와 같은 접근 제한자를 지정하지 않은 프로퍼티, 메소드를 기본설정인 public으로 지정한다.
 
 ## 1.2 @ViewChildren
 
@@ -149,7 +149,7 @@ export class AppComponent {
 
 예제를 통해 @ViewChildren를 사용하여 보자. 완성된 예제는 아래와 같다.
 
-![example-view-children](./img/example-view-children.png) 
+![example-view-children](./img/example-view-children.png)
 
 @ViewChildren 예제 실행 화면
 {: .desc-img}
@@ -176,9 +176,9 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'child',
   template: `
-    <input 
-      type="checkbox" 
-      [id]="checkbox.id" 
+    <input
+      type="checkbox"
+      [id]="checkbox.id"
       [checked]="checkbox.checked">
     <label [for]="checkbox.id">{{ "{{ checkbox.label " }}}}</label>
   `
@@ -207,8 +207,8 @@ import { ChildComponent } from './child/child.component';
 export class AppComponent {
   checkboxs: [{ id: number, label: string, checked: boolean }];
   active: boolean;
-  
-  // @ViewChildren 데코레이터는 여러개의 자식 요소를 취득한다. 
+
+  // @ViewChildren 데코레이터는 여러개의 자식 요소를 취득한다.
   // 이때 취득된 자식 요소를 바인딩할 프로퍼티의 타입은 QueryList이다.
   @ViewChildren(ChildComponent) myChildren: QueryList<ChildComponent>;
 
@@ -229,7 +229,7 @@ export class AppComponent {
 }
 ```
 
-부모 컴포넌트는 프로퍼티 바인딩을 통해 자식 컴포넌트에게 checkbox 객체를 전달하고 자식 컴포넌트는 @Input 데코레이터를 통해 checkbox 객체를 접수한다. 부모 컴포넌트는 @ViewChildren 데코레이터를 통해 자식 컴포넌트 ChildComponent를 탐색하여 취득한 모든 자식 컴포넌트 ChildComponent의 인스턴스를 myChildren 프로퍼티에 바인딩하였다. 
+부모 컴포넌트는 프로퍼티 바인딩을 통해 자식 컴포넌트에게 checkbox 객체를 전달하고 자식 컴포넌트는 @Input 데코레이터를 통해 checkbox 객체를 접수한다. 부모 컴포넌트는 @ViewChildren 데코레이터를 통해 자식 컴포넌트 ChildComponent를 탐색하여 취득한 모든 자식 컴포넌트 ChildComponent의 인스턴스를 myChildren 프로퍼티에 바인딩하였다.
 
 ```typescript
 @ViewChildren(ChildComponent) myChildren: QueryList<ChildComponent>;
@@ -245,19 +245,19 @@ this.myChildren.map(child => child.checkbox.checked = this.active);
 
 ## 1.3 템플릿 참조 변수를 사용한 네이티브 DOM 접근
 
-지금까지 @ViewChild와 @ViewChildren 데코레이터를 통해 자식 컴포넌트의 인스턴스를 취득하는 방법에 대해 알아보았다. @ViewChild와 @ViewChildren 데코레이터는 자식 컴포넌트뿐만 아니라 템플릿에 배치된 모든 요소 즉, 자식 컴포넌트, 디렉티브, 네이티브 DOM 요소를 직접 탐색하고 접근할 수 있다. 
+지금까지 @ViewChild와 @ViewChildren 데코레이터를 통해 자식 컴포넌트의 인스턴스를 취득하는 방법에 대해 알아보았다. @ViewChild와 @ViewChildren 데코레이터는 자식 컴포넌트뿐만 아니라 템플릿에 배치된 모든 요소 즉, 자식 컴포넌트, 디렉티브, 네이티브 DOM 요소를 직접 탐색하고 접근할 수 있다.
 
-Angular는 DOM에 직접 접근하는 방식을 사용하지 않고 템플릿과 컴포넌트 클래스의 상호 관계를 선언하는 방식(선언형 프로그래밍: Declarative programming)으로 뷰와 모델의 관계를 관리한다. 이때 사용되는 것이 데이터 바인딩이며 이를 통해 템플릿은 컴포넌트 클래스와 연결된다. 
+Angular는 DOM에 직접 접근하는 방식을 사용하지 않고 템플릿과 컴포넌트 클래스의 상호 관계를 선언하는 방식(선언형 프로그래밍: Declarative programming)으로 뷰와 모델의 관계를 관리한다. 이때 사용되는 것이 데이터 바인딩이며 이를 통해 템플릿은 컴포넌트 클래스와 연결된다.
 
-네이티브 DOM에 직접 접근하는 방식은 뷰와 로직 간의 관계를 느슨하게 결합하기 어려운 구조로 만든다. 뷰가 변경되면 로직도 변경될 가능성이 매우 높아져 로직이 뷰에 종속되기 때문에 템플릿 참조 변수를 사용하여 네이티브 DOM에 직접 접근하는 방식은 이 방법 이외에는 다른 해결 수단이 없을 때에만 한정하여 사용하여야 한다. 
+네이티브 DOM에 직접 접근하는 방식은 뷰와 로직 간의 관계를 느슨하게 결합하기 어려운 구조로 만든다. 뷰가 변경되면 로직도 변경될 가능성이 매우 높아져 로직이 뷰에 종속되기 때문에 템플릿 참조 변수를 사용하여 네이티브 DOM에 직접 접근하는 방식은 이 방법 이외에는 다른 해결 수단이 없을 때에만 한정하여 사용하여야 한다.
 
-DOM에 직접 접근하여 템플릿 내의 자식 요소를 직접 탐색하고 접근하기 위해서는 탐색 대상 요소에 템플릿 참조 변수를 지정할 필요가 있다. 그리고 @ViewChild와 @ViewChildren 데코레이터의 인자로 탐색 대상 요소에 지정된 템플릿 참조 변수를 문자열의 형태로 전달한다. 
+DOM에 직접 접근하여 템플릿 내의 자식 요소를 직접 탐색하고 접근하기 위해서는 탐색 대상 요소에 템플릿 참조 변수를 지정할 필요가 있다. 그리고 @ViewChild와 @ViewChildren 데코레이터의 인자로 탐색 대상 요소에 지정된 템플릿 참조 변수를 문자열의 형태로 전달한다.
 
 ![elementref](./img/elementref.png)
 {: .w-650}
 
 템플릿 참조 변수를 사용한 DOM 접근
-{: .desc-img} 
+{: .desc-img}
 
 예제를 통해 사용 방법을 살펴보자. 새로운 Angular 애플리케이션을 생성하고 루트 컴포넌트를 아래와 같이 수정한다.
 
@@ -297,7 +297,7 @@ export class AppComponent {
 
 위 예제의 실행 결과는 아래와 같다.
 
-![example-view-children-ref](./img/example-view-children-ref.png) 
+![example-view-children-ref](./img/example-view-children-ref.png)
 
 템플릿 참조 변수를 사용한 DOM 접근 예제 실행 화면
 {: .desc-img}
@@ -310,7 +310,7 @@ ngAfterViewInit 메소드는 뷰 초기화가 종료됐을 때 호출되는 컴�
 
 ## 2.1 콘텐트 프로젝션(Content Projection)
 
-HTML 요소는 시작 태그와 종료 태그 사이에 콘텐츠(Contents)를 포함할 수 있다. 이 콘텐츠는 텍스트일 수도 있고 또 다른 요소일 수도 있다.  
+HTML 요소는 시작 태그와 종료 태그 사이에 콘텐츠(Contents)를 포함할 수 있다. 이 콘텐츠는 텍스트일 수도 있고 또 다른 요소일 수도 있다.
 
 ![HTML 요소](./img/tag.png)
 {: .w-300}
@@ -318,8 +318,8 @@ HTML 요소는 시작 태그와 종료 태그 사이에 콘텐츠(Contents)를 �
 HTML 요소와 콘텐츠
 {: .desc-img}
 
-Angular는 콘텐트 프로젝션(Content projection)을 통해 자식 컴포넌트의 콘텐츠를 지정할 수 있다. AngularJS에서 트랜스클루전(transclusion)이라고 불렀던 콘텐트 프로젝션은 부모 컴포넌트가 자식 컴포넌트에게 부모 컴포넌트의 템플릿 일부를 콘텐츠로 전달할 수 있는 기능이다. 자식 컴포넌트는 부모 컴포넌트가 전달한 콘텐츠를 전달받아 표시할 위치를 ngContent 디렉티브를 사용하여 지정한다. 
- 
+Angular는 콘텐트 프로젝션(Content projection)을 통해 자식 컴포넌트의 콘텐츠를 지정할 수 있다. AngularJS에서 트랜스클루전(transclusion)이라고 불렀던 콘텐트 프로젝션은 부모 컴포넌트가 자식 컴포넌트에게 부모 컴포넌트의 템플릿 일부를 콘텐츠로 전달할 수 있는 기능이다. 자식 컴포넌트는 부모 컴포넌트가 전달한 콘텐츠를 전달받아 표시할 위치를 ngContent 디렉티브를 사용하여 지정한다.
+
 예를 들어 아래와 같이 부모 컴포넌트는 자식 컴포넌트를 템플릿에 추가하면서 자식 컴포넌트에 콘텐츠를 지정하였다. 이 콘텐츠(<p>Contents</p>)는 자식 컴포넌트에 전달된다.
 
 ```html
@@ -352,11 +352,11 @@ import { Component } from '@angular/core';
     <multi-content-projection>
       <footer>Footer Content</footer>
       <header>Header Content</header>
-      <section>Section Content</section>  
+      <section>Section Content</section>
       <div class="my-class">
         div with .my-class
       </div>
-    <multi-content-projection>  
+    <multi-content-projection>
   `
 })
 export class AppComponent {}
@@ -379,7 +379,7 @@ import { Component } from '@angular/core';
 export class SingleContentProjectionComponent {}
 ```
 
-부모 컴포넌트가 single-content-projection 컴포넌트를 사용할 때 시작 태그와 종료 태그 사이에 콘텐츠를 추가하였다. 
+부모 컴포넌트가 single-content-projection 컴포넌트를 사용할 때 시작 태그와 종료 태그 사이에 콘텐츠를 추가하였다.
 
 ```html
 <single-content-projection>
@@ -472,7 +472,7 @@ import { UserComponent } from './user/user.component';
   `
 })
 export class UserListComponent {
-  // 부모 컴포넌트가 지정한 콘텐츠 중 첫번째 콘텐츠를 취득한다. 
+  // 부모 컴포넌트가 지정한 콘텐츠 중 첫번째 콘텐츠를 취득한다.
   @ContentChild('first') firstChild: UserComponent;
   // 부모 컴포넌트가 지정한 콘텐츠 모두를 취득한다.
   @ContentChildren(UserComponent) children: QueryList<UserComponent>;
@@ -497,7 +497,7 @@ export class UserListComponent {
 UserListComponent는 부모 컴포넌트가 추가한 콘텐츠를 ng-content를 통해 프로젝션하였다. 프로젝션된 3개의 UserComponent를 @ContentChild와 @ContentChildren 데코레이터를 통해 탐색한다.
 
 ```typescript
-// 부모 컴포넌트가 지정한 콘텐츠 중 첫번째 콘텐츠를 취득한다. 
+// 부모 컴포넌트가 지정한 콘텐츠 중 첫번째 콘텐츠를 취득한다.
 @ContentChild('first') firstChild: UserComponent;
 // 부모 컴포넌트가 지정한 콘텐츠 모두를 취득한다.
 @ContentChildren(UserComponent) children: QueryList<UserComponent>;
@@ -507,7 +507,7 @@ UserListComponent는 부모 컴포넌트가 추가한 콘텐츠를 ng-content를
 
 @ViewChild와 @ViewChildren를 통해 바인딩한 프로퍼티에는 컴포넌트 생명주기 메소드 ngAfterViewInit가 호출된 시점부터 접근할 수 있었다. 이와 마찬가지로 @ContentChild와 @ContentChildren를 통해 바인딩한 프로퍼티에는 컴포넌트 생명주기 메소드 ngAfterContentInit가 호출된 시점부터 접근이 가능하다. 컴포넌트 생명주기에 대해서는 다른 장에서 자세히 다룰 것이다.
 
-UserListComponent의 자식 컴포넌트인 UserComponent는 아래와 같다. 
+UserListComponent의 자식 컴포넌트인 UserComponent는 아래와 같다.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -545,3 +545,5 @@ UserListComponent는 @ContentChild와 @ContentChildren 데코레이터를 통해
 * [ES6 In Depth: 이터레이터(iterator)와 for-of 루프 구문](http://hacks.mozilla.or.kr/2015/08/es6-in-depth-iterators-and-the-for-of-loop/)
 
 * [ElementRef](https://angular.io/api/core/ElementRef)
+
+* [Transclusion in Angular 2 with ng-content](https://toddmotto.com/transclusion-in-angular-2-with-ng-content)

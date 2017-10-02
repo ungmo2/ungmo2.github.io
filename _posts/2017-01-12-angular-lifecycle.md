@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Angular <strong>Life cycle</strong>
+title: Angular <strong>Life-cycle Hooks</strong>
 subtitle: 생명주기와 훅 메소드
 categories: angular
 section: angular
@@ -336,7 +336,7 @@ mutable: {name: "Lee"}
 [ngAfterViewChecked]
 ```
 
-두번째 "객체형 프로퍼티 변경" 버튼을 클릭하면 객체 타입의 내부 프로퍼티를 변경하여 자식 컴포넌트에 전송된다. 이떄 객체는 뮤터블하다. 즉 내부 프로퍼티의 값을 변경하더라도 참조가 변경되지 않는다. 따라서 입력 프로퍼티가 변경되지 않은 것으로 간주되어 OnChanges가 호출되지 않는다. 하지만 Angular의 변화 감지는 상태의 변화를 감지하고 변화 감지에 의해 ngDoCheck는 호출된다.
+두번째 "객체형 프로퍼티 변경" 버튼을 클릭하면 객체 타입의 내부 프로퍼티를 변경하여 자식 컴포넌트에 전송된다. 이떄 객체는 뮤터블하다. 즉 내부 프로퍼티의 값을 변경하더라도 참조가 변경되지 않는다. 따라서 **입력 프로퍼티가 변경되지 않은 것으로 간주되어 OnChanges가 호출되지 않는다.** 하지만 Angular의 변화 감지는 상태의 변화를 감지하고 변화 감지에 의해 ngDoCheck는 호출된다.
 
 ```
 [DoCheck]

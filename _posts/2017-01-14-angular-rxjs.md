@@ -1,0 +1,232 @@
+---
+layout: post
+title: Angular <strong>RxJS</strong>
+subtitle: Reactive Programming과 RxJS
+categories: angular
+section: angular
+description: Reactive Programming(반응형 프로그래밍)은 옵저버블(Observable) 이벤트 스트림(stream)을 구독(subscribe)하고 이 스트림에 반응하는 방식으로 동작하는 애플리케이션을 작성하는 것을 의미한다. 옵저버블은 Angular의 고유 기능이 아니라 ES7 스펙으로 제안이 되어 있는 비동기 데이터를 관리하기 위한 표준이다. Reactive Programming은 옵저버블 패턴을 좀 더 심화한 패턴으로 이해하면 된다. 이미 많은 라이브러리가 옵저버블 패턴을 지원하고 있고 그중 RxJS는 Angular의 필수 패키지로 채택되어 있다. Reactive Programing은 기본적으로 모든 것을 연속성을 갖는 데이터의 흐름인 스트림으로 본다. 옵저버(Observer)는 데이터 스트림을 구독(subscribe)하여 사용하는 객체이며 옵저버블(Observable)은 데이터 스트림을 생성하는 객체이다. 배열, Ajax 통신 결과, 웹소켓, 사용자 이벤트 등 데이터를 생산하는 것이라면 무엇이든 옵저버블로 만들 수 있다.
+---
+
+* TOC
+{:toc}
+
+![angular Logo](/img/angular-logo.png)
+
+# 1. Reactive Programming(반응형 프로그래밍)
+
+Reactive Programming(반응형 프로그래밍)은 옵저버블(Observable) 이벤트 스트림(stream)을 구독(subscribe)하고 이 스트림에 반응하는 방식으로 동작하는 애플리케이션을 작성하는 것을 의미한다.
+
+옵저버블은 Angular의 고유 기능이 아니라 ES7 스펙으로 제안이 되어 있는 비동기 데이터를 관리하기 위한 표준이다. Reactive Programming은 옵저버블 패턴을 좀 더 심화한 패턴으로 이해하면 된다. 이미 많은 라이브러리가 옵저버블 패턴을 지원하고 있고 그중 [RxJS](https://github.com/ReactiveX/rxjs)는 Angular의 필수 패키지로 채택되어 있다.
+
+Reactive Programing은 기본적으로 모든 것을 연속성을 갖는 데이터의 흐름인 스트림으로 본다. **옵저버(Observer)는 데이터 스트림을 구독(subscribe)하여 사용하는 객체**이며 **옵저버블(Observable)은 데이터 스트림을 생성하는 객체**이다. 배열, Ajax 통신 결과, 웹소켓, 사용자 이벤트 등 데이터를 생산하는 것이라면 무엇이든 옵저버블로 만들 수 있다.
+
+![observable](/img/observable.png)
+
+Observable과 Observer
+{: .desc-img}
+
+간단한 예제를 통해 옵저버블의 동작을 살펴보자.
+
+```typescript
+// observable.component.ts
+import { Component, OnDestroy } from '@angular/core';
+import { Observable, Subscription } from 'rxjs/Rx';
+
+@Component({
+  selector: 'app-root',
+  template: ''
+})
+export class ObservableComponent implements OnDestroy {
+  myArray = [1, 2, 3, 4, 5];
+  subscription: Subscription;
+
+  constructor() {
+    // 옵저버블 생성
+    const observable$ = Observable.from(this.myArray);
+
+    // 구독
+    this.subscription = observable$
+      .map(item => item * 2)
+      .filter(item => item > 5)
+      .subscribe(
+        value => console.log(value), // 6, 8, 10
+        error => console.log(error),
+        () => console.log('Streaming finished')
+    );
+  }
+
+  ngOnDestroy() {
+    // 구독 해지
+    this.subscription.unsubscribe();
+  }
+}
+```
+
+Observable의 [from](http://reactivex.io/documentation/operators/from.html) 오퍼레이터를 사용하여 옵저버블을 생성하였다.
+
+<!-- 그리고 map, filter 오퍼레이터를 사용하므로 아래와 같이 오퍼레이터를 임포트한다.
+
+```typescript
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/filter';
+``` -->
+
+Observable의 [subscribe](http://reactivex.io/documentation/operators/subscribe.html) 오퍼레이터의 인자에 옵저버를 전달하여 옵저버블을 구독하면 옵저버블은 엘리먼트와 에러 그리고 스트리밍의 종료 여부를 옵저버에 전달한다. 옵저버는 3개의 콜백함수 next, error, complete를 갖는데 이 콜백함수로 옵저버블이 전달한 엘리먼트와 에러 그리고 스트리밍의 종료 여부를 받아 처리한다.
+
+![observable-observer](/img/observable-observer.png)
+{: .w-400}
+
+Observable과 Observer
+{: .desc-img}
+
+옵저버블이 생성한 데이터 스트림을 subscribe 함수로 구독하면 **Subscription** 객체를 반환한다. 이 Subscription 객체는 구독을 취소할 때 사용할 수 있다.
+
+HTTP 요청은 비동기로 처리되기 때문에 작업이 종료되지 않은 상태라도 대기하지 않고(Non-Blocking) 다음 작업을 수행할 수 있다. 이후 서버의 응답이 도착하면 데이터를 처리하거나 화면을 갱신한다. 이러한 비동기 처리는 콜백함수나 프로미스 또는 옵저버블로 구현할 수 있다. 콜백함수를 사용하는 경우, 에러 처리가 어렵고 콜백 헬(Callback Hell) 등의 문제가 발생하므로 프로미스를 사용하는 것이 더 나은 방법이지만 프로미스는 아래와 같은 단점이 있다.
+
+- 서버로 보낸 요청은 취소할 수 없다.
+- 한번에 하나의 데이터를 처리하기 때문에 연속성을 갖는 데이터를 처리할 수 없다.
+
+옵저버/옵저버블은 프로미스의 단점을 해결할 수 있는 더 나은 대안이다. 옵저버블은 연속성을 갖는 데이터 스트림을 스트리밍(streaming)하고 옵저버는 연속적으로 보내진 데이터를 받아 처리한다.
+
+![observable-map](/img/observable-map.png)
+
+Observable의 map operator
+{: .desc-img}
+
+# 2. 옵저버블 이벤트 스트림
+
+뷰에서 이벤트가 발생하면 일반적인 자바스크립트 애플리케이션은 한번만 이벤트를 처리한다. 예를 들어 input 요소의 keyup 이벤트는 연속적으로 발생하고 일반적인 자바스크립트 애플리케이션은 이벤트 핸들러를 이벤트가 발생할 때마다 호출할 것이다. 만약 input 요소의 입력값을 가지고 서버에 요청을 보내는 경우, keyup 이벤트가 발생될 때마다 계속해서 서버에 요청을 보낼 것이다. 이러한 경우에 setTimeout()를 사용하여 사용자가 다음 입력을 할 때까지 서버에 요청을 멈추고 일정 시간 대기할 수도 있겠지만 이것도 완전한 대응 방법은 아니며 한번 전송된 요청은 취소할 수 없기 때문에 불필요한 요청이 발생할 수 있다.
+
+다시 말해 이것은 비동기 처리에 있어서 콜백함수나 프로미스를 사용할 때의 단점이다.
+
+- 서버로 보낸 요청은 취소할 수 없다.
+- 한번에 하나의 데이터를 처리하기 때문에 연속성을 갖는 데이터를 처리할 수 없다.
+
+옵저버블은 이러한 단점을 보완하기 위해 발전된 해결 방법을 제시한다. 데이터 스트림을 발생시키는 간단한 폼을 작성해보자.
+
+```typescript
+// observable-event-http.component
+import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+
+interface GithubUser {
+  login: number;
+  name: string;
+}
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <h2>Observable Events</h2>
+    <p><input type="text" placeholder="Enter user id" [formControl]="serchInput"></p>
+    <pre>{{githubUser | json}}</pre>
+  `
+})
+export class ObservableEventHttpComponent implements OnInit {
+  // ① Angular forms
+  serchInput: FormControl = new FormControl();
+  githubUser: GithubUser;
+
+  // ② HttpClient를 의존성 주입한다.
+  constructor(private http: HttpClient) {}
+
+  ngOnInit() {
+    // ① valueChanges 이벤트를 구독하면 컨트롤 값의 변경 내용을 옵저버블 스트림으로 수신할 수 있다.
+    this.serchInput.valueChanges
+    // ③ debounceTime 오퍼레이터는 다음 이벤트를 즉시 발생시키지 않고 지정 시간만큼 지연시킨다.
+    .debounceTime(500)
+    // ④ switchMap 오퍼레이터는
+    .switchMap(userId => this.getGithubUser(userId))
+    // ⑥ 옵저버블을 subscribe 오퍼레이터로 구독하면 옵저버가 데이터 스트림을 사용할 수 있다.
+    .subscribe(user => this.githubUser = user);
+  }
+
+  // ⑤ 서버로 부터 데이터를 응답받아 옵저버블은 반환한다.
+  getGithubUser(userId: string): Observable<GithubUser> {
+    console.log(userId, typeof userId);
+    return this.http
+      .get<GithubUser>(`https://api.github.com/users/${userId}`)
+      .map(user => ({ login: user.login, name: user.name }))
+      .catch(err => {
+        console.log(err);
+        return Observable.of<GithubUser>();
+      });
+  }
+}
+```
+
+① input 요소의 이벤트는 FormControl인 serchInput의 valueChanges 프로퍼티에 의해 옵저버블 스트림으로 변환된다. [FormControl](https://angular.io/api/forms/FormControlDirective)에 대해서는 [Forms](./angular-forms)에서 상세히 살펴보도록 하고 지금은 옵저버블에 집중하도록 하자. FormControl를 사용하기 위해서는 모듈에 ReactiveFormsModule을 임포트하여야 한다.
+
+```typescript
+// app.module.ts
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+...
+
+@NgModule({
+  ...
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule
+  ],
+  ...
+})
+export class AppModule { }
+```
+
+② [HttpClient](https://angular.io/api/common/http/HttpClient)는 HTTP 요청을 수행하는 주입가능한 클래스이다. HttpClient에 대해서는 [HTTP](./angular-http)에서 상세히 알아볼 것이다. HttpClient 클래스를 사용하기 위해서는 모듈에 HttpClientModule을 임포트하여야 한다.
+
+```typescript
+// app.module.ts
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+...
+
+@NgModule({
+  ...
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule,
+    HttpClientModule
+  ],
+  ...
+})
+export class AppModule { }
+```
+
+③ [debounceTime](https://www.learnrxjs.io/operators/filtering/debouncetime.html) 오퍼레이터는 다음 이벤트를 즉시 발생시키지 않고 지정 시간만큼 지연시킨다.
+
+④ [switchMap](https://www.learnrxjs.io/operators/transformation/switchmap.html) 오퍼레이터는 옵저버블을 받아서 새로운 옵저버블을 생성한다. 즉 switchMap 오퍼레이터는 input 요소의 이벤트 스트림 옵저버블을 받아서 getGithubUser 메소드를 실행하여 새로운 옵저버블을 생성한다. 이때 getGithubUser 메소드의 실행이 완료되지 않아 새로운 옵저버블이 완성되지 않은 상태일 때, 새로운 input 요소의 이벤트가 발생하면 getGithubUser 메소드의 실행을 취소하고 새롭게 getGithubUser 메소드를 실행한다. getGithubUser 메소드의 실행이 취소되면 HTTP 요청도 취소된다.
+
+![switchMap](/img/switchMap.png)
+{: .w-400}
+
+switchMap 오퍼레이터
+{: .desc-img}
+
+만약 사용자가 debounceTime 오퍼레이터에 지정한 500ms보다 늦게 값을 입력하면 input 요소의 이벤트가 switchMap 오퍼레이터로 전달된다. 이때 이미 getGithubUser 메소드가 실행 중이라면 getGithubUser 메소드의 실행은 취소되고 HTTP 요청도 취소된다.
+
+테스트를 위해 input 요소에 입력을 느리게 해보자. 그러면 500ms마다 HTTP 요청이 발생할 것이다. 이때 getGithubUser 메소드의 실행 시간이 500ms를 초과하면 HTTP 요청이 취소될 것이다.
+
+![cancelable http request](/img/cancelable-http-request.png)
+
+옵저버블을 사용하면 불필요한 HTTP 요청을 취소할 수 있다.
+{: .desc-img}
+
+⑤ getGithubUser 메소드는 서버로 부터 데이터를 응답받아 옵저버블은 반환한다.
+
+⑥ serchInput의 valueChanges 프로퍼티에 의해 생성된 옵저버블을 subscribe 오퍼레이터로 구독하면 옵저버가 데이터 스트림을 사용할 수 있다. 옵저버는 getGithubUser 메소드가 서버로 부터 응답받은 user를 githubUser 프로퍼티에 할당한다.
+
+# Reference
+
+* [ReactiveX](http://reactivex.io/)
+
+* [Learn RxJS](https://www.learnrxjs.io/)
+
+* [RxJS Marbles](http://rxmarbles.com/)
+

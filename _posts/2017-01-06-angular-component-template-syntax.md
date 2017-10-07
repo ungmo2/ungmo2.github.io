@@ -457,7 +457,7 @@ export class AppComponent {
 }
 ```
 
-1. 사용자의 텍스트 입력에 의해 input 이벤트가 발생하면 이벤트 바인딩에 통하여 이벤트 핸들러 onInput을 호출한다. 이때 이벤트 정보를 담고 있는 DOM 이벤트 객체 $event를 이벤트 핸들러에 전달할 수 있다. 이벤트 핸들러 onInput은 input 이벤트를 발생시킨 input 요소(event.target)의 value 프로퍼티(사용자 입력 텍스트가 담겨있다)를 $event로 부터 추출하여 name 프로퍼티에 할당한다. name 프로퍼티는 프로퍼티 바인딩에 의해 다시 input 요소에 바인딩된다.
+1. 사용자의 텍스트 입력에 의해 input 이벤트가 발생하면 이벤트 바인딩에 통하여 이벤트 핸들러 onInput을 호출한다. 이때 이벤트 정보를 담고 있는 DOM 이벤트 객체 **$event**를 이벤트 핸들러에 전달할 수 있다. Angular는 표준 DOM 이벤트를 사용하기 때문에 $event를 통해 브라우저의 [Event](https://developer.mozilla.org/ko/docs/Web/API/Event) 객체의 프로퍼니나 함수에 자유롭게 접근할 수 있다. 이벤트 핸들러 onInput은 input 이벤트를 발생시킨 input 요소(event.target)의 value 프로퍼티(사용자 입력 텍스트가 담겨있다)를 $event로 부터 추출하여 name 프로퍼티에 할당한다. name 프로퍼티는 프로퍼티 바인딩에 의해 다시 input 요소에 바인딩된다.
 
 2. 버튼이 클릭되면 click 이벤트가 발생하고 이벤트 바인딩에 의해 이벤트 핸들러 onClick을 호출한다. onClick은 name 프로퍼티를 초기화한다.
 
@@ -1110,7 +1110,7 @@ export class AppComponent {
 
 # 3. 템플릿 참조 변수(Template reference variable)
 
-템플릿 참조 변수는 DOM 요소에 대한 참조를 담고 있는 변수이다. 태그 내에서 해시 기호(#)를 변수명 앞에 추가하여 템플릿 참조 변수를 선언한다. 템플릿 참조 변수는 템플릿 내에서만 유효하다. 이벤트 바인딩에 의해 컴포넌트 클래스로 템플릿 참조 변수의 값을 전달할 수는 있지만 컴포넌트 클래스에 어떠한 부수 효과(Side effect)도 주지 않는다.
+템플릿 참조 변수는 DOM 요소에 대한 참조를 담고 있는 변수이다. 태그 내에서 해시 기호(#)를 변수명 앞에 추가하여 템플릿 참조 변수를 선언하고 자바스크립트 코드에서는 해시 기호없이 참조한다. 템플릿 참조 변수는 템플릿 내에서만 유효하다. 이벤트 바인딩에 의해 컴포넌트 클래스로 템플릿 참조 변수의 값을 전달할 수는 있지만 컴포넌트 클래스에 어떠한 부수 효과(Side effect)도 주지 않는다.
 
 ```html
 <element #myelement>...</element>

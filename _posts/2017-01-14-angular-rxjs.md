@@ -274,6 +274,8 @@ switchMap 오퍼레이터
 
 ⑥ serchInput의 valueChanges 프로퍼티에 의해 생성된 옵저버블을 subscribe 오퍼레이터로 구독하면 옵저버가 데이터 스트림을 사용할 수 있다. 옵저버는 getGithubUser 메소드가 서버로 부터 응답받은 user를 githubUser 프로퍼티에 할당한다.
 
+**주의할 것은 실제 HTTP 요청은 subscribe() 함수를 실행할 때 발생한다는 것이다. 옵저버블을 구독하지 않으면 어떠한 요청도 발생하지 않는다. 또한 옵저버블을 여러번 구독하면 HTTP 요청이 여러번 발생한다.**
+
 ⑦ [catch](https://www.learnrxjs.io/operators/error_handling/catch.html) 오퍼레이터는 옵저버블의 에러를 캐치한다.
 
 <iframe src="https://stackblitz.com/edit/observable-http-exam?embed=1&file=app/observable-event-http.component.ts" frameborder="0" width="100%" height="400"></iframe>

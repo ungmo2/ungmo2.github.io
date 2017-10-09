@@ -53,18 +53,25 @@ Observable의 map operator
 
 ```typescript
 // observable.component.ts
-import { Component, OnDestroy } from '@angular/core';
-import { Observable, Subscription } from 'rxjs/Rx';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
+
+// Observable operators
+import 'rxjs/add/observable/from';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/filter';
 
 @Component({
   selector: 'app-root',
-  template: ''
+  template: '<p>{{ "{{ values " }}}}</p>'
 })
-export class ObservableComponent implements OnDestroy {
+export class ObservableComponent implements OnInit, OnDestroy {
   myArray = [1, 2, 3, 4, 5];
   subscription: Subscription;
+  values: number[] = [];
 
-  constructor() {
+  ngOnInit() {
     // ① 옵저버블 생성
     const observable$ = Observable.from(this.myArray);
 
@@ -75,7 +82,10 @@ export class ObservableComponent implements OnDestroy {
       // ③ 옵저버블 구독
       .subscribe(
         // next
-        value => console.log(value), // 6, 8, 10
+        value => {
+          console.log(value); // 6, 8, 10
+          this.values.push(value);
+        },
         // error
         error => console.log(error),
         // complete
@@ -90,16 +100,18 @@ export class ObservableComponent implements OnDestroy {
 }
 ```
 
-① Observable의 [from](http://reactivex.io/documentation/operators/from.html) 오퍼레이터를 사용하여 옵저버블을 생성하였다.
+① Observable의 [from](http://reactivex.io/documentation/operators/from.html) 오퍼레이터를 사용하여 옵저버블을 생성하였다. from 오퍼레이터를 사용하기 위해 아래와 같이 임포트한다.
 
-② map, filter 오퍼레이터를 사용하여 옵저버블을 변형하였다. 오퍼레이터는 옵저버블을 반환하므로 체이닝이 가능하다.
+```typescript
+import 'rxjs/add/observable/from';
+```
 
-<!-- 그리고 map, filter 오퍼레이터를 사용하므로 아래와 같이 오퍼레이터를 임포트한다.
+② map과 filter 오퍼레이터를 사용하여 옵저버블을 변형(transforming), 필터링하였다. 오퍼레이터는 옵저버블을 반환하므로 체이닝이 가능하다. map과 filter 오퍼레이터를 사용하기 위해 아래와 같이 임포트한다.
 
 ```typescript
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
-``` -->
+```
 
 ③ Observable의 [subscribe](http://reactivex.io/documentation/operators/subscribe.html) 오퍼레이터의 인자에 옵저버를 전달하여 옵저버블을 구독하면 옵저버블은 엘리먼트와 에러 그리고 스트리밍의 종료 여부를 옵저버에 전달한다. 옵저버는 3개의 콜백함수 next, error, complete를 갖는데 이 콜백함수로 옵저버블이 전달한 엘리먼트와 에러 그리고 스트리밍의 종료 여부를 받아 처리한다.
 
@@ -110,6 +122,8 @@ Observable과 Observer
 {: .desc-img}
 
 ④ 옵저버블이 생성한 데이터 스트림을 subscribe 함수로 구독하면 **Subscription** 객체를 반환한다. 이 Subscription 객체는 구독을 취소할 때 사용할 수 있다.
+
+<iframe src="https://stackblitz.com/edit/observable-exam?embed=1&file=app/observable.component.ts" frameborder="0" width="100%" height="400"></iframe>
 
 # 2. 옵저버블 이벤트 스트림
 
@@ -129,6 +143,14 @@ import { FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
+// Observable operators
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/of';
+
 interface GithubUser {
   login: number;
   name: string;
@@ -139,7 +161,7 @@ interface GithubUser {
   template: `
     <h2>Observable Events</h2>
     <p><input type="text" placeholder="Enter user id" [formControl]="serchInput"></p>
-    <pre>{{githubUser | json}}</pre>
+    <pre>{{ "{{ githubUser | json " }}}}</pre>
   `
 })
 export class ObservableEventHttpComponent implements OnInit {
@@ -151,7 +173,7 @@ export class ObservableEventHttpComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    // ① valueChanges 이벤트를 구독하면 컨트롤 값의 변경 내용을 옵저버블 스트림으로 수신할 수 있다.
+    // ① valueChanges 이벤트 옵저버블을 구독하면 컨트롤 값의 변경 내용을 옵저버블 스트림으로 수신할 수 있다.
     this.serchInput.valueChanges
     // ③ debounceTime 오퍼레이터는 다음 이벤트를 즉시 발생시키지 않고 지정 시간만큼 지연시킨다.
     .debounceTime(500)
@@ -167,9 +189,15 @@ export class ObservableEventHttpComponent implements OnInit {
     return this.http
       .get<GithubUser>(`https://api.github.com/users/${userId}`)
       .map(user => ({ login: user.login, name: user.name }))
+      .do(console.log)
+      // ⑦ Error handling
       .catch(err => {
-        console.log(err);
-        return Observable.of<GithubUser>();
+        if (err.status === 404) {
+          console.log(`[ERROR] Not found user: ${userId}`);
+          return Observable.of<GithubUser>(err);
+        } else {
+          throw err;
+        }
       });
   }
 }
@@ -181,6 +209,7 @@ export class ObservableEventHttpComponent implements OnInit {
 // app.module.ts
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+// FormControl를 사용하기 위해서는 모듈에 ReactiveFormsModule을 임포트
 import { ReactiveFormsModule } from '@angular/forms';
 ...
 
@@ -188,6 +217,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   ...
   imports: [
     BrowserModule,
+    // FormControl를 사용하기 위해서는 모듈에 ReactiveFormsModule을 임포트
     ReactiveFormsModule
   ],
   ...
@@ -201,7 +231,9 @@ export class AppModule { }
 // app.module.ts
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+// FormControl를 사용하기 위해서는 모듈에 ReactiveFormsModule을 임포트
 import { ReactiveFormsModule } from '@angular/forms';
+// HttpClient 클래스를 사용하기 위해서는 모듈에 HttpClientModule을 임포트
 import { HttpClientModule } from '@angular/common/http';
 ...
 
@@ -209,7 +241,9 @@ import { HttpClientModule } from '@angular/common/http';
   ...
   imports: [
     BrowserModule,
+    // FormControl를 사용하기 위해서는 모듈에 ReactiveFormsModule을 임포트
     ReactiveFormsModule,
+    // HttpClient 클래스를 사용하기 위해서는 모듈에 HttpClientModule을 임포트
     HttpClientModule
   ],
   ...
@@ -240,6 +274,10 @@ switchMap 오퍼레이터
 
 ⑥ serchInput의 valueChanges 프로퍼티에 의해 생성된 옵저버블을 subscribe 오퍼레이터로 구독하면 옵저버가 데이터 스트림을 사용할 수 있다. 옵저버는 getGithubUser 메소드가 서버로 부터 응답받은 user를 githubUser 프로퍼티에 할당한다.
 
+⑦ [catch](https://www.learnrxjs.io/operators/error_handling/catch.html) 오퍼레이터는 옵저버블의 에러를 캐치한다.
+
+<iframe src="https://stackblitz.com/edit/observable-http-exam?embed=1&file=app/observable-event-http.component.ts" frameborder="0" width="100%" height="400"></iframe>
+
 # Reference
 
 * [ReactiveX](http://reactivex.io/)
@@ -247,5 +285,7 @@ switchMap 오퍼레이터
 * [Learn RxJS](https://www.learnrxjs.io/)
 
 * [RxJS - Javascript library for functional reactive programming](http://xgrommx.github.io/rx-book/index.html)
+
+* [Rx Visualizer](https://rxviz.com/)
 
 * [RxJS Marbles](http://rxmarbles.com/)

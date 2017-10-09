@@ -78,7 +78,7 @@ Standard Built-in Objects(표준 빌트인 객체)를 Global Objects로 표현�
 
 Global property(전역 프로퍼티)은 간단한 값을 나타내며 다른 프로퍼티나 메소드를 가지고 있지 않다. 아래의 전역 프로퍼티는 모두 Global Object(전역 객체)의 프로퍼티이다.
 
-### 1.1.1 Infinity  
+### 1.1.1 Infinity
 
 양/음의 무한대를 나타내는 숫자값이다.
 
@@ -89,7 +89,7 @@ console.log(Number.MAX_VALUE * 2); // 1.7976931348623157e+308 * 2
 console.log(typeof Infinity); // number
 ```
 
-### 1.1.2 NaN  
+### 1.1.2 NaN
 
 숫자가 아님(Not-a-Number)을 나타내는 숫자값이다. NaN 프로퍼티는 Number.NaN 프로퍼티와 같다.
 
@@ -130,7 +130,7 @@ console.log(foo); // 4
 console.log(eval('x * y')); // 20
 ```
 
-### 1.2.2 isFinite()  
+### 1.2.2 isFinite()
 
 매개변수(parameter)로 전달된 값이 유한수인지, 정상적인 수인지를 검사하여 그 결과를 Boolean으로 반환한다. 매개변수가 숫자가 아닌 경우, 숫자로 변환한 후 검사를 수행한다.
 
@@ -157,7 +157,7 @@ Number(null)  // 0
 Boolean(null) // false
 ```
 
-### 1.2.3 isNaN()  
+### 1.2.3 isNaN()
 
 매개변수(parameter)로 전달된 값이 NaN인지를 검사하여 그 결과를 Boolean으로 반환한다. 매개변수가 숫자가 아닌 경우, 숫자로 변환한 후 검사를 수행한다.
 
@@ -187,7 +187,7 @@ isNaN(new Date())             // false: new Date() -> Number
 isNaN(new Date().toString())  // true:  String -> NaN
 ```
 
-### 1.2.4 parseFloat()  
+### 1.2.4 parseFloat()
 
 매개변수(parameter)로 전달된 문자열을 부동소수점숫자(floating point number)로 변환하여 반환한다.
 
@@ -207,7 +207,7 @@ parseFloat('40 years'); // 40
 parseFloat('He was 40') // NaN
 ```
 
-### 1.2.5 parseInt()  
+### 1.2.5 parseInt()
 
 매개변수(parameter)로 전달된 문자열을 정수형 숫자(Integer)로 변환하여 반환한다.
 
@@ -234,9 +234,9 @@ parseInt('10', 16);   // 16
 parseInt('10', 8);    // 8
 ```
 
-### 1.2.6 encodeURI() / decodeURI()  
+### 1.2.6 encodeURI() / decodeURI()
 
-encodeURI()은 매개변수로 전달된 URI(Uniform Resource Identifier)를 인코딩한다. 
+encodeURI()은 매개변수로 전달된 URI(Uniform Resource Identifier)를 인코딩한다.
 
 ![uri](/img/uri.png)
 
@@ -258,13 +258,13 @@ decodeURI(encodedURI)
 ```
 
 ```javascript
-var uri = 'http://www.test.com/자바스크립트/test.php?who=나&target=너#전역 객체';
+var uri = 'http://example.com?name=이웅모&job=programmer&teacher';
 var enc = encodeURI(uri);
 var dec = decodeURI(enc);
 console.log(enc);
-// http://www.test.com/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/test.php?who=%EB%82%98&target=%EB%84%88#%EC%A0%84%EC%97%AD%20%EA%B0%9D%EC%B2%B4
+// http://example.com?name=%EC%9D%B4%EC%9B%85%EB%AA%A8&job=programmer&teacher
 console.log(dec);
-// http://www.test.com/자바스크립트/test.php?who=나&target=너#전역 객체
+// http://example.com?name=이웅모&job=programmer&teacher
 ```
 
 ### 1.2.7 encodeURIComponent() / decodeURIComponent()
@@ -273,7 +273,7 @@ encodeURIComponent()은 매개변수로 전달된 URI(Uniform Resource Identifie
 
 - 알파벳, 0~9의 숫자, - _ . ! ~ * ' ( )
 
-decodeURIComponent()은 매개변수로 전달된 URI component(구성 요소)를 디코딩한다. 
+decodeURIComponent()은 매개변수로 전달된 URI component(구성 요소)를 디코딩한다.
 
 encodeURIComponent()는 인수를 쿼리스트링의 일부라고 간주한다. 따라서 =, ?, &를 인코딩한다. 반면 encodeURI()는 인수를 URI 전체라고 간주하며 파라미터 구분자인 =, ?, &를 인코딩하지 않는다.
 
@@ -285,20 +285,30 @@ decodeURIComponent(encodedURI)
 ```
 
 ```javascript
-var uriComp = 'who=나&target=너#전역 객체';
-var enc = encodeURIComponent(uriComp);
-var dec = decodeURIComponent(enc);
+var uriComp = '이웅모&job=programmer&teacher';
+
+// encodeURI / decodeURI
+var enc = encodeURI(uriComp);
+var dec = decodeURI(enc);
 console.log(enc);
-// who=%EB%82%98&target=%EB%84%88#%EC%A0%84%EC%97%AD%20%EA%B0%9D%EC%B2%B4
+// %EC%9D%B4%EC%9B%85%EB%AA%A8&job=programmer&teacher
 console.log(dec);
-// who=나&target=너#전역 객체
+// 이웅모&job=programmer&teacher
+
+// encodeURIComponent / decodeURIComponent
+enc = encodeURIComponent(uriComp);
+dec = decodeURIComponent(enc);
+console.log(enc);
+// %EC%9D%B4%EC%9B%85%EB%AA%A8%26job%3Dprogrammer%26teacher
+console.log(dec);
+// 이웅모&job=programmer&teacher
 ```
 
 # 2. Standard Built-in Objects (Global objects)
 
 Javascript는 프로그램 전체의 영역에서 공통적으로 필요한 기능을 사용자 각자가 일일히 작성하는 수고를 줄이기 위해 Standard Built-in Objects(표준 빌트인 객체)를 제공한다.
 
-## 2.1 Object  
+## 2.1 Object
 
 [객체 생성자(Object constructor)](./js-object#object--)는 레퍼(wrapper) 객체를 생성한다. 만약 생성자 인수값이 null이거나 undefined이면 빈 객체를 반환한다.
 

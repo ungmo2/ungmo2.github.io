@@ -16,9 +16,11 @@
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="http://poiemaweb.com">
-  <meta property="og:title" content="{{ site.name }}">
+  <!-- <meta property="og:title" content="{{ site.name }}"> -->
+  <meta property="og:title" content="{{ page.title | strip_html }}">
   <!-- <meta property="og:title" content="{{ page.title | strip_html }}"> -->
-  <meta property="og:description" content="{{ site.description }}">
+  <!-- <meta property="og:description" content="{{ site.description }}"> -->
+  <meta property="og:description" content="{{ page.description | strip_html }}">
   <meta property="og:site_name" content="{{ site.name }}">
   <meta property="og:image" content="http://poiemaweb.com/img/poiemaweb.jpg">
   <meta property="og:image:type" content="image/png">
@@ -36,7 +38,7 @@
   <link rel="icon" href="http://poiemaweb.com/img/poiemaweb.jpg">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
-  
+
   <link rel="stylesheet" href="/css/main.css?{{site.time | date: '%s%N'}}">
   <!--[if IE]>
     <link rel="stylesheet" type="text/css" href="/css/ie.css" />

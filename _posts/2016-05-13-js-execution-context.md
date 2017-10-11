@@ -369,7 +369,7 @@ Function Code의 경우, <strong>스코프 체인의 생성과 초기화</strong
 Variable Instantiation 실행: 함수 bar의 선언 처리
 {: .desc-img}
 
-변수 y를 Variable Object(AO-1)에 set한다(프로퍼티는 y, 값은 undefined）
+변수 y를 Variable Object(AO-1)에 설정한다 이때 프로퍼티는 y, 값은 undefined이다.
 
 ![Variable Instantiation 실행](/img/ec_15.png)
 {: .w-450}
@@ -389,7 +389,7 @@ Variable Instantiation 실행: 변수 y의 선언 처리
 this value 결정
 {: .desc-img}
 
-## 3.3 foo function code의 실행
+## 3.3 foo 함수 코드의 실행
 
 이제 함수 foo의 코드블럭 내 구문이 실행된다. 위 예제를 보면 변수 y에 문자열 'yyy'의 할당과 함수 bar가 실행된다.
 

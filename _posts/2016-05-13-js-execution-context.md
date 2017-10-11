@@ -20,7 +20,7 @@ description: Execution Context(실행 컨텍스트)는 scope, hoisting, this, fu
 
 변수는 객체 지향 언어의 관점에서 생각해 보면 크게 2가지로 구분할 수 있다. 물론 전역변수(혹은 static 변수)도 있지만 이것은 말 그대로 전역으로 존재하며 특정 함수나 객체에 속하는 것이 아니므로 논의에서 제외한다.
 
-- `this`를 통해서 접근되는 객체의 멤버변수  
+- `this`를 통해서 접근되는 객체의 멤버변수
 
 	```javascript
 	var person = {
@@ -36,7 +36,7 @@ description: Execution Context(실행 컨텍스트)는 scope, hoisting, this, fu
 	var fullName = person.fullName(); // "John Doe"
 	```
 
-- 함수 내부에서만 사용되는 지역변수  
+- 함수 내부에서만 사용되는 지역변수
 
 	```javascript
 	var foo = function() {
@@ -53,7 +53,7 @@ description: Execution Context(실행 컨텍스트)는 scope, hoisting, this, fu
 
 Javascript는 바로 실행 컨텍스트(Execution Context)이라는 또다른 객체를 통해 이것을 제공한다. -->
 
-**실행 컨텍스트는 실행 가능한 코드 블럭이 실행되는 환경** 이라고 말할수 있다. 여기서 말하는 실행 가능한 코드는 아래와 같다.
+ECMAScript 스펙에 따르면 실행 컨텍스트를 **실행 가능한 코드를 형상화하고 구분하는 추상적인 개념**이라고 정의한다. 좀 더 쉽게 말해자면 **실행 컨텍스트는 실행 가능한 코드가 실행되는 환경** 이라고 말할수 있다. 여기서 말하는 실행 가능한 코드는 아래와 같다.
 
 - Global Code : 전역 영역에 존재하는 코드
 - Eval Code : [Eval 함수](./js-standard-built-in-objects#121-eval)로 실행되는 코드
@@ -61,9 +61,7 @@ Javascript는 바로 실행 컨텍스트(Execution Context)이라는 또다른 �
 
 일반적으로 실행 가능한 코드는 전역 코드와 함수 내 코드이다.
 
-자바스크립트 엔진은 코드를 실행하기 위하여 실행에 필요한 여러가지 정보를 알고 있어야 하는데 이들 실행에 필요한 여러가지 정보(실행 환경)를 관리하기 위한 객체가 바로 실행 컨텍스트이다.
-
-실행에 필요한 여러가지 정보란 아래와 같은 것들이 있다.
+자바스크립트 엔진은 코드를 실행하기 위하여 실행에 필요한 여러가지 정보를 알고 있어야 한다. 실행에 필요한 여러가지 정보란 아래와 같은 것들이 있다.
 
 * 변수
   * 함수 내부에서만 접근할 수 있는 지역변수
@@ -92,7 +90,7 @@ Javascript는 바로 실행 컨텍스트(Execution Context)이라는 또다른 �
 * 변수의 유효범위(Scope)
 * this
 
-이와 같이 실행에 필요한 정보를 자바스크립트 엔진은 실행 컨텍스트(Execution Context)이라는 객체 내에서 관리한다.
+이와 같이 실행에 필요한 정보를 자바스크립트 엔진은 실행 컨텍스트(Execution Context)에서 관리한다. 실행 컨텍스트는 추상적 개념이지만 자바스크립트 엔진에서 물리적 객체의 형태를 갖는다.
 
 ```javascript
 var x = 'xxx';
@@ -125,9 +123,9 @@ foo();
 
 4. 함수 실행이 끝나면 해당 함수의 실행 컨텍스트를 파기하고 직전의 실행 컨텍스트에 컨트롤을 반환한다.
 
-# 2. 실행 컨텍스트 객체의 프로퍼티
+# 2. 실행 컨텍스트의 3가지 객체
 
-실행 컨텍스트는 객체이며 아래의 3가지 프로퍼티를 소유한다.
+실행 컨텍스트는 추상적 개념이지만 물리적으로는 객체의 형태를 가지며 아래의 3가지 프로퍼티를 소유한다.
 
 <img src="/img/excute_context_structure.png">
 
@@ -168,7 +166,7 @@ Variable Object가 가리키는 객체는 아래와 같다.
 함수 컨텍스트의 경우, Variable Object가 가리키는 Activation Object
 {: .desc-img}
 
-## 2.2 Scope Chain (SC) 
+## 2.2 Scope Chain (SC)
 
 Scope Chain은 일종의 리스트로서 중첩된 함수의 스코프의 레퍼런스를 차례로 저장하고 있는 개념이다. 즉 Scope Chain는 현재 실행 컨텍스트의 Activation Object를 선두로하여 순차적으로 상위 컨텍스트의 Activation Object를 가리키며 마지막 리스트는 전역 객체를 가리킨다.
 
@@ -182,7 +180,7 @@ Scope Chain
 
 예를 들어 함수 내의 코드에서 변수를 참조하면 엔진은 Scope Chain의 첫번째 리스트가 가리키는 AO에 접근하여 변수를 검색한다. 만일 검색에 실패하면 다음 리스트가 가리키는 Activation Object(또는 전역 객체)를 검색한다. 이와 같이 순차적으로 Scope Chain에서 변수를 검색하는데 결국 검색에 실패하면 정의되지 않은 변수에 접근하는 것으로 판단하여 Reference 에러를 발생시킨다. 스코프 체인은 [[scope]] 프로퍼티로 참조할 수 있다.
 
-## 2.3 this value 
+## 2.3 this value
 
 this 프로퍼티에는 this 값이 할당된다. [this](./js-this)에 할당되는 값은 함수 호출 패턴에 의해 결정된다.
 
@@ -266,7 +264,7 @@ Variable Instantiation(변수 객체화)는 아래의 순서로 Variable Object�
 
 #### 3.1.2.1 함수 foo의 선언 처리
 
-함수 선언은 Variable Instantiation 실행 순서 2.와 같이 선언된 함수명( foo )이 Variable Object( Global Code인 경우 Global Object )의 프로퍼티로, 생성된 Function Object가 값으로 바인딩된다. 
+함수 선언은 Variable Instantiation 실행 순서 2.와 같이 선언된 함수명( foo )이 Variable Object( Global Code인 경우 Global Object )의 프로퍼티로, 생성된 Function Object가 값으로 바인딩된다.
 
 ![함수 foo의 선언 처리](/img/ec_7.png)
 {: .w-450}
@@ -284,7 +282,7 @@ Variable Instantiation(변수 객체화)는 아래의 순서로 Variable Object�
 
 지금까지 살펴본 실행 컨텍스트는 아직 코드가 실행되기 이전이다. 하지만 스코프 체인이 가리키는 변수 객체에 이미 함수가 등록되어 있으므로 이후 코드를 실행할 때 함수선언식 이전에 함수를 호출할 수 있게 되었다. 이러한 현상을 **[함수 호이스팅(Function Hoisting)](./js-function#2-함수-호이스팅function-hoisting)**이라 한다.
 
-#### 3.1.2.2 변수 x의 선언 처리  
+#### 3.1.2.2 변수 x의 선언 처리
 
 변수 선언은 Variable Instantiation 실행 순서 3.과 같이 선언된 변수명( x )이 Variable Object의 프로퍼티로, undefined가 값으로 set된다. 이것을 좀더 세분화 해보면 아래와 같다.
 
@@ -319,7 +317,7 @@ Global Code의 경우, this의 value는 언제나 전역 객체이다.
 this value 결정
 {: .desc-img}
 
-**전역 컨텍스트(Global Code)의 경우, Variable Object, Scope Chain, this값은 언제나 전역 객체이다.**  
+**전역 컨텍스트(Global Code)의 경우, Variable Object, Scope Chain, this값은 언제나 전역 객체이다.**
 
 ## 3.2. Global code의 실행
 
@@ -419,7 +417,7 @@ this value 결정
 
 이제 함수 foo의 코드블럭 내 구문이 실행된다. 위 예제를 보면 변수 y에 문자열 'yyy'의 할당과 함수 bar가 실행된다.
 
-### 3.3.1 변수 값의 할당  
+### 3.3.1 변수 값의 할당
 
 지역 변수 y에 문자열 'yyy'를 할당할 때, 현재 실행 컨텍스트의 Scope Chain이 참조하고 있는 Variable Object를 선두(0)부터 검색하여 변수명에 해당하는 프로퍼티가 발견되면 값 'yyy'를 할당한다.
 
@@ -431,7 +429,7 @@ this value 결정
 
 ### 3.3.2 함수 bar의 실행
 
-함수 bar가 실행되기 시작하면 새로운 실행 컨텍스트이 생성된다. 
+함수 bar가 실행되기 시작하면 새로운 실행 컨텍스트이 생성된다.
 
 ![함수 bar의 실행](/img/ec_18.png)
 {: .w-450}
@@ -447,20 +445,20 @@ this value 결정
 완성된 실행 컨텍스트
 {: .desc-img}
 
-이 단계에서 `console.log(x + y + z);` 구문의 실행 결과는 xxxyyyzzz가 된다.  
+이 단계에서 `console.log(x + y + z);` 구문의 실행 결과는 xxxyyyzzz가 된다.
 
-> * x : AO-2에서 x 검색 실패 → AO-1에서 x 검색 실패 → GO에서 x 검색 성공 (값은 'xxx')  
-> * y : AO-2에서 y 검색 실패 → AO-1에서 y 검색 성공 (값은 'yyy')  
-> * z : AO-2에서 z 검색 성공 (값은 'zzz')  
+> * x : AO-2에서 x 검색 실패 → AO-1에서 x 검색 실패 → GO에서 x 검색 성공 (값은 'xxx')
+> * y : AO-2에서 y 검색 실패 → AO-1에서 y 검색 성공 (값은 'yyy')
+> * z : AO-2에서 z 검색 성공 (값은 'zzz')
 
 # Reference
 
-* [http://dmitrysoshnikov.com/ecmascript/chapter-1-execution-contexts/](http://dmitrysoshnikov.com/ecmascript/chapter-1-execution-contexts/)  
-* [http://dmitrysoshnikov.com/ecmascript/chapter-2-variable-object/](http://dmitrysoshnikov.com/ecmascript/chapter-2-variable-object/)  
-* [http://dmitrysoshnikov.com/ecmascript/chapter-3-this/](http://dmitrysoshnikov.com/ecmascript/chapter-3-this/)  
-* [http://dmitrysoshnikov.com/ecmascript/chapter-4-scope-chain/](http://dmitrysoshnikov.com/ecmascript/chapter-4-scope-chain/)  
-* [http://dmitrysoshnikov.com/ecmascript/chapter-5-functions/](http://dmitrysoshnikov.com/ecmascript/chapter-5-functions/)  
-* [http://dmitrysoshnikov.com/ecmascript/chapter-6-closures/](http://dmitrysoshnikov.com/ecmascript/chapter-6-closures/)  
-* [http://davidshariff.com/blog/what-is-the-execution-context-in-javascript/](http://davidshariff.com/blog/what-is-the-execution-context-in-javascript/)  
-* [http://jibbering.com/faq/notes/closures/](http://jibbering.com/faq/notes/closures/)  
+* [http://dmitrysoshnikov.com/ecmascript/chapter-1-execution-contexts/](http://dmitrysoshnikov.com/ecmascript/chapter-1-execution-contexts/)
+* [http://dmitrysoshnikov.com/ecmascript/chapter-2-variable-object/](http://dmitrysoshnikov.com/ecmascript/chapter-2-variable-object/)
+* [http://dmitrysoshnikov.com/ecmascript/chapter-3-this/](http://dmitrysoshnikov.com/ecmascript/chapter-3-this/)
+* [http://dmitrysoshnikov.com/ecmascript/chapter-4-scope-chain/](http://dmitrysoshnikov.com/ecmascript/chapter-4-scope-chain/)
+* [http://dmitrysoshnikov.com/ecmascript/chapter-5-functions/](http://dmitrysoshnikov.com/ecmascript/chapter-5-functions/)
+* [http://dmitrysoshnikov.com/ecmascript/chapter-6-closures/](http://dmitrysoshnikov.com/ecmascript/chapter-6-closures/)
+* [http://davidshariff.com/blog/what-is-the-execution-context-in-javascript/](http://davidshariff.com/blog/what-is-the-execution-context-in-javascript/)
+* [http://jibbering.com/faq/notes/closures/](http://jibbering.com/faq/notes/closures/)
 * [매개변수(parameter)와 인수(argument)](http://stackoverflow.com/questions/1788923/parameter-vs-argument)

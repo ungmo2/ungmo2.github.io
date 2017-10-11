@@ -156,7 +156,7 @@ Scope Chain
 
 엔진은 이를 통해 변수의 스코프를 파악한다. 함수가 중첩 상태일 때 하위함수 내에서 상위함수의 유효범위까지 참조할 수 있는데 이것는 스코프 체인을 검색하였기 때문이다. 함수가 중첩되어 있으면 중첩될 때마다 부모 함수의 Scope가 자식 함수의 스코프 체인에 포함된다. 함수 실행중에 변수를 만나면 그 변수를 우선 현재 Scope, 즉 Activation Object에서 검색해보고, 만약 검색에 실패하면 스코프 체인에 담겨진 순서대로 그 검색을 이어가게 되는 것이다. 이것이 스코프 체인이라고 불리는 이유이다.
 
-예를 들어 함수 내의 코드에서 변수를 참조하면 엔진은 Scope Chain의 첫번째 리스트가 가리키는 AO에 접근하여 변수를 검색한다. 만일 검색에 실패하면 다음 리스트가 가리키는 Activation Object(또는 전역 객체)를 검색한다. 이와 같이 순차적으로 스코프 체인에서 변수를 검색하는데 결국 검색에 실패하면 정의되지 않은 변수에 접근하는 것으로 판단하여 Reference 에러를 발생시킨다. 스코프 체인은 [[scope]] 프로퍼티로 참조할 수 있다.
+예를 들어 함수 내의 코드에서 변수를 참조하면 엔진은 스코프 체인의 첫번째 리스트가 가리키는 AO에 접근하여 변수를 검색한다. 만일 검색에 실패하면 다음 리스트가 가리키는 Activation Object(또는 전역 객체)를 검색한다. 이와 같이 순차적으로 스코프 체인에서 변수를 검색하는데 결국 검색에 실패하면 정의되지 않은 변수에 접근하는 것으로 판단하여 Reference 에러를 발생시킨다. 스코프 체인은 [[scope]] 프로퍼티로 참조할 수 있다.
 
 ## 2.3 this value
 
@@ -184,7 +184,7 @@ foo();
 
 ## 3.1 Global Code에의 진입
 
-컨트롤이 실행 컨텍스트에 들어가기 이전에 유일한 전역 객체(Global Object)가 생성된다. 전역 객체는 단일 사본으로 존재하며 이 객체의 프로퍼티는 코드의 어떠한 곳에서도 접근할 수 있다. 코드가 종료되면 전역 객체의 라이프 사이클은 끝이 난다. 초기상태의 전역 객체에는 Built-in object(Math, String, Array 등)와 BOM, DOM이 Set 되어있다.
+컨트롤이 실행 컨텍스트에 진입하기 이전에 유일한 전역 객체(Global Object)가 생성된다. 전역 객체는 단일 사본으로 존재하며 이 객체의 프로퍼티는 코드의 어떠한 곳에서도 접근할 수 있다. 코드가 종료되면 전역 객체의 라이프 사이클은 종료한다. 초기 상태의 전역 객체에는 빌트인 객체(Math, String, Array 등)와 BOM, DOM이 설정되어 있다.
 
 ![초기 상태의 실행 컨텍스트](/img/ec_3.png)
 {: .w-350}
@@ -192,7 +192,7 @@ foo();
 초기 상태의 실행 컨텍스트
 {: .desc-img}
 
-전역 객체가 생성된 이후, Global Code로 컨트롤이 이동하면 새로운 전역 실행 컨텍스트가 스택에 쌓인다.
+전역 객체가 생성된 이후, 전역 코드로 컨트롤이 진입하면 전역 실행 컨텍스트가 생성되고 실행 컨텍스트 스택에 쌓인다.
 
 ![전역 실행 컨텍스트의 생성](/img/ec_4.png)
 {: .w-350}
@@ -202,13 +202,13 @@ foo();
 
 그리고 이후 이 실행 컨텍스트를 바탕으로 이하의 처리가 실행된다.
 
->1. Scope Chain의 생성과 초기화
->2. Variable Instantiation 실행
+>1. 스코프 체인의 생성과 초기화
+>2. Variable Instantiation(변수 객체화) 실행
 >3. this value 결정
 
 ### 3.1.1 Scope Chain의 생성과 초기화
 
-새로운 실행 컨텍스트에 들어가게 되면 우선 Scope Chain의 생성과 초기화가 실행된다. Global Code로 컨트롤이 이동하면 Scope Chain는 전역 객체의 레퍼런스를 포함하는 리스트가 된다.
+실행 컨텍스트가 생성된 이후 가장 먼저 스코프 체인의 생성과 초기화가 실행된다. 이때 스코프 체인은 전역 객체의 레퍼런스를 포함하는 리스트가 된다.
 
 ![Scope Chain의 생성과 초기화](/img/ec_5.png)
 {: .w-350}
@@ -218,11 +218,11 @@ Scope Chain의 생성과 초기화
 
 ### 3.1.2 Variable Instantiation(변수 객체화) 실행
 
-Scope Chain의 생성과 초기화가 끝나면 Variable Instantiation이 실행된다.
+스코프 체인의 생성과 초기화가 종료하면 변수 객체화(Variable Instantiation)가 실행된다.
 
-Variable Instantiation은 Variable Object에 프로퍼티와 값을 추가하는 것을 의미한다. 변수 객체화라고 번역하기도 하는데 이는 변수와 함수 선언을 Variable Object에 추가하여 객체화하기 때문이다.
+Variable Instantiation은 Variable Object에 프로퍼티와 값을 추가하는 것을 의미한다. 변수 객체화라고 번역하기도 하는데 이는 변수, 매개변수와 인수 정보(arguments), 함수 선언을 Variable Object에 추가하여 객체화하기 때문이다.
 
-Global Code의 경우, Variable Object는 Global Object를 가리킨다.
+전역 코드의 경우, Variable Object는 Global Object를 가리킨다.
 
 ![Variable Instantiation](/img/ec_6.png)
 {: .w-350}
@@ -233,16 +233,16 @@ Variable Instantiation(변수 객체화): VO와 GO의 연결
 Variable Instantiation(변수 객체화)는 아래의 순서로 Variable Object에 프로퍼티와 값을 set한다.
 (반드시 1→2→3 순서로 실행된다.)
 
->1. (Function Code인 경우) 매개변수(parameter)가 Variable Object의 프로퍼티로, 인수(argument)가 값으로 set된다.
->2. 대상 코드 내의 함수 선언(함수 표현식 제외)을 대상으로 함수명이 Variable Object의 프로퍼티로, 생성된 Function Object가 값으로 set된다.(**함수 호이스팅**)
->3. 대상 코드 내의 변수 선언을 대상으로 변수명이 Variable Object의 프로퍼티로, undefined가 값으로 set된다.(**변수 호이스팅**)
+>1. (Function Code인 경우) **매개변수(parameter)**가 Variable Object의 프로퍼티로, 인수(argument)가 값으로 설정된다.
+>2. 대상 코드 내의 **함수** 선언(함수 표현식 제외)을 대상으로 함수명이 Variable Object의 프로퍼티로, 생성된 함수 객체가 값으로 설정된다.(**함수 호이스팅**)
+>3. 대상 코드 내의 **변수** 선언을 대상으로 변수명이 Variable Object의 프로퍼티로, undefined가 값으로 설정된다.(**변수 호이스팅**)
 
-위 예제 코드를 보면 Global Code의 변수 x 선언과 함수 foo의 선언(매개변수 없음)이 실행되었다. Variable Instantiation의 실행 순서 상,
-우선 2. 함수 foo의 선언이 처리되고(Function Code이 아닌 Global Code이기 때문에 1. 매개변수 처리는 실행되지 않는다.) 그 후 3. 변수 x의 선언이 처리된다.
+위 예제 코드를 보면 전역 코드의 변수 x와 함수 foo(매개변수 없음)가 선언되었다. Variable Instantiation의 실행 순서 상,
+우선 2. 함수 foo의 선언이 처리되고(함수 코드가 아닌 전역 코드이기 때문에 1. 매개변수 처리는 실행되지 않는다.) 그 후 3. 변수 x의 선언이 처리된다.
 
 #### 3.1.2.1 함수 foo의 선언 처리
 
-함수 선언은 Variable Instantiation 실행 순서 2.와 같이 선언된 함수명( foo )이 Variable Object( Global Code인 경우 Global Object )의 프로퍼티로, 생성된 Function Object가 값으로 바인딩된다.
+함수 선언은 Variable Instantiation 실행 순서 2.와 같이 선언된 함수명 foo가 Variable Object(전역 코드인 경우 Global Object)의 프로퍼티로, 생성된 함수 객체가 값으로 설정된다.
 
 ![함수 foo의 선언 처리](/img/ec_7.png)
 {: .w-450}
@@ -250,7 +250,7 @@ Variable Instantiation(변수 객체화)는 아래의 순서로 Variable Object�
 함수 foo의 선언 처리
 {: .desc-img}
 
-생성된 Function Object는 `[[Scopes]]` 프로퍼티를 가지게 된다. [[Scopes]] 프로퍼티는 값으로 현재 실행 컨텍스트의 Scope Chain이 참조하고 있는 객체와 같은 객체를 참조하는 리스트가 바인딩된다.
+생성된 함수 객체는 `[[Scopes]]` 프로퍼티를 가지게 된다. [[Scopes]] 프로퍼티는 현재 실행 컨텍스트의 스코프 체인이 참조하고 있는 객체와 같은 객체를 참조하는 리스트가 값으로 바인딩된다.
 
 ![함수 foo의 [[Scopes]]](/img/foo-scopes.png)
 {: .w-350}

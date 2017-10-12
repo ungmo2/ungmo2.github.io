@@ -32,7 +32,7 @@ MongoDB Document
 
 Document의 형태를 살펴보자.
 
-```json
+```
 {
   _id: ObjectId("5099803df3f4948bd2f98391"),
   name: { first: "Alan", last: "Turing" },

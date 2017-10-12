@@ -14,7 +14,9 @@ description: MongoDB의 기본 개념과 설치 RDMS와 MongoDB의 비교
 
 # 1. Introduction
 
-[MongoDB](https://www.mongodb.com/)는 Document-Oriented [NoSQL](https://ko.wikipedia.org/wiki/NoSQL) 데이터베이스이다. 오픈 소스이며 엔진은 C++로 작성되었다.
+[MongoDB](https://www.mongodb.com/)는 Document-Oriented(문서 지향적) [NoSQL](https://ko.wikipedia.org/wiki/NoSQL) 데이터베이스이다. 오픈 소스이며 엔진은 C++로 작성되었다.
+
+NoSQL이란 Not Only SQL의 약자로서 기존의 RDBMS(관계형 데이터베이스)의 한계를 극복하기 위한 새로운 형태의 데이터베이스이다.
 
 **Document**
 
@@ -27,6 +29,21 @@ value에는 다른 document, array, document array가 포함될 수 있다.
 
 MongoDB Document
 {: .desc-img}
+
+Document의 형태를 살펴보자.
+
+```json
+{
+  _id: ObjectId("5099803df3f4948bd2f98391"),
+  name: { first: "Alan", last: "Turing" },
+  birth: new Date('Jun 23, 1912'),
+  death: new Date('Jun 07, 1954'),
+  contribs: [ "Turing machine", "Turing test", "Turingery" ],
+  views : NumberLong(1250000)
+}
+```
+
+각 Document는 `_id`라는 고유한 값을 갖는다. 이 고유한 값은 시간/머신ID/프로세스ID/순차번호로 구성되며 값의 고유성을 보장한다.
 
 **Collection**
 
@@ -144,9 +161,9 @@ MongoDB Structure
 
 # 3. 특징
 
-- Schema-less하다. 이는 RDMS처럼 고정 Schema가 존재하지 않는다는 뜻으로 같은 Collection 내에 있더라도 document level의 다른 Schema를 가질 수 있다는 의미이다. RDBMS는 table level로 field를 정의하지만 Document-Oriented Database인 MongoDB는 document level의 field를 정의한다. 이는 같은 collection 내의 document가 각자의 고유한 field를 가질 수 있다는 것을 의미한다.
+- Schema-less하다. 이는 RDMS처럼 고정 [Schema(스키마)](https://ko.wikipedia.org/wiki/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4_%EC%8A%A4%ED%82%A4%EB%A7%88)가 존재하지 않는다는 뜻으로 같은 Collection 내에 있더라도 document level의 다른 Schema를 가질 수 있다는 의미이다. RDBMS는 각 테이블마다 동일한 Schema를 가져야 하며 스키마를 변경하고자 한다면 모든 데이터를 변경하여야 한다. 하지만 MongoDB는 하나의 Collection내의 Document가 각각 다른 스키마를 갖을 수 있다. 이러한 특성을 동적 스키마라 한다. 이것은 collection 내의 document가 각자의 고유한 field를 가질 수 있다는 것을 의미한다.
 
-- RDMS와 같은 JOIN이 없어 Table JOIN은 효과적이지 않지만(불가능하지는 않다) CRUD Query는 고속으로 동작한다.
+- RDMS와 같은 JOIN이 없어 Table JOIN은 효과적이지 않지만(불가능하지는 않다) CRUD Query는 고속으로 동작한다. MongoDB는 스키마를 디자인할 때 하나의 document에 최대한 많은 데이터를 포함시킨다. 예를 들어 RDBMS의 경우, 포스트의 덧글에 대한 스키마를 각각의 테이블로 분리하고 JOIN하여 사요하는 것이 일반적이지만 MongoDB의 경우, 하나의 document에 포스트의 sub document로 덧글을 포함시킨다. 이러한 구조는 간편하고 빠른 Query를 가능하게 한다.
 
 - Scalability(규모 가변성, 확장성)이 우수하며 Sharding(여러 개의 데이터베이스에 데이터를 분할하는 기술) 클러스터 구축도 가능하다.
 
@@ -165,24 +182,18 @@ MongoDB Sharding Clustering
 
 Community Server 3.2.9을 기준으로 설명한다.
 
-설치가 완료되면 CMD 창을 열고 MongoDB가 설치된 디렉터리로 이동한다. 설치 디렉터리를 별도 지정하지 않았다면 `C:\Program Files\MongoDB\Server\3.2\bin\`에 설치된다.
-
-```bash
-cd C:\Program Files\MongoDB\Server\3.2\bin
-```
-
 **2. 기본 데이터베이스 디렉터리 생성**
 
 기본 데이터베이스 디렉터리(C:\\data\\db)를 생성한다. 기본 데이터베이스 디렉터리에 데이터가 store된다.
 
 ```bash
-C:\Program Files\MongoDB\Server\3.2\bin>mkdir C:\data\db
+mkdir C:\data\db
 ```
 
 로그 파일이 저장될 디렉터리를 생성한다.
 
 ```bash
-C:\Program Files\MongoDB\Server\3.2\bin>mkdir C:\mongodb\log
+mkdir C:\mongodb\log
 ```
 
 **3. 환경설정 파일 생성**
@@ -227,6 +238,12 @@ storageEngine = mmapv1
 ```
 
 **4. DB 기동**
+
+MongoDB가 설치된 디렉터리로 이동한다. Community Server 3.2.9의 경우, 설치 디렉터리를 별도 지정하지 않았다면 `C:\Program Files\MongoDB\Server\3.2\bin\`에 설치된다.
+
+```bash
+cd C:\Program Files\MongoDB\Server\3.2\bin
+```
 
 MongoDB Server를 기동한다.
 
@@ -281,7 +298,6 @@ server should be down...
 C:\Program Files\MongoDB\Server\3.2\bin>
 ```
 
-
 ## 4.2 Mac
 
 **1. download & install**
@@ -334,6 +350,83 @@ server should be down...
 $ ps wuax | grep mongo
 leeungmo    15609   0.0  0.0  2454296    820 s001  S+    2:16PM   0:00.00 grep mongo
 ```
+
+## 4.3 mLab Hosting service
+
+MongoDB를 직접 설치하지 않고 mLab Hosting service를 이용할 수도 있다.
+
+[mLab](https://mlab.com/)에 접속한 후, 회원가입을 하고 로그인한다.
+
+![mlab-1](/img/mlab-1.png)
+
+데이터베이스 생성
+{: .desc-img}
+
+![mlab-2](/img/mlab-2.png)
+
+플랜 선택
+{: .desc-img}
+
+![mlab-3](/img/mlab-3.png)
+
+데이터베이스명 설정
+{: .desc-img}
+
+![mlab-4](/img/mlab-4.png)
+
+데이터베이스 생성 확인
+{: .desc-img}
+
+![mlab-5](/img/mlab-5.png)
+
+데이터베이스 선택
+{: .desc-img}
+
+![mlab-6](/img/mlab-6.png)
+
+계정 생성 화면 진입
+{: .desc-img}
+
+![mlab-7](/img/mlab-7.png)
+
+계정 생성
+{: .desc-img}
+
+![mlab-8](/img/mlab-8.png)
+
+데이터베이스 생성 완료
+{: .desc-img}
+
+## 4.4 RoboMongo
+
+터미널에서 mongo 명령어를 사용하여 데이터베이스에 접속하고 조회할 수 있으나 불편할 수 있으므로 GUI MongoDB 클라이언트인 Robomongo 설치하여 보자.
+
+- [Robomongo 다운로드](https://robomongo.org/download)
+
+![robomongo-1](/img/robomongo-1.png)
+
+Robomongo 실행 화면
+{: .desc-img}
+
+![robomongo-2](/img/robomongo-2.png)
+
+접속 정보 설정 화면
+{: .desc-img}
+
+![robomongo-3](/img/robomongo-3.png)
+
+계정 정보 설정 화면
+{: .desc-img}
+
+![robomongo-4](/img/robomongo-4.png)
+
+MongoDB 접속
+{: .desc-img}
+
+![robomongo-5](/img/robomongo-5.png)
+
+MongoDB 접속 성공
+{: .desc-img}
 
 # Reference
 

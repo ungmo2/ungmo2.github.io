@@ -36,7 +36,7 @@ Queue 클래스의 data 프로퍼티는 타입 선언을 생략하였기 때문�
 
 any[] 타입은 배열 요소의 타입이 모두 같지 않다는 문제를 가지게 된다. 위 예제의 경우 data 프로퍼티에는 number 타입만을 포함하는 배열이라는 기대 하에 각 요소에 대해 toPrecision() 함수를 사용하였고 number 타입이 아닌 요소의 경우 런타임 에러가 발생한다.
 
-위와 같은 문제를 해결하기 위해 Queue 클래스를 상속하여 number 타입 전용 NumberQueue 클래스를 정의할 수 있다. 
+위와 같은 문제를 해결하기 위해 Queue 클래스를 상속하여 number 타입 전용 NumberQueue 클래스를 정의할 수 있다.
 
 ```typescript
 class Queue {
@@ -110,7 +110,7 @@ console.log(myQueue.pop()); // { name: 'Kim', age: 20 }
 
 제네릭은 선언 시점이 아니라 생성 시점에 타입을 명시하여 하나의 타입만이 아닌 다양한 타입을 사용할 수 있도록 하는 기법이다. 한번의 선언으로 다양한 타입에 재사용이 가능하다는 장점이 있다.
 
-T는 제네릭을 선언할 때 관용적으로 사용되는 식별자로 타입 매개변수(Type parameter)라 한다. T는 Type의 약자로 반드시 T를 사용하여야 하는 것은 아니다. 
+**T는 제네릭을 선언할 때 관용적으로 사용되는 식별자로 타입 파라미터(Type parameter)라 한다.** T는 Type의 약자로 반드시 T를 사용하여야 하는 것은 아니다.
 
 함수에도 제네릭을 사용할 수 있다. 제네릭을 사용하면 하나의 타입만이 아닌 다양한 타입의 매개변수와 리턴값을 사용할 수 있다.
 
@@ -121,8 +121,8 @@ function reverse<T>(items: T[]): T[] {
 
 const arg = [{name: 'Lee'}, {name: 'Kim'}, {name: 'Park'}];
 
-// 인수에 의해 타입매개변수가 결정된다 
-const reversed = reverse(arg); // reversed: {name: string}[] 
+// 인수에 의해 타입매개변수가 결정된다
+const reversed = reverse(arg); // reversed: {name: string}[]
 console.log(reversed);
 
 reversed.push({name: 100}); // Error

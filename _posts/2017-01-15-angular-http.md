@@ -184,7 +184,11 @@ class Todo {
 
 @Component({
   selector: 'app-root',
-  template: `<pre>{{ todos | json }}</pre>`
+  template: `
+    <ul>
+      <li *ngFor="let todo of todos">{{ "{{ todo.content " }}}}</li>
+    </ul>
+    <pre>{{ "{{ todos | json " }}}}</pre>`
 })
 export class AppComponent implements OnInit {
   todos: Todo[];
@@ -337,7 +341,10 @@ class Todo {
   template: `
     <input #todo type="text" [(ngModel)]="content" placeholder="todo">
     <button (click)="addTodo(todo.value)">Add</button>
-    <pre>{{ todos | json }}</pre>
+    <ul>
+      <li *ngFor="let todo of todos">{{ "{{ todo.content " }}}}</li>
+    </ul>
+    <pre>{{ "{{ todos | json " }}}}</pre>
   `
 })
 export class HttpPostComponent implements OnInit {
@@ -419,9 +426,9 @@ class Todo {
   selector: 'app-root',
   template: `
     <ul>
-      <li *ngFor="let todo of todos" (click)="editTodo(todo.id)">{{todo.content}}</li>
+      <li *ngFor="let todo of todos" (click)="editTodo(todo.id)">{{ "{{ todo.content " }}}}</li>
     </ul>
-    <pre>{{ todos | json }}</pre>
+    <pre>{{ "{{ todos | json " }}}}</pre>
   `
 })
 export class HttpPutComponent implements OnInit {
@@ -470,9 +477,9 @@ class Todo {
   selector: 'app-root',
   template: `
     <ul>
-      <li *ngFor="let todo of todos" (click)="completeTodo(todo)">{{todo.content}}</li>
+      <li *ngFor="let todo of todos" (click)="completeTodo(todo)">{{ "{{ todo.content " }}}}</li>
     </ul>
-    <pre>{{ todos | json }}</pre>
+    <pre>{{ "{{ todos | json " }}}}</pre>
   `
 })
 export class HttpPatchComponent implements OnInit {
@@ -522,9 +529,9 @@ class Todo {
   selector: 'app-root',
   template: `
     <ul>
-      <li *ngFor="let todo of todos" (click)="deleteTodo(todo.id)">{{todo.content}}</li>
+      <li *ngFor="let todo of todos" (click)="deleteTodo(todo.id)">{{ "{{ todo.content " }}}}</li>
     </ul>
-    <pre>{{ todos | json }}</pre>
+    <pre>{{ "{{ todos | json " }}}}</pre>
   `
 })
 export class HttpDeleteComponent implements OnInit {
@@ -549,6 +556,57 @@ export class HttpDeleteComponent implements OnInit {
   }
 }
 ```
+
+# 4. HTTP 요청 중복 방지
+
+HttpClient은 옵저버블을 반환한다. 옵저버블의 subscribe 메소드가 호출되기 이전에는 아무 일도 일어나지 않다가 subscribe 메소드가 호출되면 각각 호출별로 요청을 생성한다.
+
+```typescript
+const req = http.post('/api/items/add', body);
+// subscribe 메소드 호출 이전: 요청이 아직 생성되지 않았다.
+req.subscribe();
+// subscribe 메소드 호출: 1개의 요청이 생성된다.
+req.subscribe();
+// subscribe 메소드 호출: 2개의 요청이 생성된다.
+```
+
+위 예제의 경우 동일한 요청 페이로드로 2번 POST 요청이 전송된다. 코드가 복잡해짐에 따라 여러 곳에서 옵저버블이 생성되고 다른 곳에서 옵저버블을 구독하다보면 중복된 요청을 생성할 가능성이 커진다.
+
+이런 상황을 해결하기 위해 RxJS는 5.4.0 버전부터 [shareReplay](http://reactivex.io/documentation/operators/replay.html) 오퍼레이터를 추가하였다.
+
+```typescript
+import 'rxjs/add/operator/shareReplay';
+
+ngOnInit() {
+  const tods$ = this.getTodos();
+  tods$.subscribe(todos => this.todos = todos);
+  tods$.subscribe(todos => this.todos = todos);
+}
+
+getTodos(): Observable<Todo[]> {
+  return this.http.get<Todo[]>(this.url)
+    .shareReplay();
+}
+```
+
+옵저버블 tods$는 2번 구독되었지만 HTTP 요청은 1번만 전송되었다.
+
+<!--
+# 4. HTTP 요청 중복 방지
+# 5. HTTP 병렬 요청 및 결과 조합
+
+
+# 5. HTTP 인터셉터 (HttpInterceptor)
+
+HttpClient는 [HttpInterceptor](https://angular.io/api/common/http/HttpInterceptor) 인터페이스
+
+
+HTTP Client 모듈에는 HTTP 인터셉터가 추가되었는데, 이 HTTP 인터셉터를 사용하면 HTTP 요청을 처리하기 전이나 후에 특정 기능을 실행할 수 있다.
+클라이언트에서 보내는 모든 HTTP 요청의 헤더에 인증 토큰을 넣어야 하는 경우를 생각해보자.
+이 경우에는 HttpInterceptor 인터페이스를 기반으로 다음과 같이 구현하면 된다.
+-->
+
+
 
 # Reference
 

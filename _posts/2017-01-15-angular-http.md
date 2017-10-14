@@ -591,11 +591,11 @@ export class HttpDeleteComponent implements OnInit {
 HttpClient은 옵저버블을 반환한다. 옵저버블의 subscribe 메소드가 호출되기 이전에는 아무 일도 일어나지 않다가 subscribe 메소드가 호출되면 각각 호출별로 요청을 생성한다.
 
 ```typescript
-const req = http.post('/api/items/add', body);
+const tods$ = this.http.post(this.url, payload);
 // subscribe 메소드 호출 이전: 요청이 아직 생성되지 않았다.
-req.subscribe();
+tods$.subscribe();
 // subscribe 메소드 호출: 1개의 요청이 생성된다.
-req.subscribe();
+tods$.subscribe();
 // subscribe 메소드 호출: 2개의 요청이 생성된다.
 ```
 

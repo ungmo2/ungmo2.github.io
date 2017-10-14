@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Angular <strong>HttpClient</strong>
-subtitle: HTTP 통신
+subtitle: HttpClient와 HTTP 통신
 categories: angular
 section: angular
 description: 대부분의 웹 애플리리케이션이 그러하듯이 Angular 애플리케이션은 HTTP 프로토콜을 통해 서버와 통신한다. Angular는 @angular/http 패키지의 Http 클래스를 통해 HTTP 요청을 처리하였다. Angular V4.3부터는 @angular/common/http 패키지의 HttpClient 클래스를 통해 기존의 Http 클래스보다 발전된 HTTP 요청 API와 인터셉터(Interceptor)를 제공한다.

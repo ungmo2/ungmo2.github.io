@@ -206,6 +206,8 @@ export class AppComponent implements OnInit {
 }
 ```
 
+### 3.1.1 Response 타입 체크
+
 위 코드를 실행하면 아래와 같은 컴파일 에러가 발생한다.
 
 ```
@@ -215,7 +217,17 @@ Failed to compile.
   The 'Object' type is assignable to very few other types. Did you mean to use the 'any' type instead?
 ```
 
-이는 서버로부터의 응답이 Object 타입이기 때문이다. http.get 메소드에 [타입 파라미터](./typescript-generic)를 알려주어야 한다.
+이는 서버로부터의 전달받은 데이터 todos가 Object 타입이기 때문이다. 즉 Object 타입인 todos를 Todo[] 타입인 this.todos에 할당하려 하였을 때 발생한 컴파일 에러이다.
+
+```typescript
+ngOnInit() {
+  this.http.get<Todo[]>(this.url)
+    // 할당시 타입이 일치하지 않기 때문에 컴파일 에러가 발생한다.
+    .subscribe(todos => this.todos = todos);
+}
+```
+
+HttpClient.get 메소드는 [제네릭](./typescript-generic) 함수이므로 타입 파라미터(형식 매개 변수)를 설정해 주어야 한다.
 
 ```typescript
 ngOnInit() {
@@ -226,9 +238,26 @@ ngOnInit() {
 }
 ```
 
-### 3.1.1 HttpParams
+### 3.1.2 responseType
 
-GET 요청은 파라미터와 함께 전달할 수 있다. 예를 들어 위 예제의 url을 아래와 같이 변경하여 보자.
+JSON 데이터가 아닌 텍스트, [blob](https://ko.wikipedia.org/wiki/%EB%B0%94%EC%9D%B4%EB%84%88%EB%A6%AC_%EB%9D%BC%EC%A7%80_%EC%98%A4%EB%B8%8C%EC%A0%9D%ED%8A%B8) 등의 non-JSON 데이터를 요청하는 경우, responseType 옵션을 사용한다. responseType 옵션을 설정하지 않는 경우, 기본으로 JSON 데이터를 반환한다.
+
+-다양한 형식의 데이터
+
+```typescript
+ngOnInit() {
+  // HTTP 요청: 텍스트 파일을 요청
+  this.http.get('/textfile.txt', {responseType: 'text'})
+  // get 메소드는 Observable<string>를 반환한다.
+  .subscribe(data => console.log(data));
+}
+```
+
+responseType을 설정한 경우, 타입 파라미터를 지정할 필요가 없으며 get 메소드는 Observable<string>를 반환한다.
+
+### 3.1.3 HttpParams
+
+GET 요청은 쿼리 파라미터와 함께 전달할 수 있다. 예를 들어 위 예제의 url을 아래와 같이 변경하여 보자.
 
 ```typescript
 url = 'http://localhost:3000/todos?id=1&completed=false';
@@ -238,7 +267,7 @@ url = 'http://localhost:3000/todos?id=1&completed=false';
 
 ```typescript
 ngOnInit() {
-  // 요청 파라미터 생성
+  // 쿼리 파라미터 생성
   const params = new HttpParams()
     .set('id', '1')
     .set('completed', 'false');
@@ -260,7 +289,7 @@ params.set('completed', 'false');
 
 위 코드를 실행하면 params 변수에는 빈 HttpParams 객체가 할당된다. 또한 set 메소드는 2개의 인자 모두 문자열을 설정해야 한다.
 
-### 3.1.2 HttpResponse
+### 3.1.4 HttpResponse
 
 지금까지의 예제는 todos 데이터(response body)만을 리턴받았을 뿐이다. 특정 헤더 정보나 상태 코드(status code)를 확인하려면 전체 응답(response)을 받아야 한다. 이런 경우, observe 옵션을 사용하면 [HttpResponse](https://angular.io/api/common/http/HttpResponse) 클래스 타입의 응답을 받을 수 있다.
 
@@ -278,7 +307,7 @@ this.http.get<Todo[]>(this.url, { observe: 'response' })
   });
 ```
 
-### 3.1.3 에러 핸들링
+### 3.1.5 에러 핸들링
 
 서버 요청이 실패하였거나 네트워크 연결에 문제가 있어서 에러가 발생하였을 경우, HttpClient는 정상 응답 대신 에러를 반환한다. 이때 subscribe의 두번째 콜백함수가 호출된다.
 
@@ -301,10 +330,10 @@ ngOnInit() {
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
           // 클라이언트 또는 네트워크 에러
-          console.log('An error occurred:', err.error.message);
+          console.log(`Client-side error: ${err.error.message}`);
         } else {
           // 백엔드가 실패 상태 코드 응답
-          console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+          console.log(`Server-side error: ${err.status}`);
         }
       }
     );
@@ -326,7 +355,7 @@ ngOnInit() {
 ```typescript
 // http-post.component.ts
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 class Todo {
   constructor(
@@ -594,19 +623,75 @@ getTodos(): Observable<Todo[]> {
 <!--
 # 4. HTTP 요청 중복 방지
 # 5. HTTP 병렬 요청 및 결과 조합
-
-
-# 5. HTTP 인터셉터 (HttpInterceptor)
-
-HttpClient는 [HttpInterceptor](https://angular.io/api/common/http/HttpInterceptor) 인터페이스
-
-
-HTTP Client 모듈에는 HTTP 인터셉터가 추가되었는데, 이 HTTP 인터셉터를 사용하면 HTTP 요청을 처리하기 전이나 후에 특정 기능을 실행할 수 있다.
-클라이언트에서 보내는 모든 HTTP 요청의 헤더에 인증 토큰을 넣어야 하는 경우를 생각해보자.
-이 경우에는 HttpInterceptor 인터페이스를 기반으로 다음과 같이 구현하면 된다.
 -->
 
+# 5. 인터셉터 (HttpInterceptor)
 
+HttpClient는 미들웨어 로직을 파이프 라인에 삽입할 수 있는 인터셉터를 도입하였다. 인터셉터를 사용하면 HTTP 요청 처리 전후에 특정 기능을 실행할 수 있다. 인터셉터는 요청과 응답을 함께 처리할 수 있기 때문에 로그 처리 또는 요청 소요 시간 확인과 같은 작업을 수행할 수 있다.
+
+인터셉터를 작성하기 위해서는 intercept 메소드의 구현을 강제하는 [HttpInterceptor](https://angular.io/api/common/http/HttpInterceptor) 인터페이스를 implements하여야 한다.
+
+```typescript
+interface HttpInterceptor {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>;
+}
+```
+
+인터셉터가 어떻게 동작하는지 간단히 살펴 보도록 하자. 모든 HTTP 요청의 헤더에 인증 토큰을 추가하는 경우이다. HttpInterceptor를 구현한 AuthInterceptor 서비스를 작성한다.
+
+```typescript
+import { Injectable } from "@angular/core";
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from "@angular/common/http";
+import { Observable } from "rxjs/Observable";
+
+@Injectable() export class AuthInterceptor implements HttpInterceptor {
+  // AuthService를 주입받는다.
+  // 인증 토큰을 취득하는 AuthService가 별도로 구현되어 있다고 가정한다.
+  constructor(private auth: AuthService) { }
+
+  // ① intercept 메소드는 2개의 파라미터를 갖는다.
+  intercept(req: HttpRequest<any>, next: HttpHandler):Observable<HttpEvent<any>> {
+
+    // AuthService 서버스로 부터 인증 토큰를 취득한다(잠정 처리)
+    const authToken = this.auth.getToken();
+
+    // ② 헤더에 인증 토큰을 추가한 새로운 HttpRequest 객체를 생성(클론)한다
+    const clonedRequest = req.clone({
+      headers: req.headers.set('Authorization', authToken)
+    });
+
+    // ③ 클론한 HttpRequest 객체를 원본 HttpRequest 객체 대신 다음 미들웨어 체인으로 전달한다. 다음 인터셉터가 없는 경우, Observable 반환하고 종료한다.
+    return next.handle(clonedRequest);
+  }
+}
+```
+
+① intercept 메소드는 2개의 파라미터를 갖는다. 첫번째 req는 처리할 요청이고 두번째 next는 다음 인터셉터를 가리키는 핸들러다.
+
+이 핸들러는 [HttpHandler](https://angular.io/api/common/http/HttpHandler) 클래스 타입으로 HttpHandler는 Express의 미들웨어와 유사하게 인터셉터를 체이닝할 때 사용한다. 다음 인터셉터가 존재하는 경우, 요청을 다음 인터셉터에 전달하고 다음 인터셉터가 존재하지 않는 경우, 최종 HttpHandler인 [HttpBackend](https://angular.io/api/common/http/HttpBackend)가 되어 요청을 전송하고 Observable 반환한다.
+
+**인터셉터는 HttpClient 인터페이스와 HTTP 요청을 브라우저 HTTP API를 통해 백엔드로 전달하는 최종 HttpHandler인 HttpBackend 사이에 있으며 여러개의 인터셉터가 존재할 때 각각의 인터셉터를 순차적으로 연결하는 역할을 하는 것이 HttpHandler이다.**
+
+② 첫번째 인자로 받은 HttpRequest 객체는 이뮤터블이기 때문에 직접 객체의 내용을 변경할 수 없다. clone 메소드를 사용하여 헤더에 인증 토큰을 추가한 새로운 복사본을 생성한다.
+
+③ 원본 HttpRequest 객체 대신 헤더에 인증 토큰을 추가한 새로운 HttpRequest 객체를 다음 미들웨어 체인으로 전달한다. 다음 인터셉터가 없는 경우, Observable 반환하고 종료한다.
+
+작성한 인터셉터를 HTTP 요청에 적용하기 위해 애플리케이션 모듈의 프로바이더에 HTTP_INTERCEPTOR 프로바이더를 다음과 같이 추가한다.
+
+```typescript
+...
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+@NgModule({
+  ...
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }]
+})
+export class AppModule {}
+```
 
 # Reference
 

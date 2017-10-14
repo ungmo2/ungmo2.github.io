@@ -14,7 +14,7 @@ description: 대부분의 웹 애플리리케이션이 그러하듯이 Angular �
 
 # 1. HttpClient이란?
 
-대부분의 웹 애플리리케이션이 그러하듯이 Angular 애플리케이션은 HTTP 프로토콜을 통해 서버와 통신한다. Angular는 @angular/http 패키지의 [Http](https://angular.io/api/http/Http) 클래스를 통해 HTTP 요청을 처리하였다. Angular V4.3부터는 @angular/common/http 패키지의 [HttpClient](https://angular.io/api/common/http/HttpClient) 클래스를 통해 기존의 Http 클래스보다 발전된 HTTP 요청 API와 인터셉터(Interceptor)를 제공한다.
+대부분의 웹 애플리리케이션이 그러하듯이 Angular 애플리케이션은 HTTP 프로토콜을 통해 서버와 통신한다. Angular는 @angular/http 패키지의 [Http](https://angular.io/api/http/Http) 클래스를 통해 HTTP 요청을 처리하였다. Angular 4.3 버전부터는 @angular/common/http 패키지의 [HttpClient](https://angular.io/api/common/http/HttpClient) 클래스를 통해 기존의 Http 클래스보다 발전된 HTTP 요청 API와 인터셉터(Interceptor)를 제공한다.
 
 HttpClient 클래스의 개요를 살펴보도록 하자. HttpClient 클래스는 @angular/common/http 패키지로 제공된다. 아래 코드는 Angular 4.4.4 버전의 HttpClient 클래스를 간략히 나타낸 것이다.
 
@@ -59,9 +59,9 @@ HttpClient는 주입 가능한 클래스이며 HTTP 요청을 수행하는 메�
 
 HttpClient의 메소드는 옵저버블을 반환한다. 즉 HttpClient는 RxJS의 옵저버블 객체를 기반으로 작성되어 있다.
 
-# 2. HttpClientModule의 설치
+# 2. HttpClientModule
 
-HttpClient 클래스를 사용하려면 HttpClient를 제공하는 HttpClientModule을 모듈에 인스톨하여야 한다. HttpClient을 애플리케이션 전역에서 사용할 수 있도록 애플리케이션 모듈에 HttpClientModule을 임포트한다.
+HttpClient 클래스를 사용하려면 HttpClient를 제공하는 HttpClientModule을 모듈에 추가하여야 한다. HttpClient을 애플리케이션 전역에서 사용할 수 있도록 애플리케이션 모듈에 HttpClientModule을 임포트한다.
 
 ```typescript
 // app.module.ts

@@ -76,8 +76,8 @@ jQuery(document).ready(function ($) {
     iframe.contentWindow.document.write(html);
     iframe.contentWindow.document.close();
 
-    // container height = iframe height
-    $this.height(iframe.contentWindow.document.body.scrollHeight);
+    // container height = iframe height + 30
+    $this.height(iframe.contentWindow.document.body.scrollHeight + 30);
   });
 
   //////////////////////////////////////////////////////////////////////

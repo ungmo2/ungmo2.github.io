@@ -43,7 +43,7 @@ DELETE /books/1
 
 # 2. HTTP Method
 
-4가지의 Method(GET, POST, PUT, DELETE)를 사용하여 CRUD를 구현한다. 
+4가지의 Method(GET, POST, PUT, DELETE)를 사용하여 CRUD를 구현한다.
 
 | Method | Action         | 역할
 |:-------|:---------------|--------------------
@@ -136,10 +136,23 @@ $ curl -X GET http://localhost:5000/books
 
 ![get-books](/img/get-books.png)
 
+[Postman](https://www.getpostman.com/)
+{: .desc-img}
+
 ```javascript
 var req = new XMLHttpRequest();
-req.open('GET', '/books');
+req.open('GET', 'http://localhost:5000/books');
 req.send();
+
+req.onreadystatechange = function (e) {
+  if (req.readyState === XMLHttpRequest.DONE) {
+    if(req.status === 200) {
+      console.log(req.responseText);
+    } else {
+      console.log("Error!");
+    }
+  }
+};
 ```
 
 books 리소스에서 특정 책을 조회(retrieve)한다.
@@ -157,8 +170,18 @@ $ curl -X GET http://localhost:5000/books/1
 
 ```javascript
 var req = new XMLHttpRequest();
-req.open('GET', '/books/1');
+req.open('GET', 'http://localhost:5000/books/1');
 req.send();
+
+req.onreadystatechange = function (e) {
+  if (req.readyState === XMLHttpRequest.DONE) {
+    if(req.status === 200) {
+      console.log(req.responseText);
+    } else {
+      console.log("Error!");
+    }
+  }
+};
 ```
 
 ## 4.3 POST
@@ -178,12 +201,22 @@ $ curl -X POST http://localhost:5000/books -H "Content-Type: application/json" -
 
 ```javascript
 var req = new XMLHttpRequest();
-req.open('POST', '/books');
+req.open('POST', 'http://localhost:5000/books');
 req.setRequestHeader('Content-type', 'application/json');
 req.send(JSON.stringify({
   title: "ES6",
   author: "Choi"
 }));
+
+req.onreadystatechange = function (e) {
+  if (req.readyState === XMLHttpRequest.DONE) {
+    if(req.status === 201) {
+      console.log(req.responseText);
+    } else {
+      console.log("Error!");
+    }
+  }
+};
 ```
 
 ## 4.4 PUT
@@ -203,12 +236,22 @@ $ curl -X PUT http://localhost:5000/books/4 -H "Content-Type: application/json" 
 
 ```javascript
 var req = new XMLHttpRequest();
-req.open('PUT', '/books/4');
+req.open('PUT', 'http://localhost:5000/books/4');
 req.setRequestHeader('Content-type', 'application/json');
 req.send(JSON.stringify({
   title: 'ecmascript',
-  author: "Choi" 
+  author: "Choi"
 }));
+
+req.onreadystatechange = function (e) {
+  if (req.readyState === XMLHttpRequest.DONE) {
+    if(req.status === 200) {
+      console.log(req.responseText);
+    } else {
+      console.log("Error!");
+    }
+  }
+};
 ```
 
 ## 4.5 DELETE
@@ -224,15 +267,23 @@ $ curl -X DELETE http://localhost:5000/books/4
 
 ```javascript
 var req = new XMLHttpRequest();
-req.open('DELETE', '/books/4');
+req.open('DELETE', 'http://localhost:5000/books/4');
 req.send();
-```
 
-REST API에 대한 보다 상세한 내용은 [RESTFul이란 무엇인가?](http://blog.remotty.com/blog/2014/01/28/lets-study-rest/)을 참조하기 바란다.
+req.onreadystatechange = function (e) {
+  if (req.readyState === XMLHttpRequest.DONE) {
+    if(req.status === 200) {
+      console.log(req.responseText);
+    } else {
+      console.log("Error!");
+    }
+  }
+};
+```
 
 # Reference
 
 * [RESTFul이란 무엇인가?](http://blog.remotty.com/blog/2014/01/28/lets-study-rest)
 
 * [HTTP GET with request body](https://stackoverflow.com/questions/978061/http-get-with-request-body)
- 
+

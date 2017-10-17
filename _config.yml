@@ -3,6 +3,7 @@ url: http://poiemaweb.com
 description: 웹 프로그래밍 튜토리얼
 keywords: 자바스크립트, 노드, 익스프레스, HTML5, CSS3, Saaa, Javascript, node.js, express, MongoDB, SocketIO
 markdown: kramdown
+highlighter: rouge
 kramdown:
   input: GFM
 permalink: :title

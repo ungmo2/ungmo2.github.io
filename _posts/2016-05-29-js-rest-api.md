@@ -287,3 +287,5 @@ req.onreadystatechange = function (e) {
 
 * [HTTP GET with request body](https://stackoverflow.com/questions/978061/http-get-with-request-body)
 
+* [HTTP Status codes](https://httpstatuses.com)
+

@@ -41,11 +41,11 @@ Sass는 2006년 Ruby로 처음 개발되었고 이후 다양한 포팅 버전이
 
 따라서, Ruby Sass와 LibSass 두가지 버전 중 하나를 선택하여 설치하면 된다. Ruby 환경에서 개발이 진행된다면 Ruby Sass를 선택하고, Node.js 환경에서 개발이 진행된다면 LibSass를 사용하는 편이 좋을 것이다.
 
-node-sass는 npm으로 설치할 수 있다. Ruby Sass의 경우, Ruby의 설치가 필요하다. 
+node-sass는 npm으로 설치할 수 있다. Ruby Sass의 경우, Ruby의 설치가 필요하다.
 
 ## 2.1 node-sass
 
-Libsass를 사용하기 위해서는 Node.js 환경에서 사용하기 위해서는 [node-sass](https://github.com/sass/node-sass)를 설치하여야 한다. 따라서 Node.js와 npm이 install되어 있음을 전제로 한다.
+Libsass를 Node.js 환경에서 사용하기 위해서는 [node-sass](https://github.com/sass/node-sass)를 설치하여야 한다. 따라서 Node.js와 npm이 install되어 있음을 전제로 한다.
 
 * [Node.js의 설치와 npm 업데이트](./nodejs-basics#2-install)
 

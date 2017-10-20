@@ -457,7 +457,7 @@ export class AppComponent {
 }
 ```
 
-1. 사용자의 텍스트 입력에 의해 input 이벤트가 발생하면 이벤트 바인딩에 통하여 이벤트 핸들러 onInput을 호출한다. 이때 이벤트 정보를 담고 있는 DOM 이벤트 객체 **$event**를 이벤트 핸들러에 전달할 수 있다. Angular는 표준 DOM 이벤트를 사용하기 때문에 $event를 통해 브라우저의 [Event](https://developer.mozilla.org/ko/docs/Web/API/Event) 객체의 프로퍼니나 함수에 자유롭게 접근할 수 있다. 이벤트 핸들러 onInput은 input 이벤트를 발생시킨 input 요소(event.target)의 value 프로퍼티(사용자 입력 텍스트가 담겨있다)를 $event로 부터 추출하여 name 프로퍼티에 할당한다. name 프로퍼티는 프로퍼티 바인딩에 의해 다시 input 요소에 바인딩된다.
+1. 사용자의 텍스트 입력에 의해 input 이벤트가 발생하면 이벤트 바인딩에 통하여 이벤트 핸들러 onInput을 호출한다. 이때 이벤트 정보를 담고 있는 DOM 이벤트 객체 **$event**를 이벤트 핸들러에 전달할 수 있다. $event 객체는 DOM 이벤트의 종류에 의해 타입(KeyboardEvent, InputEvent, MouseEvent 등)이 결정된다. Angular는 표준 DOM 이벤트를 사용하기 때문에 $event를 통해 브라우저의 [Event](https://developer.mozilla.org/ko/docs/Web/API/Event) 객체의 프로퍼니나 함수에 자유롭게 접근할 수 있다. 이벤트 핸들러 onInput은 input 이벤트를 발생시킨 input 요소(event.target)의 value 프로퍼티(사용자 입력 텍스트가 담겨있다)를 $event로 부터 추출하여 name 프로퍼티에 할당한다. 그리고 name 프로퍼티는 프로퍼티 바인딩에 의해 다시 input 요소에 바인딩된다.
 
 2. 버튼이 클릭되면 click 이벤트가 발생하고 이벤트 바인딩에 의해 이벤트 핸들러 onClick을 호출한다. onClick은 name 프로퍼티를 초기화한다.
 
@@ -510,12 +510,12 @@ export class AppComponent {
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+
 import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, FormsModule, HttpModule],
+  imports: [BrowserModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent]
 })
@@ -540,7 +540,7 @@ export class AppComponent {
 
 컴포넌트 클래스의 name 프로퍼티는 템플릿의 input 요소와 양방향으로 바인딩되어 있다. 즉 input 요소의 value 프로퍼티가 변화하면 컴포넌트 클래스의 name 프로퍼티도 동일한 값으로 변화하고 반대로 컴포넌트 클래스의 name 프로퍼티가 변화하면 input 요소의 value 프로퍼티도 동일한 값으로 변화한다.
 
-사실 Angular는 양방향 바인딩을 지원하지 않는다. `[()]`(이것을 Banana in a box라고 부른다)에서 추측할 수 있듯이 양방향 바인딩은 이벤트 바인딩과 프로퍼티 바인딩을 축약 표현(Shorthand syntax)일 뿐이다. 즉 양방향 바인딩은 문법적 편의를 위한 기능이며 실제 동작은 이벤트 바인딩과 프로퍼티 바인딩의 조합으로 이루어진다. 위 코드를 이벤트 바인딩과 프로퍼티 바인딩으로 표현하여 보자.
+사실 Angular는 별도의 양방향 바인딩을 지원하지 않는다. `[()]`(이것을 Banana in a box라고 부른다)에서 추측할 수 있듯이 양방향 바인딩은 이벤트 바인딩과 프로퍼티 바인딩의 축약 표현(Shorthand syntax)일 뿐이다. 즉 양방향 바인딩은 문법적 편의를 위한 기능이며 실제 동작은 이벤트 바인딩과 프로퍼티 바인딩의 조합으로 이루어진다. 위 코드를 이벤트 바인딩과 프로퍼티 바인딩으로 표현하여 보자.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -1110,7 +1110,7 @@ export class AppComponent {
 
 # 3. 템플릿 참조 변수(Template reference variable)
 
-템플릿 참조 변수는 DOM 요소에 대한 참조를 담고 있는 변수이다. 태그 내에서 해시 기호(#)를 변수명 앞에 추가하여 템플릿 참조 변수를 선언하고 자바스크립트 코드에서는 해시 기호없이 참조한다. 템플릿 참조 변수는 템플릿 내에서만 유효하다. 이벤트 바인딩에 의해 컴포넌트 클래스로 템플릿 참조 변수의 값을 전달할 수는 있지만 컴포넌트 클래스에 어떠한 부수 효과(Side effect)도 주지 않는다.
+템플릿 참조 변수는 DOM 요소에 대한 참조를 담고 있는 변수이다. 태그 내에서 해시 기호(#)를 변수명 앞에 추가하여 템플릿 참조 변수를 선언하고 템플릿 내 자바스크립트 코드에서는 해시 기호없이 참조한다. 템플릿 참조 변수는 템플릿 내에서만 유효하며 컴포넌트 클래스에 어떠한 부수 효과(Side effect)도 주지 않는다. 하지만 템플릿 참조 변수의 값을 이벤트 바인딩을 통해 컴포넌트 클래스로 전달할 수는 있다.
 
 ```html
 <element #myelement>...</element>
@@ -1136,7 +1136,7 @@ export class AppComponent {
   result: string;
 
   checkEmail(email: string) {
-    const regexr = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+    const regexr = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
 
     if (regexr.test(email)) {
       this.result = '';

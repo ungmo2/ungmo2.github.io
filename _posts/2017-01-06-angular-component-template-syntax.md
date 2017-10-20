@@ -503,7 +503,7 @@ export class AppComponent {
 <element [(ngModel)]="property">...</element>
 ```
 
-ngModel 디렉티브를 이벤트 바인딩(())과 프로퍼티 바인딩([]) 형식으로 기술한 후 우변에 뷰와 컴포넌트 클래스가 공유할 프로퍼티를 기술한다. ngModel 디렉티브를 사용하기 위해서는 FormsModule을 모듈에 등록하여야 한다. Angular CLI를 통해 프로젝트를 생성하였다면 아래와 같이 FormsModule이 이미 등록되어 있으므로 별도의 등록이 필요없다.
+[ngModel](https://angular.io/api/forms/NgModel) 디렉티브를 이벤트 바인딩(())과 프로퍼티 바인딩([]) 형식으로 기술한 후 우변에 뷰와 컴포넌트 클래스가 공유할 프로퍼티를 기술한다. ngModel 디렉티브를 사용하기 위해서는 [FormsModule](https://angular.io/api/forms/FormsModule)을 모듈에 등록하여야 한다. <!-- Angular CLI를 통해 프로젝트를 생성하였다면 아래와 같이 FormsModule이 이미 등록되어 있으므로 별도의 등록이 필요없다. -->
 
 ```typescript
 // src/app/app.module.ts
@@ -540,7 +540,7 @@ export class AppComponent {
 
 컴포넌트 클래스의 name 프로퍼티는 템플릿의 input 요소와 양방향으로 바인딩되어 있다. 즉 input 요소의 value 프로퍼티가 변화하면 컴포넌트 클래스의 name 프로퍼티도 동일한 값으로 변화하고 반대로 컴포넌트 클래스의 name 프로퍼티가 변화하면 input 요소의 value 프로퍼티도 동일한 값으로 변화한다.
 
-사실 Angular는 양방향 바인딩을 지원하지 않는다. `[()]`(이것을 Banana in a box라고 부른다)에서 추측할 수 있듯이 양방향 바인딩은 이벤트 바인딩과 프로퍼티 바인딩을 축약 표현(Shorthand syntax)한 것일 뿐이다. 즉 양방향 바인딩은 문법적 편의를 위한 기능이며 실제 동작은 이벤트 바인딩과 프로퍼티 바인딩의 조합으로 이루어진다. 위 코드를 이벤트 바인딩과 프로퍼티 바인딩으로 표현하여 보자.
+사실 Angular는 양방향 바인딩을 지원하지 않는다. `[()]`(이것을 Banana in a box라고 부른다)에서 추측할 수 있듯이 양방향 바인딩은 이벤트 바인딩과 프로퍼티 바인딩을 축약 표현(Shorthand syntax)일 뿐이다. 즉 양방향 바인딩은 문법적 편의를 위한 기능이며 실제 동작은 이벤트 바인딩과 프로퍼티 바인딩의 조합으로 이루어진다. 위 코드를 이벤트 바인딩과 프로퍼티 바인딩으로 표현하여 보자.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -574,7 +574,7 @@ export class AppComponent {
 
 프로퍼티 바인딩 [ngModel]은 사용자 입력에 관련된 DOM 요소의 프로퍼티(위 예제의 경우 input 요소의 value 프로퍼티)를 업데이트한다. 그리고 이벤트 바인딩 (ngModelChange)은 이벤트를 수신하고 이벤트 핸들러를 통해 DOM의 변화를 외부에 알린다. 이때 ngModelChange는 $event에서 사용자 입력에 관련된 프로퍼티의 값(위 예제의 경우 target.value)를 내부적으로 추출하여 이벤트를 emit한다.
 
-양방향 바인딩은 반드시 ngModel 디렉티브를 사용하여야 하는 것은 아니며 커스텀 양방향 데이터 바인딩도 작성할 수 있다. 이 방법에 대해서는 컴포넌트 간 데이터 통신을 학습한 이후 설명하도록 한다.
+양방향 바인딩은 반드시 ngModel 디렉티브만을 사용하여야 하는 것은 아니며 커스텀 양방향 데이터 바인딩도 작성할 수 있다. 이 방법에 대해서는 [Angular Forms](./angular-forms)에서 설명하도록 한다.
 
 # 2. 빌트인 디렉티브(Built-in directive)
 

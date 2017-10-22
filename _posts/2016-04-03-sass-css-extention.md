@@ -4,7 +4,7 @@ title: Sass - <strong>CSS Extensions</strong>
 subtitle: Nesting, import, extend, 조건과 반복, Mixin, Function
 categories: Sass
 section: Sass
-description: 
+description: ass의 유용한 확장 기능으로 선언을 중첩(Nesting)하는 것이다. CSS는 후손 셀렉터(Descendant Combinator)의 경우, 부모요소를 기술하여야 한다.
 ---
 
 * TOC
@@ -193,7 +193,7 @@ partial된 Sass 파일명 선두에 붙인 &#95;의 의미는 import는 수행�
 
 기존에 선언되어 있는 error class를 사용하면서 일부 rule set에 대해서는 다른 선언이 필요한 경우 자주 사용하는 방법이다.
 
-이러한 경우 사용할 수 있는 방법이 상속이다. 상속되는 rule set을 그대로 상속받아 다른 부분만 별도 선언하면 된다. 
+이러한 경우 사용할 수 있는 방법이 상속이다. 상속되는 rule set을 그대로 상속받아 다른 부분만 별도 선언하면 된다.
 
 ```scss
 .error {
@@ -240,13 +240,13 @@ partial된 Sass 파일명 선두에 붙인 &#95;의 의미는 import는 수행�
 
 @media print {
   .bar {
-    // ERROR  
+    // ERROR
     @extend .foo;
   }
 }
 ```
 
-컴파일 후 자신의 셀렉터가 어디에 첨부될 것인지 예상하기 어렵고, 예상치 못했던 부작용이 발생할 수 있다. 따라서 @extend의 사용은 가급적 자제하고 Mixin은 사용하는 것을 추천한다. 
+컴파일 후 자신의 셀렉터가 어디에 첨부될 것인지 예상하기 어렵고, 예상치 못했던 부작용이 발생할 수 있다. 따라서 @extend의 사용은 가급적 자제하고 Mixin은 사용하는 것을 추천한다.
 {: .info}
 
 - [@extend의 부작용](https://sass-guidelin.es/ko/#extend)
@@ -381,9 +381,9 @@ p {
 }
 
 // Map
-// $header; h1, $size: 2em
-// $header; h2, $size: 1.5em
-// $header; h3, $size: 1.2em
+// $header: h1, $size: 2em
+// $header: h2, $size: 1.5em
+// $header: h3, $size: 1.2em
 @each $header, $size in (h1: 2em, h2: 1.5em, h3: 1.2em) {
   #{$header} {
     font-size: $size;
@@ -455,7 +455,7 @@ $i: 6;
 
 Mixin은 Sass의 매우 유용한 기능으로 중복 기술을 방지하기 위해 사용 빈도가 높은 마크업을 사전에 정의하여 필요할 때에 불러 사용하는 방법이다.
 
-@extend와 유사하나 프로그래밍언어의 함수와 같이 argument를 받을 수 있다.
+@extend와 유사하나 프로그래밍 언어의 함수와 같이 argument를 받을 수 있다.
 
 사용법은 매우 간단하다. `@mixin` 선언하고 `@include`로 불러들인다.
 
@@ -524,7 +524,7 @@ argument의 초기값을 설정할 수도 있다.
 
 .box {
   // 인자가 없으면 초기값을 사용한다.
-  @include circle(); 
+  @include circle();
   background: #f00;
 }
 ```
@@ -546,14 +546,14 @@ vendor prefix
 {: .title}
 
 ```scss
-@mixin css3($property, $value) {
+@mixin vendorPrefix($property, $value) {
   @each $prefix in -webkit-, -moz-, -ms-, -o-, '' {
     #{$prefix}#{$property}: $value;
   }
 }
 
 .border_radius {
-  @include css3(transition, 0.5s);
+  @include vendorPrefix(transition, 0.5s);
 }
 ```
 
@@ -591,12 +591,12 @@ opacity
 }
 ```
 
-absolute position
+position
 {: .title}
 
 ```scss
-@mixin absPosition ($top: auto, $right: auto, $bottom: auto, $left: auto) {
-  position: absolute;
+@mixin position($position, $top: null, $right: null, $bottom: null, $left: null) {
+  position: $position;
   top: $top;
   right: $right;
   bottom: $bottom;
@@ -604,17 +604,15 @@ absolute position
 }
 
 .box {
-  @include absPosition(5px, 20px, 10px, 15px);
+  @include position(absolute, $top: 10px, $left: 50%);
 }
 ```
 
 ```css
 .box {
   position: absolute;
-  top: 5px;
-  right: 20px;
-  bottom: 10px;
-  left: 15px;
+  top: 10px;
+  left: 50%;
 }
 ```
 

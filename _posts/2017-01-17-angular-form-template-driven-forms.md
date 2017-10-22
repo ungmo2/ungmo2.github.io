@@ -55,7 +55,7 @@ HTML 포준 폼은 submit 버튼이 클릭되면 폼 데이터를 서버로 전�
 <form ngNoForm></form>
 ```
 
-템플릿 기반 폼에도 템플릿 참조 변수를 사용할 수 있다.
+템플릿 기반 폼에도 템플릿 참조 변수를 사용할 수 있다. 참조 변수에는 ngForm을 할당한다.
 
 ```html
 <form #f="ngForm" (ngSubmit)="onNgSubmit(f)"></form>
@@ -84,9 +84,9 @@ export class UserFormComponent {
 }
 ```
 
-NgForm 디렉티브는 자신이 적용된 폼 요소에 해당하는 [FormGroup](https://angular.io/api/forms/FormGroup) 인스턴스를 생성한다. 그리고 폼 요소의 자식 요소 중에서 NgModel 디렉티브가 적용된 요소를 탐색하여 FormGroup 인스턴스에 추가한다.
+NgForm 디렉티브는 자신이 적용된 폼 요소에 해당하는 [FormGroup](https://angular.io/api/forms/FormGroup) 인스턴스를 생성한다. 그리고 폼 요소의 자식 요소 중에서 NgModel 디렉티브가 적용된 요소를 탐색하여 FormGroup 인스턴스에 추가한다. 그리고 NgForm 디렉티브는 FormGroup 인스턴스를 폼 요소에 바인딩하여 값이나 유효성 검증 상태를 추적할 수 있다.
 
-NgModel 디렉티브는 자신이 적용된 폼 컨트롤 요소에 해당하는 [FormControl](https://angular.io/api/forms/FormControl) 인스턴스를 생성한다.
+NgModel 디렉티브는 자신이 적용된 폼 컨트롤 요소에 해당하는 [FormControl](https://angular.io/api/forms/FormControl) 인스턴스를 생성한다. 그리고 NgModel 디렉티브는 FormControl 인스턴스를 폼 컨트롤 요소에 바인딩하여 값이나 유효성 검증 상태를 추적할 수 있다.
 
 즉 FormGroup 인스턴스는 자신의 자식인 FormControl 인스턴스들을 그룹화하여 관리하기 위한 최상위 컨테이너로서 FormControl 인스턴스들을 하나의 객체로 그룹화하여 모든 FormControl 인스턴스의 값과 유효성 상태를 관리한다. 만약 유효성을 검증할 때 FormControl 인스턴스 중 하나라도 유효하지 않다면 FormGroup은 유효하지 않게 된다.
 
@@ -153,7 +153,7 @@ userForm.value의 참조 결과는 아래와 같다.
 
 ## 2.2 NgModel 디렉티브
 
-[NgModel](https://angular.io/api/forms/NgModel) 디렉티브는 자신이 적용된 폼 컨트롤 요소에 해당하는 [FormControl](https://angular.io/api/forms/FormControl) 인스턴스를 생성한다. FormControl 인스턴스는 폼 컨트롤의 값, 사용자 상호 작용 및 유효성 검사 상태를 추적하고 뷰와 모델을 동기화된 상태로 유지한다.
+[NgModel](https://angular.io/api/forms/NgModel) 디렉티브는 자신이 적용된 폼 컨트롤 요소에 해당하는 [FormControl](https://angular.io/api/forms/FormControl) 인스턴스를 생성한다. 그리고 NgModel 디렉티브는 FormControl 인스턴스를 폼 컨트롤 요소에 바인딩하여 값이나 유효성 검증 상태를 추적할 수 있다. FormControl 인스턴스는 폼을 구성하는 기본 단위로서 폼 컨트롤 요소의 값이나 유효성 검증 상태를 추적하고 뷰와 폼 모델을 동기화된 상태로 유지한다.
 
 NgModel 디렉티브는 [양방향 데이터 바인딩](./angular-component-template-syntax#17-양방향-데이터-바인딩two-way-binding)에서 사용할 때와는 달리 괄호와 할당문없이 선언한다.
 
@@ -163,7 +163,7 @@ NgModel 디렉티브는 [양방향 데이터 바인딩](./angular-component-temp
 
 위 예제의 경우, 폼 컨트롤 요소의 값은 NgForm.value 프로퍼티의 name 프로퍼티에 저장된다. 따라서 ngModel 디렉티브는 반드시 name 어트리뷰트와 함께 사용하여야 한다.
 
-폼 요소에 템플릿 참조 변수를 사용할 수 있듯이 폼 컨트롤 요소에도 템플릿 참조 변수를 사용할 수 있다.
+폼 요소에 템플릿 참조 변수를 사용할 수 있듯이 폼 컨트롤 요소에도 템플릿 참조 변수를 사용할 수 있다. 참조 변수에는 ngModel을 할당한다.
 
 ```html
 <input type="text" name="userid" ngModel #userid="ngModel">
@@ -442,6 +442,8 @@ $ npm install bootstrap
 
 폼 컨트롤 요소에 required, pattern과 같은 빌트인 검증기를 추가하였고 필수 입력 항목에 대해서는 양방향 데이터 바인딩을 사용하였다. 모든 폼 컨트롤 요소의 유효성 검증이 통과하면 submit 버튼이 활성화된다.
 
+또한 NgForm, NgModel. NgModelGroup 디렉티브가 적용된 폼 컨트롤 요소에는 유효성 검증 상태 프로퍼티와 연동하여 ng-untouched, ng-pristine, ng-invalid 등의 CSS 클래스가 자동 적용된다. 이들 CSS 클래스를 적절히 활용하면 유효성 검증 상태에 따른 스타일링이 가능하다.
+
 ```typescript
 // user-form.component.ts
 import { Component, OnInit } from '@angular/core';
@@ -484,7 +486,7 @@ export class UserFormComponent implements OnInit {
 
 <iframe src="https://stackblitz.com/edit/template-driven-form-exam?embed=1&file=app/user-form.html&view=preview" frameborder="0" width="100%" height="800"></iframe>
 
-템플릿 기반 폼은 템플릿 내에서 유효성 검증 결과를 쉽게 확인 할 수 있고 내부 응집도가 좋은 장점이 있다. 하지만 폼이 커지면 pattern 등 규칙이 늘어나 코드가 복잡해 지고 가독성이 떨어질 수 있다. 또한 유효성 검증 로직이 추가됨에 따라 중복이 발생할 우려가 커져서 개발 생산성이 나빠질 수도 있다.
+템플릿 기반 폼은 작성이 간편하고 템플릿 내에서 유효성 검증 결과를 쉽게 확인 할 수 있는 장점이 있다. 하지만 폼이 커지면 마크업과 pattern 등의 유효성 검증 코드가 뒤섞여 복잡해 지고 가독성이 떨어질 수 있다. 또한 유효성 검증 로직에 중복이 발생할 우려가 커지고 세밀한 유효성 검증이 곤란할 수도 있다. 비교적 간단한 폼에는 템플릿 기반 폼이 유용하지만 복잡한 폼에는 모델 기반 폼(리액티브 폼)을 사용하는 것이 효과적이다.
 
 # Reference
 

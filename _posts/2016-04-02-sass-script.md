@@ -22,24 +22,24 @@ SassScript는 CSS에서는 불가능한 연산, 변수, 함수 등의 확장 기
 : e.g) 1.2, 13, 10px
 
 문자열
-: CSS는 2종류의 문자열을 사용할 수 있다. 따옴표를 사용하는 경우("Lucida Grande", 'http://sass-lang.com')와 사용하지 않는 경우(bold, sans-serif)가 있다. Sass는 2종류의 문자열 모두를 인식할 수 있으며 컴파일 후의 CSS에는 Sass에서 사용한 문자열이 그대로 출력된다.  
+: CSS는 2종류의 문자열을 사용할 수 있다. 따옴표를 사용하는 경우("Lucida Grande", 'http://sass-lang.com')와 사용하지 않는 경우(bold, sans-serif)가 있다. Sass는 2종류의 문자열 모두를 인식할 수 있으며 컴파일 후의 CSS에는 Sass에서 사용한 문자열이 그대로 출력된다.
 	e.g. "Lucida Grande", 'http://sass-lang.com', sans-serif
 
 컬러
 : e.g. blue, #04a3f9, rgba(255, 0, 0, 0.5)
 
-boolean  
+boolean
 : e.g. true, false
 
 null
-: &nbsp; &nbsp;  
+: 프로퍼티 값에 값이 null인 변수가 지정되면 해당 룰셋은 출력되지 않는다.
 
 list
-: margin과 padding 프로퍼티값 지정에 사용되는 0 auto와 font-family 프로퍼티값 지정에 사용되는 Helvetica, Arial, sans-serif 등은 공백 또는 콤마 구분된 값의 list이다.  
+: margin과 padding 프로퍼티값 지정에 사용되는 0 auto와 font-family 프로퍼티값 지정에 사용되는 Helvetica, Arial, sans-serif 등은 공백 또는 콤마 구분된 값의 list이다.
 	e.g. 1.5em 1em 0 2em, Helvetica, Arial, sans-serif
 
-map  
-: JSON과 유사한 방식으로 `map-get` 함수를 사용하여 원하는 값은 추출할 수 있다.  
+map
+: JSON과 유사한 방식으로 `map-get` 함수를 사용하여 원하는 값은 추출할 수 있다.
  	e.g. (key1: value1, key2: value2)
 
 ```scss
@@ -52,7 +52,7 @@ $foundation-palette: (
 );
 
 .mars {
-  color: map-get($foundation-palette, mars); 
+  color: map-get($foundation-palette, mars);
 }
 
 // => .mars { color: #D7525C; }
@@ -186,7 +186,7 @@ $width: 100px;
 
 변수 $width의 값 100px에 10 또는 10em과 같이 다른 단위의 값을 연산하여도 에러없이 연산이 수행된다. 이때 연산자의 왼쪽 값을 기준으로 단위가 설정된다.
 
-$width에 10em을 더하면 어떻게 될까? 
+$width에 10em을 더하면 어떻게 될까?
 
 ```scss
 $width: 100px;
@@ -335,8 +335,8 @@ p:before {
 | &#124;&#124;| or
 | !	          | not
 
-- [if](./sass-css-extention#31-if)  
-- [@if](./sass-css-extention#31-if) 
+- [if](./sass-css-extention#31-if)
+- [@if](./sass-css-extention#31-if)
 
 ## 4.5 리스트 연산자
 

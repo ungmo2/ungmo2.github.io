@@ -47,7 +47,7 @@ description: 디렉티브(Directive 지시자)는 “DOM의 모든 것(모양이
 
 컴포넌트는 뷰 단위의 관심사를 가지고 있다면 디렉티브는 요소의 공통 기능에 관심을 갖는다. 컴포넌트는 뷰를 구성하는 독립적인 구성 요소로서 다른 컴포넌트에 직접적인 관심을 두지 않는다. 디렉티브는 보편적이며 애플리케이션 전역에서 공통으로 사용 가능한 고유의 관심사를 기능으로 구현한다. 디렉티브는 단일 책임 원칙(Single responsibilty principle)에 의해 복합적인 기능보다는 여러 요소에서 공통적, 반복적으로 사용될 하나의 기능을 명확히 구현하는 것이 바람직하다.
 
-큰 의미에서 디렉티브인 컴포넌트는 뷰를 가지며 다른 컴포넌트를 자식으로 가질 수 있다. 하지만 디렉티브는 뷰를 가지고 있지 않기 때문에 자식으로 가질 수 없다. 다시 말해 컴포넌트는 자식 컴포넌트, 디렉티브, 파이프를 조합하여 뷰를 만들지만 디렉티브는 부모가 될 수 없고 컴포넌트에 의해 사용될 뿐이다.
+큰 의미에서 디렉티브인 컴포넌트는 뷰를 가지며 다른 컴포넌트를 자식으로 가질 수 있다. 하지만 디렉티브는 뷰를 가지고 있지 않기 때문에 자식을 가질 수 없다. 다시 말해 컴포넌트는 자식 컴포넌트, 디렉티브, 파이프를 조합하여 뷰를 만들지만 디렉티브는 부모가 될 수 없고 컴포넌트에 의해 사용될 뿐이다.
 
 # 2. 디렉티브의 종류
 
@@ -90,11 +90,11 @@ export class TextBlueDirective {
 }
 ```
 
-디렉티브는 @Directive 데코레이터로 장식된 순수한 자바스크립트 클래스이다. @Directive 데코레이터의 메타데이터에는 디렉티브에 필요한 정보를 설정한다. selector 프로퍼티는 디렉티브의 이름을 설정하며 값에 대괄호는 이 디렉티브가 프로퍼티 바인딩으로 사용될 수 있음을 표현한 것이다.
+디렉티브는 @Directive 데코레이터로 장식된 순수한 자바스크립트 클래스이다. @Directive 데코레이터의 메타데이터에는 디렉티브에 필요한 정보를 설정한다. selector 프로퍼티는 디렉티브의 이름을 설정하며 값에 있는 대괄호는 이 디렉티브가 프로퍼티 바인딩으로 사용될 수 있음을 표현한 것이다.
 
 <!-- 생성자에 ElementRef와 Renderer가 주입(inject)되었다. ElementRef는 nativeElement 프로퍼티를 통해 DOM에 직접 접근할 수 있는 서비스이다. DOM에 직접 접근하는 경우, XSS 공격에 노출될 수 있는 단점이 있다. 따라서 ElementRef 대신 Renderer의 setElementStyle 메소드를 사용하여 요소의 스타일을 변경하도록 한다. -->
 
-생성자에 ElementRef 서비스가 주입(inject)되었다. ElementRef는 네이티브 DOM의 프로퍼티를 담고 있는 nativeElement 프로퍼티를 소유한다. 따라서 ElementRef.nativeElement로 접근하면 네이티브 DOM의 프로퍼티에 접근할 수 있다. 하지만 ElementRef를 사용하여 DOM에 직접 접근하는 경우, XSS 공격에 노출될 수 있는 단점이 있다. 따라서 ElementRef 대신 Renderer의 setElementStyle 메소드를 사용하여 요소의 스타일을 변경하도록 한다.
+생성자에 [ElementRef](https://angular.io/api/core/ElementRef)가 주입(inject)되었다. ElementRef는 네이티브 DOM의 프로퍼티를 담고 있는 nativeElement 프로퍼티를 소유한다. 따라서 ElementRef.nativeElement로 접근하면 네이티브 DOM의 프로퍼티에 접근할 수 있다. 하지만 ElementRef를 사용하여 DOM에 직접 접근하는 경우, XSS 공격에 노출될 수 있는 단점이 있다. 따라서 ElementRef 대신 [Renderer]()의 setElementStyle 메소드를 사용하여 요소의 스타일을 변경하도록 한다.
 
 ```typescript
 // text-blue.directive.ts
@@ -105,9 +105,9 @@ import { Directive, ElementRef, Renderer } from '@angular/core';
   selector: '[textBlue]'
 })
 export class TextBlueDirective {
-  constructor(el: ElementRef, ) {
+  constructor(el: ElementRef, render: Renderer) {
     // el.nativeElement.style.color = 'blue';
-    this.render.setElementStyle(el.nativeElement, 'color', 'blue');
+    render.setElementStyle(el.nativeElement, 'color', 'blue');
   }
 }
 ```
@@ -153,7 +153,7 @@ textBlue 디렉티브를 p 요소에 어트리뷰트로 적용한다. 이때 tex
 
 ## 3.2 이벤트 처리
 
-textBlue 디렉티브는 단순히 텍스트의 컬러를 파란색으로 표시한다. textBlue 디렉티브를 마우스 이벤트 mouseenter가 발생하면 텍스트의 컬러를 파란색으로 지정하고 마우스 이벤트 mouseleave가 발생하면 텍스트의 컬러에 지정된 파란색을 취소하도록 리팩토링하여 보자.
+textBlue 디렉티브는 단순히 텍스트의 컬러를 파란색으로 표시한다. 마우스 이벤트 mouseenter가 발생하면 텍스트의 컬러를 파란색으로 지정하고 마우스 이벤트 mouseleave가 발생하면 텍스트의 컬러에 지정된 파란색을 취소하도록 textBlue 디렉티브를 리팩토링하여 보자.
 
 ```typescript
 // text-blue.directive.ts
@@ -261,7 +261,7 @@ export class TextColorDirective {
 ...
 ```
 
-어트리뷰트 디렉티브는 요소의 어트리뷰트로 사용되기 때문에 프로퍼티 바인딩이 가능하다. @Input 데코레이터는 프로퍼티 바인딩을 통한 상태의 전달에 사용된다. 또한 일반 어트리뷰트의 정적인 값을 전달 받을 때도 사용할 수 있다.
+어트리뷰트 디렉티브는 요소의 어트리뷰트로 사용되기 때문에 프로퍼티 바인딩이 가능하다. @Input 데코레이터는 프로퍼티 바인딩을 통한 상태의 전달에 사용된다. 또한 일반 어트리뷰트의 정적인 값을 전달받을 때도 사용할 수 있다.
 
 ```typescript
 // 컴포넌트

@@ -393,7 +393,7 @@ $ npm install bootstrap
 ```html
 <!-- user-form.html -->
 <div class="container">
-  <h2>User Form Exam</h2>
+  <h2>Template-driven forms Exam</h2>
   <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
 
     <div class="form-group">
@@ -439,7 +439,7 @@ $ npm install bootstrap
 
     <div class="form-group">
       <label for="username">User name</label>
-      <input type="text" name="username" class="form-control"
+      <input type="text" name="name" class="form-control"
         [(ngModel)]="user.name">
     </div>
 
@@ -478,7 +478,6 @@ class User {
 export class UserFormComponent implements OnInit {
   user: User;
   roles: string[];
-  selectedRole: string;
 
   ngOnInit() {
     this.roles = ['Admin', 'Developer', 'Guest'];

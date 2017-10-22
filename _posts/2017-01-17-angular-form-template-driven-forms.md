@@ -318,23 +318,24 @@ NgForm, NgModel, NgModelGroup 디렉티브가 폼 컨트롤 요소에 적용되�
 
 | 유효성 검증 상태 프로퍼티 | 의미
 |:--------------------|:-----------------
-| valid               | 유효성 검증을 통과한 상태이면 true
-| invalid             | 유효성 검증을 통과하지 못한 상태이면 true
+| errors              | 유효성 검증에 실패한 경우, [ValidationErrors](https://angular.io/api/forms/ValidationErrors) 타입의 에러 객체를 반환한다. 유효성 검증에 성공한 경우, null를 반환한다.
+| valid               | 유효성 검증에 성공한 상태이면 true
+| invalid             | 유효성 검증에 실패한 상태이면 true
 | pristine            | 값을 한번도 입력하지 않은 상태이면 true
 | dirty               | 값을 한번 이상 입력한 상태이면 true
-| touched             | focus out이 한번 이상 발생한 상태이면 true
+| touched             | focus in이 한번 이상 발생한 상태이면 true
 | untouched           | focus in이 한번도 발생하지 않은 상태이면 true
 
 아래의 예제를 살펴보자.
 
 ```html
 <input type="text" name="title" ngModel #title="ngModel" pattern="[a-zA-Z0-9]{4,10}$" required>
-<em>( invalid: {{ "{{ title.invalid " }}}} | dirty: {{ "{{ title.dirty " }}}} | untouched: {{ "{{ title.untouched " }}}} | pristine: {{ "{{ title.pristine " }}}} )</em>
+<em>( errors: {{ "{{ title.errors " }}}} | invalid: {{ "{{ title.invalid " }}}} | dirty: {{ "{{ title.dirty " }}}} | untouched: {{ "{{ title.untouched " }}}} | pristine: {{ "{{ title.pristine " }}}} )</em>
 ```
 
-4자리 이상 10자리 이하의 영문 대소문자와 숫자만을 허용하는 pattern을 설정하였다. 이때 사용자가 pattern에 부합하는 값을 입력하면 valid는 true가 되고 pattern에 위배되는 값을 입력하면 invalid는 true가 된다.
+4자리 이상 10자리 이하의 영문 대소문자와 숫자만을 허용하는 pattern을 설정하였다. 이때 사용자가 pattern에 부합하는 값을 입력하면 valid는 true가 되고 pattern에 위배되는 값을 입력하면 invalid는 true가 된다. invalid는 true인 상태라면 errors에 에러의 내용을 담고 있는 객체가 반환된다.
 
-required가 설정되어 있으므로 값을 한번도 입력하지 않은 상태 즉 pristine이 true인 상태에도 invalid는 true이다. 이러한 경우는 에러 메시지를 표시하지 않고 값을 한번 이상 입력한 상태 즉 dirty가 true인 상태에 invalid가 true라면 유효성 검증을 통과하도록 사용자에게 에러 메시지를 표시하여야 한다.
+required가 설정되어 있으므로 값을 한번도 입력하지 않은 상태 즉 pristine이 true인 상태에도 invalid는 true이다. 이러한 경우는 에러 메시지를 표시하지 않고 focus in이 한번 이상 발생한 상태 즉 touched가 true인 상태이고 errors?.required가 null이 아니라면 사용자가 아직 값을 입력하지 않고 focus out인 상태이다. 이때 필수 입력 항목임을 사용자에게 알려 주기 위해 에러 메시지를 표시하여야 한다.
 
 ```html
 <input
@@ -344,10 +345,12 @@ required가 설정되어 있으므로 값을 한번도 입력하지 않은 상�
   #title="ngModel"
   pattern="[a-zA-Z0-9]{4,10}$"
   required>
-<em *ngIf="title.invalid && title.dirty && title.value">title은 영문 또는 숫자로 4자리 이상 10이하로 입력하세요!</em>
+<em *ngIf="title.errors?.required && title.touched">
+  title을 입력하세요!
+</em>
 ```
 
-만약 값을 한번 이상 입력한 상태 즉 dirty가 true이고 입력한 값이 없다면 사용자가 입력값을 모두 삭제한 경우이다. 이러한 경우, 필수 입력 항목임을 사용자에게 알려 주기 위해 에러 메시지를 표시하여야 한다.
+만약 focus in이 한번 이상 발생한 상태 즉 touched가 true이고 errors?.pattern이 null이 아니라면 유효성 검증 패턴을 통과하지 못한 상태이다. 이때 유효성 검증 패턴을 통과하도록 사용자에게 에러 메시지를 표시하여야 한다.
 
 ```html
 <input
@@ -357,8 +360,9 @@ required가 설정되어 있으므로 값을 한번도 입력하지 않은 상�
   #title="ngModel"
   pattern="[a-zA-Z0-9]{4,10}$"
   required>
-<em *ngIf="title.invalid && title.dirty && title.value">title은 영문 또는 숫자로 4자리 이상 10이하로 입력하세요!</em>
-<em *ngIf="title.dirty && !title.value">title을 입력하세요!</em>
+<em *ngIf="title.errors?.pattern && title.touched">
+  title은 영문 또는 숫자로 4자리 이상 10이하로 입력하세요!
+</em>
 ```
 
 # 5. 템플릿 기반 폼 유효성 검증 실습
@@ -391,56 +395,65 @@ $ npm install bootstrap
 <div class="container">
   <h2>User Form Exam</h2>
   <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+
     <div class="form-group">
       <label for="userid">User id</label>
-      <input
-        type="text"
-        name="userid"
-        class="form-control"
+      <input type="text" name="userid" class="form-control"
         [(ngModel)]="user.userid"
-        #userid="ngModel" pattern="^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
+        #userid="ngModel"
+        pattern="^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
         required>
-      <em *ngIf="userid.invalid && userid.dirty && userid.value" class="alert">User id는 email 형식으로 입력하세요!</em>
-      <em *ngIf="userid.invalid && userid.dirty && !userid.value" class="alert">User id로 사용할 email을 입력하세요!</em>
-      <em>(untouched: {{ userid.untouched }} | pristine: {{ userid.pristine }} | invalid: {{ userid.invalid }})</em>
+      <em *ngIf="userid.errors?.pattern && userid.touched" class="alert">User id는 email 형식으로 입력하세요!</em>
+      <em *ngIf="userid.errors?.required && userid.touched" class="alert">User id로 사용할 email을 입력하세요!</em>
+      <em>(untouched: {{ "{{ userid.untouched " }}}} | pristine: {{ "{{ userid.pristine " }}}} | invalid: {{ "{{ userid.invalid " }}}})</em>
     </div>
+
     <div class="form-group">
       <label for="password">Password</label>
-      <input
-        type="password"
-        name="password"
-        class="form-control"
+      <input type="password" name="password" class="form-control"
         [(ngModel)]="user.password"
         #password="ngModel"
         pattern="[a-zA-Z0-9]{4,10}$"
         required>
-      <em *ngIf="password.invalid && password.dirty && password.value" class="alert">Password는 영문 또는 숫자로 4자리 이상 10이하로 입력하세요!</em>
-      <em *ngIf="password.dirty && !password.value" class="alert">Password를 입력하세요!</em>
-      <em>(untouched: {{ password.untouched }} | pristine: {{ password.pristine }} | invalid: {{ password.invalid }})</em>
+      <em *ngIf="password.errors?.pattern && password.touched" class="alert">
+        Password는 영문 또는 숫자로 4자리 이상 10이하로 입력하세요!
+      </em>
+      <em *ngIf="password.errors?.required && password.touched" class="alert">
+        Password를 입력하세요!
+      </em>
+      <em>
+        (untouched: {{ "{{ password.untouched " }}}} | pristine: {{ "{{ password.pristine " }}}} | invalid: {{ "{{ password.invalid " }}}})
+      </em>
     </div>
 
     <div class="form-group">
       <label for="role">Role</label>
-      <select class="form-control" name="role" [(ngModel)]="user.role" required>
-        <option *ngFor="let role of roles; let i=index;" [value]="role">{{role}}</option>
+      <select class="form-control" name="role"
+        [(ngModel)]="user.role"
+        required>
+        <option *ngFor="let role of roles; let i=index;" [value]="role">
+          {{ "{{ role " }}}}
+        </option>
       </select>
     </div>
 
     <div class="form-group">
       <label for="username">User name</label>
-      <input type="text" name="username" class="form-control" [(ngModel)]="user.name">
+      <input type="text" name="username" class="form-control"
+        [(ngModel)]="user.name">
     </div>
 
-    <button type="submit" class="btn btn-success" [disabled]="!userForm.form.valid">Submit</button>
+    <button type="submit" class="btn btn-success"
+      [disabled]="userForm.invalid">Submit</button>
   </form>
 
-  <pre>userForm.value: {{userForm.value | json}}</pre>
-  <pre>userForm.valid: {{userForm.valid}}</pre>
-  <pre>user: {{user | json}}</pre>
+  <pre>userForm.value: {{ "{{ userForm.value | json " }}}}</pre>
+  <pre>userForm.valid: {{ "{{ userForm.valid " }}}}</pre>
+  <pre>user: {{ "{{ user | json " }}}}</pre>
 </div>
 ```
 
-폼 컨트롤 요소에 required, pattern과 같은 빌트인 검증기를 추가하였고 필수 입력 항목에 대해서는 양방향 데이터 바인딩을 사용하였다. 모든 폼 컨트롤 요소의 유효성 검증이 통과하면 submit 버튼이 활성화된다.
+폼 컨트롤 요소에 required, pattern과 같은 빌트인 검증기를 추가하였고 필수 입력 항목에 대해서는 양방향 데이터 바인딩을 사용하였다. 모든 폼 컨트롤 요소가 유효성 검증에 성공한 상태(userForm.valid가 true 또는 userForm.invalid가 false)라면 submit 버튼이 활성화된다.
 
 또한 NgForm, NgModel. NgModelGroup 디렉티브가 적용된 폼 컨트롤 요소에는 유효성 검증 상태 프로퍼티와 연동하여 ng-untouched, ng-pristine, ng-invalid 등의 CSS 클래스가 자동 적용된다. 이들 CSS 클래스를 적절히 활용하면 유효성 검증 상태에 따른 스타일링이 가능하다.
 

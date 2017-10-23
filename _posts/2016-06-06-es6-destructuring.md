@@ -108,10 +108,10 @@ var name = {};
 name.firstName = obj.firstName;
 name.lastName  = obj.lastName;
 
-console.log(name); // { firstName: 'Jane', lastName: 'Doe' }
+console.log(name); // { firstName: 'Ungmo', lastName: 'Lee' }
 ```
 
-객체 디스트럭처링은 객체의 각 프로퍼티를 객체로부터 추출하여 변수 리스트에 할당한다. 이때 할당 기준은 <strong>프로퍼티 명(키)</strong>이다.
+객체 디스트럭처링은 객체의 각 프로퍼티를 객체로부터 추출하여 변수 리스트에 할당한다. 이때 할당 기준은 <strong>프로퍼티 이름(키)</strong>이다.
 
 ```javascript
 // ES6 Destructuring
@@ -126,6 +126,7 @@ console.log(firstName, lastName); // Ungmo Lee
 
 ```javascript
 const { prop1: p1, prop2: p2 } = { prop1: 'a', prop2: 'b' };
+console.log(p1, p2); // 'a' 'b'
 console.log({ prop1: p1, prop2: p2 }); // { prop1: 'a', prop2: 'b' }
 
 // 아래는 위의 축약형이다
@@ -137,7 +138,7 @@ const { prop1, prop2, prop3 = 'c' } = { prop1: 'a', prop2: 'b' };
 console.log({ prop1, prop2, prop3 }); // { prop1: 'a', prop2: 'b', prop3: 'c' }
 ```
 
-객체 디스트럭처링은 객체에서 프로퍼티 명(키)으로 필요한 프로퍼티 값만을 추출할 수 있다.
+객체 디스트럭처링은 객체에서 프로퍼티 이름(키)으로 필요한 프로퍼티 값만을 추출할 수 있다.
 
 ```javascript
 function margin() {

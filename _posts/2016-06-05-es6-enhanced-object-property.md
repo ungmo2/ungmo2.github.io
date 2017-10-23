@@ -60,7 +60,7 @@ obj[propNamePrefix + ++i] = i;
 console.log(obj); // { prop_1: 1, prop_2: 2, prop_3: 3 }
 ```
 
-ES6에서는 객체 리터럴 내에서 프로퍼티 이름을 동적으로 생성(Computed property name)할 수 있다. 
+ES6에서는 객체 리터럴 내에서 프로퍼티 이름을 동적으로 생성(Computed property name)할 수 있다.
 
 ```javascript
 // ES6

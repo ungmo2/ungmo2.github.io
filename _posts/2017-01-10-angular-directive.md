@@ -94,20 +94,20 @@ export class TextBlueDirective {
 
 <!-- 생성자에 ElementRef와 Renderer가 주입(inject)되었다. ElementRef는 nativeElement 프로퍼티를 통해 DOM에 직접 접근할 수 있는 서비스이다. DOM에 직접 접근하는 경우, XSS 공격에 노출될 수 있는 단점이 있다. 따라서 ElementRef 대신 Renderer의 setElementStyle 메소드를 사용하여 요소의 스타일을 변경하도록 한다. -->
 
-생성자에 [ElementRef](https://angular.io/api/core/ElementRef)가 주입(inject)되었다. ElementRef는 네이티브 DOM의 프로퍼티를 담고 있는 nativeElement 프로퍼티를 소유한다. 따라서 ElementRef.nativeElement로 접근하면 네이티브 DOM의 프로퍼티에 접근할 수 있다. 하지만 ElementRef를 사용하여 DOM에 직접 접근하는 경우, XSS 공격에 노출될 수 있는 단점이 있다. 따라서 ElementRef 대신 [Renderer]()의 setElementStyle 메소드를 사용하여 요소의 스타일을 변경하도록 한다.
+생성자에 [ElementRef](https://angular.io/api/core/ElementRef)가 주입(inject)되었다. ElementRef는 네이티브 DOM의 프로퍼티를 담고 있는 nativeElement 프로퍼티를 소유한다. 따라서 ElementRef.nativeElement로 접근하면 네이티브 DOM의 프로퍼티에 접근할 수 있다. 하지만 ElementRef를 사용하여 DOM에 직접 접근하는 경우, XSS 공격에 노출될 수 있는 단점이 있다. 따라서 ElementRef 대신 [Renderer2](https://angular.io/api/core/Renderer2)의 [setStyle](https://angular.io/api/core/Renderer2#setStyle) 메소드를 사용하여 요소의 스타일을 변경하도록 한다.
 
 ```typescript
 // text-blue.directive.ts
-import { Directive, ElementRef, Renderer } from '@angular/core';
+import { Directive, ElementRef, Renderer2 } from '@angular/core';
 
 // 디렉티브의 식별자를 @Directive 데코레이터의 메타데이터 객체의 selector 프로퍼티에 지정한다.
 @Directive({
   selector: '[textBlue]'
 })
 export class TextBlueDirective {
-  constructor(el: ElementRef, render: Renderer) {
+  constructor(el: ElementRef, renderer: Renderer2) {
     // el.nativeElement.style.color = 'blue';
-    render.setElementStyle(el.nativeElement, 'color', 'blue');
+    renderer.setStyle(el.nativeElement, 'color', 'blue');
   }
 }
 ```
@@ -157,11 +157,11 @@ textBlue 디렉티브는 단순히 텍스트의 컬러를 파란색으로 표시
 
 ```typescript
 // text-blue.directive.ts
-import { Directive, ElementRef, Renderer, HostListener } from '@angular/core';
+import { Directive, ElementRef, Renderer2, HostListener } from '@angular/core';
 
 @Directive({ selector: '[textBlue]' })
 export class TextBlueDirective {
-  constructor(private el: ElementRef, private renderer: Renderer) {}
+  constructor(private el: ElementRef, private renderer: Renderer2) {}
 
   @HostListener('mouseenter') onMouseEnter() {
     this.textColor('blue');
@@ -172,12 +172,12 @@ export class TextBlueDirective {
   }
 
   private textColor(color: string) {
-    this.render.setElementStyle(this.el.nativeElement, 'color', color);
+    this.renderer.setStyle(this.el.nativeElement, 'color', color);
   }
 }
 ```
 
-먼저 생성자 내부에서만 유효하던 ElementRef을 주입받은 생성자 파라미터에 el에 접근 제한자 provate를 추가하여 클래스 내부에서 참조가능한 멤버 변수로 변경한다.
+먼저 생성자 내부에서만 유효하던 ElementRef을 주입받은 생성자 파라미터에 el에 접근 제한자 private를 추가하여 클래스 내부에서 참조가능한 멤버 변수로 변경한다.
 
 커스텀 디렉티브에 이벤트 처리 기능을 추가하기 위해 [@HostListener](https://angular.io/api/core/HostListener) 데코레이터를 사용하여 컴포넌트 또는 요소의 이벤트에 대한 핸들러를 등록한다. @HostListener 데코레이터를 사용하는 대신 @Directive 데코레이터의 메타데이터 객체의 host 프로퍼티를 사용할 수도 있다. 하지만 코드의 가독성 측면에서 유리한 @HostListener 데코레이터를 사용하도록 한다. 이벤트 핸들러 onMouseEnter, onMouseLeave은 textColor 메서드를 호출하여 어트리뷰트 호스트의 텍스트 컬러를 변경한다.
 
@@ -204,7 +204,7 @@ export class AppComponent {
 
 ```typescript
 // text-color.directive.ts
-import { Directive, ElementRef, Renderer, HostListener, Input } from '@angular/core';
+import { Directive, ElementRef, Renderer2, HostListener, Input } from '@angular/core';
 
 @Directive({
   selector: '[textColor]'
@@ -214,7 +214,7 @@ export class TextColorDirective {
   // 어트리뷰트 호스트에서 프로퍼티 바인딩한 값을 전달 받는다.
   @Input() color: string;
 
-  constructor(private el: ElementRef, private renderer: Renderer) {}
+  constructor(private el: ElementRef, private renderer: Renderer2) {}
 
   @HostListener('mouseenter') onMouseEnter() {
     this.textColor(this.color);
@@ -225,7 +225,7 @@ export class TextColorDirective {
   }
 
   private textColor(color: string) {
-    this.render.setElementStyle(this.el.nativeElement, 'color', color);
+    this.renderer.setStyle(this.el.nativeElement, 'color', color);
   }
 }
 ```
@@ -327,7 +327,7 @@ export class AppComponent {
 
 ```typescript
 // text-color.directive.ts
-import { Directive, ElementRef, Renderer, HostListener, Input, OnInit } from '@angular/core';
+import { Directive, ElementRef, Renderer2, HostListener, Input, OnInit } from '@angular/core';
 
 @Directive({
   selector: '[textColor]'
@@ -339,7 +339,7 @@ export class TextColorDirective implements OnInit  {
   // 일반 어트리뷰트의 정적 값의 전달
   @Input() defaultColor: string;
 
-  constructor(private el: ElementRef, private renderer: Renderer) {}
+  constructor(private el: ElementRef, private renderer: Renderer2) {}
 
   // 기본 컬러를 초기 표시에 적용
   ngOnInit() {
@@ -356,7 +356,7 @@ export class TextColorDirective implements OnInit  {
   }
 
   private textColor(color: string) {
-    this.render.setElementStyle(this.el.nativeElement, 'color', color);
+    this.renderer.setStyle(this.el.nativeElement, 'color', color);
   }
 }
 ```

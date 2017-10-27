@@ -752,8 +752,6 @@ export class Sibling2Component {
 Sibling1Component에서 입력받은 상태가 SharedService를 경유하여 Sibling2Component로 공유되었다.
 
 
-[s](https://stackblitz.com/edit/angular-hszwyp?embed=1&file=app/hello.component.ts)
-
 # Reference
 
 * [Angular NgModules](https://angular.io/guide/ngmodule)

@@ -329,11 +329,11 @@ NgForm, NgModel, NgModelGroup 디렉티브가 폼 컨트롤 요소에 적용되�
 아래의 예제를 살펴보자.
 
 ```html
-<input type="text" name="title" ngModel #title="ngModel" pattern="[a-zA-Z0-9]{4,10}$" required>
+<input type="text" name="title" ngModel #title="ngModel" pattern="[a-zA-Z0-9]{4,10}" required>
 <em>( errors: {{ "{{ title.errors " }}}} | invalid: {{ "{{ title.invalid " }}}} | dirty: {{ "{{ title.dirty " }}}} | untouched: {{ "{{ title.untouched " }}}} | pristine: {{ "{{ title.pristine " }}}} )</em>
 ```
 
-4자리 이상 10자리 이하의 영문 대소문자와 숫자만을 허용하는 pattern을 설정하였다. 이때 사용자가 pattern에 부합하는 값을 입력하면 valid는 true가 되고 pattern에 위배되는 값을 입력하면 invalid는 true가 된다. invalid는 true인 상태라면 errors에 에러의 내용을 담고 있는 객체가 반환된다.
+input 폼 컨트롤 요소에 대하여 required와 4자리 이상 10자리 이하의 영문 대소문자와 숫자만을 허용하는 pattern을 설정하였다. 이때 사용자가 pattern에 부합하는 값을 입력하면 valid는 true가 되고 pattern에 위배되는 값을 입력하면 invalid는 true가 된다. invalid가 true인 상태라면 errors에 에러의 내용을 담고 있는 객체가 반환된다.
 
 required가 설정되어 있으므로 값을 한번도 입력하지 않은 상태 즉 pristine이 true인 상태에도 invalid는 true이다. 이러한 경우는 에러 메시지를 표시하지 않고 focus in이 한번 이상 발생한 상태 즉 touched가 true인 상태이고 errors?.required가 null이 아니라면 사용자가 아직 값을 입력하지 않고 focus out인 상태이다. 이때 필수 입력 항목임을 사용자에게 알려 주기 위해 에러 메시지를 표시하여야 한다.
 
@@ -343,7 +343,7 @@ required가 설정되어 있으므로 값을 한번도 입력하지 않은 상�
   name="title"
   ngModel
   #title="ngModel"
-  pattern="[a-zA-Z0-9]{4,10}$"
+  pattern="[a-zA-Z0-9]{4,10}"
   required>
 <em *ngIf="title.errors?.required && title.touched">
   title을 입력하세요!
@@ -358,7 +358,7 @@ required가 설정되어 있으므로 값을 한번도 입력하지 않은 상�
   name="title"
   ngModel
   #title="ngModel"
-  pattern="[a-zA-Z0-9]{4,10}$"
+  pattern="[a-zA-Z0-9]{4,10}"
   required>
 <em *ngIf="title.errors?.pattern && title.touched">
   title은 영문 또는 숫자로 4자리 이상 10이하로 입력하세요!
@@ -413,7 +413,7 @@ $ npm install bootstrap
       <input type="password" name="password" class="form-control"
         [(ngModel)]="user.password"
         #password="ngModel"
-        pattern="[a-zA-Z0-9]{4,10}$"
+        pattern="[a-zA-Z0-9]{4,10}"
         required>
       <em *ngIf="password.errors?.pattern && password.touched" class="alert">
         Password는 영문 또는 숫자로 4자리 이상 10이하로 입력하세요!
@@ -496,7 +496,7 @@ export class UserFormComponent implements OnInit {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/template-driven-form-exam?embed=1&file=app/user-form.html&view=preview" frameborder="0" width="100%" height="800"></iframe>
+<iframe src="https://stackblitz.com/edit/template-driven-form-exam?embed=1&file=app/user-form.component.ts&view=preview" frameborder="0" width="100%" height="800"></iframe>
 
 템플릿 기반 폼은 작성이 간편하고 템플릿 내에서 유효성 검증 결과를 쉽게 확인 할 수 있는 장점이 있다. 하지만 폼이 커지면 마크업과 pattern 등의 유효성 검증 코드가 뒤섞여 복잡해 지고 가독성이 떨어질 수 있다. 또한 유효성 검증 로직에 중복이 발생할 우려가 커지고 세밀한 유효성 검증이 곤란할 수도 있다. 비교적 간단한 폼에는 템플릿 기반 폼이 유용하지만 복잡한 폼에는 모델 기반 폼(리액티브 폼)을 사용하는 것이 효과적이다.
 

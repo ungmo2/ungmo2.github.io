@@ -203,7 +203,7 @@ export class ObservableEventHttpComponent implements OnInit {
 }
 ```
 
-① input 요소의 이벤트는 FormControl인 serchInput의 valueChanges 프로퍼티에 의해 옵저버블 스트림으로 변환된다. [FormControl](https://angular.io/api/forms/FormControlDirective)에 대해서는 [Forms](./angular-forms)에서 상세히 살펴보도록 하고 지금은 옵저버블에 집중하도록 하자. FormControl를 사용하기 위해서는 모듈에 ReactiveFormsModule을 임포트하여야 한다.
+① input 요소의 이벤트는 FormControl인 serchInput의 valueChanges 프로퍼티에 의해 옵저버블 스트림으로 변환된다. [FormControl](https://angular.io/api/forms/FormControlDirective)에 대해서는 [Angular Forms](./angular-form-reactive-forms#22-formcontrol-클래스와-formcontrolname-디렉티브)에서 상세히 살펴보도록 하고 지금은 옵저버블에 집중하도록 하자. FormControl를 사용하기 위해서는 모듈에 ReactiveFormsModule을 임포트하여야 한다.
 
 ```typescript
 // app.module.ts

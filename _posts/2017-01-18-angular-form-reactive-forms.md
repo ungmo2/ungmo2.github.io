@@ -53,7 +53,7 @@ const myFormGroup = new FormGroup({
 });
 ```
 
-FormGroup 인스턴스는 템플릿의 폼 요소와 대응한다. 템플릿 기반 폼에서는 NgForm 디렉티브가 사용하여 자신이 적용된 폼 요소에 해당하는 FormGroup 인스턴스를 생성하였다. 리액티브 폼에서는 컴포넌트 클래스에서 FormGroup 인스턴스를 직접 생성하고 [formGroup](https://angular.io/api/forms/FormGroupDirective) 디렉티브를 사용하여 FormGroup 인스턴스와 폼 요소를 바인딩한다.
+FormGroup 인스턴스는 템플릿의 폼 요소와 대응한다. 템플릿 기반 폼에서는 NgForm 디렉티브를 사용하여 자신이 적용된 폼 요소에 해당하는 FormGroup 인스턴스를 생성하였다. 리액티브 폼에서는 컴포넌트 클래스에 FormGroup 인스턴스를 직접 생성하고 [formGroup](https://angular.io/api/forms/FormGroupDirective) 디렉티브를 사용하여 FormGroup 인스턴스와 폼 요소를 바인딩한다.
 
 ```typescript
 import { Component, OnInit } from '@angular/core';
@@ -62,21 +62,23 @@ import { FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-root',
   template: `
-    <form [formGroup]="form" novalidate></form>
+    <form [formGroup]="userForm" novalidate></form>
   `
 })
 export class AppComponent implements OnInit {
 
-  form: FormGroup;
+  userForm: FormGroup;
 
   ngOnInit() {
-    this.form = new FormGroup({});
-    console.log(this.form);
+    this.userForm = new FormGroup({});
+    console.log(this.userForm);
   }
 }
 ```
 
-FormControl 인스턴스는 폼 요소 내부의 폼 컨트롤 요소의 그룹을 위해 또다른 FormControl 인스턴스를 가질 수 있다. [formGroupName](https://angular.io/api/forms/FormGroupName) 디렉티브는 FormControl 인스턴스의 자식 FormControl 인스턴스와 폼 컨트롤 요소 그룹을 바인딩한다.
+폼 요소에 선언한 novalidate 어트리뷰트는 HTML 유효성 검증을 방지한다. 리액티브 폼이 제공하는 유효성 검증기를 사용할 것이므로 novalidate 어트리뷰트를 선언하도록 한다.
+
+FormGroup 인스턴스는 폼 요소 내부의 폼 컨트롤 요소들을 그룹화하기 위해 또다른 FormGroup 인스턴스를 가질 수 있다. [formGroupName](https://angular.io/api/forms/FormGroupName) 디렉티브는 FormGroup 인스턴스의 자식 FormGroup 인스턴스와 폼 컨트롤 요소 그룹을 바인딩한다.
 
 ```typescript
 import { Component, OnInit } from '@angular/core';
@@ -85,25 +87,25 @@ import { FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-root',
   template: `
-    <form [formGroup]="form" novalidate>
+    <form [formGroup]="userForm" novalidate>
       <div FormGroupName="formControls"></div>
     </form>
   `
 })
 export class AppComponent implements OnInit {
 
-  form: FormGroup;
+  userForm: FormGroup;
 
   ngOnInit() {
-    this.form = new FormGroup({
+    this.userForm = new FormGroup({
       formControls: new FormGroup({})
     });
-    console.log(this.form);
+    console.log(this.userForm);
   }
 }
 ```
 
-formGroupName 디렉티브의 경우, 문자열을 지정하여야 한다. 따라서 프로퍼티 바인딩의 대괄호를 생략하고 바인딩하였다. 이는 이후 등장하는 모든 form*Name 디렉티브에 적용된다.
+formGroupName 디렉티브에는 문자열을 할당하여야 한다. 프로퍼티 바인딩 문법으로 문자열을 할당하려면 따옴표를 연이어 사용하여야 하므로 프로퍼티 바인딩의 대괄호를 생략하고 문자열을 할당하였다. 이는 이후 등장하는 모든 form*Name 디렉티브에 적용된다.
 {: .info}
 
 ```html
@@ -129,7 +131,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 @Component({
   selector: 'app-root',
   template: `
-    <form [formGroup]="form" novalidate>
+    <form [formGroup]="userForm" novalidate>
       <div>
         <input type="text" formControlName="userid" placeholder="user id">
       </div>
@@ -142,23 +144,23 @@ import { FormGroup, FormControl } from '@angular/forms';
         </div>
       </div>
     </form>
-    <pre>{{ form.value | json }}</pre>
-    <pre>{{ form.status }}</pre>
+    <pre>{{ "{{ userForm.value | json " }}}}</pre>
+    <pre>{{ "{{ userForm.status " }}}}</pre>
   `
 })
 export class AppComponent implements OnInit {
 
-  form: FormGroup;
+  userForm: FormGroup;
 
   ngOnInit() {
-    this.form = new FormGroup({
+    this.userForm = new FormGroup({
       userid: new FormControl(''),
       passwordGroup: new FormGroup({
         password: new FormControl(''),
         confirmPassword: new FormControl('')
       })
     });
-    console.log(this.form);
+    console.log(this.userForm);
   }
 }
 ```
@@ -172,7 +174,7 @@ FormControl은 폼 요소의 자식 폼 컨트롤 요소를 위해 사용하기�
   template: `
     <h2>Observable Events</h2>
     <p><input type="text" placeholder="Enter user id" [formControl]="serchInput"></p>
-    <pre>{{ githubUser | json }}</pre>
+    <pre>{{ "{{ githubUser | json " }}}}</pre>
   `
 })
 export class ObservableEventHttpComponent implements OnInit {
@@ -217,39 +219,39 @@ import { FormGroup, FormControl } from '@angular/forms';
 @Component({
   selector: 'app-root',
   template: `
-    <form [formGroup]="form" novalidate>
+    <form [formGroup]="userForm" novalidate>
       <div formArrayName="hobbies">
         <div *ngFor="let hobby of hobbies.controls; let i=index">
           <input type="text" [formControlName]="i">
         </div>
       </div>
     </form>
-    <pre>{{ form.value | json }}</pre>
-    <pre>{{ form.status }}</pre>
+    <pre>{{ "{{ userForm.value | json " }}}}</pre>
+    <pre>{{ "{{ userForm.status " }}}}</pre>
   `
 })
 export class AppComponent implements OnInit {
 
-  form: FormGroup;
+  userForm: FormGroup;
 
   ngOnInit() {
-    this.form = new FormGroup({
+    this.userForm = new FormGroup({
       hobbies: new FormArray([
         new FormControl(''),
         new FormControl('')
       ])
     });
-    console.log(this.form);
+    console.log(this.userForm);
   }
 
   // 템플릿에서 폼 모델에 접근할 수 있도록 컴포넌트 클래스에 getter를 정의한다.
-  get hobbies(): FormArray { return this.form.get('hobbies') as FormArray; }
+  get hobbies(): FormArray { return this.userForm.get('hobbies') as FormArray; }
 }
 ```
 
 ngFor 디렉티브를 사용하여 FormArray의 요소의 갯수만큼 순회하며 폼 컨트롤 요소를 생성한다. 이때 폼 컨트롤 요소의 formControlName 디렉티브에 인덱스 i를 할당한다. 주의할 것은 인덱스 i는 변수이므로 프로퍼티 바인딩을 사용하여야 한다.
 
-템플릿이 FormArray에 접근할 수 있도록 getter를 정의하였다. 템플릿은 FormArray의 controls 프로퍼티를 사용하여 개별 요소에 접근한다.
+템플릿이 FormArray에 접근할 수 있도록 getter를 정의하였다. 템플릿은 컴포넌트 클래스의 hobbies 프로퍼티에 접근할 수 있고 FormArray 타입 hobbies의 controls 프로퍼티를 사용하여 개별 요소에 접근한다.
 
 # 3. 리액티브 폼 유효성 검증
 
@@ -278,10 +280,10 @@ class Validators {
 아래의 예제를 살펴보자.
 
 ```typescript
-form: FormGroup;
+userForm: FormGroup;
 
 ngOnInit() {
-  this.form = new FormGroup({
+  this.userForm = new FormGroup({
     userid: new FormControl('', [
       Validators.required,
       Validators.pattern(/[a-zA-Z0-9]{4,10}/)
@@ -314,18 +316,12 @@ export class PasswordValidator {
 
   static match(form: AbstractControl) {
     // 매개변수로 전달받은 검증 대상 폼 모델에서 password와 confirmPassword을 취득
-    const password = form.get('password');
-    const confirmPassword = form.get('confirmPassword');
+    const password = form.get('password').value;
+    const confirmPassword = form.get('confirmPassword').value;
 
     // password와 confirmPassword의 값을 비교한다.
-    if (password.value !== confirmPassword.value) {
-      // 오류 내용을 설정
-      confirmPassword.setErrors({
-        match: {
-          password: password.value,
-          confirmPassword: confirmPassword.value
-        }
-      });
+    if (password !== confirmPassword) {
+      return { match: { password, confirmPassword }};
     } else {
       return null;
     }
@@ -337,9 +333,9 @@ export class PasswordValidator {
 
 PasswordValidator 클래스의 정적 메소드 match는 패스워드와 확인 패스워드를 입력하는 폼 컨트롤 요소를 그룹화한 FormGroup의 인스턴스 passwordGroup에 적용할 것이기 때문에 매개변수 타입을 AbstractControl로 지정하였다. 만약 사용자 정의 검증기가 폼 컨트롤 요소에 적용된다면 매개변수 타입을 FormControl로 지정하여도 된다.
 
-매개변수로 전달받은 검증 대상 폼 모델(위 예제의 경우, passwordGroup)에서 password와 confirmPassword을 취득하고 두 값을 비교한다. 두 값이 불일치하는 경우, setErrors 메소드를 사용하여 confirmPassword에 에러 내용을 나타내는 에러 객체를 설정한다. 이 에러 객체는 템플릿에서 confirmPassword.errors.match로 참조할 수 있다.
+매개변수로 전달받은 검증 대상 폼 모델(위 예제의 경우, passwordGroup)에서 password와 confirmPassword을 취득하고 두 값을 비교한다. 두 값이 불일치하는 경우, 에러 내용을 나타내는 에러 객체를 반환한다. 이 에러 객체는 템플릿에서 passwordGroup.errors?.match로 참조할 수 있다.
 
-두 값이 일치하여 오류가 발생하지 않는 경우, null을 반환한다. 이때 confirmPassword.errors는 null이 된다.
+두 값이 일치하여 오류가 발생하지 않는 경우, null을 반환한다. 이때 passwordGroup.errors는 null이 된다.
 
 사용자 정의 검증기는 빌트인 검증기와 동일한 방식으로 사용한다.
 
@@ -348,7 +344,7 @@ import { PasswordValidator } from './password-validator';
 ...
 
 ngOnInit() {
-  this.form = new FormGroup({
+  this.userForm = new FormGroup({
     passwordGroup: new FormGroup({
       password: new FormControl('', Validators.required),
       confirmPassword: new FormControl('', Validators.required)
@@ -386,7 +382,7 @@ $ npm install bootstrap
 <!-- user-form.html -->
 <div class="container">
   <h2>Reactive forms Exam</h2>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
     <div class="form-group">
       <label for="userid">User id</label>
       <input type="text" name="userid" class="form-control"
@@ -414,7 +410,7 @@ $ npm install bootstrap
         <em *ngIf="confirmPassword.errors?.required && confirmPassword.touched" class="alert">
           password를 입력하세요!
         </em>
-        <em *ngIf="confirmPassword.errors?.match && confirmPassword.touched" class="alert">
+        <em *ngIf="passwordGroup.errors?.match && confirmPassword.touched && !confirmPassword.errors?.required" class="alert">
           password가 일치하지 않습니다!
         </em>
       </div>
@@ -422,21 +418,21 @@ $ npm install bootstrap
     <div formArrayName="hobbies">
       <div *ngFor="let hobby of hobbies.controls; let i=index">
         <div class="form-group">
-          <label for="hobby{{i}}">hobby {{i}}</label>
-          <input type="text" name="hobby{{i}}" class="form-control"
+          <label for="hobby{{ "{{i" }}}}">hobby {{ "{{i" }}}}</label>
+          <input type="text" name="hobby{{ "{{i" }}}}" class="form-control"
             [formControlName]="i">
         </div>
       </div>
     </div>
     <button type="submit" class="btn btn-success"
-      [disabled]="form.invalid">Submit</button>
+      [disabled]="userForm.invalid">Submit</button>
   </form>
-  <pre>{{ form.value | json }}</pre>
-  <pre>{{ form.status }}</pre>
+  <pre>{{ "{{ userForm.value | json " }}}}</pre>
+  <pre>{{ "{{ userForm.status " }}}}</pre>
 </div>
 ```
 
-폼 컨트롤 요소에 form* 디렉티브를 선언하여 템플릿의 폼 요소와 폼 모델을 프로퍼티 바인딩으로 연결한다. 모든 폼 컨트롤 요소의 유효성 검증은 컴포넌트 클래스의 폼 모델이 담당할 것이며 모든 요소의 유효성 검증에 성공한 상태(form.valid가 true 또는 form.invalid가 false)라면 submit 버튼이 활성화된다.
+폼 컨트롤 요소에 form* 디렉티브를 선언하여 템플릿의 폼 요소와 폼 모델을 프로퍼티 바인딩으로 연결한다. 모든 폼 컨트롤 요소의 유효성 검증은 컴포넌트 클래스의 폼 모델이 담당할 것이며 모든 요소의 유효성 검증에 성공한 상태(userForm.valid가 true 또는 userForm.invalid가 false)라면 submit 버튼이 활성화된다.
 
 ```typescript
 // user-form.component.ts
@@ -450,10 +446,10 @@ import { PasswordValidator } from './password-validator';
   styleUrls: ['./user-form.css']
 })
 export class UserFormComponent implements OnInit {
-  form: FormGroup;
+  userForm: FormGroup;
 
   ngOnInit() {
-    this.form = new FormGroup({
+    this.userForm = new FormGroup({
       userid: new FormControl('', [
         Validators.required,
         Validators.pattern(/[a-zA-Z0-9]{4,10}/)
@@ -471,23 +467,28 @@ export class UserFormComponent implements OnInit {
 
   // 템플릿에서 폼 모델에 접근할 수 있도록 컴포넌트 클래스에 getter를 정의한다.
   get userid() {
-    return this.form.get('userid');
+    return this.userForm.get('userid');
+  }
+
+  get passwordGroup() {
+    return this.userForm.get('passwordGroup');
   }
 
   get password() {
-    return this.form.get('passwordGroup.password');
+    return this.userForm.get('passwordGroup.password');
   }
 
   get confirmPassword() {
-    return this.form.get('passwordGroup.confirmPassword');
+    return this.userForm.get('passwordGroup.confirmPassword');
   }
 
   get hobbies(): FormArray {
-    return this.form.get('hobbies') as FormArray;
+    return this.userForm.get('hobbies') as FormArray;
   }
 
   onSubmit() {
-    console.log(this.form);
+    console.log(this.userForm);
+    this.userForm.reset();
   }
 }
 ```
@@ -504,43 +505,92 @@ export class UserFormComponent implements OnInit {
 
 ```html
 <input type="text" name="userid" ngModel #userid="ngModel">
-<pre>{{ userid.value }}</pre>
+<pre>{{ "{{ userid.value " }}}}</pre>
 ```
 
-**리액티브 폼의 경우, 템플릿에서 폼 모델에 접근할 수 있도록 컴포넌트 클래스에 getter를 정의한다.** AbstractControl 클래스의 get 메소드은 폼 모델 자식 인스턴스를 검색할 때 사용한다.
+템플릿은 컴포넌트 클래스의 프로퍼티에 접근할 수 있다. **리액티브 폼의 경우, 템플릿에서 폼 모델에 접근할 수 있도록 컴포넌트 클래스에 getter를 정의한다.**
+
+AbstractControl 클래스의 get 메소드은 폼 모델의 자식 인스턴스를 검색할 때 사용한다.
 
 ```typescript
 get userid() {
-  return this.form.get('userid');
+  return this.userForm.get('userid');
+}
+
+get passwordGroup() {
+  return this.userForm.get('passwordGroup');
 }
 
 get password() {
-  return this.form.get('passwordGroup.password');
-  }
+  return this.userForm.get('passwordGroup.password');
+}
 
 get confirmPassword() {
-  return this.form.get('passwordGroup.confirmPassword');
+  return this.userForm.get('passwordGroup.confirmPassword');
 }
 
 get hobbies(): FormArray {
-  return this.form.get('hobbies') as FormArray;
+  return this.userForm.get('hobbies') as FormArray;
 }
 ```
 
 템플릿은 getter를 참조하여 폼 모델이 관리하는 폼 컨트롤 요소의 값이나 유효성 검증 상태를 추적할 수 있다.
 
 ```html
-<em *ngIf="confirmPassword.errors?.match && confirmPassword.touched" class="alert">
+<em *ngIf="passwordGroup.errors?.match && confirmPassword.touched && !confirmPassword.errors?.required" class="alert">
   password가 일치하지 않습니다!
 </em>
 ```
 
-<iframe src="https://stackblitz.com/edit/reactive-form-exam?embed=1&file=app/user-form.component.ts&view=preview" frameborder="0" width="100%" height="800"></iframe>
+<iframe src="https://stackblitz.com/edit/reactive-form-exam?embed=1&file=app/user-form.component.ts&hideExplorer=1&hideNavigation=1&view=preview" frameborder="0" width="100%" height="800"></iframe>
 
-<!-- # 4. FormBuilder
+# 6. FormBuilder
 
-FormBuilder를 사용하면 -->
+지금까지 살펴본 방식으로도 폼을 구성하고 유효성 검증을 실행할 수 있다. 하지만 Angular는 더욱 간편한 방법으로 리액티브 폼을 구성할 수 있는 FormBuilder를 제공한다. FormBuilder를 사용하면 FormGroup,FormControl, FormArray와 같은 클래스를 사용하여 인스턴스를 생성하는 번거로움을 줄일 수 있어서 코드가 간결해지고 가독성이 좋아진다. 이는 복잡한 폼을 보다 쉽게 구성할 수 있도록 도우며 유지보수에도 유리하다.
 
+위에서 작성한 리액티브 폼 유효성 검증 실습 예제를 FormBuilder를 사용하여 리팩토링해보자.
+
+```typescript
+...
+
+  // FormBuilder를 주입받는다.
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit() {
+    this.userForm = this.fb.group({
+      userid: ['', [Validators.required, Validators.pattern(/[a-zA-Z0-9]{4,10}/)]],
+      passwordGroup: this.fb.group({
+        password: ['', Validators.required],
+        confirmPassword: ['', Validators.required]
+      }, { validator: PasswordValidator.match }),
+      hobbies: this.fb.array(['', ''])
+    });
+  }
+
+...
+```
+
+FormBuilder를 사용하기 위해서는 [FormBuilder](https://angular.io/api/forms/FormBuilder) 클래스를 주입받는다. new FormGroup()으로 생성하였던 폼 모델은 주입받은 FormBuilder의 인스턴스를 사용하여 this.fb.group()와 같이 사용한다.
+
+FormBuilder를 사용하지 않는 경우, 아래와 같이 생성자의 2번째 인자로 전달하던 검증기를 추가하였다.
+
+```typescript
+  passwordGroup: new FormGroup({
+    password: new FormControl('', Validators.required),
+    confirmPassword: new FormControl('', Validators.required)
+  }, PasswordValidator.match),
+```
+
+FormBuilder를 사용하는 경우, 아래와 같이 생성자의 2번째 인자에 옵션 객체에 검증기를 추가하여야 한다.
+
+```typescript
+  passwordGroup: this.fb.group({
+    password: ['', Validators.required],
+    confirmPassword: ['', Validators.required]
+  }, { validator: PasswordValidator.match }),
+```
+
+<iframe src="https://stackblitz.com/edit/reactive-form-formbuilder-exam?embed=1&file=app/user-form.component.ts&hideExplorer=1&hideNavigation=1&view=preview" frameborder="0" width="100%" height="800"></iframe>
 
 # Reference
 
@@ -561,4 +611,6 @@ FormBuilder를 사용하면 -->
 * [Validators](https://angular.io/api/forms/Validators)
 
 * [ValidatorFn](https://angular.io/api/forms/ValidatorFn)
+
+* [FormBuilder](https://angular.io/api/forms/FormBuilder)
 

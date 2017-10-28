@@ -496,7 +496,7 @@ export class UserFormComponent implements OnInit {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/template-driven-form-exam?embed=1&file=app/user-form.component.ts&view=preview" frameborder="0" width="100%" height="800"></iframe>
+<iframe src="https://stackblitz.com/edit/template-driven-form-exam?embed=1&file=app/user-form.component.ts&hideExplorer=1&hideNavigation=1&view=preview" frameborder="0" width="100%" height="800"></iframe>
 
 템플릿 기반 폼은 작성이 간편하고 템플릿 내에서 유효성 검증 결과를 쉽게 확인 할 수 있는 장점이 있다. 하지만 폼이 커지면 마크업과 pattern 등의 유효성 검증 코드가 뒤섞여 복잡해 지고 가독성이 떨어질 수 있다. 또한 유효성 검증 로직에 중복이 발생할 우려가 커지고 세밀한 유효성 검증이 곤란할 수도 있다. 비교적 간단한 폼에는 템플릿 기반 폼이 유용하지만 복잡한 폼에는 모델 기반 폼(리액티브 폼)을 사용하는 것이 효과적이다.
 

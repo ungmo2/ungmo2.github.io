@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Node.js - <strong>npm</strong>
+title: Node.js & <strong>npm</strong>
 subtitle: 모듈화와 npm(node package manager)
 categories: nodejs
 section: nodejs
@@ -38,6 +38,8 @@ Node.js는 사실상 모듈 시스템의 사실상 표준(de facto standard)인 
 
 [npm(node package manager)](https://www.npmjs.com/)은 자바스크립트 패키지 매니저이다. Node.js에서 사용할 수 있는 모듈들을 패키지화하여 모아둔 저장소 역할과 패키지 설치 및 관리를 위한 CLI(Command line interface)를 제공한다. 자신이 작성한 패키지를 공개할 수도 있고 필요한 패키지를 검색하여 재사용할 수도 있다.
 
+## 2.1 패키지 설치
+
 패키지를 설치할 때에는 `npm install` 명령어 뒤에 설치할 패키지 이름을 지정한다.
 
 ```bash
@@ -54,29 +56,32 @@ npm install 명령어로 node-emoji 패키지를 설치한다.
 
 ```bash
 $ npm install node-emoji
-/Users/leeungmo/Desktop/emoji
-└─┬ node-emoji@1.5.1
-  └── string.prototype.codepointat@0.2.0
-
+npm WARN saveError ENOENT: no such file or directory, open '/Users/leeungmo/Desktop/emoji/package.json'
+npm notice created a lockfile as package-lock.json. You should commit this file.
 npm WARN enoent ENOENT: no such file or directory, open '/Users/leeungmo/Desktop/emoji/package.json'
 npm WARN emoji No description
 npm WARN emoji No repository field.
 npm WARN emoji No README data
 npm WARN emoji No license field.
+
++ node-emoji@1.8.1
+added 2 packages in 2.971s
 ```
 
 경고가 발생하였으나 node-emoji 패키지는 잘 설치되었다. 경고에 대해서는 잠시후 설명한다.
+
+## 2.2 지역(local) 설치와 전역(global) 설치
 
 npm install 명령어에는 지역(local) 설치와 전역(global) 설치 옵션이 존재한다.
 
 옵션을 별도로 지정하지 않으면 지역으로 설치되며 프로젝트 디렉터리 내에 node_modules 디렉터리가 자동 생성되고 그안에 설치한 패키지가 설치된다. 지역으로 설치된 패키지는 해당 프로젝트 내에서만 사용할 수 있다.
 
-전역에 패키지를 설치하려면 `-g` 옵션을 지정한다. 전역으로 설치된 패키지는 전역에서 참조가 가능하게 된다. 예를 들어 npm의 경우 모든 프로젝트가 사용하기 때문에 지역으로 설치하는 것보다 전역에 설치하는 것이 일반적이다.
+전역에 패키지를 설치하려면 `-g` 옵션을 지정한다. 전역으로 설치된 패키지는 전역에서 참조가 가능하게 된다. 예를 들어 npm의 경우 모든 프로젝트가 사용하기 때문에 지역으로 설치하지 않고 전역에 설치한다.
 
 전역에 설치된 패키지는 OS에 따라 설치 장소가 다르다.
-- macOS의 경우  
+- macOS의 경우
 : /usr/local/lib/node_modules
-- 윈도우의 경우  
+- 윈도우의 경우
 : c:\Users\%USERNAME%\AppData\Roaming\npm\node_modules
 
 node 명령어로 Node.js REPL을 기동시키고 node-emoji를 로드한 후 emoji를 출력해 보자.
@@ -90,11 +95,12 @@ undefined
 undefined
 ```
 
-하지만 npm install 명령어로 node-emoji 패키지를 설치할 때 package.json을 찾을 수 없었다는 경고가 발생하였다.
+## 2.3 package.json과 의존성(dependency) 관리
+
+하지만 npm install 명령어로 node-emoji 패키지를 설치할 때 package.json을 찾을 수 없다는 경고가 발생하였다.
 
 ```bash
-...
-npm WARN enoent ENOENT: no such file or directory, open '/Users/leeungmo/Desktop/emoji/package.json'
+npm WARN saveError ENOENT: no such file or directory, open '/Users/leeungmo/Desktop/emoji/package.json'
 ...
 ```
 
@@ -129,7 +135,7 @@ Wrote to /Users/leeungmo/Desktop/emoji/package.json:
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "node-emoji": "^1.5.1"
+    "node-emoji": "^1.8.1"
   },
   "devDependencies": {},
   "scripts": {
@@ -152,49 +158,6 @@ $ npm install node-emoji --save
 [npm@5](http://blog.npmjs.org/post/161081169345/v500)부터 `--save`는 기본옵션이 되었다. `--save` 옵션을 사용하지 않더라도 모든 install 명령은 package.json의 dependencies에 설치된 패키지와 버전을 기록한다. 기존의 `--save-dev`은 변경되지 않았다.
 {: .info}
 
-npm install 명령어에 `--save-exact` 옵션을 지정하면 설치된 버전을 범위 지정없이 기록한다.
-
-npm install 명령어의 패키명 뒤에 @버전을 추가하면 패키지 버전을 지정할 수 있다.
-
-```bash
-$ npm install node-emoji@1.5.1 --save
-```
-
-npm은 semantic versioning(유의적 버전)을 지원한다. 버전 정보는 메이저 버전 번호, 마이너 버전 번호, 패치 버전 번호로 구성된다.
-
-![sementic-versioning](./img/sementic-versioning.png)
-
-semantic versioning(유의적 버전)
-{: .desc-img}
-
-버전 정보 앞에는 기호를 부여하여 업데이트 범위를 지정할 수 있다. 기술 방식은 아래와 같다.
-
-| 표기법      | Description                     |
-|:--------- |:--------------------------------|
-| version   | 명시된 version과 일치         
-| >version  | 명시된 version보다 높은 버전
-| >=version | 명시된 version과 같거나 높은 버전
-| <version  | 명시된 version보다 낮은 버전
-| <=version | 명시된 version과 같거나 낮은 버전
-| ~version  | 명시된 version과 근사한 버전
-| ^version  | 명시된 version과 호환되는 버전
-
-`~(틸트)`와 `^(캐럿)`의 차이는 아래와 같다.
-
-~(틸트)는 패치 버전 범위 내에서 업데이트한다.
-:  
-  - ~0.0.1 : 0.0.1 <= version < 0.1.0
-  - ~0.1.1 : 0.1.1 <= version < 0.2.0
-
-^(캐럿)는 마이너 버전 범위 내에서 업데이트한다.
-:  
-  - ^0.1.2 : 0.1.2 <= version < 0.2.0
-  - ^1.0.2 : 1.0.2 <= version < 2.0
-
-[npm semver calculator](https://semver.npmjs.com/)에 방문하면 패키지 별로 버전 표기법을 사용하여 업데이트 버전 범위를 확인할 수 있다.
-
-버전에 대한 보다 자세한 사항은 [semver : The semantic versioner for npm](https://docs.npmjs.com/misc/semver)를 참조하기 바란다.
-
 `devDependencies`에는 개발 시에만 사용하는 의존 패키지를 명시한다. 예를 들어 TypeScript와 같은 트랜스파일러는 개발단계에서만 필요하고 배포할 필요는 없으므로 devDependencies에 포함시킨다. npm install 명령어에 `--save-dev` 옵션을 사용하면 패키지 설치와 함께 package.json의 devDependencies에 설치된 패키지와 버전이 기록된다.
 
 ```bash
@@ -208,6 +171,53 @@ $ npm install
 ```
 
 package.json의 자세한 설명은 [https://docs.npmjs.com/files/package.json](https://docs.npmjs.com/files/package.json)을 참조하기 바란다.
+
+## 2.4 Semantic versioning(유의적 버전)
+
+npm install 명령어에 `--save-exact` 옵션을 지정하면 설치된 버전을 범위 지정없이 기록한다.
+
+npm install 명령어의 패키명 뒤에 @버전을 추가하면 패키지 버전을 지정할 수 있다.
+
+```bash
+$ npm install node-emoji@1.8.1
+```
+
+npm은 semantic versioning(유의적 버전)을 지원한다. 버전 정보는 메이저 버전 번호, 마이너 버전 번호, 패치 버전 번호로 구성된다.
+
+![sementic-versioning](./img/sementic-versioning.png)
+
+semantic versioning(유의적 버전)
+{: .desc-img}
+
+버전 정보 앞에는 기호를 부여하여 업데이트 범위를 지정할 수 있다. 기술 방식은 아래와 같다.
+
+| 표기법      | Description                     |
+|:--------- |:--------------------------------|
+| version   | 명시된 version과 일치
+| >version  | 명시된 version보다 높은 버전
+| >=version | 명시된 version과 같거나 높은 버전
+| <version  | 명시된 version보다 낮은 버전
+| <=version | 명시된 version과 같거나 낮은 버전
+| ~version  | 명시된 version과 근사한 버전
+| ^version  | 명시된 version과 호환되는 버전
+
+`~(틸트)`와 `^(캐럿)`의 차이는 아래와 같다.
+
+~(틸트)는 패치 버전 범위 내에서 업데이트한다.
+:
+  - ~0.0.1 : 0.0.1 <= version < 0.1.0
+  - ~0.1.1 : 0.1.1 <= version < 0.2.0
+
+^(캐럿)는 마이너 버전 범위 내에서 업데이트한다.
+:
+  - ^0.1.2 : 0.1.2 <= version < 0.2.0
+  - ^1.0.2 : 1.0.2 <= version < 2.0
+
+[npm semver calculator](https://semver.npmjs.com/)에 방문하면 패키지 별로 버전 표기법을 사용하여 업데이트 버전 범위를 확인할 수 있다.
+
+버전에 대한 보다 자세한 사항은 [semver : The semantic versioner for npm](https://docs.npmjs.com/misc/semver)를 참조하기 바란다.
+
+## 2.5 npm help
 
 `npm help` 명령어를 사용하면 npm CLI 명령어에 대한 설명을 참조할 수 있다.
 

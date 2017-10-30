@@ -89,7 +89,7 @@ require 함수를 통해 square 모듈을 임프트하여 square 변수에 할�
 
 ```javascript
 // primitive.js
-const pv ='primitive value'
+const pv = 'primitive value';
 module.exports = pv;
 ```
 
@@ -203,7 +203,7 @@ const result = myModule.calc.add(1, 2);
 console.log(result);
 
 // module/print.js의 기능
-myModule.print.sayHi();
+myModule.print.sayHello();
 ```
 
 # 5. 코어 모듈과 파일 모듈

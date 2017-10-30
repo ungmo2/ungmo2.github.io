@@ -21,10 +21,9 @@ Express 4.14.0 버전을 기준으로 한다.
 프로젝트 폴더를 생성하고 npm init로 package.json을 생성한 후 express install을 실시한다.
 
 ```bash
-$ mkdir myapp
-$ cd myapp
+$ mkdir myapp && cd myapp
 $ npm init -y
-$ npm install express --save
+$ npm install express
 ```
 
 # 2. Hello world example
@@ -32,16 +31,12 @@ $ npm install express --save
 프로젝트 폴더(myapp)에 app.js를 생성한다.
 
 ```javascript
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
 
-app.get('/', function (req, res) {
-  res.send('Hello World!');
-});
+app.get('/', (req, res) => res.send('Hello World!'));
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
-});
+app.listen(3000, () => console.log('Example app listening on port 3000!'));
 ```
 
 터미널에서 다음 명령을 실행하여 application을 구동시킨다.
@@ -76,37 +71,32 @@ $.ajax({
 먼저 request body parsing 미들웨어인 body-parser를 설치한다. body-parser 미들웨어는 POST 요청 데이터를 request 객체의 body 프로퍼티에 바인딩한다.
 
 ```bash
-$ npm install body-parser --save
+$ npm install body-parser
 ```
 
 설치가 되었으면 아래와 같이 app.js를 수정한다.
 
 ```javascript
 // Server-side: app.js  
-var express    = require('express');
-var bodyParser = require('body-parser');
-var app = express();
+const express    = require('express');
+const bodyParser = require('body-parser');
+
+const app = express();
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get('/', function (req, res) {
-  res.send('Hello World!');
+// parse application/json
+app.use(bodyParser.json());
+
+app.get('/', (req, res) => res.send('Hello World!'));
+
+app.post('/signin', (req, res) => {
+  const { username, password } = req.body;
+  res.send({ username, password });
 });
 
-app.post('/signin', function (req, res) {
-  var username = req.body.username;
-  var password = req.body.password;
-
-  res.send({
-    username : username,
-    password : password
- });
-});
-
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
-});
+app.listen(3000, () => console.log('Example app listening on port 3000!'));
 ```
 
 ![postman](/img/postman.png)
@@ -127,34 +117,36 @@ subscribe, unsubscribe, patch, search, connect.
 
 ```javascript
 // GET method route
-app.get('/api/books', function (req, res) {
-  res.send('GET request to the /api/books');
-});
+app.get('/api/books', (req, res) => res.send('GET request to the /api/books'));
 
 // POST method route
-app.post('/api/books', function (req, res) {
-  res.send('POST request to the /api/books');
-});
+app.post('/api/books', (req, res) => res.send('POST request to the /api/books'));
 ```
 
 app.all() 메소드는 모든 HTTP method에 대응한다. next()를 사용하면 후속 route handler로 제어를 전달할 수 있다.
 
 ```javascript
 // 모든 요청 메소드에 대응
-app.all('/', function (req, res, next) {
+app.all('/', (req, res, next) => {
   console.log('All request to the root section ...');
   next(); // pass control to the next handler
 });
 
-app.get('/', function (req, res, next) {
-  console.log('the response will be sent by the next function ...');
+app.get('/', (req, res, next) => {
+  console.log('[GET 1]the response will be sent by the next function ...');
   next();
-}, function (req, res, next) {
-  console.log('the response will be sent by the next function ...');
+}, (req, res, next) => {
+  console.log('[GET 1]the response will be sent by the next function ...');
   next();
-}, function (req, res) {
-  res.send('Hello from homepage!');
-});
+}, (req, res) => res.send('Hello from GET /'));
+
+app.post('/', (req, res, next) => {
+  console.log('[POST 1]the response will be sent by the next function ...');
+  next();
+}, (req, res, next) => {
+  console.log('[POST 1]the response will be sent by the next function ...');
+  next();
+}, (req, res) => res.send('Hello from POST /'));
 ```
 
 ## 3.2 Route path
@@ -163,28 +155,21 @@ Route path에는 문자열 또는 정규표현식을 사용할 수 있다.
 
 ```javascript
 // localhost:3000/
-app.get('/', function (req, res) {
-  res.send('root');
-});
+app.get('/', (req, res) => res.send('root'));
 
 // localhost:3000/about
-app.get('/about', function (req, res) {
-  res.send('about');
-});
+app.get('/about', (req, res) => res.send('about'));
 
 // localhost:3000//random.text
-app.get('/random.text', function (req, res) {
-  res.send('random.text');
-});
+app.get('/random.text', (req, res) => res.send('random.text'));
 
 // localhost:3000/<number>
-app.get(/^\/[0-9]+$/, function(req, res) {
-  res.send('regexp');
-});
+app.get(/^\/[0-9]+$/, (req, res) => res.send('regexp'));
 
 // localhost:3000/user/<userId>/item/<itemId>
-app.get('/user/:userId/item/:itemId', function(req, res) {
-  res.send('userId:' + req.params.userId + ", itemId:" + req.params.itemId);
+app.get('/user/:userId/item/:itemId', (req, res) => {
+  const { userId, itemId } = req.params;
+  res.send(`userId: ${userId}, itemId: ${itemId}`);
 });
 ```
 
@@ -193,47 +178,41 @@ app.get('/user/:userId/item/:itemId', function(req, res) {
 Route handler는 요청을 처리하는 콜백함수이다.
 
 ```javascript
-app.get('/example/a', function (req, res) {
-  res.send('Hello from A!');
-});
+app.get('/example/a', (req, res) => res.send('Hello from A!'));
 ```
 
 next()를 사용하면 후속 route handler로 제어를 전달할 수 있다.
 
 ```javascript
-app.get('/example/b', function (req, res, next) {
+app.get('/example/b', (req, res, next) => {
   console.log('the response will be sent by the next function ...');
   next();
-}, function (req, res) {
-  res.send('Hello from B!');
-});
+}, (req, res) => res.send('Hello from B!'));
 ```
 
 함수나 함수 배열 또는 둘을 조합한 형태로 사용한다.
 
 ```javascript
-var cb0 = function (req, res, next) {
+const cb0 = function (req, res, next) {
   console.log('CB0');
   next();
 }
 
-var cb1 = function (req, res, next) {
+const cb1 = function (req, res, next) {
   console.log('CB1');
   next();
 }
 
-var cb2 = function (req, res) {
+const cb2 = function (req, res) {
   res.send('Hello from C!');
 }
 
 app.get('/example/c', [cb0, cb1, cb2]);
 
-app.get('/example/d', [cb0, cb1], function (req, res, next) {
+app.get('/example/d', [cb0, cb1], (req, res, next) => {
   console.log('the response will be sent by the next function ...');
   next();
-}, function (req, res) {
-  res.send('Hello from D!');
-});
+}, (req, res) => res.send('Hello from D!'));
 ```
 
 ## 3.4 Response method
@@ -306,11 +285,9 @@ res.redirect('../login');
 // send the rendered view to the client
 res.render('index');
 // if a callback is specified, the rendered HTML string has to be sent explicitly
-res.render('index', function(err, html) {
-  res.send(html);
-});
+res.render('index', (err, html) => res.send(html));
 // pass a local variable to the view
-res.render('user', { name: 'Lee' }, function(err, html) {
+res.render('user', { name: 'Lee' }, (err, html) => {
   // ...
 });
 
@@ -337,12 +314,12 @@ res.sendStatus(500); // equivalent to res.status(500).send('Internal Server Erro
 예를 들면 bodyParser()와 cookieParser()는 각각 HTTP 요청 페이로드(req.body)와 파싱된 쿠키 데이터(req.cookie)를 추가한다.
 
 ```javascript
-var express = require('express');
+const express = require('express');
 
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
-var app = express();
+const app = express();
 
 // parse application/json
 app.use(bodyParser.json());
@@ -354,10 +331,10 @@ app.use(cookieParser());
 현재의 미들웨어 함수가 요청-응답 주기(request-response cycle)를 종료하지 않는 경우에는 ***next()*** 를 호출하여 그 다음 미들웨어 함수에 제어를 전달해야 한다. 그렇지 않으면 해당 요청은 정지된 채로 방치된다.
 
 ```javascript
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
 
-var myLogger = function (req, res, next) {
+const myLogger = function (req, res, next) {
   responseText = 'Requested at: ' + req.requestTime + '';
   console.log('LOGGED: ' + responseText);
   next(); // Call the next middleware in the stack.
@@ -365,9 +342,8 @@ var myLogger = function (req, res, next) {
 
 app.use(myLogger); // Execute myLogger.
 
-app.get('/', function (req, res) {
-  res.send('Hello World!'); // End the request-response cycle.
-});
+// End the request-response cycle.
+app.get('/', (req, res) => res.send('Hello World!'));
 
 app.listen(3000);
 ```
@@ -393,6 +369,17 @@ http://localhost:3000/images/bg.png
 
 Express는 [jade](http://jade-lang.com/), [ejs](http://ejs.co/), [handlebars](http://handlebarsjs.com/)와 같은 템플릿 엔진을 사용할 수 있다.
 
+**handlebars**
+
+```javascript
+app.engine('handlebars', exphbs({ defaultLayout: false }));
+app.set('view engine', 'handlebars');
+
+app.get('/', (req, res) => {
+  res.render('index', { title: 'Hello world' })
+});
+```
+
 **jade**
 
 ```javascript
@@ -400,10 +387,8 @@ Express는 [jade](http://jade-lang.com/), [ejs](http://ejs.co/), [handlebars](ht
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 
-app.get('/', function(req, res){
-  res.render('index', {
-    title: 'Hello world'
-  })
+app.get('/', (req, res) => {
+  res.render('index', { title: 'Hello world' })
 });
 ```
 
@@ -414,9 +399,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 
-app.get('/', function(req, res){
-  res.render('index', {
-    title: 'Hello world'
-  })
+app.get('/', (req, res) => {
+  res.render('index', { title: 'Hello world'})
 });
 ```

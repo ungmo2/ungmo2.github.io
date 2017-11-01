@@ -121,7 +121,7 @@ import 'rxjs/add/operator/filter';
 Observable과 Observer
 {: .desc-img}
 
-④ 옵저버블이 생성한 데이터 스트림을 subscribe 함수로 구독하면 **Subscription** 객체를 반환한다. 이 Subscription 객체는 구독을 취소할 때 사용할 수 있다.
+④ 옵저버블이 생성한 데이터 스트림을 subscribe 함수로 구독하면 **Subscription** 객체를 반환한다. 이 Subscription 객체는 구독을 취소할 때 사용할 수 있다. **메모리 누수를 방지하기 위해 OnDestroy 라이프사이클 훅을 사용하여 반드시 구독을 취소하도록 한다.**
 
 <iframe src="https://stackblitz.com/edit/observable-exam?embed=1&file=app/observable.component.ts" frameborder="0" width="100%" height="400"></iframe>
 
@@ -138,10 +138,11 @@ Observable과 Observer
 
 ```typescript
 // observable-event-http.component
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
 // Observable operators
 import 'rxjs/add/operator/debounceTime';
@@ -164,17 +165,18 @@ interface GithubUser {
     <pre>{{ "{{ githubUser | json " }}}}</pre>
   `
 })
-export class ObservableEventHttpComponent implements OnInit {
+export class ObservableEventHttpComponent implements OnInit, OnDestroy {
   // ① Angular forms
   serchInput: FormControl = new FormControl('');
   githubUser: GithubUser;
+  subscription: Subscription;
 
   // ② HttpClient를 의존성 주입한다.
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
     // ① valueChanges 이벤트 옵저버블을 구독하면 컨트롤 값의 변경 내용을 옵저버블 스트림으로 수신할 수 있다.
-    this.serchInput.valueChanges
+    this.subscription = this.serchInput.valueChanges
     // ③ debounceTime 오퍼레이터는 다음 이벤트를 즉시 발생시키지 않고 지정 시간만큼 지연시킨다.
     .debounceTime(500)
     // ④ switchMap 오퍼레이터는 옵저버블을 받아서 새로운 옵저버블을 생성한다.
@@ -183,9 +185,12 @@ export class ObservableEventHttpComponent implements OnInit {
     .subscribe(user => this.githubUser = user);
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
   // ⑤ 서버로 부터 데이터를 응답받아 옵저버블은 반환한다.
   getGithubUser(userId: string): Observable<GithubUser> {
-    console.log(userId, typeof userId);
     return this.http
       .get<GithubUser>(`https://api.github.com/users/${userId}`)
       .map(user => ({ login: user.login, name: user.name }))

@@ -236,7 +236,7 @@ Angular에서 데코레이터는 중요한 개념으로 사용된다. Angular는
 
 ## 3.4 Angular 라이브러리 모듈 임포트
 
-Component는 Angular core 모듈에 정의되어 있다. import 키워드를 사용하여 Angular core 모듈을 임포트한다. Angular 라이브러리 모듈의 경우 @가 붙어있으며 경로를 명시하지 않는다.
+Component는 Angular core 패키지에 정의되어 있다. import 키워드를 사용하여 Angular core 패키지를 임포트한다. Angular 라이브러리 모듈의 경우 @가 붙어있으며 경로를 명시하지 않는다.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -244,6 +244,8 @@ import { Component } from '@angular/core';
 @Component()
 export class HelloComponent {}
 ```
+
+@angular/core 패키지에는 Component 이외에도 수많은 모듈로 구성되어 있다. ECMAScript 6의 [객체 디스트럭처링 (Object destructuring)](./es6-destructuring#2-객체-디스트럭처링-object-destructuring)를 사용하여 필요한 모듈만을 임포트한다.
 
 ## 3.5 메타데이터
 
@@ -482,8 +484,6 @@ export class HelloComponent {
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { HelloComponent } from './hello/hello.component'; // 1
@@ -493,11 +493,7 @@ import { HelloComponent } from './hello/hello.component'; // 1
     AppComponent,
     HelloComponent // 2
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule
-  ],
+  imports: [BrowserModule],
   providers: [],
   bootstrap: [AppComponent]
 })
@@ -508,17 +504,12 @@ export class AppModule { }
 
 declarations 프로퍼티에는 모듈에 소속될 구성요소(컴포넌트, 디렉티브, 파이프)의 리스트를 지정한다. 모듈은 이후에 자세히 살펴보도록 하고 이번에는 @NgModule 데코레이터에 인자로 전달되는 메타데이터 객체의 중요 프로퍼티만 간단히 알아보도록 하자.
 
-declarations 프로퍼티
-: 모듈에 소속될 구성요소(컴포넌트, 디렉티브, 파이프) 리스트
-
-imports 프로퍼티
-: 모듈에 소속된 구성요소가 필요로 하는 다른 모듈
-
-providers 프로퍼티
-: 모듈에 소속된 구성요소가 사용할 서비스
-
-bootstrap 프로퍼티
-: 최초로 호출될 컴포넌트
+| 프로퍼티       | 내용
+|:-------------|-----------------------
+| providers    | 주입 가능한 객체(injectable object) 즉 서비스의 리스트를 선언한다. 루트 모듈에 선언된 서비스는 애플리케이션 전역에서 사용할 수 있다.
+| declarations | 컴포넌트, 디렉티브, 파이프의 리스트를 선언한다. 모듈에 선언된 구성 요소는 모듈에서 사용할 수 있다.
+| imports      | 의존 관계에 있는 Angular 라이브러리 모듈, 기능 모듈, 라우팅 모듈, 서드 파티 모듈을 선언한다.
+| bootstrap    | 애플리케이션의 진입점(entry point)인 루트 컴포넌트를 선언한다.
 
 이제 프로젝트를 실행하여 보자.
 

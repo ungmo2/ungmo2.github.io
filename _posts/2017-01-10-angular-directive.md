@@ -177,9 +177,11 @@ export class TextBlueDirective {
 }
 ```
 
-먼저 생성자 내부에서만 유효하던 ElementRef을 주입받은 생성자 파라미터에 el에 접근 제한자 private를 추가하여 클래스 내부에서 참조가능한 멤버 변수로 변경한다.
+먼저 주입받은 생성자 파라미터에 el에 접근 제한자 private를 추가하여 생성자 내부에서만 유효하던 ElementRef을 클래스 내부에서 참조가능한 멤버 변수로 변경한다.
 
-커스텀 디렉티브에 이벤트 처리 기능을 추가하기 위해 [@HostListener](https://angular.io/api/core/HostListener) 데코레이터를 사용하여 컴포넌트 또는 요소의 이벤트에 대한 핸들러를 등록한다. @HostListener 데코레이터를 사용하는 대신 @Directive 데코레이터의 메타데이터 객체의 host 프로퍼티를 사용할 수도 있다. 하지만 코드의 가독성 측면에서 유리한 @HostListener 데코레이터를 사용하도록 한다. 이벤트 핸들러 onMouseEnter, onMouseLeave은 textColor 메서드를 호출하여 어트리뷰트 호스트의 텍스트 컬러를 변경한다.
+커스텀 디렉티브에 이벤트 처리 기능을 추가하기 위해 [@HostListener](https://angular.io/api/core/HostListener) 데코레이터를 사용하여 컴포넌트 또는 요소의 이벤트에 대한 핸들러를 등록한다. @HostListener를 사용하면 호스트 요소의 이벤트를 수신할 수 있다.
+
+@HostListener 데코레이터를 사용하는 대신 @Directive 데코레이터의 메타데이터 객체의 host 프로퍼티를 사용할 수도 있다. 하지만 코드의 가독성 측면에서 유리한 @HostListener 데코레이터를 사용하도록 한다. 이벤트 핸들러 onMouseEnter, onMouseLeave은 textColor 메서드를 호출하여 어트리뷰트 호스트의 텍스트 컬러를 변경한다.
 
 ## 3.3 @Input 데이터 바인딩
 

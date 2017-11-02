@@ -75,7 +75,7 @@ TypeScript를 사용하는 이유는 여러가지 있지만 가장 큰 장점은
 
 컴파일러 등의 개발환경 구축이 필요없이 브라우저만 있으면 바로 사용할 수 있는 ES5와 비교할 때 개발환경 구축의 관점에서 다소 복잡해진 측면이 있으나 현재 ES6를 완전히 지원하지 않고 있는 브라우저를 고려하여 Babel등의 트랜스파일러를 사용해야 하는 현 상황에서 TypeScript 개발환경 구축에 드는 수고는 그다지 아깝지 않을 것이다.
 
-마지막으로 Angular는 TypeScript 뿐만 아니라 JavaScript, Dart로도 작성할 수 있지만 Angular 문서, 커뮤니티 활동에서 가장 많이 사용되고 있는 것이 TypeScript이다. Angular 관련 문서의 예제 등도 TypeScript로 작성된 것이 가장 많아 관련 정보 취득에 이점이 있으며 이러한 현상은 앞으로도 지속될 것으로 예상된다.
+마지막으로 Angular는 TypeScript 뿐만 아니라 JavaScript, Dart로도 작성할 수 있지만 Angular 문서, 커뮤니티 활동에서 가장 많이 사용되고 있는 것이 TypeScript이다. Angular 관련 문서의 예제 등도 TypeScript로 작성된 것이 대부분이어서 관련 정보 취득에 이점이 있으며 이러한 현상은 앞으로도 지속될 것으로 예상된다.
 
 # 3. 개발환경 구축
 
@@ -99,18 +99,18 @@ $ npm install -g typescript
 
 ```bash
 $ tsc -v
-Version 2.1.5
+Version 2.6.1
 ```
 
 TypeScript 컴파일러(tsc)는 TypeScript 파일(.ts)을 JavaScript 파일로 트랜스파일링한다.
 
-트랜스파일링을 실행해보기 위해 다음과 같은 파일을 작성해 보자. TypeScript의 확장자는 .ts이다.
+트랜스파일링을 실행해보기 위해 아래와 같은 파일을 작성해 보자. TypeScript의 확장자는 .ts이다.
 
 ```typescript
 // person.ts
 class Person {
-
-  name: string;
+  
+  private name: string;
 
   constructor(name: string) {
     this.name = name;
@@ -136,14 +136,14 @@ $ tsc person.ts
 
 ```javascript
 // person.js
-var Person = (function () {
-  function Person(name) {
-    this.name = name;
-  }
-  Person.prototype.sayHello = function () {
-    return "Hello, " + this.name;
-  };
-  return Person;
+var Person = /** @class */ (function () {
+    function Person(name) {
+        this.name = name;
+    }
+    Person.prototype.sayHello = function () {
+        return "Hello, " + this.name;
+    };
+    return Person;
 }());
 var person = new Person('Lee');
 console.log(person.sayHello());
@@ -166,13 +166,13 @@ $ node person.js
 Hello, Lee
 ```
 
-복수의 파일을 한번에 컴파일할 수도 있다. 두개의 TypeScript class를 작성해보자.
+복수의 파일을 한번에 컴파일할 수도 있다. 2개의 TypeScript class를 작성해보자.
 
 ```typescript
 // person.ts
 export class Person {
 
-  name: string;
+  protected name: string;
 
   constructor(name: string) {
     this.name = name;
@@ -188,7 +188,7 @@ export class Person {
 import { Person } from './Person';
 
 class Student extends Person {
-  study() {
+  study(): string {
     return `${this.name} is studying.`;
   }
 }
@@ -221,7 +221,7 @@ Lee is studying.
 
 ```bash
 $ tsc student.ts --watch
-14:27:59 - Compilation complete. Watching for file changes.
+21:23:30 - Compilation complete. Watching for file changes.
 ```
 
 student.ts를 변경해 보자.
@@ -231,7 +231,7 @@ student.ts를 변경해 보자.
 import { Person } from './Person';
 
 class Student extends Person {
-  study() {
+  study(): string {
     return `${this.name} is studying!!`;
   }
 }
@@ -245,8 +245,8 @@ console.log(student.study());
 아래와 같이 파일 변경이 감지되고 자동으로 컴파일이 실행된다.
 
 ```bash
-14:29:07 - File change detected. Starting incremental compilation...
-14:29:08 - Compilation complete. Watching for file changes.
+21:24:39 - File change detected. Starting incremental compilation...
+21:24:39 - Compilation complete. Watching for file changes.
 ```
 
 ```bash

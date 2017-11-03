@@ -87,20 +87,21 @@ color = 'red';
 let myName: string = `Lee`; // ES6 템플릿 문자열
 let greeting: string = `Hello, my name is ${ myName }.` // ES6 템플릿 대입문
 
-// object : 별도의 타입 선언을 하지 않는다.
-const obj = {};
+// object
+const obj: object = {};
 
 // array
 let list1: any[] = [1, 'two', true];
-let list2: Array<number> = [1, 2, 3]; // Generic array type
+let list2: number[] = [1, 2, 3];
+let list3: Array<number> = [1, 2, 3]; // Generic array type
 
 // tuple : 고정된 요소수 만큼의 타입을 미리 선언후 배열을 표현
 // Declare a tuple type
 let x: [string, number];
 // Initialize it
-x = ["hello", 10]; // OK
+x = ['hello', 10]; // OK
 // Initialize it incorrectly
-x = [10, "hello"]; // Error
+x = [10, 'hello']; // Error
 
 console.log(x[0].substr(1)); // OK
 console.log(x[1].substr(1)); // Error, 'number' does not have 'substr'
@@ -123,7 +124,7 @@ console.log(c3); // 4
 
 // any : 타입 추론(type inference)할 수 없거나 타입 체크가 필요없는 변수는 any 타입으로 선언한다.
 let notSure: any = 4;
-notSure = "maybe a string instead";
+notSure = 'maybe a string instead';
 notSure = false; // okay, definitely a boolean
 
 // void : 일반적으로 함수에서 반환값이 없을 경우 사용한다.
@@ -172,7 +173,7 @@ foo = true;
 console.log(typeof foo);  // boolean
 ```
 
-TypeScript의 가장 독특한 특징은 <strong>정적 타이핑</strong>을 지원한다는 것이다. 즉 변수의 타입을 선언할 수 있으며 잘못된 타입의 값이 할당되면 컴파일러는 이를 감지한다.
+TypeScript의 가장 독특한 특징은 <strong>정적 타이핑</strong>을 지원한다는 것이다. 즉 변수의 타입을 선언할 수 있으며 잘못된 타입의 값이 할당되면 컴파일러는 이를 감지하고 에러를 발생시킨다.
 
 ```typescript
 let foo: string,   // String

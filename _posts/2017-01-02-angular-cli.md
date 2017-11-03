@@ -768,6 +768,46 @@ $ ng generate component <component-name> --spec false
 }
 ```
 
+또는 ng new 명령어로 프로젝트를 생성할 때, 옵션을 추가하면 .angular-cli.json에 반영된다. 예를 들어 아래와 같이 프로젝트를 생성하는 경우를 살펴보자.
+
+```bash
+$ ng new my-app -it -is -skip-tests
+```
+
+이때 생성되는 .angular-cli.json는 옵션을 반영하여 아래와 같이 생성된다.
+
+```json
+{
+  ...
+  "defaults": {
+    "styleExt": "css",
+    "class": {
+      "spec": false
+    },
+    "component": {
+      "inlineStyle": true,
+      "inlineTemplate": true,
+      "spec": false
+    },
+    "directive": {
+      "spec": false
+    },
+    "guard": {
+      "spec": false
+    },
+    "module": {
+      "spec": false
+    },
+    "pipe": {
+      "spec": false
+    },
+    "service": {
+      "spec": false
+    }
+  }
+}
+```
+
 # Reference
 
 * [Angular CLI](https://cli.angular.io/)

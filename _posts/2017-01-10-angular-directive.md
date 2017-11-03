@@ -238,7 +238,6 @@ export class TextColorDirective {
 
 조금더 리팩터링를 해보자. 별도의 color 어트리뷰트에 바인딩한 컬러를 이번에는 textColor 디렉티브에 직접 바인딩하도록 수정한다.
 
-
 ```typescript
 // app.component.ts
 import { Component } from '@angular/core';

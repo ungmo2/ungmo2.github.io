@@ -14,21 +14,21 @@ description:
 
 # 1. SPA (Single Page Application)
 
-단일 페이지 어플리케이션(Single Page Application, SPA)는 모던 웹의 패러다임이다. SPA는 기본적으로 단일 페이지로 구성되며 기존의 서버 사이드 렌더링과 비교할 때, 배포가 간단하며 네이티브 앱과 유사한 사용자 경험을 제공할 수 있다는 장점이 있다.
+단일 페이지 어플리케이션(Single Page Application, SPA)은 모던 웹의 패러다임이다. SPA는 기본적으로 단일 페이지로 구성되며 기존의 서버 사이드 렌더링과 비교할 때, 배포가 간단하며 네이티브 앱과 유사한 사용자 경험을 제공할 수 있다는 장점이 있다.
 
-link tag를 사용하는 전통적인 웹 방식은 새로운 페이지 요청 시마다 정적 리소스가 다운로드되고 전체 페이지를 다시 렌더링하는 방식을 사용하므로 새로고침이 발생된다. 이것은 변경이 필요없는 부분를 포함하여 전체 페이지를 갱신하는 것으로 비효율적이다.
+link tag를 사용하는 전통적인 웹 방식은 새로운 페이지 요청 시마다 정적 리소스가 다운로드되고 전체 페이지를 다시 렌더링하는 방식으로 동작하므로 새로고침이 발생된다. 이것은 변경이 필요없는 부분을 포함하여 전체 페이지를 갱신하는 것으로 비효율적이다.
 
-SPA는 웹 애플리케이션에 필요한 모든 정적 리소스를 최초에 한번 다운로드한다. 이후 새로운 페이지 요청 시, 페이지 갱신에 필요한 데이터만을 전달받아 페이지를 갱신하므로 전체적인 트래픽을 감소할 수 있고, 전체 페이지를 다시 렌더링하지 않고 변경되는 부분만을 갱신하므로 새로고침이 발생하지 않아 네이티브 앱과 유사한 사용자 경험을 제공할 수 있다.
+SPA는 웹 애플리케이션에 필요한 모든 정적 리소스를 애플리케이션 최초 기동 시에 한번만 다운로드한다. 이후 새로운 페이지 요청 시, 페이지 갱신에 필요한 데이터만을 전달받아 페이지를 갱신하므로 전체적인 트래픽을 감소할 수 있고, 전체 페이지를 다시 렌더링하지 않고 변경되는 부분만을 갱신하므로 새로고침이 발생하지 않아 네이티브 앱과 유사한 사용자 경험을 제공할 수 있다.
 
-모바일의 사용이 증가하고 있는 현 시점에 트래픽의 감소와 속도, 사용성, 반응성의 향상은 매우 중요한 이슈이다. SPA의 핵심 가치는 사용자 경험(UX)을 향상에 있으며 부가적으로 애플리케이션 속도의 향상도 기대할 수 있어서 모바일 퍼스트(Mobile First) 전략에 부합한다.
+모바일의 사용이 증가하고 있는 현 시점에 트래픽의 감소와 속도, 사용성, 반응성의 향상은 매우 중요한 이슈이다. SPA의 핵심 가치는 사용자 경험(UX) 향상에 있으며 부가적으로 애플리케이션 속도의 향상도 기대할 수 있어서 모바일 퍼스트(Mobile First) 전략에 부합한다.
 
 모든 소프트웨어 아키텍처에는 trade-off가 존재하며 모든 애플리케이션에 적합한 은탄환(Silver bullet)은 없듯이 SPA 또한 구조적인 단점을 가지고 있다. 대표적인 단점은 아래와 같다.
 
 초기 구동 속도  
-: SPA는 웹 애플리케이션에 필요한 모든 정적 리소스를 최초에 한번 다운로드하기 때문에 초기 구동 속도가 상대적으로 느리다. 하지만 SPA는 웹페이지보다는 애플리케이션에 적합한 기술이므로 트래픽의 감소와 속도, 사용성, 반응성의 향상 등의 장점을 생각한다면 결정적인 단점이라고 할 수는 없다.
+: SPA는 웹 애플리케이션에 필요한 모든 정적 리소스를 애플리케이션 최초 기동 시에 모두 다운로드하기 때문에 초기 구동 속도가 상대적으로 느리다. 하지만 SPA는 웹페이지보다는 애플리케이션에 적합한 기술이므로 트래픽 감소, 속도, 사용성, 반응성의 향상 등의 장점을 생각한다면 결정적인 단점이라고 할 수는 없다.
 
 SEO(검색엔진 최적화) 문제  
-: SPA는 서버 렌더링 방식이 아닌 자바스크립트 기반 비동기 모델(클라이언트 랜더링 방식)이다. 따라서 SEO는 언제나 단점으로 부각되어 왔던 이슈이다. 하지만 SPA는 정보의 제공을 위한 웹페이지보다는 애플리케이션에 적합한 기술이므로 SEO 이슈는 심각한 문제로 볼 수 없다. Angular 또는 React 등의 SPA 프레임워크는 서버 랜더링을 지원하는 SEO 대응 기술이 이미 존재하고 있어 SEO 대응이 필요한 페이지에 대해서는 선별적 SEO 대응이 가능하다.
+: SPA는 서버 사이드 렌더링 방식이 아닌 자바스크립트 기반 비동기 모델(클라이언트 사이드 랜더링 방식)이다. 따라서 SEO는 언제나 단점으로 부각되어 왔던 이슈이다. 하지만 SPA는 정보의 제공을 위한 웹페이지보다는 애플리케이션에 적합한 기술이므로 SEO 이슈는 심각한 문제로 볼 수 없다. Angular 또는 React 등의 SPA 프레임워크(React는 라이브러리로 구분된다)는 서버 사이드 랜더링을 지원하는 SEO 대응 기술이 이미 존재하고 있어 SEO 대응이 필요한 페이지에 대해서는 선별적 SEO 대응이 가능하다.
 
 # 2. Routing
 
@@ -38,7 +38,7 @@ SEO(검색엔진 최적화) 문제
 
 1. 브라우저의 주소창에 URL을 입력하면 해당 페이지로 이동한다.
 
-2. 웹페이지의 링크를 클릭하면 해당 페이지로 이동한다.
+2. 웹페이지의 링크(a 태그)를 클릭하면 해당 페이지로 이동한다.
 
 3. 브라우저의 뒤로가기 또는 앞으로가기 버튼을 클릭하면 사용자가 방문한 웹페이지의 기록(history)의 뒤 또는 앞으로 이동한다.
 
@@ -50,7 +50,7 @@ AJAX 요청에 의해 서버로부터 데이터를 응답받아 화면을 생성
 
 Angular는 단일 페이지 어플리케이션(SPA)을 위한 클라이언트 사이드 내비게이션 구현 방식으로 Angular 라우터를 제공한다. Angular 라우터는 선언적 방식으로 라우트를 구성하고 라우트에 해당하는 컴포넌트를 매핑한다. 즉, 사용자의 요청 URL을 해석하고 애플리케이션의 뷰를 담당하는 컴포넌트와 연결하는 역할을 한다. 
 
-Angular는 사용자의 요청 URL의 패스(path, 경로)와 컴포넌트의 쌍으로 설정한 라우트 설정을 참조하여 뷰를 출력한다. 라우트 설정의 예는 아래와 같다.
+Angular는 사용자의 요청 URL의 패스(path, 경로)와 컴포넌트의 쌍으로 구성된 라우트 설정을 참조하여 뷰를 출력한다. 라우트 설정의 예는 아래와 같다.
 
 ```typescript
 const routes: Routes = [
@@ -79,7 +79,7 @@ HTML5의 Histroy API pushState 메소드를 사용하는 정책으로 '/service'
 localhost:4200/service
 ```
 
-PathLocationStrategy는 **Angular의 기본 정책**으로 으로 pushState 메소드를 별도로 호출할 필요가 없다. 특별한 이유가 없는 한 사용자가 보다 쉽게 ​​이해할 수 있는 URLPathLocationStrategy를 사용하는 것이 좋다. 이후 서버 사이드 렌더링을 수행하려면 URLPathLocationStrategy를 사용하여야 한다.
+PathLocationStrategy는 **Angular 라우터의 기본 정책**으로 pushState 메소드를 별도로 호출할 필요가 없다. 특별한 이유가 없는 한 사용자가 보다 쉽게 ​​이해할 수 있는 URLPathLocationStrategy를 사용하는 것을 권장한다. 이후 서버 사이드 렌더링을 도입하려면 URLPathLocationStrategy를 사용하여야 한다.
 
 ### 3.2.2 HashLocationStrategy (Hash 기반 내비게이션 정책)
 
@@ -89,7 +89,7 @@ URL 패스에 fragment identifier의 고유 기능인 앵커(anchor)를 사용�
 localhost:4200/#/service
 ```
  
-Hash 기반 내비게이션 정책을 기본으로 사용하려면 루트 모듈을 imports 프로퍼티를 아래와 같이 수정한다.
+Hash 기반 내비게이션 정책을 기본으로 사용하려면 루트 모듈의 imports 프로퍼티를 아래와 같이 수정한다.
 
 ```typescript
 // app.module.ts
@@ -97,13 +97,12 @@ Hash 기반 내비게이션 정책을 기본으로 사용하려면 루트 모듈
 @NgModule({
   imports: [
     BrowserModule,
-    FormsModule,
     // RouterModule.forRoot(routes)
     RouterModule.forRoot(routes, { useHash: true })
 ...
 ```
 
-라우팅 모듈을 모듈을 사용하는 경우, imports 프로퍼티를 아래와 같이 수정한다.
+라우팅 모듈을 사용하는 경우, imports 프로퍼티를 아래와 같이 수정한다.
 
 ```typescript
 // app-routing.module.ts
@@ -121,13 +120,13 @@ Hash 기반 내비게이션 정책을 기본으로 사용하려면 루트 모듈
 이제 라우터를 구성하는 요소에 대해 살펴보도록 하자. 일반적으로 라우터는 아래의 수순으로 작성한다.
 
 1. 라우트 구성  
-  Route 인터페이스의 배열을 사용하여 요청 URL의 패스와 컴포넌트의 쌍으로 만들어진 라우트를 구성한다.
+  [Route](https://angular.io/api/router/Route) 인터페이스의 배열을 사용하여 요청 URL의 패스와 컴포넌트의 쌍으로 만들어진 라우트를 구성한다.
 2. 라우트 등록  
-  RouterModule.forRoot 또는 RouterModule.forChild를 호출하여 라우트 구성이 포함된 모듈을 생성하고 루트 모듈 또는 기능 모듈에 등록한다.
+  [RouterModule.forRoot](https://angular.io/api/router/RouterModule#forRoot) 또는 [RouterModule.forChild](https://angular.io/api/router/RouterModule#forChild)를 호출하여 라우트 구성이 포함된 모듈을 생성하고 루트 모듈 또는 기능 모듈에 등록한다.
 3. 뷰의 렌더링 위치 지정  
-  RouterOutlet 디렉티브를 사용하여 컴포넌트 뷰가 렌더링될 위치를 지정한다.
+  [RouterOutlet](https://angular.io/api/router/RouterOutlet) 디렉티브를 선언하여 컴포넌트 뷰가 렌더링될 위치를 지정한다. RouterOutlet 디렉티브는 루트 컴포넌트 또는 기능 모듈의 컴포넌트에 선언한다.
 4. 내비게이션 작성  
-  RouterLink 디렉티브를 사용한 HTML 링크 태그를 사용하여 내비게이션을 작성한다.
+  [RouterLink](https://angular.io/api/router/RouterLink) 디렉티브를 사용한 HTML 링크 태그를 사용하여 내비게이션을 작성한다.
 
 ## 4.1 라우트 구성
 
@@ -142,7 +141,7 @@ const routes: Routes = [
 ];
 ```
 
-라우트 구성은 Route 인터페이스를 사용하여 배열로 구성한다. Routes 타입은 [Route](https://angular.io/api/router/Routes) 인터페이스 배열의 [Type Aliase](https://www.typescriptlang.org/docs/handbook/advanced-types.html#type-aliases)이다.
+라우트 구성은 [Route](https://angular.io/api/router/Route) 인터페이스를 사용하여 배열로 구성한다. Routes 타입은 [Route](https://angular.io/api/router/Routes) 인터페이스 배열의 [Type Aliase](https://www.typescriptlang.org/docs/handbook/advanced-types.html#type-aliases)이다.
 
 ```typescript
 // @angular/router/src/config.d.ts
@@ -276,7 +275,7 @@ const routes: Routes = [
 export class AppModule { }
 ```
 
-위와 같이 라우트 구성을 루트 모듈에 직접 등록할 수도 있으나 라우트 구성이 커지면 따로 관리하는 것이 편리할 수 있다. 라우팅 모듈을 별도 작성하고 그것을 루트 모듈에 등록하는 방법을 사용하여 보자.
+위와 같이 라우트 구성을 루트 모듈에 직접 등록할 수도 있으나 라우트 구성이 커지면 별도 관리하는 것이 유리할 수 있다. 라우팅 모듈을 별도 작성하고 그것을 루트 모듈에 등록하는 방법을 사용하여 보자.
 
 참고로 프로젝트를 생성할 때, routing 옵션(--routing)을 추가하면 아래의 내용이 자동 처리된다. 
 
@@ -321,8 +320,7 @@ import { AppRoutingModule } from './app-routing.module';
 ...
   imports: [
     BrowserModule,
-    // 라우팅 모듈 추가
-    AppRoutingModule
+    AppRoutingModule /* 라우팅 모듈 추가 */
   ],
 ...
 ```

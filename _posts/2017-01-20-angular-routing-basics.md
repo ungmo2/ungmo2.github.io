@@ -350,7 +350,7 @@ Angular 라우터를 사용하기 위해 컴포넌트의 템플릿에는 뷰를 
 
 RouterLink 디렉티브는 자신의 값을 라우터에 전달한다. 라우터는 이를 전달받아 해당 컴포넌트를 호출한다.
 
-루트 컴포넌트에 RouterLink 디렉티브를 추가하여 보자.
+루트 컴포넌트에 RouterLink 디렉티브를 선언하여 보자.
 
 ```typescript
 // app.component.ts
@@ -388,7 +388,7 @@ import { Component } from '@angular/core';
 export class AppComponent {}
 ```
 
-RouterLink 디렉티브가 설정된 링크를 클릭하면 routerLink의 값이 라우터로 전달된다. 예를 들어 두번째 링크를 클릭하면 '/service'가 라우터로 전달되고 이에 해당하는 SeviceComponent가 호출되어 RouterOutlet 영역에 렌더링될 것이다.
+RouterLink 디렉티브가 선언된 링크를 클릭하면 routerLink의 값이 라우터로 전달된다. 예를 들어 두번째 링크를 클릭하면 '/service'가 라우터로 전달되고 이에 해당하는 SeviceComponent가 호출되어 RouterOutlet 영역에 렌더링될 것이다.
 
 이제 HomeComponent, ServiceComponent, AboutComponent,NotFoundComponent 컴포넌트를 작성하여 보자. 
 

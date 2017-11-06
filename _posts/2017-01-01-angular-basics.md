@@ -36,7 +36,7 @@ Angular와 AngulaJS의 차이점을 정리하면 아래와 같다.
 
 - AngularJS의 angular.module과 jQlite보다 향상된 모듈 시스템과 DOM 제어 기능을 제공하며 API 또한 단순화되었다.
 
-- 선택적 바인딩(one-way, two-way) 지원하고 디렉티브(Directive)와 서비스, 의존성 주입(dependency injection)은 간소화 되었다.
+- 선택적 바인딩(one-way, two-way *Angular는 더 이상 양방향 데이터 바인딩을 빌트인으로 제공하지 않는다.) 지원하고 디렉티브(Directive)와 서비스, 의존성 주입(dependency injection)은 간소화 되었다.
 
 - 주력 개발 언어로써 TypeScript를 도입하여 대규모 개발에 적합한 정적 타입과 인터페이스, 제네릭 등 타입 체크 지원 기능을 제공한다.
 

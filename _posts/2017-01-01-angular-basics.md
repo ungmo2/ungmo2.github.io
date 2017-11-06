@@ -18,7 +18,7 @@ description: Angular는 SPA(Single Page Application) 개발을 위한 구글의 
 
 이전 버전인 [AngularJS](https://angularjs.org/)는 2009년 구글의 미스코 헤브리(Miško Hevery)가 시작한 개인 프로젝트로 시작하여 2012년 AngularJS 1.0이 공개되었으며 2017년 1.6.2이 공개되는 등 Angular 정식 버전이 공개된 이후에도 지속적으로 업데이트를 진행하고 있다.
 
-Angular는 AngularJS(version 1)의 후속 버전으로 2014년 ng 컨퍼런스에서 처음으로 소개되었다. 2016년 9월 14일 Angular 2.0.0 정식 버전이 공개되었고 Angular 3을 뛰어 넘어 2017년 3월 23일 Angular 4.0.0 정식 버전이 출시되었다.
+Angular는 AngularJS(version 1)의 후속 버전으로 2014년 ng 컨퍼런스에서 처음으로 소개되었다. 2016년 9월 14일 Angular 2 버전이 공개되었고 Angular 3을 뛰어 넘어 2017년 3월 23일 Angular 4, 2017년 11월 1일 Angular 5 정식 버전 pentagonal-donut이 출시되었다.
 
 Angular는 AngularJS의 후속 버전이지만 호환성이 없을 뿐아니라 알파, 베타, RC를 거치며 이전 버전과 호환성이 없는 변경인 Breaking Changes가 빈번하게 발생하여 많은 개발자를 혼란스럽게 하였다.
 

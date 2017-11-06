@@ -154,7 +154,7 @@ Successfully initialized git.
 Project 'my-app' successfully created.
 ```
 
-프로젝트가 생성되고 Angular CLI의 기본 패키지 매니저인 npm을 사용하여 프로젝트 의존 모듈도 설치되었다. 프로젝트 의존 모듈 설치에 소요되는 시간을 줄이려면 npm 대신 [yarn](https://yarnpkg.com)을 사용하는 방법도 있다.
+프로젝트가 생성되고 Angular CLI의 기본 패키지 매니저인 npm을 사용하여 프로젝트 의존 모듈도 설치되었다. 기본 패키지 매니저를 npm 대신 [yarn](https://yarnpkg.com)을 사용하는 방법도 있다.
 
 기본 패키지 매니저는 npm으로 설정되어 있다. 아래의 명령어로 확인할 수 있다.
 
@@ -261,7 +261,7 @@ $ ng serve --open
 $ ng serve --port 4201
 ```
 
-Angular CLI가 내장하고 있는 개발용 서버는 코드의 변경을 감지하여 자동으로 브라우저를 리로드하는 LiveReload 기능을 제공한다. 따라서 코드 수정 후 파일을 저장하면 자동으로 코드의 변경을 반영하여 번들링이 수행되고 브라우저가 리로드되어 코드 변경 결과를 즉시 확인할 수 있다.
+Angular CLI가 내장하고 있는 개발용 서버는 코드의 변경을 감지하여 자동으로 브라우저를 리로드하는 LiveReload 기능을 제공한다. 따라서 코드 수정 후 파일을 저장하면 코드 변경을 자동 반영하여 번들링이 수행되고 브라우저가 리로드되어 코드 변경 결과를 즉시 확인할 수 있다.
 
 브라우저와 서버를 종료시키지 않은 상태에서 코드(my-app/src/app/app.component.ts)를 수정해 보자.
 
@@ -491,7 +491,7 @@ ng generate directive highlight 명령어를 실행하면 Angular CLI는 아래�
 
 컴포넌트를 추가할 때와는 달리 디렉티브를 위한 폴더는 생성되지 않으며 기본적으로 src/app/에 추가된다.  
 
-생성된 highlight.directive.ts를 살펴보면 @Directive 데코레이터 함수에 전달된 메타데이터 객체의 selector 프로퍼티값으로 'appMyDirective'이 설정되었다.
+생성된 highlight.directive.ts를 살펴보면 @Directive 데코레이터 함수에 전달된 메타데이터 객체의 selector 프로퍼티값으로 'appHighlight'이 설정되었다.
 
 ```typescript
 // src/app/highlight.directive.ts
@@ -507,7 +507,7 @@ export class MyDirectiveDirective {
 }
 ```
 
-이것은 .angular-cli.json의 기본 접두사는 app과 ng generate directive 명령어에 지정한 디렉티브명으로 합성된 디렉티브 셀렉터 이름으로 카멜 표기법(camelCase)으로 작성된다.
+이것은 .angular-cli.json의 기본 접두사 app과 ng generate directive 명령어에 지정한 디렉티브명으로 합성된 디렉티브 셀렉터 이름으로 카멜 표기법(camelCase)으로 작성된다.
 
 커스텀 디렉티브의 이름은 HTML 어트리뷰트처럼 사용된다. 디렉티브의 상세한 내용은 이후 자세히 다루도록 한다.
 

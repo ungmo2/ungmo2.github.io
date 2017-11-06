@@ -491,7 +491,7 @@ ng generate directive highlight 명령어를 실행하면 Angular CLI는 아래�
 
 컴포넌트를 추가할 때와는 달리 디렉티브를 위한 폴더는 생성되지 않으며 기본적으로 src/app/에 추가된다.  
 
-생성된 highlight.directive.ts를 살펴보면 @Directive 데코레이터 함수에 전달된 메타데이터 객체의 selector 프로퍼티값으로 'appHighlight'이 설정되었다.
+생성된 highlight.directive.ts를 살펴보면 @Directive 데코레이터 함수에 전달된 메타데이터 객체의 selector 프로퍼티값으로 'appHighlight'가 설정되었다.
 
 ```typescript
 // src/app/highlight.directive.ts

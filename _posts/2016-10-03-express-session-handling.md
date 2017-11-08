@@ -112,7 +112,7 @@ MongoDB와 같은 NoSQL Database의 한 종류로 세션 등의 휘발성 데이
 
 Redis를 사용하여 세션을 관리하면 application process가 종료되어도 세션 정보를 보존할 수 있고 복수 서버 환경에서도 세션 정보 공유가 가능하게 된다.
 
-Redis가 제공하는 기능으로는 키로 데이타를 저장하고 조회하는 Set/Get 기능이 있으며, 메세지를 전달하기 위한 큐로도 사용할 수 있다.
+Redis가 제공하는 기능으로는 키로 데이터를 저장하고 조회하는 Set/Get 기능이 있으며, 메세지를 전달하기 위한 큐로도 사용할 수 있다.
 
 Express의 경우, [connect-redis](https://github.com/tj/connect-redis) 모듈을 사용하여 Redis를 사용한 세션 관리가 가능하다.
 

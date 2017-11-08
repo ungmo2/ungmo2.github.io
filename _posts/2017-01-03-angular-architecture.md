@@ -209,7 +209,7 @@ main.ts는 .angular-cli.json의 main 프로퍼티의 설정에 의해 로드된�
 
 ## 2.3 app.module.ts
 
-app.module.ts은 @NgModule 데코레이터의 인자로 전달되는 메타데이타에 애플리케이션 전체의 설정 정보를 기술한 루트 모듈 AppModule이다.
+app.module.ts은 @NgModule 데코레이터의 인자로 전달되는 메타데이터에 애플리케이션 전체의 설정 정보를 기술한 루트 모듈 AppModule이다.
 
 루트 모듈 AppModule은 루트 컴포넌트 AppComponent(/src/app/app.component.ts)를 부트스트랩한다.
 

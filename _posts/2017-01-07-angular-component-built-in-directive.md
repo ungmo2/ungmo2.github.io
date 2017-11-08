@@ -4,7 +4,7 @@ title: Angular Component - <strong>Built-in directive</strong>
 subtitle: 빌트인 디렉티브
 categories: angular
 section: angular
-description: Angular는 단방향 데이터 바인딩(One-way data binding)과 양방향 데이터 바인딩(Two-way data binding)을 지원한다. 기존 웹 프로그래밍에서 사용하는 DOM 조작 방식보다 간편하게 데이터를 가져와서 뷰에 표현할 수 있다.
+description: 디렉티브(Directive / 지시자)는 "DOM의 모든 것(모양이나 동작 등)을 관리하기 위한 지시(명령)"이다. HTML 요소 또는 어트리뷰트의 형태로 사용하여 디렉티브가 사용된 요소에게 무언가를 하라는 지시(directive)를 전달한다.
 ---
 
 * TOC

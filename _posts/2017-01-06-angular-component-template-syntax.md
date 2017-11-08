@@ -594,20 +594,23 @@ export class AppComponent {
 간단한 예제를 살펴보자. textBlue 디렉티브는 해당 요소의 텍스트 컬러를 파란색으로 변경한다.
 
 ```typescript
-// src/app/text-blue.directive.ts
-import { Directive, ElementRef, Renderer } from '@angular/core';
+// text-blue.directive.ts
+import { Directive, ElementRef, Renderer2 } from '@angular/core';
 
-@Directive({ selector: '[textBlue]' })
+@Directive({
+  selector: '[textBlue]'
+})
 export class TextBlueDirective {
-  constructor(el: ElementRef, renderer: Renderer) {
-    renderer.setElementStyle(el.nativeElement, 'color', 'blue');
+  constructor(el: ElementRef, renderer: Renderer2) {
+    renderer.setStyle(el.nativeElement, 'color', 'blue');
   }
 }
 ```
 
-textBlue 디렉티브는 요소의 어트리뷰트로 사용한다.
+textBlue 디렉티브는 요소의 어트리뷰트로 사용한다. 단, 디렉티브는 모듈의 declarations 프로퍼티에 등록되어야 한다.
 
-```typescript
+```typescript 
+// app.component.ts
 import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
@@ -618,11 +621,9 @@ import { Component } from '@angular/core';
 export class AppComponent { }
 ```
 
-<iframe src="http://embed.plnkr.co/ObCeP8OmDzYcvTdEtDBO/?show=preview" frameborder="0" width="100%" height="400"></iframe>
+<!-- <iframe src="http://embed.plnkr.co/ObCeP8OmDzYcvTdEtDBO/?show=preview" frameborder="0" width="100%" height="400"></iframe> -->
 
-디렉티브는 애플리케이션 전역에서 사용할 수 있는 공통 관심사를 컴포넌트에서 분리하여 구현한 것으로 컴포넌트의 복잡도를 낮추고 가독성을 향상시킨다. **컴포넌트도 뷰를 생성하고 이벤트를 처리하는 등 DOM을 관리하기 때문에 큰 의미에서 디렉티브로 볼 수 있다.**
-
-이전 버전인 AngularJS에는 70개 이상의 디렉티브가 존재하였으나 컴포넌트 기반의 Angular2 디렉티브는 단순화되어 아래와 같이 ngular는 3가지 유형의 디렉티브를 제공한다.
+이전 버전인 AngularJS에는 70개 이상의 빌트인 디렉티브가 존재하였으나 컴포넌트 기반의 Angular 디렉티브는 단순화되어 아래와 같이 3가지 유형의 디렉티브를 제공한다.
 
 [컴포넌트 디렉티브(Component Directives)](./angular-component-basics)
 : 컴포넌트의 템플릿을 표시하기 위한 디렉티브이다. @component 데코레이터의 메타데이터 객체의 seletor 프로퍼티에서 임의의 디렉티브의 이름을 정의한다.

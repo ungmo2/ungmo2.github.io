@@ -205,15 +205,11 @@ jQuery(document).ready(function ($) {
   });
 
   // detect mobile : stackblits 버그 대응
-  var filter = "win16|win32|win64|mac|macintel"; 
+  var filter = "win16|win32|win64|mac|macintel";
   if ( navigator.platform ) { 
-    if ( filter.indexOf( navigator.platform.toLowerCase() ) < 0 ) { 
-      console.log('mobile 접속'); 
+    // mobile로 접속한 경우, stackblits iframe 요소를 제거
+    if ( filter.indexOf( navigator.platform.toLowerCase() ) < 0 ) {
       $('iframe[src^="https://stackblitz.com"]').remove();
-    } else { 
-      console.log('pc 접속'); 
-      $('iframe[src^="https://stackblitz.com"]').remove();
-    } 
+    }
   }
-  
 });

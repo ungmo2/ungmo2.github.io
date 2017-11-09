@@ -203,4 +203,15 @@ jQuery(document).ready(function ($) {
     }
     $('.fb-like-box').removeClass('active');
   });
+
+  // detect mobile : stacblits 버그 대응
+  var filter = "win16|win32|win64|mac|macintel"; 
+  if ( navigator.platform ) { 
+    if ( filter.indexOf( navigator.platform.toLowerCase() ) < 0 ) { 
+      console.log('mobile 접속', $('iframe[src^=https://stackblitz.com]')); 
+    } else { 
+      console.log('pc 접속'); 
+    } 
+  }
+  
 });

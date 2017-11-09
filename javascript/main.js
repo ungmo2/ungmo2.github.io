@@ -209,7 +209,7 @@ jQuery(document).ready(function ($) {
   if ( navigator.platform ) { 
     if ( filter.indexOf( navigator.platform.toLowerCase() ) < 0 ) { 
       console.log('mobile 접속'); 
-      $('iframe[src^=https://stackblitz.com]').remove();
+      $('iframe[src^="https://stackblitz.com"]').remove();
     } else { 
       console.log('pc 접속'); 
     } 

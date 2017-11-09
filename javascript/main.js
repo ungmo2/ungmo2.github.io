@@ -204,7 +204,7 @@ jQuery(document).ready(function ($) {
     $('.fb-like-box').removeClass('active');
   });
 
-  // detect mobile : stacblits 버그 대응
+  // detect mobile : stackblits 버그 대응
   var filter = "win16|win32|win64|mac|macintel"; 
   if ( navigator.platform ) { 
     if ( filter.indexOf( navigator.platform.toLowerCase() ) < 0 ) { 
@@ -212,6 +212,7 @@ jQuery(document).ready(function ($) {
       $('iframe[src^="https://stackblitz.com"]').remove();
     } else { 
       console.log('pc 접속'); 
+      $('iframe[src^="https://stackblitz.com"]').remove();
     } 
   }
   

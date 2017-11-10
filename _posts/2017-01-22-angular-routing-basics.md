@@ -190,7 +190,7 @@ export * from './not-found.component';
 
 ## 4.1 라우트 구성
 
-Angular는 사용자의 요청 URL의 패스(path, 경로)와 컴포넌트의 쌍으로 만들어진 라우트 구성을 참조하여 뷰를 출력한다. 라우트 구성의 예는 아래와 같다.
+Angular는 사용자의 요청 URL의 패스(path, 경로)와 컴포넌트의 쌍으로 만들어진 라우트 구성을 참조하여 뷰를 출력한다. 뷰를 출력한다는 것은 라우터 구성의 컴포넌트를 활성화하는 것을 의미한다. 라우트 구성의 예는 아래와 같다.
 
 ```typescript
 const routes: Routes = [
@@ -241,7 +241,7 @@ const routes: Routes = [
 ];
 ```
 
-'/service'라는 URL 패스가 요청되면 ServiceComponent를 사용하고, '/about'라는 URL 패스가 요청되면 AboutComponent를 사용하여 뷰를 표시하는 경우, 라우트 구성은 아래와 같다.
+'/service'라는 URL 패스가 요청되면 ServiceComponent를 활성화하고, '/about'라는 URL 패스가 요청되면 AboutComponent를 활성화하여 뷰를 출력하는 경우, 라우트 구성은 아래와 같다.
 
 ```typescript
 const routes: Routes = [
@@ -251,7 +251,7 @@ const routes: Routes = [
 ];
 ```
 
-URL 패스에 매칭하는 라우트 정보가 없다면 path에 '**'를 사용하여 아래와 같이 라우트를 구성한다.
+URL 패스에 매칭하는 라우트 정보가 없다면 path 프로퍼티에 '**'를 사용하여 아래와 같이 라우트를 구성한다.
 
 ```typescript
 const routes: Routes = [
@@ -263,6 +263,46 @@ const routes: Routes = [
 ```
 
 `path: '**'`는 반드시 라우트 구성의 가장 마지막에 위치하여야 한다. 만약 가장 앞에 위치하면 '**'는 모든 URL 패스에 매칭되어 이후에 선언된 라우트가 적용되지 않는다.
+
+계층적인 라우트를 구성하려면 children 프로퍼티를 사용한다. 예를 들어 URL 패스가 '/todos', '/todos/:id'의 경우, 아래와 같이 라우트를 구성할 수 있다. :id는 요청 파라미터로 컴포넌트에개 전달되는 값이다.
+
+```typescript
+const routes: Routes = [
+  { path: 'todos', children: [
+    { path: '', component: TodosComponent },
+    { path: ':id', component: TodoDetailComponent }
+  ] }
+];
+```
+
+data 프로퍼티는 컴포넌트로 전송할 데이터이다. 이 데이터는 컴포넌트로 전송된다.
+
+```typescript
+const routes: Routes = [
+  { path: 'todos',
+    component: TodosComponent,
+    data: { content: 'Angular' }
+  }
+];
+```
+
+redirectTo 프로퍼티는 요청을 리다이렉트할 때 사용한다.
+
+```typescript
+const routes: Routes = [
+  { path: 'todos', redirectTo: '/todolist' },
+  { path: 'todos/:id', redirectTo: '/todolist/:id' },
+];
+```
+
+URL 패스가 정확히 매칭할 때 리다이렉트하려면 pathMatch 프로퍼티를 함께 사용한다. pathMatch 프로퍼티에 문자열 'full'을 설정하면 path 프로퍼티의 패스와 요청 URL 패스 전체가 정확하게 매칭할 때 리다이렉트한다. pathMatch 프로퍼티를 사용하지 않으면 URL 패스의 앞부분만 매칭하여도 리다이렉트한다.
+
+```typescript
+const routes: Routes = [
+  { path: 'todos', redirectTo: '/todolist' },
+  { path: 'todos/:id', redirectTo: '/todolist/:id', pathMatch: 'full' },
+];
+```
 
 ## 4.2 라우트 등록
 
@@ -344,7 +384,7 @@ export class AppModule { }
 
 위와 같이 라우트 구성을 루트 모듈에 직접 등록할 수도 있으나 라우트 구성이 커지면 라우팅 모듈을 별도 작성하고 그것을 루트 모듈에 등록하는 방식이 유리할 수 있다.
 
-참고로 프로젝트를 생성할 때, routing 옵션(--routing)을 추가하면 아래의 내용이 자동 처리된다.
+참고로 Angular CLI의 ng new 명령어로 프로젝트를 생성할 때, routing 옵션(--routing)을 추가하면 아래의 내용이 자동 처리된다.
 
 - 라우팅 모듈 app-routing.module.ts를 자동 생성한다.
 - app.component.ts에 `<router-outlet></router-outlet>`을 추가한다.

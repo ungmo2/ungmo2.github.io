@@ -264,7 +264,7 @@ const routes: Routes = [
 
 `path: '**'`는 반드시 라우트 구성의 가장 마지막에 위치하여야 한다. 만약 가장 앞에 위치하면 '**'는 모든 URL 패스에 매칭되어 이후에 선언된 라우트가 적용되지 않는다.
 
-계층적인 라우트를 구성하려면 children 프로퍼티를 사용한다. 예를 들어 URL 패스가 '/todos', '/todos/:id'의 경우, 아래와 같이 라우트를 구성할 수 있다. :id는 요청 파라미터로 컴포넌트에개 전달되는 값이다.
+계층적인 라우트를 구성하려면 children 프로퍼티를 사용한다. 예를 들어 URL 패스가 '/todos', '/todos/:id'의 경우, 아래와 같이 라우트를 구성할 수 있다. URL 패스의 두번째 세그먼트 :id는 라우터 파라미터이며 컴포넌트에게 전달되는 값을 할당한다. 예를 들어 '/todos/10'과 같이 값을 할당하면 컴포넌트에게 id값으로 10이 전달된다.
 
 ```typescript
 const routes: Routes = [
@@ -286,16 +286,7 @@ const routes: Routes = [
 ];
 ```
 
-redirectTo 프로퍼티는 요청을 리다이렉트할 때 사용한다.
-
-```typescript
-const routes: Routes = [
-  { path: 'todos', redirectTo: '/todolist' },
-  { path: 'todos/:id', redirectTo: '/todolist/:id' },
-];
-```
-
-URL 패스가 정확히 매칭할 때 리다이렉트하려면 pathMatch 프로퍼티를 함께 사용한다. pathMatch 프로퍼티에 문자열 'full'을 설정하면 path 프로퍼티의 패스와 요청 URL 패스 전체가 정확하게 매칭할 때 리다이렉트한다. pathMatch 프로퍼티를 사용하지 않으면 URL 패스의 앞부분만 매칭하여도 리다이렉트한다.
+redirectTo 프로퍼티는 요청을 리다이렉트할 때 사용한다. URL 패스가 정확히 매칭할 때 리다이렉트하려면 pathMatch 프로퍼티를 함께 사용한다. pathMatch 프로퍼티에 문자열 'full'을 설정하면 path 프로퍼티의 패스와 요청 URL 패스 전체가 정확하게 매칭할 때 리다이렉트한다. pathMatch 프로퍼티를 사용하지 않으면 URL 패스의 앞부분만 매칭하여도 리다이렉트한다.
 
 ```typescript
 const routes: Routes = [
@@ -459,7 +450,7 @@ export class AppModule { }
 
 ## 4.3 RouterOutlet
 
-[RouterOutlet](https://angular.io/api/router/RouterOutlet)는 라우터가 컴포넌트를 렌더링하여 뷰를 표시할 영역인 `<router-oulet>`을 구현하는 디렉티브로 컴포넌트의 뷰를 렌더링할 위치를 설정한다.
+[RouterOutlet](https://angular.io/api/router/RouterOutlet)는 라우터가 컴포넌트를 렌더링하여 뷰를 표시할 영역인 `<router-oulet>`을 구현한 디렉티브로 컴포넌트의 뷰를 렌더링할 위치를 설정한다.
 
 ```html
 <router-outlet></router-outlet>
@@ -481,7 +472,7 @@ Angular 라우터를 사용하기 위해 컴포넌트의 템플릿에는 뷰를 
 <router-outlet></router-outlet>
 ```
 
-RouterLink 디렉티브는 자신의 값을 라우터에 전달한다. 라우터는 이를 전달받아 해당 컴포넌트를 호출한다.
+RouterLink 디렉티브는 자신의 값을 라우터에 전달한다. 라우터는 이를 전달받아 해당 컴포넌트를 활성화하여 뷰를 출력한다.
 
 루트 컴포넌트에 RouterLink 디렉티브를 선언하여 보자.
 
@@ -521,7 +512,7 @@ import { Component } from '@angular/core';
 export class AppComponent {}
 ```
 
-RouterLink 디렉티브가 선언된 링크를 클릭하면 routerLink의 값이 라우터로 전달된다. 예를 들어 두번째 링크를 클릭하면 '/service'가 라우터로 전달되고 이에 해당하는 SeviceComponent가 호출되어 RouterOutlet 영역에 렌더링될 것이다.
+RouterLink 디렉티브가 선언된 링크를 클릭하면 routerLink의 값이 라우터로 전달된다. 예를 들어 두번째 링크를 클릭하면 '/service'가 라우터로 전달되고 이에 해당하는 SeviceComponent를 활성화하여 RouterOutlet 영역에 뷰를 렌더링할 것이다.
 
 ## 4.5 RouterLinkActive
 
@@ -536,7 +527,9 @@ RouterLink 디렉티브가 선언된 링크를 클릭하면 routerLink의 값이
 브라우저의 URL 패스가 RouterLink 디렉티브에서 **지정한 URL 패스와 정확히 일치**하는 경우, RouterLinkActive에 지정된 클래스명을 DOM에 자동으로 추가하려면 아래와 같이 routerLinkActiveOptions 디렉티브를 사용한다.
 
 ```html
-<a routerLink="/service" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">Service</a>
+<a routerLink="/service"
+  [routerLinkActiveOptions]="{ exact: true }"
+  routerLinkActive="active">Service</a>
 ```
 
 한개 이상의 클래스를 지정할 경우, 아래와 같이 지정한다.
@@ -556,9 +549,18 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <nav>
-      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
-      <a routerLink="/service" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Service</a>
-      <a routerLink="/about" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">About</a>
+      <a routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }">
+        Home</a>
+      <a routerLink="/service"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }">
+        Service</a>
+      <a routerLink="/about"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }">
+        About</a>
     </nav>
     <router-outlet></router-outlet>
   `,
@@ -586,6 +588,177 @@ export class AppComponent {}
 
 <iframe src="https://stackblitz.com/edit/routing-exam?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="600"></iframe>
 
+# 5. navigate 메소드
+
+템플릿의 링크 태그를 사용하지 않고 컴포넌트 클래스의 코드만으로 화면을 전환하기 위해서는 navigate 메소드를 사용한다. 간단한 예제를 통해 navigate 메소드를 살펴보도록 하자.
+
+루트 모듈은 아래와 같다.
+
+```typescript
+// app.module.ts
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { Routes, RouterModule } from '@angular/router';
+
+import { AppComponent } from './app.component';
+import { TodosComponent } from './todos.component';
+
+// 라우트 구성
+const routes: Routes = [
+  { path: 'todos', component: TodosComponent }
+];
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(routes)
+  ],
+  declarations: [ AppComponent, TodosComponent ],
+  bootstrap:    [ AppComponent ]
+})
+export class AppModule { }
+```
+
+라우트 패스 /todos의 뷰를 담당하는 TodosComponent는 아래와 같다.
+
+```typescript
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-todos',
+  template: `<p>Todos</p>`
+})
+export class TodosComponent {}
+```
+
+루트 컴포넌트를 아래와 같이 작성한다.
+
+```typescript
+// app.component.ts
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <button (click)="gotoTodos()">goto todos</button>
+    <router-outlet></router-outlet>
+  `
+})
+export class AppComponent {
+  constructor(private router: Router) {}
+
+  gotoTodos() {
+    // /todos로 이동
+    this.router.navigate(['/todos']);
+  }
+}
+```
+
+'goto todos' 버튼을 클릭하면 /todos로 이동한다. 이때 링크 태그를 사용하지 않았지만 [Router](https://angular.io/api/router/Router) 클래스의 멤버인 navigate 메소드를 통해 화면 전환이 가능하다. Router 클래스의 인스턴스는 의존성 주입을 통해 컴포넌트로 주입받아 사용한다.
+
+<iframe src="https://stackblitz.com/edit/navigate-method-exam?embed=1&file=app/todo-detail.component.ts&hideExplorer=1" frameborder="0" width="100%" height="500"></iframe>
+
+# 6. 컴포넌트 간의 라우터 상태 전달
+
+화면 전환시에 라우트 파라미터(Route Parameter)를 사용하여 컴포넌트에 데이터를 전달하는 방법에 대해 살펴보도록 하자.
+
+RouterLink 디렉티브는 자신의 값을 라우터에 전달하고 라우터는 이를 전달받아 해당 컴포넌트를 활성화하여 뷰를 출력한다.
+
+```html
+<a routerLink="/todo">...</a>
+```
+
+이때 라우트 파라미터를 컴포넌트에 전달할 수 있다. 예를 들어 URL 패스가 'todo/:id'인 경우, URL 패스의 두번째 세그먼트 :id는 라우터 파라미터이며 컴포넌트에게 전달되는 값을 할당한다. 예를 들어 ‘/todos/10’과 같이 값을 할당하면 컴포넌트에게 id값으로 10이 전달된다.
+
+```typescript
+// app.module.ts
+const routes: Routes = [
+  { path: '', component: TodosComponent },
+  { path: 'todo/:id', component: TodoDetailComponent }
+];
+```
+
+라우터 파라미터의 값은 RouterLink 디렉티브에 URL 패스의 세그먼트로 구성된 배열을 할당한다. 배열의 첫번째 요소는 URL 패스이며 두번째 요소가 라우터 파라미터의 값이다. 이 값은 컴포넌트로 전달된다.
+
+```html
+<a [routerLink]="['todo', todo.id]">...</a>
+```
+
+navigate 메소드를 사용할 경우, 아래와 같이 URL 패스의 세그먼트로 구성된 배열을 인수로 전달한다.
+
+```typescript
+this.router.navigate(['/todo', todo.id]);
+```
+
+`<router-oulet>` 영역에 렌더링된 컴포넌트는 [ActivatedRoute](https://angular.io/api/router/ActivatedRoute) 객체를 통해 라우터 상태(Router state)에 접근할 수 있다. ActivatedRoute는 의존성 주입에 의해 컴포넌트 내에서 참조할 수 있으며 아래와 같은 프로퍼티를 제공한다.
+
+```typescript
+interface ActivatedRoute {
+  snapshot: ActivatedRouteSnapshot
+  url: Observable<UrlSegment[]>
+  params: Observable<Params>
+  queryParams: Observable<Params>
+  fragment: Observable<string>
+  data: Observable<Data>
+  outlet: string
+  component: Type<any>|string|null
+  ...
+}
+```
+
+<!-- | 프로퍼티        | 내용
+|:--------------|:-------------------------------------
+| url           | 라우트 패스의 각 세그먼트들로 구성된 문자열의 배열을 포함하는 옵저버블이다.
+| data          | 라우트 구성에 설정한 데이터 객체를 포함하는 옵저버블이다.
+| paramMap      | 라우터에 전달된 라우트 파라미터의 맵을 포함하는 옵저버블이다.
+| queryParamMap | 모든 라우트가 공유하는 쿼리 파라미터의 맴을 포함하는 옵저버블이다.
+| fragment      | 옵저버블이다.
+
+An Observable of the URL fragment available to all routes.
+| outlet        | The name of the RouterOutlet used to render the route. For an unnamed outlet, the outlet name is primary.
+| routeConfig   | The route configuration used for the route that contains the origin path.
+| parent        | The route's parent ActivatedRoute when this route is a child route.
+| firstChild    | Contains the first ActivatedRoute in the list of this route's child routes.
+| children      | Contains all the child routes activated under the current route. -->
+
+ActivatedRoute 객체의 인스턴스는 의존성 주입을 통해 컴포넌트로 주입받는다.
+
+```typescript
+import { ActivatedRoute } from '@angular/router';
+...
+export class TodoDetailComponent {
+  constructor(private route: ActivatedRoute) { }
+```
+
+라우트 파라미터의 값을 취득할 때는 ActivatedRoute의 paramMap 프로퍼티를 사용한다. paramMap 프로퍼티는 라우터에 전달된 라우트 파라미터의 맵을 포함하는 옵저버블이다.
+
+Angular는 URL 패스가 변경되어도 해당 컴포넌트가 변경되지 않는다면 해당 컴포넌트를 소멸시키지 않고 재사용한다. 따라서 컴포넌트가 소멸되지 않은 상태에서 라우터 파라미터만 변경된 라우터 상태를 연속으로 수신할 수 있기 때문에 paramMap을 옵저버블로 제공한다. paramMap의 get 메소드에 라우트 파라미터 이름을 인자로 전달하여 라우트 파라미터를 취득한다.
+
+```typescript
+export class TodoDetailComponent implements OnInit {
+
+  todoId: number;
+
+  constructor(private route: ActivatedRoute) { }
+
+  ngOnInit() {
+    this.route.paramMap
+      .subscribe(params => this.todoId = +params.get('id'));
+  }
+}
+```
+
+옵저버블 스트림이 아닌 특정 시점의 상태만을 조회하는 경우, ActivatedRoute의 snapshot 프로퍼티를 사용할 수 있다. snapshot 프로퍼티는 옵저버블로 래핑되지 않은 paramMap 객체를 반환한다.
+
+```typescript
+ngOnInit() {
+  this.todoId = +this.route.snapshot.paramMap.get('id');
+}
+```
+
+<iframe src="https://stackblitz.com/edit/route-parameter-exam?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="500"></iframe>
+
 # Reference
 
 * [Angular Routing & Navigation](https://angular.io/guide/router)
@@ -598,3 +771,6 @@ export class AppComponent {}
 
 * [RouterLinkActive](https://angular.io/api/router/RouterLinkActive)
 
+* [Router](https://angular.io/api/router/Router)
+
+* [ActivatedRoute](https://angular.io/api/router/ActivatedRoute)

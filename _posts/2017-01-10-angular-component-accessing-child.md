@@ -58,13 +58,15 @@ $ ng new view-child -it -is -st
 
 ```bash
 $ cd view-child
-$ ng g c child -it -is -spec false
+$ ng g c child
 ```
 
 자식 컴포넌트 child.component.ts를 아래와 같이 수정한다.
 
 ```typescript
+// child.component.ts
 import { Component } from '@angular/core';
+
 @Component({
   selector: 'child',
   template: `
@@ -97,8 +99,10 @@ export class ChildComponent {
 부모 컴포넌트 app.component.ts를 아래와 같이 수정한다.
 
 ```typescript
+// app.component.ts
 import { Component, ViewChild } from '@angular/core';
 import { ChildComponent } from './child/child.component';
+
 @Component({
   selector: 'app-root',
   template: `
@@ -133,6 +137,8 @@ export class AppComponent {
 @ViewChild 데코레이터는 1개의 자식 요소만을 가져올 수 있기 때문에 만일 자식 요소 중에 ChildComponent가 여러개 탐색되었을 경우, 첫번째 ChildComponent의 인스턴스를 가져온다.
 프로퍼티 myChild에는 자식 컴포넌트 ChildComponent의 인스턴스가 바인딩되어 있으므로 프로퍼티 myChild를 통해 자식 컴포넌트의 프로퍼티, 메소드에 접근할 수 있다. 단 접근 제한자(Access modifier) public으로 공개된 프로퍼티, 메소드에만 접근할 수 있다. typescript는 public, protected, private와 같은 접근 제한자를 지정하지 않은 프로퍼티, 메소드를 기본설정인 public으로 지정한다.
 
+<iframe src="https://stackblitz.com/edit/view-child-exam?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="600"></iframe>
+
 ## 1.2 @ViewChildren
 
 @ViewChildren 데코레이터의 인자로 탐색대상 클래스명을 지정하고 그 결과를 바인딩할 프로퍼티를 지정한다. @ViewChildren 데코레이터는 여러개의 자식 요소를 한꺼번에 취득한다. 이때 취득된 자식 요소를 바인딩할 프로퍼티의 타입은 [QueryList](https://angular.io/docs/ts/latest/api/core/index/QueryList-class.html)이 된다.
@@ -166,13 +172,15 @@ $ ng new view-children -it -is -st
 
 ```bash
 $ cd view-children
-$ ng g c child -it -is -spec false
+$ ng g c child
 ```
 
 자식 컴포넌트 child.component.ts를 아래와 같이 수정한다.
 
 ```typescript
+// child.component.ts
 import { Component, Input } from '@angular/core';
+
 @Component({
   selector: 'child',
   template: `
@@ -192,8 +200,10 @@ export class ChildComponent {
 부모 컴포넌트 app.component.ts를 아래와 같이 수정한다.
 
 ```typescript
+// app.component.ts
 import { Component, ViewChildren, QueryList } from '@angular/core';
 import { ChildComponent } from './child/child.component';
+
 @Component({
   selector: 'app-root',
   template: `
@@ -224,7 +234,8 @@ export class AppComponent {
   toggle() {
     this.active = !this.active;
     // 자식 컴포넌트들을 순회하며 공개된 프로퍼티 checkbox를 변경한다.
-    this.children.map(child => child.checkbox.checked = this.active);
+    // QueryList는 마치 자바스크립트 배열과 같이 사용할 수 있다.
+    this.myChildren.map(child => child.checkbox.checked = this.active);
   }
 }
 ```
@@ -235,13 +246,17 @@ export class AppComponent {
 @ViewChildren(ChildComponent) myChildren: QueryList<ChildComponent>;
 ```
 
-@ViewChildren의 탐색 결과가 바인딩된 myChildren 프로퍼티의 타입은 [QueryList](https://angular.io/api/core/QueryList)이다. QueryList 클래스는 배열과 같이 순회가능한 이터러블(iterable) 객체이다. iterable 인터페이스를 구현하므로 ES6의 for of 루프에 사용할 수 있고 [ngFor](./angular-component-template-syntax#222-ngfor)와 함께 템플릿 내에서도 사용할 수 있다. 또한 클래스 내부에는 탐색 결과를 저장하는 배열 _result 프로퍼티를 가지고 있고 이 프로퍼티를 사용하는 [자바스크립트 배열 메소드](./js-array#5-array-method)와 동일하게 동작하는 map, filter, find, reduce, forEach, some 등의 메소드를 소유하고 있어서 QueryList는 마치 자바스크립트 배열과 같이 사용할 수 있다. QueryList는 옵저버블(Observable)한 컬렉션으로 변경 사항을 구독(subscribe)할 수 있다. 옵저버블에 대해서는 RxJS에서 살펴볼 것이다.
+@ViewChildren의 탐색 결과가 바인딩된 myChildren 프로퍼티의 타입은 [QueryList](https://angular.io/api/core/QueryList)이다. QueryList 클래스는 배열과 같이 순회가능한 이터러블(iterable) 객체이다. iterable 인터페이스를 구현하므로 ES6의 for of 루프에 사용할 수 있고 [ngFor](./angular-component-template-syntax#222-ngfor)와 함께 템플릿 내에서도 사용할 수 있다.
+
+또한 클래스 내부에는 탐색 결과를 저장하는 배열 _result 프로퍼티를 가지고 있고 이 프로퍼티를 사용하는 [자바스크립트 배열 메소드](./js-array#5-array-method)와 동일하게 동작하는 map, filter, find, reduce, forEach, some 등의 메소드를 소유하고 있어서 **QueryList는 마치 자바스크립트 배열과 같이 사용할 수 있다.** QueryList는 옵저버블(Observable)한 컬렉션으로 변경 사항을 구독(subscribe)할 수 있다. 옵저버블에 대해서는 RxJS에서 살펴볼 것이다.
 
 QueryList 클래스의 map 메소드를 사용하여 자식 컴포넌트 ChildComponent의 인스턴스들이 바인딩되어 있는 myChildren를 순회하며 자식 컴포넌트 ChildComponent의 프로퍼티에 접근하여 값을 변경한다.
 
 ```typescript
 this.myChildren.map(child => child.checkbox.checked = this.active);
 ```
+
+<iframe src="https://stackblitz.com/edit/view-children-exam?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="600"></iframe>
 
 ## 1.3 템플릿 참조 변수를 사용한 네이티브 DOM 접근
 
@@ -259,9 +274,16 @@ DOM에 직접 접근하여 템플릿 내의 자식 요소를 직접 탐색하고
 템플릿 참조 변수를 사용한 DOM 접근
 {: .desc-img}
 
-예제를 통해 사용 방법을 살펴보자. 새로운 Angular 애플리케이션을 생성하고 루트 컴포넌트를 아래와 같이 수정한다.
+예제를 통해 사용 방법을 살펴보자. 새로운 Angular 애플리케이션을 생성하자.
+
+```bash
+$ ng new access-native-dom -it -is -st
+```
+
+루트 컴포넌트를 아래와 같이 수정한다.
 
 ```typescript
+// app.component.ts
 import { Component, ViewChild, ViewChildren, QueryList, ElementRef } from '@angular/core';
 @Component({
   selector: 'app-root',
@@ -304,7 +326,9 @@ export class AppComponent {
 
 @ViewChild와 @ViewChildren 데코레이터를 사용하여 자식 컴포넌트를 탐색하는 경우, 탐색 결과로 자식 컴포넌트의 인스턴스를 취득할 수 있었다. 취득한 인스턴스는 당연히 인스턴스를 생성한 컴포넌트 클래스가 타입이 된다. 템플릿 참조 변수를 사용하여 네이티브 DOM을 탐색한 경우, 탐색 결과로 [ElementRef](https://angular.io/api/core/ElementRef) 타입의 인스턴스가 바인딩된다. ElementRef는 네이티브 DOM의 프로퍼티를 담고 있는 nativeElement 프로퍼티를 소유한다. 따라서 ElementRef.nativeElement로 접근하면 네이티브 DOM의 프로퍼티에 접근할 수 있다.
 
-ngAfterViewInit 메소드는 뷰 초기화가 종료됐을 때 호출되는 컴포넌트 생명주기 메소드이다. @ViewChild와 @ViewChildren를 통해 바인딩한 프로퍼티에는 컴포넌트 생명주기 메소드 ngAfterViewInit가 호출된 시점부터 접근할 수 있었다. 컴포넌트 생명주기에 대해서는 다른 장에서 자세히 다룰 것이다.
+ngAfterViewInit 메소드는 컴포넌트의 뷰와 자식 컴포넌트의 뷰를 초기화한 이후 호출되는 컴포넌트 생명주기 메소드이다. @ViewChild와 @ViewChildren를 통해 바인딩한 프로퍼티에는 컴포넌트 생명주기 메소드 ngAfterViewInit가 호출된 시점부터 접근할 수 있다. [컴포넌트 생명주기](./angular-lifecycle)에 대해서는 다른 장에서 자세히 다룰 것이다.
+
+<iframe src="https://stackblitz.com/edit/access-native-dom?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="600"></iframe>
 
 # 2. @ContentChild와 @ContentChildren
 
@@ -336,10 +360,18 @@ Angular는 콘텐트 프로젝션(Content projection)을 통해 자식 컴포넌
 ...
 ```
 
-예제를 통해 ng-content의 사용 방법을 알아보자. 새로운 애플리케이션을 생성하고 app.component.ts를 아래와 같이 수정한다. app.component.ts는 두개의 자식 컴포넌트를 사용할 것이다.
+예제를 통해 ng-content의 사용 방법을 알아보자. 새로운 Angular 애플리케이션을 생성하자.
+
+```bash
+$ ng new access-native-dom -it -is -st
+```
+
+루트 컴포넌트를 아래와 같이 수정한다. app.component.ts는 두개의 자식 컴포넌트를 사용할 것이다.
 
 ```typescript
+// app.component.ts
 import { Component } from '@angular/core';
+
 @Component({
   selector: 'app-root',
   template: `
@@ -353,9 +385,7 @@ import { Component } from '@angular/core';
       <footer>Footer Content</footer>
       <header>Header Content</header>
       <section>Section Content</section>
-      <div class="my-class">
-        div with .my-class
-      </div>
+      <div class="my-class">div with .my-class</div>
     <multi-content-projection>
   `
 })
@@ -366,6 +396,7 @@ export class AppComponent {}
 
 ```typescript
 import { Component } from '@angular/core';
+
 @Component({
   selector: 'single-content-projection',
   template: `
@@ -373,13 +404,12 @@ import { Component } from '@angular/core';
     <div>
       <ng-content></ng-content>
     <div>
-  `,
-  styles: []
+  `
 })
 export class SingleContentProjectionComponent {}
 ```
 
-부모 컴포넌트가 single-content-projection 컴포넌트를 사용할 때 시작 태그와 종료 태그 사이에 콘텐츠를 추가하였다.
+부모 컴포넌트가 SingleContentProjectionComponent 컴포넌트를 사용할 때 시작 태그와 종료 태그 사이에 콘텐츠를 추가하였다.
 
 ```html
 <single-content-projection>
@@ -409,6 +439,7 @@ ng-content는 부모 컴포넌트가 지정한 콘텐츠와 치환되어 결국 
 
 ```typescript
 import { Component } from '@angular/core';
+
 @Component({
   selector: 'multi-content-projection',
   template: `
@@ -431,14 +462,24 @@ ng-content는 여러개의 콘텐츠를 한번에 받아들일 수 있는 멀티
 멀티 슬롯 콘텐트 프로젝션
 {: .desc-img}
 
+<iframe src="https://stackblitz.com/edit/content-projection-exam?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="600"></iframe>
+
 ## 2.1 @ContentChild와 @ContentChildren
 
-시작 태그와 종료 태그 사이에 있는 콘텐츠를 ContentChild라고 한다. @ContentChild와 @ContentChildren 데코레이터는 이 ContentChild를 탐색할 때 사용한다. 이름에서 알 수 있듯이 @ContentChild는 탐색 조건에 부합하는 1개의 콘텐츠를 취득할 수 있고, @ContentChildren는 탐색 조건에 부합하는 여러개의 콘텐츠를 한꺼번에 취득할 수 있다.
+컴포넌트 템플릿에 배치된 자식요소(자식 컴포넌트, 디렉티브, 네이티브 DOM 요소) 즉 ViewChild의 시작 태그와 종료 태그 사이에 있는 콘텐츠를 ContentChild라고 한다. @ContentChild와 @ContentChildren 데코레이터는 이 ContentChild를 탐색할 때 사용한다. 이름에서 알 수 있듯이 @ContentChild는 탐색 조건에 부합하는 1개의 콘텐츠를 취득할 수 있고, @ContentChildren는 탐색 조건에 부합하는 여러개의 콘텐츠를 한꺼번에 취득할 수 있다.
 
-예제를 통해 @ContentChild와 @ContentChildren의 사용 방법을 알아보자. 새로운 애플리케이션을 생성한 후 app.component.ts를 아래와 같이 수정한다.
+예제를 통해 @ContentChild와 @ContentChildren의 사용 방법을 알아보자. 새로운 Angular 애플리케이션을 생성하자.
+
+```bash
+$ ng new content-child-children -it -is -st
+```
+
+루트 컴포넌트를 아래와 같이 수정한다.
 
 ```typescript
+// app.component.ts
 import { Component } from '@angular/core';
+
 @Component({
   selector: 'app-root',
   template: `
@@ -452,11 +493,13 @@ import { Component } from '@angular/core';
 export class AppComponent {}
 ```
 
-AppComponent의 자식 컴포넌트인 UserListComponent는 자식 컴포넌트 UserComponent를 포함하며 이 UserComponent는 ng-content에 의해 프로젝션된다. UserListComponent는 아래와 같다.
+루트 컴포넌트의 자식 컴포넌트인 UserListComponent는 자식 컴포넌트 UserComponent를 포함하며 이 UserComponent는 ng-content에 의해 프로젝션된다. UserListComponent는 아래와 같다.
 
 ```typescript
+// user-list.component.ts
 import { Component, ContentChild, ContentChildren, QueryList } from '@angular/core';
-import { UserComponent } from './user/user.component';
+import { UserComponent } from './user.component';
+
 @Component({
   selector: 'user-list',
   template: `
@@ -472,9 +515,9 @@ import { UserComponent } from './user/user.component';
   `
 })
 export class UserListComponent {
-  // 부모 컴포넌트가 지정한 콘텐츠 중 첫번째 콘텐츠를 취득한다.
+  // 부모 컴포넌트가 지정한 콘텐츠 중에서 템플릿 참조 변수 first을 가진 콘텐츠를 취득한다.
   @ContentChild('first') firstChild: UserComponent;
-  // 부모 컴포넌트가 지정한 콘텐츠 모두를 취득한다.
+  // 부모 컴포넌트가 지정한 콘텐츠 중에서 UserComponent를 모두를 취득한다.
   @ContentChildren(UserComponent) children: QueryList<UserComponent>;
 
   // ngAfterContentInit은 콘텐츠가 초기화됐을 때 실행되는 컴포넌트 생명주기 메소드이다.
@@ -497,20 +540,22 @@ export class UserListComponent {
 UserListComponent는 부모 컴포넌트가 추가한 콘텐츠를 ng-content를 통해 프로젝션하였다. 프로젝션된 3개의 UserComponent를 @ContentChild와 @ContentChildren 데코레이터를 통해 탐색한다.
 
 ```typescript
-// 부모 컴포넌트가 지정한 콘텐츠 중 첫번째 콘텐츠를 취득한다.
+// 부모 컴포넌트가 지정한 콘텐츠 중에서 템플릿 참조 변수 first을 가진 콘텐츠를 취득한다.
 @ContentChild('first') firstChild: UserComponent;
-// 부모 컴포넌트가 지정한 콘텐츠 모두를 취득한다.
+// 부모 컴포넌트가 지정한 콘텐츠 중에서 UserComponent를 모두를 취득한다.
 @ContentChildren(UserComponent) children: QueryList<UserComponent>;
 ```
 
 이때 @ContentChild와 @ContentChildren를 사용하는 컴포넌트는 ng-content에 의해 어떤 요소가 프로젝션되는지에 대해 사전에 인지하고 있어야 한다. 이는 자식 컴포넌트가 부모 컴포넌트에 의존하고 있음을 의미한다. 따라서 부모 컴포넌트가 콘텐츠로 지정한 요소가 변경되면 ng-content을 통한 프로젝션으로 이를 받아야 하는 자식 컴포넌트 또한 영향을 받기 때문에 주의가 필요하다.
 
-@ViewChild와 @ViewChildren를 통해 바인딩한 프로퍼티에는 컴포넌트 생명주기 메소드 ngAfterViewInit가 호출된 시점부터 접근할 수 있었다. 이와 마찬가지로 @ContentChild와 @ContentChildren를 통해 바인딩한 프로퍼티에는 컴포넌트 생명주기 메소드 ngAfterContentInit가 호출된 시점부터 접근이 가능하다. 컴포넌트 생명주기에 대해서는 다른 장에서 자세히 다룰 것이다.
+@ViewChild와 @ViewChildren를 통해 바인딩한 프로퍼티에는 컴포넌트 생명주기 메소드 ngAfterViewInit가 호출된 시점부터 접근할 수 있었다. 이와 마찬가지로 @ContentChild와 @ContentChildren를 통해 바인딩한 프로퍼티에는 컴포넌트 생명주기 메소드 ngAfterContentInit가 호출된 시점부터 접근이 가능하다. [컴포넌트 생명주기](./angular-lifecycle)에 대해서는 다른 장에서 자세히 다룰 것이다.
 
 UserListComponent의 자식 컴포넌트인 UserComponent는 아래와 같다.
 
 ```typescript
+// user.component.ts
 import { Component } from '@angular/core';
+
 @Component({
   selector: 'user',
   template: `
@@ -533,7 +578,9 @@ UserListComponent는 @ContentChild와 @ContentChildren 데코레이터를 통해
 
 위 예제의 실행 결과는 아래와 같다.
 
-<iframe src="http://embed.plnkr.co/i7SJPnLxnCeEfWuwArxb/?show=preview" frameborder="0" width="100%" height="400"></iframe>
+<iframe src="https://stackblitz.com/edit/content-child-children?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="500"></iframe>
+
+<!-- <iframe src="http://embed.plnkr.co/i7SJPnLxnCeEfWuwArxb/?show=preview" frameborder="0" width="100%" height="400"></iframe> -->
 
 # Reference
 

@@ -695,7 +695,7 @@ export class SharedService {
 }
 ```
 
-SharedService는 status 프로퍼티를 갖는 클래스이다. 이 SharedService를 형제 컴포넌트에 모두 의존성 주입하여 상테를 공유하는 중개자의 역할을 담당하게 할 것이다. 다음은 2개의 형제 컴포넌트의 부모 컴포넌트를 작성한다. 이 부모 컴포넌트에 SharedService의 프로바이더를 등록할 것이다. 따라서 2개의 형제 컴포넌트는 별도의 프로바이더 등록없이 SharedService를 주입받을 수 있다.
+SharedService는 status 프로퍼티를 갖는 클래스이다. 이 SharedService를 형제 컴포넌트에 모두 의존성 주입하여 상태를 공유하는 중개자의 역할을 담당하게 할 것이다. 다음은 2개의 형제 컴포넌트의 부모 컴포넌트를 작성한다. 이 부모 컴포넌트에 SharedService의 프로바이더를 등록할 것이다. 따라서 2개의 형제 컴포넌트는 별도의 프로바이더 등록없이 SharedService를 주입받을 수 있다.
 
 ```typescript
 // app.component.ts

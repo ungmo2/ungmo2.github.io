@@ -4,7 +4,7 @@ title: Angular Component - <strong>Interaction</strong>
 subtitle: 컴포넌트 간의 상태 공유
 categories: angular
 section: angular
-description: Angular 애플리케이션은 컴포넌트를 중심(CBD, Component Based Development)으로 구성된다. 컴포넌트는 재사용이 용이한 구조로 분할하여 작성하며 이렇게 분할된 컴포넌트를 조립하여 가능한 중복없이 UI를 생성한다. 컴포넌트는 독립적인 존재이지만 다른 컴포넌트와 결합도를 낮게 유지하면서 다른 컴포넌트와 상태 정보를 교환할 수 있어야 한다. 분할된 컴포넌트를 조립한다는 것은 컴포넌트를 다른 컴포넌트 내부에서 사용하는 것을 말하는데 이는 컴포넌트 간에 계층(Hierarchy)적 구조가 형성될 수 있음을 의미한다. 따라서 분할된 컴포넌트를 조립하여 구성된 애플리케이션은 컴포넌트 간의 부모-자식 관계로 표현되는 계층적 트리 구조를 갖는다. 컴포넌트 간의 부모-자식 관계는 데이터와 이벤트가 왕래하는 정보 흐름의 통로가 되며 이를 통해 상태 공유가 이루어지기 때문에 컴포넌트 간의 부모-자식 관계는 Angular 애플리케이션에서 중요한 의미를 갖는다. 이 계층적 구조는 DOM 트리와 유사한 형태를 가지게 되는데 이를 컴포넌트 트리라고 한다. 컴포넌트는 계층적 트리 구조 상에서 상호 작용을 통해 동작하기 때문에 다른 컴포넌트와 상태 정보의 공유는 필수적이며 매우 중요한 의미를 갖는다. Angular는 다양한 컴포넌트 간 상태 정보 공유 방법을 제공한다.
+description: Angular 애플리케이션은 컴포넌트를 중심(CBD, Component Based Development)으로 구성된다. 컴포넌트는 재사용이 용이한 구조로 분할하여 작성하며 이렇게 분할된 컴포넌트를 조립하여 가능한 중복없이 UI를 생성한다. 컴포넌트는 독립적인 존재이지만 다른 컴포넌트와 결합도를 낮게 유지하면서 다른 컴포넌트와 상태 정보를 교환할 수 있어야 한다. 분할된 컴포넌트를 조립한다는 것은 컴포넌트를 다른 컴포넌트 내부에서 사용하는 것을 말하는데 이는 컴포넌트 간에 계층(Hierarchy)적 구조가 형성될 수 있음을 의미한다. 따라서 분할된 컴포넌트를 조립하여 구성된 애플리케이션은 컴포넌트 간의 부모-자식 관계로 표현되는 계층적 트리 구조를 갖는다. 컴포넌트 간의 부모-자식 관계는 데이터와 이벤트가 왕래하는 정보 흐름의 통로가 되며 이를 통해 다른 컴포넌트와의 상태 공유가 이루어지기 때문에 컴포넌트 간의 부모-자식 관계는 Angular 애플리케이션에서 중요한 의미를 갖는다. 이 계층적 구조는 DOM 트리와 유사한 형태를 가지게 되는데 이를 컴포넌트 트리라고 한다. 컴포넌트는 계층적 트리 구조 상에서 상호 작용을 통해 동작하기 때문에 다른 컴포넌트와 상태 정보의 공유는 필수적이며 매우 중요한 의미를 갖는다. Angular는 다양한 컴포넌트 간 상태 정보 공유 방법을 제공한다.
 ---
 
 * TOC
@@ -18,7 +18,7 @@ Angular 애플리케이션은 컴포넌트를 중심(CBD, Component Based Develo
 
 분할된 컴포넌트를 조립한다는 것은 컴포넌트를 다른 컴포넌트 내부에서 사용하는 것을 말하는데 이는 컴포넌트 간에 계층(Hierarchy)적 구조가 형성될 수 있음을 의미한다. 따라서 분할된 컴포넌트를 조립하여 구성된 애플리케이션은 컴포넌트 간의 부모-자식 관계로 표현되는 계층적 트리 구조를 갖는다.
 
-컴포넌트 간의 부모-자식 관계는 데이터와 이벤트가 왕래하는 정보 흐름의 통로가 되며 이를 통해 상태 공유가 이루어지기 때문에 컴포넌트 간의 부모-자식 관계는 Angular 애플리케이션에서 중요한 의미를 갖는다. 이 계층적 구조는 DOM 트리와 유사한 형태를 가지게 되는데 이를 컴포넌트 트리라고 한다.
+컴포넌트 간의 부모-자식 관계는 데이터와 이벤트가 왕래하는 정보 흐름의 통로가 되며 이를 통해 다른 컴포넌트와의 상태 공유가 이루어지기 때문에 컴포넌트 간의 부모-자식 관계는 Angular 애플리케이션에서 중요한 의미를 갖는다. 이 계층적 구조는 DOM 트리와 유사한 형태를 가지게 되는데 이를 컴포넌트 트리라고 한다.
 
 ![component-interaction](./img/component-interaction.png)
 {: .w-300}
@@ -29,9 +29,9 @@ Angular 애플리케이션은 컴포넌트를 중심(CBD, Component Based Develo
 컴포넌트는 계층적 트리 구조 상에서 상호 작용을 통해 동작하기 때문에 다른 컴포넌트와 상태 정보의 공유는 필수적이며 매우 중요한 의미를 갖는다. Angular는 컴포넌트 간에 상태 정보를 공유할 수 있는 다양한 방법을 제공한다.
 
 - @Input, @Output 데코레이터
-- 상태 공유 Service
 - ViewChild와 ViewChildren
-- 외부 라이브러리([ngrx](https://github.com/ngrx), [Redux](http://redux.js.org/) 등)
+- [서비스 중재자 패턴](./angular-service#7-서비스-중재자-패턴service-mediator-pattern)을 구현한 상태 공유 서비스
+- 상태 관리를 위한 외부 라이브러리([NgRx](https://github.com/ngrx/store), [Redux](http://redux.js.org/) 등) 사용
 
 계층적 트리 구조에서 컴포넌트 간 상태 공유를 실습하기 위해 새로운 Angular 애플리케이션을 작성하도록 하자. 간단한 예제이므로 인라인 템플릿, 인라인 스타일을 사용하고 스펙 파일 없이 진행한다.
 
@@ -43,7 +43,7 @@ $ ng new component-interaction -it -is -st
 
 ```bash
 $ cd component-interaction
-$ ng g c user-list -it -is -spec false
+$ ng g c user-list
 ```
 
 아래와 같이 프로젝트가 생성되었다.
@@ -64,6 +64,7 @@ component-interaction/
 ```typescript
 // app.component.ts
 import { Component } from '@angular/core';
+
 @Component({
   selector: 'app-root',
   template: `
@@ -81,7 +82,7 @@ export class AppComponent {
 애플리케이션을 실행하고 브라우저에서 localhost:4200으로 개발용 서버에 접속하면 아래와 같은 화면이 출력된다.
 
 ```bash
-$ ng serve
+$ ng serve -o
 ```
 
 ![component-iteraction-screenshot](./img/component-iteraction-screenshot.png)
@@ -92,7 +93,7 @@ $ ng serve
 이 예제는 부트스트랩을 사용할 것이다. 우선 npm을 사용하여 부트스트랩을 설치하도록 한다.
 
 ```bash
-$ npm install bootstrap --save
+$ npm install bootstrap
 ```
 
 설치가 완료되었으면 부트스트랩을 임포트하여야 한다. 부트스트랩은 모든 컴포넌트에 적용되어야 하므로 .angular-cli.json를 아래와 같이 수정한다.
@@ -139,6 +140,7 @@ form 요소를 가지고 있는 부모 컴포넌트의 경우, 사용자에 의�
 // app.component.ts
 import { Component } from '@angular/core';
 import { User } from './models/user.model';
+
 @Component({
   selector: 'app-root',
   template: `
@@ -171,24 +173,22 @@ export class AppComponent {
 
   constructor() {
     this.users = [
-      { id: 1, name: 'Lee',  role: 'Administrator' },
-      { id: 2, name: 'Baek', role: 'Developer' },
-      { id: 3, name: 'Park', role: 'Designer' }
+      new User(1, 'Lee', 'Administrator'),
+      new User(2, 'Baek', 'Developer'),
+      new User(3, 'Park', 'Designer')
     ];
   }
 
-  // user를 추가한다
+  // 사용자 추가
   addUser(name: string, role: string): void {
     if (name && role) {
-      this.users = [...this.users, { id: this.getLastId() + 1, name, role }];
+      this.users = [...this.users, { id: this.getNextId(), name, role }];
     }
   }
 
-  // users의 요소 중 가장 큰 id를 반환한다
-  getLastId(): number {
-    let lastId = 1;
-    this.users.map(({ id }) => id > lastId ? lastId = id : id);
-    return lastId;
+  // 새로운 사용자의 id를 취득
+  getNextId(): number {
+    return this.users.length ? Math.max(...this.users.map(({ id }) => id)) + 1 : 1;
   }
 }
 ```
@@ -202,6 +202,7 @@ $ ng g cl models/user.model
 models폴더에 user.model.ts이 생성되었다. 이 파일을 아래와 같이 수정한다. typescript에서 생성자 파라미터에 접근 제한자를 사용하면 파라미터는 암묵적으로 프로퍼티로 정의되고 생성자 내부에서 별도의 프로퍼티 초기화가 없어도 암묵적으로 초기화가 수행된다.
 
 ```typescript
+// models/user.model.ts
 export class User {
   constructor(public id: number, public name: string, public role: string) { }
 }
@@ -210,6 +211,7 @@ export class User {
 User 모델 클래스를 컴포넌트에서 사용하기 위해서는 임포트를 하여야 한다.
 
 ```typescript
+// app.component.ts
 import { User } from './models/user.model';
 ```
 
@@ -246,6 +248,7 @@ export class UserListComponent {
 // user-list.component.ts
 import { Component, Input } from '@angular/core';
 import { User } from '../models/user.model';
+
 @Component({
   selector: 'app-user-list',
   template: `
@@ -385,6 +388,8 @@ export class UserListComponent {
 setter를 이용한 입력 프로퍼티 조작
 {: .desc-img}
 
+<iframe src="https://stackblitz.com/edit/component-interaction-exam-1?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="600"></iframe>
+
 ## 2.2 자식 컴포넌트에서 부모 컴포넌트로 상태 전달
 
 ### 2.2.1 @Output 데코레이터와 EventEmitter
@@ -407,6 +412,7 @@ setter를 이용한 입력 프로퍼티 조작
 // user-list.component.ts
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { User } from '../models/user.model';
+
 @Component({
   selector: 'app-user-list',
   template: `
@@ -429,8 +435,7 @@ import { User } from '../models/user.model';
           <td>{{ "{{ user.role " }}}}</td>
           <!-- 추가 -->
           <td>
-           <button
-              class="btn btn-danger btn-sm"
+           <button class="btn btn-danger btn-sm"
               (click)="remove.emit(user)">
               <span class="glyphicon glyphicon-remove"></span>
             </button>
@@ -440,9 +445,9 @@ import { User } from '../models/user.model';
     </table>
     <div class="panel panel-default">
       <div class="panel-body">
-        <p>Admin: {{ cntAdmin }}</p>
-        <p>Developer: {{ cntDeveloper }}</p>
-        <p>Designer: {{ cntDesigner }}</p>
+        <p>Admin: {{ "{{ cntAdmin " }}}}</p>
+        <p>Developer: {{ "{{ cntDeveloper " }}}}</p>
+        <p>Designer: {{ "{{ cntDesigner " }}}}</p>
       </div>
     </div>
   `
@@ -501,6 +506,7 @@ EventEmitter 객체는 커스텀 이벤트를 발생시키는 emit() 메소드�
 // app.component.ts
 import { Component } from '@angular/core';
 import { User } from './models/user.model';
+
 @Component({
   selector: 'app-root',
   template: `
@@ -521,6 +527,7 @@ import { User } from './models/user.model';
               (click)="addUser(name.value, role.value)">Add user
             </button>
           </div>
+          <!-- 변경 -->
           <app-user-list
             [users]="users"
             (remove)="removeUser($event)">
@@ -531,33 +538,32 @@ import { User } from './models/user.model';
   `
 })
 export class AppComponent {
+  // 자식 컴포넌트와 공유할 상태 정보
   users: User[];
 
   constructor() {
     this.users = [
-      { id: 1, name: 'Lee',  role: 'Administrator' },
-      { id: 2, name: 'Baek', role: 'Developer' },
-      { id: 3, name: 'Park', role: 'Designer' }
+      new User(1, 'Lee', 'Administrator'),
+      new User(2, 'Baek', 'Developer'),
+      new User(3, 'Park', 'Designer')
     ];
   }
 
-  // user를 추가한다
+  // 사용자 추가
   addUser(name: string, role: string): void {
     if (name && role) {
-      this.users = [...this.users, { id: this.getLastId() + 1, name, role }];
+      this.users = [...this.users, { id: this.getNextId(), name, role }];
     }
   }
 
-  // 해당 user를 제거한다.
+  // 해당 사용자 제거
   removeUser(user: User) {
     this.users = this.users.filter(({ id }) => id !== user.id);
   }
 
-  // users의 요소 중 가장 큰 id를 반환한다
-  getLastId(): number {
-    let lastId = 1;
-    this.users.map(({ id }) => id > lastId ? lastId = id : id);
-    return lastId;
+  // 새로운 사용자의 id를 취득
+  getNextId(): number {
+    return this.users.length ? Math.max(...this.users.map(({ id }) => id)) + 1 : 1;
   }
 }
 ```
@@ -586,11 +592,13 @@ removeUser(user: User) {
 자식 컴포넌트에서 부모 컴포넌트로 상태 전달
 {: .desc-img}
 
+<iframe src="https://stackblitz.com/edit/component-interaction-exam-2?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="650"></iframe>
+
 # 3. Stateful 컴포넌트와 Stateless 컴포넌트
 
 지금까지 부모 컴포넌트와 자식 컴포넌트 간의 상태 공유에 대해 알아보았다. 예제를 살펴보면 부모 컴포넌트에서 상태 변화(사용자 추가)가 발생한 경우, 부모 컴포넌트는 자신의 상태 프로퍼티 users 객체에 상태 변화를 반영하여 객체를 변경한 후 프로퍼티 바인딩을 통해 자식 컴포넌트에 상태 객체 users를 전송하였다. 하지만 자식 컴포넌트에서 상태 변화(사용자 제거)가 발생한 경우, 자식 컴포넌트는 자신이 직접 상태 프로퍼티 users 객체를 변경하지 않고 이벤트 바인딩을 통해 부모 컴포넌트에게 상태 객체 users의 변경을 위임하였다. 자식 컴포넌트가 직접 상태 객체를 변경하면 이벤트 바인딩을 통해 상태를 공유하지 않아도 될텐데 왜 이렇게 번거롭게 상태를 주고 받는 것일까?
 
-상태 객체에 대해 조금더 자세히 생각해보도록 하자. 부모 컴포넌트와 자식 컴포넌트 모두 상태 객체 users에 대한 동일한 참조를 갖는다. 따라서 참조를 공유하고 있는 상태 객체 users를 어느 한쪽에서 변경하면 모두에게 변경이 반영되는데 이는 <strong>상태 정보의 변화를 예측</strong>하기 어렵게 만든다. 위 예제와 같이 간단한 구조를 가지고 있다면 문제가 되지 않겠지만 복잡한 계층적 구조를 갖는 애플리케이션의 경우, 컴포넌트마다 상태 객체를 마음대로 변경할 수 있다면 상태 변경을 추적하기 어렵고 의도하지 않은 상태 객체의 변경이 발생하여 문제가 될 수 있다.
+상태 객체에 대해 조금더 자세히 생각해보자. 부모 컴포넌트와 자식 컴포넌트 모두 상태 객체 users에 대한 동일한 참조를 갖는다. 따라서 참조를 공유하고 있는 상태 객체 users를 어느 한쪽에서 변경하면 모두에게 변경이 반영되는데 이는 <strong>상태 정보의 변화를 예측</strong>하기 어렵게 만든다. 위 예제와 같이 간단한 구조를 가지고 있다면 문제가 되지 않겠지만 복잡한 계층적 구조를 갖는 애플리케이션의 경우, 컴포넌트마다 상태 객체를 마음대로 변경할 수 있다면 상태 변경을 추적하기 어렵고 의도하지 않은 상태 객체의 변경이 발생하여 문제가 될 수 있다.
 
 ![component-state](./img/component-state.png)
 {: .w-400}
@@ -612,12 +620,11 @@ Stateful 컴포넌트는 애플리케이션의 현재 상태 정보를 관리하
 원거리 컴포넌트 간의 상태 공유
 {: .desc-img}
 
-A 컴포넌트에서 변경된 상태를 C 컴포넌트에서도 공유할 필요가 있을 때, 지금까지 살펴본 프로퍼티 바인딩과 이벤트 바인딩을 통해 상태를 공유할 수 있다. 이때 상태 공유가 필요없는 B 컴포넌트까지 상태를 전달하여야 한다. 이러한 불필요한 상태 공유를 피하기 위해 상태 공유를 위한 서비스를 사용할 수 있다. 이에 대한 자세한 사항은 서비스에서 살펴보도록 하자.
+A 컴포넌트에서 변경된 상태를 C 컴포넌트에서도 공유할 필요가 있을 때, 지금까지 살펴본 프로퍼티 바인딩과 이벤트 바인딩을 통해 상태를 공유할 수 있다. 이때 상태 공유가 필요없는 B 컴포넌트까지 상태를 전달하여야 한다. 이러한 불필요한 상태 공유를 피하기 위해 상태 공유를 위한 서비스를 사용할 수 있다. 이에 대한 자세한 사항은 [서비스 중재자 패턴(Service Mediator Pattern)](./angular-service#7-서비스-중재자-패턴service-mediator-pattern)에서 살펴보도록 하자.
 
 # Reference
 
-* [Angular Component Interaction
-](https://angular.io/guide/component-interaction)
+* [Angular Component Interaction](https://angular.io/guide/component-interaction)
 
 * [Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
 

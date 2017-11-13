@@ -22,7 +22,7 @@ const today = new Date();
 console.log(today.toString()); // Sat Sep 23 2017 00:26:55 GMT+0900 (KST)
 ```
 
-Date 생성자 함수가 리턴한 인스턴스를 문자열화하면 사용자가 읽기 쉬운 형식은 아니다. 아마도 사용자는 "Sat Sep 23 2017 00:26:55 GMT+0900 (KST)" 형식보다는 "2017년 09월 23일 12시 26분 55초"과 같이 읽기 쉬운 형식으로 표시되기를 원할 것이다. 이때 데이터 자체를 변경하는 것은 사이드 이펙트가 있으므로 화면에 표시 형식만 변경하고 싶을 때 사용하는 것이 파이프이다.
+Date 생성자 함수가 리턴한 인스턴스를 문자열화하면 사용자가 읽기 쉬운 형식은 아니다. 아마도 사용자는 "Sat Sep 23 2017 00:26:55 GMT+0900 (KST)" 형식보다는 "2017년 09월 23일 12시 26분 55초"과 같이 읽기 쉬운 형식으로 표시되기를 원할 것이다. 이때 **데이터 자체를 변경하는 것은 사이드 이펙트가 있으므로 화면에 표시 형식만 변경하고 싶을 때 사용하는 것이 파이프이다.**
 
 파이프를 사용하여 사용자가 읽기 쉬운 형식으로 변환하여 보자.
 
@@ -33,9 +33,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `
-    <h1>{{ "{{ today " }}}}</h1>
-    <h1>{{ "{{ today | date " }}}}</h1>
-    <h1>{{ "{{ today | date: 'y년 MM월 dd일 hh시 mm분 ss초' " }}}}</h1>
+    <p>{{ "{{ today " }}}}</p>
+    <p>{{ "{{ today | date " }}}}</p>
+    <p>{{ "{{ today | date: 'y년 MM월 dd일 hh시 mm분 ss초' " }}}}</p>
   `
 })
 export class AppComponent {
@@ -53,12 +53,14 @@ Sep 23, 2017
 2017년 09월 23일 12시 26분 55초
 ```
 
-이와 같이 파이프는 템플릿 내에서 원하는 형식으로 값을 변환하여 표시하는 기능이다. 파이프의 사용 방법은 아래와 같다.
+<iframe src="https://stackblitz.com/edit/pipe-date?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="400"></iframe>
+
+이와 같이 파이프는 템플릿 내에서 원하는 형식으로 값을 변환하여 표시하는 기능이다. 이때 원본 데이터 자체는 변경되지 않는다. 파이프의 사용 방법은 아래와 같다.
 
 ```html
 {{ "{{ value | PipeName " }}}}
 <!-- parameter -->
-{{ "{{ value | PipeName : customOption1 :  customOption2 " }}}}
+{{ "{{ value | PipeName : customOption1 : customOption2 " }}}}
 <!-- chainning -->
 {{ "{{ value | PipeName1 | PipeName2 " }}}}
 ```
@@ -67,6 +69,7 @@ Sep 23, 2017
 
 ```typescript
 import { Component } from '@angular/core';
+
 @Component({
   selector: 'app-root',
   template: `
@@ -77,6 +80,8 @@ export class AppComponent {
   name = 'lee';
 }
 ```
+
+<iframe src="https://stackblitz.com/edit/pipe-uppercase?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="400"></iframe>
 
 # 2. 빌트인 파이프
 
@@ -112,6 +117,7 @@ import { Observable } from 'rxjs/Rx';
     <p>{{ "{{ price | currency: 'KRW':true:'1.1-2' " }}}}</p>
 
     <h3>SlicePipe : array</h3>
+    <!-- slice:start[:end] -->
     <ul>
       <li *ngFor="let i of collection | slice:1:3">{{ "{{i" }}}}</li>
     </ul>
@@ -123,10 +129,10 @@ import { Observable } from 'rxjs/Rx';
     <pre>{{ "{{ object | json " }}}}</pre>
 
     <h3>DecimalPipe</h3>
-    <p>{{ "{{ pi | number:'3.5-5' " }}}}</p>
+    <p>{{ "{{ pi | number:'3.5' " }}}}</p>
 
     <h3>PercentPipe</h3>
-    <p>{{ "{{ num | percent:'4.3-5' " }}}}</p>
+    <p>{{ "{{ num | percent:'3.3' " }}}}</p>
 
     <h3>UpperCasePipe</h3>
     <p>{{ "{{ str | uppercase " }}}}</p>
@@ -146,9 +152,12 @@ export class AppComponent {
   object: Object = { foo: 'bar', baz: 'qux', nested: { xyz: 3 } };
   pi = 3.141592;
   num = 1.3495;
-  second = Observable.interval(1000).map(i => i).take(11);
+  // 1s마다 값을 방출하고 11개를 take한다. (0 ~ 10)
+  second = Observable.interval(1000).take(11);
 }
 ```
+
+<iframe src="https://stackblitz.com/edit/pipe-builtins?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="600"></iframe>
 
 # 3. 체이닝 파이프
 
@@ -170,7 +179,9 @@ export class AppComponent {
 }
 ```
 
-컴포넌트의 실행하면 'UNG-MO'이 출력된다.
+[slice:4](https://angular.io/api/common/SlicePipe)는 4번째 문자부터 마지막 문자까지를 잘라내어 표시한다. 컴포넌트의 실행하면 'UNG-MO'이 출력된다.
+
+<iframe src="https://stackblitz.com/edit/pipe-chaining?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="400"></iframe>
 
 # 4. 커스텀 파이프
 
@@ -216,11 +227,13 @@ export class AppComponent {
 }
 ```
 
+<iframe src="https://stackblitz.com/edit/pipe-custom?embed=1&file=app/reverse.pipe.ts&hideExplorer=1" frameborder="0" width="100%" height="400"></iframe>
+
 # 5. 파이프와 변화 감지(Change detection)
 
-[변화 감지(Change detection)](./angular-component-template-basics#3-변화-감지change-detection)란 뷰와 모델의 동기화를 유지하기 위해 변화를 감지하고 이를 반영하는 것을 말한다. 즉 상태의 변화를 감지하여 뷰에 반영하는 것으로 데이터 바인딩은 변화 감지 매커니즘의 토대 위에서 수행된다.
+[변화 감지(Change detection)](./angular-component-data-binding#2-변화-감지change-detection)란 뷰와 모델의 동기화를 유지하기 위해 변화를 감지하고 이를 반영하는 것을 말한다. 즉 상태의 변화를 감지하여 뷰에 반영하는 것으로 데이터 바인딩은 변화 감지 매커니즘의 토대 위에서 수행된다.
 
-그런데 Angular는 DOM 이벤트(click, key press, mouse move 등), Timer(setTimeout, setInterval)의 tick 이벤트, 서버와의 Ajax 통신 이후 변경 감지를 통해 데이터 바인딩 대상의 변경 사항을 찾는다. 이것은 시스템에 부하를 증가시키는 작업이다. Angular는 가능한 시스템에 부하를 최소한으로 하기 위해 파이프를 사용할 때는 보다 간단하고 빠른 변경 감지 알고리즘을 사용한다.
+그런데 Angular는 DOM 이벤트(click, key press, mouse move 등), Timer(setTimeout, setInterval)의 tick 이벤트, 서버와의 Ajax 통신 이후 변화 감지를 통해 데이터 바인딩 대상의 변경 사항을 찾는다. 이것은 시스템에 부하를 증가시키는 작업이다. Angular는 가능한 부하를 최소한으로 하기 위해 파이프를 사용할 때는 보다 간단하고 빠른 변경 감지 알고리즘을 사용한다.
 
 간단한 todo list 예제를 통해 파이프와 변화 감지에 대해 살펴보도록 하자.
 
@@ -318,6 +331,8 @@ this.todos = this.todos.concat({
 });
 ```
 
+<iframe src="https://stackblitz.com/edit/pipe-change-detection?embed=1&file=app/todos.component.ts&hideExplorer=1" frameborder="0" width="100%" height="600"></iframe>
+
 이 경우, 간단한 애플리케이션이므로 todos 프로퍼티의 변경 시점은 간단히 파악할 수 있지만 복잡한 애플리케이션이라면 어디서 todos 프로퍼티가 변경되는지 파악하기 힘들 수도 있다. 또한 파이프를 위해 코드를 수정하는 것은 바람직하지 않을 수도 있다. 파이프는 템플릿에서 동작하고 상태 정보는 클래스에 존재하기 때문에 이 둘간의 독립이 보장되어야 하기 때문이다.
 
 이를 위해 Angular는 비순수 파이프(impure pipe)를 제공한다.
@@ -341,9 +356,11 @@ export class LimitPipe implements PipeTransform {
 }
 ```
 
-이제 limit 파이프를 비순수 파이프가 되었고 컴포넌트의 add 메소드 내부에서 push 메소드를 사용하여도 변화 감지가 작동한다. 하지만 비순수 파이프를 사용하면 빈번하게 파이프가 호출되어 퍼포먼스 상 좋지 않으므로 주의하여야 한다.
+이제 limit 파이프를 비순수 파이프가 되었고 컴포넌트의 add 메소드 내부에서 push 메소드를 사용하여도 변화 감지가 작동한다. 하지만 비순수 파이프를 사용하면 빈번하게 파이프가 호출되어 퍼포먼스면에서 좋지 않으므로 주의하여야 한다.
 
-순수 파이프는 기본자료형의 값 또는 객체 참조가 변경과 같은 순수한 변경(pure change)만을 감지하고 순수 파이프를 실행한다. Angular는 퍼포먼스를 위해 객체 내부의 변경은 무시하여 순수 파이프를 실행하지 않는다. 따라서 퍼포먼스를 생각한다면 비순수 파이프보다 순수 파이프를 사용하는 것이 바람직하다. 또한 **반드시 필요한 경우가 아니라면 파이프보다는 컴포넌트의 프로퍼티를 사용하는 편이 유리하다.**
+순수 파이프는 기본자료형의 값 또는 객체 참조의 변경과 같은 순수한 변경(pure change)만을 감지하고 순수 파이프를 실행한다. Angular는 퍼포먼스를 위해 객체 내부의 변경은 무시하여 순수 파이프를 실행하지 않는다. 따라서 퍼포먼스를 생각한다면 비순수 파이프보다 순수 파이프를 사용하는 것이 바람직하다. 또한 **반드시 필요한 경우가 아니라면 파이프보다는 컴포넌트의 프로퍼티를 사용하는 편이 유리하다.**
+
+<iframe src="https://stackblitz.com/edit/pipe-impure?embed=1&file=app/limit.pipe.ts&hideExplorer=1" frameborder="0" width="100%" height="400"></iframe>
 
 # Reference
 

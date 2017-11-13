@@ -529,11 +529,11 @@ import { Component } from '@angular/core';
   template: `
     <ng-container *ngIf="isShow">
       <ng-container *ngFor="let item of items">
-        <span>{{ item }}</span>
+        <span>{{ "{{ item " }}}}</span>
       </ng-container>
     </ng-container>
     <button (click)="isShow=!isShow">
-      {{ isShow ? 'hide' : 'show' }}
+      {{ "{{ isShow ? 'hide' : 'show' " }}}}
     </button>
   `
 })

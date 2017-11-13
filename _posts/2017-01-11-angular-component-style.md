@@ -54,7 +54,7 @@ import { Component } from '@angular/core';
     <h3>Component Style: Parent</h3>
     <button class="btn-primary">Button</button>
   `,
-  styleUrls: [`./app.component.css`]
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {}
 ```
@@ -100,7 +100,7 @@ import { Component } from '@angular/core';
     <button class="btn-primary">Button</button>
     <app-child></app-child>
   `,
-  styleUrls: [`./app.component.css`]
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {}
 ```
@@ -124,7 +124,7 @@ import { Component } from '@angular/core';
     <h3>Component Style: Child</h3>
     <button class="btn-primary">Button</button>
   `,
-  styleUrls: [`./child.component.css`]
+  styleUrls: ['./child.component.css']
 })
 export class ChildComponent {}
 ```
@@ -174,7 +174,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
     <button class="btn-primary">Button</button>
     <app-child></app-child>
   `,
-  styleUrls: [`./app.component.css`],
+  styleUrls: ['./app.component.css'],
   encapsulation: ViewEncapsulation.Native
 })
 export class AppComponent {}
@@ -251,7 +251,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
     <button class="btn-primary">Button</button>
     <app-child class="active"></app-child>
   `,
-  styleUrls: [`./app.component.css`],
+  styleUrls: ['./app.component.css'],
   encapsulation: ViewEncapsulation.Native
 })
 export class AppComponent {}
@@ -301,7 +301,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
       <app-child class="active"></app-child>
     </div>
   `,
-  styleUrls: [`./app.component.css`],
+  styleUrls: ['./app.component.css'],
   encapsulation: ViewEncapsulation.Native
 })
 export class AppComponent {}
@@ -398,7 +398,7 @@ $ ng new sass-project --style=scss
   template: `
   ...
   `,
-  styleUrls: [`./app.component.scss`]
+  styleUrls: ['./app.component.scss']
 })
 ```
 

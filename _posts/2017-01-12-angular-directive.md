@@ -427,6 +427,8 @@ export class AppComponent {
 }
 ```
 
+<iframe src="https://stackblitz.com/edit/custom-structure-directive-1?embed=1&file=app/my-ng-if.directive.ts&hideExplorer=1" frameborder="0" width="100%" height="600"></iframe>
+
 ## 4.2 TemplateRef와 ViewContainerRef
 
 NgIf, NgFor, NgSwitch와 같은 [빌트인 구조 디렉티브](./angular-component-template-syntax#22-빌트인-구조-디렉티브built-in-structural-directive)는 디렉티브 이름 앞에 붙은 *(asterisk)에 의해 `ng-template`으로 변환된다. 예를 들어 NgIf의 경우를 살펴보자.
@@ -516,7 +518,32 @@ ng-container도 ng-template와 마찬가지로 DOM에 어떠한 영향도 주지
 </ul>
 ```
 
-일반적으로 ng-container는 *ngIf 또는 *ngFor와 같이 중첩 구조 디렉티브에 대한 헬퍼 요소가 필요하거나 구조 디렉티브 안에 둘 이상의 요소를 래핑하려는 경우, 사용한다.
+Angular는 같은 요소에 하나 이상의 구조 디렉티브 사용을 금지한다. **일반적으로 ng-container는 *ngIf 또는 *ngFor와 같이 같은 요소 하나 이상의 구조 디렉티브를 사용하기 위한 헬퍼 요소로서 사용한다.**
+
+```typescript
+// app.component.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <ng-container *ngIf="isShow">
+      <ng-container *ngFor="let item of items">
+        <span>{{ item }}</span>
+      </ng-container>
+    </ng-container>
+    <button (click)="isShow=!isShow">
+      {{ isShow ? 'hide' : 'show' }}
+    </button>
+  `
+})
+export class AppComponent {
+  isShow = true;
+  items = [1, 2, 3];
+}
+```
+
+<iframe src="https://stackblitz.com/edit/ng-container?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="600"></iframe>
 
 select 태그를 동적으로 구성하는 Range 사용자 정의 구조 디렉티브를 통해 ng-container에 사용 방법에 대해 알아보도록 하자.
 
@@ -534,14 +561,14 @@ import { Component } from '@angular/core';
   ng-container는 * 구문을 사용할 수 있다.
   -->
     <ng-container *range="[10, 19]; let num">
-      <option [ngValue]="num">{{ "{{ num " }}}}</option>
+      <option [value]="num">{{ "{{ num " }}}}</option>
     </ng-container>
   </select>
 
   <h1>Year:</h1>
   <select>
     <ng-container *range="[2000, 2017]; let num">
-      <option [ngValue]="num">{{ "{{ num " }}}}</option>
+      <option [value]="num">{{ "{{ num " }}}}</option>
     </ng-container>
   </select>
   `
@@ -565,7 +592,7 @@ export class RangeDirective {
 
     // 범위를 갖는 배열 _range를 순회하며 select 요소의 option 요소를 호스트 뷰에 추가한다.
     this._range.forEach(num => {
-      // $implicit 프로퍼티 값 num은 ng-container의 num 변수에 할당되고 컴포넌트 템플릿 ngValue의 값이 된다.
+      // $implicit 프로퍼티 값 num은 ng-container의 num 변수에 할당되고 컴포넌트 템플릿 value의 값이 된다.
       this.viewContainer.createEmbeddedView(this.templateRef, {
         $implicit: num
       });
@@ -588,6 +615,8 @@ export class RangeDirective {
   }
 }
 ```
+
+<iframe src="https://stackblitz.com/edit/custom-structure-directive-2?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="600"></iframe>
 
 # Reference
 

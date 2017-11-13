@@ -61,7 +61,7 @@ export class App implements OnInit {
 
 부모 컴포넌트에서 자식 컴포넌트의 **[입력 프로퍼티](./angular-component-interaction#21-부모-컴포넌트에서-자식-컴포넌트로-상태-전달)로 바인딩한 값이 초기화 또는 변경되었을 때 실행**된다. 따라서 컴포넌트에 입력 프로퍼티가 없는 경우, 호출되지 않는다.
 
-ngOnChanges는 ngOnInit 이전에 입력 프로퍼티가 존재하는 경우, 최소 1회 호출된다. 이후에는 입력 프로퍼티가 변경될 때마다 반복 호출된다. 이때 변경은 입력 프로퍼티의 참조의 변경을 말한다. 다시 말해 기본자료형의 값이 재할당되었을 때와 객체의 참조가 변경되었을 때만 반응한다. 즉 객체의 프로퍼티가 변경되었을 때에는 반응하지 않는다. 자세한 내용은 아래의 에제에서 살펴보도록 하자.
+ngOnChanges는 ngOnInit 이전에 입력 프로퍼티가 존재하는 경우, 최소 1회 호출된다. 이후에는 입력 프로퍼티가 변경될 때마다 반복 호출된다. 이때 변경은 입력 프로퍼티의 참조의 변경을 말한다. 다시 말해 **기본자료형의 값이 재할당되었을 때와 객체의 참조가 변경되었을 때만 반응한다.** 즉 객체의 프로퍼티가 변경되었을 때에는 반응하지 않는다. 자세한 내용은 아래의 예제에서 살펴보도록 하자.
 
 입력 프로퍼티의 변경 정보를 담고 있는 [SimpleChanges](https://angular.io/api/core/SimpleChanges) 객체를 파라미터로 수신할 수 있다.
 
@@ -84,15 +84,23 @@ class MyComponent implements OnChanges {
 
 ## 2.2 ngOnInit
 
-모든 프로퍼티의 생성된 이후 한번만 호출된다. ngOnChanges 이후 호출되며 이 시점에서는 모든 프로퍼티와 입력 프로퍼티가 초기화되어 있다.
+ngOnChanges 이후, **모든 프로퍼티와 입력 프로퍼티의 초기화가 완료된 시점에 한번만 호출된다.**
 
-constructor는 [Typescript 클래스](./typescript-class)의 메소드로서 Angular의 생명주기와 직접적인 관계가 없다. Typescript에서는 constructor에서 프로퍼티를 초기화하지만 Angular에서 관리하는 입력 프로퍼티의 경우, constructor가 호출되는 단계에서 생성되기 이전의 상태이다. 따라서 **컴포넌트 프로퍼티의 초기화는 ngOnInit에서 수행**하여야 한다.
+constructor는 [Typescript 클래스](./typescript-class)의 메소드로서 Angular의 생명주기와 직접적인 관계가 없다. constructor는 인스턴스를 생성을 위해 호출된다.
+
+Angular에서 관리하는 입력 프로퍼티의 경우, constructor가 호출되는 단계에서는 초기화되기 이전의 상태이며 참조시 undefined가 반환된다. 즉 **컴포넌트 프로퍼티의 참조는 ngOnInit 이후 보장된다.**
+
+Typescript에서는 constructor에서 프로퍼티를 초기화하는 것이 일반적이지만 Angular의 경우, **프로퍼티의 초기화 처리는 constructor가 아닌 ngOnInit에서 수행하여야 한다.** 만일 constructor에서 프로퍼티를 초기화하면 ngOnInit에서 재차 프로퍼티 초기화가 실행되어 constructor에서 실행한 프로퍼티 초기화 값을 덮어쓰게 된다.
 
 ## 2.3 ngDoCheck
 
-컴포넌트 또는 디렉티브의 모든 상태 변화에 대해서 변경이 발생할 때마다 호출된다. 즉 Angular의 변화 감지 로직이 상태 변화를 감지하면 호출된다.
+ngOnInit 이후, 컴포넌트 또는 디렉티브의 모든 상태의 변화가 발생할 때마다 호출된다. 즉 Angular의 변화 감지 로직이 상태 변화를 감지하면 호출된다.
 
-ngOnInit 이후 호출되며 Angular의 변화 감지에 의해 감지되지 않거나 감지할 수 없는 변경 사항을 수동으로 체크하기 위해 사용한다. 하지만 모든 변화 감지 수행 시점마다 매번 호출되기 때문에 성능에 악영향을 줄 수 있다. 가장 바람직한 것은 Angular의 변화 감지가 상태의 변화를 감지하도록 코드를 구현하는 것이지만 ngDoCheck를 사용할 수 밖에 없는 상황이라면 최대한 가벼운 처리로 성능에 무리를 주지 않도록 주의하여야 한다.
+주의할 것은 ngOnChanges는 입력 프로퍼티에 바인딩된 값이 초기화 또는 변경(기본자료형의 값이 재할당되었을 때와 객체의 참조가 변경)되었을 때에만 반응하여 호출되지만 ngDoCheck는 모든 상태의 변경에 의해 호출된다
+
+따라서 ngDoCheck는 Angular의 변화 감지에 의해 감지되지 않거나 감지할 수 없는 변경 사항을 수동으로 더티 체크(dirty check)하기 위해 사용한다. 커스텀 더티 체크를 구현하기 위해서 [KeyValueDiffers](https://angular.io/api/core/KeyValueDiffers)와 [IterableDiffers](https://angular.io/api/core/IterableDiffers)를 사용한다.
+
+하지만 모든 변화 감지 수행 시점마다 매번 호출되기 때문에 성능에 악영향을 줄 수 있다. 가장 바람직한 것은 Angular의 변화 감지가 상태의 변화를 감지하도록 코드를 구현하는 것이지만 ngDoCheck를 사용할 수 밖에 없는 상황이라면 최대한 가벼운 처리로 성능에 무리를 주지 않도록 주의하여야 한다.
 
 ## 2.4 ngAfterContentInit
 
@@ -104,7 +112,7 @@ ngContent 디렉티브를 사용하여 외부 콘텐츠를 컴포넌트의 뷰�
 
 ## 2.6 ngAfterViewInit
 
-컴포넌트의 뷰와 자식 컴포넌트의 뷰를 초기화 한 이후 호출된다. 첫번째 ngAfterContentChecked 호출 이후 한번만 호출되며 컴포넌트에서만 동작하는 컴포넌트 전용 훅 메소드이다.
+컴포넌트의 뷰와 자식 컴포넌트의 뷰를 초기화한 이후 호출된다. 첫번째 ngAfterContentChecked 호출 이후 한번만 호출되며 컴포넌트에서만 동작하는 컴포넌트 전용 훅 메소드이다.
 
 ## 2.7 ngAfterViewChecked
 
@@ -131,7 +139,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `
-    <button (click)="status = !status">{{ "{{ status ? 'Destroy Child' : 'Create Child' " }}}}</button>
+    <button (click)="status = !status">
+      {{ "{{ status ? 'Destroy Child' : 'Create Child' " }}}}
+    </button>
     <div *ngIf="status">
       <app-child [prop]="prop"></app-child>
     </div>
@@ -161,17 +171,20 @@ export class ChildComponent implements OnChanges, OnInit, DoCheck, AfterContentI
 
   constructor() {
     console.log('[construnctor]');
-    console.log(`prop: ${this.prop}`);
+    console.log(`prop: ${this.prop}`); // prop: undefined
+    this.prop = 'TEST';
+    console.log(`prop: ${this.prop}`); // prop: TEST
   }
 
   ngOnChanges(changes: SimpleChanges) {
     console.log('[OnChanges]');
+    console.log(`prop: ${this.prop}`); // prop: Hello
     console.log('changes:', changes);
   }
 
   ngOnInit() {
     console.log('[OnInit]');
-    console.log(`prop: ${this.prop}`);
+    console.log(`prop: ${this.prop}`); // prop: Hello
   }
 
   ngDoCheck() {
@@ -205,7 +218,9 @@ Create Child 버튼을 클릭하면 자식 컴포넌트가 생성되면서 훅 �
 ```
 [construnctor]
 prop: undefined
+prop: TEST
 [OnChanges]
+prop: Hello
 changes: {prop: SimpleChange}
           prop: SimpleChange {previousValue: undefined, currentValue: "Hello", firstChange: true}
           __proto__: Object
@@ -218,6 +233,8 @@ prop: Hello
 [ngAfterViewChecked]
 ```
 
+<iframe src="https://stackblitz.com/edit/lifecycle-hooks-exam?embed=1&file=app/child.component.ts&hideExplorer=1" frameborder="0" width="100%" height="600"></iframe>
+
 우선 construnctor가 호출되었다. construnctor는 인스턴스 생성을 위해 호출되며 Angular의 메소드가 아니다. construnctor에서 입력 프로퍼티를 참조하면 undefined가 출력되는데 이는 입력 프로퍼티의 초기화가 OnInit에서 완성되기 때문이다.
 
 ngOnChanges는 자식 컴포넌트에 입력 프로퍼티가 존재하기 때문에 실행되었다. 만약 자식 컴포넌트에 입력 프로퍼티가 존재하지 않으면 ngOnChanges는 호출되지 않는다.
@@ -228,7 +245,7 @@ ngOnChanges는 자식 컴포넌트에 입력 프로퍼티가 존재하기 때문
 
 ## 3.2 ngOnChanges와 ngDoCheck
 
-ngOnChanges와 ngDoCheck는 모든 상태의 변화와 관계가 있다. 하지만 ngOnChanges는 입력 프로퍼티의 초기화, 변경 시에 호출되고 ngDoCheck는 모든 변화 감지 시점에 호출된다. 하지만 객체의 경우, 내부 프로퍼티를 변경하여도 객체의 참조는 변경되지 않기 때문에 ngOnChanges는 이 변화에 반응하지 않는다. 즉 기본자료형과 불변객체와 같이 immutable한 값에만 반응한다. 에제를 통해 살펴보도록 하자.
+ngOnChanges와 ngDoCheck는 모두 상태 변화와 관계가 있다. 하지만 ngOnChanges는 입력 프로퍼티의 초기화, 변경 시에 호출되고 ngDoCheck는 모든 변화 감지 시점에 호출된다. 하지만 객체의 경우, 내부 프로퍼티를 변경하여도 객체의 참조는 변경되지 않기 때문에 ngOnChanges는 이 변화에 반응하지 않는다. 즉 기본자료형과 불변객체와 같이 이뮤터블(immutable)한 값에만 반응한다. 에제를 통해 살펴보도록 하자.
 
 부모 컴포넌트를 아래와 같이 작성한다. 부모 컴포넌트의 버튼에 의해 자식 컴포넌트가 생성, 소멸하도록 NgIf 디렉티브를 사용하도록 한다. 자식 컴포넌트가 생성된 이후 2개의 버튼이 나타나는데 이 버튼이 변경하고 전달하는 값은 이뮤터블(immutable), 뮤터블(mutable)한 값이다
 
@@ -336,7 +353,7 @@ mutable: {name: "Lee"}
 [ngAfterViewChecked]
 ```
 
-두번째 "객체형 프로퍼티 변경" 버튼을 클릭하면 객체 타입의 내부 프로퍼티를 변경하여 자식 컴포넌트에 전송된다. 이떄 객체는 뮤터블하다. 즉 내부 프로퍼티의 값을 변경하더라도 참조가 변경되지 않는다. 따라서 **입력 프로퍼티가 변경되지 않은 것으로 간주되어 OnChanges가 호출되지 않는다.** 하지만 Angular의 변화 감지는 상태의 변화를 감지하고 변화 감지에 의해 ngDoCheck는 호출된다.
+두번째 "객체형 프로퍼티 변경" 버튼을 클릭하면 객체 타입의 내부 프로퍼티를 변경하여 자식 컴포넌트에 전송된다. 이때 객체는 뮤터블하므로 내부 프로퍼티의 값을 변경하더라도 참조가 변경되지 않는다. 따라서 **입력 프로퍼티가 변경되지 않은 것으로 간주되어 OnChanges가 호출되지 않는다.** 하지만 Angular의 변화 감지는 상태의 변화를 감지하고 변화 감지에 의해 ngDoCheck는 호출된다.
 
 ```
 [DoCheck]
@@ -351,6 +368,8 @@ ngDoCheck는 모든 상태의 변경에 의해 호출된다. 따라서 입력 �
 ```html
 <button (click)="prop=changed!">컴포넌트 프로퍼티 변경</button>
 ```
+
+<iframe src="https://stackblitz.com/edit/lifecycle-hooks-ngonchanges-ngdocheck?embed=1&file=app/child.component.ts&hideExplorer=1" frameborder="0" width="100%" height="600"></iframe>
 
 ## 3.3 디렉티브 생명 주기 훅 메소드
 
@@ -377,4 +396,6 @@ ngDoCheck는 모든 상태의 변경에 의해 호출된다. 따라서 입력 �
 * [ngOnDestroy](https://angular.io/api/core/OnDestroy)
 
 * [SimpleChanges](https://angular.io/api/core/SimpleChanges)
+
+* [Understanding ngDoCheck and KeyValueDiffers in Angular](https://netbasal.com/angular-the-ngstyle-directive-under-the-hood-2ed720fb9b61)
 

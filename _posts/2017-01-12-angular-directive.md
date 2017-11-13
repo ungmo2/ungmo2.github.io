@@ -58,14 +58,14 @@ Angular는 3가지 유형의 디렉티브를 제공한다.
 [구조 디렉티브(Structural Directives)](./angular-component-template-syntax#22-빌트인-구조-디렉티브built-in-structural-directive)
 : 구조 디렉티브는 DOM 요소를 반복 생성(ngFor), 조건에 의한 추가 또는 제거(ngIf, ngSwitch)를 통해 DOM 레이아웃(layout)을 변경한다.
 
-커스텀 디렉티브
-: 커스텀 디렉티브는 Angular의 빌트인 디렉티브가 아닌 사용자 정의 디렉티브이다.
+사용자 정의 디렉티브
+: 사용자 정의 디렉티브는 Angular의 빌트인 디렉티브가 아닌 사용자 정의 디렉티브이다.
 
-# 3. 커스텀 어트리뷰트 디렉티브
+# 3. 사용자 정의 어트리뷰트 디렉티브
 
 ## 3.1 디렉티브의 생성
 
-예제를 통해 커스텀 어트리뷰트 디렉티브의 살펴보자. textBlue 디렉티브는 해당 요소의 텍스트 컬러를 파란색으로 변경한다. Angular CLI를 사용하여 디렉티브를 추가하도록 한다.
+예제를 통해 사용자 정의 어트리뷰트 디렉티브를 살펴보자. textBlue 디렉티브는 해당 요소의 텍스트 컬러를 파란색으로 변경한다. Angular CLI를 사용하여 디렉티브를 추가하도록 한다.
 
 ```bash
 $ ng generate directive textBlue
@@ -90,7 +90,9 @@ export class TextBlueDirective {
 
 <!-- 생성자에 ElementRef와 Renderer가 주입(inject)되었다. ElementRef는 nativeElement 프로퍼티를 통해 DOM에 직접 접근할 수 있는 서비스이다. DOM에 직접 접근하는 경우, XSS 공격에 노출될 수 있는 단점이 있다. 따라서 ElementRef 대신 Renderer의 setElementStyle 메소드를 사용하여 요소의 스타일을 변경하도록 한다. -->
 
-생성자에 [ElementRef](https://angular.io/api/core/ElementRef)가 주입(inject)되었다. ElementRef는 네이티브 DOM의 프로퍼티를 담고 있는 nativeElement 프로퍼티를 소유한다. 따라서 ElementRef.nativeElement로 접근하면 네이티브 DOM의 프로퍼티에 접근할 수 있다. 하지만 ElementRef를 사용하여 DOM에 직접 접근하는 경우, XSS 공격에 노출될 수 있는 단점이 있다. 따라서 ElementRef 대신 [Renderer2](https://angular.io/api/core/Renderer2)의 [setStyle](https://angular.io/api/core/Renderer2#setStyle) 메소드를 사용하여 요소의 스타일을 변경하도록 한다.
+생성자에 [ElementRef](https://angular.io/api/core/ElementRef) 타입의 인스턴스가 주입(inject)되었다. ElementRef 인스턴스는 디렉티브가 선언된 호스트 요소를 가리킨다. 이 인스턴스는 호스트 네이티브 DOM의 프로퍼티를 담고 있는 nativeElement 프로퍼티를 소유한다. 따라서 ElementRef.nativeElement로 접근하면 호스트 네이티브 DOM의 프로퍼티에 접근할 수 있다.
+
+하지만 ElementRef를 사용하여 DOM에 직접 접근하는 경우, XSS 공격에 노출될 수 있는 단점이 있다. 따라서 ElementRef 대신 [Renderer2](https://angular.io/api/core/Renderer2)의 [setStyle](https://angular.io/api/core/Renderer2#setStyle) 메소드를 사용하여 호스트 요소의 스타일을 변경하도록 한다.
 
 ```typescript
 // text-blue.directive.ts
@@ -130,7 +132,7 @@ import { TextBlueDirective } from './text-blue.directive';
 export class AppModule { }
 ```
 
-디렉티브를 모듈에 등록하면 컴포넌트에서 사용할 수 있다. Angular는 등록된 디렉티브를 템플릿에서 만나면 디렉티브로 인식한다.
+디렉티브를 모듈에 등록하면 컴포넌트에서 사용할 수 있다. textBlue 디렉티브를 p 요소에 어트리뷰트로 적용한다. 이때 textBlue 디렉티브가 적용된 p 요소는 어트리뷰트 호스트(attribute host)가 된다.
 
 ```typescript
 // app.component.ts
@@ -143,13 +145,13 @@ import { Component } from '@angular/core';
 export class AppComponent { }
 ```
 
-textBlue 디렉티브를 p 요소에 어트리뷰트로 적용한다. 이때 textBlue 디렉티브가 적용된 p 요소는 어트리뷰트 호스트(attribute host)가 된다.
-
 컴포넌트를 실행하면 textBlue 디렉티브에 의해 요소의 텍스트 컬러가 파란색으로 표시되는 것을 확인할 수 있다.
+
+<iframe src="https://stackblitz.com/edit/custom-attr-directive-1?embed=1&file=app/text-blue.directive.ts&hideExplorer=1" frameborder="0" width="100%" height="500"></iframe>
 
 ## 3.2 이벤트 처리
 
-textBlue 디렉티브는 단순히 텍스트의 컬러를 파란색으로 표시한다. 마우스 이벤트 mouseenter가 발생하면 텍스트의 컬러를 파란색으로 지정하고 마우스 이벤트 mouseleave가 발생하면 텍스트의 컬러에 지정된 파란색을 취소하도록 textBlue 디렉티브를 리팩토링하여 보자.
+textBlue 디렉티브는 단순히 텍스트의 컬러를 파란색으로 표시한다. 이 정도의 기능이라면 디렉티브를 사용하기 보다는 CSS로 처리할 수 있다. textBlue 디렉티브에 이벤트 처리 기능을 추가해 보자. 마우스 이벤트 mouseenter가 발생하면 텍스트의 컬러를 파란색으로 지정하고 마우스 이벤트 mouseleave가 발생하면 텍스트의 컬러에 지정된 파란색을 취소하도록 textBlue 디렉티브를 리팩토링한다.
 
 ```typescript
 // text-blue.directive.ts
@@ -173,11 +175,13 @@ export class TextBlueDirective {
 }
 ```
 
-먼저 주입받은 생성자 파라미터에 el에 접근 제한자 private를 추가하여 생성자 내부에서만 유효하던 ElementRef을 클래스 내부에서 참조가능한 멤버 변수로 변경한다.
+먼저 주입받은 생성자 파라미터 ElementRef 클래스의 인스턴스 el에 접근 제한자 private를 추가하여 생성자 내부에서만 유효하던 ElementRef 클래스의 인스턴스 el을 클래스 내부에서 참조가능한 멤버 변수로 변경한다.
 
-커스텀 디렉티브에 이벤트 처리 기능을 추가하기 위해 [@HostListener](https://angular.io/api/core/HostListener) 데코레이터를 사용하여 컴포넌트 또는 요소의 이벤트에 대한 핸들러를 등록한다. @HostListener를 사용하면 호스트 요소의 이벤트를 수신할 수 있다.
+사용자 정의 디렉티브에 이벤트 처리 기능을 추가하기 위해 [@HostListener](https://angular.io/api/core/HostListener) 데코레이터를 사용하여 컴포넌트 또는 요소의 이벤트에 대한 핸들러를 등록한다. @HostListener를 사용하면 호스트 요소의 이벤트를 수신할 수 있다.
 
 @HostListener 데코레이터를 사용하는 대신 @Directive 데코레이터의 메타데이터 객체의 host 프로퍼티를 사용할 수도 있다. 하지만 코드의 가독성 측면에서 유리한 @HostListener 데코레이터를 사용하도록 한다. 이벤트 핸들러 onMouseEnter, onMouseLeave은 textColor 메서드를 호출하여 어트리뷰트 호스트의 텍스트 컬러를 변경한다.
+
+<iframe src="https://stackblitz.com/edit/custom-attr-directive-2?embed=1&file=app/text-blue.directive.ts&hideExplorer=1" frameborder="0" width="100%" height="500"></iframe>
 
 ## 3.3 @Input 데이터 바인딩
 
@@ -228,9 +232,11 @@ export class TextColorDirective {
 }
 ```
 
-디렉티브는 @Input 데코레이터를 사용하여 어트리뷰트 호스트에서 프로퍼티 바인딩한 값을 전달 받는다. @Input 데코레이터의 사용 방법은 [부모 컴포넌트에서 자식 컴포넌트로 상태 전달](./angular-component-interaction#21-부모-컴포넌트에서-자식-컴포넌트로-상태-전달) 시에 사용할 때와 동일하다.
+@Input 데코레이터를 사용하여 어트리뷰트 호스트에서 프로퍼티 바인딩한 값을 전달 받는다. @Input 데코레이터의 사용 방법은 [부모 컴포넌트에서 자식 컴포넌트로 상태 전달](./angular-component-interaction#21-부모-컴포넌트에서-자식-컴포넌트로-상태-전달) 시에 사용할 때와 동일하다.
 
 모듈에 TextColorDirective를 등록하고 컴포넌트를 실행하면 color 어트리뷰트에 바인딩한 컬러가 textColor 디렉티브로 전달되고 요소의 텍스트 컬러가 이벤트에 의해 변경되는 것을 확인할 수 있다.
+
+<iframe src="https://stackblitz.com/edit/custom-attr-directive-3?embed=1&file=app/text-color.directive.ts&hideExplorer=1" frameborder="0" width="100%" height="500"></iframe>
 
 조금더 리팩터링를 해보자. 별도의 color 어트리뷰트에 바인딩한 컬러를 이번에는 textColor 디렉티브에 직접 바인딩하도록 수정한다.
 
@@ -258,10 +264,12 @@ export class TextColorDirective {
 ...
 ```
 
+<iframe src="https://stackblitz.com/edit/custom-attr-directive-4?embed=1&file=app/text-color.directive.ts&hideExplorer=1" frameborder="0" width="100%" height="500"></iframe>
+
 어트리뷰트 디렉티브는 요소의 어트리뷰트로 사용되기 때문에 프로퍼티 바인딩이 가능하다. @Input 데코레이터는 프로퍼티 바인딩을 통한 상태의 전달에 사용된다. 또한 일반 어트리뷰트의 정적인 값을 전달받을 때도 사용할 수 있다.
 
 ```typescript
-// 컴포넌트
+// app.component.ts
 import { Component } from '@angular/core';
 
 @Component({
@@ -273,8 +281,10 @@ import { Component } from '@angular/core';
 export class AppComponent {
   msg = 'button click';
 }
+```
 
-// 디렉티브
+```typescript
+// my-directive.directive.ts
 import { Directive, Input, HostListener } from '@angular/core';
 
 @Directive({
@@ -286,13 +296,14 @@ export class MyDirectiveDirective {
   // 일반 어트리뷰트의 정적 값의 전달
   @Input() staticValue: string;
 
-  @HostListener('click')
-  onClick() {
+  @HostListener('click') onClick() {
     console.log('inputValue: ' + this.inputValue);   // 'button click'
     console.log('staticValue: ' + this.staticValue); // 'hi!'
   }
 }
 ```
+
+<iframe src="https://stackblitz.com/edit/custom-attr-directive-5?embed=1&file=app/my-directive.directive.ts&hideExplorer=1" frameborder="0" width="100%" height="500"></iframe>
 
 마지막으로 mouseenter 이벤트 발생 시에는 라디오 버튼에 의해 입력된 컬러에 의해 텍스트 컬러가 변경되도록 하고 mouseleave 이벤트 발생 시에는 어트리뷰트 호스트의 일반 어트리뷰트에 지정된 정적 값을 통해 텍스트 컬러가 변경되도록 수정하여 보자.
 
@@ -358,11 +369,13 @@ export class TextColorDirective implements OnInit  {
 }
 ```
 
-# 4. 커스텀 구조 디렉티브
+<iframe src="https://stackblitz.com/edit/custom-attr-directive-6?embed=1&file=app/text-color.directive.ts&hideExplorer=1" frameborder="0" width="100%" height="500"></iframe>
+
+# 4. 사용자 정의 구조 디렉티브
 
 ## 4.1 디렉티브의 생성
 
-ngIf 디렉티브의 기능을 그대로 재현하는 간단한 예제를 통해 커스텀 구조 디렉티브의 살펴보자. Angular CLI를 사용하여 디렉티브를 추가하도록 한다.
+ngIf 디렉티브의 기능을 그대로 재현하는 간단한 예제를 통해 사용자 정의 구조 디렉티브의 살펴보자. Angular CLI를 사용하여 디렉티브를 추가하도록 한다.
 
 ```bash
 $ ng generate directive myNgIf
@@ -416,13 +429,13 @@ export class AppComponent {
 
 ## 4.2 TemplateRef와 ViewContainerRef
 
-NgIf, NgFor, NgSwitch와 같은 [빌트인 구조 디렉티브](./angular-component-template-syntax#22-빌트인-구조-디렉티브built-in-structural-directive)는 문법적 설탕(syntactic sugar)인 디렉티브 이름 앞에 붙은 *(asterisk)에 의해 `ng-template`으로 변환된다. 예를 들어 NgIf의 경우를 살펴보자.
+NgIf, NgFor, NgSwitch와 같은 [빌트인 구조 디렉티브](./angular-component-template-syntax#22-빌트인-구조-디렉티브built-in-structural-directive)는 디렉티브 이름 앞에 붙은 *(asterisk)에 의해 `ng-template`으로 변환된다. 예를 들어 NgIf의 경우를 살펴보자.
 
 ```html
 <element *ngIf="expression">...</element>
 ```
 
-ngIf 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설탕(syntactic sugar)이다. 즉 위 코드는 아래의 코드로 변환된다.
+NgIf 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설탕(syntactic sugar)이다. 즉 위 코드는 아래의 코드로 변환된다.
 
 ```html
 <ng-template [ngIf]="expression">
@@ -505,7 +518,7 @@ ng-container도 ng-template와 마찬가지로 DOM에 어떠한 영향도 주지
 
 일반적으로 ng-container는 *ngIf 또는 *ngFor와 같이 중첩 구조 디렉티브에 대한 헬퍼 요소가 필요하거나 구조 디렉티브 안에 둘 이상의 요소를 래핑하려는 경우, 사용한다.
 
-select 태그를 동적으로 구성하는 Range 커스텀 구조 디렉티브를 통해 ng-container에 사용 방법에 대해 알아보도록 하자.
+select 태그를 동적으로 구성하는 Range 사용자 정의 구조 디렉티브를 통해 ng-container에 사용 방법에 대해 알아보도록 하자.
 
 ```typescript
 // app.component.ts

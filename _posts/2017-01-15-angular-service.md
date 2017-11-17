@@ -51,7 +51,7 @@ import { GreetingService } from './greeting.service';
 })
 export class AppComponent {
   greeting: string;
-  // 서비스의 인스턴스를 담을 멤버 변수
+  // 서비스의 인스턴스를 담을 프로퍼티
   greetingService: GreetingService;
 
   constructor() {
@@ -66,7 +66,7 @@ export class AppComponent {
 }
 ```
 
-버튼 클릭 이벤트 핸들러인 sayHi 메소드가 호출되면 GreetingService의 메소드 sayHi를 호출하여 인사말을 생성한다. 이때 컴포넌트는 GreetingService의 인스턴스가 필요하다. 따라서 컴포넌트 생성자 함수 내에서 GreetingService의 인스턴스를 생성하였다. 이때 컴포넌트는 GreetingService와 **의존 관계(Dependency relationship)**에 있다. 즉 컴포넌트는 GreetingService에 의존하고 있으며 이때 컴포넌트의 관점에서 GreetingService를 **의존성(Dependency)**라 한다.
+버튼 클릭 이벤트 핸들러인 sayHi가 호출되면 GreetingService의 메소드 sayHi를 호출하여 인사말을 생성한다. 이때 컴포넌트는 GreetingService의 인스턴스가 필요하다. 따라서 컴포넌트 생성자 함수 내에서 GreetingService의 인스턴스를 생성하였다. 이때 컴포넌트는 GreetingService와 **의존 관계(Dependency relationship)**에 있다. 즉 컴포넌트는 GreetingService에 의존하고 있으며 이때 컴포넌트의 관점에서 GreetingService를 **의존성(Dependency)**라 한다.
 
 예를 들어 A가 B에 의존하는 의존 관계에 있을 때, B의 기능이 추가되거나 변경되면 A는 영향을 받는다. 즉 A가 B의 메소드를 사용한다면 B의 메소드 형식이 변경되었을 때 A도 수정되어야 한다.
 
@@ -75,7 +75,7 @@ export class AppComponent {
 의존 관계(Dependency relationship)
 {: .desc-img}
 
-컴포넌트는 GreetingService 인스턴스의 생성 방법을 알아야 한다. 예를 들어 인스턴스의 생성은 new 키워드를 사용할 수도 있고, 싱글턴 패턴의 경우 getInstance() 함수를 호출할 수도 있으며, createGreetingService()와 같은 팩토리 함수를 사용할 수도 있을 것이다.
+위 예제에서 컴포넌트는 GreetingService에 의존하고 있으므로 GreetingService 인스턴스의 생성 방법을 알아야 한다. 예를 들어 인스턴스의 생성은 new 키워드를 사용할 수도 있고, 싱글턴 패턴의 경우 getInstance() 함수를 호출할 수도 있으며, createGreetingService()와 같은 팩토리 함수를 사용할 수도 있을 것이다.
 
 ```typescript
 ...
@@ -94,7 +94,7 @@ export class AppComponent {
 }
 ```
 
-이처럼 의존성을 생성하는 코드와 사용하는 코드가 하나의 컴포넌트 내에 존재한다면 이는 컴포넌트와 의존성이 **긴밀히 결합**되어 있다고 할 수 있다. 만약에 이 컴포넌트가 GreetingService가 아닌 다른 서비스를 사용하여 인사말을 생성하도록 변경된다면 컴포넌트는 반드시 수정되어야 한다.
+이처럼 의존성을 생성하는 코드와 사용하는 코드가 하나의 컴포넌트 내에 존재한다면 이는 컴포넌트와 의존성이 **긴밀히 결합(Tight Coupling)**되어 있다고 할 수 있다. 만약에 이 컴포넌트가 GreetingService가 아닌 다른 서비스를 사용하여 인사말을 생성하도록 변경된다면 컴포넌트는 반드시 수정되어야 한다.
 
 ```typescript
 ...
@@ -113,7 +113,7 @@ export class AppComponent {
 }
 ```
 
-컴포넌트와 의존성의 의존 관계를 긴밀한 결합(Tight Coupling)에서 느슨한 결합(Loose Coupling)으로 전환하기 위해 Angular가 지원하는 의존성 주입을 사용하여 컴포넌트가 직접 인스턴스를 생성하지 않고 Angular가 인스턴스 생성의 주체가 되도록 위 코드를 수정해 보자.
+컴포넌트와 의존성의 의존 관계를 긴밀한 결합(Tight Coupling)에서 느슨한 결합(Loose Coupling)으로 전환하기 위해 Angular는 **의존성 주입(Dependency Injection)**을 지원한다. 의존성 주입을 사용하여 컴포넌트가 직접 인스턴스를 생성하지 않고 Angular가 인스턴스 생성의 주체가 되도록 위 코드를 수정해 보자.
 
 # 3. 의존성 주입(Dependency Injection)
 

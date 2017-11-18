@@ -843,7 +843,7 @@ const routes: Routes = [
 
 위 라우트 구성의 ①, ②, ③은 모두 루트 컴포넌트의 `<router-oultet>` 영역을 위한 것이다. 즉 루트 컴포넌트의 `<router-oultet>` 영역에는 UserComponent 또는 CustomerComponent이 표시된다.
 
-**children 프로퍼티는 자식 라우트를 구성할 때 사용한다.** children 프로퍼티의 값으로 설정한 라우트는 부모 컴포넌트의 `<router-oultet>` 영역에 표시된다.
+**children 프로퍼티는 자식 라우트를 구성할 때 사용한다.** 라우트 구성의 component 프로퍼티에 선언된 컴포넌트(②의 경우, UserComponent)는 children 프로퍼티에 선언된 컴포넌트들(②의 경우, UserDetailComponent)의 부모 컴포넌트이다. 부모 컴포넌트는 루트 컴포넌트와는 별도의 `<router-oultet>`을 가지며 자식 컴포넌트는 부모 컴포넌트의 `<router-oultet>` 영역에 표시된다.
 
 라우트 구성 ②의 의미는 아래와 같다.
 

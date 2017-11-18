@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Angular Routing - <strong>Basics</strong>
+title: Angular <strong>Routing</strong>
 subtitle: 라우팅과 내비게이션
 categories: angular
 section: angular
@@ -264,7 +264,7 @@ const routes: Routes = [
 
 `path: '**'`는 반드시 라우트 구성의 가장 마지막에 위치하여야 한다. 만약 가장 앞에 위치하면 '**'는 모든 URL 패스에 매칭되어 이후에 선언된 라우트가 적용되지 않는다.
 
-계층적인 라우트를 구성하려면 children 프로퍼티를 사용한다. 예를 들어 URL 패스가 '/todos', '/todos/:id'의 경우, 아래와 같이 라우트를 구성할 수 있다. URL 패스의 두번째 세그먼트 :id는 라우터 파라미터이며 컴포넌트에게 전달되는 값을 할당한다. 예를 들어 '/todos/10'과 같이 값을 할당하면 컴포넌트에게 id값으로 10이 전달된다.
+계층적인 라우트를 구성하려면 children 프로퍼티를 사용한다. 예를 들어 URL 패스가 '/todos', '/todos/:id'의 경우, 아래와 같이 라우트를 구성할 수 있다. URL 패스의 두번째 세그먼트 :id는 라우터 파라미터이며 컴포넌트에게 전달되는 값을 할당한다. 예를 들어 '/todos/10'과 같이 값을 할당하면 컴포넌트에게 id값으로 10이 전달된다. 컴포넌트가 라우터 파라미터를 전달받는 방법은 [라우트 파라미터(route parameter) 전달](./angular-routing#61-라우트-파라미터route-parameter-전달)을 참조하기 바란다.
 
 ```typescript
 const routes: Routes = [
@@ -275,25 +275,31 @@ const routes: Routes = [
 ];
 ```
 
-data 프로퍼티는 컴포넌트로 전송할 데이터이다. 이 데이터는 컴포넌트로 전송된다.
+data 프로퍼티는 컴포넌트로 전송할 라우트 정적 데이터이다. 컴포넌트가 라우트 정적 데이터를 전달받는 방법은 [라우트 정적 데이터(Route static data) 전달](./angular-routing#62-라우트-정적-데이터route-static-data-전달)을 참조하기 바란다.
 
 ```typescript
 const routes: Routes = [
-  { path: 'todos',
+  {
+    path: 'todos',
     component: TodosComponent,
-    data: { content: 'Angular' }
+    data: { title: 'Todos', sidebar: true } /* 라우트 정적 데이터 */
   }
 ];
 ```
 
-redirectTo 프로퍼티는 요청을 리다이렉트할 때 사용한다. URL 패스가 정확히 매칭할 때 리다이렉트하려면 pathMatch 프로퍼티를 함께 사용한다. pathMatch 프로퍼티에 문자열 'full'을 설정하면 path 프로퍼티의 패스와 요청 URL 패스 전체가 정확하게 매칭할 때 리다이렉트한다. pathMatch 프로퍼티를 사용하지 않으면 URL 패스의 앞부분만 매칭하여도 리다이렉트한다.
+redirectTo 프로퍼티는 요청을 리다이렉트할 때 사용한다. 리다이렉트 라우트는 반드시 pathMatch 프로퍼티와 함께 사용하여야 한다.
+
+pathMatch 프로퍼티에 문자열 'full'을 설정하면 path 프로퍼티의 패스와 요청 URL 패스 전체가 정확하게 매칭할 때 리다이렉트한다. pathMatch 프로퍼티에 문자열 'prefix'를 설정하면 path 프로퍼티의 패스와 요청 URL 패스가 앞부분만 매칭하여도 리다이렉트한다.
 
 ```typescript
 const routes: Routes = [
-  { path: 'todos', redirectTo: '/todolist' },
-  { path: 'todos/:id', redirectTo: '/todolist/:id', pathMatch: 'full' },
+  { path: '', redirectTo: '/todolist', pathMatch: 'full' },
+  { path: 'todolist', component: TodosComponent },
+  { path: 'todo/:id', component: TodoDetailComponent }
 ];
 ```
+
+<iframe src="https://stackblitz.com/edit/route-redirectto?embed=1&file=app/app-routing.module.ts" frameborder="0" width="100%" height="500"></iframe>
 
 ## 4.2 라우트 등록
 
@@ -586,7 +592,7 @@ import { Component } from '@angular/core';
 export class AppComponent {}
 ```
 
-<iframe src="https://stackblitz.com/edit/routing-exam?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/routing-exam?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 # 5. navigate 메소드
 
@@ -657,9 +663,11 @@ export class AppComponent {
 
 'goto todos' 버튼을 클릭하면 /todos로 이동한다. 이때 링크 태그를 사용하지 않았지만 [Router](https://angular.io/api/router/Router) 클래스의 멤버인 navigate 메소드를 통해 화면 전환이 가능하다. Router 클래스의 인스턴스는 의존성 주입을 통해 컴포넌트로 주입받아 사용한다.
 
-<iframe src="https://stackblitz.com/edit/navigate-method-exam?embed=1&file=app/todo-detail.component.ts&hideExplorer=1" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/navigate-method-exam?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
-# 6. 컴포넌트 간의 라우터 상태 전달
+# 6. 라우터 상태 전달
+
+## 6.1 라우트 파라미터(Route Parameter) 전달
 
 화면 전환시에 라우트 파라미터(Route Parameter)를 사용하여 컴포넌트에 데이터를 전달하는 방법에 대해 살펴보도록 하자.
 
@@ -679,7 +687,7 @@ const routes: Routes = [
 ];
 ```
 
-라우터 파라미터의 값은 RouterLink 디렉티브에 URL 패스의 세그먼트로 구성된 배열을 할당한다. 배열의 첫번째 요소는 URL 패스이며 두번째 요소가 라우터 파라미터의 값이다. 이 값은 컴포넌트로 전달된다.
+라우터 파라미터의 값은 RouterLink 디렉티브에 URL 패스의 세그먼트로 구성된 배열을 할당한다. 배열의 첫번째 요소는 URL 패스의 첫번째 세그먼트이며 두번째 요소가 URL 패스의 두번째 세그먼트인 라우터 파라미터의 값이다. 이 값은 컴포넌트로 전달된다.
 
 ```html
 <a [routerLink]="['todo', todo.id]">...</a>
@@ -691,7 +699,7 @@ navigate 메소드를 사용할 경우, 아래와 같이 URL 패스의 세그먼
 this.router.navigate(['/todo', todo.id]);
 ```
 
-`<router-oulet>` 영역에 렌더링된 컴포넌트는 [ActivatedRoute](https://angular.io/api/router/ActivatedRoute) 객체를 통해 라우터 상태(Router state)에 접근할 수 있다. ActivatedRoute는 의존성 주입에 의해 컴포넌트 내에서 참조할 수 있으며 아래와 같은 프로퍼티를 제공한다.
+`<router-oulet>` 영역에 렌더링된 컴포넌트 다시 말해 활성화된 컴포넌트는 [ActivatedRoute](https://angular.io/api/router/ActivatedRoute) 객체를 통해 라우터 상태(Router state)에 접근할 수 있다. ActivatedRoute는 아래와 같은 프로퍼티를 제공한다.
 
 ```typescript
 interface ActivatedRoute {
@@ -725,6 +733,7 @@ An Observable of the URL fragment available to all routes.
 ActivatedRoute 객체의 인스턴스는 의존성 주입을 통해 컴포넌트로 주입받는다.
 
 ```typescript
+// todo-detail.component.ts
 import { ActivatedRoute } from '@angular/router';
 ...
 export class TodoDetailComponent {
@@ -733,9 +742,11 @@ export class TodoDetailComponent {
 
 라우트 파라미터의 값을 취득할 때는 ActivatedRoute의 paramMap 프로퍼티를 사용한다. paramMap 프로퍼티는 라우터에 전달된 라우트 파라미터의 맵을 포함하는 옵저버블이다.
 
-Angular는 URL 패스가 변경되어도 해당 컴포넌트가 변경되지 않는다면 해당 컴포넌트를 소멸시키지 않고 재사용한다. 따라서 컴포넌트가 소멸되지 않은 상태에서 라우터 파라미터만 변경된 라우터 상태를 연속으로 수신할 수 있기 때문에 paramMap을 옵저버블로 제공한다. paramMap의 get 메소드에 라우트 파라미터 이름을 인자로 전달하여 라우트 파라미터를 취득한다.
+Angular는 URL 패스가 변경되어도 활성화 대상 컴포넌트가 변경되지 않는다면 해당 컴포넌트를 소멸시키지 않고 재사용한다. 따라서 컴포넌트가 소멸되지 않은 상태에서 라우터 파라미터만 변경된 라우터 상태를 연속으로 수신할 수 있기 때문에 paramMap을 옵저버블로 제공한다. paramMap의 get 메소드에 라우트 파라미터의 키값을 인자로 전달하여 라우트 파라미터의 값을 취득한다.
 
 ```typescript
+// todo-detail.component.ts
+...
 export class TodoDetailComponent implements OnInit {
 
   todoId: number;
@@ -757,7 +768,66 @@ ngOnInit() {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/route-parameter-exam?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/route-parameter-exam?embed=1&file=app/todos/todo-detail.component.ts" frameborder="0" width="100%" height="600"></iframe>
+
+## 6.2 라우트 정적 데이터(Route static data) 전달
+
+Route 인터페이스의 data 프로퍼티는 컴포넌트로 전송할 라우트 정적 데이터로서 일반적으로 애플리케이션 운영에 필요한 데이터를 전달할 때 사용한다.
+
+```typescript
+const routes: Routes = [
+  {
+    path: 'todos',
+    component: TodosComponent,
+    data: { title: 'Todos', sidebar: true } /* 라우트 정적 데이터 */
+  }
+];
+```
+
+활성화된 컴포넌트는 [ActivatedRoute](https://angular.io/api/router/ActivatedRoute) 객체를 통해 라우터 상태(Router state)에 접근할 수 있다.
+
+```typescript
+// todo-detail.component.ts
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+
+interface config {
+  title: string;
+  sidebar: boolean
+}
+
+@Component({
+  selector: 'app-todo-detail',
+  template: `
+    <p>todo detail</p>
+    <p>todo id : {{ "{{ todoId " }}}}</p>
+    <p>data : {{ "{{ data | json " }}}}</p>
+    <p>title : {{ "{{ data.title " }}}}</p>
+    <p>sidebar : {{ "{{ data.sidebar ? 'show' : 'hidden' " }}}}</p>
+    <a routerLink="/">Back to Todos</a>
+  `
+})
+export class TodoDetailComponent implements OnInit {
+
+  todoId: number;
+  data: config;
+
+  constructor(private route: ActivatedRoute) { }
+
+  ngOnInit() {
+    // route parameter 취득
+    this.todoId = +this.route.snapshot.paramMap.get('id');
+
+    // static data 취득
+    this.data = this.route.snapshot.data as config;
+    this.data.title = this.route.snapshot.data.title;
+    this.data.sidebar = this.route.snapshot.data.sidebar;
+  }
+}
+```
+
+
+
 
 # Reference
 

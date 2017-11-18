@@ -264,36 +264,15 @@ const routes: Routes = [
 
 `path: '**'`는 반드시 라우트 구성의 가장 마지막에 위치하여야 한다. 만약 가장 앞에 위치하면 '**'는 모든 URL 패스에 매칭되어 이후에 선언된 라우트가 적용되지 않는다.
 
-계층적인 라우트를 구성하려면 children 프로퍼티를 사용한다. 예를 들어 URL 패스가 '/todos', '/todos/:id'의 경우, 아래와 같이 라우트를 구성할 수 있다. URL 패스의 두번째 세그먼트 :id는 라우터 파라미터이며 컴포넌트에게 전달되는 값을 할당한다. 예를 들어 '/todos/10'과 같이 값을 할당하면 컴포넌트에게 id값으로 10이 전달된다. 컴포넌트가 라우터 파라미터를 전달받는 방법은 [라우트 파라미터(route parameter) 전달](./angular-routing#61-라우트-파라미터route-parameter-전달)을 참조하기 바란다.
-
-```typescript
-const routes: Routes = [
-  { path: 'todos', children: [
-    { path: '', component: TodosComponent },
-    { path: ':id', component: TodoDetailComponent }
-  ] }
-];
-```
-
-data 프로퍼티는 컴포넌트로 전송할 라우트 정적 데이터이다. 컴포넌트가 라우트 정적 데이터를 전달받는 방법은 [라우트 정적 데이터(Route static data) 전달](./angular-routing#62-라우트-정적-데이터route-static-data-전달)을 참조하기 바란다.
-
-```typescript
-const routes: Routes = [
-  {
-    path: 'todos',
-    component: TodosComponent,
-    data: { title: 'Todos', sidebar: true } /* 라우트 정적 데이터 */
-  }
-];
-```
-
-redirectTo 프로퍼티는 요청을 리다이렉트할 때 사용한다. 리다이렉트 라우트는 반드시 pathMatch 프로퍼티와 함께 사용하여야 한다.
+redirectTo 프로퍼티는 요청을 리다이렉트할 때 사용한다. redirectTo 프로퍼티는 일반적으로 pathMatch 프로퍼티와 함께 사용한다.
 
 pathMatch 프로퍼티에 문자열 'full'을 설정하면 path 프로퍼티의 패스와 요청 URL 패스 전체가 정확하게 매칭할 때 리다이렉트한다. pathMatch 프로퍼티에 문자열 'prefix'를 설정하면 path 프로퍼티의 패스와 요청 URL 패스가 앞부분만 매칭하여도 리다이렉트한다.
 
+path의 값이 ''인 경우, 리다이렉트 라우트는 반드시 pathMatch: 'full'을 설정하여야 한다.
+
 ```typescript
 const routes: Routes = [
-  { path: '', redirectTo: '/todolist', pathMatch: 'full' },
+  { path: '', redirectTo: 'todolist', pathMatch: 'full' },
   { path: 'todolist', component: TodosComponent },
   { path: 'todo/:id', component: TodoDetailComponent }
 ];
@@ -699,7 +678,7 @@ navigate 메소드를 사용할 경우, 아래와 같이 URL 패스의 세그먼
 this.router.navigate(['/todo', todo.id]);
 ```
 
-`<router-oulet>` 영역에 렌더링된 컴포넌트 다시 말해 활성화된 컴포넌트는 [ActivatedRoute](https://angular.io/api/router/ActivatedRoute) 객체를 통해 라우터 상태(Router state)에 접근할 수 있다. ActivatedRoute는 아래와 같은 프로퍼티를 제공한다.
+`<router-oulet>` 영역에 렌더링된 컴포넌트 다시 말해 활성화된 컴포넌트는 [ActivatedRoute](https://angular.io/api/router/ActivatedRoute) 객체를 통해 라우터 상태(Router state)에 접근할 수 있다. 즉 ActivatedRoute 내에는 다양한 라우터 상태를 가지며 이 중에서 라우트 파라미터를 추출할 수 있다. ActivatedRoute는 아래와 같은 프로퍼티를 제공한다.
 
 ```typescript
 interface ActivatedRoute {
@@ -826,7 +805,80 @@ export class TodoDetailComponent implements OnInit {
 }
 ```
 
+<iframe src="https://stackblitz.com/edit/route-static-data-exam?embed=1&file=app/todos/todo-detail.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
+# 7. 자식 라우트(Child Route)
+
+지금까지는 루트 컴포넌트에 하나의 `<router-oultet>`을 가진 예제만을 살펴보았다. 자식 컴포넌트도 자신의 자식 컴포넌트를 위한 `<router-oultet>`을 가질 수 있다. 예를 들어 아래의 그림을 살펴보자.
+
+![Child Route](img/child-route.png)
+
+자식 라우트
+{: .desc-img}
+
+루트 컴포넌트의 `<router-oultet>`에는 UserComponent 또는 CustomerComponent가 표시된다. 이때 UserComponent와 CustomerComponent는 자신의 `<router-oultet>`을 가지고 있으며 이 영역에는 자신의 자식 컴포넌트가 표시된다. 이와 같은 관계를 구성한 라우트는 아래와 같다.
+
+```typescript
+const routes: Routes = [
+  /* ① */
+  { path: '', redirectTo: '/user',  pathMatch: 'full' },
+  /* ② */
+  {
+    path: 'user',
+    component: UserComponent,
+    children: [
+      { path: ':id', component: UserDetailComponent }
+    ]
+  },
+  /* ③ */
+  {
+    path: 'customer',
+    component: CustomerComponent,
+    children: [
+      { path: ':id', component: CustomerDetailComponent }
+    ]
+  }
+];
+```
+
+위 라우트 구성의 ①, ②, ③은 모두 루트 컴포넌트의 `<router-oultet>` 영역을 위한 것이다. 즉 루트 컴포넌트의 `<router-oultet>` 영역에는 UserComponent 또는 CustomerComponent이 표시된다.
+
+**children 프로퍼티는 자식 라우트를 구성할 때 사용한다.** children 프로퍼티의 값으로 설정한 라우트는 부모 컴포넌트의 `<router-oultet>` 영역에 표시된다.
+
+라우트 구성 ②의 의미는 아래와 같다.
+
+- UserComponent는 부모 컴포넌트 AppComponent의 `<router-oultet>` 영역에 표시한다.
+- UserDetailComponent는 부모 컴포넌트 UserComponent의 `<router-oultet>` 영역에 표시한다.
+
+라우트 구성 ③의 의미는 아래와 같다.
+
+- CustomerComponent는 부모 컴포넌트 AppComponent의 `<router-oultet>` 영역에 표시한다.
+- CustomerDetailComponent는 부모 컴포넌트 CustomerComponent의 `<router-oultet>` 영역에 표시한다.
+
+<!-- const routes: Routes = [
+  {
+    path: '',
+    component: UserComponent,
+    children: [
+      {
+        path: 'user',
+        component: UserComponent,
+        children: [
+          { path: ':id', component: UserDetailComponent }
+        ]
+      },
+      {
+        path: 'customer',
+        component: CustomerComponent,
+        children: [
+          { path: ':id', component: CustomerDetailComponent }
+        ]
+      }
+    ]
+  }
+]; -->
+
+<iframe src="https://stackblitz.com/edit/child-routing?embed=1&file=app/app.module.ts" frameborder="0" width="100%" height="600"></iframe>
 
 
 # Reference

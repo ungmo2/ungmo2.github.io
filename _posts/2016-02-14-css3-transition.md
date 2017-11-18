@@ -4,13 +4,11 @@ title: CSS3 <strong>Transition</strong>
 subtitle: 트랜지션
 categories: css
 section: css
-description: CSS 프로퍼티가 변경되면 프로퍼티 변경에 따른 표시의 변화(transition)은 즉시 발생한다. 아래 코드를 실행해 보면 div 요소에 마우스가 올라가면 div 요소의 border-radius, background가 즉시 변화한다.
+description: 트랜지션(transition)은 CSS 프로퍼티 변경에 따른 표시의 변화를 부드럽게 하기 위해 애니메이션 속도를 조절한다. 즉 프로퍼티 변경이 표시의 변화에 즉시 영향을 미치게 하는 대신 그 프로퍼티의 변화가 일정 시간(duration)에 걸쳐 일어나도록 하는 것이다.
 ---
 
 * TOC
 {:toc}
-
-# 트랜지션 (Transition)
 
 CSS 프로퍼티가 변경되면 프로퍼티 변경에 따른 표시의 변화(transition)은 즉시 발생한다. 아래 코드를 실행해 보면 div 요소에 마우스가 올라가면 div 요소의 border-radius, background가 즉시 변화한다.
 

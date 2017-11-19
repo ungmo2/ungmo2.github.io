@@ -46,7 +46,7 @@ import { GreetingService } from './greeting.service';
   selector: 'app-root',
   template: `
     <button (click)="sayHi()">Say Hi</button>
-    <h1>{{greeting}}</h1>
+    <p>{{ "{{ greeting " }}}}</p>
   `
 })
 export class AppComponent {
@@ -79,19 +79,11 @@ export class AppComponent {
 
 ```typescript
 ...
-export class AppComponent {
-  greeting: string;
-  greetingService: GreetingService;
-
   constructor() {
     // GreetingService 인스턴스의 생성 방법을 알아야 한다.
     this.greetingService = new GreetingService();
   }
-
-  sayHi() {
-    this.greeting = this.greetingService.sayHi();
-  }
-}
+...
 ```
 
 이처럼 의존성을 생성하는 코드와 사용하는 코드가 하나의 컴포넌트 내에 존재한다면 이는 컴포넌트와 의존성이 **긴밀히 결합(Tight Coupling)**되어 있다고 할 수 있다. 만약에 이 컴포넌트가 GreetingService가 아닌 다른 서비스를 사용하여 인사말을 생성하도록 변경된다면 컴포넌트는 반드시 수정되어야 한다.
@@ -130,14 +122,14 @@ import { GreetingService } from './greeting.service';
   selector: 'app-root',
   template: `
     <button (click)="sayHi()">Say Hi</button>
-    <h1>{{greeting}}</h1>
+    <p>{{ "{{ greeting " }}}}</p>
   `,
   providers: [GreetingService]
 })
 export class AppComponent {
   greeting: string;
 
-  constructor(public greetingService: GreetingService) {}
+  constructor(private greetingService: GreetingService) {}
 
   sayHi() {
     this.greeting = this.greetingService.sayHi();
@@ -162,11 +154,11 @@ providers: [{
 }]
 ```
 
-이와 같은 방법으로 Angular는 주입될 의존성의 생성 방법을 알게 되고 **인젝터(Injector)**는 providers 프로퍼티의 설정 정보대로 동작하여 의존성의 인스턴스를 생성하고 주입한다. 이제 컴포넌트는 의존성의 생성 방법을 알 필요가 없고 인젝터가 생성하여 생성자의 인자로 주입한 인스턴스를 사용하기만 하면 된다.
+이와 같은 방법으로 Angular는 주입할 의존성의 생성 방법을 알게 되고 **인젝터(Injector)**는 providers 프로퍼티의 설정 정보대로 동작하여 의존성의 인스턴스를 생성하고 주입한다. 이제 컴포넌트는 의존성의 생성 방법을 알 필요가 없고 인젝터가 생성하여 생성자의 인자로 주입한 인스턴스를 사용하기만 하면 된다.
 
 ```typescript
 // 의존성 주입
-constructor(public greetingService: GreetingService) {}
+constructor(private greetingService: GreetingService) {}
 ```
 
 greetingService는 GreetingService 타입 인스턴스를 가리키는 멤버 변수이고 컴포넌트의 메소드에서 this에 의해 참조 가능하게 되었다.
@@ -178,9 +170,11 @@ sayHi() {
 }
 ```
 
+<iframe src="https://stackblitz.com/edit/service-di-exam?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+
 # 4. 인젝터(Injector)
 
-컴포넌트가 생성될 때, Angular는 컴포넌트에 필요한 인스턴스를 인젝터에 요청한다. 인젝터는 이전에 이미 생성한 인스턴스를 담고 있는 컨테이너를 관리하고 있는데 요청된 인스턴스가 컨테이너에 존재하지 않으면 인스턴스를 생성하고 컨테이너에 추가한다. 그리고 요청된 인스턴스를 컴포넌트 생성자의 인수로 주입된다.
+컴포넌트가 생성될 때, Angular는 컴포넌트에 필요한 인스턴스를 인젝터에 요청한다. 인젝터는 이전에 이미 생성한 인스턴스를 담고 있는 컨테이너를 관리하고 있는데 요청된 인스턴스가 컨테이너에 존재하지 않으면 인스턴스를 생성하고 컨테이너에 추가한다. 그리고 요청된 인스턴스를 컴포넌트 생성자의 인자로 주입한다.
 
 ![Injector](/img/injector.png)
 
@@ -191,13 +185,13 @@ sayHi() {
 
 컴포넌트는 트리 구조로 구성된다. 컴포넌트는 각각 하나의 인젝터를 가지고 있기 때문에 컴포넌트의 트리 구조와 동일한 인젝터 트리가 만들어진다.
 
-컴포넌트의 주입 요청이 있을 때 인젝터는 현재 컴포넌트에서 등록한 프로바이더에서 주입 대상을 검색한다. 이때 해당 컴포넌트의 프로바이더에서 주입 대상을 찾을 수 없으면 상위 컴포넌트의 프로바이더에서 주입 대상을 검색한다. 상위 컴포넌트의 프로바이더를 검색하여 주입 대상을 찾으면 해당 인젝터는 인스턴스를 생성하며 상위 인젝터가 생성한 인스턴스는 하위 컴포넌트에서 사용할 수 있다.
+컴포넌트의 주입 요청이 있을 때 인젝터는 현재 컴포넌트에서 등록한 프로바이더에서 주입 대상을 검색한다. 이때 해당 컴포넌트의 프로바이더에서 주입 대상을 찾을 수 없으면 상위 컴포넌트의 프로바이더에서 주입 대상을 검색한다. 상위 컴포넌트의 프로바이더를 검색하여 주입 대상을 찾으면 해당 인젝터는 인스턴스를 생성하며 **상위 인젝터가 생성한 인스턴스는 하위 컴포넌트에서 사용할 수 있다.**
 
 따라서 인젝터 트리의 최상위 인젝터 즉 루트 인젝터에서 생성한 인스턴스는 전역에서 사용 가능한 전역 서비스로 사용할 수 있다.
 
 # 6. 프로바이더(Provider)
 
-인젝터가 인스턴스를 생성할 때 인스턴스를 어떻게 생성하는지 알려주어야 한다. 이 인스턴스 생성 정보는 providers 프로퍼티에 등록한다. providers 프로퍼티는 모듈의 @NgModule 또는 컴포넌트의 @Component 어노테이션에 등록한다.
+인젝터가 인스턴스를 생성할 때 인스턴스를 어떻게 생성하는지 알려주어야 한다. 이 인스턴스 생성 정보는 providers 프로퍼티에 등록한다. **providers 프로퍼티는 모듈의 @NgModule 또는 컴포넌트의 @Component 어노테이션에 등록한다.**
 
 ```typescript
 @NgModule({
@@ -211,7 +205,7 @@ sayHi() {
 })
 ```
 
-@NgModule 어노테이션에 등록한 서비스는 모듈 전체(루트 모듈인 경우, 애플리케이션 전역)에 반영되고 @Component 어노테이션에 등록한 서비스는 해당 컴포넌트와 자식 컴포넌트에 반영된다. 모듈 레벨에 등록한 서비스는 하나의 인스턴스를 공유하지만 컴포넌트 레벨로 등록한 서비스는 컴포넌트가 생성될 때마다 새로운 인스턴스를 취득한다.
+@NgModule 어노테이션에 등록한 서비스는 모듈 전체(루트 모듈인 경우, 애플리케이션 전역)에 반영되고 @Component 어노테이션에 등록한 서비스는 해당 컴포넌트와 자식 컴포넌트에 반영된다. **모듈 레벨에 등록한 서비스는 하나의 인스턴스를 공유하지만 컴포넌트 레벨로 등록한 서비스는 컴포넌트가 생성될 때마다 새로운 인스턴스를 취득한다.**
 
 프로바이더는 사용 방법에 따라 3가지 종류로 구분할 수 있다.
 
@@ -250,7 +244,7 @@ sayHi() {
 ```typescript
 providers: [{
   // 의존성으로 주입될 객체의 타입(토큰, Token)
-  provide: UserService,
+  provide: GreetingService,
   // 의존성으로 주입될 객체의 인스턴스를 생성할 클래스
   useClass: AnotherGreetingService
 }]
@@ -309,17 +303,19 @@ import { AnotherGreetingService } from './another-greeting.service';
   selector: 'app-root',
   template: `
     <button (click)="sayHi()">Say Hi</button>
-    <h1>{{greeting}}</h1>
+    <p>{{ "{{ greeting " }}}}</p>
   `,
   providers: [{
+    // 의존성으로 주입될 객체의 타입(토큰, Token)
     provide: GreetingService,
+    // 의존성으로 주입될 객체의 인스턴스를 생성할 클래스
     useClass: AnotherGreetingService
   }]
 })
 export class AppComponent {
   greeting: string;
 
-  constructor(public greetingService: GreetingService) {
+  constructor(private greetingService: GreetingService) {
     console.log(greetingService instanceof AnotherGreetingService); // true
   }
 
@@ -335,20 +331,15 @@ export class AppComponent {
 
 ```typescript
 // app.module.ts
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { AnotherGreetingService } from './another-greeting.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ChildComponent
-  ],
-  imports: [
-    BrowserModule
-  ],
+  declarations: [AppComponent],
+  imports: [BrowserModule],
   providers: [AnotherGreetingService],
   bootstrap: [AppComponent]
 })
@@ -358,9 +349,11 @@ export class AppModule { }
 이러한 경우, 동일한 기능을 하는 AnotherGreetingService의 인스턴스가 2개 생성되는 것은 바람직하지 않다. AnotherGreetingService의 인스턴스를 싱글턴으로 생성하도록 프로바이더를 수정하여 보자.
 
 ```typescript
+// app.module.ts
 ...
   providers: [{
     provide: GreetingService,
+    // 인스턴스가 존재하면 새로 인스턴스를 생성하지 않고 기존의 인스턴스를 사용
     useExisting: AnotherGreetingService
   }]
 ...
@@ -371,6 +364,7 @@ useExisting 프로퍼티에 지정한 클래스의 인스턴스가 존재하면 
 ```typescript
 // app.module.ts
 import { Component } from '@angular/core';
+
 import { GreetingService } from './greeting.service';
 import { AnotherGreetingService } from './another-greeting.service';
 
@@ -378,15 +372,13 @@ import { AnotherGreetingService } from './another-greeting.service';
   selector: 'app-root',
   template: `
     <button (click)="sayHi()">Say Hi</button>
-    <h1>{{greeting}}</h1>
+    <p>{{ "{{ greeting " }}}}</p>
   `,
-  providers: [
-    {
-      provide: GreetingService,
-      useExisting: AnotherGreetingService
-    },
-    AnotherGreetingService
-  ]
+  providers: [{
+    provide: GreetingService,
+    // 인스턴스가 존재하면 새로 인스턴스를 생성하지 않고 기존의 인스턴스를 사용
+    useExisting: AnotherGreetingService
+  }]
 })
 export class AppComponent {
   greeting: string;
@@ -403,6 +395,8 @@ export class AppComponent {
   }
 }
 ```
+
+<iframe src="https://stackblitz.com/edit/service-providers?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 ## 6.2 값 프로바이더(Value Provider)
 

@@ -745,8 +745,12 @@ export class Sibling2Component {
 
 Sibling1Component에서 입력받은 상태가 SharedService를 경유하여 Sibling2Component로 공유되었다.
 
-
 # Reference
 
-* [Angular NgModules](https://angular.io/guide/ngmodule)
+* [The Dependency Injection pattern](https://angular.io/guide/dependency-injection-pattern)
 
+* [Angular Dependency Injection](https://angular.io/guide/dependency-injection)
+
+* [Hierarchical Dependency Injectors](https://angular.io/guide/hierarchical-dependency-injection)
+
+* [Dependency Injection](https://angular.io/guide/dependency-injection-in-action)

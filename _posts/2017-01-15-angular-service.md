@@ -745,6 +745,8 @@ export class Sibling2Component {
 
 Sibling1Component에서 입력받은 상태가 SharedService를 경유하여 Sibling2Component로 공유되었다.
 
+<iframe src="https://stackblitz.com/edit/shared-todo-service?embed=1&file=app/shared-todo.service.ts" frameborder="0" width="100%" height="600"></iframe>
+
 # Reference
 
 * [The Dependency Injection pattern](https://angular.io/guide/dependency-injection-pattern)

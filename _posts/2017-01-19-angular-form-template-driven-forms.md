@@ -148,24 +148,35 @@ NgModel 디렉티브가 적용된 요소가 FormGroup 인스턴스에 추가되�
 NgModel 디렉티브는 [양방향 데이터 바인딩](./angular-component-template-syntax#17-양방향-데이터-바인딩two-way-binding)에서 사용할 때와는 달리 괄호와 할당문없이 선언한다.
 
 ```html
-<input type="text" name="userid" ngModel>
+<form #userForm="ngForm">
+  <input type="text" name="userid" ngModel>
+  ...
 ```
 
-위 예제의 경우, 폼 컨트롤 요소의 값은 NgForm.value 프로퍼티의 name 프로퍼티에 저장된다. 따라서 ngModel 디렉티브는 반드시 name 어트리뷰트와 함께 사용하여야 한다.
+위 예제의 경우, 폼 컨트롤 요소의 값은 userForm.value.userid에 저장된다.
 
-폼 요소에 템플릿 참조 변수를 사용할 수 있듯이 폼 컨트롤 요소에도 템플릿 참조 변수를 사용할 수 있다. 참조 변수에는 ngModel을 할당한다.
+폼 요소에 템플릿 참조 변수를 사용할 수 있듯이 폼 컨트롤 요소에도 템플릿 참조 변수를 사용할 수 있다.
+
+```html
+<input type="text" name="userid" ngModel #userid>
+<p>value: {{ "{{ userid.value "}}}}</p>
+```
+
+이때 **참조 변수에 ngModel을 할당하면 유효성 추적이 가능해진다.**
 
 ```html
 <input type="text" name="userid" ngModel #userid="ngModel">
-<pre>{{ "{{ userid.value "}}}}</pre>
+<p>userid value: {{ "{{ userid.value "}}}}</p>
+<p>userid valid: {{ "{{ userid.valid "}}}}</p>
 ```
 
-ngModel 디렉티브가 적용된 폼 컨트롤 요소는 폼 요소에 의해 값과 유효성 상태가 관리된다. 따라서 폼 요소를 가리키는 템플릿 참조 변수 또는 폼 컨트롤 요소를 가리키는 템플릿 참조 변수를 이벤트에 바인딩된 핸들러 함수에 인자로 전달하여 필요한 로직을 실행할 수 있다. 컴포넌트 클래스의 핸들러 함수가 필요한 로직을 실행한 이후, 그 결과를 다시 템플릿으로 보내야 한다면 양방향 데이터 바인딩을 사용하는 것이 보다 간편하다.
+참조 변수를 이벤트에 바인딩된 핸들러 함수에 인자로 전달하여 필요한 로직을 실행할 수 있다. 하지만 컴포넌트 클래스의 핸들러 함수가 필요한 로직을 실행한 이후, 그 결과를 다시 템플릿으로 보내야 한다면 양방향 데이터 바인딩을 사용하는 것이 보다 간편하다.
 
 ```html
 <input type="text" name="userid" [(ngModel)]="user.id" #userid="ngModel">
-<pre>{{ "{{ userid.value "}}}}</pre>
 ```
+
+<iframe src="https://stackblitz.com/edit/template-driven-form-3?embed=1&file=app/user-form.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 ## 2.3 NgModelGroup 디렉티브
 

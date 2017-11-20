@@ -69,7 +69,7 @@ HTML의 폼을 사용하여도 어느 정도의 [유효성 검증](https://devel
 
 # 3. Angular 폼
 
-이번에는 Angular의 폼을 구성하여 보자. 하나의 입력 폼을 작성하고 사용자 입력 데이터의 유효성을 검증하는 케이스이다.
+이번에는 Angular의 폼을 구성하여 보자. 하나의 입력 폼 컨트롤 요소를 작성하고 사용자 입력 데이터의 유효성을 검증하는 케이스이다.
 
 <!-- Angular는 DOM 요소에 대한 참조를 담고 있는 [템플릿 참조 변수](./angular-component-template-syntax#3-템플릿-참조-변수template-reference-variable)를 제공한다. 템플릿 참조 변수는 템플릿 내에서만 유효하며 컴포넌트 클래스에 어떠한 부수 효과(Side effect)도 주지 않는다.
 

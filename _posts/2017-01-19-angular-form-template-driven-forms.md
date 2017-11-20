@@ -4,7 +4,7 @@ title: Angular Forms - <strong>Template-driven Forms</strong>
 subtitle: 템플릿 기반 폼과 유효성 검증
 categories: angular
 section: angular
-description: 템플릿 기반 폼은 컴포넌트 템플릿에서 디랙티브를 사용하여 폼을 구성하는 방식으로 각 필드의 형식, 유효성 검증 규칙을 모두 템플릿에서 정의한다. 비교적 간단한 폼에 사용한다. 템플릿 기반 폼은 NgForm, NgModel, NgModelGroup 디렉티브를 중심으로 동작한다. 이들을 사용하기 위해서 @angular/forms 패키지의 FormsModule을 애플리케이션 모듈에 추가한다.
+description: 템플릿 기반 폼은 컴포넌트 템플릿에서 디렉티브를 사용하여 폼을 구성하는 방식으로 각 필드의 형식, 유효성 검증 규칙을 모두 템플릿에서 정의한다. 비교적 간단한 폼에 사용한다. 템플릿 기반 폼은 NgForm, NgModel, NgModelGroup 디렉티브를 중심으로 동작한다. 이들을 사용하기 위해서 @angular/forms 패키지의 FormsModule을 애플리케이션 모듈에 추가한다.
 ---
 
 * TOC
@@ -14,7 +14,7 @@ description: 템플릿 기반 폼은 컴포넌트 템플릿에서 디랙티브�
 
 # 1. 템플릿 기반 폼(Template-driven Forms)이란?
 
-템플릿 기반 폼은 컴포넌트 템플릿에서 디랙티브를 사용하여 폼을 구성하는 방식으로 각 필드의 형식, 유효성 검증 규칙을 모두 템플릿에서 정의한다. 비교적 간단한 폼에 사용한다.
+템플릿 기반 폼은 컴포넌트 템플릿에서 디렉티브를 사용하여 폼을 구성하는 방식으로 각 필드의 형식, 유효성 검증 규칙을 모두 템플릿에서 정의한다. 비교적 간단한 폼에 사용한다.
 
 템플릿 기반 폼은 NgForm, NgModel, NgModelGroup 디렉티브를 중심으로 동작한다. 이들을 사용하기 위해서 @angular/forms 패키지의 FormsModule을 애플리케이션 모듈에 추가한다.
 
@@ -41,18 +41,18 @@ export class AppModule { }
 
 ## 2.1 NgForm 디렉티브
 
-[NgForm](https://angular.io/api/forms/NgForm) 디렉티브는 폼 전체를 가리킨다. 모듈에 FormsModule을 추가하면 NgForm 디렉티브를 선언하지 않아도 모든 form 요소에 NgForm 디렉티브가 자동 적용된다.
+[NgForm](https://angular.io/api/forms/NgForm) 디렉티브는 폼 전체를 가리킨다. 모듈에 FormsModule을 추가하면 NgForm 디렉티브를 선언하지 않아도 모든 form 요소에 NgForm 디렉티브가 자동으로 적용되어 템플릿 기반 폼으로 동작한다
 
-HTML 포준 폼은 submit 버튼이 클릭되면 폼 데이터를 서버로 전송하고 페이지를 전환하지만 NgForm 디렉티브가 적용된 템플릿 기반 폼은 submit 이벤트를 인터셉트하여 폼 데이터를 서버로 전송하고 페이지를 전환하는 기본 동작을 막는다. 따라서 템플릿 기반 폼에서는 submit 이벤트 대신 submit 이벤트의 기본 동작 방지를 보증하는 ngSubmit 이벤트를 사용한다.
-
-```html
-<form (ngSubmit)="onNgSubmit()"></form>
-```
-
-모듈에 FormsModule을 추가하면 폼 요소에 NgForm 디렉티브가 자동으로 적용되어 템플릿 기반 폼으로 동작한다. 폼 요소에 자동으로 적용되는 NgForm 디렉티브를 적용 취소하려면 ngNoForm을 추가한다. ngNoForm이 적용되면 HTML 표준 폼으로 동작한다.
+폼 요소에 자동으로 적용되는 NgForm 디렉티브의 적용을 취소하려면 form 요소에 ngNoForm을 추가한다. ngNoForm이 적용되면 HTML 표준 폼으로 동작한다.
 
 ```html
 <form ngNoForm></form>
+```
+
+HTML 표준 폼은 submit 버튼이 클릭되면 폼 데이터를 서버로 전송하고 페이지를 전환하지만 NgForm 디렉티브가 적용된 템플릿 기반 폼은 submit 이벤트를 인터셉트하여 폼 데이터를 서버로 전송하고 페이지를 전환하는 기본 동작을 막는다. 따라서 템플릿 기반 폼에서는 submit 이벤트 대신 submit 이벤트의 기본 동작 방지를 보증하는 ngSubmit 이벤트를 사용한다.
+
+```html
+<form (ngSubmit)="onNgSubmit()"></form>
 ```
 
 템플릿 기반 폼에도 템플릿 참조 변수를 사용할 수 있다. 참조 변수에는 ngForm을 할당한다.
@@ -61,7 +61,7 @@ HTML 포준 폼은 submit 버튼이 클릭되면 폼 데이터를 서버로 전�
 <form #f="ngForm" (ngSubmit)="onNgSubmit(f)"></form>
 ```
 
-ngSubmit 이벤트에 바인딩된 이벤트 핸들러에 폼을 가리키는 템플릿 참조 변수를 전달하였다. 이 참조 변수에는 폼 요소의 자식 요소 중에서 NgModel 디렉티브가 적용된 요소만이 추가된다.
+ngSubmit 이벤트에 바인딩된 이벤트 핸들러에 폼을 가리키는 템플릿 참조 변수를 전달하였다. 이 참조 변수는 폼 요소 자신을 가리키며 gModel 디렉티브가 적용된 자식 폼 컨트롤 요소가 추가된다.
 
 템플릿 기반 폼을 사용하여 간단한 회원 가입 폼을 작성해 보자.
 
@@ -84,15 +84,17 @@ export class UserFormComponent {
 }
 ```
 
-NgForm 디렉티브는 자신이 적용된 폼 요소에 해당하는 [FormGroup](https://angular.io/api/forms/FormGroup) 인스턴스를 생성한다. 그리고 폼 요소의 자식 요소 중에서 NgModel 디렉티브가 적용된 요소를 탐색하여 FormGroup 인스턴스에 추가한다. 그리고 NgForm 디렉티브는 FormGroup 인스턴스를 폼 요소에 바인딩하여 값이나 유효성 검증 상태를 추적할 수 있다.
+<iframe src="https://stackblitz.com/edit/template-driven-form-1?embed=1&file=app/user-form.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
-NgModel 디렉티브는 자신이 적용된 폼 컨트롤 요소에 해당하는 [FormControl](https://angular.io/api/forms/FormControl) 인스턴스를 생성한다. 그리고 NgModel 디렉티브는 FormControl 인스턴스를 폼 컨트롤 요소에 바인딩하여 값이나 유효성 검증 상태를 추적할 수 있다.
+**NgForm 디렉티브는 자신이 적용된 폼 요소에 해당하는 [FormGroup](https://angular.io/api/forms/FormGroup) 인스턴스를 생성한다.** 그리고 폼 요소의 자식 요소 중에서 NgModel 디렉티브가 적용된 요소를 탐색하여 FormGroup 인스턴스에 추가한다. 그리고 NgForm 디렉티브는 FormGroup 인스턴스를 폼 요소에 바인딩하여 값이나 유효성 검증 상태를 추적할 수 있다.
 
-즉 FormGroup 인스턴스는 자신의 자식인 FormControl 인스턴스들을 그룹화하여 관리하기 위한 최상위 컨테이너로서 FormControl 인스턴스들을 하나의 객체로 그룹화하여 모든 FormControl 인스턴스의 값과 유효성 상태를 관리한다. 만약 유효성을 검증할 때 FormControl 인스턴스 중 하나라도 유효하지 않다면 FormGroup은 유효하지 않게 된다.
+**NgModel 디렉티브는 자신이 적용된 폼 컨트롤 요소에 해당하는 [FormControl](https://angular.io/api/forms/FormControl) 인스턴스를 생성한다.** 그리고 NgModel 디렉티브는 FormControl 인스턴스를 폼 컨트롤 요소에 바인딩하여 값이나 유효성 검증 상태를 추적할 수 있다.
+
+즉 FormGroup 인스턴스는 자신의 자식인 FormControl 인스턴스들을 그룹화하여 관리하기 위한 최상위 컨테이너로서 FormControl 인스턴스들을 하나의 객체로 그룹화하여 모든 FormControl 인스턴스의 값과 유효성 상태를 관리한다. 만약 유효성을 검증할 때 FormControl 인스턴스 중 하나라도 유효하지 않다면 FormGroup은 유효하지 않은 상태인 invalid 상태가 된다.
 
 따라서 폼 요소를 가리키는 템플릿 참조 변수는 NgModel 디렉티브가 적용된 자식 요소에 대한 참조가 포함된다.
 
-위 예제를 살펴보면 폼 요소의 자식 폼 컨트롤 요소 중에 NgModel 디렉티브가 적용된 요소가 없다. 따라서 폼 요소를 가리키는 참조 변수는 자식 폼 컨트롤 요소을 포함하지 않는다.
+위 예제를 살펴보면 폼 요소의 자식 폼 컨트롤 요소 중에 NgModel 디렉티브가 적용된 요소가 없다. 따라서 폼 요소를 가리키는 참조 변수는 자식 폼 컨트롤 요소를 포함하지 않는다.
 
 ![](/img/form-no-ngmodel.png)
 
@@ -113,36 +115,22 @@ NgForm 디렉티브는 자신이 적용된 폼 요소에 해당하는 FormGroup 
     </form>
   `
 })
+export class UserFormComponent {
+  onNgSubmit(userForm) {
+    console.log(userForm);
+    console.log(userForm.value);
+  }
+}
 ```
+
+<iframe src="https://stackblitz.com/edit/template-driven-form-2?embed=1&file=app/user-form.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
 ![](/img/form-ngmodel.png)
 
 NgModel 디렉티브가 적용된 요소가 FormGroup 인스턴스에 추가되었다
 {: .desc-img}
 
-폼을 가리키는 참조 변수 userForm의 프로퍼티 value에는 NgModel 디렉티브가 적용된 모든 자식 폼 컨트롤 요소의 값이 name 어트리뷰트의 값을 키로, 사용자 입력 값을 값으로 저장되어 있다. 따라서 폼 컨트롤 요소에는 반드시 name 어트리뷰트를 지정하여야 한다.
-
-```typescript
-// user-form.component.ts
-...
-@Component({
-  selector: 'user-form',
-  template: `
-    <form #userForm="ngForm" (ngSubmit)="onNgSubmit(userForm.value)">
-    ...
-    </form>
-    `
-})
-
-export class UserFormComponent {
-  ...
-  onNgSubmit(values) {
-    console.log(values);
-  }
-}
-```
-
-userForm.value의 참조 결과는 아래와 같다.
+폼을 가리키는 참조 변수 userForm의 value 프로퍼티(userForm.value)를 참조하면 아래와 같은 결과를 확인할 수 있다.
 
 ```json
 {
@@ -150,6 +138,8 @@ userForm.value의 참조 결과는 아래와 같다.
   "password": "1234"
 }
 ```
+
+이것은 폼 요소의 자식 요소 중 NgModel 디렉티브가 적용된 모든 자식 폼 컨트롤 요소의 상태를 나타낸다. 이때 키는 폼 컨트롤 요소의 name 어트리뷰트의 값이고, 값은 사용자 입력 값을 나타낸다. 따라서 **폼 컨트롤 요소에는 반드시 name 어트리뷰트를 지정하여야 한다.**
 
 ## 2.2 NgModel 디렉티브
 

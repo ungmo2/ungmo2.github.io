@@ -16,10 +16,9 @@ description: 대부분의 웹 애플리리케이션이 그러하듯이 Angular �
 
 대부분의 웹 애플리리케이션이 그러하듯이 Angular 애플리케이션은 HTTP 프로토콜을 통해 서버와 통신한다. Angular는 @angular/http 패키지의 [Http](https://angular.io/api/http/Http) 클래스를 통해 HTTP 요청을 처리하였다. Angular 4.3 버전부터는 @angular/common/http 패키지의 [HttpClient](https://angular.io/api/common/http/HttpClient) 클래스를 통해 기존의 Http 클래스보다 발전된 HTTP 요청 API와 인터셉터(Interceptor)를 제공한다.
 
-HttpClient 클래스의 개요를 살펴보도록 하자. HttpClient 클래스는 @angular/common/http 패키지로 제공된다. 아래 코드는 Angular 4.4.4 버전의 HttpClient 클래스를 간략히 나타낸 것이다.
+HttpClient 클래스의 개요를 살펴보도록 하자. HttpClient 클래스는 @angular/common/http 패키지로 제공된다. 아래 코드는 HttpClient 클래스를 간략히 나타낸 것이다.
 
 ```typescript
-// https://github.com/angular/angular/blob/4.4.4/packages/common/http/src/client.ts
 import {Injectable} from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 ...
@@ -61,7 +60,7 @@ HttpClient의 메소드는 옵저버블을 반환한다. 즉 HttpClient는 RxJS�
 
 # 2. HttpClientModule
 
-HttpClient 클래스를 사용하려면 HttpClient를 제공하는 HttpClientModule을 모듈에 추가하여야 한다. HttpClient을 애플리케이션 전역에서 사용할 수 있도록 애플리케이션 모듈에 HttpClientModule을 임포트한다.
+HttpClient 클래스를 사용하려면 HttpClient를 제공하는 HttpClientModule을 모듈에 추가하여야 한다. HttpClient를 애플리케이션 전역에서 사용할 수 있도록 루트 모듈에 HttpClientModule을 임포트한다.
 
 ```typescript
 // app.module.ts
@@ -85,7 +84,7 @@ import { AppComponent } from './app.component';
 export class AppModule { }
 ```
 
-HttpClientModule을 애플리케이션 모듈에 임포트하였다. 이제 애플리케이션 전역에서 컴포넌트 또는 서비스에 HttpClient를 주입할 수 있다.
+HttpClientModule을 루트 모듈에 임포트하였다. 이제 애플리케이션 전역에서 컴포넌트 또는 서비스에 HttpClient를 주입할 수 있다.
 
 # 3. HTTP 요청
 
@@ -95,7 +94,7 @@ XMLHttpRequest 객체는 HTTP를 통해서 서버와 데이터를 주고 받을 
 // XMLHttpRequest 객체의 생성
 var xhr = new XMLHttpRequest();
 // 비동기 방식으로 Request를 오픈한다
-xhr.open('GET', 'data/test.json');
+xhr.open('GET', 'api/todos');
 // Request를 전송한다
 xhr.send();
 ```
@@ -108,7 +107,7 @@ Angular의 HttpClient도 XMLHttpRequest를 사용하기 때문에 GET, POST, PUT
 $ npm install -g json-server
 ```
 
-프로젝트 폴더 루트에 데이터베이스 역할을 할 db.json 파일을 생성한다.
+데이터베이스 역할을 할 db.json 파일을 프로젝트 폴더 루트에 생성한다.
 
 ```json
 {
@@ -183,19 +182,19 @@ class Todo {
 }
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-http-get',
   template: `
     <ul>
       <li *ngFor="let todo of todos">{{ "{{ todo.content " }}}}</li>
     </ul>
     <pre>{{ "{{ todos | json " }}}}</pre>`
 })
-export class AppComponent implements OnInit {
+export class HttpGetComponent implements OnInit {
   todos: Todo[];
   url = 'http://localhost:3000/todos';
 
   // HttpClient를 컴포넌트에 주입
-  constructor(private http: HttpClient) {}
+  constructor(public http: HttpClient) {}
 
   ngOnInit() {
     // HTTP 요청
@@ -242,8 +241,6 @@ ngOnInit() {
 
 JSON 데이터가 아닌 텍스트, [blob](https://ko.wikipedia.org/wiki/%EB%B0%94%EC%9D%B4%EB%84%88%EB%A6%AC_%EB%9D%BC%EC%A7%80_%EC%98%A4%EB%B8%8C%EC%A0%9D%ED%8A%B8) 등의 non-JSON 데이터를 요청하는 경우, responseType 옵션을 사용한다. responseType 옵션을 설정하지 않는 경우, 기본으로 JSON 데이터를 반환한다.
 
--다양한 형식의 데이터
-
 ```typescript
 ngOnInit() {
   // HTTP 요청: 텍스트 파일을 요청
@@ -253,7 +250,7 @@ ngOnInit() {
 }
 ```
 
-responseType을 설정한 경우, 타입 파라미터를 지정할 필요가 없으며 get 메소드는 Observable<string>를 반환한다.
+responseType을 설정한 경우, 타입 파라미터를 지정할 필요가 없으며 get 메소드는 `Observable<string>`을 반환한다.
 
 ### 3.1.3 HttpParams
 
@@ -309,7 +306,7 @@ this.http.get<Todo[]>(this.url, { observe: 'response' })
 
 ### 3.1.5 에러 핸들링
 
-서버 요청이 실패하였거나 네트워크 연결에 문제가 있어서 에러가 발생하였을 경우, HttpClient는 정상 응답 대신 에러를 반환한다. 이때 subscribe의 두번째 콜백함수가 호출된다.
+서버 요청이 실패하였거나 네트워크 연결에 문제가 있어서 에러가 발생하였을 경우, HttpClient는 정상 응답 대신 에러를 반환한다. 이때 subscribe의 두번째 콜백함수(Observer의 error 함수)가 호출된다.
 
 ```typescript
 ngOnInit() {
@@ -317,7 +314,7 @@ ngOnInit() {
   this.http.get<Todo[]>(this.url, { observe: 'response' })
     // 요청 결과를 프로퍼티에 할당
     .subscribe(
-      // 요청 성공 처리 콜백함수
+      // 요청 성공 처리 콜백함수 (Observer의 next 함수)
       res => {
         console.log(res);
         // HttpResponse {headers: HttpHeaders, status: 200, statusText: "OK", url: "http://localhost:3000/todos", ok: true, …}
@@ -326,7 +323,7 @@ ngOnInit() {
         console.log(res.status); // 200
         this.todos = res.body;   // todos
       },
-      // 요청 실패 처리 콜백함수
+      // 요청 실패 처리 콜백함수 (Observer의 error 함수)
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
           // 클라이언트 또는 네트워크 에러
@@ -366,10 +363,10 @@ class Todo {
 }
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-http-post',
   template: `
-    <input #todo type="text" [(ngModel)]="content" placeholder="todo">
-    <button (click)="addTodo(todo.value)">Add</button>
+    <input type="text" [(ngModel)]="content" placeholder="todo">
+    <button (click)="addTodo()">Add</button>
     <ul>
       <li *ngFor="let todo of todos">{{ "{{ todo.content " }}}}</li>
     </ul>
@@ -382,7 +379,7 @@ export class HttpPostComponent implements OnInit {
   content: string;
 
   // HttpClient를 컴포넌트에 주입
-  constructor(private http: HttpClient) {}
+  constructor(public http: HttpClient) {}
 
   ngOnInit() {
     this.getTodos();
@@ -393,17 +390,18 @@ export class HttpPostComponent implements OnInit {
       .subscribe(todos => this.todos = todos);
   }
 
-  addTodo(content) {
+  // 새로운 todo를 생성한다
+  addTodo() {
     if (!this.content) { return; }
 
     // 서버로 전송할 요청 페이로드
     // id는 json-server에 의해 자동 생성된다
-    const payload = { content, completed: false };
+    const payload = { content: this.content, completed: false };
 
     this.http.post(this.url, payload)
       .subscribe(() => this.getTodos());
 
-    this.content = null;
+    this.content = '';
   }
 }
 ```
@@ -415,20 +413,20 @@ POST 요청의 경우, 서버로 전송할 요청 페이로드가 존재한다�
 브라우저가 자동 성성하는 헤더 이외에 커스텀 헤더를 추가할 때 [HttpHeaders](https://angular.io/api/common/http/HttpHeaders) 클래스를 사용한다.
 
 ```typescript
-addTodo(content) {
+addTodo() {
   if (!this.content) { return; }
 
   // 헤더 생성
   const headers = new HttpHeaders()
     .set('Authorization', 'my-auth-token');
 
-  const payload = { content, completed: false };
+  const payload = { content: this.content, completed: false };
 
   // 요청 페이로드와 커스텀 요청 헤더 전송
-  this.http.post(this.url, payload, {headers})
+  this.http.post(this.url, payload, { headers })
     .subscribe(() => this.getTodos());
 
-  this.content = null;
+  this.content = '';
 }
 ```
 
@@ -452,7 +450,7 @@ class Todo {
 }
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-http-put',
   template: `
     <ul>
       <li *ngFor="let todo of todos" (click)="editTodo(todo.id)">{{ "{{ todo.content " }}}}</li>
@@ -465,7 +463,7 @@ export class HttpPutComponent implements OnInit {
   url = 'http://localhost:3000/todos';
 
   // HttpClient를 컴포넌트에 주입
-  constructor(private http: HttpClient) {}
+  constructor(public http: HttpClient) {}
 
   ngOnInit() {
     this.getTodos();
@@ -476,6 +474,7 @@ export class HttpPutComponent implements OnInit {
       .subscribe(todos => this.todos = todos);
   }
 
+  // id가 일치하는 todo의 모든 프로퍼티를 변경한다
   editTodo(id) {
     const payload = { content: 'Angular!', completed: true };
 
@@ -503,7 +502,7 @@ class Todo {
 }
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-http-patch',
   template: `
     <ul>
       <li *ngFor="let todo of todos" (click)="completeTodo(todo)">{{ "{{ todo.content " }}}}</li>
@@ -516,7 +515,7 @@ export class HttpPatchComponent implements OnInit {
   url = 'http://localhost:3000/todos';
 
   // HttpClient를 컴포넌트에 주입
-  constructor(private http: HttpClient) {}
+  constructor(public http: HttpClient) {}
 
   ngOnInit() {
     this.getTodos();
@@ -527,6 +526,7 @@ export class HttpPatchComponent implements OnInit {
       .subscribe(todos => this.todos = todos);
   }
 
+  // id가 일치하는 todo의 completed 프로퍼티를 변경한다
   completeTodo(todo) {
     const {id, completed} = todo;
     const payload = { completed: !completed };
@@ -555,7 +555,7 @@ class Todo {
 }
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-http-delete',
   template: `
     <ul>
       <li *ngFor="let todo of todos" (click)="deleteTodo(todo.id)">{{ "{{ todo.content " }}}}</li>
@@ -568,7 +568,7 @@ export class HttpDeleteComponent implements OnInit {
   url = 'http://localhost:3000/todos';
 
   // HttpClient를 컴포넌트에 주입
-  constructor(private http: HttpClient) {}
+  constructor(public http: HttpClient) {}
 
   ngOnInit() {
     this.getTodos();
@@ -579,6 +579,7 @@ export class HttpDeleteComponent implements OnInit {
       .subscribe(todos => this.todos = todos);
   }
 
+  // id가 일치하는 todo를 삭제한다
   deleteTodo(id) {
     this.http.delete(`${this.url}/${id}`)
       .subscribe(() => this.getTodos());

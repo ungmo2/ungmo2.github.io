@@ -69,9 +69,9 @@ HTML의 폼을 사용하여도 어느 정도의 [유효성 검증](https://devel
 
 # 3. Angular 폼
 
-이번에는 Angular의 데이터 바인딩을 사용하여 폼을 구성하여 보자.
+이번에는 Angular의 폼을 구성하여 보자. 하나의 입력 폼을 작성하고 사용자 입력 데이터의 유효성을 검증하는 케이스이다.
 
-Angular는 DOM 요소에 대한 참조를 담고 있는 [템플릿 참조 변수](./angular-component-template-syntax#3-템플릿-참조-변수template-reference-variable)를 제공한다. 템플릿 참조 변수는 템플릿 내에서만 유효하며 컴포넌트 클래스에 어떠한 부수 효과(Side effect)도 주지 않는다.
+<!-- Angular는 DOM 요소에 대한 참조를 담고 있는 [템플릿 참조 변수](./angular-component-template-syntax#3-템플릿-참조-변수template-reference-variable)를 제공한다. 템플릿 참조 변수는 템플릿 내에서만 유효하며 컴포넌트 클래스에 어떠한 부수 효과(Side effect)도 주지 않는다.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -114,7 +114,7 @@ export class AppComponent {
 }
 ```
 
-이벤트 정보를 담고 있는 DOM 이벤트 객체 $event를 이벤트 핸들러에 전달하였다. $event 객체는 발생한 이벤트에 의해 타입이 결정되는데 타입에 상관없이 모든 이벤트 객체는 target 프로퍼티를 소유한다. 이 target 프로퍼티는 value 프로퍼티에 폼 데이터를 갖고 있다. 위 예제의 경우, 폼 데이터 이외의 이벤트 정보는 필요하지 않으므로 $event 객체 전체를 컴포넌트에 보내는 것은 불필요하다. 폼 데이터만을 컴포넌트로 보내도록 수정한다.
+이벤트 정보를 담고 있는 DOM 이벤트 객체 $event를 이벤트 핸들러에 전달하였다. $event 객체는 발생한 이벤트에 의해 타입이 결정되는데 타입에 상관없이 모든 이벤트 객체는 target 프로퍼티를 소유한다. 이 target 프로퍼티는 value 프로퍼티에 폼 데이터를 갖고 있다. 위 예제의 경우, 폼 데이터 이외의 이벤트 정보는 필요하지 않으므로 $event 객체 전체를 컴포넌트에 보내는 것은 불필요하다. 폼 데이터만을 컴포넌트로 보내도록 수정한다. -->
 
 ```typescript
 import { Component } from '@angular/core';
@@ -140,7 +140,7 @@ export class AppComponent {
 }
 ```
 
-또는 $event 객체를 사용하지 않고 템플릿 참조 변수를 사용하여 컴포넌트에 폼 데이터를 보낼 수도 있다.
+<!-- 또는 $event 객체를 사용하지 않고 템플릿 참조 변수를 사용하여 컴포넌트에 폼 데이터를 보낼 수도 있다.
 
 ```typescript
 @Component({
@@ -150,7 +150,7 @@ export class AppComponent {
     <em>{{ "{{ checkResult " }}}}</em>
   `
 })
-```
+``` -->
 
 이와 같이 템플릿 문법으로 거의 대부분의 폼을 구축할 수 있다. 그런데 만약 입력 필드가 하나가 아니라 여러개 있다면 어떻게 해야 할까? 각각의 입력 필드마다 이벤트 바인딩해야 하고 유효성 검증도 입력 필드마다 처리해야 한다. 또한 입력 필드 중에 하나라도 오류가 발생한 경우, 폼 전체의 처리를 중단시켜야 하는 등 처리가 복잡해 진다. 코드에는 중복이 발생할 것이고 복잡한 코드가 만들어져서 테스트도 힘들어 질 것이다.
 

@@ -162,7 +162,7 @@ NgModel 디렉티브는 [양방향 데이터 바인딩](./angular-component-temp
 <p>value: {{ "{{ userid.value "}}}}</p>
 ```
 
-이때 **참조 변수에 ngModel을 할당하면 유효성 추적이 가능해진다.**
+이때 **참조 변수에 ngModel을 할당하면 유효성 검증 상태 추적이 가능해진다.**
 
 ```html
 <input type="text" name="userid" ngModel #userid="ngModel">
@@ -210,6 +210,8 @@ export class UserFormComponent {
 }
 ```
 
+<iframe src="https://stackblitz.com/edit/template-driven-form-4?embed=1&file=app/user-form.component.ts" frameborder="0" width="100%" height="600"></iframe>
+
 위 예제의 경우, 폼 요소는 FormGroup 인스턴스를 생성하고 자식 폼 컨트롤 요소 중에서 ngModel 디렉티브가 적용된 요소와 ngModelGroup 디렉티브가 적용된 요소가 추가된다. 이것을 그림으로 표현하면 아래와 같다.
 
 ![ngModelGroup](/img/ngmodelgroup.png)
@@ -252,7 +254,7 @@ export class AppComponent {
 }
 ```
 
-이와 같이 양방향 바인딩은 ngModel 디렉티브와 ngModelChange 디렉티브 선언의 축약 표현으로 프로퍼티 바인딩과 이벤트 바인딩가 각각 처리된다. ngModel 프로퍼티 바인딩은 컴포넌트 프로퍼티 name의 상태 변화를 수신하여 상태를 업데이트하고 ngModelChange 이벤트 바인딩은 템플릿의 상태 변화 이벤트를 발신하여 컴포넌트 프로퍼티 name의 상태를 업데이트한다. 이때 $event의 값은 폼 컨트롤 요소의 값이다.
+이와 같이 양방향 바인딩은 ngModel 디렉티브와 ngModelChange 디렉티브 선언의 축약 표현으로 프로퍼티 바인딩과 이벤트 바인딩이 각각 처리된다. **ngModel 프로퍼티 바인딩은 컴포넌트 프로퍼티 name의 상태 변화를 수신하여 상태를 업데이트하고 ngModelChange 이벤트 바인딩은 템플릿의 상태 변화 이벤트를 발신하여 컴포넌트 프로퍼티 name의 상태를 업데이트한다.** 이때 $event의 값은 폼 컨트롤 요소의 값이다.
 
 양방향 바인딩은 반드시 ngModel 디렉티브를 사용하여야 하는 것은 아니며 커스텀 양방향 데이터 바인딩도 작성할 수 있다. 커스템 양방향 바인딩의 간단한 예제를 작성해 보자.
 
@@ -263,7 +265,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `
-    <counter [(counter)]="value"></counter>
+    <counter [(count)]="value"></counter>
     <p>Value: {{ "{{ value "}}}}</p>
   `
 })
@@ -272,7 +274,7 @@ export class AppComponent {
 }
 ```
 
-자식 컴포넌트 CounterComponent를 작성한다. 부모 컴포넌트 AppComponent는 counter 프로퍼티 바인딩을 통해 자식 컴포넌트에게 상태 정보를 전달한다. 자식 컴포넌트 CounterComponent는 @Input 데코레이터를 통해 입력 프로퍼티에 전달된 상태 정보를 바인딩한다. 또한 자식 컴포넌트 CounterComponent는 @Output 데코레이터와 함께 선언된 출력 프로퍼티를 EventEmitter 객체로 초기화한다. 그리고 부모 컴포넌트로 상태를 전달하기 위해 emit() 메소드를 사용하여 이벤트를 발생시키면서 상태를 전달한다. 부모 컴포넌트는 자식 컴포넌트가 전달한 상태를 이벤트 바인딩을 통해 상태를 접수한다.
+자식 컴포넌트 CounterComponent를 작성한다. 부모 컴포넌트 AppComponent는 count 프로퍼티 바인딩을 통해 자식 컴포넌트에게 상태 정보를 전달한다. 자식 컴포넌트 CounterComponent는 @Input 데코레이터를 통해 입력 프로퍼티에 전달된 상태 정보를 바인딩한다. 또한 자식 컴포넌트 CounterComponent는 @Output 데코레이터와 함께 선언된 출력 프로퍼티를 EventEmitter 객체로 초기화한다. 그리고 부모 컴포넌트로 상태를 전달하기 위해 emit() 메소드를 사용하여 이벤트를 발생시키면서 상태를 전달한다. 부모 컴포넌트는 자식 컴포넌트가 전달한 상태를 이벤트 바인딩을 통해 상태를 접수한다.
 
 ```typescript
 // counter.component.ts
@@ -286,36 +288,40 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   `
 })
 export class CounterComponent {
-  @Input() counter: number;
-  @Output() counterChange = new EventEmitter();
+  @Input() count: number;
+  @Output() countChange = new EventEmitter();
 
   decrement() {
-    this.counter--;
-    this.counterChange.emit(this.counter);
+    this.count--;
+    this.countChange.emit(this.count);
   }
 
   increment() {
-    this.counter++;
-    this.counterChange.emit(this.counter);
+    this.count++;
+    this.countChange.emit(this.count);
   }
 }
 ```
 
-자식 컴포넌트 CounterComponent은 부모 컴포넌트 AppComponent로부터 프로퍼티 바인딩을 통해 값을 전달받는다. 자식 컴포넌트는 이 값을 증감하여 이벤트 바인딩을 통해 부모 컴포넌트로 전송한다. 이때 부모 컴포넌트는 아래의 양방향 바인딩을 통해 이 상태를 처리할 수 있다.
+자식 컴포넌트 CounterComponent는 부모 컴포넌트 AppComponent로부터 프로퍼티 바인딩을 통해 값을 전달받는다. 자식 컴포넌트는 이 값을 증감하여 이벤트 바인딩을 통해 부모 컴포넌트로 전송한다. 이때 부모 컴포넌트는 아래의 양방향 바인딩을 통해 이 상태를 처리할 수 있다.
 
 ```html
-<counter [(counter)]="value"></counter>
+<counter [(count)]="value"></counter>
 ```
 
 위 예제의 양방향 바인딩은 아래의 축약 표현으로 정확히 동일하게 동작한다.
 
 ```html
-<counter [counter]="value" (counterChange)="value=$event"></counter>
+<counter [count]="value" (countChange)="value=$event"></counter>
 ```
+
+<iframe src="https://stackblitz.com/edit/custom-2way-binding?embed=1&file=app/counter.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 # 4. 템플릿 기반 폼 유효성 검증
 
-NgForm, NgModel, NgModelGroup 디렉티브가 폼 컨트롤 요소에 적용되면 FormGroup 또는 FormControl 인스턴스를 생성한다. FormGroup와 FormControl는 [AbstractControl](https://angular.io/api/forms/AbstractControl)를 상속한 클래스이다. AbstractControl 클래스는 valid, invalid, pristine, dirty, touched, untouched와 같이 요소의 유효성 검증 상태를 나타내는 프로퍼티를 소유하며 모든 자식 클래스에 상속한다. 이들 유효성 검증 상태 프로퍼티의 의미를 알아보자.
+NgForm, NgModel, NgModelGroup 디렉티브가 폼 컨트롤 요소에 적용되면 FormGroup 또는 FormControl 인스턴스를 생성한다.
+
+FormGroup와 FormControl는 [AbstractControl](https://angular.io/api/forms/AbstractControl)를 상속한 클래스이다. AbstractControl 클래스는 valid, invalid, pristine, dirty, touched, untouched와 같이 요소의 유효성 검증 상태를 나타내는 프로퍼티를 소유하며 모든 자식 클래스에 상속한다. 이들 유효성 검증 상태 프로퍼티의 의미를 알아보자.
 
 | 유효성 검증 상태 프로퍼티 | 의미
 |:--------------------|:-----------------
@@ -330,9 +336,21 @@ NgForm, NgModel, NgModelGroup 디렉티브가 폼 컨트롤 요소에 적용되�
 아래의 예제를 살펴보자.
 
 ```html
-<input type="text" name="title" ngModel #title="ngModel" pattern="[a-zA-Z0-9]{4,10}" required>
-<em>( errors: {{ "{{ title.errors " }}}} | invalid: {{ "{{ title.invalid " }}}} | dirty: {{ "{{ title.dirty " }}}} | untouched: {{ "{{ title.untouched " }}}} | pristine: {{ "{{ title.pristine " }}}} )</em>
+<input type="text"
+  name="title"
+  ngModel
+  #title="ngModel"
+  pattern="[a-zA-Z0-9]{4,10}"
+  required>
+
+<p>errors:  {{ "{{ title.errors | json " }}}}</p>
+<p>invalid: {{ "{{ title.invalid " }}}}</p>
+<p>dirty:   {{ "{{ title.dirty " }}}}</p>
+<p>untouched: {{ "{{ title.untouched " }}}}</p>
+<p>pristine: {{ "{{ title.pristine " }}}}</p>
 ```
+
+<iframe src="https://stackblitz.com/edit/template-drive-form-validation?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
 input 폼 컨트롤 요소에 대하여 required와 4자리 이상 10자리 이하의 영문 대소문자와 숫자만을 허용하는 pattern을 설정하였다. 이때 사용자가 pattern에 부합하는 값을 입력하면 valid는 true가 되고 pattern에 위배되는 값을 입력하면 invalid는 true가 된다. invalid가 true인 상태라면 errors에 에러의 내용을 담고 있는 객체가 반환된다.
 
@@ -351,6 +369,8 @@ required가 설정되어 있으므로 값을 한번도 입력하지 않은 상�
 </em>
 ```
 
+<iframe src="https://stackblitz.com/edit/template-drive-form-validation-err-msg-1?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
+
 만약 focus in이 한번 이상 발생한 상태 즉 touched가 true이고 errors?.pattern이 null이 아니라면 유효성 검증 패턴을 통과하지 못한 상태이다. 이때 유효성 검증 패턴을 통과하도록 사용자에게 에러 메시지를 표시하여야 한다.
 
 ```html
@@ -365,6 +385,8 @@ required가 설정되어 있으므로 값을 한번도 입력하지 않은 상�
   title은 영문 또는 숫자로 4자리 이상 10이하로 입력하세요!
 </em>
 ```
+
+<iframe src="https://stackblitz.com/edit/template-drive-form-validation-err-msg-2?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
 # 5. 템플릿 기반 폼 유효성 검증 실습
 
@@ -497,7 +519,7 @@ export class UserFormComponent implements OnInit {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/template-driven-form-exam?embed=1&file=app/user-form.component.ts&hideExplorer=1&hideNavigation=1&view=preview" frameborder="0" width="100%" height="800"></iframe>
+<iframe src="https://stackblitz.com/edit/template-driven-form-exam?embed=1&file=app/user-form.html" frameborder="0" width="100%" height="800"></iframe>
 
 템플릿 기반 폼은 작성이 간편하고 템플릿 내에서 유효성 검증 결과를 쉽게 확인 할 수 있는 장점이 있다. 하지만 폼이 커지면 마크업과 pattern 등의 유효성 검증 코드가 뒤섞여 복잡해 지고 가독성이 떨어질 수 있다. 또한 유효성 검증 로직에 중복이 발생할 우려가 커지고 세밀한 유효성 검증이 곤란할 수도 있다. 비교적 간단한 폼에는 템플릿 기반 폼이 유용하지만 복잡한 폼에는 모델 기반 폼(리액티브 폼)을 사용하는 것이 효과적이다.
 

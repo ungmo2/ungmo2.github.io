@@ -618,7 +618,7 @@ get hobbies(): FormArray {
 
 FormBuilder를 사용하기 위해서는 [FormBuilder](https://angular.io/api/forms/FormBuilder) 클래스를 주입받는다. new FormGroup()으로 생성하였던 폼 모델은 주입받은 FormBuilder의 인스턴스를 사용하여 this.fb.group()와 같이 사용한다.
 
-FormBuilder를 사용하지 않는 경우, 아래와 같이 생성자의 2번째 인자로 전달하던 검증기를 추가하였다.
+FormBuilder를 사용하지 않는 경우, 아래와 같이 생성자의 2번째 인자에 검증기를 추가하였다.
 
 ```typescript
   passwordGroup: new FormGroup({
@@ -627,7 +627,7 @@ FormBuilder를 사용하지 않는 경우, 아래와 같이 생성자의 2번째
   }, PasswordValidator.match),
 ```
 
-FormBuilder를 사용하는 경우, 아래와 같이 생성자의 2번째 인자에 옵션 객체에 검증기를 추가하여야 한다.
+FormBuilder를 사용하는 경우, 아래와 같이 생성자의 2번째 인자에 옵션 객체를 생성하여 검증기를 추가하여야 한다.
 
 ```typescript
   passwordGroup: this.fb.group({

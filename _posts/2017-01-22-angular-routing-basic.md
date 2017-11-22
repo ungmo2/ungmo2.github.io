@@ -286,9 +286,11 @@ path의 값이 ''인 경우, 리다이렉트 라우트는 반드시 pathMatch: '
 
 ```typescript
 const routes: Routes = [
-  { path: '', redirectTo: 'todolist', pathMatch: 'full' },
-  { path: 'todolist', component: TodosComponent },
-  { path: 'todo/:id', component: TodoDetailComponent }
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'service', component: ServiceComponent },
+  { path: 'about', component: AboutComponent },
+  { path: '**', component: NotFoundComponent }
 ];
 ```
 

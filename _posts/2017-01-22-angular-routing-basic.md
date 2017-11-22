@@ -65,7 +65,7 @@ const routes: Routes = [
 
 a 태그의 href 어트리뷰트를 사용하지 않는 AJAX는 URL을 변경시키지 않는다. 따라서 브라우저 주소창의 URL이 변경되지 않는다. 이는 브라우저의 뒤로가기, 앞으로가기 등의 history 관리가 동작하지 않음을 의미한다. 물론 코드 상의 history.back(), history.go(n) 등도 동작하지 않는다. 새로고침을 클릭하면 주소창의 주소가 변경되지 않기 때문에 언제나 첫페이지가 다시 로딩된다. 하나의 주소로 동작하는 AJAX 방식은 SEO 이슈에서도 자유로울 수 없다.
 
-Angular는 2가지의 위치 정책(Location strategy)을 제공한다. 각 페이지는 브라우저의 주소창에서 구별할 수 있는 유일한 URL을 소유하게 된다.
+Angular는 2가지의 위치 정책(Location strategy)을 제공한다. 이로서 각 페이지는 브라우저의 주소창에서 구별할 수 있는 애플리케이션 전역에서 유일한 URL을 소유하게 된다.
 
 - PathLocationStrategy (HTML5 Histroy API 기반 내비게이션 정책)
 
@@ -79,7 +79,7 @@ HTML5의 Histroy API pushState 메소드를 사용하는 정책으로 '/service'
 localhost:4200/service
 ```
 
-PathLocationStrategy는 **Angular 라우터의 기본 정책**으로 pushState 메소드를 별도로 호출할 필요가 없다. 특별한 이유가 없는 한 사용자가 보다 쉽게 ​​이해할 수 있는 URLPathLocationStrategy를 사용하는 것을 권장한다. 이후 서버 사이드 렌더링을 도입하려면 PathLocationStrategy를 사용하여야 한다.
+PathLocationStrategy는 **Angular 라우터의 기본 정책**으로 pushState 메소드를 별도로 호출할 필요가 없다. 특별한 이유가 없는 한 사용자가 보다 쉽게 ​​이해할 수 있는 이 정책의 사용을 권장한다. 또한 [Angular Universal](https://angular.io/guide/universal#angular-universal-server-side-rendering)를 사용하여 서버 사이드 렌더링을 도입하려면 이 정책을 사용하여야 한다.
 
 ### 3.2.2 HashLocationStrategy (Hash 기반 내비게이션 정책)
 
@@ -94,6 +94,13 @@ Hash 기반 내비게이션 정책을 기본으로 사용하려면 루트 모듈
 ```typescript
 // app.module.ts
 ...
+const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'service', component: ServiceComponent },
+  { path: 'about', component: AboutComponent },
+  { path: '**', component: NotFoundComponent }
+];
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -107,6 +114,13 @@ Hash 기반 내비게이션 정책을 기본으로 사용하려면 루트 모듈
 ```typescript
 // app-routing.module.ts
 ...
+const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'service', component: ServiceComponent },
+  { path: 'about', component: AboutComponent },
+  { path: '**', component: NotFoundComponent }
+];
+
 @NgModule({
   // imports: [RouterModule.forRoot(routes)],
   imports: [RouterModule.forRoot(routes, { useHash: true })],
@@ -120,15 +134,15 @@ Hash 기반 내비게이션 정책을 기본으로 사용하려면 루트 모듈
 이제 라우터를 구성하는 요소에 대해 살펴보도록 하자. 일반적으로 라우터는 아래의 수순으로 작성한다.
 
 1. 라우트 구성
-  [Route](https://angular.io/api/router/Route) 인터페이스의 배열(Routes 타입)을 사용하여 요청 URL의 패스와 컴포넌트의 쌍으로 만들어진 라우트를 구성한다.
+  : [Route](https://angular.io/api/router/Route) 인터페이스의 배열(Routes 타입)을 사용하여 요청 URL의 패스와 컴포넌트의 쌍으로 만들어진 라우트를 구성한다.
 2. 라우트 등록
-  [RouterModule.forRoot](https://angular.io/api/router/RouterModule#forRoot) 또는 [RouterModule.forChild](https://angular.io/api/router/RouterModule#forChild)를 호출하여 라우트 구성이 포함된 모듈을 생성하고 루트 모듈 또는 기능 모듈에 등록한다.
+  : [RouterModule.forRoot](https://angular.io/api/router/RouterModule#forRoot) 또는 [RouterModule.forChild](https://angular.io/api/router/RouterModule#forChild)를 호출하여 라우트 구성이 포함된 모듈을 생성하고 루트 모듈 또는 기능 모듈에 등록한다.
 3. 뷰의 렌더링 위치 지정
-  라우터가 컴포넌트를 렌더링하여 뷰를 표시할 영역인 `<router-oulet>`을 구현하는 [RouterOutlet](https://angular.io/api/router/RouterOutlet) 디렉티브를 선언하여 컴포넌트 뷰가 렌더링될 위치를 지정한다. RouterOutlet 디렉티브는 루트 컴포넌트 또는 기능 모듈의 컴포넌트에 선언한다.
+  : 라우터가 컴포넌트를 렌더링하여 뷰를 표시할 영역인 `<router-oulet>`을 구현하는 [RouterOutlet](https://angular.io/api/router/RouterOutlet) 디렉티브를 선언하여 컴포넌트 뷰가 렌더링될 위치를 지정한다. RouterOutlet 디렉티브는 루트 컴포넌트 또는 기능 모듈의 컴포넌트에 선언한다.
 4. 내비게이션 작성
-  [RouterLink](https://angular.io/api/router/RouterLink) 디렉티브를 사용한 HTML 링크 태그를 사용하여 내비게이션을 작성한다.
+  : [RouterLink](https://angular.io/api/router/RouterLink) 디렉티브를 사용한 HTML 링크 태그를 사용하여 내비게이션을 작성한다.
 
-우선 라우팅 대상인 HomeComponent, ServiceComponent, AboutComponent,NotFoundComponent 컴포넌트를 작성하여 보자.
+우선 라우팅 대상인 HomeComponent, ServiceComponent, AboutComponent, NotFoundComponent 컴포넌트를 작성하여 보자.
 
 ```typescript
 // pages/home.component.ts
@@ -282,9 +296,9 @@ const routes: Routes = [
 
 ## 4.2 라우트 등록
 
-라우트는 모듈 단위로 구성한다. 따라서 구성된 라우트는 모듈에 등록되어야 한다.
+라우트는 모듈 단위로 구성한다. 그리고 구성된 라우트는 모듈에 등록한다.
 
-루트 모듈에 라우트 구성을 추가하여 보자. 먼저 라우터 모듈을 import하고 라우트 구성을 추가한다.
+루트 모듈에 라우트 구성을 추가하여 보자. 먼저 Routes와 RouterModule을 import하고 라우트 구성을 추가한다.
 
 ```typescript
 // app.module.ts
@@ -645,6 +659,8 @@ export class AppComponent {
 <iframe src="https://stackblitz.com/edit/navigate-method-exam?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
 # Reference
+
+* [Javascript SPA & Routing](./js-spa)
 
 * [Angular Routing & Navigation](https://angular.io/guide/router)
 

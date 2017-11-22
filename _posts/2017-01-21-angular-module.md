@@ -502,7 +502,7 @@ import { UserService } from './user.service';
 export class CoreModule { }
 ```
 
-CommonModule이 완성되었다. 이제 루트 모듈에 CommonModule을 등록하도록 하자.
+CoreModule이 완성되었다. 이제 루트 모듈에 CoreModule을 등록하도록 하자.
 
 ```typescript
 // app.component.ts

@@ -43,10 +43,10 @@ const routes: Routes = [
 navigate 메소드를 사용할 경우, 아래와 같이 URL 패스의 세그먼트로 구성된 배열을 인수로 전달한다.
 
 ```typescript
-this.router.navigate(['/todo', todo.id]);
+this.router.navigate(['todo', todo.id]);
 ```
 
-`<router-oulet>` 영역에 렌더링된 컴포넌트 다시 말해 활성화된 컴포넌트는 [ActivatedRoute](https://angular.io/api/router/ActivatedRoute) 객체를 통해 라우터 상태(Router state)에 접근할 수 있다. 즉 ActivatedRoute 내에는 다양한 라우터 상태를 가지며 이 중에서 라우트 파라미터를 추출할 수 있다. ActivatedRoute는 아래와 같은 프로퍼티를 제공한다.
+`<router-oulet>` 영역에 렌더링된 컴포넌트 다시 말해 활성화된 컴포넌트는 [ActivatedRoute](https://angular.io/api/router/ActivatedRoute) 객체를 통해 라우터 상태(Router state)에 접근할 수 있다. 즉 ActivatedRoute 객체는 다양한 라우터 상태를 가지며 이 중에서 라우트 파라미터를 추출할 수 있다. ActivatedRoute는 아래와 같은 프로퍼티를 제공한다.
 
 ```typescript
 interface ActivatedRoute {
@@ -84,12 +84,13 @@ ActivatedRoute 객체의 인스턴스는 의존성 주입을 통해 컴포넌트
 import { ActivatedRoute } from '@angular/router';
 ...
 export class TodoDetailComponent {
+  // ActivatedRoute 객체의 인스턴스를 의존성 주입을 통해 주입받는다.
   constructor(private route: ActivatedRoute) { }
 ```
 
 라우트 파라미터의 값을 취득할 때는 ActivatedRoute의 paramMap 프로퍼티를 사용한다. paramMap 프로퍼티는 라우터에 전달된 라우트 파라미터의 맵을 포함하는 옵저버블이다.
 
-Angular는 URL 패스가 변경되어도 활성화 대상 컴포넌트가 변경되지 않는다면 해당 컴포넌트를 소멸시키지 않고 재사용한다. 따라서 컴포넌트가 소멸되지 않은 상태에서 라우터 파라미터만 변경된 라우터 상태를 연속으로 수신할 수 있기 때문에 paramMap을 옵저버블로 제공한다. paramMap의 get 메소드에 라우트 파라미터의 키값을 인자로 전달하여 라우트 파라미터의 값을 취득한다.
+Angular는 URL 패스가 변경되었지만 활성화 대상 컴포넌트가 변경되지 않는 경우, 만약 활성화 대상 컴포넌트가 존재하면 다시 생성하지 않고 재사용한다. 따라서 컴포넌트가 소멸되지 않은 상태에서 라우터 파라미터만 변경된 라우터 상태를 연속으로 수신할 수 있기 때문에 paramMap을 옵저버블로 제공한다. paramMap의 get 메소드에 라우트 파라미터의 키값을 인자로 전달하여 라우트 파라미터의 값을 취득한다.
 
 ```typescript
 // todo-detail.component.ts
@@ -101,6 +102,7 @@ export class TodoDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    // 라우트 파라미터 값의 취득
     this.route.paramMap
       .subscribe(params => this.todoId = +params.get('id'));
   }
@@ -180,11 +182,12 @@ export class TodoDetailComponent implements OnInit {
 지금까지는 루트 컴포넌트에 하나의 `<router-oultet>`을 가진 예제만을 살펴보았다. 자식 컴포넌트도 루트 컴포넌트의 `<router-oultet>`와는 별도로 자신의 자식 컴포넌트를 위한 `<router-oultet>`을 가질 수 있다. 예를 들어 아래의 그림을 살펴보자.
 
 ![Child Route](img/child-route.png)
+{: .w-700}
 
 자식 라우트
 {: .desc-img}
 
-루트 컴포넌트의 `<router-oultet>`에는 UserComponent 또는 CustomerComponent가 표시된다. 이때 UserComponent와 CustomerComponent는 자신의 `<router-oultet>`을 가지고 있으며 이 영역에는 자신의 자식 컴포넌트가 표시된다. 이와 같은 관계를 구성한 라우트는 아래와 같다.
+위 그림의 경우, 루트 컴포넌트의 `<router-oultet>`에는 UserComponent 또는 CustomerComponent가 표시된다. 이때 UserComponent와 CustomerComponent는 자신의 `<router-oultet>`을 가지고 있으며 이 영역에는 자식 라우트 구성의 children 프로퍼티에 선언한 컴포넌트가 표시된다. 이와 같은 관계를 구성한 라우트는 아래와 같다.
 
 ```typescript
 const routes: Routes = [
@@ -195,6 +198,7 @@ const routes: Routes = [
     path: 'user',
     component: UserComponent,
     children: [
+      /* UserComponent의 <router-oultet>에 표시 */
       { path: ':id', component: UserDetailComponent }
     ]
   },
@@ -203,6 +207,7 @@ const routes: Routes = [
     path: 'customer',
     component: CustomerComponent,
     children: [
+      /* CustomerComponent의 <router-oultet>에 표시 */
       { path: ':id', component: CustomerDetailComponent }
     ]
   }
@@ -250,7 +255,9 @@ const routes: Routes = [
 
 # 3. 라우트 가드(Route Guard)
 
-라우트 가드는 라우터를 통한 접근을 제어하는 방법이다. 뷰로 들어갈 때 또는 빠져나갈 때 실행할 로직을 정의하기 위해 사용한다. 예를 들어 사용자 인증을 하지 않은 사용자의 접근을 제어하거나 다른 뷰로 이동하기 이전에 저장하지 않은 사용자 입력 정보가 있다면 사용자에게 알릴 수 있다. Angular는 가드를 위한 인터페이스를 제공한다.
+라우트 가드는 라우터를 통한 접근을 제어하는 방법이다. 뷰로 들어갈 때 또는 빠져나갈 때 실행할 로직을 정의하기 위해 사용한다. 예를 들어 사용자 인증을 하지 않은 사용자의 접근을 제어하거나 다른 뷰로 이동하기 이전에 저장하지 않은 사용자 입력 정보가 있다면 사용자에게 알릴 수 있다.
+
+Angular는 가드를 위한 5개의 인터페이스를 제공한다.
 
 ## 3.1 CanActivate
 

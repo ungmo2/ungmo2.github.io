@@ -651,7 +651,7 @@ export class AppComponent {
 
   gotoTodos() {
     // /todos로 이동
-    this.router.navigate(['/todos']);
+    this.router.navigate(['todos']);
   }
 }
 ```

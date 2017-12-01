@@ -160,7 +160,7 @@ h1, p { color: red; }
 
 <div class="result"></div>
 
-HTML 요소에 class 어트리뷰트 값은 공백으로 구분하여 여러개 지정할 수 있다. 아래와 같이 클래스 셀렉터를 사용하여 미리 스타일을 정의해 두고, HTML 요소는 이미 정의되어 있는 클래스를 지정하는 것으로 필요한 스타일을 지정할 수 있다. 이것은 <strong>재사용</strong>의 측면에서 유용하다. 
+HTML 요소에 class 어트리뷰트 값은 공백으로 구분하여 여러개 지정할 수 있다. 아래와 같이 클래스 셀렉터를 사용하여 미리 스타일을 정의해 두고, HTML 요소는 이미 정의되어 있는 클래스를 지정하는 것으로 필요한 스타일을 지정할 수 있다. 이것은 <strong>재사용</strong>의 측면에서 유용하다.
 
 ```html
 <!DOCTYPE html>
@@ -430,7 +430,7 @@ HTML 요소에 class 어트리뷰트 값은 공백으로 구분하여 여러개 
 
 ![Sibling Combinator](/img/Sibling_Combinator.png)
 
-## 6.3.1 인접 형제 셀렉터(Adjacent Sibling Combinator)
+### 6.3.1 인접 형제 셀렉터(Adjacent Sibling Combinator)
 
 셀렉터A의 형제 요소 중 셀렉터A 바로 뒤에 위치하는 셀렉터B 요소를 선택한다. A와 B 사이에 다른 요소가 존재하면 선택되지 않는다.
 
@@ -474,7 +474,7 @@ HTML 요소에 class 어트리뷰트 값은 공백으로 구분하여 여러개 
 
 <div class="result"></div>
 
-## 6.3.2 일반 형제 셀렉터(General Sibling Combinator)
+### 6.3.2 일반 형제 셀렉터(General Sibling Combinator)
 
 셀렉터A의 형제 요소 중 셀렉터A 뒤에 위치하는 셀렉터B 요소를 모두 선택한다.
 
@@ -617,18 +617,18 @@ selector:pseudo-class {
 <html>
 <head>
   <style>
-    /* input 요소가 사용 가능한 상태일 때, 
+    /* input 요소가 사용 가능한 상태일 때,
        input 요소 바로 뒤에 위치하는 인접 형제 span 요소를 선택 */
     input:enabled + span {
       color: blue;
     }
-    /* input 요소가 사용 불가능한 상태일 때, 
+    /* input 요소가 사용 불가능한 상태일 때,
        input 요소 바로 뒤에 위치하는 인접 형제 span 요소를 선택 */
     input:disabled + span {
       color: gray;
       text-decoration: line-through;
     }
-    /* input 요소가 체크 상태일 때, 
+    /* input 요소가 체크 상태일 때,
        input 요소 바로 뒤에 위치하는 인접 형제 span 요소를 선택 */
     input:checked + span {
       color: red;
@@ -665,7 +665,7 @@ selector:pseudo-class {
     p:first-child { color: red; }
 
     /* p 요소 중에서 마지막 자식을 선택 */
-    /* body 요소의 두번째 p 요소는 마지막 자식 요소가 아니다. 
+    /* body 요소의 두번째 p 요소는 마지막 자식 요소가 아니다.
        body 요소의 마지막 자식 요소는 div 요소이다. */
     p:last-child { color: blue; }
   </style>
@@ -847,7 +847,7 @@ n은 0부터 시작하는 정수이다.
     div:not(:nth-of-type(3n+1)) {
       margin-left: 2%;
     }
-    /* div 요소 중에서 4번째 이후 등장하는 요소가 아닌 요소만을 선택 */    
+    /* div 요소 중에서 4번째 이후 등장하는 요소가 아닌 요소만을 선택 */
     div:not(:nth-of-type(n+4)) {
       margin-bottom: 2%;
     }

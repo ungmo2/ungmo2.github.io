@@ -327,7 +327,7 @@ export class AppComponent implements OnInit {
     this.userForm = new FormGroup({
       userid: new FormControl('', [
         Validators.required,
-        Validators.pattern(/[a-zA-Z0-9]{4,10}/)
+        Validators.pattern('[a-zA-Z0-9]{4,10}')
       ]),
       passwordGroup: new FormGroup({
         password: new FormControl('', Validators.required),
@@ -498,7 +498,7 @@ export class UserFormComponent implements OnInit {
     this.userForm = new FormGroup({
       userid: new FormControl('', [
         Validators.required,
-        Validators.pattern(/[a-zA-Z0-9]{4,10}/)
+        Validators.pattern('[a-zA-Z0-9]{4,10}')
       ]),
       passwordGroup: new FormGroup({
         password: new FormControl('', Validators.required),
@@ -604,7 +604,10 @@ get hobbies(): FormArray {
 
   ngOnInit() {
     this.userForm = this.fb.group({
-      userid: ['', [Validators.required, Validators.pattern(/[a-zA-Z0-9]{4,10}/)]],
+      userid: ['', [
+        Validators.required,
+        Validators.pattern('[a-zA-Z0-9]{4,10}')
+      ]],
       passwordGroup: this.fb.group({
         password: ['', Validators.required],
         confirmPassword: ['', Validators.required]

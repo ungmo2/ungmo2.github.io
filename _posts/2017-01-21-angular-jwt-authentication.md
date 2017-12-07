@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Angular - <strong>JWT Authentication</strong>
+title: Angular <strong>JWT Authentication</strong>
 subtitle: Token 기반 인증
 categories: angular
 section: angular

@@ -135,14 +135,15 @@ app/
 추가로 설치할 의존성은 아래와 같다.
 
 ```bash
-$ npm install bootstrap angular2-jwt
+$ npm install font-awesome bootstrap angular2-jwt
 ```
 
-bootstrap을 적용하기 위해 .angular-cli.json을 아래와 같이 수정한다.
+font-awesome과 bootstrap을 적용하기 위해 .angular-cli.json을 아래와 같이 수정한다.
 
 ```json
 ...
   "styles": [
+    "../node_modules/font-awesome/css/font-awesome.min.css",
     "../node_modules/bootstrap/dist/css/bootstrap.min.css",
     "styles.css"
   ],

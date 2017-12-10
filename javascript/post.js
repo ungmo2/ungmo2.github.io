@@ -83,4 +83,34 @@ jQuery(document).ready(function ($) {
     }, 1000);
     return false;
   });
+
+  /////////////////////////
+  // CodeMirror
+  CodeMirror.modeURL = '/assets/vendor/codemirror/mode/%N/%N.js';
+  var codeBlocks = document.querySelectorAll('pre code');
+
+  function parseMode(mode) {
+    // switch (mode) {
+    //   case 'js':
+    //   case 'javascript':
+    //     mode = 'jsx'
+    // }
+    let syntax = CodeMirror.findModeByName(mode);
+    if (syntax == null) syntax = CodeMirror.findModeByName('Plain Text');
+    return syntax;
+  }
+
+  _.forEach(codeBlocks, block => {
+    var syntax = parseMode(block.className.substring(9));
+
+    CodeMirror.requireMode(syntax.mode, () => {
+      var value = _.unescape(block.innerHTML);
+      block.innerHTML = '';
+      block.parentNode.className = 'cm-s-dracula CodeMirror';
+      // block.parentNode.className = 'cm-s-default CodeMirror';
+      CodeMirror.runMode(value, syntax.mime, block, {
+        tabSize: 2
+      });
+    });
+  });
 });

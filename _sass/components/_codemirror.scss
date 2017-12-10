@@ -1,0 +1,54 @@
+// Code highlight
+.CodeMirror {
+  margin: 30px -30px;
+  overflow: auto;
+  outline: none;
+  height: auto;
+  @include desktop {
+    margin: 30px -60px;
+  }
+  &.cm-s-default {
+    background-color: #f8f8f8;
+  }
+  code {
+    @include label;
+    background: inherit;
+    color: inherit;
+    display: block;
+    padding: 30px;
+    top: 0;
+    @include desktop {
+      padding: 30px 60px;
+    }
+  }
+  .language-html {
+    @include label("HTML", $html, white);
+  }
+  .language-css {
+    @include label("CSS", $css, white);
+  }
+  .language-scss {
+    @include label("Sass", $sass, white);
+  }
+  .language-javascript {
+    @include label("JavaScript", $html, white);
+  }
+  .language-bash {
+    @include label("bash", $bootstrap, white);
+  }
+  .language-c {
+    @include label("C", $bootstrap, white);
+  }
+  .language-java {
+    @include label("Java", $sass, white);
+  }
+  .language-sql {
+    @include label("SQL", $html, white);
+  }
+  .language-json {
+    @include label("json", $css, white);
+  }
+  .language-typescript {
+    @include label("typescript", $sass, white);
+  }
+}

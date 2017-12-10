@@ -64,12 +64,16 @@ jQuery(document).ready(function ($) {
 
     // 이미 result 내부에 내용이 있으면 skip
     if($this.html()){
-      return true; // for문의 continue;와 같다.
+      return true;
     }
 
     $this.append('<iframe></iframe>');
 
-    var html = $this.prevAll('.highlighter-rouge:first').find('code').text();
+    // var html = $this.prevAll('.highlighter-rouge:first').find('code').text();
+    // var iframe = $this.children(':first')[0];
+
+    // Codemirror 대응
+    var html = $this.prev('pre').find('code').text();
     var iframe = $this.children(':first')[0];
 
     iframe.contentWindow.document.open();
@@ -190,7 +194,7 @@ jQuery(document).ready(function ($) {
     }
   });
 
-  // Face like plugin 닫기 버튼
+  // Facebook like plugin 닫기 버튼
   $('.close').on('click touch', function(event) {
     event.preventDefault();
     // Get Cookie
@@ -206,7 +210,7 @@ jQuery(document).ready(function ($) {
 
   // detect mobile : stackblits 버그 대응
   var filter = "win16|win32|win64|mac|macintel";
-  if ( navigator.platform ) { 
+  if ( navigator.platform ) {
     // mobile로 접속한 경우, stackblits iframe 요소를 제거
     if ( filter.indexOf( navigator.platform.toLowerCase() ) < 0 ) {
       $('iframe[src^="https://stackblitz.com"]').remove();

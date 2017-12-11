@@ -164,17 +164,17 @@ export class AppModule { }
 
 사용자의 정보를 표시하는 간단한 애플리케이션을 작성해보자. 이 애플리케이션의 src/app의 파일 구성은 아래와 같다.
 
-```bash
+```
 .
 └── app
-    ├── header
-    │   └── header.component.ts
-    ├── home
-    │   └── home.component.ts
-    ├── app.component.ts
-    ├── app.module.ts
-    ├── user.service.ts
-    └── user.ts
+    ├── header
+    │   └── header.component.ts
+    ├── home
+    │   └── home.component.ts
+    ├── app.component.ts
+    ├── app.module.ts
+    ├── user.service.ts
+    └── user.ts
 ```
 
 header.component.ts는 애플리케이션의 헤더를 위한 컴포넌트로서 모든 뷰에 공통으로 사용한다. 해당 뷰의 타이틀과 사용자 이름을 나타낸다. header.component.ts를 아래와 같이 작성한다.
@@ -534,21 +534,21 @@ export class AppModule { }
 
 기능 모듈, 공유 모듈, 핵심 모듈을 도입하여 모듈을 분리하였다. 루트 모듈에는 모듈의 선언만이 존재하고 보다 간결한 구성이 되었다. 프로젝트 폴더 구조 또한 아래와 같이 간결하게 정리되었다.
 
-```bash
+```
 .
 └── app
-    ├── core
-    │   ├── core.module.ts   # 핵심 모듈
-    │   └── user.service.ts
-    ├── home
-    │   ├── home.component.ts
-    │   └── home.module.ts   # 기능 모듈
-    ├── shared
-    │   ├── header.component.ts
-    │   └── shared.module.ts # 공유 모듈
-    ├── app.component.ts     # 루트 컴포넌트
-    ├── app.module.ts        # 루트 모듈
-    └── user.ts
+  ├── core
+  │   ├── core.module.ts   # 핵심 모듈
+  │   └── user.service.ts
+  ├── home
+  │   ├── home.component.ts
+  │   └── home.module.ts   # 기능 모듈
+  ├── shared
+  │   ├── header.component.ts
+  │   └── shared.module.ts # 공유 모듈
+  ├── app.component.ts     # 루트 컴포넌트
+  ├── app.module.ts        # 루트 모듈
+  └── user.ts
 ```
 
 <iframe src="https://stackblitz.com/edit/module-exam?embed=1&file=app/app.module.ts" frameborder="0" width="100%" height="800"></iframe>

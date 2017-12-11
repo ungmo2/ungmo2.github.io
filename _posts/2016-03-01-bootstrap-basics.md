@@ -193,7 +193,7 @@ mycode.html
 아래와 같이 bootstrap을 웹페이지에 로드한다. bootstrap.min.css은 bootstrap.css을 압축(minify)한 것이다. bootstrap.css을 로드하여도 무방하다.
 
 ```html
-<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 ```
 
 ```html
@@ -202,7 +202,7 @@ mycode.html
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 </head>
 <body>
   <h1>My First Bootstrap Page</h1>
@@ -226,7 +226,7 @@ mycode.html
   <button type="button" class="btn btn-danger">Danger</button>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="./bootstrap/js/bootstrap.min.js"></script>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
 ```

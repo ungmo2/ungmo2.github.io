@@ -100,8 +100,8 @@ src/
   │   ├── app.component.ts
   │   └── app.module.ts
   └── assets/
-      ├── images/
-      └── john-resig.jpeg
+      └── images/
+          └── john-resig.jpeg
 ```
 
 먼제 컴포넌트 템플릿을 작성한다. bootstrap을 사용하므로 인스톨과 .angulr-cli.json에 설정이 필요하다.

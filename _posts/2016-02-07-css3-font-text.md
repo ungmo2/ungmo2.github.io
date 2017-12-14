@@ -426,9 +426,9 @@ text-overflow 프로퍼티에 설정할 수 있는 프로퍼티값은 아래와 
       white-space: nowrap; /* 자동 줄바꿈을 방지 */
       overflow: hidden;    /* 반드시 "visible" 이외의 값이 지정되어 있어야 한다. */
     }
-    .clip     { text-overflow: clip; }
-    .ellipsis { text-overflow: ellipsis; }
-    .string   { text-overflow: '☺'; } /* only Firefox(9.0~) */
+    .clip > *     { text-overflow: clip; }
+    .ellipsis > * { text-overflow: ellipsis; }
+    .string > *   { text-overflow: '☺'; } /* only Firefox(9.0~) */
   </style>
 </head>
 <body>

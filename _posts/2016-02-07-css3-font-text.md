@@ -105,16 +105,16 @@ generic-family 폰트
   <style>
     p { font-size: 2.0em; }
 
-    /* 
-      font-style 
+    /*
+      font-style
       normal / italic / oblique
     */
     .italic {
       font-style: italic;
     }
 
-    /* 
-      font-weight 
+    /*
+      font-weight
       100 ~ 900 or normal / bold / lighter / bolder
     */
     .light {
@@ -232,7 +232,7 @@ font: italic small-caps bolder 16px/3 cursive;
       display: block;
       font: italic bold 2em/70px Arial, Helvetica, sans-serif;
       text-decoration: none;
-      text-align: center; 
+      text-align: center;
     }
   </style>
 </head>
@@ -428,14 +428,23 @@ text-overflow 프로퍼티에 설정할 수 있는 프로퍼티값은 아래와 
     }
     .clip     { text-overflow: clip; }
     .ellipsis { text-overflow: ellipsis; }
-    .string   { text-overflow: '☺'; } /*only Firefox(9.0~)*/
+    .string   { text-overflow: '☺'; } /* only Firefox(9.0~) */
   </style>
 </head>
 <body>
   <h1>text-overflow</h1>
-  <div class="clip"><h3>clip</h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-  <div class="ellipsis"><h3>ellipsis</h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-  <div class="string"><h3>string</h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+  <div class="clip">
+    <h3>clip</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+  </div>
+  <div class="ellipsis">
+    <h3>ellipsis</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+  </div>
+  <div class="string">
+    <h3>string</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+  </div>
 </body>
 </html>
 ```
@@ -466,8 +475,12 @@ text-overflow 프로퍼티에 설정할 수 있는 프로퍼티값은 아래와 
 </head>
 <body>
   <h1>word-wrap</h1>
-  <div>Floccinaucinihilipilification http://poiemaweb.com/css3-font-text</div>
-  <div class="word-wrap">Floccinaucinihilipilification http://poiemaweb.com/css3-font-text</div>
+  <div>
+    Floccinaucinihilipilification http://poiemaweb.com/css3-font-text
+  </div>
+  <div class="word-wrap">
+    Floccinaucinihilipilification http://poiemaweb.com/css3-font-text
+  </div>
 </body>
 </html>
 ```
@@ -500,13 +513,19 @@ text-overflow 프로퍼티에 설정할 수 있는 프로퍼티값은 아래와 
   </style>
 </head>
 <body>
-  <div>Floccinaucinihilipilification http://poiemaweb.com/css3-font-text</div>
+  <div>
+    Floccinaucinihilipilification http://poiemaweb.com/css3-font-text
+  </div>
 
   <h1>word-wrap</h1>
-  <div class="word-wrap">Floccinaucinihilipilification http://poiemaweb.com/css3-font-text</div>
+  <div class="word-wrap">
+    Floccinaucinihilipilification http://poiemaweb.com/css3-font-text
+  </div>
 
   <h1>word-break</h1>
-  <div class="word-break">Floccinaucinihilipilification http://poiemaweb.com/css3-font-text</div>
+  <div class="word-break">
+    Floccinaucinihilipilification http://poiemaweb.com/css3-font-text
+  </div>
 </body>
 </html>
 ```

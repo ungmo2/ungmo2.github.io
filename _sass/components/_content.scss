@@ -24,14 +24,20 @@
   }
 
   code {
-    background-color: #222;
+    // background-color: #222;
+    // border-radius: 3px;
+    // color: #66d9ef;
+    // // font-size: $small;
+    // font-size: 15px;
+    // padding: 3px 5px 3px;
+    // position: relative;
+    // top: -1px;
+
+    background-color: #f9f2f4;
     border-radius: 3px;
-    color: #66d9ef;
-    // font-size: $small;
-    font-size: 15px;
+    color: #c7254e;
+    font-size: 90%;
     padding: 3px 5px 3px;
-    position: relative;
-    top: -1px;
 
     // codeblock ``
     &.highlighter-rouge {

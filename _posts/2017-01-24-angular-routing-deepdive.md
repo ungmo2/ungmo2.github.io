@@ -251,7 +251,7 @@ const routes: Routes = [
   }
 ]; -->
 
-<iframe src="https://stackblitz.com/edit/child-routing-imodule?embed=1&file=app/app.module.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/child-routing-1module?embed=1&file=app/app.module.ts" frameborder="0" width="100%" height="600"></iframe>
 
 # 3. 라우트 가드(Route Guard)
 

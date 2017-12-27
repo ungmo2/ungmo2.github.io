@@ -24,7 +24,7 @@ multipart/form-data
 applecation/x-www-urlencoded
 : 클라이언트는 바이너리 파일을 Base64 인코딩하여 문자열화한 후, 서버로 전송하고 서버는 Base64 인코딩된 문자열을 디코딩하여 저장하는 방식이다. 인코딩으로 인한 성능 이슈가 발생할 수 있다.
 
-applecation/x-www-urlencoded 방식은 인코딩으로 인한 성능 이슈가 발생할 수 있다. multipart/form-data를 사용하여 파일을 전송하는 방식으로 예제를 작성하여 보자.
+`applecation/x-www-urlencoded` 방식은 인코딩으로 인한 성능 이슈가 발생할 수 있다. `multipart/form-data` 방식을 사용하여 파일을 전송하는 예제를 작성하여 보자.
 
 # 1. Backend
 
@@ -37,14 +37,14 @@ server/
 └── server.js     # 서버 모듈
 ```
 
-바이너리 파일 전송을 위해 multipart/form-data 방식을 지원하는 익스프레스 미들웨어인 [multer](https://github.com/expressjs/multer/blob/master/doc/README-ko.md)를 사용한다.
+바이너리 파일 전송을 위해 `multipart/form-data` 방식을 지원하는 익스프레스 미들웨어인 [multer](https://github.com/expressjs/multer/blob/master/doc/README-ko.md)를 사용한다.
 
 ```bash
 $ npm init -y
 $ npm install express multer body-parser cors
 ```
 
-multer는 라우터에 삽입하여 미들웨어로 사용한다. multer에 설정 정보를 지정하여 호출하여 upload 객체를 생성한다. 이 upload 객체는 single, array, fields 메소드를 사용할 수 있다. single 메소드를 사용하여 하나의 바이너리 파일을 전달받도록 하자.
+multer는 라우터에 삽입하여 [미들웨어](./express-basics#4-middleware)로 사용한다. multer에 설정 정보를 지정하여 호출하여 upload 객체를 생성한다. 이 upload 객체는 single, array, fields 메소드를 사용할 수 있다. single 메소드를 사용하여 하나의 바이너리 파일을 전달받도록 하자.
 
 
 ```javascript

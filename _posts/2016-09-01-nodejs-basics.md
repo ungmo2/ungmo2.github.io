@@ -1,10 +1,10 @@
 ---
 layout: post
 title: Node.js <strong>Basics</strong>
-subtitle: 네트워크 어플리케이션을 위한 JavaScript runtime
+subtitle: 네트워크 애플리케이션을 위한 JavaScript runtime
 categories: nodejs
 section: nodejs
-description: Node.js는 Chrome V8 JavaScript 엔진으로 빌드된 JavaScript 런타임으로 주로 서버 사이드 어플리케이션 개발에 사용되는 소프트웨어 플랫폼이다. Node.js는 브라우저 외부 환경에서 JavaScript 애플리케이션 개발에 사용되며 이에 필요한 모듈, 파일 시스템, HTTP 등 Built-in API가 제공한다. 2009년 Ryan Dahl이 발표된 Node.js는 폭발적인 관심을 받아왔고 Node.js를 사용하는 기업수도 대폭 증가했다. 이후 엔터프라이즈 영역에서 기존 Java나 .NET을 Node.js로 대체하려는 검토가 활발히 진행될 것으로 예상된다. 현재 Node.js를 사용하는 기업은 Microsoft, Paypal, eBay, Yahoo, GoDaddy 등이 있다.
+description: Node.js는 Chrome V8 JavaScript 엔진으로 빌드된 JavaScript 런타임으로 주로 서버 사이드 애플리케이션 개발에 사용되는 소프트웨어 플랫폼이다. Node.js는 브라우저 외부 환경에서 JavaScript 애플리케이션 개발에 사용되며 이에 필요한 모듈, 파일 시스템, HTTP 등 Built-in API가 제공한다. 2009년 Ryan Dahl이 발표된 Node.js는 폭발적인 관심을 받아왔고 Node.js를 사용하는 기업수도 대폭 증가했다. 이후 엔터프라이즈 영역에서 기존 Java나 .NET을 Node.js로 대체하려는 검토가 활발히 진행될 것으로 예상된다. 현재 Node.js를 사용하는 기업은 Microsoft, Paypal, eBay, Yahoo, GoDaddy 등이 있다.
 ---
 
 * TOC
@@ -14,7 +14,7 @@ description: Node.js는 Chrome V8 JavaScript 엔진으로 빌드된 JavaScript �
 
 # 1. Introduction
 
-Node.js는 [Chrome V8 JavaScript 엔진](https://developers.google.com/v8/)으로 빌드된 JavaScript [런타임 환경(Runtime Environment)](https://ko.wikipedia.org/wiki/%EB%9F%B0%ED%83%80%EC%9E%84)으로 주로 서버 사이드 어플리케이션 개발에 사용되는 소프트웨어 플랫폼이다. Node.js는 브라우저 외부 환경에서 JavaScript 애플리케이션 개발에 사용되며 이에 필요한 모듈, 파일 시스템, HTTP 등 Built-in API가 제공한다.
+Node.js는 [Chrome V8 JavaScript 엔진](https://developers.google.com/v8/)으로 빌드된 JavaScript [런타임 환경(Runtime Environment)](https://ko.wikipedia.org/wiki/%EB%9F%B0%ED%83%80%EC%9E%84)으로 주로 서버 사이드 애플리케이션 개발에 사용되는 소프트웨어 플랫폼이다. Node.js는 브라우저 외부 환경에서 JavaScript 애플리케이션 개발에 사용되며 이에 필요한 모듈, 파일 시스템, HTTP 등 Built-in API가 제공한다.
 
 2009년 [Ryan Dahl](https://en.wikipedia.org/wiki/Ryan_Dahl)이 발표된 Node.js는 폭발적인 관심을 받아왔고 Node.js를 사용하는 기업수도 대폭 증가했다. 이후 엔터프라이즈 영역에서 기존 Java나 .NET을 Node.js로 대체하려는 검토가 활발히 진행될 것으로 예상된다. 현재 Node.js를 사용하는 기업은 Microsoft, Paypal, eBay, Yahoo, GoDaddy 등이 있다.
 

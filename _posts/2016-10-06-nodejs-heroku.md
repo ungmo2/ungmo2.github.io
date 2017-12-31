@@ -35,7 +35,7 @@ git version 2.6.4 (Apple Git-63)
 
 # 3. Heroku CLI 설치
 
-[Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)(a.k.a. Heroku Toolbelt)는 command line/shell에서 Heroku 어플리케이션을 생성하고 관리할 수 있는 도구이다.
+[Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)(a.k.a. Heroku Toolbelt)는 command line/shell에서 Heroku 애플리케이션을 생성하고 관리할 수 있는 도구이다.
 
 자신의 사양에 맞는 Heroku CLI를 설치한다.
 
@@ -115,7 +115,7 @@ remote:
 remote: -----> Node.js app detected
 remote:
 remote: -----> Creating runtime environment
-remote:        
+remote:
 remote:        NPM_CONFIG_LOGLEVEL=error
 remote:        NPM_CONFIG_PRODUCTION=true
 remote:        NODE_ENV=production
@@ -124,7 +124,7 @@ remote:
 remote: -----> Installing binaries
 remote:        engines.node (package.json):  unspecified
 remote:        engines.npm (package.json):   unspecified (use default)
-remote:        
+remote:
 remote:        Resolving node version (latest stable) via semver.io...
 remote:        Downloading and installing node 5.11.1...
 remote:        Using default npm version: 3.8.6
@@ -177,7 +177,7 @@ remote:        ├─┬ type-is@1.6.13
 remote:        │ └── media-typer@0.3.0
 remote:        ├── utils-merge@1.0.0
 remote:        └── vary@1.1.0
-remote:        
+remote:
 remote:
 remote: -----> Caching build
 remote:        Clearing previous node cache
@@ -187,7 +187,7 @@ remote:        - bower_components (nothing to cache)
 remote:
 remote: -----> Build succeeded!
 remote:        └── express@4.14.0
-remote:        
+remote:
 remote: -----> Discovering process types
 remote:        Procfile declares types -> web
 remote:

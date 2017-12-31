@@ -90,7 +90,7 @@ myButton.addEventListener('click', function () {
 
 # 3. 브라우저 동작 원리
 
-구글의 Chrome V8 JavaScript 엔진으로 빌드된 JavaScript 런타임 환경(Runtime Environment)인 <strong>Node.js</strong>의 등장으로 JavaScript는 웹 브라우저를 벗어나 서버 사이드 어플리케이션 개발에서도 사용되는 Full stack 개발 언어가 되었다. 하지만 JavaScript가 가장 많이 사용되는 분야는 역시 웹 브라우저 환경에서 동작하는 웹 페이지/애플리케이션이다.
+구글의 Chrome V8 JavaScript 엔진으로 빌드된 JavaScript 런타임 환경(Runtime Environment)인 <strong>Node.js</strong>의 등장으로 JavaScript는 웹 브라우저를 벗어나 서버 사이드 애플리케이션 개발에서도 사용되는 Full stack 개발 언어가 되었다. 하지만 JavaScript가 가장 많이 사용되는 분야는 역시 웹 브라우저 환경에서 동작하는 웹 페이지/애플리케이션이다.
 
 대부분의 프로그래밍 언어는 운영체제(Operating System, OS) 위에서 실행되지만 웹 애플리케이션의 JavaScript는 브라우저의 틀 안에서 HTML, CSS와 함께 실행된다. 따라서 JavaScript는 브라우저 환경을 고려할 때 보다 효율적 프로그래밍이 가능하다.
 

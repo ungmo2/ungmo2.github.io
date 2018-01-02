@@ -20,9 +20,9 @@ description: Angular는 SPA(Single Page Application) 개발을 위한 구글의 
 
 Angular는 AngularJS(version 1)의 후속 버전으로 2014년 ng 컨퍼런스에서 처음으로 소개되었다. 2016년 9월 14일 Angular 2 버전이 공개되었고 Angular 3을 뛰어 넘어 2017년 3월 23일 Angular 4, 2017년 11월 1일 Angular 5 정식 버전 pentagonal-donut이 출시되었다.
 
-Angular는 AngularJS의 후속 버전이지만 호환성이 없을 뿐아니라 알파, 베타, RC를 거치며 이전 버전과 호환성이 없는 변경인 Breaking Changes가 빈번하게 발생하여 많은 개발자를 혼란스럽게 하였다.
+Angular는 AngularJS의 후속 버전이지만 호환성이 없을 뿐아니라 알파, 베타, RC를 거치며 이전 버전과 호환성이 없는 변경인 브레이킹 체인지(Breaking Change)가 빈번하게 발생하여 많은 개발자를 혼란스럽게 하였다.
 
-하지만 2016년 10월 발표된 [Angular 버저닝과 출시 계획](http://angularjs.blogspot.kr/2016/10/versioning-and-releasing-angular.html)에 따르면 개발자의 부담이 적은 방향으로 계획적인 버전업이 이루어질 듯하다. [SemVer](http://semver.org/lang/ko/)를 도입하여 버전 체계를 메이저, 마이너, 패치로 나누어 명확히 하고, 6개월간 1회의 메이저 릴리스(호환성이 없는 Breaking Change 포함), 3회의 마이너 릴리스(Breaking Change 없는 호환성이 있는 변경) 그리고 주단위의 패치 릴리스(버그 수정)가 실시될 예정이다.
+하지만 2016년 10월 발표된 [Angular 버저닝과 출시 계획](http://angularjs.blogspot.kr/2016/10/versioning-and-releasing-angular.html)에 따르면 개발자의 부담이 적은 방향으로 계획적인 버전업이 이루어질 듯하다. [SemVer](http://semver.org/lang/ko/)를 도입하여 버전 체계를 메이저, 마이너, 패치로 명확히 구분하고, 6개월간 1회의 메이저 릴리스(호환성이 없는 브레이킹 체인지 포함), 3회의 마이너 릴리스(브레이킹 체인지가 없는 호환성이 있는 변경) 그리고 주단위의 패치 릴리스(버그 수정)가 실시될 예정이다.
 
 이와 같이 Angular는 버전업이 빠르게 진행중이며 앞으로도 빈번한 변경이 예상된다. 특히 호환성이 없는 메이저 버전업에 대해서는 주의가 필요하다. 다행인 것은 Angular1에서 Angular2로의 버전업에서 나타난 것과 같은 큰 변경이 향후 버전에서는 없을 것이라는 것이다.
 
@@ -32,7 +32,7 @@ Angular는 AngulaJS의 단순한 업그레이드 버전이 아니다. Angular는
 
 Angular와 AngulaJS의 차이점을 정리하면 아래와 같다.
 
-- AngularJS의 Controller와 $scope 기반 개발에서 컴포넌트 기반 개발로 전환되었다.
+- AngularJS의 Controller와 $scope 기반 개발에서 컴포넌트 기반 개발(CBD, Component Based Development)로 전환되었다.
 
 - AngularJS의 angular.module과 jQlite보다 향상된 모듈 시스템과 DOM 제어 기능을 제공하며 API 또한 단순화되었다.
 
@@ -66,7 +66,7 @@ TypeScript를 사용하는 이유는 여러가지 있지만 가장 큰 장점은
 
 TypeScript의 모듈, 클래스, 인터페이스 등의 강력한 Object Oriented Programming 지원은 크고 복잡한 프로젝트의 코드 기반을 쉽게 구성할 수 있도록 돕는다.
 
-Angular는 TypeScript 뿐만 아니라 JavaScript, Dart로도 작성할 수 있지만 Angular 공식 문서, 커뮤니티 활동에서 가장 많이 사용되고 있는 것은 TypeScript이다. Angular 공식 문서의 예제 등도 TypeScript로 작성된 것이 가장 많아 관련 정보 취득에도 이점이 있으며 이러한 현상은 앞으로도 지속될 것으로 예상된다.
+Angular는 TypeScript 뿐만 아니라 JavaScript, Dart로도 작성할 수 있지만 Angular 공식 문서, 커뮤니티 활동에서 가장 많이 사용되고 있는 것은 TypeScript이다. Angular 공식 문서의 예제 등도 TypeScript로 작성된 것이 대부분이어서 관련 정보 취득에도 이점이 있으며 이러한 현상은 앞으로도 지속될 것으로 예상된다.
 
 ### 3.1.3 개발 도구의 통합 및 개발 환경 구축 자동화
 

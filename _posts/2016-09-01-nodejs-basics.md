@@ -40,19 +40,19 @@ Node.js를 인스톨하기 위해 [http://nodejs.org/](https://nodejs.org/)로 �
 
 ![node-homepage](./img/node-homepage.png)
 
-2017년 10월 29일 현재 최신 버전은 8.8.1이다
+2018년 1월 2일 현재 최신 버전은 9.3.0이다
 {: .desc-img}
 
 LTS(Long Term Supported) 버전은 장기적으로 안정된 지원이 보장되는 버전이다.
 
 ![lts-schedule](./img/lts-schedule.png)
 
-LTS Release Schedule ([https://github.com/nodejs/LTS](https://github.com/nodejs/LTS))
+[LTS Release Schedule](https://github.com/nodejs/Release#release-schedule)
 {: .desc-img}
 
 Current 버전은 변경이 발생하고 있는 버전으로 안정적이지 않을 수 있다. 따라서 최신의 LTS 버전을 다운로드하도록 한다.
 
-- 녹색의 "6.11.5 LTS Recommended For Most Users" 버튼을 클릭하면 사용자 OS에 적합한 installer를 다운로드 할 수 있다.
+- 녹색의 "8.9.3 LTS Recommended For Most Users" 버튼을 클릭하면 사용자 OS에 적합한 installer를 다운로드 할 수 있다.
 
 - "other Downloads" 링크를 클릭하면 installer 또는 소스코드를 다운로드할 수 있는 화면으로 이동한다.
 
@@ -73,20 +73,78 @@ Node.js와 npm의 버전을 출력하여 제대로 설치되었는지 확인한�
 
 ```bash
 $ node -v
-v6.11.5
+v8.9.3
 $ npm -v
-3.10.10
+5.5.1
 ```
+
+# 3. Update
+
+## 3.1 Node.js
+
+설치된 Node.js를 업데이트하기 위해 Node.js 버전 매니저인 [n](https://www.npmjs.com/package/n)을 설치한다. 관리자 권한이 필요할 수 있으므로 permission 에러가 발생하는 경우, sudo를 명령어 선두에 추가한다.
+
+```bash
+$ npm install -g n
+/usr/local/bin/n -> /usr/local/lib/node_modules/n/bin/n
++ n@2.1.8
+```
+
+캐시를 강제 삭제한다.
+
+```bash
+$ sudo npm cache clean -f
+npm WARN using --force I sure hope you know what you are doing.
+```
+
+버전을 지정하거나 lts/stable/latest를 지정하여 Node.js를 설치한다.
+
+```bash
+$ n 8.0.0   # 버전 지정 설치
+$ n lts     # 최신 LTS 버전 설치
+$ n stable  # stable 버전 설치
+$ n latest  # 최신 currunt 버전 설치
+```
+
+stable 버전을 설치하도록 하자.
+
+```bash
+$ node -v
+v8.9.3
+$ n stable
+
+     install : node-v9.2.1
+       mkdir : /usr/local/n/versions/node/9.2.1
+       fetch : https://nodejs.org/dist/v9.2.1/node-v9.2.1-darwin-x64.tar.gz
+######################################################################## 100.0%
+   installed : v9.2.1
+$ n
+ ο node/9.2.1
+$ node -v
+v9.2.1
+```
+
+설치에 실패하였거나 버전이 변경되지 않는 경우, 해당 폴더(위의 경우, /usr/local/n/versions/node/9.2.1)를 삭제하고 재설치한다.
+{: .info}
+
+특정 버전을 삭제하고 싶은 경우, 아래와 같이 명령어를 실행한다.
+
+```bash
+$ n 8.0.0   # 버전 지정 삭제
+$ n prune   # 현재 사용중인 버전을 제외한 나머지를 일괄 삭제
+```
+
+## 3.2 npm
 
 npm은 Node.js에 포함되어 있어 Node.js 설치시 자동 설치되므로 별도의 설치가 필요없다. 하지만 Node.js보다 자주 업데이트되므로 최신 버전이 아닐 수 있다. 최신의 npm 버전으로 업데이트하도록 한다.
 
 ```bash
-$ npm install npm@latest -g
+$ npm install -g npm@latest
 $ npm -v
-5.1.1
+5.6.0
 ```
 
-# 3. REPL
+# 4. REPL
 
 REPL(Read Eval Print Loop: 입력 수행 출력 반복)은 Node.js는 물론 대부분의 언어(Java, Python 등)이 제공하는 가상환경으로 간단한 코드를 직접 실행해 결과를 확인해 볼 수 있다. 터미널(윈도우의 경우 커맨드창)에 다음과 명령어를 실행시켜 보자.
 
@@ -116,7 +174,7 @@ CTRL + C 키를 두번 실행하면 REPL을 종료시킨다.
 
 자세한 내용은 [Node.js Documentation : REPL](https://nodejs.org/dist/latest-v6.x/docs/api/repl.html)을 참조하기 바란다.
 
-# 4. Node.js 맛보기 : HTTP Server
+# 5. Node.js 맛보기 : HTTP Server
 
 이번에는 간단한 HTTP Server를 작성해 보자. Node.js는 http 서버 모듈을 내장하고 있어서 아피치와 같은 별도의 웹서버를 설치할 필요가 없다
 

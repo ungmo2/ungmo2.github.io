@@ -39,7 +39,7 @@ Angular CLI 1.5.0을 기준으로 한다. Angular CLI의 변경이력은 [angula
 
 # 2. Angular CLI 설치
 
-Angular CLI는 Node.js 6.9.0, npm 3.0.0 이상이 필요하다.
+Angular CLI는 Node 6.9.0, NPM 3.0.0 이상이 필요하다.
 
 - [Prerequisites](https://github.com/angular/angular-cli#prerequisites)
 
@@ -107,7 +107,7 @@ $ ng help
 
 # 3. 프로젝트 생성
 
-Angular 프로젝트를 생성하기 위해서는 `ng new` 명령어를 사용한다. 
+Angular 프로젝트를 생성하기 위해서는 `ng new` 명령어를 사용한다.
 
 ```bash
 $ ng new <project-name>
@@ -171,7 +171,7 @@ $ ng get --global packageManager
 yarn
 ```
 
-이후 기본 패키지 매니저를 npm로 변경하고자 할 때에는 아래의 명령어를 사용한다.  
+이후 기본 패키지 매니저를 npm로 변경하고자 할 때에는 아래의 명령어를 사용한다.
 
 ```bash
 $ ng set --global packageManager=npm
@@ -293,7 +293,7 @@ export class AppComponent {
 |:-------|:-----------------------------|:----------
 | 컴포넌트 | ng generate component component-name | ng g c component-name
 | 디렉티브 | ng generate directive directive-name | ng g d directive-name
-| 파이프   | ng generate pipe pipe-name           | ng g p pipe-name   
+| 파이프   | ng generate pipe pipe-name           | ng g p pipe-name
 | 서비스   | ng generate service service-name    | ng g s service-name
 | 모듈    | ng generate module module-name       | ng g m module-name
 | 가드    | ng generate guard guard-name         | ng g g guard-name
@@ -423,10 +423,10 @@ $ ng new my-app --prefix todos
 
 templateUrl, styleUrls 프로퍼티는 외부 파일을 로드하기 위해 사용한다.
 
-- templateUrl  
+- templateUrl
 : 외부 파일로 작성된 HTML 템플릿(컴포넌트의 뷰를 정의)의 경로
 
-- styleUrls  
+- styleUrls
 : 외부 파일로 작성된 CSS 파일의 경로
 
 ```typescript
@@ -482,14 +482,14 @@ $ ng g d highlight
 ng generate directive highlight 명령어를 실행하면 Angular CLI는 아래와 같이 동작한다.
 
 - 루트 폴더에 2개의 파일을 추가한다.
-  - highlight.directive.spec.ts  
+  - highlight.directive.spec.ts
   : 디렉티브 유닛 테스트를 위한 스펙 파일
   - highlight.directive.ts
   : 디렉티브 클래스 파일
-- 루트 모듈 src/app/app.module.ts에 새롭게 추가된 디렉티브를 등록한다.  
+- 루트 모듈 src/app/app.module.ts에 새롭게 추가된 디렉티브를 등록한다.
 : 디렉티브를 import하고 @NgModule 데코레이터의 declarations 프로퍼티에 디렉티브를 등록한다.
 
-컴포넌트를 추가할 때와는 달리 디렉티브를 위한 폴더는 생성되지 않으며 기본적으로 src/app/에 추가된다.  
+컴포넌트를 추가할 때와는 달리 디렉티브를 위한 폴더는 생성되지 않으며 기본적으로 src/app/에 추가된다.
 
 생성된 highlight.directive.ts를 살펴보면 @Directive 데코레이터 함수에 전달된 메타데이터 객체의 selector 프로퍼티값으로 'appHighlight'가 설정되었다.
 
@@ -526,9 +526,9 @@ $ ng g m todos
 
 ng generate module todos 명령어를 실행하면 Angular CLI는 아래와 같이 동작한다.
 
-- src/app/todos 폴더를 생성한다.  
+- src/app/todos 폴더를 생성한다.
 - src/app/todos 폴더에 1개의 파일을 추가한다.
-  - todos.module.ts   
+  - todos.module.ts
   : 모듈 클래스 파일
 
 모듈을 사용하기 위해 다른 모듈의 imports 프로퍼티에 모듈을 추가하여야 한다.
@@ -563,7 +563,7 @@ $ ng g s user
 ng generate service user 명령어를 실행하면 Angular CLI는 아래와 같이 동작한다.
 
 - 루트 폴더에 2개의 파일을 추가한다.
-  - user.service.spec.ts  
+  - user.service.spec.ts
   : 서비스 유닛 테스트를 위한 스펙 파일
   - user.service.ts
   : 서비스 클래스 파일
@@ -660,7 +660,7 @@ Angular CLI 빌드 기능은 소스코드와 의존 모듈을 번들링한다. �
 </html>
 ```
 
-빌드 처리는 아래 그림과 같이 진행되며 빌드가 완료되면 dist 폴더가 추가되고 그 내부에 빌드 결과물이 생성된다. 
+빌드 처리는 아래 그림과 같이 진행되며 빌드가 완료되면 dist 폴더가 추가되고 그 내부에 빌드 결과물이 생성된다.
 
 ![build-dist](./img/build-dist.png)
 
@@ -724,7 +724,7 @@ AoT 컴파일에 대한 보다 상세한 내용은 [AoT 컴파일](https://angul
 
 # 7. 기본 옵션 변경
 
-기본으로 적용되는 옵션을 변경하기 위해서는 [schema.json](https://github.com/angular/angular-cli/blob/398356503ab4729cf40587804c44b55eb5c99768/packages/%40angular/cli/lib/config/schema.json)에 기술되어 있는 옵션을 참조하여 .angular-cli.json을 수정한다. 
+기본으로 적용되는 옵션을 변경하기 위해서는 [schema.json](https://github.com/angular/angular-cli/blob/398356503ab4729cf40587804c44b55eb5c99768/packages/%40angular/cli/lib/config/schema.json)에 기술되어 있는 옵션을 참조하여 .angular-cli.json을 수정한다.
 
 예를 들어 컴포넌트를 생성할 때, 스팩 파일을 생성하지 않도록 기본 옵션을 변경하여 보자.
 
@@ -755,7 +755,7 @@ schema.json를 참조하면 --spec 옵션은 component에서 사용하는 경우
 $ ng generate component <component-name> --spec false
 ```
 
-매번 옵션을 추가하지 않기 위해서 기본 옵션을 변경하려면 .angular-cli.json을 아래와 같이 수정한다. 
+매번 옵션을 추가하지 않기 위해서 기본 옵션을 변경하려면 .angular-cli.json을 아래와 같이 수정한다.
 
 ```json
   ...

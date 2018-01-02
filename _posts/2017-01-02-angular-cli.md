@@ -30,16 +30,16 @@ Angular는 Angular CLI를 위한 별도의 웹페이지 [https://cli.angular.io/
 
 ![angular-cli-website](./img/angular-cli-website.png)
 
-각종 명령어와 옵션, Angular CLI의 설정 파일인 .angular-cli.json에 대한 상세한 문서를 제공하고 있으므로 참고하기 바란다.
+각종 명령어와 옵션, Angular CLI의 설정 파일인 `.angular-cli.json`에 대한 상세한 문서를 제공하고 있으므로 참고하기 바란다.
 
 Angular CLI를 사용하기 위해서는 어떠한 절차가 필요한지 그리고 무엇을 할 수 있는지 알아보자.
 
-Angular CLI 1.5.0을 기준으로 한다. Angular CLI의 변경이력은 [angular-cli releases](https://github.com/angular/angular-cli/releases)에서 참조 가능하다.
+Angular CLI 1.6.0을 기준으로 한다. Angular CLI의 변경이력은 [angular-cli releases](https://github.com/angular/angular-cli/releases)에서 참조 가능하다.
 {: .info}
 
 # 2. Angular CLI 설치
 
-Angular CLI는 Node 6.9.0, NPM 3.0.0 이상이 필요하다.
+Angular CLI는 Node.js 6.9.0, NPM 3.0.0 이상이 필요하다.
 
 - [Prerequisites](https://github.com/angular/angular-cli#prerequisites)
 
@@ -51,10 +51,10 @@ Angular CLI는 npm으로 설치할 수 있다. 아래의 명령어를 실행하�
 $ npm install -g @angular/cli
 ```
 
-만일 Angular CLI 1.5.0 이전 버전이 설치되어 있다면 다음과 같이 업데이트를 실행한다.
-
-Angular CLI 1.0.0 이전 버전의 경우 패키지명이 angular-cli이었으나 Angular CLI 1.0.0부터 @angular/cli으로 변경되었다.
+Angular CLI 1.0.0 이전 버전의 경우 패키지명이 `angular-cli`이었으나 Angular CLI 1.0.0부터 `@angular/cli`으로 변경되었다.
 {: .info}
+
+만일 Angular CLI 1.5.0 이전 버전이 설치되어 있다면 다음과 같이 업데이트를 실행한다.
 
 ```bash
 # Angular CLI 1.0.0 이후 버전을 삭제하는 경우
@@ -80,23 +80,11 @@ $ ng version
 /_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
                |___/
 
-Angular CLI: 1.5.0
-Node: 8.4.0
+Angular CLI: 1.6.0
+Node: 9.2.1
 OS: darwin x64
-Angular: 5.0.0
-... animations, common, compiler, compiler-cli, core, forms
-... http, language-service, platform-browser
-... platform-browser-dynamic, router
-
-@angular/cli: 1.5.0
-@angular-devkit/build-optimizer: 0.0.32
-@angular-devkit/core: 0.0.20
-@angular-devkit/schematics: 0.0.35
-@ngtools/json-schema: 1.1.0
-@ngtools/webpack: 1.8.0
-@schematics/angular: 0.1.0
-typescript: 2.4.2
-webpack: 3.8.1
+Angular:
+...
 ```
 
 Angular CLI의 사용법을 참조하기 위해서는 `ng help` 명령어를 사용한다.
@@ -115,12 +103,12 @@ $ ng new <project-name>
 
 ng new 명령어 다음에 프로젝트명을 지정하면 프로젝트명과 일치하는 새로운 프로젝트 폴더가 생성되고 스캐폴딩(프로젝트 기본 골격)이 작성된다.
 
-프로젝트명을 my-app로 지정하여 프로젝트를 생성하여 보자.
+프로젝트명을 `my-app`로 지정하여 프로젝트를 생성하여 보자.
 
 ```bash
 $ ng new my-app
   create my-app/README.md (1021 bytes)
-  create my-app/.angular-cli.json (1241 bytes)
+  create my-app/`.angular-cli.json` (1241 bytes)
   create my-app/.editorconfig (245 bytes)
   create my-app/.gitignore (516 bytes)
   create my-app/src/assets/.gitkeep (0 bytes)
@@ -129,7 +117,7 @@ $ ng new my-app
   create my-app/src/favicon.ico (5430 bytes)
   create my-app/src/index.html (292 bytes)
   create my-app/src/main.ts (370 bytes)
-  create my-app/src/polyfills.ts (2667 bytes)
+  create my-app/src/polyfills.ts (2405 bytes)
   create my-app/src/styles.css (80 bytes)
   create my-app/src/test.ts (1085 bytes)
   create my-app/src/tsconfig.app.json (211 bytes)
@@ -142,10 +130,10 @@ $ ng new my-app
   create my-app/package.json (1311 bytes)
   create my-app/protractor.conf.js (722 bytes)
   create my-app/tsconfig.json (363 bytes)
-  create my-app/tslint.json (2985 bytes)
-  create my-app/src/app/app.module.ts (314 bytes)
+  create my-app/tslint.json (3040 bytes)
+  create my-app/src/app/app.module.ts (316 bytes)
   create my-app/src/app/app.component.css (0 bytes)
-  create my-app/src/app/app.component.html (1120 bytes)
+  create my-app/src/app/app.component.html (1141 bytes)
   create my-app/src/app/app.component.spec.ts (986 bytes)
   create my-app/src/app/app.component.ts (207 bytes)
 Installing packages for tooling via npm.
@@ -184,16 +172,18 @@ npm
 ```bash
 $ ng new --skip-install my-app
 $ cd my-app && yarn
-yarn install v1.2.1
+yarn install v1.3.2
 info No lockfile found.
 [1/4] 🔍  Resolving packages...
 [2/4] 🚚  Fetching packages...
 [3/4] 🔗  Linking dependencies...
+warning "@angular/cli > @angular-devkit/schematics > @schematics/schematics@0.0.11" has unmet peer dependency "@angular-devkit/core@0.0.22".
 [4/4] 📃  Building fresh packages...
 success Saved lockfile.
+✨  Done in 72.63s.
 ```
 
-프로젝트가 생성되면 아래와 같은 파일 구조의 스캐폴딩이 생성된다. 이것은 [Angular 스타일 가이드](https://angular.io/styleguide)의 기본 애플리케이션 구조, 네이밍 룰, 코딩 컨벤션 등을 준수하여 생성된 것이다.
+프로젝트가 생성되면 아래와 같은 파일 구조의 스캐폴딩이 생성된다. 이것은 [Angular 스타일 가이드](https://angular.io/guide/styleguide)의 기본 애플리케이션 구조, 네이밍 룰, 코딩 컨벤션 등을 준수하여 생성된 것이다.
 
 ```
 my-app/
@@ -201,7 +191,7 @@ my-app/
 ├── e2e/
 ├── node_modules/
 ├── src/
-├── .angular-cli.json
+├── `.angular-cli.json`
 ├── .editorconfig
 ├── .gitignore
 ├── karma.conf.js
@@ -229,14 +219,14 @@ $ ng serve
 $ cd my-app
 $ ng serve
 ** NG Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **
-Date: 2017-11-03T03:42:09.740Z
-Hash: 0c36d0c93a3e0d36f83f
-Time: 7748ms
+Date: 2018-01-02T16:23:50.169Z
+Hash: 767d6da7daebbbf53c31
+Time: 7581ms
 chunk {inline} inline.bundle.js (inline) 5.79 kB [entry] [rendered]
-chunk {main} main.bundle.js (main) 20.7 kB [initial] [rendered]
-chunk {polyfills} polyfills.bundle.js (polyfills) 554 kB [initial] [rendered]
-chunk {styles} styles.bundle.js (styles) 33.9 kB [initial] [rendered]
-chunk {vendor} vendor.bundle.js (vendor) 7.02 MB [initial] [rendered]
+chunk {main} main.bundle.js (main) 20.4 kB [initial] [rendered]
+chunk {polyfills} polyfills.bundle.js (polyfills) 557 kB [initial] [rendered]
+chunk {styles} styles.bundle.js (styles) 33.8 kB [initial] [rendered]
+chunk {vendor} vendor.bundle.js (vendor) 7.14 MB [initial] [rendered]
 
 webpack: Compiled successfully.
 ```
@@ -263,7 +253,7 @@ $ ng serve --port 4201
 
 Angular CLI가 내장하고 있는 개발용 서버는 코드의 변경을 감지하여 자동으로 브라우저를 리로드하는 LiveReload 기능을 제공한다. 따라서 코드 수정 후 파일을 저장하면 코드 변경을 자동 반영하여 번들링이 수행되고 브라우저가 리로드되어 코드 변경 결과를 즉시 확인할 수 있다.
 
-브라우저와 서버를 종료시키지 않은 상태에서 코드(my-app/src/app/app.component.ts)를 수정해 보자.
+브라우저와 서버를 종료시키지 않은 상태에서 코드(`my-app/src/app/app.component.ts`)를 수정해 보자.
 
 ```typescript
 // my-app/src/app/app.component.ts
@@ -287,7 +277,7 @@ export class AppComponent {
 
 # 5. 프로젝트 구성 요소 추가
 
-프로젝트에 새로운 구성요소를 추가하기 위해서는 `ng generate` 명령어를 사용한다. ng generate 명령어는 축약형 `ng g`와 동일하게 동작한다.
+프로젝트에 새로운 구성요소를 추가하기 위해서는 `ng generate` 명령어를 사용한다. `ng generate` 명령어는 축약형 `ng g`와 동일하게 동작한다.
 
 | 추가 대상 구성요소 | 명령어                         | 축약형
 |:-------|:-----------------------------|:----------
@@ -301,7 +291,7 @@ export class AppComponent {
 | 인터페이스 |	ng generate interface interface-name | ng g i interface-name
 | Enum	 | ng generate enum enum-name           | ng g e enum-name
 
-추가 대상 구성요소 중에서 컴포넌트, 디렉티브, 서비스, 모듈의 추가 방법을 알아보도록 한다.
+추가 대상 구성요소 중에서 컴포넌트, 디렉티브, 서비스, 모듈의 추가 방법을 알아보도록 하자.
 
 ## 5.1 컴포넌트 추가
 
@@ -318,23 +308,23 @@ $ ng g c home
 
 `ng generate component home` 명령어를 실행하면 Angular CLI는 아래와 같이 동작한다.
 
-- src/app/home 폴더를 생성한다.
+- `src/app/home` 폴더를 생성한다.
 : 컴포넌트는 URL 경로의 단위(화면 단위)가 될 수 있기 때문에 폴더로 구분된다.
-- src/app/home 폴더에 4개의 파일을 추가한다.
-  - home.component.css
-  : 컴포넌트 HTML 템플릿의 스타일링을 위한 CSS 파일
-  - home.component.html
-  : 컴포넌트 HTML 템플릿을 위한 HTML 파일
-  - home.component.spec.ts
-  : 컴포넌트 유닛 테스트를 위한 스펙 파일
-  - home.component.ts
+- `src/app/home` 폴더에 4개의 파일을 추가한다.
+  - `home.component.html`
+  : 컴포넌트 템플릿을 위한 HTML 파일
+  - `home.component.css`
+  : 컴포넌트 템플릿의 스타일링을 위한 CSS 파일
+  - `home.component.ts`
   : 컴포넌트 클래스 파일
-- 루트 모듈 src/app/app.module.ts에 새롭게 추가된 컴포넌트를 등록한다.
-: 컴포넌트 클래스를 import하고 @NgModule 데코레이터의 declarations 프로퍼티에 컴포넌트 클래스를 등록한다.
+  - `home.component.spec.ts`
+  : 컴포넌트 유닛 테스트를 위한 스펙 파일
+- 루트 모듈 `src/app/app.module.ts`에 새롭게 추가된 컴포넌트를 등록한다.
+: 컴포넌트 클래스를 import하고 `@NgModule` 데코레이터의 `declarations` 프로퍼티에 컴포넌트 클래스를 등록한다.
 
 ### 5.1.1 파일명의 암묵적 변경
 
-주의해야 할 것은 ng generate component 명령어 다음에 지정한 컴포넌트명이 실제 생성된 파일명과 다를 수 있다는 것이다. 예를 들어 아래와 같이 새로운 컴포넌트를 추가해 보자.
+주의해야 할 것은 `ng generate component`명령어 다음에 지정한 컴포넌트명이 실제 생성된 파일명과 다를 수 있다는 것이다. 예를 들어 아래와 같이 새로운 컴포넌트를 추가해 보자.
 
 ```bash
 $ ng g c newComponent
@@ -345,9 +335,9 @@ $ ng g c newComponent
   update src/app/app.module.ts (422 bytes)
 ```
 
-컴포넌트명을 newComponent로 지정하였음에도 불구하고 실제로 생성된 파일명은 new-component.component.\*이다. Angular CLI는 지정된 컴포넌트명의 대소문자를 구별하여 정해진 규칙에 따라 파일명을 암묵적으로 변경한다.
+컴포넌트명을 newComponent로 지정하였음에도 불구하고 실제로 생성된 파일명은 `new-component.component.*`이다. Angular CLI는 지정된 컴포넌트명의 대소문자를 구별하여 정해진 규칙에 따라 파일명을 암묵적으로 변경한다.
 
-아래의 컴포넌트명은 Angular CLI에 의해 결국 같은 파일명 new-component.component.\*으로 변경된다.
+아래의 컴포넌트명은 Angular CLI에 의해 결국 같은 파일명 `new-component.component.*`으로 변경된다.
 
 ```bash
 $ ng g c newComponent
@@ -355,11 +345,11 @@ $ ng g c NewComponent
 $ ng g c new-component
 ```
 
-이와 같은 파일명의 암묵적 변경은 컴포넌트뿐만이 아니라 ng generate 명령어로 추가되는 모든 구성요소에 모두 적용된다. 혼란을 방지하는 위해 ng generate 명령어에 지정하는 구성요소 명칭은 하이픈으로 구별된 케밥 표기법(kebab-case) 명칭을 사용하는 것이 좋다.
+이와 같은 파일명의 암묵적 변경은 컴포넌트뿐만이 아니라 `ng generate` 명령어로 추가되는 모든 구성요소에 모두 적용된다. 혼란을 방지하는 위해 `ng generate` 명령어에 지정하는 구성요소 명칭은 하이픈으로 구별된 케밥 표기법(kebab-case) 명칭을 사용하는 것이 좋다.
 
 ### 5.1.2 selector 프로퍼티값의 접두사(prefix)와 컴포넌트 클래스 이름
 
-생성된 컴포넌트 파일 src/app/home/home.component.ts을 살펴보자.
+생성된 컴포넌트 파일 `src/app/home/home.component.ts`을 살펴보자.
 
 ```typescript
 // src/app/home/home.component.ts
@@ -374,15 +364,13 @@ export class HomeComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() { }
 }
 ```
 
-이번 장에서 주목할 것은 ng generate component 명령어에 지정한 컴포넌트명에 의해 자동 생성된 5행 selector 프로퍼티값 'app-home'과 9행 컴포넌트 클래스명 HomeComponent이다.
+이번 장에서 주목할 것은 `ng generate component` 명령어에 지정한 컴포넌트명에 의해 자동 생성된 5행 selector 프로퍼티값 'app-home'과 9행 컴포넌트 클래스명 HomeComponent이다.
 
-5행을 보면 메타데이터 객체의 selector 프로퍼티에 'app-home'이 설정되어 있다. selector 프로퍼티는 컴포넌트를 마크업으로 표현할 때 사용하는 이름이다. 예를 들어 루트 컴포넌트인 src/app/app.component.ts에서 home 컴포넌트를 사용하려면 src/app/app.component.html를 아래와 같이 수정한다.
+5행을 보면 메타데이터 객체의 `selector` 프로퍼티에 'app-home'이 설정되어 있다. `selector` 프로퍼티는 컴포넌트를 마크업으로 표현할 때 사용하는 이름이다. 예를 들어 루트 컴포넌트인 `src/app/app.component.ts`에서 `home` 컴포넌트를 사용하려면 `src/app/app.component.html`를 아래와 같이 수정한다.
 
 ```html
 <!-- src/app/app.component.html -->
@@ -390,9 +378,9 @@ export class HomeComponent implements OnInit {
 <app-home></app-home>
 ```
 
-selector 프로퍼티값 'app-home'는 `ng generate component home` 명령어에서 지정한 컴포넌트명 home 앞에 접두사(prefix) app이 자동으로 추가된 값이다. Angular는 다른 애플리케이션의 selector 또는 HTML 요소와 충돌을 방지하기 위해 접두사를 추가하여 케밥 표기법으로 명명하는 것을 권장하고 있다. 자세한 내용은 [Angular Style Guide: Custom prefix for components](https://angular.io/guide/styleguide#custom-prefix-for-components)을 참조하기 바란다.
+selector 프로퍼티값 'app-home'는 `ng generate component home` 명령어에서 지정한 컴포넌트명 `home` 앞에 접두사(prefix) app이 자동으로 추가된 값이다. Angular는 다른 애플리케이션의 `selector` 또는 HTML 요소와 충돌을 방지하기 위해 접두사를 추가하여 케밥 표기법으로 명명하는 것을 권장하고 있다. 자세한 내용은 [Angular Style Guide: Custom prefix for components](https://angular.io/guide/styleguide#custom-prefix-for-components)을 참조하기 바란다.
 
-기본 접두사는 app이며 이것은 .angular-cli.json에서 확인할 수 있다.
+기본 접두사는 app이며 이것은 `.angular-cli.json`에서 확인할 수 있다.
 
 ```json
 {
@@ -411,17 +399,17 @@ selector 프로퍼티값 'app-home'는 `ng generate component home` 명령어에
 }
 ```
 
-.angular-cli.json의 prefix 프로퍼티값을 수정하면 이후 생성되는 컴포넌트의 셀렉터 접두사는 수정된 값으로 변경된다. 프로젝트 생성 단계에서부터 컴포넌트의 기본 셀렉터 접두사를 변경하고 싶은 경우에는 ng new 명령어로 프로젝트 생성 시에 `--prefix` 옵션을 추가한다.
+`.angular-cli.json`의 prefix 프로퍼티값을 수정하면 이후 생성되는 컴포넌트의 셀렉터 접두사는 수정된 값으로 변경된다. 프로젝트 생성 단계에서부터 컴포넌트의 기본 셀렉터 접두사를 변경하고 싶은 경우에는 `ng new` 명령어로 프로젝트 생성 시에 `--prefix` 옵션을 추가한다.
 
 ```bash
 $ ng new my-app --prefix todos
 ```
 
-컴포넌트 클래스(HomeComponent)의 이름은 ng generate component 명령어에 지정한 컴포넌트 이름을 파스칼 표기법(PascalCase)으로 자동 변경하여 생성된다. 컴포넌트 클래스 이름은 루트 모듈에 자동으로 import되고 @NgModule 데코레이터의 declarations 프로퍼티에 자동으로 추가된다.
+컴포넌트 클래스(HomeComponent)의 이름은 `ng generate component` 명령어에 지정한 컴포넌트 이름을 파스칼 표기법(PascalCase)으로 자동 변경하여 생성된다. 컴포넌트 클래스 이름은 루트 모듈에 자동으로 import되고 `@NgModule` 데코레이터의 `declarations` 프로퍼티에 자동으로 추가된다.
 
 ### 5.1.3 templateUrl, styleUrls 프로퍼티와 template, styles 프로퍼티
 
-templateUrl, styleUrls 프로퍼티는 외부 파일을 로드하기 위해 사용한다.
+`templateUrl`, `styleUrls` 프로퍼티는 외부 파일을 로드하기 위해 사용한다.
 
 - templateUrl
 : 외부 파일로 작성된 HTML 템플릿(컴포넌트의 뷰를 정의)의 경로
@@ -440,7 +428,7 @@ templateUrl, styleUrls 프로퍼티는 외부 파일을 로드하기 위해 사�
 ...
 ```
 
-위 예제의 경우 컴포넌트는 같은 폴더 내의 외부 파일 home.component.html과 home.component.css를 HTML 템플릿과 CSS로 사용한다. 템플릿 또는 CSS가 간단한 경우에는 메타데이터 내부에 직접 기술할 수도 있다. 이때 templateUrl, styleUrls 프로퍼티 대신 template, styles 프로퍼티를 사용한다.
+위 예제의 경우 컴포넌트는 같은 폴더 내의 외부 파일 `home.component.html`과 `home.component.css`를 HTML 템플릿과 CSS로 사용한다. 템플릿 또는 CSS가 간단한 경우에는 메타데이터 내부에 직접 기술할 수도 있다. 이때 `templateUrl`, `styleUrls` 프로퍼티 대신 `template`, `styles` 프로퍼티를 사용한다.
 
 ```typescript
 // src/app/home/home.component.ts
@@ -457,7 +445,7 @@ templateUrl, styleUrls 프로퍼티는 외부 파일을 로드하기 위해 사�
 ...
 ```
 
-ng generate component 명령어를 사용하여 컴포넌트를 추가할 때 HTML 템플릿과 CSS를 외부 파일로 생성하지 않고 인라인 HTML 템플릿과 CSS를 사용하고자 하는 경우에는 아래의 명령어를 사용한다.
+`ng generate component` 명령어를 사용하여 컴포넌트를 추가할 때 HTML 템플릿과 CSS를 외부 파일로 생성하지 않고 인라인 HTML 템플릿과 CSS를 사용하고자 하는 경우에는 아래의 명령어를 사용한다.
 
 ```bash
 # 인라인 HTML 템플릿을 사용하는 경우
@@ -479,19 +467,19 @@ $ ng g d highlight
   update src/app/app.module.ts (506 bytes)
 ```
 
-ng generate directive highlight 명령어를 실행하면 Angular CLI는 아래와 같이 동작한다.
+`ng generate directive highlight` 명령어를 실행하면 Angular CLI는 아래와 같이 동작한다.
 
 - 루트 폴더에 2개의 파일을 추가한다.
-  - highlight.directive.spec.ts
+  - `highlight.directive.spec.ts`
   : 디렉티브 유닛 테스트를 위한 스펙 파일
-  - highlight.directive.ts
+  - `highlight.directive.ts`
   : 디렉티브 클래스 파일
-- 루트 모듈 src/app/app.module.ts에 새롭게 추가된 디렉티브를 등록한다.
-: 디렉티브를 import하고 @NgModule 데코레이터의 declarations 프로퍼티에 디렉티브를 등록한다.
+- 루트 모듈 `src/app/app.module.ts`에 새롭게 추가된 디렉티브를 등록한다.
+: 디렉티브를 import하고 @NgModule 데코레이터의 `declarations` 프로퍼티에 디렉티브를 등록한다.
 
-컴포넌트를 추가할 때와는 달리 디렉티브를 위한 폴더는 생성되지 않으며 기본적으로 src/app/에 추가된다.
+컴포넌트를 추가할 때와는 달리 디렉티브를 위한 폴더는 생성되지 않으며 기본적으로 `src/app/`에 추가된다.
 
-생성된 highlight.directive.ts를 살펴보면 @Directive 데코레이터 함수에 전달된 메타데이터 객체의 selector 프로퍼티값으로 'appHighlight'가 설정되었다.
+생성된 `highlight.directive.ts`를 살펴보면 `@Directive` 데코레이터 함수에 전달된 메타데이터 객체의 `selector` 프로퍼티값으로 'appHighlight'가 설정되었다.
 
 ```typescript
 // src/app/highlight.directive.ts
@@ -507,7 +495,7 @@ export class MyDirectiveDirective {
 }
 ```
 
-이것은 .angular-cli.json의 기본 접두사 app과 ng generate directive 명령어에 지정한 디렉티브명으로 합성된 디렉티브 셀렉터 이름으로 카멜 표기법(camelCase)으로 작성된다.
+이것은 `.angular-cli.json`의 기본 접두사 app과 `ng generate directive` 명령어에 지정한 디렉티브명으로 합성된 디렉티브 셀렉터 이름으로 카멜 표기법(camelCase)으로 작성된다.
 
 커스텀 디렉티브의 이름은 HTML 어트리뷰트처럼 사용된다. 디렉티브의 상세한 내용은 이후 자세히 다루도록 한다.
 
@@ -526,12 +514,12 @@ $ ng g m todos
 
 ng generate module todos 명령어를 실행하면 Angular CLI는 아래와 같이 동작한다.
 
-- src/app/todos 폴더를 생성한다.
-- src/app/todos 폴더에 1개의 파일을 추가한다.
-  - todos.module.ts
+- `src/app/todos` 폴더를 생성한다.
+- `src/app/todos` 폴더에 1개의 파일을 추가한다.
+  - `todos.module.ts`
   : 모듈 클래스 파일
 
-모듈을 사용하기 위해 다른 모듈의 imports 프로퍼티에 모듈을 추가하여야 한다.
+모듈을 사용하기 위해 다른 모듈의 `imports` 프로퍼티에 모듈을 추가하여야 한다.
 
 다음은 루트 모듈에 모듈를 추가하는 예제이다.
 
@@ -568,7 +556,7 @@ ng generate service user 명령어를 실행하면 Angular CLI는 아래와 같�
   - user.service.ts
   : 서비스 클래스 파일
 
-컴포넌트를 추가할 때와는 달리 서비스를 위한 폴더는 생성되지 않으며 기본적으로 src/app/에 추가된다. 그리고 서비스를 사용하기 위해 모듈 또는 컴포넌트의 providers 프로퍼티에 서비스를 등록하여야 한다.
+컴포넌트를 추가할 때와는 달리 서비스를 위한 폴더는 생성되지 않으며 기본적으로 `src/app/`에 추가된다. 그리고 서비스를 사용하기 위해 모듈 또는 컴포넌트의 providers 프로퍼티에 서비스를 등록하여야 한다.
 
 다음은 루트 모듈에 서비스를 추가하는 예제이다.
 
@@ -638,9 +626,9 @@ Angular CLI 빌드 기능은 내부적으로 모듈 번들러 [webpack](https://
 - 코드 규약 준수 여부 체크
 - 불필요한 코드의 삭제 및 압축
 
-Angular CLI 빌드 기능은 소스코드와 의존 모듈을 번들링한다. 이때 번들링되는 코드는 JavaScript뿐만이 아니라 HTML, CSS까지 JavaScript 파일 내에 번들링된다. 또한 index.html에 번들링된 파일 4개를 로드하기 위한 태그를 추가한다.
+Angular CLI 빌드 기능은 소스코드와 의존 모듈을 번들링한다. 이때 번들링되는 코드는 JavaScript뿐만이 아니라 HTML, CSS까지 JavaScript 파일 내에 번들링된다. 또한 `index.html`에 번들링된 파일 4개를 로드하기 위한 태그를 추가한다.
 
-빌드 이전과 빌드 이후의 index.html을 비교하여 보자.
+빌드 이전과 빌드 이후의 `index.html`을 비교하여 보자.
 
 ```html
 <!-- src/index.html -->
@@ -669,7 +657,7 @@ Angular CLI 빌드 기능은 소스코드와 의존 모듈을 번들링한다. �
 
 ## 6.2 프로덕션 빌드
 
-ng build 명령어를 실행하면 Angular CLI는 src/environments/environments.ts 파일을 참조하여 빌드를 수행한다.
+`ng build` 명령어를 실행하면 Angular CLI는 `src/environments/environments.ts` 파일을 참조하여 빌드를 수행한다.
 
 ```typescript
 // src/environments/environments.ts
@@ -693,7 +681,7 @@ chunk {2} styles.d41d8cd98f00b204e980.bundle.css (styles) 0 bytes [initial] [ren
 chunk {3} inline.199d88dc6afcf3d9b23c.bundle.js (inline) 1.45 kB [entry] [rendered]
 ```
 
-프로덕션 빌드 시에는 src/environments/environment.prod.ts 파일을 참조하여 빌드를 수행한다. 프로덕션 빌드와 개발환경 빌드에 기본 적용되는 옵션의 차이는 아래와 같다.
+프로덕션 빌드 시에는 `src/environments/environment.prod.ts` 파일을 참조하여 빌드를 수행한다. 프로덕션 빌드와 개발환경 빌드에 기본 적용되는 옵션의 차이는 아래와 같다.
 
 | Flag             | -dev  | -prod    |
 |:-----------------|:-----:|:--------:|
@@ -724,11 +712,11 @@ AoT 컴파일에 대한 보다 상세한 내용은 [AoT 컴파일](https://angul
 
 # 7. 기본 옵션 변경
 
-기본으로 적용되는 옵션을 변경하기 위해서는 [schema.json](https://github.com/angular/angular-cli/blob/398356503ab4729cf40587804c44b55eb5c99768/packages/%40angular/cli/lib/config/schema.json)에 기술되어 있는 옵션을 참조하여 .angular-cli.json을 수정한다.
+기본으로 적용되는 옵션을 변경하기 위해서는 [schema.json](https://github.com/angular/angular-cli/blob/398356503ab4729cf40587804c44b55eb5c99768/packages/%40angular/cli/lib/config/schema.json)에 기술되어 있는 옵션을 참조하여 `.angular-cli.json`을 수정한다.
 
 예를 들어 컴포넌트를 생성할 때, 스팩 파일을 생성하지 않도록 기본 옵션을 변경하여 보자.
 
-schema.json를 참조하면 --spec 옵션은 component에서 사용하는 경우, 기본값이 true이다. 즉 컴포넌트를 생성할 때, 기본으로 스팩 파일이 추가된다.
+schema.json를 참조하면 `--spec` 옵션은 component에서 사용하는 경우, 기본값이 true이다. 즉 컴포넌트를 생성할 때, 기본으로 스팩 파일이 추가된다.
 
 ```json
   ...
@@ -755,7 +743,7 @@ schema.json를 참조하면 --spec 옵션은 component에서 사용하는 경우
 $ ng generate component <component-name> --spec false
 ```
 
-매번 옵션을 추가하지 않기 위해서 기본 옵션을 변경하려면 .angular-cli.json을 아래와 같이 수정한다.
+매번 옵션을 추가하지 않기 위해서 기본 옵션을 변경하려면 `.angular-cli.json`을 아래와 같이 수정한다.
 
 ```json
   ...
@@ -768,13 +756,13 @@ $ ng generate component <component-name> --spec false
 }
 ```
 
-또는 ng new 명령어로 프로젝트를 생성할 때, 옵션을 추가하면 .angular-cli.json에 반영된다. 예를 들어 아래와 같이 프로젝트를 생성하는 경우를 살펴보자.
+또는 ng new 명령어로 프로젝트를 생성할 때, 옵션을 추가하면 `.angular-cli.json`에 반영된다. 예를 들어 아래와 같이 프로젝트를 생성하는 경우를 살펴보자.
 
 ```bash
 $ ng new my-app -it -is -skip-tests
 ```
 
-이때 생성되는 .angular-cli.json는 옵션을 반영하여 아래와 같이 생성된다.
+이때 생성되는 `.angular-cli.json`는 옵션을 반영하여 아래와 같이 생성된다.
 
 ```json
 {

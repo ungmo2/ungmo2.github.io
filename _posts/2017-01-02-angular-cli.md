@@ -101,7 +101,7 @@ Angular 프로젝트를 생성하기 위해서는 `ng new` 명령어를 사용�
 $ ng new <project-name>
 ```
 
-ng new 명령어 다음에 프로젝트명을 지정하면 프로젝트명과 일치하는 새로운 프로젝트 폴더가 생성되고 스캐폴딩(프로젝트 기본 골격)이 작성된다.
+`ng new` 명령어 다음에 프로젝트명을 지정하면 프로젝트명과 일치하는 새로운 프로젝트 폴더가 생성되고 스캐폴딩(프로젝트 기본 골격)이 작성된다.
 
 프로젝트명을 `my-app`로 지정하여 프로젝트를 생성하여 보자.
 
@@ -231,7 +231,7 @@ chunk {vendor} vendor.bundle.js (vendor) 7.14 MB [initial] [rendered]
 webpack: Compiled successfully.
 ```
 
-ng serve 명령어를 실행하면 Webpack을 사용하여 소스코드와 의존 모듈을 번들링(Bundling)하고 Angular CLI가 내장하고 있는 개발용 서버를 실행한다.
+`ng serve` 명령어를 실행하면 Webpack을 사용하여 소스코드와 의존 모듈을 번들링(Bundling)하고 Angular CLI가 내장하고 있는 개발용 서버를 실행한다.
 
 브라우저에서 localhost:4200으로 개발용 서버에 접속한다.
 
@@ -756,7 +756,7 @@ $ ng generate component <component-name> --spec false
 }
 ```
 
-또는 ng new 명령어로 프로젝트를 생성할 때, 옵션을 추가하면 `.angular-cli.json`에 반영된다. 예를 들어 아래와 같이 프로젝트를 생성하는 경우를 살펴보자.
+또는 `ng new` 명령어로 프로젝트를 생성할 때, 옵션을 추가하면 `.angular-cli.json`에 반영된다. 예를 들어 아래와 같이 프로젝트를 생성하는 경우를 살펴보자.
 
 ```bash
 $ ng new my-app -it -is -skip-tests

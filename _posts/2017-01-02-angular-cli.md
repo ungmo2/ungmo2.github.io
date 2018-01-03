@@ -141,7 +141,7 @@ Successfully initialized git.
 Project 'my-app' successfully created.
 ```
 
-프로젝트가 생성되고 Angular CLI의 기본 패키지 매니저인 npm을 사용하여 프로젝트 의존 모듈도 설치되었다. 기본 패키지 매니저를 npm 대신 [yarn](https://yarnpkg.com)을 사용하는 방법도 있다.
+프로젝트가 생성되고 Angular CLI의 기본 패키지 매니저인 npm을 사용하여 프로젝트 의존 모듈도 설치되었다. 기본 패키지 매니저를 npm 대신 [yarn](https://yarnpkg.com)으로 변경할 수도 있다.
 
 기본 패키지 매니저는 npm으로 설정되어 있다. 아래의 명령어로 확인할 수 있다.
 
@@ -176,7 +176,6 @@ info No lockfile found.
 [1/4] 🔍  Resolving packages...
 [2/4] 🚚  Fetching packages...
 [3/4] 🔗  Linking dependencies...
-warning "@angular/cli > @angular-devkit/schematics > @schematics/schematics@0.0.11" has unmet peer dependency "@angular-devkit/core@0.0.22".
 [4/4] 📃  Building fresh packages...
 success Saved lockfile.
 ✨  Done in 72.63s.
@@ -756,7 +755,9 @@ $ ng generate component <component-name> --spec false
 또는 `ng new` 명령어로 프로젝트를 생성할 때, 옵션을 추가하면 `.angular-cli.json`에 반영된다. 예를 들어 아래와 같이 프로젝트를 생성하는 경우를 살펴보자.
 
 ```bash
-$ ng new my-app -it -is -skip-tests
+$ ng new my-app --inline-template --inline-style --skip-tests
+# 축약형
+$ ng new my-app -it -is -st
 ```
 
 이때 생성되는 `.angular-cli.json`는 옵션을 반영하여 아래와 같이 생성된다.

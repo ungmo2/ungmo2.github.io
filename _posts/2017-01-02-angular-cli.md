@@ -61,10 +61,9 @@ Angular CLI 1.0.0 이전 버전의 경우 패키지명이 `angular-cli`이었으
 $ npm uninstall -g @angular/cli
 # Angular CLI 1.0.0 이전 버전을 삭제하는 경우
 $ npm uninstall -g angular-cli
-# npm 5 이상
-$ npm cache verify
-# npm 5 미만
-$ npm cache clean
+# 캐시 강제 삭제
+$ npm cache clean -f
+# Angular CLI 설치
 $ npm install -g @angular/cli
 ```
 

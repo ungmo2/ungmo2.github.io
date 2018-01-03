@@ -34,7 +34,7 @@ description: 컴포넌트는 Angular의 핵심 구성 요소로서 Angular 애�
 1. 컴포넌트의 뷰를 생성할 수 있어야 하며(HTML Template)
 2. 외부로부터의 간섭을 제어하기 위해 스코프(scope)를 분리하여 DOM을 캡슐화(Encapsulation)할 수 있어야 하며(Shadow DOM)
 3. 외부에서 컴포넌트를 호출할 수 있어야 하고(HTML import)
-4. 컴포넌트를 명시적으로 호출하기 위한 명칭(alias)를 선언하여 마치 HTML 요소와 같이 사용할 수 있어야 한다(Custom Element).
+4. 컴포넌트를 명시적으로 호출하기 위한 명칭(alias)을 선언하여 마치 HTML 요소와 같이 사용할 수 있어야 한다(Custom Element).
 
 위에서 설명한 HTML Template, Shadow DOM, HTML import, Custom Element가 바로 웹 컴포넌트의 4대 기술 스펙이다.
 
@@ -47,7 +47,7 @@ description: 컴포넌트는 Angular의 핵심 구성 요소로서 Angular 애�
 
 어떠한 복잡한 화면이라도 컴포넌트 하나로 생성하고 관리할 수 있다. 하지만 재사용이 가능한 부분이 존재하기 마련이기 때문에 하나의 컴포넌트로 화면 전체를 구성하는 것은 컴포넌트를 사용하는 취지에 부합하지 않는다. 컴포넌트는 재사용이 용이한 구조로 분할하여 작성하며 이렇게 분할된 컴포넌트를 조립하여 중복없이 UI를 생성한다.
 
-대부분의 웹 애플리케이션은 아래와 같이 블록 구조(Block structure)를 갖는다. HTML5의 시멘틱 태그를 사용하면 의미론적으로 명확한 구조를 가질수 있다.
+대부분의 웹 애플리케이션은 아래와 같이 블록 구조(Block structure)를 갖는다. HTML5의 시멘틱 태그를 사용하면 의미론적으로 명확한 구조를 가질 수 있다.
 
 ![HTML5 semantic elements](./img/building-structure.png)
 
@@ -131,13 +131,13 @@ export class AppComponent {
 
 ```html
 ...
-<h1>
-  {{ "{{title" }}}}
-</h1>
+  <h1>
+    Welcome to {{ "{{ title " }}}}!
+  </h1>
 ...
 ```
 
-템플릿은 컴포넌트의 뷰를 정의하기 위해 HTML과 Angular 고유의 템플릿 문법(Template Syntax)으로 작성한다. {{ "{{title" }}}}은 템플릿 문법 중 하나인 인터폴레이션(Interpolation)으로 컴포넌트 클래스의 데이터를 템플릿에 바인딩한다. 이러한 방식을 <strong>데이터 바인딩</strong>이라고 한다.
+템플릿은 컴포넌트의 뷰를 정의하기 위해 HTML과 Angular 고유의 템플릿 문법(Template Syntax)으로 작성한다. `{{ title }}`은 템플릿 문법 중 하나인 인터폴레이션(Interpolation)으로 컴포넌트 클래스의 데이터를 템플릿에 바인딩한다. 이러한 방식을 <strong>데이터 바인딩</strong>이라고 한다.
 
 ![data binding](./img/data-binding.png)
 

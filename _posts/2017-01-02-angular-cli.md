@@ -521,7 +521,7 @@ ng generate module todos 명령어를 실행하면 Angular CLI는 아래와 같�
 
 모듈을 사용하기 위해 다른 모듈의 `imports` 프로퍼티에 모듈을 추가하여야 한다.
 
-다음은 루트 모듈에 모듈를 추가하는 예제이다.
+다음은 루트 모듈에 모듈을 추가하는 예제이다.
 
 ```typescript
 // src/app/app.module.ts
@@ -598,14 +598,14 @@ $ ng g cl user --spec
 
 ```bash
 $ ng build
-Date: 2017-11-03T04:27:56.910Z
-Hash: f7ca522bb5d0bd277c5b
-Time: 8171ms
+Date: 2018-01-03T10:50:46.926Z
+Hash: 6856ddacfa273eff797a
+Time: 8785ms
 chunk {inline} inline.bundle.js, inline.bundle.js.map (inline) 5.83 kB [entry] [rendered]
-chunk {main} main.bundle.js, main.bundle.js.map (main) 12.2 kB [initial] [rendered]
-chunk {polyfills} polyfills.bundle.js, polyfills.bundle.js.map (polyfills) 199 kB [initial] [rendered]
-chunk {styles} styles.bundle.js, styles.bundle.js.map (styles) 11.3 kB [initial] [rendered]
-chunk {vendor} vendor.bundle.js, vendor.bundle.js.map (vendor) 2.29 MB [initial] [rendered]
+chunk {main} main.bundle.js, main.bundle.js.map (main) 10.4 kB [initial] [rendered]
+chunk {polyfills} polyfills.bundle.js, polyfills.bundle.js.map (polyfills) 202 kB [initial] [rendered]
+chunk {styles} styles.bundle.js, styles.bundle.js.map (styles) 11.4 kB [initial] [rendered]
+chunk {vendor} vendor.bundle.js, vendor.bundle.js.map (vendor) 2.34 MB [initial] [rendered]
 ```
 
 빌드가 완료되면 프로젝트 루트에 빌드 결과물이 포함된 dist 폴더가 생성된다.
@@ -672,13 +672,13 @@ export const environment = {
 $ ng build --target=production
 # 위 명령어의 축약형은 아래와 같다
 $ ng build -prod
-Date: 2017-11-03T04:38:25.977Z
-Hash: 7e959f7638e405b0a901
-Time: 16502ms
-chunk {0} polyfills.ad37cd45a71cb38eee76.bundle.js (polyfills) 61.1 kB [initial] [rendered]
-chunk {1} main.bb7621eb58c5122ee47e.bundle.js (main) 152 kB [initial] [rendered]
+Date: 2018-01-03T10:59:54.845Z
+Hash: 80e4d7fafb7bfdbf28c6
+Time: 21876ms
+chunk {0} polyfills.61df7d7ec492d95bb0b2.bundle.js (polyfills) 61.3 kB [initial] [rendered]
+chunk {1} main.2c2b6c0a6d95ad6f48ec.bundle.js (main) 152 kB [initial] [rendered]
 chunk {2} styles.d41d8cd98f00b204e980.bundle.css (styles) 0 bytes [initial] [rendered]
-chunk {3} inline.199d88dc6afcf3d9b23c.bundle.js (inline) 1.45 kB [entry] [rendered]
+chunk {3} inline.cd5410a32cdfcea4794b.bundle.js (inline) 1.45 kB [entry] [rendered]
 ```
 
 프로덕션 빌드 시에는 `src/environments/environment.prod.ts` 파일을 참조하여 빌드를 수행한다. 프로덕션 빌드와 개발환경 빌드에 기본 적용되는 옵션의 차이는 아래와 같다.
@@ -705,8 +705,6 @@ $ ng build -prod
 ```
 
 AoT 컴파일이란 템플릿을 빌드 시에 미리 컴파일해 두는 것을 말한다. 빌드에 소요되는 시간이 조금 더 걸리더라도 런타임에 컴파일이 실행되지 않기 때문에 실제 애플리케이션이 동작 시간은 단축되는 효과가 있다. 또한 템플릿을 JIT 컴파일하지 않고 미리 컴파일하기 때문에 템플릿에서 발생하는 에러를 사전에 감지할 수 있는 장점과 JIT 컴파일러를 포함할 필요가 없어지기 때문에 애플리케이션 전체 용량도 줄어드는 효과가 있다.
-
-Angular5에서는 기본 컴파일 옵션이 AoT로 변경될 예정이다.
 
 AoT 컴파일에 대한 보다 상세한 내용은 [AoT 컴파일](https://angular.io/guide/aot-compiler)을 참조하기 바란다.
 

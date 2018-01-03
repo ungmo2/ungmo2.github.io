@@ -36,7 +36,7 @@ Angular와 AngulaJS의 차이점을 정리하면 아래와 같다.
 
 - AngularJS의 angular.module과 jQlite보다 향상된 모듈 시스템과 DOM 제어 기능을 제공하며 API 또한 단순화되었다.
 
-- 선택적 바인딩(one-way, two-way *Angular는 더 이상 양방향 데이터 바인딩을 빌트인으로 제공하지 않는다.) 지원하고 디렉티브(Directive)와 서비스, 의존성 주입(dependency injection)은 간소화 되었다.
+- 선택적 바인딩(one-way, two-way *Angular는 더 이상 양방향 데이터 바인딩을 빌트인으로 제공하지 않는다.)을 지원하고 디렉티브(Directive)와 서비스, 의존성 주입(dependency injection)은 간소화 되었다.
 
 - 주력 개발 언어로써 TypeScript를 도입하여 대규모 개발에 적합한 정적 타입과 인터페이스, 제네릭 등 타입 체크 지원 기능을 제공한다.
 
@@ -58,7 +58,7 @@ AngularJS의 경우 Controller와 $scope가 개발의 중심이었지만 Angular
 
 ### 3.1.2 TypeScript의 도입
 
-[TypeScript](./typescript-introduction)는 Microsoft에서 2012년에 발표한 오픈소스로 강력한 정적 타이핑 그리고 ECMAScript6(ECMAScript 2015)의 클래스, 모듈 등과 ECMAScript7의 데코레이터를 지원한다.
+[TypeScript](./typescript-introduction)는 2012년 Microsoft에서 발표한 오픈소스로 강력한 정적 타이핑 그리고 ECMAScript6(ECMAScript 2015)의 클래스, 모듈 등과 ECMAScript7의 데코레이터를 지원한다.
 
 TypeScript를 사용하는 이유는 여러가지 있지만 가장 큰 장점은 다양한 도구의 지원을 받을 수 있다는 것이다. TypeScript는 정적 타이핑을 지원하므로 높은 수준의 IntelliSense, 코드 어시스트, 타입 체크, 리팩토링 등을 지원하며 이러한 도구의 지원은 대규모 프로젝트를 위한 필수적 요소이기도 하다.
 

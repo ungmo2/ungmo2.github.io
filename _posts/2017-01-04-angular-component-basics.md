@@ -137,7 +137,7 @@ export class AppComponent {
 ...
 ```
 
-템플릿은 컴포넌트의 뷰를 정의하기 위해 HTML과 Angular 고유의 템플릿 문법(Template Syntax)으로 작성한다. `{{ title }}`은 템플릿 문법 중 하나인 인터폴레이션(Interpolation)으로 컴포넌트 클래스의 데이터를 템플릿에 바인딩한다. 이러한 방식을 <strong>데이터 바인딩</strong>이라고 한다.
+템플릿은 컴포넌트의 뷰를 정의하기 위해 HTML과 Angular 고유의 템플릿 문법(Template Syntax)으로 작성한다. `{{ "{{ title " }}}}`은 템플릿 문법 중 하나인 인터폴레이션(Interpolation)으로 컴포넌트 클래스의 데이터를 템플릿에 바인딩한다. 이러한 방식을 <strong>데이터 바인딩</strong>이라고 한다.
 
 ![data binding](./img/data-binding.png)
 
@@ -216,7 +216,7 @@ Angular의 모듈
 export class HelloComponent {}
 ```
 
-데코레이터(Decorator)는 현재 ECMAScript7 Stage-2(Draft, 초안) 단계에 있는 스펙이다. 데코레이터는 함수로서 런타임에 호출되며 데코레이팅된 클래스(데코레이터 바로 아래에 선언된 클래스)의 constructor(생성자)를 변경할 수 있다.
+데코레이터(Decorator)는 현재 ECMAScript7 Stage-2(Draft, 초안) 단계에 있는 스펙이다. 데코레이터는 함수로서 런타임에 호출되며 데코레이팅된 클래스(데코레이터 바로 아래에 선언된 클래스)의 생성자(constructor)를 변경할 수 있다.
 
 <!--@Component는 클래스 데코레이터로서 클래스 데코레이터는 클래스 <strong>constructor에 적용</strong>되며 클래스 정의를 관찰, 수정 또는 대체하는 데 사용할 수 있다. 클래스 데코레이터에 대한 표현식은 런타임에 함수로 호출되며 데코 레이팅 된 클래스의 생성자가 유일한 인수로 호출된다. 클래스 데코레이터가 새로운 생성자 함수를 반환하면 클래스 생성자 함수를 변경한다.-->
 

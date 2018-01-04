@@ -25,18 +25,18 @@ jQuery를 사용하는 웹 애플리케이션의 경우를 살펴보자.
 jQuery에 의한 DOM 조작(Procedural programming)
 {: .desc-img}
 
-위의 예제의 경우, DOM에 접근하고 조작하는 코드를 작성해야 한다. 이를 위해 JavaScript는 HTML의 구조를 파악하고 있어야 하며 DOM의 구조가 변경되면 JavaScript 로직도 변경되어야 한다. 예를 들어 h1 요소가 p 요소로 변경되면 JavaScript 로직도 변경이 필요하다.
+위의 예제의 경우, DOM에 접근하고 조작하는 코드를 작성해야 한다. 이를 위해 JavaScript는 DOM의 구조를 파악하고 있어야 하며 이 구조가 변경되면 JavaScript 로직도 변경되어야 한다. 예를 들어 h1 요소가 p 요소로 변경되면 JavaScript 로직도 변경이 필요하다.
 
-이와 같이 기존의 웹 애플리케이션은 JavaScript DOM API를 사용하여 DOM을 직접 조작(Manipulation)하는 방식이기 때문에 뷰와 모델 간의 관계를 느슨하게 결합하기 어려운 구조를 갖는다. 이와 같은 구조 상 문제로 뷰가 변경되면 로직도 변경될 가능성이 매우 높다.
+이와 같이 기존의 웹 애플리케이션은 JavaScript DOM API를 사용하여 DOM을 직접 조작(Manipulation)하는 방식이기 때문에 뷰와 모델 간의 관계를 느슨하게 결합하기 어려운 구조를 갖는다. <strong>이와 같은 구조 상 문제로 뷰가 변경되면 로직도 변경될 가능성이 매우 높다.</strong>
 
-하지만 Angular는 DOM에 직접 접근하지 않고 템플릿과 컴포넌트 클래스의 상호 관계를 선언하는 방식(선언형 프로그래밍: Declarative programming)으로 뷰와 모델의 관계를 관리한다. 이때 사용되는 것이 <strong>데이터 바인딩</strong>이며 이를 통해 템플릿은 컴포넌트 클래스와 연결된다. 데이터 바인딩은 <strong>템플릿 문법</strong>으로 기술된다. HTML과 템플릿 문법으로 기술된 템플릿은 JIT 또는 AOT 컴파일러에 의해 브라우저가 이해할 수 있는 JavaScript로 컴파일된다. Angular 웹 애플리케이션의 경우를 살펴보자.
+하지만 Angular는 DOM에 직접 접근하지 않고 템플릿과 컴포넌트 클래스의 상호 관계를 선언하는 방식(선언형 프로그래밍: Declarative programming)으로 뷰와 모델의 관계를 관리한다. 이때 사용되는 것이 <strong>데이터 바인딩</strong>이며 이를 통해 템플릿과 컴포넌트 클래스는 연결된다. 데이터 바인딩은 <strong>템플릿 문법</strong>으로 기술된다. HTML과 템플릿 문법으로 기술된 템플릿은 JIT 또는 AOT 컴파일러에 의해 브라우저가 이해할 수 있는 JavaScript로 컴파일된다. Angular 웹 애플리케이션의 경우를 살펴보자.
 
 ![declarative-programming](./img/declarative-programming.png)
 
 데이터 바인딩에 의한 템플릿과 컴포넌트 클래스의 연결(Declarative programming)
 {: .desc-img}
 
-위의 예제의 경우, 템플릿에서 직접 컴포넌트 클래스의 프로퍼티를 참조하기 때문에 DOM에 접근하고 조작하는 코드를 작성할 필요가 없다. 따라서 컴포넌트 클래스는 HTML의 구조를 파악하고 있을 필요가 없으며 템플릿의 변경되어도 컴포넌트 클래스를 변경할 필요가 없다. 예를 들어 h1 요소가 p 요소로 변경되어도 컴포넌트 클래스는 변경이 필요없다.
+위의 예제의 경우, 템플릿에서 직접 컴포넌트 클래스의 프로퍼티를 참조하기 때문에 DOM에 접근하고 조작하는 코드를 작성할 필요가 없다. 따라서 컴포넌트 클래스는 DOM의 구조를 파악하고 있을 필요가 없으며 템플릿의 변경되어도 컴포넌트 클래스를 변경할 필요가 없다. 예를 들어 h1 요소가 p 요소로 변경되어도 컴포넌트 클래스는 변경이 필요없다.
 
 Angular의 데이터 바인딩은 뷰와 모델의 관계를 기존의 웹 애플리케이션 방식보다 느슨하게 결합하므로 뷰와 모델을 보다 깔끔하게 분리할 수 있을 뿐만 아니라 기존의 웹 애플리케이션 개발 방식보다 간결한 코드로 개발이 가능하다.
 
@@ -146,7 +146,7 @@ import { Component } from '@angular/core';
   template: `
     <p>name: {{ "{{ name " }}}}</p>
     <p>age: {{ "{{ age " }}}}</p>
-    <p>admin: {{ "{{ admin " }}}}{{ admin }}</p>
+    <p>admin: {{ "{{ admin " }}}}</p>
     <p>address: {{ "{{ address.city " }}}} {{ "{{ address.country " }}}}</p>
     <p>gender: {{ "{{ gender " }}}}</p>
     <p>sayHi(): {{ "{{ sayHi() " }}}}</p>
@@ -223,7 +223,7 @@ export class AppComponent {
 <input type="text" value="{{ "{{ name " }}}}">
 ```
 
-Angular는 인터폴레이션을 렌더링 이전에 프로퍼티 바인딩으로 변환한다. 사실 인터폴레이션은 프로퍼티 바인딩의 Syntactic sugar인 것이다. 위 코드는 아래의 코드와 동일하게 동작한다.
+Angular는 렌더링 이전에 인터폴레이션을 프로퍼티 바인딩으로 변환한다. 사실 인터폴레이션은 프로퍼티 바인딩의 Syntactic sugar인 것이다. 위 코드는 아래의 코드와 동일하게 동작한다.
 
 ```html
 <p [innerHTML]="contents"></p>
@@ -246,8 +246,8 @@ Angular는 인터폴레이션을 렌더링 이전에 프로퍼티 바인딩으�
 
 - id 어트리뷰트와 id 프로퍼티와 1:1 매핑한다.
 - class 어트리뷰트는 classList 프로퍼티로 변환된다.
-- td 요소의 colspan 어트리뷰트의 경우 매핑하는 프로퍼티가 존재하지 않는다.
-- [textContent](https://developer.mozilla.org/ko/docs/Web/API/Node/textContent) 프로퍼티의 경우 대응하는 어트리뷰트가 존재하지 않는다.
+- td 요소의 colspan 어트리뷰트의 경우, 매핑하는 프로퍼티가 존재하지 않는다.
+- [textContent](https://developer.mozilla.org/ko/docs/Web/API/Node/textContent) 프로퍼티의 경우, 대응하는 어트리뷰트가 존재하지 않는다.
 - input 요소의 value 어트리뷰트는 value 프로퍼티와 1:1 매핑하지만 서로 다르게 동작한다.
 
 아래의 input 요소는 3개의 어트리뷰트를 가지고 있다.
@@ -256,7 +256,7 @@ Angular는 인터폴레이션을 렌더링 이전에 프로퍼티 바인딩으�
 <input id="user" type="text" value="ungmo2">
 ```
 
-브라우저가 위의 코드를 파싱하면 DOM 노드 객체 HTMLInputElement가 생성되고 이 객체는 다양한 프로퍼티를 소유한다. input 요소의 모든 어트리뷰트는 HTMLInputElement 객체의 attributes 프로퍼티로 변환되고 getAttribute()로 취득 가능하다.
+브라우저가 위의 코드를 파싱하면 DOM 노드 객체 HTMLInputElement가 생성되고 이 객체는 다양한 프로퍼티를 소유한다. input 요소의 모든 어트리뷰트는 HTMLInputElement 객체의 attributes 프로퍼티로 변환되고 이것은 getAttribute()로 취득 가능하다.
 
 ```javascript
 document.getElementById('user').getAttribute('value') // ungmo2
@@ -297,7 +297,7 @@ export class AppComponent {
 <input id="user" type="text" value="ungmo2">
 ```
 
-또 다른 경우를 살펴보자. td 요소의 colspan 어트리뷰트의 경우 매핑하는 프로퍼티가 존재하지 않는다.
+또 다른 경우를 살펴보자. td 요소의 colspan 어트리뷰트의 경우, 매핑하는 프로퍼티가 존재하지 않는다.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -370,23 +370,6 @@ export class AppComponent {
 
 이와 같이 DOM의 프로퍼티는 HTML 요소의 어트리뷰트와는 다르게 동작하기 때문에 프로퍼티 바인딩과 어트리뷰트 바인딩은 구분되어 사용하여야 한다.
 
-<!--```html
-<input type="text" [data-username]="name">
-```
-
-존재하지 않는 DOM 프로퍼티에 접근하면 아래와 같은 에러가 발생한다.
-
-```
-Unhandled Promise rejection: Template parse errors:
-Can't bind to 'data-username' since it isn't a known property of 'input'.
-```
-
-이와 같이 어트리뷰트 바인딩은 DOM 프로퍼티에는 존재하지 않는 어트리뷰트에 사용한다.
-
-```html
-<input type="text" [attr.data-username]="name">
-```-->
-
 ## 3.4 클래스 바인딩(Class binding)
 
 클래스 바인딩을 사용하면 HTML 클래스 어트리뷰트에 클래스를 추가 또는 삭제할 수 있다.
@@ -450,6 +433,7 @@ export class AppComponent {
 
 ```typescript
 import { Component } from '@angular/core';
+
 @Component({
   selector: 'app-root',
   template: `
@@ -489,7 +473,7 @@ export class AppComponent {
 <element (event)="statement">...</element>
 ```
 
-간단한 예제를 살펴보자.
+간단한 예제를 통해 이벤트 바인딩을 살펴보자.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -625,7 +609,7 @@ export class AppComponent {
 }
 ```
 
-`<input type="text" [(ngModel)]="name">`과 `<input type="text" [value]="name" (input)="name=$event.target.value">`은 정확히 동일하게 동작한다. ngModel은 이벤트 바인딩과 프로퍼티 바인딩으로 구현되는 양방향 바인딩을 간편하게 작성할 수 있도록 돕는 디렉티브로서 사용자 입력과 관련돤 DOM 요소(input, textarea, select 등의 폼 컨트롤 요소)에서만 사용할 수 있다. ngModel을 이벤트 바인딩과 프로퍼티 바인딩으로 표현하여 보자.
+`<input type="text" [(ngModel)]="name">`과 `<input type="text" [value]="name" (input)="name=$event.target.value">`은 정확히 동일하게 동작한다. ngModel은 이벤트 바인딩과 프로퍼티 바인딩으로 구현되는 양방향 바인딩을 간편하게 작성할 수 있도록 돕는 디렉티브로서 사용자 입력과 관련한 DOM 요소(input, textarea, select 등의 폼 컨트롤 요소)에서만 사용할 수 있다. ngModel을 이벤트 바인딩과 프로퍼티 바인딩으로 표현하여 보자.
 
 ```typescript
 import { Component } from '@angular/core';

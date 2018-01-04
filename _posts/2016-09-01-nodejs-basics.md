@@ -93,7 +93,7 @@ $ npm install -g n
 캐시를 강제 삭제한다.
 
 ```bash
-$ sudo npm cache clean -f
+$ npm cache clean -f
 npm WARN using --force I sure hope you know what you are doing.
 ```
 

@@ -224,7 +224,10 @@ ngIf 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설탕
 </ng-template>
 ```
 
-Angular는 *ngIf를 만나면 호스트 요소를 template 태그로 래핑하고 *ngIf를 프로퍼티 바인딩으로 변환한다. ngFor와 ngSwitch 디렉티브도 동일한 패턴을 따른다.
+Angular는 *ngIf를 만나면 호스트 요소를 `ng-template` 디렉티브로 래핑하고 *ngIf를 프로퍼티 바인딩으로 변환한다. ngFor와 ngSwitch 디렉티브도 동일한 패턴을 따른다.
+
+`ng-template` 디렉티브는 페이지에서 렌더링 될 요소를 div 또는 span 등의 요소와 함께 사용할 필요가 없는 요소들을 그룹화할 때 사용한다. `ng-template`에 대해서는 [ng-template 디렉티브](./angular-directive#43-ng-template)와 [ng-container 디렉티브](./angular-directive#44-ng-container)를 참조하기 바란다.
+{: .info}
 
 버튼 클릭에 의해 요소를 show/hide하는 간단한 예제를 살펴보자.
 
@@ -239,6 +242,7 @@ import { Component } from '@angular/core';
 
     <!-- 스타일 바인딩에 의한 show/hide -->
     <p [style.display]="isShow ? 'block' : 'none'">Lorem ipsum dolor sit amet</p>
+
     <button (click)="isShow=!isShow">{{ "{{ isShow ? 'Hide' : 'Show' " }}}}</button>
   `,
   styles: [`
@@ -285,15 +289,19 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <div>
-      <input type="radio" id="one" name="skill" (click)="mySkill=$event.target.value" value="HTML">
+      <input type="radio" id="one" name="skill"
+            (click)="mySkill=$event.target.value" value="HTML">
       <label for="one"> HTML</label>
-      <input type="radio" id="two" name="skill" (click)="mySkill=$event.target.value" value="CSS">
+      <input type="radio" id="two" name="skill"
+            (click)="mySkill=$event.target.value" value="CSS">
       <label for="two"> CSS</label>
     </div>
 
+    <!-- 참인 경우, 별도의 ng-template를 사용하지 않는 방법  -->
     <div *ngIf="mySkill==='HTML'; else elseBlock">HTML</div>
     <ng-template #elseBlock><div>CSS</div></ng-template>
 
+    <!-- 참인 경우, 별도의 ng-template를 사용하는 방법  -->
     <div *ngIf="mySkill==='HTML'; then thenBlock_1 else elseBlock_1"></div>
     <ng-template #thenBlock_1><div>HTML</div></ng-template>
     <ng-template #elseBlock_1><div>CSS</div></ng-template>

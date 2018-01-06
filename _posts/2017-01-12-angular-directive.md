@@ -431,13 +431,13 @@ export class AppComponent {
 
 ## 4.2 TemplateRef와 ViewContainerRef
 
-NgIf, NgFor, NgSwitch와 같은 [빌트인 구조 디렉티브](./angular-component-template-syntax#22-빌트인-구조-디렉티브built-in-structural-directive)는 디렉티브 이름 앞에 붙은 *(asterisk)에 의해 `ng-template`으로 변환된다. 예를 들어 NgIf의 경우를 살펴보자.
+ngIf, ngFor, ngSwitch와 같은 [빌트인 구조 디렉티브](./angular-component-template-syntax#22-빌트인-구조-디렉티브built-in-structural-directive)는 디렉티브 이름 앞에 붙은 *(asterisk)에 의해 `ng-template`으로 변환된다. 예를 들어 NgIf의 경우를 살펴보자.
 
 ```html
 <element *ngIf="expression">...</element>
 ```
 
-NgIf 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설탕(syntactic sugar)이다. 즉 위 코드는 아래의 코드로 변환된다.
+ngIf 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설탕(syntactic sugar)이다. 즉 위 코드는 아래의 코드로 변환된다.
 
 ```html
 <ng-template [ngIf]="expression">
@@ -447,19 +447,19 @@ NgIf 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설탕
 
 Angular는 *ngIf를 만나면 호스트 요소를 template 태그로 래핑하고 ngIf를 프로퍼티 바인딩으로 변환한다.
 
-[TemplateRef](https://angular.io/api/core/TemplateRef)는 ng-template 요소를 가리키는 객체이다. ng-template 요소는 프로퍼티 바인딩에 의해 상태 값을 갖는다.
+[TemplateRef](https://angular.io/api/core/TemplateRef)는 ng-template 디렉티브를 가리키는 객체이다. ng-template 디렉티브는 프로퍼티 바인딩에 의해 상태 값을 갖는다.
 
 [ViewContainerRef](https://angular.io/api/core/ViewContainerRef)는 뷰를 포함시킬 수 있는 컨테이너이다. 이 컨테이너에는 두 종류의 뷰가 포함될 수 있다. 하나는 ViewContainerRef의 createComponent 메소드를 통해 컴포넌트를 인스턴스화하여 만든 호스트 뷰(Host View)이고 또 하나는 ViewContainerRef의 createEmbeddedView 메소드를 통해 ng-template을 인스턴스화하여 포함한 임베디브 뷰(Embedded View)이다.
 
-다시 말해 ViewContainerRef는 컴포넌트, 어트리뷰트 디렉티브, 구조 디렉티브의 호스트 뷰를 가리키며 createComponent, createEmbeddedView 메소드를 통해 새로운 요소(컴포넌트 템플릿 또는 ng-template 요소)를 담을 수 있는 DOM 요소이다.
+다시 말해 ViewContainerRef는 컴포넌트, 어트리뷰트 디렉티브, 구조 디렉티브의 호스트 뷰를 가리키며 createComponent, createEmbeddedView 메소드를 통해 새로운 요소(컴포넌트 템플릿 또는 ng-template 디렉티브)를 담을 수 있는 DOM 요소이다.
 
-위 코드의 ①과 ②를 살펴보자. 프로퍼티 바인딩에 의해 myNgIf 디렉티브의 상태 값이 true이면 createEmbeddedView 메소드에 ng-template 요소를 가리키는 templateRef 객체를 인자로 전달하여 ng-template 요소를 호스트 뷰에 추가한다. 상태 값이 false이면 clear 메소드를 호출하여 호스트 뷰에서 ng-template 요소를 제거한다. 제거된 ng-template 요소는 display: none으로 감추어진 것이 아니라 DOM에 남아있지 않고 완전히 제거되어 불필요한 자원의 낭비를 방지한다.
+위 코드의 ①과 ②를 살펴보자. 프로퍼티 바인딩에 의해 myNgIf 디렉티브의 상태 값이 true이면 createEmbeddedView 메소드에 ng-template 요소를 가리키는 templateRef 객체를 인자로 전달하여 ng-template 디렉티브를 호스트 뷰에 추가한다. 상태 값이 false이면 clear 메소드를 호출하여 호스트 뷰에서 ng-template 요소를 제거한다. 제거된 ng-template 디렉티브는 `display: none`으로 감추어진 것이 아니라 DOM에 남아있지 않고 완전히 제거되어 불필요한 자원의 낭비를 방지한다.
 
-## 4.3 ng-template
+## 4.3 ng-template 디렉티브
 
-ng-template는 페이지에서 렌더링 될 요소를 div 또는 span 등의 요소와 함께 사용할 필요가 없는 요소들을 그룹화할 때 사용한다.
+ng-template 디렉티브는 페이지에서 렌더링 될 요소를 div 또는 span 등의 요소와 함께 사용할 필요가 없는 요소들을 그룹화할 때 사용한다.
 
-NgIf, NgFor, NgSwtch 디렉티브의 경우, ng-template 요소로 변환된다.
+ngIf, ngFor, ngSwtch 디렉티브의 경우, ng-template 디렉티브로 변환된다.
 
 ```html
 <ul>
@@ -478,9 +478,9 @@ NgIf, NgFor, NgSwtch 디렉티브의 경우, ng-template 요소로 변환된다.
 
 일반적으로 ng-template는 [ngTemplateOutlet](https://angular.io/api/common/NgTemplateOutlet) 또는 myNgIf 예제에서 살펴본 바와 같이 createEmbeddedView를 사용하여 TemplateRef이 가리키는 템플릿화된 뷰 스니펫을 호스트 뷰에 추가해야 할 경우 사용한다.
 
-## 4.4 ng-container
+## 4.4 ng-container 디렉티브
 
-ng-container도 ng-template와 마찬가지로 페이지에서 렌더링 될 요소를 div 또는 span 등의 요소와 함께 사용할 필요가 없는 요소들을 그룹화할 때 사용한다.
+ng-container 디렉티브도 ng-template와 마찬가지로 페이지에서 렌더링 될 요소를 div 또는 span 등의 요소와 함께 사용할 필요가 없는 요소들을 그룹화할 때 사용한다.
 
 예를 들어 아래의 경우를 살펴보자
 
@@ -508,7 +508,7 @@ ng-container도 ng-template와 마찬가지로 페이지에서 렌더링 될 요
 
 이와 같이 span나 div와 같이 사용할 필요가 없이 단순히 디렉티브를 위한 태그가 필요할 경우가 있다. 이런 경우 사용하는 것이 ng-template과 ng-container이다.
 
-ng-container도 ng-template와 마찬가지로 DOM에 어떠한 영향도 주지 않고 div 또는 span 등을 사용하지 않고 요소들을 그룹화할 때 사용한다. 또한 ng-container는 *문법을 사용할 수 있기 때문에 ng-template 대신 사용할 수 있다.
+ng-container도 ng-template와 마찬가지로 DOM에 어떠한 영향도 주지 않고 div 또는 span 등을 사용하지 않고 요소들을 그룹화할 때 사용한다. <strong>ng-container와  ng-template의 차이는 ng-container는 `*` 문법을 사용할 수 있고 ng-template는 `*` 문법을 사용할 수 없다는 것이다.</strong>
 
 ```html
 <ul>

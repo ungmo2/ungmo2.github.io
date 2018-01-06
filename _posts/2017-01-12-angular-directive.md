@@ -398,10 +398,10 @@ export class MyNgIfDirective {
 
   @Input() set myNgIf(condition: boolean) {
     if (condition) {
-      // 호스트 뷰에 ng-template 요소를 추가
+      // 호스트 뷰에 ng-template 디렉티브를 추가
       this.viewContainer.createEmbeddedView(this.templateRef); // ①
     } else {
-      // 호스트 뷰에서 ng-template 요소를 제거
+      // 호스트 뷰에서 ng-template 디렉티브를 제거
       this.viewContainer.clear(); // ②
     }
   }
@@ -453,7 +453,7 @@ Angular는 *ngIf를 만나면 호스트 요소를 template 태그로 래핑하�
 
 다시 말해 ViewContainerRef는 컴포넌트, 어트리뷰트 디렉티브, 구조 디렉티브의 호스트 뷰를 가리키며 createComponent, createEmbeddedView 메소드를 통해 새로운 요소(컴포넌트 템플릿 또는 ng-template 디렉티브)를 담을 수 있는 DOM 요소이다.
 
-위 코드의 ①과 ②를 살펴보자. 프로퍼티 바인딩에 의해 myNgIf 디렉티브의 상태 값이 true이면 createEmbeddedView 메소드에 ng-template 요소를 가리키는 templateRef 객체를 인자로 전달하여 ng-template 디렉티브를 호스트 뷰에 추가한다. 상태 값이 false이면 clear 메소드를 호출하여 호스트 뷰에서 ng-template 요소를 제거한다. 제거된 ng-template 디렉티브는 `display: none`으로 감추어진 것이 아니라 DOM에 남아있지 않고 완전히 제거되어 불필요한 자원의 낭비를 방지한다.
+위 코드의 ①과 ②를 살펴보자. 프로퍼티 바인딩에 의해 myNgIf 디렉티브의 상태 값이 true이면 createEmbeddedView 메소드에 ng-template 디렉티브를 가리키는 templateRef 객체를 인자로 전달하여 ng-template 디렉티브를 호스트 뷰에 추가한다. 상태 값이 false이면 clear 메소드를 호출하여 호스트 뷰에서 ng-template 디렉티브를 제거한다. 제거된 ng-template 디렉티브는 `display: none`으로 감추어진 것이 아니라 DOM에 남아있지 않고 완전히 제거되어 불필요한 자원의 낭비를 방지한다.
 
 ## 4.3 ng-template 디렉티브
 

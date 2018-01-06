@@ -263,7 +263,7 @@ ngIf 디렉티브를 사용하지 않고 스타일 바인딩 또는 클래스 �
 ngIf에 의해 제거된 요소는 DOM에 남아있지 않는다.
 {: .desc-img}
 
-Angular 4부터 `ngIf else`가 추가되었다. ngIf 우변의 표현식이 참이면 호스트 요소를 DOM에 추가하고 거짓이면 else 이후에 기술한 ng-template 요소의 자식을 DOM에 추가한다.
+Angular 4부터 `ngIf else`가 추가되었다. ngIf 우변의 표현식이 참이면 호스트 요소를 DOM에 추가하고 거짓이면 else 이후에 기술한 ng-template 디렉티브의 자식을 DOM에 추가한다. 이때 ng-template 디렉티브에는 else 또는 then 이후에 지정한 템플릿 참조 변수를 지정한다.
 
 ```html
 <!-- if else -->

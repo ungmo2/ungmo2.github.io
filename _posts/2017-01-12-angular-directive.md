@@ -474,7 +474,7 @@ ngIf, ngFor, ngSwtch 디렉티브의 경우, ng-template 디렉티브로 변환�
 </ul>
 ```
 
-이때 ng-template는 DOM에 어떠한 영향도 주지 않고 다만 li 요소를 반복하기 위한 ngFor, let-item, [ngForOf]을 담는 역할을 한다. ng-template는 렌더링 시에는 주석의 처리된다.
+이때 ng-template는 DOM에 어떠한 영향도 주지 않고 다만 li 요소를 반복하기 위한 ngFor, let-item, [ngForOf]를 담는 역할을 한다. ng-template는 렌더링 시에 주석 처리된다.
 
 일반적으로 ng-template는 [ngTemplateOutlet](https://angular.io/api/common/NgTemplateOutlet) 또는 myNgIf 예제에서 살펴본 바와 같이 createEmbeddedView를 사용하여 TemplateRef이 가리키는 템플릿화된 뷰 스니펫을 호스트 뷰에 추가해야 할 경우 사용한다.
 
@@ -518,7 +518,7 @@ ng-container도 ng-template와 마찬가지로 DOM에 어떠한 영향도 주지
 </ul>
 ```
 
-Angular는 같은 요소에 하나 이상의 구조 디렉티브 사용을 금지한다. **일반적으로 ng-container는 *ngIf 또는 *ngFor와 같이 같은 요소 하나 이상의 구조 디렉티브를 사용하기 위한 헬퍼 요소로서 사용한다.**
+Angular는 같은 요소에 하나 이상의 구조 디렉티브 사용을 금지한다. **일반적으로 ng-container는 *ngIf 또는 *ngFor와 같이 동일한 요소에 하나 이상의 구조 디렉티브를 사용하기 위한 헬퍼 요소로서 사용한다.**
 
 ```typescript
 // app.component.ts

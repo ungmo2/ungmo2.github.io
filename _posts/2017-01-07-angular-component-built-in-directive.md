@@ -280,7 +280,7 @@ Angular 4부터 `ngIf else`가 추가되었다. ngIf 우변의 표현식이 참�
 <ng-template #thenBlock>Truthy condition</ng-template>
 ```
 
-간단한 예제를 살펴보자.
+아래의 간단한 예제를 통해 ngIf 디렉티브의 사용법을 살펴보기 바란다.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -320,7 +320,7 @@ export class AppComponent {
 ngFor 디렉티브는 컴포넌트 클래스의 컬렉션을 반복하여 호스트 요소(ngFor 디렉티브가 선언된 요소) 및 하위 요소를 DOM에 추가한다. 컬렉션은 일반적으로 배열을 사용한다.
 
 ```html
-<element *ngFor="let item of items; let i=index">...</element>
+<element *ngFor="let item of items">...</element>
 
 <element *ngFor="let item of items; let i=index; let odd=odd; trackBy: trackById">...</element>
 ```
@@ -345,7 +345,7 @@ ngFor 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설�
 <element *ngFor="let item of items; let i=index">...</element>
 ```
 
-컴포넌트 클래스 프로퍼티의 배열을 리스트로 출력하는 예제를 살펴보자.
+컴포넌트 클래스 프로퍼티인 배열을 뷰에 리스트로 출력하는 예제를 살펴보자.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -382,7 +382,7 @@ export class AppComponent {
   // user를 추가한다
   addUser(name: string) {
     if (name) {
-      this.users.push({ id: this.getNewUserId(), name: name });
+      this.users.push({ id: this.getNewUserId(), name });
     }
   }
 
@@ -391,7 +391,7 @@ export class AppComponent {
     this.users = this.users.filter(({ id }) => id !== userid);
   }
 
-  // 추가될 users의 id를 반환한다
+  // 추가될 user의 id를 반환한다
   getNewUserId(): number {
     return this.users.length ? Math.max(...this.users.map(({ id }) => id)) + 1 : 1;
   }
@@ -400,7 +400,7 @@ export class AppComponent {
 
 <iframe src="https://stackblitz.com/edit/builtin-directive-ngfor?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="800"></iframe>
 
-users 배열의 length만큼 반복하며 li 요소와 하위 요소를 DOM에 추가한다. 템플릿의 for of 구문에서 사용된 user 변수는 users 배열의 개별요소를 일시적으로 저장하며 호스트 요소의 하위 요소에서만 유효한 로컬 변수이다.
+ngFor 디렉티브를 사용하여 users 배열의 length만큼 반복하며 li 요소와 하위 요소를 DOM에 추가한다. 템플릿의 ngFor ~ of에서 사용된 user 변수는 users 배열의 개별 요소를 일시적으로 저장하며 호스트 요소 및 하위 요소에서만 유효한 로컬 변수이다.
 
 ngFor 디렉티브는 컬렉션 데이터(users)가 변경되면 컬렉션과 연결된 모든 DOM 요소를 제거하고 다시 생성한다. 이는 컬렉션의 변경 사항을 추적(tracking)할 수 없기 때문이다. 때문에 크기가 매우 큰 컬렉션을 다루는 경우, 퍼포먼스 상의 문제를 발생시킬 수 있다. ngFor 디렉티브는 퍼포먼스를 향상시키기 위한 기능으로 `trackBy`를 제공한다.
 
@@ -442,7 +442,7 @@ export class AppComponent {
   // user를 추가한다
   addUser(name: string) {
     if (name) {
-      this.users.push({ id: this.getNewUserId(), name: name });
+      this.users.push({ id: this.getNewUserId(), name });
     }
   }
 

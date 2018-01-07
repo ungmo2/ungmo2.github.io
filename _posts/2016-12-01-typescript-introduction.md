@@ -20,7 +20,7 @@ JavaScript는 1995년 Brendan Eich(Nescape)이 Navigator 2를 위하여 웹페�
 
 HTML5의 등장은 Plug-in에 의존하는 기존의 구축 방식을 JavaScript로 대체시켰다. 이에 따라 과거 서버측이 담당하던 업무의 많은 부분이 클라이언트 측으로 이동하게 하였고 JavaScript는 웹의 Assembly 언어로 불려질만큼 중요한 언어로 그 위상이 높아지게 되었다.
 
-<!-- JavaScript is the Assembly Language of the Web.  
+<!-- JavaScript is the Assembly Language of the Web.
 - Scott Hanselman
 {: .info} -->
 
@@ -28,8 +28,8 @@ HTML5의 등장은 Plug-in에 의존하는 기존의 구축 방식을 JavaScript
 
 또한 JavaScript는 C 또는 Java 등의 C-family 언어와는 다른 특성을 가지고 있다. 다른 C-family 언어와 구별되는 대표적인 특징은 아래와 같다.
 
-- [Prototype-based Object Oriented Language](js-prototype)  
-- [Scope](./js-scope)와 [this](./js-this)  
+- [Prototype-based Object Oriented Language](js-prototype)
+- [Scope](./js-scope)와 [this](./js-this)
 - [동적 타입(dynamic typed) 언어 혹은 느슨한 타입(loosely typed) 언어](./js-data-type-variable)
 
 이와 같은 특성은 Class 기반 객체지향 언어(Java, C++, C# 등)에 익숙한 개발자를 혼란스럽게 하며 코드가 복잡해질 수 있고 디버그와 테스트 공수가 증가하는 등의 문제를 야기시킬 수 있어 특히 대규모 개발 시에는 주의하여야 한다.
@@ -69,13 +69,55 @@ AtScript superset
 
 # 2. TypeScript를 사용하는 이유
 
-<!-- TypeScript를 JavaScript의 [Syntactic sugar](https://en.wikipedia.org/wiki/Syntactic_sugar)로 부르기도 하는데 이는 그만큼 JavaScript를 문법적으로 더욱 사용하기 편하게 돕는다는 비유적 표현이다. -->
+## 2.1 정적 타입
 
-TypeScript를 사용하는 이유는 여러가지 있지만 가장 큰 장점은 IDE(통합개발환경)를 포함한 다양한 <strong>도구의 지원</strong>을 받을 수 있다는 것이다. TypeScript는 정적 타입을 지원하므로 컴파일 단계에서 오류를 포착할 수 있는 장점을 가지고 있다. 또한 높은 수준의 IntelliSense, 코드 어시스트, 타입 체크, 리팩토링 등을 지원하며 이러한 도구의 지원은 대규모 프로젝트를 위한 필수적 요소이기도 하다. 명시적인 정적 타입 지정은 코드의 가독성을 향상 시키고 예측을 가능하게 하며 디버깅을 쉽게 한다. 강력한 OOP 지원은 크고 복잡한 프로젝트의 코드 기반을 쉽게 구성할 수 있도록 도우며 Java, C# 등의 OOP 언어에 익숙한 개발자의 JavaScript 프로젝트에 대한 진입 장벽을 낮추는 효과 또한 갖는다.
+아래 코드를 살펴보자.
+
+```javascript
+function sum(a, b) {
+  return a + b;
+}
+```
+
+위 코드의 작성한 개발자의 의도는 아마도 2개의 number 타입의 인수를 전달받아 그 합계를 반환하는 것으로 추측된다. 하지만 아래와 같이 호출될 수 있다.
+
+```javascript
+function sum(a, b) {
+  return a + b;
+}
+
+sum('x', 'y'); // 'xy'
+```
+
+위 코드는 자바스크립트 문법 상 어떠한 문제도 없기 때문에 자바스크립트 엔진은 아무런 꺼리낌없이 위 코드를 실행할 것이다. 이러한 상황이 발생한 이유는 변수의 타입을 사전에 지정하지 않는 자바스크립트의 동적 타이핑(Dynamic Typing)에 의한 것이다.
+
+위 코드를 타입스크립트의 정적 타입을 사용하여 재작성 해보자.
+
+ ```typescript
+function sum(a: number, b: number) {
+  return a + b;
+}
+
+sum('x', 'y'); // error TS2345: Argument of type '"x"' is not assignable to parameter of type 'number'.
+```
+
+TypeScript는 정적 타입을 지원하므로 컴파일 단계에서 오류를 포착할 수 있는 장점을 가지고 있다. 명시적인 정적 타입 지정은 개발자의 의도를 명확히 코드에 기술할 수 있다. 이는 코드의 가독성을 향상 시키고 예측을 가능하게 하며 디버깅을 쉽게 한다.
+
+## 2.2 도구의 지원
+
+TypeScript를 사용하는 이유는 여러가지 있지만 가장 큰 장점은 IDE(통합개발환경)를 포함한 다양한 <strong>도구의 지원</strong>을 받을 수 있다는 것이다. IDE와 같은 도구에 타입 정보를 제공함으로써 높은 수준의 IntelliSense, 코드 어시스트, 타입 체크, 리팩토링 등을 지원받을 수 있으며 이러한 도구의 지원은 대규모 프로젝트를 위한 필수적 요소이기도 하다.
+
+## 2.3 강력한 OOP 지원
+
+인터페이스, 제네릭 등과 같은 강력한 OOP 지원은 크고 복잡한 프로젝트의 코드 기반을 쉽게 구성할 수 있도록 도우며 Java, C# 등의 OOP 언어에 익숙한 개발자의 JavaScript 프로젝트에 대한 진입 장벽을 낮추는 효과 또한 갖는다.
+
+## 2.4 ES6 / ES Next 지원
 
 컴파일러 등의 개발환경 구축이 필요없이 브라우저만 있으면 바로 사용할 수 있는 ES5와 비교할 때 개발환경 구축의 관점에서 다소 복잡해진 측면이 있으나 현재 ES6를 완전히 지원하지 않고 있는 브라우저를 고려하여 Babel등의 트랜스파일러를 사용해야 하는 현 상황에서 TypeScript 개발환경 구축에 드는 수고는 그다지 아깝지 않을 것이다.
 
-마지막으로 Angular는 TypeScript 뿐만 아니라 JavaScript, Dart로도 작성할 수 있지만 Angular 문서, 커뮤니티 활동에서 가장 많이 사용되고 있는 것이 TypeScript이다. Angular 관련 문서의 예제 등도 TypeScript로 작성된 것이 대부분이어서 관련 정보 취득에 이점이 있으며 이러한 현상은 앞으로도 지속될 것으로 예상된다.
+## 2.5 Angular
+
+마지막으로 Angular는 TypeScript 뿐만 아니라 JavaScript(ES5, ES6), Dart로도 작성할 수 있지만 Angular 문서, 커뮤니티 활동에서 가장 많이 사용되고 있는 것이 TypeScript이다. Angular 관련 문서의 예제 등도 TypeScript로 작성된 것이 대부분이어서 관련 정보 취득에 이점이 있으며 이러한 현상은 앞으로도 지속될 것으로 예상된다.
 
 # 3. 개발환경 구축
 

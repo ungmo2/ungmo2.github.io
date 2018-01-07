@@ -127,7 +127,7 @@ TypeScript 컴파일러는 npm으로 설치할 수 있다. Visual Studio 2015 �
 
 ## 3.1 Node.js 설치
 
-- [Installing Node.js](./nodejs-basics#install)
+- [Installing Node.js](./nodejs-basics#2-install)
 
 ## 3.2 TypeScript 컴파일러 설치 및 사용법
 

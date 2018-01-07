@@ -137,7 +137,7 @@ export class AppComponent {
 @ViewChild 데코레이터는 1개의 자식 요소만을 가져올 수 있기 때문에 만일 자식 요소 중에 ChildComponent가 여러개 탐색되었을 경우, 첫번째 ChildComponent의 인스턴스를 가져온다.
 프로퍼티 myChild에는 자식 컴포넌트 ChildComponent의 인스턴스가 바인딩되어 있으므로 프로퍼티 myChild를 통해 자식 컴포넌트의 프로퍼티, 메소드에 접근할 수 있다. 단 접근 제한자(Access modifier) public으로 공개된 프로퍼티, 메소드에만 접근할 수 있다. typescript는 public, protected, private와 같은 접근 제한자를 지정하지 않은 프로퍼티, 메소드를 기본설정인 public으로 지정한다.
 
-<iframe src="https://stackblitz.com/edit/view-child-exam?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/view-child-exam?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 ## 1.2 @ViewChildren
 
@@ -256,7 +256,7 @@ QueryList 클래스의 map 메소드를 사용하여 자식 컴포넌트 ChildCo
 this.myChildren.map(child => child.checkbox.checked = this.active);
 ```
 
-<iframe src="https://stackblitz.com/edit/view-children-exam?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/view-children-exam?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 ## 1.3 템플릿 참조 변수를 사용한 네이티브 DOM 접근
 
@@ -328,7 +328,7 @@ export class AppComponent {
 
 ngAfterViewInit 메소드는 컴포넌트의 뷰와 자식 컴포넌트의 뷰를 초기화한 이후 호출되는 컴포넌트 생명주기 메소드이다. @ViewChild와 @ViewChildren를 통해 바인딩한 프로퍼티에는 컴포넌트 생명주기 메소드 ngAfterViewInit가 호출된 시점부터 접근할 수 있다. [컴포넌트 생명주기](./angular-lifecycle)에 대해서는 다른 장에서 자세히 다룰 것이다.
 
-<iframe src="https://stackblitz.com/edit/access-native-dom?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/access-native-dom?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 # 2. @ContentChild와 @ContentChildren
 
@@ -462,7 +462,7 @@ ng-content는 여러개의 콘텐츠를 한번에 받아들일 수 있는 멀티
 멀티 슬롯 콘텐트 프로젝션
 {: .desc-img}
 
-<iframe src="https://stackblitz.com/edit/content-projection-exam?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/content-projection-exam?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 ## 2.1 @ContentChild와 @ContentChildren
 
@@ -578,7 +578,7 @@ UserListComponent는 @ContentChild와 @ContentChildren 데코레이터를 통해
 
 위 예제의 실행 결과는 아래와 같다.
 
-<iframe src="https://stackblitz.com/edit/content-child-children?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/content-child-children?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
 <!-- <iframe src="http://embed.plnkr.co/i7SJPnLxnCeEfWuwArxb/?show=preview" frameborder="0" width="100%" height="400"></iframe> -->
 

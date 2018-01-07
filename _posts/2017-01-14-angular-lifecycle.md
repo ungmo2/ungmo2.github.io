@@ -233,7 +233,7 @@ prop: Hello
 [ngAfterViewChecked]
 ```
 
-<iframe src="https://stackblitz.com/edit/lifecycle-hooks-exam?embed=1&file=app/child.component.ts&hideExplorer=1" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/lifecycle-hooks-exam?embed=1&file=app/child.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 우선 construnctor가 호출되었다. construnctor는 인스턴스 생성을 위해 호출되며 Angular의 메소드가 아니다. construnctor에서 입력 프로퍼티를 참조하면 undefined가 출력되는데 이는 입력 프로퍼티의 초기화가 OnInit에서 완성되기 때문이다.
 
@@ -369,7 +369,7 @@ ngDoCheck는 모든 상태의 변경에 의해 호출된다. 따라서 입력 �
 <button (click)="prop=changed!">컴포넌트 프로퍼티 변경</button>
 ```
 
-<iframe src="https://stackblitz.com/edit/lifecycle-hooks-ngonchanges-ngdocheck?embed=1&file=app/child.component.ts&hideExplorer=1" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/lifecycle-hooks-ngonchanges-ngdocheck?embed=1&file=app/child.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 ## 3.3 디렉티브 생명 주기 훅 메소드
 

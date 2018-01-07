@@ -147,7 +147,7 @@ export class AppComponent { }
 
 컴포넌트를 실행하면 textBlue 디렉티브에 의해 요소의 텍스트 컬러가 파란색으로 표시되는 것을 확인할 수 있다.
 
-<iframe src="https://stackblitz.com/edit/custom-attr-directive-1?embed=1&file=app/text-blue.directive.ts&hideExplorer=1" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/custom-attr-directive-1?embed=1&file=app/text-blue.directive.ts" frameborder="0" width="100%" height="500"></iframe>
 
 ## 3.2 이벤트 처리
 
@@ -181,7 +181,7 @@ export class TextBlueDirective {
 
 @HostListener 데코레이터를 사용하는 대신 @Directive 데코레이터의 메타데이터 객체의 host 프로퍼티를 사용할 수도 있다. 하지만 코드의 가독성 측면에서 유리한 @HostListener 데코레이터를 사용하도록 한다. 이벤트 핸들러 onMouseEnter, onMouseLeave은 textColor 메서드를 호출하여 어트리뷰트 호스트의 텍스트 컬러를 변경한다.
 
-<iframe src="https://stackblitz.com/edit/custom-attr-directive-2?embed=1&file=app/text-blue.directive.ts&hideExplorer=1" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/custom-attr-directive-2?embed=1&file=app/text-blue.directive.ts" frameborder="0" width="100%" height="500"></iframe>
 
 ## 3.3 @Input 데이터 바인딩
 
@@ -236,7 +236,7 @@ export class TextColorDirective {
 
 모듈에 TextColorDirective를 등록하고 컴포넌트를 실행하면 color 어트리뷰트에 바인딩한 컬러가 textColor 디렉티브로 전달되고 요소의 텍스트 컬러가 이벤트에 의해 변경되는 것을 확인할 수 있다.
 
-<iframe src="https://stackblitz.com/edit/custom-attr-directive-3?embed=1&file=app/text-color.directive.ts&hideExplorer=1" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/custom-attr-directive-3?embed=1&file=app/text-color.directive.ts" frameborder="0" width="100%" height="500"></iframe>
 
 조금더 리팩터링를 해보자. 별도의 color 어트리뷰트에 바인딩한 컬러를 이번에는 textColor 디렉티브에 직접 바인딩하도록 수정한다.
 
@@ -264,7 +264,7 @@ export class TextColorDirective {
 ...
 ```
 
-<iframe src="https://stackblitz.com/edit/custom-attr-directive-4?embed=1&file=app/text-color.directive.ts&hideExplorer=1" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/custom-attr-directive-4?embed=1&file=app/text-color.directive.ts" frameborder="0" width="100%" height="500"></iframe>
 
 어트리뷰트 디렉티브는 요소의 어트리뷰트로 사용되기 때문에 프로퍼티 바인딩이 가능하다. @Input 데코레이터는 프로퍼티 바인딩을 통한 상태의 전달에 사용된다. 또한 일반 어트리뷰트의 정적인 값을 전달받을 때도 사용할 수 있다.
 
@@ -303,7 +303,7 @@ export class MyDirectiveDirective {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/custom-attr-directive-5?embed=1&file=app/my-directive.directive.ts&hideExplorer=1" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/custom-attr-directive-5?embed=1&file=app/my-directive.directive.ts" frameborder="0" width="100%" height="500"></iframe>
 
 마지막으로 mouseenter 이벤트 발생 시에는 라디오 버튼에 의해 입력된 컬러에 의해 텍스트 컬러가 변경되도록 하고 mouseleave 이벤트 발생 시에는 어트리뷰트 호스트의 일반 어트리뷰트에 지정된 정적 값을 통해 텍스트 컬러가 변경되도록 수정하여 보자.
 
@@ -369,7 +369,7 @@ export class TextColorDirective implements OnInit  {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/custom-attr-directive-6?embed=1&file=app/text-color.directive.ts&hideExplorer=1" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/custom-attr-directive-6?embed=1&file=app/text-color.directive.ts" frameborder="0" width="100%" height="500"></iframe>
 
 # 4. 사용자 정의 구조 디렉티브
 
@@ -427,7 +427,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/custom-structure-directive-1?embed=1&file=app/my-ng-if.directive.ts&hideExplorer=1" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/custom-structure-directive-1?embed=1&file=app/my-ng-if.directive.ts" frameborder="0" width="100%" height="600"></iframe>
 
 ## 4.2 TemplateRef와 ViewContainerRef
 
@@ -543,7 +543,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/ng-container?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/ng-container?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 select 태그를 동적으로 구성하는 Range 사용자 정의 구조 디렉티브를 통해 ng-container에 사용 방법에 대해 알아보도록 하자.
 
@@ -616,7 +616,7 @@ export class RangeDirective {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/custom-structure-directive-2?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/custom-structure-directive-2?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 # Reference
 

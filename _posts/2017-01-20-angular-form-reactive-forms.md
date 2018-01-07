@@ -588,7 +588,7 @@ get hobbies(): FormArray {
 </em>
 ```
 
-<iframe src="https://stackblitz.com/edit/reactive-form-exam?embed=1&file=app/user-form.component.ts&hideExplorer=1&hideNavigation=1&view=preview" frameborder="0" width="100%" height="800"></iframe>
+<iframe src="https://stackblitz.com/edit/reactive-form-exam?embed=1&file=app/user-form.component.ts&hideNavigation=1&view=preview" frameborder="0" width="100%" height="800"></iframe>
 
 # 6. FormBuilder
 
@@ -639,7 +639,7 @@ FormBuilder를 사용하는 경우, 아래와 같이 생성자의 2번째 인자
   }, { validator: PasswordValidator.match }),
 ```
 
-<iframe src="https://stackblitz.com/edit/reactive-form-formbuilder-exam?embed=1&file=app/user-form.component.ts&hideExplorer=1&hideNavigation=1&view=preview" frameborder="0" width="100%" height="800"></iframe>
+<iframe src="https://stackblitz.com/edit/reactive-form-formbuilder-exam?embed=1&file=app/user-form.component.ts" frameborder="0" width="100%" height="800"></iframe>
 
 # Reference
 

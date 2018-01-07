@@ -18,7 +18,7 @@ Angular 애플리케이션은 컴포넌트를 중심(CBD, Component Based Develo
 
 분할된 컴포넌트를 조립한다는 것은 컴포넌트를 다른 컴포넌트 내부에서 사용하는 것을 말하는데 이는 컴포넌트 간에 계층(Hierarchy)적 구조가 형성될 수 있음을 의미한다. 따라서 분할된 컴포넌트를 조립하여 구성된 애플리케이션은 컴포넌트 간의 부모-자식 관계로 표현되는 계층적 트리 구조를 갖는다.
 
-컴포넌트 간의 부모-자식 관계는 데이터와 이벤트가 왕래하는 정보 흐름의 통로가 되며 이를 통해 다른 컴포넌트와의 상태 공유가 이루어지기 때문에 컴포넌트 간의 부모-자식 관계는 Angular 애플리케이션에서 중요한 의미를 갖는다. 이 계층적 구조는 DOM 트리와 유사한 형태를 가지게 되는데 이를 컴포넌트 트리라고 한다.
+컴포넌트의 계층적 트리 구조, 즉 컴포넌트 간의 부모-자식 관계는 데이터와 이벤트가 왕래하는 정보 흐름의 통로가 되며 이를 통해 다른 컴포넌트와의 상태 공유가 이루어지기 때문에 컴포넌트 간의 부모-자식 관계는 Angular 애플리케이션에서 중요한 의미를 갖는다. 이 계층적 구조는 DOM 트리와 유사한 형태를 가지게 되는데 이를 컴포넌트 트리라고 한다.
 
 ![component-interaction](./img/component-interaction.png)
 {: .w-300}
@@ -46,7 +46,7 @@ $ cd component-interaction
 $ ng g c user-list
 ```
 
-아래와 같이 프로젝트가 생성되었다.
+생성된 프로젝트의 파일 구조는 아래와 같다.
 
 ```
 component-interaction/
@@ -59,7 +59,9 @@ component-interaction/
 ...
 ```
 
-부모 컴포넌트 역할을 담당할 app.component.ts의 템플릿에 자식 컴포넌트 user-list.component.ts의 디렉티브(user-list.component.ts의 select 프로퍼티에 지정한 이름 'app-user-list')를 추가한다. 이것으로 user-list.component.ts는 app.component.ts의 자식 컴포넌트가 된다.
+`app.component.ts`와 `user-list.component.ts`는 아직 어떠한 연결고리도 없는 상태이다.
+
+부모 컴포넌트 역할을 담당할 루트 컴포넌트 `app.component.ts`의 템플릿에 자식 컴포넌트 `user-list.component.ts`의 디렉티브(user-list.component.ts의 select 프로퍼티에 지정한 이름 'app-user-list')를 추가한다. 이것으로 `user-list.component.ts`는 `app.component.ts`의 자식 컴포넌트가 된다.
 
 ```typescript
 // app.component.ts
@@ -149,7 +151,10 @@ import { User } from './models/user.model';
         <form class="form-inline">
           <div class="form-group" style="margin: 30px 0">
             <label for="name">Name:</label>
-            <input #name type="text" id="name" class="form-control" placeholder="이름을 입력하세요">
+            <input
+              #name type="text" id="name"
+              class="form-control"
+              placeholder="이름을 입력하세요">
             <label for="role">Role:</label>
             <select #role id="role" class="form-control">
               <option>Administrator</option>
@@ -199,7 +204,7 @@ export class AppComponent {
 $ ng g cl models/user.model
 ```
 
-models폴더에 user.model.ts이 생성되었다. 이 파일을 아래와 같이 수정한다. typescript에서 생성자 파라미터에 접근 제한자를 사용하면 파라미터는 암묵적으로 프로퍼티로 정의되고 생성자 내부에서 별도의 프로퍼티 초기화가 없어도 암묵적으로 초기화가 수행된다.
+models 폴더에 user.model.ts이 생성되었다. 이 파일을 아래와 같이 수정한다. typescript에서 생성자 파라미터에 접근 제한자를 사용하면 파라미터는 암묵적으로 프로퍼티로 정의되고 생성자 내부에서 별도의 프로퍼티 초기화가 없어도 암묵적으로 초기화가 수행된다.
 
 ```typescript
 // models/user.model.ts
@@ -213,6 +218,7 @@ User 모델 클래스를 컴포넌트에서 사용하기 위해서는 임포트�
 ```typescript
 // app.component.ts
 import { User } from './models/user.model';
+...
 ```
 
 부모 컴포넌트가 완성되었다. 예제를 보면 부모 컴포넌트(app.component.ts)는 아래와 같이 프로퍼티 바인딩을 통해 자식 컴포넌트에게 상태 정보를 전달하였다.
@@ -285,7 +291,9 @@ export class UserListComponent {
 @Input 데코레이터를 이용한 부모 컴포넌트에서 자식 컴포넌트로 상태 전달
 {: .desc-img}
 
-만약에 부모 컴포넌트에서 실행한 프로퍼티 바인딩의 프로퍼티명과는 다른 프로퍼티명을 사용하려면 아래와 같이 @Input 데코레이터에 프로퍼티 바인딩의 프로퍼티명을 전달한다.
+<iframe src="https://stackblitz.com/edit/component-interaction-1?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+
+만약에 부모 컴포넌트에서 실행한 프로퍼티 바인딩의 프로퍼티명과는 다른 프로퍼티명을 자식 컴포넌트에서 사용하려면 아래와 같이 @Input 데코레이터에 프로퍼티 바인딩의 프로퍼티명을 인자로 전달하고 사용하고자 하는 프로퍼티명을 선언한다.
 
 ```typescript
 export class UserListComponent {
@@ -317,6 +325,7 @@ setter를 이용한 입력 프로퍼티 조작
 // user-list.component.ts
 import { Component, Input } from '@angular/core';
 import { User } from '../models/user.model';
+
 @Component({
   selector: 'app-user-list',
   template: `
@@ -388,7 +397,7 @@ export class UserListComponent {
 setter를 이용한 입력 프로퍼티 조작
 {: .desc-img}
 
-<iframe src="https://stackblitz.com/edit/component-interaction-exam-1?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/component-interaction-2?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 ## 2.2 자식 컴포넌트에서 부모 컴포넌트로 상태 전달
 
@@ -453,7 +462,7 @@ import { User } from '../models/user.model';
   `
 })
 export class UserListComponent {
-  // 부모 컴포넌트가 전달한 상태 정보를 입력 프로퍼티에 바인딩한다.
+  // _users는 내부에서만 사용할 private 프로퍼티이다.
   private _users: User[];
 
   // 역할별 사용자 카운터
@@ -592,7 +601,7 @@ removeUser(user: User) {
 자식 컴포넌트에서 부모 컴포넌트로 상태 전달
 {: .desc-img}
 
-<iframe src="https://stackblitz.com/edit/component-interaction-exam-2?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="650"></iframe>
+<iframe src="https://stackblitz.com/edit/component-interaction-3?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="650"></iframe>
 
 # 3. Stateful 컴포넌트와 Stateless 컴포넌트
 

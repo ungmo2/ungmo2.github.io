@@ -52,13 +52,13 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/template-reference-variable?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/template-reference-variable?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 # 2. 템플릿 표현식 연산자(Template expression operator)
 
 ## 2.1 세이프 내비게이션 연산자(Safe navigation operator)
 
-세이프 내비게이션 연산자 `?`는 컴포넌트 클래스의 프로퍼티의 값이 null 또는 undefined인 경우 발생하는 에러를 회피하기 위해 사용한다.
+세이프 내비게이션 연산자 `?`는 컴포넌트 클래스의 프로퍼티의 값이 null 또는 undefined일 때 발생하는 에러를 회피하기 위해 사용한다.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -77,7 +77,7 @@ import { Component } from '@angular/core';
 export class AppComponent { }
 ```
 
-<iframe src="https://stackblitz.com/edit/safe-navigation-operator?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/safe-navigation-operator?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
 ## 2.2 파이프 연산자(Pipe operator)
 
@@ -110,7 +110,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/pipe-operator?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/pipe-operator?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
 파이프를 사용한 위 컴포넌트의 출력 결과는 아래와 같다.
 
@@ -126,11 +126,13 @@ Sep 23, 2017
 
 ```html
 {{ "{{ value | PipeName " }}}}
-{{ "{{ value | PipeName : customOption1 :  customOption2 " }}}}
+{{ "{{ value | PipeName : customOption1 : customOption2 " }}}}
 {{ "{{ value | PipeName1 | PipeName2 " }}}}
 ```
 
-위와 같이 값 뒤에 파이프 연산자 `|` 를 붙인 후 원하는 파이프를 지정한다. 예를 들어 문자열을 대문자로 변환하여 표시하는 파이프 uppercase를 사용하여 보자.
+위와 같이 파이프의 대상 값 뒤에 파이프 연산자 `|`를 붙인 후 원하는 파이프를 지정한다. `:`로 구분하여 파이프 옵션을 지정할 수 있고 파이프 연산자 `|`를 연이어 체이닝 방식으로 파이프를 추가할 수도 있다.
+
+예를 들어 문자열을 대문자로 변환하여 표시하는 파이프 uppercase를 사용하여 보자.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -179,7 +181,7 @@ import { Observable } from 'rxjs/Rx';
 
     <h3>SlicePipe : array</h3>
     <ul>
-      <li *ngFor="let i of collection | slice:1:3">{{ "{{i" }}}}</li>
+      <li *ngFor="let i of collection | slice:1:3">{{ "{{ i " }}}}</li>
     </ul>
 
     <h3>SlicePipe : string</h3>
@@ -216,7 +218,7 @@ export class AppComponent {
 }
 ```
 
-커스텀 파이프에 대한 상세한 내용은 [파이프](./angular-pipe)에서 알아보도록 하자.
+빌트인 파이프뿐만 아니라 커스텀 파이프를 정의할 수 있다. 커스텀 파이프에 대한 상세한 내용은 [파이프](./angular-pipe)에서 알아보도록 하자.
 
 # Reference
 

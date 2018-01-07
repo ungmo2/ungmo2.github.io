@@ -140,7 +140,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/builtin-directive-ngclass?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="800"></iframe>
+<iframe src="https://stackblitz.com/edit/builtin-directive-ngclass?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="800"></iframe>
 
 클래스 바인딩은 표현식 또는 클래스 리스트를 나타내는 문자열을 바인딩한다. ngClass 디렉티브는 문자열, 배열, 객체를 바인딩할 수 있다.
 
@@ -195,7 +195,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/builtin-directive-ngstyle?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="800"></iframe>
+<iframe src="https://stackblitz.com/edit/builtin-directive-ngstyle?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="800"></iframe>
 
 <!-- <iframe src="http://embed.plnkr.co/SlDSZfsOteIjuSCijD2h/?show=preview" frameborder="0" width="100%" height="400"></iframe> -->
 
@@ -254,7 +254,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/builtin-directive-ngif-1?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/builtin-directive-ngif-1?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
 ngIf 디렉티브를 사용하지 않고 스타일 바인딩 또는 클래스 바인딩을 사용하여 요소의 표시/비표시를 구현할 수도 있다. 하지만 스타일 바인딩 또는 클래스 바인딩에 의해 비표시된 요소는 브라우저에 의해 렌더링이 되지 않지만 DOM에 남아있다. ngIf 디렉티브에 의해 제거된 요소는 DOM에 남아있지 않고 완전히 제거되어 불필요한 자원의 낭비를 방지한다.
 
@@ -312,7 +312,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/builtin-directive-ngif-2?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="700"></iframe>
+<iframe src="https://stackblitz.com/edit/builtin-directive-ngif-2?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="700"></iframe>
 <!-- <iframe src="http://embed.plnkr.co/ty9JmDJ6rMFNpK7ijYUn/?show=preview" frameborder="0" width="100%" height="400"></iframe> -->
 
 ## 3.2 ngFor
@@ -398,7 +398,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/builtin-directive-ngfor?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="800"></iframe>
+<iframe src="https://stackblitz.com/edit/builtin-directive-ngfor?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="800"></iframe>
 
 ngFor 디렉티브를 사용하여 users 배열의 length만큼 반복하며 li 요소와 하위 요소를 DOM에 추가한다. 템플릿의 ngFor ~ of에서 사용된 user 변수는 users 배열의 개별 요소를 일시적으로 저장하며 호스트 요소 및 하위 요소에서만 유효한 로컬 변수이다.
 
@@ -464,7 +464,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/builtin-directive-ngfor-trackby?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="1000"></iframe>
+<iframe src="https://stackblitz.com/edit/builtin-directive-ngfor-trackby?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="1000"></iframe>
 
 user 객체의 id 프로퍼티를 사용하여 변경을 트랙킹할 수 있도록 trackByUserId 메소드를 추가하였다. 이때 user 객체의 id 프로퍼티는 유니크하여야 한다. user 객체의 id 프로퍼티를 사용하지 않고 trackByUserId에 인자로 전달된 index를 사용하여도 무방하다.
 
@@ -585,7 +585,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/builtin-directive-ngswitch?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/builtin-directive-ngswitch?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
 # Reference
 

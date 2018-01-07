@@ -138,7 +138,7 @@ h3 {
 
 위 예제를 확인하여 보면 자신에 적용한 스타일은 자신에만 영향을 주는 확인할 수 있다.
 
-<iframe src="https://stackblitz.com/edit/component-style?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/component-style?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
 # 2. 뷰 캡슐화 (View Encapsulation)
 
@@ -185,7 +185,7 @@ export class AppComponent {}
 Encapsulation Native
 {: .desc-img}
 
-<iframe src="https://stackblitz.com/edit/view-encapsulation?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/view-encapsulation?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
 # 3. 쉐도우 DOM 스타일 셀렉터 (Shadow DOM Style Selector)
 
@@ -282,7 +282,7 @@ h3 {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/shadow-dom-style-selector?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/shadow-dom-style-selector?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
 ## 3.2 :host-context
 
@@ -346,7 +346,7 @@ h3 {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/host-context?embed=1&file=app/app.component.ts&hideExplorer=1" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/host-context?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
 # 4. 글로벌 스타일
 

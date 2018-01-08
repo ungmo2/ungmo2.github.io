@@ -151,7 +151,7 @@ TypeScript 컴파일러(tsc)는 TypeScript 파일(.ts)을 JavaScript 파일로 �
 ```typescript
 // person.ts
 class Person {
-  
+
   private name: string;
 
   constructor(name: string) {

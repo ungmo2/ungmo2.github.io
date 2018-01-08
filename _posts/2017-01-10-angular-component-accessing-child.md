@@ -19,7 +19,7 @@ Angular 애플리케이션을 작성하다보면 부모 컴포넌트에서 자�
 - @ContentChild
 - @ContentChildren
 
-이 데코레이터들은 접근이 필요한 자식 요소를 탐색하고 탐색된 요소의 인스턴스를 데코레이터가 수식한 프로퍼티에 바인딩한다.
+이 데코레이터들은 접근이 필요한 자식 요소를 탐색하고 탐색된 요소의 인스턴스를 데코레이터가 장식한 프로퍼티에 바인딩한다.
 
 # 1. @ViewChild와 @ViewChildren
 
@@ -137,7 +137,7 @@ export class AppComponent {
 @ViewChild 데코레이터는 1개의 자식 요소만을 가져올 수 있기 때문에 만일 자식 요소 중에 ChildComponent가 여러개 탐색되었을 경우, 첫번째 ChildComponent의 인스턴스를 가져온다.
 프로퍼티 myChild에는 자식 컴포넌트 ChildComponent의 인스턴스가 바인딩되어 있으므로 프로퍼티 myChild를 통해 자식 컴포넌트의 프로퍼티, 메소드에 접근할 수 있다. 단 접근 제한자(Access modifier) public으로 공개된 프로퍼티, 메소드에만 접근할 수 있다. typescript는 public, protected, private와 같은 접근 제한자를 지정하지 않은 프로퍼티, 메소드를 기본설정인 public으로 지정한다.
 
-<iframe src="https://stackblitz.com/edit/view-child-exam?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/view-child-decorator?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 ## 1.2 @ViewChildren
 
@@ -256,7 +256,7 @@ QueryList 클래스의 map 메소드를 사용하여 자식 컴포넌트 ChildCo
 this.myChildren.map(child => child.checkbox.checked = this.active);
 ```
 
-<iframe src="https://stackblitz.com/edit/view-children-exam?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/view-children-decorator?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 ## 1.3 템플릿 참조 변수를 사용한 네이티브 DOM 접근
 
@@ -285,6 +285,7 @@ $ ng new access-native-dom -it -is -st
 ```typescript
 // app.component.ts
 import { Component, ViewChild, ViewChildren, QueryList, ElementRef } from '@angular/core';
+
 @Component({
   selector: 'app-root',
   template: `
@@ -324,7 +325,7 @@ export class AppComponent {
 템플릿 참조 변수를 사용한 DOM 접근 예제 실행 화면
 {: .desc-img}
 
-@ViewChild와 @ViewChildren 데코레이터를 사용하여 자식 컴포넌트를 탐색하는 경우, 탐색 결과로 자식 컴포넌트의 인스턴스를 취득할 수 있었다. 취득한 인스턴스는 당연히 인스턴스를 생성한 컴포넌트 클래스가 타입이 된다. 템플릿 참조 변수를 사용하여 네이티브 DOM을 탐색한 경우, 탐색 결과로 [ElementRef](https://angular.io/api/core/ElementRef) 타입의 인스턴스가 바인딩된다. ElementRef는 네이티브 DOM의 프로퍼티를 담고 있는 nativeElement 프로퍼티를 소유한다. 따라서 ElementRef.nativeElement로 접근하면 네이티브 DOM의 프로퍼티에 접근할 수 있다.
+@ViewChild와 @ViewChildren 데코레이터를 사용하여 자식 컴포넌트를 탐색하는 경우, 탐색 결과로 자식 컴포넌트의 인스턴스를 취득할 수 있었다. 취득한 인스턴스는 당연히 인스턴스를 생성한 컴포넌트 클래스가 타입이 된다. 템플릿 참조 변수를 사용하여 네이티브 DOM을 탐색한 경우, 탐색 결과로 [ElementRef](https://angular.io/api/core/ElementRef) 타입의 인스턴스가 바인딩된다. ElementRef는 네이티브 DOM의 프로퍼티를 담고 있는 nativeElement 프로퍼티를 소유한다. 따라서 `ElementRef.nativeElement`로 접근하면 네이티브 DOM의 프로퍼티에 접근할 수 있다.
 
 ngAfterViewInit 메소드는 컴포넌트의 뷰와 자식 컴포넌트의 뷰를 초기화한 이후 호출되는 컴포넌트 생명주기 메소드이다. @ViewChild와 @ViewChildren를 통해 바인딩한 프로퍼티에는 컴포넌트 생명주기 메소드 ngAfterViewInit가 호출된 시점부터 접근할 수 있다. [컴포넌트 생명주기](./angular-lifecycle)에 대해서는 다른 장에서 자세히 다룰 것이다.
 
@@ -360,10 +361,10 @@ Angular는 콘텐트 프로젝션(Content projection)을 통해 자식 컴포넌
 ...
 ```
 
-예제를 통해 ng-content의 사용 방법을 알아보자. 새로운 Angular 애플리케이션을 생성하자.
+예제를 통해 ngContent의 사용 방법을 알아보자. 새로운 Angular 애플리케이션을 생성하자.
 
 ```bash
-$ ng new access-native-dom -it -is -st
+$ ng new content-projection -it -is -st
 ```
 
 루트 컴포넌트를 아래와 같이 수정한다. app.component.ts는 두개의 자식 컴포넌트를 사용할 것이다.
@@ -515,9 +516,9 @@ import { UserComponent } from './user.component';
   `
 })
 export class UserListComponent {
-  // 부모 컴포넌트가 지정한 콘텐츠 중에서 템플릿 참조 변수 first을 가진 콘텐츠를 취득한다.
+  // 부모 컴포넌트가 지정한 콘텐츠 중에서 템플릿 참조 변수 first를 가진 콘텐츠를 취득한다.
   @ContentChild('first') firstChild: UserComponent;
-  // 부모 컴포넌트가 지정한 콘텐츠 중에서 UserComponent를 모두를 취득한다.
+  // 부모 컴포넌트가 지정한 콘텐츠 중에서 UserComponent 모두를 취득한다.
   @ContentChildren(UserComponent) children: QueryList<UserComponent>;
 
   // ngAfterContentInit은 콘텐츠가 초기화됐을 때 실행되는 컴포넌트 생명주기 메소드이다.
@@ -540,9 +541,9 @@ export class UserListComponent {
 UserListComponent는 부모 컴포넌트가 추가한 콘텐츠를 ng-content를 통해 프로젝션하였다. 프로젝션된 3개의 UserComponent를 @ContentChild와 @ContentChildren 데코레이터를 통해 탐색한다.
 
 ```typescript
-// 부모 컴포넌트가 지정한 콘텐츠 중에서 템플릿 참조 변수 first을 가진 콘텐츠를 취득한다.
+// 부모 컴포넌트가 지정한 콘텐츠 중에서 템플릿 참조 변수 first를 가진 콘텐츠를 취득한다.
 @ContentChild('first') firstChild: UserComponent;
-// 부모 컴포넌트가 지정한 콘텐츠 중에서 UserComponent를 모두를 취득한다.
+// 부모 컴포넌트가 지정한 콘텐츠 중에서 UserComponent 모두를 취득한다.
 @ContentChildren(UserComponent) children: QueryList<UserComponent>;
 ```
 

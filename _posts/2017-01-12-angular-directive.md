@@ -18,11 +18,11 @@ description: 디렉티브(Directive 지시자)는 “DOM의 모든 것(모양이
 
 **디렉티브는 애플리케이션 전역에서 사용할 수 있는 공통 관심사를 컴포넌트에서 분리하여 구현한 것으로 컴포넌트의 복잡도를 낮추고 가독성을 향상시킨다. 컴포넌트도 뷰를 생성하고 이벤트를 처리하는 등 DOM을 관리하기 때문에 큰 의미에서 디렉티브로 볼 수 있다.**
 
-컴포넌트는 뷰 단위의 관심사를 가지고 있다면 디렉티브는 요소의 공통 기능에 관심을 갖는다. 컴포넌트는 뷰를 구성하는 독립적인 구성 요소로서 다른 컴포넌트에 직접적인 관심을 두지 않는다. 디렉티브는 보편적이며 애플리케이션 전역에서 공통으로 사용 가능한 고유의 관심사를 기능으로 구현한다. 디렉티브는 단일 책임 원칙(Single responsibilty principle)에 의해 복합적인 기능보다는 여러 요소에서 공통적, 반복적으로 사용될 하나의 기능을 명확히 구현하는 것이 바람직하다.
+컴포넌트는 뷰 단위의 관심사를 가지고 있다면 디렉티브는 DOM 요소의 공통 기능에 관심을 갖는다. 컴포넌트는 뷰를 구성하는 독립적인 구성 요소로서 다른 컴포넌트에 직접적인 관심을 두지 않는다. 디렉티브는 보편적이며 애플리케이션 전역에서 공통으로 사용 가능한 고유의 관심사를 기능으로 구현한다. 디렉티브는 단일 책임 원칙(Single responsibilty principle)에 의해 복합적인 기능보다는 여러 요소에서 공통적, 반복적으로 사용될 하나의 기능을 명확히 구현하는 것이 바람직하다.
 
 큰 의미에서 디렉티브인 컴포넌트는 뷰를 가지며 다른 컴포넌트를 자식으로 가질 수 있다. 하지만 디렉티브는 뷰를 가지고 있지 않기 때문에 자식을 가질 수 없다. 다시 말해 컴포넌트는 자식 컴포넌트, 디렉티브, 파이프를 조합하여 뷰를 만들지만 디렉티브는 부모가 될 수 없고 컴포넌트에 의해 사용될 뿐이다.
 
-디렉티브는 요소 또는 어트리뷰트와 유사하게 의미를 갖는 이름으로 표현된다. 이때 로직은 드러나지 않으며 단지 디렉티브를 순서에 맞게 배치한다. 이를 선언형 프로그래밍(Declarative programming)이라 한다.
+디렉티브는 DOM 요소 또는 어트리뷰트와 유사하게 의미를 갖는 이름으로 표현된다. 이때 로직은 드러나지 않으며 단지 디렉티브를 순서에 맞게 배치한다. 이를 선언형 프로그래밍(Declarative programming)이라 한다.
 
 ```html
 <todo-form></todo-form>
@@ -63,13 +63,15 @@ Angular는 3가지 유형의 디렉티브를 제공한다.
 
 # 3. 사용자 정의 어트리뷰트 디렉티브
 
-## 3.1 디렉티브의 생성
+## 3.1 사용자 정의 어트리뷰트 디렉티브의 생성
 
 예제를 통해 사용자 정의 어트리뷰트 디렉티브를 살펴보자. textBlue 디렉티브는 해당 요소의 텍스트 컬러를 파란색으로 변경한다. Angular CLI를 사용하여 디렉티브를 추가하도록 한다.
 
 ```bash
 $ ng generate directive textBlue
 ```
+
+생성된 text-blue.directive.ts를 아래와 같이 수정한다.
 
 ```typescript
 // text-blue.directive.ts
@@ -86,13 +88,13 @@ export class TextBlueDirective {
 }
 ```
 
-디렉티브는 @Directive 데코레이터로 장식된 순수한 자바스크립트 클래스이다. @Directive 데코레이터의 메타데이터에는 디렉티브에 필요한 정보를 설정한다. selector 프로퍼티는 디렉티브의 이름을 설정하며 값에 있는 대괄호는 이 디렉티브가 프로퍼티 바인딩으로 사용될 수 있음을 표현한 것이다.
+디렉티브는 @Directive 데코레이터로 장식된 순수한 자바스크립트 클래스이다. @Directive 데코레이터의 메타데이터에는 디렉티브에 필요한 정보를 설정한다. selector 프로퍼티에는 디렉티브의 이름을 설정하며 값에 있는 대괄호는 이 디렉티브가 프로퍼티 바인딩으로 사용될 수 있음을 표현한 것이다.
 
 <!-- 생성자에 ElementRef와 Renderer가 주입(inject)되었다. ElementRef는 nativeElement 프로퍼티를 통해 DOM에 직접 접근할 수 있는 서비스이다. DOM에 직접 접근하는 경우, XSS 공격에 노출될 수 있는 단점이 있다. 따라서 ElementRef 대신 Renderer의 setElementStyle 메소드를 사용하여 요소의 스타일을 변경하도록 한다. -->
 
-생성자에 [ElementRef](https://angular.io/api/core/ElementRef) 타입의 인스턴스가 주입(inject)되었다. ElementRef 인스턴스는 디렉티브가 선언된 호스트 요소를 가리킨다. 이 인스턴스는 호스트 네이티브 DOM의 프로퍼티를 담고 있는 nativeElement 프로퍼티를 소유한다. 따라서 ElementRef.nativeElement로 접근하면 호스트 네이티브 DOM의 프로퍼티에 접근할 수 있다.
+생성자에 [ElementRef](https://angular.io/api/core/ElementRef) 타입의 인스턴스가 주입(inject)되었다. ElementRef 인스턴스는 디렉티브가 선언된 호스트 요소를 가리킨다. 이 인스턴스는 호스트 네이티브 DOM의 프로퍼티를 담고 있는 nativeElement 프로퍼티를 소유한다. 따라서 `ElementRef.nativeElement`로 접근하면 호스트 네이티브 DOM의 프로퍼티에 접근할 수 있다.
 
-하지만 ElementRef를 사용하여 DOM에 직접 접근하는 경우, XSS 공격에 노출될 수 있는 단점이 있다. 따라서 ElementRef 대신 [Renderer2](https://angular.io/api/core/Renderer2)의 [setStyle](https://angular.io/api/core/Renderer2#setStyle) 메소드를 사용하여 호스트 요소의 스타일을 변경하도록 한다.
+하지만 ElementRef를 사용하여 DOM에 직접 접근하는 경우, XSS 공격에 노출될 수 있는 단점이 있다. 따라서 [Renderer2](https://angular.io/api/core/Renderer2)의 [setStyle](https://angular.io/api/core/Renderer2#setStyle) 메소드를 사용하여 호스트 요소의 스타일을 변경하도록 한다.
 
 ```typescript
 // text-blue.directive.ts
@@ -123,9 +125,7 @@ import { TextBlueDirective } from './text-blue.directive';
 @NgModule({
   // 이 모듈에 소속하는 컴포넌트, 디렉티브, 파이프를 선언
   declarations: [AppComponent, TextBlueDirective],
-  // 이 모듈에 속한 컴포넌트에서 사용하는 컴포넌트, 디렉티브, 파이프가 소속된 다른 모듈을 선언
   imports: [BrowserModule],
-  // 어떠한 컴포넌트에서도 사용할 수 있는 애플리케이션 레벨의 서비스 선언
   providers: [],
   bootstrap: [AppComponent]
 })
@@ -175,11 +175,11 @@ export class TextBlueDirective {
 }
 ```
 
-먼저 주입받은 생성자 파라미터 ElementRef 클래스의 인스턴스 el에 접근 제한자 private를 추가하여 생성자 내부에서만 유효하던 ElementRef 클래스의 인스턴스 el을 클래스 내부에서 참조가능한 멤버 변수로 변경한다.
+먼저 주입받은 생성자 파라미터 el(ElementRef 클래스의 인스턴스)에 접근 제한자 private를 추가하여 생성자 내부에서만 유효하던 ElementRef 클래스의 인스턴스 el을 클래스 내부에서 참조가능한 멤버 변수로 변경한다.
 
-사용자 정의 디렉티브에 이벤트 처리 기능을 추가하기 위해 [@HostListener](https://angular.io/api/core/HostListener) 데코레이터를 사용하여 컴포넌트 또는 요소의 이벤트에 대한 핸들러를 등록한다. @HostListener를 사용하면 호스트 요소의 이벤트를 수신할 수 있다.
+사용자 정의 디렉티브에 이벤트 처리 기능을 추가하기 위해 [@HostListener](https://angular.io/api/core/HostListener) 데코레이터를 사용하여 컴포넌트 또는 요소의 이벤트에 대한 핸들러를 정의한다. @HostListener를 사용하면 호스트 요소의 이벤트를 수신할 수 있다.
 
-@HostListener 데코레이터를 사용하는 대신 @Directive 데코레이터의 메타데이터 객체의 host 프로퍼티를 사용할 수도 있다. 하지만 코드의 가독성 측면에서 유리한 @HostListener 데코레이터를 사용하도록 한다. 이벤트 핸들러 onMouseEnter, onMouseLeave은 textColor 메서드를 호출하여 어트리뷰트 호스트의 텍스트 컬러를 변경한다.
+@HostListener 데코레이터를 사용하는 대신 @Directive 데코레이터의 메타데이터 객체의 host 프로퍼티를 사용할 수도 있다. 하지만 코드의 가독성 측면에서 유리한 @HostListener 데코레이터를 사용하도록 한다. 이벤트 핸들러 onMouseEnter, onMouseLeave는 textColor 메서드를 호출하여 어트리뷰트 호스트의 텍스트 컬러를 변경한다.
 
 <iframe src="https://stackblitz.com/edit/custom-attr-directive-2?embed=1&file=app/text-blue.directive.ts" frameborder="0" width="100%" height="500"></iframe>
 
@@ -253,6 +253,8 @@ export class AppComponent {
 }
 ```
 
+textColor 디렉티브는 아래와 같이 수정한다.
+
 ```typescript
 // text-color.directive.ts
 ...
@@ -282,6 +284,8 @@ export class AppComponent {
   msg = 'button click';
 }
 ```
+
+위 예제의 inputValue 어트리뷰트는 어트리뷰트 바인딩에 의해 값을 전달받는다. 그에 비해 staticValue 어트리뷰트는 어트리뷰트 바인딩이 아닌 정적 값을 전달받는다. 이 두가지 경우 모두 @Input 데코레이터를 사용할 수 있다.
 
 ```typescript
 // my-directive.directive.ts
@@ -373,7 +377,7 @@ export class TextColorDirective implements OnInit  {
 
 # 4. 사용자 정의 구조 디렉티브
 
-## 4.1 디렉티브의 생성
+## 4.1 사용자 정의 구조 디렉티브의 생성
 
 ngIf 디렉티브의 기능을 그대로 재현하는 간단한 예제를 통해 사용자 정의 구조 디렉티브의 살펴보자. Angular CLI를 사용하여 디렉티브를 추가하도록 한다.
 
@@ -427,11 +431,13 @@ export class AppComponent {
 }
 ```
 
+myNgIf 디렉티브는 TemplateRef와 ViewContainerRef 클래스의 인스턴스를 [주입(Depedency Inject. 의존성 주입)](./angular-service#3-%EC%9D%98%EC%A1%B4%EC%84%B1-%EC%A3%BC%EC%9E%85dependency-injection)받아 사용한다. 이들 클래스에 대해 살펴보도록 하자.
+
 <iframe src="https://stackblitz.com/edit/custom-structure-directive-1?embed=1&file=app/my-ng-if.directive.ts" frameborder="0" width="100%" height="600"></iframe>
 
 ## 4.2 TemplateRef와 ViewContainerRef
 
-ngIf, ngFor, ngSwitch와 같은 [빌트인 구조 디렉티브](./angular-component-template-syntax#22-빌트인-구조-디렉티브built-in-structural-directive)는 디렉티브 이름 앞에 붙은 *(asterisk)에 의해 `ng-template`으로 변환된다. 예를 들어 NgIf의 경우를 살펴보자.
+ngIf, ngFor, ngSwitch와 같은 [빌트인 구조 디렉티브](./angular-component-template-syntax#22-빌트인-구조-디렉티브built-in-structural-directive)는 디렉티브 이름 앞에 붙은 *(asterisk)에 의해 `ng-template`으로 변환된다. 예를 들어 ngIf의 경우를 살펴보자.
 
 ```html
 <element *ngIf="expression">...</element>
@@ -445,7 +451,7 @@ ngIf 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설탕
 </ng-template>
 ```
 
-Angular는 *ngIf를 만나면 호스트 요소를 template 태그로 래핑하고 ngIf를 프로퍼티 바인딩으로 변환한다.
+Angular는 *ngIf를 만나면 호스트 요소를 `ng-template` 디렉티브로 래핑하고 ngIf를 프로퍼티 바인딩으로 변환한다.
 
 [TemplateRef](https://angular.io/api/core/TemplateRef)는 ng-template 디렉티브를 가리키는 객체이다. ng-template 디렉티브는 프로퍼티 바인딩에 의해 상태 값을 갖는다.
 
@@ -453,7 +459,24 @@ Angular는 *ngIf를 만나면 호스트 요소를 template 태그로 래핑하�
 
 다시 말해 ViewContainerRef는 컴포넌트, 어트리뷰트 디렉티브, 구조 디렉티브의 호스트 뷰를 가리키며 createComponent, createEmbeddedView 메소드를 통해 새로운 요소(컴포넌트 템플릿 또는 ng-template 디렉티브)를 담을 수 있는 DOM 요소이다.
 
-위 코드의 ①과 ②를 살펴보자. 프로퍼티 바인딩에 의해 myNgIf 디렉티브의 상태 값이 true이면 createEmbeddedView 메소드에 ng-template 디렉티브를 가리키는 templateRef 객체를 인자로 전달하여 ng-template 디렉티브를 호스트 뷰에 추가한다. 상태 값이 false이면 clear 메소드를 호출하여 호스트 뷰에서 ng-template 디렉티브를 제거한다. 제거된 ng-template 디렉티브는 `display: none`으로 감추어진 것이 아니라 DOM에 남아있지 않고 완전히 제거되어 불필요한 자원의 낭비를 방지한다.
+위 코드의 ①과 ②를 살펴보자.
+
+```typescript
+  @Input() set myNgIf(condition: boolean) {
+    if (condition) {
+      // 호스트 뷰에 ng-template 디렉티브를 추가
+      this.viewContainer.createEmbeddedView(this.templateRef); // ①
+    } else {
+      // 호스트 뷰에서 ng-template 디렉티브를 제거
+      this.viewContainer.clear(); // ②
+    }
+  }
+}
+```
+
+① 프로퍼티 바인딩에 의해 myNgIf 디렉티브의 상태 값이 true이면 createEmbeddedView 메소드에 ng-template 디렉티브를 가리키는 templateRef 객체를 인자로 전달하여 ng-template 디렉티브를 호스트 뷰에 추가한다.
+
+② 상태 값이 false이면 clear 메소드를 호출하여 호스트 뷰에서 ng-template 디렉티브를 제거한다. 제거된 ng-template 디렉티브는 `display: none`으로 감추어진 것이 아니라 DOM에 남아있지 않고 완전히 제거되어 불필요한 자원의 낭비를 방지한다.
 
 ## 4.3 ng-template 디렉티브
 
@@ -465,7 +488,11 @@ ngIf, ngFor, ngSwtch 디렉티브의 경우, ng-template 디렉티브로 변환�
 <ul>
   <li *ngFor="let item of items">{{ "{{ item " }}}}</li>
 </ul>
-<!-- NgFor 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설탕(syntactic sugar)이다. 즉 위 코드는 아래의 코드로 변환된다. -->
+
+<!--
+NgFor 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설탕(syntactic sugar)이다.
+즉 위 코드는 아래의 코드로 변환된다.
+-->
 
 <ul>
   <ng-template ngFor let-item [ngForOf]="items">
@@ -518,7 +545,9 @@ ng-container도 ng-template와 마찬가지로 DOM에 어떠한 영향도 주지
 </ul>
 ```
 
-Angular는 같은 요소에 하나 이상의 구조 디렉티브 사용을 금지한다. **일반적으로 ng-container는 *ngIf 또는 *ngFor와 같이 동일한 요소에 하나 이상의 구조 디렉티브를 사용하기 위한 헬퍼 요소로서 사용한다.**
+Angular는 같은 요소에 하나 이상의 구조 디렉티브 사용을 금지한다. **일반적으로 ng-container는 동일한 요소에 하나 이상의 *ngIf 또는 *ngFor와 같은 구조 디렉티브를 사용하기 위한 헬퍼 요소로서 사용한다.**
+
+아래는 하나 이상의 *ngIf 또는 *ngFor와 같은 구조 디렉티브를 사용하기 위한 헬퍼 요소로서 ng-container를 사용한 예제이다.
 
 ```typescript
 // app.component.ts

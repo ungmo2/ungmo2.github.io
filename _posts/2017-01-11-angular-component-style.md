@@ -89,6 +89,8 @@ import { Component } from '@angular/core';
 export class ChildComponent {}
 ```
 
+부모 컴포넌트 AppComponent를 아래와 같이 수정한다.
+
 ```typescript
 // app.component.ts
 import { Component } from '@angular/core';
@@ -146,10 +148,10 @@ h3 {
 
 ![Encapsulation](/img/encapsulation.png)
 
-Encapsulation
+뷰 캡슐화(View Encapsulation)
 {: .desc-img}
 
-위 결과를 살펴보면 ChildComponent의 컴포넌트 템플릿의 h3 요소에 어트리뷰트 _ngcontent-c1가 추가된 것을 확인할 수 있다. 이것은 Angular가 임의로 추가한 어트리뷰트로 기존 CSS 룰셋에 어트리뷰트 셀렉터를 추가하는 방식으로 해당 컴포넌트를 스코프로 한정하여 스타일이 적용될 수 있도록 한다.
+위 결과를 살펴보면 ChildComponent의 컴포넌트 템플릿의 h3 요소에 어트리뷰트 _ngcontent-c1이 추가된 것을 확인할 수 있다. 이것은 Angular가 임의로 추가한 어트리뷰트로 기존 CSS 룰셋에 어트리뷰트 셀렉터를 추가하는 방식으로 해당 컴포넌트를 스코프로 한정하여 스타일이 적용될 수 있도록 한다.
 
 Angular는 컴포넌트의 CSS 스타일을 컴포넌트의 뷰에 캡슐화하여 다른 컴포넌트에는 영향을 주지 않는다. 위의 경우와 같이 Angular는 기본적으로 임의의 어트리뷰트를 추가하는 방식(Emulated)을 사용하여 뷰 캡슐화를 구현하지만 브라우저가 웹 컴포넌트를 지원한다는 전제 하에 웹 컴포넌트의 Shadow DOM을 이용하여 뷰 캡슐화를 구현할 수도 있다.
 
@@ -195,9 +197,9 @@ Encapsulation Native
 |:--------------------|:------------------------------------
 | :host               | 호스트 요소(컴포넌트 자신)을 선택한다.
 | :host-context       | 호스트 요소의 외부(예를 들어 body)의 조건에 의해 컴포넌트의 요소를 선택한다.
-| /deep/              | [폐지 예정](https://angular.io/guide/component-styles#deprecated-deep--and-ng-deep) 자식 컴포넌트에 속한 요소를 선택한다.
+| /deep/              | [폐지(deprecated)](https://angular.io/guide/component-styles#deprecated-deep--and-ng-deep) 자식 컴포넌트에 속한 요소를 선택한다.
 
-## 3.1 :host
+## 3.1 :host 셀렉터
 
 :host 셀렉터는 호스트 요소(컴포넌트 자신)을 선택한다. 위 예제에 :host 셀렉터를 사용하여 보자.
 
@@ -210,9 +212,11 @@ Encapsulation Native
   border: 1px solid dimgray;
   padding: 20px;
 }
+
 h3 {
   color: dimgray;
 }
+
 .btn-primary {
   color: #fff;
   background-color: #007bff;
@@ -284,9 +288,9 @@ h3 {
 
 <iframe src="https://stackblitz.com/edit/shadow-dom-style-selector?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
-## 3.2 :host-context
+## 3.2 :host-context 셀렉터
 
-:host-context 셀랙터는 호스트 요소의 외부의 조건 즉 조상 요소의 클래스 선언 상태에 의해 컴포넌트의 요소를 선택하는 경우 사용한다. :host-context 셀랙터는 호스트 요소(컴포넌트 자신)의 모든 조상 요소에서 CSS 클래스 찾는다. 이때 조건으로 지정한 클래스가 선언된 조상 요소가 존재하면 룰셋이 적용된다. 위 예제에 :host-context 셀렉터를 사용하여 보자.
+:host-context 셀렉터는 호스트 요소의 외부의 조건 즉 부모 요소를 포함하는 조상 요소의 클래스 선언 상태에 의해 컴포넌트의 요소를 선택하는 경우 사용한다. :host-context 셀렉터는 호스트 요소(컴포넌트 자신)의 모든 조상 요소에서 CSS 클래스 찾는다. 이때 조건으로 지정한 클래스가 선언된 조상 요소가 존재하면 룰셋이 적용된다. 위 예제에 :host-context 셀렉터를 사용하여 보자.
 
 ```typescript
 // app.component.ts
@@ -307,7 +311,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 export class AppComponent {}
 ```
 
-자식 컴포넌트의 조상 요소에 theme-red 클래스가 선언되었다. 이때 자식 컴포넌트 CSS의 :host-context(.theme-red) 셀렉터가 적용된다.
+자식 컴포넌트의 조상 요소 div에 theme-red 클래스가 선언되었다. 이때 자식 컴포넌트 CSS의 :host-context(.theme-red) 셀렉터가 적용된다.
 
 ```css
 /* child.component.css */
@@ -372,7 +376,7 @@ Angular는 Sass, Less, Stylus과 같은 대부분의 CSS 프리 프로세서를 
 $ ng new sass-project --style=scss
 ```
 
-이때 생성된 .angular-cli.json 파일을 살펴보면 apps.tyles 프로퍼티와 defaults.styleExt 프로퍼티의 값이 scss로 변경된 것을 알 수 있다.
+이때 생성된 .angular-cli.json 파일을 살펴보면 apps.styles 프로퍼티와 defaults.styleExt 프로퍼티의 값이 scss로 변경된 것을 알 수 있다.
 
 ```json
 {

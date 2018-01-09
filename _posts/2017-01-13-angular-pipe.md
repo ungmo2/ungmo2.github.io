@@ -179,13 +179,19 @@ export class AppComponent {
 }
 ```
 
-[slice:4](https://angular.io/api/common/SlicePipe)는 4번째 문자부터 마지막 문자까지를 잘라내어 표시한다. 컴포넌트의 실행하면 'UNG-MO'이 출력된다.
+체이닝 방식으로 파이프 연산자 |에 연이어 파이프를 추가하면 파이프의 조합으로 결과를 출력한다. 위 예제는 [slice:4](https://angular.io/api/common/SlicePipe)로 4번째 문자부터 마지막 문자까지를 잘라내고 결과를 대문자로 출력한다. 컴포넌트의 실행하면 ‘UNG-MO’이 출력된다.
 
 <iframe src="https://stackblitz.com/edit/pipe-chaining?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="400"></iframe>
 
 # 4. 커스텀 파이프
 
 사용자가 입력한 문자열을 반전하는 커스텀 파이프를 작성하여 보자.
+
+```bash
+$ ng generate pipe reverse
+```
+
+위 명령어를 실행하면 파이프가 생성된다. 생성된 파이프를 아래와 같이 수정한다.
 
 ```typescript
 // reverse.pipe.ts
@@ -209,7 +215,9 @@ transform(value: any, ...args: any[]): any
 
 transform 메소드는 파이프의 변환 대상인 값(value)와 옵션 파라미터를 인자로 받는다. 그리고 변환된 값을 반환한다.
 
-커스텀 파이프는 모듈의 declarations에 등록되어야 하며 빌트인 파이프와 동일한 방법으로 탬플릿에서 사용한다.
+커스텀 파이프는 모듈의 declarations에 등록되어야 한다. Angular CLI를 사용하여 파이프를 생성하면 모듈에 자동 등록된다.
+
+커스텀 파이프는 빌트인 파이프와 동일한 방법으로 탬플릿에서 사용한다.
 
 ```typescript
 // app.component.ts
@@ -247,7 +255,9 @@ import { Component } from '@angular/core';
     <input #todo type="text">
     <button (click)="add(todo.value)">add</button>
     <ul>
-      <li *ngFor="let todo of todos" (click)="complete(todo)" [class.completed]="todo.completed">{{ "{{ todo.content " }}}}</li>
+      <li *ngFor="let todo of todos"
+        (click)="complete(todo)"
+        [class.completed]="todo.completed">{{ "{{ todo.content " }}}}</li>
     </ul>
     <pre>{{ "{{ todos | json " }}}}</pre>
   `,
@@ -307,7 +317,9 @@ export class LimitPipe implements PipeTransform {
 ```typescript
 // todos.component.ts
 ...
-  <li *ngFor="let todo of (todos | limit: 10)" (click)="complete(todo)" [class.completed]="todo.completed">{{ "{{ todo.content " }}}}</li>
+  <li *ngFor="let todo of (todos | limit: 10)"
+    (click)="complete(todo)"
+    [class.completed]="todo.completed">{{ "{{ todo.content " }}}}</li>
 ...
 ```
 
@@ -339,7 +351,7 @@ this.todos = this.todos.concat({
 
 # 6. 순수 파이프(pure pipe)와 비순수 파이프(impure pipe)
 
-파이프에는 순수 파이프(pure pipe)와 비순수 파이프(impure pipe)로 분류할 수 있다. 비순수 파이프는 @Pipe 데코레이터의 메타데이터 pure 프로퍼티에 false를 지정한 것이다. limit 파이프를 비순수 파이프로 변경해보자.
+파이프는 순수 파이프(pure pipe)와 비순수 파이프(impure pipe)로 분류할 수 있다. 비순수 파이프는 @Pipe 데코레이터의 메타데이터 pure 프로퍼티에 false를 지정한 것이다. limit 파이프를 비순수 파이프로 변경해보자.
 
 ```typescript
 // limit.pipe.ts
@@ -356,7 +368,7 @@ export class LimitPipe implements PipeTransform {
 }
 ```
 
-이제 limit 파이프를 비순수 파이프가 되었고 컴포넌트의 add 메소드 내부에서 push 메소드를 사용하여도 변화 감지가 작동한다. 하지만 비순수 파이프를 사용하면 빈번하게 파이프가 호출되어 퍼포먼스면에서 좋지 않으므로 주의하여야 한다.
+이제 limit 파이프는 비순수 파이프가 되었고 컴포넌트의 add 메소드 내부에서 push 메소드를 사용하여도 변화 감지가 작동한다. 하지만 비순수 파이프를 사용하면 빈번하게 파이프가 호출되어 퍼포먼스 측면에서 좋지 않으므로 주의하여야 한다.
 
 순수 파이프는 기본자료형의 값 또는 객체 참조의 변경과 같은 순수한 변경(pure change)만을 감지하고 순수 파이프를 실행한다. Angular는 퍼포먼스를 위해 객체 내부의 변경은 무시하여 순수 파이프를 실행하지 않는다. 따라서 퍼포먼스를 생각한다면 비순수 파이프보다 순수 파이프를 사용하는 것이 바람직하다. 또한 **반드시 필요한 경우가 아니라면 파이프보다는 컴포넌트의 프로퍼티를 사용하는 편이 유리하다.**
 

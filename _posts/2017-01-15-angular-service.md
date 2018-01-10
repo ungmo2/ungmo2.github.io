@@ -34,7 +34,7 @@ export class GreetingService {
 }
 ```
 
-Angular CLI를 통해 서비스를 생성하면 @Injectable 데코레이터가 추가된 클래스가 생성된다. @Injectable 데코레이터는 자신의 아래에 정의된 클래스가 주입 가능한(Injectable) 클래스임을 나타낸다. 이제 이 서비스를 컴포넌트에서 사용해보자.
+Angular CLI를 통해 서비스를 생성(`ng generate service greeting`)하면 @Injectable 데코레이터가 추가된 클래스가 생성된다. @Injectable 데코레이터는 자신의 아래에 정의된 클래스가 주입 가능한(Injectable) 클래스임을 나타낸다. 이제 이 서비스를 컴포넌트에서 사용해보자.
 
 ```typescript
 // app.component.ts
@@ -109,7 +109,7 @@ export class AppComponent {
 
 # 3. 의존성 주입(Dependency Injection)
 
-의존성 주입(Dependency Injection, DI)은 구성 요소 간의 의존 관계가 코드 내부가 아닌 외부의 설정파일 등을 통해 정의하는 디자인 패턴 중의 하나로서 구성 요소 간 결합도를 낮추고 재사용성을 높인다.
+의존성 주입(Dependency Injection, DI)은 구성 요소 간의 의존 관계를 코드 내부가 아닌 외부의 설정파일 등을 통해 정의하는 디자인 패턴 중의 하나로서 구성 요소 간 결합도를 낮추고 재사용성을 높인다.
 
 아래의 코드를 살펴보자.
 
@@ -170,7 +170,7 @@ sayHi() {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/service-di-exam?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/service-di?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 # 4. 인젝터(Injector)
 
@@ -191,7 +191,7 @@ sayHi() {
 
 # 6. 프로바이더(Provider)
 
-인젝터가 인스턴스를 생성할 때 인스턴스를 어떻게 생성하는지 알려주어야 한다. 이 인스턴스 생성 정보는 providers 프로퍼티에 등록한다. **providers 프로퍼티는 모듈의 @NgModule 또는 컴포넌트의 @Component 어노테이션에 등록한다.**
+인젝터가 인스턴스를 생성할 때 인스턴스를 어떻게 생성하는지 인스턴스 생성 정보를 Angular에 알려주어야 한다. 이 인스턴스 생성 정보는 providers 프로퍼티에 등록한다. **providers 프로퍼티는 모듈의 @NgModule 또는 컴포넌트의 @Component 어노테이션에 등록한다.**
 
 ```typescript
 @NgModule({
@@ -239,7 +239,33 @@ sayHi() {
 
 위 코드는 GreetingService 클래스에 의해 생성된 GreetingService 타입의 인스턴스가 컴포넌트에 주입될 것을 의미한다.
 
-컴포넌트가 GreetingService 클래스가 아닌 다른 **대체 클래스**를 사용하는 경우를 살펴보자. GreetingService 서비스를 대체할 AnotherGreetingService 서비스를 주입하도록 프로바이더를 변경하는 것으로 간단히 다른 서비스를 사용할 수 있다.
+컴포넌트가 GreetingService 클래스가 아닌 다른 **대체 클래스**를 사용하는 경우를 살펴보자.
+
+GreetingService 서비스는 아래와 같다.
+
+```typescript
+// greeting.service.ts
+import { Injectable } from '@angular/core';
+
+@Injectable()
+export class GreetingService {
+  sayHi() { return 'Hi!'; }
+}
+```
+
+GreetingService 서비스를 대체할 AnotherGreetingService 서비스는 아래와 같다.
+
+```typescript
+// another-greeting.service.ts
+import { Injectable } from '@angular/core';
+
+@Injectable()
+export class AnotherGreetingService {
+  sayHi() { return 'Hello!'; }
+}
+```
+
+GreetingService 서비스를 대체할 AnotherGreetingService 서비스를 주입하도록 프로바이더를 변경하는 것으로 간단히 다른 서비스를 사용할 수 있다.
 
 ```typescript
 providers: [{
@@ -252,46 +278,9 @@ providers: [{
 
 이때 대체 클래스는 토큰과 타입이 일치하여야 한다. 아래의 두 클래스는 비록 같은 인터페이스를 구현하지는 않았지만 같은 메소드를 가지고 있기 때문에 [덕 타이핑(duck typing)](./typescript-interface#2-덕-타이핑-duck-typing)에 의해 같은 타입으로 인정된다.
 
-<!-- ```typescript
-class Greeting {
-  sayHi() {
-    console.log('hi');
-  }
-}
-
-class AnotherGreeting {
-  sayHi() {
-    console.log('hello');
-  }
-}
-
-let foo: Greeting;
-
-foo = new AnotherGreeting();
-foo.sayHi();
-``` -->
-
-```typescript
-// greeting.service.ts
-import { Injectable } from '@angular/core';
-
-@Injectable()
-export class GreetingService {
-  sayHi() { return 'Hi!'; }
-}
-```
-
-```typescript
-// another-greeting.service.ts
-import { Injectable } from '@angular/core';
-
-@Injectable()
-export class AnotherGreetingService {
-  sayHi() { return 'Hello!'; }
-}
-```
-
 GreetingService의 인스턴스를 사용하던 컴포넌트가 AnotherGreetingService의 인스턴스를 사용하도록 변경되었지만 컴포넌트 클래스는 어떠한 수정없이도 문제없이 동작할 것이다. 이와 같이 의존성 주입을 사용하면 재사용성이 향상되고 긴밀히 결합된 의존 관계를 느슨한 결합으로 분리할 수 있다.
+
+서비스를 사용하는 컴포넌트는 아래와 같다.
 
 ```typescript
 // app.component.ts
@@ -349,7 +338,7 @@ export class AppModule { }
 이러한 경우, 동일한 기능을 하는 AnotherGreetingService의 인스턴스가 2개 생성되는 것은 바람직하지 않다. AnotherGreetingService의 인스턴스를 싱글턴으로 생성하도록 프로바이더를 수정하여 보자.
 
 ```typescript
-// app.module.ts
+// app.component.ts
 ...
   providers: [{
     provide: GreetingService,
@@ -362,7 +351,7 @@ export class AppModule { }
 useExisting 프로퍼티에 지정한 클래스의 인스턴스가 존재하면 새로 인스턴스를 생성하지 않고 기존의 인스턴스를 사용한다. 싱글턴이 제대로 동작하는지 확인하는 코드를 만들어보자. 컴포넌트를 아래와 같이 수정한다.
 
 ```typescript
-// app.module.ts
+// app.component.ts
 import { Component } from '@angular/core';
 
 import { GreetingService } from './greeting.service';

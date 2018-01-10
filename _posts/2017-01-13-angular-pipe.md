@@ -81,6 +81,8 @@ export class AppComponent {
 }
 ```
 
+uppercase는 빌트인 파이프로 파이프의 대상 값(name)을 대문자로 변환한다.
+
 <iframe src="https://stackblitz.com/edit/pipe-uppercase?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="400"></iframe>
 
 # 2. 빌트인 파이프
@@ -89,14 +91,14 @@ Angular는 uppercase 이외에도 아래와 같은 빌트인 파이프를 지원
 
 | 파이프      | 의미
 |-----------|--------------------------------------
-| [date](https://angular.io/api/common/DatePipe)      | 날짜 형식 변환 출력
-| [JSON](https://angular.io/api/common/JsonPipe)      | JSON 형식 변환 출력
-| [uppercase](https://angular.io/api/common/UpperCasePipe) | 대문자 변환 출력
-| [lowercase](https://angular.io/api/common/LowerCasePipe) | 소문자 변환 출력
-| [currency](https://angular.io/api/common/CurrencyPipe)  | 통화 형식 변환 출력
-| [percent](https://angular.io/api/common/PercentPipe)   | 퍼센트 형식 변환 출력
-| [decimal](https://angular.io/api/common/DecimalPipe)   | 자리수 형식 변환 출력
-| [slice](https://angular.io/api/common/SlicePipe)     | 문자열 추출 출력
+| [date](https://angular.io/api/common/DatePipe)      | 날짜 형식 변환
+| [JSON](https://angular.io/api/common/JsonPipe)      | JSON 형식 변환
+| [uppercase](https://angular.io/api/common/UpperCasePipe) | 대문자 변환
+| [lowercase](https://angular.io/api/common/LowerCasePipe) | 소문자 변환
+| [currency](https://angular.io/api/common/CurrencyPipe)  | 통화 형식 변환
+| [percent](https://angular.io/api/common/PercentPipe)   | 퍼센트 형식 변환
+| [decimal](https://angular.io/api/common/DecimalPipe)   | 자리수 형식 변환
+| [slice](https://angular.io/api/common/SlicePipe)     | 문자열 추출
 | [async](https://angular.io/api/common/AsyncPipe)     | 비동기 객체 출력
 
 빌트인 파이프의 사용 예제는 아래와 같다. 자세한 사용법은 [Angular Pipe API List](https://angular.io/api?type=pipe)을 참조하기 바란다.
@@ -179,7 +181,7 @@ export class AppComponent {
 }
 ```
 
-체이닝 방식으로 파이프 연산자 |에 연이어 파이프를 추가하면 파이프의 조합으로 결과를 출력한다. 위 예제는 [slice:4](https://angular.io/api/common/SlicePipe)로 4번째 문자부터 마지막 문자까지를 잘라내고 결과를 대문자로 출력한다. 컴포넌트의 실행하면 ‘UNG-MO’이 출력된다.
+체이닝 방식으로 파이프 연산자 |에 연이어 파이프를 추가하면 파이프의 조합으로 결과를 출력한다. 위 예제는 [slice:4](https://angular.io/api/common/SlicePipe)로 4번째 문자부터 마지막 문자까지를 잘라내고 결과를 대문자로 출력한다. 컴포넌트의 실행하면 ‘UNG-MO’가 출력된다.
 
 <iframe src="https://stackblitz.com/edit/pipe-chaining?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="400"></iframe>
 

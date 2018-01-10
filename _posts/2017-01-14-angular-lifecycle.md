@@ -12,9 +12,9 @@ description: 컴포넌트와 디렉티브는 생명주기(Lifecycle)를 갖는�
 
 ![angular Logo](/img/angular-logo.png)
 
-# 1. 생명주기
+# 1. 생명주기(Lifecycle)
 
-컴포넌트와 디렉티브는 생명주기(Lifecycle)를 갖는다. 이 생명주기는 생성하고 소멸되기까지의 여러 과정을 말하며 Angular에 의해 관리된다. 다시 말해 Angular는 생명주기를 통해 컴포넌트와 디렉티브를 생성하고 자식 컴포넌트를 생성하고 렌더링하며 프로퍼티의 변화를 체크하고 DOM에서 제거하는 일련의 과정을 관리한다.
+컴포넌트와 디렉티브는 생명주기(Lifecycle)를 갖는다. 이 생명주기는 생성하고 소멸되기까지의 여러 과정을 말하며 Angular에 의해 관리된다. 다시 말해 Angular는 생명주기를 통해 컴포넌트와 디렉티브를 생성하고 렌더링하며 프로퍼티의 변화를 체크하고 DOM에서 제거하는 일련의 과정을 관리한다.
 
 Angular는 생명주기 훅 메소드(Lifecycle hooks)를 제공하여 생명주기 단계에서 처리하여야 행위를 정의할 수 있도록 한다.
 
@@ -25,7 +25,7 @@ Angular는 생명주기 훅 메소드(Lifecycle hooks)를 제공하여 생명주
 
 Angular는 위 그림의 순서대로 컴포넌트와 디렉티브를 생성하고 소멸하는 과정 즉 생명주기를 관리하고 변화 감지(Change detection)에 의해 해당 인스턴스를 변경한다. 개발자는 Angular가 제공하는 생명주기 훅 메소드를 구현하여 생명주기 단계에서 필요한 처리를 정의한다.
 
-# 2. 생명주기 훅 메소드
+# 2. 생명주기 훅 메소드(Lifecycle hooks)
 
 생명주기 훅 메소드는 인터페이스의 형태로 제공된다. 예를 들어 OnInit 생명주기에 실행되어야 할 행위를 정의하기 위해서는 훅 메소드 ngOnInit을 구현한다. 이 ngOnInit 메소드는 OnInit 인터페이스에 포함되어 있다.
 
@@ -39,9 +39,8 @@ interface OnInit {
 
 따라서 생명주기 OnInit에 실행되어야 할 행위를 정의하려면 OnInit 인터페이스의 ngOnInit 메소드를 구현한다.
 
-
 ```typescript
-export class App implements OnInit {
+export class AppComponent implements OnInit {
   name = 'Lee';
 
   constructor() {
@@ -55,7 +54,7 @@ export class App implements OnInit {
 }
 ```
 
-컴포넌트와 디렉티브는 construnctor의 호출에 의해 생성된다. 그 이후, Angular는 특별한 시점에 생명주기 훅 메소드를 호출한다. 각각의 생명주기 훅 메소드가 어떤 시점에 호출되는지 알아보도록 하자.
+컴포넌트와 디렉티브는 클래스이므로 construnctor의 호출에 의해 생성된다. 그 이후, Angular는 특별한 시점에 생명주기 훅 메소드를 호출한다. 각각의 생명주기 훅 메소드가 어떤 시점에 호출되는지 알아보도록 하자.
 
 ## 2.1 ngOnChanges
 
@@ -71,7 +70,7 @@ class MyComponent implements OnChanges {
   @Input() prop2: string;
 
   ngOnChanges(changes: SimpleChanges) {
-    // changes 모든 입력 프로퍼티의 이전 값과 현재 값을 포함한다.
+    // changes는 모든 입력 프로퍼티의 이전 값과 현재 값을 포함한다.
     console.log(changes);
     /*
     {prop1: SimpleChange, prop2: SimpleChange}
@@ -82,6 +81,8 @@ class MyComponent implements OnChanges {
 }
 ```
 
+ngOnChange 메소드는 SimpleChanges 객체를 인자로 전달받는다. 이 객체는 모든 입력 프로퍼티의 이전 값과 현재 값을 포함한다.
+
 ## 2.2 ngOnInit
 
 ngOnChanges 이후, **모든 프로퍼티와 입력 프로퍼티의 초기화가 완료된 시점에 한번만 호출된다.**
@@ -90,7 +91,7 @@ constructor는 [Typescript 클래스](./typescript-class)의 메소드로서 Ang
 
 Angular에서 관리하는 입력 프로퍼티의 경우, constructor가 호출되는 단계에서는 초기화되기 이전의 상태이며 참조시 undefined가 반환된다. 즉 **컴포넌트 프로퍼티의 참조는 ngOnInit 이후 보장된다.**
 
-Typescript에서는 constructor에서 프로퍼티를 초기화하는 것이 일반적이지만 Angular의 경우, **프로퍼티의 초기화 처리는 constructor가 아닌 ngOnInit에서 수행하여야 한다.** 만일 constructor에서 프로퍼티를 초기화하면 ngOnInit에서 재차 프로퍼티 초기화가 실행되어 constructor에서 실행한 프로퍼티 초기화 값을 덮어쓰게 된다.
+Typescript에서는 constructor에서 프로퍼티를 초기화하는 것이 일반적이지만 Angular의 경우, **프로퍼티의 초기화 처리는 constructor가 아닌 ngOnInit에서 수행하는 것이 좋다.** 만일 constructor에서 프로퍼티를 초기화하면 ngOnInit에서 재차 입력 프로퍼티 초기화가 실행되어 constructor에서 실행한 프로퍼티 초기화 값을 덮어쓰게 된다.
 
 ## 2.3 ngDoCheck
 
@@ -130,7 +131,7 @@ ngContent 디렉티브를 사용하여 외부 콘텐츠를 컴포넌트의 뷰�
 
 모든 훅 메소드가 호출되도록 예제를 작성하여 보자.
 
-부모 컴포넌트를 아래와 같이 작성한다. 부모 컴포넌트의 버튼에 의해 자식 컴포넌트가 생성, 소멸하도록 NgIf 디렉티브를 사용하도록 한다. 그리고 프로퍼티 바인딩에 의해 부모 컴포넌트애서 자식 컴포넌트로 상태를 전달한다.
+부모 컴포넌트를 아래와 같이 작성한다. 부모 컴포넌트의 버튼에 의해 자식 컴포넌트가 생성, 소멸하도록 ngIf 디렉티브를 사용하도록 한다. 그리고 프로퍼티 바인딩에 의해 부모 컴포넌트에서 자식 컴포넌트로 상태를 전달한다.
 
 ```typescript
 // app.component.ts
@@ -241,13 +242,13 @@ ngOnChanges는 자식 컴포넌트에 입력 프로퍼티가 존재하기 때문
 
 이후 OnInit, DoCheck, ngAfterContentInit, ngAfterContentChecked, ngAfterViewInit, ngAfterViewChecked가 순차적으로 호출되는 것을 확인할 수 있다.
 
-이제 생성된 자식 컴포넌트를 소멸시켜 보자. Destroy Child 버튼은 NgIf에 false를 할당하여 자식 컴포넌트를 소멸시킨다. Destroy Child 버튼을 클릭하면 ngOnDestroy가 호출되는 것을 확인할 수 있다.
+이제 생성된 자식 컴포넌트를 소멸시켜 보자. Destroy Child 버튼은 ngIf에 false를 할당하여 자식 컴포넌트를 소멸시킨다. Destroy Child 버튼을 클릭하면 ngOnDestroy가 호출되는 것을 확인할 수 있다.
 
 ## 3.2 ngOnChanges와 ngDoCheck
 
-ngOnChanges와 ngDoCheck는 모두 상태 변화와 관계가 있다. 하지만 ngOnChanges는 입력 프로퍼티의 초기화, 변경 시에 호출되고 ngDoCheck는 모든 변화 감지 시점에 호출된다. 하지만 객체의 경우, 내부 프로퍼티를 변경하여도 객체의 참조는 변경되지 않기 때문에 ngOnChanges는 이 변화에 반응하지 않는다. 즉 기본자료형과 불변객체와 같이 이뮤터블(immutable)한 값에만 반응한다. 에제를 통해 살펴보도록 하자.
+ngOnChanges와 ngDoCheck는 모두 상태 변화와 관계가 있다. 하지만 ngOnChanges는 입력 프로퍼티의 초기화, 변경 시에 호출되고 ngDoCheck는 모든 변화 감지 시점에 호출된다. 하지만 객체의 경우, 내부 프로퍼티를 변경하여도 객체의 참조는 변경되지 않기 때문에 ngOnChanges는 이 변화에 반응하지 않는다. 즉 기본자료형과 불변객체와 같이 이뮤터블(immutable)한 값에만 반응한다. 예제를 통해 살펴보도록 하자.
 
-부모 컴포넌트를 아래와 같이 작성한다. 부모 컴포넌트의 버튼에 의해 자식 컴포넌트가 생성, 소멸하도록 NgIf 디렉티브를 사용하도록 한다. 자식 컴포넌트가 생성된 이후 2개의 버튼이 나타나는데 이 버튼이 변경하고 전달하는 값은 이뮤터블(immutable), 뮤터블(mutable)한 값이다
+부모 컴포넌트를 아래와 같이 작성한다. 부모 컴포넌트의 버튼에 의해 자식 컴포넌트가 생성, 소멸하도록 ngIf 디렉티브를 사용하도록 한다. 자식 컴포넌트가 생성된 이후 2개의 버튼이 나타나는데 이 버튼이 변경하고 전달하는 값은 이뮤터블(immutable), 뮤터블(mutable)한 값이다.
 
 ```typescript
 // app.component.ts
@@ -338,7 +339,9 @@ export class ChildComponent implements OnChanges, OnInit, DoCheck, AfterContentI
 }
 ```
 
-첫번째 "기본자료형 프로퍼티 변경" 버튼을 클릭하면 기본자료형인 string 타입의 값이 자식 컴포넌트에 전송된다. 이때 이뮤터블한 값인 기본자료형은 절대로 변경할 수 없지만 변경시 값이 복사되어 재할당된다. 아무튼 입력 프로퍼티가 변경되었으므로 ngOnChanges가 호출된다.
+첫번째 "기본자료형 프로퍼티 변경" 버튼을 클릭하면 기본자료형인 string 타입의 값이 자식 컴포넌트에 전송된다. 이때 이뮤터블한 입력 프로퍼티 immutable에 새로운 값을 재할당한다.
+
+입력 프로퍼티 immutable의 타입은 기본자료형(string)이므로 입력 프로퍼티 immutable의 값은 절대로 변경할 수 없다. 재할당 이전의 값인 문자열 'Hello'를 변경하는 것이 아니라 새로운 문자열 'HELLO'를 메모리에 생성하고 입력 프로퍼티 immutable은 이것을 가리킨다. 즉 재할당 시에 입력 프로퍼티 immutable가 가리키는 참조가 변경된다. 따라서 ngOnChanges가 호출된다.
 
 ```
 [OnChanges]
@@ -366,7 +369,7 @@ mutable: {name: "kim"}
 ngDoCheck는 모든 상태의 변경에 의해 호출된다. 따라서 입력 프로퍼티뿐만 아니라 컴포넌트 프로퍼티가 변경되어도 호출된다. 예를 들어 자식 컴포넌트 템플릿에 아래의 버튼을 추가하고 클릭하면 ngDoCheck는 호출된다.
 
 ```html
-<button (click)="prop=changed!">컴포넌트 프로퍼티 변경</button>
+<button (click)="prop='changed!'">컴포넌트 프로퍼티 변경</button>
 ```
 
 <iframe src="https://stackblitz.com/edit/lifecycle-hooks-ngonchanges-ngdocheck?embed=1&file=app/child.component.ts" frameborder="0" width="100%" height="600"></iframe>

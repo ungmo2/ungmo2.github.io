@@ -121,9 +121,9 @@ import 'rxjs/add/operator/filter';
 Observable과 Observer
 {: .desc-img}
 
-④ 옵저버블이 생성한 데이터 스트림을 subscribe 함수로 구독하면 **Subscription** 객체를 반환한다. 이 Subscription 객체는 구독을 취소할 때 사용할 수 있다. **메모리 누수를 방지하기 위해 OnDestroy 라이프사이클 훅을 사용하여 반드시 구독을 취소하도록 한다.**
+④ 옵저버블이 생성한 데이터 스트림을 subscribe 함수로 구독하면 **Subscription** 객체를 반환한다. 이 Subscription 객체는 구독을 취소할 때 사용할 수 있다. **메모리 누수를 방지하기 위해 OnDestroy 라이프사이클 훅을 사용하여 구독을 취소하도록 한다.**
 
-<iframe src="https://stackblitz.com/edit/observable-exam?embed=1&file=app/observable.component.ts" frameborder="0" width="100%" height="400"></iframe>
+<iframe src="https://stackblitz.com/edit/observable?embed=1&file=app/observable.component.ts" frameborder="0" width="100%" height="400"></iframe>
 
 # 2. 옵저버블 이벤트 스트림
 
@@ -161,7 +161,9 @@ interface GithubUser {
   selector: 'app-root',
   template: `
     <h2>Observable Events</h2>
-    <p><input type="text" placeholder="Enter user id" [formControl]="serchInput"></p>
+    <p>
+      <input type="text" placeholder="Enter user id" [formControl]="serchInput">
+    </p>
     <pre>{{ "{{ githubUser | json " }}}}</pre>
   `
 })
@@ -283,7 +285,7 @@ switchMap 오퍼레이터
 
 ⑦ [catch](https://www.learnrxjs.io/operators/error_handling/catch.html) 오퍼레이터는 옵저버블의 에러를 캐치한다.
 
-<iframe src="https://stackblitz.com/edit/observable-http-exam?embed=1&file=app/observable-event-http.component.ts" frameborder="0" width="100%" height="400"></iframe>
+<iframe src="https://stackblitz.com/edit/observable-http?embed=1&file=app/observable-event-http.component.ts" frameborder="0" width="100%" height="400"></iframe>
 
 # Reference
 

@@ -202,11 +202,13 @@ sayHi() {
 인젝터가 인스턴스를 생성할 때 인스턴스를 어떻게 생성하는지 인스턴스 생성 정보를 Angular에 알려주어야 한다. 이 인스턴스 생성 정보는 providers 프로퍼티에 등록한다. **providers 프로퍼티는 모듈의 @NgModule 또는 컴포넌트의 @Component 어노테이션에 등록한다.**
 
 ```typescript
+// @NgModule 프로바이더
 @NgModule({
   ...
   providers: [GreetingService],
 })
 
+// @Component 프로바이더
 @Component({
   ...
   providers: [GreetingService]
@@ -393,89 +395,82 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/service-providers?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/service-class-provider?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 ## 6.2 값 프로바이더(Value Provider)
 
-값 프로바이더는 값을 의존성 주입하기 위한 설정을 등록한다. 아래의 예제를 살펴보자. 주입될 클래스에 값을 할당하고 있다.
+값 프로바이더는 고정 값을 의존성 주입하기 위한 설정을 등록한다. 아래의 예제를 살펴보자. 주입될 클래스에 고정 값을 공급하고 있다.
 
 ```typescript
-// value.service.ts
-import { Injectable } from '@angular/core';
-
-@Injectable()
-export class ValueService {
-  name: string;
-  values: string[] = [];
-  getValues() {}
+// app.config.ts
+export class AppConfig {
+  url: string;
+  port: string;
 }
 
-export const myValue = {
-  name: 'Lee',
-  values: ['one', 'two'],
-  getValues: () => this.values
+// 공급 대상 고정 값
+export const MY_APP_CONFIG: AppConfig = {
+  url: 'http://somewhere.io/api',
+  port: '5000'
 };
 ```
 
 ```typescript
 // app.component.ts
 import { Component } from '@angular/core';
-import { ValueService, myValue } from './value.service';
+import { AppConfig, MY_APP_CONFIG } from './app.config';
 
 @Component({
   selector: 'app-root',
-  template: '',
+  template: '{{ "{{ appConfig | json " }}}}',
   providers: [
-    // myValue를 사용하여 ValueService의 인스턴스를 생성
-    { provide: ValueService, useValue: myValue }
+    // MY_APP_CONFIG를 사용하여 AppConfig의 인스턴스를 생성
+    { provide: AppConfig, useValue: MY_APP_CONFIG }
   ]
 })
 export class AppComponent {
-  constructor(public values: ValueService) {
-    console.log(values); // {name: "Lee", values: Array(2), getValues: ƒ}
+  constructor(public appConfig: AppConfig) {
+    console.log(appConfig);
+    // {url: "http://somewhere.io/api", port: "5000"}
   }
 }
 ```
 
-주입된 ValueService의 인스턴스는 값 프로바이더에 의해 useValue 프로퍼티의 myValue의 값으로 초기화되었다.
+<iframe src="https://stackblitz.com/edit/service-value-provider-1?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+
+주입된 AppConfig의 인스턴스는 값 프로바이더 useValue 프로퍼티의 MY\_APP_CONFIG의 값으로 초기화되었다.
 
 주입될 의존성은 클래스가 아닌 문자열, 함수, 객체일 수도 있다. 아래의 코드는 문자열 의존성을 주입하는 경우이다. 애플리케이션 공통 상수가 있다면 아래와 같이 선언할 수 있다.
 
 ```typescript
-// string.provider.ts
-export const StringProvider = {
-  provide: 'my value',
-  useValue: 'Hello World'
-};
-```
-
-```typescript
 // app.compoenet.ts
 import { Component, Inject } from '@angular/core';
-import { StringProvider } from './string.provider'
 
 @Component({
   selector: 'app-root',
-  template: '',
-  providers: [StringProvider]
+  template: '{{ "{{ myConfig " }}}}',
+  providers: [
+    { provide: 'myConfig', useValue: 'Hello World' }
+  ]
 })
 export class AppComponent {
-
-  constructor(@Inject('my value') public myValue: string) {
-    console.log(myValue); // Hello World
+  constructor(@Inject('myConfig') public myConfig: string) {
+    console.log(myConfig); // Hello World
   }
 }
 ```
 
-@Inject 데코레이터에는 주입할 대상의 토큰을 설정한다. 일반적으로 주입 대상의 타입이 클래스인 경우, Angular에 의해 자동으로 설정되기 때문에 @Inject 데코레이터를 사용하지 않아도 된다. 하지만 클래스 이외의 토큰의 경우, 명시적으로 @Inject 데코레이터를 선언하여야 한다.
+<iframe src="https://stackblitz.com/edit/service-value-provider-2?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
-하지만 문자열을 토큰으로 사용하는 것은 토큰이 중복될 수 있어서 위험한 방법이다. 만약 외부 라이브러리에서 사용하는 토큰과 중족된다면 인젝터는 마지막에 선언된 프로바이더를 사용하여 인스턴스를 선택하고 주입할 것이다. 이러한 경우를 위하여 InjectionToken을 제공한다.
+@Inject 데코레이터에는 주입할 대상의 토큰을 설정한다. 일반적으로 주입 대상의 타입이 클래스인 경우, Angular에 의해 자동으로 설정되기 때문에 @Inject 데코레이터를 사용하지 않아도 된다. 하지만 **클래스 이외의 토큰의 경우, 명시적으로 @Inject 데코레이터를 선언하여야 한다.**
+
+하지만 문자열을 토큰으로 사용하는 것은 토큰이 중복될 수 있어서 위험한 방법이다. 만약 외부 라이브러리에서 사용하는 토큰과 중복된다면 인젝터는 마지막에 선언된 프로바이더를 사용하여 인스턴스를 선택하고 주입할 것이다. 이러한 경우를 위하여 **InjectionToken**을 제공한다.
 
 ## 6.3 팩토리 프로바이더(Factory Provider)
 
 의존성을 생성할 때 어떠한 로직을 거쳐야 한다면 팩토리 함수를 사용한다. 예를 들어 조건을 인자로 받아 의존성을 생성하거나 여러 의존성 중에 어떤 것을 생성할 지 결정해야 하는 경우, 팩토리 함수를 사용한다.
 
-개발 모드인 경우, MockUserService를 생성하고 그외의 경우 UserService를 생성하는 예제를 작성해 보자.
+개발 모드(isDev가 true)인 경우, MockUserService를 생성하고 그외의 경우 UserService를 생성하는 예제를 작성해 보자.
 
 ```typescript
 // user.ts
@@ -508,7 +503,6 @@ export class MockUserService {
 
 ```typescript
 // user.service.provider.ts
-import { NameService } from './name.service';
 import { MockUserService } from './mock-user.service';
 import { UserService } from './user.service';
 
@@ -541,7 +535,7 @@ import { UserService } from './user.service';
 
 @Component({
   selector: 'app-root',
-  template: '',
+  template: '{{ "{{ userService.getUser() | json " }}}}',
   providers: [
     { provide: 'isDev', useValue: true },
     UserServiceProvider
@@ -549,16 +543,19 @@ import { UserService } from './user.service';
 })
 export class AppComponent {
   constructor(public userService: UserService) {
-    console.log(userService.getUser()); // Hello World
+    console.log(userService.getUser());
+    // {id: "mock user", password: "abc"}
   }
 }
 ```
+
+<iframe src="https://stackblitz.com/edit/service-factory-provider?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 ## 6.4 인젝션 토큰(Injection Token)
 
 지금까지 살펴본 예제는 문자열을 애플리케이션 공통 상수로 사용하는 경우를 제외하고 토큰으로 클래스를 사용하였다. 인젝션 토큰은 클래스가 아닌 의존성(non-class dependency), 예를 들어 객체, 문자열, 함수 등을 위한 토큰을 주입받기 위해 사용한다.
 
-예를 들어 객체 리터럴로 작성된 애플리케이션 설정 정보를 주입받기 위해 프로바이더를 등록하여 보자
+예를 들어 객체 리터럴로 작성된 애플리케이션 설정 정보를 주입받기 위해 프로바이더를 등록하여 보자.
 
 ```typescript
 // app.config.ts
@@ -580,10 +577,9 @@ import { AppConfig, MY_APP_CONFIG } from './app.config';
 
 @Component({
   selector: 'app-root',
-  template: '',
+  template: '{{ "{{ appConfig | json " }}}}',
   providers: [
     { provide: AppConfig, useValue: MY_APP_CONFIG }
-    // 'AppConfig' only refers to a type, but is being used as a value here.
   ]
 })
 export class AppComponent {
@@ -593,7 +589,7 @@ export class AppComponent {
 }
 ```
 
-위와 같이 인터페이스를 토큰으로 등록하면 에러가 발생한다. 이는 타입스크립트 인터페이스가 자바스크립트로 트랜스파일링되는데 이때 자바스크립트에는 인터페이스가 사라진다. 따라서 Angular가 런타임에 찾을 수 있는 인터페이스 타입 정보가 없기 때문에 인터페이스를 토큰으로 등록하면 에러가 발생한다.
+위와 같이 인터페이스를 토큰으로 등록하면 에러가 발생한다. 이는 타입스크립트는 자바스크립트로 트랜스파일링될 때, 자바스크립트는 인터페이스를 지원하지 않으므로 인터페이스가 사라지게 된다. 따라서 Angular가 런타임에 찾을 수 있는 인터페이스 타입 정보가 없기 때문에 인터페이스를 토큰으로 등록하면 에러가 발생한다.
 
 이러한 경우 사용하는 것이 인젝션 토큰(Injection Token)이다. 사용 방법은 아래와 같다.
 
@@ -607,7 +603,6 @@ export interface AppConfig {
 }
 
 export const MY_APP_CONFIG: AppConfig = {
-// export const MY_APP_CONFIG: Test = {
   url: 'http://somewhere.io/api',
   port: '5000'
 };
@@ -631,16 +626,19 @@ import { AppConfig, APP_CONFIG, AppConfigProvider } from './app.config';
 
 @Component({
   selector: 'app-root',
-  template: '',
-  providers: [AppConfigProvider]
+  template: '{{ "{{ appConfig | json " }}}}',
+  providers: [ AppConfigProvider ]
 })
 export class AppComponent {
 
-  constructor(@Inject(APP_CONFIG) public config: AppConfig) {
-    console.log(config); // {url: "http://somewhere.io/api", port: "5000"}
+  constructor(@Inject(APP_CONFIG) public appConfig: AppConfig) {
+    console.log(appConfig);
+    // {url: "http://somewhere.io/api", port: "5000"}
   }
 }
 ```
+
+<iframe src="https://stackblitz.com/edit/injection-token?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 @Inject 데코레이터에는 주입할 대상의 토큰을 설정한다. 일반적으로 주입 대상의 타입이 클래스인 경우, Angular에 의해 자동으로 설정되기 때문에 @Inject 데코레이터를 사용하지 않아도 된다. 하지만 클래스 이외의 토큰의 경우, 명시적으로 @Inject 데코레이터를 선언하여야 한다.
 
@@ -655,24 +653,30 @@ import { GreetingService } from './greeting.service';
 
 @Component({
   selector: 'app-root',
-  template: ''
+  template: '{{ "{{ greeting " }}}}'
 })
 export class AppComponent {
+  greeting: string;
+
   constructor(@Optional() public greetingService: GreetingService) {
     if (this.greetingService) {
       console.log(this.greetingService.sayHi());
+      this.greeting = this.greetingService.sayHi();
     } else {
       console.log('Hi...');
+      this.greeting = 'Hi...';
     }
   }
 }
 ```
 
+<iframe src="https://stackblitz.com/edit/optional-dependency?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+
 모듈 또는 컴포넌트의 프로바이더에 GreetingService가 등록되어 있다면 컴포넌트 레벨에서 GreetingService 인스턴스를 주입받을 수 있으므로 GreetingService의 sayHi 메소드를 사용할 수 있을 것이다. 하지만 프로바이더에 GreetingService가 등록되어 있지 않다면 GreetingService는 주입되지 않는다, 그러나 @Optional 데코레이터를 사용하였으므로 에러는 발생하지 않는다.
 
 # 7. 서비스 중재자 패턴(Service Mediator Pattern)
 
-컴포넌트는 독립적인 존재이지만 다른 컴포넌트와 결합도를 낮게 유지하면서 상태 정보를 교환할 수 있어야 한다. 이때 @Input, @Output 데코레이터를 사용하여 컴포넌트 간에 상태를 공유할 수 있지만 원거리 컴포넌트 간의 상태 공유를 위해서 상태 공유가 필요없는 컴포넌트를 경유해야 하고 일관된 자료 구조가 존재하지 않기 때문에 개별적인 프로퍼티만을 교환할 수 밖에 없는 한계가 있다. 이러한 경우, 컴포넌트 간 데이터 중개자로 서비스를 사용하면 일정한 형식의 자료 구조를 사용하면서 컴포넌트 간의 상태 공유가 가능하다.
+컴포넌트는 독립적인 존재이지만 다른 컴포넌트와 결합도를 낮게 유지하면서 상태 정보를 교환할 수 있어야 한다. @Input, @Output 데코레이터를 사용하여 컴포넌트 간에 상태를 공유할 수 있지만 원거리 컴포넌트 간의 상태 공유를 위해서 상태 공유가 필요없는 컴포넌트를 경유해야 하고 일관된 자료 구조가 존재하지 않기 때문에 개별적인 프로퍼티만을 교환할 수 밖에 없는 한계가 있다. 이러한 경우, 컴포넌트 간 데이터 중개자로 서비스를 사용하면 일정한 형식의 자료 구조를 사용하면서 컴포넌트 간의 상태 공유가 가능하다.
 
 서비스를 사용하여 2개의 형제 컴포넌트 간 상태를 공유하는 예제를 작성하여보자. 우선 서비스를 작성한다.
 
@@ -686,7 +690,9 @@ export class SharedService {
 }
 ```
 
-SharedService는 status 프로퍼티를 갖는 클래스이다. 이 SharedService를 형제 컴포넌트에 모두 의존성 주입하여 상태를 공유하는 중개자의 역할을 담당하게 할 것이다. 다음은 2개의 형제 컴포넌트의 부모 컴포넌트를 작성한다. 이 부모 컴포넌트에 SharedService의 프로바이더를 등록할 것이다. 따라서 2개의 형제 컴포넌트는 별도의 프로바이더 등록없이 SharedService를 주입받을 수 있다.
+SharedService는 status 프로퍼티를 갖는 클래스이다. 이 SharedService를 형제 컴포넌트에 모두 의존성 주입하여 상태를 공유하는 중개자의 역할을 담당하게 할 것이다.
+
+다음은 2개의 형제 컴포넌트의 부모 컴포넌트를 작성한다. 이 부모 컴포넌트에 SharedService의 프로바이더를 등록할 것이다. 따라서 2개의 형제 컴포넌트는 별도의 프로바이더 등록없이 SharedService를 주입받을 수 있다.
 
 ```typescript
 // app.component.ts

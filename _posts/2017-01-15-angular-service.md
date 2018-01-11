@@ -55,7 +55,7 @@ export class AppComponent {
   greetingService: GreetingService;
 
   constructor() {
-    // 서비스의 인스턴스 생성
+    // 서비스의 인스턴스의 명시적 생성
     this.greetingService = new GreetingService();
   }
 
@@ -66,7 +66,16 @@ export class AppComponent {
 }
 ```
 
-버튼 클릭 이벤트 핸들러인 sayHi가 호출되면 GreetingService의 메소드 sayHi를 호출하여 인사말을 생성한다. 이때 컴포넌트는 GreetingService의 인스턴스가 필요하다. 따라서 컴포넌트 생성자 함수 내에서 GreetingService의 인스턴스를 생성하였다. 이때 컴포넌트는 GreetingService와 **의존 관계(Dependency relationship)**에 있다. 즉 컴포넌트는 GreetingService에 의존하고 있으며 이때 컴포넌트의 관점에서 GreetingService를 **의존성(Dependency)**라 한다.
+버튼 클릭 이벤트 핸들러인 sayHi가 호출되면 GreetingService의 메소드 sayHi를 호출하여 인사말을 생성한다. 이때 컴포넌트는 GreetingService의 인스턴스가 필요하다. 따라서 컴포넌트 생성자 함수 내에서 GreetingService의 인스턴스를 명시적으로 생성하였다.
+
+```typescript
+constructor() {
+  // 서비스의 인스턴스의 명시적 생성
+  this.greetingService = new GreetingService();
+}
+```
+
+이때 컴포넌트는 GreetingService와 **의존 관계(Dependency relationship)**에 있다. 즉 컴포넌트는 GreetingService에 의존하고 있으며 이때 컴포넌트의 관점에서 GreetingService를 **의존성(Dependency)**라 한다.
 
 예를 들어 A가 B에 의존하는 의존 관계에 있을 때, B의 기능이 추가되거나 변경되면 A는 영향을 받는다. 즉 A가 B의 메소드를 사용한다면 B의 메소드 형식이 변경되었을 때 A도 수정되어야 한다.
 
@@ -75,18 +84,11 @@ export class AppComponent {
 의존 관계(Dependency relationship)
 {: .desc-img}
 
-위 예제에서 컴포넌트는 GreetingService에 의존하고 있으므로 GreetingService 인스턴스의 생성 방법을 알아야 한다. 예를 들어 인스턴스의 생성은 new 키워드를 사용할 수도 있고, 싱글턴 패턴의 경우 getInstance() 함수를 호출할 수도 있으며, createGreetingService()와 같은 팩토리 함수를 사용할 수도 있을 것이다.
+위 예제에서 컴포넌트는 GreetingService에 의존하고 있으므로 GreetingService의 인스턴스가 필요하고 컴포넌트가 GreetingService 의 인스턴스를 직접 생성하기 때문에 GreetingService 인스턴스의 생성 방법을 알고 있어야 한다.
 
-```typescript
-...
-  constructor() {
-    // GreetingService 인스턴스의 생성 방법을 알아야 한다.
-    this.greetingService = new GreetingService();
-  }
-...
-```
+예를 들어 인스턴스의 생성은 new 키워드를 사용할 수도 있고, 싱글턴 패턴의 경우 getInstance() 함수를 호출할 수도 있으며, createGreetingService()와 같은 팩토리 함수를 사용할 수도 있을 것이다.
 
-이처럼 의존성을 생성하는 코드와 사용하는 코드가 하나의 컴포넌트 내에 존재한다면 이는 컴포넌트와 의존성이 **긴밀히 결합(Tight Coupling)**되어 있다고 할 수 있다. 만약에 이 컴포넌트가 GreetingService가 아닌 다른 서비스를 사용하여 인사말을 생성하도록 변경된다면 컴포넌트는 반드시 수정되어야 한다.
+이처럼 의존성을 생성하는 코드와 사용하는 코드가 컴포넌트 내에 같이 존재한다면 이는 컴포넌트와 의존성이 **긴밀히 결합(Tight Coupling)**되어 있다고 할 수 있다. 만약에 이 컴포넌트가 GreetingService가 아닌 다른 서비스를 사용하여 인사말을 생성하도록 변경된다면 컴포넌트는 수정되어야 한다.
 
 ```typescript
 ...
@@ -105,7 +107,11 @@ export class AppComponent {
 }
 ```
 
-컴포넌트와 의존성의 의존 관계를 긴밀한 결합(Tight Coupling)에서 느슨한 결합(Loose Coupling)으로 전환하기 위해 Angular는 **의존성 주입(Dependency Injection)**을 지원한다. 의존성 주입을 사용하여 컴포넌트가 직접 인스턴스를 생성하지 않고 Angular가 인스턴스 생성의 주체가 되도록 위 코드를 수정해 보자.
+컴포넌트와 의존성의 의존 관계를 긴밀한 결합(Tight Coupling)에서 느슨한 결합(Loose Coupling)으로 전환하기 위해 Angular는 **의존성 주입(Dependency Injection)**을 지원한다.
+
+의존성 주입은 애플리케이션이 직접 인스턴스를 생성하는 것이 아니라 Angular 프레임워크가 생성한 인스턴스를 사용하는 방식이다.
+
+의존성 주입을 사용하여 컴포넌트가 직접 인스턴스를 생성하지 않고 Angular가 인스턴스 생성의 주체가 되도록 위 코드를 수정해 보자.
 
 # 3. 의존성 주입(Dependency Injection)
 
@@ -139,11 +145,13 @@ export class AppComponent {
 
 의존성 주입을 사용하기 이전에는 컴포넌트가 직접 GreetingService의 인스턴스를 생성하였지만 위 코드를 보면 GreetingService의 인스턴스를 컴포넌트가 직접 생성하지 않았다.
 
-이는 컴포넌트가 직접 의존성의 인스턴스를 생성하는 것이 아니라 Angular가 인스턴스를 생성하고 컴포넌트에 전달하는 방식이다. 컴포넌트는 필요한 의존성을 요구하고, 프레임워크는 제어권(Control)을 갖는 주체로 동작하여 요구된 의존성의 인스턴스를 직접 생성하여 전달한다. 이를 **제어권의 역전(Inversion of Control, IoC)**이라 한다.
+이는 컴포넌트가 직접 의존관계 객체의 인스턴스를 생성하는 것이 아니라 Angular가 인스턴스를 생성하고 컴포넌트에 전달하는 방식이다. 컴포넌트는 필요한 의존관계 객체를 요구하고, 프레임워크는 제어권(Control)을 갖는 주체로 동작하여 요구된 의존관계 객체의 인스턴스를 직접 생성하여 전달한다. 이를 **제어권의 역전(Inversion of Control, IoC)**이라 한다.
 
-컴포넌트는 더 이상 의존성의 인스턴스 생성에 대해 관여하지 않아도 된다. Angular는 설정 정보에 의해 인스턴스를 생성하여 컴포넌트에게 전달(주입, Inject)해 줄 것이다. 이를 **의존성 주입(Dependency Injection)**이라 한다.
+컴포넌트는 더 이상 의존 관계 객체의 인스턴스 생성에 대해 관여하지 않아도 된다. Angular는 설정 정보에 의해 인스턴스를 생성하여 컴포넌트에게 전달(주입, Inject)해 줄 것이다. 이를 **의존성 주입(Dependency Injection)**이라 한다.
 
-다만 필요한 의존성의 인스턴스를 어떻게 생성하는지 Angular는 알지 못하므로 이 정보를 Angular에 알려주어야 한다. @Component 어노테이션(Annotation)의 **providers 프로퍼티는 의존성으로 주입될 객체의 인스턴스를 어떻게 생성하는지 Angular에 설명한다.** providers: [GreetingService]는 아래 코드의 축약 표현으로 GreetingService 클래스에 의해 생성된 GreetingService 타입의 인스턴스가 컴포넌트에 주입될 것을 의미한다.
+다만 필요한 의존 관계 객체의 인스턴스를 어떻게 생성하는지 Angular는 알지 못하므로 이 정보를 Angular에 알려주어야 한다. @Component 어노테이션(Annotation)의 **providers 프로퍼티는 의존성으로 주입될 객체의 인스턴스를 어떻게 생성하는지 Angular에 설명한다.**
+
+providers: [GreetingService]는 아래 코드의 축약 표현으로 GreetingService 클래스에 의해 생성된 GreetingService 타입의 인스턴스가 컴포넌트에 주입될 것을 의미한다.
 
 ```typescript
 providers: [{
@@ -154,7 +162,7 @@ providers: [{
 }]
 ```
 
-이와 같은 방법으로 Angular는 주입할 의존성의 생성 방법을 알게 되고 **인젝터(Injector)**는 providers 프로퍼티의 설정 정보대로 동작하여 의존성의 인스턴스를 생성하고 주입한다. 이제 컴포넌트는 의존성의 생성 방법을 알 필요가 없고 인젝터가 생성하여 생성자의 인자로 주입한 인스턴스를 사용하기만 하면 된다.
+이와 같은 방법으로 Angular는 주입할 의존 관계 객체의 생성 방법을 알게 되고 **인젝터(Injector)**는 providers 프로퍼티의 설정 정보대로 동작하여 의존 관계 객체의 인스턴스를 생성하고 주입한다. 이제 컴포넌트는 의존 관계 객체의 생성 방법을 알 필요가 없고 인젝터가 생성하여 생성자의 인자로 주입한 인스턴스를 사용하기만 하면 된다.
 
 ```typescript
 // 의존성 주입

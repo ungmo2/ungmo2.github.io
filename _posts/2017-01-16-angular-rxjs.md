@@ -106,12 +106,21 @@ export class ObservableComponent implements OnInit, OnDestroy {
 import 'rxjs/add/observable/from';
 ```
 
+[Observable.from](http://reactivex.io/documentation/operators/from.html) 오퍼레이터는 배열과 같은 [이터러블(Iterable)](http://poiemaweb.com/es6-iteration-for-of)을 인자로 전달받아 옵저버블을 생성한다.
+{: .info}
+
 ② map과 filter 오퍼레이터를 사용하여 옵저버블을 변형(transforming), 필터링하였다. 오퍼레이터는 옵저버블을 반환하므로 체이닝이 가능하다. map과 filter 오퍼레이터를 사용하기 위해 아래와 같이 임포트한다.
 
 ```typescript
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 ```
+
+[Observable.map](http://reactivex.io/documentation/operators/map.html) 오퍼레이터는 옵저버블을 순회하며 각각의 요소에 대하여 인자로 전달된 콜백 함수를 실행하고 그 결과값으로 이루어진 옵저버블을 반환한다. [Array.prototype.map](./js-array#513-arrayprototypemap)과 유사하게 동작한다.
+{: .info}
+
+[Observable.filter](http://reactivex.io/documentation/operators/filter.html) 오퍼레이터는 옵저버블을 순회하며 각각의 요소에 대하여 인자로 전달된 필터 함수를 실행하여 그 결과값이 true인 값만을 추출한 새로운 옵저버블을 반환한다. [Array.prototype.filter](./js-array#514-arrayprototypefilter)와 유사하게 동작한다.
+{: .info}
 
 ③ Observable의 [subscribe](http://reactivex.io/documentation/operators/subscribe.html) 오퍼레이터의 인자에 옵저버를 전달하여 옵저버블을 구독하면 옵저버블은 엘리먼트와 에러 그리고 스트리밍의 종료 여부를 옵저버에 전달한다. 옵저버는 3개의 콜백함수 next, error, complete를 갖는데 이 콜백함수로 옵저버블이 전달한 엘리먼트와 에러 그리고 스트리밍의 종료 여부를 받아 처리한다.
 

@@ -69,7 +69,7 @@ Current 버전은 변경이 발생하고 있는 버전으로 안정적이지 않
 
 - Mac : /usr/local/bin/node
 
-Node.js와 npm의 버전을 출력하여 제대로 설치되었는지 확인한다.
+설치가 완료되었다면 Node.js와 npm의 버전을 출력하여 정상적으로 설치되었는지 확인한다.
 
 ```bash
 $ node -v

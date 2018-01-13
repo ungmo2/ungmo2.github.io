@@ -296,7 +296,9 @@ ngOnInit() {
 }
 ```
 
-HttpParams 객체는 이뮤터블이기 때문에 객체의 프로퍼티 값을 직접 변경할 수 없다. 따라서 set 메소드를 사용해서 값을 지정해야 한다. 주의해야 할 것은 set 메소드를 항상 새로운 HttpParams 객체를 반환하기 때문에 반드시 체이닝하여 사용해야 한다. 따라서 다음과 같이 사용하는 방식은 유효하지 않다.
+HttpParams 객체는 이뮤터블이기 때문에 객체의 프로퍼티 값을 직접 변경할 수 없다. 따라서 set 메소드를 사용해서 값을 지정해야 한다. 주의해야 할 것은 set 메소드를 항상 새로운 HttpParams 객체를 반환하기 때문에 반드시 체이닝하여 사용해야 한다. 또한 set 메소드는 2개의 인자 모두 문자열을 설정해야 한다.
+
+따라서 다음과 같이 사용하는 방식은 유효하지 않다.
 
 ```typescript
 const params = new HttpParams();
@@ -304,21 +306,21 @@ params.set('id', '1');
 params.set('completed', 'false');
 ```
 
-위 코드를 실행하면 params 변수에는 빈 HttpParams 객체가 할당된다. 또한 set 메소드는 2개의 인자 모두 문자열을 설정해야 한다.
+위 코드를 실행하면 params 변수에는 빈 HttpParams 객체가 할당된다.
 
 ### 3.1.4 HttpResponse
 
 지금까지의 예제는 todos 데이터(response body)만을 리턴받았을 뿐이다. 특정 헤더 정보나 상태 코드(status code)를 확인하려면 전체 응답(response)을 받아야 한다. 이런 경우, observe 옵션을 사용하면 [HttpResponse](https://angular.io/api/common/http/HttpResponse) 클래스 타입의 응답을 받을 수 있다.
 
 ```typescript
-// HTTP 요청: 타입 파라미터를 명기한다.
 this.http.get<Todo[]>(this.url, { observe: 'response' })
-  // 요청 결과를 프로퍼티에 할당
   .subscribe(res => {
     console.log(res);
     // HttpResponse {headers: HttpHeaders, status: 200, statusText: "OK", url: "http://localhost:3000/todos", ok: true, …}
+
     console.log(res.headers);
     // HttpHeaders {normalizedNames: Map(0), lazyUpdate: null, lazyInit: ƒ}
+
     console.log(res.status); // 200
     this.todos = res.body;   // todos
   });
@@ -330,19 +332,10 @@ this.http.get<Todo[]>(this.url, { observe: 'response' })
 
 ```typescript
 ngOnInit() {
-  // HTTP 요청: 타입 파라미터를 명기한다.
-  this.http.get<Todo[]>(this.url, { observe: 'response' })
-    // 요청 결과를 프로퍼티에 할당
+  this.http.get<Todo[]>(this.url)
     .subscribe(
       // 요청 성공 처리 콜백함수 (Observer의 next 함수)
-      res => {
-        console.log(res);
-        // HttpResponse {headers: HttpHeaders, status: 200, statusText: "OK", url: "http://localhost:3000/todos", ok: true, …}
-        console.log(res.headers);
-        // HttpHeaders {normalizedNames: Map(0), lazyUpdate: null, lazyInit: ƒ}
-        console.log(res.status); // 200
-        this.todos = res.body;   // todos
-      },
+      todos => this.todos = todos,
       // 요청 실패 처리 콜백함수 (Observer의 error 함수)
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
@@ -357,7 +350,7 @@ ngOnInit() {
 }
 ```
 
-[HttpErrorResponse](https://angular.io/api/common/http/HttpErrorResponse) 타입의 err 파라미터는 에러에 관련한 유용한 정보를 담고 있다.
+[HttpErrorResponse](https://angular.io/api/common/http/HttpErrorResponse) 타입의 err 파라미터는 에러에 관련한 유용한 정보를 담고 있다. 이 정보로 에러의 유형을 구분할 수 있다.
 
 발생할 수 있는 에러의 유형은 두 가지이다.
 
@@ -473,7 +466,8 @@ class Todo {
   selector: 'app-http-put',
   template: `
     <ul>
-      <li *ngFor="let todo of todos" (click)="editTodo(todo.id)">{{ "{{ todo.content " }}}}</li>
+      <li *ngFor="let todo of todos"
+          (click)="editTodo(todo.id)">{{ "{{ todo.content " }}}}</li>
     </ul>
     <pre>{{ "{{ todos | json " }}}}</pre>
   `
@@ -525,7 +519,8 @@ class Todo {
   selector: 'app-http-patch',
   template: `
     <ul>
-      <li *ngFor="let todo of todos" (click)="completeTodo(todo)">{{ "{{ todo.content " }}}}</li>
+      <li *ngFor="let todo of todos"
+          (click)="completeTodo(todo)">{{ "{{ todo.content " }}}}</li>
     </ul>
     <pre>{{ "{{ todos | json " }}}}</pre>
   `
@@ -578,7 +573,8 @@ class Todo {
   selector: 'app-http-delete',
   template: `
     <ul>
-      <li *ngFor="let todo of todos" (click)="deleteTodo(todo.id)">{{ "{{ todo.content " }}}}</li>
+      <li *ngFor="let todo of todos"
+          (click)="deleteTodo(todo.id)">{{ "{{ todo.content " }}}}</li>
     </ul>
     <pre>{{ "{{ todos | json " }}}}</pre>
   `
@@ -639,7 +635,7 @@ getTodos(): Observable<Todo[]> {
 }
 ```
 
-옵저버블 tods$는 2번 구독되었지만 HTTP 요청은 1번만 전송되었다.
+위 예제를 실행하여 보면 옵저버블 tods$는 2번 구독되었지만 HTTP 요청은 1번만 전송되는 것을 확인할 수 있다.
 
 <!--
 # 4. HTTP 요청 중복 방지
@@ -658,7 +654,7 @@ interface HttpInterceptor {
 }
 ```
 
-인터셉터가 어떻게 동작하는지 간단히 살펴 보도록 하자. 모든 HTTP 요청의 헤더에 인증 토큰을 추가하는 경우이다. HttpInterceptor를 구현한 AuthInterceptor 서비스를 작성한다.
+인터셉터가 어떻게 동작하는지 살펴 보도록 하자. 모든 HTTP 요청의 헤더에 인증 토큰을 추가하는 경우이다. HttpInterceptor를 구현한 AuthInterceptor 서비스를 작성한다.
 
 ```typescript
 import { Injectable } from "@angular/core";
@@ -689,7 +685,7 @@ import { Observable } from "rxjs/Observable";
 
 ① intercept 메소드는 2개의 파라미터를 갖는다. 첫번째 req는 처리할 요청이고 두번째 next는 다음 인터셉터를 가리키는 핸들러다.
 
-이 핸들러는 [HttpHandler](https://angular.io/api/common/http/HttpHandler) 클래스 타입으로 HttpHandler는 Express의 미들웨어와 유사하게 인터셉터를 체이닝할 때 사용한다. 다음 인터셉터가 존재하는 경우, 요청을 다음 인터셉터에 전달하고 다음 인터셉터가 존재하지 않는 경우, 최종 HttpHandler인 [HttpBackend](https://angular.io/api/common/http/HttpBackend)가 되어 요청을 전송하고 Observable 반환한다.
+이 핸들러는 [HttpHandler](https://angular.io/api/common/http/HttpHandler) 클래스 타입으로 HttpHandler는 [Express의 미들웨어](./express-basics#4-middleware)와 유사하게 인터셉터를 체이닝할 때 사용한다. 다음 인터셉터가 존재하는 경우, 요청을 다음 인터셉터에 전달하고 다음 인터셉터가 존재하지 않는 경우, 최종 HttpHandler인 [HttpBackend](https://angular.io/api/common/http/HttpBackend)가 되어 요청을 전송하고 Observable 반환한다.
 
 **인터셉터는 HttpClient 인터페이스와 HTTP 요청을 브라우저 HTTP API를 통해 백엔드로 전달하는 최종 HttpHandler인 HttpBackend 사이에 있으며 여러개의 인터셉터가 존재할 때 각각의 인터셉터를 순차적으로 연결하는 역할을 하는 것이 HttpHandler이다.**
 

@@ -31,9 +31,15 @@ HTML의 폼을 사용하여도 어느 정도의 [유효성 검증](https://devel
 </head>
 <body>
   <form action="/signup" method="POST">
-    <input type="email" name="email" placeholder="Email" pattern="^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$" required>
-    <input type="password" id="password1" name="password1" placeholder="Password" pattern="^[a-zA-Z0-9]{4,10}$" required>
-    <input type="password" id="password2" name="password2" placeholder="Confirm Password" pattern="^[a-zA-Z0-9]{4,10}$" required>
+    <input type="email" name="email" placeholder="Email"
+      pattern="^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
+      required>
+    <input type="password" id="password1" name="password1"
+      placeholder="Password" pattern="^[a-zA-Z0-9]{4,10}$"
+      required>
+    <input type="password" id="password2" name="password2"
+      placeholder="Confirm Password" pattern="^[a-zA-Z0-9]{4,10}$"
+      required>
     <input type="submit" name="submit" value="Signup">
   </form>
   <script>

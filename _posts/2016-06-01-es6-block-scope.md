@@ -4,7 +4,7 @@ title: ECMAScript6 - <strong>let, const</strong>
 subtitle: let, const와 블록 레벨 스코프
 categories: es6
 section: es6
-description: ES5에서 변수를 선언할 수 있는 유일한 방법은 var 키워드를 사용하는 것이었다. var 키워드로 선언된 변수는 아래와 같은 특징을 갖는다. 이는 다른 C-family 언어와는 차별되는 특징(설계상 오류)으로 주의를 기울이지 않으면 심각한 문제를 발생시킨다. 대부분의 문제는 전역 변수로 인해 발생한다. 전역 변수는 간단한 애플리케이션의 경우, 사용이 편리한 면이 있지만 불가피한 상황을 제외하고 사용을 억제해야 한다. 전역 변수는 범위(scope)가 넓어서 어디에서 어떻게 사용될 지 파악하기 힘들다. 이는 의도치 않은 변수의 변경이 발생할 수 있는 가능성이 증가한다. 또한 여러 함수와 상호 의존하는 등 side effect가 있을 수 있어서 복잡성이 증가한다. 변수의 범위(scope)는 좁을수록 좋다. ES6는 이러한 var의 단점을 보완하기 위해 let과 const 키워드를 도입하였다. 
+description: ES5에서 변수를 선언할 수 있는 유일한 방법은 var 키워드를 사용하는 것이었다. var 키워드로 선언된 변수는 아래와 같은 특징을 갖는다. 이는 다른 C-family 언어와는 차별되는 특징(설계상 오류)으로 주의를 기울이지 않으면 심각한 문제를 발생시킨다. 대부분의 문제는 전역 변수로 인해 발생한다. 전역 변수는 간단한 애플리케이션의 경우, 사용이 편리한 면이 있지만 불가피한 상황을 제외하고 사용을 억제해야 한다. 전역 변수는 범위(scope)가 넓어서 어디에서 어떻게 사용될 지 파악하기 힘들다. 이는 의도치 않은 변수의 변경이 발생할 수 있는 가능성이 증가한다. 또한 여러 함수와 상호 의존하는 등 side effect가 있을 수 있어서 복잡성이 증가한다. 변수의 범위(scope)는 좁을수록 좋다. ES6는 이러한 var의 단점을 보완하기 위해 let과 const 키워드를 도입하였다.
 ---
 
 * TOC
@@ -23,11 +23,11 @@ ES5에서 변수를 선언할 수 있는 유일한 방법은 [var 키워드](./j
 3. 중복 선언 허용
   - 의도하지 않은 변수값 변경
 4. [변수 호이스팅](./js-data-type-variable#24-변수-호이스팅variable-hoisting)
-  - 변수를 선언하기 전에 참조가 가능하다. 
+  - 변수를 선언하기 전에 참조가 가능하다.
 
 대부분의 문제는 전역 변수로 인해 발생한다. 전역 변수는 간단한 애플리케이션의 경우, 사용이 편리하다는 장점이 있지만 불가피한 상황을 제외하고 사용을 억제해야 한다. 전역 변수는 유효범위(scope)가 넓어서 어디에서 어떻게 사용될 것인지 파악하기 힘들며 [비순수 함수(Impure function)](https://github.com/nhnent/fe.javascript/wiki/April-11---April-15,-2016)에 의해 의도하지 않게 변경될 수도 있어서 복잡성을 증가시키는 요인이 된다. 따라서 변수의 유효범위(scope)는 좁을수록 좋다.
 
-ES6는 이러한 var의 단점을 보완하기 위해 let과 const 키워드를 도입하였다. 
+ES6는 이러한 var의 단점을 보완하기 위해 let과 const 키워드를 도입하였다.
 
 # 1. let
 
@@ -67,7 +67,7 @@ console.log(foo); // 123
 console.log(bar); // ReferenceError: bar is not defined
 ```
 
-let 키워드로 선언된 변수는 Block-level scope를 갖는다. 위 예제에서 코드블록 내에 선언된 변수 foo는 Block-level scope를 갖는 지역 변수이다. 전역에서 선언된 변수 foo와는 다른 변수이다. 또한 변수 bar도 Block-level scope를 갖는 지역 변수이다. 따라서 전역에서는 변수 bar를 참조할 수 없다. 
+let 키워드로 선언된 변수는 Block-level scope를 갖는다. 위 예제에서 코드블록 내에 선언된 변수 foo는 Block-level scope를 갖는 지역 변수이다. 전역에서 선언된 변수 foo와는 다른 변수이다. 또한 변수 bar도 Block-level scope를 갖는 지역 변수이다. 따라서 전역에서는 변수 bar를 참조할 수 없다.
 
 ## 1.2 중복 선언 금지
 
@@ -85,7 +85,7 @@ let bar = 456;  // Uncaught SyntaxError: Identifier 'bar' has already been decla
 
 자바스크립트는 ES6에서 도입된 let, const를 포함하여 모든 선언(var, let, const, function, [function*](./es6-generateor), class)을 호이스팅(Hoisting)한다. 호이스팅이란 var 선언문이나 function 선언문 등을 해당 스코프의 선두로 옮기는 것을 말한다.
 
-하지만 var 키워드로 선언된 변수와는 달리 let 키워드로 선언된 변수를 선언문 이전에 참조하면 ReferenceError가 발생한다. 이는 let 키워드로 선언된 변수는 스코프의 시작에서 변수의 선언까지 <strong>일시적 사각지대(Temporal Dead Zone; TDZ)</strong>에 빠지기 때문이다. 
+하지만 var 키워드로 선언된 변수와는 달리 let 키워드로 선언된 변수를 선언문 이전에 참조하면 ReferenceError가 발생한다. 이는 let 키워드로 선언된 변수는 스코프의 시작에서 변수의 선언까지 <strong>일시적 사각지대(Temporal Dead Zone; TDZ)</strong>에 빠지기 때문이다.
 
 ```javascript
 console.log(foo); // undefined
@@ -98,7 +98,7 @@ let bar;
 변수가 어떻게 생성되며 호이스팅은 어떻게 이루어지는지 좀더 자세히 살펴보자. 변수는 3단계에 걸쳐 생성된다. 자세한 내용은 [Execution Context](./js-execution-context)을 참조하기 바란다.
 
 선언 단계(Declaration phase)
-: 변수 객체(Variable Object)에 변수를 등록한다. 이 변수 객체는 스코프가 참조하는 대상이 된다.
+: 변수를 실행 컨택스트의 변수 객체(Variable Object)에 등록한다. 이 변수 객체는 스코프가 참조하는 대상이 된다.
 
 초기화 단계(Initialization phase)
 : 변수 객체(Variable Object)에 등록된 변수를 메모리에 할당한다. 이 단계에서 변수는 undefined로 초기화된다.
@@ -106,9 +106,9 @@ let bar;
 할당 단계(Assignment phase)
 : undefined로 초기화된 변수에 실제값을 할당한다.
 
-**var 키워드로 선언된 변수는 선언 단계와 초기화 단계가 한번에 이루어진다.** 즉,스코프에 변수가 등록(선언단계)되고 변수는 undefined로 초기화(초기화단계)된다. 따라서 변수 선언문 이전에 변수에 접근하여도 Variable Object에 변수가 존재하기 때문에 에러가 발생하지 않는다. 다만 undefined를 반환한다. 이러한 현상을 [변수 호이스팅(Variable Hoisting)](./js-data-type-variable#24-변수-호이스팅variable-hoisting)이라한다.
+**var 키워드로 선언된 변수는 선언 단계와 초기화 단계가 한번에 이루어진다.** 즉, 스코프에 변수가 등록(선언단계)되고 변수는 undefined로 초기화(초기화단계)된다. 따라서 변수 선언문 이전에 변수에 접근하여도 변수 객체(Variable Object)에 변수가 존재하기 때문에 에러가 발생하지 않는다. 다만 undefined를 반환한다. 이러한 현상을 [변수 호이스팅(Variable Hoisting)](./js-data-type-variable#24-변수-호이스팅variable-hoisting)이라한다.
 
-이후 변수 할당문에 도달하면 비로서 값의 할당이 이루어진다. 
+이후 변수 할당문에 도달하면 비로서 값의 할당이 이루어진다.
 
 ![var lifecycle](./img/var-lifecycle.png)
 {: .w-450}
@@ -116,7 +116,7 @@ let bar;
 var 키워드로 선언된 변수의 생명 주기
 {: .desc-img}
 
-**let 키워드로 선언된 변수는 선언 단계와 초기화 단계가 분리되어 진행된다.** 즉, 스코프에 변수가 등록(선언단계)되지만 초기화 단계는 변수 선언문에 도달했을 때 이루어진다. 초기화 이전에 변수에 접근하려고 하면 ReferenceError 에러가 발생한다. 이는 변수가 아직 초기화되지 않았기 때문인데 스코프의 시작 지점부터 초기화 시작 지점까지를 일시적 사각지대(Temporal Dead Zone; TDZ)라고 부른다. 
+**let 키워드로 선언된 변수는 선언 단계와 초기화 단계가 분리되어 진행된다.** 즉, 스코프에 변수가 등록(선언단계)되지만 초기화 단계는 변수 선언문에 도달했을 때 이루어진다. 초기화 이전에 변수에 접근하려고 하면 ReferenceError 에러가 발생한다. 이는 변수가 아직 초기화되지 않았기 때문인데 스코프의 시작 지점부터 초기화 시작 지점까지를 일시적 사각지대(Temporal Dead Zone; TDZ)라고 부른다.
 
 ![let lifecycle](./img/let-lifecycle.png)
 {: .w-450}
@@ -124,7 +124,7 @@ var 키워드로 선언된 변수의 생명 주기
 let 키워드로 선언된 변수의 생명 주기
 {: .desc-img}
 
-## 1.4 클로저 
+## 1.4 클로저
 
 Block-level scope를 지원하는 let은 var보다 직관적이다. 다음 코드를 살펴보자.
 
@@ -245,11 +245,11 @@ console.log(FOO); // ReferenceError: FOO is not defined
 상수는 가독성의 향상과 유지보수의 편의를 위해 적극적으로 사용해야 한다. 예를 들어 아래 코드를 살펴보자.
 
 ```javascript
-// Low readability
+// x의 의미를 알기 어렵기 때문에 가독성이 좋지 않다.
 if (x > 10) {
 }
 
-// Better!
+// 변수의 의미를 명확히 기술하여 가독성이 향상되었다.
 const MAXROWS = 10;
 if (x > MAXROWS) {
 }
@@ -266,7 +266,7 @@ obj = { bar: 456 }; // TypeError: Assignment to constant variable.
 
 ## 2.3 const와 객체
 
-const는 재할당이 금지된다. 이는 const 변수의 값이 객체인 경우, 객체에 대한 참조의 변경을 금지한다는 것을 의미한다. 
+const는 재할당이 금지된다. 이는 const 변수의 값이 객체인 경우, 객체에 대한 참조의 변경을 금지한다는 것을 의미한다.
 
 하지만 **객체의 프로퍼티는 보호되지 않는다.** 다시 말하자면 재할당은 불가능하지만 할당된 객체의 내용(프로퍼티)은 변경할 수 있다.
 

@@ -99,9 +99,21 @@ xhr.open('GET', 'api/todos');
 xhr.send();
 ```
 
-Angular의 HttpClient도 XMLHttpRequest를 사용하기 때문에 GET, POST, PUT, DELETE, PATCH 등의 HTTP 메소드(verb, method)를 사용하여 CRUD를 구현한다.
+Angular의 HttpClient도 XMLHttpRequest를 사용하여 HTTP 요청을 실행할 수 있는 API를 제공한다. HttpClient 클래스의 인스턴스는 의존성 주입을 통해 사용할 수 있다.
 
-[json-server](./json-server)를 사용하여 페이크 REST API 서버를 작성하고 HTTP 요청 예제를 만들어 보자. json-server는 npm을 사용하여 설치할 수 있다.
+```typescript
+// HttpClient를 주입받는다.
+constructor(public http: HttpClient) {}
+```
+
+주입받은 HttpClient 클래스의 인스턴스는 get, post, put, patch, delete, jsonp 등의 HTTP 메소드를 가지고 있으며 이들 메소드를 통해 CRUD를 구현한다.
+
+```typescript
+// HTTP GET 요청
+this.http.get('/api/todos').subscribe(...);
+```
+
+[json-server](./json-server)를 사용하여 페이크 REST API 서버를 생성하고 HTTP 요청 예제를 만들어 보자. json-server는 npm을 사용하여 설치할 수 있다.
 
 ```bash
 $ npm install -g json-server
@@ -187,7 +199,8 @@ class Todo {
     <ul>
       <li *ngFor="let todo of todos">{{ "{{ todo.content " }}}}</li>
     </ul>
-    <pre>{{ "{{ todos | json " }}}}</pre>`
+    <pre>{{ "{{ todos | json " }}}}</pre>
+  `
 })
 export class HttpGetComponent implements OnInit {
   todos: Todo[];
@@ -245,8 +258,8 @@ JSON 데이터가 아닌 텍스트, [blob](https://ko.wikipedia.org/wiki/%EB%B0%
 ngOnInit() {
   // HTTP 요청: 텍스트 파일을 요청
   this.http.get('/textfile.txt', {responseType: 'text'})
-  // get 메소드는 Observable<string>를 반환한다.
-  .subscribe(data => console.log(data));
+    // get 메소드는 Observable<string>를 반환한다.
+    .subscribe(data => console.log(data));
 }
 ```
 
@@ -254,7 +267,14 @@ responseType을 설정한 경우, 타입 파라미터를 지정할 필요가 없
 
 ### 3.1.3 HttpParams
 
-GET 요청은 쿼리 파라미터와 함께 전달할 수 있다. 예를 들어 위 예제의 url을 아래와 같이 변경하여 보자.
+GET 요청은 쿼리 파라미터와 함께 전달할 수 있다. 참고로 URI(Uniform Resource Identifier)는 아래와 같은 구성을 갖는다.
+
+![uri](/img/uri.png)
+
+URI(Uniform Resource Identifier)
+{: .desc-img}
+
+예를 들어 위 예제의 url을 아래와 같이 변경하여 보자.
 
 ```typescript
 url = 'http://localhost:3000/todos?id=1&completed=false';
@@ -276,7 +296,7 @@ ngOnInit() {
 }
 ```
 
-HttpParams 객체는 이뮤터블이기 때문에 객체의 값을 직접 변경할 수 없다. 따라서 set 메소드를 사용해서 값을 지정해야 한다. 주의해야 할 것은 set 메소드를 항상 새로운 HttpParams 객체를 반환하기 때문에 반드시 체이닝하여 사용해야 한다. 따라서 다음과 같이 사용하는 방식은 유효하지 않다.
+HttpParams 객체는 이뮤터블이기 때문에 객체의 프로퍼티 값을 직접 변경할 수 없다. 따라서 set 메소드를 사용해서 값을 지정해야 한다. 주의해야 할 것은 set 메소드를 항상 새로운 HttpParams 객체를 반환하기 때문에 반드시 체이닝하여 사용해야 한다. 따라서 다음과 같이 사용하는 방식은 유효하지 않다.
 
 ```typescript
 const params = new HttpParams();

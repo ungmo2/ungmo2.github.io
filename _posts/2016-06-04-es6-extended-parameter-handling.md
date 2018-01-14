@@ -87,7 +87,7 @@ foo(1, 2, 3, 4, 5);
 
 ## 2.2 arguments와 rest 파라미터
 
-ES6 이전에는 인자의 갯수를 사전에 알 수 없는 가변 인자 함수의 경우, [arguments 객체](./js-function#61-arguments-프로퍼티)를 통해 인자값을 확인한다. arguments 객체는 함수 호출 시 전달된 인수(argument)들의 정보를 담고 있는 순회가능한(iterable) 유사 배열 객체(array-like object)이다. 함수 객체의 arguments 프로퍼티는 arguments 객체를 값으로 가지며 함수 내부에서 지역변수처럼 사용된다.
+ES5에서는 인자의 갯수를 사전에 알 수 없는 가변 인자 함수의 경우, [arguments 객체](./js-function#61-arguments-프로퍼티)를 통해 인자값을 확인한다. arguments 객체는 함수 호출 시 전달된 인수(argument)들의 정보를 담고 있는 순회가능한(iterable) 유사 배열 객체(array-like object)이다. 함수 객체의 arguments 프로퍼티는 arguments 객체를 값으로 가지며 함수 내부에서 지역변수처럼 사용된다.
 
 ```javascript
 // ES5
@@ -98,7 +98,7 @@ var foo = function () {
 foo(1, 2); // { '0': 1, '1': 2 }
 ```
 
-매개변수 갯수가 확정되지 않은 가변 인자 함수를 구현할 때 arguments 객체가 유용하게 사용된다. 가변 인자 함수의 경우, 파라미터를 통해 인수를 전달받는 것이 불가능하므로 arguments 객체를 활용하여 인수를 전달받는다. 하지만 arguments 객체는 유사 배열 객체이기 때문에 배열 메소드를 사용하려면 [Function.prototype.call](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/call), [Function.prototype.apply](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/apply)를 사용하여야 하는 번거로움이 있다.
+가변 인자 함수의 경우, 파라미터를 통해 인수를 전달받는 것이 불가능하므로 arguments 객체를 활용하여 인수를 전달받는다. 하지만 arguments 객체는 유사 배열 객체이기 때문에 배열 메소드를 사용하려면 [Function.prototype.call](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/call), [Function.prototype.apply](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/apply)를 사용하여야 하는 번거로움이 있다.
 
 ```javascript
 // ES5
@@ -114,6 +114,16 @@ function sum() {
 console.log(sum(1, 2, 3, 4, 5)); // 15
 ```
 
+또한 ES6의 [Arrow function](./es6-arrow-function)에는 함수 객체의 arguments 프로퍼티가 없다. 따라서 화살표 함수에서 가변 인자 함수를 구현해야하는 경우, 반드시 rest 파라미터를 사용하여야 한다.
+
+```javascript
+var es5 = function () {};
+console.log(es5.hasOwnProperty('arguments')); // true
+
+const es6 = () => {};
+console.log(es6.hasOwnProperty('arguments')); // false
+```
+
 ES6에서는 [rest 파라미터](./es6-extended-parameter-handling#2-rest-파라미터-rest-parameter)를 사용하여 가변인자를 함수 내부에 <string>배열</string>로 전달할 수 있다. 유사 배열인 arguments 객체를 배열로 변환하는 등의 번거로움을 피할 수 있다.
 
 ```javascript
@@ -123,20 +133,6 @@ function sum(...args) {
   console.log(Array.isArray(args)); // true
   return args.reduce((pre, cur) => pre + cur);
 }
-console.log(sum(1, 2, 3, 4, 5)); // 15
-```
-
-[Arrow function](./es6-arrow-function)에는 arguments 프로퍼티가 없다. Arrow function에서 가변 인자 함수를 구현하는 경우, rest 파라미터를 사용하여야 한다.
-
-```javascript
-// ES6
-const sum = (...args) => {
-  // console.log(arguments); // Uncaught ReferenceError: arguments is not defined
-  console.log(Array.isArray(args)); // true
-
-  return args.reduce((pre, cur) => pre + cur);
-};
-
 console.log(sum(1, 2, 3, 4, 5)); // 15
 ```
 

@@ -13,7 +13,7 @@ description: Arrow function(화살표 함수)은 function 키워드 대신 화�
 ![es6 Logo](/img/es6.png)
 {: .w-650}
 
-# 1. Syntax
+# 1. Arrow function의 선언
 
 Arrow function(화살표 함수)은 function 키워드 대신 화살표(=>)를 사용하여 간략한 방법으로 함수를 선언할 수 있다. 하지만 모든 경우 사용할 수 있는 것은 아니다. 문법은 아래와 같다.
 
@@ -72,64 +72,11 @@ const pow = arr.map(x => x * x);
 console.log(pow); // [ 1, 4, 9 ]
 ```
 
-# 3. arguments와 rest 파라미터
-
-arguments 객체는 함수 호출 시 전달된 인수(argument)들의 정보를 담고 있는 순회가능한([iterable](./es6-iteration-for-of)) 유사 배열 객체(array-like object)이다. 함수 객체의 arguments 프로퍼티는 arguments 객체를 값으로 가지며 함수 내부에서 지역변수처럼 사용된다.
-
-```javascript
-// ES5
-var foo = function () {
-  console.log(arguments);
-};
-
-foo(1, 2); // { '0': 1, '1': 2 }
-```
-
-ES5에서 매개변수 갯수가 확정되지 않은 가변 인자 함수를 구현할 때 arguments 객체가 유용하게 사용된다. 가변 인자 함수의 경우, 파라미터를 통해 인수를 전달받는 것이 불가능하므로 arguments 객체를 활용하여 인수를 전달받는다. 하지만 arguments 객체는 유사 배열 객체이기 때문에 배열 메소드를 사용하려면 [Function.prototype.call](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/call), [Function.prototype.apply](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/apply)를 사용하여야 하는 번거로움이 있다.
-
-```javascript
-// ES5
-function sum() {
-  // 가변 인자 함수의 경우, 파라미터를 통해 인수를 전달받는 것이 불가능하므로 arguments 객체를 활용하여 인수를 전달받는다.
-  // arguments 객체를 배열로 변환
-  var array = Array.prototype.slice.call(arguments);
-  return array.reduce(function (pre, cur) {
-    return pre + cur;
-  });
-}
-
-console.log(sum(1, 2, 3, 4, 5)); // 15
-```
-
-ES6의 Arrow function에는 함수 객체의 [arguments](/js-function#61-arguments-프로퍼티) 프로퍼티가 없다.
-
-```javascript
-var es5 = function () {};
-console.log(es5.hasOwnProperty('arguments')); // true
-
-const es6 = () => {};
-console.log(es6.hasOwnProperty('arguments')); // false
-```
-
-ES6에서는 [rest 파라미터](./es6-extended-parameter-handling#2-rest-파라미터-rest-parameter)를 사용하여 가변인자를 함수 내부에 배열로 전달할 수 있다. arguments 프로퍼티가 없는 Arrow function에서 가변 인자 함수를 구현하는 경우, rest 파라미터를 사용하여야 한다.
-
-```javascript
-// ES6
-const sum = (...args) => {
-  // console.log(arguments); // Uncaught ReferenceError: arguments is not defined
-  console.log(Array.isArray(args)); // true
-
-  return args.reduce((pre, cur) => pre + cur);
-};
-
-console.log(sum(1, 2, 3, 4, 5)); // 15
-```
-
-# 4. this
+# 3. this
 
 function 키워드를 사용하여 생성한 일반 함수와 Arrow function와의 가장 큰 차이점은 this이다.
 
-## 4.1 일반 함수의 this
+## 3.1 일반 함수의 this
 
 일반 함수의 경우, 해당 함수 호출 패턴에 따라 [this](./js-this)에 바인딩되는 객체가 달라진다. 콜백함수 내부의 this는 전역 객체 window를 가리킨다.
 
@@ -208,7 +155,7 @@ var pre = new Prefixer('Hi');
 console.log(pre.prefixArray(['Lee', 'Kim']));
 ```
 
-## 4.2 Arrow function의 this
+## 3.2 Arrow function의 this
 
 Arrow function은 언제나 자신을 포함하는 외부 scope에서 this를 계승 받는다. 다시 말해 Arrow function은 자신만의 this를 생성하지 않고 자신을 포함하고 있는 컨텍스트로 부터 this를 계승 받는다. 이를 <strong>Lexical this</strong>라 한다. Arrow function은 Solution 3의 Syntactic sugar이다.
 
@@ -241,11 +188,11 @@ const pre = new Prefixer('Hi');
 console.log(pre.prefixArray(['Lee', 'Kim']));
 ```-->
 
-# 3. Arrow Function을 사용해서는 안되는 경우
+# 4. Arrow Function을 사용해서는 안되는 경우
 
 Arrow Function는 Lexical this를 지원하므로 콜백함수에 사용하기 편리하다. 하지만 Arrow Function을 사용하는 것이 오히려 혼란을 불러오는 경우도 있기 때문에 주의하여야 한다.
 
-## 3.1 메소드
+## 4.1 메소드
 
 메소드 정의 시 Arrow Function을 사용하는 것은 피해야 한다. Arrow Function으로 메소드를 정의하여 보자.
 
@@ -275,7 +222,7 @@ const obj = {
 obj.sayHi(); // Hi Lee
 ```
 
-## 3.2 prototype
+## 4.2 prototype
 
 prototype에 메소드를 할당하는 경우도 동일한 문제가 발생한다. prototype에 Arrow Function 메소드를 할당하여 보자.
 
@@ -305,7 +252,7 @@ Object.prototype.sayHi = function() {
 obj.sayHi(); // Hi Lee
 ```
 
-## 3.3 생성자 함수
+## 4.3 생성자 함수
 
 Arrow Function은 생성자 함수로 사용할 수 없다. 생성자 함수는 prototype 프로퍼티를 가지며 prototype 프로퍼티가 가리키는 프로토타입 객체의 constructor를 사용한다. 하지만 Arrow Function은 prototype 프로퍼티를 가지고 있지 않다.
 
@@ -316,7 +263,7 @@ console.log(Foo.hasOwnProperty('prototype')); // false
 const foo = new Foo(); // TypeError: Foo is not a constructor
 ```
 
-## 3.4 addEventListener 함수의 콜백 함수
+## 4.4 addEventListener 함수의 콜백 함수
 
 addEventListener 함수의 콜백 함수를 화살표 함수로 정의하면 this가 상위 컨택스트를 가리킨다.
 

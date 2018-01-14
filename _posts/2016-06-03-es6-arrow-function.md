@@ -90,7 +90,7 @@ ES5에서 매개변수 갯수가 확정되지 않은 가변 인자 함수를 구
 ```javascript
 // ES5
 function sum() {
-  // 가변 인자 함수의 경우, 파라미터를 통해 인수를 전달받는 것이 불가능하므로 arguments 객체를 활용하여 인수를 전달받는다. 
+  // 가변 인자 함수의 경우, 파라미터를 통해 인수를 전달받는 것이 불가능하므로 arguments 객체를 활용하여 인수를 전달받는다.
   // arguments 객체를 배열로 변환
   var array = Array.prototype.slice.call(arguments);
   return array.reduce(function (pre, cur) {
@@ -127,7 +127,7 @@ console.log(sum(1, 2, 3, 4, 5)); // 15
 
 # 4. this
 
-function 키워드를 사용하여 생성한 일반 함수와 Arrow function와의 가장 큰 차이점은 this이다. 
+function 키워드를 사용하여 생성한 일반 함수와 Arrow function와의 가장 큰 차이점은 this이다.
 
 ## 4.1 일반 함수의 this
 
@@ -149,13 +149,13 @@ var pre = new Prefixer('Hi');
 console.log(pre.prefixArray(['Lee', 'Kim']));
 ```
 
-(A)에서의 this는 생성자 함수 Prefixer가 생성한 객체, 즉 생성자 함수의 인스턴스(위 예제의 경우 pre)이다.
+(A) 지점에서의 this는 생성자 함수 Prefixer가 생성한 객체, 즉 생성자 함수의 인스턴스(위 예제의 경우 pre)이다.
 
-(B)에서 사용한 this는 아마도 생성자 함수 Prefixer가 생성한 객체(위 예제의 경우 pre)일 것으로 기대하였겠지만 이곳에서 this는 전역 객체 window를 가리킨다. 이는 생성자 함수와 객체의 메소드를 제외한 모든 함수(내부함수, 콜백함수 포함)의 내부의 this는 전역객체를 가리키기 때문이다.
+(B) 지점에서 사용한 this는 아마도 생성자 함수 Prefixer가 생성한 객체(위 예제의 경우 pre)일 것으로 기대하였겠지만 이곳에서 this는 전역 객체 window를 가리킨다. 이는 생성자 함수와 객체의 메소드를 제외한 모든 함수(내부함수, 콜백함수 포함)의 내부의 this는 전역객체를 가리키기 때문이다.
 
 위 설명이 잘 이해되지 않는다면 [this](./js-this)를 참조하기 바란다.
 
-콜백함수 내부의 this가 메소드를 호출한 객체(생성자 함수의 인스턴스)를 가리키게 하기 위해서는 아래의 4가지 방법이 있다.
+콜백함수 내부의 this가 메소드를 호출한 객체(생성자 함수의 인스턴스)를 가리키게 하기 위해서는 아래의 3가지 방법이 있다.
 
 ```javascript
 // Solution 1: that = this
@@ -210,7 +210,7 @@ console.log(pre.prefixArray(['Lee', 'Kim']));
 
 ## 4.2 Arrow function의 this
 
-Arrow function은 언제나 자신을 포함하는 외부 scope에서 this를 계승 받는다. 다시 말해 Arrow function은 자신만의 this를 생성하지 않고 자신을 포함하고 있는 컨텍스트로 부터 this를 계승 받는다. 이를 <strong>Lexical this</strong>라 한다. Arrow function은 Solution 3의 Syntactic sugar이다. 
+Arrow function은 언제나 자신을 포함하는 외부 scope에서 this를 계승 받는다. 다시 말해 Arrow function은 자신만의 this를 생성하지 않고 자신을 포함하고 있는 컨텍스트로 부터 this를 계승 받는다. 이를 <strong>Lexical this</strong>라 한다. Arrow function은 Solution 3의 Syntactic sugar이다.
 
 ```javascript
 function Prefixer(prefix) {
@@ -243,7 +243,7 @@ console.log(pre.prefixArray(['Lee', 'Kim']));
 
 # 3. Arrow Function을 사용해서는 안되는 경우
 
-Arrow Function는 Lexical this를 지원하므로 콜백함수에 사용하기 편리하다. 하지만 Arrow Function을 사용하는 것이 오히려 혼란을 불러오는 경우도 있기 때문에 주의하여야 한다. 
+Arrow Function는 Lexical this를 지원하므로 콜백함수에 사용하기 편리하다. 하지만 Arrow Function을 사용하는 것이 오히려 혼란을 불러오는 경우도 있기 때문에 주의하여야 한다.
 
 ## 3.1 메소드
 
@@ -259,7 +259,7 @@ const obj = {
 obj.sayHi(); // Hi undefined
 ```
 
-해당 메소드를 소유한 객체 즉 해당 메소드를 호출한 객체에 this를 바인딩하지 않고 전역 객체에 바인딩된다. 따라서 Arrow Function으로 메소드를 정의하는 것은 바람직하지 않다.
+위 예제의 경우, 해당 메소드를 소유한 객체 즉 해당 메소드를 호출한 객체에 this를 바인딩하지 않고 전역 객체에 바인딩된다. 따라서 Arrow Function으로 메소드를 정의하는 것은 바람직하지 않다.
 
 ES6의 축약 메소드 표현 방식으로 위 예제를 수정하여 보자. [ES6의 축약 메소드 표현](./es6-enhanced-object-property#3-메소드-축약-표현)은 메소드명에 할당된 함수를 위한 단축 표기법이다.
 
@@ -290,7 +290,7 @@ Object.prototype.sayHi = () => console.log(`Hi ${this.name}`);
 obj.sayHi(); // Hi undefined
 ```
 
-Arrow Function으로 객체 메소드를 정의하였을 때와 같은 문제가 발생한다. 일반 함수를 할당한다.
+Arrow Function으로 객체 메소드를 정의하였을 때와 같은 문제가 발생한다. 따라서 prototype에 메소드를 할당하는 경우, 일반 함수를 할당한다.
 
 ```javascript
 // Good
@@ -321,18 +321,22 @@ const foo = new Foo(); // TypeError: Foo is not a constructor
 addEventListener 함수의 콜백 함수를 화살표 함수로 정의하면 this가 상위 컨택스트를 가리킨다.
 
 ```javascript
-var button = document.getElementById('myButton');  
-button.addEventListener('click', () => {  
+// Bad
+var button = document.getElementById('myButton');
+
+button.addEventListener('click', () => {
   console.log(this === window); // => true
   this.innerHTML = 'Clicked button';
 });
 ```
 
-addEventListener 함수의 콜백 함수는 function 키워드로 정의한 함수를 사용하여야 한다.
+따라서 addEventListener 함수의 콜백 함수는 function 키워드로 정의한 함수를 사용하여야 한다.
 
 ```javascript
-var button = document.getElementById('myButton');  
-button.addEventListener('click', function() {  
+// Good
+var button = document.getElementById('myButton');
+
+button.addEventListener('click', function() {
   console.log(this === button); // => true
   this.innerHTML = 'Clicked button';
 });

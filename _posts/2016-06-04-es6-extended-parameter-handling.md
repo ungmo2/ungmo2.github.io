@@ -46,7 +46,7 @@ console.log(plus(1, 2)); // 3
 
 ## 2.1 Syntax
 
-Rest 파라미터는 Spread 연산자(...)를 사용하여 파라미터를 작성한 형태를 말한다. Rest 파라미터를 사용하면 인수를 함수 내부에서 배열로 전달받을 수 있다.
+Rest 파라미터는 Spread 연산자(`...`)를 사용하여 파라미터를 작성한 형태를 말한다. Rest 파라미터를 사용하면 인수를 함수 내부에서 배열로 전달받을 수 있다.
 
 ```javascript
 function foo(...rest) {
@@ -138,7 +138,7 @@ console.log(sum(1, 2, 3, 4, 5)); // 15
 
 # 3. Spread 연산자 (Spread Operator)
 
-Spread 연산자는 연산자의 대상 배열 또는 [이터러블](./es6-iteration-for-of)을 개별 요소로 분리한다.
+Spread 연산자(`...`)는 연산자의 대상 배열 또는 [이터러블](./es6-iteration-for-of)을 개별 요소로 분리한다.
 
 ```javascript
 // ...[1, 2, 3]는 [1, 2, 3]을 개별 요소로 분리한다(-> 1, 2, 3)

@@ -78,7 +78,7 @@ console.log(obj); // { prop_1: 1, prop_2: 2, prop_3: 3 }
 
 # 3. 메소드 축약 표현
 
-ES5에서 객체 리터럴에 메소드를 선언하기 위해서는 function 키워드를 사용한다.
+ES5에서 메소드를 선언하기 위해서는 프로퍼티의 값으로 함수 선언식을 사용한다.
 
 ```javascript
 // ES5
@@ -92,7 +92,7 @@ var obj = {
 obj.sayHi(); // Hi! Lee
 ```
 
-ES6에서는 메소드를 선언에 function 키워드를 생략 가능하다.
+ES6에서는 메소드를 선언하기 위해서 function 키워드를 생략한 축약 표현을 사용할 수 있다.
 
 ```javascript
 // ES6

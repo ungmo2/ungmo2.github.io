@@ -16,7 +16,7 @@ description: TypeScript 또한 AltJS의 하나로써 JavaScript(ES5)의 Superset
 
 JavaScript는 1995년 Brendan Eich(Nescape)이 Navigator 2를 위하여 웹페이지에 포함되는 스크립트 언어로서 개발되었으며 초창기 Javascript는 웹페이지의 보조적인 기능을 수행하기 위해 <strong>한정적인 용도</strong>로 사용되었다. 이 시기에 대부분의 로직은 주로 웹서버에서 실행되었고 브라우저(클라이언트)는 서버로 부터 전달받은 HTML과 CSS를 렌더링하는 수준이었다.
 
-[HTML5](./html5-syntax)이 등장하기 이전까지 웹 애플리케이션은 Flash, Silverlight, ActiveX 등 <strong>Plug-in</strong>에 의존하여 인터랙티브한 웹페이지를 구축해왔다.
+[HTML5](./html5-syntax)가 등장하기 이전까지 웹 애플리케이션은 Flash, Silverlight, ActiveX 등 <strong>Plug-in</strong>에 의존하여 인터랙티브한 웹페이지를 구축해왔다.
 
 HTML5의 등장은 Plug-in에 의존하는 기존의 구축 방식을 JavaScript로 대체시켰다. 이에 따라 과거 서버측이 담당하던 업무의 많은 부분이 클라이언트 측으로 이동하게 하였고 JavaScript는 웹의 Assembly 언어로 불려질만큼 중요한 언어로 그 위상이 높아지게 되었다.
 
@@ -71,7 +71,7 @@ AtScript superset
 
 ## 2.1 정적 타입
 
-아래 코드를 살펴보자.
+TypeScript를 사용하는 가장 큰 이유 중 하나는 정적 타입을 지원한다는 것이다. 아래 코드를 살펴보자.
 
 ```javascript
 function sum(a, b) {
@@ -79,7 +79,9 @@ function sum(a, b) {
 }
 ```
 
-위 코드의 작성한 개발자의 의도는 아마도 2개의 number 타입의 인수를 전달받아 그 합계를 반환하는 것으로 추측된다. 하지만 아래와 같이 호출될 수 있다.
+위 코드의 작성한 개발자의 의도는 아마도 2개의 number 타입 인수를 전달받아 그 합계를 반환하는 것으로 추측된다. 하지만 코드 상으로는 어떤 타입의 인수를 전달하여야 하는지, 어떤 타입의 반환값을 리턴해야 하는지 명확하지 않다.
+
+따라서 위 코드는 아래와 같이 호출될 수 있다.
 
 ```javascript
 function sum(a, b) {
@@ -89,9 +91,9 @@ function sum(a, b) {
 sum('x', 'y'); // 'xy'
 ```
 
-위 코드는 자바스크립트 문법 상 어떠한 문제도 없기 때문에 자바스크립트 엔진은 아무런 꺼리낌없이 위 코드를 실행할 것이다. 이러한 상황이 발생한 이유는 변수의 타입을 사전에 지정하지 않는 자바스크립트의 동적 타이핑(Dynamic Typing)에 의한 것이다.
+위 코드는 자바스크립트 문법 상 어떠한 문제도 없기 때문에 자바스크립트 엔진은 아무런 꺼리낌없이 위 코드를 실행할 것이다. 이러한 상황이 발생한 이유는 변수나 반환값의 타입을 사전에 지정하지 않는 자바스크립트의 동적 타이핑(Dynamic Typing)에 의한 것이다.
 
-위 코드를 타입스크립트의 정적 타입을 사용하여 재작성 해보자.
+위 코드를 TypeScript의 정적 타입을 사용하여 재작성 해보자.
 
  ```typescript
 function sum(a: number, b: number) {
@@ -131,17 +133,17 @@ TypeScript 컴파일러는 npm으로 설치할 수 있다. Visual Studio 2015 �
 
 ## 3.2 TypeScript 컴파일러 설치 및 사용법
 
-Node.js를 설치하면 [npm](./nodejs-npm)도 같이 설치된다. 다음과 같이 터미널(윈도우의 경우 커맨드창)에서 npm을 사용하여 TypeScript를 설치한다.
+Node.js를 설치하면 [npm](./nodejs-npm)도 같이 설치된다. 다음과 같이 터미널(윈도우의 경우 커맨드창)에서 npm을 사용하여 TypeScript를 전역 설치한다.
 
 ```bash
 $ npm install -g typescript
 ```
 
-버전을 출력하여 TypeScript의 설치를 확인한다.
+설치가 완료되었으면 버전을 출력하여 TypeScript의 설치를 확인한다.
 
 ```bash
 $ tsc -v
-Version 2.6.1
+Version 2.6.2
 ```
 
 TypeScript 컴파일러(tsc)는 TypeScript 파일(.ts)을 JavaScript 파일로 트랜스파일링한다.
@@ -168,13 +170,13 @@ const person = new Person('Lee');
 console.log(person.sayHello());
 ```
 
-컴파일을 실행해 보자. tsc 명령어 뒤에 컴파일 대상 파일명을 지정한다.
+트랜스파일링을 실행해 보자. tsc 명령어 뒤에 트랜스파일링 대상 파일명을 지정한다.
 
 ```bash
 $ tsc person.ts
 ```
 
-컴파일 실행 결과, 같은 디렉터리에 자바스크립트 파일(person.js)이 생성된다.
+트랜스파일링 실행 결과, 같은 디렉터리에 자바스크립트 파일(person.js)이 생성된다.
 
 ```javascript
 // person.js
@@ -195,20 +197,20 @@ console.log(person.sayHello());
 
 자바스크립트 버전을 변경하려면 `--target` 또는 `-t` 옵션을 사용한다. 현재 tsc가 지원하는 자바스크립트 버전은 ES3, ES5, ES6(ES2015), ES2016, ES2017(ESNext)이다.
 
-ES5 버전으로 다시 컴파일을 실행한다.
+ES5 버전으로 트랜스파일링을 실행하려면 아래와 같이 옵션을 추가한다.
 
 ```bash
 $ tsc person.ts -t ES5
 ```
 
-Node.js REPL로 컴파일된 person.js를 실행해보자.
+Node.js REPL로 트랜스파일링된 person.js를 실행해보자.
 
 ```bash
 $ node person.js
 Hello, Lee
 ```
 
-복수의 파일을 한번에 컴파일할 수도 있다. 2개의 TypeScript class를 작성해보자.
+복수의 파일을 한번에 트랜스파일링할 수도 있다. 2개의 TypeScript class를 작성해보자.
 
 ```typescript
 // person.ts
@@ -241,7 +243,7 @@ console.log(student.sayHello());
 console.log(student.study());
 ```
 
-두개의 TypeScript 파일을 한번에 컴파일한다.
+두개의 TypeScript 파일을 한번에 트랜스파일링한다.
 
 ```bash
 $ tsc person.ts student.ts
@@ -250,7 +252,7 @@ Hello, Lee
 Lee is studying.
 ```
 
-또는 와일드카드를 사용하여 모든 TypeScript 파일을 한꺼번에 컴파일할 수도 있다.
+또는 와일드카드를 사용하여 모든 TypeScript 파일을 한꺼번에 트랜스파일링할 수도 있다.
 
 ```bash
 $ tsc *.ts
@@ -259,7 +261,7 @@ Hello, Lee
 Lee is studying.
 ```
 
-`--watch` 또는 `-w` 옵션을 사용하면 대상 파일이 변경되었을 때 이를 감지하여 자동으로 컴파일이 실행된다.
+`--watch` 또는 `-w` 옵션을 사용하면 대상 파일이 변경되었을 때 이를 감지하여 자동으로 트랜스파일링이 실행된다.
 
 ```bash
 $ tsc student.ts --watch
@@ -284,7 +286,7 @@ console.log(student.sayHello());
 console.log(student.study());
 ```
 
-아래와 같이 파일 변경이 감지되고 자동으로 컴파일이 실행된다.
+아래와 같이 파일 변경이 감지되고 자동으로 트랜스파일링이 실행된다.
 
 ```bash
 21:24:39 - File change detected. Starting incremental compilation...
@@ -297,7 +299,7 @@ Hello, Lee
 Lee is studying!!
 ```
 
-컴파일 옵션에 대해서는 [TypeScript Compiler Options](https://www.typescriptlang.org/docs/handbook/compiler-options.html)을 참조하기 바란다.
+컴파일러의 옵션에 대해서는 [TypeScript Compiler Options](https://www.typescriptlang.org/docs/handbook/compiler-options.html)을 참조하기 바란다.
 
 # Reference
 

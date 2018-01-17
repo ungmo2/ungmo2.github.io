@@ -49,19 +49,19 @@ export class AppModule { }
 <form ngNoForm></form>
 ```
 
-HTML 표준 폼은 submit 버튼이 클릭되면 폼 데이터를 서버로 전송하고 페이지를 전환하지만 NgForm 디렉티브가 적용된 템플릿 기반 폼은 submit 이벤트를 인터셉트하여 폼 데이터를 서버로 전송하고 페이지를 전환하는 기본 동작을 막는다. 따라서 템플릿 기반 폼에서는 submit 이벤트 대신 submit 이벤트의 기본 동작 방지를 보증하는 ngSubmit 이벤트를 사용한다.
+HTML 표준 폼은 submit 버튼을 클릭하면 폼 데이터를 서버로 전송하고 페이지를 전환하지만 NgForm 디렉티브가 적용된 템플릿 기반 폼은 submit 이벤트를 인터셉트하여 폼 데이터를 서버로 전송하고 페이지를 전환하는 기본 동작을 막는다. 따라서 템플릿 기반 폼에서는 submit 이벤트 대신 submit 이벤트의 기본 동작 방지를 보증하는 ngSubmit 이벤트를 사용한다.
 
 ```html
 <form (ngSubmit)="onNgSubmit()"></form>
 ```
 
-템플릿 기반 폼에도 템플릿 참조 변수를 사용할 수 있다. 참조 변수에는 ngForm을 할당한다.
+템플릿 기반 폼에도 템플릿 참조 변수를 사용할 수 있다. 참조 변수에는 ngForm을 할당하여 참조 변수가 네이티브 DOM이 아닌 FormGroup 인스턴스(NgForm 디렉티브가 생성한 인스턴스)를 가리키도록 한다.
 
 ```html
 <form #f="ngForm" (ngSubmit)="onNgSubmit(f)"></form>
 ```
 
-ngSubmit 이벤트에 바인딩된 이벤트 핸들러에 폼을 가리키는 템플릿 참조 변수를 전달하였다. 이 참조 변수는 폼 요소 자신을 가리키며 gModel 디렉티브가 적용된 자식 폼 컨트롤 요소가 추가된다.
+ngSubmit 이벤트를 바인딩한 이벤트 핸들러 onNgSubmit에 폼을 가리키는 템플릿 참조 변수 f를 인자로 전달하였다. 이 참조 변수 f는 폼 요소 자신을 가리키는 FormGroup 인스턴스이며 이 인스턴스에는 NgModel 디렉티브가 적용된 자식 폼 컨트롤 요소가 추가된다.
 
 템플릿 기반 폼을 사용하여 간단한 회원 가입 폼을 작성해 보자.
 
@@ -86,7 +86,7 @@ export class UserFormComponent {
 
 <iframe src="https://stackblitz.com/edit/template-driven-form-1?embed=1&file=app/user-form.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
-**NgForm 디렉티브는 자신이 적용된 폼 요소에 해당하는 [FormGroup](https://angular.io/api/forms/FormGroup) 인스턴스를 생성한다.** 그리고 폼 요소의 자식 요소 중에서 NgModel 디렉티브가 적용된 요소를 탐색하여 FormGroup 인스턴스에 추가한다. 그리고 NgForm 디렉티브는 FormGroup 인스턴스를 폼 요소에 바인딩하여 값이나 유효성 검증 상태를 추적할 수 있다.
+**NgForm 디렉티브는 자신이 적용된 폼 요소에 해당하는 [FormGroup](https://angular.io/api/forms/FormGroup) 인스턴스를 생성한다.** 그리고 폼 요소의 자식 요소 중에서 NgModel 디렉티브가 적용된 요소를 탐색하여 FormGroup 인스턴스에 추가한다. 그리고 NgForm 디렉티브는 FormGroup 인스턴스를 폼 요소에 바인딩하여 값이나 유효성 검증 상태를 추적할 수 있는 기능을 제공한다.
 
 **NgModel 디렉티브는 자신이 적용된 폼 컨트롤 요소에 해당하는 [FormControl](https://angular.io/api/forms/FormControl) 인스턴스를 생성한다.** 그리고 NgModel 디렉티브는 FormControl 인스턴스를 폼 컨트롤 요소에 바인딩하여 값이나 유효성 검증 상태를 추적할 수 있다.
 
@@ -98,7 +98,7 @@ export class UserFormComponent {
 
 ![](/img/form-no-ngmodel.png)
 
-NgForm 디렉티브는 자신이 적용된 폼 요소에 해당하는 FormGroup 인스턴스를 생성한다. 그리고 폼 요소의 자식 요소 중에서 NgModel 디렉티브가 적용된 요소를 탐색하여 FormGroup 인스턴스에 추가한다.
+NgForm 디렉티브의 프로퍼티
 {: .desc-img}
 
 폼 요소의 자식 폼 컨트롤 요소에 NgModel 디렉티브를 적용하여 FormGroup 인스턴스에 의해 관리되도록 수정해 보자.
@@ -125,12 +125,14 @@ export class UserFormComponent {
 
 <iframe src="https://stackblitz.com/edit/template-driven-form-2?embed=1&file=app/user-form.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
+위 컴포넌트를 실행하여 보면 아래와 같이 NgModel 디렉티브가 적용된 자식 폼 컨트롤 요소를 나타내는 FormControl 인스턴스가 NgForm 인스턴스에 추가되어 있는 것을 확인할 수 있다.
+
 ![](/img/form-ngmodel.png)
 
 NgModel 디렉티브가 적용된 요소가 FormGroup 인스턴스에 추가되었다
 {: .desc-img}
 
-폼을 가리키는 참조 변수 userForm의 value 프로퍼티(userForm.value)를 참조하면 아래와 같은 결과를 확인할 수 있다.
+폼을 가리키는 참조 변수 userForm의 value 프로퍼티(userForm.value)를 참조하면 아래와 같은 결과를 확인할 수 있다. 폼의 userid에 “myid”, password에 “1234”를 입력한 경우이다.
 
 ```json
 {
@@ -143,7 +145,7 @@ NgModel 디렉티브가 적용된 요소가 FormGroup 인스턴스에 추가되�
 
 ## 2.2 NgModel 디렉티브
 
-[NgModel](https://angular.io/api/forms/NgModel) 디렉티브는 자신이 적용된 폼 컨트롤 요소에 해당하는 [FormControl](https://angular.io/api/forms/FormControl) 인스턴스를 생성한다. 그리고 NgModel 디렉티브는 FormControl 인스턴스를 폼 컨트롤 요소에 바인딩하여 값이나 유효성 검증 상태를 추적할 수 있다. FormControl 인스턴스는 폼을 구성하는 기본 단위로서 폼 컨트롤 요소의 값이나 유효성 검증 상태를 추적하고 뷰와 폼 모델을 동기화된 상태로 유지한다.
+[NgModel](https://angular.io/api/forms/NgModel) 디렉티브는 자신이 적용된 폼 컨트롤 요소에 해당하는 [FormControl](https://angular.io/api/forms/FormControl) 인스턴스를 생성한다. 그리고 NgModel 디렉티브는 FormControl 인스턴스를 폼 컨트롤 요소에 바인딩하여 값이나 유효성 검증 상태를 추적할 수 있는 기능을 제공한다. FormControl 인스턴스는 폼을 구성하는 기본 단위로서 폼 컨트롤 요소의 값이나 유효성 검증 상태를 추적하고 뷰와 폼 모델을 동기화된 상태로 유지한다.
 
 NgModel 디렉티브는 [양방향 데이터 바인딩](./angular-component-template-syntax#17-양방향-데이터-바인딩two-way-binding)에서 사용할 때와는 달리 괄호와 할당문없이 선언한다.
 
@@ -153,16 +155,16 @@ NgModel 디렉티브는 [양방향 데이터 바인딩](./angular-component-temp
   ...
 ```
 
-위 예제의 경우, 폼 컨트롤 요소의 값은 userForm.value.userid에 저장된다.
+위 예제의 경우, userid 폼 컨트롤 요소를 가리키는 FormControl 인스턴스에 접근하기 위해서는 폼 요소를 가리키는 템플릿 참조 변수 userForm을 사용하여 userForm.controls.userid와 같이 접근할 수 있다.
 
-폼 요소에 템플릿 참조 변수를 사용할 수 있듯이 폼 컨트롤 요소에도 템플릿 참조 변수를 사용할 수 있다.
+좀 더 간편하게 직접 폼 컨트롤 요소에 접근하기 위해 폼 컨트롤 요소에 템플릿 참조 변수를 사용할 수 있다.
 
 ```html
 <input type="text" name="userid" ngModel #userid>
 <p>value: {{ "{{ userid.value "}}}}</p>
 ```
 
-이때 **참조 변수에 ngModel을 할당하면 유효성 검증 상태 추적이 가능해진다.**
+이때 참조 변수 userid는 네이티브 DOM을 가리킨다. 참조 변수 userid에 ngModel을 할당하면 참조 변수 userid는 네이티브 DOM을 가리키지 않고 userid 폼 컨트롤 요소를 가리키는 FormControl 인스턴스를 가리킨다. 따라서 **참조 변수에 ngModel을 할당하면 유효성 검증 상태 추적이 가능해진다.**
 
 ```html
 <input type="text" name="userid" ngModel #userid="ngModel">

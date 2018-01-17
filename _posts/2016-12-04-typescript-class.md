@@ -16,12 +16,13 @@ description: ECMAScript 6에서 새롭게 도입된 클래스는 기존 prototyp
 
 # 1. 클래스 정의 (Class Definition)
 
-[ECMAScript 6 클래스](./es6-class#4-멤버-변수)는 메소드만을 포함할 수 있다. 클래스 바디에 멤버 변수(member variable)를 정의할 수 없고 반드시 생성자 내부에서 멤버 변수를 정의하고 초기화한다.
+[ECMAScript 6 클래스](./es6-class#4-멤버-변수)는 메소드만을 포함할 수 있다. 클래스 바디에 멤버 변수(member variable)를 선언할 수 없고 반드시 생성자 내부에서 멤버 변수를 선언하고 초기화한다.
 
 ```javascript
+// person.js
 class Person {
   constructor(name) {
-    // 멤버 변수
+    // 멤버 변수의 선언과 초기화
     this.name = name;
   }
 
@@ -31,11 +32,12 @@ class Person {
 }
 ```
 
-위 예제는 ECMAScript 6에서는 문제없이 실행되는 코드이지만 Typescript에서 위 예제를 실행하면 Property 'name' does not exist on type 'Person'.이라는 에러가 발생한다. **Typescript 클래스는 클래스 바디에 멤버 변수를 사전 정의하여야 한다.**
+위 예제는 ECMAScript 6에서는 문제없이 실행되는 코드이지만 Typescript에서 위 예제를 실행하면 Property 'name' does not exist on type 'Person'.이라는 에러가 발생한다. **Typescript 클래스는 클래스 바디에 멤버 변수를 사전 선언하여야 한다.**
 
 ```typescript
-class Foo {
-  // 멤버 변수 (public)
+// person.ts
+class Person {
+  // 멤버 변수를 사전 선언하여야 한다
   name: string;
 
   constructor(name: string) {
@@ -67,6 +69,8 @@ Typescript 클래스는 Java, C#과 같은 클래스 기반 객체 지향 언어
 | 클래스 인스턴스 | ◯       | ✕         | ✕
 
 
+아래의 예제를 통해 접근 제한자가 붙은 프로퍼티에의 접근 가능성에 대해 살펴보자.
+
 ```typescript
 class Foo {
   public x: string;
@@ -74,6 +78,7 @@ class Foo {
   private z: string;
 
   constructor(x: string, y: string, z: string) {
+    // public, protected, private 접근 제한자 모두 클래스 내부에서 참조 가능하다.
     this.x = x;
     this.y = y;
     this.z = z;
@@ -82,40 +87,29 @@ class Foo {
 
 const foo = new Foo('x', 'y', 'z');
 
+// public 접근 제한자는 클래스 인스턴스를 통해 참조 가능하다.
 console.log(foo.x);
+
+// protected 접근 제한자는 클래스 인스턴스를 통해 참조할 수 없다.
 console.log(foo.y); // error TS2445: Property 'y' is protected and only accessible within class 'Foo' and its subclasses.
+
+// private 접근 제한자는 클래스 인스턴스를 통해 참조할 수 없다.
 console.log(foo.z); // error TS2341: Property 'z' is private and only accessible within class 'Foo'.
 
 class Bar extends Foo {
   constructor(x: string, y: string, z: string) {
     super(x, y, z);
+
+    // public 접근 제한자는 자식 클래스에서 참조 가능하다.
     console.log(this.x);
+
+    // protected 접근 제한자는 자식 클래스에서 참조 가능하다.
     console.log(this.y);
+
+    // private 접근 제한자는 자식 클래스에서 참조할 수 없다.
     console.log(this.z); // error TS2341: Property 'z' is private and only accessible within class 'Foo'.
   }
 }
-```
-
-Typescript는 접근 제한자와 함께 `readonly` 키워드를 사용할 수 있다. readonly가 선언된 프로퍼티는 선언시 또는 생성자 내부에서만 값을 할당할 수 있다. 그 외의 경우에는 값을 할당할 수 없고 오직 읽기만 가능한 상태가 된다. 이를 이용하여 상수의 선언에 사용한다.
-
-```typescript
-class Foo {
-  private readonly MAX_LEN: number = 5;
-  private readonly MSG: string;
-
-  constructor() {
-    this.MSG = 'hello';
-  }
-
-  log() {
-    this.MAX_LEN = 10; // Cannot assign to 'MAX_LEN' because it is a constant or a read-only property.
-    this.MSG = 'Hi'; // Cannot assign to 'MSG' because it is a constant or a read-only property.
-    console.log(`MAX_LEN: ${this.MAX_LEN}`); // MAX_LEN: 5
-    console.log(`MSG: ${this.MSG}`); // MSG: hello
-  }
-}
-
-new Foo().log();
 ```
 
 # 3. 생성자 파라미터에 접근 제한자 사용
@@ -160,7 +154,31 @@ const foo = new Foo('Hello');
 console.log(foo); // Foo {}
 ```
 
-# 4. static 키워드
+# 4. readonly 키워드
+
+Typescript는 접근 제한자와 함께 `readonly` 키워드를 사용할 수 있다. readonly가 선언된 프로퍼티는 선언시 또는 생성자 내부에서만 값을 할당할 수 있다. 그 외의 경우에는 값을 할당할 수 없고 오직 읽기만 가능한 상태가 된다. 이를 이용하여 상수의 선언에 사용한다.
+
+```typescript
+class Foo {
+  private readonly MAX_LEN: number = 5;
+  private readonly MSG: string;
+
+  constructor() {
+    this.MSG = 'hello';
+  }
+
+  log() {
+    this.MAX_LEN = 10; // Cannot assign to 'MAX_LEN' because it is a constant or a read-only property.
+    this.MSG = 'Hi'; // Cannot assign to 'MSG' because it is a constant or a read-only property.
+    console.log(`MAX_LEN: ${this.MAX_LEN}`); // MAX_LEN: 5
+    console.log(`MSG: ${this.MSG}`); // MSG: hello
+  }
+}
+
+new Foo().log();
+```
+
+# 5. static 키워드
 
 ECMAScript 6 클래스에서 static 키워드는 클래스의 정적(static) 메소드를 정의한다. 정적 메소드는 클래스의 인스턴스화(instantiating)없이 호출하며 클래스의 인스턴스로 호출할 수 없다.
 
@@ -199,7 +217,7 @@ console.log(Foo.instanceCounter);  // 2
 console.log(foo2.instanceCounter); // error TS2339: Property 'instanceCounter' does not exist on type 'Foo'.
 ```
 
-# 5. 추상 클래스 (Abstract class)
+# 6. 추상 클래스 (Abstract class)
 
 추상 클래스는 추상 메소드(Abstract method)를 포함할 수 있는 클래스로서 직접 인스턴스를 생성할 수 없으며 상속만을 위해 사용된다. 추상 클래스를 상속하는 클래스는 추상 클래스의 추상 메소드를 반드시 구현하여야 한다.
 

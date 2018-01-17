@@ -58,7 +58,7 @@ person.walk(); // Lee is walking
 
 Typescript 클래스는 Java, C#과 같은 클래스 기반 객체 지향 언어가 지원하는 public, private, protected 접근 제한자를 지원하며 의미 또한 기본적으로 동일하다.
 
-단, 접근 제한자를 명시하지 않았을 때, 다른 클래스 기반 언어의 경우, 암묵적으로 protected로 지정되어 패키지 레벨로 공개되지만 Typescript의 경우, 접근 제한자를 생략한 멤버 변수와 메소드는 암묵적으로 public이 지정된다. 따라서 public으로 지정하고자 하는 멤버 변수와 메소드는 접근 제한자를 생략한다.
+단, 접근 제한자를 명시하지 않았을 때, 다른 클래스 기반 언어의 경우, 암묵적으로 protected로 지정되어 패키지 레벨로 공개되지만 Typescript의 경우, 접근 제한자를 생략한 멤버 변수와 메소드는 암묵적으로 public이 선언된다. 따라서 public으로 지정하고자 하는 멤버 변수와 메소드는 접근 제한자를 생략한다.
 
 접근 제한자의 프로퍼티에 대한 접근 가능성은 아래와 같다.
 
@@ -69,7 +69,7 @@ Typescript 클래스는 Java, C#과 같은 클래스 기반 객체 지향 언어
 | 클래스 인스턴스 | ◯       | ✕         | ✕
 
 
-아래의 예제를 통해 접근 제한자가 붙은 프로퍼티에의 접근 가능성에 대해 살펴보자.
+아래의 예제를 통해 접근 제한자가 선언된 프로퍼티에의 접근 가능성에 대해 살펴보자.
 
 ```typescript
 class Foo {
@@ -112,16 +112,16 @@ class Bar extends Foo {
 }
 ```
 
-# 3. 생성자 파라미터에 접근 제한자 사용
+# 3. 생성자 파라미터에 접근 제한자 선언
 
-접근 제한자는 생성자의 파라미터에서도 사용할 수 있다. 이때 **접근 제한자가 사용된 생성자의 파라미터는 암묵적으로 멤버 변수로 정의되고 생성자 내부에서 별도의 초기화가 없어도 암묵적으로 초기화가 수행된다.**
+접근 제한자는 생성자 파라미터에도 선언할 수 있다. 이때 **접근 제한자가 사용된 생성자 파라미터는 암묵적으로 멤버 변수로 선언되고 생성자 내부에서 별도의 초기화가 없어도 암묵적으로 초기화가 수행된다.**
 
 이때 private 접근 제한자가 사용되면 클래스 내부에서만 참조 가능하고 public 접근 제한자가 사용되면 클래스 외부에서도 참조가 가능하다.
 
 ```typescript
 class Foo {
-  // 접근 제한자가 사용된 생성자의 파라미터 x는 멤버 변수로 정의되고 초기화가 수행된다
-  // public이 사용되었으므로 x는 클래스 외부에서도 참조가 가능하다
+  // 접근 제한자가 선언된 생성자 파라미터 x는 멤버 변수로 선언되고 초기화가 자동 수행된다
+  // public이 선언되었으므로 x는 클래스 외부에서도 참조가 가능하다
   constructor(public x: string) { }
 }
 
@@ -130,23 +130,26 @@ console.log(foo);   // Foo { x: 'Hello' }
 console.log(foo.x); // Hello
 
 class Bar {
-  // 접근 제한자가 사용된 생성자의 파라미터 x는 멤버 변수로 정의되고 초기화가 수행된다
-  // private이 사용되었으므로 x는 클래스 내부에서만 참조 가능하다
+  // 접근 제한자가 선언된 생성자 파라미터 x는 멤버 변수로 선언되고 초기화가 자동 수행된다
+  // private이 선언되었으므로 x는 클래스 내부에서만 참조 가능하다
   constructor(private x: string) { }
 }
 
 const bar = new Bar('Hello');
-console.log(bar);      // Bar { x: 'Hello' }
-// console.log(bar.x); // Property 'x' is private and only accessible within class 'Bar'.
+
+console.log(bar); // Bar { x: 'Hello' }
+
+// private이 선언된 bar.x는 클래스 내부에서만 참조 가능하다
+console.log(bar.x); // Property 'x' is private and only accessible within class 'Bar'.
 ```
 
-만일 생성자 파라미터에 접근 제한자를 사용하지 않으면 생성자 파라미터는 생성자 내부에서만 유효한 지역 변수가 되어 생성자 외부에서 참조가 불가능하게 된다.
+만일 생성자 파라미터에 접근 제한자를 선언하지 않으면 생성자 파라미터는 생성자 내부에서만 유효한 지역 변수가 되어 생성자 외부에서 참조가 불가능하게 된다.
 
 ```typescript
 class Foo {
   // x는 생성자 내부에서만 유효한 지역 변수이다.
   constructor(x: string) {
-    console.log(x); // Hello
+    console.log(x);
   }
 }
 
@@ -156,7 +159,7 @@ console.log(foo); // Foo {}
 
 # 4. readonly 키워드
 
-Typescript는 접근 제한자와 함께 `readonly` 키워드를 사용할 수 있다. readonly가 선언된 프로퍼티는 선언시 또는 생성자 내부에서만 값을 할당할 수 있다. 그 외의 경우에는 값을 할당할 수 없고 오직 읽기만 가능한 상태가 된다. 이를 이용하여 상수의 선언에 사용한다.
+Typescript는 `readonly` 키워드를 사용할 수 있다. readonly가 선언된 프로퍼티는 선언시 또는 생성자 내부에서만 값을 할당할 수 있다. 그 외의 경우에는 값을 할당할 수 없고 오직 읽기만 가능한 상태가 된다. 이를 이용하여 상수의 선언에 사용한다.
 
 ```typescript
 class Foo {
@@ -168,8 +171,10 @@ class Foo {
   }
 
   log() {
+    // readonly가 선언된 프로퍼티는 재할당이 금지된다.
     this.MAX_LEN = 10; // Cannot assign to 'MAX_LEN' because it is a constant or a read-only property.
     this.MSG = 'Hi'; // Cannot assign to 'MSG' because it is a constant or a read-only property.
+
     console.log(`MAX_LEN: ${this.MAX_LEN}`); // MAX_LEN: 5
     console.log(`MSG: ${this.MSG}`); // MSG: hello
   }
@@ -207,12 +212,14 @@ console.log(foo.staticMethod()); // error TS2339: Property 'staticMethod' does n
 class Foo {
   static instanceCounter = 0;
   constructor() {
+    // 생성자가 호출될 때마다 카운터를 1씩 증가시킨다.
     Foo.instanceCounter++;
   }
 }
 
 var foo1 = new Foo();
 var foo2 = new Foo();
+
 console.log(Foo.instanceCounter);  // 2
 console.log(foo2.instanceCounter); // error TS2339: Property 'instanceCounter' does not exist on type 'Foo'.
 ```

@@ -268,7 +268,7 @@ $ tsc student.ts --watch
 21:23:30 - Compilation complete. Watching for file changes.
 ```
 
-student.ts를 변경해 보자.
+student.ts를 변경해 watch 기능이 동작하는지 확인해 보자.
 
 ```typescript
 // student.ts

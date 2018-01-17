@@ -18,6 +18,11 @@ TypeScript는 아래와 같이 변수명 뒤에 타입(자료형)을 명시하�
 
 ```typescript
 let foo: string = 'hello';
+```
+
+선언한 타입에 맞지 않는 값을 할당하면 컴파일 시점에 에러가 발생한다.
+
+```typescript
 let bar: number = true; // error TS2322: Type 'true' is not assignable to type 'number'.
 ```
 
@@ -51,8 +56,8 @@ TypeScript는 ES5, ES6의 Superset(상위확장)이므로 [JavaScript의 타입]
 | Type        | JS | TS | Description      |
 |:------------|:--:|:--:|:-----------------|
 | boolean     |◯   |    | true와 false
-| null        |◯   |    | primitives 또는 object형 변수에 값이 없다는 것을 명시          
-| undefined   |◯   |    | 값을 할당하지 않은 변수의 초기값         
+| null        |◯   |    | primitives 또는 object형 변수에 값이 없다는 것을 명시
+| undefined   |◯   |    | 값을 할당하지 않은 변수의 초기값
 | number      |◯   |    | 숫자(정수와 실수, Infinity, NaN)
 | string      |◯   |    | 문자열
 | symbol      |◯   |    | 고유하고 수정 불가능한 데이터 타입이며 주로 객체 프로퍼티들의 식별자로 사용(ES6에서 추가)
@@ -64,6 +69,8 @@ TypeScript는 ES5, ES6의 Superset(상위확장)이므로 [JavaScript의 타입]
 | void        |    |◯   | 일반적으로 함수에서 반환값이 없을 경우 사용한다.
 | never       |    |◯   | 결코 발생하지 않는 값
 
+
+다양한 타입을 사전 선언하는 방법은 아래와 같다.
 
 ```typescript
 // boolean
@@ -145,7 +152,7 @@ function error(message: string): never {
 
 # 2. 정적 타이핑 (Static Typing)
 
-C나 Java같은 C-family 언어는 변수 선언 시 변수에 저장할 값의 종류에 따라 사전에 타입을 선언(Type declaration)하여야 하며 지정한 타입에 맞는 값을 할당하여 한다. 이를 정적 타이핑(Static Typing)이라한다.
+C나 Java같은 C-family 언어는 변수 선언 시 변수에 저장할 값의 종류에 따라 사전에 타입을 선언(Type declaration)하여야 하며 선언한 타입에 맞는 값을 할당하여 한다. 이를 정적 타이핑(Static Typing)이라한다.
 
 JavaScript는 동적 타입(dynamic typed) 언어 혹은 느슨한 타입(loosely typed) 언어이다. 이것은 변수의 타입 선언없이 값이 할당되는 과정에서 동적으로 타입이 추론(타입추론 Type Inference)될 것이라는 뜻이다. 따라서 같은 변수에 여러 타입의 값을 교차하여 대입할 수 있다. 이를 동적 타이핑(Dynamic Typing)이라 한다.
 
@@ -166,19 +173,19 @@ console.log(typeof foo);  // number
 foo = 3.14;
 console.log(typeof foo);  // number
 
-foo = "Hi there";            
+foo = "Hi there";
 console.log(typeof foo);  // string
 
-foo = true;                  
+foo = true;
 console.log(typeof foo);  // boolean
 ```
 
 TypeScript의 가장 독특한 특징은 <strong>정적 타이핑</strong>을 지원한다는 것이다. 즉 변수의 타입을 선언할 수 있으며 잘못된 타입의 값이 할당되면 컴파일러는 이를 감지하고 에러를 발생시킨다.
 
 ```typescript
-let foo: string,   // String
-    bar: number,   // Numeric
-    baz: boolean;  // Boolean
+let foo: string,   // 문자열 타입
+    bar: number,   // 숫자 타입
+    baz: boolean;  // 불리언 타입
 
 foo = 'Hello';
 bar = 123;

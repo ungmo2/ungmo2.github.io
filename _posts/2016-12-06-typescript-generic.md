@@ -16,9 +16,11 @@ Java나 C# 같은 정적 타입 언어의 경우, 함수 또는 클래스를 선
 ```typescript
 class Queue {
   protected data = []; // data: any[]
+
   push(item) {
     this.data.push(item);
   }
+
   pop() {
     return this.data.shift();
   }
@@ -42,24 +44,30 @@ any[] 타입은 배열 요소의 타입이 모두 같지 않다는 문제를 가
 ```typescript
 class Queue {
   protected data = []; // data: any[]
+
   push(item) {
     this.data.push(item);
   }
+
   pop() {
     return this.data.shift();
   }
 }
 
+// Queue 클래스를 상속하여 number 타입 전용 NumberQueue 클래스를 정의
 class NumberQueue extends Queue {
+  // number 타입의 요소만을 push한다.
   push(item: number) {
     super.push(item);
   }
+
   pop(): number {
     return super.pop();
   }
 }
 
 const queue = new NumberQueue();
+
 queue.push(0);
 // 의도하지 않은 실수를 사전 검출 가능
 // [ts] Argument of type '"1"' is not assignable to parameter of type 'number'.
@@ -70,7 +78,14 @@ console.log(queue.pop().toFixed()); // 0
 console.log(queue.pop().toFixed()); // 1
 ```
 
-하지만 타입별로 클래스를 추가해야 하므로 이 또한 좋은 방법은 아니다. 제네릭을 사용하여 이 문제를 해결하여 보자.
+이와 같이 number 타입 전용 NumberQueue 클래스를 정의하면 number 타입 이외의 요소가 추가(push)되었을 때, 아래와 같이 런타임 이전에 에러를 사전 감지할 수 있다.
+
+![vscode-code-validator](./img/vscode-code-validator.png)
+
+Visual Studio Code의 코드 검증 기능
+{: .desc-img}
+
+하지만 다양한 타입을 지원해야 한다면 타입별로 클래스를 상속받아 추가해야 하므로 이 또한 좋은 방법은 아니다. 제네릭을 사용하여 이 문제를 해결하여 보자.
 
 ```typescript
 class Queue<T> {

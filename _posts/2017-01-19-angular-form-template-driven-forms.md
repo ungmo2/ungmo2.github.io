@@ -43,13 +43,13 @@ export class AppModule { }
 
 [NgForm](https://angular.io/api/forms/NgForm) 디렉티브는 폼 전체를 가리키는 디렉티브이다. 모듈에 FormsModule을 추가하면 NgForm 디렉티브를 선언하지 않아도 모든 form 요소에 NgForm 디렉티브가 자동으로 적용되어 템플릿 기반 폼으로 동작한다
 
-폼 요소에 자동으로 적용되는 NgForm 디렉티브의 적용을 취소하려면 form 요소에 ngNoForm을 추가한다. ngNoForm이 적용되면 HTML 표준 폼으로 동작한다.
+폼 요소에 자동으로 적용되는 NgForm 디렉티브의 적용을 취소하려면 폼 요소에 ngNoForm을 추가한다. ngNoForm이 적용되면 HTML 표준 폼으로 동작한다.
 
 ```html
 <form ngNoForm></form>
 ```
 
-HTML 표준 폼은 submit 버튼을 클릭하면 폼 데이터를 서버로 전송하고 페이지를 전환하지만 NgForm 디렉티브가 적용된 템플릿 기반 폼은 submit 이벤트를 인터셉트하여 폼 데이터를 서버로 전송하고 페이지를 전환하는 기본 동작을 막는다. 따라서 템플릿 기반 폼에서는 submit 이벤트 대신 submit 이벤트의 기본 동작 방지를 보증하는 ngSubmit 이벤트를 사용한다.
+HTML 표준 폼은 submit 버튼을 클릭하면 폼 데이터를 서버로 전송하고 페이지를 전환하지만 NgForm 디렉티브가 적용된 템플릿 기반 폼은 submit 이벤트를 인터셉트하여 폼 데이터를 서버로 전송하고 페이지를 전환하는 submit 이벤트의 기본 동작을 막는다. 따라서 템플릿 기반 폼에서는 submit 이벤트 대신 submit 이벤트의 기본 동작 방지를 보증하는 ngSubmit 이벤트를 사용한다.
 
 ```html
 <form (ngSubmit)="onNgSubmit()"></form>
@@ -76,7 +76,7 @@ HTML 표준 폼은 submit 버튼을 클릭하면 폼 데이터를 서버로 전�
 
 NgForm 디렉티브는 폼 요소의 자식 폼 컨트롤 요소 중에서 NgModel 디렉티브가 적용된 요소를 탐색하여 FormGroup 인스턴스에 추가한다.
 
-템플릿 기반 폼을 사용하여 간단한 회원 가입 폼을 작성해 보자.
+템플릿 기반 폼을 사용한 간단한 회원 가입 폼을 작성하여 NgModel 디렉티브와 FormGroup 인스턴스에 대해 살펴보도록 하자.
 
 ```typescript
 // user-form.component.ts
@@ -99,7 +99,7 @@ export class UserFormComponent {
 
 <iframe src="https://stackblitz.com/edit/template-driven-form-1?embed=1&file=app/user-form.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
-위 예제를 살펴보면 폼 요소의 자식 폼 컨트롤 요소 중에 NgModel 디렉티브가 적용된 요소가 없다. 따라서 NgForm 인스턴스를 가리키는 참조 변수 userForm은 자식 폼 컨트롤 요소를 포함하지 않는다.
+위 예제를 살펴보면 폼 요소의 자식 폼 컨트롤 요소 중에 NgModel 디렉티브가 적용된 요소가 없다. 따라서 NgForm 디렉티브는 어떠한 자식 폼 컨트롤 요소도 FormGroup 인스턴스에 추가하지 않는다.
 
 ![](/img/form-no-ngmodel.png)
 
@@ -110,7 +110,7 @@ NgForm 인스턴스의 프로퍼티
 
 즉 FormGroup 인스턴스는 자신의 자식인 FormControl 인스턴스들을 그룹화하여 관리하기 위한 최상위 컨테이너로서 FormControl 인스턴스들을 하나의 객체로 그룹화하여 모든 FormControl 인스턴스의 값과 유효성 상태를 관리한다. 만약 유효성을 검증할 때 FormControl 인스턴스 중 하나라도 유효하지 않다면 FormGroup은 유효하지 않은 상태인 invalid 상태가 된다.
 
-폼 요소의 자식 폼 컨트롤 요소에 NgModel 디렉티브를 적용하여 FormGroup 인스턴스에 의해 관리되도록 수정해 보자.
+폼 요소의 자식 폼 컨트롤 요소에 NgModel 디렉티브를 적용하여 FormGroup 인스턴스에 의해 자식 폼 컨트롤 요소가 관리되도록 수정해 보자.
 
 ```typescript
 // user-form.component.ts
@@ -156,7 +156,7 @@ NgModel 디렉티브가 적용된 요소가 FormGroup 인스턴스에 추가되�
 }
 ```
 
-이것은 폼 요소의 자식 요소 중 NgModel 디렉티브가 적용된 모든 자식 폼 컨트롤 요소의 상태를 나타낸다. 이때 키는 폼 컨트롤 요소의 name 어트리뷰트의 값이고, 값은 사용자 입력 값을 나타낸다. 따라서 **폼 컨트롤 요소에는 반드시 name 어트리뷰트를 지정하여야 한다.**
+이것은 폼 요소의 자식 요소 중 NgModel 디렉티브가 적용된 모든 자식 폼 컨트롤 요소의 상태 값을 나타낸다. 이때 키는 폼 컨트롤 요소의 name 어트리뷰트의 값이고, 값은 사용자 입력 값을 나타낸다. 따라서 **폼 컨트롤 요소에는 반드시 name 어트리뷰트를 지정하여야 한다.**
 
 NgModel 디렉티브는 [양방향 데이터 바인딩](./angular-component-template-syntax#17-양방향-데이터-바인딩two-way-binding)에서 사용할 때와는 달리 괄호와 할당문없이 선언한다.
 
@@ -166,26 +166,28 @@ NgModel 디렉티브는 [양방향 데이터 바인딩](./angular-component-temp
   ...
 ```
 
-위 예제의 경우, userid 폼 컨트롤 요소를 가리키는 FormControl 인스턴스에 접근하기 위해서는 폼 요소를 가리키는 템플릿 참조 변수 userForm을 사용하여 userForm.controls.userid와 같이 접근할 수 있다.
-
-매번 폼 요소의 참조 변수를 통해야 하므로 좀 더 간편하게 직접 폼 컨트롤 요소에 접근하기 위해 폼 컨트롤 요소에 템플릿 참조 변수를 사용할 수 있다.
+폼 요소에 템플릿 참조 변수를 선언한 것과 같이 폼 콘트롤 요소에도 템플릿 참조 변수를 사용할 수 있다.
 
 ```html
 <input type="text" name="userid" ngModel #userid>
 <p>value: {{ "{{ userid.value "}}}}</p>
 ```
 
-이때 참조 변수 userid는 네이티브 DOM을 가리킨다. 참조 변수 userid에 ngModel을 할당하면 참조 변수 userid는 네이티브 DOM을 가리키지 않고 userid 폼 컨트롤 요소를 가리키는 NgModel 인스턴스를 가리킨다. 따라서 **참조 변수에 ngModel을 할당하면 참조 변수를 통해 값 또는 유효성 검증 상태 추적이 가능해진다.**
+이때 템플릿 참조 변수 userid는 네이티브 DOM을 가리킨다. 템플릿 참조 변수 userid에 ngModel을 할당하면 userid는 네이티브 DOM을 가리키지 않고 userid 폼 컨트롤 요소를 가리키는 NgModel 인스턴스를 가리킨다. 따라서 **참조 변수에 ngModel을 할당하면 참조 변수를 통해 값 또는 유효성 검증 상태 추적이 가능해진다.**
 
 ```html
 <input type="text" name="userid" ngModel #userid="ngModel">
+
+<!-- 템플릿 참조 변수를 통해 폼 컨트롤 요소의 값을 참조 -->
 <p>userid value: {{ "{{ userid.value "}}}}</p>
+<!-- 템플릿 참조 변수를 통해 폼 컨트롤 요소의 유효성 검증 상태를 참조 -->
 <p>userid valid: {{ "{{ userid.valid "}}}}</p>
 ```
 
 <iframe src="https://stackblitz.com/edit/template-driven-form-3?embed=1&file=app/user-form.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
-참조 변수를 이벤트 핸들러에 인자로 전달하여 필요한 로직을 실행할 수 있다. 하지만 컴포넌트 클래스의 핸들러 함수가 필요한 로직을 실행한 이후, 그 결과를 다시 템플릿으로 보내야 한다면 양방향 데이터 바인딩을 사용하는 것이 보다 간편하다.
+템플릿 참조 변수를 이벤트 핸들러에 인자로 전달하여 필요한 로직을 실행할 수 있다. 하지만 컴포넌트 클래스의 핸들러 함수가 필요한 로직을 실행한 이후, 그 결과를 다시 템플릿으로 보내야 한다면 양방향 데이터 바인딩을 사용하는 것이 보다 간편하다.
+
 
 ```html
 <input type="text" name="userid" [(ngModel)]="user.id" #userid="ngModel">
@@ -194,6 +196,8 @@ NgModel 디렉티브는 [양방향 데이터 바인딩](./angular-component-temp
 ## 2.3 NgModelGroup 디렉티브
 
 [NgModelGroup](https://angular.io/api/forms/NgModelGroup) 디렉티브는 NgForm 디렉티브와 유사하게 FormGroup 인스턴스를 생성하고 NgModelGroup 디렉티브가 적용된 폼 그룹 요소의 자식 요소 중에서 NgModel 디렉티브가 적용된 요소를 탐색하여 FormGroup 인스턴스에 추가한다.
+
+아래 예제를 살펴보자.
 
 ```typescript
 // user-form.component.ts
@@ -216,6 +220,13 @@ import { Component } from '@angular/core';
 export class UserFormComponent {
   onNgSubmit(user) {
     console.log(user);
+    /*
+      { userid: "myid",
+        password: { password1: "11", password2: "11" }
+      }
+    */
+
+    // 패스워드와 확인 패스워드의 일치 여부 확인
     if (user.password.password1 !== user.password.password2) {
       console.log('패스워드가 일치하지 않습니다!');
     }
@@ -225,7 +236,7 @@ export class UserFormComponent {
 
 <iframe src="https://stackblitz.com/edit/template-driven-form-4?embed=1&file=app/user-form.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
-위 예제의 경우, 폼 요소는 FormGroup 인스턴스를 생성하고 자식 폼 컨트롤 요소 중에서 ngModel 디렉티브가 적용된 요소와 ngModelGroup 디렉티브가 적용된 요소가 추가된다. 이것을 그림으로 표현하면 아래와 같다.
+위 예제의 경우, 폼 요소는 FormGroup 인스턴스를 생성하고 자식 폼 컨트롤 요소 중에서 ngModel 디렉티브가 적용된 요소와 ngModelGroup 디렉티브가 적용된 요소를 추가한다. 이것을 그림으로 표현하면 아래와 같다.
 
 ![ngModelGroup](/img/ngmodelgroup.png)
 {: .w-650}
@@ -237,8 +248,25 @@ ngModelGroup 디렉티브
 
 양방향 데이터 바인딩는 뷰와 컴포넌트 클래스의 상태 변화를 상호 반영하는 것을 말한다. 즉 뷰의 상태가 변화하면 컴포넌트 클래스의 상태도 변화하고 그 반대로 컴포넌트 클래스의 상태가 변화하면 뷰의 상태도 변화하는 것이다.
 
+NgModel 디렉티브는 앞에서 살펴본 바와 같이 폼 컨트롤 요소의 값과 유효성 검증 상태를 관리하는 FormControl 인스턴스를 생성한다고 하였다. 그런데 NgModel 디렉티브에 프로퍼티 바인딩을 사용하여 상태 값을 바인딩하는 경우, 폼 컨트롤 요소의 상태 값을 업데이트할 수 있다.
+
 ```typescript
 import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  template: `<input [ngModel]="name">`
+})
+export class AppComponent {
+  name = 'Lee';
+}
+```
+
+그리고 NgModel 디렉티브에 `[()]`(이것을 Banana in a box라고 부른다) 문법을 사용하면 폼 컨트롤 요소의 상테 값과 컴포넌트 클래스의 상태 값을 동기화한다.
+
+```typescript
+import { Component } from '@angular/core';
+
 @Component({
   selector: 'app-root',
   template: `
@@ -247,14 +275,15 @@ import { Component } from '@angular/core';
   `
 })
 export class AppComponent {
-  name = '';
+  name = 'Lee';
 }
 ```
 
-사실 Angular는 양방향 바인딩을 지원하지 않는다. `[()]`(이것을 Banana in a box라고 부른다)에서 추측할 수 있듯이 양방향 바인딩은 이벤트 바인딩과 프로퍼티 바인딩의 축약 표현(Shorthand syntax)일 뿐이다. 즉 양방향 바인딩의 실제 동작은 이벤트 바인딩과 프로퍼티 바인딩의 조합으로 이루어진다. 위 코드를 이벤트 바인딩과 프로퍼티 바인딩으로 표현하여 보자.
+사실 Angular는 양방향 바인딩을 지원하지 않는다. `[()]`에서 추측할 수 있듯이 양방향 바인딩은 이벤트 바인딩과 프로퍼티 바인딩의 축약 표현(Shorthand syntax)일 뿐이다. 즉 양방향 바인딩의 실제 동작은 이벤트 바인딩과 프로퍼티 바인딩의 조합으로 이루어진다. 위 코드를 이벤트 바인딩과 프로퍼티 바인딩으로 표현하여 보자.
 
 ```typescript
 import { Component } from '@angular/core';
+
 @Component({
   selector: 'app-root',
   template: `
@@ -263,13 +292,13 @@ import { Component } from '@angular/core';
   `
 })
 export class AppComponent {
-  name = '';
+  name = 'Lee';
 }
 ```
 
 이와 같이 양방향 바인딩은 ngModel 디렉티브와 ngModelChange 디렉티브 선언의 축약 표현으로 프로퍼티 바인딩과 이벤트 바인딩이 각각 처리된다. **ngModel 프로퍼티 바인딩은 컴포넌트 프로퍼티 name의 상태 변화를 수신하여 상태를 업데이트하고 ngModelChange 이벤트 바인딩은 템플릿의 상태 변화 이벤트를 발신하여 컴포넌트 프로퍼티 name의 상태를 업데이트한다.** 이때 $event의 값은 폼 컨트롤 요소의 값이다.
 
-양방향 바인딩은 반드시 ngModel 디렉티브를 사용하여야 하는 것은 아니며 커스텀 양방향 데이터 바인딩도 작성할 수 있다. 커스템 양방향 바인딩의 간단한 예제를 작성해 보자.
+양방향 바인딩은 반드시 NgModel 디렉티브를 사용하여야 하는 것은 아니며 커스텀 양방향 데이터 바인딩도 작성할 수 있다. 커스템 양방향 바인딩의 간단한 예제를 작성해 보자.
 
 ```typescript
 // app.component.ts
@@ -287,7 +316,7 @@ export class AppComponent {
 }
 ```
 
-자식 컴포넌트 CounterComponent를 작성한다. 부모 컴포넌트 AppComponent는 count 프로퍼티 바인딩을 통해 자식 컴포넌트에게 상태 정보를 전달한다. 자식 컴포넌트 CounterComponent는 @Input 데코레이터를 통해 입력 프로퍼티에 전달된 상태 정보를 바인딩한다. 또한 자식 컴포넌트 CounterComponent는 @Output 데코레이터와 함께 선언된 출력 프로퍼티를 EventEmitter 객체로 초기화한다. 그리고 부모 컴포넌트로 상태를 전달하기 위해 emit() 메소드를 사용하여 이벤트를 발생시키면서 상태를 전달한다. 부모 컴포넌트는 자식 컴포넌트가 전달한 상태를 이벤트 바인딩을 통해 상태를 접수한다.
+앞서 작성한 AppComponent의 자식 컴포넌트 CounterComponent를 작성한다.
 
 ```typescript
 // counter.component.ts
@@ -305,22 +334,16 @@ export class CounterComponent {
   @Output() countChange = new EventEmitter();
 
   decrement() {
-    this.count--;
-    this.countChange.emit(this.count);
+    this.countChange.emit(--this.count);
   }
 
   increment() {
-    this.count++;
-    this.countChange.emit(this.count);
+    this.countChange.emit(++this.count);
   }
 }
 ```
 
-자식 컴포넌트 CounterComponent는 부모 컴포넌트 AppComponent로부터 프로퍼티 바인딩을 통해 값을 전달받는다. 자식 컴포넌트는 이 값을 증감하여 이벤트 바인딩을 통해 부모 컴포넌트로 전송한다. 이때 부모 컴포넌트는 아래의 양방향 바인딩을 통해 이 상태를 처리할 수 있다.
-
-```html
-<counter [(count)]="value"></counter>
-```
+부모 컴포넌트 AppComponent는 count 프로퍼티 바인딩을 통해 자식 컴포넌트에게 상태 정보를 전달한다. 자식 컴포넌트 CounterComponent는 @Input 데코레이터를 통해 입력 프로퍼티에 전달된 상태 정보를 바인딩한다. 또한 자식 컴포넌트 CounterComponent는 @Output 데코레이터와 함께 선언된 출력 프로퍼티를 EventEmitter 객체로 초기화한다. 그리고 부모 컴포넌트로 상태를 전달하기 위해 emit() 메소드를 사용하여 이벤트를 발생시키면서 상태를 전달한다. 부모 컴포넌트는 자식 컴포넌트가 전달한 상태를 이벤트 바인딩을 통해 상태를 접수한다.
 
 위 예제의 양방향 바인딩은 아래의 축약 표현으로 정확히 동일하게 동작한다.
 

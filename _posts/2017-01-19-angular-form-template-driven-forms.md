@@ -355,7 +355,7 @@ export class CounterComponent {
 
 # 4. 템플릿 기반 폼 유효성 검증
 
-NgForm, NgModel, NgModelGroup 디렉티브가 폼 컨트롤 요소에 적용되면 FormGroup 또는 FormControl 인스턴스를 생성한다.
+NgForm, NgModel, NgModelGroup 디렉티브가 폼 컨트롤 요소에 적용되면 FormGroup 또는 FormControl 인스턴스를 생성한다. FormGroup과 FormControl는 유효성 검증 기능을 제공한다.
 
 FormGroup와 FormControl는 [AbstractControl](https://angular.io/api/forms/AbstractControl)를 상속한 클래스이다. AbstractControl 클래스는 valid, invalid, pristine, dirty, touched, untouched와 같이 요소의 유효성 검증 상태를 나타내는 프로퍼티를 소유하며 모든 자식 클래스에 상속한다. 이들 유효성 검증 상태 프로퍼티의 의미를 알아보자.
 
@@ -372,18 +372,26 @@ FormGroup와 FormControl는 [AbstractControl](https://angular.io/api/forms/Abstr
 아래의 예제를 살펴보자.
 
 ```html
-<input type="text"
-  name="title"
-  ngModel
-  #title="ngModel"
-  pattern="[a-zA-Z0-9]{4,10}"
-  required>
+import { Component } from '@angular/core';
 
-<p>errors:  {{ "{{ title.errors | json " }}}}</p>
-<p>invalid: {{ "{{ title.invalid " }}}}</p>
-<p>dirty:   {{ "{{ title.dirty " }}}}</p>
-<p>untouched: {{ "{{ title.untouched " }}}}</p>
-<p>pristine: {{ "{{ title.pristine " }}}}</p>
+@Component({
+  selector: 'app-root',
+  template: `
+    <input type="text"
+      name="title"
+      ngModel
+      #title="ngModel"
+      pattern="[a-zA-Z0-9]{4,10}"
+      required>
+
+    <p>errors:  {{ "{{ title.errors | json " }}}}</p>
+    <p>invalid: {{ "{{ title.invalid " }}}}</p>
+    <p>dirty:   {{ "{{ title.dirty " }}}}</p>
+    <p>untouched: {{ "{{ title.untouched " }}}}</p>
+    <p>pristine: {{ "{{ title.pristine " }}}}</p>
+  `
+})
+export class AppComponent {}
 ```
 
 <iframe src="https://stackblitz.com/edit/template-drive-form-validation?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
@@ -426,9 +434,11 @@ required가 설정되어 있으므로 값을 한번도 입력하지 않은 상�
 
 # 5. 템플릿 기반 폼 유효성 검증 실습
 
-템플릿 기반 폼을 사용하여 회원 가입 폼을 작성해보자. 이 예제는 부트스트랩을 사용할 것이다. 우선 npm을 사용하여 부트스트랩을 설치하도록 한다.
+템플릿 기반 폼을 사용하여 회원 가입 폼을 작성해보자. 이 예제는 부트스트랩을 사용할 것이므로 우선 npm을 사용하여 부트스트랩을 설치하도록 한다.
 
 ```bash
+$ ng new template-driven-form-exam -st
+$ cd template-driven-form-exam
 $ npm install bootstrap
 ```
 
@@ -447,10 +457,55 @@ $ npm install bootstrap
 }
 ```
 
-아래와 같이 회원 가입 폼을 작성한다. 유효성 검증이 필요한 폼 컨트롤 요소에 required, pattern과 같은 빌트인 검증기(Built-in validator)를 선언한다.
+회원 가입 폼 컴포넌트를 생성한다.
+
+```bash
+$ ng generate component user-form
+```
+
+루트 컴포넌트를 아래와 같이 수정한다.
+
+```typescript
+// app.component.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  template: `<user-form></user-form>`
+})
+export class AppComponent  {}
+```
+
+템플릿 기반 폼을 사용하기 위해 루트 모듈에 FormsModule을 추가한다.
+
+```typescript
+// app.module.ts
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
+import { AppComponent } from './app.component';
+import { UserFormComponent } from './user-form/user-form.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    UserFormComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+이제 아래와 같이 회원 가입 폼 템플릿을 작성한다. 유효성 검증이 필요한 폼 컨트롤 요소에 required, pattern과 같은 빌트인 검증기(Built-in validator)를 선언한다.
 
 ```html
-<!-- user-form.html -->
+<!-- user-form/user-form.component.html -->
 <div class="container">
   <h2>Template-driven forms Exam</h2>
   <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
@@ -462,8 +517,12 @@ $ npm install bootstrap
         #userid="ngModel"
         pattern="^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
         required>
-      <em *ngIf="userid.errors?.pattern && userid.touched" class="alert">User id는 email 형식으로 입력하세요!</em>
-      <em *ngIf="userid.errors?.required && userid.touched" class="alert">User id로 사용할 email을 입력하세요!</em>
+      <em *ngIf="userid.errors?.pattern && userid.touched" class="alert">
+          User id는 email 형식으로 입력하세요!
+      </em>
+      <em *ngIf="userid.errors?.required && userid.touched" class="alert">
+        User id로 사용할 email을 입력하세요!
+      </em>
       <em>(untouched: {{ "{{ userid.untouched " }}}} | pristine: {{ "{{ userid.pristine " }}}} | invalid: {{ "{{ userid.invalid " }}}})</em>
     </div>
 
@@ -516,6 +575,21 @@ $ npm install bootstrap
 
 또한 NgForm, NgModel. NgModelGroup 디렉티브가 적용된 폼 컨트롤 요소에는 유효성 검증 상태 프로퍼티와 연동하여 ng-untouched, ng-pristine, ng-invalid 등의 CSS 클래스가 자동 적용된다. 이들 CSS 클래스를 적절히 활용하면 유효성 검증 상태에 따른 스타일링이 가능하다.
 
+컴포넌트 CSS는 아래와 같다.
+
+```css
+/* user-form/user-form.component.css */
+.alert {
+  color: red;
+}
+
+input.ng-touched.ng-invalid {
+  background-color: #ff6666;
+}
+```
+
+컴포넌트 클래스는 아래와 같다.
+
 ```typescript
 // user-form.component.ts
 import { Component, OnInit } from '@angular/core';
@@ -531,8 +605,8 @@ class User {
 
 @Component({
   selector: 'user-form',
-  templateUrl: './user-form.html',
-  styleUrls: ['./user-form.css']
+  templateUrl: './user-form.component.html',
+  styleUrls: ['./user-form.component.css']
 })
 export class UserFormComponent implements OnInit {
   user: User;
@@ -546,7 +620,6 @@ export class UserFormComponent implements OnInit {
   onSubmit(userForm) {
     console.log('Send user to server: ', this.user);
     this.initUser();
-    // userForm.reset();
   }
 
   initUser() {

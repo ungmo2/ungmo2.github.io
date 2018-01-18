@@ -457,7 +457,7 @@ $ npm install bootstrap
 }
 ```
 
-회원 가입 폼 컴포넌트를 생성한다.
+다음은 회원 가입 폼 컴포넌트를 생성한다.
 
 ```bash
 $ ng generate component user-form
@@ -571,7 +571,7 @@ export class AppModule { }
 </div>
 ```
 
-폼 컨트롤 요소에 required, pattern과 같은 빌트인 검증기(Built-in validator)를 선언하였고 필수 입력 항목에 대해서는 양방향 데이터 바인딩을 사용하였다. 모든 폼 컨트롤 요소가 유효성 검증에 성공한 상태(userForm.valid가 true 또는 userForm.invalid가 false)라면 submit 버튼이 활성화된다.
+모든 폼 컨트롤 요소가 유효성 검증에 성공한 상태(userForm.valid가 true 또는 userForm.invalid가 false)라면 submit 버튼이 활성화된다.
 
 또한 NgForm, NgModel. NgModelGroup 디렉티브가 적용된 폼 컨트롤 요소에는 유효성 검증 상태 프로퍼티와 연동하여 ng-untouched, ng-pristine, ng-invalid 등의 CSS 클래스가 자동 적용된다. 이들 CSS 클래스를 적절히 활용하면 유효성 검증 상태에 따른 스타일링이 가능하다.
 

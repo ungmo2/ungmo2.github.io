@@ -95,7 +95,7 @@ $ ng serve -o
 이 예제는 부트스트랩을 사용할 것이다. 우선 npm을 사용하여 부트스트랩을 설치하도록 한다.
 
 ```bash
-$ npm install bootstrap
+$ npm install bootstrap@3.3.7
 ```
 
 설치가 완료되었으면 부트스트랩을 임포트하여야 한다. 부트스트랩은 모든 컴포넌트에 적용되어야 하므로 .angular-cli.json를 아래와 같이 수정한다.

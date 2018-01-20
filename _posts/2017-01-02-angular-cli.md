@@ -34,7 +34,7 @@ Angular는 Angular CLI를 위한 별도의 웹페이지 [https://cli.angular.io/
 
 Angular CLI를 사용하기 위해서는 어떠한 절차가 필요한지 그리고 무엇을 할 수 있는지 알아보자.
 
-Angular CLI 1.6.0을 기준으로 한다. Angular CLI의 변경이력은 [angular-cli releases](https://github.com/angular/angular-cli/releases)에서 참조 가능하다.
+Angular CLI 1.6.5을 기준으로 한다. Angular CLI의 변경이력은 [angular-cli releases](https://github.com/angular/angular-cli/releases)에서 참조 가능하다.
 {: .info}
 
 # 2. Angular CLI 설치
@@ -79,7 +79,7 @@ $ ng version
 /_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
                |___/
 
-Angular CLI: 1.6.0
+Angular CLI: 1.6.5
 Node: 9.2.1
 OS: darwin x64
 Angular:

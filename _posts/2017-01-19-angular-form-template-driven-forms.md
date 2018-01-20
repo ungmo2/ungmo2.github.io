@@ -434,12 +434,12 @@ required가 설정되어 있으므로 값을 한번도 입력하지 않은 상�
 
 # 5. 템플릿 기반 폼 유효성 검증 실습
 
-템플릿 기반 폼을 사용하여 회원 가입 폼을 작성해보자. 이 예제는 부트스트랩을 사용할 것이므로 우선 npm을 사용하여 부트스트랩을 설치하도록 한다.
+템플릿 기반 폼을 사용하여 회원 가입 폼을 작성해보자. 이 예제는 부트스트랩을 사용할 것이므로 부트스트랩을 설치하도록 한다.
 
 ```bash
 $ ng new template-driven-form-exam -st
 $ cd template-driven-form-exam
-$ npm install bootstrap
+$ npm install bootstrap@3.3.7
 ```
 
 설치가 완료되었으면 부트스트랩을 임포트하여야 한다. 부트스트랩은 모든 컴포넌트에 적용되어야 하므로 .angular-cli.json를 아래와 같이 수정한다.
@@ -473,7 +473,7 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `<user-form></user-form>`
 })
-export class AppComponent  {}
+export class AppComponent {}
 ```
 
 템플릿 기반 폼을 사용하기 위해 루트 모듈에 FormsModule을 추가한다.

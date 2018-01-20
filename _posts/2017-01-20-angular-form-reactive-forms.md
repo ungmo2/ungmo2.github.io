@@ -14,13 +14,13 @@ description: 리액티브 폼(모델 기반 폼)은 템플릿이 아닌 컴포�
 
 # 1. 리액티브 폼(Reactive Forms / 모델 기반 폼)이란?
 
-리액티브 폼(모델 기반 폼)은 템플릿이 아닌 컴포넌트 클래스에서 폼 모델을 구성하는 방식이다. 리액티브 폼은 템플릿 기반 폼보다 비교적 복잡한 경우 사용한다.
+리액티브 폼(모델 기반 폼)은 템플릿이 아닌 컴포넌트 클래스에서 폼 요소의 상태를 관리하는 객체인 폼 모델을 구성하는 방식이다. 리액티브 폼은 템플릿 기반 폼보다 비교적 복잡한 경우 사용한다.
 
 템플릿 기반 폼은 NgForm, NgModel, NgModelGroup 디렉티브를 템플릿 내의 폼 요소 또는 폼 컨트롤 요소에 선언하고 이들 디렉티브가 자신이 적용된 폼 요소 또는 폼 컨트롤 요소에 해당하는 FormGroup, FormControl 인스턴스(폼 모델)를 생성한다. 그리고 NgForm, NgModel, NgModelGroup 디렉티브는 이들 인스턴스(폼 모델)를 폼 요소 또는 폼 컨트롤 요소에 바인딩하여 값이나 유효성 검증 상태를 추적할 수 있었다. 템플릿 기반 폼은 폼 모델에 직접 접근할 수 없고 템플릿 참조 변수에 할당한 NgForm, NgModel을 통해 값이나 유효성 검증 상태에 접근할 수 있다.
 
 리액티브 폼(모델 기반 폼)은 컴포넌트 클래스에서 폼 요소의 값 및 유효성 검증 상태를 관리하는 자바스크립트 객체인 폼 모델(FormGroup, FormControl, FormArray)을 정의, 생성한다. 그리고 form* 접두사가 붙은 디렉티브(formGroup, formGroupName, formControlName, formArrayName)를 사용하여 템플릿의 폼 요소와 폼 모델을 프로퍼티 바인딩으로 연결한다.
 
-템플릿 기반 폼은 폼 모델에 직접 접근할 수 없지만 리액티브 폼은 폼 모델을 직접 정의, 생성하고 조작한다. 즉 컴포넌트 클래스 내부에서 데이터 모델과 폼 모델에 직접 접근하여 데이터 모델을 폼 모델에 반영하고 템플릿 폼 컨트롤 요소의 상태 변화를 관찰(observe)하고 변화에 대응한다.
+템플릿 기반 폼은 폼 모델에 직접 접근할 수 없지만 리액티브 폼은 폼 모델을 직접 정의, 생성하고 조작한다. 즉 컴포넌트 클래스 내부에서 데이터 모델과 폼 모델에 직접 접근하여 데이터 모델을 폼 모델에 반영하고 템플릿의 폼 컨트롤 요소의 상태 변화를 관찰(observe)하고 변화에 대응한다.
 
 리액티브 폼은 FormControl, FormGroup, FormArray 클래스를 중심으로 동작한다. 이들을 사용하기 위해서 @angular/forms 패키지의 ReactiveFormsModule을 애플리케이션 모듈에 추가한다.
 
@@ -45,7 +45,7 @@ export class AppModule { }
 
 ## 2.1 FormGroup 클래스와 formGroup/formGroupName 디렉티브
 
-[FormGroup](https://angular.io/api/forms/FormControl) 인스턴스는 자신의 자식인 FormControl 인스턴스 또는 FormArray 인스턴스들을 그룹화하여 관리하기 위한 최상위 컨테이너로서 FormControl 인스턴스들을 하나의 객체로 그룹화하여 모든 자식 폼 모델 인스턴스의 값과 유효성 상태를 관리한다. 만약 유효성을 검증할 때 자식 폼 모델 인스턴스 중 하나라도 유효하지 않다면 FormGroup은 유효하지 않게 된다.
+[FormGroup](https://angular.io/api/forms/FormControl) 인스턴스는 자신의 자식인 FormControl 인스턴스 또는 FormArray 인스턴스들을 그룹화하여 관리하기 위한 최상위 컨테이너로써 FormControl 또는 FormArray 인스턴스와 같은 자식 폼 모델 인스턴스들을 하나의 객체로 그룹화하여 모든 자식 폼 모델 인스턴스의 값과 유효성 상태를 관리한다. 만약 유효성을 검증할 때 자식 폼 모델 인스턴스 중 하나라도 유효하지 않다면 FormGroup은 유효하지 않게 된다.
 
 ```typescript
 const myFormGroup = new FormGroup({
@@ -111,13 +111,17 @@ export class AppComponent implements OnInit {
 
 <iframe src="https://stackblitz.com/edit/reactive-form-2?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
-formGroupName 디렉티브에는 문자열을 할당하여야 한다. 프로퍼티 바인딩 문법으로 문자열을 할당하려면 따옴표를 연이어 사용하여야 하므로 프로퍼티 바인딩의 대괄호를 생략하고 문자열을 할당하였다. 이는 이후 등장하는 모든 form*Name 디렉티브에 적용된다.
-{: .info}
+formGroupName 디렉티브에는 문자열을 할당하여야 한다. 이 문자열은 FormGroup 인스턴스를 값으로 하는 프로퍼티 이름이다.
+
+![form name](./img/formname.png)
+{: .w-300}
+
+프로퍼티 바인딩 문법으로 문자열을 할당하려면 따옴표를 연이어 사용하여야 하므로 프로퍼티 바인딩의 대괄호를 생략하고 문자열을 할당하였다. 이는 이후 등장하는 모든 form*Name 디렉티브에 적용된다.
 
 ```html
-<div [FormGroupName]="'cellphone'"></div>
-
-<div FormGroupName="cellphone"></div>
+<div [FormGroupName]="'formControls'"></div>
+<!-- 위아래 두 표현은 동치이다 -->
+<div FormGroupName="formControls"></div>
 ```
 
 ## 2.2 FormControl 클래스와 formControlName 디렉티브
@@ -174,7 +178,7 @@ export class AppComponent implements OnInit {
 
 <iframe src="https://stackblitz.com/edit/reactive-form-3?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
-FormControl은 폼 요소의 자식 폼 컨트롤 요소를 위해 사용하기도 하지만 단독으로 사용할 수 있다. [\[Reactive Programming과 RxJS\] 옵저버블 이벤트 스트림](./angular-rxjs#2-옵저버블-이벤트-스트림)에서 살펴본 바와 같이 input 요소의 이벤트는 FormControl의 valueChanges 프로퍼티에 의해 옵저버블 스트림으로 변환된다.
+FormControl은 폼 요소의 자식 폼 컨트롤 요소를 위해 사용하기도 하지만 폼 요소없이 단독으로 사용할 수도 있다. [\[Reactive Programming과 RxJS\] 옵저버블 이벤트 스트림](./angular-rxjs#2-옵저버블-이벤트-스트림)에서 살펴본 바와 같이 input 요소의 이벤트는 FormControl의 valueChanges 프로퍼티에 의해 옵저버블 스트림으로 변환된다.
 
 ```typescript
 // app.component.ts
@@ -183,7 +187,9 @@ FormControl은 폼 요소의 자식 폼 컨트롤 요소를 위해 사용하기�
   selector: 'app-root',
   template: `
     <h2>Observable Events</h2>
-    <p><input type="text" placeholder="Enter user id" [formControl]="serchInput"></p>
+    <p>
+      <input type="text" placeholder="Enter user id" [formControl]="serchInput">
+    </p>
     <pre>{{ "{{ githubUser | json " }}}}</pre>
   `
 })
@@ -209,7 +215,7 @@ export class ObservableEventHttpComponent implements OnInit {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/observable-http-exam?embed=1&file=app/observable-event-http.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/observable-http?embed=1&file=app/observable-event-http.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 ## 2.3 FormArray 클래스와 formArrayName 디렉티브
 
@@ -234,6 +240,7 @@ import { FormGroup, FormControl, FormArray } from '@angular/forms';
   template: `
     <form [formGroup]="userForm" novalidate>
       <div formArrayName="hobbies">
+        <!-- (1) -->
         <div *ngFor="let hobby of hobbies.controls; let i=index">
           <input type="text" [formControlName]="i">
         </div>
@@ -257,16 +264,29 @@ export class AppComponent implements OnInit {
     console.log(this.userForm);
   }
 
-  // 템플릿에서 폼 모델에 접근할 수 있도록 컴포넌트 클래스에 getter를 정의한다.
+  // 2) 템플릿에서 폼 모델에 접근할 수 있도록 컴포넌트 클래스에 getter를 정의한다.
   get hobbies(): FormArray { return this.userForm.get('hobbies') as FormArray; }
 }
 ```
 
 <iframe src="https://stackblitz.com/edit/reactive-form-4?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
-ngFor 디렉티브를 사용하여 FormArray의 요소의 갯수만큼 순회하며 폼 컨트롤 요소를 생성한다. 이때 폼 컨트롤 요소의 formControlName 디렉티브에 인덱스 i를 할당한다. 주의할 것은 인덱스 i는 변수이므로 프로퍼티 바인딩을 사용하여야 한다.
+1) ngFor 디렉티브를 사용하여 FormArray의 요소의 갯수만큼 순회하며 폼 컨트롤 요소를 생성한다. 이때 폼 컨트롤 요소의 formControlName 디렉티브에 인덱스 i를 할당한다. 주의할 것은 인덱스 i는 변수이므로 프로퍼티 바인딩을 사용하여야 한다.
 
-템플릿이 FormArray에 접근할 수 있도록 getter를 정의하였다. 템플릿은 컴포넌트 클래스의 hobbies 프로퍼티에 접근할 수 있고 FormArray 타입 hobbies의 controls 프로퍼티를 사용하여 개별 요소에 접근한다.
+2) 템플릿이 FormArray에 접근할 수 있도록 getter를 정의하였다. 이 getter를 통해 템플릿은 컴포넌트 클래스의 hobbies 프로퍼티에 접근할 수 있게 되었다. 이 getter는 FormArray 타입의 객체를 반환하는데 FormArray 타입의 controls 프로퍼티를 사용하여 개별 요소에 접근할 수 있다.
+
+```typescript
+...
+@Component({
+  selector: 'app-root',
+  template: `
+        ...
+        <!-- 컴포넌트 클래스의 getter hobbies를 통해 폼 모델에 접근 -->
+        <div *ngFor="let hobby of hobbies.controls; let i=index">
+        ...
+  `
+})
+```
 
 # 3. 리액티브 폼 유효성 검증
 
@@ -325,11 +345,14 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.userForm = new FormGroup({
+      // FormControl 생성자 함수의 두번째 인자에 검증기를 전달한다.
+      // 2개 이상의 검증기를 사용하는 경우, 배열로 검증기를 추가한다. 검증기는 템플릿의 폼 컨트롤 요소의 상태가 변화할 때 마다 호출된다.
       userid: new FormControl('', [
         Validators.required,
         Validators.pattern('[a-zA-Z0-9]{4,10}')
       ]),
       passwordGroup: new FormGroup({
+        // FormControl 생성자 함수의 두번째 인자에 검증기를 전달한다.
         password: new FormControl('', Validators.required),
         confirmPassword: new FormControl('', Validators.required)
       }),
@@ -348,7 +371,7 @@ export class AppComponent implements OnInit {
 
 # 4. 사용자 정의 검증기(Custom validator)
 
-빌트인 검증기는 기본적인 검증 기능을 제공하고 사용이 간편하지만 복잡한 애플리케이션의 요구 사항을 충족시키지 어려운 경우가 있다. Angular는 사용자 정의 검증기를 정의할 수 있으며 템플릿 기반 폼과 리액티브 폼 모두에 사용할 수 있다. 사용자 정의 검증기의 정의 방법에 대해 살펴보도록 하자.
+빌트인 검증기는 사용이 간편하지만 기본적인 검증 기능을 제공하므로 복잡한 애플리케이션의 요구 사항을 충족시키지 어려운 경우가 있다. Angular는 사용자 정의 검증기를 정의할 수 있으며 템플릿 기반 폼과 리액티브 폼 모두에 사용할 수 있다. 사용자 정의 검증기의 정의 방법에 대해 살펴보도록 하자.
 
 사용자 정의 검증기는 재사용을 위해 외부 클래스로 분리하는 것이 일반적이다. 패스워드와 확인 패스워드가 일치하는지 체크하는 사용자 정의 검증기를 작성해보자.
 
@@ -401,10 +424,12 @@ ngOnInit() {
 
 # 5. 리액티브 폼 유효성 검증 실습
 
-리액티브 폼을 사용하여 회원 가입 폼을 작성해보자. 이 예제는 부트스트랩을 사용할 것이다. 우선 npm을 사용하여 부트스트랩을 설치하도록 한다.
+리액티브 폼을 사용하여 회원 가입 폼을 작성해보자. 이 예제는 부트스트랩을 사용할 것이므로 부트스트랩을 설치하도록 한다.
 
 ```bash
-$ npm install bootstrap
+$ ng new reactive-form-exam -st
+$ cd reactive-form-exam
+$ npm install bootstrap@3.3.7
 ```
 
 설치가 완료되었으면 부트스트랩을 임포트하여야 한다. 부트스트랩은 모든 컴포넌트에 적용되어야 하므로 .angular-cli.json를 아래와 같이 수정한다.
@@ -422,10 +447,55 @@ $ npm install bootstrap
 }
 ```
 
-아래와 같이 회원 가입 폼을 작성한다.
+다음은 회원 가입 폼 컴포넌트를 생성한다.
+
+```bash
+$ ng generate component user-form
+```
+
+루트 컴포넌트를 아래와 같이 수정한다.
+
+```typescript
+// app.component.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  template: `<user-form></user-form>`
+})
+export class AppComponent {}
+```
+
+리액티브 폼을 사용하기 위해 루트 모듈에 ReactiveFormsModule을 추가한다.
+
+```typescript
+// app.module.ts
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { AppComponent } from './app.component';
+import { UserFormComponent } from './user-form/user-form.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    UserFormComponent
+  ],
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+이제 아래와 같이 회원 가입 폼 템플릿을 작성한다.
 
 ```html
-<!-- user-form.html -->
+<!-- user-form/user-form.component.html -->
 <div class="container">
   <h2>Reactive forms Exam</h2>
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
@@ -478,18 +548,27 @@ $ npm install bootstrap
 </div>
 ```
 
+컴포넌트 CSS는 아래와 같다.
+
+```css
+/* user-form/user-form.component.css */
+.alert { color: red; }
+```
+
 폼 컨트롤 요소에 form* 디렉티브를 선언하여 템플릿의 폼 요소와 폼 모델을 프로퍼티 바인딩으로 연결한다. 모든 폼 컨트롤 요소의 유효성 검증은 컴포넌트 클래스의 폼 모델이 담당할 것이며 모든 요소의 유효성 검증에 성공한 상태(userForm.valid가 true 또는 userForm.invalid가 false)라면 submit 버튼이 활성화된다.
 
+컴포넌트 클래스는 아래와 같다.
+
 ```typescript
-// user-form.component.ts
+// user-form/user-form.component.ts
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
-import { PasswordValidator } from './password-validator';
+import { PasswordValidator } from '../password-validator';
 
 @Component({
   selector: 'user-form',
-  templateUrl: './user-form.html',
-  styleUrls: ['./user-form.css']
+  templateUrl: './user-form.component.html',
+  styleUrls: ['./user-form.component.css']
 })
 export class UserFormComponent implements OnInit {
   userForm: FormGroup;
@@ -547,6 +626,27 @@ export class UserFormComponent implements OnInit {
 
 리액티브 폼은 템플릿의 컴포넌트 클래스 내부에서 생성한 FormControl에 검증기를 추가한다. 검증기는 FormControl 생성자의 두번째 인자에 전달한다. 2개 이상의 검증기를 사용하는 경우, 배열로 검증기를 추가한다. 검증기는 템플릿의 폼 컨트롤 요소의 상태가 변화할 때 마다 호출된다.
 
+사용자 정의 검증기 PasswordValidator는 아래와 같다.
+
+```typescript
+// password-validator.ts
+import { AbstractControl } from '@angular/forms';
+
+export class PasswordValidator {
+
+  static match(form: AbstractControl) {
+    const password = form.get('password').value;
+    const confirmPassword = form.get('confirmPassword').value;
+
+    if (password !== confirmPassword) {
+      return { match: { password, confirmPassword }};
+    } else {
+      return null;
+    }
+  }
+}
+```
+
 템플릿 기반 폼은 폼 모델에 직접 접근할 수 없고 템플릿 참조 변수에 할당한 NgForm, NgModel을 통해 값이나 유효성 검증 상태에 접근할 수 있다.
 
 ```html
@@ -556,7 +656,7 @@ export class UserFormComponent implements OnInit {
 
 템플릿은 컴포넌트 클래스의 프로퍼티에 접근할 수 있다. **리액티브 폼의 경우, 템플릿에서 폼 모델에 접근할 수 있도록 컴포넌트 클래스에 getter를 정의한다.**
 
-AbstractControl 클래스의 get 메소드은 폼 모델의 자식 인스턴스를 검색할 때 사용한다.
+AbstractControl 클래스의 get 메소드는 폼 모델의 자식 인스턴스를 검색할 때 사용한다.
 
 ```typescript
 get userid() {
@@ -592,13 +692,13 @@ get hobbies(): FormArray {
 
 # 6. FormBuilder
 
-지금까지 살펴본 방식으로도 폼을 구성하고 유효성 검증을 실행할 수 있다. 하지만 Angular는 더욱 간편한 방법으로 리액티브 폼을 구성할 수 있는 FormBuilder를 제공한다. FormBuilder를 사용하면 FormGroup,FormControl, FormArray와 같은 클래스를 사용하여 인스턴스를 생성하는 번거로움을 줄일 수 있어서 코드가 간결해지고 가독성이 좋아진다. 이는 복잡한 폼을 보다 쉽게 구성할 수 있도록 도우며 유지보수에도 유리하다.
+지금까지 살펴본 방식으로도 폼을 구성하고 유효성 검증을 실행할 수 있다. 하지만 Angular는 더욱 간편한 방법으로 리액티브 폼을 구성할 수 있는 FormBuilder를 제공한다. FormBuilder를 사용하면 FormGroup, FormControl, FormArray와 같은 클래스를 사용하여 인스턴스를 생성하는 번거로움을 줄일 수 있어서 코드가 간결해지고 가독성이 좋아진다. 이는 복잡한 폼을 보다 쉽게 구성할 수 있도록 도우며 유지보수에도 유리하다.
 
 위에서 작성한 리액티브 폼 유효성 검증 실습 예제를 FormBuilder를 사용하여 리팩토링해보자.
 
 ```typescript
+// user-form/user-form.component.ts
 ...
-
   // FormBuilder를 주입받는다.
   constructor(private fb: FormBuilder) {}
 
@@ -615,11 +715,10 @@ get hobbies(): FormArray {
       hobbies: this.fb.array(['', ''])
     });
   }
-
 ...
 ```
 
-FormBuilder를 사용하기 위해서는 [FormBuilder](https://angular.io/api/forms/FormBuilder) 클래스를 주입받는다. new FormGroup()으로 생성하였던 폼 모델은 주입받은 FormBuilder의 인스턴스를 사용하여 this.fb.group()와 같이 사용한다.
+FormBuilder를 사용하기 위해서는 [FormBuilder](https://angular.io/api/forms/FormBuilder) 클래스의 인스턴스를 주입받는다. new FormGroup()으로 생성하였던 폼 모델은 주입받은 FormBuilder의 인스턴스를 사용하여 this.fb.group()와 같이 생성한다.
 
 FormBuilder를 사용하지 않는 경우, 아래와 같이 생성자의 2번째 인자에 검증기를 추가하였다.
 
@@ -630,7 +729,7 @@ FormBuilder를 사용하지 않는 경우, 아래와 같이 생성자의 2번째
   }, PasswordValidator.match),
 ```
 
-FormBuilder를 사용하는 경우, 아래와 같이 생성자의 2번째 인자에 옵션 객체를 생성하여 검증기를 추가하여야 한다.
+주의하여야 할 것은 FormBuilder를 사용하는 경우, 아래와 같이 생성자의 2번째 인자에 옵션 객체를 생성하여 검증기를 추가하여야 한다.
 
 ```typescript
   passwordGroup: this.fb.group({

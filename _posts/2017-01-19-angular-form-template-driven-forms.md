@@ -591,7 +591,7 @@ input.ng-touched.ng-invalid {
 컴포넌트 클래스는 아래와 같다.
 
 ```typescript
-// user-form.component.ts
+// user-form/user-form.component.ts
 import { Component, OnInit } from '@angular/core';
 
 class User {

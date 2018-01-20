@@ -188,12 +188,12 @@ export class ObservableEventHttpComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // ① valueChanges 이벤트 옵저버블을 구독하면 컨트롤 값의 변경 내용을 옵저버블 스트림으로 수신할 수 있다.
     this.subscription = this.serchInput.valueChanges
-    // ③ debounceTime 오퍼레이터는 다음 이벤트를 즉시 발생시키지 않고 지정 시간만큼 지연시킨다.
-    .debounceTime(500)
-    // ④ switchMap 오퍼레이터는 옵저버블을 받아서 새로운 옵저버블을 생성한다.
-    .switchMap(userId => this.getGithubUser(userId))
-    // ⑥ 옵저버블을 subscribe 오퍼레이터로 구독하면 옵저버가 데이터 스트림을 사용할 수 있다.
-    .subscribe(user => this.githubUser = user);
+      // ③ debounceTime 오퍼레이터는 다음 이벤트를 즉시 발생시키지 않고 지정 시간만큼 지연시킨다.
+      .debounceTime(500)
+      // ④ switchMap 오퍼레이터는 옵저버블을 받아서 새로운 옵저버블을 생성한다.
+      .switchMap(userId => this.getGithubUser(userId))
+      // ⑥ 옵저버블을 subscribe 오퍼레이터로 구독하면 옵저버가 데이터 스트림을 사용할 수 있다.
+      .subscribe(user => this.githubUser = user);
   }
 
   ngOnDestroy() {

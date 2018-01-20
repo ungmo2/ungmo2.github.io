@@ -106,7 +106,9 @@ Angular는 uppercase 이외에도 아래와 같은 빌트인 파이프를 지원
 ```typescript
 // app.component.ts
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/interval';
+import 'rxjs/add/operator/take';
 
 @Component({
   selector: 'app-root',
@@ -143,7 +145,7 @@ import { Observable } from 'rxjs/Rx';
     <p>{{ "{{ str | lowercase " }}}}</p>
 
     <h3>AsyncPipe</h3>
-    <p>{{ "{{ second | async " }}}}</p>
+    <p>{{ "{{ second$ | async " }}}}</p>
   `
 })
 export class AppComponent {
@@ -154,8 +156,8 @@ export class AppComponent {
   object: Object = { foo: 'bar', baz: 'qux', nested: { xyz: 3 } };
   pi = 3.141592;
   num = 1.3495;
-  // 1s마다 값을 방출하고 11개를 take한다. (0 ~ 10)
-  second = Observable.interval(1000).take(11);
+  // 1s마다 값을 방출하고 10개를 take한다. (0 ~ 9)
+  second$ = Observable.interval(1000).take(10);
 }
 ```
 

@@ -55,7 +55,7 @@ NgModule은 [@NgModule](https://angular.io/api/core/NgModule) 데코레이터로
 <!-- , 자신을 import한 다른 모듈에서 사용할 수 있도록 모듈을 구성한 컴포넌트, 디렉티브, 파이프, 서비스를 export할 수 있다.
 export된 구성 요소는 다른 모듈에서 사용할 수 있으며 export되지 않은 구성 요소는 모듈 자체에서만 사용할 수 있고 다른 모듈에서는 접근할 수 없다. -->
 
-애플리케이션 개발에 있어서 모듈성(Modularity)는 중요한 의미를 갖는다. 간단한 애플리케이션이라면 하나의 모듈 즉 루트 모듈만으로 애플리케이션을 구성하여도 문제가 없으나 애플리케이션에 대한 요구사항이 많아지면서 코드의 복잡도가 커짐에 따라 루트 모듈(Root module), 기능 모듈(Featue module), 공유 모듈(Shared module), 핵심 모듈(Core module)로 모듈을 분리하여 애플리케이션을 구성한다. 이것은 모듈 간의 결합을 최소화하고 모듈의 응집성을 최대화한, 즉 모듈성을 갖춘 애플리케이션을 개발하기 위한 바람직한 어프로치이다.
+애플리케이션 개발에 있어서 모듈성(Modularity)은 중요한 의미를 갖는다. 간단한 애플리케이션이라면 하나의 모듈 즉 루트 모듈만으로 애플리케이션을 구성하여도 문제가 없으나 애플리케이션에 대한 요구사항이 많아지면서 코드의 복잡도가 커짐에 따라 루트 모듈(Root module), 기능 모듈(Featue module), 공유 모듈(Shared module), 핵심 모듈(Core module)로 모듈을 분리하여 애플리케이션을 구성한다. 이것은 모듈 간의 결합을 최소화하고 모듈의 응집성을 최대화한, 즉 모듈성을 갖춘 애플리케이션을 개발하기 위한 바람직한 어프로치이다.
 
 # 2. @NgModule 데코레이터
 
@@ -90,18 +90,18 @@ export된 구성 요소는 다른 모듈에서 사용할 수 있으며 export되
 ```json
 ...
   "dependencies": {
-    "@angular/animations": "^4.2.4",
-    "@angular/common": "^4.2.4",
-    "@angular/compiler": "^4.2.4",
-    "@angular/core": "^4.2.4",
-    "@angular/forms": "^4.2.4",
-    "@angular/http": "^4.2.4",
-    "@angular/platform-browser": "^4.2.4",
-    "@angular/platform-browser-dynamic": "^4.2.4",
-    "@angular/router": "^4.2.4",
+    "@angular/animations": "^5.2.0",
+    "@angular/common": "^5.2.0",
+    "@angular/compiler": "^5.2.0",
+    "@angular/core": "^5.2.0",
+    "@angular/forms": "^5.2.0",
+    "@angular/http": "^5.2.0",
+    "@angular/platform-browser": "^5.2.0",
+    "@angular/platform-browser-dynamic": "^5.2.0",
+    "@angular/router": "^5.2.0",
     "core-js": "^2.4.1",
-    "rxjs": "^5.4.2",
-    "zone.js": "^0.8.14"
+    "rxjs": "^5.5.6",
+    "zone.js": "^0.8.19"
   },
 ...
 ```
@@ -121,7 +121,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 # 4. 루트 모듈
 
-Angular 애플리케이션은 적어도 하나 이상의 모듈을 소유하여야 한다. 루트 모듈은 애플리케이션의 최상위에 존재하는 유일한 모듈로 애플리케이션 레벨의 컴포넌트, 디렉티브, 파이프, 서비스를 선언하거나 의존 라이브러리 모듈과 기능 모듈(Feature module)이라 불리는 하위 모듈을 포함(import)할 수 있다. **루트 모듈에서 선언한 구성 요소는 애플리케이션 전역에서 사용할 수 있다.**
+Angular 애플리케이션은 적어도 하나 이상의 모듈을 소유하여야 한다. 루트 모듈은 애플리케이션의 최상위에 존재하는 유일한 모듈로 애플리케이션 레벨의 컴포넌트, 디렉티브, 파이프, 서비스를 선언하거나 의존 라이브러리 모듈과 기능 모듈(Feature module)이라 불리는 하위 모듈을 포함(import)할 수 있다.
 
 웹 애플리케이션의 경우, 루트 모듈은 반드시 BrowserModule을 임포트하여야 한다. 루트 모듈을 제외한 다른 모듈은 CommonModule을 임포트하여야 한다.
 
@@ -160,12 +160,23 @@ export class AppModule { }
 |:--------|:-----------------------------------------|:--------------------
 | 기능 모듈 | 관심사가 유사한 구성 요소로 구성한 모듈            | 특정 화면을 구성하는 구성 요소
 | 공유 모듈 | 애플리케이션 전역에서 사용될 구성 요소들로 구성한 모듈로서 기능 모듈에 의해 임포트된다. | 애플리케이션 전역에서 사용하는 컴포넌트, 디렉티브, 파이프 등
-| 핵심 모듈 | 애플리케이션 전역에서 사용될 구성 요소들로 구성한 모듈로서 루트 모듈에 등록한다. 핵심 모듈은 루트 모듈에 등록하여 싱글턴으로 사용한다. | 애플리케이션 전역에서 사용하는 데이터 서비스, 인증 서비스, 인증 가드 등
+| 핵심 모듈 | 애플리케이션 전역에서 사용될 구성 요소들로 구성한 모듈로서 루트 모듈에 등록하여 싱글턴으로 사용한다. | 애플리케이션 전역에서 사용하는 데이터 서비스, 인증 서비스, 인증 가드 등
 
-사용자의 정보를 표시하는 간단한 애플리케이션을 작성해보자. 이 애플리케이션의 src/app의 파일 구성은 아래와 같다.
+사용자의 정보를 표시하는 간단한 애플리케이션을 통해 모듈을 분리해보자.
+
+```bash
+$ ng new module-exam -it -is -st
+$ cd module-exam
+$ ng generate component header
+$ ng generate component home
+$ ng generate service user
+$ ng generate interface user
+```
+
+생성된 애플리케이션의 src/app의 파일 구성은 아래와 같다.
 
 ```
-.
+src
 └── app
     ├── header
     │   └── header.component.ts
@@ -177,7 +188,7 @@ export class AppModule { }
     └── user.ts
 ```
 
-header.component.ts는 애플리케이션의 헤더를 위한 컴포넌트로서 모든 뷰에 공통으로 사용한다. 해당 뷰의 타이틀과 사용자 이름을 나타낸다. header.component.ts를 아래와 같이 작성한다.
+header.component.ts는 애플리케이션의 헤더에 타이틀과 사용자 이름을 나타내기 위한 컴포넌트로서 모든 뷰에 공통으로 사용한다. header.component.ts를 아래와 같이 작성한다.
 
 ```typescript
 // header/header.component.ts
@@ -282,6 +293,7 @@ import { User } from './user';
 @Injectable()
 export class UserService {
   getUser(): User {
+    // 임의의 사용자를 반환한다. 실제 환경에서는 서버의 데이터를 취득하여 반환할 것이다.
     return { id: 1, name: 'Lee', admin: true };
   }
 }
@@ -324,6 +336,10 @@ export interface User {
 }
 ```
 
+위 예제의 실행 결과는 아래와 같다.
+
+![](./img/module-exam.png)
+
 위 예제의 구성 요소를 기능 모듈, 핵심 모듈, 공유 모듈로 분리해보고 그 분리 기준에 대해 살펴보도록 하자.
 
 ## 5.1 기능 모듈(Feature module)
@@ -332,13 +348,13 @@ export interface User {
 
 기능 모듈은 관심사가 유사한 구성 요소로 구성한 모듈이다. **일반적으로 기능 모듈은 특정 화면 단위를 기준으로 구성한다.** 기능 모듈은 루트 모듈과 마찬가지로 @NgModule 데코레이터와 메터데이터로 구성한다.
 
-위의 예제에서 home.component.ts는 home 페이지를 위한 컴포넌트로서 사용자의 정보를 표시한다. 이 컴포넌트는 특정 화면을 담당하므로 기능 모듈로 분리할 수 있다. home 페이지를 위한 home 모듈을 작성해 보자.
+위의 예제에서 home.component.ts는 home 페이지를 위한 컴포넌트로서 사용자의 정보를 표시한다. 이 컴포넌트는 특정 화면을 담당하므로 기능 모듈로 분리할 수 있다. 기능 모듈인 home 모듈을 작성해 보자.
 
 ```bash
-$ ng g m home
+$ ng generate module home
 ```
 
-위 명령어를 실행하면 home 폴더에 home.module.ts이 생성된다.
+위 명령어를 실행하면 home 폴더에 home.module.ts이 생성된다. 생성된 home.module.ts는 아래와 같다.
 
 ```typescript
 // home/home.module.ts
@@ -352,7 +368,7 @@ import { CommonModule } from '@angular/common';
 export class HomeModule { }
 ```
 
-루트 모듈이 아닌 모듈은 CommonModule을 임포트하여야 한다. Angular CLI을 사용하여 모듈을 생성하면 CommonModule이 자동 등록된다.
+생성된 HomeModule은 루트 모듈이 아니므로 CommonModule을 임포트하여야 한다. Angular CLI을 사용하여 모듈을 생성하면 CommonModule이 자동 등록된다.
 
 이제 HomeModule에 HomeComponent을 등록하고 HomeComponent을 외부로 공개하자.
 
@@ -403,6 +419,8 @@ import { UserService } from './user.service';
 export class AppModule { }
 ```
 
+HomeComponent는 HomeModule에 등록되었으므로 더이상 루트 모듈의 관리 대상이 아니다. 따라서 루트 모듈의 declarations 프로퍼티에 선언되어 있던 HomeComponent를 제외시킨다. 그리고 HomeModule을 루트 모듈의 imports 프로퍼티에 선언한다.
+
 ## 5.2 공유 모듈(Shared module)
 
 공유 모듈은 애플리케이션 전역에서 사용될 구성 요소들로 구성한 모듈로서 다른 모듈(주로 기능 모듈)에서 공통적으로 사용된다. 예를 들어 애플리케이션 전역에서 사용하는 컴포넌트, 디렉티브, 파이프 등이 대상이 된다.
@@ -417,12 +435,24 @@ export class AppModule { }
 위의 예제에서 header.component.ts는 해당 뷰의 타이틀과 사용자 이름을 나타내는 애플리케이션의 헤더를 위한 컴포넌트이다. 이 컴포넌트는 화면 단위의 기능 모듈에 의해 공통적으로 사용된다. 따라서 이 컴포넌트는 공유 모듈로 분리할 수 있다. 공유 모듈인 shared 모듈을 작성해 보자.
 
 ```bash
-$ ng g m shared
+$ ng generate module shared
 ```
 
-위 명령어를 실행하면 shared 폴더에 shared.module.ts이 생성된다. 루트 모듈이 아닌 모듈은 CommonModule을 임포트하여야 한다. Angular CLI을 사용하여 모듈을 생성하면 CommonModule이 자동 등록된다.
+위 명령어를 실행하면 shared 폴더에 shared.module.ts이 생성된다. 생성된 SharedModule은 루트 모듈이 아니므로 CommonModule을 임포트하여야 한다. Angular CLI을 사용하여 모듈을 생성하면 CommonModule이 자동 등록된다. 생성된 shared.module.ts는 아래와 같다.
 
-먼저 header.component.ts 파일을 shared 폴더로 이동한다. 이제 SharedModule에 HeaderComponent을 등록하고 HeaderComponent을 외부로 공개하자.
+```typescript
+// shared/shared.module.ts
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+@NgModule({
+  imports: [CommonModule],
+  declarations: []
+})
+export class SharedModule { }
+```
+
+먼저 header.component.ts 파일을 shared 폴더로 이동시킨다. 그리고 SharedModule에 HeaderComponent을 등록하고 HeaderComponent을 외부로 공개하자.
 
 ```typescript
 // shared/shared.module.ts
@@ -454,7 +484,6 @@ import { HomeModule } from './home/home.module';
 import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
-
 import { UserService } from './user.service';
 
 @NgModule({
@@ -479,12 +508,12 @@ export class AppModule { }
 위의 예제에서 user.service.ts는 사용자 정보를 제공하는 서비스로서 애플리케이션 전역에서 공통으로 사용한다. 따라서 이 서비스는 핵심 모듈로 분리할 수 있다. 핵심 모듈인 core 모듈을 작성해 보자.
 
 ```bash
-$ ng g m core
+$ ng generate module core
 ```
 
 위 명령어를 실행하면 core 폴더에 core.module.ts이 생성된다. 생성한 CoreModule은 서비스만을 제공하고 있기 때문에 CommonModule이 필요없다.
 
-먼저 user.service.ts 파일을 core 폴더로 이동한다. 이제 CoreModule에 UserService을 providers 프로퍼티에 등록한다.
+먼저 user.service.ts 파일을 core 폴더로 이동시킨다. 그리고 CoreModule에 UserService을 providers 프로퍼티에 등록한다.
 
 ```typescript
 // core.module.ts
@@ -532,10 +561,10 @@ import { AppComponent } from './app.component';
 export class AppModule { }
 ```
 
-기능 모듈, 공유 모듈, 핵심 모듈을 도입하여 모듈을 분리하였다. 루트 모듈에는 모듈의 선언만이 존재하고 보다 간결한 구성이 되었다. 프로젝트 폴더 구조 또한 아래와 같이 간결하게 정리되었다.
+기능 모듈, 공유 모듈, 핵심 모듈을 도입하여 모듈을 분리하였다. 루트 모듈에는 루트 컴포넌트와 모듈의 선언만이 존재하고 보다 간결한 구성이 되었다. 프로젝트 폴더 구조 또한 아래와 같이 간결하게 정리되었다.
 
 ```
-.
+src
 └── app
   ├── core
   │   ├── core.module.ts   # 핵심 모듈

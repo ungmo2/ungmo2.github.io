@@ -14,13 +14,13 @@ description: 단일 페이지 애플리케이션(Single Page Application, SPA)�
 
 # 1. SPA (Single Page Application)
 
-단일 페이지 애플리케이션(Single Page Application, SPA)은 모던 웹의 패러다임이다. SPA는 기본적으로 단일 페이지로 구성되며 기존의 서버 사이드 렌더링과 비교할 때, 배포가 간단하며 네이티브 앱과 유사한 사용자 경험을 제공할 수 있다는 장점이 있다.
+단일 페이지 애플리케이션(Single Page Application, SPA)은 모던 웹의 패러다임이다. SPA는 기본적으로 단일 페이지로 구성되며 기존의 서버 사이드 렌더링과 비교할 때, 배포가 간단하며 네이티브 앱과 유사한 사용자 경험(UX)을 제공할 수 있다는 장점이 있다.
 
 link tag를 사용하는 전통적인 웹 방식은 새로운 페이지 요청 시마다 정적 리소스가 다운로드되고 전체 페이지를 다시 렌더링하는 방식으로 동작하므로 새로고침이 발생된다. 이것은 변경이 필요없는 부분을 포함하여 전체 페이지를 갱신하는 것으로 비효율적이다.
 
 SPA는 웹 애플리케이션에 필요한 모든 정적 리소스를 애플리케이션 최초 기동 시에 한번만 다운로드한다. 이후 새로운 페이지 요청 시, 페이지 갱신에 필요한 데이터만을 전달받아 페이지를 갱신하므로 전체적인 트래픽을 감소할 수 있고, 전체 페이지를 다시 렌더링하지 않고 변경되는 부분만을 갱신하므로 새로고침이 발생하지 않아 네이티브 앱과 유사한 사용자 경험을 제공할 수 있다.
 
-모바일의 사용이 증가하고 있는 현 시점에 트래픽의 감소와 속도, 사용성, 반응성의 향상은 매우 중요한 이슈이다. SPA의 핵심 가치는 사용자 경험(UX) 향상에 있으며 부가적으로 애플리케이션 속도의 향상도 기대할 수 있어서 모바일 퍼스트(Mobile First) 전략에 부합한다.
+모바일의 사용이 증가하고 있는 현 시점에 트래픽의 감소와 속도, 사용성, 반응성의 향상은 매우 중요한 이슈이다. SPA의 핵심 가치는 사용자 경험 향상에 있으며 부가적으로 애플리케이션 속도의 향상도 기대할 수 있어서 모바일 퍼스트(Mobile First) 전략에 부합한다.
 
 모든 소프트웨어 아키텍처에는 trade-off가 존재하며 모든 애플리케이션에 적합한 은탄환(Silver bullet)은 없듯이 SPA 또한 구조적인 단점을 가지고 있다. 대표적인 단점은 아래와 같다.
 
@@ -40,7 +40,9 @@ SEO(검색엔진 최적화) 문제
 
 2. 웹페이지의 링크(a 태그)를 클릭하면 해당 페이지로 이동한다.
 
-3. 브라우저의 뒤로가기 또는 앞으로가기 버튼을 클릭하면 사용자가 방문한 웹페이지의 기록(history)의 뒤 또는 앞으로 이동한다.
+3. 폼 요소의 submit 버튼을 클릭하면 폼 요소의 action에 지정한 URL로 입력 데이터(form data)가 전송되며 해당 페이지로 이동한다.
+
+4. 브라우저의 뒤로가기 또는 앞으로가기 버튼을 클릭하면 사용자가 방문한 웹페이지의 기록(history)의 뒤 또는 앞으로 이동한다.
 
 AJAX 요청에 의해 서버로부터 데이터를 응답받아 화면을 생성하는 경우, 브라우저 주소창의 URL은 변경되지 않는다. 이는 사용자의 방문 history를 관리할 수 없음을 의미하며, SEO(검색엔진 최적화) 이슈의 발생 원인이기도 하다. **history 관리를 위해서는 각 페이지는 브라우저의 주소창에서 구별할 수 있는 유일한 URL을 소유하여야 한다.**
 
@@ -65,7 +67,7 @@ const routes: Routes = [
 
 a 태그의 href 어트리뷰트를 사용하지 않는 AJAX는 URL을 변경시키지 않는다. 따라서 브라우저 주소창의 URL이 변경되지 않는다. 이는 브라우저의 뒤로가기, 앞으로가기 등의 history 관리가 동작하지 않음을 의미한다. 물론 코드 상의 history.back(), history.go(n) 등도 동작하지 않는다. 새로고침을 클릭하면 주소창의 주소가 변경되지 않기 때문에 언제나 첫페이지가 다시 로딩된다. 하나의 주소로 동작하는 AJAX 방식은 SEO 이슈에서도 자유로울 수 없다.
 
-Angular는 2가지의 위치 정책(Location strategy)을 제공한다. 이로서 각 페이지는 브라우저의 주소창에서 구별할 수 있는 애플리케이션 전역에서 유일한 URL을 소유하게 된다.
+Angular는 이와 같은 문제점을 해결할 수 있는 2가지의 위치 정책(Location strategy)을 제공한다. 이로서 각 페이지는 브라우저의 주소창에서 구별할 수 있는 애플리케이션 전역에서 유일한 URL을 소유하게 된다.
 
 - PathLocationStrategy (HTML5 Histroy API 기반 내비게이션 정책)
 
@@ -83,7 +85,9 @@ PathLocationStrategy는 **Angular 라우터의 기본 정책**으로 pushState �
 
 ### 3.2.2 HashLocationStrategy (Hash 기반 내비게이션 정책)
 
-URL 패스에 fragment identifier의 고유 기능인 앵커(anchor)를 사용하는 정책으로 '/#/service', '/#/about'과 같이 [해시뱅](https://blog.outsider.ne.kr/698)을 기반으로 한다. URL이 동일한 상태에서 hash가 변경되면 브라우저는 서버에 어떠한 요청도 하지 않는다. 즉, hash는 변경되어도 서버에 새로운 요청을 보내지 않으며 따라서 페이지가 갱신되지 않는다. HashLocationStrategy는 대부분의 브라우저에서 동작한다.
+URL 패스에 fragment identifier의 고유 기능인 앵커(anchor)를 사용하는 정책으로 '/#/service', '/#/about'과 같이 [해시뱅](https://blog.outsider.ne.kr/698)을 기반으로 한다. fragment identifier는 hash mark 또는 hash라고 부르기도 한다.
+
+URL이 동일한 상태에서 hash가 변경되면 브라우저는 서버에 어떠한 요청도 하지 않는다. 즉, hash는 변경되어도 서버에 새로운 요청을 보내지 않으며 따라서 페이지가 갱신되지 않는다. HashLocationStrategy는 대부분의 브라우저에서 동작한다.
 
 ```
 localhost:4200/#/service
@@ -104,7 +108,10 @@ const routes: Routes = [
 @NgModule({
   imports: [
     BrowserModule,
+    // PathLocationStrategy (기본 정책)
     // RouterModule.forRoot(routes)
+
+    // HashLocationStrategy
     RouterModule.forRoot(routes, { useHash: true })
 ...
 ```
@@ -122,7 +129,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
+  // PathLocationStrategy (기본 정책)
   // imports: [RouterModule.forRoot(routes)],
+
+  // HashLocationStrategy
   imports: [RouterModule.forRoot(routes, { useHash: true })],
   ...
 })
@@ -142,7 +152,18 @@ const routes: Routes = [
 4. 내비게이션 작성
   : [RouterLink](https://angular.io/api/router/RouterLink) 디렉티브를 사용한 HTML 링크 태그를 사용하여 내비게이션을 작성한다.
 
-우선 라우팅 대상인 HomeComponent, ServiceComponent, AboutComponent, NotFoundComponent 컴포넌트를 작성하여 보자.
+우선 프로젝트를 생성하고 라우팅 대상인 HomeComponent, ServiceComponent, AboutComponent, NotFoundComponent 컴포넌트를 작성하여 보자.
+
+```bash
+$ ng new routing-exam -it -is -st
+$ cd routing-exam
+$ ng generate component pages/home --flat
+$ ng generate component pages/service --flat
+$ ng generate component pages/about --flat
+$ ng generate component pages/not-found --flat
+```
+
+각 컴포넌트를 아래와 같이 수정한다.
 
 ```typescript
 // pages/home.component.ts
@@ -192,7 +213,7 @@ import { Component } from '@angular/core';
 export class NotFoundComponent {}
 ```
 
-pages 폴더의 컴포넌트들을 일괄 공개하는 index.ts를 생성한다.
+그리고 pages 폴더 내의 컴포넌트들을 일괄 공개하는 index.ts를 생성한다.
 
 ```typescript
 // pages/index.ts
@@ -202,9 +223,13 @@ export * from './service.component';
 export * from './not-found.component';
 ```
 
+이제 위에서 설명한 4개의 수순(라우트 구성 → 라우트 등록 → 뷰의 렌더링 위치 지정 → 내비게이션 작성)을 거치면서 라우터를 구성해 보도록 하자.
+
 ## 4.1 라우트 구성
 
-Angular는 사용자의 요청 URL의 패스(path, 경로)와 컴포넌트의 쌍으로 만들어진 라우트 구성을 참조하여 뷰를 출력한다. 뷰를 출력한다는 것은 라우터 구성의 컴포넌트를 활성화하는 것을 의미한다. 라우트 구성의 예는 아래와 같다.
+Angular는 사용자의 요청 URL의 패스(path, 경로)와 컴포넌트의 쌍으로 만들어진 라우트 구성을 참조하여 뷰를 출력한다. 뷰를 출력한다는 것은 요청 URL의 패스에 해당하는 라우트 구성의 컴포넌트를 활성화하는 것을 의미한다.
+
+앞서 생성한 프로젝트 컴포넌트들의 라우트 구성의 예는 아래와 같다.
 
 ```typescript
 const routes: Routes = [
@@ -214,6 +239,16 @@ const routes: Routes = [
   { path: '**', component: NotFoundComponent }
 ];
 ```
+
+위 라우트 구성의 의미는 아래와 같다.
+
+| 요청 URL 패스 | URL 범례                | 활성화될 컴포넌트
+|:------------|:-----------------------|:---------------
+| 루트         | localhost:4200/        | HomeComponent
+| service     | localhost:4200/service | ServiceComponent
+| about       | localhost:4200/about   | AboutComponent
+| 상기 패스 이외 | localhost:4200/some    | NotFoundComponent
+
 
 라우트 구성은 [Route](https://angular.io/api/router/Route) 인터페이스를 사용하여 배열로 구성한다. Routes 타입은 [Route](https://angular.io/api/router/Routes) 인터페이스 배열의 [Type Aliase](https://www.typescriptlang.org/docs/handbook/advanced-types.html#type-aliases)이다.
 

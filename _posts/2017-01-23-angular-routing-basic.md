@@ -401,7 +401,8 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes), /* 모든 라우트 구성을 포함한 라우터 모듈을 생성하고 루트 모듈에 등록 */
+    /* 모든 라우트 구성을 포함한 라우터 모듈을 생성하고 루트 모듈에 등록 */
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -409,9 +410,9 @@ const routes: Routes = [
 export class AppModule { }
 ```
 
-위와 같이 라우트 구성을 루트 모듈에 직접 등록할 수도 있으나 라우트 구성이 커지면 라우팅 모듈을 별도 작성하고 그것을 루트 모듈에 등록하는 방식이 유리할 수 있다.
+위와 같이 라우트 구성을 루트 모듈에 직접 등록할 수도 있으나 라우트 구성이 커지면 라우팅 모듈을 별도 작성하고 그것을 루트 모듈에 등록하는 방식이 유리할 수 있다. 라우팅 모듈을 사용하여 라우트 구성을 루트 모듈로부터 분리하도록 하자.
 
-참고로 Angular CLI의 ng new 명령어로 프로젝트를 생성할 때, routing 옵션(--routing)을 추가하면 아래의 내용이 자동 처리된다.
+참고로 Angular CLI의 ng new 명령어로 프로젝트를 생성할 때, routing 옵션(`--routing`)을 추가하면 아래의 내용이 자동 처리된다.
 
 - 라우팅 모듈 app-routing.module.ts를 자동 생성한다.
 - app.component.ts에 `<router-outlet></router-outlet>`을 추가한다.
@@ -441,7 +442,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)], /* 모든 라우트 구성을 포함한 모듈을 생성하고 라우팅 모듈에 추가 */
+  /* 모든 라우트 구성을 포함한 모듈을 생성하고 라우팅 모듈에 추가 */
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
@@ -484,7 +486,13 @@ import {
 export class AppModule { }
 ```
 
-## 4.3 RouterOutlet
+이로서 라우트 구성과 등록이 완성되었다. 하지만 아직 뷰를 어디에 표시할 것인지 위치를 지정하지 않았다. 그리고 뷰의 전환을 위한 네비게이션 또한 작성되지 않았다.
+
+RouterOutlet 디렉티브를 사용하여 뷰의 렌더링 위치를 지정하고 RouterLink, RouterLinkActive 디렉티브를 사용하여 내비게이션을 작성하는 방법에 대해 살펴보자.
+
+## 4.3 뷰의 렌더링 위치 지정과 내비게이션 작성
+
+### 4.3.1 RouterOutlet
 
 [RouterOutlet](https://angular.io/api/router/RouterOutlet)는 라우터가 컴포넌트를 렌더링하여 뷰를 표시할 영역인 `<router-oulet>`을 구현한 디렉티브로 컴포넌트의 뷰를 렌더링할 위치를 설정한다.
 
@@ -494,7 +502,7 @@ export class AppModule { }
 
 RouterOutlet 디렉티브는 루트 컴포넌트 또는 기능 컴포넌트(feature component)에서 선언한다.
 
-## 4.4 RouterLink
+### 4.3.2 RouterLink
 
 Angular 라우터를 사용하기 위해 컴포넌트의 템플릿에는 뷰를 전환하기 위한 a 태그의 href 어트리뷰트 대신 [RouterLink](https://angular.io/api/router/RouterLink) 디렉티브를 사용하여 URL 패스를 지정한다. a 태그의 href 어트리뷰트를 사용한다면 서버로 요청이 발생하기 때문이다.
 
@@ -550,7 +558,7 @@ export class AppComponent {}
 
 RouterLink 디렉티브가 선언된 링크를 클릭하면 routerLink의 값이 라우터로 전달된다. 예를 들어 두번째 링크를 클릭하면 '/service'가 라우터로 전달되고 이에 해당하는 SeviceComponent를 활성화하여 RouterOutlet 영역에 뷰를 렌더링할 것이다.
 
-## 4.5 RouterLinkActive
+### 4.3.3 RouterLinkActive
 
 [RouterLinkActive](https://angular.io/api/router/RouterLinkActive) 디렉티브는 현재 브라우저의 URL 패스가 RouterLink 디렉티브에서 **지정한 URL 패스의 트리에 포함**되는 경우, RouterLinkActive에 지정된 클래스명을 DOM에 자동으로 추가한다.
 

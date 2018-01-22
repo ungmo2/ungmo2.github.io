@@ -486,11 +486,11 @@ import {
 export class AppModule { }
 ```
 
+## 4.3 뷰의 렌더링 위치 지정과 내비게이션 작성
+
 이로서 라우트 구성과 등록이 완성되었다. 하지만 아직 뷰를 어디에 표시할 것인지 위치를 지정하지 않았다. 그리고 뷰의 전환을 위한 네비게이션 또한 작성되지 않았다.
 
 RouterOutlet 디렉티브를 사용하여 뷰의 렌더링 위치를 지정하고 RouterLink, RouterLinkActive 디렉티브를 사용하여 내비게이션을 작성하는 방법에 대해 살펴보자.
-
-## 4.3 뷰의 렌더링 위치 지정과 내비게이션 작성
 
 ### 4.3.1 RouterOutlet
 
@@ -500,11 +500,11 @@ RouterOutlet 디렉티브를 사용하여 뷰의 렌더링 위치를 지정하�
 <router-outlet></router-outlet>
 ```
 
-RouterOutlet 디렉티브는 루트 컴포넌트 또는 기능 컴포넌트(feature component)에서 선언한다.
+위와 같이 RouterOutlet 디렉티브는 루트 컴포넌트 또는 기능 컴포넌트의 템플릿 내에 선언하며 선언된 위치에 해당 뷰를 표시한다.
 
 ### 4.3.2 RouterLink
 
-Angular 라우터를 사용하기 위해 컴포넌트의 템플릿에는 뷰를 전환하기 위한 a 태그의 href 어트리뷰트 대신 [RouterLink](https://angular.io/api/router/RouterLink) 디렉티브를 사용하여 URL 패스를 지정한다. a 태그의 href 어트리뷰트를 사용한다면 서버로 요청이 발생하기 때문이다.
+뷰의 전환을 위한 네비게이션을 작성할 때 많이 사용되는 것이 a 태그이다.  Angular 라우터를 사용하기 위해서는 컴포넌트의 템플릿에는 뷰를 전환하기 위한 a 태그의 href 어트리뷰트 대신 [RouterLink](https://angular.io/api/router/RouterLink) 디렉티브를 사용하여 URL 패스를 지정한다. a 태그의 href 어트리뷰트를 사용한다면 서버로 요청이 발생하기 때문이다.
 
 ```html
 <!-- app.component.ts -->
@@ -518,7 +518,9 @@ Angular 라우터를 사용하기 위해 컴포넌트의 템플릿에는 뷰를 
 
 RouterLink 디렉티브는 자신의 값을 라우터에 전달한다. 라우터는 이를 전달받아 해당 컴포넌트를 활성화하여 뷰를 출력한다.
 
-루트 컴포넌트에 RouterLink 디렉티브를 선언하여 보자.
+위 예제에서 nave 요소의 자식 요소인 `<a routerLink="/">Home</a>`을 클릭하면 RouterLink 디렉티브는 자신의 값 즉 "/"을 라우터에 전달한다. 이때 라우터는 전달된 값 "/"을 요청 URL의 패스로 인식하고 이에 해당하는 컴포넌트를 라우트 구성에서 검색하여 활성화한다. 그리고 이 컴포넌트의 뷰는 `<router-outlet></router-outlet>`에 표시된다.
+
+앞서 생성한 예제의 루트 컴포넌트에 RouterLink 디렉티브를 선언하여 보자.
 
 ```typescript
 // app.component.ts
@@ -556,7 +558,13 @@ import { Component } from '@angular/core';
 export class AppComponent {}
 ```
 
-RouterLink 디렉티브가 선언된 링크를 클릭하면 routerLink의 값이 라우터로 전달된다. 예를 들어 두번째 링크를 클릭하면 '/service'가 라우터로 전달되고 이에 해당하는 SeviceComponent를 활성화하여 RouterOutlet 영역에 뷰를 렌더링할 것이다.
+RouterLink 디렉티브가 선언된 링크를 클릭하면 routerLink의 값이 라우터로 전달된다.
+
+예를 들어 애플리케이션이 초기 기동하면 브라우저 주소창에는 localhost:4200이 지정되고 이 URL이 요청된다. 이때 요청 URL 패스는 빈 문자열 ''이고 라우터는 이 요청 URL 패스를 전달받아 활성화해야할 컴포넌트 HomeComponent를 라우터 구성에서 검색하고 활성화하여 RouterOutlet 영역에 뷰를 렌더링할 것이다. 두번째 링크를 클릭하면 '/service'가 라우터로 전달되고 이에 해당하는 SeviceComponent를 활성화하여 RouterOutlet 영역에 뷰를 렌더링할 것이다.
+
+위 예제를 실행 결과는 아래와 같다.
+
+![routing exam](/img/routing-exam.png)
 
 ### 4.3.3 RouterLinkActive
 

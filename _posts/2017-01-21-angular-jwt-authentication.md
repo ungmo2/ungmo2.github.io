@@ -88,10 +88,10 @@ server/
 PORT=5500
 
 # 패스워드 암호화 시크릿키
-SECRET_KEY=$?scretkey?$
+SECRET_KEY=<Your-secret-key>
 
 # JWT 시크릿키
-JWT_SECRET=$!jwt$scret!$
+JWT_SECRET=<Your-jwt-secret-key>
 
 # Database URI
 MONGO_URI=<Your-MongoDB-URI>

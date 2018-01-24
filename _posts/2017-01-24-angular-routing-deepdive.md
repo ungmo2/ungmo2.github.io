@@ -12,39 +12,158 @@ description: 화면 전환시에 라우트 파라미터(Route Parameter)를 사�
 
 ![angular Logo](/img/angular-logo.png)
 
-# 1. 라우터 상태(Router state) 전달
+# 1. 라우터 상태(Router state)의 전달과 접수
 
 ## 1.1 라우트 파라미터(Route Parameter) 전달
 
 화면 전환시에 라우트 파라미터(Route Parameter)를 사용하여 컴포넌트에 데이터를 전달하는 방법에 대해 살펴보도록 하자.
 
-RouterLink 디렉티브는 자신의 값을 라우터에 전달하고 라우터는 이를 전달받아 해당 컴포넌트를 활성화하여 뷰를 출력한다.
+RouterLink 디렉티브는 자신의 값 즉 URL 패스를 라우터에 전달하고 라우터는 이를 전달받아 라우트 구성에서 전달받은 값(URL 패스)에 해당하는 컴포넌트를 검색하고 활성화하여 뷰를 출력한다.
 
 ```html
 <a routerLink="/todo">...</a>
 ```
 
-이때 라우트 파라미터를 컴포넌트에 전달할 수 있다. 예를 들어 URL 패스가 'todo/:id'인 경우, URL 패스의 두번째 세그먼트 :id는 라우터 파라미터이며 컴포넌트에게 전달되는 값을 할당한다. 예를 들어 ‘/todos/10’과 같이 값을 할당하면 컴포넌트에게 id값으로 10이 전달된다.
+이때 라우트 파라미터를 컴포넌트에 전달할 수 있다. 예를 들어 URL 패스가 'todo/:id'인 경우, URL 패스의 두번째 세그먼트 :id는 라우터 파라미터이며 컴포넌트에게 전달하고자 하는 값을 할당한다. 만일 ‘/todos/10’과 같이 :id에 값 10을 할당하면 컴포넌트에게 id 값으로 10이 전달된다.
+
+```html
+<a routerLink="/todo/:id">...</a>
+```
+
+이때 라우트 구성이 아래와 같다면 TodoDetailComponent가 활성화 될 것이다.
 
 ```typescript
-// app.module.ts
 const routes: Routes = [
   { path: '', component: TodosComponent },
   { path: 'todo/:id', component: TodoDetailComponent }
 ];
 ```
 
-라우터 파라미터의 값은 RouterLink 디렉티브에 URL 패스의 세그먼트로 구성된 배열을 할당한다. 배열의 첫번째 요소는 URL 패스의 첫번째 세그먼트이며 두번째 요소가 URL 패스의 두번째 세그먼트인 라우터 파라미터의 값이다. 이 값은 컴포넌트로 전달된다.
+동적인 값을 사용하여 URL 패스를 생성하는 경우, RouterLink 디렉티브에 URL 패스의 세그먼트로 구성된 배열을 할당한다. 예를 들어 위 라우트 구성의 라우터 파라미터 :id의 값이 컴포넌트 클래스에서 동적으로 생성된는 경우, RouterLink 디렉티브는 아래와 같이 구성한다.
 
 ```html
-<a [routerLink]="['todo', todo.id]">...</a>
+<a [routerLink]="['todo', todoId]">...</a>
+```
+
+RouterLink 디렉티브에 할당된 배열의 첫번째 요소는 URL 패스의 첫번째 세그먼트이며 두번째 요소가 URL 패스의 두번째 세그먼트인 라우터 파라미터의 값이다. 예를 들어 컴포넌트 클래스 todoId의 값이 동적으로 생성되어 10이 되었다면 위 링크는 아래와 동일한 위미를 갖는다.
+
+```html
+<a routerLink="/todo/10">...</a>
 ```
 
 navigate 메소드를 사용할 경우, 아래와 같이 URL 패스의 세그먼트로 구성된 배열을 인수로 전달한다.
 
 ```typescript
-this.router.navigate(['todo', todo.id]);
+this.router.navigate(['todo', todoId]);
 ```
+
+라우트 파라미터 전달하는 예제를 작성해 보자.
+
+예제는 2개의 컴포넌트 TodosComponent, TodoDetailComponent로 구성되어 있다. TodosComponent는 모든 할일의 리스트의 링크를 표시한다. 할일을 클릭하면 해당 할일의 상세 페이지로 이동하는 간단한 예제이다.
+
+프로젝트를 생성하고 2개의 컴포넌트를 생성한다.
+
+```bash
+$ ng new route-parameter-exam -it -is -st --routing
+$ cd route-parameter-exam
+$ ng generate component todos
+$ ng generate component todos/todo-detail --flat
+```
+
+우선 루트 컴포넌트를 아래와 같이 수정한다.
+
+```typescript
+// app.component.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  template: '<router-outlet></router-outlet>'
+})
+export class AppComponent {}
+```
+
+`--routing` 옵션을 통해 생성된 AppRoutingModule에 라우트 구성을 추가하도록 하자.
+
+```typescript
+// app-routing.module.ts
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+// 컴포넌트 임포트
+import { TodosComponent } from './todos/todos.component';
+import { TodoDetailComponent } from './todos/todo-detail.component';
+
+// 라우트 구성
+const routes: Routes = [
+  { path: '', component: TodosComponent },
+  { path: 'todo/:id', component: TodoDetailComponent }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+```
+
+이제 프로젝트를 실행하고 프로젝트 루트(localhost:4200)으로 접근하면 루트 컴포넌트의 `<router-outlet></router-outlet>` 영역에 TodosComponent가 표시되고 localhost:4200/todo/1과 같이 접근하면 `<router-outlet></router-outlet>` 영역에 TodoDetailComponent이 표시될 것이다.
+
+TodosComponent를 수정하여 모든 할일의 리스트의 링크를 표시하도록 하자.
+
+```typescript
+// todos/todos.component.ts
+import { Component, OnInit } from '@angular/core';
+
+interface Todo {
+  id: number;
+  content: string;
+  completed: boolean;
+}
+
+@Component({
+  selector: 'app-todos',
+  template: `
+    <ul>
+      <li *ngFor="let todo of todos">
+        <a [routerLink]="['todo', todo.id]">{{ "{{ todo.content " }}}}</a>
+      </li>
+    </ul>
+  `
+})
+export class TodosComponent implements OnInit {
+  todos: Todo[];
+
+  ngOnInit() {
+    // 잠정 처리. 실제 환경에서는 서비스를 통해 서버로 부터 데이터를 취득할 것이다.
+    this.todos = [
+      { id: 3, content: 'HTML', completed: false },
+      { id: 2, content: 'CSS', completed: true },
+      { id: 1, content: 'Javascript', completed: false }
+    ];
+  }
+}
+```
+
+이 예제에서는 컴포넌트 클래스에서 todos 배열에 고정된 값을 할당하였다. 실제 환경에서는 서비스를 통해 서버로 부터 데이터를 동적으로 취득할 것이므로 todos 배열이 동적으로 생성된다고 가정하자. 이처럼 동적인 값을 사용하여 URL 패스를 생성하는 경우, RouterLink 디렉티브에 URL 패스의 세그먼트로 구성된 배열을 할당한다.
+
+```html
+<li *ngFor="let todo of todos">
+  <a [routerLink]="['todo', todo.id]">{{ "{{ todo.content " }}}}</a>
+</li>
+```
+
+프로젝트를 실행하면 루트 URL에 해당하는 할일 리스트릐 링크를 갖는 TodosComponent가 화면에 렌더링될 것이다.
+
+![](./img/route-params.png)
+{: .w-300}
+
+## 1.2 라우트 파라미터(Route Parameter) 접수
+
+라우트 파라미터를 전달하는 방법에 대해 살펴보았다.
+
+
+이제 전달한 라우트 파라미터를 접수하는 방법에 대해 알아보도록 하자.
 
 `<router-oulet>` 영역에 렌더링된 컴포넌트 다시 말해 활성화된 컴포넌트는 [ActivatedRoute](https://angular.io/api/router/ActivatedRoute) 객체를 통해 라우터 상태(Router state)에 접근할 수 있다. 즉 ActivatedRoute 객체는 다양한 라우터 상태를 가지며 이 중에서 라우트 파라미터를 추출할 수 있다. ActivatedRoute는 아래와 같은 프로퍼티를 제공한다.
 
@@ -119,7 +238,7 @@ ngOnInit() {
 
 <iframe src="https://stackblitz.com/edit/route-parameter-exam?embed=1&file=app/todos/todo-detail.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
-## 1.2 라우트 정적 데이터(Route static data) 전달
+## 1.3 라우트 정적 데이터(Route static data)
 
 Route 인터페이스의 data 프로퍼티는 컴포넌트로 전송할 라우트 정적 데이터로서 일반적으로 애플리케이션 운영에 필요한 데이터를 전달할 때 사용한다.
 

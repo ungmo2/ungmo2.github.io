@@ -42,7 +42,7 @@ const routes: Routes = [
 라우터 파라미터로 전달할 값은 대부분 변수 또는 객체의 프로퍼티에 담겨있는 동적인 값일 것이다. 이러한 경우, RouterLink 디렉티브에 URL 패스의 세그먼트로 구성된 배열을 할당한다. 예를 들어 위 라우트 구성의 라우터 파라미터 :id의 값이 컴포넌트 클래스에서 동적으로 생성되는 경우, RouterLink 디렉티브는 아래와 같이 구성한다.
 
 ```html
-<a [routerLink]="['todo', todoId]">...</a>
+<a [routerLink]="['/todo', todoId]">...</a>
 ```
 
 위 예제의 경우, RouterLink 디렉티브에 할당된 배열의 첫번째 요소는 URL 패스의 첫번째 세그먼트이며 두번째 요소가 URL 패스의 두번째 세그먼트인 라우터 파라미터의 값이다. 예를 들어 컴포넌트 클래스 todoId의 값이 10이라면 위 코드는 아래와 동일한 위미를 갖는다.
@@ -54,7 +54,7 @@ const routes: Routes = [
 navigate 메소드를 사용할 경우, 아래와 같이 URL 패스의 세그먼트로 구성된 배열을 인수로 전달한다.
 
 ```typescript
-this.router.navigate(['todo', todoId]);
+this.router.navigate(['/todo', todoId]);
 ```
 
 라우트 파라미터를 컴포넌트에 전달하는 예제를 작성해 보자.
@@ -126,7 +126,7 @@ interface Todo {
   template: `
     <ul>
       <li *ngFor="let todo of todos">
-        <a [routerLink]="['todo', todo.id]">{{ "{{ todo.content " }}}}</a>
+        <a [routerLink]="['/todo', todo.id]">{{ "{{ todo.content " }}}}</a>
       </li>
     </ul>
   `
@@ -149,7 +149,7 @@ export class TodosComponent implements OnInit {
 
 ```html
 <li *ngFor="let todo of todos">
-  <a [routerLink]="['todo', todo.id]">{{ "{{ todo.content " }}}}</a>
+  <a [routerLink]="['/todo', todo.id]">{{ "{{ todo.content " }}}}</a>
 </li>
 ```
 
@@ -367,7 +367,7 @@ export class TodoDetailComponent implements OnInit {
 자식 라우트
 {: .desc-img}
 
-위 그림의 경우, 루트 컴포넌트의 `<router-oultet>`에는 UserComponent 또는 CustomerComponent가 표시된다. 이때 UserComponent와 CustomerComponent는 자신의 `<router-oultet>`을 가지고 있으며 이 영역에는 자식 라우트 구성의 children 프로퍼티에 선언한 컴포넌트가 표시된다. 이와 같은 관계를 구성한 라우트는 아래와 같다.
+위 그림의 경우, 루트 컴포넌트의 `<router-oultet>`에는 UserComponent 또는 CustomerComponent가 표시된다. 이때 UserComponent와 CustomerComponent는 자신의 `<router-oultet>`을 가지고 있으며 이 영역에는 자식 라우트 구성을 위한 children 프로퍼티에 선언한 컴포넌트가 표시된다. 이와 같은 관계를 구성한 라우트는 아래와 같다.
 
 ```typescript
 const routes: Routes = [
@@ -408,38 +408,471 @@ const routes: Routes = [
 - CustomerComponent는 부모 컴포넌트 AppComponent의 `<router-oultet>` 영역에 표시한다.
 - CustomerDetailComponent는 부모 컴포넌트 CustomerComponent의 `<router-oultet>` 영역에 표시한다.
 
-<!-- const routes: Routes = [
+자식 라우트의 사용한 예제를 작성해보자. 앞서 설명한 자식 라우트를 포함한 라우트 구성을 그대로 사용할 것이다. 아래와 같이 프로젝트를 생성한다.
+
+```bash
+$ ng new children-routing -it -is -st
+$ cd children-routing
+```
+
+2개의 부모 컴포넌트와 부모 컴포넌트의 `<router-oultet>` 영역에 표시할 2개의 자식 컴포넌트를 생성한다.
+
+```bash
+# 부모 컴포넌트
+$ ng generate component user
+# 자식 컴포넌트
+$ ng generate component user/user-detail --flat
+# 부모 컴포넌트
+$ ng generate component customer
+# 자식 컴포넌트
+$ ng generate component customer/customer-detail --flat
+```
+
+루트 컴포넌트에 2개의 부모 컴포넌트(UserComponent, CustomerComponent)를 위한 내비게이션과 `<router-oultet>` 영역을 작성한다.
+
+```typescript
+// app.component.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <nav>
+      <a routerLink="/">User</a>
+      <a routerLink="/customer">Customer</a>
+    </nav>
+    <router-outlet></router-outlet>
+  `
+})
+export class AppComponent {}
+```
+
+루트 URL(localhost:4200)로 접근하면 UserComponent가 `<router-oultet>` 영역에 표시되고 URL 패스가 '/customer'인 요청이 오면 CustomerComponent가 `<router-oultet>` 영역에 표시될 것이다. 이를 위해 루트 모듈에 라우트 구성을 추가하자.
+
+```typescript
+// app.module.ts
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { Routes, RouterModule } from '@angular/router';
+
+import { AppComponent } from './app.component';
+import { UserComponent } from './user/user.component';
+import { UserDetailComponent } from './user/user-detail.component';
+import { CustomerComponent } from './customer/customer.component';
+import { CustomerDetailComponent } from './customer/customer-detail.component';
+
+// 라우트 구성
+const routes: Routes = [
+  { path: '', redirectTo: '/user',  pathMatch: 'full' },
   {
-    path: '',
+    path: 'user',
     component: UserComponent,
+    // 자식 라우트
     children: [
-      {
-        path: 'user',
-        component: UserComponent,
-        children: [
-          { path: ':id', component: UserDetailComponent }
-        ]
-      },
-      {
-        path: 'customer',
-        component: CustomerComponent,
-        children: [
-          { path: ':id', component: CustomerDetailComponent }
-        ]
-      }
+      { path: ':id', component: UserDetailComponent }
+    ]
+  },
+  {
+    path: 'customer',
+    component: CustomerComponent,
+    // 자식 라우트
+    children: [
+      { path: ':id', component: CustomerDetailComponent }
     ]
   }
-]; -->
+];
 
-<iframe src="https://stackblitz.com/edit/child-routing-1module?embed=1&file=app/app.module.ts" frameborder="0" width="100%" height="600"></iframe>
+@NgModule({
+  declarations: [
+    AppComponent,
+    UserComponent,
+    UserDetailComponent,
+    CustomerComponent,
+    CustomerDetailComponent
+  ],
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(routes)
+  ],
+  bootstrap: [ AppComponent ]
+})
+export class AppModule { }
+```
 
-# 3. 라우트 가드(Route Guard)
+지금 상태에서는 2개의 부모 컴포넌트(UserComponent, CustomerComponent)를 위한 내비게이션과 `<router-oultet>` 영역은 루트 컴포넌트에 존재하지만 자식 컴포넌트를 위한 내비게이션과 `<router-oultet>` 영역이 존재하지 않는다. 자식 컴포넌트를 위한 네비게이션과 `<router-oultet>` 영역을 각각의 부모 컴포넌트에 추가하도록 하자.
+
+먼저 UserComponent를 작성한다.
+
+```typescript
+// user/user.component.ts
+import { Component, OnInit } from '@angular/core';
+
+interface User {
+  id: number;
+  name: string;
+}
+
+@Component({
+  selector: 'app-user',
+  template: `
+    <p>User List</p>
+    <!-- 자식 컴포넌트를 위한 내비게이션 -->
+    <ul>
+      <li *ngFor="let user of users">
+        <a [routerLink]="['/user', user.id]"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="active">{{ "{{ user.name " }}}}</a>
+      </li>
+    </ul>
+    <!-- 자식 컴포넌트를 위한 영역 -->
+    <router-outlet></router-outlet>
+  `,
+  styles: [`
+    a:hover, a.active { color: red; }
+  `]
+})
+export class UserComponent implements OnInit {
+  users: User[];
+
+  ngOnInit() {
+    this.users = [
+      { id: 1, name: 'User-1' },
+      { id: 2, name: 'User-2' },
+    ];
+  }
+}
+```
+
+부모 컴포넌트에 자식 컴포넌트를 위한 네비게이션과 `<router-oultet>` 영역을 추가하였다. 자식 컴포넌트를 위한 `<router-oultet>` 영역에는 루트 모듈에서 지정한 라우트 구성의 children 프로퍼티의 설정에 따라 UserDetailComponent가 표시될 것이다.
+
+```typescript
+// app.module.ts
+...
+  {
+    path: 'user',
+    component: UserComponent,
+    // 자식 라우트
+    children: [
+      { path: ':id', component: UserDetailComponent }
+    ]
+  },
+...
+```
+
+자식 컴포넌트 UserDetailComponent는 부모 컴포넌트의 routerLink 디렉티브에 의해 설정된 라우트 파라미터가 전달된다. 자식 컴포넌트 UserDetailComponent는 부모 컴포넌트가 전달한 라우트 파라미터를 취득하여 이를 가지고 서버로부터 상세한 정보를 추가 획득할 수 있다.
+
+자식 컴포넌트 UserDetailComponent는 아래와 같다.
+
+```typescript
+// user/user-detail.component.ts
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+@Component({
+  selector: 'app-user-detail',
+  template: '<p>User Detail: ID {{ "{{ id " }}}}</p>'
+})
+export class UserDetailComponent implements OnInit {
+
+  id: number;
+
+  constructor(private route: ActivatedRoute) { }
+
+  ngOnInit() {
+    // 라우트 파라미터 취득
+    this.route.paramMap
+      .subscribe(params => this.id = +params.get('id'));
+  }
+}
+```
+
+CustomerComponent와 CustomerDetailComponent은 아래와 같다.
+
+```typescript
+// customer/customer.component.ts
+import { Component, OnInit } from '@angular/core';
+
+interface Customer {
+  id: number;
+  name: string;
+}
+
+@Component({
+  selector: 'app-customer',
+  template: `
+    <p>Customer List</p>
+    <!-- 자식 컴포넌트를 위한 내비게이션 -->
+    <ul>
+      <li *ngFor="let customer of customers">
+        <a [routerLink]="['/customer', customer.id]"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="active">{{ "{{ customer.name " }}}}</a>
+      </li>
+    </ul>
+    <!-- 자식 컴포넌트를 위한 영역 -->
+    <router-outlet></router-outlet>
+  `
+})
+export class CustomerComponent implements OnInit {
+
+  customers: Customer[];
+
+  ngOnInit() {
+    this.customers = [
+      { id: 1, name: 'Customer-1' },
+      { id: 2, name: 'Customer-2' },
+    ]
+  }
+}
+```
+
+```typescript
+// customer/customer-detail.component.ts
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+@Component({
+  selector: 'app-customer-detail',
+  template: '<p>Customer Detail: ID {{ "{{ id " }}}}</p>'
+})
+export class CustomerDetailComponent implements OnInit {
+
+  id: number;
+
+  constructor(private route: ActivatedRoute) { }
+
+  ngOnInit() {
+    // 라우트 파라미터 취득
+    this.route.paramMap
+      .subscribe(params => this.id = +params.get('id'));
+  }
+}
+```
+
+<iframe src="https://stackblitz.com/edit/children-routing?embed=1&file=app/app.module.ts" frameborder="0" width="100%" height="600"></iframe>
+
+# 3. 모듈의 분리와 모듈별 라우트 구성
+
+구성 요소를 모듈 단위로 구성하는 것과 동일하게 라우트를 모듈 단위로 구성할 수 있다.
+
+루트 모듈 또는 AppRoutingModule에서는 전체 라우트 정보를 담고 있는 라우트 구성을 RouterModule의 forRoot 메서드의 인자로 전달하였다.
+
+```typescript
+const routes: Routes = [ ... ];
+
+@NgModule({
+  ...
+  imports: [ RouterModule.forRoot(routes) ],
+  ...
+})
+```
+
+모듈 단위로 라우팅 구성을 분리하는 경우, RouterModule의 forChild 메서드의 인자로 라우트 구성을 등록한다.
+
+```typescript
+const routes: Routes = [ ... ];
+
+@NgModule({
+  ...
+  imports: [ RouterModule.forChild(routes) ],
+  ...
+})
+```
+
+앞서 살펴본 "자식 라우트"의 예제를 보면 프로젝트에는 루트 모듈만 존재한다. 기능별로 모듈을 분리하고 라우트 또한 분리한 모듈 단위로 작성해보자.
+
+기능 모듈을 생성하기 위해 아래의 명령어를 실행한다.
+
+```bash
+$ ng generate module user
+$ ng generate module customer
+```
+
+각 기능 모듈별로 라우트를 분리하기 위해 기능 모듈별로 라우트 모듈을 생성한다.
+
+```bash
+ng generate module user/user-routing --flat
+ng generate module customer/customer-routing --flat
+```
+
+앞서 생성한 기능 모듈 UserModule에 라우트 모듈 UserRoutingModule과 소속 컴포넌트를 등록한다.
+
+```typescript
+// user/user.module.ts
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { UserRoutingModule } from './user-routing.module';
+import { UserComponent } from './user.component';
+import { UserDetailComponent } from './user-detail.component';
+
+@NgModule({
+  imports: [
+    CommonModule,
+    /* 라우트 모듈의 등록 */
+    UserRoutingModule
+  ],
+  declarations: [
+    UserComponent,
+    UserDetailComponent
+  ]
+})
+export class UserModule { }
+```
+
+이제 기능 모듈 UserModule에 등록된 라우트 모듈 UserRoutingModule에 라우트를 구성한다. 해당 기능 모듈에 소속된 컴포넌트의 라우트 구성만을 추가하면 된다.
+
+```typescript
+// user/user-routing.module.ts
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+import { UserComponent } from './user.component';
+import { UserDetailComponent } from './user-detail.component';
+
+/* 기능 모듈 단위 라우팅 구성 */
+const routes: Routes = [{
+  path: 'user',
+  component: UserComponent,
+  children: [
+    { path: ':id', component: UserDetailComponent }
+  ]
+}];
+
+@NgModule({
+  /* 기능 모듈 단위 라우터 등록  */
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class UserRoutingModule { }
+```
+
+이와 같은 방법으로 기능 모듈 CustomerModule과 라우트 모듈 CustomerRoutingModule을 작성한다.
+
+```typescript
+// customer/customer.module.ts
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { CustomerRoutingModule } from './customer-routing.module';
+import { CustomerComponent } from './customer.component';
+import { CustomerDetailComponent } from './customer-detail.component';
+
+@NgModule({
+  imports: [
+    CommonModule,
+    /* 라우트 모듈의 등록 */
+    CustomerRoutingModule
+  ],
+  declarations: [
+    CustomerComponent,
+    CustomerDetailComponent
+  ]
+})
+export class CustomerModule { }
+```
+
+```typescript
+// customer/customer-routing.module.ts
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+import { CustomerComponent } from './customer.component';
+import { CustomerDetailComponent } from './customer-detail.component';
+
+/* 기능 모듈 단위 라우팅 구성 */
+const routes: Routes = [{
+  path: 'customer',
+  component: CustomerComponent,
+  children: [
+    { path: ':id', component: CustomerDetailComponent }
+  ]
+}];
+
+@NgModule({
+  /* 기능 모듈 단위 라우터 등록  */
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class CustomerRoutingModule { }
+```
+
+이제 루트 모듈 내부에 작성된 라우트 구성을 분리하기 위해 AppRoutingModule을 생성한다.
+
+```bash
+$ ng generate module app-routing --flat
+```
+
+루트 모듈에 작성되어 있던 라우트 구성을 생성된 AppRoutingModule로 분리한다.
+
+```typescript
+// app-routing.module.ts
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+import { UserModule } from './user/user.module';
+import { UserComponent } from './user/user.component';
+
+import { CustomerModule } from './customer/customer.module';
+import { CustomerComponent } from './customer/customer.component';
+
+// 라우트 구성
+const routes: Routes = [
+  { path: '', redirectTo: '/user',  pathMatch: 'full' },
+  { path: 'user', component: UserComponent },
+  { path: 'customer', component: CustomerComponent }
+];
+
+@NgModule({
+  imports: [
+    UserModule,
+    CustomerModule,
+    /* 라우터 등록 */
+    RouterModule.forRoot(routes)
+  ],
+  exports: [RouterModule]
+})
+export class AppRoutingModule {}
+```
+
+루트 모듈에서 라우트 구성을 제거하고 AppRoutingModule을 임포트한다.
+
+```typescript
+// app.module.ts
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
+
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [ AppComponent ],
+  imports: [
+    BrowserModule,
+    /* AppRoutingModule 등록 */
+    AppRoutingModule
+  ],
+  bootstrap: [ AppComponent ]
+})
+export class AppModule { }
+```
+
+<iframe src="https://stackblitz.com/edit/children-routing-seperate-module?embed=1&file=app/app.module.ts" frameborder="0" width="100%" height="600"></iframe>
+
+루트 모듈은 AppRoutingModule을 등록하고 AppRoutingModule은 기능 모듈 UserModule과 CustomerModule을 등록하였다. 이때 AppRoutingModule은 루트 모듈을 위한 라우트 구성을 포함하며 AppRoutingModule에 등록된 2개의 기능 모듈은 각각의 기능 모듈을 위한 라우트 구성을 포함하였다.
+
+![모듈의 분리](./img/sep-module.png)
+{: .w-400}
+모듈의 분리와 모듈별 라우트 구성
+{: .desc-img}
+
+# 4. 라우트 가드(Route Guard)
 
 라우트 가드는 라우터를 통한 접근을 제어하는 방법이다. 뷰로 들어갈 때 또는 빠져나갈 때 실행할 로직을 정의하기 위해 사용한다. 예를 들어 사용자 인증을 하지 않은 사용자의 접근을 제어하거나 다른 뷰로 이동하기 이전에 저장하지 않은 사용자 입력 정보가 있다면 사용자에게 알릴 수 있다.
 
 Angular는 가드를 위한 5개의 인터페이스를 제공한다.
 
-## 3.1 CanActivate
+## 4.1 CanActivate
 
 CanActivate 가드는 라우트를 활성화할 수 있는지 결정한다. 주로 뷰로의 접근 권한을 체크하고 접근을 제어할 때 사용한다.
 
@@ -482,7 +915,7 @@ export class AuthGuard implements CanActivate {
 ...
 ```
 
-## 3.2 CanActivateChild
+## 4.2 CanActivateChild
 
 CanActivateChild 가드는 자식 라우트를 활성화할 수 있는지 결정한다. 주로 뷰로의 접근 권한을 체크하고 접근을 제어할 때 사용한다.
 
@@ -527,7 +960,7 @@ export class AuthChildGuard implements CanActivateChild {
 
 <iframe src="https://stackblitz.com/edit/route-guard?embed=1&file=app/guard/auth.guard.ts" frameborder="0" width="100%" height="600"></iframe>
 
-## 3.3 CanLoad
+## 4.3 CanLoad
 
 CanLoad 가드는 모듈이 로드되기 이전에 최상위 라우트를 활성화할 수 있는지 결정한다.
 
@@ -535,47 +968,17 @@ CanLoad 가드는 모듈이 로드되기 이전에 최상위 라우트를 활성
 
 애플리케이션이 처음 실행될 때 모든 모듈을 미리 컴파일하지 않고 호출 시점에 컴파일 하는 지연 로딩(Lazy Loading)을 사용하는 경우, CanLoad 가드는 접근 권한이 없는 모듈을 컴파일 하지 않는다.
 
-## 3.4 Resolve
+## 4.4 Resolve
 
 Resolve 가드는 각 라우트의 뷰가 렌더링되기 이전에 뷰가 렌더링되기 위해 반드시 필요한 데이터를 로딩할 때 사용한다.
 
 [Resolve](https://angular.io/api/router/Resolve) 인터페이스를 구현하여 가드 클래스를 정의한다. 이때 Resolve.resolve 메소드는 true 또는 false가 아닌 뷰가 렌더링되기 위해 필요한 데이터를 반환한다.
 
-## 3.5 CanDeactivate
+## 4.5 CanDeactivate
 
 CanDeactivate 가드는 뷰에서 빠져나갈 때 즉 컴포넌트가 비활성화될 때 사용한다.
 
 [CanDeactivate](https://angular.io/api/router/CanDeactivate) 인터페이스를 구현하여 가드 클래스를 정의한다. 이때 CanDeactivate.canDeactivate 메소드는 true 또는 false를 반환한다.
-
-# 4. 모듈별 라우터
-
-구성 요소를 모듈 단위로 구성하는 것과 동일하게 모듈 단위로 라우트를 구성할 수 있다.
-
-루트 모듈 또는 AppRoutingModule에서는 전체 라우트 정보를 담고 있는 라우트 구성을 RouterModule의 forRoot 메서드의 인자로 전달하였다.
-
-```typescript
-const routes: Routes = [ ... ];
-
-@NgModule({
-  ...
-  imports: [ RouterModule.forRoot(routes) ],
-  ...
-})
-```
-
-모듈 단위로 라우팅 구성을 분리하는 경우, RouterModule의 forChild 메서드의 인자로 라우트 구성을 등록합니다.
-
-```typescript
-const routes: Routes = [ ... ];
-
-@NgModule({
-  ...
-  imports: [ RouterModule.forChild(routes) ],
-  ...
-})
-```
-
-<iframe src="https://stackblitz.com/edit/child-routing?embed=1&file=app/app.module.ts" frameborder="0" width="100%" height="600"></iframe>
 
 # Reference
 

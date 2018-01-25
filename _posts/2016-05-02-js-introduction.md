@@ -59,7 +59,7 @@ ECMAScript 3 : [ECMA-262 3rd edition](http://www.ecma-international.org/publicat
 : 가장 범용적으로 지원되는 버전이다.
 
 ECMAScript 5 : [ECMA-262 5th edition](http://www.ecma-international.org/publications/files/ECMA-ST-ARCH/ECMA-262%205th%20edition%20December%202009.pdf) (2009.12)
-: HTML5와 함께 출현한 표준안이다. JSON(JavaScript Object Notation)과 Strict Mode가 추가되었다. 인터넷 익스플로러 9이상이나 그 외 브라우저에서만 작동한다.
+: HTML5와 함께 출현한 표준안이다. JSON(JavaScript Object Notation)과 Strict Mode가 추가되었다. [IE 9 이상(85%)](http://kangax.github.io/compat-table/es5/)이나 그 외 브라우저에서만 작동한다.
 
 ECMAScript 6 : [ECMA-262 6th edition](http://www.ecma-international.org/ecma-262/6.0/ECMA-262.pdf.) (2015.06)
 : let, const 키워드, Arrow Function, class, Symbol 타입 등이 추가되었다.
@@ -69,7 +69,7 @@ ECMAScript 6 : [ECMA-262 6th edition](http://www.ecma-international.org/ecma-262
 
 # 3. Browsers Support
 
-2017년 1월, 대부분의 브라우저는 ES6를 지원하고 있지만 100%는 아니다. 그리고 Node.js의 경우 v4부터 지원을 시작하였다.
+2017년 1월, IE를 제외한 대부분의 모던 브라우저는 ES6를 지원하고 있지만 100%는 아니다. 그리고 Node.js의 경우 v4부터 지원을 시작하였다.
 
 ![kangax](/img/kangax.png)
 {: .w-650}

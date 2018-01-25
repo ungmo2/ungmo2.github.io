@@ -861,6 +861,8 @@ export class AppModule { }
 
 루트 모듈은 AppRoutingModule을 등록하고 AppRoutingModule은 기능 모듈 UserModule과 CustomerModule을 등록하였다. 이때 AppRoutingModule은 루트 모듈을 위한 라우트 구성을 포함하며 AppRoutingModule에 등록된 2개의 기능 모듈은 각각의 기능 모듈을 위한 라우트 구성을 포함하였다.
 
+이를 그림으로 표현하면 아래와 같다.
+
 ![모듈의 분리](./img/sep-module.png)
 {: .w-400}
 모듈의 분리와 모듈별 라우트 구성
@@ -903,6 +905,7 @@ export class AuthGuard implements CanActivate {
 위 가드는 모듈에 등록되어야 한다. 이제 라우트 구성에 canActivate 프로퍼티로 가드를 선언하여 접근을 제어한다.
 
 ```typescript
+// 라우트 구성
 ...
   {
     path: 'user',
@@ -946,6 +949,7 @@ export class AuthChildGuard implements CanActivateChild {
 위 가드는 모듈에 등록되어야 한다. 이제 라우트 구성에 canActivateChild 프로퍼티로 가드를 선언하여 접근을 제어한다.
 
 ```typescript
+// 라우트 구성
 ...
   {
     path: 'customer',

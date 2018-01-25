@@ -679,7 +679,7 @@ const routes: Routes = [ ... ];
 })
 ```
 
-앞서 살펴본 "자식 라우트"의 예제를 보면 프로젝트에는 루트 모듈만 존재한다. 기능별로 모듈을 분리하고 라우트 또한 분리한 모듈 단위로 작성해보자.
+앞서 살펴본 "자식 라우트"의 예제를 보면 프로젝트에는 루트 모듈만 존재한다. 기능별로 모듈을 분리하고 라우트 또한 모듈 단위로 분리하여 보자.
 
 기능 모듈을 생성하기 위해 아래의 명령어를 실행한다.
 
@@ -691,8 +691,8 @@ $ ng generate module customer
 각 기능 모듈별로 라우트를 분리하기 위해 기능 모듈별로 라우트 모듈을 생성한다.
 
 ```bash
-ng generate module user/user-routing --flat
-ng generate module customer/customer-routing --flat
+$ ng generate module user/user-routing --flat
+$ ng generate module customer/customer-routing --flat
 ```
 
 앞서 생성한 기능 모듈 UserModule에 라우트 모듈 UserRoutingModule과 소속 컴포넌트를 등록한다.

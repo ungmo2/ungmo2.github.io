@@ -386,7 +386,7 @@ export class AppComponent {
     public greetingService: GreetingService,
     public anotherGreetingService: AnotherGreetingService) {
     // 모듈의 프로바이더에 등록한 AnotherGreetingService의 인스턴스가 컴포넌트 레벨로 새롭게 생성되지 않았다.
-    console.log(greetingService ===  anotherGreetingService); // true
+    console.log(greetingService === anotherGreetingService); // true
   }
 
   sayHi() {

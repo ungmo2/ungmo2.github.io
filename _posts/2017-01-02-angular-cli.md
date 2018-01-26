@@ -54,7 +54,7 @@ $ npm install -g @angular/cli
 Angular CLI 1.0.0 이전 버전의 경우 패키지명이 `angular-cli`이었으나 Angular CLI 1.0.0부터 `@angular/cli`으로 변경되었다.
 {: .info}
 
-만일 Angular CLI 1.5.0 이전 버전이 설치되어 있다면 다음과 같이 업데이트를 실행한다.
+최신 버전의 Angular CLI로 업데이트려면 다음과 같이 구 버전을 삭제하고 최신 버전을 설치한다.
 
 ```bash
 # Angular CLI 1.0.0 이후 버전을 삭제하는 경우

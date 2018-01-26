@@ -101,8 +101,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [ RouterModule.forRoot(routes) ],
+  exports: [ RouterModule ]
 })
 export class AppRoutingModule { }
 ```
@@ -305,8 +305,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [ RouterModule.forRoot(routes) ],
+  exports: [ RouterModule ]
 })
 export class AppRoutingModule { }
 ```
@@ -400,12 +400,12 @@ const routes: Routes = [
 
 라우트 구성 ②의 의미는 아래와 같다.
 
-- UserComponent는 부모 컴포넌트 AppComponent의 `<router-oultet>` 영역에 표시한다.
+- UserComponent는 루트 컴포넌트 AppComponent의 `<router-oultet>` 영역에 표시한다.
 - UserDetailComponent는 부모 컴포넌트 UserComponent의 `<router-oultet>` 영역에 표시한다.
 
 라우트 구성 ③의 의미는 아래와 같다.
 
-- CustomerComponent는 부모 컴포넌트 AppComponent의 `<router-oultet>` 영역에 표시한다.
+- CustomerComponent는 루트 컴포넌트 AppComponent의 `<router-oultet>` 영역에 표시한다.
 - CustomerDetailComponent는 부모 컴포넌트 CustomerComponent의 `<router-oultet>` 영역에 표시한다.
 
 자식 라우트의 사용한 예제를 작성해보자. 앞서 설명한 자식 라우트를 포함한 라우트 구성을 그대로 사용할 것이다. 아래와 같이 프로젝트를 생성한다.
@@ -667,7 +667,7 @@ const routes: Routes = [ ... ];
 })
 ```
 
-모듈 단위로 라우팅 구성을 분리하는 경우, RouterModule의 forChild 메서드의 인자로 라우트 구성을 등록한다.
+모듈 단위로 라우팅 구성을 분리하는 경우, 분리한 모듈에 RouterModule의 forChild 메서드의 인자로 라우트 구성을 등록한다.
 
 ```typescript
 const routes: Routes = [ ... ];
@@ -741,8 +741,8 @@ const routes: Routes = [{
 
 @NgModule({
   /* 기능 모듈 단위 라우터 등록  */
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  imports: [ RouterModule.forChild(routes) ],
+  exports: [ RouterModule ]
 })
 export class UserRoutingModule { }
 ```
@@ -791,8 +791,8 @@ const routes: Routes = [{
 
 @NgModule({
   /* 기능 모듈 단위 라우터 등록  */
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  imports: [ RouterModule.forChild(routes) ],
+  exports: [ RouterModule ]
 })
 export class CustomerRoutingModule { }
 ```
@@ -803,7 +803,7 @@ export class CustomerRoutingModule { }
 $ ng generate module app-routing --flat
 ```
 
-루트 모듈에 작성되어 있던 라우트 구성을 생성된 AppRoutingModule로 분리한다.
+루트 모듈에 작성되어 있던 라우트 구성을 생성된 AppRoutingModule로 분리한다. 이때 분리된 모듈의 라우트 구성은 제외한다.
 
 ```typescript
 // app-routing.module.ts
@@ -818,9 +818,7 @@ import { CustomerComponent } from './customer/customer.component';
 
 // 라우트 구성
 const routes: Routes = [
-  { path: '', redirectTo: '/user',  pathMatch: 'full' },
-  { path: 'user', component: UserComponent },
-  { path: 'customer', component: CustomerComponent }
+  { path: '', redirectTo: '/user',  pathMatch: 'full' }
 ];
 
 @NgModule({
@@ -830,7 +828,7 @@ const routes: Routes = [
     /* 라우터 등록 */
     RouterModule.forRoot(routes)
   ],
-  exports: [RouterModule]
+  exports: [ RouterModule ]
 })
 export class AppRoutingModule {}
 ```
@@ -870,9 +868,36 @@ export class AppModule { }
 
 # 4. 라우트 가드(Route Guard)
 
-라우트 가드는 라우터를 통한 접근을 제어하는 방법이다. 뷰로 들어갈 때 또는 빠져나갈 때 실행할 로직을 정의하기 위해 사용한다. 예를 들어 사용자 인증을 하지 않은 사용자의 접근을 제어하거나 다른 뷰로 이동하기 이전에 저장하지 않은 사용자 입력 정보가 있다면 사용자에게 알릴 수 있다.
+라우트 가드는 라우터를 통해 컴포넌트나 모듈을 활성화시킬 때 또는 컴포넌트에서 빠져나갈 때 권한 등을 체크하여 접근을 제어하는 방법이다. 예를 들어 사용자 인증을 하지 않은 사용자의 접근을 제어하거나 다른 뷰로 이동하기 이전에 저장하지 않은 사용자 입력 정보가 있다면 사용자에게 알릴 수 있다.
 
 Angular는 가드를 위한 5개의 인터페이스를 제공한다.
+
+<!-- | 가드              | 설명
+|:-----------------|:--------------------------------------
+| [CanActivate](https://angular.io/api/router/CanActivate)      | 컴포넌트를 활성화할 수 있는지 결정한다. 주로 뷰로의 접근 권한을 체크하고 접근을 제어할 때 사용한다.
+| [CanActivateChild](https://angular.io/api/router/CanActivateChild) |
+| [CanLoad](https://angular.io/api/router/CanLoad)          |
+| Resolve          |
+| CanDeactivate    |
+
+
+위 가드는 모듈에 등록되어야 한다. 이제 라우트 구성에 canActivate 프로퍼티로 가드를 선언하여 접근을 제어한다.
+
+```typescript
+// 라우트 구성
+...
+  {
+    path: 'user',
+    component: UserComponent,
+    canActivate: [ AuthGuard ], /* 가드에 의한 접근 제한 */
+    children: [
+      { path: ':id', component: UserDetailComponent }
+    ]
+  },
+...
+```
+ -->
+
 
 ## 4.1 CanActivate
 
@@ -883,26 +908,28 @@ CanActivate 가드는 라우트를 활성화할 수 있는지 결정한다. 주�
 ```typescript
 // auth.guard.ts
 import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
+import { Router, CanActivate } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  checkAuth(): boolean {
-    // 잠정 처리: 인증된 사용자인지 체크
-    const isAuth = Math.random() < 0.5;
-    isAuth ? alert('인증된 사용자') : alert('인증되지 않은 사용자')
-    return isAuth;
-  }
+  constructor(private router: Router, private auth: AuthService) { }
 
+  // 접근 권한 체크 로직을 수행하고 true 또는 false를 반환한다.
   canActivate() {
-    // 접근 권한 체크 로직을 수행하고 true 또는 false를 반환한다.
-    return this.checkAuth();
+    // 토큰 유효성 확인
+    if (!this.auth.isAuthenticated()) {
+      // 토큰이 유효하지 않으면 로그인 페이지로 강제 이동
+      this.router.navigate(['signin']);
+      return false;
+    }
+    return true;
   }
 }
 ```
 
-위 가드는 모듈에 등록되어야 한다. 이제 라우트 구성에 canActivate 프로퍼티로 가드를 선언하여 접근을 제어한다.
+가드는 모듈에 등록되어야 한다. 가드를 모듈에 등록하는 방법은 아래와 같다.
 
 ```typescript
 // 라우트 구성
@@ -910,21 +937,20 @@ export class AuthGuard implements CanActivate {
   {
     path: 'user',
     component: UserComponent,
-    canActivate: [AuthGuard], /* 가드에 의한 접근 제한 */
-    children: [
-      { path: ':id', component: UserDetailComponent }
-    ]
+    canActivate: [ AuthGuard ] /* 가드에 의한 접근 제한 */
   },
 ...
 ```
 
+라우트 구성에 canActivate 프로퍼티로 가드를 선언한다. 이때 UserComponent를 활성화하기에 앞서 가드가 실행되고 가드의 실행 결과에 따라 컴포넌트에의 접근을 제어한다. 즉 AuthGuard.canActivate 메소드의 실행 결과가 true일 경우에만 UserComponent를 활성화한다.
+
 ## 4.2 CanActivateChild
 
-CanActivateChild 가드는 자식 라우트를 활성화할 수 있는지 결정한다. 주로 뷰로의 접근 권한을 체크하고 접근을 제어할 때 사용한다.
+CanActivateChild 가드는 자식 라우트를 활성화할 수 있는지 결정한다. 주로 자식 컴포넌트로의 접근 권한을 체크하고 접근을 제어할 때 사용한다.
 
 [CanActivateChild](https://angular.io/api/router/CanActivateChild) 인터페이스를 구현하여 가드 클래스를 정의한다. 이때 CanActivateChild.canActivateChild 메소드는 접근 권한 체크 로직을 수행하고 true 또는 false를 반환한다.
 
-```typescript
+<!-- ```typescript
 // auth.guard.ts
 import { Injectable } from '@angular/core';
 import { CanActivateChild } from '@angular/router';
@@ -944,9 +970,33 @@ export class AuthChildGuard implements CanActivateChild {
     return this.checkAuth();
   }
 }
+```-->
+
+```typescript
+// auth.guard.ts
+import { Injectable } from '@angular/core';
+import { Router, CanActivateChild } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+
+@Injectable()
+export class AuthChildGuard implements CanActivateChild {
+
+  constructor(private router: Router, private auth: AuthService) { }
+
+  // 접근 권한 체크 로직을 수행하고 true 또는 false를 반환한다.
+  canActivateChild() {
+    // 토큰 유효성 확인
+    if (!this.auth.isAuthenticated()) {
+      // 토큰이 유효하지 않으면 로그인 페이지로 강제 이동
+      this.router.navigate(['signin']);
+      return false;
+    }
+    return true;
+  }
+}
 ```
 
-위 가드는 모듈에 등록되어야 한다. 이제 라우트 구성에 canActivateChild 프로퍼티로 가드를 선언하여 접근을 제어한다.
+가드는 모듈에 등록되어야 한다. 가드를 모듈에 등록하는 방법은 아래와 같다.
 
 ```typescript
 // 라우트 구성
@@ -954,7 +1004,7 @@ export class AuthChildGuard implements CanActivateChild {
   {
     path: 'customer',
     component: CustomerComponent,
-    canActivateChild: [AuthChildGuard], /* 가드에 의한 접근 제한 */
+    canActivateChild: [ AuthChildGuard ], /* 가드에 의한 접근 제한 */
     children: [
       { path: ':id', component: CustomerDetailComponent }
     ]
@@ -962,15 +1012,15 @@ export class AuthChildGuard implements CanActivateChild {
 ...
 ```
 
+라우트 구성에 canActivateChild 프로퍼티로 가드를 선언한다. 이때 자식 컴포넌트 CustomerDetailComponent를 활성화하기에 앞서 가드가 실행되고 가드의 실행 결과에 따라 자식 컴포넌트에의 접근을 제어한다. 즉 AuthChildGuard.canActivateChild 메소드의 실행 결과가 true일 경우에만 CustomerDetailComponent를 활성화한다.
+
 <iframe src="https://stackblitz.com/edit/route-guard?embed=1&file=app/guard/auth.guard.ts" frameborder="0" width="100%" height="600"></iframe>
 
 ## 4.3 CanLoad
 
-CanLoad 가드는 모듈이 로드되기 이전에 최상위 라우트를 활성화할 수 있는지 결정한다.
+CanLoad 가드는 모듈이 로드되기 이전에 모듈을 활성화할 수 있는지 결정한다. 애플리케이션이 처음 실행될 때 모든 모듈을 미리 컴파일하지 않고 호출 시점에 컴파일 하는 지연 로딩(Lazy Loading)을 사용하는 경우, CanLoad 가드는 접근 권한이 없는 모듈을 컴파일하지 않는다.
 
 [CanLoad](https://angular.io/api/router/CanLoad) 인터페이스를 구현하여 가드 클래스를 정의한다. 이때 CanLoad.canLoad 메소드는 접근 권한 체크 로직을 수행하고 true 또는 false를 반환한다.
-
-애플리케이션이 처음 실행될 때 모든 모듈을 미리 컴파일하지 않고 호출 시점에 컴파일 하는 지연 로딩(Lazy Loading)을 사용하는 경우, CanLoad 가드는 접근 권한이 없는 모듈을 컴파일 하지 않는다.
 
 ## 4.4 Resolve
 

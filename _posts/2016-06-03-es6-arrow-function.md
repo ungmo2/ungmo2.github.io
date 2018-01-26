@@ -208,7 +208,7 @@ obj.sayHi(); // Hi undefined
 
 위 예제의 경우, 해당 메소드를 소유한 객체 즉 해당 메소드를 호출한 객체에 this를 바인딩하지 않고 전역 객체에 바인딩된다. 따라서 Arrow Function으로 메소드를 정의하는 것은 바람직하지 않다.
 
-ES6의 축약 메소드 표현 방식으로 위 예제를 수정하여 보자. [ES6의 축약 메소드 표현](./es6-enhanced-object-property#3-메소드-축약-표현)은 메소드명에 할당된 함수를 위한 단축 표기법이다.
+이와 같은 경우는 메소드를 위한 단축 표기법인 [ES6의 축약 메소드 표현](./es6-enhanced-object-property#3-메소드-축약-표현)을 사용하는 것이 좋다.
 
 ```javascript
 // Good

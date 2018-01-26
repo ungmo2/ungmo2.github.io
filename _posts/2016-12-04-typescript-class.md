@@ -234,7 +234,7 @@ abstract class Animal {
   abstract makeSound(): void;
   // 일반 메소드
   move(): void {
-    console.log("roaming the earth...");
+    console.log('roaming the earth...');
   }
 }
 

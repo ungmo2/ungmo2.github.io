@@ -141,8 +141,7 @@ function warnUser(): void {
 
 // never : 결코 발생하지 않는 값
 function infiniteLoop(): never {
-  while (true) {
-  }
+  while (true) {}
 }
 
 function error(message: string): never {

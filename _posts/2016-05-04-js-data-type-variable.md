@@ -86,7 +86,7 @@ Javascript의 자료형은 크게 기본 자료형(primitive data type)과 객�
 
 ## 1.1 기본자료형 (Primitive Data Type)
 
-기본자료형의 값은 [변경 불가능한 값(immutable value)](./js-immutability)이다. 또한 이들은 **[pass-by-value](./js-object#5-pass-by-value)** 이다.
+기본자료형의 값은 [변경 불가능한 값(immutable value)](./js-immutability)이며 **[pass-by-value(값으로 접근)](./js-object#5-pass-by-value)** 이다. 또한 이들 값은 메모리의 스택 영역(Stack Segment)에 고정된 메모리 영역을 점유하고 저장된다.
 
 ### 1.1.1 Boolean
 
@@ -236,7 +236,7 @@ console.log(obj[key]); // value
 
 [객체](./js-object)는 데이터와 그 데이터에 관련되는 동작(절차,방법,기능)을 모두 포함할 수 있는 개념적 존재이다. 달리 말해, 이름과 값을 가지는 데이터를 의미하는 프로퍼티(property)와 동작을 의미하는 메소드(method)를 포함할 수 있는 독립적 주체이다.
 
-자바스크립트는 객체(object)기반의 스크립트 언어로서 자바스크립트를 이루고 있는 거의 "모든 것"이 객체이다. 기본자료형(Primitives)을 제외한 나머지 값들(배열, 함수, 정규표현식 등)은 모두 객체이다. 또한 객체는 <strong>pass-by-reference</strong>이다.
+자바스크립트는 객체(object)기반의 스크립트 언어로서 자바스크립트를 이루고 있는 거의 "모든 것"이 객체이다. 기본자료형(Primitives)을 제외한 나머지 값들(배열, 함수, 정규표현식 등)은 모두 객체이다. 또한 객체는 <strong>[pass-by-reference(참조로 접근)](./js-object#4-pass-by-reference)</strong>이며 메모리의 힙 영역(Heap Segment)에 저장된다.
 
 # 2. 변수 (Variable)
 

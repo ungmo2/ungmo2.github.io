@@ -164,6 +164,8 @@ console.log(bar);        // NaN
 console.log(typeof bar); // number
 ```
 
+수학적 의미의 실수(實數, real number)는 허수(虛數, imaginary number)가 아닌 유리수와 무리수를 통틀은 말이지만 프로그래밍 언어에서 실수는 일반적으로 소수를 가리킨다.
+
 ### 1.1.5 String
 
 String(문자열) 타입은 텍스트 데이터를 나타내는데 사용한다. 이는 0개 또는 그 이상의 유니코드(16비트 부호없는 정수 값) 문자들의 집합이다. 문자열은 작은 따옴표('') 또는 큰 따옴표("") 안에 텍스트를 넣어 생성한다.
@@ -355,7 +357,7 @@ var 키워드를 사용하여 선언한 변수는 중복 선언이 가능하기 
 
 이것은 다른 C-family 언어와는 차별되는 자바스크립트의 특징으로 <strong>모든 선언문은 호이스팅(Hoisting)되기 때문</strong>이다.
 
-호이스팅이란 var 선언문이나 function 선언문을 해당 [Scope](./js-scope)의 선두로 옮기는 것을 말한다. 즉 자바스크립트는 코드를 실행하기 전에 var 선언문과 function 선언문을 해당 스코프의 맨위로 옮긴다.
+호이스팅이란 var 선언문이나 function 선언문 등 모든 선언문을 해당 [Scope](./js-scope)의 선두로 옮겨진 것처럼 동작하는 특성을 말한다. 즉 자바스크립트는 var 선언문과 function 선언문 등 모든 선언문(var, let, const, function, [function*](./es6-generateor), class)이 선언되기 이전에 참조 가능하다.
 
 변수가 어떻게 생성되며 호이스팅은 어떻게 이루어지는지 좀더 자세히 살펴보자. 변수는 3단계에 걸쳐 생성된다. 자세한 내용은 [Execution Context](./js-execution-context)을 참조하기 바란다.
 

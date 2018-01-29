@@ -83,7 +83,7 @@ let bar = 456;  // Uncaught SyntaxError: Identifier 'bar' has already been decla
 
 ## 1.3 호이스팅(Hoisting)
 
-자바스크립트는 ES6에서 도입된 let, const를 포함하여 모든 선언(var, let, const, function, [function*](./es6-generateor), class)을 호이스팅(Hoisting)한다. 호이스팅이란 var 선언문이나 function 선언문 등을 해당 스코프의 선두로 옮기는 것을 말한다.
+자바스크립트는 ES6에서 도입된 let, const를 포함하여 모든 선언(var, let, const, function, [function*](./es6-generateor), class)을 호이스팅(Hoisting)한다. 호이스팅이란 var 선언문이나 function 선언문 등을 해당 스코프의 선두로 옮겨진 것처럼 동작하는 특성을 말한다.
 
 하지만 var 키워드로 선언된 변수와는 달리 let 키워드로 선언된 변수를 선언문 이전에 참조하면 ReferenceError가 발생한다. 이는 let 키워드로 선언된 변수는 스코프의 시작에서 변수의 선언까지 <strong>일시적 사각지대(Temporal Dead Zone; TDZ)</strong>에 빠지기 때문이다.
 

@@ -163,7 +163,7 @@ console.log(merge2); // { a: 1, b: 2, c: 3 }
 console.log(o4);     // { a: 1 }
 ```
 
-Object.assign을 사용하여 기존 객체를 변경하지 않고 객체를 복사하여 사용할 수 있다.
+Object.assign을 사용하여 기존 객체를 변경하지 않고 객체를 복사(Shallow copy)하여 사용할 수 있다.
 
 ```javascript
 const user1 = {
@@ -173,6 +173,7 @@ const user1 = {
   }
 };
 
+// Shallow copy
 const user2 = Object.assign({}, user1); // user1을 {}에 Copy
 
 user2.name = 'Kim';
@@ -201,6 +202,7 @@ const user1 = {
   }
 };
 
+// Shallow copy
 const user2 = Object.assign({}, user1, {name: 'Kim'});
 
 console.log(user1.name); // Lee
@@ -302,3 +304,7 @@ map2.get('b') // 50
 ```
 
 map1.set('b', 50)의 실행에도 불구하고 map1은 불변하였다. map1.set()은 결과를 반영한 새로운 객체를 반환한다.
+
+# Reference
+
+* [Deep-copying in JavaScript](https://dassur.ma/things/deep-copy/)

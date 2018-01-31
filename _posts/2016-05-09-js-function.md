@@ -492,11 +492,20 @@ square() 함수 역시 객체이므로 [[Prototype]] 프로퍼티(\_\_proto\_\_ 
 
 함수의 프로토타입 객체는 `Function.prototype`이며 이것 역시 함수이다.
 
+```javascript
+function square(number) {
+  return number * number;
+}
+
+console.log(square.__proto__ === Function.prototype);
+console.log(Object.getPrototypeOf(square) === Function.prototype);
+```
+
 ## 6.6 prototype 프로퍼티
 
 함수 객체만이 가지고 있는 프로퍼티로 자바스크립트 객체지향의 근간이다.
 
-**모든 함수 객체는 prototype 프로퍼티를 갖는다. 주의해야 할 것은 prototype 프로퍼티는 프로토타입 객체를 가리키는 [[Prototype]] 프로퍼티(\_\_proto\_\_ 프로퍼티)와는 다르다는 것이다.**
+**주의해야 할 것은 함수 객체만이 가지고 있는 prototype 프로퍼티는 프로토타입 객체를 가리키는 [[Prototype]] 프로퍼티(\_\_proto\_\_ 프로퍼티)와는 다르다는 것이다.**
 
 prototype 프로퍼티와 [[Prototype]] 프로퍼티는 모두 프로토타입 객체를 가리키지만 관점의 차이가 있다.
 

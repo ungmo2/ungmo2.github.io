@@ -357,7 +357,7 @@ var 키워드를 사용하여 선언한 변수는 중복 선언이 가능하기 
 
 이것은 다른 C-family 언어와는 차별되는 자바스크립트의 특징으로 <strong>모든 선언문은 호이스팅(Hoisting)되기 때문</strong>이다.
 
-호이스팅이란 var 선언문이나 function 선언문 등 모든 선언문을 해당 [Scope](./js-scope)의 선두로 옮겨진 것처럼 동작하는 특성을 말한다. 즉 자바스크립트는 var 선언문과 function 선언문 등 모든 선언문(var, let, const, function, [function*](./es6-generateor), class)이 선언되기 이전에 참조 가능하다.
+호이스팅이란 var 선언문이나 function 선언문 등 모든 선언문이 해당 [Scope](./js-scope)의 선두로 옮겨진 것처럼 동작하는 특성을 말한다. 즉 자바스크립트는 모든 선언문(var, let, const, function, [function*](./es6-generateor), class)이 선언되기 이전에 참조 가능하다.
 
 변수가 어떻게 생성되며 호이스팅은 어떻게 이루어지는지 좀더 자세히 살펴보자. 변수는 3단계에 걸쳐 생성된다. 자세한 내용은 [Execution Context](./js-execution-context)을 참조하기 바란다.
 

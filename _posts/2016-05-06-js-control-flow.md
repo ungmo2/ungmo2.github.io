@@ -477,9 +477,9 @@ console.log(NaN == NaN);
 
 ## 4.6 Checking existence
 
-객체나 배열(배열도 객체이다)이 `undefined`, `null`이 아니면 truthy value로 취급된다. 이를 이용하여 존재 여부를 확인할 수 있다.
+객체나 배열(배열도 객체이다)이 `undefined`, `null`이 아니면 truthy value로 취급된다. 이를 이용하여 존재 여부를 확인할 수 있다. 아래의 예제를 살펴보자.
 
-아래의 예제를 살펴보자.
+[getElementById](https://developer.mozilla.org/ko/docs/Web/API/Document/getElementById)를 통해 DOM에서 특정 요소를 취득하는 경우, DOM 상에 해당 요소가 존재할 수도 있지만 존재하지 않을 가능성도 있다. 만약 취득하고자하는 요소가 존재하여 해당 요소 취득에 성공하였다면 변수 elem의 값은 HTMLElement를 상속받은 객체의 인스턴스이다. 취득하고자하는 요소가 존재하지 않아서 요소 취득에 실패하였다면 변수 elem의 값은 null이다. 이때 객체의 인스턴스는 true로 평가되며 null은 false로 평가된다.
 
 ```javascript
 // DOM에서 특정 요소를 취득
@@ -491,8 +491,6 @@ if (elem) {
   // 요소가 존재하지 않음(요소 취득 실패) : 에러 처리
 }
 ```
-
-[getElementById](https://developer.mozilla.org/ko/docs/Web/API/Document/getElementById)를 통해 DOM에서 특정 요소를 취득하는 경우, DOM 상에 해당 요소가 존재할 수도 있지만 존재하지 않을 가능성도 있다. 만약 취득하고자하는 요소가 존재하여 해당 요소 취득에 성공하였다면 변수 elem의 값은 HTMLElement를 상속받은 객체의 인스턴스이다. 취득하고자하는 요소가 존재하지 않아서 요소 취득에 실패하였다면 변수 elem의 값은 null이다. 이때 객체의 인스턴스는 true로 평가되며 null은 false로 평가된다.
 
 아래 예는 위의 예와는 다른 의미이다. 객체의 존재는 truthy value로 취급지만 boolean 값 true와 같지는 않다.
 

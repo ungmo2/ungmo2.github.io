@@ -296,18 +296,20 @@ for (var i = 0; i < 5; i++) {
 
 흐름제어를 위해서는 조건식을 평가하여 논리적 참, 거짓을 구별한 후 평가 결과에 따라 의사결정을 하는 것이 일반적이다.
 
-조건식(conditional expression)은 표현식(expression)의 일종이다. 따라서 피연산자와 이항연산자로 구성된 일반적 표현식뿐만 아니라 문자열이나 숫자와 같은 리터럴 값, 변수, 내장값들(true, false, null, undefined, Nan, Infinity...)등 또한 조건식으로 사용될 수 있다.
+조건식(conditional expression)은 표현식(expression)의 일종이다. 따라서 피연산자와 연산자로 구성된 일반적 표현식뿐만 아니라 문자열이나 숫자와 같은 리터럴 값, 변수, 내장값들(true, false, null, undefined, Nan, Infinity...)등 또한 조건식으로 사용될 수 있다.
+
+이때 자바스크립트는 암묵적 강제 형 변환을 통해 조건식을 평가한다.
 
 ```javascript
-if (1) {
+if (true) {
   console.log('1');
 }
 
-if ('str') {
+if (1) {
   console.log('2');
 }
 
-if (true) {
+if ('str') {
   console.log('3');
 }
 
@@ -326,11 +328,9 @@ if (!x) {
 }
 ```
 
-이때 자바스크립트는 암묵적 강제 형 변환을 통해 조건식을 평가한다.
-
 ## 4.1 암묵적 강제 형 변환 (Type coercion)
 
-Javascript는 context(문맥)을 고려하여 내부적으로 자료형을 암묵적으로 강제 변환하여 작업을 완료할 수 있다. 이는 의도하지 않은 값을 만들어낼 수 있어 주의가 필요하다.
+자바스크립트는 context(문맥)을 고려하여 자료형을 암묵적으로 강제 변환하여 작업을 완료할 수 있다. 이는 의도하지 않은 값을 만들어낼 수 있어 주의가 필요하다.
 
 ```javascript
 console.log('1' > 0);            // true
@@ -340,6 +340,19 @@ console.log('10' == 10);         // true
 console.log('10' === 10);        // false
 console.log(undefined == null);  // true
 console.log(undefined === null); // false
+```
+
+위 예제와 같이 암묵적 강제 형 변환이 일어나도록 코딩하는 것은 가독성이 좋지 않고 의도하지 않은 오류를 만들 가능성이 있으므로 바람직하지 않다.
+
+```javascript
+var num = 2;
+var str = '1';
+
+// Bad
+console.log(num - str);
+
+// Good
+console.log(num - parseInt(str));
 ```
 
 ## 4.2 Type Conversion Table
@@ -356,12 +369,12 @@ console.log(undefined === null); // false
 | Infinity	   | Infinity	          | 'Infinity'	       | true
 | -Infinity	   | -Infinity	        | '-Infinity'	       | true
 | ''	         | <b style='color:red'>0</b>| ''	         | <b style='color:red'>false</b>
-| '20'	       | 20	                | '20'	             | true
-| 'twenty'	   | NaN	              | 'twenty'	         | true
+| '10'	       | 10	                | '10'	             | true
+| 'ten'	       | NaN	              | 'ten'	             | true
 | [ ]	         | <b style='color:red'>0</b>| ''	         | true
-| [20]	       | <b style='color:red'>20</b>| '20'	     | true
-| [10,20]	     | NaN	              | '10,20'	           | true
-| ['twenty']	 | NaN	              | 'twenty'	         | true
+| [10]	       | <b style='color:red'>10</b>| '10'	     | true
+| [10, 20]	   | NaN	              | '10,20'	           | true
+| ['ten']	     | NaN	              | 'ten'	         | true
 | ['ten', 'twenty']|	NaN	            | 'ten, twenty'	     | true
 | function(){} | NaN	              | 'function(){}'	   | true
 | { }	         | NaN	              | '[object Object]'	 | true
@@ -371,9 +384,25 @@ console.log(undefined === null); // false
 
 ```javascript
 var x = false;
-console.log('Number : ' + Number(x));
-console.log('String : ' + String(x));
-console.log('Boolean: ' + Boolean(x));
+
+// 변수 x의 값을 숫자 타입으로 변환
+console.log('Number : ' + Number(x));  // 0
+// 변수 x의 값을 문자열 타입으로 변환
+console.log('String : ' + String(x));  // 'false'
+// 변수 x의 값을 불리언 타입으로 변환
+console.log('Boolean: ' + Boolean(x)); // false
+```
+
+["+" 단항 연산자](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators)는 대부분의 값을 숫자형으로 변환할 수 있다.
+
+```javascript
+console.log(+10);     // 10
+console.log(+'10');   // 10
+console.log(+true);   // 1
+console.log(+false);  // 0
+console.log(+null);   // 0
+console.log(+undefined); // NaN
+console.log(+NaN);    // NaN
 ```
 
 ## 4.3 Data type conversion
@@ -383,10 +412,10 @@ var val = '123';
 console.log(typeof val + ': ' + val); // string: 123
 
 // sting -> number
-val = +val; // unary "+" operator
+val = +val; // "+": 단항 연산자(unary operator)
 // val = val * 1;
-// val = Number(val);
 // val = parseInt(val);
+// val = Number(val);
 console.log(typeof val + ': ' + val); // number: 123
 
 // number -> sting
@@ -407,9 +436,9 @@ console.log(typeof val + ': ' + val); // string: 123
 * `NaN` (Not a Number)
 * `''` (빈문자열)
 
-이들을 Falsy values라 한다.
+이들을 Falsy value라 한다.
 
-Falsy values 이외의 값들(object포함)은 모두 true로 평가된다. 이들을 Truthy values라 한다.
+Falsy value 이외의 값들(object 포함)은 모두 true로 평가된다. 이들을 Truthy value라 한다.
 
 ```javascript
 var x = false;
@@ -433,8 +462,10 @@ if (!x)  console.log(x+' is falsy value');
 
 ## 4.5 Checking equality
 
+두 값이 같은 값인지 비교할 때에 동등 연산자(==, !=)보다 일치 연산자(===, !==)를 사용하여야 한다. 동등 연산자는 암묵적으로 변환된 값만을 비교하지만 일치 연산자는 자료형까지 비교하므로 보다 정확한 결과를 얻을 수 있다.
+
 ```javascript
-// logs false !!!
+// 모두 false를 출력한다
 console.log(null == false);
 console.log(undefined == false);
 console.log(null == 0);
@@ -444,24 +475,34 @@ console.log(NaN == null);
 console.log(NaN == NaN);
 ```
 
-두 값을 비교할 때에 동등연산자(==, !=)보다 일치연산자(===, !==)를 사용하여야 한다.
-
 ## 4.6 Checking existence
 
-단항 연산자를 활용한 존재 확인이 가능하다. 즉, 객체나 배열(배열도 객체이다)이 값을 가지고 있으면 truthy value로 취급된다.받는다. 이를 이용하여 존재여부를 확인할 수 있다.
+객체나 배열(배열도 객체이다)이 `undefined`, `null`이 아니면 truthy value로 취급된다. 이를 이용하여 존재 여부를 확인할 수 있다.
+
+아래의 예제를 살펴보자.
 
 ```javascript
-if (document.getElementById('header')) {
-  // 요소가 존재함 : 필요한 작업을 수행
+// DOM에서 특정 요소를 취득
+var elem = document.getElementById('header');
+
+if (elem) {
+  // 요소가 존재함(요소 취득 성공) : 필요한 작업을 수행
 } else {
-  // 요소가 존재하지 않음 : 필요한 작업을 수행
+  // 요소가 존재하지 않음(요소 취득 실패) : 에러 처리
 }
 ```
+
+[getElementById](https://developer.mozilla.org/ko/docs/Web/API/Document/getElementById)를 통해 DOM에서 특정 요소를 취득하는 경우, DOM 상에 해당 요소가 존재할 수도 있지만 존재하지 않을 가능성도 있다. 만약 취득하고자하는 요소가 존재하여 해당 요소 취득에 성공하였다면 변수 elem의 값은 HTMLElement를 상속받은 객체의 인스턴스이다. 취득하고자하는 요소가 존재하지 않아서 요소 취득에 실패하였다면 변수 elem의 값은 null이다. 이때 객체의 인스턴스는 true로 평가되며 null은 false로 평가된다.
 
 아래 예는 위의 예와는 다른 의미이다. 객체의 존재는 truthy value로 취급지만 boolean 값 true와 같지는 않다.
 
 ```javascript
-if (document.getElementById('header') == true) // false
+// DOM에서 특정 요소를 취득
+var elem = document.getElementById('header');
+
+// 변수 elem의 값이 true인지 평가한다.
+// 변수 elem의 값은 null 또는 HTMLElement를 상속받은 객체의 인스턴스
+if (elem == true) // false
 ```
 
 아래 예와 같은 경우를 주의해야 한다.
@@ -470,3 +511,7 @@ if (document.getElementById('header') == true) // false
 var b = new Boolean(false);
 if (b) // true
 ```
+
+# Reference
+
+* [단항 연산자](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators)

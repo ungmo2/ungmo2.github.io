@@ -141,7 +141,7 @@ console.log(Object.prototype.hasOwnProperty('hasOwnProperty')); // true
 
 ## 4.1 객체 리터럴 방식으로 생성된 객체의 프로토타입 체인
 
-[객체 생성 방법](./http://poiemaweb.com/js-object#2-객체-생성-방법)은 3가지가 있다.
+[객체 생성 방법](./js-object#2-객체-생성-방법)은 3가지가 있다.
 
 - 객체 리터럴
 - 생성자 함수

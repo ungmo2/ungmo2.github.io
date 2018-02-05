@@ -50,7 +50,7 @@ function moveTo(url) {
 moveTo('http://www.google.com');
 ```
 
-- 전역 객체는 전역 변수(Global variable)를 프로퍼티로 가지게 된다.
+- 전역 객체는 전역 변수(Global variable)를 프로퍼티로 가지게 된다. 즉 전역 변수는 전역 객체의 프로퍼티이다.
 
 ```javascript
 var ga = 'Global variable';
@@ -58,7 +58,7 @@ console.log(ga);
 console.log(window.ga);
 ```
 
-- 글로벌 영역에 선언한 함수도 전역 객체의 프로퍼티로 접근할 수 있다.
+- 글로벌 영역에 선언한 함수도 전역 객체의 프로퍼티로 접근할 수 있다. 즉 전역 함수는 전역 객체의 메소드이다.
 
 ```javascript
 function foo() {
@@ -76,7 +76,7 @@ alert('Hello world!');
 
 ## 1.1 전역 프로퍼티(Global property)
 
-전역 프로퍼티는 전역 객체의 프로퍼티를 의미한다. 애플리케이션 전역에서 사용하는 값들을 나타내기 위해 사용한다. 전역 프로퍼티는 간단한 값아 대부분이며 다른 프로퍼티나 메소드를 가지고 있지 않다.
+전역 프로퍼티는 전역 객체의 프로퍼티를 의미한다. 애플리케이션 전역에서 사용하는 값들을 나타내기 위해 사용한다. 전역 프로퍼티는 간단한 값이 대부분이며 다른 프로퍼티나 메소드를 가지고 있지 않다.
 
 ### 1.1.1 Infinity
 
@@ -255,7 +255,7 @@ URI(Uniform Resource Identifier)
 : 네트워크를 통해 정보를 공유할 때 어떤 시스템에서도 읽을 수 있는 [ASCII Character-set](https://en.wikipedia.org/wiki/ASCII)로 변환하는 것이다. UTF-8 특수문자의 경우, 1문자당 1~3byte, UTF-8 한글 표현의 경우, 1문자당 3btye이다. 예를 들어 특수문자 공백(space)은	%20, 한글 '가'는 %EC%9E%90으로 인코딩된다.
 
 이스케이프 처리 이유
-: URI 문법 형식 표준이 [RFC3986](http://www.ietf.org/rfc/rfc3986.txt)에 따르면 URL은 ASCII Character-set으로만 구성되어야 하며 한글을 포함한 대부분의 외국어나 ASCII에 정의되지 않은 특수문자의 경우 URL에 포함될 수 없다. 따라서 URL 내에서 의미를 갖고 있는 문자(%, ?, #)나 URL에 올 수 없는 문자(한글, 공백 등) 또는 시스템에 의해 해석될 수 있는 문자(<, >)를 이스케이프 처리하여 야기될 수 있는 문제를 예방하기 위함이다.
+: URI 문법 형식 표준 [RFC3986](http://www.ietf.org/rfc/rfc3986.txt)에 따르면 URL은 ASCII Character-set으로만 구성되어야 하며 한글을 포함한 대부분의 외국어나 ASCII에 정의되지 않은 특수문자의 경우 URL에 포함될 수 없다. 따라서 URL 내에서 의미를 갖고 있는 문자(%, ?, #)나 URL에 올 수 없는 문자(한글, 공백 등) 또는 시스템에 의해 해석될 수 있는 문자(<, >)를 이스케이프 처리하여 야기될 수 있는 문제를 예방하기 위함이다.
 
 단 아래의 문자는 이스케이프 처리에서 제외된다.
 

@@ -513,3 +513,5 @@ export class UserService {
 * [JWT](https://jwt.io/)
 
 * [Stateless vs Stateful Servers](http://orca.st.usm.edu/~seyfarth/network_pgm/net-6-3-3.html)
+
+* [Where to Store your JWTs – Cookies vs HTML5 Web Storage](https://stormpath.com/blog/where-to-store-your-jwts-cookies-vs-html5-web-storage)

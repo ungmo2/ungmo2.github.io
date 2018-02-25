@@ -15,7 +15,7 @@ description: ES5에서 변수를 선언할 수 있는 유일한 방법은 var �
 
 ES5에서 변수를 선언할 수 있는 유일한 방법은 [var 키워드](./js-data-type-variable#2-변수-variable)를 사용하는 것이었다. var 키워드로 선언된 변수는 아래와 같은 특징을 갖는다. 이는 다른 C-family 언어와는 차별되는 특징(설계상 오류)으로 주의를 기울이지 않으면 심각한 문제를 발생시킨다.
 
-1. [Function-level scope](./js-scope#3-function-scope)
+1. [Function-level scope](./js-scope#3-function-level-scope)
   - 전역 변수의 남발
   - for loop 초기화식에서 사용한 변수를 for loop 외부 또는 전역에서 참조할 수 있다.
 2. var 키워드 생략 허용
@@ -289,7 +289,7 @@ console.log(user); // { name: 'Kim', address: { city: 'Seoul' } }
 
 **객체 타입 변수 선언에는 const를 사용하는 것이 좋다.** 이유는 아래와 같다.
 
-- 객체에 대한 참조는 변경될 필요가 없다. 즉, 재할당이 필요없다. 만일 새로운 객체에 대한 참조를 변수에 할당해야 한다면 새로운 변수를 사용하면 된다.
+- 일반적으로 객체에 대한 참조는 변경될 필요가 없다. 즉, const를 사용하여 객체 참조를 변경시킬 수 없어도 객체의 프로퍼티를 변경 가능하다. 만일 새로운 객체에 대한 참조를 변수에 재할당해야 한다면 let을 사용한다.
 - const를 사용한다 하더라도 객체의 프로퍼티를 변경할 수 있다.
 
 자바스크립트의 값은 대부분 객체(primitive형 변수를 제외한 모든 값은 객체이다)이므로 결국 대부분의 경우 const를 사용하게 된다.

@@ -52,7 +52,7 @@ Libsass를 Node.js 환경에서 사용하기 위해서는 [node-sass](https://gi
 ```
 $ npm install -g node-sass
 $ node-sass -v
-node-sass	4.5.3	(Wrapper)	[JavaScript]
+node-sass	4.7.2	(Wrapper)	[JavaScript]
 libsass  	3.5.0.beta.2	(Sass Compiler)	[C/C++]
 ```
 

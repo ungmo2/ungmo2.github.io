@@ -243,6 +243,12 @@ p {
   font: italic bold 12px/30px Georgia, serif;
   // 타원형 둥근 모서리
   border-radius: 10px 20px/20px;
+  /*
+  border-top-left-radius: 10px 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 10px 20px;
+  border-bottom-left-radius: 20px;
+  */
 
   $width: 1000px;
 

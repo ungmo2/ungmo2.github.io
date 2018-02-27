@@ -109,8 +109,8 @@ GUI 환경에서 컴파일 기능 제공하는 App은 아래와 같다. App에 �
 
 ```bash
 $ node-sass -v
-node-sass       4.5.3   (Wrapper)       [JavaScript]
-libsass         3.5.0.beta.2    (Sass Compiler) [C/C++]
+node-sass	4.7.2	(Wrapper)	[JavaScript]
+libsass  	3.5.0.beta.2	(Sass Compiler)	[C/C++]
 ```
 
 ## 3.2 compile

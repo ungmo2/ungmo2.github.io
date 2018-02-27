@@ -58,8 +58,7 @@ $foundation-palette: (
 // => .mars { color: #D7525C; }
 ```
 
-
-Data type은 [Built-in function unit](./sass-built-in-function#22-data-unit-취득)으로 취득할 수 있다.
+Data type은 Built-in function [type-of](./sass-built-in-function#21-data-type-%EC%B7%A8%EB%93%9D)으로 취득할 수 있다.
 
 # 2. 변수
 
@@ -285,7 +284,7 @@ p {
   color: #010203 * 2;
   // R: 01 * 2 = 02
   // G: 02 * 2 = 04
-  // B: x03 * 2 = 06
+  // B: 03 * 2 = 06
   // => #020406
 }
 

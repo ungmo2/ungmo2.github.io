@@ -269,7 +269,7 @@ _vars.scss에는 변수가 선언되어 있으므로 partial된 _vars.scss, _hea
 </div>
 ```
 
-@extend을 @media 블록과 같이 사용하는 경우, 제대로 작동하지 않는다. 다시말해 @media 안에서 외부의 선택자를 @extend할 수 없다.
+@extend를 @media 블록과 같이 사용하는 경우, 제대로 작동하지 않는다. 다시말해 @media 안에서 외부의 선택자를 @extend할 수 없다.
 
 ```scss
 .foo {
@@ -284,7 +284,7 @@ _vars.scss에는 변수가 선언되어 있으므로 partial된 _vars.scss, _hea
 }
 ```
 
-컴파일 후 자신의 셀렉터가 어디에 첨부될 것인지 예상하기 어렵고, 예상치 못했던 부작용이 발생할 수 있다. 따라서 @extend의 사용은 가급적 자제하고 Mixin은 사용하는 것을 추천한다.
+@extend를 사용하면 컴파일 후 자신의 셀렉터가 어디에 첨부될 것인지 예상하기 어렵고, 예상치 못했던 부작용이 발생할 수 있다. 따라서 @extend의 사용은 가급적 자제하고 Mixin은 사용하는 것을 추천한다.
 {: .info}
 
 - [@extend의 부작용](https://sass-guidelin.es/ko/#extend)

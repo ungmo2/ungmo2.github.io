@@ -10,7 +10,7 @@ description: 애니메이션(Animation) 효과는 HTML 요소에 적용되는 CS
 * TOC
 {:toc}
 
-애니메이션(Animation) 효과는 HTML 요소에 적용되는 CSS 스타일을 다른 CSS 스타일로 부드럽게 변화시킨다. 애니메이션은 애니메이션을 나타내는 CSS 스타일과 애니메이션의 sequence를 나타내는 복수의 키프레임(`@keyframs`) 들로 이루어진다.
+애니메이션(Animation) 효과는 HTML 요소에 적용되는 CSS 스타일을 다른 CSS 스타일로 부드럽게 변화시킨다. 애니메이션은 애니메이션을 나타내는 CSS 스타일과 애니메이션의 sequence를 나타내는 복수의 키프레임(`@keyframes`) 들로 이루어진다.
 
 transition으로도 어느 정도의 애니메이션 효과를 표현할 수 있으나 animation보다는 제한적이다. 일반적으로 트랜지션 효과는 요소 프로퍼티값이 다른 값으로 변화할 때 주로 사용하며 요소의 로드와 함께 자동으로 발동되지 않는다. :hover 와 같은 [가상 클래스 선택자(Pseudo-Class Selector)](./css3-selector#7-가상-클래스-셀렉터-pseudo-class-selector) 또는 자바스크립트의 이벤트와 같은 부수적 액션에 의해 발동된다.
 
@@ -38,9 +38,9 @@ transition으로도 어느 정도의 애니메이션 효과를 표현할 수 있
 | animation-play-state      | 애니메이션 재생 상태(재생 또는 중지)를 지정한다. | running
 | animation                 | 모든 애니메이션 프로퍼티를 한번에 지정한다 ([shorthand syntax](https://drafts.csswg.org/css-animations/#animation))
 
-# 1. @keyframs
+# 1. @keyframes
 
-- [@keyframs](https://developer.mozilla.org/ko/docs/Web/CSS/@keyframes)
+- [@keyframes](https://developer.mozilla.org/ko/docs/Web/CSS/@keyframes)
 
 CSS 애니메이션과 트랜지션 방식의 주된 차이는 @keyframes rule에 있다. 이 rule을 사용하면 애니메이션의 흐름(sequence) 중의 여러 시점(breakpoint)에서 CSS 프로퍼티값을 지정할 수 있다.
 

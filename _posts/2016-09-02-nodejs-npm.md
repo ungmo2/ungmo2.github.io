@@ -174,28 +174,6 @@ package.json의 자세한 설명은 [https://docs.npmjs.com/files/package.json](
 
 ## 2.4 Semantic versioning(유의적 버전)
 
-npm install 명령어를 실행하면 `dependencies`에 새롭게 추가한 패키지가 추가되고 버전 앞에 `^`(캐럿)이 추가된 것을 확인할 수 있다. 이 `^`(캐럿)은 이후 해당 패키지의 버전이 업데이트되었을 경우, 마이너 버전 범위 내에서 업데이트를 허용한다는 의미이다.
-
-```json
-...
-  "dependencies": {
-    "node-emoji": "^1.8.1"
-  },
-...
-```
-
-만일 node-emoji 패키지가 1.9.0으로 버전이 업데이트되었을 경우, 다시 `npm install node-emoji`을 실행하면 1.9.0 버전으로 자동 업데이트된다.
-
-자동 업데이트를 방지하려면 npm install 명령어에 `--save-exact` 옵션을 지정하여 설치된 버전을 범위 지정없이 기록한다.
-
-```json
-...
-  "dependencies": {
-    "node-emoji": "1.8.1"
-  },
-...
-```
-
 npm install 명령어의 패키명 뒤에 @버전을 추가하면 패키지 버전을 지정할 수 있다.
 
 ```bash
@@ -206,6 +184,21 @@ $ npm install node-emoji@1.5.0
 ...
   "dependencies": {
     "node-emoji": "^1.5.1"
+  },
+...
+```
+
+이때 package.json의 `dependencies`에 새롭게 추가한 패키지가 추가되고 버전 앞에 `^`(캐럿)이 추가된 것을 확인할 수 있다. 이것은 패키지 버전을 지정하였을 때 뿐만이 아니라 `--save-exact` 옵션을 지정을 지정하지 않으면 추가되는 것이다. 이 `^`(캐럿)은 이후 해당 패키지의 버전이 업데이트되었을 경우, 마이너 버전 범위 내에서 업데이트를 허용한다는 의미이다.
+
+npm install 명령어에 `--save-exact` 옵션을 지정하면 설치된 버전을 범위 지정없이 기록한다.
+{: .info}
+
+다시 `npm install node-emoji`을 실행하면 최신 버전 1.8.1로 자동 업데이트된다.
+
+```json
+...
+  "dependencies": {
+    "node-emoji": "^1.8.1"
   },
 ...
 ```

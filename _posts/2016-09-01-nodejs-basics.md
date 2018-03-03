@@ -177,7 +177,7 @@ CTRL + C 키를 두번 실행하면 REPL을 종료시킨다.
 
 # 5. Node.js 맛보기 : HTTP Server
 
-이번에는 간단한 HTTP Server를 작성해 보자. Node.js는 http 서버 모듈을 내장하고 있어서 아피치와 같은 별도의 웹서버를 설치할 필요가 없다
+이번에는 간단한 HTTP Server를 작성해 보자. Node.js는 http 서버 모듈을 내장하고 있어서 아파치와 같은 별도의 웹서버를 설치할 필요가 없다
 
 ```javascript
 // app.js
@@ -194,7 +194,7 @@ console.log('Server running at http://127.0.0.1:3000/');
 
 1. http 모듈을 로딩하여 변수 http에 할당하였다.
 
-2. http 모듈의 `createServer([requestListener])` 메소드를 사용하여 HTTP 서버 객체를 생성한다. HTTP 서버 객체는 [EventEmitter](https://nodejs.org/dist/latest-v6.x/docs/api/events.html#events_class_eventemitter) 클래스를 상속한 것으로 request 이벤트가 발생하면 HTTP request를 처리하여 response를 반환하는 request Listener 함수를 호출한다. 이 request Listener 함수는 request와 response 객체를 전달받으며 HTTP request 이벤트가 발생할 때마다 한번씩 호출된다.
+2. http 모듈의 `createServer([requestListener])` 메소드를 사용하여 HTTP 서버 객체를 생성한다. HTTP 서버 객체는 [EventEmitter](https://nodejs.org/dist/latest-v8.x/docs/api/events.html#events_class_eventemitter) 클래스를 상속한 것으로 request 이벤트가 발생하면 HTTP request를 처리하여 response를 반환하는 request Listener 함수를 호출한다. 이 request Listener 함수는 request와 response 객체를 전달받으며 HTTP request 이벤트가 발생할 때마다 한번씩 호출된다.
 
 3. createServer 메소드가 반환한 HTTP 서버 객체의 listen 메소드에 포트번호 3000를 전달하여 서버를 기동시킨다.
 

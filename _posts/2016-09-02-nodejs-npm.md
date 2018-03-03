@@ -74,7 +74,7 @@ added 2 packages in 2.971s
 
 npm install 명령어에는 지역(local) 설치와 전역(global) 설치 옵션이 존재한다.
 
-옵션을 별도로 지정하지 않으면 지역으로 설치되며 프로젝트 디렉터리 내에 node_modules 디렉터리가 자동 생성되고 그안에 설치한 패키지가 설치된다. 지역으로 설치된 패키지는 해당 프로젝트 내에서만 사용할 수 있다.
+옵션을 별도로 지정하지 않으면 지역으로 설치되며 프로젝트 루트 디렉터리에 `node_modules` 디렉터리가 자동 생성되고 그 내부에 패키지가 설치된다. 지역으로 설치된 패키지는 해당 프로젝트 내에서만 사용할 수 있다.
 
 전역에 패키지를 설치하려면 `-g` 옵션을 지정한다. 전역으로 설치된 패키지는 전역에서 참조가 가능하게 된다. 예를 들어 npm의 경우 모든 프로젝트가 사용하기 때문에 지역으로 설치하지 않고 전역에 설치한다.
 
@@ -104,7 +104,7 @@ npm WARN saveError ENOENT: no such file or directory, open '/Users/leeungmo/Desk
 ...
 ```
 
-Node.js 프로젝트에서는 많은 의존 패키지를 사용하게 되고 패키지의 버전도 빈번하게 업데이트되기 때문에 프로젝트가 의존하고 있는 패키지의 관리가 필요하다. npm은 `package.json` 파일을 통해서 프로젝트 정보와 패키지의 의존성(dependency)을 관리한다. 이미 작성된 package.json은 팀 내에 배포하여 동일한 개발 환경을 빠르게 구축할 수 있는 장점을 가진다. package.json은 Java의 maven에서 pom.xml와 비슷한 역할을 한다.
+Node.js 프로젝트에서는 많은 의존 패키지를 사용하게 되고 패키지의 버전도 빈번하게 업데이트되기 때문에 프로젝트가 의존하고 있는 패키지를 일괄 관리할 필요가 있다. npm은 `package.json` 파일을 통해서 프로젝트 정보와 패키지의 의존성(dependency)을 관리한다. 이미 작성된 package.json은 팀 내에 배포하여 동일한 개발 환경을 빠르게 구축할 수 있는 장점을 가진다. package.json은 Java의 maven에서 pom.xml와 비슷한 역할을 한다.
 
 package.json을 생성하기 위해서는 `npm init` 명령어를 사용한다.
 
@@ -116,14 +116,14 @@ It only covers the most common items, and tries to guess sensible defaults.
 See `npm help json` for definitive documentation on these fields
 and exactly what they do.
 
-Use `npm install <pkg> --save` afterwards to install a package and
+Use `npm install <pkg>` afterwards to install a package and
 save it as a dependency in the package.json file.
 
 Press ^C at any time to quit.
-name: (emoji)
+package name: (exam)
 ```
 
-npm init 명령어를 사용하면 프로젝트에 대한 여러가지 정보를 입력하도록 요구받게 된다. 입력된 정보를 바탕으로 npm은 package.json 파일을 생성한다. 일단 파일로 생성된 package.json을 수정하는 방법이 더 편리할 수 있으므로 `--yes` 또는 `-y` 옵션으로 디폴트 설정으로 package.json을 생성해 보자.
+npm init 명령어를 사용하면 프로젝트에 대한 여러가지 정보를 입력하도록 요구받게 된다. 입력된 정보를 바탕으로 npm은 package.json 파일을 생성한다. 일단 파일로 생성된 package.json을 수정하는 방법이 더 편리할 수 있으므로 `--yes` 또는 `-y` 옵션을 추가하여 디폴트 설정으로 package.json을 생성해 보자.
 
 ```bash
 $ npm init -y
@@ -158,7 +158,7 @@ $ npm install node-emoji --save
 [npm@5](http://blog.npmjs.org/post/161081169345/v500)부터 `--save`는 기본옵션이 되었다. `--save` 옵션을 사용하지 않더라도 모든 install 명령은 package.json의 dependencies에 설치된 패키지와 버전을 기록한다. 기존의 `--save-dev`은 변경되지 않았다.
 {: .info}
 
-`devDependencies`에는 개발 시에만 사용하는 의존 패키지를 명시한다. 예를 들어 TypeScript와 같은 트랜스파일러는 개발단계에서만 필요하고 배포할 필요는 없으므로 devDependencies에 포함시킨다. npm install 명령어에 `--save-dev` 옵션을 사용하면 패키지 설치와 함께 package.json의 devDependencies에 설치된 패키지와 버전이 기록된다.
+`devDependencies`에는 개발 시에만 사용하는 의존 패키지를 명시한다. 예를 들어 TypeScript와 같은 트랜스파일러는 개발 단계에서만 필요하고 배포할 필요는 없으므로 devDependencies에 포함시킨다. npm install 명령어에 `--save-dev` 옵션을 사용하면 패키지 설치와 함께 package.json의 devDependencies에 설치된 패키지와 버전이 기록된다.
 
 ```bash
 $ npm install <package> --save-dev
@@ -174,12 +174,40 @@ package.json의 자세한 설명은 [https://docs.npmjs.com/files/package.json](
 
 ## 2.4 Semantic versioning(유의적 버전)
 
-npm install 명령어에 `--save-exact` 옵션을 지정하면 설치된 버전을 범위 지정없이 기록한다.
+npm install 명령어를 실행하면 `dependencies`에 새롭게 추가한 패키지가 추가되고 버전 앞에 `^`(캐럿)이 추가된 것을 확인할 수 있다. 이 `^`(캐럿)은 이후 해당 패키지의 버전이 업데이트되었을 경우, 마이너 버전 범위 내에서 업데이트를 허용한다는 의미이다.
+
+```json
+...
+  "dependencies": {
+    "node-emoji": "^1.8.1"
+  },
+...
+```
+
+만일 node-emoji 패키지가 1.9.0으로 버전이 업데이트되었을 경우, 다시 `npm install node-emoji`을 실행하면 1.9.0 버전으로 자동 업데이트된다.
+
+자동 업데이트를 방지하려면 npm install 명령어에 `--save-exact` 옵션을 지정하여 설치된 버전을 범위 지정없이 기록한다.
+
+```json
+...
+  "dependencies": {
+    "node-emoji": "1.8.1"
+  },
+...
+```
 
 npm install 명령어의 패키명 뒤에 @버전을 추가하면 패키지 버전을 지정할 수 있다.
 
 ```bash
-$ npm install node-emoji@1.8.1
+$ npm install node-emoji@1.5.0
+```
+
+```json
+...
+  "dependencies": {
+    "node-emoji": "^1.5.1"
+  },
+...
 ```
 
 npm은 semantic versioning(유의적 버전)을 지원한다. 버전 정보는 메이저 버전 번호, 마이너 버전 번호, 패치 버전 번호로 구성된다.
@@ -210,7 +238,6 @@ semantic versioning(유의적 버전)
 
 ^(캐럿)는 마이너 버전 범위 내에서 업데이트한다.
 :
-  - ^0.1.2 : 0.1.2 <= version < 0.2.0
   - ^1.0.2 : 1.0.2 <= version < 2.0
 
 [npm semver calculator](https://semver.npmjs.com/)에 방문하면 패키지 별로 버전 표기법을 사용하여 업데이트 버전 범위를 확인할 수 있다.

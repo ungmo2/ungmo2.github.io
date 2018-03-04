@@ -12,7 +12,7 @@ description: Express는 Node.js 환경에서 동작하는 Web application Framew
 
 [Express](http://expressjs.com/)는 Node.js 환경에서 동작하는 Web application Framework이다. Express는 Web Application 구성에 필요한 Routing, View Helper, Session([영속적 Session관리](http://poiemaweb.com/express/Express-Session-handling/)를 위해서는 [Redis](http://www.redis.io/)등의 Data store가 필요하다)등의 기능을 제공한다.
 
-Express 4.14.0 버전을 기준으로 한다.
+Express 4.16.2 버전을 기준으로 한다.
 
 # 1. Install
 
@@ -52,12 +52,30 @@ $ node app.js
 클라이언트는 서버에 URI 및 특정한 HTTP 요청 메소드(GET, POST 등)로 요청을 전달한다.
 
 ```javascript
-// client-side ajax request  
-$.ajax({
-  url    : '/signin',
-  method : 'POST',
-  data   : $('#signin-form').serialize()
-})
+// client-side ajax request
+document.querySelector('button').addEventListener('click', function () {
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', '/signin');
+
+  const username = document.querySelector('input[name=username]').value;
+  const password = document.querySelector('input[name=password]').value;
+
+  const payload = { username, password };
+
+  xhr.setRequestHeader('Content-type', 'application/json');
+  xhr.send(JSON.stringify(payload));
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        console.log(xhr.response)
+        document.querySelector('.result').innerHTML = xhr.response;
+      } else {
+        console.log("Error!");
+      }
+    }
+  };
+});
 ```
 
 이러한 클라이언트 요청에 응답하는 방법을 결정하는 것을 라우팅이라 한다. 각 라우트는 하나 이상의 핸들러 함수를 가질 수 있으며, 이러한 함수는 라우트가 일치할 때 실행된다.
@@ -68,7 +86,7 @@ $.ajax({
 
 위의 클라이언트 요청에 대응하는 route를 설정해보자.
 
-먼저 request body parsing 미들웨어인 body-parser를 설치한다. body-parser 미들웨어는 POST 요청 데이터를 request 객체의 body 프로퍼티에 바인딩한다.
+먼저 request body parsing 미들웨어인 body-parser를 설치한다. body-parser 미들웨어는 페이로드(POST 요청 데이터와 같이 Request message의 body에 담겨 보내진 데이터)를 request 객체의 body 프로퍼티에 바인딩한다.
 
 ```bash
 $ npm install body-parser
@@ -77,14 +95,16 @@ $ npm install body-parser
 설치가 되었으면 아래와 같이 app.js를 수정한다.
 
 ```javascript
-// Server-side: app.js  
+// Server-side: app.js
 const express    = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
+// { extended: true } : nested object를 지원한다.
+// https://stackoverflow.com/questions/29960764/what-does-extended-mean-in-express-4-0
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // parse application/json
 app.use(bodyParser.json());

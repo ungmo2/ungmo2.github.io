@@ -405,7 +405,7 @@ app.engine('handlebars', exphbs({ defaultLayout: false }));
 app.set('view engine', 'handlebars');
 
 app.get('/', (req, res) => {
-  res.render('home', { title: 'Hello world' })
+  res.render('home', { body: 'Hello world' })
 });
 ```
 
@@ -437,7 +437,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'pug');
 
 app.get('/', (req, res) => {
-  res.render('home', { title: 'Hello world' })
+  res.render('home', { body: 'Hello world' })
 });
 ```
 
@@ -456,6 +456,6 @@ app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 
 app.get('/', (req, res) => {
-  res.render('home', { title: 'Hello world'})
+  res.render('home', { body: 'Hello world'})
 });
 ```

@@ -113,6 +113,7 @@ app.get('/', (req, res) => res.send('Hello World!'));
 
 app.post('/signin', (req, res) => {
   const { username, password } = req.body;
+  // 클라이언트로부터 전송된 페이로드를 그대로 response
   res.send({ username, password });
 });
 
@@ -148,23 +149,23 @@ app.all() 메소드는 모든 HTTP method에 대응한다. next()를 사용하�
 ```javascript
 // 모든 요청 메소드에 대응
 app.all('/', (req, res, next) => {
-  console.log('All request to the root section ...');
-  next(); // pass control to the next handler
+  console.log('[All]');
+  next(); // 후속 핸들러에게 컨트롤을 패스한다.
 });
 
 app.get('/', (req, res, next) => {
-  console.log('[GET 1]the response will be sent by the next function ...');
+  console.log('[GET 1] next 함수에 의해 후속 핸들러에게 response가 전달된다.');
   next();
 }, (req, res, next) => {
-  console.log('[GET 1]the response will be sent by the next function ...');
+  console.log('[GET 2] next 함수에 의해 후속 핸들러에게 response가 전달된다.');
   next();
 }, (req, res) => res.send('Hello from GET /'));
 
 app.post('/', (req, res, next) => {
-  console.log('[POST 1]the response will be sent by the next function ...');
+  console.log('[POST 1] next 함수에 의해 후속 핸들러에게 response가 전달된다.');
   next();
 }, (req, res, next) => {
-  console.log('[POST 1]the response will be sent by the next function ...');
+  console.log('[POST 2] next 함수에 의해 후속 핸들러에게 response가 전달된다.');
   next();
 }, (req, res) => res.send('Hello from POST /'));
 ```
@@ -387,39 +388,74 @@ http://localhost:3000/images/bg.png
 
 # 6. Template engine
 
-Express는 [jade](http://jade-lang.com/), [ejs](http://ejs.co/), [handlebars](http://handlebarsjs.com/)와 같은 템플릿 엔진을 사용할 수 있다.
+Express는 [handlebars](http://handlebarsjs.com/), [pug](https://pugjs.org/api/getting-started.html), [ejs](http://ejs.co/)와 같은 템플릿 엔진을 사용할 수 있다.
 
 **handlebars**
 
+```bash
+$ npm install express-handlebars
+```
+
 ```javascript
+...
+const exphbs = require('express-handlebars');
+
+// 템플릿은 views 디렉터리에 작성한다.(기본 설정)
 app.engine('handlebars', exphbs({ defaultLayout: false }));
 app.set('view engine', 'handlebars');
 
 app.get('/', (req, res) => {
-  res.render('index', { title: 'Hello world' })
+  res.render('home', { title: 'Hello world' })
 });
 ```
 
-**jade**
+```html
+<!-- views/home.handlebars -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Example App</title>
+</head>
+<body>
+  {{{body}}}
+</body>
+</html>
+```
+
+**pug**
+
+```bash
+$ npm install pug
+```
 
 ```javascript
-// Optional since express defaults to CWD/views
+// 템플리트 엔진 모듈을 로드할 필요가 없다.
+
+// 템플릿은 views 디렉터리에 작성한다.
 app.set('views', __dirname + '/views');
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 
 app.get('/', (req, res) => {
-  res.render('index', { title: 'Hello world' })
+  res.render('home', { title: 'Hello world' })
 });
 ```
 
 **ejs**
 
+```bash
+$ npm install ejs
+```
+
 ```javascript
+// 템플리트 엔진 모듈을 로드할 필요가 없다.
+
+// 템플릿은 views 디렉터리에 작성한다.(기본 설정)
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 
 app.get('/', (req, res) => {
-  res.render('index', { title: 'Hello world'})
+  res.render('home', { title: 'Hello world'})
 });
 ```

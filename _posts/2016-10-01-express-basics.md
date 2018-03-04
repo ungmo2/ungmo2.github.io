@@ -418,7 +418,7 @@ app.get('/', (req, res) => {
   <title>Example App</title>
 </head>
 <body>
-  {{{body}}}
+  {{ "{{{ body " }}}}}
 </body>
 </html>
 ```

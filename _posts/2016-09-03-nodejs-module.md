@@ -90,7 +90,7 @@ console.log(`지름이 4인 원의 면적: ${myCircle.area()}`);
 console.log(`지름이 4인 원의 둘레: ${myCircle.circumference()}`);
 ```
 
-require 함수를 통해 circle 모듈을 임포트하여 circle 변수에 할당하였다. 이때 circle 변수는 circle 모듈에서 module.exports에 할당한 값 자체이다.
+require 함수를 통해 circle 모듈을 임포트하여 circle 변수에 할당하였다. 이때 circle 변수는 circle 모듈에서 module.exports에 할당한 값 자체 즉 객체를 반환하는 함수이다.
 
 ```javascript
 // primitive.js

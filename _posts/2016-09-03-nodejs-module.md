@@ -52,14 +52,16 @@ require 함수를 사용하여 임의의 이름으로 circle 모듈을 import한
 // app.js
 const circle = require('./circle.js'); // == require('./circle')
 
-console.log(`The area of a circle of radius 4 is ${circle.area(4)}`);
-// => The area of a circle of radius 4 is 50.26548245743669
+console.log(`지름이 4인 원의 면적: ${circle.area(4)}`);
+console.log(`지름이 4인 원의 둘레: ${circle.circumference(4)}`);
 ```
 
-이때 circle 모듈은 객체로 반환된다. 따라서 circle.area, circle.circumference와 같은 형식으로 공개된 circle 모듈을 참조한다. foo 모듈을 실행해 보자.
+이때 circle 모듈은 객체로 반환된다. 따라서 circle.area, circle.circumference와 같은 형식으로 공개된 circle 모듈을 참조한다. app.js를 실행해 보자.
 
 ```bash
 $ node app
+지름이 4인 원의 면적: 50.26548245743669
+지름이 4인 원의 둘레: 25.132741228718345
 ```
 
 # 3. module.exports
@@ -67,25 +69,28 @@ $ node app
 **exports 객체는 프로퍼티 또는 메소드를 여러 개 정의할 수 있었다. 하지만 module.exports에는 하나의 값(기본자료형, 함수, 객체)을 할당할 수 있다.**
 
 ```javascript
-// square.js
-module.exports = (width) => {
+// circle.js
+const { PI } = Math;
+
+module.exports = function (r) {
   return {
-    area() { return width * width; }
+    area() { return PI * r * r; },
+    circumference() { return 2 * PI * r}
   };
-};
 ```
 
-square 모듈에서 module.exports에 하나의 함수를 할당하였다.
+circle 모듈의 module.exports에는 하나의 함수를 할당하였다.
 
 ```javascript
 // app.js
-const square = require('./square.js');
-const mySquare = square(2);
-console.log(`The area of my square is ${mySquare.area()}`);
-// => The area of my square is 4
+const circle = require('./circle');
+const myCircle = circle(4);
+
+console.log(`지름이 4인 원의 면적: ${myCircle.area()}`);
+console.log(`지름이 4인 원의 둘레: ${myCircle.circumference()}`);
 ```
 
-require 함수를 통해 square 모듈을 임프트하여 square 변수에 할당하였다. 이때 square 변수는 square 모듈에서 module.exports에 할당한 값 자체이다.
+require 함수를 통해 circle 모듈을 임포트하여 circle 변수에 할당하였다. 이때 circle 변수는 circle 모듈에서 module.exports에 할당한 값 자체이다.
 
 ```javascript
 // primitive.js

@@ -163,7 +163,7 @@ MongoDB Structure
 
 - Schema-less하다. 이는 RDMS처럼 고정 [Schema(스키마)](https://ko.wikipedia.org/wiki/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4_%EC%8A%A4%ED%82%A4%EB%A7%88)가 존재하지 않는다는 뜻으로 같은 Collection 내에 있더라도 document level의 다른 Schema를 가질 수 있다는 의미이다. RDBMS는 각 테이블마다 동일한 Schema를 가져야 하며 스키마를 변경하고자 한다면 모든 데이터를 변경하여야 한다. 하지만 MongoDB는 하나의 Collection내의 Document가 각각 다른 스키마를 갖을 수 있다. 이러한 특성을 동적 스키마라 한다. 이것은 collection 내의 document가 각자의 고유한 field를 가질 수 있다는 것을 의미한다.
 
-- RDMS와 같은 JOIN이 없어 Table JOIN은 효과적이지 않지만(불가능하지는 않다) CRUD Query는 고속으로 동작한다. MongoDB는 스키마를 디자인할 때 하나의 document에 최대한 많은 데이터를 포함시킨다. 예를 들어 RDBMS의 경우, 포스트의 댓글에 대한 스키마를 각각의 테이블로 분리하고 JOIN하여 사요하는 것이 일반적이지만 MongoDB의 경우, 하나의 document에 포스트의 sub document로 댓글을 포함시킨다. 이러한 구조는 간편하고 빠른 Query를 가능하게 한다.
+- RDMS와 같은 JOIN이 없어 Table JOIN은 효과적이지 않지만(불가능하지는 않다) CRUD Query는 고속으로 동작한다. MongoDB는 스키마를 디자인할 때 하나의 document에 최대한 많은 데이터를 포함시킨다. 예를 들어 RDBMS의 경우, 포스트의 댓글에 대한 스키마를 각각의 테이블로 분리하고 JOIN하여 사용하는 것이 일반적이지만 MongoDB의 경우, 하나의 document에 포스트의 sub document로 댓글을 포함시킨다. 이러한 구조는 간편하고 빠른 Query를 가능하게 한다.
 
 - Scalability(규모 가변성, 확장성)이 우수하며 Sharding(여러 개의 데이터베이스에 데이터를 분할하는 기술) 클러스터 구축도 가능하다.
 

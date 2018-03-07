@@ -229,7 +229,7 @@ export class Person {
 
 ```typescript
 // student.ts
-import { Person } from './Person';
+import { Person } from './person';
 
 class Student extends Person {
   study(): string {
@@ -272,7 +272,7 @@ student.ts를 변경해 watch 기능이 동작하는지 확인해 보자.
 
 ```typescript
 // student.ts
-import { Person } from './Person';
+import { Person } from './person';
 
 class Student extends Person {
   study(): string {
@@ -306,3 +306,5 @@ Lee is studying!!
 * [TypeScript](http://www.typescriptlang.org/index.html)
 
 * [TypeScript Compiler Options](https://www.typescriptlang.org/docs/handbook/compiler-options.html)
+
+* [Anders Hejlsberg - Introducing TypeScript](https://channel9.msdn.com/posts/Anders-Hejlsberg-Introducing-TypeScript)

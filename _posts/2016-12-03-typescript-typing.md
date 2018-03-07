@@ -92,7 +92,7 @@ let octal: number = 0o744;
 let color: string = "blue";
 color = 'red';
 let myName: string = `Lee`; // ES6 템플릿 문자열
-let greeting: string = `Hello, my name is ${ myName }.` // ES6 템플릿 대입문
+let greeting: string = `Hello, my name is ${ myName }.`; // ES6 템플릿 대입문
 
 // object
 const obj: object = {};

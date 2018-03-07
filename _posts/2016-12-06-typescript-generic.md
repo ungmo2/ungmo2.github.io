@@ -37,7 +37,7 @@ console.log(queue.pop().toFixed()); // Runtime error
 
 Queue 클래스의 data 프로퍼티는 타입 선언을 생략하였기 때문에 any[] 타입이 된다. any[] 타입은 어떤 타입의 요소도 가질 수 있는 배열을 의미한다.
 
-any[] 타입은 배열 요소의 타입이 모두 같지 않다는 문제를 가지게 된다. 위 예제의 경우 data 프로퍼티에는 number 타입만을 포함하는 배열이라는 기대 하에 각 요소에 대해 Number.prototype.toFixed() 함수를 사용하였기 때문에 number 타입이 아닌 요소의 경우 런타임 에러가 발생한다.
+any[] 타입은 배열 요소의 타입이 모두 같지 않다는 문제를 가지게 된다. 위 예제의 경우 data 프로퍼티에는 number 타입만을 포함하는 배열이라는 기대 하에 각 요소에 대해 [Number.prototype.toFixed](./js-number#36-numberprototypetofixed)를 사용하였기 때문에 number 타입이 아닌 요소의 경우 런타임 에러가 발생한다.
 
 위와 같은 문제를 해결하기 위해 Queue 클래스를 상속하여 number 타입 전용 NumberQueue 클래스를 정의할 수 있다.
 

@@ -107,7 +107,7 @@ $ ng new <project-name>
 ```bash
 $ ng new my-app
   create my-app/README.md (1021 bytes)
-  create my-app/`.angular-cli.json` (1241 bytes)
+  create my-app/.angular-cli.json (1241 bytes)
   create my-app/.editorconfig (245 bytes)
   create my-app/.gitignore (516 bytes)
   create my-app/src/assets/.gitkeep (0 bytes)

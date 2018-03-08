@@ -46,7 +46,7 @@ Angular의 데이터 바인딩은 뷰와 모델의 관계를 기존의 웹 애�
 
 AngularJS는 양방향 바인딩(Two-way binding)만을 지원하였고 AngularJS에서 제공하는 ng-click과 같은 이벤트만을 사용하여야 하는 등 제약이 있었다. 하지만 Angular는 양방향 바인딩과 단방향 바인딩(One-way binding)을 모두 지원하며 [zone.js](https://github.com/angular/zone.js/) 라이브러리를 사용하여 네이티브 DOM 이벤트를 사용하여도 변화 감지가 수행되도록 개선되었다.
 
-사실 Angular는 [양방향 바인딩](./angular-component-template-syntax#17-양방향-데이터-바인딩two-way-binding)을 지원하지 않는다. 양방향 바인딩을 위한 템플릿 문법 [()](이것을 Banana in a box라고 부른다)에서 추측할 수 있듯이 양방향 바인딩은 이벤트 바인딩과 프로퍼티 바인딩의 축약 표현(Shorthand syntax)일 뿐이다. 즉 양방향 바인딩의 실제 동작은 이벤트 바인딩과 프로퍼티 바인딩의 조합으로 이루어진다.
+사실 Angular는 [양방향 바인딩](./angular-component-template-syntax#17-양방향-데이터-바인딩two-way-binding)을 지원하지 않는다. 양방향 바인딩을 위한 템플릿 문법 `[()]`(이것을 Banana in a box라고 부른다)에서 추측할 수 있듯이 양방향 바인딩은 이벤트 바인딩과 프로퍼티 바인딩의 축약 표현(Shorthand syntax)일 뿐이다. 즉 양방향 바인딩의 실제 동작은 이벤트 바인딩과 프로퍼티 바인딩의 조합으로 이루어진다.
 {: .info}
 
 변화 감지의 작동 원리에 대해 간단히 살펴보자.

@@ -189,7 +189,7 @@ my-app/
 ├── e2e/
 ├── node_modules/
 ├── src/
-├── `.angular-cli.json`
+├── .angular-cli.json
 ├── .editorconfig
 ├── .gitignore
 ├── karma.conf.js

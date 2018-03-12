@@ -571,7 +571,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `
-    <input type='text' [(ngModel)] ="num" placeholder="숫자를 입력하세요">
+    <input type="text" [(ngModel)]="num" placeholder="숫자를 입력하세요">
     <div [ngSwitch]="num">
       <div *ngSwitchCase="'1'">One</div>
       <div *ngSwitchCase="'2'">Two</div>

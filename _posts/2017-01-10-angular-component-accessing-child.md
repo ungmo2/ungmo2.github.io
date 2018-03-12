@@ -235,7 +235,7 @@ export class AppComponent {
     this.active = !this.active;
     // 자식 컴포넌트들을 순회하며 공개된 프로퍼티 checkbox를 변경한다.
     // QueryList는 마치 자바스크립트 배열과 같이 사용할 수 있다.
-    this.myChildren.map(child => child.checkbox.checked = this.active);
+    this.myChildren.forEach(child => child.checkbox.checked = this.active);
   }
 }
 ```
@@ -250,10 +250,10 @@ export class AppComponent {
 
 또한 클래스 내부에는 탐색 결과를 저장하는 배열 _result 프로퍼티를 가지고 있고 이 프로퍼티를 사용하는 [자바스크립트 배열 메소드](./js-array#5-array-method)와 동일하게 동작하는 map, filter, find, reduce, forEach, some 등의 메소드를 소유하고 있어서 **QueryList는 마치 자바스크립트 배열과 같이 사용할 수 있다.** QueryList는 옵저버블(Observable)한 컬렉션으로 변경 사항을 구독(subscribe)할 수 있다. 옵저버블에 대해서는 RxJS에서 살펴볼 것이다.
 
-QueryList 클래스의 map 메소드를 사용하여 자식 컴포넌트 ChildComponent의 인스턴스들이 바인딩되어 있는 myChildren를 순회하며 자식 컴포넌트 ChildComponent의 프로퍼티에 접근하여 값을 변경한다.
+QueryList 클래스의 forEach 메소드를 사용하여 자식 컴포넌트 ChildComponent의 인스턴스들이 바인딩되어 있는 myChildren를 순회하며 자식 컴포넌트 ChildComponent의 프로퍼티에 접근하여 값을 변경한다.
 
 ```typescript
-this.myChildren.map(child => child.checkbox.checked = this.active);
+this.myChildren.forEach(child => child.checkbox.checked = this.active);
 ```
 
 <iframe src="https://stackblitz.com/edit/view-children-decorator?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>

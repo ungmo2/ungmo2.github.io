@@ -148,7 +148,7 @@ import { User } from './models/user.model';
   template: `
     <div class="container">
       <div class="row">
-        <form class="form-inline">
+        <div class="form-inline">
           <div class="form-group" style="margin: 30px 0">
             <label for="name">Name:</label>
             <input
@@ -167,7 +167,7 @@ import { User } from './models/user.model';
             </button>
           </div>
           <app-user-list [users]="users"></app-user-list>
-        </form>
+        </div>
       </div>
     </div>
   `
@@ -521,7 +521,7 @@ import { User } from './models/user.model';
   template: `
     <div class="container">
       <div class="row">
-        <form class="form-inline">
+        <div class="form-inline">
           <div class="form-group" style="margin: 30px 0">
             <label for="name">Name:</label>
             <input #name type="text" id="name" class="form-control" placeholder="이름을 입력하세요">
@@ -541,7 +541,7 @@ import { User } from './models/user.model';
             [users]="users"
             (remove)="removeUser($event)">
           </app-user-list>
-        </form>
+        </div>
       </div>
     </div>
   `

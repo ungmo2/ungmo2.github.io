@@ -161,7 +161,7 @@ import { User } from './models/user.model';
               <option>Developer</option>
               <option>Designer</option>
             </select>
-            <button
+            <button type="button"
               class="btn btn-default"
               (click)="addUser(name.value, role.value)">Add user
             </button>
@@ -531,7 +531,7 @@ import { User } from './models/user.model';
               <option>Developer</option>
               <option>Designer</option>
             </select>
-            <button
+            <button type="button"
               class="btn btn-default"
               (click)="addUser(name.value, role.value)">Add user
             </button>

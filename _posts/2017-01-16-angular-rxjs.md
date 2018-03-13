@@ -171,14 +171,14 @@ interface GithubUser {
   template: `
     <h2>Observable Events</h2>
     <p>
-      <input type="text" placeholder="Enter user id" [formControl]="serchInput">
+      <input type="text" placeholder="Enter user id" [formControl]="searchInput">
     </p>
     <pre>{{ "{{ githubUser | json " }}}}</pre>
   `
 })
 export class ObservableEventHttpComponent implements OnInit, OnDestroy {
   // ① Angular forms
-  serchInput: FormControl = new FormControl('');
+  searchInput: FormControl = new FormControl('');
   githubUser: GithubUser;
   subscription: Subscription;
 
@@ -187,7 +187,7 @@ export class ObservableEventHttpComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // ① valueChanges 이벤트 옵저버블을 구독하면 컨트롤 값의 변경 내용을 옵저버블 스트림으로 수신할 수 있다.
-    this.subscription = this.serchInput.valueChanges
+    this.subscription = this.searchInput.valueChanges
       // ③ debounceTime 오퍼레이터는 다음 이벤트를 즉시 발생시키지 않고 지정 시간만큼 지연시킨다.
       .debounceTime(500)
       // ④ switchMap 오퍼레이터는 옵저버블을 받아서 새로운 옵저버블을 생성한다.
@@ -219,7 +219,7 @@ export class ObservableEventHttpComponent implements OnInit, OnDestroy {
 }
 ```
 
-① input 요소의 이벤트는 FormControl인 serchInput의 valueChanges 프로퍼티에 의해 옵저버블 스트림으로 변환된다. [FormControl](https://angular.io/api/forms/FormControlDirective)에 대해서는 [Angular Forms](./angular-form-reactive-forms#22-formcontrol-클래스와-formcontrolname-디렉티브)에서 상세히 살펴보도록 하고 지금은 옵저버블에 집중하도록 하자. FormControl를 사용하기 위해서는 모듈에 ReactiveFormsModule을 임포트하여야 한다.
+① input 요소의 이벤트는 FormControl인 searchInput의 valueChanges 프로퍼티에 의해 옵저버블 스트림으로 변환된다. [FormControl](https://angular.io/api/forms/FormControlDirective)에 대해서는 [Angular Forms](./angular-form-reactive-forms#22-formcontrol-클래스와-formcontrolname-디렉티브)에서 상세히 살펴보도록 하고 지금은 옵저버블에 집중하도록 하자. FormControl를 사용하기 위해서는 모듈에 ReactiveFormsModule을 임포트하여야 한다.
 
 ```typescript
 // app.module.ts
@@ -288,7 +288,7 @@ switchMap 오퍼레이터
 
 ⑤ getGithubUser 메소드는 서버로 부터 데이터를 응답받아 옵저버블은 반환한다.
 
-⑥ serchInput의 valueChanges 프로퍼티에 의해 생성된 옵저버블을 subscribe 오퍼레이터로 구독하면 옵저버가 데이터 스트림을 사용할 수 있다. 옵저버는 getGithubUser 메소드가 서버로 부터 응답받은 user를 githubUser 프로퍼티에 할당한다.
+⑥ searchInput의 valueChanges 프로퍼티에 의해 생성된 옵저버블을 subscribe 오퍼레이터로 구독하면 옵저버가 데이터 스트림을 사용할 수 있다. 옵저버는 getGithubUser 메소드가 서버로 부터 응답받은 user를 githubUser 프로퍼티에 할당한다.
 
 **주의할 것은 실제 HTTP 요청은 subscribe() 함수를 실행할 때 발생한다는 것이다. 옵저버블을 구독하지 않으면 어떠한 요청도 발생하지 않는다. 또한 옵저버블을 여러번 구독하면 HTTP 요청이 여러번 발생한다.**
 

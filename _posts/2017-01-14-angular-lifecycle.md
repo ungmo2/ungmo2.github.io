@@ -27,7 +27,7 @@ Angular는 위 그림의 순서대로 컴포넌트와 디렉티브를 생성하�
 
 # 2. 생명주기 훅 메소드(Lifecycle hooks)
 
-생명주기 훅 메소드는 인터페이스의 형태로 제공된다. 예를 들어 OnInit 생명주기에 실행되어야 할 행위를 정의하기 위해서는 훅 메소드 ngOnInit을 구현한다. 이 ngOnInit 메소드는 OnInit 인터페이스에 포함되어 있다.
+생명주기 훅 메소드는 인터페이스의 형태로 제공된다. 예를 들어 OnInit 생명주기에 실행되어야 할 행위를 정의하기 위해서는 훅 메소드 ngOnInit을 구현한다. 이 ngOnInit 메소드는 추상 메소드이며 OnInit 인터페이스에 포함되어 있다.
 
 ```typescript
 interface OnInit {
@@ -37,7 +37,7 @@ interface OnInit {
 
 이와 같이 생명주기(OnInit)에는 동일한 이름의 인터페이스(OnInit)가 존재한다. 그리고 이 인터페이스는 생명주기 이름 앞에 ng 접두어가 붙은 메서드(ngOnInit)를 포함한다.
 
-따라서 생명주기 OnInit에 실행되어야 할 행위를 정의하려면 OnInit 인터페이스의 ngOnInit 메소드를 구현한다.
+따라서 생명주기 OnInit에 실행되어야 할 행위를 정의하려면 OnInit 인터페이스의 ngOnInit 추상 메소드를 구현한다.
 
 ```typescript
 export class AppComponent implements OnInit {

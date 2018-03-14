@@ -288,7 +288,7 @@ export class TodosComponent {
 
   complete(todo) {
     this.todos = this.todos.map((item) => item.id === todo.id ?
-      Object.assign(item, { completed: !item.completed }) : item
+      Object.assign({}, item, { completed: !item.completed }) : item
     );
   }
 
@@ -342,9 +342,7 @@ this.todos.push({
 */
 
 // 파이프에 의해 변화 감지가 작동하도록 todos 프로퍼티의 참조가 변경되도록 수정한다
-this.todos = this.todos.concat({
-  id: this.getLastId(), content, completed: false
-});
+this.todos = [...this.todos, { id: this.getLastId(), content, completed: false }];
 ```
 
 <iframe src="https://stackblitz.com/edit/pipe-change-detection?embed=1&file=app/todos.component.ts" frameborder="0" width="100%" height="600"></iframe>

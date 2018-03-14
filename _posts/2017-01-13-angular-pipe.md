@@ -183,7 +183,7 @@ export class AppComponent {
 }
 ```
 
-체이닝 방식으로 파이프 연산자 |에 연이어 파이프를 추가하면 파이프의 조합으로 결과를 출력한다. 위 예제는 [slice:4](https://angular.io/api/common/SlicePipe)로 4번째 문자부터 마지막 문자까지를 잘라내고 결과를 대문자로 출력한다. 컴포넌트의 실행하면 ‘UNG-MO’가 출력된다.
+체이닝 방식으로 파이프 연산자 `|`에 연이어 파이프를 추가하면 파이프의 조합으로 결과를 출력한다. 위 예제는 [slice:4](https://angular.io/api/common/SlicePipe)로 4번째 문자부터 마지막 문자까지를 잘라내고 결과를 대문자로 출력한다. 컴포넌트의 실행하면 ‘UNG-MO’가 출력된다.
 
 <iframe src="https://stackblitz.com/edit/pipe-chaining?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="400"></iframe>
 

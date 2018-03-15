@@ -94,7 +94,7 @@ export class TextBlueDirective {
 
 생성자에 [ElementRef](https://angular.io/api/core/ElementRef) 타입의 인스턴스가 주입(inject)되었다. ElementRef 인스턴스는 디렉티브가 선언된 호스트 요소를 가리킨다. 이 인스턴스는 호스트 네이티브 DOM의 프로퍼티를 담고 있는 nativeElement 프로퍼티를 소유한다. 따라서 `ElementRef.nativeElement`로 접근하면 호스트 네이티브 DOM의 프로퍼티에 접근할 수 있다.
 
-하지만 ElementRef를 사용하여 DOM에 직접 접근하는 경우, XSS 공격에 노출될 수 있는 단점이 있다. 따라서 [Renderer2](https://angular.io/api/core/Renderer2)의 [setStyle](https://angular.io/api/core/Renderer2#setStyle) 메소드를 사용하여 호스트 요소의 스타일을 변경하도록 한다.
+하지만 ElementRef를 사용하여 DOM에 직접 접근하는 경우, XSS 공격에 노출될 수 있는 단점이 있다. [Renderer2](https://angular.io/api/core/Renderer2) 클래스는 DOM에 직접 접근하지 않으며 서버, 웹워커, 모바일과 같이 DOM 액서스 권한이 없는 환경에서도 네이티브 요소를 조작 가능하기 때문에 권장되는 방법이다. Renderer2의 [setStyle](https://angular.io/api/core/Renderer2#setStyle) 메소드를 사용하여 호스트 요소의 스타일을 변경하도록 한다.
 
 ```typescript
 // text-blue.directive.ts

@@ -185,12 +185,10 @@ GET, POST, PUT, DELETE, PATCH 등의 HTTP 메소드(verb, method)를 사용하�
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-class Todo {
-  constructor(
-    public id: number,
-    public content: string,
-    public completed: boolean
-  ) {}
+interface Todo {
+  id: number;
+  content: string;
+  completed: boolean;
 }
 
 @Component({
@@ -354,7 +352,7 @@ ngOnInit() {
 
 발생할 수 있는 에러의 유형은 두 가지이다.
 
-- 네트워크 오류로 인해 요청이 성공적으로 완료되지 못한 경우 또는 RxJS 오퍼레이터의 예외가 발생한 경우, err 파라미터는 Error 객체의 인스턴스이다. 이때 에러는 클라이언트 측의 원인으로 인한 것이다.
+- 네트워크 오류로 인해 요청이 성공적으로 완료되지 못한 경우 또는 RxJS 오퍼레이터의 예외가 발생한 경우, err 파라미터는 Error 객체의 인스턴스이다. 이때 에러는 클라이언트 측의 문제로 발생한 것이다.
 
 - err 파라미터가 Error 객체의 인스턴스가 아닌 경우, 백엔드가 실패한 상태 코드를 응답한 에러이다. 이때 status 프로퍼티로 응답 코드(404, 500 등)를 확인 할 수 있다.
 
@@ -367,12 +365,10 @@ ngOnInit() {
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-class Todo {
-  constructor(
-    public id: number,
-    public content: string,
-    public completed: boolean
-  ) {}
+interface Todo {
+  id: number;
+  content: string;
+  completed: boolean;
 }
 
 @Component({
@@ -454,12 +450,10 @@ HttpHeaders 객체는 HttpParams 객체와 동일하게 이뮤터블하다. 따�
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-class Todo {
-  constructor(
-    public id: number,
-    public content: string,
-    public completed: boolean
-  ) {}
+interface Todo {
+  id: number;
+  content: string;
+  completed: boolean;
 }
 
 @Component({
@@ -507,12 +501,10 @@ export class HttpPutComponent implements OnInit {
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-class Todo {
-  constructor(
-    public id: number,
-    public content: string,
-    public completed: boolean
-  ) {}
+interface Todo {
+  id: number;
+  content: string;
+  completed: boolean;
 }
 
 @Component({
@@ -561,12 +553,10 @@ export class HttpPatchComponent implements OnInit {
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-class Todo {
-  constructor(
-    public id: number,
-    public content: string,
-    public completed: boolean
-  ) {}
+interface Todo {
+  id: number;
+  content: string;
+  completed: boolean;
 }
 
 @Component({

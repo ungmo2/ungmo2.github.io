@@ -60,7 +60,9 @@ Observable과 Observer
 
 # 3. 오퍼레이터(Operator)
 
-옵저버블은 옵저버블을 생성(Creating), 변환(Transforming), 필터링(Filtering), 오류 처리(Error Handling)하는 [오퍼레이터(Operator)](http://reactivex.io/documentation/operators.html)를 사용할 수 있다. 대부분의 오퍼레이터는 옵저버블 상에서 동작하고 옵저버블을 리턴한다. 아래 그림은 옵저버블이 [map](http://reactivex.io/documentation/operators/map.html) 오퍼레이터를 통해 변환(Transforming)된 옵저버블을 반환하는 마블 다이어그램(Marble diagram)이다.
+옵저버블은 옵저버블을 생성(Creating), 변환(Transforming), 필터링(Filtering), 오류 처리(Error Handling)하는 [오퍼레이터(Operator)](http://reactivex.io/documentation/operators.html)를 사용할 수 있다. 대부분의 오퍼레이터는 옵저버블 상에서 동작하고 옵저버블을 리턴한다.
+
+아래 그림은 옵저버블이 [map](http://reactivex.io/documentation/operators/map.html) 오퍼레이터를 통해 변환(Transforming)된 옵저버블을 반환하는 마블 다이어그램(Marble diagram)이다.
 
 ![observable-map](/img/observable-map.png)
 
@@ -156,7 +158,9 @@ Observable과 Observer
 
 # 5. 옵저버블 이벤트 스트림 예제
 
-뷰에서 이벤트가 발생하면 일반적인 자바스크립트 애플리케이션은 한번만 이벤트를 처리한다. 예를 들어 input 요소의 keyup 이벤트는 연속적으로 발생하고 일반적인 자바스크립트 애플리케이션은 이벤트가 발생할 때마다 이벤트 핸들러를 호출한다. 만약 keyup 이벤트가 발생될 때마다 input 요소의 입력값을 가지고 서버에 요청을 보내는 경우, 이벤트가 발생할 때마다 계속해서 서버에 요청을 보낼 것이다. 이러한 경우에 setTimeout()으로 사용자가 다음 입력을 할 때까지 서버에 요청을 멈추고 일정 시간 대기할 수도 있겠지만 이것도 완전한 대응 방법은 아니며 한번 전송된 요청은 취소할 수 없기 때문에 불필요한 요청이 발생할 수 있다.
+뷰에서 이벤트가 발생하면 일반적인 자바스크립트 애플리케이션은 한번만 이벤트를 처리한다. 예를 들어 input 요소의 keyup 이벤트는 연속적으로 발생하고 일반적인 자바스크립트 애플리케이션은 이벤트가 발생할 때마다 이벤트 핸들러를 호출한다.
+
+만약 keyup 이벤트가 발생될 때마다 input 요소의 입력값을 가지고 서버에 요청을 보내는 경우, 이벤트가 발생할 때마다 계속해서 서버에 요청을 보낼 것이다. 이러한 경우에 setTimeout()으로 사용자가 다음 입력을 할 때까지 서버에 요청을 멈추고 일정 시간 대기할 수도 있겠지만 이것도 완전한 대응 방법은 아니며 한번 전송된 요청은 취소할 수 없기 때문에 불필요한 요청이 발생할 수 있다.
 
 다시 말해 이것은 비동기 처리에 있어서 콜백함수나 프로미스를 사용할 때의 단점이다.
 

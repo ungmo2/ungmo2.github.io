@@ -12,7 +12,7 @@ description: Reactive Programming(반응형 프로그래밍)은 옵저버블(Obs
 
 ![angular Logo](/img/angular-logo.png)
 
-# 1. Reactive Programming(리액티브 프로그래밍)
+# 1. 리액티브 프로그래밍(Reactive Programming)이란?
 
 Reactive Programming(리액티브/반응형 프로그래밍)은 비동기 데이터 처리를 위해 옵저버블(Observable) 이벤트 스트림(stream)을 구독(subscribe)하고 이 스트림에 반응하는 방식으로 동작하는 애플리케이션을 작성하는 것을 의미한다.
 
@@ -40,6 +40,8 @@ Push-scenario
 
 그중 Angular의 필수 패키지로 채택된 [RxJS](https://github.com/ReactiveX/rxjs)는 비동기 데이터 스트림을 처리하는 API를 제공하는 라이브러리다.
 
+# 2. 리액티브 프로그래밍의 특징
+
 HTTP 요청은 비동기로 처리되기 때문에 작업이 종료되지 않은 상태라도 대기하지 않고(Non-Blocking) 다음 작업을 수행할 수 있다. 이후 서버의 응답이 도착하면 데이터를 처리하거나 화면을 갱신한다. 이러한 비동기 처리는 콜백함수나 [프로미스](./es6-promise), Generator, async/await 또는 옵저버블로 구현할 수 있다. 콜백함수를 사용하는 경우, 에러 처리가 어렵고 콜백 헬(Callback Hell) 등의 문제가 발생하므로 프로미스를 사용하는 것이 더 나은 방법이지만 프로미스는 아래와 같은 단점이 있다.
 
 - 한번에 하나의 데이터를 처리하기 때문에 연속성을 갖는 데이터를 처리할 수 없다.
@@ -47,12 +49,16 @@ HTTP 요청은 비동기로 처리되기 때문에 작업이 종료되지 않은
 
 옵저버블은 기존 비동기 처리 방식의 단점을 해결할 수 있는 더 나은 대안이다. 옵저버블은 연속성을 갖는 데이터 스트림을 스트리밍(streaming)하고 옵저버는 연속적으로 보내진 데이터를 받아 처리한다.
 
-리액티브 프로그래밍은 기본적으로 모든 것을 연속성을 갖는 데이터의 흐름인 스트림으로 본다. **옵저버(Observer)는 데이터 스트림을 구독(subscribe)하여 사용하는 객체**이며 **옵저버블(Observable)은 데이터 스트림을 생성하는 객체**이다. 배열, Ajax 통신 결과, 웹소켓, 사용자 이벤트 등 데이터를 생산하는 것이라면 무엇이든 옵저버블로 만들 수 있다.
+리액티브 프로그래밍은 기본적으로 모든 것을 연속성을 갖는 데이터의 흐름인 스트림으로 본다. **옵저버(Observer)는 데이터 스트림을 구독(subscribe)하여 사용하는 객체**이며 **옵저버블(Observable)은 데이터 스트림을 생성하는 객체**이다.
 
 ![observable](/img/observable.png)
 
 Observable과 Observer
 {: .desc-img}
+
+배열과 함수 반환값과 같은 동기 데이터와 Ajax 통신 결과, 사용자 이벤트 등 비동기 데이터 등 동기/비동기와 관계없이 데이터를 생산하는 것이라면 무엇이든 옵저버블로 만들 수 있다. 리액티브 프로그래밍은 이처럼 다양한 형태의 데이터를 처리하기 위한 일관된 방식을 제공하며 이를 통해 안전하고 통일된 데이터 처리가 가능하다.
+
+# 3. 오퍼레이터(Operator)
 
 옵저버블은 옵저버블을 생성(Creating), 변환(Transforming), 필터링(Filtering), 오류 처리(Error Handling)하는 [오퍼레이터(Operator)](http://reactivex.io/documentation/operators.html)를 사용할 수 있다. 대부분의 오퍼레이터는 옵저버블 상에서 동작하고 옵저버블을 리턴한다. 아래 그림은 옵저버블이 [map](http://reactivex.io/documentation/operators/map.html) 오퍼레이터를 통해 변환(Transforming)된 옵저버블을 반환하는 마블 다이어그램(Marble diagram)이다.
 
@@ -60,6 +66,8 @@ Observable과 Observer
 
 Observable의 map operator
 {: .desc-img}
+
+# 4. 간단한 옵저버블 예제
 
 간단한 예제를 통해 옵저버블의 동작을 살펴보자.
 
@@ -146,7 +154,7 @@ Observable과 Observer
 
 <iframe src="https://stackblitz.com/edit/observable?embed=1&file=app/observable.component.ts" frameborder="0" width="100%" height="400"></iframe>
 
-# 2. 옵저버블 이벤트 스트림
+# 5. 옵저버블 이벤트 스트림 예제
 
 뷰에서 이벤트가 발생하면 일반적인 자바스크립트 애플리케이션은 한번만 이벤트를 처리한다. 예를 들어 input 요소의 keyup 이벤트는 연속적으로 발생하고 일반적인 자바스크립트 애플리케이션은 이벤트가 발생할 때마다 이벤트 핸들러를 호출한다. 만약 keyup 이벤트가 발생될 때마다 input 요소의 입력값을 가지고 서버에 요청을 보내는 경우, 이벤트가 발생할 때마다 계속해서 서버에 요청을 보낼 것이다. 이러한 경우에 setTimeout()으로 사용자가 다음 입력을 할 때까지 서버에 요청을 멈추고 일정 시간 대기할 수도 있겠지만 이것도 완전한 대응 방법은 아니며 한번 전송된 요청은 취소할 수 없기 때문에 불필요한 요청이 발생할 수 있다.
 

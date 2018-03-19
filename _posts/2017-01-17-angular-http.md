@@ -233,7 +233,7 @@ Failed to compile.
 
 ```typescript
 ngOnInit() {
-  this.http.get<Todo[]>(this.url)
+  this.http.get(this.url)
     // 할당시 타입이 일치하지 않기 때문에 컴파일 에러가 발생한다.
     .subscribe(todos => this.todos = todos);
 }

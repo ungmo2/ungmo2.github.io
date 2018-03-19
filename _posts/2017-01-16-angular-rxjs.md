@@ -306,6 +306,7 @@ switchMap 오퍼레이터
 테스트를 위해 input 요소에 입력을 느리게 해보자. 그러면 500ms마다 HTTP 요청이 발생할 것이다. 이때 getGithubUser 메소드의 실행 시간이 500ms를 초과하면 HTTP 요청이 취소될 것이다.
 
 ![cancelable http request](/img/cancelable-http-request.png)
+{: .w-650}
 
 옵저버블을 사용하면 불필요한 HTTP 요청을 취소할 수 있다.
 {: .desc-img}

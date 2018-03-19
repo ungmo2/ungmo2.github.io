@@ -34,7 +34,7 @@ Angular는 Angular CLI를 위한 별도의 웹페이지 [https://cli.angular.io/
 
 Angular CLI를 사용하기 위해서는 어떠한 절차가 필요한지 그리고 무엇을 할 수 있는지 알아보자.
 
-Angular CLI 1.6.5을 기준으로 한다. Angular CLI의 변경이력은 [angular-cli releases](https://github.com/angular/angular-cli/releases)에서 참조 가능하다.
+Angular CLI 1.7.3을 기준으로 한다. Angular CLI의 변경이력은 [angular-cli releases](https://github.com/angular/angular-cli/releases)에서 참조 가능하다.
 {: .info}
 
 # 2. Angular CLI 설치
@@ -79,11 +79,24 @@ $ ng version
 /_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
                |___/
 
-Angular CLI: 1.6.5
+Angular CLI: 1.7.3
 Node: 9.2.1
 OS: darwin x64
-Angular:
-...
+Angular: 5.2.9
+... animations, common, compiler, compiler-cli, core, forms
+... http, language-service, platform-browser
+... platform-browser-dynamic, router
+
+@angular/cli: 1.7.3
+@angular-devkit/build-optimizer: 0.3.2
+@angular-devkit/core: 0.3.2
+@angular-devkit/schematics: 0.3.2
+@ngtools/json-schema: 1.2.0
+@ngtools/webpack: 1.10.2
+@schematics/angular: 0.3.2
+@schematics/package-update: 0.3.2
+typescript: 2.5.3
+webpack: 3.11.0
 ```
 
 Angular CLI의 사용법을 참조하기 위해서는 `ng help` 명령어를 사용한다.
@@ -109,35 +122,34 @@ $ ng new my-app
   create my-app/README.md (1021 bytes)
   create my-app/.angular-cli.json (1241 bytes)
   create my-app/.editorconfig (245 bytes)
-  create my-app/.gitignore (516 bytes)
+  create my-app/.gitignore (544 bytes)
   create my-app/src/assets/.gitkeep (0 bytes)
   create my-app/src/environments/environment.prod.ts (51 bytes)
   create my-app/src/environments/environment.ts (387 bytes)
   create my-app/src/favicon.ico (5430 bytes)
   create my-app/src/index.html (292 bytes)
   create my-app/src/main.ts (370 bytes)
-  create my-app/src/polyfills.ts (2405 bytes)
+  create my-app/src/polyfills.ts (3114 bytes)
   create my-app/src/styles.css (80 bytes)
-  create my-app/src/test.ts (1085 bytes)
+  create my-app/src/test.ts (642 bytes)
   create my-app/src/tsconfig.app.json (211 bytes)
-  create my-app/src/tsconfig.spec.json (304 bytes)
+  create my-app/src/tsconfig.spec.json (283 bytes)
   create my-app/src/typings.d.ts (104 bytes)
   create my-app/e2e/app.e2e-spec.ts (288 bytes)
   create my-app/e2e/app.po.ts (208 bytes)
   create my-app/e2e/tsconfig.e2e.json (235 bytes)
   create my-app/karma.conf.js (923 bytes)
-  create my-app/package.json (1311 bytes)
+  create my-app/package.json (1291 bytes)
   create my-app/protractor.conf.js (722 bytes)
   create my-app/tsconfig.json (363 bytes)
-  create my-app/tslint.json (3040 bytes)
+  create my-app/tslint.json (3012 bytes)
   create my-app/src/app/app.module.ts (316 bytes)
   create my-app/src/app/app.component.css (0 bytes)
   create my-app/src/app/app.component.html (1141 bytes)
   create my-app/src/app/app.component.spec.ts (986 bytes)
   create my-app/src/app/app.component.ts (207 bytes)
-Installing packages for tooling via npm.
-Installed packages for tooling via npm.
-Successfully initialized git.
+...
+added 1382 packages from 1248 contributors in 64.505s
 Project 'my-app' successfully created.
 ```
 
@@ -193,6 +205,7 @@ my-app/
 ├── .editorconfig
 ├── .gitignore
 ├── karma.conf.js
+├── package-lock.json
 ├── package.json
 ├── protractor.conf.js
 ├── README.md
@@ -217,14 +230,14 @@ $ ng serve
 $ cd my-app
 $ ng serve
 ** NG Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **
-Date: 2018-01-02T16:23:50.169Z
-Hash: 767d6da7daebbbf53c31
-Time: 7581ms
-chunk {inline} inline.bundle.js (inline) 5.79 kB [entry] [rendered]
-chunk {main} main.bundle.js (main) 20.4 kB [initial] [rendered]
-chunk {polyfills} polyfills.bundle.js (polyfills) 557 kB [initial] [rendered]
-chunk {styles} styles.bundle.js (styles) 33.8 kB [initial] [rendered]
-chunk {vendor} vendor.bundle.js (vendor) 7.14 MB [initial] [rendered]
+Date: 2018-03-19T05:22:53.459Z
+Hash: f0ee9b5655b28d7cdf0a
+Time: 10501ms
+chunk {inline} inline.bundle.js (inline) 3.85 kB [entry] [rendered]
+chunk {main} main.bundle.js (main) 17.9 kB [initial] [rendered]
+chunk {polyfills} polyfills.bundle.js (polyfills) 549 kB [initial] [rendered]
+chunk {styles} styles.bundle.js (styles) 41.5 kB [initial] [rendered]
+chunk {vendor} vendor.bundle.js (vendor) 7.42 MB [initial] [rendered]
 
 webpack: Compiled successfully.
 ```
@@ -596,14 +609,14 @@ $ ng g cl user --spec
 
 ```bash
 $ ng build
-Date: 2018-01-03T10:50:46.926Z
-Hash: 6856ddacfa273eff797a
-Time: 8785ms
-chunk {inline} inline.bundle.js, inline.bundle.js.map (inline) 5.83 kB [entry] [rendered]
-chunk {main} main.bundle.js, main.bundle.js.map (main) 10.4 kB [initial] [rendered]
+Date: 2018-03-19T05:25:21.729Z
+Hash: 856187c32e9f56345356
+Time: 8550ms
+chunk {inline} inline.bundle.js, inline.bundle.js.map (inline) 3.89 kB [entry] [rendered]
+chunk {main} main.bundle.js, main.bundle.js.map (main) 7.39 kB [initial] [rendered]
 chunk {polyfills} polyfills.bundle.js, polyfills.bundle.js.map (polyfills) 202 kB [initial] [rendered]
-chunk {styles} styles.bundle.js, styles.bundle.js.map (styles) 11.4 kB [initial] [rendered]
-chunk {vendor} vendor.bundle.js, vendor.bundle.js.map (vendor) 2.34 MB [initial] [rendered]
+chunk {styles} styles.bundle.js, styles.bundle.js.map (styles) 14.5 kB [initial] [rendered]
+chunk {vendor} vendor.bundle.js, vendor.bundle.js.map (vendor) 2.44 MB [initial] [rendered]
 ```
 
 빌드가 완료되면 프로젝트 루트에 빌드 결과물이 포함된 dist 폴더가 생성된다.
@@ -670,13 +683,13 @@ export const environment = {
 $ ng build --target=production
 # 위 명령어의 축약형은 아래와 같다
 $ ng build -prod
-Date: 2018-01-03T10:59:54.845Z
-Hash: 80e4d7fafb7bfdbf28c6
-Time: 21876ms
-chunk {0} polyfills.61df7d7ec492d95bb0b2.bundle.js (polyfills) 61.3 kB [initial] [rendered]
-chunk {1} main.2c2b6c0a6d95ad6f48ec.bundle.js (main) 152 kB [initial] [rendered]
-chunk {2} styles.d41d8cd98f00b204e980.bundle.css (styles) 0 bytes [initial] [rendered]
-chunk {3} inline.cd5410a32cdfcea4794b.bundle.js (inline) 1.45 kB [entry] [rendered]
+Date: 2018-03-19T05:27:08.704Z
+Hash: b1deda6043b76416d176
+Time: 25892ms
+chunk {0} polyfills.bf95165a1d5098766b92.bundle.js (polyfills) 59.4 kB [initial] [rendered]
+chunk {1} main.f16ca82071f130ec5ad4.bundle.js (main) 154 kB [initial] [rendered]
+chunk {2} styles.ac89bfdd6de82636b768.bundle.css (styles) 0 bytes [initial] [rendered]
+chunk {3} inline.318b50c57b4eba3d437b.bundle.js (inline) 796 bytes [entry] [rendered]
 ```
 
 프로덕션 빌드 시에는 `src/environments/environment.prod.ts` 파일을 참조하여 빌드를 수행한다. 프로덕션 빌드와 개발환경 빌드에 기본 적용되는 옵션의 차이는 아래와 같다.

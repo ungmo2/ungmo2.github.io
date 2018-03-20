@@ -224,7 +224,7 @@ export class ObservableEventHttpComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  // ⑤ 서버로 부터 데이터를 응답받아 옵저버블은 반환한다.
+  // ⑤ 서버로 부터 데이터를 응답받아 옵저버블을 반환한다.
   getGithubUser(userId: string): Observable<GithubUser> {
     return this.http
       .get<GithubUser>(`https://api.github.com/users/${userId}`)

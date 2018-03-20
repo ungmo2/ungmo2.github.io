@@ -314,7 +314,7 @@ params.set('completed', 'false');
 this.http.get<Todo[]>(this.url, { observe: 'response' })
   .subscribe(res => {
     console.log(res);
-    // HttpResponse {headers: HttpHeaders, status: 200, statusText: "OK", url: "http://localhost:3000/todos", ok: true, …}
+    // HttpResponse {headers: HttpHeaders, status: 200, statusText: "OK", url: "http://localhost:3000/todos", ok: true, …}
 
     console.log(res.headers);
     // HttpHeaders {normalizedNames: Map(0), lazyUpdate: null, lazyInit: ƒ}

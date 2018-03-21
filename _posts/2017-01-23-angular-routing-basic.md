@@ -233,7 +233,7 @@ Angular는 사용자의 요청 URL의 패스(path, 경로)와 컴포넌트의 �
 
 ```typescript
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'service', component: ServiceComponent },
   { path: 'about', component: AboutComponent },
   { path: '**', component: NotFoundComponent }
@@ -244,7 +244,7 @@ const routes: Routes = [
 
 | 요청 URL 패스 | URL 범례                | 활성화될 컴포넌트
 |:------------|:-----------------------|:---------------
-| 루트         | localhost:4200/        | HomeComponent
+| home        | localhost:4200/home    | HomeComponent
 | service     | localhost:4200/service | ServiceComponent
 | about       | localhost:4200/about   | AboutComponent
 | 상기 패스 이외 | localhost:4200/some    | NotFoundComponent
@@ -282,19 +282,11 @@ export interface Route {
 
 Route 인터페이스의 path 프로퍼티는 URL 패스(경로)를 나타내는 문자열이고 component 프로퍼티는 컴포넌트 타입을 나타낸다.
 
-예를 들어 루트 패스 '/'가 요청되면 HomeComponent를 사용하여 뷰를 표시하는 경우, 라우트 구성은 아래와 같다. **패스의 '/'는 기술하지 않는다.**
+예를 들어 '/home'라는 URL 패스가 요청되면 ServiceComponent를 활성화하고, '/service'라는 URL 패스가 요청되면 ServiceComponent를 활성화하고, '/about'라는 URL 패스가 요청되면 AboutComponent를 활성화하여 뷰를 출력하는 경우, 라우트 구성은 아래와 같다.  **패스의 '/'는 기술하지 않는다.**
 
 ```typescript
 const routes: Routes = [
-  { path: '', component: HomeComponent }
-];
-```
-
-'/service'라는 URL 패스가 요청되면 ServiceComponent를 활성화하고, '/about'라는 URL 패스가 요청되면 AboutComponent를 활성화하여 뷰를 출력하는 경우, 라우트 구성은 아래와 같다.
-
-```typescript
-const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'service', component: ServiceComponent },
   { path: 'about', component: AboutComponent }
 ];
@@ -304,7 +296,7 @@ URL 패스에 매칭하는 라우트 정보가 없다면 path 프로퍼티에 '*
 
 ```typescript
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'service', component: ServiceComponent },
   { path: 'about', component: AboutComponent },
   { path: '**', component: NotFoundComponent }
@@ -317,7 +309,7 @@ redirectTo 프로퍼티는 요청을 리다이렉트할 때 사용한다. redire
 
 pathMatch 프로퍼티에 문자열 'full'을 설정하면 path 프로퍼티의 패스와 요청 URL 패스 전체가 정확하게 매칭할 때 리다이렉트한다. pathMatch 프로퍼티에 문자열 'prefix'를 설정하면 path 프로퍼티의 패스와 요청 URL 패스가 앞부분만 매칭하여도 리다이렉트한다.
 
-path의 값이 ''인 경우, 리다이렉트 라우트는 반드시 pathMatch: 'full'을 설정하여야 한다.
+예를 들어 루트 패스 '/'가 요청되면 '/home'으로 디라이렉트하여 HomeComponent를 활성화하여 뷰를 표시하는 경우, 라우트 구성은 아래와 같다. **path의 값이 ''인 경우, 리다이렉트 라우트는 반드시 pathMatch: 'full'을 설정하여야 한다.**
 
 ```typescript
 const routes: Routes = [
@@ -329,7 +321,7 @@ const routes: Routes = [
 ];
 ```
 
-<iframe src="https://stackblitz.com/edit/route-redirectto?embed=1&file=app/app-routing.module.ts" frameborder="0" width="100%" height="500"></iframe>
+<!-- <iframe src="https://stackblitz.com/edit/route-redirectto?embed=1&file=app/app-routing.module.ts" frameborder="0" width="100%" height="500"></iframe> -->
 
 ## 4.2 라우트 등록
 
@@ -356,7 +348,8 @@ import {
 
 // 라우트 구성
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
   { path: 'service', component: ServiceComponent },
   { path: 'about', component: AboutComponent },
   { path: '**', component: NotFoundComponent }
@@ -385,7 +378,8 @@ import {
 
 // 라우트 구성
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
   { path: 'service', component: ServiceComponent },
   { path: 'about', component: AboutComponent },
   { path: '**', component: NotFoundComponent }
@@ -435,7 +429,8 @@ import {
 
 // 라우트 구성
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
   { path: 'service', component: ServiceComponent },
   { path: 'about', component: AboutComponent },
   { path: '**', component: NotFoundComponent }
@@ -509,7 +504,7 @@ RouterOutlet 디렉티브를 사용하여 뷰의 렌더링 위치를 지정하�
 ```html
 <!-- app.component.ts -->
 <nav>
-  <a routerLink="/">Home</a>
+  <a routerLink="/home">Home</a>
   <a routerLink="/service">Service</a>
   <a routerLink="/about">About</a>
 </nav>
@@ -518,7 +513,7 @@ RouterOutlet 디렉티브를 사용하여 뷰의 렌더링 위치를 지정하�
 
 RouterLink 디렉티브는 자신의 값을 라우터에 전달한다. 라우터는 이를 전달받아 해당 컴포넌트를 활성화하여 뷰를 출력한다.
 
-위 예제에서 nave 요소의 자식 요소인 `<a routerLink="/">Home</a>`을 클릭하면 RouterLink 디렉티브는 자신의 값 즉 "/"을 라우터에 전달한다. 이때 라우터는 전달된 값 "/"을 요청 URL의 패스로 인식하고 이에 해당하는 컴포넌트를 라우트 구성에서 검색하여 활성화한다. 그리고 이 컴포넌트의 뷰는 `<router-outlet></router-outlet>`에 표시된다.
+위 예제에서 nav 요소의 자식 요소인 `<a routerLink="/home">Home</a>`을 클릭하면 RouterLink 디렉티브는 자신의 값 즉 "/home"을 라우터에 전달한다. 이때 라우터는 전달된 값 "/home"을 요청 URL의 패스로 인식하고 이에 해당하는 컴포넌트를 라우트 구성에서 검색하여 활성화한다. 그리고 이 컴포넌트의 뷰는 `<router-outlet></router-outlet>`에 표시된다.
 
 앞서 생성한 예제의 루트 컴포넌트에 RouterLink 디렉티브를 선언하여 보자.
 
@@ -530,7 +525,7 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <nav>
-      <a routerLink="/">Home</a>
+      <a routerLink="/home">Home</a>
       <a routerLink="/service">Service</a>
       <a routerLink="/about">About</a>
     </nav>
@@ -601,7 +596,7 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <nav>
-      <a routerLink="/"
+      <a routerLink="/home"
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }">
         Home</a>

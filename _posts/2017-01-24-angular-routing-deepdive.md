@@ -858,7 +858,7 @@ export class AppModule { }
 이를 그림으로 표현하면 아래와 같다.
 
 ![모듈의 분리](./img/sep-module.png)
-{: .w-400}
+{: .w-600}
 모듈의 분리와 모듈별 라우트 구성
 {: .desc-img}
 

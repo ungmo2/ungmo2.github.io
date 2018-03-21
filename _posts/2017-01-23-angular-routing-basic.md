@@ -56,7 +56,8 @@ Angular는 사용자의 요청 URL의 패스(path, 경로)와 컴포넌트의 �
 
 ```typescript
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
   { path: 'service', component: ServiceComponent },
   { path: 'about', component: AboutComponent },
   { path: '**', component: NotFoundComponent }
@@ -75,7 +76,7 @@ Angular는 이와 같은 문제점을 해결할 수 있는 2가지의 위치 정
 
 ### 3.2.1 PathLocationStrategy (HTML5 Histroy API pushState 기반 내비게이션 정책)
 
-HTML5의 Histroy API pushState 메소드를 사용하는 정책으로 '/service', '/about'와 같이 URL 패스(path)를 기반으로 한다.
+HTML5의 Histroy API pushState 메소드를 사용하는 정책으로 '/home', '/service', '/about'와 같이 URL 패스(path)를 기반으로 한다.
 
 ```
 localhost:4200/service
@@ -99,7 +100,8 @@ Hash 기반 내비게이션 정책을 기본으로 사용하려면 루트 모듈
 // app.module.ts
 ...
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
   { path: 'service', component: ServiceComponent },
   { path: 'about', component: AboutComponent },
   { path: '**', component: NotFoundComponent }
@@ -122,7 +124,8 @@ const routes: Routes = [
 // app-routing.module.ts
 ...
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
   { path: 'service', component: ServiceComponent },
   { path: 'about', component: AboutComponent },
   { path: '**', component: NotFoundComponent }
@@ -282,7 +285,7 @@ export interface Route {
 
 Route 인터페이스의 path 프로퍼티는 URL 패스(경로)를 나타내는 문자열이고 component 프로퍼티는 컴포넌트 타입을 나타낸다.
 
-예를 들어 '/home'라는 URL 패스가 요청되면 ServiceComponent를 활성화하고, '/service'라는 URL 패스가 요청되면 ServiceComponent를 활성화하고, '/about'라는 URL 패스가 요청되면 AboutComponent를 활성화하여 뷰를 출력하는 경우, 라우트 구성은 아래와 같다.  **패스의 '/'는 기술하지 않는다.**
+예를 들어 '/home'라는 URL 패스가 요청되면 ServiceComponent를 활성화하고, '/service'라는 URL 패스가 요청되면 ServiceComponent를 활성화하고, '/about'라는 URL 패스가 요청되면 AboutComponent를 활성화하여 뷰를 출력하는 경우, 라우트 구성은 아래와 같다. 이때 **패스의 '/'는 기술하지 않는다.**
 
 ```typescript
 const routes: Routes = [
@@ -513,7 +516,7 @@ RouterOutlet 디렉티브를 사용하여 뷰의 렌더링 위치를 지정하�
 
 RouterLink 디렉티브는 자신의 값을 라우터에 전달한다. 라우터는 이를 전달받아 해당 컴포넌트를 활성화하여 뷰를 출력한다.
 
-위 예제에서 nav 요소의 자식 요소인 `<a routerLink="/home">Home</a>`을 클릭하면 RouterLink 디렉티브는 자신의 값 즉 "/home"을 라우터에 전달한다. 이때 라우터는 전달된 값 "/home"을 요청 URL의 패스로 인식하고 이에 해당하는 컴포넌트를 라우트 구성에서 검색하여 활성화한다. 그리고 이 컴포넌트의 뷰는 `<router-outlet></router-outlet>`에 표시된다.
+위 예제에서 nav 요소의 자식 요소인 `<a routerLink="/home">Home</a>`을 클릭하면 RouterLink 디렉티브는 자신의 값 "/home"을 라우터에 전달한다. 이때 라우터는 전달된 값 "/home"을 요청 URL의 패스로 인식하고 이에 해당하는 컴포넌트를 라우트 구성에서 검색하여 활성화한다. 그리고 이 컴포넌트의 뷰는 `<router-outlet></router-outlet>`에 표시된다.
 
 앞서 생성한 예제의 루트 컴포넌트에 RouterLink 디렉티브를 선언하여 보자.
 

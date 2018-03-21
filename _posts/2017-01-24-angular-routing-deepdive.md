@@ -810,12 +810,6 @@ $ ng generate module app-routing --flat
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { UserModule } from './user/user.module';
-import { UserComponent } from './user/user.component';
-
-import { CustomerModule } from './customer/customer.module';
-import { CustomerComponent } from './customer/customer.component';
-
 // 라우트 구성
 const routes: Routes = [
   { path: '', redirectTo: '/user',  pathMatch: 'full' }
@@ -823,10 +817,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    UserModule,
-    CustomerModule,
-    /* 라우터 등록 */
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes) /* 라우터 등록 */
   ],
   exports: [ RouterModule ]
 })
@@ -841,12 +832,17 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 
+import { UserModule } from './user/user.module';
+import { CustomerModule } from './customer/customer.module';
+
 import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [ AppComponent ],
   imports: [
     BrowserModule,
+    UserModule,
+    CustomerModule,
     /* AppRoutingModule 등록 */
     AppRoutingModule
   ],

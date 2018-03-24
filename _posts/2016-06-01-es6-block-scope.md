@@ -124,6 +124,21 @@ var 키워드로 선언된 변수의 생명 주기
 let 키워드로 선언된 변수의 생명 주기
 {: .desc-img}
 
+결국 ES6에서는 호이스팅이 발생하지 않는 것과 차이가 없어 보인다. 하지만 그렇지 않다. 아래 예제를 살펴보자.
+
+```javascript
+let foo = 1; // 전역 변수
+
+{
+  console.log(foo); // ReferenceError: foo is not defined
+  let foo = 2; // 지역 변수
+}
+```
+
+위 예제의 경우, 전역 변수 foo의 값이 출력될 것처럼 보인다. 하지만 ES6의 선언문도 여전히 호이스팅이 발생하기 때문에 ReferenceError가 발생한다.
+
+ES6의 let으로 선언된 변수는 Block-level scope를 가지므로 코드 블록 내에서 선언된 변수 foo는 지역 변수이다. 따라서 지역 변수 foo도 해당 스코프에서 호이스팅되고 코드 블록의 선두부터 초기화가 이루어지는 지점까지 일시적 사각지대(TDZ)에 빠진다. 따라서 전역 변수 foo의 값이 출력되지 않고 ReferenceError가 발생한다.
+
 ## 1.4 클로저
 
 Block-level scope를 지원하는 let은 var보다 직관적이다. 다음 코드를 살펴보자.

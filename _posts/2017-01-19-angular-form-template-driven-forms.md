@@ -147,6 +147,11 @@ NgModel 디렉티브가 적용된 요소가 FormGroup 인스턴스에 추가되�
 
 [NgModel](https://angular.io/api/forms/NgModel) 디렉티브는 자신이 적용된 폼 컨트롤 요소에 해당하는 [FormControl](https://angular.io/api/forms/FormControl) 인스턴스를 생성한다고 하였다. 이 FormControl 인스턴스는 폼 컨트롤 요소의 값이나 유효성 검증 상태를 추적할 수 있는 기능을 제공한다. FormControl 인스턴스는 폼을 구성하는 기본 단위로서 폼 컨트롤 요소의 값이나 유효성 검증 상태를 추적하고 뷰와 폼 모델을 동기화된 상태로 유지한다.
 
+![](/img/form-formcontrol.png)
+
+NgForm 인스턴스 내에 생성된 FormControl
+{: .desc-img}
+
 폼 컨트롤 요소의 값은 NgForm을 가리키는 템플릿 참조 변수 userForm의 value 프로퍼티(userForm.value)를 참조하면 아래와 같은 결과를 확인할 수 있다. 폼의 userid에 "myid", password에 "1234"를 입력한 경우이다.
 
 ```json

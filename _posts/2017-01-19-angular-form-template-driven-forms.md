@@ -302,7 +302,7 @@ export class AppComponent {
 
 이와 같이 양방향 바인딩은 ngModel 디렉티브와 ngModelChange 디렉티브 선언의 축약 표현으로 프로퍼티 바인딩과 이벤트 바인딩이 각각 처리된다. **ngModel 프로퍼티 바인딩은 컴포넌트 프로퍼티 name의 상태 변화를 수신하여 상태를 업데이트하고 ngModelChange 이벤트 바인딩은 템플릿의 상태 변화 이벤트를 발신하여 컴포넌트 프로퍼티 name의 상태를 업데이트한다.** 이때 $event의 값은 폼 컨트롤 요소의 값이다.
 
-양방향 바인딩은 반드시 NgModel 디렉티브를 사용하여야 하는 것은 아니며 커스텀 양방향 데이터 바인딩도 작성할 수 있다. 커스템 양방향 바인딩의 간단한 예제를 작성해 보자.
+양방향 바인딩은 반드시 NgModel 디렉티브를 사용하여야 하는 것은 아니며 커스텀 양방향 데이터 바인딩도 작성할 수 있다. 커스텀 양방향 바인딩의 간단한 예제를 작성해 보자.
 
 ```typescript
 // app.component.ts
@@ -347,7 +347,7 @@ export class CounterComponent {
 }
 ```
 
-부모 컴포넌트 AppComponent는 count 프로퍼티 바인딩을 통해 자식 컴포넌트에게 상태 정보를 전달한다. 자식 컴포넌트 CounterComponent는 @Input 데코레이터를 통해 입력 프로퍼티에 전달된 상태 정보를 바인딩한다. 또한 자식 컴포넌트 CounterComponent는 @Output 데코레이터와 함께 선언된 출력 프로퍼티를 EventEmitter 객체로 초기화한다. 그리고 부모 컴포넌트로 상태를 전달하기 위해 emit() 메소드를 사용하여 이벤트를 발생시키면서 상태를 전달한다. 부모 컴포넌트는 자식 컴포넌트가 전달한 상태를 이벤트 바인딩을 통해 상태를 접수한다.
+부모 컴포넌트 AppComponent는 count 프로퍼티 바인딩을 통해 자식 컴포넌트에게 상태 정보를 전달한다. 자식 컴포넌트 CounterComponent는 @Input 데코레이터를 통해 입력 프로퍼티 count에 전달된 상태 정보를 바인딩한다. 또한 자식 컴포넌트 CounterComponent는 @Output 데코레이터와 함께 선언된 출력 프로퍼티 countChange를 EventEmitter 객체로 초기화한다. 그리고 부모 컴포넌트로 상태를 전달하기 위해 emit() 메소드를 사용하여 이벤트를 발생시키면서 상태를 전달한다. 부모 컴포넌트는 자식 컴포넌트가 전달한 상태를 이벤트 바인딩을 통해 상태를 접수한다.
 
 위 예제의 양방향 바인딩은 아래의 축약 표현으로 정확히 동일하게 동작한다.
 
@@ -391,7 +391,7 @@ import { Component } from '@angular/core';
     <p>errors:  {{ "{{ title.errors | json " }}}}</p>
     <p>invalid: {{ "{{ title.invalid " }}}}</p>
     <p>dirty:   {{ "{{ title.dirty " }}}}</p>
-    <p>untouched: {{ "{{ title.untouched " }}}}</p>
+    <p>touched: {{ "{{ title.touched " }}}}</p>
     <p>pristine: {{ "{{ title.pristine " }}}}</p>
   `
 })
@@ -475,7 +475,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template: `<user-form></user-form>`
+  template: '<user-form></user-form>'
 })
 export class AppComponent {}
 ```
@@ -527,7 +527,7 @@ export class AppModule { }
       <em *ngIf="userid.errors?.required && userid.touched" class="alert">
         User id로 사용할 email을 입력하세요!
       </em>
-      <em>(untouched: {{ "{{ userid.untouched " }}}} | pristine: {{ "{{ userid.pristine " }}}} | invalid: {{ "{{ userid.invalid " }}}})</em>
+      <em>(touched: {{ "{{ userid.touched " }}}} | pristine: {{ "{{ userid.pristine " }}}} | invalid: {{ "{{ userid.invalid " }}}})</em>
     </div>
 
     <div class="form-group">
@@ -544,7 +544,7 @@ export class AppModule { }
         Password를 입력하세요!
       </em>
       <em>
-        (untouched: {{ "{{ password.untouched " }}}} | pristine: {{ "{{ password.pristine " }}}} | invalid: {{ "{{ password.invalid " }}}})
+        (touched: {{ "{{ password.touched " }}}} | pristine: {{ "{{ password.pristine " }}}} | invalid: {{ "{{ password.invalid " }}}})
       </em>
     </div>
 

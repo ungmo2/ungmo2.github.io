@@ -4,7 +4,7 @@ title: Angular Forms - <strong>Reactive Forms</strong>
 subtitle: 리액티브 폼과 유효성 검증
 categories: angular
 section: angular
-description: 리액티브 폼(모델 기반 폼)은 템플릿이 아닌 컴포넌트 클래스에서 폼 모델을 구성하는 방식이다. 리액티브 폼은 템플릿 기반 폼보다 비교적 복잡한 경우 사용한다.템플릿 기반 폼은 NgForm, NgModel, NgModelGroup 디렉티브를 템플릿 내의 폼 요소 또는 폼 컨트롤 요소에 선언하고 이들 디렉티브가 자신이 적용된 폼 요소 또는 폼 컨트롤 요소에 해당하는 FormGroup, FormControl 인스턴스(폼 모델)를 생성한다. 그리고 NgForm, NgModel, NgModelGroup 디렉티브는 이들 인스턴스(폼 모델)를 폼 요소 또는 폼 컨트롤 요소에 바인딩하여 값이나 유효성 검증 상태를 추적할 수 있었다. 템플릿 기반 폼은 폼 모델에 직접 접근할 수 없고 템플릿 참조 변수에 할당한 NgForm, NgModel을 통해 값이나 유효성 검증 상태에 접근할 수 있다.
+description: 리액티브 폼(모델 기반 폼)은 템플릿이 아닌 컴포넌트 클래스에서 폼 모델을 구성하는 방식이다. 리액티브 폼은 템플릿 기반 폼보다 비교적 복잡한 경우 사용한다. 템플릿 기반 폼은 NgForm, NgModel, NgModelGroup 디렉티브를 템플릿 내의 폼 요소 또는 폼 컨트롤 요소에 선언하고 이들 디렉티브가 자신이 적용된 폼 요소 또는 폼 컨트롤 요소에 해당하는 FormGroup, FormControl 인스턴스(폼 모델)를 생성한다. 그리고 NgForm, NgModel, NgModelGroup 디렉티브는 이들 인스턴스(폼 모델)를 폼 요소 또는 폼 컨트롤 요소에 바인딩하여 값이나 유효성 검증 상태를 추적할 수 있었다. 템플릿 기반 폼은 폼 모델을 직접 정의/생성할 수 없고 NgForm, NgModel, NgModelGroup 디렉티브가 생성한 폼 모델을 템플릿 참조 변수에 할당하여 값이나 유효성 검증 상태에 접근할 수 있다.
 ---
 
 * TOC
@@ -16,11 +16,11 @@ description: 리액티브 폼(모델 기반 폼)은 템플릿이 아닌 컴포�
 
 리액티브 폼(모델 기반 폼)은 템플릿이 아닌 컴포넌트 클래스에서 폼 요소의 상태를 관리하는 객체인 폼 모델을 구성하는 방식이다. 리액티브 폼은 템플릿 기반 폼보다 비교적 복잡한 경우 사용한다.
 
-템플릿 기반 폼은 NgForm, NgModel, NgModelGroup 디렉티브를 템플릿 내의 폼 요소 또는 폼 컨트롤 요소에 선언하고 이들 디렉티브가 자신이 적용된 폼 요소 또는 폼 컨트롤 요소에 해당하는 FormGroup, FormControl 인스턴스(폼 모델)를 생성한다. 그리고 NgForm, NgModel, NgModelGroup 디렉티브는 이들 인스턴스(폼 모델)를 폼 요소 또는 폼 컨트롤 요소에 바인딩하여 값이나 유효성 검증 상태를 추적할 수 있었다. 템플릿 기반 폼은 폼 모델에 직접 접근할 수 없고 템플릿 참조 변수에 할당한 NgForm, NgModel을 통해 값이나 유효성 검증 상태에 접근할 수 있다.
+템플릿 기반 폼은 NgForm, NgModel, NgModelGroup 디렉티브를 템플릿 내의 폼 요소 또는 폼 컨트롤 요소에 선언하고 이들 디렉티브가 자신이 적용된 폼 요소 또는 폼 컨트롤 요소에 해당하는 FormGroup, FormControl 인스턴스(폼 모델)를 생성한다. 그리고 NgForm, NgModel, NgModelGroup 디렉티브는 이들 인스턴스(폼 모델)를 폼 요소 또는 폼 컨트롤 요소에 바인딩하여 값이나 유효성 검증 상태를 추적할 수 있었다. 템플릿 기반 폼은 폼 모델을 직접 정의/생성할 수 없고 NgForm, NgModel, NgModelGroup 디렉티브가 생성한 폼 모델을 템플릿 참조 변수에 할당하여 값이나 유효성 검증 상태에 접근할 수 있다.
 
-리액티브 폼(모델 기반 폼)은 컴포넌트 클래스에서 폼 요소의 값 및 유효성 검증 상태를 관리하는 자바스크립트 객체인 폼 모델(FormGroup, FormControl, FormArray)을 정의, 생성한다. 그리고 form* 접두사가 붙은 디렉티브(formGroup, formGroupName, formControlName, formArrayName)를 사용하여 템플릿의 폼 요소와 폼 모델을 프로퍼티 바인딩으로 연결한다.
+리액티브 폼(모델 기반 폼)은 컴포넌트 클래스에서 폼 요소의 값 및 유효성 검증 상태를 관리하는 자바스크립트 객체인 폼 모델(FormGroup, FormControl, FormArray)을 직접 정의/생성한다. 그리고 form* 접두사가 붙은 디렉티브(formGroup, formGroupName, formControlName, formArrayName)를 사용하여 템플릿의 폼 요소와 폼 모델을 프로퍼티 바인딩으로 연결한다.
 
-템플릿 기반 폼은 폼 모델에 직접 접근할 수 없지만 리액티브 폼은 폼 모델을 직접 정의, 생성하고 조작한다. 즉 컴포넌트 클래스 내부에서 데이터 모델과 폼 모델에 직접 접근하여 데이터 모델을 폼 모델에 반영하고 템플릿의 폼 컨트롤 요소의 상태 변화를 관찰(observe)하고 변화에 대응한다.
+다시 말해 컴포넌트 클래스 내부에서 정의/생성한 폼 모델에 직접 접근하여 데이터 모델을 폼 모델에 반영하고 템플릿의 폼 컨트롤 요소의 상태 변화를 관찰(observe)하고 변화에 대응한다.
 
 리액티브 폼은 FormControl, FormGroup, FormArray 클래스를 중심으로 동작한다. 이들을 사용하기 위해서 @angular/forms 패키지의 ReactiveFormsModule을 애플리케이션 모듈에 추가한다.
 
@@ -45,7 +45,7 @@ export class AppModule { }
 
 ## 2.1 FormGroup 클래스와 formGroup/formGroupName 디렉티브
 
-[FormGroup](https://angular.io/api/forms/FormControl) 인스턴스는 자신의 자식인 FormControl 인스턴스 또는 FormArray 인스턴스들을 그룹화하여 관리하기 위한 최상위 컨테이너로써 FormControl 또는 FormArray 인스턴스와 같은 자식 폼 모델 인스턴스들을 하나의 객체로 그룹화하여 모든 자식 폼 모델 인스턴스의 값과 유효성 상태를 관리한다. 만약 유효성을 검증할 때 자식 폼 모델 인스턴스 중 하나라도 유효하지 않다면 FormGroup은 유효하지 않게 된다.
+[FormGroup](https://angular.io/api/forms/FormControl) 인스턴스는 자신의 자식인 FormControl 인스턴스 또는 FormArray 인스턴스들을 그룹화하여 관리하기 위한 최상위 컨테이너이다. FormControl 또는 FormArray 인스턴스와 같은 자식 폼 모델 인스턴스들을 하나의 객체로 그룹화하여 모든 자식 폼 모델 인스턴스의 값과 유효성 상태를 관리한다. 만약 유효성을 검증할 때 자식 폼 모델 인스턴스 중 하나라도 유효하지 않다면 FormGroup은 유효하지 않게 된다.
 
 ```typescript
 const myFormGroup = new FormGroup({
@@ -178,7 +178,7 @@ export class AppComponent implements OnInit {
 
 <iframe src="https://stackblitz.com/edit/reactive-form-3?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
-FormControl은 폼 요소의 자식 폼 컨트롤 요소를 위해 사용하기도 하지만 폼 요소없이 단독으로 사용할 수도 있다. [\[Reactive Programming과 RxJS\] 옵저버블 이벤트 스트림](./angular-rxjs#2-옵저버블-이벤트-스트림)에서 살펴본 바와 같이 input 요소의 이벤트는 FormControl의 valueChanges 프로퍼티에 의해 옵저버블 스트림으로 변환된다.
+FormControl은 폼 요소의 자식 폼 컨트롤 요소를 위해 사용하기도 하지만 폼 요소없이 단독으로 사용할 수도 있다. [\[Reactive Programming과 RxJS\] 옵저버블 이벤트 스트림](./angular-rxjs#5-%EC%98%B5%EC%A0%80%EB%B2%84%EB%B8%94-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EC%8A%A4%ED%8A%B8%EB%A6%BC-%EC%98%88%EC%A0%9C)에서 살펴본 바와 같이 input 요소의 이벤트는 FormControl의 valueChanges 프로퍼티에 의해 옵저버블 스트림으로 변환된다.
 
 ```typescript
 // app.component.ts

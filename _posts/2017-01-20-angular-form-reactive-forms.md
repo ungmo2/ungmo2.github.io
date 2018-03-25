@@ -16,7 +16,11 @@ description: 리액티브 폼(모델 기반 폼)은 템플릿이 아닌 컴포�
 
 리액티브 폼(모델 기반 폼)은 템플릿이 아닌 컴포넌트 클래스에서 폼 요소의 상태를 관리하는 객체인 폼 모델을 구성하는 방식이다. 리액티브 폼은 템플릿 기반 폼보다 비교적 복잡한 경우 사용한다.
 
-템플릿 기반 폼은 NgForm, NgModel, NgModelGroup 디렉티브를 템플릿 내의 폼 요소 또는 폼 컨트롤 요소에 선언하고 이들 디렉티브가 자신이 적용된 폼 요소 또는 폼 컨트롤 요소에 해당하는 FormGroup, FormControl 인스턴스(폼 모델)를 생성한다. 그리고 NgForm, NgModel, NgModelGroup 디렉티브는 이들 인스턴스(폼 모델)를 폼 요소 또는 폼 컨트롤 요소에 바인딩하여 값이나 유효성 검증 상태를 추적할 수 있었다. 템플릿 기반 폼은 폼 모델을 직접 정의/생성할 수 없고 NgForm, NgModel, NgModelGroup 디렉티브가 생성한 폼 모델을 템플릿 참조 변수에 할당하여 값이나 유효성 검증 상태에 접근할 수 있다.
+템플릿 기반 폼은 NgForm, NgModel, NgModelGroup 디렉티브를 템플릿 내의 폼 요소 또는 폼 컨트롤 요소에 선언하고 이들 디렉티브가 자신이 적용된 폼 요소 또는 폼 컨트롤 요소에 해당하는 FormGroup, FormControl 인스턴스(폼 모델)를 생성한다. 그리고 NgForm, NgModel, NgModelGroup 디렉티브는 이들 인스턴스(폼 모델)를 폼 요소 또는 폼 컨트롤 요소에 바인딩하여 값이나 유효성 검증 상태를 추적할 수 있었다.
+
+템플릿 기반 폼은 폼 모델을 직접 정의/생성할 수 없고 폼 모델에 직접 접근할 수도 없다. 폼 모델에 접근하기 위해서는 NgForm, NgModel, NgModelGroup 디렉티브가 생성한 폼 모델을 템플릿 참조 변수에 할당하여야 한다.
+
+NgForm, NgModel, NgModelGroup 디렉티브가 생성한 폼 모델을 템플릿 참조 변수에 할당하여 값이나 유효성 검증 상태에 접근할 수 있다.
 
 리액티브 폼(모델 기반 폼)은 컴포넌트 클래스에서 폼 요소의 값 및 유효성 검증 상태를 관리하는 자바스크립트 객체인 폼 모델(FormGroup, FormControl, FormArray)을 직접 정의/생성한다. 그리고 form* 접두사가 붙은 디렉티브(formGroup, formGroupName, formControlName, formArrayName)를 사용하여 템플릿의 폼 요소와 폼 모델을 프로퍼티 바인딩으로 연결한다.
 
@@ -371,7 +375,7 @@ export class AppComponent implements OnInit {
 
 # 4. 사용자 정의 검증기(Custom validator)
 
-빌트인 검증기는 사용이 간편하지만 기본적인 검증 기능을 제공하므로 복잡한 애플리케이션의 요구 사항을 충족시키지 어려운 경우가 있다. Angular는 사용자 정의 검증기를 정의할 수 있으며 템플릿 기반 폼과 리액티브 폼 모두에 사용할 수 있다. 사용자 정의 검증기의 정의 방법에 대해 살펴보도록 하자.
+빌트인 검증기는 사용이 간편하지만 기본적인 검증 기능만을 제공하므로 복잡한 애플리케이션의 요구 사항을 충족시키기 어려운 경우가 있다. Angular는 사용자 정의 검증기를 정의할 수 있으며 템플릿 기반 폼과 리액티브 폼 모두에 사용할 수 있다. 사용자 정의 검증기의 정의 방법에 대해 살펴보도록 하자.
 
 사용자 정의 검증기는 재사용을 위해 외부 클래스로 분리하는 것이 일반적이다. 패스워드와 확인 패스워드가 일치하는지 체크하는 사용자 정의 검증기를 작성해보자.
 
@@ -388,8 +392,10 @@ export class PasswordValidator {
 
     // password와 confirmPassword의 값을 비교한다.
     if (password !== confirmPassword) {
+      // 검증에 실패한 경우, 에러 객체를 반환한다.
       return { match: { password, confirmPassword }};
     } else {
+      // 검증에 성공한 경우, null을 반환한다.
       return null;
     }
   }
@@ -526,7 +532,10 @@ export class AppModule { }
         <em *ngIf="confirmPassword.errors?.required && confirmPassword.touched" class="alert">
           password를 입력하세요!
         </em>
-        <em *ngIf="passwordGroup.errors?.match && confirmPassword.touched && !confirmPassword.errors?.required" class="alert">
+        <em *ngIf="passwordGroup.errors?.match
+            && confirmPassword.touched
+            && !confirmPassword.errors?.required"
+            class="alert">
           password가 일치하지 않습니다!
         </em>
       </div>
@@ -618,7 +627,7 @@ export class UserFormComponent implements OnInit {
 }
 ```
 
-컴포넌트 클래스에서 폼 요소의 값 및 유효성 검증 상태를 관리하는 자바스크립트 객체인 폼 모델 form을 정의, 생성하였다. 이 폼 모델은 FormGroup의 인스턴스로서 폼의 **데이터 구조를 정의**하며 모든 자식 인스턴스들의 값이나 유효성 검증 상태를 추적하고 뷰와 폼 모델을 동기화된 상태로 유지한다.
+컴포넌트 클래스에서 폼 요소의 값 및 유효성 검증 상태를 관리하는 자바스크립트 객체인 폼 모델 userForm을 정의, 생성하였다. 이 폼 모델은 FormGroup의 인스턴스로서 폼의 **데이터 구조를 정의**하며 모든 자식 인스턴스들의 값이나 유효성 검증 상태를 추적하고 뷰와 폼 모델을 동기화된 상태로 유지한다.
 
 그리고 form* 접두사가 붙은 디렉티브(formGroup, formGroupName, formControlName, formArrayName)를 사용하여 템플릿의 폼 요소와 폼 모델을 프로퍼티 바인딩으로 연결한다.
 
@@ -647,14 +656,14 @@ export class PasswordValidator {
 }
 ```
 
-템플릿 기반 폼은 폼 모델에 직접 접근할 수 없고 템플릿 참조 변수에 할당한 NgForm, NgModel을 통해 값이나 유효성 검증 상태에 접근할 수 있다.
+템플릿 기반 폼은 폼 모델을 직접 정의/생성할 수 없고 폼 모델에 직접 접근할 수도 없다. 폼 모델에 접근하기 위해서는 NgForm, NgModel, NgModelGroup 디렉티브가 생성한 폼 모델을 템플릿 참조 변수에 할당하여야 한다.
 
 ```html
 <input type="text" name="userid" ngModel #userid="ngModel">
 <pre>{{ "{{ userid.value " }}}}</pre>
 ```
 
-템플릿은 컴포넌트 클래스의 프로퍼티에 접근할 수 있다. **리액티브 폼의 경우, 템플릿에서 폼 모델에 접근할 수 있도록 컴포넌트 클래스에 getter를 정의한다.**
+하지만 리액티브 폼의 경우, 템플릿은 컴포넌트 클래스의 프로퍼티에 접근할 수 있으므로 컴포넌트 클래스에서 정의/생성한 폼 모델에 접근할 수 있다. **템플릿에서 폼 모델에 간편하게 접근할 수 있도록 컴포넌트 클래스에 getter를 정의한다.**
 
 AbstractControl 클래스의 get 메소드는 폼 모델의 자식 인스턴스를 검색할 때 사용한다.
 
@@ -692,7 +701,7 @@ get hobbies(): FormArray {
 
 # 6. FormBuilder
 
-지금까지 살펴본 방식으로도 폼을 구성하고 유효성 검증을 실행할 수 있다. 하지만 Angular는 더욱 간편한 방법으로 리액티브 폼을 구성할 수 있는 FormBuilder를 제공한다. FormBuilder를 사용하면 FormGroup, FormControl, FormArray와 같은 클래스를 사용하여 인스턴스를 생성하는 번거로움을 줄일 수 있어서 코드가 간결해지고 가독성이 좋아진다. 이는 복잡한 폼을 보다 쉽게 구성할 수 있도록 도우며 유지보수에도 유리하다.
+지금까지 살펴본 방식으로도 리액티브 폼을 구성하고 유효성 검증을 실행할 수 있다. 하지만 Angular는 더욱 간편한 방법으로 리액티브 폼을 구성할 수 있는 FormBuilder를 제공한다. FormBuilder를 사용하면 FormGroup, FormControl, FormArray와 같은 클래스를 사용하여 인스턴스를 생성하는 번거로움을 줄일 수 있어서 코드가 간결해지고 가독성이 좋아진다. 이는 복잡한 폼을 보다 쉽게 구성할 수 있도록 도우며 유지보수에도 유리하다.
 
 위에서 작성한 리액티브 폼 유효성 검증 실습 예제를 FormBuilder를 사용하여 리팩토링해보자.
 

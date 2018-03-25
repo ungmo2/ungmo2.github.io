@@ -163,7 +163,7 @@ NgForm 인스턴스 내에 생성된 FormControl
 
 이것은 폼 요소의 자식 요소 중 NgModel 디렉티브가 적용된 모든 자식 폼 컨트롤 요소의 상태 값을 나타낸다. 이때 키는 폼 컨트롤 요소의 name 어트리뷰트의 값이고, 값은 사용자 입력 값을 나타낸다. 따라서 **폼 컨트롤 요소에는 반드시 name 어트리뷰트를 지정하여야 한다.**
 
-NgModel 디렉티브는 [양방향 데이터 바인딩](./angular-component-template-syntax#17-양방향-데이터-바인딩two-way-binding)에서 사용할 때와는 달리 괄호와 할당문없이 선언한다.
+NgModel 디렉티브는 [양방향 데이터 바인딩](./angular-component-data-binding#37-%EC%96%91%EB%B0%A9%ED%96%A5-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B0%94%EC%9D%B8%EB%94%A9two-way-binding)에서 사용할 때와는 달리 괄호와 할당문없이 선언한다.
 
 ```html
 <form #userForm="ngForm">
@@ -192,7 +192,6 @@ NgModel 디렉티브는 [양방향 데이터 바인딩](./angular-component-temp
 <iframe src="https://stackblitz.com/edit/template-driven-form-3?embed=1&file=app/user-form.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 템플릿 참조 변수를 이벤트 핸들러에 인자로 전달하여 필요한 로직을 실행할 수 있다. 하지만 컴포넌트 클래스의 핸들러 함수가 필요한 로직을 실행한 이후, 그 결과를 다시 템플릿으로 보내야 한다면 양방향 데이터 바인딩을 사용하는 것이 보다 간편하다.
-
 
 ```html
 <input type="text" name="userid" [(ngModel)]="user.id" #userid="ngModel">

@@ -117,7 +117,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 또한 BrowserModule은 NgIf 및 NgFor와 같은 빌트인 디렉티브와 파이프를 포함하는 [CommonModule](https://angular.io/api/common/CommonModule)을 내부에서 import하기 때문에 BrowserModule을 import하면 별도 import없이 CommonModule를 사용할 수 있게 되어 루트 모듈의 구성원인 컴포넌트 템플릿에서 빌트인 디렉티브와 파이프를 사용할 수 있다.
 
-만약 ngModel 디렉티브를 사용하려면 [FormsModule](https://angular.io/api/forms/FormsModule)을, HTTP service를 사용하려면 [HttpClientModule](https://angular.io/api/common/http/HttpClientModule)을 import한다.
+만약 ngModel 디렉티브를 사용하려면 [FormsModule](https://angular.io/api/forms/FormsModule)을, HttpClient 서비스를 사용하려면 [HttpClientModule](https://angular.io/api/common/http/HttpClientModule)을 import한다.
 
 # 4. 루트 모듈
 

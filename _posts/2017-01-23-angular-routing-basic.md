@@ -285,7 +285,7 @@ export interface Route {
 
 Route 인터페이스의 path 프로퍼티는 URL 패스(경로)를 나타내는 문자열이고 component 프로퍼티는 컴포넌트 타입을 나타낸다.
 
-예를 들어 '/home'라는 URL 패스가 요청되면 ServiceComponent를 활성화하고, '/service'라는 URL 패스가 요청되면 ServiceComponent를 활성화하고, '/about'라는 URL 패스가 요청되면 AboutComponent를 활성화하여 뷰를 출력하는 경우, 라우트 구성은 아래와 같다. 이때 **패스의 '/'는 기술하지 않는다.**
+예를 들어 '/home'라는 URL 패스가 요청되면 HomeComponent를 활성화하고, '/service'라는 URL 패스가 요청되면 ServiceComponent를 활성화하고, '/about'라는 URL 패스가 요청되면 AboutComponent를 활성화하여 뷰를 출력하는 경우, 라우트 구성은 아래와 같다. 이때 **패스의 '/'는 기술하지 않는다.**
 
 ```typescript
 const routes: Routes = [
@@ -312,7 +312,7 @@ redirectTo 프로퍼티는 요청을 리다이렉트할 때 사용한다. redire
 
 pathMatch 프로퍼티에 문자열 'full'을 설정하면 path 프로퍼티의 패스와 요청 URL 패스 전체가 정확하게 매칭할 때 리다이렉트한다. pathMatch 프로퍼티에 문자열 'prefix'를 설정하면 path 프로퍼티의 패스와 요청 URL 패스가 앞부분만 매칭하여도 리다이렉트한다.
 
-예를 들어 루트 패스 '/'가 요청되면 '/home'으로 디라이렉트하여 HomeComponent를 활성화하여 뷰를 표시하는 경우, 라우트 구성은 아래와 같다. **path의 값이 ''인 경우, 리다이렉트 라우트는 반드시 pathMatch: 'full'을 설정하여야 한다.**
+예를 들어 루트 패스 '/'가 요청되면 '/home'으로 리다이렉트하여 HomeComponent를 활성화하여 뷰를 표시하는 경우, 라우트 구성은 아래와 같다. **path의 값이 ''인 경우, 리다이렉트 라우트는 반드시 pathMatch: 'full'을 설정하여야 한다.**
 
 ```typescript
 const routes: Routes = [
@@ -663,8 +663,11 @@ const routes: Routes = [
     BrowserModule,
     RouterModule.forRoot(routes)
   ],
-  declarations: [ AppComponent, TodosComponent ],
-  bootstrap:    [ AppComponent ]
+  declarations: [
+    AppComponent,
+    TodosComponent
+  ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
 ```

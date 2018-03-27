@@ -236,17 +236,19 @@ export class HeaderComponent implements OnInit {
 }
 ```
 
-home.component.ts는 home 페이지를 위한 컴포넌트로서 사용자의 정보를 표시한다. home.component.ts를 아래와 같이 작성한다.
+home.component.ts는 home 페이지를 위한 컴포넌트로서 사용자의 정보를 표시하며 header.component.ts를 사용한다. home.component.ts를 아래와 같이 작성한다.
 
 ```typescript
 // home/home.component.ts
 import { Component, OnInit } from '@angular/core';
+
 import { UserService } from '../user.service';
 import { User } from '../user';
 
 @Component({
   selector: 'app-home',
   template: `
+    <app-header [title]="title"></app-header>
     <ul>
       <li>id : {{ "{{ user.id " }}}}</li>
       <li>name : {{ "{{ user.name " }}}}</li>
@@ -255,6 +257,7 @@ import { User } from '../user';
   `
 })
 export class HomeComponent implements OnInit {
+  title = 'User Information';
   user: User;
 
   constructor(private userService: UserService) {}
@@ -273,14 +276,9 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template: `
-    <app-header [title]="title"></app-header>
-    <app-home></app-home>
-  `
+  template: '<app-home></app-home>'
 })
-export class AppComponent {
-  title = 'User Information';
-}
+export class AppComponent {}
 ```
 
 user.service.ts는 사용자 정보를 제공하는 서비스로서 애플리케이션 전역에서 공통으로 사용한다. user.service.ts를 아래와 같이 작성한다.
@@ -471,32 +469,29 @@ import { HeaderComponent } from './header.component';
 export class SharedModule { }
 ```
 
-SharedModule이 완성되었다. 이제 루트 모듈에 HomeModule을 등록하도록 하자.
+SharedModule이 완성되었다. 공유 모듈은 기능 모듈에 의해 사용되므로 기능 모듈인 HomeModule에 SharedModule을 등록하도록 하자.
 
 ```typescript
-// app.component.ts
-import { BrowserModule } from '@angular/platform-browser';
+// home.module.ts
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-/* HomeModule 임포트 */
-import { HomeModule } from './home/home.module';
 /* SharedModule 임포트 */
-import { SharedModule } from './shared/shared.module';
+import { SharedModule } from '../shared/shared.module';
 
-import { AppComponent } from './app.component';
-import { UserService } from './user.service';
+/* HomeComponent 임포트 */
+import { HomeComponent } from './home.component';
 
 @NgModule({
-  declarations: [AppComponent],
   imports: [
-    BrowserModule,
-    HomeModule,  /* HomeModule 임포트 */
-    SharedModule /* SharedModule 임포트 */
+    CommonModule,
+    SharedModule, /* SharedModule 임포트 */
   ],
-  providers: [UserService],
-  bootstrap: [AppComponent]
+  declarations: [HomeComponent], /* HomeComponent 선언 */
+  providers: [],
+  exports: [HomeComponent] /* HomeComponent 공개 */
 })
-export class AppModule { }
+export class HomeModule { }
 ```
 
 ## 5.2 핵심 모듈(Core module)
@@ -540,8 +535,6 @@ import { NgModule } from '@angular/core';
 
 /* HomeModule 임포트 */
 import { HomeModule } from './home/home.module';
-/* SharedModule 임포트 */
-import { SharedModule } from './shared/shared.module';
 /* CoreModule 임포트 */
 import { CoreModule } from './core/core.module';
 
@@ -552,7 +545,6 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     HomeModule,   /* HomeModule 임포트 */
-    SharedModule, /* SharedModule 임포트 */
     CoreModule    /* CoreModule 임포트 */
   ],
   providers: [],

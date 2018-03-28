@@ -268,19 +268,6 @@ export class HomeComponent implements OnInit {
 }
 ```
 
-루트 컴포넌트를 아래와 같이 작성한다.
-
-```typescript
-// app.component.ts
-import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-root',
-  template: '<app-home></app-home>'
-})
-export class AppComponent {}
-```
-
 user.service.ts는 사용자 정보를 제공하는 서비스로서 애플리케이션 전역에서 공통으로 사용한다. user.service.ts를 아래와 같이 작성한다.
 
 ```typescript
@@ -295,6 +282,30 @@ export class UserService {
     return { id: 1, name: 'Lee', admin: true };
   }
 }
+```
+
+user.ts는 사용자 정보를 나타내는 User 타입 인터페이스이다. user.ts를 아래와 같이 작성한다.
+
+```typescript
+// user.ts
+export interface User {
+  id: number;
+  name: string;
+  admin: boolean;
+}
+```
+
+루트 컴포넌트를 아래와 같이 작성한다.
+
+```typescript
+// app.component.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  template: '<app-home></app-home>'
+})
+export class AppComponent {}
 ```
 
 루트 모듈을 아래와 같이 작성한다.
@@ -321,17 +332,6 @@ import { UserService } from './user.service';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-```
-
-user.ts는 사용자 정보를 나타내는 User 타입 인터페이스이다. user.ts를 아래와 같이 작성한다.
-
-```typescript
-// user.ts
-export interface User {
-  id: number;
-  name: string;
-  admin: boolean;
-}
 ```
 
 위 예제의 실행 결과는 아래와 같다.
@@ -450,7 +450,7 @@ import { CommonModule } from '@angular/common';
 export class SharedModule { }
 ```
 
-먼저 header.component.ts 파일을 shared 폴더로 이동시킨다. 그리고 SharedModule에 HeaderComponent을 등록하고 HeaderComponent을 외부로 공개하자.
+먼저 공유 모듈의 구성 요소인 header.component.ts 파일을 shared 폴더로 이동시킨다. 그리고 SharedModule에 HeaderComponent을 등록하고 HeaderComponent을 외부로 공개하자.
 
 ```typescript
 // shared/shared.module.ts
@@ -472,7 +472,7 @@ export class SharedModule { }
 SharedModule이 완성되었다. 공유 모듈은 기능 모듈에 의해 사용되므로 기능 모듈인 HomeModule에 SharedModule을 등록하도록 하자.
 
 ```typescript
-// home.module.ts
+// home/home.module.ts
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -494,6 +494,34 @@ import { HomeComponent } from './home.component';
 export class HomeModule { }
 ```
 
+이제 HeaderComponent는 공유 모듈인 SharedModule에 등록되었으므로 루트 모듈의 declarations 프로퍼티에 선언되어 있던 HeaderComponent를 제거하도록 한다.
+
+```typescript
+// app.component.ts
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+/* HomeModule 임포트 */
+import { HomeModule } from './home/home.module';
+
+import { AppComponent } from './app.component';
+
+import { UserService } from './user.service';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    HomeModule  /* HomeModule 임포트 */
+  ],
+  providers: [UserService],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
 ## 5.2 핵심 모듈(Core module)
 
 핵심 모듈은 애플리케이션 전역에서 사용될 구성 요소들로 구성한 모듈로서 루트 모듈에 등록한다. 애플리케이션 전역에서 사용된다는 의미에서 공유 모듈과 유사하지만 핵심 모듈은 루트 모듈에 등록하여 싱글턴으로 사용하고 공유 모듈은 기능 모듈에 의해 사용된다. 예를 들어 애플리케이션 전역에서 사용하는 데이터 서비스, 인증 서비스, 인증 가드 등이 대상이 된다.
@@ -508,10 +536,32 @@ $ ng generate module core
 
 위 명령어를 실행하면 core 폴더에 core.module.ts이 생성된다. 생성한 CoreModule은 서비스만을 제공하고 있기 때문에 CommonModule이 필요없다.
 
-먼저 user.service.ts 파일을 core 폴더로 이동시킨다. 그리고 CoreModule에 UserService을 providers 프로퍼티에 등록한다.
+먼저 핵심 모듈의 구성 요소인 user.service.ts 파일을 core 폴더로 이동시킨다. 이때 User 인터페이스의 패스가 변경되므로 user.service.ts 파일을 아래와 같이 수정한다.
 
 ```typescript
-// core.module.ts
+// core/user.service.ts
+import { Injectable } from '@angular/core';
+import { User } from '../user'; /* 패스 변경 */
+
+...
+```
+
+그리고 UserService의 패스가 변경되었으므로 UserService를 import하는 HomeComponent와 HeaderComponent의 패스도 수정하도록 하자. HomeComponent, HeaderComponent의 import 패스를 아래와 같이 변경한다.
+
+```typescript
+// home/home.component.ts와 share/header.component.ts
+import { Component, OnInit } from '@angular/core';
+
+import { UserService } from '../core/user.service';
+import { User } from '../user';
+
+...
+```
+
+이제 UserService를 CoreModule의 providers 프로퍼티에 등록한다.
+
+```typescript
+// core/core.module.ts
 import { NgModule } from '@angular/core';
 
 /* UserService 임포트 */
@@ -526,7 +576,7 @@ import { UserService } from './user.service';
 export class CoreModule { }
 ```
 
-CoreModule이 완성되었다. 이제 루트 모듈에 CoreModule을 등록하도록 하자.
+CoreModule이 완성되었다. 이제 루트 모듈의 imports 프로퍼티에 CoreModule을 등록하고 루트 모듈의 providers 프로퍼티에 선언되어 있던 UserService를 제거한다.
 
 ```typescript
 // app.component.ts

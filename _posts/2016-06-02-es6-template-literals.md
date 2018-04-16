@@ -37,10 +37,10 @@ console.log(template);
 const first = 'Ung-mo';
 const last = 'Lee';
 
-// 기존의 문자열 연결
+// ES5: 문자열 연결
 console.log('My name is ' + first + ' ' + last + '.');
 
-// ES6 String Interpolation
+// ES6: String Interpolation
 console.log(`My name is ${first} ${last}.`); // My name is Ung-mo Lee.
 ```
 

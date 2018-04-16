@@ -20,8 +20,9 @@ ES5에서는 파라미터에 초기값을 설정할 수 없다. 따라서 적절
 ```javascript
 // ES5
 function plus(x, y) {
-  x = x || 0;
-  y = y || 0;
+  x = x || 0; // 매개변수 x에 인수를 할당하지 않은 경우, 0을 할당한다.
+  y = y || 0; // 매개변수 y에 인수를 할당하지 않은 경우, 0을 할당한다.
+
   return x + y;
 }
 
@@ -34,7 +35,7 @@ ES6에서는 파라미터에 초기값을 설정하여 함수 내에서 수행�
 ```javascript
 // ES6
 function plus(x = 0, y = 0) {
-  // x, y에 인수가 할당되지 않으면 초기값 0이 할당된다.
+  // 파라미터 x, y에 인수를 할당하지 않은 경우, 0을 할당한다.
   return x + y;
 }
 
@@ -46,7 +47,7 @@ console.log(plus(1, 2)); // 3
 
 ## 2.1 Syntax
 
-Rest 파라미터는 Spread 연산자(`...`)를 사용하여 파라미터를 작성한 형태를 말한다. Rest 파라미터를 사용하면 인수를 함수 내부에서 배열로 전달받을 수 있다.
+Rest 파라미터는 Spread 연산자(`...`)를 사용하여 파라미터를 정의한 것을 의미한다. Rest 파라미터를 사용하면 인수를 함수 내부에서 배열로 전달받을 수 있다.
 
 ```javascript
 function foo(...rest) {
@@ -98,13 +99,13 @@ var foo = function () {
 foo(1, 2); // { '0': 1, '1': 2 }
 ```
 
-가변 인자 함수의 경우, 파라미터를 통해 인수를 전달받는 것이 불가능하므로 arguments 객체를 활용하여 인수를 전달받는다. 하지만 arguments 객체는 유사 배열 객체이기 때문에 배열 메소드를 사용하려면 [Function.prototype.call](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/call), [Function.prototype.apply](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/apply)를 사용하여야 하는 번거로움이 있다.
+가변 인자 함수의 경우, 파라미터를 통해 인수를 전달받는 것이 불가능하므로 arguments 객체를 활용하여 인수를 전달받는다. 하지만 arguments 객체는 유사 배열 객체이므로 배열 메소드를 사용하려면 [Function.prototype.call](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/call), [Function.prototype.apply](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/apply)를 사용해야 하는 번거로움이 있다.
 
 ```javascript
 // ES5
 function sum() {
-  // 가변 인자 함수의 경우, 파라미터를 통해 인수를 전달받는 것이 불가능하므로 arguments 객체를 활용하여 인수를 전달받는다.
-  // arguments 객체를 배열로 변환
+  // 가변 인자 함수는 arguments 객체를 통해 인수를 전달받는다.
+  // 유사 배열 객체인 arguments 객체를 배열로 변환한다.
   var array = Array.prototype.slice.call(arguments);
   return array.reduce(function (pre, cur) {
     return pre + cur;
@@ -112,16 +113,6 @@ function sum() {
 }
 
 console.log(sum(1, 2, 3, 4, 5)); // 15
-```
-
-또한 ES6의 [Arrow function](./es6-arrow-function)에는 함수 객체의 arguments 프로퍼티가 없다. 따라서 화살표 함수에서 가변 인자 함수를 구현해야하는 경우, 반드시 rest 파라미터를 사용하여야 한다.
-
-```javascript
-var es5 = function () {};
-console.log(es5.hasOwnProperty('arguments')); // true
-
-const es6 = () => {};
-console.log(es6.hasOwnProperty('arguments')); // false
 ```
 
 ES6에서는 [rest 파라미터](./es6-extended-parameter-handling#2-rest-파라미터-rest-parameter)를 사용하여 가변인자를 함수 내부에 <string>배열</string>로 전달할 수 있다. 유사 배열인 arguments 객체를 배열로 변환하는 등의 번거로움을 피할 수 있다.
@@ -136,6 +127,16 @@ function sum(...args) {
 console.log(sum(1, 2, 3, 4, 5)); // 15
 ```
 
+하지만 ES6의 [Arrow function](./es6-arrow-function)에는 함수 객체의 arguments 프로퍼티가 없다. 따라서 화살표 함수에서 가변 인자 함수를 구현해야 할 때는 반드시 rest 파라미터를 사용해야 한다.
+
+```javascript
+var es5 = function () {};
+console.log(es5.hasOwnProperty('arguments')); // true
+
+const es6 = () => {};
+console.log(es6.hasOwnProperty('arguments')); // false
+```
+
 # 3. Spread 연산자 (Spread Operator)
 
 Spread 연산자(`...`)는 연산자의 대상 배열 또는 [이터러블](./es6-iteration-for-of)을 개별 요소로 분리한다.
@@ -145,7 +146,7 @@ Spread 연산자(`...`)는 연산자의 대상 배열 또는 [이터러블](./es
 console.log(...[1, 2, 3]) // -> 1, 2, 3
 
 // 문자열은 이터러블이다.
-console.log(...'Helllo');  // H e l l l o
+console.log(...'Hello');  // H e l l o
 
 // Map과 Set은 이터러블이다.
 console.log(...new Map([['a', '1'], ['b', '2']]));  // [ 'a', '1' ] [ 'b', '2' ]
@@ -194,7 +195,7 @@ foo(...arr);
 
 ```javascript
 // Spread 연산자를 사용한 매개변수 정의 (= Rest 파라미터)
-// ...rest는 분리된 요소들을 함수 내부에서 배열로 변환한다
+// ...rest는 분리된 요소들을 함수 내부에 배열로 전달한다
 function foo(param, ...rest) {
   console.log(param); // 1
   console.log(rest);  // [ 2, 3 ]
@@ -237,7 +238,7 @@ Spread 연산자를 배열에서 사용하는 경우, 보다 간결하고 가독
 
 ### 3.2.1 concat
 
-기존 배열의 요소를 새로운 배열 요소의 일부로 만들고 싶은 경우, 배열 리터럴 구문만으로 해결할 수 없고 [concat 메소드](./js-array#53-arrayprototypeconcatitem)를 사용하여야 한다.
+ES5에서 기존 배열의 요소를 새로운 배열 요소의 일부로 만들고 싶은 경우, 배열 리터럴 구문만으로 해결할 수 없고 [concat 메소드](./js-array#53-arrayprototypeconcatitem)를 사용해야 한다.
 
 ```javascript
 // ES5
@@ -245,7 +246,7 @@ var arr = [1, 2, 3];
 console.log(arr.concat([4, 5, 6])); // [ 1, 2, 3, 4, 5, 6 ]
 ```
 
-Spread 연산자를 배열에서 사용하는 경우, 배열 리터럴 구문만으로 기존 배열의 요소를 새로운 배열 요소의 일부로 만들 수 있다.
+그러나 Spread 연산자를 사용하면 배열 리터럴 구문만으로 기존 배열의 요소를 새로운 배열 요소의 일부로 만들 수 있다.
 
 ```javascript
 // ES6
@@ -256,7 +257,7 @@ console.log([...arr, 4, 5, 6]); // [ 1, 2, 3, 4, 5, 6 ]
 
 ### 3.2.2 push
 
-ES5에서 기존 배열에 다른 배열을 push하기 위해서는 아래와 같은 방법을 사용한다.
+ES5에서 기존 배열에 다른 배열의 개별 요소를 각각 push하려면 아래와 같은 방법을 사용한다.
 
 ```javascript
 // ES5
@@ -284,7 +285,7 @@ console.log(arr1); // [ 1, 2, 3, 4, 5, 6 ]
 
 ### 3.2.3 splice
 
-ES5에서 기존 배열에 다른 배열을 삽입하기 위해서는 아래와 같은 방법을 사용한다.
+ES5에서 기존 배열에 다른 배열의 개별 요소를 삽입하려면 아래와 같은 방법을 사용한다.
 
 ```javascript
 // ES5
@@ -351,20 +352,38 @@ console.log(arr);  // [ 1, 2, 3 ]
 
 ## 3.3 객체에서 사용하는 경우
 
-Spread 연산자를 사용하면 객체를 결합할 수 있다.
+Spread 연산자를 사용하면 손쉽게 객체를 병합(merge)할 수 있다.
 
 ```javascript
-const o1 = { x: 1, y: 2 };
-const o2 = { ...o1, z: 3 };
+// 객체의 병합
+console.log({ ...{ x: 1, y: 2 }, ...{ y: 10, z: 3 } });
+// { x: 1, y: 10, z: 3 }
 
-console.log(o2); // { x: 1, y: 2, z: 3 }
+// 특정 프로퍼티 변경
+console.log({ ...{ x: 1, y: 2 }, y: 100 });
+// === console.log({ ...{ x: 1, y: 2 }, ...{ y: 100 } });
+// { x: 1, y: 100 }
 
-const target = { x: 1, y: 2 };
-const source = { z: 3 };
+// 프로퍼티 추가
+console.log({ ...{ x: 1, y: 2 }, z: 0 });
+// === console.log({ ...{ x: 1, y: 2 }, ...{ z: 0 } });
+// { x: 1, y: 2, z: 0 }
+```
 
-// Object.assign를 사용하여도 동일한 작업을 할 수 있다.
-// Object.assign은 타깃 객체를 반환한다
-console.log(Object.assign(target, source)); // { x: 1, y: 2, z: 3 }
+Object.assign을 사용해도 동일한 작업을 할 수 있다.
+
+```javascript
+// 객체의 병합
+console.log(Object.assign({}, { x: 1, y: 2 }, { y: 10, z: 3 }));
+// { x: 1, y: 10, z: 3 }
+
+// 특정 프로퍼티 변경
+console.log(Object.assign({}, { x: 1, y: 2 }, { y: 100 }));
+// { x: 1, y: 100 }
+
+// 프로퍼티 추가
+console.log(Object.assign({}, { x: 1, y: 2 }, { z: 0 }));
+// { x: 1, y: 2, z: 0 }
 ```
 
 # Reference

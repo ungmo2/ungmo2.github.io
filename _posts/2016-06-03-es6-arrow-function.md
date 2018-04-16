@@ -98,11 +98,11 @@ console.log(pre.prefixArray(['Lee', 'Kim']));
 
 (A) 지점에서의 this는 생성자 함수 Prefixer가 생성한 객체, 즉 생성자 함수의 인스턴스(위 예제의 경우 pre)이다.
 
-(B) 지점에서 사용한 this는 아마도 생성자 함수 Prefixer가 생성한 객체(위 예제의 경우 pre)일 것으로 기대하였겠지만 이곳에서 this는 전역 객체 window를 가리킨다. 이는 생성자 함수와 객체의 메소드를 제외한 모든 함수(내부함수, 콜백함수 포함)의 내부의 this는 전역객체를 가리키기 때문이다.
+(B) 지점에서 사용한 this는 아마도 생성자 함수 Prefixer가 생성한 객체(위 예제의 경우 pre)일 것으로 기대하였겠지만 이곳에서 this는 전역 객체 window를 가리킨다. 이는 생성자 함수와 객체의 메소드를 제외한 모든 함수(내부함수, 콜백함수 포함) 내부의 this는 전역객체를 가리키기 때문이다.
 
 위 설명이 잘 이해되지 않는다면 [this](./js-this)를 참조하기 바란다.
 
-콜백함수 내부의 this가 메소드를 호출한 객체(생성자 함수의 인스턴스)를 가리키게 하기 위해서는 아래의 3가지 방법이 있다.
+콜백함수 내부의 this가 메소드를 호출한 객체(생성자 함수의 인스턴스)를 가리키게 하려면 아래의 3가지 방법이 있다.
 
 ```javascript
 // Solution 1: that = this
@@ -137,7 +137,7 @@ var pre = new Prefixer('Hi');
 console.log(pre.prefixArray(['Lee', 'Kim']));
 ```
 
-ES5에 추가된 [Function.prototype.bind()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)로 this를 바인딩한다. [call(), apply()도 사용 가능하다.](./js-this#4-apply-호출-패턴apply-invocation-pattern)
+ES5에 추가된 [Function.prototype.bind()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)로 this를 바인딩한다.
 
 ```javascript
 // Solution 3: bind(this)
@@ -190,7 +190,7 @@ console.log(pre.prefixArray(['Lee', 'Kim']));
 
 # 4. Arrow Function을 사용해서는 안되는 경우
 
-Arrow Function는 Lexical this를 지원하므로 콜백함수에 사용하기 편리하다. 하지만 Arrow Function을 사용하는 것이 오히려 혼란을 불러오는 경우도 있기 때문에 주의하여야 한다.
+Arrow Function는 Lexical this를 지원하므로 콜백함수에 사용하기 편리하다. 하지만 Arrow Function을 사용하는 것이 오히려 혼란을 불러오는 경우도 있으므로 주의하여야 한다.
 
 ## 4.1 메소드
 
@@ -277,7 +277,7 @@ button.addEventListener('click', () => {
 });
 ```
 
-따라서 addEventListener 함수의 콜백 함수는 function 키워드로 정의한 함수를 사용하여야 한다.
+따라서 addEventListener 함수의 콜백 함수에서 this를 사용하는 경우, function 키워드로 정의한 함수를 사용하여야 한다.
 
 ```javascript
 // Good

@@ -39,7 +39,7 @@ Function-level scope
 : 함수내에서 선언된 변수는 함수 내에서만 유효하며 함수 외부에서는 참조할 수 없다. 즉, 함수 내부에서 선언한 변수는 지역 변수이며 함수 외부에서 선언한 변수는 모두 전역 변수이다.
 
 Block-level scope
-: 코드 블럭 내에서 선언된 변수는 코드 블럭 내에서만 유효하며 코드 블럭 외부에서는 참조할 수 없다.
+: 코드 블록 내에서 선언된 변수는 코드 블록 내에서만 유효하며 코드 블록 외부에서는 참조할 수 없다.
 
 아래의 예제를 살펴보자.
 
@@ -53,7 +53,7 @@ console.log(foo); // 123
 console.log(foo); // 456
 ```
 
-var 키워드를 사용하여 선언한 변수는 중복 선언이 가능하기 때문에 위의 코드는 문법적으로 문제가 없다. 하지만 Block-level scope를 지원하지 않는 JavaScript의 특성 상, 코드블럭 내의 변수 foo는 전역변수이기 때문에 전역에서 선언된 변수 foo의 값을 대체하는 새로운 값을 재할당한다.
+var 키워드를 사용하여 선언한 변수는 중복 선언이 허용되므로 위의 코드는 문법적으로 아무런 문제가 없다. 하지만 Block-level scope를 지원하지 않는 JavaScript의 특성 상, 코드 블록 내의 변수 foo는 전역변수이기 때문에 전역에서 선언된 변수 foo의 값을 대체하는 새로운 값을 재할당한다.
 
 ES6는 <strong>Block-level scope</strong>를 갖는 변수를 선언하기 위해 `let` 키워드를 제공한다.
 
@@ -67,7 +67,7 @@ console.log(foo); // 123
 console.log(bar); // ReferenceError: bar is not defined
 ```
 
-let 키워드로 선언된 변수는 Block-level scope를 갖는다. 위 예제에서 코드블록 내에 선언된 변수 foo는 Block-level scope를 갖는 지역 변수이다. 전역에서 선언된 변수 foo와는 다른 변수이다. 또한 변수 bar도 Block-level scope를 갖는 지역 변수이다. 따라서 전역에서는 변수 bar를 참조할 수 없다.
+let 키워드로 선언된 변수는 Block-level scope를 갖는다. 위 예제에서 코드 블록 내에 선언된 변수 foo는 Block-level scope를 갖는 지역 변수이다. 전역에서 선언된 변수 foo와는 다른 변수이다. 또한 변수 bar도 Block-level scope를 갖는 지역 변수이다. 따라서 전역에서는 변수 bar를 참조할 수 없다.
 
 ## 1.2 중복 선언 금지
 
@@ -95,7 +95,7 @@ console.log(bar); // Error: Uncaught ReferenceError: bar is not defined
 let bar;
 ```
 
-변수가 어떻게 생성되며 호이스팅은 어떻게 이루어지는지 좀더 자세히 살펴보자. 변수는 3단계에 걸쳐 생성된다. 자세한 내용은 [Execution Context](./js-execution-context)을 참조하기 바란다.
+변수가 어떻게 생성되며 호이스팅은 어떻게 이루어지는지 좀 더 자세히 살펴보자. 변수는 3단계에 걸쳐 생성된다. 자세한 내용은 [Execution Context](./js-execution-context)을 참조하기 바란다.
 
 선언 단계(Declaration phase)
 : 변수를 실행 컨택스트의 변수 객체(Variable Object)에 등록한다. 이 변수 객체는 스코프가 참조하는 대상이 된다.
@@ -106,7 +106,7 @@ let bar;
 할당 단계(Assignment phase)
 : undefined로 초기화된 변수에 실제값을 할당한다.
 
-**var 키워드로 선언된 변수는 선언 단계와 초기화 단계가 한번에 이루어진다.** 즉, 스코프에 변수가 등록(선언단계)되고 변수는 undefined로 초기화(초기화단계)된다. 따라서 변수 선언문 이전에 변수에 접근하여도 변수 객체(Variable Object)에 변수가 존재하기 때문에 에러가 발생하지 않는다. 다만 undefined를 반환한다. 이러한 현상을 [변수 호이스팅(Variable Hoisting)](./js-data-type-variable#24-변수-호이스팅variable-hoisting)이라한다.
+**var 키워드로 선언된 변수는 선언 단계와 초기화 단계가 한번에 이루어진다.** 즉, 스코프에 변수가 등록(선언 단계)되고 변수는 undefined로 초기화(초기화단계)된다. 따라서 변수 선언문 이전에 변수에 접근하여도 변수 객체(Variable Object)에 변수가 존재하기 때문에 에러가 발생하지 않는다. 다만 undefined를 반환한다. 이러한 현상을 [변수 호이스팅(Variable Hoisting)](./js-data-type-variable#24-변수-호이스팅variable-hoisting)이라한다.
 
 이후 변수 할당문에 도달하면 비로서 값의 할당이 이루어진다.
 
@@ -179,7 +179,7 @@ for (var j = 0; j < 3; j++) {
 
 JavaScript의 Function-level scope로 인하여 for loop의 초기화식에 사용된 변수가 전역 스코프를 갖게되어 발생하는 문제를 회피하기 위해 [클로저](./js-closure)를 활용한 방법이다.
 
-반복문에서 ES6의 let 키워드를 사용하면 동일한 동작을 한다.
+반복문에서 ES6의 let 키워드를 사용하면 클로저를 사용하지 않아도 위 소스 코드와 동일한 동작을 한다.
 
 ```javascript
 var funcs = [];
@@ -196,7 +196,7 @@ for (var j = 0; j < 3; j++) {
 }
 ```
 
-for loop의 let i는 for loop에서만 유효한 지역 변수이다. 또한, i는 자유변수로서 for loop의 생명주기가 종료하여도 변수 i를 참조하는 함수가 존재하는 한 계속 유지된다.
+for loop의 let i는 for loop에서만 유효한 지역 변수이다. 또한, i는 자유변수로서 for loop의 생명주기가 종료되어도 변수 i를 참조하는 함수가 존재하는 한 계속 유지된다.
 
 ![for-let](./img/for-let.png)
 {: .w-450}
@@ -216,7 +216,7 @@ var foo = 123; // 전역변수
 console.log(window.foo); // 123
 ```
 
-let 키워드로 선언된 변수를 전역 변수로 사용하는 경우, let 전역 변수는 전역 객체의 프로퍼티가 아니다. 즉 window.foo와 같이 접근할 수 없다. let 전역 변수는 보이지 않는 개념적인 블럭 내에 존재하게 된다.
+let 키워드로 선언된 변수를 전역 변수로 사용하는 경우, let 전역 변수는 전역 객체의 프로퍼티가 아니다. 즉 window.foo와 같이 접근할 수 없다. let 전역 변수는 보이지 않는 개념적인 블록 내에 존재하게 된다.
 
 ```javascript
 let foo = 123; // 전역변수

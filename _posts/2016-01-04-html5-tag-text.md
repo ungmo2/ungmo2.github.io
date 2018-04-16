@@ -314,7 +314,7 @@ console.log(myArray[0]);     // undefined
 
 ## 3.6 blockquote
 
-긴 인용문 블럭을 지정한다. 브라우저는 blockquote 요소를 들여쓰기한다. css를 이용하여 다양한 style을 적용할 수 있다.
+긴 인용문 블록을 지정한다. 브라우저는 blockquote 요소를 들여쓰기한다. css를 이용하여 다양한 style을 적용할 수 있다.
 
 ```html
 <!DOCTYPE html>
@@ -322,7 +322,7 @@ console.log(myArray[0]);     // undefined
   <body>
     <p>Browsers usually indent blockquote elements.</p>
     <blockquote>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> 
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     </blockquote>
   </body>
 </html>

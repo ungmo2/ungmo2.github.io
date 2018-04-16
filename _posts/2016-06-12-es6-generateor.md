@@ -27,11 +27,11 @@ function* genFunc() {
   var index = 0;
   while (index < 3) {
     yield index++;
-  }   
+  }
 }
 ```
 
-제너레이터 함수는 일반함수와 같이 함수 선언식, 함수 표현식, 메소드로 선언할 수 있다. 
+제너레이터 함수는 일반함수와 같이 함수 선언식, 함수 표현식, 메소드로 선언할 수 있다.
 
 ```javascript
 // 제너레이터 함수 선언: 함수 표현식
@@ -77,7 +77,7 @@ for (const val of generator) {
 const arr = [...foo()];
 ```
 
-제너레이터 함수의 함수 블록을 실행하기 위해서는 제너레이터 함수가 생성한 제너레이터 객체의 next() 메소드를 호출한다. yield 구문은 next() 메소드을 일시 중지시킨다. return과 같이 값을 반환할 수 있다.
+제너레이터 함수의 함수 블록을 실행하기 위해서는 제너레이터 함수가 생성한 제너레이터 객체의 next() 메소드를 호출한다. yield 구문은 next() 메소드를 일시 중지시킨다. return과 같이 값을 반환할 수 있다.
 
 next() 메소드가 처음으로 호출되면 yield 이전까지 실행하고 실행을 일시 중지한다. next() 메소드가 호출되면 일시 중지된 코드를 다시 실행하고 yield를 만나면 또 다시 실행을 일시 중지한다.
 
@@ -133,16 +133,16 @@ function* foo(n) {
 const iterator = foo(1);
 // 파라미터 n에 1을 할당하고 제너레이터 객체를 iterator에 할당
 
-console.log(iterator.next());   
+console.log(iterator.next());
 // {value:1, done:false}
 
-console.log(iterator.next(10)); 
+console.log(iterator.next(10));
 // {value:11, done:false}
 
-console.log(iterator.next(20)); 
+console.log(iterator.next(20));
 // {value:22, done:false}
 
-console.log(iterator.next(30)); 
+console.log(iterator.next(30));
 // {value:60, done:true}
 ```
 
@@ -231,7 +231,7 @@ for (const num of fibonacci) {
 
 \* [Symbol.iterator\]\(\)는 이터레이터를 제너레이터로 구현한 것이다. 따라서 fibonacci 객체는 이터레이터를 구현한 이터러블 객체이다.
 
-이처럼 제너레이터로 이터레이터를 구현하면 value, done 프로퍼티를 갖는 객체를 반환하는 next() 메소드를 별도로 구현하지 않아도 value, done 프로퍼티를 갖는 객체를 반환하기 때문에 구현도 간단해지며 가독성도 높아진다. 
+이처럼 제너레이터로 이터레이터를 구현하면 value, done 프로퍼티를 갖는 객체를 반환하는 next() 메소드를 별도로 구현하지 않아도 value, done 프로퍼티를 갖는 객체를 반환하기 때문에 구현도 간단해지며 가독성도 높아진다.
 
 위 예제는 제너레이터를 사용하여 이터레이터를 구현한 것이다. 제너레이터는 그 자신이 이터러블인 특성을 이용하여 직접 이터러블 객체를 구현할 수 있다. 이를 활용하여 위 예제를 수정하여 보자.
 

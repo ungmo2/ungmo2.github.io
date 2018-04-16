@@ -13,7 +13,7 @@ description: 디스트럭처링(Destructuring)은 구조화된 객체(배열 또
 ![es6 Logo](/img/es6.png)
 {: .w-650}
 
-디스트럭처링(Destructuring)은 구조화된 객체(배열 또는 객체)를 Destructuring(비구조화, 파괴)하여 개별적인 변수에 할당하는 것이다. 배열 또는 객체 리터럴에서 필요한 값만을 추출하여 변수에 할당하거나 반환할 때 유용하다.
+디스트럭처링(Destructuring)은 구조화된 배열 또는 객체를 Destructuring(비구조화, 파괴)하여 개별적인 변수에 할당하는 것이다. 배열 또는 객체 리터럴에서 필요한 값만을 추출하여 변수에 할당하거나 반환할 때 유용하다.
 
 # 1. 배열 디스트럭처링 (Array destructuring)
 
@@ -30,13 +30,13 @@ var three = arr[2];
 console.log(one, two, three); // 1 2 3
 ```
 
-배열 디스트럭처링은 배열의 각 요소를 배열로부터 추출하여 변수 리스트에 할당한다. 이때 추출/할당 기준은 <strong>인덱스</strong>이다.
+ES6의 배열 디스트럭처링은 배열의 각 요소를 배열로부터 추출하여 변수 리스트에 할당한다. 이때 추출/할당 기준은 <strong>배열의 인덱스</strong>이다.
 
 ```javascript
 // ES6 Destructuring
 const arr = [1, 2, 3];
 
-// 인덱스를 기준으로 배열로부터 요소를 추출하여 변수에 할당
+// 배열의 인덱스를 기준으로 배열로부터 요소를 추출하여 변수에 할당
 const [one, two, three] = arr;
 
 console.log(one, two, three); // 1 2 3
@@ -52,7 +52,7 @@ let x, y, z;
 let [x, y, z] = [1, 2, 3];
 ```
 
-왼쪽의 변수 리스트와 오른쪽의 배열은 인덱스를 기준으로 할당된다.
+왼쪽의 변수 리스트와 오른쪽의 배열은 배열의 인덱스를 기준으로 할당된다.
 
 ```javascript
 let x, y, z;

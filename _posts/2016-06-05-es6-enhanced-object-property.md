@@ -44,7 +44,7 @@ console.log(obj); // { x: 1, y: 2 }
 
 # 2. 프로퍼티 이름 조합
 
-ES5에서 객체 리터럴의 프로퍼티 이름을 문자열 또는 변수를 조합하여 동적으로 생성하고 싶은 경우, 객체 리터럴과는 별도로 프로퍼티를 설정하여야 한다.
+ES5에서 객체 리터럴의 프로퍼티 이름을 문자열 또는 변수를 조합하여 동적으로 생성하고 싶은 경우, 객체 리터럴 외부에서 프로퍼티 이름을 생성하고 객체에 할당해야 한다.
 
 ```javascript
 // ES5
@@ -60,7 +60,7 @@ obj[propNamePrefix + ++i] = i;
 console.log(obj); // { prop_1: 1, prop_2: 2, prop_3: 3 }
 ```
 
-ES6에서는 객체 리터럴 내에서 프로퍼티 이름을 동적으로 생성(Computed property name)할 수 있다.
+ES6에서는 객체 리터럴 내부에서 프로퍼티 이름을 동적으로 생성(Computed property name)할 수 있다.
 
 ```javascript
 // ES6
@@ -78,7 +78,7 @@ console.log(obj); // { prop_1: 1, prop_2: 2, prop_3: 3 }
 
 # 3. 메소드 축약 표현
 
-ES5에서 메소드를 선언하기 위해서는 프로퍼티의 값으로 함수 선언식을 사용한다.
+ES5에서 메소드를 선언하려면 프로퍼티의 값으로 함수 선언식을 사용한다.
 
 ```javascript
 // ES5
@@ -92,7 +92,7 @@ var obj = {
 obj.sayHi(); // Hi! Lee
 ```
 
-ES6에서는 메소드를 선언하기 위해서 function 키워드를 생략한 축약 표현을 사용할 수 있다.
+ES6에서는 메소드를 선언할 때,function 키워드를 생략한 축약 표현을 사용할 수 있다.
 
 ```javascript
 // ES6

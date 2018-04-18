@@ -61,7 +61,7 @@ TypeScript는 ES5, ES6의 Superset(상위확장)이므로 [JavaScript의 타입]
 | number      |◯   |    | 숫자(정수와 실수, Infinity, NaN)
 | string      |◯   |    | 문자열
 | symbol      |◯   |    | 고유하고 수정 불가능한 데이터 타입이며 주로 객체 프로퍼티들의 식별자로 사용(ES6에서 추가)
-| object      |◯   |    | 객체형, 참조형
+| object      |◯   |    | 객체형(참조형)
 | array       |    |◯   | 배열
 | tuple       |    |◯   | 고정된 요소수 만큼의 자료형을 미리 선언후 배열을 표현
 | enum        |    |◯   | 열거형. 숫자값 집합에 이름을 지정한 것이다.

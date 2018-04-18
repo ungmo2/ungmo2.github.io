@@ -14,17 +14,11 @@ description: TypeScript 또한 AltJS의 하나로써 JavaScript(ES5)의 Superset
 
 # 1. Introduction
 
-JavaScript는 1995년 Brendan Eich(Nescape)이 Navigator 2를 위하여 웹페이지에 포함되는 스크립트 언어로서 개발되었으며 초창기 Javascript는 웹페이지의 보조적인 기능을 수행하기 위해 <strong>한정적인 용도</strong>로 사용되었다. 이 시기에 대부분의 로직은 주로 웹서버에서 실행되었고 브라우저(클라이언트)는 서버로 부터 전달받은 HTML과 CSS를 렌더링하는 수준이었다.
+자바스크립트는 1995년 넷스케이프사의 브렌던 아이크(Brendan Eich)가 자사의 웹브라우저인 Navigator 2에 탑재하기 위해 개발한 스크립트 언어이다. 초창기 자바스크립트는 웹페이지에서 보조적인 기능을 수행하기 위해 <strong>한정적인 용도</strong>로 사용되었다. 이 시기에 대부분 로직은 주로 웹서버에서 실행되었고 브라우저(클라이언트)는 서버로부터 전달받은 HTML과 CSS를 렌더링하는 수준이었다.
 
-[HTML5](./html5-syntax)가 등장하기 이전까지 웹 애플리케이션은 Flash, Silverlight, ActiveX 등 <strong>Plug-in</strong>에 의존하여 인터랙티브한 웹페이지를 구축해왔다.
+[HTML5](./html5-syntax)가 등장하기 이전까지 웹 애플리케이션은 플래시, 실버라이트, 액티브엑스 등 <strong>플러그인</strong>에 의존하여 인터랙티브한 웹페이지를 구축해왔다. 그러다가 HTML5가 등장함으로써 플러그인에 의존하던 구축 방식은 자바스크립트로 대체되었다. 이에 따라 과거 서버 측이 담당하던 업무의 많은 부분이 클라이언트 측으로 이동하게 되었고, 자바스크립트는 웹의 어셈블리 언어로 불릴 만큼 중요한 언어로 그 위상이 높아지게 되었다.
 
-HTML5의 등장은 Plug-in에 의존하는 기존의 구축 방식을 JavaScript로 대체시켰다. 이에 따라 과거 서버측이 담당하던 업무의 많은 부분이 클라이언트 측으로 이동하게 하였고 JavaScript는 웹의 Assembly 언어로 불려질만큼 중요한 언어로 그 위상이 높아지게 되었다.
-
-<!-- JavaScript is the Assembly Language of the Web.
-- Scott Hanselman
-{: .info} -->
-
-모든 프로그래밍 언어는 좋은 점과 나쁜 점을 모두 가지고 있다. JavaScript도 언어가 잘 정제되기 이전에 서둘러 출시된 문제와 과거 웹페이지의 보조적인 기능을 수행하기 위해 한정적인 용도로 만들어진 <strong>태생적 한계</strong>로 좋은 점도, 나쁜 점도 많은 것이 사실이다.
+모든 프로그래밍 언어에 장단점이 있듯이 자바스크립트도 언어가 잘 정제되기 이전에 서둘러 출시된 문제와 과거 웹페이지의 보조적인 기능을 수행하기 위해 한정적인 용도로 만들어진 <strong>태생적 한계</strong>로 좋은 점도, 나쁜 점도 많은 것이 사실이다.
 
 또한 JavaScript는 C 또는 Java 등의 C-family 언어와는 다른 특성을 가지고 있다. 다른 C-family 언어와 구별되는 대표적인 특징은 아래와 같다.
 
@@ -79,9 +73,9 @@ function sum(a, b) {
 }
 ```
 
-위 코드의 작성한 개발자의 의도는 아마도 2개의 number 타입 인수를 전달받아 그 합계를 반환하는 것으로 추측된다. 하지만 코드 상으로는 어떤 타입의 인수를 전달하여야 하는지, 어떤 타입의 반환값을 리턴해야 하는지 명확하지 않다.
+위 코드를 작성한 개발자의 의도는 아마도 2개의 number 타입 인수를 전달받아 그 합계를 반환하려는 것으로 추측된다. 하지만 코드 상으로는 어떤 타입의 인수를 전달하여야 하는지, 어떤 타입의 반환값을 리턴해야 하는지 명확하지 않다.
 
-따라서 위 코드는 아래와 같이 호출될 수 있다.
+따라서 위 코드는 다음처럼 호출될 수 있다.
 
 ```javascript
 function sum(a, b) {
@@ -91,41 +85,42 @@ function sum(a, b) {
 sum('x', 'y'); // 'xy'
 ```
 
-위 코드는 자바스크립트 문법 상 어떠한 문제도 없기 때문에 자바스크립트 엔진은 아무런 꺼리낌없이 위 코드를 실행할 것이다. 이러한 상황이 발생한 이유는 변수나 반환값의 타입을 사전에 지정하지 않는 자바스크립트의 동적 타이핑(Dynamic Typing)에 의한 것이다.
+위 코드는 자바스크립트 문법 상 어떠한 문제도 없으므로 자바스크립트 엔진은 아무런 이의 제기없이 위 코드를 실행할 것이다. 이러한 상황이 발생한 이유는 변수나 반환값의 타입을 사전에 지정하지 않는 자바스크립트의 동적 타이핑(Dynamic Typing)에 의한 것이다.
 
-위 코드를 TypeScript의 정적 타입을 사용하여 재작성 해보자.
+위 코드를 TypeScript의 정적 타입을 사용하여 다시 작성 해보자.
 
  ```typescript
 function sum(a: number, b: number) {
   return a + b;
 }
 
-sum('x', 'y'); // error TS2345: Argument of type '"x"' is not assignable to parameter of type 'number'.
+sum('x', 'y');
+// -> error TS2345: Argument of type '"x"' is not assignable to parameter of type 'number'.
 ```
 
-TypeScript는 정적 타입을 지원하므로 컴파일 단계에서 오류를 포착할 수 있는 장점을 가지고 있다. 명시적인 정적 타입 지정은 개발자의 의도를 명확히 코드에 기술할 수 있다. 이는 코드의 가독성을 향상 시키고 예측을 가능하게 하며 디버깅을 쉽게 한다.
+TypeScript는 정적 타입을 지원하므로 컴파일 단계에서 오류를 포착할 수 있는 장점이 있다. 명시적인 정적 타입 지정은 개발자의 의도를 명확하게 코드로 기술할 수 있다. 이는 코드의 가독성을 높이고 예측할 수 있게 하며 디버깅을 쉽게 한다.
 
 ## 2.2 도구의 지원
 
-TypeScript를 사용하는 이유는 여러가지 있지만 가장 큰 장점은 IDE(통합개발환경)를 포함한 다양한 <strong>도구의 지원</strong>을 받을 수 있다는 것이다. IDE와 같은 도구에 타입 정보를 제공함으로써 높은 수준의 IntelliSense, 코드 어시스트, 타입 체크, 리팩토링 등을 지원받을 수 있으며 이러한 도구의 지원은 대규모 프로젝트를 위한 필수적 요소이기도 하다.
+TypeScript를 사용하는 이유는 여러가지 있지만 가장 큰 장점은 IDE(통합개발환경)를 포함한 다양한 <strong>도구의 지원</strong>을 받을 수 있다는 것이다. IDE와 같은 도구에 타입 정보를 제공함으로써 높은 수준의 IntelliSense, 코드 어시스트, 타입 체크, 리팩토링 등을 지원받을 수 있으며 이러한 도구의 지원은 대규모 프로젝트를 위한 필수 요소이기도 하다.
 
-## 2.3 강력한 OOP 지원
+## 2.3 강력한 객체지향 프로그래밍(OOP) 지원
 
-인터페이스, 제네릭 등과 같은 강력한 OOP 지원은 크고 복잡한 프로젝트의 코드 기반을 쉽게 구성할 수 있도록 도우며 Java, C# 등의 OOP 언어에 익숙한 개발자의 JavaScript 프로젝트에 대한 진입 장벽을 낮추는 효과 또한 갖는다.
+인터페이스, 제네릭 등과 같은 강력한 객체지향 프로그래밍 지원은 크고 복잡한 프로젝트의 코드 기반을 쉽게 구성할 수 있도록 도우며, Java, C# 등의 객체지향 언어에 익숙한 개발자가 자바스크립트 프로젝트를 수행하는 데 진입 장벽을 낮추는 효과도 있다.
 
 ## 2.4 ES6 / ES Next 지원
 
-컴파일러 등의 개발환경 구축이 필요없이 브라우저만 있으면 바로 사용할 수 있는 ES5와 비교할 때 개발환경 구축의 관점에서 다소 복잡해진 측면이 있으나 현재 ES6를 완전히 지원하지 않고 있는 브라우저를 고려하여 Babel등의 트랜스파일러를 사용해야 하는 현 상황에서 TypeScript 개발환경 구축에 드는 수고는 그다지 아깝지 않을 것이다.
+컴파일러 등의 개발환경 구축이 필요 없이 브라우저만 있으면 바로 사용할 수 있는 ES5와 비교할 때 개발환경 구축 관점에서 다소 복잡해진 측면이 있지만 현재 ES6를 완전히 지원하지 않고 있는 브라우저를 고려하여 바벨 등의 트랜스파일러를 사용해야 하는 현 상황에서 TypeScript 개발환경 구축에 드는 수고는 그다지 아깝지 않을 것이다.
 
 ## 2.5 Angular
 
-마지막으로 Angular는 TypeScript 뿐만 아니라 JavaScript(ES5, ES6), Dart로도 작성할 수 있지만 Angular 문서, 커뮤니티 활동에서 가장 많이 사용되고 있는 것이 TypeScript이다. Angular 관련 문서의 예제 등도 TypeScript로 작성된 것이 대부분이어서 관련 정보 취득에 이점이 있으며 이러한 현상은 앞으로도 지속될 것으로 예상된다.
+마지막으로 Angular는 TypeScript 뿐만 아니라 JavaScript(ES5, ES6), Dart로도 작성할 수 있지만 Angular 문서, 커뮤니티 활동에서 가장 많이 사용되고 있는 것이 TypeScript이다. Angular 관련 문서의 예제 등도 TypeScript로 작성된 것이 대부분이어서 관련 정보를 얻을 때 이점이 있으며 이러한 현상은 앞으로도 지속될 것으로 예상된다.
 
 # 3. 개발환경 구축
 
 TypeScript 파일(.ts)은 브라우저에서 동작하지 않으므로 TypeScript 컴파일러를 통해 자바스크립트 파일로 변환이 필요하다. 이를 컴파일 또는 트랜스파일링이라 한다.
 
-TypeScript 컴파일러의 설치하여 TypeScript 개발환경을 구축하고 TypeScript 컴파일러의 사용 방법에 대해 살펴보도록 하자.
+TypeScript 컴파일러를 설치하여 TypeScript 개발환경을 구축하고 TypeScript 컴파일러의 사용 방법에 대해 살펴보도록 하자.
 
 ## 3.1 Node.js 설치
 
@@ -143,10 +138,13 @@ $ npm install -g typescript
 
 ```bash
 $ tsc -v
-Version 2.6.2
+Version 2.8.1
 ```
 
-TypeScript 컴파일러(tsc)는 TypeScript 파일(.ts)을 JavaScript 파일로 트랜스파일링한다.
+TypeScript 컴파일러(tsc)는 TypeScript 파일(.ts)을 자바스크립트 파일로 트랜스파일링한다.
+
+컴파일은 일반적으로 소스 코드를 바이트 코드로 변환하는 작업을 의미한다. TypeScript 컴파일러는 TypeScript 파일을 자바스크립 파일로 변환하므로 컴파일보다는 트랜스파일링(Transpiling)이 보다 적절한 표현이다.
+{: .info}
 
 트랜스파일링을 실행해보기 위해 아래와 같은 파일을 작성해 보자. TypeScript의 확장자는 .ts이다.
 
@@ -195,22 +193,20 @@ console.log(person.sayHello());
 
 이때 트랜스파일링된 person.js의 자바스크립트 버전은 ES3이다. 이는 TypeScript 컴파일 타겟 자바스크립트 기본 버전이 ES3이기 때문이다.
 
-자바스크립트 버전을 변경하려면 `--target` 또는 `-t` 옵션을 사용한다. 현재 tsc가 지원하는 자바스크립트 버전은 ES3, ES5, ES6(ES2015), ES2016, ES2017(ESNext)이다.
-
-ES5 버전으로 트랜스파일링을 실행하려면 아래와 같이 옵션을 추가한다.
+만약, 자바스크립트 버전을 변경하려면 컴파일 옵션에 `--target` 또는 `-t`를 사용한다. 현재 tsc가 지원하는 자바스크립트 버전은 ES3, ES5, ES6(ES2015), ES2016, ES2017(ESNext)이다. 예를 들어, ES5 버전으로 트랜스파일링을 실행하려면 아래와 같이 옵션을 추가한다.
 
 ```bash
 $ tsc person.ts -t ES5
 ```
 
-Node.js REPL로 트랜스파일링된 person.js를 실행해보자.
+트랜스파일링이 성공하여 자바스크립트 파일이 생성되었으면, Node.js REPL을 이용해 트랜스파일링된 person.js를 실행해보자.
 
 ```bash
 $ node person.js
 Hello, Lee
 ```
 
-복수의 파일을 한번에 트랜스파일링할 수도 있다. 2개의 TypeScript class를 작성해보자.
+여러 개의 TypeScript 파일을 한번에 트랜스파일링할 수도 있다. 두 개의 TypeScript class를 작성해보자.
 
 ```typescript
 // person.ts
@@ -243,7 +239,7 @@ console.log(student.sayHello());
 console.log(student.study());
 ```
 
-두개의 TypeScript 파일을 한번에 트랜스파일링한다.
+소스 코드 작성을 마쳤으면 다음 명령으로 두 개의 TypeScript 파일을 한번에 트랜스파일링한다.
 
 ```bash
 $ tsc person.ts student.ts
@@ -276,7 +272,7 @@ import { Person } from './person';
 
 class Student extends Person {
   study(): string {
-    return `${this.name} is studying!!`;
+    return `${this.name} is studying!!`; // studying. → studying!!
   }
 }
 

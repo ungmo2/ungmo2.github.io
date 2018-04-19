@@ -12,11 +12,15 @@ description: Angular CLI는 간단한 명령어를 사용하여 Angular 프로�
 
 ![angular logo](/img/angular-logo.png)
 
+프레임워크는 애플리케이션에 필요한 기본적인 기능의 구현체를 정형화된 구조로 제공하며 이를 바탕으로 애플리케이션의 요구 사항을 구현해 나간다. 따라서 프레임워크의 학습은 정형화된 프레임워크의 기본 구조에 익숙해지는 것으로 시작한다. 하지만 처음 접하는 프레임워크의 기본 구조를 익히고 개발환경을 구축하는 것은 쉽지 않은 일이다.
+
+본격적으로 Angular를 살펴보기 이전에 프레임워크의 개발환경 구축을 자동화해 주고 프레임워크의 기본 골격(스캐폴딩, scaffolding)을 생성해주는 Angular CLI에 대해 먼저 알아보도록 하자.
+
 # 1. Angular CLI란?
 
 [Angular CLI](https://cli.angular.io/)는 간단한 명령어를 사용하여 Angular 프로젝트 스캐폴딩(scaffolding)을 생성, 실행, 빌드할 수 있으며 다양한 구성 요소를 선별적으로 추가할 수 있는 커맨드-라인 인터페이스(command line interface)이다. 개발용 서버를 내장하고 있어서 간단히 프로젝트를 실행시켜서 동작을 확인할 수 있다.
 
-프레임워크의 개발환경을 구축하는 것은 쉽지 않은 일이다. 프로젝트 구성요소를 프레임워크 구조에 맞게 하나하나 생성하여야 하며 프로젝트 의존성 관리나 다양한 프로젝트 설정 구성 또한 만만한 작업이 아니다. 또한 익숙치 않은 프레임워크의 파일 구조나 코딩 컨벤션 등의 스타일 가이드를 작성하는 일은 많은 시행착오를 거쳐야 하는 작업이다. Angular CLI는 Angular 프로젝트 스캐폴딩을 간단한 명령어로 생성해 주어 개발환경 구축에 소요되는 시간을 최소화할 뿐 아니라 표준적인 스타일 가이드를 제공한다.
+프레임워크의 개발환경을 구축하는 것은 쉽지 않은 일이다. 프레임워크 구조에 맞게 프로젝트 구성요소를 하나하나 생성하여야 하며 프로젝트 의존성 관리나 다양한 프로젝트 설정 구성 또한 만만한 작업이 아니다. 또한 익숙치 않은 프레임워크의 파일 구조나 코딩 컨벤션 등의 스타일 가이드를 작성하는 일은 많은 시행착오를 거쳐야 하는 작업이다. Angular CLI는 Angular 프로젝트 스캐폴딩을 간단한 명령어로 생성해 주어 개발환경 구축에 소요되는 시간을 최소화할 뿐 아니라 표준 스타일 가이드를 제공한다.
 
 Angular CLI가 지원하는 기능은 아래와 같다.
 
@@ -26,7 +30,7 @@ Angular CLI가 지원하는 기능은 아래와 같다.
 - Unit/E2E(end-to-end) 테스트 환경 지원
 - 배포를 위한 Angular 프로젝트 패키징
 
-Angular는 Angular CLI를 위한 별도의 웹페이지 [https://cli.angular.io/](https://cli.angular.io/)를 제공한다.
+Angular는 Angular CLI를 위한 별도의 홈페이지 [https://cli.angular.io/](https://cli.angular.io/)를 제공한다.
 
 ![angular-cli-website](./img/angular-cli-website.png)
 
@@ -71,7 +75,6 @@ $ npm install -g @angular/cli
 
 ```
 $ ng version
-
     _                      _                 ____ _     ___
    / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
   / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
@@ -82,21 +85,8 @@ $ ng version
 Angular CLI: 1.7.3
 Node: 9.2.1
 OS: darwin x64
-Angular: 5.2.9
-... animations, common, compiler, compiler-cli, core, forms
-... http, language-service, platform-browser
-... platform-browser-dynamic, router
-
-@angular/cli: 1.7.3
-@angular-devkit/build-optimizer: 0.3.2
-@angular-devkit/core: 0.3.2
-@angular-devkit/schematics: 0.3.2
-@ngtools/json-schema: 1.2.0
-@ngtools/webpack: 1.10.2
-@schematics/angular: 0.3.2
-@schematics/package-update: 0.3.2
-typescript: 2.5.3
-webpack: 3.11.0
+Angular:
+...
 ```
 
 Angular CLI의 사용법을 참조하기 위해서는 `ng help` 명령어를 사용한다.
@@ -213,7 +203,7 @@ my-app/
 └── tslint.json
 ```
 
-Angular 프로젝트의 파일 구조 및 구성요소에 대한 설명은 [Angular의 파일 구조와 구성 요소](http://poiemaweb.com/angular-architecture)을 참조하기 바란다.
+Angular 프로젝트의 파일 구조 및 구성요소에 대한 설명은 [Angular의 파일 구조와 구성 요소](./angular-architecture)에서 자세히 살펴볼 것이다. 이번 장에서는 Angular CLI의 기능에 집중하도록 하자.
 
 # 4. 프로젝트 실행
 
@@ -224,7 +214,7 @@ $ cd <project-name>
 $ ng serve
 ```
 
-앞에서 생성한 my-app을 실행하여 보자.
+앞에서 생성한 my-app 프로젝트를 실행하여 보자.
 
 ```bash
 $ cd my-app
@@ -244,17 +234,16 @@ webpack: Compiled successfully.
 
 `ng serve` 명령어를 실행하면 Webpack을 사용하여 소스코드와 의존 모듈을 번들링(Bundling)하고 Angular CLI가 내장하고 있는 개발용 서버를 실행한다.
 
-브라우저에서 localhost:4200으로 개발용 서버에 접속한다.
-
-- [http://localhost:4200](http://localhost:4200)
-
-`--open`(축약형 -o) 옵션을 추가하면 자동으로 브라우저를 실행하여 준다.
+브라우저를 열고 주소창에 [http://localhost:4200](http://localhost:4200)을 입력하여 개발용 서버에 접속한다. 참고로 프로젝트를 실행할 때 `--open`(축약형 -o) 옵션을 추가하면 자동으로 브라우저를 실행하여 준다.
 
 ```bash
 $ ng serve --open
 ```
 
 ![app works](./img/ng-serve-1.png)
+
+ng serve 명령어를 사용한 프로젝트 실행 결과
+{: .desc-img}
 
 이미 포트 4200번을 사용하고 있다면 Angular CLI 내장 서버를 실행할 수 없다. 포트번호를 변경하고자는 경우에는 다음과 같이 `--port`(축약형 -p) 옵션을 추가한다.
 
@@ -286,11 +275,14 @@ export class AppComponent {
 
 ![app works](./img/ng-serve-2.png)
 
-# 5. 프로젝트 구성 요소 추가
+LiveReload 기능에 의한 소스 코드 변경 내용 자동 반영
+{: .desc-img}
 
-프로젝트에 새로운 구성요소를 추가하기 위해서는 `ng generate` 명령어를 사용한다. `ng generate` 명령어는 축약형 `ng g`와 동일하게 동작한다.
+# 5. 프로젝트 구성 요소 생성
 
-| 추가 대상 구성요소 | 명령어                         | 축약형
+프로젝트에 새로운 구성요소를 생성하기 위해서는 `ng generate` 명령어를 사용한다. `ng generate` 명령어는 축약형 `ng g`와 동일하게 동작한다.
+
+| 생성 대상 구성요소 | 명령어                         | 축약형
 |:-------|:-----------------------------|:----------
 | 컴포넌트 | ng generate component component-name | ng g c component-name
 | 디렉티브 | ng generate directive directive-name | ng g d directive-name
@@ -302,11 +294,14 @@ export class AppComponent {
 | 인터페이스 |	ng generate interface interface-name | ng g i interface-name
 | Enum	 | ng generate enum enum-name           | ng g e enum-name
 
+Angular 프로젝트의 구성요소(컴포넌트, 디렉티브, 파이프, 서비스 등)에 대해 아직 살펴보지 않았기 때문에 혼란스럽고 어렵게 느껴질 수 있다. Angular를 학습한다는 것은 이들 구성요소의 사용 방법을 익히는 것이다. 이후의 해당 장에서 각각의 구성요소에 대해 자세히 살펴볼 것이다. 지금은 구성요소를 어떻게 생성하는지에 주목하도록 하자.
+{: .info}
+
 추가 대상 구성요소 중에서 컴포넌트, 디렉티브, 서비스, 모듈의 추가 방법을 알아보도록 하자.
 
-## 5.1 컴포넌트 추가
+## 5.1 컴포넌트 생성
 
-프로젝트에 새로운 컴포넌트를 추가하기 위해서는 `ng generate component` 명령어를 사용한다. home 컴포넌트를 추가해보자.
+프로젝트에 새로운 컴포넌트를 생성하기 위해서는 `ng generate component` 명령어를 사용한다. home 컴포넌트를 생성해보자.
 
 ```bash
 $ ng g c home
@@ -317,11 +312,11 @@ $ ng g c home
   update src/app/app.module.ts (388 bytes)
 ```
 
-`ng generate component home` 명령어를 실행하면 Angular CLI는 아래와 같이 동작한다.
+`ng generate component home`(축약형 ng g c home) 명령어를 실행하면 Angular CLI는 아래와 같이 동작한다.
 
 - `src/app/home` 폴더를 생성한다.
 : 컴포넌트는 URL 경로의 단위(화면 단위)가 될 수 있기 때문에 폴더로 구분된다.
-- `src/app/home` 폴더에 4개의 파일을 추가한다.
+- `src/app/home` 폴더에 4개의 파일을 생성한다.
   - `home.component.html`
   : 컴포넌트 템플릿을 위한 HTML 파일
   - `home.component.css`
@@ -330,12 +325,12 @@ $ ng g c home
   : 컴포넌트 클래스 파일
   - `home.component.spec.ts`
   : 컴포넌트 유닛 테스트를 위한 스펙 파일
-- 루트 모듈 `src/app/app.module.ts`에 새롭게 추가된 컴포넌트를 등록한다.
+- 루트 모듈 `src/app/app.module.ts`에 새롭게 생성된 컴포넌트를 등록한다.
 : 컴포넌트 클래스를 import하고 `@NgModule` 데코레이터의 `declarations` 프로퍼티에 컴포넌트 클래스를 등록한다.
 
 ### 5.1.1 파일명의 암묵적 변경
 
-주의해야 할 것은 `ng generate component`명령어 다음에 지정한 컴포넌트명이 실제 생성된 파일명과 다를 수 있다는 것이다. 예를 들어 아래와 같이 새로운 컴포넌트를 추가해 보자.
+주의해야 할 것은 `ng generate component`명령어 다음에 지정한 컴포넌트명이 실제 생성된 파일명과 다를 수 있다는 것이다. 예를 들어 아래와 같이 새로운 컴포넌트를 생성해 보자.
 
 ```bash
 $ ng g c newComponent
@@ -356,11 +351,11 @@ $ ng g c NewComponent
 $ ng g c new-component
 ```
 
-이와 같은 파일명의 암묵적 변경은 컴포넌트뿐만이 아니라 `ng generate` 명령어로 추가되는 모든 구성요소에 모두 적용된다. 혼란을 방지하는 위해 `ng generate` 명령어에 지정하는 구성요소 명칭은 하이픈으로 구별된 케밥 표기법(kebab-case) 명칭을 사용하는 것이 좋다.
+이와 같은 파일명의 암묵적 변경은 컴포넌트뿐만이 아니라 `ng generate` 명령어로 추가되는 모든 구성요소에 모두 적용된다. 혼란을 방지하기 위해 `ng generate` 명령어에 지정하는 구성요소 명칭은 하이픈으로 단어를 연결하는 케밥 표기법(kebab-case)을 사용하는 것이 좋다.
 
 ### 5.1.2 selector 프로퍼티값의 접두사(prefix)와 컴포넌트 클래스 이름
 
-생성된 컴포넌트 파일 `src/app/home/home.component.ts`을 살펴보자.
+생성된 컴포넌트 클래스 파일 `src/app/home/home.component.ts`을 살펴보자.
 
 ```typescript
 // src/app/home/home.component.ts
@@ -416,7 +411,7 @@ selector 프로퍼티값 'app-home'는 `ng generate component home` 명령어에
 $ ng new my-app --prefix todos
 ```
 
-컴포넌트 클래스(HomeComponent)의 이름은 `ng generate component` 명령어에 지정한 컴포넌트 이름을 파스칼 표기법(PascalCase)으로 자동 변경하여 생성된다. 컴포넌트 클래스 이름은 루트 모듈에 자동으로 import되고 `@NgModule` 데코레이터의 `declarations` 프로퍼티에 자동으로 추가된다.
+컴포넌트 클래스의 이름 `HomeComponent`은 `ng generate component` 명령어에 지정한 컴포넌트 이름을 파스칼 표기법(PascalCase)으로 자동 변경하여 생성된다. 컴포넌트 클래스 이름은 루트 모듈(src/app/app.module.ts)에 자동으로 import되고 `@NgModule` 데코레이터의 `declarations` 프로퍼티에 자동으로 추가된다.
 
 ### 5.1.3 templateUrl, styleUrls 프로퍼티와 template, styles 프로퍼티
 
@@ -439,7 +434,7 @@ $ ng new my-app --prefix todos
 ...
 ```
 
-위 예제의 경우 컴포넌트는 같은 폴더 내의 외부 파일 `home.component.html`과 `home.component.css`를 HTML 템플릿과 CSS로 사용한다. 템플릿 또는 CSS가 간단한 경우에는 메타데이터 내부에 직접 기술할 수도 있다. 이때 `templateUrl`, `styleUrls` 프로퍼티 대신 `template`, `styles` 프로퍼티를 사용한다.
+위 예제의 경우 컴포넌트는 같은 폴더 내의 외부 파일 `home.component.html`과 `home.component.css`를 HTML 템플릿과 CSS로 사용한다. HTML 템플릿 또는 CSS가 간단한 경우에는 메타데이터 내부에 직접 기술할 수도 있다. 이때 `templateUrl`, `styleUrls` 프로퍼티 대신 `template`, `styles` 프로퍼티를 사용한다.
 
 ```typescript
 // src/app/home/home.component.ts
@@ -456,7 +451,7 @@ $ ng new my-app --prefix todos
 ...
 ```
 
-`ng generate component` 명령어를 사용하여 컴포넌트를 추가할 때 HTML 템플릿과 CSS를 외부 파일로 생성하지 않고 인라인 HTML 템플릿과 CSS를 사용하고자 하는 경우에는 아래의 명령어를 사용한다.
+`ng generate component` 명령어를 사용하여 컴포넌트를 생성할 때 HTML 템플릿과 CSS를 외부 파일로 생성하지 않고 인라인 HTML 템플릿과 CSS를 사용하고자 하는 경우에는 아래의 명령어를 사용한다.
 
 ```bash
 # 인라인 HTML 템플릿을 사용하는 경우
@@ -467,9 +462,9 @@ $ ng g c home --inline-style
 $ ng g c home --inline-template --inline-style
 ```
 
-## 5.2 디렉티브 추가
+## 5.2 디렉티브 생성
 
-프로젝트에 새로운 디렉티브를 추가하기 위해서는 `ng generate directive` 명령어를 사용한다.
+프로젝트에 새로운 디렉티브를 생성하기 위해서는 `ng generate directive`(축약형 ng g d highlight) 명령어를 사용한다.
 
 ```bash
 $ ng g d highlight
@@ -480,15 +475,15 @@ $ ng g d highlight
 
 `ng generate directive highlight` 명령어를 실행하면 Angular CLI는 아래와 같이 동작한다.
 
-- 루트 폴더에 2개의 파일을 추가한다.
+- 루트 폴더에 2개의 파일을 생성한다.
   - `highlight.directive.spec.ts`
   : 디렉티브 유닛 테스트를 위한 스펙 파일
   - `highlight.directive.ts`
   : 디렉티브 클래스 파일
-- 루트 모듈 `src/app/app.module.ts`에 새롭게 추가된 디렉티브를 등록한다.
+- 루트 모듈 `src/app/app.module.ts`에 새롭게 생성된 디렉티브를 등록한다.
 : 디렉티브를 import하고 @NgModule 데코레이터의 `declarations` 프로퍼티에 디렉티브를 등록한다.
 
-컴포넌트를 추가할 때와는 달리 디렉티브를 위한 폴더는 생성되지 않으며 기본적으로 `src/app/`에 추가된다.
+컴포넌트를 생성할 때와는 달리 디렉티브를 위한 폴더는 생성되지 않으며 기본적으로 `src/app/`에 추가된다.
 
 생성된 `highlight.directive.ts`를 살펴보면 `@Directive` 데코레이터 함수에 전달된 메타데이터 객체의 `selector` 프로퍼티값으로 'appHighlight'가 설정되었다.
 
@@ -508,29 +503,29 @@ export class MyDirectiveDirective {
 
 이것은 `.angular-cli.json`의 기본 접두사 app과 `ng generate directive` 명령어에 지정한 디렉티브명으로 합성된 디렉티브 셀렉터 이름으로 카멜 표기법(camelCase)으로 작성된다.
 
-커스텀 디렉티브의 이름은 HTML 어트리뷰트처럼 사용된다. 디렉티브의 상세한 내용은 이후 자세히 다루도록 한다.
+selector 프로퍼티에 지정한 디렉티브의 이름 appHighlight은 HTML 어트리뷰트처럼 사용된다. 디렉티브의 상세한 내용은 이후 자세히 다루도록 한다.
 
 ```html
 <p appHighlight>Highlight Directive!</p>
 ```
 
-## 5.3 모듈 추가
+## 5.3 모듈 생성
 
-프로젝트에 새로운 모듈을 추가하기 위해서는 `ng generate module` 명령어를 사용한다.
+프로젝트에 새로운 모듈을 생성하기 위해서는 `ng generate module` 명령어를 사용한다.
 
 ```bash
 $ ng g m todos
   create src/app/todos/todos.module.ts (189 bytes)
 ```
 
-ng generate module todos 명령어를 실행하면 Angular CLI는 아래와 같이 동작한다.
+ng generate module todos(축약형 ng g m todos) 명령어를 실행하면 Angular CLI는 아래와 같이 동작한다.
 
 - `src/app/todos` 폴더를 생성한다.
 - `src/app/todos` 폴더에 1개의 파일을 추가한다.
   - `todos.module.ts`
   : 모듈 클래스 파일
 
-모듈을 사용하기 위해 다른 모듈의 `imports` 프로퍼티에 모듈을 추가하여야 한다.
+모듈을 사용하기 위해서 해당 모듈을 사용하려는 다른 모듈의 `imports` 프로퍼티에 모듈을 추가하여야 한다. 다음은 루트 모듈에 모듈을 추가하는 예제이다.
 
 다음은 루트 모듈에 모듈을 추가하는 예제이다.
 
@@ -549,9 +544,9 @@ import { TodosModule } from './todos/todos.module';
 })
 ```
 
-## 5.4 서비스 추가
+## 5.4 서비스 생성
 
-프로젝트에 새로운 서비스를 추가하기 위해서는 `ng generate service` 명령어를 사용한다.
+프로젝트에 새로운 서비스를 생성하기 위해서는 `ng generate service` 명령어를 사용한다.
 
 ```bash
 $ ng g s user
@@ -561,13 +556,13 @@ $ ng g s user
 
 ng generate service user 명령어를 실행하면 Angular CLI는 아래와 같이 동작한다.
 
-- 루트 폴더에 2개의 파일을 추가한다.
+- 루트 폴더에 2개의 파일을 생성한다.
   - user.service.spec.ts
   : 서비스 유닛 테스트를 위한 스펙 파일
   - user.service.ts
   : 서비스 클래스 파일
 
-컴포넌트를 추가할 때와는 달리 서비스를 위한 폴더는 생성되지 않으며 기본적으로 `src/app/`에 추가된다. 그리고 서비스를 사용하기 위해 모듈 또는 컴포넌트의 providers 프로퍼티에 서비스를 등록하여야 한다.
+컴포넌트를 생성할 때와는 달리 서비스를 위한 폴더는 생성되지 않으며 기본적으로 `src/app/`에 추가된다. 그리고 서비스를 사용하기 위해 모듈 또는 컴포넌트의 providers 프로퍼티에 서비스를 등록하여야 한다.
 
 다음은 루트 모듈에 서비스를 추가하는 예제이다.
 
@@ -586,9 +581,9 @@ import { UserService } from './user.service';
 })
 ```
 
-## 5.5 클래스 추가
+## 5.5 클래스 생성
 
-프로젝트에 새로운 클래스를 추가하기 위해서는 `ng generate class` 명령어를 사용한다.
+프로젝트에 새로운 클래스를 생성하기 위해서는 `ng generate class` 명령어를 사용한다.
 
 ```bash
 $ ng g cl user
@@ -605,7 +600,7 @@ $ ng g cl user --spec
 
 # 6. 프로젝트 빌드
 
-프로젝트의 개발 완료 이후 배포를 위해서는 `ng build` 명령어를 사용한다.
+프로젝트 개발을 완료한 이후 배포를 위해서는 `ng build` 명령어를 사용한다.
 
 ```bash
 $ ng build
@@ -623,14 +618,14 @@ chunk {vendor} vendor.bundle.js, vendor.bundle.js.map (vendor) 2.44 MB [initial]
 
 ## 6.1 트랜스파일링과 의존 모듈 번들링
 
-TypeScript 기반으로 개발이 진행되는 Angular 애플리케이션은 TypeScript를 JavaScript로 변환하여야 한다. 또한 의존 모듈의 해결이 필요한데 수작업으로 프로젝트 의존 모듈을 HTML의 script 태그에 기술하는 것은 매우 곤란한 일이다.
+TypeScript 기반으로 개발이 진행되는 Angular 애플리케이션은 TypeScript를 JavaScript로 변환하여야 한다. 또한 프로젝트가 의존하는 모듈들을 로드하는 HTML 파일의 script 태그를 작성해야 한다. 다양한 프로젝트의 의존 모듈을 순서에 맞게 수작업으로 script 태그에 기술하는 것은 매우 곤란한 일이며 실수가 발생할 수 있다.
 
 Angular CLI로 새로운 프로젝트를 생성할 경우, 의존 모듈의 설치는 기본 패키지 매니저인 npm으로 자동화되어 진행된다. 이때 설치되는 의존 모듈은 약 1,000여 개로 의존성 관리를 위해 수작업은 현실적이지 않다. Angular CLI의 빌드 기능은 의존성 관리를 위한 작업을 자동화하여 진행한다.
 
 Angular CLI 빌드 기능은 내부적으로 모듈 번들러 [webpack](https://webpack.github.io/)을 사용하며 아래와 같은 작업의 자동화를 지원한다.
 
 - TypeScript에서 JavaScript로의 트랜스파일링
-- 디버깅 용도의 map 파일 생성
+- 디버깅 용도의 source map 파일 생성
 - 의존 모듈과 HTML, CSS, JavaScript 번들링
 - [AoT 컴파일](https://angular.io/guide/aot-compiler)
 - 소스코드의 문법 체크
@@ -666,7 +661,7 @@ Angular CLI 빌드 기능은 소스코드와 의존 모듈을 번들링한다. �
 빌드 처리의 흐름
 {: .desc-img}
 
-## 6.2 프로덕션 빌드
+## 6.2 프로덕션 빌드와 배포
 
 `ng build` 명령어를 실행하면 Angular CLI는 `src/environments/environments.ts` 파일을 참조하여 빌드를 수행한다.
 
@@ -702,7 +697,32 @@ chunk {3} inline.318b50c57b4eba3d437b.bundle.js (inline) 796 bytes [entry] [rend
 | --sourcemaps     | true  | false
 | --extract-css    | false | true
 
-또한 프로덕션 빌드 시에는 UglifyJS를 통하여 데드 코드의 제거가 자동 실행된다.
+또한 프로덕션 빌드 시에는 [UglifyJS](http://lisperator.net/uglifyjs/)를 통하여 데드 코드(코드 실행에 영향을 주지 않는 불필요한 문자)의 제거가 자동 실행된다.
+
+프로덕션 빌드의 결과물로 dist 폴더에 생성된 파일들을 서버에 업로드하면 배포(Deploy)가 완료된다. 간단한 명령어로 호스팅 환경을 구축해주는 서비스인 [now](https://zeit.co/now)를 사용하여 프로덕션 빌드의 결과물을 서버에 업로드해보자.
+
+우선 npm을 사용하여 now를 전역에 설치한다.
+
+```bash
+# now 설치
+$ npm install -g now
+```
+
+해당 프로젝트의 dist 폴더로 이동한 후, now 명령어를 실행한다.
+
+now를 처음 사용한다면 now 명령어 실행 중에 이메일을 입력을 요구받는다. 입력한 이메일로 확인 메일이 오면 확인 버튼을 누르면 다시 now 명령어를 실행한다. 그러면 파일이 서버로 업로드되고 서버 url이 제공된다. 브라우저를 열고 주소창에 해당 서버 url를 입력하면 프로젝트가 동작하는 것을 확인할 수 있다.
+
+```bash
+# dist 폴더로 이동
+$ cd dist
+$ now
+> Deploying ~/Desktop/my-app/dist under ungmo2@gmail.com
+> Your deployment's code and logs will be publicly accessible because you are subscribed to the OSS plan.
+> NOTE: You can use `now --public` or upgrade your plan (https://zeit.co/account/plan) to skip this prompt
+> https://dist-ezogtctnem.now.sh [in clipboard] [9s]
+> Synced 2 files (151.19KB) [9s]
+> Deployment complete!
+```
 
 ## 6.3 AoT(Ahead-of Time) 컴파일
 
@@ -715,17 +735,17 @@ $ ng build -aot
 $ ng build -prod
 ```
 
-AoT 컴파일이란 템플릿을 빌드 시에 미리 컴파일해 두는 것을 말한다. 빌드에 소요되는 시간이 조금 더 걸리더라도 런타임에 컴파일이 실행되지 않기 때문에 실제 애플리케이션이 동작 시간은 단축되는 효과가 있다. 또한 템플릿을 JIT 컴파일하지 않고 미리 컴파일하기 때문에 템플릿에서 발생하는 에러를 사전에 감지할 수 있는 장점과 JIT 컴파일러를 포함할 필요가 없어지기 때문에 애플리케이션 전체 용량도 줄어드는 효과가 있다.
+AoT(Ahead-of Time) 컴파일이란 프로젝트를 빌드할 때 HTML 템플릿을 미리 컴파일해 두는 것을 말한다. 빌드에 소요되는 시간이 조금 더 걸리더라도 런타임에 HTML 템플릿 컴파일이 실행되지 않기 때문에 실제 애플리케이션이 동작하는 시간은 단축되는 효과가 있다. 또한 HTML 템플릿을 JIT 컴파일하지 않고 미리 컴파일하기 때문에 템플릿에서 발생하는 에러를 사전에 감지할 수 있는 장점과 JIT 컴파일러를 포함할 필요가 없어져 애플리케이션 전체 용량도 줄어드는 효과가 있다.
 
 AoT 컴파일에 대한 보다 상세한 내용은 [AoT 컴파일](https://angular.io/guide/aot-compiler)을 참조하기 바란다.
 
 # 7. 기본 옵션 변경
 
-기본으로 적용되는 옵션을 변경하기 위해서는 [schema.json](https://github.com/angular/angular-cli/blob/398356503ab4729cf40587804c44b55eb5c99768/packages/%40angular/cli/lib/config/schema.json)에 기술되어 있는 옵션을 참조하여 `.angular-cli.json`을 수정한다.
+프로젝트에 기본으로 적용되는 옵션을 변경하기 위해서는 [schema.json](https://github.com/angular/angular-cli/blob/398356503ab4729cf40587804c44b55eb5c99768/packages/%40angular/cli/lib/config/schema.json)에 기술되어 있는 옵션을 참조하여 `.angular-cli.json`을 수정한다.
 
 예를 들어 컴포넌트를 생성할 때, 스팩 파일을 생성하지 않도록 기본 옵션을 변경하여 보자.
 
-schema.json를 참조하면 `--spec` 옵션은 component에서 사용하는 경우, 기본값이 true이다. 즉 컴포넌트를 생성할 때, 기본으로 스팩 파일이 추가된다.
+schema.json을 참조하면 `--spec` 옵션은 component에서 사용하는 경우, 기본값이 true이다. 즉, 컴포넌트를 생성할 때, 기본으로 스팩 파일이 추가된다.
 
 ```json
   ...

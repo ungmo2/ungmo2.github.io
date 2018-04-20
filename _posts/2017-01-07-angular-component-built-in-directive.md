@@ -70,13 +70,36 @@ export class AppComponent { }
 
 ## 2.1 ngClass
 
-여러개의 CSS 클래스를 추가 또는 제거한다. 한개의 클래스를 추가 또는 제거할 때는 클래스 바인딩을 사용하는 것이 좋다.
+여러 개의 CSS 클래스를 추가 또는 제거한다. 한개의 클래스를 추가 또는 제거할 때는 클래스 바인딩을 사용하는 것이 좋다.
 
 ```html
-<element [ngClass]="expression">...</element>
+<element [ngClass]="문자열 | 배열 | 객체">...</element>
 ```
 
-[ngClass 디렉티브](https://angular.io/api/common/NgClass)는 우변의 표현식을 평가한 후 HTML class 어트리뷰트를 변경한다. HTML class 어트리뷰트에 의해 이미 클래스가 지정되어 있을 때 ngClass 디렉티브는 HTML class 어트리뷰트를 병합(merge)하여 새로운 HTML class 어트리뷰트를 작성한다. 사용 방법은 아래와 같다.
+[ngClass 디렉티브](https://angular.io/api/common/NgClass)는 바인딩된 문자열이나 배열 또는 객체를 평가한 후 HTML class 어트리뷰트를 변경한다. ngClass 디렉티브에 바인딩할 수 있는 값은 아래와 같다.
+
+- CSS 클래스 이름이 공백 문자로 구분된 문자열
+: 모든 CSS 클래스 이름이 class 어트리뷰트에 반영된다.
+
+```html
+<div [ngClass]="'text-bold color-blue'">...</div>
+```
+
+- CSS 클래스 이름의 요소로 구성된 배열
+: 모든 CSS 클래스 이름의 요소가 class 어트리뷰트에 반영된다.
+
+```html
+<div [ngClass]="['text-bold', 'color-blue']">...</div>
+```
+
+- CSS 클래스 이름을 프로퍼티 이름으로, boolean 타입을 프로퍼티 값으로 갖는 객체
+: 프로퍼티 값이 true인 프로퍼티의 프로퍼티 이름 만이 class 어트리뷰트에 반영된다.
+
+```html
+<div [ngClass]="{ 'text-bold': true, 'color-blue': false }">...</div>
+```
+
+HTML class 어트리뷰트에 의해 이미 클래스가 지정되어 있을 때 ngClass 디렉티브는 HTML class 어트리뷰트를 병합(merge)하여 새로운 HTML class 어트리뷰트를 작성한다. 사용 방법은 아래와 같다.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -149,10 +172,16 @@ export class AppComponent {
 여러개의 HTML 인라인 스타일을 추가 또는 제거한다. 한개의 인라인 스타일을 추가 또는 제거할 때는 스타일 바인딩을 사용하는 것이 좋다.
 
 ```html
-<element [ngStyle]="expression">...</element>
+<element [ngStyle]="객체">...</element>
 ```
 
-[ngStyle 디렉티브](https://angular.io/api/common/NgStyle)는 우변의 표현식을 평가한 후 HTML style 어트리뷰트를 변경한다. HTML style 어트리뷰트에 의해 이미 스타일이 지정되어 있을 때 ngStyle 디렉티브는 HTML style 어트리뷰트를 병합(merge)하여 새로운 HTML style 어트리뷰트를 작성한다. 사용 방법은 아래와 같다.
+[ngStyle 디렉티브](https://angular.io/api/common/NgStyle)는 바인딩된 객체를 평가한 후 HTML style 어트리뷰트를 변경한다. ngStyle 디렉티브에 바인딩된 객체는 CSS 프로퍼티를 프로퍼티 이름으로, CSS 프로퍼티 값을 프로퍼티 값으로 갖는다. 이때 CSS 프로퍼티 값에 단위가 필요한 경우, CSS 프로퍼티에 단위를 추가한다.
+
+```html
+<div [ngStyle]="{ color: 'red', 'width.px': 100 }"></div>
+```
+
+HTML style 어트리뷰트에 의해 이미 스타일이 지정되어 있을 때 ngStyle 디렉티브는 HTML style 어트리뷰트를 병합(merge)하여 새로운 HTML style 어트리뷰트를 작성한다. 사용 방법은 아래와 같다.
 
 ```typescript
 import { Component } from '@angular/core';

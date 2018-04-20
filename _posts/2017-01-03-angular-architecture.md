@@ -68,7 +68,7 @@ my-app/
 
 Angular 프로젝트는 컴포넌트, 디렉티브, 서비스, 모듈 등 Angular 구성요소와 각종 설정 파일로 구성된다.
 
-`src` 폴더는 Angular의 모든 구성요소, 공통 CSS, 이미지, 설정 파일 등 애플리케이션 필수 파일을 담고 있다.
+`src` 폴더는 Angular의 모든 구성요소, 공통 CSS, 이미지나 폰트와 같은 정적 파일, 설정 파일 등 애플리케이션 필수 파일을 담고 있다.
 
 `src/app` 폴더에는 Angular 구성요소가 위치하게 된다. 현재는 컴포넌트와 모듈만 존재하지만 구성요소가 추가되면 이 폴더에 위치하게 된다. 개발자가 작성하는 대부분의 파일은 이곳에 포함된다.
 
@@ -79,7 +79,7 @@ Angular 프로젝트는 컴포넌트, 디렉티브, 서비스, 모듈 등 Angula
 : Angular 구성요소를 등록하는 루트 모듈.
 
 - assets/*
-: 이미지 등과 같은 정적 파일을 위한 폴더. 프로젝트 생성 초기에는 빈 폴더이다.
+: 이미지나 폰트와 같은 정적 파일을 위한 폴더. 프로젝트 생성 초기에는 빈 폴더이다.
 
 - environments/*
 : 프로젝트 빌드 시에 사용될 프로덕션 또는 개발 환경 설정 파일.
@@ -88,12 +88,12 @@ Angular 프로젝트는 컴포넌트, 디렉티브, 서비스, 모듈 등 Angula
 : 파비콘
 
 - index.html
-: 웹 애플리케이션에 방문시 처음으로 로딩되는 디폴트 페이지. 루트 컴포넌트(/src/app/app.component.*)의 셀렉터인 \<app-root\>에 의해 루트 컴포넌트의 뷰가 로드되어 브라우저에 표시된다. 빌드 시에는 번들링된 JavaScript 파일이 자동 추가된 /dist/index.html이 생성된다.
+: 웹 애플리케이션에 방문시 처음으로 로딩되는 디폴트 페이지. 루트 컴포넌트(/src/app/app.component.*)의 셀렉터인 \<app-root\>에 의해 루트 컴포넌트의 뷰가 로드되어 브라우저에 표시된다. 빌드 시에는 번들링된 자바스크립트 파일이 자동 추가된 index.html이 /dist 폴더에 생성된다.
 
 ![index.html](img/index.html.png)
 {: .w-700}
 
-빌드 시에 index.html에 자동 추가되는 JavaScript 파일
+빌드 시에 index.html에 자동 추가되는 자바스크립트 파일
 {: .desc-img}
 
 - main.ts
@@ -103,7 +103,7 @@ Angular 프로젝트는 컴포넌트, 디렉티브, 서비스, 모듈 등 Angula
 : 변화 감지(Change Detection)를 위한 zone.js와 ES6/ES7와 크로스 브라우저 웹 표준 지원을 위한 폴리필들을 임포트하는 역할을 한다. 자세한 내용은 [Browser support](https://angular.io/docs/ts/latest/guide/browser-support.html) 참조.
 
 - styles.css
-: 애플리케이션 전역에 적용되는 글로벌 CSS.
+: 애플리케이션 전역에 적용되는 글로벌 CSS 파일.
 
 - test.ts
 : 유닛 테스트를 위한 메인 진입점.
@@ -114,7 +114,7 @@ Angular 프로젝트는 컴포넌트, 디렉티브, 서비스, 모듈 등 Angula
 - typings.d.ts
 : TypeScript를 위한 타입 선언 파일.
 
-## 1.2 그외의 파일
+## 1.2 테스트, 빌드, 배포 관련 설정 파일
 
 src 폴더 밖의 파일들은 테스트, 빌드, 배포 등을 위한 각종 설정 파일이다.
 
@@ -122,7 +122,7 @@ src 폴더 밖의 파일들은 테스트, 빌드, 배포 등을 위한 각종 �
 : e2e(end-to-end) 테스트 관련 파일
 
 - node_modules/
-: 의존 모듈 저장소. 패키지 매니저에 의해 package.json에 등록된 의존 모듈이 설치되는 장소이다.
+: 의존 모듈 저장소. package.json에 등록된 의존 모듈이 패키지 매니저에 의해 설치되는 장소이다.
 
 - .angular-cli.json
 : Angular CLI를 위한 설정 파일. 상세한 설정 방법은 [Angular CLI Config Schema](https://github.com/angular/angular-cli/wiki/angular-cli) 참조.
@@ -163,18 +163,18 @@ Angular 애플리케이션의 흐름
 
 ## 2.1 index.html
 
-웹 브라우저에 의해 가장 먼저 로딩되는 프로젝트 파일은 /my-app/dist/index.html이다. 이것은 ng build 명령어로 프로젝트 빌드를 실행하였을 때 /my-app/src/index.html에 번들링된 JavaScript 파일이 추가되어 자동으로 생성되는 파일이다.
+웹 브라우저에 의해 가장 먼저 로딩되는 프로젝트 파일은 /my-app/dist/index.html이다. 이것은 ng build 명령어로 프로젝트 빌드를 실행하였을 때 /my-app/src/index.html에 번들링된 자바스크립트 파일이 추가되어 자동으로 생성되는 파일이다.
 
-/my-app/dist/index.html는 빌드(ng build)의 결과물로 실제 배포 시에는 서버로 이관된다. ng serve 명령어에 의해 내장 개발 서버를 사용하여 로컬 환경에서 프로젝트를 실행(preview)하는 경우, Angular CLI 내부적으로 빌드를 자동 수행하므로 빌드(ng build)를 별도 실행하여 /my-app/dist/index.html를 생성할 필요는 없다. 자동으로 빌드되어 가상 드라이브에 저장되어 있는 index.html를 내장개발 서버가 로드한다고 이해하면 된다.
+/my-app/dist/index.html은 빌드(ng build)의 결과물로 실제 배포 시에는 서버로 이관된다. ng serve 명령어에 의해 내장 개발 서버를 사용하여 로컬 환경에서 프로젝트를 실행(preview)하는 경우, Angular CLI 내부적으로 빌드를 자동 수행하므로 빌드(ng build)를 별도 실행하여 /my-app/dist/index.html을 생성할 필요는 없다. 자동으로 빌드되어 가상 드라이브에 저장되어 있는 index.html을 내장 개발 서버가 로드한다고 이해하면 된다.
 {: .info}
 
-Angular 애플리케이션을 기동하기 위해서는 수많은 의존성 모듈(@angular/*, core-js, zone.js, RxJS 등)과 TypeScript 파일의 컴파일 결과물인 JavaScript 파일을 로드할 필요가 있다. Angular는 모듈 번들러 [webpack](https://webpack.js.org/)을 사용하여 의존성 모듈과 JavaScript 파일을 번들링한 후, 수작업없이 간편하게 로드할 수 있도록 자동화 기능을 제공한다.
+Angular 애플리케이션을 기동하기 위해서는 수많은 의존성 모듈(@angular/*, core-js, zone.js, RxJS 등)과 TypeScript 파일의 컴파일 결과물인 자바스크립트 파일을 로드할 필요가 있다. Angular는 모듈 번들러 [Webpack](https://webpack.js.org/)을 사용하여 의존성 모듈과 자바스크립트 파일을 번들링한 후, 수작업없이 간편하게 로드할 수 있도록 자동화 기능을 제공한다.
 
 2016년 08월 1.0.0-beta.11부터 Angular의 빌드 시스템은 SystemJS에서 Webpack으로 변경되었다.
 [We moved the build system from SystemJS to Webpack.](https://github.com/angular/angular-cli/blob/ed5f47dc22d5eb4a5d4b4ae2c8f7cb0ec1a999f3/CHANGELOG.md#100-beta11-webpack-2016-08-02)
 {: .info}
 
-번들링의 결과물로 생성된 JavaScript 파일들이 로드되어 실행되면서 Angular 애플리케이션은 동작하기 시작한다. 번들링된 JavaScript 파일은 아래와 같다.
+번들링의 결과물로 생성된 파일들이 로드되어 실행되면서 Angular 애플리케이션은 동작하기 시작한다. 번들링된 자바스크립트 파일은 아래와 같다.
 
 inline.bundle.js
 : Webpack 유틸리티가 포함된 Webpack loader
@@ -231,10 +231,10 @@ my-app 프로젝트의 경우 /dist/index.html의 \<app-root\>에 의해 루트 
 Angular의 핵심 구성요소는 아래와 같다.
 
 컴포넌트 (Component)
-: 컴포넌트는 화면을 구성하는 <strong>뷰(View)</strong>를 생성하고 관리하는 것이 주된 역할이며 화면은 1개 이상의 컴포넌트를 조립하여 구성한다. 템플릿과 메타데이터, 컴포넌트 클래스로 구성되며 데이터 바인딩에 의해 연결된다.
+: HTML 템플릿과 메타데이터, 컴포넌트 클래스로 구성되며 데이터 바인딩에 의해 연결된다. 컴포넌트는 화면을 구성하는 <strong>뷰(View)</strong>를 생성하고 관리하는 것이 주된 역할이며 화면은 1개 이상의 컴포넌트를 조립하여 구성한다.
 
 디렉티브 (Directive)
-: 애플리케이션 전역에서 사용할 수 있는 공통 관심사를 컴포넌트에서 분리하여 구현한 것으로 컴포넌트의 복잡도를 낮추고 가독성을 향상시킨다. 컴포넌트도 뷰를 생성하고 이벤트를 처리하는 등 DOM을 관리하기 때문에 큰 의미에서 디렉티브로 볼 수 있다. 구조 디렉티브(Structural directive)와 어트리뷰트 디렉티브(Attribute directive), 커스텀 디렉티브(Cunstom directive)로 구분할 수 있다.
+: 애플리케이션 전역에서 사용할 수 있는 뷰에 관련한 공통 관심사를 컴포넌트에서 분리하여 구현한 것으로 컴포넌트의 복잡도를 낮추고 가독성을 향상시킨다. 컴포넌트도 뷰를 생성하고 이벤트를 처리하는 등 DOM을 관리하기 때문에 큰 의미에서 디렉티브로 볼 수 있다. 구조 디렉티브(Structural directive)와 어트리뷰트 디렉티브(Attribute directive), 커스텀 디렉티브(Cunstom directive)로 구분할 수 있다.
 
 서비스 (Service)
 : 다양한 목적의 애플리케이션 공통 로직을 담당한다. 컴포넌트에서 애플리케이션 전역 관심사를 분리하기 위해 사용하며 의존성 주입(Dependency Injection)이 가능한 클래스로 작성된다.

@@ -372,14 +372,32 @@ export class AppComponent {
 
 ## 3.4 클래스 바인딩(Class binding)
 
-클래스 바인딩을 사용하면 HTML 클래스 어트리뷰트에 클래스를 추가 또는 삭제할 수 있다.
+클래스 바인딩을 사용하면 HTML class 어트리뷰트에 클래스를 추가 또는 삭제할 수 있다.
 
 ```html
 <element [class.class-name]="booleanExpression">...</element>
 <element [class]="class-name-list">...</element>
 ```
 
-클래스 바인딩은 우변의 표현식을 평가한 후 HTML class 어트리뷰트를 변경한다. HTML class 어트리뷰트에 의해 이미 클래스가 지정되어 있을 때 한개의 클래스를 대상으로 하는 클래스 바인딩([class.class-name])은 HTML class 어트리뷰트를 병합(merge)하여 새로운 HTML class 어트리뷰트를 작성한다. 하지만 복수의 클래스를 대상으로 하는 클래스 바인딩([class])은 기존 HTML class 어트리뷰트를 삭제하고 새로운 HTML class 어트리뷰트를 작성한다. 사용 방법은 아래와 같다.
+클래스 바인딩은 우변의 표현식을 평가한 후 HTML class 어트리뷰트를 변경한다. 클래스 바인딩은 두 가지의 형식으로 사용할 수 있다.
+
+첫번째, 좌변에는 class 뒤에 HTML class 어트리뷰트에 반영할 클래스 이름을 지정하고 우변에는 참이나 거짓으로 평가될 수 있는 표현식을 바인딩하는 것이다.
+
+```html
+<div [class.my-class]="'ture'">...</div>
+```
+
+이때 우변의 표현식이 참이면 좌변의 class 뒤에 지정한 클래스를 HTML class 어트리뷰트에 추가하고, 거짓이면 클래스를 삭제한다.
+
+두번째, 좌변에는 class를 지정하고 우변에는 HTML class 어트리뷰트에 반영할 클래스 이름의 리스트를 바인딩하는 것이다.
+
+```html
+<div [class]="'my-class1 my-class2'">...</div>
+```
+
+이때 우변에 지정한 클래스 이름의 리스트가 HTML class 어트리뷰트에 반영된다.
+
+주의할 것은 HTML class 어트리뷰트에 의해 이미 클래스가 지정되어 있을 때 한개의 클래스를 대상으로 하는 클래스 바인딩([class.class-name])은 HTML class 어트리뷰트를 병합(merge)하여 새로운 HTML class 어트리뷰트를 작성한다. 하지만 복수의 클래스를 대상으로 하는 클래스 바인딩([class])은 기존 HTML class 어트리뷰트를 삭제하고 새로운 HTML class 어트리뷰트를 작성한다. 사용 방법은 아래와 같다.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -423,13 +441,20 @@ export class AppComponent {
 
 ## 3.5 스타일 바인딩(Style binding)
 
-스타일 바인딩을 사용하면 HTML 요소 스타일 어트리뷰트에 스타일을 지정할 수 있다.
+스타일 바인딩을 사용하면 HTML style 어트리뷰트에 스타일을 지정할 수 있다.
 
 ```html
 <element [style.style-property]="expression">...</element>
 ```
 
-스타일 바인딩은 우변의 표현식을 평가한 후 HTML style 어트리뷰트를 변경한다. HTML style 어트리뷰트에 의해 이미 스타일이 지정되어 있을 때 스타일 바인딩은 중복되지 않은 스타일은 병합(merge)하여 그대로 사용하고 중복된 스타일은 스타일 바인딩의 스타일으로 덮어쓴다. 스타일 프로퍼티(border-radius 등)는 케밥표기법(kebab-case) 또는 카멜표기법(camelCase)을 사용한다. 사용 방법은 아래와 같다.
+스타일 바인딩은 우변의 표현식을 평가한 후 HTML style 어트리뷰트를 변경한다. 좌변에는 style 뒤에 HTML style 어트리뷰트에 반영할 CSS 프로퍼티 이름을 지정하고 우변에는 CSS 프로퍼티의 값으로 평가될 수 있는 표현식을 바인딩하는 것이다. 만약 CSS 프로퍼티 값에 단위가 필요한 경우, CSS 프로퍼티에 단위를 추가한다.
+
+```html
+<div [style.background-color]="'white'"
+     [style.font-size.px]="'16'">...</div>
+```
+
+주의 할 것은 HTML style 어트리뷰트에 의해 이미 스타일이 지정되어 있을 때 스타일 바인딩은 중복되지 않은 스타일은 병합(merge)하여 그대로 사용하고 중복된 스타일은 스타일 바인딩의 스타일로 덮어쓴다. 스타일 프로퍼티(border-radius 등)는 케밥표기법(kebab-case) 또는 카멜표기법(camelCase)을 사용한다. 사용 방법은 아래와 같다.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -439,7 +464,7 @@ import { Component } from '@angular/core';
   template: `
     <button class="btn"
       [style.background-color]="isActive ? '#4CAF50' : '#f44336'"
-      [style.font-size.em]="isActive ? 1.2 : 1"
+      [style.font-size.em]="isActive ? '1.2' : '1'"
       (click)="isActive=!isActive">Toggle</button>
   `,
   styles: [`

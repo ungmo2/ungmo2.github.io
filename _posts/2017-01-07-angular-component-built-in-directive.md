@@ -79,21 +79,21 @@ export class AppComponent { }
 [ngClass 디렉티브](https://angular.io/api/common/NgClass)는 바인딩된 문자열이나 배열 또는 객체를 평가한 후 HTML class 어트리뷰트를 변경한다. ngClass 디렉티브에 바인딩할 수 있는 값은 아래와 같다.
 
 - CSS 클래스 이름이 공백 문자로 구분된 문자열
-: 모든 CSS 클래스 이름이 class 어트리뷰트에 반영된다.
+: 문자열의 모든 CSS 클래스 이름이 class 어트리뷰트에 반영된다.
 
 ```html
 <div [ngClass]="'text-bold color-blue'">...</div>
 ```
 
 - CSS 클래스 이름의 요소로 구성된 배열
-: 모든 CSS 클래스 이름의 요소가 class 어트리뷰트에 반영된다.
+: 배열의 요소인 모든 CSS 클래스 이름이 class 어트리뷰트에 반영된다.
 
 ```html
 <div [ngClass]="['text-bold', 'color-blue']">...</div>
 ```
 
 - CSS 클래스 이름을 프로퍼티 이름으로, boolean 타입을 프로퍼티 값으로 갖는 객체
-: 프로퍼티 값이 true인 프로퍼티의 프로퍼티 이름 만이 class 어트리뷰트에 반영된다.
+: 프로퍼티 값이 true인 프로퍼티 만이 class 어트리뷰트에 반영된다.
 
 ```html
 <div [ngClass]="{ 'text-bold': true, 'color-blue': false }">...</div>

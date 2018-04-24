@@ -242,16 +242,18 @@ if (obj && obj.foo) {
 | instanceof	| 객체가 동일 객체형의 인스턴스이면 `true`를 반환한다.
 
 ```javascript
-console.log(typeof 'John');                 // string
-console.log(typeof 3.14);                   // number
-console.log(typeof NaN);                    // number
-console.log(typeof false);                  // boolean
-console.log(typeof [1, 2, 3, 4]);           // object
-console.log(typeof {name:'John', age:34});  // object
-console.log(typeof new Date());             // object
-console.log(typeof function () {});         // function
-console.log(typeof myCar);                  // undefined (설계적 결함)
-console.log(typeof null);                   // object (설계적 결함)
+console.log(typeof '');              // string
+console.log(typeof 1);               // number
+console.log(typeof NaN);             // number
+console.log(typeof true);            // boolean
+console.log(typeof []);              // object
+console.log(typeof {});              // object
+console.log(typeof new Date());      // object
+console.log(typeof /test/gi);        // object
+console.log(typeof function () {});  // function
+console.log(typeof undefined);       // undefined
+console.log(typeof null);            // object (설계적 결함)
+console.log(typeof undeclared);      // undefined (설계적 결함)
 
 function Person() {}
 var me = new Person();

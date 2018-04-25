@@ -56,7 +56,7 @@ export class AppComponent {
 
 # 2. 세이프 내비게이션 연산자(Safe navigation operator)
 
-세이프 내비게이션 연산자 `?`는 컴포넌트 클래스의 프로퍼티의 값이 null 또는 undefined일 때 발생하는 에러를 회피하기 위해 사용한다.
+세이프 내비게이션 연산자 `?`는 컴포넌트 클래스의 프로퍼티의 값이 null 또는 undefined일 때 발생하는 에러를 회피하기 위해 사용한다. 프로퍼티 값이 undefined나 null인 경우, 또는 선언되어 있지 않은 프로퍼티를 인터폴레이션할 때, 에러 없이 아무 것도 표시하지 않는다. 하지만 선언되어 있지 않은 객체 프로퍼티의 프로퍼티를 참조할 때는 TypeError가 발생한다. 세이프 내비게이션 연산자는 null 또는 undefined인 프로퍼티를 만나면 처리를 종료하고 에러를 발생시키지 않는다.
 
 ```typescript
 import { Component } from '@angular/core';

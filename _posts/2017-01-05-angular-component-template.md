@@ -12,9 +12,9 @@ description: 템플릿은 HTML과 Angular 고유의 템플릿 문법(Template Sy
 
 ![angular Logo](/img/angular-logo.png)
 
-# 1. 템플릿(Template)이란?
+# 1. 템플릿이란?
 
-템플릿은 HTML과 Angular 고유의 템플릿 문법(Template Syntax)을 사용하여 UI의 최소 단위인 컴포넌트의 뷰를 정의한다. 동적으로 변하는 데이터는 컴포넌트 클래스가 관리하며 템플릿 문법의 데이터 바인딩에 의해 정적 HTML에 포함된다.
+템플릿(Template)은 HTML과 Angular 고유의 템플릿 문법(Template Syntax)을 사용하여 UI의 최소 단위인 컴포넌트의 뷰를 정의한다. 동적으로 변하는 데이터는 컴포넌트 클래스가 관리하며 템플릿 문법의 데이터 바인딩에 의해 정적 HTML에 포함된다.
 
 ![template](./img/template.png)
 
@@ -23,7 +23,7 @@ description: 템플릿은 HTML과 Angular 고유의 템플릿 문법(Template Sy
 
 Angular는 템플릿과 컴포넌트 클래스로 뷰와 모델(데이터와 비즈니스 로직)을 분리한다.
 
-Angular는 컴포넌트 기반 개발(CBD, Component Based Development) 프레임워크이기 때문에 MVC(Model-View-Controller) 또는 MVVM(Model-View-ViewModel) 패턴과 일치하지는 않지만, 템플릿은 뷰(View)를 나타내고 컴포넌트 클래스는 Controller와 ViewModel의 일부를 담당한다고 할 수 있다.
+Angular는 컴포넌트 기반 개발(CBD, Component Based Development) 프레임워크이기 때문에 MVC(Model-View-Controller) 또는 MVVM(Model-View-ViewModel) 패턴과 일치하지는 않지만, 템플릿은 뷰(View)를 나타내고 컴포넌트 클래스는 컨트롤러(Controller)와 뷰모델(ViewModel)의 일부를 담당한다고 할 수 있다.
 
 ![mvc-mvvm](./img/mvc-mvvm.png)
 
@@ -42,7 +42,7 @@ MVC(Model-View-Controller)과 MVVM(Model-View-ViewModel)
 뷰모델(ViewModel)
 : MVC 패턴에서는 컨트롤러가 모델과 뷰 간의 상호 작용을 담당하였지만 MVVM 패턴에서는 해당 뷰가 데이터 바인딩을 통해 컨트롤러의 역할을 담당한다.
 
-DOM은 상태(state. 예를 들어 input요소에 값을 입력한 상태 또는 checkbox요소를 체크한 상태)를 가지고 있으며 이 상태는 변화하는 살아있는 것이다. 비록 뷰와 모델은 분리되어 있지만 상태는 공유되어야 한다.
+DOM은 상태(state. 예를 들어 input 요소에 값을 입력한 상태 또는 checkbox 요소를 체크한 상태)를 가지고 있으며 이 상태는 변화하는 살아있는 것이다. 비록 뷰와 모델은 분리되어 있지만 상태는 공유되어야 한다.
 
 DOM의 상태가 변화하면 템플릿은 변화를 감지하고 변화된 상태를 컴포넌트 클래스로 전달한다. 이때 컴포넌트 클래스는 비즈니스 로직을 실행하고 템플릿에 실행 결과를 공유한다. 템플릿은 이를 전달받아 DOM을 업데이트한다.
 

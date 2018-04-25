@@ -18,7 +18,7 @@ description: 디렉티브(Directive / 지시자)는 "DOM의 모든 것(모양이
 
 **디렉티브는 애플리케이션 전역에서 사용할 수 있는 공통 관심사를 컴포넌트에서 분리하여 구현한 것으로 컴포넌트의 복잡도를 낮추고 가독성을 향상시킨다.** 컴포넌트도 뷰를 생성하고 이벤트를 처리하는 등 DOM을 관리하기 때문에 큰 의미에서 디렉티브로 볼 수 있다.
 
-간단한 예제를 살펴보자. textBlue 디렉티브는 해당 요소(호스트 요소)의 텍스트 컬러를 파란색으로 변경한다.
+간단한 예제를 살펴보자. textBlue 디렉티브는 호스트 요소(디렉티브가 선언된 요소)의 텍스트 컬러를 파란색으로 변경한다.
 
 ```typescript
 // text-blue.directive.ts
@@ -57,16 +57,16 @@ export class AppComponent { }
 : 컴포넌트의 템플릿을 표시하기 위한 디렉티브이다. @Component 데코레이터의 메타데이터 객체의 seletor 프로퍼티에 임의의 디렉티브의 이름을 정의한다.
 
 [어트리뷰트 디렉티브(Attribute Directives)](./angular-component-template-syntax#21-빌트인-어트리뷰트-디렉티브built-in-attribute-directive)
-: 어트리뷰트 디렉티브는 HTML 요소의 어트리뷰트와 같이 사용하여 해당 요소의 모양이나 동작을 제어한다. ngClass, ngStyle와 같은 빌트인 어트리뷰트 디렉티브가 있다.
+: 어트리뷰트 디렉티브는 HTML 요소의 어트리뷰트와 같이 사용하여 호스트 요소의 모양이나 동작을 제어한다. ngClass, ngStyle와 같은 빌트인 어트리뷰트 디렉티브가 있다.
 
 [구조 디렉티브(Structural Directives)](./angular-component-template-syntax#22-빌트인-구조-디렉티브built-in-structural-directive)
 : 구조 디렉티브는 DOM 요소를 반복 생성(ngFor), 조건에 의한 추가 또는 제거(ngIf, ngSwitch)를 통해 DOM 레이아웃(layout)을 변경한다.
 
-이 장에서는 템플릿에 관련한 빌트인 디렉티브인 어트리뷰트 디렉티브와 구조 디렉티브에 집중하기로 한다. 커스텀 디렉티브는 [디렉티브](./angular-directive)에서 자세히 살펴보도록 하자.
+이 장에서는 빌트인 어트리뷰트 디렉티브와 빌트인 구조 디렉티브에 집중하기로 한다. 커스텀 디렉티브는 [디렉티브](./angular-directive)에서 자세히 살펴보도록 하자.
 
 # 2. 빌트인 어트리뷰트 디렉티브(Built-in attribute directive)
 
-어트리뷰트 디렉티브는 HTML 요소의 어트리뷰트와 같이 사용하여 해당 요소의 모양이나 동작을 제어한다. ngClass, ngStyle와 같은 빌트인 디렉티브가 있다.
+빌트인 어트리뷰트 디렉티브(Built-in attribute directive)는 ngClass, ngStyle 디렉티브와 같이 Angular가 제공하는 어트리뷰트 디렉티브이다.
 
 ## 2.1 ngClass
 
@@ -79,7 +79,7 @@ export class AppComponent { }
 [ngClass 디렉티브](https://angular.io/api/common/NgClass)는 바인딩된 문자열이나 배열 또는 객체를 평가한 후 HTML class 어트리뷰트를 변경한다. ngClass 디렉티브에 바인딩할 수 있는 값은 아래와 같다.
 
 - CSS 클래스 이름이 공백 문자로 구분된 문자열
-: 문자열의 모든 CSS 클래스 이름이 class 어트리뷰트에 반영된다.
+: 문자열에 나열된 모든 CSS 클래스 이름이 class 어트리뷰트에 반영된다.
 
 ```html
 <div [ngClass]="'text-bold color-blue'">...</div>
@@ -239,7 +239,7 @@ export class AppComponent {
 
 ## 3.1 ngIf
 
-ngIf 디렉티브는 우변 표현식의 연산 결과가 참이면 해당 요소(호스트 요소)를 DOM에 추가하고 거짓이면 해당 요소(호스트 요소)를 DOM에서 제거한다. 우변의 표현식은 true 또는 false로 평가될 수 있어야한다.
+ngIf 디렉티브는 우변 표현식의 연산 결과가 참이면 호스트 요소를 DOM에 추가하고 거짓이면 호스트 요소를 DOM에서 제거한다. 우변의 표현식은 반드시 true 또는 false로 평가될 수 있어야한다.
 
 ```html
 <element *ngIf="expression">...</element>
@@ -366,7 +366,7 @@ ngFor 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설�
 </ng-template>
 ```
 
-위 코드는 컴포넌트 클래스의 프로퍼티 items을 바인딩한 후 items의 갯수만큼 순회하며 개별 항목을 item에 할당한다. item(템플릿 입력 변수 / template input variable)은 호스트 요소 및 하위 요소에서만 유효한 로컬 변수이다. items에 해당하는 바인딩 객체는 일반적으로 배열을 사용하지만 반드시 배열만 사용할 수 있는 것은 아니다. ES6의 [for...of](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/for...of)에서 사용할 수 있는 [이터러블(iterable)](./es6-iteration-for-of)이라면 사용이 가능하다. 단 문자열, Map, 배열이 아닌 일반 객체는 사용할 수 없다.
+위 코드는 컴포넌트 클래스의 프로퍼티 items를 바인딩한 후 items의 요소 개수만큼 순회하며 개별 요소를 item에 할당한다. item(템플릿 입력 변수 / template input variable)은 호스트 요소 및 하위 요소에서만 유효한 로컬 변수이다. items에 해당하는 바인딩 객체는 일반적으로 배열을 사용하지만 반드시 배열만 사용할 수 있는 것은 아니다. ES6의 [for...of](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/for...of)에서 사용할 수 있는 [이터러블(iterable)](./es6-iteration-for-of)이라면 사용이 가능하다. 단 문자열, Map, 배열이 아닌 일반 객체는 사용할 수 없다.
 
 인덱스를 취득할 필요가 있는 경우, 인덱스를 의미하는 index를 사용하여 변수에 인덱스를 할당받을 수 있다. index 이외에도 first, last, even, odd와 같은 로컬 변수가 제공된다. 자세한 내용은 [ngFor API reference](https://angular.io/docs/ts/latest/api/common/index/NgFor-directive.html)를 참조하기 바란다.
 
@@ -374,7 +374,7 @@ ngFor 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설�
 <element *ngFor="let item of items; let i=index">...</element>
 ```
 
-컴포넌트 클래스 프로퍼티인 배열을 뷰에 리스트로 출력하는 예제를 살펴보자.
+컴포넌트 클래스의 프로퍼티인 배열을 리스트로 뷰에 출력하는 예제를 살펴보자.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -495,7 +495,7 @@ export class AppComponent {
 
 <iframe src="https://stackblitz.com/edit/builtin-directive-ngfor-trackby?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="1000"></iframe>
 
-user 객체의 id 프로퍼티를 사용하여 변경을 트랙킹할 수 있도록 trackByUserId 메소드를 추가하였다. 이때 user 객체의 id 프로퍼티는 유니크하여야 한다. user 객체의 id 프로퍼티를 사용하지 않고 trackByUserId에 인자로 전달된 index를 사용하여도 무방하다.
+user 객체의 id 프로퍼티를 사용하여 users 배열의 변경을 트랙킹할 수 있도록 trackByUserId 메소드를 추가하였다. 이때 user 객체의 id 프로퍼티는 유니크하여야 한다. user 객체의 id 프로퍼티를 사용하지 않고 trackByUserId에 인자로 전달된 index를 사용하여도 무방하다.
 
 add user 또는 X 버튼을 클릭하면 해당 user를 추가/제거한다. 예를 들어 3번째 user 객체를 제거하면 users의 변경을 DOM에 반영하여야 한다. 이때 trackBy를 사용하지 않는 경우 ngFor는 DOM을 다시 생성한다. trackBy를 사용한 경우 user.id를 기준으로 컬렉션의 변경을 트래킹하기 때문에 퍼포먼스가 향상된다.
 
@@ -563,7 +563,7 @@ export class AppComponent {
 
 ## 3.3 ngSwitch
 
-ngSwitch 디렉티브는 switch 조건에 따라 여러 요소 중에 하나의 요소를 선택하여 DOM에 추가한다. JavaScript의 switch문과 유사하게 동작한다.
+ngSwitch 디렉티브는 switch 조건에 따라 여러 요소 중에 하나의 요소를 선택하여 DOM에 추가한다. 자바스크립트의 switch 문과 유사하게 동작한다.
 
 ```html
 <element [ngSwitch]="expression">

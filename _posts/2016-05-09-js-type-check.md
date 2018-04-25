@@ -57,7 +57,7 @@ typeof undeclared;      // undefined (설계적 결함)
 그런데 `typeof`는 null과 배열의 경우 object, 함수의 경우 function를 반환하고, Date, RegExp, 사용자 정의 객체 등 거의 모든 객체의 경우, object를 반환한다. 따라서 `typeof`는 기본자료형을 체크하는 데는 문제가 없지만 객체의 종류까지 구분하여 체크하려할 때는 사용하기는 곤란하다. 여러 종류의 객체(일반 객체, 배열, Date, RegExp, Function, DOM 요소 등)를 구분할 수 있는 타입 체크 기능을 만들어보자.
 
 
-[Object.prototype.toString](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/toString) 메소드는 객체를 나타내는 문자열은 반환한다.
+[Object.prototype.toString](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/toString) 메소드는 객체를 나타내는 문자열을 반환한다.
 
 
 ```javascript
@@ -120,7 +120,51 @@ console.log(sum(10, 20));   // 30
 console.log(sum('10', 20)); // TypeError
 ```
 
+타입별로 체크하는 기능을 만들려면 아래와 같이 함수를 작성한다.
 
 
+```javascript
+function getType(target) {
+  return Object.prototype.toString.call(target).slice(8, -1);
+}
 
+function isString(target) {
+  return getType(target) === 'String';
+}
 
+function isNumber(target) {
+  return getType(target) === 'Number';
+}
+
+function isBoolean(target) {
+  return getType(target) === 'Boolean';
+}
+
+function isNull(target) {
+  return getType(target) === 'Null';
+}
+
+function isUndefined(target) {
+  return getType(target) === 'Undefined';
+}
+
+function isObject(target) {
+  return getType(target) === 'Object';
+}
+
+function isArray(target) {
+  return getType(target) === 'Array';
+}
+
+function isDate(target) {
+  return getType(target) === 'Date';
+}
+
+function isRegExp(target) {
+  return getType(target) === 'RegExp';
+}
+
+function isFunction(target) {
+  return getType(target) === 'Function';
+}
+```

@@ -14,7 +14,7 @@ description: 구조화된 웹 애플리케이션을 구축하기 위해서는 �
 
 # 1. 데이터 바인딩(Data binding)이란?
 
-구조화된 웹 애플리케이션을 구축하기 위해서는 뷰와 모델의 분리가 필수적이다. 하지만 분리된 뷰와 모델은 유기적으로 동작하여야 한다. 데이터 바인딩은 이러한 모순의 해결을 가능하게 한다.
+구조화된 웹 애플리케이션을 구축하기 위해서는 뷰와 모델의 분리가 필수적이다. 하지만 분리된 뷰와 모델은 유기적으로 동작하여야 한다. 데이터 바인딩은 이러한 모순을 해결해준다.
 
 데이터 바인딩은 뷰와 모델을 하나로 연결하는 것을 의미한다. Angular의 데이터 바인딩은 템플릿(View)과 컴포넌트 클래스의 데이터(Model)를 하나로 묶어 유기적으로 동작하게 하는 것을 말한다. 이는 템플릿의 정적 HTML에 컴포넌트의 동적 데이터를 하나로 묶어 브라우저에 표시할 완성된 뷰를 만들기 위함이다.
 
@@ -25,11 +25,11 @@ jQuery를 사용하는 웹 애플리케이션의 경우를 살펴보자.
 jQuery에 의한 DOM 조작(Procedural programming)
 {: .desc-img}
 
-위의 예제의 경우, DOM에 접근하고 조작하는 코드를 작성해야 한다. 이를 위해 JavaScript는 DOM의 구조를 파악하고 있어야 하며 이 구조가 변경되면 JavaScript 로직도 변경되어야 한다. 예를 들어 h1 요소가 p 요소로 변경되면 JavaScript 로직도 변경이 필요하다.
+위의 예제의 경우, DOM에 접근하고 조작하는 코드를 작성해야 한다. 이를 위해 자바스크립트는 DOM의 구조를 파악하고 있어야 하며, 이 구조가 변경되면 자바스크립트 로직도 변경되어야 한다. 예를 들어 h1 요소가 p 요소로 변경되면 자바스크립트 로직도 변경이 필요하다.
 
-이와 같이 기존의 웹 애플리케이션은 JavaScript DOM API를 사용하여 DOM을 직접 조작(Manipulation)하는 방식이기 때문에 뷰와 모델 간의 관계를 느슨하게 결합하기 어려운 구조를 갖는다. <strong>이와 같은 구조 상 문제로 뷰가 변경되면 로직도 변경될 가능성이 매우 높다.</strong>
+이와 같이 기존의 웹 애플리케이션은 자바스크립트 DOM API를 사용하여 DOM을 직접 조작(Manipulation)하는 방식이기 때문에 뷰와 모델 간의 관계를 느슨하게 결합하기 어려운 구조를 갖는다. <strong>이와 같은 구조 상 문제로 뷰가 변경되면 로직도 변경될 가능성이 매우 높다.</strong>
 
-하지만 Angular는 DOM에 직접 접근하지 않고 템플릿과 컴포넌트 클래스의 상호 관계를 선언하는 방식(선언형 프로그래밍: Declarative programming)으로 뷰와 모델의 관계를 관리한다. 이때 사용되는 것이 <strong>데이터 바인딩</strong>이며 이를 통해 템플릿과 컴포넌트 클래스는 연결된다. 데이터 바인딩은 <strong>템플릿 문법</strong>으로 기술된다. HTML과 템플릿 문법으로 기술된 템플릿은 JIT 또는 AOT 컴파일러에 의해 브라우저가 이해할 수 있는 JavaScript로 컴파일된다. Angular 웹 애플리케이션의 경우를 살펴보자.
+하지만 Angular는 DOM에 직접 접근하지 않고 템플릿과 컴포넌트 클래스의 상호 관계를 선언하는 방식(선언형 프로그래밍: Declarative programming)으로 뷰와 모델의 관계를 관리한다. 이때 사용되는 것이 <strong>데이터 바인딩</strong>이며 이를 통해 템플릿과 컴포넌트 클래스는 연결된다. 데이터 바인딩은 <strong>템플릿 문법</strong>으로 기술된다. HTML과 템플릿 문법으로 기술된 템플릿은 JIT 또는 AOT 컴파일러에 의해 브라우저가 이해할 수 있는 자바스크립트로 컴파일된다. Angular 웹 애플리케이션의 경우를 살펴보자.
 
 ![declarative-programming](./img/declarative-programming.png)
 
@@ -42,11 +42,11 @@ Angular의 데이터 바인딩은 뷰와 모델의 관계를 기존의 웹 애�
 
 # 2. 변화 감지(Change detection)
 
-변화 감지란 뷰와 모델의 동기화를 유지하기 위해 변화를 감지하고 이를 반영하는 것을 말한다. 즉 상태의 변화를 감지하여 뷰에 반영하는 것으로 데이터 바인딩은 변화 감지 매커니즘의 토대 위에서 수행된다.
+변화 감지란 뷰와 모델의 동기화를 유지하기 위해 상태의 변화를 감지하고 이를 반영하는 것을 말한다. 즉, 상태의 변화를 감지하여 뷰에 반영하는 것으로 데이터 바인딩은 변화 감지 매커니즘의 토대 위에서 수행된다.
 
 AngularJS는 양방향 바인딩(Two-way binding)만을 지원하였고 AngularJS에서 제공하는 ng-click과 같은 이벤트만을 사용하여야 하는 등 제약이 있었다. 하지만 Angular는 양방향 바인딩과 단방향 바인딩(One-way binding)을 모두 지원하며 [zone.js](https://github.com/angular/zone.js/) 라이브러리를 사용하여 네이티브 DOM 이벤트를 사용하여도 변화 감지가 수행되도록 개선되었다.
 
-사실 Angular는 [양방향 바인딩](./angular-component-template-syntax#17-양방향-데이터-바인딩two-way-binding)을 지원하지 않는다. 양방향 바인딩을 위한 템플릿 문법 `[()]`(이것을 Banana in a box라고 부른다)에서 추측할 수 있듯이 양방향 바인딩은 이벤트 바인딩과 프로퍼티 바인딩의 축약 표현(Shorthand syntax)일 뿐이다. 즉 양방향 바인딩의 실제 동작은 이벤트 바인딩과 프로퍼티 바인딩의 조합으로 이루어진다.
+사실 Angular는 [양방향 바인딩](./angular-component-template-syntax#17-양방향-데이터-바인딩two-way-binding)을 지원하지 않는다. 양방향 바인딩을 위한 템플릿 문법 `[()]`(이것을 Banana in a box라고 부른다)에서 추측할 수 있듯이 양방향 바인딩은 이벤트 바인딩과 프로퍼티 바인딩의 축약 표현(Shorthand syntax)일 뿐이다. 즉, 양방향 바인딩의 실제 동작은 이벤트 바인딩과 프로퍼티 바인딩의 조합으로 이루어진다.
 {: .info}
 
 변화 감지의 작동 원리에 대해 간단히 살펴보자.
@@ -58,7 +58,7 @@ AngularJS는 양방향 바인딩(Two-way binding)만을 지원하였고 AngularJ
 변화 감지
 {: .desc-img}
 
-위 예제에서 클릭 이벤트 핸들러에 의해 컴포넌트 클래스의 name 프로퍼티 값이 변화하였다. 이와 같이 컴포넌트 클래스의 프로퍼티 값이 변경되는 상황 즉 어떤 경우 모델이 변화하는지에 Angular는 주목한다.
+위 예제에서 클릭 이벤트 핸들러에 의해 컴포넌트 클래스의 name 프로퍼티 값이 변화하였다. 이와 같이 컴포넌트 클래스의 프로퍼티 값이 변경되는 상황 즉, 어떤 경우 모델이 변화하는지에 Angular는 주목한다.
 
 사실 모델이 변화할 가능성이 있는 경우는 그다지 많지 않다.
 
@@ -87,7 +87,7 @@ window.prototype.setTimeout = patchTimeout;
 ...
 ```
 
-zone.js는 위의 같이 일부 함수를 프록시(Proxy)로 재정의하여 대체한다. 즉 이벤트 또는 Promise가 프록시로 랩핑되는데 이러한 개념을 몽키패치라고 한다.
+zone.js는 위의 같이 일부 함수를 프록시(Proxy)로 재정의하여 대체한다. 즉, 이벤트 또는 Promise가 프록시로 랩핑되는데 이러한 개념을 몽키패치라고 한다.
 
 모델을 변화시킬 수 있는 비동기 처리가 호출되면 패치를 통해 호출을 후킹한다. 비동기 처리 호출을 후킹할 수 있다는 것은 변화를 감지할 수 있다는 의미이다. 이 후킹 로직 내에서 변화 감지를 수행하고 변화가 감지될 때마다 Digest loop를 실행하여 모델의 변화를 뷰에 반영한다.
 
@@ -182,7 +182,7 @@ export class AppComponent {
 <element [property]="expression">...</element>
 ```
 
-DOM 프로퍼티는 HTML 요소의 어트리뷰트(Attribute)와는 다른 것이다. 브라우저는 HTML 문서를 파싱하고 DOM 트리로 변환하여 메모리에 적재한다. 이때 HTML 요소는 DOM 노드 객체로, HTML 어트리뷰트는 DOM 노드 객체의 프로퍼티가 된다.
+DOM 프로퍼티는 HTML 요소의 어트리뷰트(Attribute)와는 다른 것이다. 브라우저는 HTML 문서를 파싱하고 DOM 트리로 변환하여 메모리에 적재한다. 이때 HTML 요소는 DOM 노드 객체로, HTML 어트리뷰트는 DOM 노드 객체의 프로퍼티가 된다. DOM 프로퍼티는 DOM 노드 객체가 갖는 프로퍼티를 말하며, HTML 어트리뷰트는 HTML 요소가 갖는 어트리뷰트(속성)을 말한다. 아래의 '어트리뷰트 바인딩'에서 자세히 살펴볼 것이다.
 {: .info}
 
 프로퍼티 바인딩의 사용 예는 아래와 같다.
@@ -216,7 +216,7 @@ export class AppComponent {
 
 <iframe src="https://stackblitz.com/edit/template-property-binding?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
-인터폴레이션은 템플릿의 어디에서도 사용할 수 있다. 인터폴레이션은 순수한 문자열이며 HTML 콘텐츠로 사용할 수도 있고 HTML 어트리뷰트의 값으로 사용할 수도 있다.
+인터폴레이션은 템플릿의 어디에서도 사용할 수 있다. 인터폴레이션은 순수한 문자열을 반환하므로 HTML 콘텐츠로 사용할 수도 있고 HTML 어트리뷰트의 값으로 사용할 수도 있다.
 
 ```html
 <p>{{ "{{ contents " }}}}</p>
@@ -267,7 +267,7 @@ document.getElementById('user').getAttribute('value') // ungmo2
 HTMLInputElement 객체의 attributes 프로퍼티
 {: .desc-img}
 
-id 어트리뷰트는 id 프로퍼티와 1:1 매핑하므로 DOM 노드 객체 HTMLInputElement에는 id 프로퍼티가 생성되고 id 어트리뷰트의 값 'user'가 할당된다. 하지만 value 어트리뷰트는 value 프로퍼티와 1:1 매핑하지만 서로 다르게 동작한다. DOM 노드 객체에 value 프로퍼티가 생성되고 value 어트리뷰트의 값 'ungmo2'이 할당된다. 여기까지는 1:1 매핑하는 id 어트리뷰트와 동일하지만 사용자에 의해 input 요소에 새로운 값이 입력되면 다르게 동작하기 시작한다. 만약 사용자에 의해 "lee"가 입력되면 DOM 노드 객체의 value 프로퍼티는 "lee"로 변경된다. 하지만 value 어트리뷰트는 초기값 "ungmo2"인 상태에서 변경되지 않는다. 이는 HTML 요소가 DOM 노드 객체로 변환된 이후에 HTML 요소의 어트리뷰트는 변하지 않기 때문이다. 하지만 DOM 프로퍼티는 언제든지 바뀔 수 있다. 즉 어트리뷰트는 DOM 프로퍼티의 초기값을 의미하며 DOM 프로퍼티는 현재값을 의미한다.
+id 어트리뷰트는 id 프로퍼티와 1:1 매핑하므로 DOM 노드 객체 HTMLInputElement에는 id 프로퍼티가 생성되고 id 어트리뷰트의 값 'user'가 할당된다. 하지만 value 어트리뷰트는 value 프로퍼티와 1:1 매핑하지만 서로 다르게 동작한다. DOM 노드 객체에 value 프로퍼티가 생성되고 value 어트리뷰트의 값 'ungmo2'가 할당된다. 여기까지는 1:1 매핑하는 id 어트리뷰트와 동일하지만 사용자에 의해 input 요소에 새로운 값이 입력되면 다르게 동작하기 시작한다. 만약 사용자에 의해 "lee"가 입력되면 DOM 노드 객체의 value 프로퍼티는 "lee"로 변경된다. 하지만 value 어트리뷰트는 초기값 "ungmo2"인 상태에서 변경되지 않는다. 이는 HTML 요소가 DOM 노드 객체로 변환된 이후에 HTML 요소의 어트리뷰트는 변하지 않기 때문이다. 하지만 DOM 프로퍼티는 언제든지 바뀔 수 있다. 즉 value의 경우, 어트리뷰트는 DOM 프로퍼티의 초기값을 의미하며 DOM 프로퍼티는 현재값을 의미한다.
 
 지금까지 알아본 DOM 프로퍼티와 HTML 어트리뷰트를 차이점을 바탕으로 Angular는 아래의 코드를 어떻게 HTML로 출력할 것인지 예측하여 보자.
 
@@ -288,7 +288,7 @@ export class AppComponent {
 }
 ```
 
-프로퍼티 바인딩은 DOM 노드 객체에 컴포넌트 클래스 프로퍼티를 바인딩하고 어트리뷰트 바인딩은 HTML 요소의 어트리뷰트에 컴포넌트 클래스 프로퍼티를 바인딩한다. 따라서 위 코드는 아래와 같이 변환될 것이다.
+프로퍼티 바인딩은 DOM 노드 객체의 프로퍼티에 컴포넌트 클래스의 프로퍼티 값을 바인딩하고 어트리뷰트 바인딩은 HTML 요소의 어트리뷰트에 컴포넌트 클래스의 프로퍼티 값을 바인딩한다. 따라서 위 코드는 아래와 같이 변환될 것이다.
 
 ```html
 <!-- 프로퍼티 바인딩의 변환 결과 -->
@@ -328,7 +328,7 @@ export class AppComponent {
 }
 ```
 
-위 코드는 존재하지 않는 DOM 프로퍼티 colspan에 접근하려 때문에 아래와 같은 에러를 발생시킨다.
+위 코드는 존재하지 않는 DOM 프로퍼티 colspan에 접근하려 하기 때문에 아래와 같은 에러가 발생한다.
 
 ```
 Unhandled Promise rejection: Template parse errors:
@@ -428,7 +428,6 @@ import { Component } from '@angular/core';
 export class AppComponent {
   isLarge = true;
   isRed = false;
-  // 클래스 바인딩은 문자열을 바인딩한다.
   myClasses = 'text-large color-red';
 }
 ```
@@ -492,7 +491,7 @@ export class AppComponent {
 
 이벤트 바인딩은 뷰의 상태 변화(버튼 클릭, 체크박스 체크, input에 텍스트 입력 등)에 의해 이벤트가 발생하면 이벤트 핸들러를 호출하는 것을 말한다.
 
-지금까지 살펴본 데이터 바인딩은 컴포넌트 클래스에서 템플릿으로 데이터가 이동하였지만 이벤트 바인딩은 템플릿에서 컴포넌트 클래스로 데이터가 이동한다.
+지금까지 살펴본 데이터 바인딩은 컴포넌트 클래스에서 템플릿으로 데이터가 이동했지만 이벤트 바인딩은 템플릿에서 컴포넌트 클래스로 데이터가 이동한다.
 
 ```html
 <element (event)="statement">...</element>
@@ -507,9 +506,9 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <!-- (1) -->
-    <input type="text" [value]="name" (input)="onInput($event)">
+    <input type="text" [value]="name" (input)="handleInput($event)">
     <!-- (2) -->
-    <button (click)="onClick()">clear</button>
+    <button (click)="handleClick()">clear</button>
     <!-- (3) -->
     <p>name: {{ "{{ name " }}}}</p>
   `
@@ -517,13 +516,13 @@ import { Component } from '@angular/core';
 export class AppComponent {
   name = '';
 
-  onInput(event) {
+  handleInput(event) {
     console.log(event);
     // event.target.value에는 사용자 입력 텍스트가 담겨있다.
     this.name = event.target.value;
   }
 
-  onClick() {
+  handleClick() {
     this.name = '';
   }
 }
@@ -531,9 +530,9 @@ export class AppComponent {
 
 <iframe src="https://stackblitz.com/edit/template-event-binding?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
-1. 사용자의 텍스트 입력에 의해 input 이벤트가 발생하면 이벤트 바인딩에 통하여 이벤트 핸들러 onInput을 호출한다. 이때 이벤트 정보를 담고 있는 DOM 이벤트 객체 **$event**를 이벤트 핸들러에 전달할 수 있다. $event 객체는 DOM 이벤트의 종류에 의해 타입(KeyboardEvent, InputEvent, MouseEvent 등)이 결정된다. Angular는 표준 DOM 이벤트를 사용하기 때문에 $event를 통해 브라우저의 [Event](https://developer.mozilla.org/ko/docs/Web/API/Event) 객체의 프로퍼니나 함수에 자유롭게 접근할 수 있다. 이벤트 핸들러 onInput은 input 이벤트를 발생시킨 input 요소(event.target)의 value 프로퍼티(사용자 입력 텍스트가 담겨있다)를 $event로 부터 추출하여 name 프로퍼티에 할당한다. 그리고 name 프로퍼티는 프로퍼티 바인딩에 의해 다시 input 요소에 바인딩된다.
+1. 사용자의 텍스트 입력에 의해 input 이벤트가 발생하면 이벤트 바인딩을 통하여 이벤트 핸들러 handleInput을 호출한다. 이때 이벤트 정보를 담고 있는 DOM 이벤트 객체 **$event**를 이벤트 핸들러에 전달할 수 있다. $event 객체는 DOM 이벤트의 종류에 의해 타입(KeyboardEvent, InputEvent, MouseEvent 등)이 결정된다. Angular는 표준 DOM 이벤트를 사용하기 때문에 $event를 통해 브라우저의 [Event](https://developer.mozilla.org/ko/docs/Web/API/Event) 객체의 프로퍼티나 메소드에 자유롭게 접근할 수 있다. 이벤트 핸들러 handleInput은 input 이벤트를 발생시킨 input 요소(event.target)의 value 프로퍼티(사용자 입력 텍스트가 담겨있다)를 $event로 부터 추출하여 name 프로퍼티에 할당한다. 그리고 name 프로퍼티는 프로퍼티 바인딩에 의해 다시 input 요소에 바인딩된다.
 
-2. 버튼이 클릭되면 click 이벤트가 발생하고 이벤트 바인딩에 의해 이벤트 핸들러 onClick을 호출한다. onClick은 name 프로퍼티를 초기화한다.
+2. 버튼이 클릭되면 click 이벤트가 발생하고 이벤트 바인딩을 통하여 이벤트 핸들러 handleClick을 호출한다. handleClick은 name 프로퍼티를 초기화한다.
 
 3. name 프로퍼티는 인터폴레이션에 의해 템플릿에 바인딩된다.
 
@@ -569,15 +568,15 @@ export class AppComponent {
 }
 ```-->
 
-## 3.7 양방향 데이터 바인딩(Two-way binding)
+## 3.7 양방향 데이터 바인딩(Two-way data binding)
 
-양방향 데이터 바인딩은 뷰와 컴포넌트 클래스의 상태 변화를 상호 반영하는 것을 말한다. 즉 뷰의 상태가 변화하면 컴포넌트 클래스의 상태도 변화하고 그 반대로 컴포넌트 클래스의 상태가 변화하면 뷰의 상태도 변화하는 것이다.
+양방향 데이터 바인딩은 뷰와 컴포넌트 클래스의 상태 변화를 상호 반영하는 것을 말한다. 즉, 뷰의 상태가 변화하면 컴포넌트 클래스의 상태도 변화하고 그 반대로 컴포넌트 클래스의 상태가 변화하면 뷰의 상태도 변화하는 것이다.
 
 ```html
 <element [(ngModel)]="property">...</element>
 ```
 
-[ngModel](https://angular.io/api/forms/NgModel) 디렉티브를 이벤트 바인딩(())과 프로퍼티 바인딩([]) 형식으로 기술한 후 우변에 뷰와 컴포넌트 클래스가 공유할 프로퍼티를 기술한다. ngModel 디렉티브를 사용하기 위해서는 [FormsModule](https://angular.io/api/forms/FormsModule)을 모듈에 등록하여야 한다. <!-- Angular CLI를 통해 프로젝트를 생성하였다면 아래와 같이 FormsModule이 이미 등록되어 있으므로 별도의 등록이 필요없다. -->
+[ngModel](https://angular.io/api/forms/NgModel) 디렉티브를 이벤트 바인딩(( ))과 프로퍼티 바인딩([ ]) 형식으로 기술한 후 우변에 뷰와 컴포넌트 클래스가 공유할 프로퍼티를 기술한다. ngModel 디렉티브를 사용하기 위해서는 [FormsModule](https://angular.io/api/forms/FormsModule)을 모듈에 등록하여야 한다. <!-- Angular CLI를 통해 프로젝트를 생성하였다면 아래와 같이 FormsModule이 이미 등록되어 있으므로 별도의 등록이 필요없다. -->
 
 ```typescript
 // src/app/app.module.ts
@@ -615,9 +614,9 @@ export class AppComponent {
 
 <iframe src="https://stackblitz.com/edit/template-two-way-binding?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
-컴포넌트 클래스의 name 프로퍼티는 템플릿의 input 요소와 양방향으로 바인딩되어 있다. 즉 input 요소의 value 프로퍼티가 변화하면 컴포넌트 클래스의 name 프로퍼티도 동일한 값으로 변화하고 반대로 컴포넌트 클래스의 name 프로퍼티가 변화하면 input 요소의 value 프로퍼티도 동일한 값으로 변화한다.
+컴포넌트 클래스의 name 프로퍼티는 템플릿의 input 요소와 양방향으로 바인딩되어 있다. 즉, input 요소의 value 프로퍼티가 변화하면 컴포넌트 클래스의 name 프로퍼티도 동일한 값으로 변화하고 반대로 컴포넌트 클래스의 name 프로퍼티가 변화하면 input 요소의 value 프로퍼티도 동일한 값으로 변화한다.
 
-사실 Angular는 양방향 바인딩을 지원하지 않는다. `[()]`(이것을 Banana in a box라고 부른다)에서 추측할 수 있듯이 양방향 바인딩은 이벤트 바인딩과 프로퍼티 바인딩의 축약 표현(Shorthand syntax)일 뿐이다. 즉 양방향 바인딩의 실제 동작은 이벤트 바인딩과 프로퍼티 바인딩의 조합으로 이루어진다. 위 코드를 이벤트 바인딩과 프로퍼티 바인딩으로 표현하여 보자.
+사실 Angular는 양방향 바인딩을 지원하지 않는다. `[( )]`(이것을 Banana in a box라고 부른다)에서 추측할 수 있듯이 양방향 바인딩은 이벤트 바인딩과 프로퍼티 바인딩의 축약 표현(Shorthand syntax)일 뿐이다. 즉, 양방향 바인딩의 실제 동작은 이벤트 바인딩과 프로퍼티 바인딩의 조합으로 이루어진다. 위 코드를 이벤트 바인딩과 프로퍼티 바인딩으로 표현하여 보자.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -651,9 +650,9 @@ export class AppComponent {
 }
 ```
 
-프로퍼티 바인딩 [ngModel]은 사용자 입력에 관련된 DOM 요소의 프로퍼티(위 예제의 경우 input 요소의 value 프로퍼티)를 업데이트한다. 그리고 이벤트 바인딩 (ngModelChange)은 이벤트를 수신하고 이벤트 핸들러를 통해 DOM의 변화를 외부에 알린다. 이때 ngModelChange는 $event에서 사용자 입력에 관련된 프로퍼티의 값(위 예제의 경우 target.value)를 내부적으로 추출하여 이벤트를 emit한다.
+프로퍼티 바인딩 [ngModel]은 사용자 입력에 관련된 DOM 요소의 프로퍼티(위 예제의 경우 input 요소의 value 프로퍼티)를 업데이트한다. 그리고 이벤트 바인딩 (ngModelChange)은 이벤트를 수신하고 이벤트 핸들러를 통해 DOM의 변화를 외부에 알린다. 이때 ngModelChange는 $event에서 사용자 입력에 관련된 프로퍼티의 값(위 예제의 경우 target.value)을 내부적으로 추출하여 이벤트를 emit한다.
 
-양방향 바인딩은 반드시 ngModel 디렉티브만을 사용하여야 하는 것은 아니며 커스텀 양방향 데이터 바인딩도 작성할 수 있다. 이 방법에 대해서는 [Angular Forms: NgModel과 양방향 바인딩](./angular-form-template-driven-forms#3-ngmodel과-양방향-바인딩)에서 설명하도록 한다.
+양방향 바인딩은 반드시 ngModel 디렉티브만을 사용하여야 하는 것은 아니며 커스텀 양방향 데이터 바인딩도 작성할 수 있다. 이 방법에 대해서는 [Angular Forms: NgModel과 양방향 바인딩](./angular-form-template-driven-forms#3-ngmodel과-양방향-바인딩)에서 알아보도록 하자.
 
 # Reference
 

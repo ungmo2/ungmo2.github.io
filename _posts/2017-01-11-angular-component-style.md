@@ -71,9 +71,9 @@ h3 {
 }
 ```
 
-AppComponent 컴포넌트에서 정의한 스타일은 AppComponent 컴포넌트를 위한 스타일이다. 위 예제의 h3 셀렉터는 AppComponent 컴포넌트 템플릿만을 대상으로 하며 다른 컴포넌트에는 영향을 주지 않는다.
+AppComponent 컴포넌트에서 정의한 스타일은 AppComponent 컴포넌트를 위한 스타일이다. 위 예제의 h3 셀렉터는 AppComponent 컴포넌트의 템플릿만을 대상으로 하며 다른 컴포넌트에는 영향을 주지 않는다.
 
-자식 컴포넌트를 추가하여 부모 컴포넌트의 스타일이 자식 스타일에 영향을 주지 않는 것을 확인하여 보자.
+자식 컴포넌트를 추가하여 부모 컴포넌트의 스타일이 자식 컴포넌트의 스타일에 영향을 주지 않는 것을 확인하여 보자.
 
 ```typescript
 // child.component.ts
@@ -107,7 +107,7 @@ import { Component } from '@angular/core';
 export class AppComponent {}
 ```
 
-부모 컴포넌트 AppComponent에는 스타일을 정의하였으나 자식 컴포넌트 ChildComponent에는 아무런 스타일도 정의하지 않았다. 이때 부모 컴포넌트의 스타일은 자식 컴포넌트에 어떠한 영향을 주지 않는다.
+부모 컴포넌트 AppComponent에는 스타일을 정의하였으나 자식 컴포넌트 ChildComponent에는 아무런 스타일도 정의하지 않았다. 이때 부모 컴포넌트의 스타일은 자식 컴포넌트에 어떠한 영향도 주지 않는다.
 
 ![component style](/img/comp-style.png)
 
@@ -138,7 +138,7 @@ h3 {
 }
 ```
 
-위 예제를 확인하여 보면 자신에 적용한 스타일은 자신에만 영향을 주는 확인할 수 있다.
+위 예제를 확인하여 보면 자신에게 적용한 스타일은 자신에게만 영향을 주는 것을 확인할 수 있다.
 
 <iframe src="https://stackblitz.com/edit/component-style?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
@@ -155,15 +155,15 @@ h3 {
 
 Angular는 컴포넌트의 CSS 스타일을 컴포넌트의 뷰에 캡슐화하여 다른 컴포넌트에는 영향을 주지 않는다. 위의 경우와 같이 Angular는 기본적으로 임의의 어트리뷰트를 추가하는 방식(Emulated)을 사용하여 뷰 캡슐화를 구현하지만 브라우저가 웹 컴포넌트를 지원한다는 전제 하에 웹 컴포넌트의 Shadow DOM을 이용하여 뷰 캡슐화를 구현할 수도 있다.
 
-이를 위해 @Component 메타데이터 객체에 `encapsulation` 프로퍼티에 [ViewEncapsulation](https://angular.io/api/core/ViewEncapsulation) 옵션을 지정하여 컴포넌트 별로 뷰 캡슐화 전략을 설정할 수 있다. ViewEncapsulation은 열거형으로 아래의 3가지 캡슐화 전략을 제공한다.
+이를 위해 @Component 메타데이터 객체의 `encapsulation` 프로퍼티에 [ViewEncapsulation](https://angular.io/api/core/ViewEncapsulation) 옵션을 지정하여 컴포넌트 별로 뷰 캡슐화 전략을 설정할 수 있다. ViewEncapsulation은 열거형으로 아래의 3가지 캡슐화 전략을 제공한다.
 
 | ViewEncapsulation  | 의미
 |:-------------------|:----------------------
 | Emulated           | 임의의 어트리뷰트를 추가하는 브라우저의 기본 Shadow DOM 구현 방식이다. 컴포넌트의 스타일은 해당 컴포넌트에만 적용된다. (기본 전략)
-| Native             | 웹 컴포넌트의 Shadow DOM를 사용하는 방식이다. 컴포넌트의 스타일은 해당 컴포넌트에만 적용된다.
+| Native             | 웹 컴포넌트의 Shadow DOM을 사용하는 방식이다. 컴포넌트의 스타일은 해당 컴포넌트에만 적용된다.
 | None               | 스타일 캡슐화를 지원하지 않는다. 컴포넌트의 CSS는 전역에 지정되어 다른 다른 컴포넌트에 영향을 준다.
 
-위 예제를 웹 컴포넌트의 Shadow DOM를 사용하는 Native 전략으로 변경하여 보자. AppComponent와 ChildComponent의 @Component 메타데이터 객체에 아래와 같이 encapsulation 프로퍼티를 추가하고 ViewEncapsulation.Native를 지정한다.
+위 예제를 웹 컴포넌트의 Shadow DOM을 사용하는 Native 전략으로 변경하여 보자. AppComponent와 ChildComponent의 @Component 메타데이터 객체에 아래와 같이 encapsulation 프로퍼티를 추가하고 ViewEncapsulation.Native를 지정한다.
 
 ```typescript
 // app.component.ts
@@ -195,13 +195,13 @@ Encapsulation Native
 
 | 쉐도우 DOM 스타일 셀렉터 | 의미
 |:--------------------|:------------------------------------
-| :host               | 호스트 요소(컴포넌트 자신)을 선택한다.
+| :host               | 호스트 요소(컴포넌트 자신)를 선택한다.
 | :host-context       | 호스트 요소의 외부(예를 들어 body)의 조건에 의해 컴포넌트의 요소를 선택한다.
 | /deep/              | [폐지(deprecated)](https://angular.io/guide/component-styles#deprecated-deep--and-ng-deep) 자식 컴포넌트에 속한 요소를 선택한다.
 
 ## 3.1 :host 셀렉터
 
-:host 셀렉터는 호스트 요소(컴포넌트 자신)을 선택한다. 위 예제에 :host 셀렉터를 사용하여 보자.
+:host 셀렉터는 호스트 요소(컴포넌트 자신)를 선택한다. 위 예제에 :host 셀렉터를 사용하여 보자.
 
 ```css
 /* app.component.css */
@@ -290,7 +290,7 @@ h3 {
 
 ## 3.2 :host-context 셀렉터
 
-:host-context 셀렉터는 호스트 요소의 외부의 조건 즉 부모 요소를 포함하는 조상 요소의 클래스 선언 상태에 의해 컴포넌트의 요소를 선택하는 경우 사용한다. :host-context 셀렉터는 호스트 요소(컴포넌트 자신)의 모든 조상 요소에서 CSS 클래스 찾는다. 이때 조건으로 지정한 클래스가 선언된 조상 요소가 존재하면 룰셋이 적용된다. 위 예제에 :host-context 셀렉터를 사용하여 보자.
+:host-context 셀렉터는 호스트 요소의 외부의 조건 즉 부모 요소를 포함하는 조상 요소의 클래스 선언 상태에 의해 컴포넌트의 요소를 선택하는 경우 사용한다. :host-context 셀렉터는 호스트 요소(컴포넌트 자신)의 모든 조상 요소에서 CSS 클래스를 찾는다. 이때 조건으로 지정한 클래스가 선언된 조상 요소가 존재하면 룰셋이 적용된다. 위 예제에 :host-context 셀렉터를 사용하여 보자.
 
 ```typescript
 // app.component.ts
@@ -368,9 +368,11 @@ h3 {
       ],
 ```
 
+apps.styles 프로퍼티에 추가한 CSS 파일은 애플리케이션 전역에 적용된다. 따라서 CSS의 캐스케이딩이 적용되므로 추가 순서에 의미가 있다.
+
 # 5. Angular CLI로 Sass 적용 프로젝트 생성
 
-Angular는 Sass, Less, Stylus과 같은 대부분의 CSS 프리 프로세서를 지원한다. Sass를 적용한 프로젝트를 생성하려면 아래의 CLI 명령어를 사용한다.
+Angular는 Sass, Less, Stylus와 같은 대부분의 CSS 프리프로세서를 지원한다. Sass를 적용한 프로젝트를 생성하려면 아래의 CLI 명령어를 사용한다.
 
 ```bash
 $ ng new sass-project --style=scss
@@ -394,7 +396,7 @@ $ ng new sass-project --style=scss
 }
 ```
 
-컴포넌트의 템플릿의 styleUrls 프로퍼티에는 Sass 파일의 경로를 설정한다.
+@Component 데코레이터 메타데이터 객체의 styleUrls 프로퍼티에는 Sass 파일의 경로를 설정한다.
 
 ```typescript
 @Component({

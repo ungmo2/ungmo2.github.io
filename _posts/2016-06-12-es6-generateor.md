@@ -207,7 +207,7 @@ for (const num of fibonacci) {
 }
 ```
 
-위와 같이 이터레이터를 생성하기 위해서는 [이터레이션 프로토콜](./es6-iteration-for-of#1-이터레이션-프로토콜iteration-protocol)을 준수하여야 한다. 즉 Symbol.iterator를 key로 사용한 메소드를 구현하여 이터러블 객체를 만들고 Symbol.iterator를 key로 사용한 메소드가 value, done 프로퍼티를 갖는 객체를 반환하는 next() 함수를 반환하여야 한다.
+위와 같이 이터레이터를 생성하기 위해서는 [이터레이션 프로토콜](./es6-iteration-for-of#1-이터레이션-프로토콜iteration-protocol)을 준수하여야 한다. 즉 Symbol.iterator를 key로 사용한 메소드를 구현하여 이터러블 객체를 만들고 Symbol.iterator를 key로 사용한 메소드가 value, done 프로퍼티를 갖는 객체를 반환하는 next() 함수를 메소드로 갖는 객체를 반환하여야 한다.
 
 이러한 이터레이션 프로토콜을 보다 간단하게 처리하기 위한 제너레이터를 활용할 수 있다. 제너레이터를 활용하여 피보나치 수열을 구현한 이터러블 객체를 만들어 보자.
 

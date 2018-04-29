@@ -31,7 +31,7 @@ Angular 애플리케이션은 컴포넌트를 중심(CBD, Component Based Develo
 - @Input, @Output 데코레이터
 - ViewChild와 ViewChildren
 - [서비스 중재자 패턴](./angular-service#7-서비스-중재자-패턴service-mediator-pattern)을 구현한 상태 공유 서비스
-- 상태 관리를 위한 외부 라이브러리([NgRx](https://github.com/ngrx/store), [Redux](http://redux.js.org/) 등) 사용
+- 상태 관리를 위한 외부 라이브러리([ngrx/store](https://github.com/ngrx/store), [Redux](http://redux.js.org/) 등) 사용
 
 계층적 트리 구조에서 컴포넌트 간 상태 공유를 실습하기 위해 새로운 Angular 애플리케이션을 작성하도록 하자. 간단한 예제이므로 인라인 템플릿, 인라인 스타일을 사용하고 스펙 파일 없이 진행한다.
 

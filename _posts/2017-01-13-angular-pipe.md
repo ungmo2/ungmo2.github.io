@@ -114,7 +114,7 @@ import 'rxjs/add/operator/take';
   selector: 'app-root',
   template: `
     <h3>DatePipe</h3>
-    <p>{{ "{{ today | date: 'y년 MM월 dd일 hh시 mm분 ss초' " }}}}</p>
+    <p>{{ "{{ today | date: 'y년 MM월 dd일 HH시 mm분 ss초' " }}}}</p>
 
     <h3>CurrencyPipe</h3>
     <!-- 한국원:통화기호표시:소숫점위 최소 1자리 소숫점아래 1~2 -->

@@ -19,10 +19,10 @@ description: 애플리케이션이 관리하는 데이터는 사용자가 실생
 ```javascript
 const today = new Date();
 
-console.log(today.toString()); // Sat Sep 23 2017 00:26:55 GMT+0900 (KST)
+console.log(today.toString()); // Mon Apr 30 2018 19:13:31 GMT+0900 (KST)
 ```
 
-Date 생성자 함수가 리턴한 인스턴스를 문자열화하면 사용자가 읽기 쉬운 형식은 아니다. 아마도 사용자는 "Sat Sep 23 2017 00:26:55 GMT+0900 (KST)" 형식보다는 "2017년 09월 23일 12시 26분 55초"과 같이 읽기 쉬운 형식으로 표시되기를 원할 것이다. 이때 **데이터 자체를 변경하는 것은 사이드 이펙트가 있으므로 화면에 표시 형식만 변경하고 싶을 때 사용하는 것이 파이프이다.**
+Date 생성자 함수가 리턴한 인스턴스를 문자열화하면 사용자가 읽기 쉬운 형식은 아니다. 아마도 사용자는 "Mon Apr 30 2018 19:13:31 GMT+0900 (KST)" 형식보다는 "2018년 04월 30일 19시 13분 31초"와 같이 읽기 쉬운 형식으로 표시되기를 원할 것이다. 이때 **데이터 자체를 변경하는 것은 부수 효과(side effect)가 있으므로 화면에 표시 형식만 변경하고 싶을 때 사용하는 것이 파이프이다.**
 
 파이프를 사용하여 사용자가 읽기 쉬운 형식으로 변환하여 보자.
 
@@ -35,7 +35,7 @@ import { Component } from '@angular/core';
   template: `
     <p>{{ "{{ today " }}}}</p>
     <p>{{ "{{ today | date " }}}}</p>
-    <p>{{ "{{ today | date: 'y년 MM월 dd일 hh시 mm분 ss초' " }}}}</p>
+    <p>{{ "{{ today | date: 'y년 MM월 dd일 HH시 mm분 ss초' " }}}}</p>
   `
 })
 export class AppComponent {
@@ -46,11 +46,11 @@ export class AppComponent {
 파이프를 사용한 위 컴포넌트의 출력 결과는 아래와 같다.
 
 ```
-Sat Sep 23 2017 00:26:55 GMT+0900 (KST)
+Mon Apr 30 2018 19:17:30 GMT+0900 (KST)
 
-Sep 23, 2017
+Apr 30, 2018
 
-2017년 09월 23일 12시 26분 55초
+2018년 04월 30일 19시 17분 30초
 ```
 
 <iframe src="https://stackblitz.com/edit/pipe-date?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="400"></iframe>
@@ -60,7 +60,7 @@ Sep 23, 2017
 ```html
 {{ "{{ value | PipeName " }}}}
 <!-- parameter -->
-{{ "{{ value | PipeName : customOption1 : customOption2 " }}}}
+{{ "{{ value | PipeName : option1 : option2 " }}}}
 <!-- chainning -->
 {{ "{{ value | PipeName1 | PipeName2 " }}}}
 ```
@@ -92,7 +92,7 @@ Angular는 uppercase 이외에도 아래와 같은 빌트인 파이프를 지원
 | 파이프      | 의미
 |-----------|--------------------------------------
 | [date](https://angular.io/api/common/DatePipe)      | 날짜 형식 변환
-| [JSON](https://angular.io/api/common/JsonPipe)      | JSON 형식 변환
+| [json](https://angular.io/api/common/JsonPipe)      | JSON 형식 변환
 | [uppercase](https://angular.io/api/common/UpperCasePipe) | 대문자 변환
 | [lowercase](https://angular.io/api/common/LowerCasePipe) | 소문자 변환
 | [currency](https://angular.io/api/common/CurrencyPipe)  | 통화 형식 변환
@@ -189,13 +189,14 @@ export class AppComponent {
 
 # 4. 커스텀 파이프
 
-사용자가 입력한 문자열을 반전하는 커스텀 파이프를 작성하여 보자.
+사용자가 입력한 문자열을 반전하는 커스텀 파이프를 작성하여 보자. Angular CLI를 사용하여 프로젝트를 생성하고 파이프를 추가한다.
 
 ```bash
+$ ng new pipe-custom -it -is -st
 $ ng generate pipe reverse
 ```
 
-위 명령어를 실행하면 파이프가 생성된다. 생성된 파이프를 아래와 같이 수정한다.
+생성된 파이프를 아래와 같이 수정한다.
 
 ```typescript
 // reverse.pipe.ts
@@ -217,11 +218,9 @@ export class ReversePipe implements PipeTransform {
 transform(value: any, ...args: any[]): any
 ```
 
-transform 메소드는 파이프의 변환 대상인 값(value)와 옵션 파라미터를 인자로 받는다. 그리고 변환된 값을 반환한다.
+transform 메소드는 파이프의 변환 대상인 값(value)과 옵션(args)들을 인자로 받고 변환된 값을 반환한다. 옵션은 Rest 파라미터로 정의되어 있어서 여러 개의 옵션을 파라미터로 전달할 수 있다.
 
-커스텀 파이프는 모듈의 declarations에 등록되어야 한다. Angular CLI를 사용하여 파이프를 생성하면 모듈에 자동 등록된다.
-
-커스텀 파이프는 빌트인 파이프와 동일한 방법으로 탬플릿에서 사용한다.
+커스텀 파이프는 모듈의 declarations에 등록되어야 한다. Angular CLI를 사용하여 파이프를 생성하면 모듈에 자동 등록된다. 커스텀 파이프는 빌트인 파이프와 동일한 방법으로 탬플릿에서 사용한다.
 
 ```typescript
 // app.component.ts
@@ -243,15 +242,42 @@ export class AppComponent {
 
 # 5. 파이프와 변화 감지(Change detection)
 
-[변화 감지(Change detection)](./angular-component-data-binding#2-변화-감지change-detection)란 뷰와 모델의 동기화를 유지하기 위해 변화를 감지하고 이를 반영하는 것을 말한다. 즉 상태의 변화를 감지하여 뷰에 반영하는 것으로 데이터 바인딩은 변화 감지 매커니즘의 토대 위에서 수행된다.
+[변화 감지(Change detection)](./angular-component-data-binding#2-변화-감지change-detection)란 뷰와 모델의 동기화를 유지하기 위해 변화를 감지하고 이를 반영하는 것을 말한다. 즉, 상태의 변화를 감지하여 뷰에 반영하는 것으로 데이터 바인딩은 변화 감지 매커니즘의 토대 위에서 수행된다.
 
 그런데 Angular는 DOM 이벤트(click, key press, mouse move 등), Timer(setTimeout, setInterval)의 tick 이벤트, 서버와의 Ajax 통신 이후 변화 감지를 통해 데이터 바인딩 대상의 변경 사항을 찾는다. 이것은 시스템에 부하를 증가시키는 작업이다. Angular는 가능한 부하를 최소한으로 하기 위해 파이프를 사용할 때는 보다 간단하고 빠른 변경 감지 알고리즘을 사용한다.
 
-간단한 todo list 예제를 통해 파이프와 변화 감지에 대해 살펴보도록 하자.
+간단한 todo list 예제를 통해 파이프와 변화 감지에 대해 살펴보도록 하자. Angular CLI를 사용하여 프로젝트를 생성하고 컴포넌트를 추가한다.
+
+```bash
+$ ng new pipe-change-detection -it -is -st
+$ cd pipe-change-detection
+$ ng generate component todos
+```
+
+루트 컴포넌트를 아래와 같이 수정한다.
+
+```typescript
+// app.component.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  template: '<app-todos></app-todos>'
+})
+export class AppComponent {}
+```
+
+이제 생성된 컴포넌트를 아래와 같이 수정한다.
 
 ```typescript
 // todos.component.ts
 import { Component } from '@angular/core';
+
+export interface Todo {
+  id: number;
+  content: string;
+  completed: boolean;
+}
 
 @Component({
   selector: 'app-todos',
@@ -260,7 +286,7 @@ import { Component } from '@angular/core';
     <button (click)="add(todo.value)">add</button>
     <ul>
       <li *ngFor="let todo of todos"
-        (click)="complete(todo)"
+        (click)="complete(todo.id)"
         [class.completed]="todo.completed">{{ "{{ todo.content " }}}}</li>
     </ul>
     <pre>{{ "{{ todos | json " }}}}</pre>
@@ -271,14 +297,13 @@ import { Component } from '@angular/core';
 })
 export class TodosComponent {
 
-  todos: any[] = [
+  todos: Todo[] = [
     { id: 1, content: 'HTML', completed: false },
     { id: 2, content: 'CSS', completed: false },
-    { id: 3, content: 'Javascript', completed: false },
-    { id: 4, content: 'ES6', completed: false }
+    { id: 3, content: 'Javascript', completed: false }
   ];
 
-  add(content) {
+  add(content: string) {
     this.todos.push({
       id: this.getLastId(),
       content,
@@ -286,9 +311,9 @@ export class TodosComponent {
     });
   }
 
-  complete(todo) {
-    this.todos = this.todos.map((item) => item.id === todo.id ?
-      Object.assign({}, item, { completed: !item.completed }) : item
+  complete(id: number) {
+    this.todos = this.todos.map(
+      todo => todo.id === id ? ({ ...todo, completed: !todo.completed }) : todo
     );
   }
 
@@ -298,19 +323,26 @@ export class TodosComponent {
 }
 ```
 
-todo list를 추가하는 add 버튼을 클릭하면 add 이벤트 핸들러가 동작하고 내부에서 todos 프로퍼티에 새로운 todo를 push한다. 이때 DOM 이벤트 이후 변화 감지에 의해 todos 프로퍼티의 상태가 템플릿으로 업데이트된다.
+새로운 할일을 추가하는 add 버튼을 클릭하면 add 이벤트 핸들러가 동작하고 todos 프로퍼티에 새로운 todo 객체를 push한다. 이때 변화 감지에 의해 todos 프로퍼티의 상태가 템플릿으로 업데이트된다.
 
 이제 todo list의 출력 갯수를 제한하는 limit 파이프를 작성하여 보자.
+
+```bash
+$ ng generate pipe limit
+```
+
+생성된 파이프를 아래와 같이 수정한다.
 
 ```typescript
 // limit.pipe.ts
 import { Pipe, PipeTransform } from '@angular/core';
+import { Todo } from './todos.component';
 
 @Pipe({
   name: 'limit'
 })
 export class LimitPipe implements PipeTransform {
-  transform(todos: any[], limit: number): any {
+  transform(todos: Todo[], limit: number): Todo[] {
     return todos.filter((el, i) => i < limit);
   }
 }
@@ -322,12 +354,12 @@ export class LimitPipe implements PipeTransform {
 // todos.component.ts
 ...
   <li *ngFor="let todo of (todos | limit: 10)"
-    (click)="complete(todo)"
+    (click)="complete(todo.id)"
     [class.completed]="todo.completed">{{ "{{ todo.content " }}}}</li>
 ...
 ```
 
-컴포넌트를 동작시키면 todos 프로퍼티의 상태가 템플릿으로 업데이트되지 않는 것을 확인할 수 있다. 이것은 add 메소드 내부의 push 메소드 때문이다. push 메소드는 원본 배열(이 경우 todos 프로퍼티)을 직접 변경하지만 원본 배열의 참조는 변경되지 않기 때문이다. 따라서 파이프에 의해 변화 감지가 작동하지 않는 것이다.
+애플리케이션을 동작시키면 todos 프로퍼티의 상태가 템플릿으로 업데이트되지 않는 것을 확인할 수 있다. 이것은 add 메소드 내부의 push 메소드 때문이다. push 메소드는 원본 배열(이 경우 todos 프로퍼티)을 직접 변경하므로 원본 배열의 참조는 변경되지 않기 때문이다. 따라서 파이프에 의해 변화 감지가 작동하지 않는 것이다.
 
 변화 감지가 작동하도록 하려면 todos 프로퍼티의 참조가 변경되도록 코드를 수정해야 한다.
 
@@ -347,24 +379,25 @@ this.todos = [...this.todos, { id: this.getLastId(), content, completed: false }
 
 <iframe src="https://stackblitz.com/edit/pipe-change-detection?embed=1&file=app/todos.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
-이 경우, 간단한 애플리케이션이므로 todos 프로퍼티의 변경 시점은 간단히 파악할 수 있지만 복잡한 애플리케이션이라면 어디서 todos 프로퍼티가 변경되는지 파악하기 힘들 수도 있다. 또한 파이프를 위해 코드를 수정하는 것은 바람직하지 않을 수도 있다. 파이프는 템플릿에서 동작하고 상태 정보는 클래스에 존재하기 때문에 이 둘간의 독립이 보장되어야 하기 때문이다.
+이 경우, 간단한 애플리케이션이므로 todos 프로퍼티의 변경 시점을 간단히 파악할 수 있지만 복잡한 애플리케이션이라면 어디서 todos 프로퍼티가 변경되는지 파악하기 힘들 수도 있다. 또한 파이프를 위해 코드를 수정하는 것은 바람직하지 않을 수도 있다. 파이프는 템플릿에서 동작하고 상태 정보는 클래스에 존재하기 때문에 이 둘간의 독립이 보장되어야 하기 때문이다.
 
 이를 위해 Angular는 비순수 파이프(impure pipe)를 제공한다.
 
 # 6. 순수 파이프(pure pipe)와 비순수 파이프(impure pipe)
 
-파이프는 순수 파이프(pure pipe)와 비순수 파이프(impure pipe)로 분류할 수 있다. 비순수 파이프는 @Pipe 데코레이터의 메타데이터 pure 프로퍼티에 false를 지정한 것이다. limit 파이프를 비순수 파이프로 변경해보자.
+파이프는 순수 파이프(pure pipe)와 비순수 파이프(impure pipe)로 분류할 수 있다. 비순수 파이프는 @Pipe 데코레이터의 메타데이터 pure 프로퍼티에 false를 지정한 것이다. pure 프로퍼티를 생략하면 순수 파이프로 동작한다. limit 파이프를 비순수 파이프로 변경해보자.
 
 ```typescript
 // limit.pipe.ts
 import { Pipe, PipeTransform } from '@angular/core';
+import { Todo } from './todos.component';
 
 @Pipe({
   name: 'limit',
-  pure: false
+  pure: false /* 비순수 파이프 */
 })
 export class LimitPipe implements PipeTransform {
-  transform(todos: any[], limit: number): any {
+  transform(todos: Todo[], limit: number): Todo[] {
     return todos.filter((el, i) => i < limit);
   }
 }
@@ -372,7 +405,7 @@ export class LimitPipe implements PipeTransform {
 
 이제 limit 파이프는 비순수 파이프가 되었고 컴포넌트의 add 메소드 내부에서 push 메소드를 사용하여도 변화 감지가 작동한다. 하지만 비순수 파이프를 사용하면 빈번하게 파이프가 호출되어 퍼포먼스 측면에서 좋지 않으므로 주의하여야 한다.
 
-순수 파이프는 기본자료형의 값 또는 객체 참조의 변경과 같은 순수한 변경(pure change)만을 감지하고 순수 파이프를 실행한다. Angular는 퍼포먼스를 위해 객체 내부의 변경은 무시하여 순수 파이프를 실행하지 않는다. 따라서 퍼포먼스를 생각한다면 비순수 파이프보다 순수 파이프를 사용하는 것이 바람직하다. 또한 **반드시 필요한 경우가 아니라면 파이프보다는 컴포넌트의 프로퍼티를 사용하는 편이 유리하다.**
+순수 파이프는 기본 자료형의 값 또는 객체 참조의 변경과 같은 순수한 변경(pure change)만을 감지하고 순수 파이프를 실행한다. Angular는 퍼포먼스를 위해 객체 내부의 변경은 무시하여 순수 파이프를 실행하지 않는다. 따라서 퍼포먼스를 생각한다면 비순수 파이프보다 순수 파이프를 사용하는 것이 바람직하다. 또한 **반드시 필요한 경우가 아니라면 파이프보다는 컴포넌트의 프로퍼티를 사용하는 편이 유리하다.**
 
 <iframe src="https://stackblitz.com/edit/pipe-impure?embed=1&file=app/limit.pipe.ts" frameborder="0" width="100%" height="400"></iframe>
 

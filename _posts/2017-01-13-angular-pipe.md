@@ -193,6 +193,7 @@ export class AppComponent {
 
 ```bash
 $ ng new pipe-custom -it -is -st
+$ cd pipe-custom
 $ ng generate pipe reverse
 ```
 

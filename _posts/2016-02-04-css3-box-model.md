@@ -14,13 +14,15 @@ description: 모든 HTML 요소는 Box 형태의 영역을 가지고 있다. Box
 
 ![typesetting](/img/typesetting.jpg)
 
-이 Box는 마진(Margin), 테두리(Border), 패딩(Padding), 콘텐츠(Contents)로 구성된다.
+이 Box는 콘텐트(Content), 패딩(Padding), 테두리(Border), 마진(Margin)로 구성된다.
 
 ![css box model](/img/box-model.png)
 
 브라우저는 박스 모델의 크기(dimension)와 프로퍼티(색, 배경, 모양 등), 위치를 근거로 하여 렌더링을 실행한다.
 
 웹디자인은 콘텐츠를 담을 [박스 모델을 정의](/css3-display#1-display-프로퍼티)하고 CSS 프로퍼티를 통해 스타일([배경](./css3-background), [폰트와 텍스트](./css3-font-text) 등)과 [위치](./css3-position) 및 [정렬](./css3-float)을 지정하는 것이라고 할 수 있다.
+
+Box 모델을 구성하는 콘텐트(Content), 패딩(Padding), 테두리(Border), 마진(Margin)에 대한 설명은 아래와 같다.
 
 | 명칭     | 설명
 |:--------|:-----------------------------------------------------------
@@ -200,25 +202,25 @@ margin / padding 프로퍼티는 content의 4개 방향(top, right, left, bottom
 
 -top, -right, -bottom, -left 4방향의 프로퍼티를 각각 지정하지 않고 margin, padding 1개의 프로퍼티만으로 4방향의 프로퍼티를 한번에 지정할 수 있다.
 
-4개의 값을 지정할 때  
+4개의 값을 지정할 때
 : margin: 25px 50px 75px 100px;
 - margin-top: 25px;
 - margin-right: 50px;
 - margin-bottom: 75px;
 - margin-left: 100px;
 
-3개의 값을 지정할 때  
+3개의 값을 지정할 때
 : margin: 25px 50px 75px;
 - margin-top: 25px;
 - margin-right: 50px; margin-left: 50px;
 - margin-bottom: 75px
 
-2개의 값을 지정할 때  
+2개의 값을 지정할 때
 : margin: 25px 50px;
 - margin-top: 25px; margin-bottom: 25px;
 - margin-right: 50px; margin-left: 50px;
 
-1개의 값을 지정할 때  
+1개의 값을 지정할 때
 : margin: 25px;
 - margin-top: 25px; margin-right: 25px; margin-bottom: 25px; margin-left: 25px;
 
@@ -321,7 +323,7 @@ margin 프로퍼티에 `auto` 키워드를 설정하면 해당 요소를 브라�
       p.outset { border-style: outset; }
       p.none   { border-style: none; }
       p.hidden { border-style: hidden; }
-      p.mix    { border-style: dotted dashed solid double; } 
+      p.mix    { border-style: dotted dashed solid double; }
     </style>
   </head>
   <body>
@@ -344,7 +346,7 @@ margin 프로퍼티에 `auto` 키워드를 설정하면 해당 요소를 브라�
 
 <div class='result'></div>
 
-프로퍼티 값의 갯수에 따라 4개 방향(top, right, left, bottom)에 대하여 지정이 가능하다.  
+프로퍼티 값의 갯수에 따라 4개 방향(top, right, left, bottom)에 대하여 지정이 가능하다.
 
 ```html
 <!DOCTYPE html>
@@ -386,7 +388,7 @@ margin 프로퍼티에 `auto` 키워드를 설정하면 해당 요소를 브라�
 
 ## 3.2 border-width
 
-`border-width` 프로퍼티는 테두리의 두께를 지정한다. 프로퍼티 값의 갯수에 따라 4개 방향(top, right, left, bottom)에 대하여 지정이 가능하다.  
+`border-width` 프로퍼티는 테두리의 두께를 지정한다. 프로퍼티 값의 갯수에 따라 4개 방향(top, right, left, bottom)에 대하여 지정이 가능하다.
 
 `border-width` 프로퍼티는 `border-style`과 함께 사용하지 않으면 적용되지 않는다.
 {: .info}
@@ -402,7 +404,7 @@ margin 프로퍼티에 `auto` 키워드를 설정하면 해당 요소를 브라�
         background: palegreen;
         padding: 10px;
         border-style: solid
-      }  
+      }
       p.one {
         border-width: thin; /* 1px */
       }
@@ -480,7 +482,9 @@ margin 프로퍼티에 `auto` 키워드를 설정하면 해당 요소를 브라�
 
 ## 3.4 border-radius
 
-`border-radius` 프로퍼티는 테두리 모서리를 둥글게 표현하도록 지정한다. 프로퍼티 값은 길이를 나타내는 단위(px, em 등)와 %를 사용한다.
+`border-radius` 프로퍼티는 테두리 모서리를 둥글게 표현하도록 지정한다. 프로퍼티 값은 길이를 나타내는 단위(px, em 등)와 %를 사용한다. 각각의 모서리에 border-radius 프로퍼티를 개별적으로 지정할 수도 있고 4개의 모서리를 short-hand로 한번에 지정할 수도 있다.
+
+![border-radius](/img/border-radius.jpg)
 
 하나 혹은 두개의 반지름을 설정하여 각각의 모서리 굴곡을 설정할 수 있기 때문에 원 혹은 타원의 모양으로 정의가 가능하다.
 

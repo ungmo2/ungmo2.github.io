@@ -356,34 +356,44 @@ Spread 연산자를 사용하면 손쉽게 객체를 병합(merge)할 수 있다
 
 ```javascript
 // 객체의 병합
-console.log({ ...{ x: 1, y: 2 }, ...{ y: 10, z: 3 } });
-// { x: 1, y: 10, z: 3 }
+let merged = { ...{ x: 1, y: 2 }, ...{ y: 10, z: 3 } };
+console.log(merged); // { x: 1, y: 10, z: 3 }
 
 // 특정 프로퍼티 변경
-console.log({ ...{ x: 1, y: 2 }, y: 100 });
-// === console.log({ ...{ x: 1, y: 2 }, ...{ y: 100 } });
-// { x: 1, y: 100 }
+merged = { ...{ x: 1, y: 2 }, y: 100 };
+// merged = { ...{ x: 1, y: 2 }, ...{ y: 100 } }
+console.log(merged); // { x: 1, y: 100 }
 
 // 프로퍼티 추가
-console.log({ ...{ x: 1, y: 2 }, z: 0 });
-// === console.log({ ...{ x: 1, y: 2 }, ...{ z: 0 } });
-// { x: 1, y: 2, z: 0 }
+merged = { ...{ x: 1, y: 2 }, z: 0 };
+// merged = ...{ x: 1, y: 2 }, ...{ z: 0 } }
+console.log(merged); // { x: 1, y: 2, z: 0 }
 ```
 
-Object.assign을 사용해도 동일한 작업을 할 수 있다.
+Object.assign 메소드를 사용해도 동일한 작업을 할 수 있다.
 
 ```javascript
 // 객체의 병합
-console.log(Object.assign({}, { x: 1, y: 2 }, { y: 10, z: 3 }));
-// { x: 1, y: 10, z: 3 }
+let merged = Object.assign({}, { x: 1, y: 2 }, { y: 10, z: 3 });
+console.log(merged); // { x: 1, y: 10, z: 3 }
 
 // 특정 프로퍼티 변경
-console.log(Object.assign({}, { x: 1, y: 2 }, { y: 100 }));
-// { x: 1, y: 100 }
+merged = Object.assign({}, { x: 1, y: 2 }, { y: 100 });
+console.log(merged); // { x: 1, y: 100 }
 
 // 프로퍼티 추가
-console.log(Object.assign({}, { x: 1, y: 2 }, { z: 0 }));
-// { x: 1, y: 2, z: 0 }
+merged = Object.assign({}, { x: 1, y: 2 }, { z: 0 });
+console.log(merged); // { x: 1, y: 2, z: 0 }
+```
+
+Spread 연산자를 사용하면 유사 배열 객체(Array-like Object)를 배열로 손쉽게 변환할 수 있다.
+
+```javascript
+// HTMLCollection => Array
+const htmlCollection = document.getElementsByTagName('li');
+
+const newArray = [...htmlCollection]; // Spread 연산자
+// const newArray = Array.from(htmlCollection);
 ```
 
 # Reference

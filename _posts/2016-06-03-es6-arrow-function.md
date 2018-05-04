@@ -13,9 +13,9 @@ description: Arrow function(화살표 함수)은 function 키워드 대신 화�
 ![es6 Logo](/img/es6.png)
 {: .w-650}
 
-# 1. Arrow function의 선언
+# 1. 화살표 함수의 선언
 
-Arrow function(화살표 함수)은 function 키워드 대신 화살표(=>)를 사용하여 간략한 방법으로 함수를 선언할 수 있다. 하지만 모든 경우 사용할 수 있는 것은 아니다. 문법은 아래와 같다.
+화살표 함수(Arrow function)는 function 키워드 대신 화살표(=>)를 사용하여 간략한 방법으로 함수를 선언할 수 있다. 하지만 모든 경우 사용할 수 있는 것은 아니다. 문법은 아래와 같다.
 
 ```javascript
 // 매개변수 지정 방법
@@ -36,9 +36,9 @@ x => x * x             // 함수 몸체가 한줄의 구문이라면 중괄호�
 };
 ```
 
-# 2. Arrow function의 호출
+# 2. 화살표 함수의 호출
 
-Arrow function은 익명 함수로만 사용할 수 있다. 따라서 Arrow function을 호출하기 위해서는 함수표현식을 사용한다.
+화살표 함수는 익명 함수로만 사용할 수 있다. 따라서 화살표 함수를 호출하기 위해서는 함수 표현식을 사용한다.
 
 ```javascript
 // ES5
@@ -52,7 +52,7 @@ const pow = x => x * x;
 console.log(pow(10)); // 100
 ```
 
-또는 콜백함수로 사용할 수 있다. 이 경우 일반적인 함수 표현식보다 표현이 간결하다.
+또는 콜백 함수로 사용할 수 있다. 이 경우 일반적인 함수 표현식보다 표현이 간결하다.
 
 ```javascript
 // ES5
@@ -74,11 +74,11 @@ console.log(pow); // [ 1, 4, 9 ]
 
 # 3. this
 
-function 키워드를 사용하여 생성한 일반 함수와 Arrow function와의 가장 큰 차이점은 this이다.
+function 키워드로 생성한 일반 함수와 화살표 함수의 가장 큰 차이점은 this이다.
 
 ## 3.1 일반 함수의 this
 
-일반 함수의 경우, 해당 함수 호출 패턴에 따라 [this](./js-this)에 바인딩되는 객체가 달라진다. 콜백함수 내부의 this는 전역 객체 window를 가리킨다.
+일반 함수의 경우, 해당 함수를 호출하는 패턴에 따라 [this](./js-this)에 바인딩되는 객체가 달라진다. 콜백 함수 내부의 this는 전역 객체 window를 가리킨다.
 
 ```javascript
 function Prefixer(prefix) {
@@ -98,11 +98,11 @@ console.log(pre.prefixArray(['Lee', 'Kim']));
 
 (A) 지점에서의 this는 생성자 함수 Prefixer가 생성한 객체, 즉 생성자 함수의 인스턴스(위 예제의 경우 pre)이다.
 
-(B) 지점에서 사용한 this는 아마도 생성자 함수 Prefixer가 생성한 객체(위 예제의 경우 pre)일 것으로 기대하였겠지만 이곳에서 this는 전역 객체 window를 가리킨다. 이는 생성자 함수와 객체의 메소드를 제외한 모든 함수(내부함수, 콜백함수 포함) 내부의 this는 전역객체를 가리키기 때문이다.
+(B) 지점에서 사용한 this는 아마도 생성자 함수 Prefixer가 생성한 객체(위 예제의 경우 pre)일 것으로 기대하였겠지만, 이곳에서 this는 전역 객체 window를 가리킨다. 이는 생성자 함수와 객체의 메소드를 제외한 모든 함수(내부 함수, 콜백 함수 포함) 내부의 this는 전역 객체를 가리키기 때문이다.
 
 위 설명이 잘 이해되지 않는다면 [this](./js-this)를 참조하기 바란다.
 
-콜백함수 내부의 this가 메소드를 호출한 객체(생성자 함수의 인스턴스)를 가리키게 하려면 아래의 3가지 방법이 있다.
+콜백 함수 내부의 this가 메소드를 호출한 객체(생성자 함수의 인스턴스)를 가리키게 하려면 아래의 3가지 방법이 있다.
 
 ```javascript
 // Solution 1: that = this
@@ -155,9 +155,9 @@ var pre = new Prefixer('Hi');
 console.log(pre.prefixArray(['Lee', 'Kim']));
 ```
 
-## 3.2 Arrow function의 this
+## 3.2 화살표 함수의 this
 
-Arrow function은 언제나 자신을 포함하는 외부 scope에서 this를 계승 받는다. 다시 말해 Arrow function은 자신만의 this를 생성하지 않고 자신을 포함하고 있는 컨텍스트로 부터 this를 계승 받는다. 이를 <strong>Lexical this</strong>라 한다. Arrow function은 Solution 3의 Syntactic sugar이다.
+화살표 함수는 언제나 자신을 포함하는 외부 스코프에서 this를 계승 받는다. 다시 말해 화살표 함수는 자신만의 this를 생성하지 않고 자신을 포함하고 있는 상위 컨텍스트로 부터 this를 계승 받는다. 이를 <strong>Lexical this</strong>라 한다. 화살표 함수는 앞서 살펴본 Solution 3의 Syntactic sugar이다.
 
 ```javascript
 function Prefixer(prefix) {
@@ -188,60 +188,60 @@ const pre = new Prefixer('Hi');
 console.log(pre.prefixArray(['Lee', 'Kim']));
 ```-->
 
-# 4. Arrow Function을 사용해서는 안되는 경우
+# 4. 화살표 함수를 사용해서는 안되는 경우
 
-Arrow Function는 Lexical this를 지원하므로 콜백함수에 사용하기 편리하다. 하지만 Arrow Function을 사용하는 것이 오히려 혼란을 불러오는 경우도 있으므로 주의하여야 한다.
+화살표 함수는 Lexical this를 지원하므로 콜백 함수로 사용하기 편리하다. 하지만 화살표 함수를 사용하는 것이 오히려 혼란을 불러오는 경우도 있으므로 주의하여야 한다.
 
 ## 4.1 메소드
 
-메소드 정의 시 Arrow Function을 사용하는 것은 피해야 한다. Arrow Function으로 메소드를 정의하여 보자.
+화살표 함수로 메소드를 정의하는 것은 피해야 한다. 화살표 함수로 메소드를 정의하여 보자.
 
 ```javascript
 // Bad
-const obj = {
+const person = {
   name: 'Lee',
   sayHi: () => console.log(`Hi ${this.name}`)
 };
 
-obj.sayHi(); // Hi undefined
+person.sayHi(); // Hi undefined
 ```
 
-위 예제의 경우, 해당 메소드를 소유한 객체 즉 해당 메소드를 호출한 객체에 this를 바인딩하지 않고 전역 객체에 바인딩된다. 따라서 Arrow Function으로 메소드를 정의하는 것은 바람직하지 않다.
+위 예제의 경우, 메소드로 정의한 화살표 함수 내부의 this는 메소드를 소유한 객체, 즉 메소드를 호출한 객체를 가리키지 않고 상위 컨택스트인 전역 객체 window를 가리킨다. 따라서 화살표 함수로 메소드를 정의하는 것은 바람직하지 않다.
 
 이와 같은 경우는 메소드를 위한 단축 표기법인 [ES6의 축약 메소드 표현](./es6-enhanced-object-property#3-메소드-축약-표현)을 사용하는 것이 좋다.
 
 ```javascript
 // Good
-const obj = {
+const person = {
   name: 'Lee',
   sayHi() { // === sayHi: function() {
     console.log(`Hi ${this.name}`);
   }
 };
 
-obj.sayHi(); // Hi Lee
+person.sayHi(); // Hi Lee
 ```
 
 ## 4.2 prototype
 
-prototype에 메소드를 할당하는 경우도 동일한 문제가 발생한다. prototype에 Arrow Function 메소드를 할당하여 보자.
+화살표 함수로 정의된 메소드를 prototype에 할당하는 경우도 동일한 문제가 발생한다. 화살표 함수로 정의된 메소드를 prototype에 할당하여 보자.
 
 ```javascript
 // Bad
-const obj = {
+const person = {
   name: 'Lee',
 };
 
 Object.prototype.sayHi = () => console.log(`Hi ${this.name}`);
 
-obj.sayHi(); // Hi undefined
+person.sayHi(); // Hi undefined
 ```
 
-Arrow Function으로 객체 메소드를 정의하였을 때와 같은 문제가 발생한다. 따라서 prototype에 메소드를 할당하는 경우, 일반 함수를 할당한다.
+화살표 함수로 객체의 메소드를 정의하였을 때와 같은 문제가 발생한다. 따라서 prototype에 메소드를 할당하는 경우, 일반 함수를 할당한다.
 
 ```javascript
 // Good
-const obj = {
+const person = {
   name: 'Lee',
 };
 
@@ -249,23 +249,25 @@ Object.prototype.sayHi = function() {
   console.log(`Hi ${this.name}`);
 };
 
-obj.sayHi(); // Hi Lee
+person.sayHi(); // Hi Lee
 ```
 
 ## 4.3 생성자 함수
 
-Arrow Function은 생성자 함수로 사용할 수 없다. 생성자 함수는 prototype 프로퍼티를 가지며 prototype 프로퍼티가 가리키는 프로토타입 객체의 constructor를 사용한다. 하지만 Arrow Function은 prototype 프로퍼티를 가지고 있지 않다.
+화살표 함수는 생성자 함수로 사용할 수 없다. 생성자 함수는 prototype 프로퍼티를 가지며 prototype 프로퍼티가 가리키는 프로토타입 객체의 constructor를 사용한다. 하지만 화살표 함수는 prototype 프로퍼티를 가지고 있지 않다.
 
 ```javascript
 const Foo = () => {};
-// Arrow Function은 prototype 프로퍼티가 없다
+
+// 화살표 함수는 prototype 프로퍼티가 없다
 console.log(Foo.hasOwnProperty('prototype')); // false
+
 const foo = new Foo(); // TypeError: Foo is not a constructor
 ```
 
 ## 4.4 addEventListener 함수의 콜백 함수
 
-addEventListener 함수의 콜백 함수를 화살표 함수로 정의하면 this가 상위 컨택스트를 가리킨다.
+addEventListener 함수의 콜백 함수를 화살표 함수로 정의하면 this가 상위 컨택스트인 전역 객체 window를 가리킨다.
 
 ```javascript
 // Bad
@@ -277,7 +279,7 @@ button.addEventListener('click', () => {
 });
 ```
 
-따라서 addEventListener 함수의 콜백 함수에서 this를 사용하는 경우, function 키워드로 정의한 함수를 사용하여야 한다.
+따라서 addEventListener 함수의 콜백 함수에서 this를 사용하는 경우, function 키워드로 정의한 일반 함수를 사용하여야 한다. 일반 함수로 정의된 addEventListener 함수의 콜백 함수 내부의 [this](./js-event#43-dom-level-2-event-listener)는 이벤트 리스너에 바인딩된 요소(currentTarget)를 가리킨다.
 
 ```javascript
 // Good

@@ -259,7 +259,7 @@ for (const num of fibonacci(10)) {
 
 * [ES6 In Depth: 제너레이터(Generator)](hhttp://hacks.mozilla.or.kr/2015/08/es6-in-depth-generators/)
 
-* [이터레이션 프로토콜(iteration protocol)과 for-of 루프](http://poiemaweb.com/es6-iteration-for-of)
+* [이터레이션 프로토콜(iteration protocol)과 for-of 루프](./es6-iteration-for-of)
 
 * [Generators](http://exploringjs.com/es6/ch_generators.html)
 

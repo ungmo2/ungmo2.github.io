@@ -53,7 +53,7 @@ description: CSS를 사용한 HTML 요소의 수평 수직 중앙 정렬 (Horizo
 
 ## 1.4 Flexbox
 
-[flexbox](http://poiemaweb.com/css/Flexbox/)를 사용할 수도 있다. 정렬 대상의 부모 요소에 아래의 룰셋을 선언한다.
+[flexbox](./css3-flexbox)를 사용할 수도 있다. 정렬 대상의 부모 요소에 아래의 룰셋을 선언한다.
 
 ```css
 .flex-center {

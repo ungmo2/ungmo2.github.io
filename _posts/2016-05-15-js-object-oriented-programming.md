@@ -28,13 +28,13 @@ description: 오늘날 많은 유명한 프로그래밍 언어(Java, C++, C#, Py
 
 ## 2.1 클래스 기반 언어
 
-클래스 기반 언어(Java, C++, C#, Python, PHP, Ruby, Object-C)는 클래스로 객체의 자료구조와 기능을 정의하고 생성자를 통해 인스턴스를 생성한다. 
+클래스 기반 언어(Java, C++, C#, Python, PHP, Ruby, Object-C)는 클래스로 객체의 자료구조와 기능을 정의하고 생성자를 통해 인스턴스를 생성한다.
 
 클래스란 같은 종류의 집단에 속하는 속성(attribute)과 행위(behavior)를 정의한 것으로 객체지향 프로그램의 기본적인 사용자 정의 데이터형(user define data type)이라고 할 수 있다. 결국 클래스는 객체 생성에 사용되는 패턴 혹은 청사진(blueprint)일 뿐이며 new 연산자를 통한 인스턴스화 과정이 필요하다.
 
 모든 인스턴스는 오직 클래스에서 정의된 범위 내에서만 작동하며 런타임에 그 구조를 변경할 수 없다. 이러한 특성은 정확성, 안정성, 예측성 측면에서 클래스 기반 언어가 프로토타입 기반 언어보다 좀 더 나은 결과를 보장한다.
 
-아래의 예제는 Java로 구현된 클래스이다. Java는 class 키워드를 제공하고 이것으로 클래스를 정의한다. 생성자는 클래스명과 동일하며 메소드로 구현된다. 
+아래의 예제는 Java로 구현된 클래스이다. Java는 class 키워드를 제공하고 이것으로 클래스를 정의한다. 생성자는 클래스명과 동일하며 메소드로 구현된다.
 
 ```java
 class Person {
@@ -141,7 +141,7 @@ console.log(him); // Person { name: 'Choi', setName: [Function], getName: [Funct
 
 # 4. 프로토타입 체인과 메소드의 정의
 
-모든 객체는 [프로토타입](./js-prototype)이라는 다른 객체를 가리키는 내부 링크를 가지고 있다. 즉 프로토타입을 통해 직접 객체를 연결할 수 있는데 이를 프로토타입 체인이라 한다. 
+모든 객체는 [프로토타입](./js-prototype)이라는 다른 객체를 가리키는 내부 링크를 가지고 있다. 즉 프로토타입을 통해 직접 객체를 연결할 수 있는데 이를 프로토타입 체인이라 한다.
 
 프로토타입을 이용하여 생성자 함수 내부의 메소드를 생성자 함수의 prototype 프로퍼티가 가리키는 프로토타입 객체로 이동시키면 생성자 함수에 의해 생성된 모든 인스턴스는 프로토타입 체인을 통해 프로토타입 객체의 메소드를 참조할 수 있다.
 
@@ -164,7 +164,7 @@ var me  = new Person('Lee');
 var you = new Person('Kim');
 var him = new Person('choi');
 
-console.log(Person.prototype); 
+console.log(Person.prototype);
 // Person { setName: [Function], getName: [Function] }
 
 console.log(me);  // Person { name: 'Lee' }
@@ -177,7 +177,7 @@ console.log(him); // Person { name: 'choi' }
 프로토타입 체인과 메소드의 정의
 {: .desc-img}
 
-Person 생성자 함수의 prototype 프로퍼티가 가리키는 프로토타입 객체로 이동시킨 setName. getName 메소드는 프로토타입 체인에 의해 모든 인스턴스가 참조할 수 있다. 프로토타입 객체는 상속할 것들이 저장되는 장소이다. 
+Person 생성자 함수의 prototype 프로퍼티가 가리키는 프로토타입 객체로 이동시킨 setName. getName 메소드는 프로토타입 체인에 의해 모든 인스턴스가 참조할 수 있다. 프로토타입 객체는 상속할 것들이 저장되는 장소이다.
 
 아래는 더글라스 크락포드가 제안한 프로토타입 객체에 메소드를 추가하는 방식이다.
 
@@ -239,7 +239,7 @@ console.log(him); // Person { name: 'choi' }
 
   프로퍼티란 객체의 일부로서 이름과 값의 쌍을 가지는 정보를 의미한다. 객체는 프로퍼티들을 포함하는 컨테이너라고 할 수 있다.
 
-## 1.4 Method  
+## 1.4 Method
 객체의 행위/능력(예: 걷기)이다. 프로퍼티의 값이 함수일 때 이것을 메소드라 한다.
 
 메소드는 객체가 가지고 있는 동작(절차,방법,기능)이다. 기본적으로 함수와 메소드가 서로 일련의 동작을 실행하는 구문들의 집합이라는 점에서 동일하지만 메소드는 객체가 가지고 있는 동작이라는 점에서 차이가 있다.
@@ -248,11 +248,11 @@ console.log(him); // Person { name: 'choi' }
 
 즉, 메소드는 객체를 움직이는 동작이며 그 동작을 수행하기 위해서 객체의 정보인 프로퍼티를 사용할 수 있다.
 
-## 1.5 Constructor (생성자)  
+## 1.5 Constructor (생성자)
 
 인스턴스화 되는 시점에서 호출되는 메소드이다.
 
-## 1.6 Abstraction (추상화)  
+## 1.6 Abstraction (추상화)
 
 현실세계의 사실을 그대로 객체로 표현하기 보다는 문제의 중요한 측면을 주목하여 상세내역을 없애나가는 과정을 의미한다. 객체지향에서는 클래스를 통해서 추상화를 지원하고 있으며, 이것은 다른 전통적 프로그래밍보다 강력한 추상화의 방법이다.
 
@@ -270,7 +270,7 @@ console.log(him); // Person { name: 'choi' }
 
   상속은 객체기술의 가장 핵심이 되는 개념으로 프로그램을 쉽게 확장할 수 있도록 해주는 강력한 수단이 된다. 앞의 두 개념은 객체지향이 아닌 개발 방법에서도 흉내를 낼 수 있으나 이것은 객체지향 언어와 개발 방법만의 특성이다.
 
-  상속은 코드 재사용의 한 형태로 만약 새로 만들 클래스가 기존 클래스와 유사하다면 상속을 통해 동일한 부분은 그대로 사용하고 다른 부분만 구현하면 된다.  
+  상속은 코드 재사용의 한 형태로 만약 새로 만들 클래스가 기존 클래스와 유사하다면 상속을 통해 동일한 부분은 그대로 사용하고 다른 부분만 구현하면 된다.
 
   ```java
   class Animal {
@@ -326,22 +326,22 @@ console.log(him); // Person { name: 'choi' }
 
 ## 1.10 객체 지향 5원칙
 
-객체지향에서 지켜야 할 5개의 원칙을 말한다.   
-[참고 : SOLID](https://ko.wikipedia.org/wiki/SOLID)  
+객체지향에서 지켜야 할 5개의 원칙을 말한다.
+[참고 : SOLID](https://ko.wikipedia.org/wiki/SOLID)
 
-  * 단일 책임 원칙 (Single responsibility principle)  
+  * 단일 책임 원칙 (Single responsibility principle)
     한 클래스는 하나의 책임만 가져야 한다.
 
-  * 개방-폐쇄 원칙 (Open/closed principle)  
+  * 개방-폐쇄 원칙 (Open/closed principle)
     “소프트웨어 요소는 확장에는 열려 있으나 변경에는 닫혀 있어야 한다.”
 
-  * 리스코프 치환 원칙 (Liskov substitution principle)  
+  * 리스코프 치환 원칙 (Liskov substitution principle)
     “프로그램의 객체는 프로그램의 정확성을 깨뜨리지 않으면서 하위 타입의 인스턴스로 바꿀 수 있어야 한다.”
 
-  * 인터페이스 분리 원칙 (Interface segregation principle)  
+  * 인터페이스 분리 원칙 (Interface segregation principle)
     “특정 클라이언트를 위한 인터페이스 여러 개가 범용 인터페이스 하나보다 낫다.”
 
-  * 의존관계 역전 원칙 (Dependency inversion principle)  
+  * 의존관계 역전 원칙 (Dependency inversion principle)
     프로그래머는 “추상화에 의존해야지, 구체화에 의존하면 안된다.” 의존성 주입은 이 원칙을 따르는 방법 중 하나다. -->
 
 # 5. 상속 (Inheritance)
@@ -445,7 +445,7 @@ console.log(child.constructor);  // [Function: Parent]
 ```javascript
 var o = {};
 console.log(o.__proto__ === Object.prototype); // true
-``` 
+```
 
 ## 5.2 프로토타입 패턴 상속 (Prototypal Inheritance)
 
@@ -470,7 +470,7 @@ var Parent = (function () {
   return Parent;
 }());
 
-// create 함수의 인수는 프로토타입이다. 
+// create 함수의 인수는 프로토타입이다.
 var child = Object.create(Parent.prototype);
 child.name = 'child';
 
@@ -494,7 +494,7 @@ var parent = {
   }
 };
 
-// create 함수의 인자는 객체이다. 
+// create 함수의 인자는 객체이다.
 var child = Object.create(parent);
 child.name = 'child';
 
@@ -796,17 +796,17 @@ console.log(you.getName());
 
 # Reference
 
-* [JavaScript Object](http://poiemaweb.com/js-object)
+* [JavaScript Object](./js-object)
 
-* [JavaScript Prototype](http://poiemaweb.com/js-prototype)
+* [JavaScript Prototype](./js-prototype)
 
-* [JavaScript Immutability](http://poiemaweb.com/js-immutability)
+* [JavaScript Immutability](./js-immutability)
 
 * [Object Literal Inheritance](https://j201.github.io/posts/2013-06-22-JS-Object-Literal-Inheritance.html)
 
 * [Common Misconceptions About Inheritance in JavaScript](https://medium.com/javascript-scene/common-misconceptions-about-inheritance-in-javascript-d5d9bab29b0a)
 
-* [ECMAScript6 Class](http://poiemaweb.com/es6-class)
+* [ECMAScript6 Class](./es6-class)
 
 * [Object.create()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/create)
 

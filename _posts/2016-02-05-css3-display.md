@@ -212,7 +212,7 @@ inline 레벨 요소 뒤에 공백(엔터, 스페이스 등)이 있는 경우, �
 <body>
   <div class="inline-block box1">inline-block height 70px</div>
   <div class="inline-block box2">inline-block height 150px</div>
-  
+
   <div class="wrapper">
     <div class="inline-block box1">inline-block height 70px</div>
     <div class="inline-block box2">inline-block height 150px</div>
@@ -301,7 +301,7 @@ inline 레벨 요소 뒤에 공백(엔터, 스페이스 등)이 있는 경우, �
     .hidden  { visibility: hidden; }
 
     table, td { border: 1px solid black; }
-    .collapse { visibility: collapse; } 
+    .collapse { visibility: collapse; }
     /* .collapse { visibility: hidden; } */
   </style>
 </head>
@@ -343,7 +343,7 @@ inline 레벨 요소 뒤에 공백(엔터, 스페이스 등)이 있는 경우, �
       background-color: blue;
       color: white;
       opacity: 0.5;
-      transition: opacity 1s; 
+      transition: opacity 1s;
     }
     div:hover, img:hover {
       opacity: 1.0;
@@ -352,7 +352,7 @@ inline 레벨 요소 뒤에 공백(엔터, 스페이스 등)이 있는 경우, �
 </head>
 <body>
   <div>opacity: 0.5</div>
-  <img src="http://poiemaweb.com/img/doug.jpg" alt="doug">
+  <img src="https://poiemaweb.com/img/doug.jpg" alt="doug">
 </body>
 </html>
 ```

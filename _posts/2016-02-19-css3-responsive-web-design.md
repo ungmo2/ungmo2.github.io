@@ -153,7 +153,7 @@ viewport의 width 프로퍼티를 이용하여 viewport 너비에 따라 반응�
 /* Extra Small Devices, Phones : 480px ~ */
 @media only screen and (min-width : 480px) {
 
-}  
+}
 /* Small Devices, Tablets : 768px ~ */
 @media only screen and (min-width : 768px) {
 
@@ -235,7 +235,7 @@ viewport의 width 프로퍼티를 이용하여 viewport 너비에 따라 반응�
     * { color: black; }
     /* 가로 */
     /* Desktop의 화면은 가로화면(landscape)이므로 아래 rule이 적용된다. */
-    /* 
+    /*
     @media screen and (orientation: landscape) {
       { color: blue; }
     }
@@ -282,7 +282,7 @@ viewport의 width 프로퍼티를 이용하여 viewport 너비에 따라 반응�
     /* for smartphone: ~ 480px */
     @media screen and (max-width: 480px) {
 
-    }      
+    }
   </style>
 </head>
 ...
@@ -303,7 +303,7 @@ viewport의 width 프로퍼티를 이용하여 viewport 너비에 따라 반응�
 ```css
 /* for smartphone: ~ 480px */
 @media screen and (max-width: 480px) {
-}  
+}
 ```
 
 최대 viewport width를 480px로 한정하였다는 것은 화면 크기가 480px 이하인 디바이스(스마트폰)를 위한 정의란 의미가 된다. 위 예제 내에 정의 되는 스타일은 화면 크기가 480px 이하인 디바이스에서 웹사이트가 표시될 때 실행된다.
@@ -315,10 +315,10 @@ viewport의 width 프로퍼티를 이용하여 viewport 너비에 따라 반응�
 /* for Desktop: 801px ~ */
 
 /* for smartphone: ~ 480px */
-/* 
+/*
 Media Query는 기술 순서에 의미가 있다.
-만일 스마트폰용 스타일을 태블릿용 스타일보다 먼저 기술하면 최종적으로 태블릿용 스타일이 적용된다. 
-Non Mobile First Method의 경우, max-width의 값이 큰 것부터 기술하여 한다. 
+만일 스마트폰용 스타일을 태블릿용 스타일보다 먼저 기술하면 최종적으로 태블릿용 스타일이 적용된다.
+Non Mobile First Method의 경우, max-width의 값이 큰 것부터 기술하여 한다.
 */
 @media screen and (max-width: 480px) {
 
@@ -439,7 +439,7 @@ navigation icon의 style은 다음과 같이 정의한다.
 }
 ```
 
-navigation icon은 header 우측의 절대 위치에 배치되어야 하므로 `position: absolute;`를 지정한다. 
+navigation icon은 header 우측의 절대 위치에 배치되어야 하므로 `position: absolute;`를 지정한다.
 
 absolute 프로퍼티는 부모 요소 또는 가장 가까이 있는 조상 요소(static 제외)를 기준으로 좌표 프로퍼티(top, bottom, left, right)만큼 이동한다. 즉 relative, absolute, fixed 프로퍼티가 선언되어 있는 부모 또는 조상 요소를 기준으로 위치가 결정된다. 만일 부모 또는 조상 요소가 static인 경우, document body를 기준으로 하여 좌표 프로퍼티대로 위치하게 된다.
 
@@ -459,7 +459,7 @@ absolute 프로퍼티는 부모 요소 또는 가장 가까이 있는 조상 요
 ![res-layout-practice-4](/img/res-layout-practice-4.png)
 {: .w-100}
 
-위 그림과 같이 navigation icon의 내부 막대 1개가 표기된다.  
+위 그림과 같이 navigation icon의 내부 막대 1개가 표기된다.
 
 [가상 요소 선택자 (Pseudo-Element Selector)](./css3-selector#7-가상-클래스-셀렉터-pseudo-class-selector)를 사용하여 navigation icon의 내부 막대 앞뒤 공간에 내부 막대를 추가한다.
 
@@ -890,7 +890,7 @@ tablet용 layout에서 header height를 2배로 하였으므로 mobile용 layout
 <body>
   <div id="wrap">
     <header>
-      <a class="logo" href="#home"><img src="http://poiemaweb.com/img/logo.png"></a>
+      <a class="logo" href="#home"><img src="https://poiemaweb.com/img/logo.png"></a>
       <nav>
         <input class="nav-toggle" id="nav-toggle" type="checkbox">
         <label class="navicon" for="nav-toggle"><span class="navicon-bar"></span></label>
@@ -1306,7 +1306,7 @@ mobile layout을 작성한다. 480px 이하로 화면이 작아지면 고정 배
   <body>
     <div id="wrap">
       <header>
-        <a class="logo" href="#home"><img src="http://poiemaweb.com/img/logo.png"></a>
+        <a class="logo" href="#home"><img src="https://poiemaweb.com/img/logo.png"></a>
         <nav>
           <input class="nav-toggle" id="nav-toggle" type="checkbox">
           <label class="navicon" for="nav-toggle"><span class="navicon-bar"></span></label>

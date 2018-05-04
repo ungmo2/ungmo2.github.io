@@ -30,20 +30,20 @@ ES6에는 이터러블(iterable)과 이터레이터(iterator)를 정의한 이�
 
 ES6에서 제공하는 빌트인 이터러블은 아래와 같다. 아래의 객체들은 이터레이션 프로토콜을 준수하고 있으며 이터러이터를 반환한다.
 
-Array 
+Array
 : Array.prototype[Symbol.iterator]
 
-String 
+String
 : String.prototype[Symbol.iterator]
 
-Map 
+Map
 : Map.prototype[Symbol.iterator]
 
-Set 
+Set
 : Set.prototype[Symbol.iterator]
 
-DOM data structures 
-: NodeList.prototype[Symbol.iterator]  
+DOM data structures
+: NodeList.prototype[Symbol.iterator]
 HTMLCollection.prototype[Symbol.iterator]
 
 이터레이션 프로토콜은 이터레이터의 next() 메소드를 통해 다양한 데이터 소스에 순차적으로 접근할 수 있는 일관된 방법을 제시한다.
@@ -55,7 +55,7 @@ HTMLCollection.prototype[Symbol.iterator]
 const iterable = ['a', 'b', 'c'];
 
 // 이터레이터
-// 이터러블의 Symbol.iterator를 프로퍼티 key로 사용한 메소드는 이터레이터를 반환한다. 
+// 이터러블의 Symbol.iterator를 프로퍼티 key로 사용한 메소드는 이터레이터를 반환한다.
 const iterator = iterable[Symbol.iterator]();
 
 // 이터레이터는 순회 가능한 자료 구조인 이터러블의 요소를 탐색하기 위한 포인터로서 value, done 프로퍼티를 갖는 객체를 반환하는 next() 함수를 메소드로 갖는 객체이다. 이터레이터의 next() 메소드를 통해 이터러블 객체를 순회할 수 있다.
@@ -84,7 +84,7 @@ for (;;) {
 
 # 2. for-of 루프
 
-for-of 루프는 이터러블 객체를 순회한다. for-of 루프는 이터레이터의 next() 메소드를 호출하고 next() 메소드가 반환하는 객체의 done 프로퍼티가 true가 될 때까지 루핑한다. 
+for-of 루프는 이터러블 객체를 순회한다. for-of 루프는 이터레이터의 next() 메소드를 호출하고 next() 메소드가 반환하는 객체의 done 프로퍼티가 true가 될 때까지 루핑한다.
 
 ```javascript
 // 배열
@@ -110,7 +110,7 @@ for (const val of new Set([1, 2, 3])) {
 
 # 3. 커스텀 이터러블
 
-객체는 이터러블이 아니다. 하지만 이터레이션 프로토콜을 준수하여 이터러블 객체를 만들수 있다. 
+객체는 이터러블이 아니다. 하지만 이터레이션 프로토콜을 준수하여 이터러블 객체를 만들수 있다.
 
 피보나치 수열을 구현한 간단한 이터러블 객체를 만들어 보자. Symbol.iterator를 프로퍼티 key로 사용한 메소드를 구현하는 것에 의해 순회 가능한 자료 구조인 이터러블이 된다.
 
@@ -157,4 +157,4 @@ Symbol.iterator를 key로 사용한 메소드는 next() 함수를 프로퍼티�
 
 * [Iterables and iterators](http://exploringjs.com/es6/ch_iteration.html)
 
-* [심볼(Symbol)](http://poiemaweb.com/es6-symbol)
+* [심볼(Symbol)](./es6-symbol)

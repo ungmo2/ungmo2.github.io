@@ -153,8 +153,8 @@ child.sayHi();  // Hi! child
 
 * [ECMAScript 6](http://www.ecma-international.org/ecma-262/6.0/ECMA-262.pdf)
 
-* [Javascript Prototype](http://poiemaweb.com/js-prototype)
+* [Javascript Prototype](./js-prototype)
 
-* [Javascript OOP - 상속 (Inheritance)](http://poiemaweb.com/js-object-oriented-programming#5-상속-inheritance)
+* [Javascript OOP - 상속 (Inheritance)](./js-object-oriented-programming#5-상속-inheritance)
 
 

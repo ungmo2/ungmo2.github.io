@@ -476,10 +476,10 @@ text-overflow 프로퍼티에 설정할 수 있는 프로퍼티값은 아래와 
 <body>
   <h1>word-wrap</h1>
   <div>
-    Floccinaucinihilipilification http://poiemaweb.com/css3-font-text
+    Floccinaucinihilipilification https://poiemaweb.com/css3-font-text
   </div>
   <div class="word-wrap">
-    Floccinaucinihilipilification http://poiemaweb.com/css3-font-text
+    Floccinaucinihilipilification https://poiemaweb.com/css3-font-text
   </div>
 </body>
 </html>
@@ -514,17 +514,17 @@ text-overflow 프로퍼티에 설정할 수 있는 프로퍼티값은 아래와 
 </head>
 <body>
   <div>
-    Floccinaucinihilipilification http://poiemaweb.com/css3-font-text
+    Floccinaucinihilipilification https://poiemaweb.com/css3-font-text
   </div>
 
   <h1>word-wrap</h1>
   <div class="word-wrap">
-    Floccinaucinihilipilification http://poiemaweb.com/css3-font-text
+    Floccinaucinihilipilification https://poiemaweb.com/css3-font-text
   </div>
 
   <h1>word-break</h1>
   <div class="word-break">
-    Floccinaucinihilipilification http://poiemaweb.com/css3-font-text
+    Floccinaucinihilipilification https://poiemaweb.com/css3-font-text
   </div>
 </body>
 </html>

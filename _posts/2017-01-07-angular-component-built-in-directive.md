@@ -49,7 +49,7 @@ import { Component } from '@angular/core';
 export class AppComponent { }
 ```
 
-<!-- <iframe src="http://embed.plnkr.co/ObCeP8OmDzYcvTdEtDBO/?show=preview" frameborder="0" width="100%" height="400"></iframe> -->
+<!-- <iframe src="https://embed.plnkr.co/ObCeP8OmDzYcvTdEtDBO/?show=preview" frameborder="0" width="100%" height="400"></iframe> -->
 
 이전 버전인 AngularJS에는 70개 이상의 빌트인 디렉티브가 존재하였으나 컴포넌트 기반의 Angular 디렉티브는 단순화되어 아래와 같이 3가지 유형의 디렉티브를 제공한다.
 
@@ -226,7 +226,7 @@ export class AppComponent {
 
 <iframe src="https://stackblitz.com/edit/builtin-directive-ngstyle?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="800"></iframe>
 
-<!-- <iframe src="http://embed.plnkr.co/SlDSZfsOteIjuSCijD2h/?show=preview" frameborder="0" width="100%" height="400"></iframe> -->
+<!-- <iframe src="https://embed.plnkr.co/SlDSZfsOteIjuSCijD2h/?show=preview" frameborder="0" width="100%" height="400"></iframe> -->
 
 스타일 바인딩은 표현식을 바인딩한다. ngStyle 디렉티브는 객체를 바인딩할 수 있다.
 
@@ -342,7 +342,7 @@ export class AppComponent {
 ```
 
 <iframe src="https://stackblitz.com/edit/builtin-directive-ngif-2?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="700"></iframe>
-<!-- <iframe src="http://embed.plnkr.co/ty9JmDJ6rMFNpK7ijYUn/?show=preview" frameborder="0" width="100%" height="400"></iframe> -->
+<!-- <iframe src="https://embed.plnkr.co/ty9JmDJ6rMFNpK7ijYUn/?show=preview" frameborder="0" width="100%" height="400"></iframe> -->
 
 ## 3.2 ngFor
 

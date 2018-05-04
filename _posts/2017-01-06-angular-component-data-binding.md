@@ -434,7 +434,7 @@ export class AppComponent {
 
 <iframe src="https://stackblitz.com/edit/template-class-binding?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
-<!-- <iframe src="http://embed.plnkr.co/4HXnLnQ4lDRJGMomcg9z/?show=preview" frameborder="0" width="100%" height="400"></iframe> -->
+<!-- <iframe src="https://embed.plnkr.co/4HXnLnQ4lDRJGMomcg9z/?show=preview" frameborder="0" width="100%" height="400"></iframe> -->
 
 클래스 바인딩은 주로 하나의 클래스를 조건에 의해 추가 또는 삭제하는 용도로 사용한다. 여러개의 클래스를 지정할 경우에도 클래스 바인딩을 사용할 수 있으나 ngClass 디렉티브를 사용하면 좀더 세밀한 제어가 가능하다.
 

@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-Mozilla/5.0 (compatible; Yeti/1.1; +http://help.naver.com/robots/)
-Sitemap: http://poiemaweb.com/sitemap.xml
+Sitemap: https://poiemaweb.com/sitemap.xml

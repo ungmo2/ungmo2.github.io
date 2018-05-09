@@ -21,7 +21,7 @@ description: Angular는 SPA(Single Page Application) 개발을 위한 구글의 
 Angular 1 버전을 AngularJS, Angular 2 버전 이상을 Angular라 부른다
 {: .info}
 
-Angular는 AngularJS(version 1)의 후속 버전으로 2014년 ng 컨퍼런스에서 처음으로 소개되었다. 2016년 9월 14일 Angular 2 버전이 공개되었고 Angular 3을 뛰어 넘어 2017년 3월 23일 Angular 4, 2017년 11월 1일 Angular 5(pentagonal-donut), 2018년 5월 3일 Angular 6이 출시되었다. Angular는 AngularJS의 후속 버전이지만 호환성이 없을 뿐아니라 알파, 베타, RC(Release Candidate)를 거치며 이전 버전과 호환성이 없는 변경을 의미하는 브레이킹 체인지(Breaking Change)가 빈번하게 발생하여 많은 개발자를 혼란스럽게 하였다.
+Angular는 AngularJS(version 1)의 후속 버전으로 2014년 ng 컨퍼런스에서 처음으로 소개되었다. 2016년 9월 14일 Angular 2 버전이 공개되었고 Angular 3을 뛰어 넘어 2017년 3월 23일 Angular 4, 2017년 11월 1일 Angular 5(pentagonal-donut), 2018년 5월 3일 Angular 6이 출시되었다. Angular는 AngularJS의 후속 버전이지만 호환성이 없을 뿐아니라 알파, 베타, RC(Release Candidate)를 거치며 브레이킹 체인지(Breaking Change, 이전 버전과 호환성이 없는 변경)가 빈번하게 발생하여 많은 개발자를 혼란스럽게 하였다.
 
 하지만 2016년 10월 발표된 [Angular 버저닝과 출시 계획](http://angularjs.blogspot.kr/2016/10/versioning-and-releasing-angular.html)에 따르면 개발자의 부담이 적은 방향으로 계획적인 버전업이 이루어질 듯하다. [SemVer](http://semver.org/lang/ko/)를 도입하여 버전 체계를 메이저, 마이너, 패치로 명확히 구분하고, 6개월간 1회의 메이저 릴리스(호환성이 없는 브레이킹 체인지 포함), 3회의 마이너 릴리스(브레이킹 체인지가 없는 호환성이 있는 변경) 그리고 주 단위의 패치 릴리스(버그 수정)가 실시될 예정이다.
 

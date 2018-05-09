@@ -104,8 +104,10 @@ foo(1, 2); // { '0': 1, '1': 2 }
 ```javascript
 // ES5
 function sum() {
-  // 가변 인자 함수는 arguments 객체를 통해 인수를 전달받는다.
-  // 유사 배열 객체인 arguments 객체를 배열로 변환한다.
+  /*
+  가변 인자 함수는 arguments 객체를 통해 인수를 전달받는다.
+  유사 배열 객체인 arguments 객체를 배열로 변환한다.
+  */
   var array = Array.prototype.slice.call(arguments);
   return array.reduce(function (pre, cur) {
     return pre + cur;

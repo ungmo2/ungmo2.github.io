@@ -103,13 +103,11 @@ let list2: number[] = [1, 2, 3];
 let list3: Array<number> = [1, 2, 3]; // 제네릭 배열 타입
 
 // tuple : 고정된 요소수 만큼의 타입을 미리 선언후 배열을 표현
-// Declare a tuple type
-let x: [string, number];
-x = ['hello', 10]; // OK
-x = [10, 'hello']; // Error
-
-console.log(x[0].substr(1)); // OK
-console.log(x[1].substr(1)); // Error
+let tuple: [string, number];
+tuple = ['hello', 10]; // OK
+tuple = [10, 'hello']; // Error
+tuple = ['hello', 10, 'world', 100]; // Error
+tuple.push(true); // Error
 
 // enum : 열거형은 숫자값 집합에 이름을 지정한 것이다.
 enum Color1 {Red, Green, Blue};
@@ -150,11 +148,44 @@ function error(message: string): never {
 }
 ```
 
+타입은 소문자, 대문자를 구별하므로 주의가 필요하다. 위에서 살펴본 바와 같이 TypeScript가 기본 제공하는 타입은 모두 소문자이다. 아래 코드를 살펴보자.
+
+```typescript
+// string: 기본자료형 문자열 타입
+let primiteveStr: string;
+primiteveStr = 'hello'; // OK
+// 기본자료형 문자열 타입에 객체를 할당하였다.
+primiteveStr = new String('hello'); // Error
+/*
+Type 'String' is not assignable to type 'string'.
+'string' is a primitive, but 'String' is a wrapper object. Prefer using 'string' when possible.
+*/
+
+// String: String 생성자 함수로 생성된 String 래퍼 객체 타입
+let objectStr: String;
+objectStr = 'hello'; // OK
+objectStr = new String('hello'); // OK
+```
+
+string 타입은 TypeScript가 기본으로 제공하는 기본 자료형 문자열 타입을 의미한다. 하지만 대문자로 시작하는 String 타입은 String 생성자 함수로 생성된 String 래퍼 객체 타입을 의미한다. 따라서 string 타입에 String 타입을 할당하면 에러가 발생한다. 하지만 String 타입에는 string 타입을 할당할 수 있다. 이처럼 객체의 유형도 타입이 될 수 있다.
+
+```typescript
+// Date 타입
+const today: Date = new Date();
+
+// HTMLElement 타입
+const elem: HTMLElement = document.getElementById('myId');
+
+class Person { }
+// Person 타입
+const person: Person = new Person();
+```
+
 # 2. 정적 타이핑
 
 C나 Java같은 C-family 언어는 변수를 선언할 때 변수에 할당할 값의 타입에 따라 사전에 타입을 명시적으로 선언(Type declaration)하여야 하며 선언한 타입에 맞는 값을 할당해야 한다. 이를 정적 타이핑(Static Typing)이라 한다.
 
-자바스크립트는 동적 타입(dynamic typed) 언어 혹은 느슨한 타입(loosely typed) 언어이다. 이것은 변수의 타입 선언 없이 값이 할당되는 과정에서 동적으로 타입을 추론(타입추론 Type Inference)한다는 의미이다. 따라서 같은 변수에 여러 타입의 값을 교차하여 할당할 수 있다. 이를 동적 타이핑(Dynamic Typing)이라 한다.
+자바스크립트는 동적 타입(dynamic typed) 언어 혹은 느슨한 타입(loosely typed) 언어이다. 이것은 변수의 타입 선언 없이 값이 할당되는 과정에서 동적으로 타입을 추론(Type Inference)한다는 의미이다. 동적 타입 언어는 타입 추론에 의해 변수의 타입이 결정된 후에도 같은 변수에 여러 타입의 값을 교차하여 할당할 수 있다. 이를 동적 타이핑(Dynamic Typing)이라 한다.
 
 동적 타이핑은 사용하기 간편하지만 코드를 예측하기 힘들어 예상치 못한 오류를 만들 가능성이 높다. 또한 IDE와 같은 도구가 변수나 매개 변수, 함수의 반환값의 타입을 알 수 없어 코드 어시스트 등의 기능을 지원할 수 없게 한다.
 
@@ -182,7 +213,7 @@ foo = true;
 console.log(typeof foo);  // boolean
 ```
 
-TypeScript의 가장 독특한 특징은 <strong>정적 타이핑</strong>을 지원한다는 것이다. 즉, 타입을 선언할 수 있으며 잘못된 타입의 값이 할당 또는 반환되면 컴파일러는 이를 감지해 에러를 발생시킨다.
+TypeScript의 가장 독특한 특징은 <strong>정적 타이핑</strong>을 지원한다는 것이다. 정적 타입 언어는 타입을 명시적으로 선언하며, 타입이 결정된 후에는 타입을 변경할 수 없다. 잘못된 타입의 값이 할당 또는 반환되면 컴파일러는 이를 감지해 에러를 발생시킨다.
 
 ```typescript
 let foo: string,   // 문자열 타입
@@ -215,13 +246,13 @@ console.log(add('10', '10'));
 만약 타입 선언을 생략하면 값이 할당되는 과정에서 동적으로 타입이 결정된다. 이를 타입 추론(Type Inference)이라 한다.
 
 ```typescript
-let foo = 123; // let foo: number와 동치
+let foo = 123; // foo는 number 타입
 ```
 
-위 코드를 보면 변수 foo에 타입을 선언하지 않았으나 타입 추론에 의해 변수의 타입이 결정된다. 따라서 타입 추론으로 타입이 결정된 이후, 다른 타입의 값을 할당하면 에러가 발생한다.
+위 코드를 보면 변수 foo에 타입을 선언하지 않았으나 타입 추론에 의해 변수의 타입이 결정된다. 동적 타입 언어는 타입 추론에 의해 변수의 타입이 결정된 후에도 같은 변수에 여러 타입의 값을 교차하여 할당할 수 있다. 하지만 정적 타입 언어는 타입이 결정된 후에는 타입을 변경할 수 없다. TypeScript는 동적 타입 언어이므로 타입 추론으로 타입이 결정된 이후, 다른 타입의 값을 할당하면 에러가 발생한다.
 
 ```typescript
-let foo = 123; // let foo: number와 동치
+let foo = 123; // foo는 number 타입
 foo = 'hi';    // error: Type '"hi"' is not assignable to type 'number'.
 ```
 
@@ -239,4 +270,10 @@ console.log(typeof foo); // boolean
 
 # Reference
 
-* [TypeScript: Basic Types](http://www.typescriptlang.org/docs/handbook/basic-types.html)
+* [TypeScript Basic Types](http://www.typescriptlang.org/docs/handbook/basic-types.html)
+
+* [TypeScript Type Inference](https://www.typescriptlang.org/docs/handbook/type-inference.html)
+
+* [TypeScript Type Compatibility](https://www.typescriptlang.org/docs/handbook/type-compatibility.html)
+
+* [TypeScript Advanced Types](https://www.typescriptlang.org/docs/handbook/advanced-types.html)

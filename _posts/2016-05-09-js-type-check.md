@@ -83,7 +83,7 @@ Object.prototype.toString.call(document);       // [object HTMLDocument]
 Object.prototype.toString.call(undefined);      // [object Undefined]
 Object.prototype.toString.call();               // [object Undefined]
 Object.prototype.toString.call(null);           // [object Null]
-Object.prototype.toString.call(undeclared);    // ReferenceError
+Object.prototype.toString.call(undeclared);     // ReferenceError
 ```
 
 이것을 이용하여 타입을 반환하는 함수를 만들어보자.

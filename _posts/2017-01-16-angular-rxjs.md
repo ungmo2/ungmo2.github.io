@@ -277,7 +277,7 @@ export class ObservableEventHttpComponent implements OnInit, OnDestroy {
         // ③ debounceTime 오퍼레이터는 다음 이벤트를 즉시 발생시키지 않고 지정 시간만큼 지연시킨다.
         debounceTime(500),
         // ④ switchMap 오퍼레이터는 옵저버블을 받아서 새로운 옵저버블을 생성한다.
-        switchMap(userId => this.getGithubUser(userId))
+        switchMap((userId: string) => this.getGithubUser(userId))
       )
       // ⑥ 옵저버블을 subscribe 오퍼레이터로 구독하면 옵저버가 데이터 스트림을 사용할 수 있다.
       .subscribe(

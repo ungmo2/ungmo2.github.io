@@ -48,7 +48,7 @@ mongo-example
 local             0.000GB
 ```
 
-이 시점에서 mongo-example database는 아직 생성되지 않았다. 최소 한개 이상의 document를 추가하여야 database가 생성된다.
+이 시점에서 mongo-example database는 아직 생성되지 않았다. 최소 한 개 이상의 document를 추가하여야 database가 생성된다.
 
 `insert()` 메소드를 사용하여 collection에 document를 insert한다. 이때 collection books도 생성된다.
 
@@ -74,7 +74,7 @@ db.collection.insert(
 WriteResult({ "nInserted" : 1 })
 ```
 
-한번에 여러개의 document를 insert할 수 있다.
+한번에 여러 개의 document를 insert할 수 있다.
 
 ```bash
 > db.books.insert([

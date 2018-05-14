@@ -144,7 +144,7 @@ $family: unquote("Droid+Sans");
 @import url("http://fonts.googleapis.com/css?family=#{$family}");
 ```
 
-여러개의 파일로 분할하는 것 또는 분할된 파일을 **partial** 이라 하며 partial된 Sass 파일명의 선두에는 underscore(&#95;)를 붙인다. (&#95;reset.scss, &#95;module.scss, &#95;print.scss)
+여러 개의 파일로 분할하는 것 또는 분할된 파일을 **partial** 이라 하며 partial된 Sass 파일명의 선두에는 underscore(&#95;)를 붙인다. (&#95;reset.scss, &#95;module.scss, &#95;print.scss)
 
 예를 들어 "&#95;foo.scss"라는 partial된 Sass 파일이 있고 이 파일을 import하는 경우 아래와 같이 기술한다. 파일명 선두의 &#95;와 확장자는 생략할 수 있다.
 

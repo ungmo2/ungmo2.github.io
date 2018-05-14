@@ -123,7 +123,7 @@ me.setName('Kim');
 console.log(me.getName()); // Kim
 ```
 
-위 예제는 잘 동작한다. 하지만 이 예제는 문제가 많다. Person 생성자 함수로 여러개의 인스턴스를 생성해보자.
+위 예제는 잘 동작한다. 하지만 이 예제는 문제가 많다. Person 생성자 함수로 여러 개의 인스턴스를 생성해보자.
 
 ```javascript
 var me  = new Person('Lee');
@@ -684,7 +684,7 @@ console.log(me.__proto__ === Object.prototype); // true: 객체 리터럴 방식
 ![module pattern](/img/module_pattern_1.png)
 {: .w-450}
 
-반환된 객체가 함수 person의 프로토타입에 접근할 수 없다는 것은 person을 부모 객체로 상속할 수 없다는 것을 의미한다. <!-- 따라서 함수 person가 여러개의 객체를 반환할 경우 반환된 객체는 프로토타입 체인에 의해 프로토타입 객체의 메소드를 참조할 수 없으므로 메소드 setName, getName를 담은 객체가 중복되어 생성된다. -->
+반환된 객체가 함수 person의 프로토타입에 접근할 수 없다는 것은 person을 부모 객체로 상속할 수 없다는 것을 의미한다. <!-- 따라서 함수 person가 여러 개의 객체를 반환할 경우 반환된 객체는 프로토타입 체인에 의해 프로토타입 객체의 메소드를 참조할 수 없으므로 메소드 setName, getName를 담은 객체가 중복되어 생성된다. -->
 
 함수 person을 부모 객체로 상속할 수 없다는 것은 함수 person이 반환하는 객체에 모든 메소드를 포함시켜야한다는 것을 의미한다.
 
@@ -722,7 +722,7 @@ console.log(me.getName());
 
 <!-- IIFE(즉시호출함수표현식: Immediately Invoke Function Expression)가 동작하여 변수 Person에 F 생성자 함수가 할당되었다. 결국 new Person()과 new F()는 같은 의미가 된다. Person.prototype의 메소드 getName, setName은 클로저로서 private 변수(자유 변수)에 접근할 수 있다.
 
-그런데 위 예제도 문제가 있다. 모듈 패턴이 IIFE에 의해 반환한 생성자 함수는 유일한 함수 객체(Singleton)이다. IIFE은 단 한번만 실행되기 때문인데 그 결과 이 생성자 함수로 여러개의 객체를 생성했을 때 각 객체는 자유변수를 공유하게 된다. 즉, 상기 패턴은 단일 객체 생성에 적합하며 복수의 객체 생성에 적합하지 않다.
+그런데 위 예제도 문제가 있다. 모듈 패턴이 IIFE에 의해 반환한 생성자 함수는 유일한 함수 객체(Singleton)이다. IIFE은 단 한번만 실행되기 때문인데 그 결과 이 생성자 함수로 여러 개의 객체를 생성했을 때 각 객체는 자유변수를 공유하게 된다. 즉, 상기 패턴은 단일 객체 생성에 적합하며 복수의 객체 생성에 적합하지 않다.
 
 ```javascript
 me.setName('Lee')
@@ -739,7 +739,7 @@ console.log(me.getName());  // 'Park'
 <!--
 NOTE:
 아래 예제는 올바르지 않다...
-return new F()는 새로운 객체를 생성하여 반환하는데 여러개의 객체를 생성할 경우 각 객체의 __proto__은 별도 존재하게 된다.
+return new F()는 새로운 객체를 생성하여 반환하는데 여러 개의 객체를 생성할 경우 각 객체의 __proto__은 별도 존재하게 된다.
 
 console.log(me.__proto__ === you.__proto__); // false
 

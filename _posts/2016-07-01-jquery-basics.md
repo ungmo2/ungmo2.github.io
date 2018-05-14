@@ -68,9 +68,9 @@ jQuery의 설치가 완료되었으면 동작 확인을 위해 간단한 예제�
     <h1 id="main-heading">What is jQuery?</h1>
 
     <p>jQuery is the most popular JavaScript library.</p>
-    
+
     <h1>Why should you learn jQuery?</h1>
-    
+
     <p class="note">Note: jQuery functions use the DOM API (like <code>document.getElementById</code>).</p>
   </body>
 </html>
@@ -117,9 +117,9 @@ for (var i = 0; i < elem.length; i++) {
     <h1 id="main-heading">What is jQuery?</h1>
 
     <p>jQuery is the most popular JavaScript library.</p>
-    
+
     <h1>Why should you learn jQuery?</h1>
-    
+
     <p class="note">Note: jQuery functions use the DOM API (like <code>document.getElementById</code>).</p>
 
     <!-- CDN 방식으로 jQuery를 사용할 수도 있다. -->
@@ -173,7 +173,7 @@ jQuery() 함수의 인수로 CSS의 태그 선택자를 지정하였다. 이때 
 $('h1');
 ```
 
-jQuery() 함수에 의해 생성된 객체를 <strong>Matched set 또는 jQuery selection</strong>이라 한다. 이 객체에는 선택한 요소에 대한 참조가 저장되어 있는데 선택된 요소는 1개일수도, 여러개일 수도 있다. jQuery가 제공하는 프로퍼티와 메소드는 prototype 객체를 통해 접근할 수 있다.
+jQuery() 함수에 의해 생성된 객체를 <strong>Matched set 또는 jQuery selection</strong>이라 한다. 이 객체에는 선택한 요소에 대한 참조가 저장되어 있는데 선택된 요소는 1개일수도, 여러 개일 수도 있다. jQuery가 제공하는 프로퍼티와 메소드는 prototype 객체를 통해 접근할 수 있다.
 
 ```javascript
 $('h1').text();
@@ -185,7 +185,7 @@ text() 메소드는 jQuery 객체가 제공하는 메소드로 해당 요소(Mat
 $('h1').text('Hello!');
 ```
 
-이때 $('h1')에 의해 성성된 Matched set이 여러개의 요소를 담고 있을 때, jQuery는 반복문 없이 해당하는 모든 요소에 접근할 수 있다. 이를 묵시적 반복(implicit iteration)이라 한다.
+이때 $('h1')에 의해 성성된 Matched set이 여러 개의 요소를 담고 있을 때, jQuery는 반복문 없이 해당하는 모든 요소에 접근할 수 있다. 이를 묵시적 반복(implicit iteration)이라 한다.
 
 ## 3.2 HTML을 인수로 전달받을 때
 
@@ -238,9 +238,9 @@ console.log(test2); // foobar
     <h1 id="main-heading">What is jQuery?</h1>
 
     <p>jQuery is the most popular JavaScript library.</p>
-    
+
     <h1>Why should you learn jQuery?</h1>
-    
+
     <p class="note">Note: jQuery functions use the DOM API (like <code>document.getElementById</code>).</p>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -293,9 +293,9 @@ jQuery는 [CSS 스타일의 Selector](./css3-selector)를 이용하여 요소를
 
 자바스크립트의 [document.getElementsByClassName(class)](https://developer.mozilla.org/ko/docs/Web/API/Document/getElementsByClassName) 메소드 등을 사용하여 선택한 요소들(HTMLCollection)에 개별적으로 접근하기 위해서는 반복문을 사용하여야 한다.
 
-이때 getElementsByClassName 메소드가 반환하는 [HTMLCollection](./js-dom#32-여러개의-요소-노드-선택dom-query)이 실시간으로 Node의 상태 변경을 반영하기 때문에 경우에 따라(예를 들어 클래스명이 변경될 때) 반복문을 역방향으로 돌리는 등 번거로운 처리가 필요하다. jQuery는 반복문 없이 해당하는 모든 요소에 접근/조작할 수 있다. 이를 <strong>묵시적 반복(implicit iteration)</strong>이라 한다.
+이때 getElementsByClassName 메소드가 반환하는 [HTMLCollection](./js-dom#32-여러 개의-요소-노드-선택dom-query)이 실시간으로 Node의 상태 변경을 반영하기 때문에 경우에 따라(예를 들어 클래스명이 변경될 때) 반복문을 역방향으로 돌리는 등 번거로운 처리가 필요하다. jQuery는 반복문 없이 해당하는 모든 요소에 접근/조작할 수 있다. 이를 <strong>묵시적 반복(implicit iteration)</strong>이라 한다.
 
-여러개의 요소를 선택하여 본다. CSS 스타일의 Tag Selector를 사용하여 li 요소 3개를 선택하고 이 요소들의 텍스트를 일괄 변경한다.
+여러 개의 요소를 선택하여 본다. CSS 스타일의 Tag Selector를 사용하여 li 요소 3개를 선택하고 이 요소들의 텍스트를 일괄 변경한다.
 
 ```html
 <!DOCTYPE html>
@@ -511,7 +511,7 @@ id가 destinations인 ul 요소의 후손을 모두 선택한다.
 이외에도 다양한 요소 선택 방법이 있다. 자세한 내용은 [jQuery Selectors](http://api.jquery.com/category/selectors/)를 참조하기 바란다.
 
 Basics
-:  
+:
 - [*](https://api.jquery.com/all-selector/)
 - [.class](https://api.jquery.com/class-selector/)
 - [element](https://api.jquery.com/element-selector/)
@@ -519,14 +519,14 @@ Basics
 - [selector1, selectorN, ...](https://api.jquery.com/multiple-selector/)
 
 Hierarchy
-:  
+:
 - [parent &gt; child](https://api.jquery.com/child-selector/)
 - [ancestor descendant](https://api.jquery.com/descendant-selector/)
 - [prev + next](https://api.jquery.com/next-adjacent-Selector/)
 - [prev ~ siblings](https://api.jquery.com/next-siblings-selector/)
 
 Basic Filters
-:  
+:
 - [:animated](https://api.jquery.com/animated-selector/)
 - [:eq()](https://api.jquery.com/eq-selector/)
 - [:even](https://api.jquery.com/even-selector/)
@@ -542,19 +542,19 @@ Basic Filters
 - [:target](https://api.jquery.com/target-selector/)
 
 Content Filters
-:  
+:
 - [:contains()](https://api.jquery.com/contains-selector/)
 - [:empty](https://api.jquery.com/empty-selector/)
 - [:has()](https://api.jquery.com/has-selector/)
 - [:parent](https://api.jquery.com/parent-selector/)
 
 Visibility Filters
-:  
+:
 - [:hidden](https://api.jquery.com/hidden-selector/)
 - [:visible](https://api.jquery.com/visible-selector/)
 
 Attribute
-:  
+:
 - [[name\|="value"]](https://api.jquery.com/attribute-contains-prefix-selector/)
 - [[name*="value"]](https://api.jquery.com/attribute-contains-selector/)
 - [[name~="value"]](https://api.jquery.com/attribute-contains-word-selector/)
@@ -566,7 +566,7 @@ Attribute
 - [[name="value"][name2="value2"]](https://api.jquery.com/multiple-attribute-selector/)
 
 Child Filters
-:  
+:
 - [:first-child](https://api.jquery.com/first-child-selector/)
 - [:first-of-type](https://api.jquery.com/first-of-type-selector/)
 - [:last-child](https://api.jquery.com/last-child-selector/)
@@ -579,7 +579,7 @@ Child Filters
 - [:only-of-type()](https://api.jquery.com/only-of-type-selector/)
 
 Forms
-:  
+:
 - [:button](https://api.jquery.com/button-selector/)
 - [:checkbox](https://api.jquery.com/checkbox-selector/)
 - [:checked](https://api.jquery.com/checked-selector/)
@@ -645,7 +645,7 @@ Traversing의 예를 들어보자.
 Traversing 관련 메소드는 [jQuery Traversing](http://api.jquery.com/category/traversing/)을 참조하기 바란다.
 
 Filtering
-:  
+:
 - [.eq()](https://api.jquery.com/eq/)
 - [.filter()](https://api.jquery.com/filter/)
 - [.first()](https://api.jquery.com/first/)
@@ -657,7 +657,7 @@ Filtering
 - [.slice()](https://api.jquery.com/slice/)
 
 Miscellaneous Traversing
-:  
+:
 - [.add()](https://api.jquery.com/add/)
 - [.addBack()](https://api.jquery.com/addBack/)
 - [.andSelf()](https://api.jquery.com/andSelf/)
@@ -666,7 +666,7 @@ Miscellaneous Traversing
 - [.end()](https://api.jquery.com/end/)
 
 Tree Traversal
-:  
+:
 - [.children()](https://api.jquery.com/children/)
 - [.closest()](https://api.jquery.com/closest/)
 - [.find()](https://api.jquery.com/find/)
@@ -764,17 +764,17 @@ DOM에 콘텐츠를 삽입할 때, 위치를 지정할 수 있다. 이때 사용
 Manipulation 관련 메소드는 [jQuery Manipulation](https://api.jquery.com/category/manipulation/)을 참조하기 바란다.
 
 Copying
-:  
+:
 - [.clone()](https://api.jquery.com/clone/)
 
 DOM Insertion, Around
-:  
+:
 - [.wrap()](https://api.jquery.com/wrap/)
 - [.wrapAll()](https://api.jquery.com/wrapAll/)
 - [.wrapInner()](https://api.jquery.com/wrapInner/)
 
 DOM Insertion, Inside
-:  
+:
 - [.append()](https://api.jquery.com/append/)
 - [.appendTo()](https://api.jquery.com/appendTo/)
 - [.html()](https://api.jquery.com/html/)
@@ -783,21 +783,21 @@ DOM Insertion, Inside
 - [.text()](https://api.jquery.com/text/)
 
 DOM Insertion, Outside
-:  
+:
 - [.after()](https://api.jquery.com/after/)
 - [.before()](https://api.jquery.com/before/)
 - [.insertAfter()](https://api.jquery.com/insertAfter/)
 - [.insertBefore()](https://api.jquery.com/insertBefore/)
 
 DOM Removal
-:  
+:
 - [.detach()](https://api.jquery.com/detach/)
 - [.empty()](https://api.jquery.com/empty/)
 - [.remove()](https://api.jquery.com/remove/)
 - [.unwrap()](https://api.jquery.com/unwrap/)
 
 DOM Replacement
-:  
+:
 - [.replaceAll()](https://api.jquery.com/replaceAll/)
 - [.replaceWith()](https://api.jquery.com/replaceWith/)
 
@@ -806,7 +806,7 @@ DOM Replacement
 CSS와 요소의 속성에 관련된 메소드는 다음을 참조하기 바란다.
 
 Attributes
-:  
+:
 - [.attr()](https://api.jquery.com/attr/)
 - [.prop()](https://api.jquery.com/prop/)
 - [.removeAttr()](https://api.jquery.com/removeAttr/)
@@ -814,7 +814,7 @@ Attributes
 - [.val()](https://api.jquery.com/val/)
 
 CSS
-:  
+:
 - [.addClass()](https://api.jquery.com/addClass/)
 - [.css()](https://api.jquery.com/css/)
 - [jQuery.cssHooks](https://api.jquery.com/jQuery.cssHooks/)
@@ -825,7 +825,7 @@ CSS
 - [.toggleClass()](https://api.jquery.com/toggleClass/)
 
 Dimensions
-:  
+:
 - [.height()](https://api.jquery.com/height/)
 - [.innerHeight()](https://api.jquery.com/innerHeight/)
 - [.innerWidth()](https://api.jquery.com/innerWidth/)
@@ -834,7 +834,7 @@ Dimensions
 - [.width()](https://api.jquery.com/width/)
 
 Offset
-:  
+:
 - [.offset()](https://api.jquery.com/offset/)
 - [.offsetParent()](https://api.jquery.com/offsetParent/)
 - [.position()](https://api.jquery.com/position/)
@@ -842,7 +842,7 @@ Offset
 - [.scrollTop()](https://api.jquery.com/scrollTop/)
 
 Data
-:  
+:
 - [jQuery.data()](https://api.jquery.com/jQuery.data/)
 - [.data()](https://api.jquery.com/data/)
 - [jQuery.hasData()](https://api.jquery.com/jQuery.hasData/)
@@ -894,7 +894,7 @@ Data
 
 <div class="result"></div>
 
-위 코드는 제대로 동작한다. 하지만 버튼 요소가 여러개 있을 경우, 모든 버튼 요소가 제거된다.
+위 코드는 제대로 동작한다. 하지만 버튼 요소가 여러 개 있을 경우, 모든 버튼 요소가 제거된다.
 
 ```html
 <!DOCTYPE html>
@@ -1047,19 +1047,19 @@ closest() 메소드는 매치드셋과 가장 근접한 상위 요소를 반환�
 Event 관련 메소드는 [jQuery Event](https://api.jquery.com/category/events/)을 참조하기 바란다.
 
 Browser Events
-:  
+:
 - [.error()](https://api.jquery.com/error/)
 - [.resize()](https://api.jquery.com/resize/)
 - [.scroll()](https://api.jquery.com/scroll/)
 
 Document Loading
-:  
+:
 - [.load()](https://api.jquery.com/load-event/)
 - [.ready()](https://api.jquery.com/ready/)
 - [.unload()](https://api.jquery.com/unload/)
 
 Event Handler Attachment
-:  
+:
 - [.bind()](https://api.jquery.com/bind/)
 - [.delegate()](https://api.jquery.com/delegate/)
 - [.die()](https://api.jquery.com/die/)
@@ -1073,7 +1073,7 @@ Event Handler Attachment
 - [.undelegate()](https://api.jquery.com/undelegate/)
 
 Form Events
-:  
+:
 - [.blur()](https://api.jquery.com/blur/)
 - [.change()](https://api.jquery.com/change/)
 - [.focus()](https://api.jquery.com/focus/)
@@ -1083,13 +1083,13 @@ Form Events
 - [.submit()](https://api.jquery.com/submit/)
 
 Keyboard Events
-:  
+:
 - [.keydown()](https://api.jquery.com/keydown/)
 - [.keypress()](https://api.jquery.com/keypress/)
 - [.keyup()](https://api.jquery.com/keyup/)
 
 Mouse Events
-:  
+:
 - [.click()](https://api.jquery.com/click/)
 - [.contextMenu()](https://api.jquery.com/contextmenu/)
 - [.dblclick()](https://api.jquery.com/dblclick/)
@@ -1104,7 +1104,7 @@ Mouse Events
 - [.toggle()](https://api.jquery.com/toggle-event/)
 
 Event Object
-:  
+:
 - [event.currentTarget](https://api.jquery.com/event.currentTarget/)
 - [event.delegateTarget](https://api.jquery.com/event.delegateTarget/)
 - [event.data](https://api.jquery.com/event.data/)

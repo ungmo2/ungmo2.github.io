@@ -27,7 +27,7 @@ asyncFunc(param, function(result) {
 
 - [동기식 처리 모델(Synchronous processing model) vs 비동기식 처리 모델(Asynchronous processing model)](./jquery-ajax-json#vs-)
 
-비동기 처리 모델은 요청을 병렬로 처리하여 다른 요청이 blocking(작업 중단)되는 것을 막아주는 장점이 있지만 단점도 가지고 있는데 그것은 여러개의 콜백함수가 nesting되어 복잡도가 높아지는 <strong>Callback Hell</strong>이다.
+비동기 처리 모델은 요청을 병렬로 처리하여 다른 요청이 blocking(작업 중단)되는 것을 막아주는 장점이 있지만 단점도 가지고 있는데 그것은 여러 개의 콜백함수가 nesting되어 복잡도가 높아지는 <strong>Callback Hell</strong>이다.
 
 ![callback hell](./img/callback-hell.png)
 
@@ -97,7 +97,7 @@ jQuery Deferred는 각각의 비동기식 처리에 Promise 객체를 연계하�
 
 jQuery Deferred에서 각각의 비동기식 처리를 Deferred 객체로 wrapping한다. Deferred 객체는 상태를 가지고 있는데 이는 비동기식 처리의 상태가 변경되는 시점에 특정 함수(resolve(), reject())를 호출하여 Deferred 객체에 상태를 부여하기 때문이다. [deferred.state()](https://api.jquery.com/deferred.state/)로 상태를 확인할 수 있다.
 
-Deferred object state (Deferred.state()의 반환값)  
+Deferred object state (Deferred.state()의 반환값)
 : 1. pending  : 처리 중
   2. resolved : 처리 성공
   3. rejected : 처리 실패
@@ -252,7 +252,7 @@ var jqxhr = $.ajax("/example")
 
 jqxhr.always(function() {
   alert("second complete");
-});  
+});
 ```
 
 # Reference

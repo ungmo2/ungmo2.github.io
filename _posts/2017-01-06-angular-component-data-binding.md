@@ -36,7 +36,7 @@ jQuery에 의한 DOM 조작(Procedural programming)
 데이터 바인딩에 의한 템플릿과 컴포넌트 클래스의 연결(Declarative programming)
 {: .desc-img}
 
-위의 예제의 경우, 템플릿에서 직접 컴포넌트 클래스의 프로퍼티를 참조하기 때문에 DOM에 접근하고 조작하는 코드를 작성할 필요가 없다. 따라서 컴포넌트 클래스는 DOM의 구조를 파악하고 있을 필요가 없으며 템플릿이 변경되어도 컴포넌트 클래스를 변경할 필요가 없다. 예를 들어 h1 요소가 p 요소로 변경되어도 컴포넌트 클래스는 변경이 필요없다.
+위의 예제의 경우, 템플릿에서 직접 컴포넌트 클래스의 프로퍼티를 참조하기 때문에 DOM에 접근하고 조작하는 코드를 작성할 필요가 없다. 따라서 컴포넌트 클래스는 DOM의 구조를 파악하고 있을 필요가 없으며 템플릿이 변경되어도 컴포넌트 클래스를 변경할 필요가 없다. 예를 들어 h1 요소가 p 요소로 변경되어도 컴포넌트 클래스는 변경이 필요 없다.
 
 Angular의 데이터 바인딩은 뷰와 모델의 관계를 기존의 웹 애플리케이션 방식보다 느슨하게 결합하므로 뷰와 모델을 보다 깔끔하게 분리할 수 있을 뿐만 아니라 기존의 웹 애플리케이션 개발 방식보다 간결한 코드로 개발이 가능하다.
 
@@ -51,14 +51,14 @@ AngularJS는 양방향 바인딩(Two-way binding)만을 지원하였고 AngularJ
 
 변화 감지의 작동 원리에 대해 간단히 살펴보자.
 
-뷰의 변화 감지는 DOM 이벤트를 캐치하는 것으로 감지할 수 있다. 하지만 모델은 HTML 요소가 아니므로 이벤트가 발생하지 않는다. 따라서 모델의 변화 감지를 위해서는 별도의 조치가 필요하다. 모델이 변경된다는 것은 컴포넌트 클래스의 프로퍼티 값이 변경되는 것을 의미한다.
+뷰의 상태 변화는 DOM 이벤트를 캐치하는 것으로 감지할 수 있다. 하지만 모델은 HTML 요소가 아니므로 이벤트가 발생하지 않는다. 따라서 모델의 변화 감지를 위해서는 별도의 조치가 필요하다. 모델이 변경된다는 것은 컴포넌트 클래스의 프로퍼티 값이 변경되는 것을 의미한다.
 
 ![change detection](./img/change-detection.png)
 
 변화 감지
 {: .desc-img}
 
-위 예제에서 클릭 이벤트 핸들러에 의해 컴포넌트 클래스의 name 프로퍼티 값이 변화하였다. 이와 같이 컴포넌트 클래스의 프로퍼티 값이 변경되는 상황 즉, 어떤 경우 모델이 변화하는지에 Angular는 주목한다.
+위 예제에서 클릭 이벤트에 의해 컴포넌트 클래스의 name 프로퍼티 값이 변화하였다. 이와 같이 컴포넌트 클래스의 프로퍼티 값이 변경되는 상황, 즉 어떤 경우 모델이 변화하는지에 Angular는 주목한다.
 
 사실 모델이 변화할 가능성이 있는 경우는 그다지 많지 않다.
 
@@ -68,7 +68,7 @@ AngularJS는 양방향 바인딩(Two-way binding)만을 지원하였고 AngularJ
 
 - Ajax 통신 / Promise
 
-위와 같은 <strong>비동기식 처리</strong>가 수행될 때 컴포넌트 클래스의 데이터가 변경될 수 있다. 변화 감지는 모델이 변화할 수 있는 이러한 상황들을 감시한다.
+위와 같은 <strong>비동기 처리</strong>가 수행될 때 컴포넌트 클래스의 데이터가 변경될 수 있다. 변화 감지는 모델이 변화할 수 있는 이러한 상황들을 감시한다.
 
 이를 위해 zone.js는 addEventListener, Timer 함수, XMLHttpRequest, Promise 등을 [몽키패치](https://en.wikipedia.org/wiki/Monkey_patch)한다.
 
@@ -124,17 +124,17 @@ Angular는 아래와 같이 7가지 데이터 바인딩을 제공한다.
 | 클래스 바인딩       | 컴포넌트 클래스 ⟹ 템플릿 | [class.class-name]="expression"
 | 스타일 바인딩       | 컴포넌트 클래스 ⟹ 템플릿 | [style.style-name]="expression"
 | 이벤트 바인딩       | 컴포넌트 클래스 ⟸ 템플릿 | (event)="statement"
-| 양방향 데이터 바인딩  | 컴포넌트 클래스 ⟺ 템플릿 | [(ngModel)]="variable"
+| 양방향 데이터 바인딩  | 컴포넌트 클래스 ⟺ 템플릿 | [(ngModel)]="property"
 
 ## 3.1 인터폴레이션(Interpolation)
 
-표현식을 두개의 중괄호로 열고 닫은 형식을 인터폴레이션이라 한다. 인터폴레이션은 단방향 바인딩(One-way binding)에 사용되는 템플릿 문법으로 표현식의 평가 결과를 문자열로 변환하여 템플릿에 바인딩한다.
+표현식을 두 개의 중괄호로 열고닫은 형식을 인터폴레이션이라 한다. 인터폴레이션은 단방향 데이터 바인딩에 사용되는 템플릿 문법으로 표현식의 평가 결과를 문자열로 변환하여 템플릿에 바인딩한다.
 
 ```html
 {{ "{{ expression " }}}}
 ```
 
-표현식(Expression)은 값, 변수, 연산자의 조합이며 이 조합은 연산을 통해 하나의 값을 만든다. 즉 표현식은 하나의 값으로 평가될 수 있는 식이다. 템플릿에서 사용하는 표현식에는 대입연산자(=, +=, -=), 증감 연산자(++, \-\-), 비트 연산자(\|, &), 객체 생성 연산자(new)와 같이 템플릿에서 컴포넌트 클래스의 프로퍼티를 변경할 있는 연산은 금지된다. 이는 인터폴레이션 뿐만 아니라 템플릿에서 사용하는 모든 표현식에 적용된다.
+표현식(Expression)은 값, 변수, 연산자의 조합이며 이 조합은 연산을 통해 하나의 값을 만든다. 즉 표현식은 하나의 값으로 평가될 수 있는 식이다. 템플릿에서 사용하는 표현식에는 대입 연산자(=, +=, -=), 증감 연산자(++, \-\-), 비트 연산자(\|, &), 객체 생성 연산자(new)와 같이 템플릿에서 컴포넌트 클래스의 프로퍼티를 변경할 있는 연산은 금지된다. 이는 인터폴레이션 뿐만 아니라 템플릿에서 사용하는 모든 표현식에 적용된다.
 {: .info}
 
 인터폴레이션의 사용 예는 아래와 같다.
@@ -170,19 +170,19 @@ export class AppComponent {
 }
 ```
 
-컴포넌트 클래스의 프로퍼티가 문자열이 아닌 경우 문자열로 변환되며 존재하지 않는 프로퍼티에 접근하는 경우 에러 발생없이 아무것도 출력하지 않는다.
+컴포넌트 클래스의 프로퍼티가 문자열이 아닌 경우 문자열로 변환되며 존재하지 않는 프로퍼티에 접근하는 경우(위 예제의 gender) 에러 발생 없이 아무것도 출력하지 않는다.
 
 <iframe src="https://stackblitz.com/edit/template-interpolation?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 ## 3.2 프로퍼티 바인딩(Property binding)
 
-프로퍼티 바인딩은 컴포넌트 클래스의 프로퍼티와 템플릿 간의 단방향 바인딩(One-way binding)에 사용되는 템플릿 문법으로 표현식의 평가 결과를 HTML 요소의 DOM 프로퍼티에 바인딩한다.
+프로퍼티 바인딩은 컴포넌트 클래스의 프로퍼티와 템플릿 간의 단방향 데이터 바인딩에 사용되는 템플릿 문법으로 표현식의 평가 결과를 HTML 요소의 DOM 프로퍼티에 바인딩한다.
 
 ```html
 <element [property]="expression">...</element>
 ```
 
-DOM 프로퍼티는 HTML 요소의 어트리뷰트(Attribute)와는 다른 것이다. 브라우저는 HTML 문서를 파싱하고 DOM 트리로 변환하여 메모리에 적재한다. 이때 HTML 요소는 DOM 노드 객체로, HTML 어트리뷰트는 DOM 노드 객체의 프로퍼티가 된다. DOM 프로퍼티는 DOM 노드 객체가 갖는 프로퍼티를 말하며, HTML 어트리뷰트는 HTML 요소가 갖는 어트리뷰트(속성)을 말한다. 아래의 '어트리뷰트 바인딩'에서 자세히 살펴볼 것이다.
+DOM 프로퍼티(Property)는 HTML 요소의 어트리뷰트(Attribute)와는 다른 것이다. 브라우저는 HTML 문서를 파싱하고 DOM 트리로 변환하여 메모리에 적재한다. 이때 HTML 요소는 DOM 노드 객체로, HTML 어트리뷰트는 DOM 노드 객체의 프로퍼티가 된다. DOM 프로퍼티는 DOM 노드 객체가 갖는 프로퍼티를 말하며, HTML 어트리뷰트는 HTML 요소가 갖는 어트리뷰트(속성)을 말한다. 아래의 '어트리뷰트 바인딩'에서 자세히 살펴볼 것이다.
 {: .info}
 
 프로퍼티 바인딩의 사용 예는 아래와 같다.
@@ -193,16 +193,16 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `
-    <!-- value 프로퍼티에 컴포넌트 클래스의 name을 프로퍼티 바인딩 -->
+    <!-- input 요소의 value 프로퍼티에 컴포넌트 클래스의 name 프로퍼티 값을 프로퍼티 바인딩 -->
     <input type="text" [value]="name">
 
-    <!-- innerHTML 프로퍼티에 컴포넌트 클래스의 contents를 프로퍼티 바인딩 -->
+    <!-- p 요소의 innerHTML 프로퍼티에 컴포넌트 클래스의 contents 프로퍼티 값을 프로퍼티 바인딩 -->
     <p [innerHTML]="contents"></p>
 
-    <!-- src 프로퍼티에 컴포넌트 클래스의 imageUrl을 프로퍼티 바인딩 -->
+    <!-- img 요소의 src 프로퍼티에 컴포넌트 클래스의 imageUrl 프로퍼티 값을 프로퍼티 바인딩 -->
     <img [src]="imageUrl"><br>
 
-    <!-- disabled 프로퍼티에 컴포넌트 클래스의 isUnchanged를 프로퍼티 바인딩 -->
+    <!-- button 요소의 disabled 프로퍼티에 컴포넌트 클래스의 isUnchanged 프로퍼티 값을 프로퍼티 바인딩 -->
     <button [disabled]="isDisabled">disabled button</button>
   `
 })
@@ -220,46 +220,44 @@ export class AppComponent {
 
 ```html
 <p>{{ "{{ contents " }}}}</p>
-<input type="text" value="{{ "{{ name " }}}}">
 ```
 
-Angular는 렌더링 이전에 인터폴레이션을 프로퍼티 바인딩으로 변환한다. 사실 인터폴레이션은 프로퍼티 바인딩의 Syntactic sugar인 것이다. 위 코드는 아래의 코드와 동일하게 동작한다.
+Angular는 뷰를 렌더링하기 이전에 인터폴레이션을 프로퍼티 바인딩으로 변환한다. 사실 인터폴레이션은 프로퍼티 바인딩의 Syntactic sugar인 것이다. 위 코드는 아래의 코드와 동일하게 동작한다.
 
 ```html
 <p [innerHTML]="contents"></p>
-<input type="text" [value]="name">
 ```
 
 프로퍼티 바인딩에는 객체를 포함한 모든 값을 사용할 수 있다. DOM 노드 객체의 프로퍼티에는 객체를 포함한 모든 값을 할당할 수 있기 때문이다. 이 특성을 이용하여 부모 컴포넌트에서 자식 컴포넌트로 값을 전달하는 경우 프로퍼티 바인딩을 사용한다. 이에 대해서는 [컴포넌트 간의 상태 공유](./angular-component-interaction)에서 자세히 다룬다.
 
 ## 3.3 어트리뷰트 바인딩(Attribute binding)
 
-어트리뷰트 바인딩은 컴포넌트 클래스의 프로퍼티와 템플릿 간의 단방향 바인딩(One-way binding)에 사용되는 템플릿 문법으로 표현식의 평가 결과를 HTML 어트리뷰트에 바인딩한다.
+어트리뷰트 바인딩은 컴포넌트 클래스의 프로퍼티와 템플릿 간의 단방향 데이터 바인딩에 사용되는 템플릿 문법으로 표현식의 평가 결과를 HTML 어트리뷰트에 바인딩한다.
 
 ```html
 <element [attr.attribute-name]="expression">...</element>
 ```
 
-앞에서 살펴본 프로퍼티 바인딩과 차이점을 이해하기 위해서 HTML 어트리뷰트(attribute)와 DOM 프로퍼티(property)에 대해서 알아보도록 하자. 어트리뷰트와 프로퍼티는 모두 속성으로 변역되어 같은 것으로 오해할 수 있으나 이들은 서로 다른 것이다. 바인딩이 동작하는 방식을 이해하기 위해서는 HTML의 어트리뷰트와 프로퍼티의 차이를 파악하는 것이 중요하다.
+앞에서 살펴본 프로퍼티 바인딩과 차이점을 이해하기 위해서 HTML 어트리뷰트(attribute)와 DOM 프로퍼티(property)에 대해서 알아보도록 하자. 바인딩이 동작하는 방식을 이해하기 위해서는 HTML의 어트리뷰트와 프로퍼티의 차이를 파악하는 것이 중요하다. 어트리뷰트와 프로퍼티는 모두 속성으로 변역되어 같은 것으로 오해할 수 있으나 이들은 서로 다른 것이다. 어트리뷰트는 HTML 문서에 존재하는 것으로 어트리뷰트의 값은 변하지 않는다. 프로퍼티는 DOM 노드 객체에 있는 것으로 동적으로 변한다.
 
-브라우저는 HTML 문서를 파싱하여 DOM 트리로 변환하고 메모리에 적재한다. 이때 HTML 요소는 DOM 노드 객체로, HTML 어트리뷰트는 DOM 노드 객체의 프로퍼티로 변환된다. HTML 어트리뷰트의 값은 언제나 문자열이지만 DOM 프로퍼티는 객체를 비롯하여 모든 값을 가질 수 있다. 주의하여야 할 것은 어트리뷰트와 프로퍼티가 언제나 1:1로 매핑되는 것은 아니라는 것이다. 예를 들어 살펴보자.
+브라우저는 HTML 문서를 파싱하여 DOM 트리로 변환하고 메모리에 적재한다. 이때 HTML 요소는 DOM 노드 객체로, HTML 어트리뷰트는 DOM 노드 객체의 프로퍼티로 변환된다.
 
-- id 어트리뷰트와 id 프로퍼티와 1:1 매핑한다.
-- class 어트리뷰트는 classList 프로퍼티로 변환된다.
-- td 요소의 colspan 어트리뷰트의 경우, 매핑하는 프로퍼티가 존재하지 않는다.
-- [textContent](https://developer.mozilla.org/ko/docs/Web/API/Node/textContent) 프로퍼티의 경우, 대응하는 어트리뷰트가 존재하지 않는다.
-- input 요소의 value 어트리뷰트는 value 프로퍼티와 1:1 매핑하지만 서로 다르게 동작한다.
+![브라우저 동작 원리](./img/client-server.png)
+{: .w-700}
 
-아래의 input 요소는 3개의 어트리뷰트를 가지고 있다.
+브라우저 동작 원리
+{: .desc-img}
+
+예를 들어 아래의 input 요소는 3개의 어트리뷰트를 가지고 있다.
 
 ```html
 <input id="user" type="text" value="ungmo2">
 ```
 
-브라우저가 위의 코드를 파싱하면 DOM 노드 객체 HTMLInputElement가 생성되고 이 객체는 다양한 프로퍼티를 소유한다. input 요소의 모든 어트리뷰트는 HTMLInputElement 객체의 attributes 프로퍼티로 변환되고 이것은 getAttribute()로 취득 가능하다.
+브라우저가 위의 코드를 파싱하면 DOM 노드 객체 HTMLInputElement가 생성되고 이 객체는 다양한 프로퍼티를 소유한다. input 요소의 모든 어트리뷰트는 HTMLInputElement 객체의 `attributes` 프로퍼티로 변환되고 이것은 getAttribute 메소드로 취득 가능하다.
 
 ```javascript
-document.getElementById('user').getAttribute('value') // ungmo2
+document.getElementById('user').getAttribute('value'); // ungmo2
 ```
 
 ![html attributes](./img/html-attributes.png)
@@ -267,9 +265,29 @@ document.getElementById('user').getAttribute('value') // ungmo2
 HTMLInputElement 객체의 attributes 프로퍼티
 {: .desc-img}
 
-id 어트리뷰트는 id 프로퍼티와 1:1 매핑하므로 DOM 노드 객체 HTMLInputElement에는 id 프로퍼티가 생성되고 id 어트리뷰트의 값 'user'가 할당된다. 하지만 value 어트리뷰트는 value 프로퍼티와 1:1 매핑하지만 서로 다르게 동작한다. DOM 노드 객체에 value 프로퍼티가 생성되고 value 어트리뷰트의 값 'ungmo2'가 할당된다. 여기까지는 1:1 매핑하는 id 어트리뷰트와 동일하지만 사용자에 의해 input 요소에 새로운 값이 입력되면 다르게 동작하기 시작한다. 만약 사용자에 의해 "lee"가 입력되면 DOM 노드 객체의 value 프로퍼티는 "lee"로 변경된다. 하지만 value 어트리뷰트는 초기값 "ungmo2"인 상태에서 변경되지 않는다. 이는 HTML 요소가 DOM 노드 객체로 변환된 이후에 HTML 요소의 어트리뷰트는 변하지 않기 때문이다. 하지만 DOM 프로퍼티는 언제든지 바뀔 수 있다. 즉 value의 경우, 어트리뷰트는 DOM 프로퍼티의 초기값을 의미하며 DOM 프로퍼티는 현재값을 의미한다.
+DOM 노드 객체의 `attributes` 프로퍼티는 HTML 어트리뷰트의 값을 가지며 그 값은 결코 변하지 않는다. HTML 어트리뷰트는 원래 변하지 않는 초기 기본값을 나타내기 때문이다. 위 input 요소의 value 어트리뷰트는 input 요소의 초기 기본값을 설정한 것으로 사용자의 입력에 의해 상태가 변경된다 하더라도 value 어트리뷰트의 값은 변경되지 않는다. 즉, DOM 노드 객체의 `attributes` 프로퍼티 값 또한 변경되지 않는다.
 
-지금까지 알아본 DOM 프로퍼티와 HTML 어트리뷰트를 차이점을 바탕으로 Angular는 아래의 코드를 어떻게 HTML로 출력할 것인지 예측하여 보자.
+하지만 DOM은 상태(예를 들어 input 요소에 값을 입력한 상태 또는 checkbox 요소를 체크한 상태)를 가지고 있으며 이 상태는 변화하는 살아있는 것이다. 따라서 DOM 노드 객체는 상태 변화를 관리하기 위한 프로퍼티를 갖는다. 예를 들어 input 요소는 입력값의 상태를 관리하기 위해 value 프로퍼티를 갖는다. 이 value 프로퍼티는 HTML 어트리뷰트의 고정된 값을 관리하는 attributes 프로퍼티와는 달리 상태 변화에 반응한다.
+
+```javascript
+// HTMLInputElement.attributes.value의 값을 취득한다. 결과는 언제나 동일하다.
+document.getElementById('user').getAttribute('value'); // ungmo2
+
+// HTMLInputElement.value의 값을 취득한다. 결과는 요소의 상태에 따라 동적으로 변경된다.
+document.getElementById('user').value;
+```
+
+주의하여야 할 것은 HTML 어트리뷰트와 상태 변화를 관리하기 위한 프로퍼티가 언제나 1:1로 매핑되는 것은 아니라는 것이다. 예를 들어 살펴보자.
+
+- id 어트리뷰트와 id 프로퍼티는 1:1 매핑한다.
+- class 어트리뷰트는 classList 프로퍼티로 변환된다.
+- td 요소의 colspan 어트리뷰트의 경우, 매핑하는 프로퍼티가 존재하지 않는다.
+- [textContent](https://developer.mozilla.org/ko/docs/Web/API/Node/textContent) 프로퍼티의 경우, 대응하는 어트리뷰트가 존재하지 않는다.
+- input 요소의 value 어트리뷰트는 value 프로퍼티와 1:1 매핑하지만 서로 다르게 동작한다.
+
+id 어트리뷰트는 id 프로퍼티와 1:1 매핑하므로 DOM 노드 객체 HTMLInputElement에는 id 프로퍼티가 생성되고 id 어트리뷰트의 값 'user'가 할당된다. 하지만 value 어트리뷰트는 value 프로퍼티와 1:1 매핑하지만 서로 다르게 동작한다. DOM 노드 객체에 value 프로퍼티가 생성되고 value 어트리뷰트의 값 'ungmo2'가 할당된다. 여기까지는 1:1 매핑하는 id 어트리뷰트와 동일하지만 사용자에 의해 input 요소에 새로운 값이 입력되면 다르게 동작하기 시작한다. 만약 사용자에 의해 "lee"가 입력되면 DOM 노드 객체의 value 프로퍼티는 "lee"로 변경된다. 하지만 value 어트리뷰트는 초기 기본값 "ungmo2"인 상태에서 변경되지 않는다. 이는 HTML 요소가 DOM 노드 객체로 변환된 이후에 HTML 요소의 어트리뷰트는 변하지 않기 때문이다. 하지만 DOM 프로퍼티는 언제든지 바뀔 수 있다. 즉, value의 경우, 어트리뷰트는 DOM 프로퍼티의 초기 기본값을 의미하며 DOM 프로퍼티는 현재의 상태 값을 의미한다.
+
+지금까지 알아본 DOM 프로퍼티와 HTML 어트리뷰트를 차이점을 바탕으로 Angular가 아래의 코드를 어떻게 HTML로 출력할 것인지 예측하여 보자.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -288,12 +306,24 @@ export class AppComponent {
 }
 ```
 
-프로퍼티 바인딩은 DOM 노드 객체의 프로퍼티에 컴포넌트 클래스의 프로퍼티 값을 바인딩하고 어트리뷰트 바인딩은 HTML 요소의 어트리뷰트에 컴포넌트 클래스의 프로퍼티 값을 바인딩한다. 따라서 위 코드는 아래와 같이 변환될 것이다.
+<iframe src="https://stackblitz.com/edit/template-attribute-binding-1?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
+
+프로퍼티 바인딩은 DOM 노드 객체의 프로퍼티에 컴포넌트 클래스의 프로퍼티 값을 바인딩하고 어트리뷰트 바인딩은 HTML 요소의 어트리뷰트(DOM 노드 객체의 attributes 프로퍼티)에 컴포넌트 클래스의 프로퍼티 값을 바인딩한다.
+
+```javascript
+// 프로퍼티 바인딩
+document.getElementById('user').value = 'ungmo2';
+
+// 어트리뷰트 바인딩
+document.getElementById('user').setAttribute('value', 'ungmo2');
+```
+
+따라서 위 컴포넌트는 아래와 같이 변환될 것이다.
 
 ```html
 <!-- 프로퍼티 바인딩의 변환 결과 -->
 <input id="user" type="text">
-<!-- 어트리뷰트 바인딩의 변환 결과(name = 'ungmo2'일때) -->
+<!-- 어트리뷰트 바인딩의 변환 결과 -->
 <input id="user" type="text" value="ungmo2">
 ```
 
@@ -366,7 +396,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/template-attribute-binding?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/template-attribute-binding-2?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 이와 같이 DOM의 프로퍼티는 HTML 요소의 어트리뷰트와는 다르게 동작하기 때문에 프로퍼티 바인딩과 어트리뷰트 바인딩은 구분되어 사용하여야 한다.
 
@@ -397,7 +427,7 @@ export class AppComponent {
 
 이때 우변에 지정한 클래스 이름의 리스트가 HTML class 어트리뷰트에 반영된다.
 
-주의할 것은 HTML class 어트리뷰트에 의해 이미 클래스가 지정되어 있을 때 한개의 클래스를 대상으로 하는 클래스 바인딩([class.class-name])은 HTML class 어트리뷰트를 병합(merge)하여 새로운 HTML class 어트리뷰트를 작성한다. 하지만 복수의 클래스를 대상으로 하는 클래스 바인딩([class])은 기존 HTML class 어트리뷰트를 삭제하고 새로운 HTML class 어트리뷰트를 작성한다. 사용 방법은 아래와 같다.
+주의할 것은 HTML class 어트리뷰트에 의해 이미 클래스가 지정되어 있을 때 한 개의 클래스를 대상으로 하는 클래스 바인딩([class.class-name])은 HTML class 어트리뷰트를 병합(merge)하여 새로운 HTML class 어트리뷰트를 작성한다. 하지만 복수의 클래스를 대상으로 하는 클래스 바인딩([class])은 기존 HTML class 어트리뷰트를 삭제하고 새로운 HTML class 어트리뷰트를 작성한다. 사용 방법은 아래와 같다.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -411,7 +441,7 @@ import { Component } from '@angular/core';
     <!-- 조건의 의한 클래스 바인딩
          우변의 표현식이 false이면 클래스를 삭제한다 -->
     <div class="text-small color-red" [class.color-red]="isRed">text-small</div>
-    <!-- 여러개의 클래스를 한번에 지정할 수 있다 -->
+    <!-- 여러 개의 클래스를 한번에 지정할 수 있다 -->
     <div [class]="myClasses">text-large color-red</div>
     <!-- 클래스 바인딩은 기존 클래스 어트리뷰트보다 우선한다.
          따라서 기존 클래스 어트리뷰트는 클래스 바인딩에 의해 reset된다.
@@ -436,7 +466,7 @@ export class AppComponent {
 
 <!-- <iframe src="https://embed.plnkr.co/4HXnLnQ4lDRJGMomcg9z/?show=preview" frameborder="0" width="100%" height="400"></iframe> -->
 
-클래스 바인딩은 주로 하나의 클래스를 조건에 의해 추가 또는 삭제하는 용도로 사용한다. 여러개의 클래스를 지정할 경우에도 클래스 바인딩을 사용할 수 있으나 ngClass 디렉티브를 사용하면 좀더 세밀한 제어가 가능하다.
+클래스 바인딩은 주로 하나의 클래스를 조건에 의해 추가 또는 삭제하는 용도로 사용한다. 여러 개의 클래스를 지정할 경우에도 클래스 바인딩을 사용할 수 있으나 ngClass 디렉티브를 사용하면 좀더 세밀한 제어가 가능하다.
 
 ## 3.5 스타일 바인딩(Style binding)
 
@@ -485,7 +515,7 @@ export class AppComponent {
 
 <iframe src="https://stackblitz.com/edit/template-style-binding?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
-스타일 바인딩은 주로 하나의 인라인 스타일을 조건에 의해 추가하는 용도로 사용한다. 여러개의 인라인 스타일을 추가할 경우에는 ngStyle 디렉티브를 사용한다.
+스타일 바인딩은 주로 하나의 인라인 스타일을 조건에 의해 추가하는 용도로 사용한다. 여러 개의 인라인 스타일을 추가할 경우에는 ngStyle 디렉티브를 사용한다.
 
 ## 3.6 이벤트 바인딩(Event binding)
 

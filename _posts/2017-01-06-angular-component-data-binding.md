@@ -306,7 +306,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/template-attribute-binding-1?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/attribute-binding-1?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
 프로퍼티 바인딩은 DOM 노드 객체의 프로퍼티에 컴포넌트 클래스의 프로퍼티 값을 바인딩하고 어트리뷰트 바인딩은 HTML 요소의 어트리뷰트(DOM 노드 객체의 attributes 프로퍼티)에 컴포넌트 클래스의 프로퍼티 값을 바인딩한다.
 
@@ -396,7 +396,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/template-attribute-binding-2?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/attribute-binding-2?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 이와 같이 DOM의 프로퍼티는 HTML 요소의 어트리뷰트와는 다르게 동작하기 때문에 프로퍼티 바인딩과 어트리뷰트 바인딩은 구분되어 사용하여야 한다.
 

@@ -66,7 +66,7 @@ export class AppComponent { }
 
 # 2. 빌트인 어트리뷰트 디렉티브(Built-in attribute directive)
 
-빌트인 어트리뷰트 디렉티브(Built-in attribute directive)는 ngClass, ngStyle 디렉티브와 같이 Angular가 제공하는 어트리뷰트 디렉티브이다.
+빌트인 어트리뷰트 디렉티브는 ngClass, ngStyle 디렉티브와 같이 Angular가 제공하는 어트리뷰트 디렉티브이다.
 
 ## 2.1 ngClass
 
@@ -76,7 +76,7 @@ export class AppComponent { }
 <element [ngClass]="문자열 | 배열 | 객체">...</element>
 ```
 
-[ngClass 디렉티브](https://angular.io/api/common/NgClass)는 바인딩된 문자열이나 배열 또는 객체를 평가한 후 HTML class 어트리뷰트를 변경한다. ngClass 디렉티브에 바인딩할 수 있는 값은 아래와 같다.
+[ngClass 디렉티브](https://angular.io/api/common/NgClass)는 바인딩된 문자열이나 배열 또는 객체를 HTML 요소의 class 어트리뷰트에 반영한다. ngClass 디렉티브에 바인딩할 수 있는 값은 아래와 같다.
 
 - CSS 클래스 이름이 공백 문자로 구분된 문자열
 : 문자열에 나열된 모든 CSS 클래스 이름이 class 어트리뷰트에 반영된다.
@@ -99,7 +99,23 @@ export class AppComponent { }
 <div [ngClass]="{ 'text-bold': true, 'color-blue': false }">...</div>
 ```
 
-HTML class 어트리뷰트에 의해 이미 클래스가 지정되어 있을 때 ngClass 디렉티브는 HTML class 어트리뷰트를 병합(merge)하여 새로운 HTML class 어트리뷰트를 작성한다. 사용 방법은 아래와 같다.
+class 어트리뷰트에 의해 이미 클래스가 지정되어 있을 때 ngClass 디렉티브는 class 어트리뷰트를 병합(merge)하여 새로운 HTML class 어트리뷰트를 작성한다.
+
+예를 들어 아래의 코드를 살펴보자.
+
+```html
+<div class="class1 class2" [ngClass]="['class2', 'class3']">...</div>
+```
+
+위 코드는 class 어트리뷰트에 선언된 클래스와 ngClass 디렉티브에 바인딩된 클래스가 병합되어 아래와 같이 변환될 것이다.
+
+```html
+<div class="class1 class2 class3">...</div>
+```
+
+여러 개의 클래스를 대상으로 하는 클래스 바인딩([class])의 경우, 기존의 class 어트리뷰트를 삭제하고 바인딩된 클래스의 리스트를 기준으로 새로운 class 어트리뷰트를 작성하는 것과 다르게 동작한다.
+
+ngClass 디렉티브의 사용 방법은 아래와 같다.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -165,23 +181,37 @@ export class AppComponent {
 
 <iframe src="https://stackblitz.com/edit/builtin-directive-ngclass?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="800"></iframe>
 
-클래스 바인딩은 표현식 또는 클래스 리스트를 나타내는 문자열을 바인딩한다. ngClass 디렉티브는 문자열, 배열, 객체를 바인딩할 수 있다.
+클래스 바인딩은 Boolean 표현식 또는 클래스 리스트를 나타내는 문자열을 바인딩한다. ngClass 디렉티브는 문자열, 배열, 객체를 바인딩할 수 있다.
 
 ## 2.2 ngStyle
 
-여러 개의 HTML 인라인 스타일을 추가 또는 제거한다. 한 개의 인라인 스타일을 추가 또는 제거할 때는 스타일 바인딩을 사용하는 것이 좋다.
+여러 개의 인라인 스타일을 추가 또는 제거한다. 한 개의 인라인 스타일을 추가 또는 제거할 때는 스타일 바인딩을 사용하는 것이 좋다.
 
 ```html
 <element [ngStyle]="객체">...</element>
 ```
 
-[ngStyle 디렉티브](https://angular.io/api/common/NgStyle)는 바인딩된 객체를 평가한 후 HTML style 어트리뷰트를 변경한다. ngStyle 디렉티브에 바인딩된 객체는 CSS 프로퍼티를 프로퍼티 이름으로, CSS 프로퍼티 값을 프로퍼티 값으로 갖는다. 이때 CSS 프로퍼티 값에 단위가 필요한 경우, CSS 프로퍼티에 단위를 추가한다.
+[ngStyle 디렉티브](https://angular.io/api/common/NgStyle)는 바인딩된 객체를 HTML 요소의 style 어트리뷰트에 반영한다. ngStyle 디렉티브에 바인딩된 객체는 CSS 프로퍼티를 프로퍼티 이름으로, CSS 프로퍼티 값을 프로퍼티 값으로 갖는다. 이때 CSS 프로퍼티 값에 단위가 필요한 경우, CSS 프로퍼티에 단위를 추가한다.
 
 ```html
 <div [ngStyle]="{ color: 'red', 'width.px': 100 }"></div>
 ```
 
-HTML style 어트리뷰트에 의해 이미 스타일이 지정되어 있을 때 ngStyle 디렉티브는 HTML style 어트리뷰트를 병합(merge)하여 새로운 HTML style 어트리뷰트를 작성한다. 사용 방법은 아래와 같다.
+style 어트리뷰트에 의해 이미 스타일이 지정되어 있을 때 ngStyle 디렉티브는 HTML style 어트리뷰트를 병합(merge)하여 새로운 HTML style 어트리뷰트를 작성한다.
+
+예를 들어 아래의 코드를 살펴보자.
+
+```html
+<div style="color: red; width: 100px;" [ngStyle]="{ color: 'blue', 'height.px': 100 }">...</div>
+```
+
+위 코드는 style 어트리뷰트에 선언된 스타일과 ngStyle 디렉티브에 바인딩된 스타일이 병합되어 아래와 같이 변환될 것이다.
+
+```html
+<div style="color: blue; width: 100px; height: 100px;">...</div>
+```
+
+ngStyle 디렉티브의 사용 방법은 아래와 같다.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -228,11 +258,11 @@ export class AppComponent {
 
 <!-- <iframe src="https://embed.plnkr.co/SlDSZfsOteIjuSCijD2h/?show=preview" frameborder="0" width="100%" height="400"></iframe> -->
 
-스타일 바인딩은 표현식을 바인딩한다. ngStyle 디렉티브는 객체를 바인딩할 수 있다.
+스타일 바인딩은 하나의 인라인 스타일을 조건에 의해 추가하는 용도로 사용한다. ngStyle 디렉티브는 객체를 바인딩하여 여러 개의 인라인 스타일을 한 번에 반영할 수 있다.
 
 # 3. 빌트인 구조 디렉티브(Built-in structural directive)
 
-구조 디렉티브는 DOM 요소를 반복 생성(ngFor), 조건에 의한 추가 또는 제거를 수행(ngIf, ngSwitch)을 통해 뷰의 구조를 변경한다.
+빌트인 구조 디렉티브는 DOM 요소를 반복 생성(ngFor), 조건에 의한 추가 또는 제거를 수행(ngIf, ngSwitch)을 통해 뷰의 구조를 변경한다.
 
 - 구조 디렉티브에는 `*` 접두사를 추가하며 `[]`을 사용하지 않는다.
 - 하나의 호스트 요소(디렉티브가 선언된 요소)에는 하나의 구조 디렉티브만을 사용할 수 있다.
@@ -255,7 +285,7 @@ ngIf 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설탕
 
 Angular는 *ngIf를 만나면 호스트 요소를 `ng-template` 디렉티브로 래핑하고 *ngIf를 프로퍼티 바인딩으로 변환한다. ngFor와 ngSwitch 디렉티브도 동일한 패턴을 따른다.
 
-`ng-template` 디렉티브는 페이지에서 렌더링 될 요소를 div 또는 span 등의 요소와 함께 사용할 필요가 없는 요소들을 그룹화할 때 사용한다. `ng-template`에 대해서는 [ng-template 디렉티브](./angular-directive#43-ng-template)와 [ng-container 디렉티브](./angular-directive#44-ng-container)를 참조하기 바란다.
+`ng-template` 디렉티브는 렌더링 될 요소를 그룹화하여 래핑할 때 사용한다. `ng-template`에 대해서는 [ng-template 디렉티브](./angular-directive#43-ng-template)와 [ng-container 디렉티브](./angular-directive#44-ng-container)를 참조하기 바란다.
 {: .info}
 
 버튼 클릭에 의해 요소를 show/hide하는 간단한 예제를 살펴보자.
@@ -285,7 +315,7 @@ export class AppComponent {
 
 <iframe src="https://stackblitz.com/edit/builtin-directive-ngif-1?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
-ngIf 디렉티브를 사용하지 않고 스타일 바인딩 또는 클래스 바인딩을 사용하여 요소의 표시/비표시를 구현할 수도 있다. 하지만 스타일 바인딩 또는 클래스 바인딩에 의해 비표시된 요소는 브라우저에 의해 렌더링이 되지 않지만 DOM에 남아있다. ngIf 디렉티브에 의해 제거된 요소는 DOM에 남아있지 않고 완전히 제거되어 불필요한 자원의 낭비를 방지한다.
+ngIf 디렉티브를 사용하지 않고 스타일 바인딩 또는 클래스 바인딩을 사용하여 요소의 표시/비표시를 구현할 수도 있다. 하지만 스타일 바인딩 또는 클래스 바인딩에 의해 비표시된 요소는 브라우저에 의해 렌더링되지 않지만 DOM에 남아있다. ngIf 디렉티브에 의해 제거된 요소는 DOM에 남아 있지 않고 완전히 제거되어 불필요한 자원의 낭비를 방지한다.
 
 ![show-hide](./img/show-hide.png)
 

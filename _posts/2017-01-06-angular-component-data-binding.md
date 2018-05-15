@@ -402,32 +402,90 @@ export class AppComponent {
 
 ## 3.4 클래스 바인딩(Class binding)
 
-클래스 바인딩을 사용하면 HTML class 어트리뷰트에 클래스를 추가 또는 삭제할 수 있다.
+클래스 바인딩(Class binding)을 사용하면 HTML 요소의 class 어트리뷰트에 클래스를 추가 또는 삭제할 수 있다. 클래스 바인딩은 아래와 같이 두 가지의 방식으로 사용할 수 있다.
 
 ```html
 <element [class.class-name]="booleanExpression">...</element>
 <element [class]="class-name-list">...</element>
 ```
 
-클래스 바인딩은 우변의 표현식을 평가한 후 HTML class 어트리뷰트를 변경한다. 클래스 바인딩은 두 가지의 형식으로 사용할 수 있다.
+단항 클래스 바인딩
+{: .title}
 
-첫번째, 좌변에는 class 뒤에 HTML class 어트리뷰트에 반영할 클래스 이름을 지정하고 우변에는 참이나 거짓으로 평가될 수 있는 표현식을 바인딩하는 것이다.
-
-```html
-<div [class.my-class]="'ture'">...</div>
-```
-
-이때 우변의 표현식이 참이면 좌변의 class 뒤에 지정한 클래스를 HTML class 어트리뷰트에 추가하고, 거짓이면 클래스를 삭제한다.
-
-두번째, 좌변에는 class를 지정하고 우변에는 HTML class 어트리뷰트에 반영할 클래스 이름의 리스트를 바인딩하는 것이다.
+바인딩의 좌변에는 class 뒤에 HTML 요소의 class 어트리뷰트에 반영할 클래스 이름을 지정하고, 우변에는 참이나 거짓으로 평가될 수 있는 표현식을 바인딩한다.
 
 ```html
-<div [class]="'my-class1 my-class2'">...</div>
+<div [class.alert]="isError">...</div>
 ```
 
-이때 우변에 지정한 클래스 이름의 리스트가 HTML class 어트리뷰트에 반영된다.
+위 예제의 경우, 우변의 표현식 isError의 값이 참이면 좌변의 class 뒤에 지정한 클래스 alert을 class 어트리뷰트에 추가하고, isError의 값이 거짓이면 class 어트리뷰트에서 삭제한다.
 
-주의할 것은 HTML class 어트리뷰트에 의해 이미 클래스가 지정되어 있을 때 한 개의 클래스를 대상으로 하는 클래스 바인딩([class.class-name])은 HTML class 어트리뷰트를 병합(merge)하여 새로운 HTML class 어트리뷰트를 작성한다. 하지만 복수의 클래스를 대상으로 하는 클래스 바인딩([class])은 기존 HTML class 어트리뷰트를 삭제하고 새로운 HTML class 어트리뷰트를 작성한다. 사용 방법은 아래와 같다.
+아래와 같이 다른 클래스가 적용되어 있는 경우를 살펴보자.
+
+```html
+<div class="rounded" [class.alert]="isError">...</div>
+```
+
+만약 isError의 값이 참이면 위 예제는 아래와 같이 변환된다.
+
+```html
+<div class="rounded alert">...</div>
+```
+
+만약 isError의 값이 거짓이면 위 예제는 아래와 같이 변환된다.
+
+```html
+<div class="rounded">...</div>
+```
+
+아래와 같이 이미 alert 클래스가 적용되어 있는 경우를 살펴보자.
+
+```html
+<div class="alert" [class.alert]="isError">...</div>
+```
+
+만약 isError의 값이 참이면 위 예제는 아래와 같이 변환된다.
+
+```html
+<div lass="alert">...</div>
+```
+
+만약 isError의 값이 거짓이면 위 예제는 아래와 같이 변환된다.
+
+```html
+<div>...</div>
+```
+
+다항 클래스 바인딩
+{: .title}
+
+바인딩의 좌변에는 class를 지정하고 우변에는 HTML 요소의 class 어트리뷰트에 반영할 클래스의 리스트(공백으로 구분된 클래스 리스트의 문자열)를 바인딩한다.
+
+```html
+<div [class]="my-classes">...</div>
+```
+
+마치 DOM 객체의 class 프로퍼티에 프로퍼티 바인딩을 하는 것과 유사하지만 DOM 객체에는 class 프로퍼티가 존재하지 않는다. 따라서 다항 클래스 바인딩은 프로퍼티 바인딩이 아니며 단항 클래스 바인딩와 마찬가지로 HTML 요소의 어트리뷰트를 조작한다.
+
+다항 클래스 바인딩은 우변의 표현식 my-classes의 값을 class 어트리뷰트에 반영한다. 위 예제의 경우, my-classes의 값이 'my-class1 my-class2'이면 위 코드는 아래와 같이 변환될 것이다.
+
+```html
+<div class="my-class1 my-class2">...</div>
+```
+
+아래와 같이 이미 클래스가 적용되어 있는 경우를 살펴보자.
+
+```html
+<div class="my-class1 my-class2" [class]="my-classes">...</div>
+```
+
+만약 my-classes의 값이 'my-class3 my-class4'이면 위 예제는 아래와 같이 변환된다.
+
+```html
+<div class="my-class3 my-class4">...</div>
+```
+
+이와 같이 HTML 요소의 class 어트리뷰트에 의해 이미 클래스가 지정되어 있을 때 한 개의 클래스를 대상으로 하는 단항 클래스 바인딩([class.class-name])은 class 어트리뷰트를 병합(merge)하여 새로운 class 어트리뷰트를 작성한다. 하지만 복수의 클래스를 대상으로 하는 다항 클래스 바인딩([class])은 기존의 class 어트리뷰트를 삭제하고 바인딩된 클래스의 리스트를 기준으로 새로운 class 어트리뷰트를 작성한다. 사용 방법은 아래와 같다.
 
 ```typescript
 import { Component } from '@angular/core';

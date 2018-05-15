@@ -402,7 +402,7 @@ export class AppComponent {
 
 ## 3.4 클래스 바인딩(Class binding)
 
-클래스 바인딩(Class binding)을 사용하면 HTML 요소의 class 어트리뷰트에 클래스를 추가 또는 삭제할 수 있다. 클래스 바인딩은 아래와 같이 두 가지의 방식으로 사용할 수 있다.
+클래스 바인딩을 사용하면 HTML 요소의 class 어트리뷰트에 클래스를 추가 또는 삭제할 수 있다. 클래스 바인딩은 아래와 같이 두 가지의 방식으로 사용할 수 있다.
 
 ```html
 <element [class.class-name]="booleanExpression">...</element>
@@ -412,7 +412,7 @@ export class AppComponent {
 단항 클래스 바인딩
 {: .title}
 
-바인딩의 좌변에는 class 뒤에 HTML 요소의 class 어트리뷰트에 반영할 클래스 이름을 지정하고, 우변에는 참이나 거짓으로 평가될 수 있는 표현식을 바인딩한다.
+클래스 바인딩의 좌변에는 class 뒤에 HTML 요소의 class 어트리뷰트에 반영할 클래스 이름을 지정하고, 우변에는 참이나 거짓으로 평가될 수 있는 표현식을 바인딩한다.
 
 ```html
 <div [class.alert]="isError">...</div>
@@ -459,7 +459,7 @@ export class AppComponent {
 다항 클래스 바인딩
 {: .title}
 
-바인딩의 좌변에는 class를 지정하고 우변에는 HTML 요소의 class 어트리뷰트에 반영할 클래스의 리스트(공백으로 구분된 클래스 리스트의 문자열)를 바인딩한다.
+클래스 바인딩의 좌변에는 class를 지정하고 우변에는 HTML 요소의 class 어트리뷰트에 반영할 클래스의 리스트(공백으로 구분된 클래스 리스트의 문자열)를 바인딩한다.
 
 ```html
 <div [class]="my-classes">...</div>
@@ -485,7 +485,9 @@ export class AppComponent {
 <div class="my-class3 my-class4">...</div>
 ```
 
-이와 같이 HTML 요소의 class 어트리뷰트에 의해 이미 클래스가 지정되어 있을 때 한 개의 클래스를 대상으로 하는 단항 클래스 바인딩([class.class-name])은 class 어트리뷰트를 병합(merge)하여 새로운 class 어트리뷰트를 작성한다. 하지만 복수의 클래스를 대상으로 하는 다항 클래스 바인딩([class])은 기존의 class 어트리뷰트를 삭제하고 바인딩된 클래스의 리스트를 기준으로 새로운 class 어트리뷰트를 작성한다. 사용 방법은 아래와 같다.
+이와 같이 HTML 요소의 class 어트리뷰트에 의해 이미 클래스가 지정되어 있을 때 한 개의 클래스를 대상으로 하는 단항 클래스 바인딩([class.class-name])은 class 어트리뷰트를 병합(merge)하여 새로운 class 어트리뷰트를 작성한다. 하지만 복수의 클래스를 대상으로 하는 다항 클래스 바인딩([class])은 기존의 class 어트리뷰트를 삭제하고 바인딩된 클래스의 리스트를 기준으로 새로운 class 어트리뷰트를 작성한다. 다시 말해 클래스 바인딩은 기존 class 어트리뷰트보다 우선한다. 따라서 기존 class 어트리뷰트는 클래스 바인딩에 의해 리셋된다. 이때 클래스 바인딩의 위치는 관계없다.
+
+사용 방법은 아래와 같다.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -524,24 +526,26 @@ export class AppComponent {
 
 <!-- <iframe src="https://embed.plnkr.co/4HXnLnQ4lDRJGMomcg9z/?show=preview" frameborder="0" width="100%" height="400"></iframe> -->
 
-클래스 바인딩은 주로 하나의 클래스를 조건에 의해 추가 또는 삭제하는 용도로 사용한다. 여러 개의 클래스를 지정할 경우에도 클래스 바인딩을 사용할 수 있으나 ngClass 디렉티브를 사용하면 좀더 세밀한 제어가 가능하다.
+클래스 바인딩은 주로 하나의 클래스를 조건에 의해 추가 또는 삭제하는 용도로 사용한다. 여러 개의 클래스를 지정할 때도 클래스 바인딩을 사용할 수 있으나 ngClass 디렉티브를 사용하면 좀더 세밀한 제어가 가능하다.
 
 ## 3.5 스타일 바인딩(Style binding)
 
-스타일 바인딩을 사용하면 HTML style 어트리뷰트에 스타일을 지정할 수 있다.
+스타일 바인딩을 사용하면 HTML 요소의 style 어트리뷰트에 스타일을 지정할 수 있다.
 
 ```html
 <element [style.style-property]="expression">...</element>
 ```
 
-스타일 바인딩은 우변의 표현식을 평가한 후 HTML style 어트리뷰트를 변경한다. 좌변에는 style 뒤에 HTML style 어트리뷰트에 반영할 CSS 프로퍼티 이름을 지정하고 우변에는 CSS 프로퍼티의 값으로 평가될 수 있는 표현식을 바인딩하는 것이다. 만약 CSS 프로퍼티 값에 단위가 필요한 경우, CSS 프로퍼티에 단위를 추가한다.
+스타일 바인딩의 좌변에는 style 뒤에 style 어트리뷰트에 반영할 CSS 프로퍼티 이름을 지정하고 우변에는 CSS 프로퍼티의 값으로 평가될 수 있는 표현식을 바인딩한다. 만약 CSS 프로퍼티 값에 단위가 필요한 경우, CSS 프로퍼티에 단위를 추가한다.
 
 ```html
 <div [style.background-color]="'white'"
      [style.font-size.px]="'16'">...</div>
 ```
 
-주의 할 것은 HTML style 어트리뷰트에 의해 이미 스타일이 지정되어 있을 때 스타일 바인딩은 중복되지 않은 스타일은 병합(merge)하여 그대로 사용하고 중복된 스타일은 스타일 바인딩의 스타일로 덮어쓴다. 스타일 프로퍼티(border-radius 등)는 케밥표기법(kebab-case) 또는 카멜표기법(camelCase)을 사용한다. 사용 방법은 아래와 같다.
+주의할 것은 style 어트리뷰트에 의해 이미 스타일이 지정되어 있을 때, 중복되지 않은 스타일은 style 어트리뷰트에 추가되고, 중복된 스타일은 스타일 바인딩의 값으로 리셋된다. 다시 말해 스타일 바인딩은 기존 style 어트리뷰트보다 우선한다.
+
+스타일 프로퍼티의 이름(border-radius 등)은 케밥 표기법(kebab-case) 또는 카멜 표기법(camelCase)을 사용한다. 사용 방법은 아래와 같다.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -573,13 +577,13 @@ export class AppComponent {
 
 <iframe src="https://stackblitz.com/edit/template-style-binding?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
-스타일 바인딩은 주로 하나의 인라인 스타일을 조건에 의해 추가하는 용도로 사용한다. 여러 개의 인라인 스타일을 추가할 경우에는 ngStyle 디렉티브를 사용한다.
+스타일 바인딩은 주로 하나의 인라인 스타일을 조건에 의해 추가하는 용도로 사용한다. 여러 개의 인라인 스타일을 추가할 때는 ngStyle 디렉티브를 사용한다.
 
 ## 3.6 이벤트 바인딩(Event binding)
 
 이벤트 바인딩은 뷰의 상태 변화(버튼 클릭, 체크박스 체크, input에 텍스트 입력 등)에 의해 이벤트가 발생하면 이벤트 핸들러를 호출하는 것을 말한다.
 
-지금까지 살펴본 데이터 바인딩은 컴포넌트 클래스에서 템플릿으로 데이터가 이동했지만 이벤트 바인딩은 템플릿에서 컴포넌트 클래스로 데이터가 이동한다.
+지금까지 살펴본 데이터 바인딩은 모두 컴포넌트 클래스에서 템플릿으로 데이터가 이동했지만 이벤트 바인딩은 템플릿에서 컴포넌트 클래스로 데이터가 이동한다.
 
 ```html
 <element (event)="statement">...</element>
@@ -594,7 +598,7 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <!-- (1) -->
-    <input type="text" [value]="name" (input)="handleInput($event)">
+    <input type="text" [value]="name" (input)="setName($event)">
     <!-- (2) -->
     <button (click)="handleClick()">clear</button>
     <!-- (3) -->
@@ -618,9 +622,9 @@ export class AppComponent {
 
 <iframe src="https://stackblitz.com/edit/template-event-binding?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
-1. 사용자의 텍스트 입력에 의해 input 이벤트가 발생하면 이벤트 바인딩을 통하여 이벤트 핸들러 handleInput을 호출한다. 이때 이벤트 정보를 담고 있는 DOM 이벤트 객체 **$event**를 이벤트 핸들러에 전달할 수 있다. $event 객체는 DOM 이벤트의 종류에 의해 타입(KeyboardEvent, InputEvent, MouseEvent 등)이 결정된다. Angular는 표준 DOM 이벤트를 사용하기 때문에 $event를 통해 브라우저의 [Event](https://developer.mozilla.org/ko/docs/Web/API/Event) 객체의 프로퍼티나 메소드에 자유롭게 접근할 수 있다. 이벤트 핸들러 handleInput은 input 이벤트를 발생시킨 input 요소(event.target)의 value 프로퍼티(사용자 입력 텍스트가 담겨있다)를 $event로 부터 추출하여 name 프로퍼티에 할당한다. 그리고 name 프로퍼티는 프로퍼티 바인딩에 의해 다시 input 요소에 바인딩된다.
+1. 사용자의 텍스트 입력에 의해 input 이벤트가 발생하면 이벤트 바인딩을 통하여 이벤트 핸들러 setName을 호출한다. 이때 이벤트 정보를 담고 있는 DOM 이벤트 객체 **$event**를 이벤트 핸들러에 전달할 수 있다. $event 객체는 DOM 이벤트의 종류에 의해 타입(KeyboardEvent, InputEvent, MouseEvent 등)이 결정된다. Angular는 표준 DOM 이벤트를 사용하기 때문에 $event를 통해 브라우저의 [Event](https://developer.mozilla.org/ko/docs/Web/API/Event) 객체의 프로퍼티나 메소드에 자유롭게 접근할 수 있다. 이벤트 핸들러 setName은 input 이벤트를 발생시킨 input 요소(event.target)의 value 프로퍼티(사용자 입력 텍스트가 담겨있다)를 $event로 부터 추출하여 name 프로퍼티에 할당한다.
 
-2. 버튼이 클릭되면 click 이벤트가 발생하고 이벤트 바인딩을 통하여 이벤트 핸들러 handleClick을 호출한다. handleClick은 name 프로퍼티를 초기화한다.
+2. 버튼이 클릭되면 click 이벤트가 발생하고 이벤트 바인딩을 통하여 의해 이벤트 핸들러 clearName을 호출한다. clearName은 name 프로퍼티에 빈문자열을 할당한다. 그리고 name 프로퍼티는 프로퍼티 바인딩에 의해 다시 input 요소에 바인딩된다.
 
 3. name 프로퍼티는 인터폴레이션에 의해 템플릿에 바인딩된다.
 
@@ -664,28 +668,30 @@ export class AppComponent {
 <element [(ngModel)]="property">...</element>
 ```
 
-[ngModel](https://angular.io/api/forms/NgModel) 디렉티브를 이벤트 바인딩(( ))과 프로퍼티 바인딩([ ]) 형식으로 기술한 후 우변에 뷰와 컴포넌트 클래스가 공유할 프로퍼티를 기술한다. ngModel 디렉티브를 사용하기 위해서는 [FormsModule](https://angular.io/api/forms/FormsModule)을 모듈에 등록하여야 한다. <!-- Angular CLI를 통해 프로젝트를 생성하였다면 아래와 같이 FormsModule이 이미 등록되어 있으므로 별도의 등록이 필요없다. -->
+[ngModel](https://angular.io/api/forms/NgModel) 디렉티브를 이벤트 바인딩(( ))과 프로퍼티 바인딩([ ]) 형식으로 기술한 후 우변에 뷰와 컴포넌트 클래스가 공유할 프로퍼티를 기술한다. ngModel 디렉티브를 사용하기 위해서는 [FormsModule](https://angular.io/api/forms/FormsModule)을 모듈에 등록하여야 한다.
 
 ```typescript
 // src/app/app.module.ts
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+// FormsModule 임포트
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, FormsModule],
+  imports: [BrowserModule, FormsModule], // FormsModule 등록
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
 ```
 
-간단한 예제를 살펴보자.
+간단한 예제를 통해 양방향 바인딩을 살펴보자. 이벤트 바인딩에 살펴본 예제와 비교해 보기 바란다.
 
 ```typescript
+// src/app/app.component.ts
 import { Component } from '@angular/core';
 
 @Component({
@@ -738,7 +744,7 @@ export class AppComponent {
 }
 ```
 
-프로퍼티 바인딩 [ngModel]은 사용자 입력에 관련된 DOM 요소의 프로퍼티(위 예제의 경우 input 요소의 value 프로퍼티)를 업데이트한다. 그리고 이벤트 바인딩 (ngModelChange)은 이벤트를 수신하고 이벤트 핸들러를 통해 DOM의 변화를 외부에 알린다. 이때 ngModelChange는 $event에서 사용자 입력에 관련된 프로퍼티의 값(위 예제의 경우 target.value)을 내부적으로 추출하여 이벤트를 emit한다.
+프로퍼티 바인딩 [ngModel]은 사용자 입력에 관련된 DOM 요소의 프로퍼티(위 예제의 경우 input 요소의 value 프로퍼티)를 업데이트한다. 그리고 이벤트 바인딩 (ngModelChange)는 이벤트를 수신하고 이벤트 핸들러를 통해 DOM의 변화를 외부에 알린다. 이때 ngModelChange는 $event에서 사용자 입력에 관련된 프로퍼티의 값(위 예제의 경우 target.value)을 내부적으로 추출하여 이벤트를 emit한다.
 
 양방향 바인딩은 반드시 ngModel 디렉티브만을 사용하여야 하는 것은 아니며 커스텀 양방향 데이터 바인딩도 작성할 수 있다. 이 방법에 대해서는 [Angular Forms: NgModel과 양방향 바인딩](./angular-form-template-driven-forms#3-ngmodel과-양방향-바인딩)에서 알아보도록 하자.
 

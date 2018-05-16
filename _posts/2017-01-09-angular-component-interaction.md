@@ -16,9 +16,9 @@ description: Angular 애플리케이션은 컴포넌트를 중심(CBD, Component
 
 Angular 애플리케이션은 컴포넌트를 중심(CBD, Component Based Development)으로 구성된다. 컴포넌트는 재사용이 용이한 구조로 분할하여 작성하며, 이렇게 분할된 컴포넌트를 조립하여 가능한 중복없이 UI를 생성한다. 컴포넌트는 독립적인 존재이지만, 다른 컴포넌트와 결합도를 낮게 유지하면서 다른 컴포넌트와 상태 정보를 교환할 수 있어야 한다.
 
-분할된 컴포넌트를 조립한다는 것은 컴포넌트를 다른 컴포넌트 내부에서 사용하는 것을 말하는데, 이는 컴포넌트 간에 계층(Hierarchy)적 구조가 형성될 수 있음을 의미한다. 따라서 분할된 컴포넌트를 조립하여 구성된 애플리케이션은 컴포넌트 간의 부모-자식 관계로 표현되는 계층적 트리 구조를 갖는다.
+분할된 컴포넌트를 조립한다는 것은 컴포넌트를 다른 컴포넌트에서 사용하는 것을 말하는데, 이는 컴포넌트 간에 계층(Hierarchy)적 구조가 형성될 수 있음을 의미한다. 따라서 분할된 컴포넌트를 조립하여 구성된 애플리케이션은 컴포넌트 간의 부모-자식 관계로 표현되는 계층적 트리 구조를 갖는다.
 
-컴포넌트의 계층적 트리 구조, 즉 컴포넌트 간의 부모-자식 관계는 데이터와 이벤트가 왕래하는 정보 흐름의 통로가 되며 이를 통해 다른 컴포넌트와의 상태 공유가 이루어지기 때문에 컴포넌트 간의 부모-자식 관계는 Angular 애플리케이션에서 중요한 의미를 갖는다. 이 계층적 구조는 DOM 트리와 유사한 형태를 가지게 되는데 이를 컴포넌트 트리라고 한다.
+컴포넌트의 계층적 트리 구조, 즉 컴포넌트 간의 부모-자식 관계는 데이터와 이벤트가 왕래하는 상태 정보 흐름의 통로가 되며 이를 통해 다른 컴포넌트와의 상태 공유가 이루어지기 때문에 컴포넌트 간의 부모-자식 관계는 Angular 애플리케이션에서 중요한 의미를 갖는다. 이 계층적 구조는 DOM 트리와 유사한 형태를 가지게 되는데 이를 컴포넌트 트리라고 한다.
 
 ![component-interaction](./img/component-interaction.png)
 {: .w-300}
@@ -26,17 +26,17 @@ Angular 애플리케이션은 컴포넌트를 중심(CBD, Component Based Develo
 컴포넌트 트리와 컴포넌트 간 상태 공유
 {: .desc-img}
 
-컴포넌트는 계층적 트리 구조 상에서 상호 작용을 통해 동작하기 때문에 다른 컴포넌트와 상태 정보의 공유는 필수적이며 매우 중요한 의미를 갖는다. Angular는 컴포넌트 간에 상태 정보를 공유할 수 있는 다양한 방법을 제공한다.
+컴포넌트는 계층적 트리 구조 상에서 상호 작용을 통해 동작하기 때문에 다른 컴포넌트와의 상태 정보의 공유는 필수적이며 매우 중요한 의미를 갖는다. Angular는 컴포넌트 간에 상태 정보를 공유할 수 있는 다양한 방법을 제공한다.
 
 - @Input, @Output 데코레이터
-- ViewChild와 ViewChildren
+- @ViewChild, @ViewChildren과 @ContentChild, @ContentChildren 데코레이터
 - [서비스 중재자 패턴](./angular-service#7-서비스-중재자-패턴service-mediator-pattern)을 구현한 상태 공유 서비스
-- 상태 관리를 위한 외부 라이브러리([ngrx/store](https://github.com/ngrx/store), [Redux](http://redux.js.org/) 등) 사용
+- 상태 관리를 위한 외부 라이브러리([ngrx/store](https://github.com/ngrx/store), [Redux](http://redux.js.org) 등) 사용
 
 계층적 트리 구조에서 컴포넌트 간 상태 공유를 실습하기 위해 새로운 Angular 애플리케이션을 작성하도록 하자. 간단한 예제이므로 인라인 템플릿, 인라인 스타일을 사용하고 스펙 파일 없이 진행한다.
 
 ```bash
-$ ng new component-interaction -it -is -st
+$ ng new component-interaction -t -s -S
 ```
 
 루트 컴포넌트의 자식 컴포넌트를 추가한다.
@@ -98,17 +98,27 @@ $ ng serve -o
 $ npm install bootstrap@3.3.7
 ```
 
-설치가 완료되었으면 부트스트랩을 임포트하여야 한다. 부트스트랩은 모든 컴포넌트에 적용되어야 하므로 .angular-cli.json를 아래와 같이 수정한다.
+설치가 완료되었으면 부트스트랩을 임포트하여야 한다. 부트스트랩은 모든 컴포넌트에 적용되어야 하므로 angular-cli.json를 아래와 같이 수정한다.
+
+<!-- projects.component-interaction.architect.build.options.styles -->
 
 ```json
 {
   ...
-  "apps": [
-  ...
-    "styles": [
-      "../node_modules/bootstrap/dist/css/bootstrap.min.css",
-      "styles.css"
-    ],
+  "projects": {
+    "component-interaction": {
+      ...
+      "architect": {
+        "build": {
+          ...
+          "options": {
+            ...
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css"
+            ],
+            "scripts": []
+          },
   ...
 }
 ```
@@ -151,8 +161,7 @@ import { User } from './models/user.model';
         <div class="form-inline">
           <div class="form-group" style="margin: 30px 0">
             <label for="name">Name:</label>
-            <input
-              #name type="text" id="name"
+            <input #name type="text" id="name"
               class="form-control"
               placeholder="이름을 입력하세요">
             <label for="role">Role:</label>
@@ -217,6 +226,7 @@ User 모델 클래스를 컴포넌트에서 사용하기 위해서는 임포트�
 
 ```typescript
 // app.component.ts
+import { Component } from '@angular/core';
 import { User } from './models/user.model';
 ...
 ```
@@ -238,7 +248,7 @@ export class UserListComponent {
 }
 ```
 
-부모 컴포넌트가 전달한 users는 자식 컴포넌트의 @Input 데코레이터 바로 뒤에 있는 users 프로퍼티에 바인딩된다. 이때 부모 컴포넌트와 자식 컴포넌트는 동일한 users 배열에 대한 참조를 갖는다. 따라서 참조를 공유하고 있는 users를 어느 한쪽에서 변경하면 모두에게 변경이 반영된다.
+부모 컴포넌트가 전달한 상태 정보 users는 자식 컴포넌트의 @Input 데코레이터 바로 뒤에 있는 users 프로퍼티에 바인딩된다. 이때 부모 컴포넌트와 자식 컴포넌트는 동일한 users 배열에 대한 참조를 갖는다. 따라서 참조를 공유하고 있는 users를 어느 한쪽에서 변경하면 모두에게 변경이 반영된다.
 
 @Input 데코레이터 바로 뒤의 프로퍼티명 users와 부모 컴포넌트에서 실행한 프로퍼티 바인딩의 프로퍼티명 users는 반드시 일치하여야 한다.
 
@@ -319,7 +329,7 @@ export class UserListComponent {
 setter를 이용한 입력 프로퍼티 조작
 {: .desc-img}
 
-지금까지 살펴본 예제에 사용자 역할(role)별로 사용자를 카운트하는 기능을 추가해 보자. user-list.component.ts를 아래와 같이 수정한다.
+앞에서 살펴본 예제에 사용자 역할(role)별로 사용자를 카운트하는 기능을 추가해 보자. user-list.component.ts를 아래와 같이 수정한다.
 
 ```typescript
 // user-list.component.ts
@@ -499,11 +509,10 @@ export class UserListComponent {
 @Output() remove = new EventEmitter<User>();
 ```
 
-EventEmitter 객체는 커스텀 이벤트를 발생시키는 emit() 메소드를 가지고 있다. 사용자 삭제 버튼이 클릭되면 emit() 메소드를 통해 커스텀 이벤트를 발생시키고 emit() 메소드에 인자를 전달하여 부모 컴포넌트에게 상태 정보를 전달한다.
+EventEmitter 객체는 커스텀 이벤트를 발생시키는 emit 메소드를 가지고 있다. 사용자 삭제 버튼이 클릭되면 emit 메소드를 통해 커스텀 이벤트를 발생시키고 emit 메소드에 인자를 전달하여 부모 컴포넌트에게 상태 정보를 전달한다.
 
 ```html
-<button
-  class="btn btn-danger btn-sm"
+<button class="btn btn-danger btn-sm"
   (click)="remove.emit(user)">
   <span class="glyphicon glyphicon-remove"></span>
 </button>
@@ -586,7 +595,7 @@ export class AppComponent {
 </app-user-list>
 ```
 
-이때 자식 컴포넌트가 emit() 메소드의 인자로 전달한 상태는 $event에 들어 있다. 이벤트 핸들러를 통해 users에서 전달된 user를 삭제한다.
+이때 자식 컴포넌트가 emit 메소드를 호출하면서 인자로 전달한 상태 정보는 $event에 들어 있다. 이벤트 핸들러를 통해 users에서 전달된 user를 삭제한다.
 
 ```typescript
 removeUser(user: User) {
@@ -609,7 +618,7 @@ removeUser(user: User) {
 
 그런데 자식 컴포넌트에서 상태 변화(사용자 제거)가 발생한 경우, 자식 컴포넌트는 자신이 직접 users 배열을 변경하지 않고 이벤트 바인딩을 통해 부모 컴포넌트에게 users 배열의 변경을 위임하였다. 자식 컴포넌트가 직접 users 배열을 변경하면 이벤트 바인딩을 통해 상태를 공유하지 않아도 될 텐데 왜 이렇게 번거롭게 상태를 주고받는 것일까?
 
-상태 정보에 대해 조금더 자세히 생각해보자. 부모 컴포넌트와 자식 컴포넌트 모두 상태 객체 users에 대한 동일한 참조를 갖는다. 따라서 참조를 공유하고 있는 상태 객체 users를 어느 한쪽에서 변경하면 모두에게 변경이 반영되는데 이는 <strong>상태 정보의 변화를 예측</strong>하기 어렵게 만든다. 위 예제와 같이 간단한 구조로 되어 있다면 문제가 되지 않겠지만 복잡한 계층적 구조를 갖는 애플리케이션의 경우, 컴포넌트마다 상태 정보를 마음대로 변경할 수 있다면 상태 변경을 추적하기 어렵고 의도하지 않은 상태 정보의 변경이 발생하여 문제가 될 수 있다.
+상태 정보에 대해 조금 더 자세히 생각해보자. 부모 컴포넌트와 자식 컴포넌트 모두 상태 객체 users에 대한 동일한 참조를 갖는다. 따라서 참조를 공유하고 있는 상태 객체 users를 어느 한쪽에서 변경하면 모두에게 변경이 반영되는데 이는 <strong>상태 정보의 변화를 예측</strong>하기 어렵게 만든다. 위 예제와 같이 간단한 구조로 되어 있다면 문제가 되지 않겠지만 복잡한 계층적 구조를 갖는 애플리케이션의 경우, 컴포넌트마다 상태 정보를 마음대로 변경할 수 있다면 상태 변경을 추적하기 어렵고 의도하지 않은 상태 정보의 변경이 발생하여 문제가 될 수 있다.
 
 ![component-state](./img/component-state.png)
 {: .w-400}
@@ -619,7 +628,7 @@ removeUser(user: User) {
 
 따라서 애플리케이션의 상태 정보를 저장하고 변경할 수 있는 <strong>Stateful 컴포넌트</strong>(Smart 컴포넌트)와 상태 정보를 참조하여 화면에 출력할 뿐 직접 변경하지 않는 <strong>Stateless 컴포넌트</strong>(Dumb 컴포넌트)로 구분할 필요가 있다. 위 예제에서 부모 컴포넌트는 Stateful 컴포넌트이고 자식 컴포넌트는 Stateless 컴포넌트로 설계되었다.
 
-Stateful 컴포넌트는 애플리케이션의 현재 상태 정보를 관리하며 필요에 따라 서버 자원에 접근할 수 있고 Stateless 컴포넌트를 사용하여 뷰를 표현한다. Stateless 컴포넌트는 인자를 받아 결과를 반환하는 순수 함수(Pure function)와 유사하게 단순히 프로퍼티 바인딩을 통해 상태 정보를 전달받아서 뷰를 렌더링하고 필요에 따라 이벤트를 방출할 뿐, 그 외의 부수 효과(Side effect)는 발생시키지 않는다. 부수 효과는 복잡성을 증가시킨다. 비순수(Impure)한 Stateful 컴포넌트를 최대한 줄이는 것은 부수 효과를 최대한 억제하는 것과 같다. 이것은 디버깅을 쉽게 만든다.
+Stateful 컴포넌트는 애플리케이션의 현재 상태 정보를 관리하며 필요에 따라 서버 자원에 접근할 수 있고 Stateless 컴포넌트를 사용하여 뷰를 표현한다. Stateless 컴포넌트는 부수 효과(side effect)를 발생시키지 않는 순수 함수(pure function)와 유사하게 단순히 프로퍼티 바인딩을 통해 상태 정보를 전달받아서 뷰를 렌더링하고 필요에 따라 이벤트를 방출할 뿐, 그 외의 부수 효과는 발생시키지 않는다. 부수 효과는 복잡성을 증가시킨다. 비순수(impure)한 Stateful 컴포넌트를 최대한 줄이는 것은 부수 효과를 최대한 억제하는 것과 같다. 이것은 디버깅을 쉽게 만든다.
 
 # 4. 원거리 컴포넌트 간의 상태 공유
 

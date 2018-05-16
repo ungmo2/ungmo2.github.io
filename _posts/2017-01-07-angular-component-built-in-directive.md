@@ -376,7 +376,7 @@ export class AppComponent {
 
 ## 3.2 ngFor
 
-ngFor 디렉티브는 컴포넌트 클래스의 컬렉션을 반복하여 호스트 요소(ngFor 디렉티브가 선언된 요소) 및 하위 요소를 DOM에 추가한다. 컬렉션은 일반적으로 배열을 사용한다.
+ngFor 디렉티브는 컴포넌트 클래스의 컬렉션(배열과 같은 이터러블 객체)을 반복하여 호스트 요소(ngFor 디렉티브가 선언된 요소) 및 하위 요소를 DOM에 추가한다. ngFor 디렉티브에 바인딩된 ES6의 [for...of](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/for...of)와 유사하게 동작한다.
 
 ```html
 <element *ngFor="let item of items">...</element>
@@ -396,15 +396,15 @@ ngFor 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설�
 </ng-template>
 ```
 
-위 코드는 컴포넌트 클래스의 프로퍼티 items를 바인딩한 후 items의 요소 개수만큼 순회하며 개별 요소를 item에 할당한다. item(템플릿 입력 변수 / template input variable)은 호스트 요소 및 하위 요소에서만 유효한 로컬 변수이다. items에 해당하는 바인딩 객체는 일반적으로 배열을 사용하지만 반드시 배열만 사용할 수 있는 것은 아니다. ES6의 [for...of](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/for...of)에서 사용할 수 있는 [이터러블(iterable)](./es6-iteration-for-of)이라면 사용이 가능하다. 단 문자열, Map, 배열이 아닌 일반 객체는 사용할 수 없다.
+위 코드는 컴포넌트 클래스의 프로퍼티 items를 바인딩한 후 items의 요소 개수만큼 순회하며 개별 요소를 item에 할당한다. item(템플릿 입력 변수, template input variable)은 호스트 요소 및 하위 요소에서만 유효한 로컬 변수이다. items에 해당하는 바인딩 객체는 일반적으로 배열을 사용하지만 반드시 배열만 사용할 수 있는 것은 아니다. ES6의 [for...of](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/for...of)에서 사용할 수 있는 [이터러블(iterable)](./es6-iteration-for-of)이라면 사용이 가능하다.
 
-인덱스를 취득할 필요가 있는 경우, 인덱스를 의미하는 index를 사용하여 변수에 인덱스를 할당받을 수 있다. index 이외에도 first, last, even, odd와 같은 로컬 변수가 제공된다. 자세한 내용은 [ngFor API reference](https://angular.io/docs/ts/latest/api/common/index/NgFor-directive.html)를 참조하기 바란다.
+인덱스를 취득할 필요가 있는 경우, 인덱스를 의미하는 템플릿 입력 변수 index를 사용하여 변수에 인덱스를 할당받을 수 있다. index 이외에도 first, last, even, odd와 같은 템플릿 입력 변수가 제공된다. 자세한 내용은 [ngFor API reference](https://angular.io/docs/ts/latest/api/common/index/NgFor-directive.html)를 참조하기 바란다.
 
 ```html
 <element *ngFor="let item of items; let i=index">...</element>
 ```
 
-컴포넌트 클래스의 프로퍼티인 배열을 리스트로 뷰에 출력하는 예제를 살펴보자.
+컴포넌트 클래스의 프로퍼티인 배열을 뷰에 출력하는 예제를 살펴보자.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -418,7 +418,7 @@ interface User {
   selector: 'app-root',
   template: `
     <!-- user를 추가한다 -->
-    <input type="text" #name placeholder="이름을 입력하세요">
+    <input type="text" placeholder="이름을 입력하세요" #name>
     <button (click)="addUser(name.value)">add user</button>
     <ul>
       <!-- users 배열의 length만큼 반복하며 li 요소와 하위 요소를 DOM에 추가한다 -->
@@ -459,9 +459,9 @@ export class AppComponent {
 
 <iframe src="https://stackblitz.com/edit/builtin-directive-ngfor?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="800"></iframe>
 
-ngFor 디렉티브를 사용하여 users 배열의 length만큼 반복하며 li 요소와 하위 요소를 DOM에 추가한다. 템플릿의 ngFor ~ of에서 사용된 user 변수는 users 배열의 개별 요소를 일시적으로 저장하며 호스트 요소 및 하위 요소에서만 유효한 로컬 변수이다.
+ngFor 디렉티브를 사용하여 users 배열의 length만큼 반복하며 li 요소와 하위 요소를 DOM에 추가한다. ngFor 디렉티브에서 사용된 템플릿 입력 변수 user는 users 배열의 개별 요소를 일시적으로 저장하며 호스트 요소 및 하위 요소에서만 유효한 로컬 변수이다.
 
-ngFor 디렉티브는 컬렉션 데이터(users)가 변경되면 컬렉션과 연결된 모든 DOM 요소를 제거하고 다시 생성한다. 이는 컬렉션의 변경 사항을 추적(tracking)할 수 없기 때문이다. 때문에 크기가 매우 큰 컬렉션을 다루는 경우, 퍼포먼스 상의 문제를 발생시킬 수 있다. ngFor 디렉티브는 퍼포먼스를 향상시키기 위한 기능으로 `trackBy`를 제공한다.
+ngFor 디렉티브는 컬렉션 데이터(users 배열)가 변경되면 컬렉션과 연결된 모든 DOM 요소를 제거하고 다시 생성한다. 이는 컬렉션의 변경 사항을 추적(tracking)할 수 없기 때문이다. 따라서 크기가 매우 큰 컬렉션을 다루는 경우, 퍼포먼스상의 문제를 발생시킬 수 있다. ngFor 디렉티브는 퍼포먼스를 향상시키기 위한 기능으로 `trackBy`를 제공한다.
 
 trackBy 기능을 추가하여 위 예제를 수정하여 보자.
 
@@ -477,7 +477,7 @@ interface User {
   selector: 'app-root',
   template: `
     <!-- user를 추가한다 -->
-    <input type="text" #name placeholder="이름을 입력하세요">
+    <input type="text" placeholder="이름을 입력하세요" #name>
     <button (click)="addUser(name.value)">add user</button>
     <ul>
       <!-- users 배열의 length만큼 반복하며 li 요소를 DOM에 추가한다 -->

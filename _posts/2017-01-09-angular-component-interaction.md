@@ -98,8 +98,7 @@ $ ng serve -o
 $ npm install bootstrap@3.3.7
 ```
 
-설치가 완료되었으면 부트스트랩을 임포트하여야 한다. 부트스트랩은 모든 컴포넌트에 적용되어야 하므로 angular-cli.json를 아래와 같이 수정한다.
-
+설치가 완료되었으면 부트스트랩을 임포트하여야 한다. 부트스트랩은 모든 컴포넌트에 적용되어야 하므로 angular-cli.json 파일의 `projects.component-interaction.architect.build.options.styles` 프로퍼티에 부트스트랩 CSS 파일의 경로를 추가한다.
 <!-- projects.component-interaction.architect.build.options.styles -->
 
 ```json

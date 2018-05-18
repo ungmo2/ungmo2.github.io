@@ -285,7 +285,7 @@ ngIf 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설탕
 
 Angular는 *ngIf를 만나면 호스트 요소를 `ng-template` 디렉티브로 래핑하고 *ngIf를 프로퍼티 바인딩으로 변환한다. ngFor와 ngSwitch 디렉티브도 동일한 패턴을 따른다.
 
-`ng-template` 디렉티브는 렌더링 될 요소를 그룹화하여 래핑할 때 사용한다. `ng-template`에 대해서는 [ng-template 디렉티브](./angular-directive#43-ng-template)와 [ng-container 디렉티브](./angular-directive#44-ng-container)를 참조하기 바란다.
+`ng-template` 디렉티브는 컴포넌트 템플릿의 일부로서 정의되지만 단순히 정의된 상태에서는 뷰에 렌더링되지 않고 주석 처리된다. 일반적으로 `ng-template` 디렉티브는 템플릿화된 뷰 스니펫을 호스트 뷰에 추가해야 할 경우 사용한다. `ng-template`에 대해서는 [ng-template 디렉티브](./angular-directive#43-ng-template)를 참조하기 바란다.
 {: .info}
 
 버튼 클릭에 의해 요소를 show/hide하는 간단한 예제를 살펴보자.

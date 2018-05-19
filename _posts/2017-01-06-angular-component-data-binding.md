@@ -64,7 +64,7 @@ AngularJS는 양방향 바인딩(Two-way binding)만을 지원하였고 AngularJ
 
 - DOM 이벤트(click, key press, mouse move 등)
 
-- Timer(setTimeout, setInterval)의 tick 이벤트
+- Timer 함수(setTimeout, setInterval)의 tick 이벤트
 
 - Ajax 통신 / Promise
 

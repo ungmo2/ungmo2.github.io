@@ -28,8 +28,6 @@ description: 디렉티브(Directive 지시자)는 “DOM의 모든 것(모양이
 <div tooltip="tootip on left">Angular tootip on left</div>
 ```
 
-<iframe src="https://stackblitz.com/edit/angular-tooltip-directive?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
-
 디렉티브는 [@Directive](https://angular.io/api/core/Directive) 데코레이터로 장식된 클래스이다. @Directive 데코레이터는 함수이며 디렉티브의 설정 정보가 기술된 메타데이터 객체를 인자로 전달받아 디렉티브를 생성한다. 메타데이터 객체의 정보는 아래와 같다.
 
 ```typescript
@@ -530,13 +528,13 @@ myNgIf 디렉티브는 의존성 주입을 통해 TemplateRef와 ViewContainerRe
 
 ## 4.2 ng-template 디렉티브
 
-ngIf, ngFor, ngSwitch와 같은 [빌트인 구조 디렉티브](./angular-component-template-syntax#22-빌트인-구조-디렉티브built-in-structural-directive)는 디렉티브 이름 앞에 붙은 *(asterisk)에 의해 `ng-template`으로 변환된다. 예를 들어 ngIf의 경우를 살펴보자.
+ngIf, ngFor, ngSwitch와 같은 [빌트인 구조 디렉티브](./angular-component-template-syntax#22-빌트인-구조-디렉티브built-in-structural-directive)는 디렉티브 이름 앞에 붙은 *(asterisk)에 의해 `ng-template`으로 변환된다. 예를 들어 ngIf 디렉티브의 경우를 살펴보자.
 
 ```html
 <element *ngIf="expression">...</element>
 ```
 
-ngIf 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설탕(syntactic sugar)이다. 즉 위 코드는 아래의 코드로 변환된다.
+ngIf 디렉티브 앞에 붙은 *(asterisk) 기호는 아래 구문의 문법적 설탕(syntactic sugar)이다. 즉 위 코드는 아래의 코드로 변환된다.
 
 ```html
 <ng-template [ngIf]="expression">
@@ -544,24 +542,23 @@ ngIf 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설탕
 </ng-template>
 ```
 
-Angular는 *ngIf를 만나면 호스트 요소를 `ng-template` 디렉티브로 래핑하고 ngIf를 프로퍼티 바인딩으로 변환한다.
+Angular는 *ngIf를 만나면 호스트 요소를 ng-template 디렉티브로 래핑하고 ngIf를 프로퍼티 바인딩으로 변환한다. ng-template 디렉티브는 컴포넌트 템플릿의 일부로서 정의되지만 단순히 정의된 상태에서는 주석 처리되어 뷰에 렌더링되지 않고 있다가 ngIf에 바인딩된 값이 참으로 평가되면 비로서 뷰에 렌더링된다. 이때 ngIf 디렉티브는 의존성 주입을 통해 주입받은 TemplateRef와 ViewContainerRef의 인스턴스를 사용하여 ng-template 디렉티브로 래핑된 요소를 렌더링하거나 DOM에서 제거한다.
 
-ng-template 디렉티브는 컴포넌트 템플릿의 일부로서 정의되지만 단순히 정의된 상태에서는 뷰에 렌더링되지 않고 주석 처리된다. 일반적으로 ng-template 디렉티브는 템플릿화된 뷰 스니펫을 호스트 뷰에 추가해야 할 경우 사용한다. `ngIf else`에서 살펴보았듯이 ng-template은 뷰에 렌더링되지 않다가 특정 조건에 의해 비로서 뷰에 렌더링된다.
-
-```html
-<div *ngIf="expression; else elseBlock">
-  Truthy condition
-</div>
-
-<ng-template #elseBlock>
-  Falsy condition
-</ng-template>
+```typescript
+// ngIf 디렉티브
+@Directive({ selector: '[ngIf]' })
+class NgIf {
+  constructor(_viewContainer: ViewContainerRef, templateRef: TemplateRef<NgIfContext>)
+  set ngIf: any
+  set ngIfThen: TemplateRef<NgIfContext> | null
+  set ngIfElse: TemplateRef<NgIfContext> | null
+}
 ```
 
 위에서 작성한 사용자 정의 구조 디렉티브 myNgIf를 다시 살펴보자.
 
-```html
-// my-ng-if.directive.ts
+```typescript
+// app.component.ts
 <h2 *myNgIf="condition">Hello {{ "{{ name " }}}}</h2>
 ```
 
@@ -573,17 +570,17 @@ ng-template 디렉티브는 컴포넌트 템플릿의 일부로서 정의되지�
 </ng-template>
 ```
 
-이때 ng-template 디렉티브로 감싼 요소는 뷰에 렌더링되지 않는다. myNgIf에 바인딩된 값에 의해 ViewContainerRef의 createEmbeddedView 메소드 또는 clear 메소드를 호출하여 ng-template 디렉티브를 뷰에 렌더링하거나 제거한다.
+이때 ng-template 디렉티브로 래핑된 요소는 주석 처리되어 뷰에 렌더링 되지 않고 있다가 myNgIf 디렉티브에 바인딩된 값을 평가하여 ViewContainerRef의 createEmbeddedView 메소드 또는 clear 메소드를 호출하여 ng-template 디렉티브를 뷰에 렌더링하거나 제거한다.
 
 일반적으로 ng-template는 [ngTemplateOutlet](https://angular.io/api/common/NgTemplateOutlet) 또는 myNgIf 예제에서 살펴본 바와 같이 createEmbeddedView를 사용하여 TemplateRef이 가리키는 템플릿화된 뷰 스니펫을 호스트 뷰에 추가해야 할 경우 사용한다.
 
 ## 4.3 TemplateRef와 ViewContainerRef
 
-[TemplateRef](https://angular.io/api/core/TemplateRef)는 ng-template 디렉티브를 가리키는 래핑 객체를 생성한다. 즉, 주입된 TemplateRef 타입의 인스턴스는 호스트 요소의 ng-template 디렉티브의 참조를 갖는 객체이다.
+[TemplateRef](https://angular.io/api/core/TemplateRef)는 ng-template 디렉티브로 래핑된 요소를 가리키는 객체를 생성한다. 다시 말해 디렉티브에 주입된 TemplateRef의 인스턴스는 호스트 요소의 ng-template 디렉티브의 참조를 갖는 객체이다.
 
-[ViewContainerRef](https://angular.io/api/core/ViewContainerRef)는 뷰를 포함시킬 수 있는 컨테이너이다. 이 컨테이너에는 두 종류의 뷰가 포함될 수 있다. 하나는 ViewContainerRef의 createComponent 메소드를 통해 컴포넌트를 인스턴스화하여 만든 호스트 뷰(Host View)이고 또 하나는 ViewContainerRef의 createEmbeddedView 메소드를 통해 ng-template을 인스턴스화하여 포함한 임베디브 뷰(Embedded View)이다.
+[ViewContainerRef](https://angular.io/api/core/ViewContainerRef)는 하나 이상의 뷰를 포함시킬 수 있는 컨테이너이다. 이 컨테이너에는 두 종류의 뷰가 포함될 수 있다. 하나는 ViewContainerRef의 createComponent 메소드를 통해 컴포넌트를 인스턴스화하여 만든 호스트 뷰(Host View)이고 또 하나는 ViewContainerRef의 createEmbeddedView 메소드를 통해 ng-template을 인스턴스화하여 포함한 임베디브 뷰(Embedded View)이다.
 
-다시 말해 ViewContainerRef는 컴포넌트, 어트리뷰트 디렉티브, 구조 디렉티브의 호스트 뷰를 가리키며 createComponent, createEmbeddedView 메소드를 통해 새로운 요소(컴포넌트 또는 ng-template 디렉티브)를 담을 수 있는 DOM 요소이다.
+다시 말해 ViewContainerRef는 새로운 요소(컴포넌트나 ng-template 디렉티브로 래핑된 요소)를 DOM에 삽입하기 위해 필요한 컨테이너(DOM 요소)로써 createComponent, createEmbeddedView 메소드를 통해 새로운 요소를 DOM에 삽입한다.
 
 '사용자 정의 구조 디렉티브의 생성'에서 작성한 코드의 ①과 ②를 살펴보자.
 
@@ -602,9 +599,9 @@ ng-template 디렉티브는 컴포넌트 템플릿의 일부로서 정의되지�
 }
 ```
 
-① 프로퍼티 바인딩에 의해 전달된 myNgIf 디렉티브의 상태 값이 true이면 ViewContainerRef의 createEmbeddedView 메소드에 ng-template 디렉티브를 가리키는 templateRef 객체를 인자로 전달하여 ng-template 디렉티브를 생성하여 호스트 뷰에 추가한다.
+① 프로퍼티 바인딩에 의해 전달된 myNgIf 디렉티브의 상태 값이 true이면 ViewContainerRef의 createEmbeddedView 메소드에 호스트 요소의 ng-template 디렉티브로 래핑된 요소를 가리키는 templateRef 객체를 인자로 전달하여 ng-template 디렉티브로 래핑된 요소를 호스트 뷰에 추가한다.
 
-② 상태 값이 false이면 ViewContainerRef의 clear 메소드를 호출하여 ng-template 디렉티브를 호스트 뷰에서 제거한다. 제거된 ng-template 디렉티브는 `display: none`으로 감추어진 것이 아니라 DOM에 남아있지 않고 완전히 제거되어 불필요한 자원의 낭비를 방지한다.
+② 상태 값이 false이면 ViewContainerRef의 clear 메소드를 호출하여 ng-template 디렉티브로 래핑된 요소를 호스트 뷰에서 제거한다. 제거된 ng-template 디렉티브는 `display: none`으로 감추어진 것이 아니라 주석 처리되어 DOM에 남아있지 않고 완전히 제거되기 때문에 불필요한 자원의 낭비를 방지한다.
 
 ## 4.4 ng-container 디렉티브
 

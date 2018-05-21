@@ -517,23 +517,23 @@ CREATE src/app/data.service.ts (133 bytes)
   - user.service.ts
   : 서비스 클래스 파일
 
-컴포넌트를 생성할 때와는 달리 서비스를 위한 폴더는 생성되지 않으며 기본적으로 `src/app` 폴더에 생성된다. 생성된 서비스는 해당 서비스를 사용하려는 모듈 또는 컴포넌트의 providers 프로퍼티에 등록되어야 한다. 다음은 루트 모듈에 서비스를 등록하는 예제이다.
+컴포넌트를 생성할 때와는 달리 서비스를 위한 폴더는 생성되지 않으며 기본적으로 `src/app` 폴더에 생성된다.
+
+생성된 `data.service.ts`를 살펴보면 `@Injectable` 데코레이터 함수에 전달된 메타데이터 객체의 `providedIn` 프로퍼티 값으로 'root'가 설정되었다.
 
 ```typescript
-// src/app/app.module.ts
-...
-import { DataService } from './data.service';
+// src/app/data.service.ts
+import { Injectable } from '@angular/core';
 
-@NgModule({
-  ...
-  providers: [
-    ...
-    DataService
-  ],
-  bootstrap: [AppComponent]
+@Injectable({
+  providedIn: 'root'
 })
-export class AppModule { }
+export class DataService {
+  constructor() { }
+}
 ```
+
+`providedIn` 프로퍼티는 Angular 6에서 도입된 것으로 프로퍼티 값으로 'root'를 설정하면 루트 인젝터에게 서비스를 제공하도록 지시하여 애플리케이션 전역에서 서비스를 주입할 수 있도록 한다.
 
 ## 5.5 클래스 생성
 

@@ -28,8 +28,8 @@ const numbers$ = Observable.create(observer => {
   console.log('[Generating Obserbable]');
 
   let i = 1;
-setInterval(
-  // 1s마다 숫자를 배출하거나 데이터 스트림의 종료를 알린다.
+  setInterval(
+    // 1s마다 숫자를 배출하거나 데이터 스트림의 종료를 알린다.
     () => i <= 5 ? observer.next(i++) : observer.complete(),
     1000
   );
@@ -56,7 +56,9 @@ setTimeout(() => numbers$.subscribe(
 
 Hot observable은 옵저버블을 생성하자마자 구독과 상관없이 바로 데이터 스트림을 배출(emit)하기 시작한다. 따라서 일정 시간이 경과한 시점에 옵저버블을 구독하면 데이터 스트림의 앞부분은 구독할 수 없고 중간 부분부터 구독하게 된다. Hot observable은 구독 시점부터 배출되는 데이터를 받는 것을 기본으로 한다.
 
-RxJS의 옵저버블은 기본적으로 Cold observable이다. Cold observable을 Hot observable로 만들려면 publish, share 오퍼레이터를 사용할 수도 있으나 `Subject`를 사용하면 편리하다. Subject는 옵저버블이면서 옵저버이다. 따라서 옵저버블을 구독할 수도 있으며 옵저버처럼 next, complete 메소드를 직접 호출할 수 있다. 이처럼 Subject는 옵저버처럼 next 메소드를 호출할 수 있으므로 Subject를 사용하면 데이터를 배출할 수도 있다. 이것은 Cold observable의 유니캐스트한 특성과는 달리 Hot observable를 구독하고 있는 모든 옵저버에게 부수 효과(side-effect)가 있다는 의미이다. 이러한 특징을 가리켜 [멀티캐스트(multicast)](https://ko.wikipedia.org/wiki/멀티캐스트)라 한다.
+RxJS의 옵저버블은 기본적으로 Cold observable이다. Cold observable을 Hot observable로 만들려면 publish, share 오퍼레이터를 사용할 수도 있으나 `Subject`를 사용하면 편리하다. Subject는 옵저버블이면서 옵저버이다. 따라서 옵저버블을 구독할 수도 있으며 옵저버처럼 next, complete 메소드를 직접 호출할 수 있다. 이처럼 next 메소드를 호출할 수 있으므로 Subject를 사용하면 데이터를 배출할 수도 있다. 이것은 Cold observable의 유니캐스트한 특성과는 달리 Hot observable를 구독하고 있는 모든 옵저버에게 부수 효과(side-effect)가 있다는 의미이다. 이러한 특징을 가리켜 [멀티캐스트(multicast)](https://ko.wikipedia.org/wiki/멀티캐스트)라 한다.
+
+아래는 Hot observable의 예제이다.
 
 ```typescript
 import { Subject, BehaviorSubject } from 'rxjs';

@@ -677,7 +677,7 @@ import { Observable } from "rxjs/Observable";
 
 이 핸들러는 [HttpHandler](https://angular.io/api/common/http/HttpHandler) 클래스 타입으로 HttpHandler는 [Express의 미들웨어](./express-basics#4-middleware)와 유사하게 인터셉터를 체이닝할 때 사용한다. 다음 인터셉터가 존재하는 경우, 요청을 다음 인터셉터에 전달하고 다음 인터셉터가 존재하지 않는 경우, 최종 HttpHandler인 [HttpBackend](https://angular.io/api/common/http/HttpBackend)가 되어 요청을 전송하고 Observable 반환한다.
 
-**인터셉터는 HttpClient 인터페이스와 HTTP 요청을 브라우저 HTTP API를 통해 백엔드로 전달하는 최종 HttpHandler인 HttpBackend 사이에 있으며 여러개의 인터셉터가 존재할 때 각각의 인터셉터를 순차적으로 연결하는 역할을 하는 것이 HttpHandler이다.**
+**인터셉터는 HttpClient 인터페이스와 HTTP 요청을 브라우저 HTTP API를 통해 백엔드로 전달하는 최종 HttpHandler인 HttpBackend 사이에 있으며 여러 개의 인터셉터가 존재할 때 각각의 인터셉터를 순차적으로 연결하는 역할을 하는 것이 HttpHandler이다.**
 
 ② 첫번째 인자로 받은 HttpRequest 객체는 이뮤터블이기 때문에 직접 객체의 내용을 변경할 수 없다. clone 메소드를 사용하여 헤더에 인증 토큰을 추가한 새로운 복사본을 생성한다.
 

@@ -582,7 +582,7 @@ RouterLink 디렉티브가 선언된 링크를 클릭하면 routerLink의 값이
   routerLinkActive="active">Service</a>
 ```
 
-한개 이상의 클래스를 지정할 경우, 아래와 같이 지정한다.
+한 개 이상의 클래스를 지정할 경우, 아래와 같이 지정한다.
 
 ```html
 <a routerLink="/service" routerLinkActive="class1 class2">Service</a>

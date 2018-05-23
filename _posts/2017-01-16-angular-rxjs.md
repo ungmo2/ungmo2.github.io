@@ -27,14 +27,14 @@ map 오퍼레이터를 통해 변환(Transforming)된 옵저버블을 반환하�
 
 리액티브 프로그래밍은 두번째 방식(푸시 시나리오)으로 동작하는 애플리케이션을 작성하는 것이다. 즉, 필요한 데이터를 획득하기 위해서 애플리케이션이 외부 환경에 요청하여 데이터를 획득하는 것이 아니라, 애플리케이션은 외부 환경을 관찰하고 있다가 외부 환경에서 데이터 스트림을 방출하면 그것에 반응하여 데이터를 획득하는 것이다.
 
-이때 외부 환경에서 애플리케이션 내부로 연속적으로 흐르는 데이터, 즉 데이터 스트림을 생성하는 객체를 **옵저버블(Observable)**이라 하고, 데이터 스트림을 획득하여 사용하는 객체를 **옵저버(Observer)**라 한다. 다시 말해 데이터 소비자(Data consumer)인 옵저버는 데이터 생산자(Data producer)인 옵저버블을 **구독(subscribe)**한다. 이 구독에 의해 옵저버는 옵저버블에 연결되어 옵저버블의 상태를 관찰한다. 그리고 옵저버블의 상태가 변경되면 상태는 데이터 스트림을 통해 옵저버에 자동으로 전파된다. 위의 예에서 TV 방송국은 옵저버블이며 TV는 옵저버라고 할 수 있다.
+이때 외부 환경에서 애플리케이션 내부로 연속적으로 흐르는 데이터, 즉 데이터 스트림을 생성하는 객체를 **옵저버블(Observable)**이라 하고, 데이터 스트림을 획득하여 사용하는 객체를 **옵저버(Observer)**라 한다. 다시 말해 데이터 소비자(Data consumer)인 옵저버는 데이터 생산자(Data producer)인 옵저버블을 **구독(subscribe)**한다. 이 구독에 의해 옵저버는 옵저버블에 연결되어 옵저버블의 상태를 관찰한다. 그리고 옵저버블이 방출(emit)한 **노티피케이션**(Notification, 알림: 옵저버블이 방출할 수 있는 푸시 기반 이벤트 또는 값)은 옵저버에게 자동으로 전파된다. 방송국의 예에서 TV 방송국은 옵저버블이고 TV는 옵저버이며 영상 정보 프레임은 옵저버블이 방출한 노티피케이션이라고 할 수 있다.
 
 ![observable](/img/observable.png)
 
 Observable과 Observer
 {: .desc-img}
 
-옵저버블은 Angular의 고유 기능이 아니라 ES7 스펙으로 제안이 되어 있는 비동기 데이터를 처리하기 위한 표준이다. 리액티브 프로그래밍은 옵저버(Observer) 패턴을 좀 더 심화한 패턴으로 이미 다양한 라이브러리가 지원하고 있다.
+옵저버블은 Angular의 고유 기능이 아니라 ES7 스펙으로 제안이 되어 있는 비동기 데이터를 처리하기 위한 표준이다. 리액티브 프로그래밍은 [옵저버(Observer) 패턴](https://en.wikipedia.org/wiki/Observer_pattern)을 좀 더 심화한 패턴으로 이미 다양한 라이브러리가 지원하고 있다.
 
 ![observer-pattern](/img/observer-pattern.png)
 
@@ -384,6 +384,8 @@ switchMap 오퍼레이터
 ⑦ [catchError](http://reactivex.io/rxjs/function/index.html#static-function-catchError) 오퍼레이터는 옵저버블 시퀀스에서 발생한 에러를 캐치한다.
 
 # Reference
+
+* [Intro to RxJS](https://youtu.be/flj-OprlogY)
 
 * [ReactiveX](http://reactivex.io/)
 

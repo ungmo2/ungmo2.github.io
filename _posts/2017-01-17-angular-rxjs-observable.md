@@ -14,7 +14,7 @@ description: 옵저버블은 구독(subscribe)되기 전까지 실행되지 않�
 
 # 1. Cold observable
 
-옵저버블은 구독(subscribe)되기 전까지 실행되지 않는다고 하였다. 이러한 특성을 갖는 옵저버블을 Cold observable이라 하며 RxJS의 옵저버블은 기본적으로 Cold observable이다. Cold observable은 구독되기 이전에는 데이터 스트림을 방출(emit)하지 않으며 Cold observable을 구독하는 옵저버는 옵저버블이 방출(emit)하는 모든 데이터 스트림을 빠짐없이 처음부터 받을 수 있다.
+옵저버블은 구독(subscribe)되기 전까지 실행되지 않는다고 하였다. 이러한 특성을 갖는 옵저버블을 Cold observable이라 하며 RxJS의 옵저버블은 기본적으로 Cold observable이다. Cold observable은 구독되기 이전에는 데이터 스트림을 방출(emit)하지 않으며 Cold observable을 구독한 옵저버는 옵저버블이 방출(emit)하는 모든 데이터 스트림을 빠짐없이 처음부터 받을 수 있다.
 
 옵저버블을 구독하는 옵저버는 하나 이상일 수 있는데 Cold observable를 구독하는 모든 옵저버들은 Cold observable이 방출하는 모든 데이터를 구독하는 시점에 상관없이 처음부터 모두 받을 수 있다. 이것은 Cold observable을 구독하는 옵저버는 자신만을 위한 전용 옵저버블을 갖게 된다고 볼 수 있는데 이러한 특징을 가리켜 [유니캐스트(unicast)](https://ko.wikipedia.org/wiki/유니캐스트)라 한다.
 

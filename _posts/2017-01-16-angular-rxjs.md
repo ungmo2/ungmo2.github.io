@@ -75,11 +75,11 @@ import { Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fr
 import { map, filter, scan, tap } from 'rxjs/operators';
 ```
 
-# 4. 옵저버블(Observable)과 옵저버(Observer)
+# 4. 옵저버블과 옵저버
 
-위에서 살펴본 바와 같이 시간축을 따라 연속적으로 흐르는 데이터, 즉 데이터 스트림을 생성하는 객체를 **옵저버블(Observable)**이라 하고, 데이터 스트림을 구독(subscribe)하여 사용하는 객체를 **옵저버(Observer)**라 한다. 다시 말해 옵저버블은 연속성을 갖는 데이터를 스트리밍(streaming)하고 옵저버는 연속적으로 보내진 데이터를 받아 처리한다.
+위에서 살펴본 바와 같이 시간축을 따라 연속적으로 흐르는 데이터, 즉 데이터 스트림을 생성하고 방출하는 객체를 **옵저버블(Observable)**이라 한다. 옵저버블을 구독하여 옵저버블이 방출한 데이터르 전파받아 사용하는 객체를 **옵저버(Observer)**라 한다. 다시 말해 옵저버블은 연속성을 갖는 데이터를 스트리밍하고 옵저버는 연속적으로 보내진 데이터를 받아 처리한다.
 
-구현의 관점에서 말하자면 옵저버블은 subscribe 메소드를 소유하며, 이 subscribe 메소드의 인자로 옵저버를 전달한다. 이로써 옵저버는 옵저버블을 구독하고 옵저버블이 생성한 데이터 스트림을 받아 처리한다. RxJS를 사용하여 마우스의 좌표를 표시하는 간단한 예제를 살펴보자.
+구현의 관점에서 말하자면 옵저버블은 subscribe 오퍼레이터를 소유하며, 이것의 인자로 옵저버를 전달한다. 이로써 옵저버는 옵저버블을 구독하고 옵저버블이 방출한 데이터를 전파받아 처리한다. RxJS를 사용하여 마우스의 좌표를 표시하는 간단한 예제를 살펴보자.
 
 ```typescript
 import { Component, OnInit } from '@angular/core';
@@ -103,9 +103,8 @@ export class AppComponent implements OnInit {
     // ② 옵저버블의 생성(DOM 이벤트를 옵저버블로 변환)
     this.mousePositon$ = fromEvent(document, 'mousemove');
 
-    // ③ 옵저버는 옵저버블을 구독하고 옵저버블이 생성한 데이터 스트림을 받아 처리한다.
+    // ③ 옵저버는 옵저버블을 구독하고 옵저버블이 방출한 데이터를 전파받아 사용한다.
     this.mousePositon$.subscribe(
-      // MouseEvent가 발생하면 옵저버는 옵저버블의 상태 변화에 반응한다.
       (event: MouseEvent) => {
         this.posX = event.clientX;
         this.posY = event.clientY;
@@ -122,12 +121,12 @@ export class AppComponent implements OnInit {
 
 ② fromEvent 오퍼레이터를 사용하여 document 요소의 mousemove 이벤트를 옵저버블로 변환하였다. 데이터를 생산하는 것이라면 무엇이든 옵저버블로 만들 수 있다. 주의할 것은 이 시점에 옵저버블은 아무런 동작을 하지 않는다는 것이다. 옵저버블은 구독(subscribe)되기 전까지 실행되지 않는다.
 
-옵저버블은 구독(subscribe)되기 전까지 실행되지 않는다고 하였다. 이러한 특성을 갖는 옵저버블을 [Cold observable](./angular-rxjs-observable)이라 하며 RxJS의 옵저버블은 기본적으로 Cold observable이다. Cold observable은 구독되기 이전에는 데이터 스트림을 방출(emit)하지 않으며 Cold observable을 구독하는 옵저버는 옵저버블이 방출하는 모든 데이터 스트림을 빠짐없이 처음부터 받을 수 있다.
+옵저버블은 구독(subscribe)되기 전까지 실행되지 않는다고 하였다. 이러한 특성을 갖는 옵저버블을 [Cold observable](./angular-rxjs-observable)이라 하며 RxJS의 옵저버블은 기본적으로 Cold observable이다. Cold observable은 구독되기 이전에는 데이터 스트림을 방출(emit)하지 않으며 Cold observable을 구독한 옵저버는 옵저버블이 방출하는 모든 데이터 스트림을 빠짐없이 처음부터 받을 수 있다.
 {: .info}
 
-③ subscribe 메소드를 사용하여 옵저버가 옵저버블을 구독하도록 하였다. 옵저버는 next, error, complete 메소드를 갖는 객체이며 subscribe 메소드의 인자로 사용하면 옵저버블을 구독한다. 옵저버블은 mousemove 이벤트를 데이터 스트림으로 생성하고 옵저버에게 전파한다. 옵저버블은 구독을 해지(unsubscribe)하거나 complete 메소드가 호출될 때까지 옵저버에게 새로운 데이터를 계속해서 전파한다. 이때 옵저버에게 새로운 값이 성공적으로 전달되면 next 메소드가 호출되고 에러가 발생하면 error 메소드가 호출된다.
+③ subscribe 오퍼레이터를 사용하여 옵저버가 옵저버블을 구독하도록 하였다. 옵저버는 next, error, complete 메소드를 갖는 객체이며 subscribe 오퍼레이터의 인자로 사용하면 옵저버블을 구독한다. 옵저버블은 mousemove 이벤트를 데이터 스트림으로 생성하고 방출하여 옵저버에게 전파한다. 옵저버블은 구독을 해지(unsubscribe)하거나 complete 메소드가 호출될 때까지 옵저버에게 새로운 데이터를 계속해서 전파한다. 이때 옵저버에게 새로운 값이 성공적으로 전달되면 next 메소드가 호출되고 에러가 발생하면 error 메소드가 호출된다.
 
-위 예제는 subscribe 메소드의 인자로 next, error, complete 메소드를 전달하였다. subscribe 메소드의 인자로 next, error, complete 메소드를 갖는 객체 리터럴을 전달하는 것도 유효하다.
+위 예제는 subscribe 오퍼레이터의 인자로 next, error, complete 메소드를 전달하였다. subscribe 오퍼레이터의 인자로 next, error, complete 메소드를 갖는 객체 리터럴을 전달하는 것도 유효하다.
 
 ```typescript
 ...
@@ -146,7 +145,7 @@ export class AppComponent implements OnInit {
 
 [오퍼레이터(Operator)](http://reactivex.io/documentation/operators.html)는 옵저버블의 생성(Creating), 변환(Transforming), 필터링(Filtering), 에러 처리(Error Handling)의 기능을 하는 함수이다.
 
-오퍼레이터는 새로운 옵저버블을 반환하므로 subscribe 메소드에 도달하기 전까지 체이닝을 통해 데이터를 전달할 수 있다. 체이닝으로 이어지는 이 과정을 옵저버블 시퀀스(Observable sequence)라고 부른다. 간단한 예제를 통해 오퍼레이터의 동작을 살펴보자.
+오퍼레이터는 새로운 옵저버블을 반환하므로 subscribe 메소드에 도달하기 전까지 체이닝을 통해 데이터를 전달할 수 있다. 체이닝으로 이어지는 이 과정을 **옵저버블 시퀀스(Observable sequence)**라고 부른다. 간단한 예제를 통해 오퍼레이터의 동작을 살펴보자.
 
 ```typescript
 // observable.component.ts
@@ -269,9 +268,9 @@ export class ObservableEventHttpComponent implements OnInit, OnDestroy {
     // ① 폼 컨트롤 값의 상태를 옵저버블 스트림으로 수신한다.
     this.subscription = this.searchInput.valueChanges
       .pipe(
-        // ③ 옵저버블의 방출 데이터를 수신하는 시간을 지연시킨다.
+        // ③ 옵저버블이 방출하는 데이터를 수신하는 시간을 지연시킨다.
         debounceTime(500),
-        // ④ 옵저버블을 받아서 새로운 옵저버블을 생성한다.
+        // ④ 새로운 옵저버블을 생성한다.
         switchMap((userId: string) => this.getGithubUser(userId))
       )
       // ⑥ 옵저버블을 구독한다.

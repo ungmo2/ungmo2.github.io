@@ -172,7 +172,7 @@ export class AppComponent {
 
 컴포넌트 클래스의 프로퍼티가 문자열이 아닌 경우 문자열로 변환되며 존재하지 않는 프로퍼티에 접근하는 경우(위 예제의 gender) 에러 발생 없이 아무것도 출력하지 않는다.
 
-<iframe src="https://stackblitz.com/edit/template-interpolation?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/template-interpolation?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 ## 3.2 프로퍼티 바인딩(Property binding)
 
@@ -214,7 +214,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/template-property-binding?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/template-property-binding?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 인터폴레이션은 템플릿의 어디에서도 사용할 수 있다. 인터폴레이션은 순수한 문자열을 반환하므로 HTML 콘텐츠로 사용할 수도 있고 HTML 어트리뷰트의 값으로 사용할 수도 있다.
 
@@ -306,7 +306,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/attribute-binding-1?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/attribute-binding-1?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
 프로퍼티 바인딩은 DOM 노드 객체의 프로퍼티에 컴포넌트 클래스의 프로퍼티 값을 바인딩하고 어트리뷰트 바인딩은 HTML 요소의 어트리뷰트(DOM 노드 객체의 attributes 프로퍼티)에 컴포넌트 클래스의 프로퍼티 값을 바인딩한다.
 
@@ -396,7 +396,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/attribute-binding-2?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/attribute-binding-2?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 이와 같이 DOM의 프로퍼티는 HTML 요소의 어트리뷰트와는 다르게 동작하기 때문에 프로퍼티 바인딩과 어트리뷰트 바인딩은 구분되어 사용하여야 한다.
 
@@ -522,7 +522,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/template-class-binding?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/template-class-binding?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 <!-- <iframe src="https://embed.plnkr.co/4HXnLnQ4lDRJGMomcg9z/?show=preview" frameborder="0" width="100%" height="400"></iframe> -->
 
@@ -575,7 +575,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/template-style-binding?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/template-style-binding?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 스타일 바인딩은 주로 하나의 인라인 스타일을 조건에 의해 추가하는 용도로 사용한다. 여러 개의 인라인 스타일을 추가할 때는 ngStyle 디렉티브를 사용한다.
 
@@ -620,7 +620,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/template-event-binding?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/template-event-binding?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 1. 사용자의 텍스트 입력에 의해 input 이벤트가 발생하면 이벤트 바인딩을 통하여 이벤트 핸들러 setName을 호출한다. 이때 이벤트 정보를 담고 있는 DOM 이벤트 객체 **$event**를 이벤트 핸들러에 전달할 수 있다. $event 객체는 DOM 이벤트의 종류에 의해 타입(KeyboardEvent, InputEvent, MouseEvent 등)이 결정된다. Angular는 표준 DOM 이벤트를 사용하기 때문에 $event를 통해 브라우저의 [Event](https://developer.mozilla.org/ko/docs/Web/API/Event) 객체의 프로퍼티나 메소드에 자유롭게 접근할 수 있다. 이벤트 핸들러 setName은 input 이벤트를 발생시킨 input 요소(event.target)의 value 프로퍼티(사용자 입력 텍스트가 담겨있다)를 $event로 부터 추출하여 name 프로퍼티에 할당한다.
 
@@ -706,7 +706,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/template-two-way-binding?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/template-two-way-binding?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 컴포넌트 클래스의 name 프로퍼티는 템플릿의 input 요소와 양방향으로 바인딩되어 있다. 즉, input 요소의 value 프로퍼티가 변화하면 컴포넌트 클래스의 name 프로퍼티도 동일한 값으로 변화하고 반대로 컴포넌트 클래스의 name 프로퍼티가 변화하면 input 요소의 value 프로퍼티도 동일한 값으로 변화한다.
 

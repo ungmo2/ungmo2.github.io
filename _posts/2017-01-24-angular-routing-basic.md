@@ -324,7 +324,7 @@ const routes: Routes = [
 ];
 ```
 
-<!-- <iframe src="https://stackblitz.com/edit/route-redirectto?embed=1&file=app/app-routing.module.ts" frameborder="0" width="100%" height="500"></iframe> -->
+<!-- <iframe src="https://stackblitz.com/edit/route-redirectto?ctl=1&embed=1&hideNavigation=1&file=app/app-routing.module.ts" frameborder="0" width="100%" height="500"></iframe> -->
 
 ## 4.2 라우트 등록
 
@@ -636,7 +636,7 @@ import { Component } from '@angular/core';
 export class AppComponent {}
 ```
 
-<iframe src="https://stackblitz.com/edit/routing-exam?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/routing-exam?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 # 5. navigate 메소드
 
@@ -710,7 +710,7 @@ export class AppComponent {
 
 'goto todos' 버튼을 클릭하면 /todos로 이동한다. 이때 링크 태그를 사용하지 않았지만 [Router](https://angular.io/api/router/Router) 클래스의 멤버인 navigate 메소드를 통해 화면 전환이 가능하다. Router 클래스의 인스턴스는 의존성 주입을 통해 컴포넌트로 주입받아 사용한다.
 
-<iframe src="https://stackblitz.com/edit/navigate-method-exam?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/navigate-method-exam?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
 # Reference
 

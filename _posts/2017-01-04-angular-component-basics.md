@@ -527,7 +527,7 @@ $ ng serve
 hello 프로젝트의 실행 결과
 {: .desc-img}
 
-<iframe src="https://stackblitz.com/edit/angular-my-first-component?embed=1&file=src/app/hello/hello.component.ts" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/angular-my-first-component?ctl=1&embed=1&hideNavigation=1&file=src/app/hello/hello.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
 # Reference
 

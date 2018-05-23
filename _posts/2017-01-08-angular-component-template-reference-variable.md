@@ -52,7 +52,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/template-reference-variable?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/template-reference-variable?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 # 2. 세이프 내비게이션 연산자(Safe navigation operator)
 
@@ -75,7 +75,7 @@ import { Component } from '@angular/core';
 export class AppComponent { }
 ```
 
-<iframe src="https://stackblitz.com/edit/safe-navigation-operator?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/safe-navigation-operator?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
 # Reference
 

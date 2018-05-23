@@ -121,7 +121,7 @@ import { Component } from '@angular/core';
 export class AppComponent { }
 ```
 
-<iframe src="https://stackblitz.com/edit/custom-attr-directive-1?embed=1&file=app/text-blue.directive.ts" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/custom-attr-directive-1?ctl=1&embed=1&hideNavigation=1&file=app/text-blue.directive.ts" frameborder="0" width="100%" height="500"></iframe>
 
 ① 디렉티브는 @Directive 데코레이터로 장식된 순수한 자바스크립트 클래스이다. @Directive 데코레이터의 메타데이터 객체에 디렉티브에 필요한 정보를 설정한다. selector 프로퍼티에는 CSS의 셀렉터 문법과 동일하게 디렉티브가 적용되는 조건을 설정할 수 있다.
 
@@ -167,7 +167,7 @@ export class AppComponent implements AfterViewInit {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/elementref?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="300"></iframe>
+<iframe src="https://stackblitz.com/edit/elementref?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="300"></iframe>
 
 생성자에 주입된 ElementRef 클래스의 인스턴스는 디렉티브가 선언된 요소, 즉 호스트 요소를 감싼 래퍼 객체이다. 따라서 주입된 ElementRef 클래스의 인스턴스를 통해 `el.nativeElement`와 같이 호스트 요소에 직접 접근할 수 있다.
 
@@ -192,7 +192,7 @@ export class TextBlueDirective {
 
 컴포넌트를 실행하면 textBlue 디렉티브에 의해 호스트 요소의 텍스트 컬러가 파란색으로 표시되는 것을 확인할 수 있다.
 
-<iframe src="https://stackblitz.com/edit/custom-attr-directive-2?embed=1&file=app/text-blue.directive.ts" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/custom-attr-directive-2?ctl=1&embed=1&hideNavigation=1&file=app/text-blue.directive.ts" frameborder="0" width="100%" height="500"></iframe>
 
 ## 3.2 이벤트 처리
 
@@ -258,7 +258,7 @@ class CountClicks {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/custom-attr-directive-3?embed=1&file=app/text-blue.directive.ts" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/custom-attr-directive-3?ctl=1&embed=1&hideNavigation=1&file=app/text-blue.directive.ts" frameborder="0" width="100%" height="500"></iframe>
 
 ## 3.3 @Input 데이터 바인딩
 
@@ -313,7 +313,7 @@ export class TextColorDirective {
 
 모듈에 TextColorDirective를 등록하고 컴포넌트를 실행하면 color 프로퍼티에 바인딩한 컬러가 textColor 디렉티브로 전달되고 호스트 요소의 텍스트 컬러가 이벤트에 의해 변경되는 것을 확인할 수 있다.
 
-<iframe src="https://stackblitz.com/edit/custom-attr-directive-4?embed=1&file=app/text-color.directive.ts" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/custom-attr-directive-4?ctl=1&embed=1&hideNavigation=1&file=app/text-color.directive.ts" frameborder="0" width="100%" height="500"></iframe>
 
 조금더 리팩터링를 해보자. 별도의 color 어트리뷰트에 바인딩한 컬러를 이번에는 textColor 디렉티브에 직접 바인딩하도록 수정한다.
 
@@ -342,7 +342,7 @@ export class TextColorDirective {
 ...
 ```
 
-<iframe src="https://stackblitz.com/edit/custom-attr-directive-5?embed=1&file=app/text-color.directive.ts" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/custom-attr-directive-5?ctl=1&embed=1&hideNavigation=1&file=app/text-color.directive.ts" frameborder="0" width="100%" height="500"></iframe>
 
 위 예제의 'textColor'는 p 요소의 어트리뷰트이다. 어트리뷰트 디렉티브는 요소의 어트리뷰트와 디렉티브의 셀렉터가 일치하면 디렉티브가 적용된다. 요소의 어트리뷰트는 정적 값을 갖는다. 그에 비해 프로퍼티 바인딩은 동적인 값을 바인딩 받는다. 프로퍼티 바인딩에 의한 동적 값이든 일반 어트리뷰트의 정적 값이든 모두 @Input 데코레이터를 통해 전달할 수 있다. 아래 예제를 살펴보자.
 
@@ -393,7 +393,7 @@ export class MyDirectiveDirective {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/sending-static-value?embed=1&file=app/my-directive.directive.ts" frameborder="0" width="100%" height="400"></iframe>
+<iframe src="https://stackblitz.com/edit/sending-static-value?ctl=1&embed=1&hideNavigation=1&file=app/my-directive.directive.ts" frameborder="0" width="100%" height="400"></iframe>
 
 마지막으로 mouseenter 이벤트 발생 시에는 라디오 버튼에 의해 입력된 컬러에 의해 텍스트 컬러가 변경되도록 하고 mouseleave 이벤트 발생 시에는 어트리뷰트 호스트의 일반 어트리뷰트에 지정된 정적 값을 통해 텍스트 컬러가 변경되도록 수정하여 보자.
 
@@ -461,7 +461,7 @@ export class TextColorDirective implements OnInit  {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/custom-attr-directive-6?embed=1&file=app/text-color.directive.ts" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/custom-attr-directive-6?ctl=1&embed=1&hideNavigation=1&file=app/text-color.directive.ts" frameborder="0" width="100%" height="500"></iframe>
 
 # 4. 사용자 정의 구조 디렉티브
 
@@ -522,7 +522,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/custom-structure-directive-1?embed=1&file=app/my-ng-if.directive.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/custom-structure-directive-1?ctl=1&embed=1&hideNavigation=1&file=app/my-ng-if.directive.ts" frameborder="0" width="100%" height="600"></iframe>
 
 myNgIf 디렉티브는 의존성 주입을 통해 TemplateRef와 ViewContainerRef 클래스의 인스턴스를 주입받는다. 이들 클래스에 대해 살펴보기 전에 먼저 ng-template 디렉티브에 대해 알아보도록 하자.
 
@@ -666,7 +666,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/ng-container?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/ng-container?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 select 태그를 동적으로 구성하는 Range 사용자 정의 구조 디렉티브를 통해 ng-container에 사용 방법에 대해 알아보도록 하자.
 
@@ -739,7 +739,7 @@ export class RangeDirective {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/custom-structure-directive-2?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/custom-structure-directive-2?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 # Reference
 

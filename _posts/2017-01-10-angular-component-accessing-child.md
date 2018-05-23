@@ -213,7 +213,7 @@ export class AppComponent {
 @ViewChild 데코레이터는 1개의 자식 요소만을 가져올 수 있기 때문에 만일 자식 요소 중에 ChildComponent가 여러 개 탐색되었을 경우, 첫 번째 ChildComponent의 인스턴스를 가져온다.
 프로퍼티 myChild에는 자식 컴포넌트 ChildComponent의 인스턴스가 바인딩되어 있으므로 프로퍼티 myChild를 통해 자식 컴포넌트의 프로퍼티, 메소드에 접근할 수 있다. 단, 접근 제한자(Access modifier) public으로 공개된 프로퍼티, 메소드에만 접근할 수 있다.
 
-<iframe src="https://stackblitz.com/edit/view-child-decorator?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/view-child-decorator?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 ## 1.2 @ViewChildren
 
@@ -342,7 +342,7 @@ QueryList 클래스의 forEach 메소드를 사용하여 자식 컴포넌트 Chi
 this.myChildren.forEach(child => child.checkbox.checked = this.active);
 ```
 
-<iframe src="https://stackblitz.com/edit/view-children-decorator?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/view-children-decorator?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 ## 1.3 템플릿 참조 변수를 사용한 DOM 접근
 
@@ -415,7 +415,7 @@ export class AppComponent implements AfterViewInit  {
 
 ngAfterViewInit 메소드는 컴포넌트의 뷰와 자식 컴포넌트의 뷰를 초기화한 이후 호출되는 컴포넌트 생명주기 메소드이다. @ViewChild와 @ViewChildren을 통해 바인딩한 프로퍼티는 ngAfterViewInit 이전에 초기화된다. 따라서 ngAfterViewInit에서 참조하는 것이 안전하다. [컴포넌트 생명주기](./angular-lifecycle)에 대해서는 다른 장에서 자세히 다룰 것이다.
 
-<iframe src="https://stackblitz.com/edit/access-native-dom?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/access-native-dom?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 지금까지 @ViewChild와 @ViewChildren 데코레이터를 통해 부모 컴포넌트 클래스에서 자식 요소의 참조를 취득하는 방법에 대해 알아보았다. @ViewChild와 @ViewChildren 데코레이터는 자식 컴포넌트뿐만 아니라 템플릿에 배치된 모든 요소 즉, 자식 컴포넌트, 네이티브 DOM 요소를 직접 탐색하고 접근할 수 있다.
 
@@ -570,7 +570,7 @@ ng-content는 여러 개의 콘텐츠를 한번에 받아들일 수 있는 멀�
 멀티 슬롯 콘텐트 프로젝션
 {: .desc-img}
 
-<iframe src="https://stackblitz.com/edit/content-projection-exam?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/content-projection-exam?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 ## 2.1 @ContentChild와 @ContentChildren
 
@@ -686,7 +686,7 @@ export class UserComponent {
 
 위 예제의 실행 결과는 아래와 같다.
 
-<iframe src="https://stackblitz.com/edit/content-child-children?embed=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/content-child-children?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
 <!-- <iframe src="https://embed.plnkr.co/i7SJPnLxnCeEfWuwArxb/?show=preview" frameborder="0" width="100%" height="400"></iframe> -->
 

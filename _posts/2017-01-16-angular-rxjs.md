@@ -23,17 +23,11 @@ description: 리액티브(Reactive, 반응형) 프로그래밍은 비동기 데�
 map 오퍼레이터를 통해 변환(Transforming)된 옵저버블을 반환하는 마블 다이어그램(Marble diagram)
 {: .desc-img}
 
-애플리케이션이 외부 환경과 커뮤니케이션을 하는 방법은 크게 Pull-scenario와 Push-scenario로 나눌 수 있다.
+예를 들어 TV 방송국과 TV의 관계를 살펴보자. TV 방송국은 영상 정보를 가지고 있다. 이 영상 정보는 프레임으로 이루어진 정지 사진들의 집합이며 프레임은 시간축에 따라 연속적으로 흐르는 데이터 스트림이다. TV는 이 영상 정보를 획득하여 TV 화면에 표시해야 한다. 이때 TV가 TV 방송국이 가지고 있는 영상 정보를 획득하려면 어떻게 해야 할지 생각해보자. 먼저 TV가 TV 방송국에 영상 정보 프레임을 계속해서 요청하여 이를 획득하는 방법(풀 시나리오, Pull-scenario: 애플리케이션이 외부 환경에서 데이터를 당겨오는 방식)이 있다. 또는 TV 방송국은 일정 시간 단위로 영상 정보의 프레임을 방출(emit)하고 TV는 방송국을 관찰하고 있다가 TV 방송국이 새로운 영상 정보 프레임를 방출하면 이를 획득하는 방법(푸시 시나리오, Push-scenario: 외부 환경이 애플리케이션에 데이터를 밀어넣는 방식)이 있다.
 
-풀 시나리오(Pull-scenario)
-: 기존의 익숙한 방식으로 애플리케이션은 외부 환경에 요청하고 응답을 획득하는 방식이다. 이때 애플리케이션은 제어 흐름을 직접 통제한다.
+리액티브 프로그래밍은 두번째 방식(푸시 시나리오)으로 동작하는 애플리케이션을 작성하는 것이다. 즉, 필요한 데이터를 획득하기 위해서 애플리케이션이 외부 환경에 요청하여 데이터를 획득하는 것이 아니라, 애플리케이션은 외부 환경을 관찰하고 있다가 외부 환경에서 데이터 스트림을 방출하면 그것에 반응하여 데이터를 획득하는 것이다.
 
-푸시 시나리오(Push-scenario)
-: 애플리케이션이 외부 환경에 요청 후 응답이 올 때까지 대기하는 것이 아니라 외부 환경에서 응답이 오면 그때 반응한다.
-
-리액티브 프로그래밍은 Push-scenario로 동작한다. 이때 외부 환경에서 내부로 연속적으로 흐르는 데이터, 즉 데이터 스트림을 생성하는 객체를 **옵저버블(Observable)**이라 하고, 데이터 스트림을 사용하는 객체를 **옵저버(Observer)**라 한다. 다시 말해, 데이터 소비자(Data consumer)인 옵저버는 데이터 생산자(Data producer)인 옵저버블을 **구독(subscribe)**한다. 이 구독에 의해 옵저버는 옵저버블에 연결되어 옵저버블의 상태를 관찰한다. 그리고 옵저버블의 상태가 변경되면 상태는 데이터 스트림을 통해 옵저버에 자동으로 전파된다.
-
-예를 들어 TV 방송국은 영상 정보를 연속해서 송출한다. TV는 방송국을 관찰하고 있다가 방송국이 새로운 영상 정보를 송출하면 이를 수신하고 TV 화면에 표시한다. 이때 TV 방송국은 옵저버블이며 TV는 옵저버라고 할 수 있다.
+이때 외부 환경에서 애플리케이션 내부로 연속적으로 흐르는 데이터, 즉 데이터 스트림을 생성하는 객체를 **옵저버블(Observable)**이라 하고, 데이터 스트림을 획득하여 사용하는 객체를 **옵저버(Observer)**라 한다. 다시 말해 데이터 소비자(Data consumer)인 옵저버는 데이터 생산자(Data producer)인 옵저버블을 **구독(subscribe)**한다. 이 구독에 의해 옵저버는 옵저버블에 연결되어 옵저버블의 상태를 관찰한다. 그리고 옵저버블의 상태가 변경되면 상태는 데이터 스트림을 통해 옵저버에 자동으로 전파된다. 위의 예에서 TV 방송국은 옵저버블이며 TV는 옵저버라고 할 수 있다.
 
 ![observable](/img/observable.png)
 
@@ -122,13 +116,13 @@ export class AppComponent implements OnInit {
   }
 }
 ```
-<iframe src="https://stackblitz.com/edit/rxjs6-observable?ctl=1&embed=1&hideExplorer=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/rxjs6-observable?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
 ① Observable과 [fromEvent](https://www.learnrxjs.io/operators/creation/fromevent.html) 오퍼레이터를 임포트한다. fromEvent 오퍼레이터는 DOM 이벤트를 옵저버블로 변환하는 오퍼레이터이다.
 
 ② fromEvent 오퍼레이터를 사용하여 document 요소의 mousemove 이벤트를 옵저버블로 변환하였다. 데이터를 생산하는 것이라면 무엇이든 옵저버블로 만들 수 있다. 주의할 것은 이 시점에 옵저버블은 아무런 동작을 하지 않는다는 것이다. 옵저버블은 구독(subscribe)되기 전까지 실행되지 않는다.
 
-옵저버블은 구독(subscribe)되기 전까지 실행되지 않는다고 하였다. 이러한 특성을 갖는 옵저버블을 [Cold observable](./angular-rxjs-observable)이라 하며 RxJS의 옵저버블은 기본적으로 Cold observable이다. Cold observable은 구독되기 이전에는 데이터 스트림을 배출(emit)하지 않으며 Cold observable을 구독하는 옵저버는 옵저버블이 배출(emit)하는 모든 데이터 스트림을 빠짐없이 처음부터 받을 수 있다.
+옵저버블은 구독(subscribe)되기 전까지 실행되지 않는다고 하였다. 이러한 특성을 갖는 옵저버블을 [Cold observable](./angular-rxjs-observable)이라 하며 RxJS의 옵저버블은 기본적으로 Cold observable이다. Cold observable은 구독되기 이전에는 데이터 스트림을 방출(emit)하지 않으며 Cold observable을 구독하는 옵저버는 옵저버블이 방출하는 모든 데이터 스트림을 빠짐없이 처음부터 받을 수 있다.
 {: .info}
 
 ③ subscribe 메소드를 사용하여 옵저버가 옵저버블을 구독하도록 하였다. 옵저버는 next, error, complete 메소드를 갖는 객체이며 subscribe 메소드의 인자로 사용하면 옵저버블을 구독한다. 옵저버블은 mousemove 이벤트를 데이터 스트림으로 생성하고 옵저버에게 전파한다. 옵저버블은 구독을 해지(unsubscribe)하거나 complete 메소드가 호출될 때까지 옵저버에게 새로운 데이터를 계속해서 전파한다. 이때 옵저버에게 새로운 값이 성공적으로 전달되면 next 메소드가 호출되고 에러가 발생하면 error 메소드가 호출된다.
@@ -200,7 +194,7 @@ export class ObservableComponent implements OnInit, OnDestroy {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/rxjs6-operator?ctl=1&embed=1&file=app/observable.component.ts&hideExplorer=1&hideNavigation=1" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/rxjs6-operator?ctl=1&embed=1&file=app/observable.component.ts&hideNavigation=1" frameborder="0" width="100%" height="500"></iframe>
 
 ① [from](https://www.learnrxjs.io/operators/creation/from.html) 오퍼레이터를 사용하여 옵저버블을 생성하였다.
 
@@ -209,13 +203,13 @@ from 오퍼레이터는 배열과 같은 [이터러블(Iterable)](./es6-iteratio
 
 ② map과 filter 오퍼레이터를 사용하여 옵저버블을 변형(transforming), 필터링하였다. 오퍼레이터는 옵저버블을 반환하므로 체이닝이 가능하다.
 
-[map](https://www.learnrxjs.io/operators/transformation/map.html) 오퍼레이터는 옵저버블이 배출한 데이터를 인자로 전달받는 콜백 함수를 실행하고 그 결과값으로 이루어진 새로운 옵저버블을 반환한다. [Array.prototype.map](./js-array#513-arrayprototypemap)과 유사하게 동작한다.
+[map](https://www.learnrxjs.io/operators/transformation/map.html) 오퍼레이터는 옵저버블이 방출한 데이터를 인자로 전달받는 콜백 함수를 실행하고 그 결과값으로 이루어진 새로운 옵저버블을 반환한다. [Array.prototype.map](./js-array#513-arrayprototypemap)과 유사하게 동작한다.
 {: .info}
 
-[filter](https://www.learnrxjs.io/operators/filtering/filter.html) 오퍼레이터는 옵저버블이 배출한 데이터를 인자로 전달받는 필터 함수를 실행하여 그 결과값이 true인 값만을 추출한 새로운 옵저버블을 반환한다. [Array.prototype.filter](./js-array#514-arrayprototypefilter)와 유사하게 동작한다.
+[filter](https://www.learnrxjs.io/operators/filtering/filter.html) 오퍼레이터는 옵저버블이 방출한 데이터를 인자로 전달받는 필터 함수를 실행하여 그 결과값이 true인 값만을 추출한 새로운 옵저버블을 반환한다. [Array.prototype.filter](./js-array#514-arrayprototypefilter)와 유사하게 동작한다.
 {: .info}
 
-③ [subscribe](http://reactivex.io/documentation/operators/subscribe.html) 오퍼레이터의 인자에 옵저버를 전달하여 옵저버블을 구독하면 옵저버블은 배출한 데이터와 에러 그리고 스트리밍의 종료 여부를 옵저버에 전달한다. 옵저버는 3개의 콜백 함수 next, error, complete 메소드를 갖는데 이 콜백 함수로 옵저버블이 배출한 데이터와 에러 그리고 스트리밍의 종료 여부를 받아 처리한다.
+③ [subscribe](http://reactivex.io/documentation/operators/subscribe.html) 오퍼레이터의 인자에 옵저버를 전달하여 옵저버블을 구독하면 옵저버블은 방출한 데이터와 에러 그리고 스트리밍의 종료 여부를 옵저버에 전달한다. 옵저버는 3개의 콜백 함수 next, error, complete 메소드를 갖는데 이 콜백 함수로 옵저버블이 방출한 데이터와 에러 그리고 스트리밍의 종료 여부를 받아 처리한다.
 
 ![observable-observer](/img/observable-observer.png)
 {: .w-400}
@@ -275,7 +269,7 @@ export class ObservableEventHttpComponent implements OnInit, OnDestroy {
     // ① 폼 컨트롤 값의 상태를 옵저버블 스트림으로 수신한다.
     this.subscription = this.searchInput.valueChanges
       .pipe(
-        // ③ 옵저버블의 배출 데이터를 수신하는 시간을 지연시킨다.
+        // ③ 옵저버블의 방출 데이터를 수신하는 시간을 지연시킨다.
         debounceTime(500),
         // ④ 옵저버블을 받아서 새로운 옵저버블을 생성한다.
         switchMap((userId: string) => this.getGithubUser(userId))
@@ -311,7 +305,7 @@ export class ObservableEventHttpComponent implements OnInit, OnDestroy {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/rxjs6-observable-http?ctl=1&embed=1&file=app/observable-event-http.component.ts&hideExplorer=1&hideNavigation=1" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/rxjs6-observable-http?ctl=1&embed=1&file=app/observable-event-http.component.ts&hideNavigation=1" frameborder="0" width="100%" height="500"></iframe>
 
 ① input 요소의 이벤트는 FormControl인 searchInput의 valueChanges 프로퍼티에 의해 옵저버블로 변환된다. [FormControl](https://angular.io/api/forms/FormControlDirective)에 대해서는 [Angular Forms](./angular-form-reactive-forms#22-formcontrol-클래스와-formcontrolname-디렉티브)에서 상세히 살펴보도록 하고 지금은 옵저버블에 집중하도록 하자. FormControl 클래스를 사용하려면 모듈에 ReactiveFormsModule을 임포트하여야 한다.
 
@@ -361,7 +355,7 @@ import { HttpClientModule } from '@angular/common/http';
 export class AppModule { }
 ```
 
-③ [debounceTime](https://www.learnrxjs.io/operators/filtering/debouncetime.html) 오퍼레이터는 옵저버블이 배출하는 데이터를 수신하는 시간을 지연시킨다. 예를 들어 debounceTime 오페레이터의 인자로 500ms을 지정하면 지정 시간만큼 옵저버블이 배출하는 데이터를 수신하지 않고 대기하여 과도하게 빈번한 서버 요청을 방지한다.
+③ [debounceTime](https://www.learnrxjs.io/operators/filtering/debouncetime.html) 오퍼레이터는 옵저버블이 방출하는 데이터를 수신하는 시간을 지연시킨다. 예를 들어 debounceTime 오페레이터의 인자로 500ms을 지정하면 지정 시간만큼 옵저버블이 방출하는 데이터를 수신하지 않고 대기하여 과도하게 빈번한 서버 요청을 방지한다.
 
 ④ [switchMap](https://www.learnrxjs.io/operators/transformation/switchmap.html) 오퍼레이터는 옵저버블을 받아서 새로운 옵저버블을 생성한다. 위 예제에서 switchMap 오퍼레이터는 input 요소의 이벤트 스트림 옵저버블을 받아서 getGithubUser 메소드를 실행하여 새로운 옵저버블을 생성한다. 이때 getGithubUser 메소드의 실행이 완료되지 않아 새로운 옵저버블이 반환되지 않은 상태일 때, 새로운 input 요소의 이벤트가 발생하면 getGithubUser 메소드의 실행을 취소하고 새롭게 getGithubUser 메소드를 실행한다. getGithubUser 메소드의 실행이 취소되면 HTTP 요청도 취소된다.
 
@@ -371,7 +365,7 @@ export class AppModule { }
 switchMap 오퍼레이터
 {: .desc-img}
 
-만약 사용자가 debounceTime 오퍼레이터에 지정한 500ms보다 빠르게 input 요소에 값을 입력하면 그 값은 무시되어 switchMap 오퍼레이터로 전달되지 않고 500ms보다 늦게 input 요소에 값을 입력하면 그 입력 값은 switchMap 오퍼레이터로 전달된다. 이때 이미 getGithubUser 메소드가 실행 중이라면 getGithubUser 메소드의 실행은 취소되고 HTTP 요청도 취소된다.
+만약 사용자가 debounceTime 오퍼레이터에 지정한 500ms보다 빠르게 input 요소에 값을 입력하면 그 입력 값은 무시되어 switchMap 오퍼레이터로 전달되지 않고 500ms보다 늦게 input 요소에 값을 입력하면 그 입력 값은 switchMap 오퍼레이터로 전달된다. 이때 이미 getGithubUser 메소드가 실행 중이라면 getGithubUser 메소드의 실행은 취소되고 HTTP 요청도 취소된다.
 
 테스트를 위해 input 요소에 입력을 느리게 해보자. 그러면 500ms마다 HTTP 요청이 발생할 것이다. 이때 getGithubUser 메소드의 실행 시간이 500ms를 초과하면 HTTP 요청이 취소될 것이다.
 
@@ -383,7 +377,7 @@ switchMap 오퍼레이터
 
 ⑤ getGithubUser 메소드는 서버로 부터 데이터를 응답받아 옵저버블을 반환한다.
 
-⑥ searchInput의 valueChanges 프로퍼티에 의해 생성된 옵저버블을 subscribe 오퍼레이터로 구독하면 옵저버블이 동작하기 시작하며 옵저버블이 배출하는 입력 값이 옵저버로 전파된다. 옵저버는 getGithubUser 메소드가 서버로부터 응답받은 user를 githubUser 프로퍼티에 할당한다.
+⑥ searchInput의 valueChanges 프로퍼티에 의해 생성된 옵저버블을 subscribe 오퍼레이터로 구독하면 옵저버블이 동작하기 시작하며 옵저버블이 방출하는 입력 값이 옵저버로 전파된다. 옵저버는 getGithubUser 메소드가 서버로부터 응답받은 user를 githubUser 프로퍼티에 할당한다.
 
 **주의할 것은 실제 HTTP 요청은 subscribe 오퍼레이터를 실행할 때 발생한다는 것이다. 옵저버블을 구독하지 않으면 어떠한 요청도 발생하지 않는다. 또한 옵저버블을 여러 번 구독하면 HTTP 요청이 여러 번 발생한다.**
 

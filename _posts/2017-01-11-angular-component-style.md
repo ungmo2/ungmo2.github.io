@@ -379,13 +379,13 @@ h3 {
 
 # 4. 글로벌 스타일
 
-애플리케이션 전역에 적용되는 글로벌 스타일을 적용하려면 src/styles.css에 CSS 룰셋을 정의한다. 또는 angular-cli.json 파일의 `projects.component-interaction.architect.build.options.styles` 프로퍼티에 글로벌 CSS 파일의 경로를 추가한다.
+애플리케이션 전역에 적용되는 글로벌 스타일을 적용하려면 src/styles.css에 CSS 룰셋을 정의한다. 또는 angular.json 파일의 `projects.my-project.architect.build.options.styles` 프로퍼티에 글로벌 CSS 파일의 경로를 추가한다.
 
 ```json
 {
   ...
   "projects": {
-    "component-interaction": {
+    "my-project": {
       ...
       "architect": {
         "build": {
@@ -412,13 +412,13 @@ Angular는 Sass, Less, Stylus와 같은 대부분의 CSS 프리프로세서를 �
 $ ng new sass-project --style=scss
 ```
 
-이때 생성된 angular-cli.json 파일을 살펴보면 styleext 프로퍼티와 styles 프로퍼티의 값이 scss로 변경된 것을 알 수 있다.
+이때 생성된 angular.json 파일을 살펴보면 styleext 프로퍼티와 styles 프로퍼티의 값이 scss로 변경된 것을 알 수 있다.
 
 ```json
 {
   ...
   "projects": {
-    "component-interaction": {
+    "sass-project": {
       ...
       "schematics": {
         "@schematics/angular:component": {

@@ -58,7 +58,7 @@ my-app/
 │   └── tslint.json
 ├── .editorconfig
 ├── .gitignore
-├── angular-cli.json
+├── angular.json
 ├── package.json
 ├── README.md
 ├── tsconfig.json
@@ -179,7 +179,7 @@ src 폴더 밖의 파일들은 테스트, 빌드, 배포 등을 위한 각종 �
 - .gitignore
 : Git 소스 관리 제외 대상을 위한 설정 파일이다.
 
-- angular-cli.json
+- angular.json
 : Angular CLI를 위한 설정 파일이다. 상세한 설정 방법은 [Angular CLI Config Schema](https://github.com/angular/angular-cli/wiki/angular-workspace) 참조하기 바란다.
 
 - package.json
@@ -236,7 +236,7 @@ platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.log(err));
 ```
 
-main.ts는 .angular-cli.json의 main 프로퍼티의 설정에 의해 로드된다.
+main.ts는 angular.json의 main 프로퍼티의 설정에 의해 로드된다.
 
 ```json
 {

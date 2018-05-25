@@ -258,7 +258,7 @@ export class HelloComponent {}
 
 ### 3.5.1 seletor 프로퍼티
 
-seletor는 컴포넌트의 뷰를 마크업으로 표현할 때 사용하는 이름으로 템플릿에서 HTML 요소의 태그 이름처럼 사용한다. Angular는 다른 애플리케이션의 selector 또는 HTML 요소와 충돌을 방지하기 위해 접두사(prefix)를 추가하여 케밥 표기법(예를 들어 app-todo)으로 seletor를 명명하도록 권장하고 있다. 기본 접두사는 app이며 이것은 angular-cli.json에서 확인할 수 있다. 프로젝트의 성격에 맞추어 독자적인 접두사를 사용하는 것이 좋으나 우선은 기본 접두사인 app을 사용하도록 한다.
+seletor는 컴포넌트의 뷰를 마크업으로 표현할 때 사용하는 이름으로 템플릿에서 HTML 요소의 태그 이름처럼 사용한다. Angular는 다른 애플리케이션의 selector 또는 HTML 요소와 충돌을 방지하기 위해 접두사(prefix)를 추가하여 케밥 표기법(예를 들어 app-todo)으로 seletor를 명명하도록 권장하고 있다. 기본 접두사는 app이며 이것은 angular.json에서 확인할 수 있다. 프로젝트의 성격에 맞추어 독자적인 접두사를 사용하는 것이 좋으나 우선은 기본 접두사인 app을 사용하도록 한다.
 
 메타데이터 객체에 selector 프로퍼티를 추가해 보자.
 

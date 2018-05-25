@@ -271,7 +271,7 @@ import { Checkbox } from '../app.component'
 })
 export class ChildComponent {
   // 부모 컴포넌트가 직접 접근할 프로퍼티
-  @Input() checkbox: Checkbox[];
+  @Input() checkbox: Checkbox;
 }
 ```
 
@@ -301,7 +301,7 @@ export interface Checkbox {
   `
 })
 export class AppComponent {
-  checkboxs: Checkbox[] =[
+  checkboxs: Checkbox[] = [
     {id: 1, label: 'HTML', checked: true},
     {id: 2, label: 'CSS', checked: false},
     {id: 3, label: 'Javascript', checked: false}

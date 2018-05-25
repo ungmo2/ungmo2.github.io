@@ -34,7 +34,7 @@ Angular는 Angular CLI를 위한 별도의 홈페이지 [https://cli.angular.io/
 
 ![angular-cli-website](./img/angular-cli-website.png)
 
-각종 명령어와 옵션, Angular CLI의 설정 파일인 `angular-cli.json`에 대한 상세한 문서를 제공하고 있으므로 참고하기 바란다.
+각종 명령어와 옵션, Angular CLI의 설정 파일인 `angular.json`에 대한 상세한 문서를 제공하고 있으므로 참고하기 바란다.
 
 Angular CLI를 사용하기 위해서는 어떠한 절차가 필요한지 그리고 무엇을 할 수 있는지 알아보자.
 
@@ -147,7 +147,7 @@ my-app/
 ├── src/
 ├── .editorconfig
 ├── .gitignore
-├── angular-cli.json
+├── angular.json
 ├── package-lock.json
 ├── package.json
 ├── README.md
@@ -336,7 +336,7 @@ export class HomeComponent implements OnInit {
 
 selector 프로퍼티값 'app-home'은 `ng generate component home` 명령어에서 지정한 컴포넌트명 `home` 앞에 접두사(prefix) app이 자동으로 추가된 값이다. Angular는 다른 애플리케이션의 `selector` 또는 HTML 요소와 충돌을 방지하기 위해 접두사를 추가하여 케밥 표기법으로 명명하는 것을 권장하고 있다. 자세한 내용은 [Angular Style Guide: Custom prefix for components](https://angular.io/guide/styleguide#custom-prefix-for-components)을 참조하기 바란다.
 
-기본 접두사는 app이며 이것은 `angular-cli.json`에서 확인할 수 있다.
+기본 접두사는 app이며 이것은 `angular.json`에서 확인할 수 있다.
 
 ```json
 {
@@ -353,7 +353,7 @@ selector 프로퍼티값 'app-home'은 `ng generate component home` 명령어에
 }
 ```
 
-`angular-cli.json`의 prefix 프로퍼티값을 수정하면 이후 생성되는 컴포넌트의 셀렉터 접두사는 수정된 값으로 변경된다. 만약 프로젝트 생성 단계에서부터 컴포넌트의 기본 셀렉터 접두사를 변경하고 싶다면 `ng new` 명령어로 프로젝트를 생성할 때 `--prefix` 옵션을 추가한다.
+`angular.json`의 prefix 프로퍼티값을 수정하면 이후 생성되는 컴포넌트의 셀렉터 접두사는 수정된 값으로 변경된다. 만약 프로젝트 생성 단계에서부터 컴포넌트의 기본 셀렉터 접두사를 변경하고 싶다면 `ng new` 명령어로 프로젝트를 생성할 때 `--prefix` 옵션을 추가한다.
 
 ```bash
 $ ng new my-app --prefix <prefix-name>
@@ -454,7 +454,7 @@ export class MyDirectiveDirective {
 }
 ```
 
-이것은 `angular-cli.json`에 설정된 기본 접두사 app과 `ng generate directive` 명령어에 지정한 디렉티브 이름으로 합성된 디렉티브 셀렉터 이름으로 카멜 표기법(camelCase)으로 작성된다.
+이것은 `angular.json`에 설정된 기본 접두사 app과 `ng generate directive` 명령어에 지정한 디렉티브 이름으로 합성된 디렉티브 셀렉터 이름으로 카멜 표기법(camelCase)으로 작성된다.
 
 selector 프로퍼티에 지정한 디렉티브의 이름 appHighlight은 HTML 어트리뷰트처럼 사용된다. 디렉티브의 상세한 내용은 이후 자세히 다루도록 한다.
 
@@ -687,7 +687,7 @@ AoT 컴파일에 대한 보다 상세한 내용은 [AoT 컴파일](https://angul
 
 # 7. 기본 옵션 변경
 
-프로젝트에 기본으로 적용되는 옵션을 변경하기 위해서는 [schema.json](https://github.com/angular/angular-cli/blob/398356503ab4729cf40587804c44b55eb5c99768/packages/%40angular/cli/lib/config/schema.json)에 기술되어 있는 옵션을 참조하여 `angular-cli.json`을 수정한다.
+프로젝트에 기본으로 적용되는 옵션을 변경하기 위해서는 [schema.json](https://github.com/angular/angular-cli/blob/398356503ab4729cf40587804c44b55eb5c99768/packages/%40angular/cli/lib/config/schema.json)에 기술되어 있는 옵션을 참조하여 `angular.json`을 수정한다.
 
 예를 들어 컴포넌트를 생성할 때, 스펙 파일을 생성하지 않도록 기본 옵션을 변경하여 보자.
 
@@ -718,7 +718,7 @@ schema.json을 참조하면 `--spec` 옵션은 component에서 사용하는 경�
 $ ng generate component <component-name> --spec false
 ```
 
-매번 옵션을 추가하지 않기 위해서 기본 옵션을 변경하려면 `angular-cli.json`의 schematics를 아래와 같이 수정한다.
+매번 옵션을 추가하지 않기 위해서 기본 옵션을 변경하려면 `angular.json`의 schematics를 아래와 같이 수정한다.
 
 ```json
 ...
@@ -730,14 +730,14 @@ $ ng generate component <component-name> --spec false
 ...
 ```
 
-또는 `ng new` 명령어로 프로젝트를 생성할 때, 옵션을 추가하면 `angular-cli.json`에 반영된다. 예를 들어 아래와 같이 프로젝트를 생성하는 경우를 살펴보자.
+또는 `ng new` 명령어로 프로젝트를 생성할 때, 옵션을 추가하면 `angular.json`에 반영된다. 예를 들어 아래와 같이 프로젝트를 생성하는 경우를 살펴보자.
 
 ```bash
 $ ng new my-app --inline-template --inline-style --skip-tests
 # 축약형 ng new my-app -t -s -S
 ```
 
-이때 생성되는 `angular-cli.json`는 위 명령어의 옵션을 반영하여 아래와 같이 생성된다.
+이때 생성되는 `angular.json`은 위 명령어의 옵션을 반영하여 아래와 같이 생성된다.
 
 ```json
 {

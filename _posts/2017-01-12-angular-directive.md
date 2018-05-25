@@ -24,10 +24,6 @@ description: 디렉티브(Directive 지시자)는 “DOM의 모든 것(모양이
 
 디렉티브는 DOM 요소 또는 어트리뷰트와 유사하게 의미를 갖는 이름으로 표현된다. 이때 로직은 드러나지 않으며 단지 디렉티브를 순서에 맞게 배치한다. 이를 선언형 프로그래밍(Declarative programming)이라 한다.
 
-```html
-<div tooltip="tootip on left">Angular tootip on left</div>
-```
-
 디렉티브는 [@Directive](https://angular.io/api/core/Directive) 데코레이터로 장식된 클래스이다. @Directive 데코레이터는 함수이며 디렉티브의 설정 정보가 기술된 메타데이터 객체를 인자로 전달받아 디렉티브를 생성한다. 메타데이터 객체의 정보는 아래와 같다.
 
 ```typescript

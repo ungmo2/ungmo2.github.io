@@ -622,7 +622,7 @@ src
   └── user.ts
 ```
 
-<iframe src="https://stackblitz.com/edit/module-exam?ctl=1&embed=1&hideNavigation=1&file=app/app.module.ts" frameborder="0" width="100%" height="800"></iframe>
+<iframe src="https://stackblitz.com/edit/module-exam?ctl=1&embed=1&hideNavigation=1&file=src/app/app.module.ts" frameborder="0" width="100%" height="800"></iframe>
 
 
 # Reference

@@ -134,7 +134,7 @@ export class AppComponent implements OnInit {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/rxjs6-observable-1?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/rxjs6-observable-1?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
 위 예제는 옵저버블이 구독될 때 호출되는 구독 함수 내에서 next, error, complte 메소드를 사용하여 노티피케이션을 방출하고 있다. 이 예제는 옵버버블의 이해를 돕기 위한 예제이므로 애플리케이션의 외부 환경에 반응하고 있지는 않다. 이번에는 애플리케이션의 외부 환경에 반응하는 옵저버블을 생성해보자. 마우스의 움직임에 반응하여 화면에 좌표를 표시하는 예제이다.
 
@@ -173,7 +173,7 @@ export class AppComponent implements OnInit {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/rxjs6-observable-2?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/rxjs6-observable-2?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
 ① Observable과 [fromEvent](https://www.learnrxjs.io/operators/creation/fromevent.html) 오퍼레이터를 임포트한다. fromEvent 오퍼레이터는 DOM 이벤트를 옵저버블로 변환하는 오퍼레이터이다.
 
@@ -262,7 +262,7 @@ export class ObservableComponent implements OnInit, OnDestroy {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/rxjs6-operator?ctl=1&embed=1&file=app/observable.component.ts&hideNavigation=1" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/rxjs6-operator?ctl=1&embed=1&file=src/app/observable.component.ts&hideNavigation=1" frameborder="0" width="100%" height="500"></iframe>
 
 ① [from](https://www.learnrxjs.io/operators/creation/from.html) 오퍼레이터를 사용하여 옵저버블을 생성하였다.
 
@@ -373,7 +373,7 @@ export class ObservableEventHttpComponent implements OnInit, OnDestroy {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/rxjs6-observable-http?ctl=1&embed=1&file=app/observable-event-http.component.ts&hideNavigation=1" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/rxjs6-observable-http?ctl=1&embed=1&file=src/app/observable-event-http.component.ts&hideNavigation=1" frameborder="0" width="100%" height="500"></iframe>
 
 ① input 요소의 이벤트는 FormControl인 searchInput의 valueChanges 프로퍼티에 의해 옵저버블로 변환된다. [FormControl](https://angular.io/api/forms/FormControlDirective)에 대해서는 [Angular Forms](./angular-form-reactive-forms#22-formcontrol-클래스와-formcontrolname-디렉티브)에서 상세히 살펴보도록 하고 지금은 옵저버블에 집중하도록 하자. FormControl 클래스를 사용하려면 모듈에 ReactiveFormsModule을 임포트하여야 한다.
 

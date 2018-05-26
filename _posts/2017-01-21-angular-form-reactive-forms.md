@@ -81,7 +81,7 @@ export class AppComponent implements OnInit {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/reactive-form-1?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/reactive-form-1?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
 폼 요소에 선언한 novalidate 어트리뷰트는 표준 HTML 유효성 검증을 방지한다. 리액티브 폼이 제공하는 유효성 검증기를 사용할 것이므로 novalidate 어트리뷰트를 선언하도록 한다.
 
@@ -113,7 +113,7 @@ export class AppComponent implements OnInit {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/reactive-form-2?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/reactive-form-2?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
 formGroupName 디렉티브에는 문자열을 할당하여야 한다. 이 문자열은 FormGroup 인스턴스를 값으로 하는 프로퍼티 이름이다.
 
@@ -180,7 +180,7 @@ export class AppComponent implements OnInit {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/reactive-form-3?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/reactive-form-3?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 FormControl은 폼 요소의 자식 폼 컨트롤 요소를 위해 사용하기도 하지만 폼 요소없이 단독으로 사용할 수도 있다. [\[Reactive Programming과 RxJS\] 옵저버블 이벤트 스트림](./angular-rxjs#5-%EC%98%B5%EC%A0%80%EB%B2%84%EB%B8%94-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EC%8A%A4%ED%8A%B8%EB%A6%BC-%EC%98%88%EC%A0%9C)에서 살펴본 바와 같이 input 요소의 이벤트는 FormControl의 valueChanges 프로퍼티에 의해 옵저버블 스트림으로 변환된다.
 
@@ -219,7 +219,7 @@ export class ObservableEventHttpComponent implements OnInit {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/observable-http?ctl=1&embed=1&hideNavigation=1&file=app/observable-event-http.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/observable-http?ctl=1&embed=1&hideNavigation=1&file=src/app/observable-event-http.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 ## 2.3 FormArray 클래스와 formArrayName 디렉티브
 
@@ -273,7 +273,7 @@ export class AppComponent implements OnInit {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/reactive-form-4?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/reactive-form-4?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 1) ngFor 디렉티브를 사용하여 FormArray의 요소의 갯수만큼 순회하며 폼 컨트롤 요소를 생성한다. 이때 폼 컨트롤 요소의 formControlName 디렉티브에 인덱스 i를 할당한다. 주의할 것은 인덱스 i는 변수이므로 프로퍼티 바인딩을 사용하여야 한다.
 
@@ -369,7 +369,7 @@ export class AppComponent implements OnInit {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/reactive-form-5?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/reactive-form-5?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 리액티브 폼은 템플릿의 컴포넌트 클래스 내부에서 생성한 FormControl에 검증기를 추가한다. 검증기는 FormControl 생성자의 두번째 인자에 전달한다. 2개 이상의 검증기를 사용하는 경우, 배열로 검증기를 추가한다. 검증기는 템플릿의 폼 컨트롤 요소의 상태가 변화할 때 마다 호출된다.
 
@@ -426,7 +426,7 @@ ngOnInit() {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/reactive-form-6?ctl=1&embed=1&hideNavigation=1&file=app/password-validator.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/reactive-form-6?ctl=1&embed=1&hideNavigation=1&file=src/app/password-validator.ts" frameborder="0" width="100%" height="600"></iframe>
 
 # 5. 리액티브 폼 유효성 검증 실습
 
@@ -438,7 +438,7 @@ $ cd reactive-form-exam
 $ npm install bootstrap@3.3.7
 ```
 
-설치가 완료되었으면 부트스트랩을 임포트하여야 한다. 부트스트랩은 모든 컴포넌트에 적용되어야 하므로 .angular-cli.json를 아래와 같이 수정한다.
+설치가 완료되었으면 부트스트랩을 임포트하여야 한다. 부트스트랩은 모든 컴포넌트에 적용되어야 하므로 angular.json를 아래와 같이 수정한다.
 
 ```json
 {
@@ -697,7 +697,7 @@ get hobbies(): FormArray {
 </em>
 ```
 
-<iframe src="https://stackblitz.com/edit/reactive-form-exam?embed=1&file=app/user-form.component.ts" frameborder="0" width="100%" height="800"></iframe>
+<iframe src="https://stackblitz.com/edit/reactive-form-exam?embed=1&file=src/app/user-form.component.ts" frameborder="0" width="100%" height="800"></iframe>
 
 # 6. FormBuilder
 
@@ -747,7 +747,7 @@ FormBuilder를 사용하지 않는 경우, 아래와 같이 생성자의 2번째
   }, { validator: PasswordValidator.match }),
 ```
 
-<iframe src="https://stackblitz.com/edit/reactive-form-formbuilder-exam?ctl=1&embed=1&hideNavigation=1&file=app/user-form.component.ts" frameborder="0" width="100%" height="800"></iframe>
+<iframe src="https://stackblitz.com/edit/reactive-form-formbuilder-exam?ctl=1&embed=1&hideNavigation=1&file=src/app/user-form.component.ts" frameborder="0" width="100%" height="800"></iframe>
 
 # Reference
 

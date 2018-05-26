@@ -91,7 +91,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/dependency-injection-1?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/dependency-injection-1?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 버튼 클릭 이벤트 핸들러인 sayHi가 호출되면 GreetingService의 메소드 sayHi를 호출하여 인사말을 생성한다. 이때 컴포넌트는 GreetingService의 인스턴스가 필요하므로 컴포넌트의 constructor 내에서 GreetingService의 인스턴스를 생성하였다.
 
@@ -220,7 +220,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/dependency-injection-2?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/dependency-injection-2?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 의존성 주입을 사용하기 이전에는 컴포넌트가 직접 GreetingService의 인스턴스를 생성하였다. 하지만 의존성 주입을 도입한 위 코드를 보면 컴포넌트가 GreetingService의 인스턴스를 직접 생성하지 않았다. 다만 필요한 의존성을 constructor의 파라미터로 선언하여 의존성 인스턴스를 프레임워크에 요구했을 뿐이다.
 
@@ -263,7 +263,7 @@ export class GreetingService {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/dependency-injection-3?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/dependency-injection-3?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 컴포넌트의 @Component 메타데이터 객체에 등록한 프로바이더를 살펴보자.
 
@@ -526,7 +526,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/dependency-injection-4?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/dependency-injection-4?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 위 코드는 문제없이 잘 동작한다. 그런데 프로바이더를 컴포넌트 레벨로 등록하였기 때문에 GreetingService 타입의 AnotherGreetingService 인스턴스는 컴포넌트 레벨로 생성된다. 만약 모듈이나 다른 컴포넌트에 동일한 프로바이더가 존재하면 AnotherGreetingService 인스턴스를 중복 생성하여 여러 개의 인스턴스가 존재할 가능성이 있다. AnotherGreetingService 인스턴스를 싱글턴으로 공유하여 사용할 수 있도록 컴포넌트에 등록되어 있던 프로바이더를 삭제하고 루트 모듈에 프로바이더를 등록하도록 한다.
 
@@ -553,7 +553,7 @@ import { AnotherGreetingService } from './another-greeting.service';
 export class AppModule { }
 ```
 
-<iframe src="https://stackblitz.com/edit/dependency-injection-5?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/dependency-injection-5?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 ## 5.2 값 프로바이더(Value Provider)
 
@@ -598,7 +598,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/service-value-provider-1?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/service-value-provider-1?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 주입된 AppConfig 타입의 인스턴스는 값 프로바이더의 useValue 프로퍼티에 지정된 값인 객체 리터럴 `MY_APP_CONFIG`으로 초기화되었다.
 
@@ -653,7 +653,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/service-value-provider-2?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/service-value-provider-2?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 위 코드의 프로바이더를 살펴보면 문자열 'http://somewhere.io'를 값으로 주입하기 위해 'API_URL'라는 문자열을 토큰으로 사용하였다. 토큰을 지정하는 provide 프로퍼티 값에 문자열을 사용하면 주입 대상의 타입을 추론할 수 없다. 예를 들어 아래와 같이 의존성 주입을 요청할 수는 없다.
 
@@ -768,7 +768,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/service-factory-provider?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/service-factory-provider?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 ## 5.4 인젝션 토큰(Injection Token)
 
@@ -812,7 +812,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/injection-token-1?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/injection-token-1?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 위와 같이 인터페이스를 프로바이더의 provide 프로퍼티에 토큰으로 등록하면 에러가 발생한다. TypeScript는 트랜스파일링되어 자바스크립트로 변환된다. 하지만 자바스크립트는 인터페이스를 지원하지 않으므로 변환된 자바스크립트 파일에는 인터페이스가 사라지게 된다. 따라서 Angular가 런타임에 찾을 수 있는 타입 정보가 없기 때문에 인터페이스를 토큰으로 등록하면 에러가 발생한다.
 
@@ -865,7 +865,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/injection-token-2?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/injection-token-2?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 [값 프로바이더](./angular-service#52-값-프로바이더value-provider)에서 살펴본 바와 같이 @Inject 데코레이터의 파라미터에는 주입할 대상의 토큰을 설정한다. InjectionToken 클래스로 생성한 인젝션 토큰 APP_CONFIG를 @Inject 데코레이터에 인자로 전달하면 클래스가 아닌 의존성(non-class dependency) 토큰을 사용할 수 있다.
 
@@ -894,7 +894,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/optional-dependency?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/optional-dependency?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 모듈 또는 컴포넌트의 프로바이더에 GreetingService가 등록되어 있다면 컴포넌트 레벨에서 GreetingService 인스턴스를 주입받을 수 있으므로 GreetingService의 sayHi 메소드를 사용할 수 있을 것이다. 하지만 프로바이더에 GreetingService가 등록되어 있지 않다면 GreetingService는 주입되지 않는다. 그러나 @Optional 데코레이터를 사용하였으므로 에러는 발생하지 않는다.
 
@@ -1012,7 +1012,7 @@ export class Sibling2Component {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/data-mediator?ctl=1&embed=1&hideNavigation=1&file=app/data.service.ts" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/data-mediator?ctl=1&embed=1&hideNavigation=1&file=src/app/data.service.ts" frameborder="0" width="100%" height="500"></iframe>
 
 형제 컴포넌트인 Sibling1Component와 Sibling2Component는 각각 데이터 공유 서비스인 DataService의 인스턴스를 주입받는다. 그리고 getter를 통해 데이터 공유 서비스 DataService의 message 프로퍼티에 값을 참조하고 setter를 통해 데이터 공유 서비스 DataService의 message 프로퍼티에 값을 할당한다. 이때 형제 컴포넌트 Sibling2Component와 Sibling1Component는 동일한 인스턴스를 사용하여야 한다. 즉, 데이터 공유 서비스 DataService의 인스턴스는 싱글턴으로 동작하여야 한다. DataService의 @Injectable 메타데이터 객체의 providedIn 프로퍼티에 'root'를 설정하였으므로 DataService는 루트 인젝터가 싱글턴 인스턴스로 제공한다.
 

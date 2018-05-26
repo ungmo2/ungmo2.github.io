@@ -52,7 +52,7 @@ Apr 30, 2018
 2018년 04월 30일 19시 17분 30초
 ```
 
-<iframe src="https://stackblitz.com/edit/pipe-date?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="400"></iframe>
+<iframe src="https://stackblitz.com/edit/pipe-date?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="400"></iframe>
 
 이와 같이 파이프는 템플릿 내에서 원하는 형식으로 값을 변환하여 표시하는 기능이다. 이때 원본 데이터 자체는 변경되지 않는다. 파이프의 사용 방법은 아래와 같다.
 
@@ -83,7 +83,7 @@ export class AppComponent {
 
 uppercase는 빌트인 파이프로 파이프의 대상 값(name 프로퍼티)을 대문자로 변환한다.
 
-<iframe src="https://stackblitz.com/edit/pipe-uppercase?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="400"></iframe>
+<iframe src="https://stackblitz.com/edit/pipe-uppercase?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="400"></iframe>
 
 # 2. 빌트인 파이프
 
@@ -116,7 +116,7 @@ import { interval } from 'rxjs';
 
     <h3>CurrencyPipe</h3>
     <!-- 한국원:통화기호표시:소숫점위 최소 1자리 소숫점아래 1~2 -->
-    <p>{{ "{{ price | currency: 'KRW':true:'1.1-2' " }}}}</p>
+    <p>{{ "{{ price | currency:'KRW':'symbol':'1.1-2' " }}}}</p>
 
     <h3>SlicePipe : array</h3>
     <!-- slice:start[:end] -->
@@ -155,11 +155,11 @@ export class AppComponent {
   pi = 3.141592;
   num = 1.3495;
   // 1s마다 값을 방출하고 10개를 take한다. (0 ~ 9)
-  second$ = interval(1000).take(10);
+  second$ = interval(1000).pipe(take(10));
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/pipe-builtins?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/pipe-builtins?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 # 3. 체이닝 파이프
 
@@ -183,7 +183,7 @@ export class AppComponent {
 
 체이닝 방식으로 파이프 연산자 `|`에 연이어 파이프를 추가하면 파이프의 조합으로 결과를 출력한다. 위 예제는 [slice:4](https://angular.io/api/common/SlicePipe)로 4번째 문자부터 마지막 문자까지를 잘라내고 결과를 대문자로 출력한다. 컴포넌트의 실행하면 ‘UNG-MO’가 출력된다.
 
-<iframe src="https://stackblitz.com/edit/pipe-chaining?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="400"></iframe>
+<iframe src="https://stackblitz.com/edit/pipe-chaining?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="400"></iframe>
 
 # 4. 커스텀 파이프
 
@@ -256,7 +256,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/pipe-custom?ctl=1&embed=1&hideNavigation=1&file=app/reverse.pipe.ts" frameborder="0" width="100%" height="400"></iframe>
+<iframe src="https://stackblitz.com/edit/pipe-custom?ctl=1&embed=1&hideNavigation=1&file=src/app/reverse.pipe.ts" frameborder="0" width="100%" height="400"></iframe>
 
 # 5. 파이프와 변화 감지(Change detection)
 
@@ -376,7 +376,7 @@ export class LimitPipe implements PipeTransform {
 ...
 ```
 
-<iframe src="https://stackblitz.com/edit/pipe-change-detection-1?ctl=1&embed=1&hideNavigation=1&file=app/todos.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/pipe-change-detection-1?ctl=1&embed=1&hideNavigation=1&file=src/app/todos.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 애플리케이션을 동작시키면 todos 프로퍼티의 상태가 템플릿으로 업데이트되지 않는 것을 확인할 수 있다. 이것은 add 메소드 내부의 push 메소드 때문이다. push 메소드는 원본 배열(이 경우 todos 프로퍼티)의 복사본을 반환하는 것이 아니라 직접 변경하므로 원본 배열의 참조는 변경되지 않기 때문이다. 따라서 파이프에 의해 변화 감지가 작동하지 않는 것이다.
 
@@ -395,7 +395,7 @@ this.todos = [...this.todos, { id: this.getLastId(), content, completed: false }
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/pipe-change-detection-2?ctl=1&embed=1&hideNavigation=1&file=app/todos.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/pipe-change-detection-2?ctl=1&embed=1&hideNavigation=1&file=src/app/todos.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 이 경우, 간단한 애플리케이션이므로 todos 프로퍼티의 변경 시점을 간단히 파악할 수 있지만 복잡한 애플리케이션이라면 todos 프로퍼티가 어디서 변경되는지 파악하기 힘들 수도 있다. 또한 파이프를 위해 코드를 수정하는 것은 피하고 싶을 수도 있다. 이를 위해 Angular는 비순수 파이프(impure pipe)를 제공한다.
 
@@ -423,7 +423,7 @@ export class LimitPipe implements PipeTransform {
 
 순수 파이프는 기본 자료형의 값 또는 객체 참조의 변경과 같은 순수한 변경(pure change)만을 감지하고 파이프를 실행한다. Angular는 퍼포먼스를 위해 객체 내부의 변경은 무시하여 순수 파이프를 실행하지 않는다. 따라서 퍼포먼스를 생각한다면 비순수 파이프보다 순수 파이프를 사용하는 것이 바람직하다. 또한 불가피한 상황이 아니라면 파이프보다는 컴포넌트 프로퍼티의 값을 변경하여 사용하는 편이 유리하다.
 
-<iframe src="https://stackblitz.com/edit/pipe-impure?ctl=1&embed=1&hideNavigation=1&file=app/limit.pipe.ts" frameborder="0" width="100%" height="400"></iframe>
+<iframe src="https://stackblitz.com/edit/pipe-impure?ctl=1&embed=1&hideNavigation=1&file=src/app/limit.pipe.ts" frameborder="0" width="100%" height="400"></iframe>
 
 # Reference
 

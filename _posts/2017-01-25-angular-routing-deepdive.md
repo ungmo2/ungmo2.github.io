@@ -266,7 +266,7 @@ export class TodoDetailComponent implements OnInit {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/route-parameter-exam?ctl=1&embed=1&hideNavigation=1&file=app/todos/todo-detail.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/route-parameter-exam?ctl=1&embed=1&hideNavigation=1&file=src/app/todos/todo-detail.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 ## 1.3 라우트 정적 데이터(Route static data)
 
@@ -355,7 +355,7 @@ export class TodoDetailComponent implements OnInit {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/route-static-data-exam?ctl=1&embed=1&hideNavigation=1&file=app/todos/todo-detail.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/route-static-data-exam?ctl=1&embed=1&hideNavigation=1&file=src/app/todos/todo-detail.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 # 2. 자식 라우트(Child Route)
 
@@ -649,7 +649,7 @@ export class CustomerDetailComponent implements OnInit {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/children-routing?ctl=1&embed=1&hideNavigation=1&file=app/app.module.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/children-routing?ctl=1&embed=1&hideNavigation=1&file=src/app/app.module.ts" frameborder="0" width="100%" height="600"></iframe>
 
 # 3. 모듈의 분리와 모듈별 라우트 구성
 
@@ -851,7 +851,7 @@ import { AppComponent } from './app.component';
 export class AppModule { }
 ```
 
-<iframe src="https://stackblitz.com/edit/children-routing-seperate-module?ctl=1&embed=1&hideNavigation=1&file=app/app.module.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/children-routing-seperate-module?ctl=1&embed=1&hideNavigation=1&file=src/app/app.module.ts" frameborder="0" width="100%" height="600"></iframe>
 
 루트 모듈은 AppRoutingModule을 등록하고 AppRoutingModule은 기능 모듈 UserModule과 CustomerModule을 등록하였다. 이때 AppRoutingModule은 루트 모듈을 위한 라우트 구성을 포함하며 AppRoutingModule에 등록된 2개의 기능 모듈은 각각의 기능 모듈을 위한 라우트 구성을 포함하였다.
 
@@ -1010,7 +1010,7 @@ export class AuthChildGuard implements CanActivateChild {
 
 라우트 구성에 canActivateChild 프로퍼티로 가드를 선언한다. 이때 자식 컴포넌트 CustomerDetailComponent를 활성화하기에 앞서 가드가 실행되고 가드의 실행 결과에 따라 자식 컴포넌트에의 접근을 제어한다. 즉 AuthChildGuard.canActivateChild 메소드의 실행 결과가 true일 경우에만 CustomerDetailComponent를 활성화한다.
 
-<iframe src="https://stackblitz.com/edit/route-guard?ctl=1&embed=1&hideNavigation=1&file=app/guard/auth.guard.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/route-guard?ctl=1&embed=1&hideNavigation=1&file=src/app/guard/auth.guard.ts" frameborder="0" width="100%" height="600"></iframe>
 
 ## 4.3 CanLoad
 

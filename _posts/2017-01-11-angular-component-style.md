@@ -107,7 +107,7 @@ import { Component } from '@angular/core';
 export class AppComponent {}
 ```
 
-<iframe src="https://stackblitz.com/edit/component-style-1?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/component-style-1?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
 부모 컴포넌트 AppComponent에는 스타일을 정의하였으나 자식 컴포넌트 ChildComponent에는 아무런 스타일도 정의하지 않았다. 이때 부모 컴포넌트의 스타일은 자식 컴포넌트에 어떠한 영향도 주지 않는다.
 
@@ -140,7 +140,7 @@ h3 {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/component-style-2?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/component-style-2?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
 위 예제를 확인하여 보면 자신에게 적용한 스타일은 자신에게만 영향을 주는 것을 확인할 수 있다.
 
@@ -210,7 +210,7 @@ export class ChildComponent {}
 Encapsulation Native
 {: .desc-img}
 
-<iframe src="https://stackblitz.com/edit/view-encapsulation?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/view-encapsulation?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
 # 3. 쉐도우 DOM 스타일 셀렉터 (Shadow DOM Style Selector)
 
@@ -265,7 +265,7 @@ h3 {
 :host 셀렉터
 {: .desc-img}
 
-<iframe src="https://stackblitz.com/edit/host-selector-1?ctl=1&embed=1&hideNavigation=1&file=app/child.component.css" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/host-selector-1?ctl=1&embed=1&hideNavigation=1&file=src/app/child.component.css" frameborder="0" width="100%" height="500"></iframe>
 
 만약에 호스트 요소의 상태에 따라 스타일을 적용하려면 :host 셀렉터에 부가적인 정보를 추가한다. 예를 들어 호스트 요소에 active 클래스가 선언되어 있을 경우, 또는 호스트 요소가 hover 상태일 때 스타일을 적용하려면 아래와 같이 룰셋을 정의한다.
 
@@ -311,7 +311,7 @@ h3 {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/host-selector-2?ctl=1&embed=1&hideNavigation=1&file=app/child.component.css" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/host-selector-2?ctl=1&embed=1&hideNavigation=1&file=src/app/child.component.css" frameborder="0" width="100%" height="500"></iframe>
 
 ## 3.2 :host-context 셀렉터
 
@@ -375,7 +375,7 @@ h3 {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/host-context-selector?ctl=1&embed=1&hideNavigation=1&file=app/child.component.css" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/host-context-selector?ctl=1&embed=1&hideNavigation=1&file=src/app/child.component.css" frameborder="0" width="100%" height="500"></iframe>
 
 # 4. 글로벌 스타일
 

@@ -300,7 +300,7 @@ export class UserListComponent {
 @Input 데코레이터를 이용한 부모 컴포넌트에서 자식 컴포넌트로 상태 전달
 {: .desc-img}
 
-<iframe src="https://stackblitz.com/edit/component-interaction-1?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/component-interaction-1?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 만약에 부모 컴포넌트에서 실행한 프로퍼티 바인딩의 프로퍼티명과는 다른 프로퍼티명을 자식 컴포넌트에서 사용하려면 아래와 같이 @Input 데코레이터에 프로퍼티 바인딩의 프로퍼티명을 인자로 전달하고 사용하고자 하는 프로퍼티명을 선언한다.
 
@@ -406,7 +406,7 @@ export class UserListComponent {
 setter를 이용한 입력 프로퍼티 조작
 {: .desc-img}
 
-<iframe src="https://stackblitz.com/edit/component-interaction-2?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/component-interaction-2?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
 ## 2.2 자식 컴포넌트에서 부모 컴포넌트로 상태 전달
 
@@ -609,7 +609,7 @@ removeUser(user: User) {
 자식 컴포넌트에서 부모 컴포넌트로 상태 전달
 {: .desc-img}
 
-<iframe src="https://stackblitz.com/edit/component-interaction-3?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="650"></iframe>
+<iframe src="https://stackblitz.com/edit/component-interaction-3?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="650"></iframe>
 
 # 3. Stateful 컴포넌트와 Stateless 컴포넌트
 

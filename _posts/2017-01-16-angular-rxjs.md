@@ -79,7 +79,64 @@ import { map, filter, scan, tap } from 'rxjs/operators';
 
 위에서 살펴본 바와 같이 시간축을 따라 연속적으로 흐르는 데이터, 즉 데이터 스트림을 생성하고 방출하는 객체를 **옵저버블(Observable)**이라 한다. 옵저버블을 구독하여 옵저버블이 방출한 **노티피케이션(Notification)**을 전파받아 사용하는 객체를 **옵저버(Observer)**라 한다. 다시 말해 옵저버블은 연속성을 갖는 데이터를 스트리밍하고 옵저버는 연속적으로 보내진 데이터를 받아 처리한다.
 
-구현의 관점에서 구독이란 옵저버블의 subscribe 오퍼레이터를 호출할 때 인자로 옵저버를 전달하는 것을 말한다. 이로써 옵저버는 옵저버블을 구독하고 옵저버블이 방출한 노티피케이션을 전파받아 처리한다.  RxJS를 사용하여 마우스의 좌표를 표시하는 간단한 예제를 살펴보자.
+구현의 관점에서 구독이란 옵저버블의 subscribe 오퍼레이터를 호출할 때 인자로 옵저버를 전달하는 것을 말한다. 이로써 옵저버는 옵저버블을 구독하고 옵저버블이 방출한 노티피케이션을 전파받아 처리한다. 아래는 옵저버블을 생성하고 구독하는 간단한 예제이다.
+
+```typescript
+import { Component, OnInit } from '@angular/core';
+// RxJS 임포트
+import { Observable } from 'rxjs';
+
+@Component({
+  selector: 'app-root',
+  template: ''
+})
+export class AppComponent implements OnInit {
+  ngOnInit() {
+
+    // 옵저버블이 구독될 때 호출되는 구독 함수
+    const subscriber = (observer) => {
+      // next 노티피케이션 방출
+      setTimeout(() => {
+        observer.next(1);
+      }, 1000);
+
+      setTimeout(() => {
+        observer.next(2);
+      }, 2000);
+
+      // error 노티피케이션 방출
+      setTimeout(() => {
+        observer.error(new Error('Something wrong!'));
+      }, 3000);
+
+      // complete 노티피케이션 방출
+      setTimeout(() => {
+        observer.complete();
+      }, 4000);
+
+      // 구독 해지될 때 호출되는 콜백 함수
+      return () => console.log('Unsubscribed!')
+    }
+
+    // 옵저버블 생성
+    const observable$ = new Observable(subscriber);
+
+    // 구독(Subscription)
+    observable$.subscribe(
+      // 옵저버블이 방출한 next 노티피케이션에 반응하는 next 메소드
+      value => console.log(value),
+      // 옵저버블이 방출한 error 노티피케이션에 반응하는 error 메소드
+      error => console.error(error),
+      // 옵저버블이 방출한 complete 노티피케이션에 반응하는 complete 메소드
+      () => console.log('Complete')
+    );
+  }
+}
+```
+
+<iframe src="https://stackblitz.com/edit/rxjs6-observable-1?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
+
+위 예제는 옵저버블이 구독될 때 호출되는 구독 함수 내에서 next, error, complte 메소드를 사용하여 노티피케이션을 방출하고 있다. 이 예제는 옵버버블의 이해를 돕기 위한 예제이므로 애플리케이션의 외부 환경에 반응하고 있지는 않다. 이번에는 애플리케이션의 외부 환경에 반응하는 옵저버블을 생성해보자. 마우스의 움직임에 반응하여 화면에 좌표를 표시하는 예제이다.
 
 ```typescript
 import { Component, OnInit } from '@angular/core';
@@ -115,7 +172,8 @@ export class AppComponent implements OnInit {
   }
 }
 ```
-<iframe src="https://stackblitz.com/edit/rxjs6-observable?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
+
+<iframe src="https://stackblitz.com/edit/rxjs6-observable-2?ctl=1&embed=1&hideNavigation=1&file=app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
 ① Observable과 [fromEvent](https://www.learnrxjs.io/operators/creation/fromevent.html) 오퍼레이터를 임포트한다. fromEvent 오퍼레이터는 DOM 이벤트를 옵저버블로 변환하는 오퍼레이터이다.
 
@@ -130,9 +188,9 @@ export class AppComponent implements OnInit {
 
 | 옵저버 메소드    | 설명                      | 노티피케이션 내용
 |:--------------|:-------------------------|:--------------------
-| next 메소드     | 옵저버블이 방출한 next 타입의 노티피케이션을 전파받는 콜백 함수 | 값 또는 이벤트
-| complete 메소드 | 옵저버블이 방출한 complete 타입의 노티피케이션을 전파받는 콜백 함수 | 없음
-| error 메소드    | 옵저버블이 방출한 error 타입의 노티피케이션을 받는 콜백 함수 | 에러 객체
+| next 메소드     | 옵저버블이 방출한 next 타입의 노티피케이션에 반응하는 콜백 함수 | 값 또는 이벤트
+| complete 메소드 | 옵저버블이 방출한 complete 타입의 노티피케이션에 반응하는 콜백 함수 | 없음
+| error 메소드    | 옵저버블이 방출한 error 타입의 노티피케이션에 반응하는 콜백 함수 | 에러 객체
 
 
 옵저버블은 mousemove 이벤트를 데이터 스트림으로 생성하고 방출하여 옵저버에게 전파한다. 옵저버블은 구독을 해지(unsubscribe)하거나 complete 메소드가 호출될 때까지 옵저버에게 새로운 데이터를 계속해서 전파한다. 이때 옵저버에게 새로운 값이 성공적으로 전달되면 next 메소드가 호출되고 에러가 발생하면 error 메소드가 호출된다.

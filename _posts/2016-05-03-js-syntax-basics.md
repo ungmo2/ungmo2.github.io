@@ -12,9 +12,9 @@ description: Javascript는 interactive한 웹페이지 작성을 가능하게 �
 
 # 1. Hello World
 
-Javascript는 interactive한 웹페이지 작성을 가능하게 한다. 예를 들면, 이벤트(e.g. 버튼 클릭, 웹페이지 로딩 완료 등)에 반응하여 HTML 요소에 접근하고 HTML 요소를 조작할 수 있다. 정적인 HTML을 동적으로 변경할 수 있는 유일한 방법은 Javascript를 사용하는 것이다.
+Javascript는 interactive한 웹페이지 작성을 가능하게 한다. 예를 들면, 이벤트(e.g. 버튼 클릭, 웹페이지 로딩 완료 등)에 반응하여 HTML 요소에 접근하고 조작할 수 있다. 정적인 HTML을 동적으로 조작할 수 있는 유일한 방법은 Javascript를 사용하는 것이다.
 
-사용자에 의해 버튼이 클릭되면 정적 HTML을 조작하는 간단한 Javascript 예제를 만들어 보자.
+사용자에 의해 버튼이 클릭되면 정적 HTML을 동적으로 조작하는 간단한 Javascript 예제를 만들어 보자.
 
 ```html
 <!DOCTYPE html>
@@ -44,7 +44,7 @@ Javascript는 interactive한 웹페이지 작성을 가능하게 한다. 예를 
 </html>
 ```
 
-<div class='result'></div>
+<div class='result' style="height: 136px;"></div>
 
 # 2. 외부의 Javascript 실행하기 (External JavaScript)
 

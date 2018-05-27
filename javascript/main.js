@@ -80,8 +80,11 @@ jQuery(document).ready(function ($) {
     iframe.contentWindow.document.write(html);
     iframe.contentWindow.document.close();
 
-    // container height = iframe height + 30
-    $this.height(iframe.contentWindow.document.body.scrollHeight + 30);
+    // result 요소에 스타일 지정이 없으면 자동으로 height 계산
+    if (!$this.attr('style')) {
+      // container height = iframe height + 30
+      $this.height(iframe.contentWindow.document.body.scrollHeight + 30);
+    }
   });
 
   //////////////////////////////////////////////////////////////////////

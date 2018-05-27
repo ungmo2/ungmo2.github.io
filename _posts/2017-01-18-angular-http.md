@@ -922,6 +922,7 @@ export class AppComponent implements OnInit {
     tods$.subscribe(console.log);
   }
 
+  /* getTodos 메소드가 반환하는 옵저버블은 shareReplay 오퍼레이터에 의해 구독하는 모든 옵저버에 공유된다. */
   getTodos(): Observable<Todo[]> {
     return this.http.get<Todo[]>(this.url)
       .pipe(
@@ -934,7 +935,7 @@ export class AppComponent implements OnInit {
 
 <iframe src="https://stackblitz.com/edit/rxjs-sharereplay?ctl=1&embed=1&file=src/app/app.component.ts&hideNavigation=1" frameborder="0" width="100%" height="600"></iframe>
 
-위 예제를 실행하여 보면 옵저버블 tods$는 2번 구독되었지만 HTTP 요청은 1번만 전송되는 것을 확인할 수 있다.
+위 예제를 실행하여 보면 옵저버블 tods$는 2번 구독되었지만 HTTP 요청은 1번만 전송되는 것을 확인할 수 있다. getTodos 메소드가 반환하는 옵저버블은 shareReplay 오퍼레이터에 의해 구독하는 모든 옵저버에 공유된다.
 
 # 5. 인터셉터 (HttpInterceptor)
 

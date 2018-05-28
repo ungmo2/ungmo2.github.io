@@ -61,7 +61,7 @@ Angular는 3가지 유형의 디렉티브를 제공한다.
 
 ```bash
 $ ng new custom-attr-directive -t -s -S
-$ ng cd custom-attr-directive
+$ cd custom-attr-directive
 $ ng generate directive textBlue
 ```
 
@@ -467,7 +467,7 @@ ngIf 디렉티브의 기능을 그대로 재현하는 예제를 통해 사용자
 
 ```bash
 $ ng new custom-structure-directive -t -s -S
-$ ng cd custom-structure-directive
+$ cd custom-structure-directive
 $ ng generate directive myNgIf
 ```
 

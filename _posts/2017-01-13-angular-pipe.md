@@ -387,11 +387,11 @@ export class LimitPipe implements PipeTransform {
 add(content: string) {
   // push 메소드는 원본 배열을 직접 변경하지만 원본 배열의 참조는 변경되지 않기 때문에 파이프에 의해 변화 감지되지 않는다.
   /*
-  this.todos.push({ id: this.getLastId(), content, completed: false });
+  this.todos.push({ id: this.getNexttId(), content, completed: false });
   */
 
   // 파이프에 의해 변화 감지가 작동하도록 todos 프로퍼티의 참조가 변경되도록 수정한다
-this.todos = [...this.todos, { id: this.getLastId(), content, completed: false }];
+this.todos = [...this.todos, { id: this.getNextId(), content, completed: false }];
 }
 ```
 

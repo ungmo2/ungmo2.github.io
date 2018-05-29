@@ -949,18 +949,35 @@ interface HttpInterceptor {
 }
 ```
 
-인터셉터가 어떻게 동작하는지 살펴 보도록 하자. 모든 HTTP 요청 헤더에 인증 토큰을 추가하는 경우이다. 먼저 HttpInterceptor를 구현한 AuthInterceptor 서비스를 작성한다.
+인터셉터가 어떻게 동작하는지 예제를 통해 살펴 보도록 하자. 이제까지 작성한 Todo 애플리케이션의 모든 HTTP 요청 헤더에 인증 토큰을 추가하는 경우이다. 먼저 Todo 애플리케이션에 인증 토큰을 제공하는 서비스를 추가한다.
+
+```typescript
+// auth.service.ts
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+  // 인증 토큰을 반환한다.
+  getToken() {
+    return 'my-token'; // 잠정 처리
+  }
+}
+```
+
+HttpInterceptor를 구현한 AuthInterceptor 서비스를 작성한다.
 
 ```typescript
 // auth-interceptor.service.ts
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  /* AuthService를 주입받는다.
-     인증 토큰을 취득하는 AuthService가 별도로 구현되어 있다고 가정한다. */
+  // AuthService를 주입받는다.
   constructor(private auth: AuthService) { }
 
   // ① intercept 메소드는 2개의 파라미터를 갖는다.
@@ -989,11 +1006,13 @@ export class AuthInterceptor implements HttpInterceptor {
 
 ③ 원본 HttpRequest 객체 대신 헤더에 인증 토큰을 추가한 새로운 HttpRequest 객체를 다음 미들웨어 체인으로 전달한다. 다음 인터셉터가 없는 경우, Observable을 반환하고 종료한다.
 
-작성한 인터셉터를 HTTP 요청에 적용하기 위해 애플리케이션 모듈의 프로바이더에 HTTP_INTERCEPTOR 프로바이더를 다음과 같이 추가한다.
+작성한 인터셉터를 HTTP 요청에 적용하기 위해 루트 모듈의 프로바이더에 HTTP_INTERCEPTOR 프로바이더를 다음과 같이 추가한다.
 
 ```typescript
+// app.module.ts
 ...
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth-interceptor.service';
 
 @NgModule({
   ...
@@ -1005,6 +1024,16 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 })
 export class AppModule {}
 ```
+
+<iframe src="https://stackblitz.com/edit/httpclient-interceptor?ctl=1&embed=1&file=src/app/auth-interceptor.service.ts&hideNavigation=1" frameborder="0" width="100%" height="600"></iframe>
+
+이제 HTTP 요청 헤더에 인증 토큰을 추가하는 처리를 별도 구현하지 않더라도 인터셉터에 의해
+모든 HTTP 요청 헤더에 인증 토큰을 자동 추가된다.
+
+![interceptor](/img/interceptor.png)
+
+인터셉터에 의한 인증 토큰 추가
+{: .desc-img}
 
 # Reference
 

@@ -1027,8 +1027,7 @@ export class AppModule {}
 
 <iframe src="https://stackblitz.com/edit/httpclient-interceptor?ctl=1&embed=1&file=src/app/auth-interceptor.service.ts&hideNavigation=1" frameborder="0" width="100%" height="600"></iframe>
 
-이제 HTTP 요청 헤더에 인증 토큰을 추가하는 처리를 별도 구현하지 않더라도 인터셉터에 의해
-모든 HTTP 요청 헤더에 인증 토큰을 자동 추가된다.
+이제 HTTP 요청 헤더에 인증 토큰을 추가하는 처리를 별도 구현하지 않더라도 인터셉터에 의해 모든 HTTP 요청 헤더에 인증 토큰이 자동 추가된다.
 
 ![interceptor](/img/interceptor.png)
 

@@ -16,7 +16,7 @@ description: 템플릿 기반 폼은 컴포넌트 템플릿에서 디렉티브�
 
 템플릿 기반 폼은 컴포넌트 템플릿에서 디렉티브를 사용하여 폼을 구성하는 방식으로 각 필드의 형식, 유효성 검증 규칙을 모두 템플릿에서 정의한다. 비교적 간단한 폼에 사용한다.
 
-템플릿 기반 폼은 NgForm, NgModel, NgModelGroup 디렉티브를 중심으로 동작한다. 이들을 사용하기 위해서 @angular/forms 패키지의 FormsModule을 애플리케이션 모듈에 추가한다.
+템플릿 기반 폼은 NgForm, NgModel, NgModelGroup 디렉티브를 중심으로 동작한다. 이들을 사용하기 위해서 @angular/forms 패키지의 FormsModule을 루트 모듈에 추가한다.
 
 ```typescript
 // app.module.ts
@@ -41,7 +41,11 @@ export class AppModule { }
 
 ## 2.1 NgForm 디렉티브
 
-[NgForm](https://angular.io/api/forms/NgForm) 디렉티브는 폼 전체를 가리키는 디렉티브이다. 모듈에 FormsModule을 추가하면 NgForm 디렉티브를 선언하지 않아도 모든 form 요소에 NgForm 디렉티브가 자동으로 적용되어 템플릿 기반 폼으로 동작한다
+[NgForm](https://angular.io/api/forms/NgForm) 디렉티브는 폼 전체를 가리키는 디렉티브이다. 루트 모듈에 FormsModule을 추가하면 NgForm 디렉티브를 선언하지 않아도 모든 form 요소에 NgForm 디렉티브가 자동으로 적용되어 템플릿 기반 폼으로 동작한다. 이제 HTML 표준 폼이 제공하는 유효성 검증 기능을 사용하지 않고 템플릿 기반 폼이 제공하는 유효성 검증 기능을 사용할 것이므로 HTML 표준 폼의 유효성 검증 기능을 비활성하는 `novalidate` 어트리뷰트를 추가한다.
+
+```html
+<form novalidate></form>
+```
 
 폼 요소에 자동으로 적용되는 NgForm 디렉티브의 적용을 취소하려면 폼 요소에 ngNoForm을 추가한다. ngNoForm이 적용되면 HTML 표준 폼으로 동작한다.
 
@@ -49,87 +53,96 @@ export class AppModule { }
 <form ngNoForm></form>
 ```
 
-HTML 표준 폼은 submit 버튼을 클릭하면 폼 데이터를 서버로 전송하고 페이지를 전환하지만 NgForm 디렉티브가 적용된 템플릿 기반 폼은 submit 이벤트를 인터셉트하여 폼 데이터를 서버로 전송하고 페이지를 전환하는 submit 이벤트의 기본 동작을 막는다. 따라서 템플릿 기반 폼에서는 submit 이벤트 대신 submit 이벤트의 기본 동작 방지를 보증하는 ngSubmit 이벤트를 사용한다.
+HTML 표준 폼은 submit 버튼을 클릭하면 폼 데이터를 서버로 전송하고 페이지를 전환하지만, NgForm 디렉티브가 적용된 템플릿 기반 폼은 submit 이벤트를 인터셉트하여 폼 데이터를 서버로 전송하고 페이지를 전환하는 submit 이벤트의 기본 동작을 막는다. 따라서 템플릿 기반 폼에서는 submit 이벤트 대신 사용자가 폼을 제출(submit)했을 때 NgForm 디렉티브가 방출하는 ngSubmit 이벤트를 사용한다.
 
 ```html
-<form (ngSubmit)="onNgSubmit()"></form>
+<form (ngSubmit)="onNgSubmit()" novalidate></form>
 ```
-
-**NgForm 디렉티브는 자신이 적용된 폼 요소(별도 설정이 없는 경우 폼 요소에 자동 적용된다)에 해당하는 [FormGroup](https://angular.io/api/forms/FormGroup) 인스턴스를 생성한다.** 이 FormGroup 인스턴스는 NgForm 인스턴스에 포함되며 폼 요소의 값이나 유효성 검증 상태를 추적할 수 있는 기능을 제공한다.
 
 템플릿 기반 폼에도 템플릿 참조 변수를 사용할 수 있다. 참조 변수에는 ngForm을 할당하여 참조 변수가 네이티브 DOM이 아닌 NgForm 인스턴스를 가리키도록 한다.
 
 ```html
-<form #f="ngForm" (ngSubmit)="onNgSubmit(f)"></form>
+<form #f="ngForm" (ngSubmit)="onNgSubmit(f)" novalidate></form>
 ```
 
-이제 템플릿 참조 변수 f는 NgForm 인스턴스를 바인딩하였고 해당 폼 요소의 값이나 유효성 검증 상태를 추적할 수 있게 되었다. 물론 템플릿 참조변수는 이벤트 핸들러에 인자로 전달할 수도 있다.
+[NgForm](https://angular.io/api/forms/NgForm) 인스턴스는 NgForm 디렉티브가 생성하는 인스턴스이다. NgForm 인스턴스에 대해 좀 더 자세히 알아보자. NgForm 디렉티브는 NgForm 인스턴스를 생성할 때, 자신이 적용된 폼 요소(별도 설정이 없는 경우 폼 요소에 NgForm 디렉티브가 자동 적용된다)의 **값이나 유효성 검증 상태를 추적할 수 있는 기능**을 제공하는 [FormGroup](https://angular.io/api/forms/FormGroup) 인스턴스를 생성한 후, NgForm 인스턴스의 프로퍼티로 추가한다. 이렇게 생성된 NgForm 인스턴스를 템플릿 참조 변수에 할당하는 것으로 참조 변수가 네이티브 DOM이 아닌 NgForm 인스턴스를 가리키도록 한다.
 
-그런데 폼 요소는 자기 자신만 존재해서는 의미가 없고 자식 요소로 폼 컨트롤 요소를 갖을 때 의미가 있다.
+이제 템플릿 참조 변수 f는 NgForm 인스턴스를 바인딩하였고 해당 폼 요소의 값이나 유효성 검증 상태를 추적할 수 있게 되었다. 물론 템플릿 참조 변수는 이벤트 핸들러에 인자로 전달할 수도 있다.
+
+그런데 폼 요소는 자기 자신만 존재해서는 의미가 없고 자식 요소로 폼 컨트롤 요소를 가질 때 의미가 있다.
 
 ```html
-<form #f="ngForm" (ngSubmit)="onNgSubmit(f)">
+<form #f="ngForm" (ngSubmit)="onNgSubmit(f)" novalidate>
   <input type="text" name="userid" placeholder="userid">
   ...
 </form>
 ```
 
-NgForm 디렉티브는 폼 요소의 자식 폼 컨트롤 요소 중에서 NgModel 디렉티브가 적용된 요소를 탐색하여 FormGroup 인스턴스에 추가한다.
+NgForm 디렉티브는 폼 요소의 자식 폼 컨트롤 요소 중에서 `NgModel` 디렉티브가 적용된 요소를 탐색하여 FormGroup 인스턴스에 추가한다.
 
-템플릿 기반 폼을 사용한 간단한 회원 가입 폼을 작성하여 NgModel 디렉티브와 FormGroup 인스턴스에 대해 살펴보도록 하자.
+간단한 회원 가입 폼을 작성하여 템플릿 기반 폼에 대해 살펴보도록 하자.
 
 ```typescript
 // user-form.component.ts
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'user-form',
   template: `
-    <form #userForm="ngForm" (ngSubmit)="onNgSubmit(userForm)">
+    <form #userForm="ngForm" (ngSubmit)="onNgSubmit(userForm)" novalidate>
       <input type="text" name="userid" placeholder="userid">
       <input type="password" name="password" placeholder="password">
-      <input type="submit" value="submit">
+      <button>submit</button>
     </form>
   `
 })
 export class UserFormComponent {
-  onNgSubmit(userForm) { console.log(userForm); }
+  onNgSubmit(userForm: NgForm) {
+    console.log(userForm);
+  }
 }
 ```
 
 <iframe src="https://stackblitz.com/edit/template-driven-form-1?ctl=1&embed=1&hideNavigation=1&file=src/app/user-form.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
-위 예제를 살펴보면 폼 요소의 자식 폼 컨트롤 요소 중에 NgModel 디렉티브가 적용된 요소가 없다. 따라서 NgForm 디렉티브는 어떠한 자식 폼 컨트롤 요소도 FormGroup 인스턴스에 추가하지 않는다.
+위 예제를 살펴보면 폼 요소의 자식 폼 컨트롤 요소 중에 NgModel 디렉티브가 적용된 요소가 없다. 따라서 NgForm 디렉티브는 어떠한 자식 폼 컨트롤 요소도 FormGroup 인스턴스에 추가하지 않는다. 다시 말해 어떠한 자식 폼 컨트롤 요소도 FormGroup 인스턴스에 추가되지 않았으므로 FormGroup 인스턴스가 제공하는 값이나 유효성 검증 상태 추적 기능을 사용할 수 없다.
 
 ![](/img/form-no-ngmodel.png)
 
 NgForm 인스턴스의 프로퍼티
 {: .desc-img}
 
-**NgModel 디렉티브는 자신이 적용된 폼 컨트롤 요소에 해당하는 [FormControl](https://angular.io/api/forms/FormControl) 인스턴스를 생성한다.** 이 FormControl 인스턴스는 FormGroup 인스턴스에 포함되며 폼 컨트롤 요소의 값이나 유효성 검증 상태를 추적할 수 있는 기능을 제공한다.
+**NgModel 디렉티브는 자신이 적용된 폼 컨트롤 요소의 값이나 유효성 검증 상태를 추적할 수 있는 기능을 제공하는 [FormControl](https://angular.io/api/forms/FormControl) 인스턴스를 생성한다.** 이 FormControl 인스턴스는 FormGroup 인스턴스의 프로퍼티로 추가된다.
 
-즉 FormGroup 인스턴스는 자신의 자식인 FormControl 인스턴스들을 그룹화하여 관리하기 위한 최상위 컨테이너로서 FormControl 인스턴스들을 하나의 객체로 그룹화하여 모든 FormControl 인스턴스의 값과 유효성 상태를 관리한다. 만약 유효성을 검증할 때 FormControl 인스턴스 중 하나라도 유효하지 않다면 FormGroup은 유효하지 않은 상태인 invalid 상태가 된다.
+앞서 살펴본 FormGroup 인스턴스는 자신의 자식인 FormControl 인스턴스들을 하나의 객체로 그룹화하여 관리하기 위한 최상위 컨테이너로서 모든 FormControl 인스턴스의 값과 유효성 상태를 관리한다. 만약 유효성을 검증할 때 FormControl 인스턴스 중 하나라도 유효하지 않다면 FormGroup은 유효하지 않은 상태인 invalid 상태가 된다.
+
+![template deriven form](/img/template-form-instances.png)
+{: .w-250}
+
+템플릿 기반 폼의 인스턴스 구조
+{: .desc-img}
 
 폼 요소의 자식 폼 컨트롤 요소에 NgModel 디렉티브를 적용하여 FormGroup 인스턴스에 의해 자식 폼 컨트롤 요소가 관리되도록 수정해 보자.
 
 ```typescript
 // user-form.component.ts
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'user-form',
   template: `
-    <form #userForm="ngForm" (ngSubmit)="onNgSubmit(userForm)">
+    <form #userForm="ngForm" (ngSubmit)="onNgSubmit(userForm)" novalidate>
       <input type="text" name="userid" placeholder="userid" ngModel>
       <input type="password" name="password" placeholder="password" ngModel>
-      <input type="submit" value="submit">
+      <button>submit</button>
     </form>
   `
 })
 export class UserFormComponent {
-  onNgSubmit(userForm) {
+  onNgSubmit(userForm: NgForm) {
     console.log(userForm);
-    console.log(userForm.value);
   }
 }
 ```
@@ -140,7 +153,7 @@ export class UserFormComponent {
 
 ![](/img/form-ngmodel.png)
 
-NgModel 디렉티브가 적용된 요소가 FormGroup 인스턴스에 추가되었다
+FormControl 인스턴스가 FormGroup 인스턴스에 추가되었다.
 {: .desc-img}
 
 ## 2.2 NgModel 디렉티브

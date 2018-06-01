@@ -107,8 +107,6 @@ subject.next(1);
 subject.next(2);
 subject.next(3);
 
-
-
 /*----------------------------------------------------*/
 // BehaviorSubject는 Observable의 마지막 데이터만을 받는다.
 const behaviorSubject = new BehaviorSubject<number>(0);
@@ -130,7 +128,16 @@ numbersByBehaviorSubject$.subscribe(
 
 # 3. 유니캐스트 vs 멀티캐스트
 
-Cold observable은 유니캐스트하고 Hot observable은 멀티캐스트하다. Cold observable을 구독하는 모든 옵저버는 자신만을 위해 독립적으로 실행하는 옵저버블을 갖게 된다. 하지만 Hot observable를 구독하고 있는 모든 옵저버에게 부수 효과(side-effect)가 있다.
+Cold observable은 유니캐스트하고 Hot observable은 멀티캐스트하다.
+
+Cold observable을 구독하는 모든 옵저버는 자신만을 위해 독립적으로 실행하는 옵저버블을 갖게 된다. 다시 말해 옵저버블과 옵저버는 일대일(one-to-one)의 관계를 갖는다. 하지만 Hot observable를 구독하고 있는 모든 옵저버에게 부수 효과(side-effect)가 있다. 다시 말해 옵저버블과 옵저버는 일대다(one-to-many)의 관계를 갖는다.
+
+![](/img/unicast-multicast.png)
+
+유니캐스트 vs 멀티캐스트
+{: .desc-img}
+
+아래는 유니캐스트와 멀티캐스트의 예제이다.
 
 ```typescript
 import { Observable, Subject } from 'rxjs';

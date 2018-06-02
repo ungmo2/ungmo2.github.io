@@ -193,7 +193,7 @@ NgModel 디렉티브는 [양방향 데이터 바인딩](./angular-component-data
 
 이때 템플릿 참조 변수 userid는 네이티브 DOM을 가리킨다. 템플릿 참조 변수 userid에 ngModel을 할당하면 userid는 네이티브 DOM을 가리키지 않고 userid 폼 컨트롤 요소를 가리키는 NgModel 인스턴스를 가리킨다.
 
-NgModel 디렉티브는 자신이 적용된 폼 컨트롤 요소의 값이나 유효성 검증 상태의 추적 기능을 제공하는 FormControl 인스턴스를 생성한다고 하였다. NgModel 디렉티브는 FormControl 인스턴스뿐만 아니라 NgModel 인스턴스도 생성한다. 이 인스턴스는 FormControl 인스턴스의 참조를 가지고 있으며 NgForm 인스턴스의 _directives 프로퍼티에 포함된다.
+NgModel 디렉티브는 자신이 적용된 폼 컨트롤 요소의 값이나 유효성 검증 상태의 추적 기능을 제공하는 FormControl 인스턴스를 생성한다고 하였다. NgModel 디렉티브는 FormControl 인스턴스뿐만 아니라 NgModel 인스턴스도 생성한다. 템플릿 참조 변수에 ngModel을 할당했을 때 반환되는 NgModel 인스턴스는 FormControl 인스턴스의 참조를 가지고 있으며 NgForm 인스턴스의 _directives 프로퍼티에 포함된다.
 
 ![NgForm](/img/NgForm.png)
 
@@ -616,7 +616,7 @@ export class AppModule { }
 
 모든 폼 컨트롤 요소가 유효성 검증에 성공한 상태(userForm.valid가 true 또는 userForm.invalid가 false)라면 submit 버튼이 활성화된다.
 
-또한 NgForm, NgModel. NgModelGroup 디렉티브가 적용된 폼 컨트롤 요소에는 유효성 검증 상태 프로퍼티와 연동하여 ng-untouched, ng-pristine, ng-invalid 등의 CSS 클래스가 자동 적용된다. 이들 CSS 클래스를 적절히 활용하면 유효성 검증 상태에 따른 스타일링이 가능하다.
+또한 NgForm, NgModel. NgModelGroup 디렉티브가 적용된 폼 컨트롤 요소에는 유효성 검증 상태 프로퍼티와 연동하여 ng-touched, ng-pristine, ng-invalid 등의 CSS 클래스가 자동 적용된다. 예를 들어 폼 컨트롤 요소의 유효성 검증 상태 프로퍼티 touched가 true이면 폼 컨트롤 요소에 ng-touched 클래스가 자동 적용되고, 유효성 검증 상태 프로퍼티 pristine이 true이면 폼 컨트롤 요소에 ng-pristine클래스가 자동 적용된다. 이들 CSS 클래스를 적절히 활용하면 유효성 검증 상태에 따른 스타일링이 가능하다.
 
 컴포넌트 CSS는 아래와 같다.
 

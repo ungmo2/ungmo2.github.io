@@ -93,7 +93,9 @@ console.dir(foo);    // prototype 프로퍼티가 없다.
 
 # 3. constructor 프로퍼티
 
-프로토타입 객체는 constructor 프로퍼티를 갖는다. 이 constructor 프로퍼티는 객체의 입장에서 자신을 생성한 객체를 가리킨다. Person() 생성자 함수에 의해 생성된 객체를 생성한 객체는 Person() 생성자 함수이다. 따라서 prototype 객체의 constructor 프로퍼티는 객체를 생성하는 생성자 함수 객체를 가리킨다.
+프로토타입 객체는 constructor 프로퍼티를 갖는다. 이 constructor 프로퍼티는 객체의 입장에서 자신을 생성한 객체를 가리킨다.
+
+예를 들어 Person() 생성자 함수에 의해 생성된 객체를 foo라 하자. 이 foo 객체를 생성한 객체는 Person() 생성자 함수이다. 이때 foo 객체 입장에서 자신을 생성한 객체는 Person() 생성자 함수이며, foo 객체의 프로토타입 객체는 Person.prototype이다. 따라서 프로토타입 객체 Person.prototype의 constructor 프로퍼티는 Person() 생성자 함수를 가리킨다.
 
 ```javascript
 function Person(name) {
@@ -126,7 +128,7 @@ var student = {
 console.log(student.hasOwnProperty('name')); // true
 ```
 
-student 객체는 hasOwnProperty 메소드를 가지고 있지 않으므로 에러가 발생하여야 하나 정상적으로 결과가 출력되었다. 이는 student 객체의 [[Prototype]] 프로퍼티가 가리키는 링크를 따라가서 student 객체의 부모역할을 하는 프로토타입 객체(Object.prototype)의 메소드 hasOwnProperty를 호출하였기 때문에 가능한 것이다.
+student 객체는 hasOwnProperty 메소드를 가지고 있지 않으므로 에러가 발생하여야 하나 정상적으로 결과가 출력되었다. 이는 student 객체의 [[Prototype]] 프로퍼티가 가리키는 링크를 따라가서 student 객체의 부모 역할을 하는 프로토타입 객체(Object.prototype)의 메소드 hasOwnProperty를 호출하였기 때문에 가능한 것이다.
 
 ```javascript
 var student = {
@@ -151,8 +153,8 @@ console.log(Object.prototype.hasOwnProperty('hasOwnProperty')); // true
 
 Object() 생성자 함수는 물론 함수이다. 따라서 함수 객체인 Object() 생성자 함수는 일반 객체와 달리 prototype 프로퍼티가 있다.
 
-- prototype 프로퍼티는 함수 객체가 생성자로 사용될 때 이 함수를 통해 생성된 객체의 부모 역할을 하는 객체를 가리킨다.
-- [[Prototype]] 프로퍼티는 객체의 입장에서 자신의 부모 역할을 하는 프로토타입 객체를 가리킨다.
+- prototype 프로퍼티는 함수 객체가 생성자로 사용될 때 이 함수를 통해 생성된 객체의 부모 역할을 하는 객체, 즉 프로토타입 객체를 가리킨다.
+- [[Prototype]] 프로퍼티는 객체의 입장에서 자신의 부모 역할을 하는 객체, 즉 프로토타입 객체를 가리킨다.
 
 ```javascript
 var person = {
@@ -280,12 +282,13 @@ foo.sayHello();
 var str = 'test';
 console.log(typeof str);                 // string
 console.log(str.constructor === String); // true
-console.dir(str);
+console.dir(str);                        // test
 
 var strObj = new String('test');
 console.log(typeof strObj);                 // object
 console.log(strObj.constructor === String); // true
 console.dir(strObj);
+// {0: "t", 1: "e", 2: "s", 3: "t", length: 4, __proto__: String, [[PrimitiveValue]]: "test" }
 
 console.log(str.toUpperCase());    // TEST
 console.log(strObj.toUpperCase()); // TEST

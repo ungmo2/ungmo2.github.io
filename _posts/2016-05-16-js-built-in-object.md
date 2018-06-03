@@ -44,7 +44,7 @@ o = new Object(null);
 console.log(typeof o + ': ', o);
 ```
 
-그 이외의 경우 생성자 함수의 인수값에 따라 강제 형변환된 객체가 반환된다. 이때 반환된 객체의 [[prototype]] 프로퍼티에 바인딩된 객체는 Object.prototype이 아니다.
+그 이외의 경우 생성자 함수의 인수값에 따라 강제 형변환된 객체가 반환된다. 이때 반환된 객체의 [[Prototype]] 프로퍼티에 바인딩된 객체는 Object.prototype이 아니다.
 
 ```javascript
 // String 객체를 반환한다

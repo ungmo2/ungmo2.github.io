@@ -152,7 +152,7 @@ console.log(Object.prototype.hasOwnProperty('hasOwnProperty')); // true
 Object() 생성자 함수는 물론 함수이다. 따라서 함수 객체인 Object() 생성자 함수는 일반 객체와 달리 prototype 프로퍼티가 있다.
 
 - prototype 프로퍼티는 함수 객체가 생성자로 사용될 때 이 함수를 통해 생성된 객체의 부모 역할을 하는 객체를 가리킨다.
-- [[Prototype]] 프로퍼티는 객체의 입장에서 자신의 부모 역할을 하는 프로토타입 객체을 가리킨다.
+- [[Prototype]] 프로퍼티는 객체의 입장에서 자신의 부모 역할을 하는 프로토타입 객체를 가리킨다.
 
 ```javascript
 var person = {

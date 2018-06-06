@@ -14,14 +14,14 @@ description: Angular의 모듈(NgModule)은 기능적으로 관련된 구성요�
 
 # 1. 모듈(NgModule)이란?
 
-Angular의 모듈(NgModule)은 관련이 있는 구성요소(컴포넌트, 디렉티브, 파이프, 서비스)를 하나의 단위로 묶는 메커니즘을 말한다. 모듈은 관련이 있는 구성요소들로 구성된 응집된 기능 블록으로 애플리케이션을 구성하는 하나의 단위를 만든다. 모듈은 다른 모듈과 결합할 수 있으며 Angular는 여러 모듈들을 조합하여 애플리케이션을 구성한다.
+Angular의 모듈(NgModule)은 관련이 있는 구성요소(컴포넌트, 디렉티브, 파이프, 서비스 등)를 하나의 단위로 묶는 메커니즘을 말한다. 다시 말해 모듈은 관련이 있는 구성요소들로 구성된 응집된 기능 블록으로 애플리케이션을 구성하는 하나의 단위를 말한다. 모듈은 다른 모듈과 결합할 수 있으며 Angular는 여러 모듈들을 조합하여 애플리케이션을 구성한다.
 
 ![lego](/img/lego.jpeg)
 
 Angular 애플리케이션은 모듈들의 조합이다.
 {: .desc-img}
 
-애플리케이션은 하나의 모듈로 구성할 수도 있고 여러 개의 모듈로 구성할 수도 있다. 하지만 애플리케이션은 적어도 하나의 모듈(루트 모듈)을 소유하여야 한다. 즉 모든 애플리케이션은 루트 모듈을 가져야 하고 이 루트 모듈은 애플리케이션의 시작점이 된다. 아래는 애플리케이션의 최상위에 존재하는 루트 모듈의 예이다.
+Angular 애플리케이션은 하나의 모듈로 구성할 수도 있고 여러 개의 모듈로 구성할 수도 있다. 하지만 애플리케이션은 적어도 하나의 모듈(루트 모듈)을 소유하여야 한다. 즉, 모든 애플리케이션은 루트 모듈을 가져야 하고 이 루트 모듈은 애플리케이션의 최상위에 존재하며 애플리케이션의 시작점이 된다. 아래는 루트 모듈의 예이다.
 
 ```typescript
 // app.module.ts
@@ -48,14 +48,14 @@ import { SomeService } from './some.service';
 export class AppModule { }
 ```
 
-NgModule은 [@NgModule](https://angular.io/api/core/NgModule) 데코레이터로 장식된 클래스이다. @NgModule는 메타데이터 객체를 인자로 전달받아서 Angular에 모듈 코드를 어떻게 컴파일하면 되는지, 또 어떻게 실행하면 되는지를 설명한다.
+NgModule은 [@NgModule](https://angular.io/api/core/NgModule) 데코레이터로 장식된 클래스이다. @NgModule는 메타데이터 객체를 인자로 전달받아서 Angular에 모듈 코드를 어떻게 컴파일하면 되는지, 또 어떻게 실행하면 되는지를 Angular에게 설명한다.
 
 모듈은 다른 모듈을 import할 수 있다. Angular에서 제공하는 라이브러리 모듈(BrowserModule, FormsModule, HttpClientModule, RouterModule 등) 또는 서드 파티 라이브러리([Angular Material](https://material.angular.io/), [Ionic](http://ionicframework.com/), [AngularFire2](https://github.com/angular/angularfire2) 등)도 import하여 사용할 수 있다.
 
 <!-- , 자신을 import한 다른 모듈에서 사용할 수 있도록 모듈을 구성한 컴포넌트, 디렉티브, 파이프, 서비스를 export할 수 있다.
 export된 구성 요소는 다른 모듈에서 사용할 수 있으며 export되지 않은 구성 요소는 모듈 자체에서만 사용할 수 있고 다른 모듈에서는 접근할 수 없다. -->
 
-애플리케이션 개발에 있어서 모듈성(Modularity)은 중요한 의미를 갖는다. 간단한 애플리케이션이라면 하나의 모듈 즉 루트 모듈만으로 애플리케이션을 구성하여도 문제가 없으나 애플리케이션에 대한 요구사항이 많아지면서 코드의 복잡도가 커짐에 따라 루트 모듈(Root module), 기능 모듈(Featue module), 공유 모듈(Shared module), 핵심 모듈(Core module)로 모듈을 분리하여 애플리케이션을 구성한다. 이것은 모듈 간의 결합을 최소화하고 모듈의 응집성을 최대화한, 즉 모듈성을 갖춘 애플리케이션을 개발하기 위한 바람직한 어프로치이다.
+애플리케이션 개발에 있어서 모듈성(Modularity)은 중요한 의미를 갖는다. 간단한 애플리케이션이라면 하나의 모듈, 즉 루트 모듈만으로 애플리케이션을 구성하여도 문제가 없으나 애플리케이션에 대한 요구사항이 많아지면서 코드의 복잡도가 커짐에 따라 루트 모듈(Root module), 기능 모듈(Feature module), 공유 모듈(Shared module), 핵심 모듈(Core module)로 모듈을 분리하여 애플리케이션을 구성한다. 이것은 모듈 간의 결합을 최소화하고 모듈의 응집성을 극대화한 애플리케이션, 즉 모듈성을 갖춘 애플리케이션을 개발하기 위한 바람직한 어프로치이다.
 
 # 2. @NgModule 데코레이터
 
@@ -90,18 +90,18 @@ export된 구성 요소는 다른 모듈에서 사용할 수 있으며 export되
 ```json
 ...
   "dependencies": {
-    "@angular/animations": "^5.2.0",
-    "@angular/common": "^5.2.0",
-    "@angular/compiler": "^5.2.0",
-    "@angular/core": "^5.2.0",
-    "@angular/forms": "^5.2.0",
-    "@angular/http": "^5.2.0",
-    "@angular/platform-browser": "^5.2.0",
-    "@angular/platform-browser-dynamic": "^5.2.0",
-    "@angular/router": "^5.2.0",
-    "core-js": "^2.4.1",
-    "rxjs": "^5.5.6",
-    "zone.js": "^0.8.19"
+    "@angular/animations": "^6.0.0",
+    "@angular/common": "^6.0.0",
+    "@angular/compiler": "^6.0.0",
+    "@angular/core": "^6.0.0",
+    "@angular/forms": "^6.0.0",
+    "@angular/http": "^6.0.0",
+    "@angular/platform-browser": "^6.0.0",
+    "@angular/platform-browser-dynamic": "^6.0.0",
+    "@angular/router": "^6.0.0",
+    "core-js": "^2.5.4",
+    "rxjs": "^6.0.0",
+    "zone.js": "^0.8.26"
   },
 ...
 ```
@@ -113,11 +113,9 @@ Angular의 라이브러리 모듈 패키지는 모듈의 집합체이다. 따라
 import { BrowserModule } from '@angular/platform-browser';
 ```
 
-[BrowserModule](https://angular.io/api/platform-browser/BrowserModule)은 브라우저를 위한 모듈로서 브라우저에서 동작하는 웹 애플리케이션의 경우, 반드시 BrowserModule을 임포트하여야 한다.
+[BrowserModule](https://angular.io/api/platform-browser/BrowserModule)은 브라우저 환경에서 동작하는 애플리케이션을 위한 필수 기능을 제공하는 모듈로서 브라우저에서 동작하는 웹 애플리케이션의 경우, 반드시 BrowserModule을 임포트하여야 한다. BrowserModule은 NgIf 및 NgFor와 같은 빌트인 디렉티브와 빌트인 파이프를 제공하는 [CommonModule](https://angular.io/api/common/CommonModule)을 내부에서 import한다. 따라서 BrowserModule을 import하면 별도의 추가적인 import없이 CommonModule을 사용할 수 있게 되어 모든 애플리케이션의 컴포넌트 템플릿에서 빌트인 디렉티브와 빌트인 파이프를 사용할 수 있다.
 
-또한 BrowserModule은 NgIf 및 NgFor와 같은 빌트인 디렉티브와 파이프를 포함하는 [CommonModule](https://angular.io/api/common/CommonModule)을 내부에서 import하기 때문에 BrowserModule을 import하면 별도 import없이 CommonModule를 사용할 수 있게 되어 루트 모듈의 구성원인 컴포넌트 템플릿에서 빌트인 디렉티브와 파이프를 사용할 수 있다.
-
-만약 ngModel 디렉티브를 사용하려면 [FormsModule](https://angular.io/api/forms/FormsModule)을, HttpClient 서비스를 사용하려면 [HttpClientModule](https://angular.io/api/common/http/HttpClientModule)을 import한다.
+만약 ngModel 디렉티브를 사용하려면 [FormsModule](https://angular.io/api/forms/FormsModule)을, HttpClient 서비스를 사용하려면 [HttpClientModule](https://angular.io/api/common/http/HttpClientModule)을 import할 필요가 있다.
 
 # 4. 루트 모듈
 
@@ -125,7 +123,7 @@ Angular 애플리케이션은 적어도 하나 이상의 모듈을 소유하여�
 
 웹 애플리케이션의 경우, 루트 모듈은 반드시 BrowserModule을 임포트하여야 한다. 루트 모듈을 제외한 다른 모듈은 CommonModule을 임포트하여야 한다.
 
-모든 애플리케이션은 루트 모듈을 가져야 하고 이 루트 모듈은 애플리케이션의 시작점이 된다. 즉, Angular 애플리케이션은 모듈 단위로 동작하여 루트 모듈이 부트스트랩되는 것에 의해 애플리케이션이 동작하게 된다.
+모든 애플리케이션은 루트 모듈을 가져야 하고 이 루트 모듈은 애플리케이션의 시작점이 된다. 즉, Angular 애플리케이션은 모듈 단위로 동작하여 루트 모듈이 부트스트랩 되는 것에 의해 애플리케이션이 동작하게 된다.
 
 ![angular-process](img/angular-process.png)
 {: .w-700}
@@ -154,18 +152,18 @@ export class AppModule { }
 
 # 5. 모듈의 분리
 
-애플리케이션이 커짐에 따라 루트 모듈에 등록된 컨포넌트, 디렉티브, 파이프, 서비스도 늘어나게 된다. 이때 기능적으로 관련도가 떨어지는 구성요소가 하나의 모듈에 혼재되어 관리가 어려워지게 되고 구성 요소의 이름이 중복되어 충돌할 가능성 또한 커진다. Angular는 기능 모듈, 핵심 모듈, 공유 모듈로 모듈을 분리한다.
+애플리케이션이 커짐에 따라 루트 모듈에 등록된 컴포넌트, 디렉티브, 파이프, 서비스도 늘어나게 된다. 이때 기능적으로 관련도가 떨어지는 구성요소가 하나의 모듈에 혼재되어 있으면 관리가 어려워지고 구성 요소의 이름이 중복되어 충돌할 가능성 또한 커진다. Angular는 기능 모듈, 핵심 모듈, 공유 모듈로 모듈을 분리한다.
 
 | 모듈     | 개요                                      | 대상
 |:--------|:-----------------------------------------|:--------------------
 | 기능 모듈 | 관심사가 유사한 구성 요소로 구성한 모듈            | 특정 화면을 구성하는 구성 요소
-| 공유 모듈 | 애플리케이션 전역에서 사용될 구성 요소들로 구성한 모듈로서 기능 모듈에 의해 임포트된다. | 애플리케이션 전역에서 사용하는 컴포넌트, 디렉티브, 파이프 등
-| 핵심 모듈 | 애플리케이션 전역에서 사용될 구성 요소들로 구성한 모듈로서 루트 모듈에 등록하여 싱글턴으로 사용한다. | 애플리케이션 전역에서 사용하는 데이터 서비스, 인증 서비스, 인증 가드 등
+| 공유 모듈 | 애플리케이션 전역에서 공유할 구성 요소들로 구성한 모듈로서 기능 모듈에 의해 임포트된다. | 애플리케이션 전역에서 사용하는 컴포넌트, 디렉티브, 파이프 등
+| 핵심 모듈 | 애플리케이션 전역에서 공통 사용할 구성 요소들로 구성한 모듈로서 루트 모듈에 등록하여 싱글턴으로 사용한다. | 애플리케이션 전역에서 사용하는 데이터 서비스, 인증 서비스, 인증 가드 등
 
 사용자의 정보를 표시하는 간단한 애플리케이션을 통해 모듈을 분리해보자.
 
 ```bash
-$ ng new module-exam -it -is -st
+$ ng new module-exam -t -s -S
 $ cd module-exam
 $ ng generate component header
 $ ng generate component home

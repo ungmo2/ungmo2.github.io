@@ -522,3 +522,5 @@ console.log(dec);
 # Reference
 
 * [Standard Built-in Objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects)
+
+* [ECMAScript APIs: TypeScript](https://github.com/Microsoft/TypeScript/blob/master/lib/lib.es6.d.ts)

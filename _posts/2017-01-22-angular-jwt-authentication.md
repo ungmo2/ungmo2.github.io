@@ -4,7 +4,7 @@ title: Angular <strong>JWT Authentication</strong>
 subtitle: Token 기반 인증
 categories: angular
 section: angular
-description: http 프로토콜은 상태(state)를 유지하지 않는다. 이를 stateless protocol이라 한다. HTTP 프로토콜은 요청(request)를 전송하고 응답(response)를 전송받은 시점에서 통신이 종료되며 어떠한 상태 정보도 남지 않는다. 즉 특정 클라이언트에서 동일 서버에 반복하여 접속하여도 각각의 접속은 독립적인 트랜잭션으로 취급된다.
+description: http 프로토콜은 상태(state)를 유지하지 않는다. 이를 stateless protocol이라 한다. HTTP 프로토콜은 요청(request)를 전송하고 응답(response)를 전송받은 시점에서 통신이 종료되며 어떠한 상태 정보도 남지 않는다. 즉, 특정 클라이언트에서 동일 서버에 반복하여 접속하여도 각각의 접속은 독립적인 트랜잭션으로 취급된다.
 ---
 
 * TOC
@@ -16,7 +16,7 @@ description: http 프로토콜은 상태(state)를 유지하지 않는다. 이�
 
 http 프로토콜은 상태(state)를 유지하지 않는다. 이를 stateless protocol이라 한다.
 
-HTTP 프로토콜은 요청(request)를 전송하고 응답(response)를 전송받은 시점에서 통신이 종료되며 어떠한 상태 정보도 남지 않는다. 즉 특정 클라이언트에서 동일 서버에 반복하여 접속하여도 각각의 접속은 독립적인 트랜잭션으로 취급된다.
+HTTP 프로토콜은 요청(request)를 전송하고 응답(response)를 전송받은 시점에서 통신이 종료되며 어떠한 상태 정보도 남지 않는다. 즉, 특정 클라이언트에서 동일 서버에 반복하여 접속하여도 각각의 접속은 독립적인 트랜잭션으로 취급된다.
 
 따라서 로그인 화면에서 아이디, 패스워드를 입력하여 사용자 인증 과정을 거친 이후에 재차 웹사이트에 접근하면 로그인 상태임을 인식(유지)할 수 없으므로 매번 사용자 인증 과정을 반복해야 하는 문제가 발생한다.
 
@@ -29,7 +29,7 @@ Cookie-Based Session
 
 stateful 서버는 클라이언트로부터의 요청이 있을 때 마다 클라이언트의 상태를 유지한다. 예를 들어 사용자가 로그인 화면에서 아이디, 패스워드를 입력하여 사용자 인증을 요청하면 stateful 서버는 인증에 성공하였을 때 그 결과 즉 인증 상태 정보를 서버의 메모리 또는 데이터베이스에 유지하고 서비스 제공에 사용한다.
 
-JWT(JSON Web Token) 기반 인증(토큰 기반 인증)은 상태를 서버에 유지하지 않는다. 즉 stateful 서버와 반대적 개념인 stateless 서버를 사용하며 상태 정보를 유지하지 않는다.
+JWT(JSON Web Token) 기반 인증(토큰 기반 인증)은 상태를 서버에 유지하지 않는다. 즉, stateful 서버와 반대적 개념인 stateless 서버를 사용하며 상태 정보를 유지하지 않는다.
 
 토큰 기반 인증은 일반적으로 아래의 방식으로 구현한다.
 
@@ -141,7 +141,7 @@ app/
 $ npm install font-awesome bootstrap angular2-jwt
 ```
 
-font-awesome과 bootstrap을 적용하기 위해 .angular-cli.json을 아래와 같이 수정한다.
+font-awesome과 bootstrap을 적용하기 위해 angular.json을 아래와 같이 수정한다.
 
 ```json
 ...
@@ -263,7 +263,7 @@ export class SigninComponent implements OnInit {
 
 ### 2.2.2 대시보드 컴포넌트 (dashboard.component.ts)
 
-대시보드 컴포넌트는 사용자 인증 성공시 이동하는 화면으로 가드에 의해 보호된다. 즉 사용자 인증 성공시 서버로 부터 전달받은 토큰의 유효성을 검증하여 대시보드로의 이동을 허가한다. 대시보드로 이동하면 사용자 서비스를 사용하여 서버로 부터 사용자 정보를 취득한다.
+대시보드 컴포넌트는 사용자 인증 성공시 이동하는 화면으로 가드에 의해 보호된다. 즉, 사용자 인증 성공시 서버로 부터 전달받은 토큰의 유효성을 검증하여 대시보드로의 이동을 허가한다. 대시보드로 이동하면 사용자 서비스를 사용하여 서버로 부터 사용자 정보를 취득한다.
 
 ```typescript
 // dashboard/dashboard.component.ts

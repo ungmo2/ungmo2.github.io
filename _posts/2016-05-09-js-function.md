@@ -16,7 +16,7 @@ description: 함수란 어떤 특정 작업을 수행하기 위해 필요한 일
 
 - 함수도 객체이다. 다른 객체와 구분될 수 있는 특징은 호출할 수 있다는 것이다.
 
-- 함수도 객체(일급 객체 First-class object)이므로 다른 값들처럼 사용할 수 있다. 즉 변수나 객체, 배열 등에 저장할 수 있고 다른 함수에 전달되는 인수로도 사용할 수 있으며 함수의 반환값이 될 수도 있다.
+- 함수도 객체(일급 객체 First-class object)이므로 다른 값들처럼 사용할 수 있다. 즉, 변수나 객체, 배열 등에 저장할 수 있고 다른 함수에 전달되는 인수로도 사용할 수 있으며 함수의 반환값이 될 수도 있다.
 
 # 1. 함수 정의
 
@@ -151,7 +151,7 @@ function square(number) {
 
 **자바스크립트는 ES6의 let, const를 포함하여 모든 선언(var, let, const, function, function*, class)을 호이스팅(Hoisting)한다.**
 
-호이스팅이란 var 선언문이나 function 선언문 등 모든 선언문이 해당 [Scope](./js-scope)의 선두로 옮겨진 것처럼 동작하는 특성을 말한다. 즉 자바스크립트는 모든 선언문(var, let, const, function, [function*](./es6-generateor), class)이 선언되기 이전에 참조 가능하다.
+호이스팅이란 var 선언문이나 function 선언문 등 모든 선언문이 해당 [Scope](./js-scope)의 선두로 옮겨진 것처럼 동작하는 특성을 말한다. 즉, 자바스크립트는 모든 선언문(var, let, const, function, [function*](./es6-generateor), class)이 선언되기 이전에 참조 가능하다.
 
 <!--함수 호이스팅이 발생하는 원인은 자바스크립트 변수 생성과 초기화가 분리되어 진행되기 때문이다. 이는 [Execution Context](./js-execution-context#variable-instantiation-)에서 자세히 설명한다.-->
 
@@ -353,7 +353,7 @@ console.dir(square);
 
 ## 6.1 arguments 프로퍼티
 
-arguments 객체는 함수 호출 시 전달된 인수(argument)들의 정보를 담고 있는 순회가능한(iterable) 유사 배열 객체(array-like object)이다. 함수 객체의 arguments 프로퍼티는 arguments 객체를 값으로 가지며 함수 내부에서 지역변수처럼 사용된다. 즉 함수 외부에서는 사용할 수 없다.
+arguments 객체는 함수 호출 시 전달된 인수(argument)들의 정보를 담고 있는 순회가능한(iterable) 유사 배열 객체(array-like object)이다. 함수 객체의 arguments 프로퍼티는 arguments 객체를 값으로 가지며 함수 내부에서 지역변수처럼 사용된다. 즉, 함수 외부에서는 사용할 수 없다.
 
 자바스크립트는 함수 호출 시 함수 정의에 따라 인수를 전달하지 않아도 에러가 발생하지 않는다.
 
@@ -478,7 +478,7 @@ console.log(anonymousFunc.name); // ''
 
 ## 6.5 \_\_proto\_\_ 프로퍼티
 
-ECMAScript spec에서는 **모든 객체는 자신의 프로토타입을 가리키는 [[Prototype]]이라는 숨겨진 프로퍼티를 가진다** 라고 되어있다. 크롬, 파이어폭스 등에서는 숨겨진 [[Prototype]] 프로퍼티가 \_\_proto\_\_ 프로퍼티로 구현되어 있다. 즉 \_\_proto\_\_과 [[Prototype]]은 같은 개념이다.
+ECMAScript spec에서는 **모든 객체는 자신의 프로토타입을 가리키는 [[Prototype]]이라는 숨겨진 프로퍼티를 가진다** 라고 되어있다. 크롬, 파이어폭스 등에서는 숨겨진 [[Prototype]] 프로퍼티가 \_\_proto\_\_ 프로퍼티로 구현되어 있다. 즉, \_\_proto\_\_과 [[Prototype]]은 같은 개념이다.
 
 ```javascript
 function square(number) {

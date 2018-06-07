@@ -192,7 +192,7 @@ $width: 960px;
 @import "partial/footer";
 ```
 
-_vars.scss에는 변수가 선언되어 있으므로 partial된 _vars.scss, _header.scss, _sidebar.scss, _footer.scss를 import가 수행되어 하나의 파일이 되기 이전에 컴파일을 실행하면 에러가 발생한다. 즉 partial된 Sass 파일명 선두에 붙인 &#95;을 제거하면 에러가 발생한다. 따라서 partial된 Sass 파일명 선두에는 반드시 &#95;를 붙여서 import 시에는 partial이 CSS 파일로 컴파일되지 않고 import가 완료된 이후, CSS로 컴파일을 수행도록 한다.
+_vars.scss에는 변수가 선언되어 있으므로 partial된 _vars.scss, _header.scss, _sidebar.scss, _footer.scss를 import가 수행되어 하나의 파일이 되기 이전에 컴파일을 실행하면 에러가 발생한다. 즉, partial된 Sass 파일명 선두에 붙인 &#95;을 제거하면 에러가 발생한다. 따라서 partial된 Sass 파일명 선두에는 반드시 &#95;를 붙여서 import 시에는 partial이 CSS 파일로 컴파일되지 않고 import가 완료된 이후, CSS로 컴파일을 수행도록 한다.
 
 @import는 top-level에서 사용하는 것이 일반적이지만 CSS rule 또는 @media rule 내에 포함시키는 것도 가능하다.
 

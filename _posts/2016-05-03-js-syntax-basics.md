@@ -48,7 +48,7 @@ Javascript는 interactive한 웹페이지 작성을 가능하게 한다. 예를 
 
 # 2. 외부의 Javascript 실행하기 (External JavaScript)
 
-HTML은 웹페이지의 내용(content)과 구조(structure)을 담당한다. Javascript의 역할은 정적인 HTML에 동적 기능을 부여하는 것이다. 즉 HTML과 Javascript는 역할(관심사, Concern)이 다르므로 분리된 파일로 작성하는 것이 바람직하다.
+HTML은 웹페이지의 내용(content)과 구조(structure)을 담당한다. Javascript의 역할은 정적인 HTML에 동적 기능을 부여하는 것이다. 즉, HTML과 Javascript는 역할(관심사, Concern)이 다르므로 분리된 파일로 작성하는 것이 바람직하다.
 
 위 코드를 역할에 따라 HTML과 CSS, JavaScript로 각각 분리해 보자.
 
@@ -252,7 +252,7 @@ var x = (y >= 0 ? y : -y); // y >= 0 ? y : -y은 표현식
 
 프로그래밍 언어에서 변수는 값(value)을 저장(할당), 참조하기 위해 사용된다. 한번 쓰고 버리는 값이 아닌 유지할 필요가 있는 값의 경우, 변수를 사용한다.
 
-변수는 위치(주소)를 기억하는 저장소이다. 위치란 메모리 상의 주소(address)를 의미한다. 즉 변수란 메모리 주소(Memory address)에 접근하기 위해 사람이 이해할 수 있는 언어로 지정한 식별자(identifier)이다.
+변수는 위치(주소)를 기억하는 저장소이다. 위치란 메모리 상의 주소(address)를 의미한다. 즉, 변수란 메모리 주소(Memory address)에 접근하기 위해 사람이 이해할 수 있는 언어로 지정한 식별자(identifier)이다.
 
 변수를 선언할 때 `var` keyword가 사용된다. 등호(=, equal sign)는 변수에 값을 할당하기 위해 사용된다.
 

@@ -275,7 +275,7 @@ ngIf 디렉티브는 우변 표현식의 연산 결과가 참이면 호스트 �
 <element *ngIf="expression">...</element>
 ```
 
-ngIf 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설탕(syntactic sugar)이다. 즉 위 코드는 아래의 코드로 변환된다.
+ngIf 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설탕(syntactic sugar)이다. 즉, 위 코드는 아래의 코드로 변환된다.
 
 ```html
 <ng-template [ngIf]="expression">
@@ -384,7 +384,7 @@ ngFor 디렉티브는 컴포넌트 클래스의 컬렉션(배열과 같은 이�
 <element *ngFor="let item of items; let i=index; let odd=odd; trackBy: trackById">...</element>
 ```
 
-ngFor 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설탕(syntactic sugar)이다. 즉 위 코드는 아래의 코드로 변환된다.
+ngFor 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설탕(syntactic sugar)이다. 즉, 위 코드는 아래의 코드로 변환된다.
 
 ```html
 <ng-template ngFor let-item [ngForOf]="items">
@@ -606,7 +606,7 @@ ngSwitch 디렉티브는 switch 조건에 따라 여러 요소 중에 하나의 
 </element>
 ```
 
-ngSwitch 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설탕(syntactic sugar)이다. 즉 위 코드는 아래의 코드로 변환된다.
+ngSwitch 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설탕(syntactic sugar)이다. 즉, 위 코드는 아래의 코드로 변환된다.
 
 ```html
 <element [ngSwitch]="expression">

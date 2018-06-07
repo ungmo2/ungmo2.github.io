@@ -162,7 +162,7 @@ export class TodosComponent implements OnInit {
 
 라우트 파라미터를 전달하는 방법에 대해 살펴보았다. 앞서 작성한 예제는 라우터 파라미터를 활성화될 컴포넌트 TodoDetailComponent에 전달한다. 전달한 라우트 파라미터를 취득하는 방법에 대해 알아보도록 하자.
 
-`<router-oulet>` 영역에 렌더링된 컴포넌트 다시 말해 활성화된 컴포넌트는 [ActivatedRoute](https://angular.io/api/router/ActivatedRoute) 객체를 통해 라우터 상태(Router state)에 접근할 수 있다. 즉 ActivatedRoute 객체는 다양한 라우터 상태를 가지며 이 중에서 라우트 파라미터를 추출할 수 있다. ActivatedRoute는 아래와 같은 프로퍼티를 제공한다.
+`<router-oulet>` 영역에 렌더링된 컴포넌트 다시 말해 활성화된 컴포넌트는 [ActivatedRoute](https://angular.io/api/router/ActivatedRoute) 객체를 통해 라우터 상태(Router state)에 접근할 수 있다. 즉, ActivatedRoute 객체는 다양한 라우터 상태를 가지며 이 중에서 라우트 파라미터를 추출할 수 있다. ActivatedRoute는 아래와 같은 프로퍼티를 제공한다.
 
 ```typescript
 interface ActivatedRoute {
@@ -394,7 +394,7 @@ const routes: Routes = [
 ];
 ```
 
-위 라우트 구성의 ①, ②, ③은 모두 루트 컴포넌트의 `<router-oultet>` 영역을 위한 것이다. 즉 루트 컴포넌트의 `<router-oultet>` 영역에는 UserComponent 또는 CustomerComponent이 표시된다.
+위 라우트 구성의 ①, ②, ③은 모두 루트 컴포넌트의 `<router-oultet>` 영역을 위한 것이다. 즉, 루트 컴포넌트의 `<router-oultet>` 영역에는 UserComponent 또는 CustomerComponent이 표시된다.
 
 **children 프로퍼티는 자식 라우트를 구성할 때 사용한다.** 라우트 구성의 component 프로퍼티에 선언된 컴포넌트(②의 경우, UserComponent)는 children 프로퍼티에 선언된 컴포넌트들(②의 경우, UserDetailComponent)의 부모 컴포넌트이다. 부모 컴포넌트는 루트 컴포넌트와는 별도의 `<router-oultet>`을 가지며 자식 컴포넌트는 부모 컴포넌트의 `<router-oultet>` 영역에 표시된다.
 
@@ -938,7 +938,7 @@ export class AuthGuard implements CanActivate {
 ...
 ```
 
-라우트 구성에 canActivate 프로퍼티로 가드를 선언한다. 이때 UserComponent를 활성화하기에 앞서 가드가 실행되고 가드의 실행 결과에 따라 컴포넌트에의 접근을 제어한다. 즉 AuthGuard.canActivate 메소드의 실행 결과가 true일 경우에만 UserComponent를 활성화한다.
+라우트 구성에 canActivate 프로퍼티로 가드를 선언한다. 이때 UserComponent를 활성화하기에 앞서 가드가 실행되고 가드의 실행 결과에 따라 컴포넌트에의 접근을 제어한다. 즉, AuthGuard.canActivate 메소드의 실행 결과가 true일 경우에만 UserComponent를 활성화한다.
 
 ## 4.2 CanActivateChild
 
@@ -1008,7 +1008,7 @@ export class AuthChildGuard implements CanActivateChild {
 ...
 ```
 
-라우트 구성에 canActivateChild 프로퍼티로 가드를 선언한다. 이때 자식 컴포넌트 CustomerDetailComponent를 활성화하기에 앞서 가드가 실행되고 가드의 실행 결과에 따라 자식 컴포넌트에의 접근을 제어한다. 즉 AuthChildGuard.canActivateChild 메소드의 실행 결과가 true일 경우에만 CustomerDetailComponent를 활성화한다.
+라우트 구성에 canActivateChild 프로퍼티로 가드를 선언한다. 이때 자식 컴포넌트 CustomerDetailComponent를 활성화하기에 앞서 가드가 실행되고 가드의 실행 결과에 따라 자식 컴포넌트에의 접근을 제어한다. 즉, AuthChildGuard.canActivateChild 메소드의 실행 결과가 true일 경우에만 CustomerDetailComponent를 활성화한다.
 
 <iframe src="https://stackblitz.com/edit/route-guard?ctl=1&embed=1&hideNavigation=1&file=src/app/guard/auth.guard.ts" frameborder="0" width="100%" height="600"></iframe>
 

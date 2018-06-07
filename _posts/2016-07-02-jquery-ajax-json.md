@@ -14,7 +14,7 @@ description: 브라우저에서 웹페이지를 요청하거나 링크를 클릭
 
 브라우저에서 웹페이지를 요청하거나 링크를 클릭하면 화면 전환이 발생한다. 이것은 브라우저와 서버와의 통신에 의한 것이다.
 
-![Request & Response](/img/req_res.png)  
+![Request & Response](/img/req_res.png)
 
 서버는 요청받은 페이지(HTML)를 반환하는데 이때 HTML에서 로드하는 CSS나 JavaScript 파일들도 같이 반환된다. 클라이언트의 요청에 따라 서버는 정적인 파일을 반환할 수도 있고 서버 사이드 프로그램이 만들어낸 파일이나 데이터를 반환할 수도 있다. 서버로부터 웹페이지가 반환되면 클라이언트(브라우저)는 이를 렌더링하여 화면에 표시한다.
 
@@ -43,7 +43,7 @@ Ajax Lifecycle
 동기식 처리 모델과 비동기식 처리 모델
 {: .desc-img}
 
-동기식 처리 모델(Synchronous processing model)은 직렬적으로 작업을 수행한다. 즉 작업은 순차적으로 실행되며 어떤 작업이 수행 중이면 다음 작업은 대기하게 된다. 예를 들어 서버에서 데이터를 가져와 화면에 표시하는 작업을 수행할 경우 서버에 데이터를 요청하고 데이터가 전달될 때까지 이후 작업들은 중단(Blocking)된다.
+동기식 처리 모델(Synchronous processing model)은 직렬적으로 작업을 수행한다. 즉, 작업은 순차적으로 실행되며 어떤 작업이 수행 중이면 다음 작업은 대기하게 된다. 예를 들어 서버에서 데이터를 가져와 화면에 표시하는 작업을 수행할 경우 서버에 데이터를 요청하고 데이터가 전달될 때까지 이후 작업들은 중단(Blocking)된다.
 
 ![synchronous](./img/synchronous.png)
 
@@ -70,7 +70,7 @@ function func3() {
 func1();
 ```
 
-비동기식 처리 모델(Asynchronous processing model or Non-Blocking processing model)은 병렬적으로 작업을 수행한다. 즉 작업이 종료되지 않은 상태라도 대기하지 않고 다음 작업을 실행한다는 의미이다. 예를 들어 서버에서 데이터를 가져와 화면에 표시하는 작업을 수행할 경우 서버에 데이터를 요청한 이후 서버로부터 데이터가 전달될 때까지 대기하지 않고(Non-Blocking) 즉시 다음 작업을 수행한다. 이후 서버로부터 데이터가 전달되면 이벤트가 발생되고 이벤트 핸들러가 데이터를 가지고 수행할 작업을 계속하여 수행한다.
+비동기식 처리 모델(Asynchronous processing model or Non-Blocking processing model)은 병렬적으로 작업을 수행한다. 즉, 작업이 종료되지 않은 상태라도 대기하지 않고 다음 작업을 실행한다는 의미이다. 예를 들어 서버에서 데이터를 가져와 화면에 표시하는 작업을 수행할 경우 서버에 데이터를 요청한 이후 서버로부터 데이터가 전달될 때까지 대기하지 않고(Non-Blocking) 즉시 다음 작업을 수행한다. 이후 서버로부터 데이터가 전달되면 이벤트가 발생되고 이벤트 핸들러가 데이터를 가지고 수행할 작업을 계속하여 수행한다.
 
 자바스크립트의 대부분의 DOM 이벤트와 Timer 함수(setTimeout, setInterval), Ajax  요청은 비동기적으로 동작한다.
 
@@ -381,7 +381,7 @@ Ajax를 이용하여 웹페이지에 추가하기 가장 손쉬운 데이터 형
             console.log(req.responseText);
 
             document.getElementById('content').innerHTML = req.responseText;
-          
+
             // document.getElementById('content').insertAdjacentHTML('beforeend', req.responseText);
           } else {
             console.log('[' + req.status + ']: ' + req.statusText);
@@ -469,7 +469,7 @@ Ajax를 이용하여 웹페이지에 추가하기 가장 손쉬운 데이터 형
             newContent += '</ul></div>';
 
             document.getElementById('content').innerHTML = newContent;
-          
+
             // document.getElementById('content').insertAdjacentHTML('beforeend', newContent);
 
           } else {
@@ -519,10 +519,10 @@ Ajax를 이용하여 웹페이지에 추가하기 가장 손쉬운 데이터 형
 
 동일출처원칙을 우회하는 방법은 세가지가 있다.
 
-**1. 웹서버의 프록시 파일**  
+**1. 웹서버의 프록시 파일**
   서버에 원격 서버로부터 데이터를 수집하는 별도의 기능을 추가하는 것이다. 이를 프록시(Proxy)라 한다.
 
-**2. JSONP**  
+**2. JSONP**
   script 태그의 원본 주소에 대한 제약이 존재하지 않는데 이것을 이용하여 다른 도메인의 서버에서 데이터를 수집하는 방법이다. 자신의 서버에 함수를 정의하고 다른 도메인의 서버에 얻고자 하는 데이터를 인수로 하는 함수 호출문을 로드하는 것이다.
 
 ![comparison_between_ajax_and_jsonp](/img/comparison_between_ajax_and_jsonp.png)
@@ -610,7 +610,7 @@ showTours({
 
 [http://localhost:8080/loadjsonp.html](http://localhost:8080/loadjsonp.html)
 
-**3. Cross-Origin Resource Sharing**  
+**3. Cross-Origin Resource Sharing**
   HTTP 헤더에 추가적으로 정보를 추가하여 브라우저와 서버가 서로 통신해야 한다는 사실을 알게하는 방법이다. W3C 명세에 포함되어 있지만 최신 브라우저에서만 동작하며 서버에 HTTP 헤더를 설정해 주어야 한다.
 
 # 7. Ajax with jQuery

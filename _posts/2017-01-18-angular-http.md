@@ -36,7 +36,7 @@ class HttpClient {
 
 HttpClient는 주입 가능한 클래스이며 HTTP 요청을 수행하는 메소드를 갖는다. 각 메소드에는 url을 전달받기 위한 url 파라미터와 옵션을 사용하기 위한 options 파라미터, post, put, patch 메소드의 경우 서버로 [요청 페이로드(payload)](https://ko.wikipedia.org/wiki/페이로드)를 전송하기 위한 body 파라미터 등이 있다.
 
-HttpClient의 메소드는 옵저버블을 반환한다. 즉 HttpClient는 RxJS의 옵저버블 객체를 기반으로 작성되어 있다.
+HttpClient의 메소드는 옵저버블을 반환한다. 즉, HttpClient는 RxJS의 옵저버블 객체를 기반으로 작성되어 있다.
 
 # 2. HttpClientModule
 
@@ -179,7 +179,7 @@ ERROR in src/app/app.component.ts(31,27): error TS2322: Type 'Object' is not ass
   The 'Object' type is assignable to very few other types. Did you mean to use the 'any' type instead?
 ```
 
-이는 서버로부터의 전달받은 데이터 todos가 Object 타입이기 때문이다. 즉 Object 타입인 todos를 Todo[] 타입인 this.todos에 할당하려 했을 때 발생한 컴파일 에러이다.
+이는 서버로부터의 전달받은 데이터 todos가 Object 타입이기 때문이다. 즉, Object 타입인 todos를 Todo[] 타입인 this.todos에 할당하려 했을 때 발생한 컴파일 에러이다.
 
 ```typescript
 // HTTP GET 요청

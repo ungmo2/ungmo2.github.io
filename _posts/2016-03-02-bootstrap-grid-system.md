@@ -30,7 +30,7 @@ Bootstrap은 기본적으로 4개의 breakpoint로 구간을 나눈다.
 }
 
 /* Large devices (large desktops, 1200px and up) */
-@media (min-width: @screen-lg-min) {   
+@media (min-width: @screen-lg-min) {
   /* ... */
 }
 ```
@@ -174,7 +174,7 @@ fluid layout(유동 최대폭 레이아웃)을 만들 때 사용한다. viewport
 Bootstrap Grid System
 {: .desc-img}
 
-그리드 레이아웃을 구성 시에는 반드시 `.row`(행)를 먼저 배치하고 행 안에 `.col-*-*`(열)을 필요한 갯수만큼 배치한다. 즉 container 내에 .row(행)을 먼저 배치하고 그 안에 .col-\*-\*(열)을 배치한다. 그리고 콘텐츠는 .col-\*-\* 내에 배치한다.
+그리드 레이아웃을 구성 시에는 반드시 `.row`(행)를 먼저 배치하고 행 안에 `.col-*-*`(열)을 필요한 갯수만큼 배치한다. 즉, container 내에 .row(행)을 먼저 배치하고 그 안에 .col-\*-\*(열)을 배치한다. 그리고 콘텐츠는 .col-\*-\* 내에 배치한다.
 {: .info}
 
 ```
@@ -627,19 +627,19 @@ Bootstrap의 breakpoint는 기본적으로 아래와 같다.
   <div class="container-fluid">
     <p>Viewport width가 992px 이상이면 2열, 미만이면 1열로 정렬된다</p>
     <div class="row">
-      <!-- 
-      viewport width가 992px(medium device) 이상이면 
+      <!--
+      viewport width가 992px(medium device) 이상이면
       .col-md-8 class가 적용되어 width는 8/12(66.66666667%)
-      
-      viewport width가 992px(medium device) 미만이면 
-      .col-xs-12 class가 적용되어 width는 12/12(100%) 
+
+      viewport width가 992px(medium device) 미만이면
+      .col-xs-12 class가 적용되어 width는 12/12(100%)
       -->
       <div class="col-xs-12 col-md-8">.col-xs-12 .col-md-8</div>
-      <!-- 
-      viewport width가 992px(medium device) 이상이면 
+      <!--
+      viewport width가 992px(medium device) 이상이면
       .col-md-4 class가 적용되어 width는 4/12(33.33333333%)
-      
-      viewport width가 992px(medium device) 미만이면 
+
+      viewport width가 992px(medium device) 미만이면
       .col-xs-12 class가 적용되어 width는 12/12(100%)
       -->
       <div class="col-xs-12 col-md-4">.col-xs-12 .col-md-4</div>
@@ -647,11 +647,11 @@ Bootstrap의 breakpoint는 기본적으로 아래와 같다.
 
     <p>Viewport width가 992px 이상이면 3열, 미만이면 1열로 정렬된다</p>
     <div class="row">
-      <!-- 
-      viewport width가 992px(medium device) 이상이면 
+      <!--
+      viewport width가 992px(medium device) 이상이면
       .col-md-4 class가 적용되어 width는 4/12(33.33333333%)
-      
-      viewport width가 992px(medium device) 미만이면 
+
+      viewport width가 992px(medium device) 미만이면
       .col-xs-12 class가 적용되어 width는 12/12(100%)
       -->
       <div class="col-xs-12 col-md-4">.col-xs-12 .col-md-4</div>
@@ -661,7 +661,7 @@ Bootstrap의 breakpoint는 기본적으로 아래와 같다.
 
     <p>viewport width와 관계없이 2열로 정렬된다</p>
     <div class="row">
-      <!-- 
+      <!--
       viewport width와 관계없이 .col-xs-6 class가 적용되어 width는 6/12(50%)
       -->
       <div class="col-xs-6">.col-xs-6</div>

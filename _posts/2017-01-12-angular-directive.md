@@ -530,7 +530,7 @@ ngIf, ngFor, ngSwitch와 같은 [빌트인 구조 디렉티브](./angular-compon
 <element *ngIf="expression">...</element>
 ```
 
-ngIf 디렉티브 앞에 붙은 *(asterisk) 기호는 아래 구문의 문법적 설탕(syntactic sugar)이다. 즉 위 코드는 아래의 코드로 변환된다.
+ngIf 디렉티브 앞에 붙은 *(asterisk) 기호는 아래 구문의 문법적 설탕(syntactic sugar)이다. 즉, 위 코드는 아래의 코드로 변환된다.
 
 ```html
 <ng-template [ngIf]="expression">

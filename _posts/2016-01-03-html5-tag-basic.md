@@ -37,7 +37,7 @@ XHTML 1.0
 
 # 2. html tag
 
-html 태그는 모든 HTML 요소의 부모 요소이며 웹페이지에 단 하나만 존재한다. 즉 모든 요소는 html 요소의 자식 요소이며 html 요소 내부에 기술해야 한다. 단 `<!DOCTYPE>`는 예외이다.
+html 태그는 모든 HTML 요소의 부모 요소이며 웹페이지에 단 하나만 존재한다. 즉, 모든 요소는 html 요소의 자식 요소이며 html 요소 내부에 기술해야 한다. 단 `<!DOCTYPE>`는 예외이다.
 
 ```html
 <!DOCTYPE HTML>

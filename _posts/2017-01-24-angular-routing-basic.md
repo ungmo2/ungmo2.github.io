@@ -14,21 +14,21 @@ description: 단일 페이지 애플리케이션(Single Page Application, SPA)�
 
 # 1. SPA (Single Page Application)
 
-단일 페이지 애플리케이션(Single Page Application, SPA)은 모던 웹의 패러다임이다. SPA는 기본적으로 단일 페이지로 구성되며 기존의 서버 사이드 렌더링과 비교할 때, 배포가 간단하며 네이티브 앱과 유사한 사용자 경험(UX)을 제공할 수 있다는 장점이 있다.
+단일 페이지 애플리케이션(Single Page Application, SPA)은 모던 웹의 패러다임으로 네이티브 앱과 유사한 사용자 경험(UX)을 제공할 수 있다는 장점이 있다. SPA는 기본적으로 단일 페이지로 구성되며, 기존의 서버 사이드 렌더링과 비교할 때 배포가 간단하다.
 
-link tag를 사용하는 전통적인 웹 방식은 새로운 페이지 요청 시마다 정적 리소스가 다운로드되고 전체 페이지를 다시 렌더링하는 방식으로 동작하므로 새로고침이 발생된다. 이것은 변경이 필요없는 부분을 포함하여 전체 페이지를 갱신하는 것으로 비효율적이다.
+a 요소를 사용하는 전통적인 웹 방식은 새로운 페이지 요청이 있을 때마다 정적 리소스가 다운로드되고 전체 페이지를 다시 렌더링하는 방식으로 동작하므로 새로고침이 발생한다. 이것은 변경이 필요 없는 부분을 포함하여 전체 페이지를 갱신하는 것이어서 비효율적이다.
 
-SPA는 웹 애플리케이션에 필요한 모든 정적 리소스를 애플리케이션 최초 기동 시에 한번만 다운로드한다. 이후 새로운 페이지 요청 시, 페이지 갱신에 필요한 데이터만을 전달받아 페이지를 갱신하므로 전체적인 트래픽을 감소할 수 있고, 전체 페이지를 다시 렌더링하지 않고 변경되는 부분만을 갱신하므로 새로고침이 발생하지 않아 네이티브 앱과 유사한 사용자 경험을 제공할 수 있다.
+반면에 SPA는 웹 애플리케이션에 필요한 모든 정적 리소스를 애플리케이션이 최초로 기동할 때 한 번만 다운로드한다. 이후 새로운 페이지 요청 시, 페이지 갱신에 필요한 데이터만 전달받기 때문에 전체적인 트래픽을 감소시킬 수 있다. 또한, 페이지 전체를 다시 렌더링하지 않고 변경이 필요한 부분만 갱신하므로 새로고침이 발생하지 않아 네이티브 앱과 유사한 사용자 경험을 제공할 수 있다.
 
-모바일의 사용이 증가하고 있는 현 시점에 트래픽의 감소와 속도, 사용성, 반응성의 향상은 매우 중요한 이슈이다. SPA의 핵심 가치는 사용자 경험 향상에 있으며 부가적으로 애플리케이션 속도의 향상도 기대할 수 있어서 모바일 퍼스트(Mobile First) 전략에 부합한다.
+모바일의 사용이 증가하고 있는 현시점에 트래픽의 감소와 속도, 사용성, 반응성의 향상은 매우 중요한 이슈이다. SPA의 핵심 가치는 사용자 경험 향상에 있으며 부가적으로 애플리케이션 속도의 향상도 기대할 수 있어서 '모바일 퍼스트(Mobile First)' 전략에 부합한다.
 
-모든 소프트웨어 아키텍처에는 trade-off가 존재하며 모든 애플리케이션에 적합한 은탄환(Silver bullet)은 없듯이 SPA 또한 구조적인 단점을 가지고 있다. 대표적인 단점은 아래와 같다.
+모든 소프트웨어 아키텍처에는 트레이드오프(trade-off, 두 개의 정책목표 가운데 하나를 달성하려고 하면 다른 목표의 달성이 늦어지거나 희생되는 경우를 의미한다.)가 존재하며 모든 애플리케이션에 적합한 은 탄환(Silver bullet, 고질적인 문제를 단번에 해결할 수 있는 명쾌한 해결책을 의미한다.)은 없듯이, SPA 또한 구조적인 단점이 있다. 대표적인 단점은 아래와 같다.
 
 초기 구동 속도
 : SPA는 웹 애플리케이션에 필요한 모든 정적 리소스를 애플리케이션 최초 기동 시에 모두 다운로드하기 때문에 초기 구동 속도가 상대적으로 느리다. 하지만 SPA는 웹페이지보다는 애플리케이션에 적합한 기술이므로 트래픽 감소, 속도, 사용성, 반응성의 향상 등의 장점을 생각한다면 결정적인 단점이라고 할 수는 없다.
 
 SEO(검색엔진 최적화) 문제
-: SPA는 서버 사이드 렌더링 방식이 아닌 자바스크립트 기반 비동기 모델(클라이언트 사이드 랜더링 방식)이다. 따라서 SEO는 언제나 단점으로 부각되어 왔던 이슈이다. 하지만 SPA는 정보의 제공을 위한 웹페이지보다는 애플리케이션에 적합한 기술이므로 SEO 이슈는 심각한 문제로 볼 수 없다. Angular 또는 React 등의 SPA 프레임워크(React는 라이브러리로 구분된다)는 서버 사이드 랜더링을 지원하는 SEO 대응 기술이 이미 존재하고 있어 SEO 대응이 필요한 페이지에 대해서는 선별적 SEO 대응이 가능하다.
+: SPA는 서버 사이드 렌더링 방식이 아닌 자바스크립트 기반 비동기 모델(클라이언트 사이드 렌더링 방식)이다. 따라서 SEO는 언제나 단점으로 부각되어 왔던 이슈이다. 하지만 SPA는 정보의 제공을 위한 웹페이지보다는 애플리케이션에 적합한 기술이므로 SEO 이슈는 심각한 문제로 볼 수 없다. Angular 또는 React 등의 SPA 프레임워크(React는 라이브러리로 구분된다)는 서버 사이드 렌더링을 지원하는 SEO 대응 기술이 이미 존재하고 있어 SEO 대응이 필요한 페이지에 대해서는 선별적 SEO 대응이 가능하다.
 
 # 2. Routing
 
@@ -38,13 +38,13 @@ SEO(검색엔진 최적화) 문제
 
 1. 브라우저의 주소창에 URL을 입력하면 해당 페이지로 이동한다.
 
-2. 웹페이지의 링크(a 태그)를 클릭하면 해당 페이지로 이동한다.
+2. 웹페이지의 링크(a 요소)를 클릭하면 a 요소의 href 어트리뷰트를 기반으로 브라우저의 주소창의 URL을 변경하고 해당 페이지로 이동한다.
 
-3. 폼 요소의 submit 버튼을 클릭하면 폼 요소의 action에 지정한 URL로 입력 데이터(form data)가 전송되며 해당 페이지로 이동한다.
+3. form 요소의 submit 버튼을 클릭하면 form 요소의 action 어트리뷰트에 지정한 URL로 입력 데이터(form data)가 전송되며 해당 페이지로 이동한다.
 
-4. 브라우저의 뒤로가기 또는 앞으로가기 버튼을 클릭하면 사용자가 방문한 웹페이지의 기록(history)의 뒤 또는 앞으로 이동한다.
+4. 브라우저의 '뒤로가기' 또는 '앞으로가기' 버튼을 클릭하면 사용자가 방문한 웹페이지 기록(history)의 뒤(history.back()) 또는 앞(history.forward())으로 이동한다.
 
-AJAX 요청에 의해 서버로부터 데이터를 응답받아 화면을 생성하는 경우, 브라우저 주소창의 URL은 변경되지 않는다. 이는 사용자의 방문 history를 관리할 수 없음을 의미하며, SEO(검색엔진 최적화) 이슈의 발생 원인이기도 하다. **history 관리를 위해서는 각 페이지는 브라우저의 주소창에서 구별할 수 있는 유일한 URL을 소유하여야 한다.**
+이처럼 브라우저가 화면을 전환하는 경우, 모두 브라우저의 주소창의 URL을 변경한다. 하지만 AJAX 요청에 의해 서버로부터 데이터를 응답받아 화면을 생성하는 경우, 브라우저 주소창의 URL은 변경되지 않는다. 이는 사용자의 방문 기록(history)을 관리할 수 없음을 의미하며, SEO(검색엔진 최적화) 이슈의 발생 원인이기도 하다. history 관리를 위해서는 각 페이지는 브라우저의 주소창에서 구별할 수 있는 유일한 URL을 소유하여야 한다.
 
 # 3. Angular Router 개요와 위치 정책(Location strategy)
 
@@ -66,11 +66,11 @@ const routes: Routes = [
 
 ## 3.2 Location strategy
 
-a 태그의 href 어트리뷰트를 사용하지 않는 AJAX는 URL을 변경시키지 않는다. 따라서 브라우저 주소창의 URL이 변경되지 않는다. 이는 브라우저의 뒤로가기, 앞으로가기 등의 history 관리가 동작하지 않음을 의미한다. 물론 코드 상의 history.back(), history.go(n) 등도 동작하지 않는다. 새로고침을 클릭하면 주소창의 주소가 변경되지 않기 때문에 언제나 첫페이지가 다시 로딩된다. 하나의 주소로 동작하는 AJAX 방식은 SEO 이슈에서도 자유로울 수 없다.
+a 요소의 href 어트리뷰트를 사용하지 않는 AJAX는 브라우저 주소창의 URL을 변경시키지 않는다. 이는 브라우저의 뒤로가기, 앞으로가기 등의 history 관리가 동작하지 않음을 의미한다. 물론 코드 상의 history.back(), history.go(n) 등도 동작하지 않는다. 새로고침을 클릭하면 주소창의 주소가 변경되지 않기 때문에 언제나 첫 페이지가 다시 로딩된다. 하나의 주소로 동작하는 AJAX 방식은 SEO 이슈에서도 자유로울 수 없다.
 
-Angular는 이와 같은 문제점을 해결할 수 있는 2가지의 위치 정책(Location strategy)을 제공한다. 이로서 각 페이지는 브라우저의 주소창에서 구별할 수 있는 애플리케이션 전역에서 유일한 URL을 소유하게 된다.
+Angular는 이와 같은 문제점을 해결할 수 있는 2가지의 위치 정책(Location strategy)을 제공한다. 이로써 각 페이지는 브라우저의 주소창에서 구별할 수 있는 애플리케이션 전역에서 유일한 URL을 소유하게 된다.
 
-- PathLocationStrategy (HTML5 Histroy API 기반 내비게이션 정책)
+- PathLocationStrategy (HTML5 Histroy API pushState 기반 내비게이션 정책)
 
 - HashLocationStrategy (Hash 기반 내비게이션 정책)
 
@@ -82,7 +82,7 @@ HTML5의 Histroy API pushState 메소드를 사용하는 정책으로 '/home', '
 localhost:4200/service
 ```
 
-PathLocationStrategy는 **Angular 라우터의 기본 정책**으로 pushState 메소드를 별도로 호출할 필요가 없다. 특별한 이유가 없는 한 사용자가 보다 쉽게 ​​이해할 수 있는 이 정책의 사용을 권장한다. 또한 [Angular Universal](https://angular.io/guide/universal#angular-universal-server-side-rendering)를 사용하여 서버 사이드 렌더링을 도입하려면 이 정책을 사용하여야 한다.
+PathLocationStrategy는 **Angular 라우터의 기본 정책**으로 pushState 메소드를 별도로 호출할 필요가 없다. 특별한 이유가 없는 한 사용자가 보다 쉽게 ​​이해할 수 있는 이 정책의 사용을 권장한다. 또한, [Angular Universal](https://angular.io/guide/universal#angular-universal-server-side-rendering)을 사용하여 서버 사이드 렌더링을 도입하려면 이 정책을 사용하여야 한다.
 
 ### 3.2.2 HashLocationStrategy (Hash 기반 내비게이션 정책)
 
@@ -153,12 +153,12 @@ const routes: Routes = [
 3. 뷰의 렌더링 위치 지정
   : 라우터가 컴포넌트를 렌더링하여 뷰를 표시할 영역인 `<router-oulet>`을 구현하는 [RouterOutlet](https://angular.io/api/router/RouterOutlet) 디렉티브를 선언하여 컴포넌트 뷰가 렌더링될 위치를 지정한다. RouterOutlet 디렉티브는 루트 컴포넌트 또는 기능 모듈의 컴포넌트에 선언한다.
 4. 내비게이션 작성
-  : [RouterLink](https://angular.io/api/router/RouterLink) 디렉티브를 사용한 HTML 링크 태그를 사용하여 내비게이션을 작성한다.
+  : [RouterLink](https://angular.io/api/router/RouterLink) 디렉티브를 사용한 HTML a 요소를 사용하여 내비게이션을 작성한다.
 
 우선 프로젝트를 생성하고 라우팅 대상인 HomeComponent, ServiceComponent, AboutComponent, NotFoundComponent 컴포넌트를 작성하여 보자.
 
 ```bash
-$ ng new routing-exam -it -is -st
+$ ng new routing-exam -t -s -S
 $ cd routing-exam
 $ ng generate component pages/home --flat
 $ ng generate component pages/service --flat
@@ -283,7 +283,7 @@ export interface Route {
 }
 ```
 
-Route 인터페이스의 path 프로퍼티는 URL 패스(경로)를 나타내는 문자열이고 component 프로퍼티는 컴포넌트 타입을 나타낸다.
+Route 인터페이스의 path 프로퍼티는 URL 패스(경로)를 나타내는 문자열이고 component 프로퍼티는 컴포넌트의 타입을 나타낸다.
 
 예를 들어 '/home'라는 URL 패스가 요청되면 HomeComponent를 활성화하고, '/service'라는 URL 패스가 요청되면 ServiceComponent를 활성화하고, '/about'라는 URL 패스가 요청되면 AboutComponent를 활성화하여 뷰를 출력하는 경우, 라우트 구성은 아래와 같다. 이때 **패스의 '/'는 기술하지 않는다.**
 
@@ -502,7 +502,7 @@ RouterOutlet 디렉티브를 사용하여 뷰의 렌더링 위치를 지정하�
 
 ### 4.3.2 RouterLink
 
-뷰의 전환을 위한 네비게이션을 작성할 때 많이 사용되는 것이 a 태그이다.  Angular 라우터를 사용하기 위해서는 컴포넌트의 템플릿에는 뷰를 전환하기 위한 a 태그의 href 어트리뷰트 대신 [RouterLink](https://angular.io/api/router/RouterLink) 디렉티브를 사용하여 URL 패스를 지정한다. a 태그의 href 어트리뷰트를 사용한다면 서버로 요청이 발생하기 때문이다.
+뷰의 전환을 위한 내비게이션을 작성할 때 많이 사용되는 것이 a 요소이다. Angular 라우터를 사용하려면 컴포넌트의 템플릿에는 뷰를 전환하기 위한 a 요소의 href 어트리뷰트 대신 [RouterLink](https://angular.io/api/router/RouterLink) 디렉티브를 사용하여 URL 경로를 지정한다. a 요소의 href 어트리뷰트를 사용한다면 서버로 페이지 요청이 발생하기 때문이다.
 
 ```html
 <!-- app.component.ts -->
@@ -640,7 +640,7 @@ export class AppComponent {}
 
 # 5. navigate 메소드
 
-템플릿의 링크 태그를 사용하지 않고 컴포넌트 클래스의 코드만으로 화면을 전환하기 위해서는 navigate 메소드를 사용한다. 간단한 예제를 통해 navigate 메소드를 살펴보도록 하자.
+템플릿의 a 요소를 사용하지 않고 컴포넌트 클래스의 코드만으로 화면을 전환하기 위해서는 navigate 메소드를 사용한다. 간단한 예제를 통해 navigate 메소드를 살펴보도록 하자.
 
 루트 모듈은 아래와 같다.
 
@@ -708,7 +708,7 @@ export class AppComponent {
 }
 ```
 
-'goto todos' 버튼을 클릭하면 /todos로 이동한다. 이때 링크 태그를 사용하지 않았지만 [Router](https://angular.io/api/router/Router) 클래스의 멤버인 navigate 메소드를 통해 화면 전환이 가능하다. Router 클래스의 인스턴스는 의존성 주입을 통해 컴포넌트로 주입받아 사용한다.
+'goto todos' 버튼을 클릭하면 '/todos'로 이동한다. 이때 a 요소를 사용하지 않았지만 [Router](https://angular.io/api/router/Router) 클래스의 멤버인 navigate 메소드를 통해 화면 전환이 가능하다. Router 클래스의 인스턴스는 의존성 주입을 통해 컴포넌트로 주입받아 사용한다.
 
 <iframe src="https://stackblitz.com/edit/navigate-method-exam?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 

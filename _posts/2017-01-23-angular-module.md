@@ -191,6 +191,7 @@ header.component.ts는 애플리케이션의 헤더에 타이틀과 사용자 �
 ```typescript
 // header/header.component.ts
 import { Component, OnInit, Input } from '@angular/core';
+
 import { UserService } from '../user.service';
 import { User } from '../user';
 
@@ -204,10 +205,10 @@ import { User } from '../user';
   `,
   styles: [`
     nav {
-      height: 50px;
       background-color: #4a4c88;
+      overflow: hidden;
     }
-    nav > span, nav > a {
+    .title, .user {
       line-height: 50px;
       margin: 0 30px;
       color: #fff;
@@ -215,6 +216,9 @@ import { User } from '../user';
       font-weight: bold;
       text-transform: uppercase;
       opacity: 0.7;
+    }
+    .title {
+      float: left;
     }
     .user {
       float: right;
@@ -273,7 +277,9 @@ user.service.ts는 사용자 정보를 제공하는 서비스로서 애플리케
 import { Injectable } from '@angular/core';
 import { User } from './user';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class UserService {
   getUser(): User {
     // 임의의 사용자를 반환한다. 실제 환경에서는 서버의 데이터를 취득하여 반환할 것이다.
@@ -317,8 +323,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 
-import { UserService } from './user.service';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -326,7 +330,7 @@ import { UserService } from './user.service';
     HomeComponent
   ],
   imports: [BrowserModule],
-  providers: [UserService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
@@ -366,7 +370,7 @@ export class HomeModule { }
 
 생성된 HomeModule은 루트 모듈이 아니므로 CommonModule을 임포트하여야 한다. Angular CLI을 사용하여 모듈을 생성하면 CommonModule이 자동 등록된다.
 
-이제 HomeModule에 HomeComponent을 등록하고 HomeComponent을 외부로 공개하자.
+이제 HomeModule에 HomeComponent를 등록하고 HomeComponent를 외부로 공개하자.
 
 ```typescript
 // home/home.module.ts
@@ -398,8 +402,6 @@ import { HomeModule } from './home/home.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 
-import { UserService } from './user.service';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -409,7 +411,7 @@ import { UserService } from './user.service';
     BrowserModule,
     HomeModule /* HomeModule 임포트 */
   ],
-  providers: [UserService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
@@ -419,7 +421,7 @@ HomeComponent는 HomeModule에 등록되었으므로 더이상 루트 모듈의 
 
 ## 5.2 공유 모듈(Shared module)
 
-공유 모듈은 애플리케이션 전역에서 사용될 구성 요소들로 구성한 모듈로서 다른 모듈(주로 기능 모듈)에서 공통적으로 사용된다. 예를 들어 애플리케이션 전역에서 사용하는 컴포넌트, 디렉티브, 파이프 등이 대상이 된다.
+공유 모듈은 애플리케이션 전역에서 공유할 구성 요소들로 구성한 모듈로서 다른 모듈(주로 기능 모듈)에서 공통적으로 사용된다. 예를 들어 애플리케이션 전역에서 사용하는 컴포넌트, 디렉티브, 파이프 등이 대상이 된다.
 
 루트 모듈은 기능 모듈을 임포트하고 기능 모듈은 공유 모듈을 임포트하여 사용한다. 이렇게 모듈을 구성하여 기능 모듈의 중복을 제거하여 모듈 선언을 간소화한다. 다시 말해 공유 모듈은 루트 모듈에 직접 임포트되지 않고 기능 모듈에 의해 임포트되어 사용된다.
 
@@ -448,7 +450,7 @@ import { CommonModule } from '@angular/common';
 export class SharedModule { }
 ```
 
-먼저 공유 모듈의 구성 요소인 header.component.ts 파일을 shared 폴더로 이동시킨다. 그리고 SharedModule에 HeaderComponent을 등록하고 HeaderComponent을 외부로 공개하자.
+먼저 공유 모듈의 구성 요소인 header.component.ts 파일을 shared 폴더로 이동시킨다. 그리고 SharedModule에 HeaderComponent를 등록하고 HeaderComponent를 외부로 공개하자.
 
 ```typescript
 // shared/shared.module.ts
@@ -504,17 +506,13 @@ import { HomeModule } from './home/home.module';
 
 import { AppComponent } from './app.component';
 
-import { UserService } from './user.service';
-
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     HomeModule  /* HomeModule 임포트 */
   ],
-  providers: [UserService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
@@ -522,9 +520,9 @@ export class AppModule { }
 
 ## 5.2 핵심 모듈(Core module)
 
-핵심 모듈은 애플리케이션 전역에서 사용될 구성 요소들로 구성한 모듈로서 루트 모듈에 등록한다. 애플리케이션 전역에서 사용된다는 의미에서 공유 모듈과 유사하지만 핵심 모듈은 루트 모듈에 등록하여 싱글턴으로 사용하고 공유 모듈은 기능 모듈에 의해 사용된다. 예를 들어 애플리케이션 전역에서 사용하는 데이터 서비스, 인증 서비스, 인증 가드 등이 대상이 된다.
+핵심 모듈은 애플리케이션 전역에서 공통 사용할 구성 요소들로 구성한 모듈로서 루트 모듈에 등록한다. 애플리케이션 전역에서 사용된다는 의미에서 공유 모듈과 유사하지만 핵심 모듈은 루트 모듈에 등록하여 싱글턴으로 사용하고 공유 모듈은 기능 모듈에 의해 사용된다. 예를 들어 애플리케이션 전역에서 사용하는 데이터 서비스, 인증 서비스, 인증 가드 등이 대상이 된다.
 
-핵심 모듈은 루트 모듈의 구성을 보다 간결하게 관리할 목적으로 어떤 모듈에도 포함되지 않는 독립적인 요소를 루트 모듈에서 분리하여 구성한 모듈이다. 핵심 모듈을 도입하면 루트 모듈에는 라이브러리 모듈, 기능 모듈, 공유 모듈, 핵심 모듈, 라우트 모듈 만이 등록되어 간결한 관리가 가능하다.
+핵심 모듈은 루트 모듈의 구성을 보다 간결하게 관리할 목적으로 어떤 모듈에도 포함되지 않는 독립적인 요소를 루트 모듈에서 분리하여 구성한 모듈이다. 핵심 모듈을 도입하면 루트 모듈에는 라이브러리 모듈, 기능 모듈, 공유 모듈, 핵심 모듈, 라우트 모듈만 등록되어 간결한 관리가 가능하다.
 
 위의 예제에서 user.service.ts는 사용자 정보를 제공하는 서비스로서 애플리케이션 전역에서 공통으로 사용한다. 따라서 이 서비스는 핵심 모듈로 분리할 수 있다. 핵심 모듈인 core 모듈을 작성해 보자.
 
@@ -532,15 +530,14 @@ export class AppModule { }
 $ ng generate module core
 ```
 
-위 명령어를 실행하면 core 폴더에 core.module.ts이 생성된다. 생성한 CoreModule은 서비스만을 제공하고 있기 때문에 CommonModule이 필요없다.
+위 명령어를 실행하면 core 폴더에 core.module.ts이 생성된다. 생성한 CoreModule은 서비스만을 제공하고 있기 때문에 CommonModule이 필요 없다.
 
-먼저 핵심 모듈의 구성 요소인 user.service.ts 파일을 core 폴더로 이동시킨다. 이때 User 인터페이스의 패스가 변경되므로 user.service.ts 파일을 아래와 같이 수정한다.
+먼저 핵심 모듈의 구성 요소인 user.service.ts 파일을 core 폴더로 이동시킨다. 이때 User 인터페이스의 경로가 변경되므로 user.service.ts 파일을 아래와 같이 수정한다.
 
 ```typescript
 // core/user.service.ts
 import { Injectable } from '@angular/core';
 import { User } from '../user'; /* 패스 변경 */
-
 ...
 ```
 
@@ -556,7 +553,27 @@ import { User } from '../user';
 ...
 ```
 
-이제 UserService를 CoreModule의 providers 프로퍼티에 등록한다.
+이제 UserService를 CoreModule의 구성요소로 등록하기 위해 프로바이더를 변경하도록 하자.
+
+```typescript
+// core/user.service.ts
+import { Injectable } from '@angular/core';
+import { CoreModule } from './core.module';
+
+import { User } from '../user';
+
+@Injectable({
+  providedIn: CoreModule /* UserService를 CoreModule의 구성요소로 등록*/
+})
+export class UserService {
+  getUser(): User {
+    // 임의의 사용자를 반환한다. 실제 환경에서는 서버의 데이터를 취득하여 반환할 것이다.
+    return { id: 1, name: 'Lee', admin: true };
+  }
+}
+```
+
+@Injectable의 메타데이터 객체의 providedIn 프로퍼티 값으로 서비스가 등록될 모듈의 타입을 등록한다. 또는 CoreModule의 프로바이더에 UserService를 등록할 수도 있다.
 
 ```typescript
 // core/core.module.ts
@@ -568,13 +585,24 @@ import { UserService } from './user.service';
 @NgModule({
   imports: [],
   declarations: [],
-  providers: [UserService], /* UserService 제공 */
+  providers: [UserService], /* UserService 등록 */
   exports: []
 })
 export class CoreModule { }
 ```
 
-CoreModule이 완성되었다. 이제 루트 모듈의 imports 프로퍼티에 CoreModule을 등록하고 루트 모듈의 providers 프로퍼티에 선언되어 있던 UserService를 제거한다.
+CoreModule의 프로바이더에 UserService를 등록할 경우, 서비스의 @Injectable 데코레이터에 전달할 메타데이터 객체는 삭제한다.
+
+```typescript
+// core/user.service.ts
+…
+@Injectable()
+…
+```
+
+CoreModule에 등록된 서비스가 여러 개인 경우, CoreModule의 프로바이더에 서비스를 관리하는 것이 일관된 관리 측면에서 유리할 수 있으므로 이 예제에서는 CoreModule에 프로바이더에 서비스를 등록하도록 하자.
+
+이제 CoreModule이 완성되었다. 이제 루트 모듈의 imports 프로퍼티에 CoreModule을 등록하자.
 
 ```typescript
 // app.component.ts
@@ -592,8 +620,8 @@ import { AppComponent } from './app.component';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    HomeModule,   /* HomeModule 임포트 */
-    CoreModule    /* CoreModule 임포트 */
+    HomeModule,  /* HomeModule 임포트 */
+    CoreModule   /* CoreModule 임포트 */
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -622,6 +650,7 @@ src
 
 <iframe src="https://stackblitz.com/edit/module-exam?ctl=1&embed=1&hideNavigation=1&file=src/app/app.module.ts" frameborder="0" width="100%" height="800"></iframe>
 
+지금까지 살펴본 기능 모듈, 공유 모듈, 핵심 모듈로 반드시 애플리케이션을 구성해야 한다는 제약이 있는 것은 아니다. 모듈은 애플리케이션의 코드를 공유하여 재사용 하는 것에 관심이 있다. 적절한 모듈의 분리와 재사용은 애플리케이션을 세련되게 만들며 코드의 양 또한 줄여주는 효과가 있다. 모듈의 규모나 구분 방식은 프로젝트의 규모와 재사용성, 협업 등을 고려하여 결정해야 한다. 따라서 정답이란 있을 수 없다. 이 장의 내용은 애플리케이션에 적절한 구조를 구성할 때 하나의 참고로 이해하기 바란다.
 
 # Reference
 

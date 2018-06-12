@@ -64,7 +64,7 @@ this.router.navigate(['/todo', todoId]);
 프로젝트를 생성하고 2개의 컴포넌트를 생성한다.
 
 ```bash
-$ ng new route-parameter-exam -it -is -st --routing
+$ ng new route-parameter-exam -t -s -S --routing
 $ cd route-parameter-exam
 $ ng generate component todos
 $ ng generate component todos/todo-detail --flat
@@ -408,10 +408,10 @@ const routes: Routes = [
 - CustomerComponent는 루트 컴포넌트 AppComponent의 `<router-oultet>` 영역에 표시한다.
 - CustomerDetailComponent는 부모 컴포넌트 CustomerComponent의 `<router-oultet>` 영역에 표시한다.
 
-자식 라우트의 사용한 예제를 작성해보자. 앞서 설명한 자식 라우트를 포함한 라우트 구성을 그대로 사용할 것이다. 아래와 같이 프로젝트를 생성한다.
+자식 라우트를 사용한 예제를 작성해보자. 앞서 설명한 자식 라우트를 포함한 라우트 구성을 그대로 사용할 것이다. 아래와 같이 프로젝트를 생성한다.
 
 ```bash
-$ ng new children-routing -it -is -st
+$ ng new children-routing -t -s -S
 $ cd children-routing
 ```
 
@@ -653,9 +653,9 @@ export class CustomerDetailComponent implements OnInit {
 
 # 3. 모듈의 분리와 모듈별 라우트 구성
 
-구성 요소를 모듈 단위로 구성하는 것과 동일하게 라우트를 모듈 단위로 구성할 수 있다.
+구성 요소를 모듈 단위로 구성하는 것과 동일하게 라우트도 모듈 단위로 구성할 수 있다.
 
-루트 모듈 또는 AppRoutingModule에서는 전체 라우트 정보를 담고 있는 라우트 구성을 RouterModule의 forRoot 메서드의 인자로 전달하였다.
+루트 모듈 또는 AppRoutingModule에서는 전체 라우트 정보를 담고 있는 라우트 구성을 RouterModule의 forRoot 메소드의 인자로 전달하였다.
 
 ```typescript
 const routes: Routes = [ ... ];
@@ -667,7 +667,7 @@ const routes: Routes = [ ... ];
 })
 ```
 
-모듈 단위로 라우팅 구성을 분리하는 경우, 분리한 모듈에 RouterModule의 forChild 메서드의 인자로 라우트 구성을 등록한다.
+모듈 단위로 라우팅 구성을 분리하는 경우, 분리한 모듈에 RouterModule의 forChild 메소드의 인자로 라우트 구성을 등록한다.
 
 ```typescript
 const routes: Routes = [ ... ];

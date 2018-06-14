@@ -169,7 +169,7 @@ Node.js 파일을 실행하려면 node 명령어 뒤에 파일명을 입력한�
 $ node index.js
 ```
 
-CTRL + C 키를 두번 실행하면 REPL을 종료시킨다. Node.js REPL에 관한 더 자세한 내용은 [Node.js Documentation : REPL](https://nodejs.org/dist/latest-v6.x/docs/api/repl.html)을 참조하기 바란다.
+CTRL + C 키를 두번 실행하면 REPL을 종료시킨다. Node.js REPL에 관한 더 자세한 내용은 [Node.js Documentation : REPL](https://nodejs.org/dist/latest-v8.x/docs/api/repl.html)을 참조하기 바란다.
 
 # 5. Node.js 맛보기 : HTTP Server
 
@@ -207,4 +207,4 @@ $ node app.js
 
 * [Node.js](https://nodejs.org/)
 
-* [Node.js Documentation : REPL](https://nodejs.org/dist/latest-v6.x/docs/api/repl.html)
+* [Node.js Documentation : REPL](https://nodejs.org/dist/latest-v8.x/docs/api/repl.html)

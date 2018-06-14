@@ -16,7 +16,7 @@ description: Angular는 SPA(Single Page Application) 개발을 위한 구글의 
 
 [Angular](https://angular.io/)는 SPA(Single Page Application) 개발을 위한 구글의 오픈소스 자바스크립트 프레임워크이다. 웹 애플리케이션은 물론 모바일 웹, 네이티브 모바일과 데스크탑 애플리케이션까지 프론트엔드 개발에 필요한 대부분의 기능을 갖추고 있다. 정적 타입을 제공하는 TypeScript를 주력 언어로 채택하여 대규모 애플리케이션 개발에 보다 적합한 환경을 제공한다.
 
-이전 버전인 [AngularJS](https://angularjs.org/)는 2009년 구글의 미스코 헤브리(Miško Hevery)가 시작한 개인 프로젝트로 시작하여 2012년 AngularJS 1.0이 공개되었으며 2017년 1.6.2가 공개되는 등 Angular 정식 버전이 공개된 이후에도 지속적으로 업데이트를 진행하고 있다.
+이전 버전인 [AngularJS](https://angularjs.org/)는 2009년 구글의 미스코 헤브리(Miško Hevery)가 시작한 개인 프로젝트로 시작하여 2012년 AngularJS 1.0이 공개되었으며, 2017년 1.6.2가 공개되는 등 Angular 정식 버전이 공개된 이후에도 지속적으로 업데이트를 진행하고 있다.
 
 Angular 1 버전을 AngularJS, Angular 2 버전 이상을 Angular라 부른다
 {: .info}
@@ -59,7 +59,7 @@ AngularJS는 Controller와 $scope가 개발의 중심이었지만 Angular에서�
 
 ### 3.1.2 TypeScript의 도입
 
-[TypeScript](./typescript-introduction)는 2012년 Microsoft에서 발표한 오픈소스로 강력한 정적 타이핑 그리고 ECMAScript6(ECMAScript 2015)의 클래스, 모듈 등과 ECMAScript7의 데코레이터를 지원한다.
+[TypeScript](./typescript-introduction)는 2012년 Microsoft에서 발표한 오픈소스로 강력한 정적 타이핑 그리고 ECMAScript6의 클래스, 모듈 등과 ECMAScript7의 데코레이터를 지원한다.
 
 TypeScript를 사용하는 이유는 여러가지 있지만 가장 큰 장점은 다양한 도구의 지원을 받을 수 있다는 것이다. TypeScript는 정적 타이핑을 지원하므로 높은 수준의 인텔리센스(IntelliSense), 코드 어시스트, 타입 체크, 리팩토링 등을 지원하며 이러한 도구의 지원은 대규모 프로젝트를 위한 필수적 요소이기도 하다.
 

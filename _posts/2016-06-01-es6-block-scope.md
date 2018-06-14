@@ -13,7 +13,7 @@ description: ES5에서 변수를 선언할 수 있는 유일한 방법은 var �
 ![es6 Logo](/img/es6.png)
 {: .w-650}
 
-ES5에서 변수를 선언할 수 있는 유일한 방법은 [var 키워드](./js-data-type-variable#2-변수-variable)를 사용하는 것이었다. var 키워드로 선언된 변수는 아래와 같은 특징이 있다. 이는 다른 C-family 언어와는 차별되는 특징(설계상 오류)으로 주의를 기울이지 않으면 심각한 문제를 일으킨다.
+ES5에서 변수를 선언할 수 있는 유일한 방법은 [var 키워드](./js-data-type-variable#2-변수-variable)를 사용하는 것이었다. var 키워드로 선언된 변수는 아래와 같은 특징이 있다. 이는 다른 C-family 언어와는 차별되는 특징(설계상 오류)에 주의를 기울이지 않으면 심각한 문제를 일으킨다.
 
 1. [함수 레벨 스코프(Function-level scope)](./js-scope#3-function-level-scope)
   - 전역 변수의 남발
@@ -53,7 +53,7 @@ console.log(foo); // 123
 console.log(foo); // 456
 ```
 
-var 키워드를 사용하여 선언한 변수는 중복 선언이 허용되므로 위의 코드는 문법적으로 아무런 문제가 없다. 하지만 블록 레벨 스코프를 지원하지 않는 var 키워드의 특성상, 코드 블록 내의 변수 foo는 전역변수이기 때문에 전역에서 선언된 변수 foo의 값 123을 대체하는 새로운 값 456을 재할당한다.
+블록 레벨 스코프를 지원하지 않는 var 키워드의 특성상, 코드 블록 내의 변수 foo는 전역변수이다. 그런데 이미 전역변수 foo가 선언되어 있다. var 키워드를 사용하여 선언한 변수는 중복 선언이 허용되므로 위의 코드는 문법적으로 아무런 문제가 없다. 단, 코드 블록 내의 변수 foo는 전역변수이기 때문에 전역에서 선언된 전역변수 foo의 값 123을 대체하는 새로운 값 456을 재할당한다.
 
 ES6는 <strong>블록 레벨 스코프</strong>를 갖는 변수를 선언하기 위해 `let` 키워드를 제공한다.
 
@@ -106,7 +106,7 @@ let bar;
 할당 단계(Assignment phase)
 : undefined로 초기화된 변수에 실제 값을 할당한다.
 
-**var 키워드로 선언된 변수는 선언 단계와 초기화 단계가 한번에 이루어진다.** 즉, 스코프에 변수를 등록(선언 단계)하고 메모리에 변수를 위한 공간을 확보한 후, undefined로 초기화(초기화 단계)한다. 따라서 변수 선언문 이전에 변수에 접근하여도 변수 객체(Variable Object)에 변수가 존재하기 때문에 에러가 발생하지 않는다. 다만 undefined를 반환한다. 이후 변수 할당문에 도달하면 비로서 값이 할당된다. 이러한 현상을 [변수 호이스팅(Variable Hoisting)](./js-data-type-variable#24-변수-호이스팅variable-hoisting)이라 한다.
+**var 키워드로 선언된 변수는 선언 단계와 초기화 단계가 한번에 이루어진다.** 즉, 스코프에 변수를 등록(선언 단계)하고 메모리에 변수를 위한 공간을 확보한 후, undefined로 초기화(초기화 단계)한다. 따라서 변수 선언문 이전에 변수에 접근하여도 스코프에 변수가 존재하기 때문에 에러가 발생하지 않는다. 다만 undefined를 반환한다. 이후 변수 할당문에 도달하면 비로소 값이 할당된다. 이러한 현상을 [변수 호이스팅(Variable Hoisting)](./js-data-type-variable#24-변수-호이스팅variable-hoisting)이라 한다.
 
 ![var lifecycle](./img/var-lifecycle.png)
 {: .w-450}
@@ -230,7 +230,7 @@ const FOO = 123;
 FOO = 456; // TypeError: Assignment to constant variable.
 ```
 
-주의할 점은 const는 반드시 선언과 동시에 할당이 이루어져야 한다는 것이다. 그렇지 않으면 다음처럼 문법 에러(SyntaxError)가 발생한다.
+주의할 점은 **const는 반드시 선언과 동시에 할당이 이루어져야 한다**는 것이다. 그렇지 않으면 다음처럼 문법 에러(SyntaxError)가 발생한다.
 
 ```javascript
 const FOO; // SyntaxError: Missing initializer in const declaration
@@ -272,7 +272,7 @@ obj = { bar: 456 }; // TypeError: Assignment to constant variable.
 
 ## 2.3 const와 객체
 
-const는 재할당이 금지된다. 이는 const 변수의 값이 객체인 경우, 객체에 대한 참조를 변경하지 못한다는 것을 의미한다. 하지만 이때 **객체의 프로퍼티는 보호되지 않는다.** 다시 말하자면 재할당은 불가능하지만 할당된 객체의 내용(프로퍼티의 추가, 삭제, 프로퍼티 값의 변경)은 변경할 수 있다.
+const는 재할당이 금지된다. 이는 const 변수의 타입이 객체인 경우, 객체에 대한 참조를 변경하지 못한다는 것을 의미한다. 하지만 이때 **객체의 프로퍼티는 보호되지 않는다.** 다시 말하자면 재할당은 불가능하지만 할당된 객체의 내용(프로퍼티의 추가, 삭제, 프로퍼티 값의 변경)은 변경할 수 있다.
 
 ```javascript
 const user = { name: 'Lee' };
@@ -280,7 +280,7 @@ const user = { name: 'Lee' };
 // const 변수는 재할당이 금지된다.
 // user = {}; // TypeError: Assignment to constant variable.
 
-// 객체의 내용 은 변경할 수 있다.
+// 객체의 내용은 변경할 수 있다.
 user.name = 'Kim';
 
 console.log(user); // { name: 'Kim' }
@@ -375,7 +375,7 @@ var와 let, 그리고 const는 다음처럼 사용하는 것을 추천한다.
 
 - 재할당이 필요한 변수에는 let을 사용한다.
 
-- 변경이 발생하지 않는(재할당이 필요 없는) 기본형 변수와 객체형 변수에는 const를 사용한다.
+- 변경이 발생하지 않는(재할당이 필요 없는) 기본자료형 변수와 객체형 변수에는 const를 사용한다.
 
 
 # Reference

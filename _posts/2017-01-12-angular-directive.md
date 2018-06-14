@@ -538,7 +538,7 @@ ngIf 디렉티브 앞에 붙은 *(asterisk) 기호는 아래 구문의 문법적
 </ng-template>
 ```
 
-Angular는 *ngIf를 만나면 호스트 요소를 ng-template 디렉티브로 래핑하고 ngIf를 프로퍼티 바인딩으로 변환한다. ng-template 디렉티브는 컴포넌트 템플릿의 일부로서 정의되지만 단순히 정의된 상태에서는 주석 처리되어 뷰에 렌더링되지 않고 있다가 ngIf에 바인딩된 값이 참으로 평가되면 비로서 뷰에 렌더링된다. 이때 ngIf 디렉티브는 의존성 주입을 통해 주입받은 TemplateRef와 ViewContainerRef의 인스턴스를 사용하여 ng-template 디렉티브로 래핑된 요소를 렌더링하거나 DOM에서 제거한다.
+Angular는 *ngIf를 만나면 호스트 요소를 ng-template 디렉티브로 래핑하고 ngIf를 프로퍼티 바인딩으로 변환한다. ng-template 디렉티브는 컴포넌트 템플릿의 일부로서 정의되지만 단순히 정의된 상태에서는 주석 처리되어 뷰에 렌더링되지 않고 있다가 ngIf에 바인딩된 값이 참으로 평가되면 비로소 뷰에 렌더링된다. 이때 ngIf 디렉티브는 의존성 주입을 통해 주입받은 TemplateRef와 ViewContainerRef의 인스턴스를 사용하여 ng-template 디렉티브로 래핑된 요소를 렌더링하거나 DOM에서 제거한다.
 
 ```typescript
 // ngIf 디렉티브

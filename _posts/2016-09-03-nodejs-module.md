@@ -104,7 +104,7 @@ const value = require('./primitive');
 console.log(value); // => 'primitive value'
 ```
 
-exports와 module.exports는 혼동하기 쉽다. exports는 module.exports에의 참조이며 module.exports의 alias이다. 즉, exports는 module.exports와 같다고 보아도 무방하다. Node.js의 [document](https://nodejs.org/dist/latest-v6.x/docs/api/modules#modules_exports_alias)에는 만약 exports와 module.exports의 관계가 어렵게 느껴진다면 exports를 무시하고 module.exports만을 사용하라고 권유하고 있다.
+exports와 module.exports는 혼동하기 쉽다. exports는 module.exports에의 참조이며 module.exports의 alias이다. 즉, exports는 module.exports와 같다고 보아도 무방하다. <!-- Node.js의 [document](https://nodejs.org/dist/latest-v6.x/docs/api/modules#modules_exports_alias)에는 만약 exports와 module.exports의 관계가 어렵게 느껴진다면 exports를 무시하고 module.exports만을 사용하라고 권유하고 있다. -->
 
 
 | 구분            | 모듈 정의 방식                                  | require 함수의 호출 결과
@@ -233,6 +233,6 @@ const foo = require('./lib/foo');
 
 # Reference
 
-* [Node.js v6.11.5 : Modules](https://nodejs.org/dist/latest-v6.x/docs/api/modules.html)
+* [Node.js v6.11.5 : Modules](https://nodejs.org/dist/latest-v8.x/docs/api/modules.html)
 
 * [ES6 Module](http://poiemaweb.com/es6-module)

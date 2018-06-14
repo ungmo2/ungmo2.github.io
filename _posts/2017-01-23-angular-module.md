@@ -315,7 +315,7 @@ export class AppComponent {}
 루트 모듈을 아래와 같이 작성한다.
 
 ```typescript
-// app.component.ts
+// app.module.ts
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -392,7 +392,7 @@ export class HomeModule { }
 HomeModule이 완성되었다. 이제 루트 모듈에 HomeModule을 등록하도록 하자.
 
 ```typescript
-// app.component.ts
+// app.module.ts
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -497,7 +497,7 @@ export class HomeModule { }
 이제 HeaderComponent는 공유 모듈인 SharedModule에 등록되었으므로 루트 모듈의 declarations 프로퍼티에 선언되어 있던 HeaderComponent를 제거하도록 한다.
 
 ```typescript
-// app.component.ts
+// app.module.ts
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -605,7 +605,7 @@ CoreModule에 등록된 서비스가 여러 개인 경우, CoreModule의 프로�
 이제 CoreModule이 완성되었다. 이제 루트 모듈의 imports 프로퍼티에 CoreModule을 등록하자.
 
 ```typescript
-// app.component.ts
+// app.module.ts
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 

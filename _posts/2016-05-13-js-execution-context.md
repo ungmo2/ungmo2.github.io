@@ -279,7 +279,7 @@ Variable Instantiation(변수 객체화)는 아래의 순서로 Variable Object�
 
 **var 키워드로 선언된 변수는 선언 단계와 초기화 단계가 한번에 이루어진다.** 다시 말해 스코프 체인이 가리키는 변수 객체에 변수가 등록되고 변수는 undefined로 초기화된다. 따라서 변수 선언문 이전에 변수에 접근하여도 Variable Object에 변수가 존재하기 때문에 에러가 발생하지 않는다. 다만 undefined를 반환한다. 이러한 현상을 **[변수 호이스팅(Variable Hoisting)](./js-data-type-variable#24-변수-호이스팅variable-hoisting)**이라한다.
 
-아직 변수 x는 'xxx'로 초기화되지 않았다. 이후 변수 할당문에 도달하면 비로서 값의 할당이 이루어진다.
+아직 변수 x는 'xxx'로 초기화되지 않았다. 이후 변수 할당문에 도달하면 비로소 값의 할당이 이루어진다.
 
 ![변수 x의 선언 처리](/img/ec_8.png)
 {: .w-450}

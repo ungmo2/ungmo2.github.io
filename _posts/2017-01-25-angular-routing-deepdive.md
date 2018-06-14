@@ -359,7 +359,7 @@ export class TodoDetailComponent implements OnInit {
 
 # 2. 자식 라우트(Child Route)
 
-지금까지는 루트 컴포넌트에 하나의 `<router-oultet>`을 가진 예제만을 살펴보았다. 자식 컴포넌트도 루트 컴포넌트의 `<router-oultet>`와는 별도로 자신의 자식 컴포넌트를 위한 `<router-oultet>`을 가질 수 있다. 예를 들어 아래의 그림을 살펴보자.
+지금까지는 루트 컴포넌트에 하나의 `<router-outlet>`을 가진 예제만을 살펴보았다. 자식 컴포넌트도 루트 컴포넌트의 `<router-outlet>`와는 별도로 자신의 자식 컴포넌트를 위한 `<router-outlet>`을 가질 수 있다. 예를 들어 아래의 그림을 살펴보자.
 
 ![Child Route](img/child-route.png)
 {: .w-700}
@@ -367,7 +367,7 @@ export class TodoDetailComponent implements OnInit {
 자식 라우트
 {: .desc-img}
 
-위 그림의 경우, 루트 컴포넌트의 `<router-oultet>`에는 UserComponent 또는 CustomerComponent가 표시된다. 이때 UserComponent와 CustomerComponent는 자신의 `<router-oultet>`을 가지고 있으며 이 영역에는 자식 라우트 구성을 위한 children 프로퍼티에 선언한 컴포넌트가 표시된다. 이와 같은 관계를 구성한 라우트는 아래와 같다.
+위 그림의 경우, 루트 컴포넌트의 `<router-outlet>`에는 UserComponent 또는 CustomerComponent가 표시된다. 이때 UserComponent와 CustomerComponent는 자신의 `<router-outlet>`을 가지고 있으며 이 영역에는 자식 라우트 구성을 위한 children 프로퍼티에 선언한 컴포넌트가 표시된다. 이와 같은 관계를 구성한 라우트는 아래와 같다.
 
 ```typescript
 const routes: Routes = [
@@ -378,7 +378,7 @@ const routes: Routes = [
     path: 'user',
     component: UserComponent,
     children: [
-      /* UserComponent의 <router-oultet>에 표시 */
+      /* UserComponent의 <router-outlet>에 표시 */
       { path: ':id', component: UserDetailComponent }
     ]
   },
@@ -387,26 +387,26 @@ const routes: Routes = [
     path: 'customer',
     component: CustomerComponent,
     children: [
-      /* CustomerComponent의 <router-oultet>에 표시 */
+      /* CustomerComponent의 <router-outlet>에 표시 */
       { path: ':id', component: CustomerDetailComponent }
     ]
   }
 ];
 ```
 
-위 라우트 구성의 ①, ②, ③은 모두 루트 컴포넌트의 `<router-oultet>` 영역을 위한 것이다. 즉, 루트 컴포넌트의 `<router-oultet>` 영역에는 UserComponent 또는 CustomerComponent이 표시된다.
+위 라우트 구성의 ①, ②, ③은 모두 루트 컴포넌트의 `<router-outlet>` 영역을 위한 것이다. 즉, 루트 컴포넌트의 `<router-outlet>` 영역에는 UserComponent 또는 CustomerComponent이 표시된다.
 
-**children 프로퍼티는 자식 라우트를 구성할 때 사용한다.** 라우트 구성의 component 프로퍼티에 선언된 컴포넌트(②의 경우, UserComponent)는 children 프로퍼티에 선언된 컴포넌트들(②의 경우, UserDetailComponent)의 부모 컴포넌트이다. 부모 컴포넌트는 루트 컴포넌트와는 별도의 `<router-oultet>`을 가지며 자식 컴포넌트는 부모 컴포넌트의 `<router-oultet>` 영역에 표시된다.
+**children 프로퍼티는 자식 라우트를 구성할 때 사용한다.** 라우트 구성의 component 프로퍼티에 선언된 컴포넌트(②의 경우, UserComponent)는 children 프로퍼티에 선언된 컴포넌트들(②의 경우, UserDetailComponent)의 부모 컴포넌트이다. 부모 컴포넌트는 루트 컴포넌트와는 별도의 `<router-outlet>`을 가지며 자식 컴포넌트는 부모 컴포넌트의 `<router-outlet>` 영역에 표시된다.
 
 라우트 구성 ②의 의미는 아래와 같다.
 
-- UserComponent는 루트 컴포넌트 AppComponent의 `<router-oultet>` 영역에 표시한다.
-- UserDetailComponent는 부모 컴포넌트 UserComponent의 `<router-oultet>` 영역에 표시한다.
+- UserComponent는 루트 컴포넌트 AppComponent의 `<router-outlet>` 영역에 표시한다.
+- UserDetailComponent는 부모 컴포넌트 UserComponent의 `<router-outlet>` 영역에 표시한다.
 
 라우트 구성 ③의 의미는 아래와 같다.
 
-- CustomerComponent는 루트 컴포넌트 AppComponent의 `<router-oultet>` 영역에 표시한다.
-- CustomerDetailComponent는 부모 컴포넌트 CustomerComponent의 `<router-oultet>` 영역에 표시한다.
+- CustomerComponent는 루트 컴포넌트 AppComponent의 `<router-outlet>` 영역에 표시한다.
+- CustomerDetailComponent는 부모 컴포넌트 CustomerComponent의 `<router-outlet>` 영역에 표시한다.
 
 자식 라우트를 사용한 예제를 작성해보자. 앞서 설명한 자식 라우트를 포함한 라우트 구성을 그대로 사용할 것이다. 아래와 같이 프로젝트를 생성한다.
 
@@ -415,7 +415,7 @@ $ ng new children-routing -t -s -S
 $ cd children-routing
 ```
 
-2개의 부모 컴포넌트와 부모 컴포넌트의 `<router-oultet>` 영역에 표시할 2개의 자식 컴포넌트를 생성한다.
+2개의 부모 컴포넌트와 부모 컴포넌트의 `<router-outlet>` 영역에 표시할 2개의 자식 컴포넌트를 생성한다.
 
 ```bash
 # 부모 컴포넌트
@@ -428,7 +428,7 @@ $ ng generate component customer
 $ ng generate component customer/customer-detail --flat
 ```
 
-루트 컴포넌트에 2개의 부모 컴포넌트(UserComponent, CustomerComponent)를 위한 내비게이션과 `<router-oultet>` 영역을 작성한다.
+루트 컴포넌트에 2개의 부모 컴포넌트(UserComponent, CustomerComponent)를 위한 내비게이션과 `<router-outlet>` 영역을 작성한다.
 
 ```typescript
 // app.component.ts
@@ -447,7 +447,7 @@ import { Component } from '@angular/core';
 export class AppComponent {}
 ```
 
-루트 URL(localhost:4200)로 접근하면 UserComponent가 `<router-oultet>` 영역에 표시되고 URL 패스가 '/customer'인 요청이 오면 CustomerComponent가 `<router-oultet>` 영역에 표시될 것이다. 이를 위해 루트 모듈에 라우트 구성을 추가하자.
+루트 URL(localhost:4200)로 접근하면 UserComponent가 `<router-outlet>` 영역에 표시되고 URL 패스가 '/customer'인 요청이 오면 CustomerComponent가 `<router-outlet>` 영역에 표시될 것이다. 이를 위해 루트 모듈에 라우트 구성을 추가하자.
 
 ```typescript
 // app.module.ts
@@ -499,7 +499,7 @@ const routes: Routes = [
 export class AppModule { }
 ```
 
-지금 상태에서는 2개의 부모 컴포넌트(UserComponent, CustomerComponent)를 위한 내비게이션과 `<router-oultet>` 영역은 루트 컴포넌트에 존재하지만 자식 컴포넌트를 위한 내비게이션과 `<router-oultet>` 영역이 존재하지 않는다. 자식 컴포넌트를 위한 네비게이션과 `<router-oultet>` 영역을 각각의 부모 컴포넌트에 추가하도록 하자.
+지금 상태에서는 2개의 부모 컴포넌트(UserComponent, CustomerComponent)를 위한 내비게이션과 `<router-outlet>` 영역은 루트 컴포넌트에 존재하지만 자식 컴포넌트를 위한 내비게이션과 `<router-outlet>` 영역이 존재하지 않는다. 자식 컴포넌트를 위한 네비게이션과 `<router-outlet>` 영역을 각각의 부모 컴포넌트에 추가하도록 하자.
 
 먼저 UserComponent를 작성한다.
 
@@ -543,7 +543,7 @@ export class UserComponent implements OnInit {
 }
 ```
 
-부모 컴포넌트에 자식 컴포넌트를 위한 네비게이션과 `<router-oultet>` 영역을 추가하였다. 자식 컴포넌트를 위한 `<router-oultet>` 영역에는 루트 모듈에서 지정한 라우트 구성의 children 프로퍼티의 설정에 따라 UserDetailComponent가 표시될 것이다.
+부모 컴포넌트에 자식 컴포넌트를 위한 네비게이션과 `<router-outlet>` 영역을 추가하였다. 자식 컴포넌트를 위한 `<router-outlet>` 영역에는 루트 모듈에서 지정한 라우트 구성의 children 프로퍼티의 설정에 따라 UserDetailComponent가 표시될 것이다.
 
 ```typescript
 // app.module.ts

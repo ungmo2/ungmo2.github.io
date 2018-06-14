@@ -47,7 +47,7 @@ console.log(plus(1, 2)); // 3
 
 ## 2.1 기본 문법
 
-Rest 파라미터(Rest Parameter)는 Spread 연산자(`...`)를 사용하여 파라미터를 정의한 것을 의미한다. Rest 파라미터를 사용하면 인수를 함수 내부에서 배열로 전달받을 수 있다.
+Rest 파라미터(Rest Parameter)는 Spread 연산자(`...`)를 사용하여 파라미터를 정의한 것을 의미한다. Rest 파라미터를 사용하면 인수의 리스트를 함수 내부에서 배열로 전달받을 수 있다.
 
 ```javascript
 function foo(...rest) {
@@ -88,7 +88,10 @@ foo(1, 2, 3, 4, 5);
 
 ## 2.2 arguments와 rest 파라미터
 
-ES5에서는 인자의 개수를 사전에 알 수 없는 가변 인자 함수의 경우, [arguments 객체](./js-function#61-arguments-프로퍼티)를 통해 인자값을 확인한다. arguments 객체는 함수 호출 시 전달된 인수(argument)들의 정보를 담고 있는 순회가능한(iterable) 유사 배열 객체(array-like object)이다. 함수 객체의 arguments 프로퍼티는 arguments 객체를 값으로 가지며 함수 내부에서 지역 변수처럼 사용된다.
+ES5에서는 인자의 개수를 사전에 알 수 없는 가변 인자 함수의 경우, [arguments 객체](./js-function#61-arguments-프로퍼티)를 통해 인수를 확인한다. arguments 객체는 함수 호출 시 전달된 인수(argument)들의 정보를 담고 있는 순회가능한(iterable) 유사 배열 객체(array-like object)이며 함수 내부에서 지역 변수처럼 사용할 수 있다.
+
+arguments 프로퍼티는 현재 일부 브라우저에서 지원하고 있지만 ES3부터 표준에서 deprecated 되었다. Function.arguments와 같은 사용 방법은 권장되지 않으며 함수 내부에서 지역변수처럼 사용할 수 있는 arguments 객체를 참조하도록 한다.
+{: .info}
 
 ```javascript
 // ES5
@@ -122,7 +125,7 @@ ES6에서는 [rest 파라미터](./es6-extended-parameter-handling#2-rest-파라
 ```javascript
 // ES6
 function sum(...args) {
-  console.log(arguments); // (5) [1, 2, 3, 4, 5, callee: (...), Symbol(Symbol.iterator): function]
+  console.log(arguments); // Arguments(5) [1, 2, 3, 4, 5, callee: (...), Symbol(Symbol.iterator): ƒ]
   console.log(Array.isArray(args)); // true
   return args.reduce((pre, cur) => pre + cur);
 }
@@ -144,7 +147,7 @@ console.log(arrowFunc.hasOwnProperty('arguments')); // false
 Spread 연산자(Spread Operator, `...`)는 연산자의 대상 배열 또는 [이터러블](./es6-iteration-for-of)을 개별 요소로 분리한다.
 
 ```javascript
-// ...[1, 2, 3]는 [1, 2, 3]을 개별 요소로 분리한다(-> 1, 2, 3)
+// ...[1, 2, 3]는 [1, 2, 3]을 개별 요소로 분리한다(→ 1, 2, 3)
 console.log(...[1, 2, 3]) // 1, 2, 3
 
 // 문자열은 이터러블이다.
@@ -188,24 +191,24 @@ function foo(x, y, z) {
 // 배열을 foo 함수의 인자로 전달하려고 한다.
 const arr = [1, 2, 3];
 
-// ...[1, 2, 3]는 [1, 2, 3]을 개별 요소로 분리한다(-> 1, 2, 3)
-// spread 연산자에 의해 분리된 배열의 요소는 개별적인 인자로서 각각의 매개변수에 전달된다.
+/* ...[1, 2, 3]는 [1, 2, 3]을 개별 요소로 분리한다(→ 1, 2, 3)
+   spread 연산자에 의해 분리된 배열의 요소는 개별적인 인자로서 각각의 매개변수에 전달된다. */
 foo(...arr);
 ```
 
 앞에서 살펴본 Rest 파라미터는 Spread 연산자를 사용하여 파라미터를 정의한 것을 의미한다. 형태가 동일하여 혼동할 수 있으므로 주의가 필요하다.
 
 ```javascript
-// Spread 연산자를 사용한 매개변수 정의 (= Rest 파라미터)
-// ...rest는 분리된 요소들을 함수 내부에 배열로 전달한다
+/* Spread 연산자를 사용한 매개변수 정의 (= Rest 파라미터)
+   ...rest는 분리된 요소들을 함수 내부에 배열로 전달한다. */
 function foo(param, ...rest) {
   console.log(param); // 1
   console.log(rest);  // [ 2, 3 ]
 }
 foo(1, 2, 3);
 
-// Spread 연산자를 사용한 인수
-// 배열 인수는 분리되어 순차적으로 매개변수에 할당
+/* Spread 연산자를 사용한 인수
+  배열 인수는 분리되어 순차적으로 매개변수에 할당 */
 function bar(x, y, z) {
   console.log(x); // 1
   console.log(y); // 2
@@ -229,7 +232,7 @@ function foo(v, w, x, y, z) {
   console.log(z); // 5
 }
 
-// ...[2, 3]는 [2, 3]을 개별 요소로 분리한다(-> 2, 3)
+// ...[2, 3]는 [2, 3]을 개별 요소로 분리한다(→ 2, 3)
 // spread 연산자에 의해 분리된 배열의 요소는 개별적인 인자로서 각각의 매개변수에 전달된다.
 foo(1, ...[2, 3], 4, ...[5]);
 ```
@@ -294,9 +297,11 @@ ES5에서 기존 배열에 다른 배열의 개별 요소를 삽입하려면 아
 var arr1 = [1, 2, 3, 6];
 var arr2 = [4, 5];
 
-// apply 메소드의 2번째 인자는 배열. 이것은 개별 인자로 push 메소드에 전달된다.
-// [3, 0].concat(arr2) => [3, 0, 4, 5]
-// arr1.splice(3, 0, 4, 5) => arr1[3]부터 0개의 요소를 제거하고 그자리(arr1[3])에 새로운 요소(4, 5)를 추가한다.
+/*
+apply 메소드의 2번째 인자는 배열. 이것은 개별 인자로 push 메소드에 전달된다.
+[3, 0].concat(arr2) → [3, 0, 4, 5]
+arr1.splice(3, 0, 4, 5) → arr1[3]부터 0개의 요소를 제거하고 그자리(arr1[3])에 새로운 요소(4, 5)를 추가한다.
+*/
 Array.prototype.splice.apply(arr1, [3, 0].concat(arr2));
 
 console.log(arr1); // [ 1, 2, 3, 4, 5, 6 ]

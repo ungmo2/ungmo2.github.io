@@ -252,7 +252,7 @@ window.foo();
 - Standard Built-in Objects(표준 빌트인 객체)도 역시 전역 객체의 자식 객체이다. 전역 객체의 자식 객체를 사용할 때 전역 객체의 기술은 생략할 수 있으므로 표준 빌트인 객체도 전역 객체의 기술을 생략할 수 있다.
 
 ```javascript
-// window.alert('Hello world!');;
+// window.alert('Hello world!');
 alert('Hello world!');
 ```
 

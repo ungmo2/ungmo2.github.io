@@ -53,10 +53,10 @@ description: Execution Context(실행 컨텍스트)는 scope, hoisting, this, fu
 
 Javascript는 바로 실행 컨텍스트(Execution Context)이라는 또다른 객체를 통해 이것을 제공한다. -->
 
-[ECMAScript 스펙](https://developer.mozilla.org/ko/docs/Web/JavaScript/%EC%96%B8%EC%96%B4_%EB%A6%AC%EC%86%8C%EC%8A%A4)에 따르면 실행 컨텍스트를 **실행 가능한 코드를 형상화하고 구분하는 추상적인 개념**이라고 정의한다. 좀 더 쉽게 말하자면 **실행 컨텍스트는 실행 가능한 코드가 실행되기 위해 필요한 환경** 이라고 말할 수 있겠다. 여기서 말하는 실행 가능한 코드는 아래와 같다.
+[ECMAScript 스펙](https://developer.mozilla.org/ko/docs/Web/JavaScript/언어_리소스)에 따르면 실행 컨텍스트를 **실행 가능한 코드를 형상화하고 구분하는 추상적인 개념**이라고 정의한다. 좀 더 쉽게 말하자면 **실행 컨텍스트는 실행 가능한 코드가 실행되기 위해 필요한 환경** 이라고 말할 수 있겠다. 여기서 말하는 실행 가능한 코드는 아래와 같다.
 
 - 전역 코드 : 전역 영역에 존재하는 코드
-- Eval 코드 : [Eval 함수](./js-standard-built-in-objects#121-eval)로 실행되는 코드
+- Eval 코드 : [eval 함수](./js-built-in-object#2121-eval)로 실행되는 코드
 - 함수 코드 : 함수 내에 존재하는 코드
 
 일반적으로 실행 가능한 코드는 전역 코드와 함수 내 코드이다.

@@ -626,15 +626,15 @@ $ ng build --prod
 
 프로덕션 빌드 시에는 `src/environments/environment.prod.ts` 파일을 참조하여 빌드를 수행한다. 프로덕션 빌드와 개발환경 빌드에 기본 적용되는 옵션의 차이는 아래와 같다.
 
-| Flag             | --dev | --prod   |
+| Flag             | \-\-dev | \-\-prod   |
 |:-----------------|:-----:|:--------:|
-| --aot            | false | true
-| --environment    | dev   | prod
-| --output-hashing | media | all
-| --sourcemaps     | true  | false
-| --extract-css    | false | true
+| \-\-aot            | false | true
+| \-\-environment    | dev   | prod
+| \-\-output-hashing | media | all
+| \-\-sourcemaps     | true  | false
+| \-\-extract-css    | false | true
 
-또한 프로덕션 빌드 시에는 [UglifyJS](http://lisperator.net/uglifyjs/)를 통하여 데드 코드(코드 실행에 영향을 주지 않는 불필요한 문자)의 제거가 자동 실행된다.
+또한 프로덕션 빌드 시에는 [UglifyJS](http://lisperator.net/uglifyjs/)를 통하여 데드 코드(코드 실행에 영향을 주지 않는 불필요한 코드)의 제거가 자동 실행된다.
 
 프로덕션 빌드의 결과물로 dist 폴더에 생성된 파일들을 서버에 업로드하면 배포(Deploy)가 완료된다. 간단한 명령어로 호스팅 환경을 구축해주는 서비스인 [now](https://zeit.co/now)를 사용하여 프로덕션 빌드의 결과물을 서버에 업로드해보자.
 
@@ -661,7 +661,7 @@ $ now
 > Deployment complete!
 ```
 
-배포가 성공하면 브라우저에서 로그에 출력된 url(위 예제의 경우 https://my-app-drtvppvqql.now.sh/)을 입력한다.
+배포가 성공하면 브라우저에서 로그에 출력된 url(위 예제의 경우 https://my-app-drtvppvqql.now.sh)을 입력한다.
 
 ## 6.3 AoT(Ahead-of Time) 컴파일
 

@@ -370,6 +370,55 @@ animation-iteration-count: 3;
 
 <div class="result"></div>
 
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .box {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      animation-name: move;
+      animation-duration: 5s;
+      animation-play-state: paused; /* 초기 애니메이션 재생 상태: 정지 */
+      animation-iteration-count: infinite;
+    }
+
+    /* @keyframes rule */
+    @keyframes move {
+      from {
+        left: 0;
+      }
+
+      to {
+        left: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  <button>start animation</button>
+  <script>
+    const box = document.querySelector('.box');
+    document.querySelector('button').addEventListener('click', function () {
+      // trigger animation
+      // prefixes would be needed...
+      box.style.animationPlayState = 'running';
+    });
+  </script>
+</body>
+</html>
+```
+
+<div class="result"></div>
+
 # 10. animation
 
 모든 애니메이션 프로퍼티를 한번에 지정한다. 값을 지정하지 않은 프로퍼티에는 기본값이 지정된다. 지정 방법은 다음과 같다.

@@ -372,12 +372,8 @@ animation-iteration-count: 3;
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
   <style>
     .box {
       position: relative;
@@ -404,13 +400,22 @@ animation-iteration-count: 3;
 </head>
 <body>
   <div class="box"></div>
-  <button>start animation</button>
+  <button class="start">start animation</button>
+  <button class="pause">pause animation</button>
+
   <script>
     const box = document.querySelector('.box');
-    document.querySelector('button').addEventListener('click', function () {
+
+    document.querySelector('.start').addEventListener('click', function () {
       // trigger animation
       // prefixes would be needed...
       box.style.animationPlayState = 'running';
+    });
+
+    document.querySelector('.pause').addEventListener('click', function () {
+      // pause animation
+      // prefixes would be needed...
+      box.style.animationPlayState = 'paused';
     });
   </script>
 </body>

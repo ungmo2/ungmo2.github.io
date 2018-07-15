@@ -125,12 +125,12 @@ export class AppComponent { }
 |:---------------------|:---------------------------------------
 | selector: 'foo'      | foo 요소에 디렉티브가 적용된다.
 | selector: '.foo'     | .foo 클래스가 선언된 요소에 디렉티브가 적용된다.
-| selector: [foo]      | foo 어트리뷰가 선언된 요소에 디렉티브가 적용된다.
+| selector: [foo]      | foo 어트리뷰트가 선언된 요소에 디렉티브가 적용된다.
 | selector: [foo=bar]  | foo 어트리뷰트의 값이 bar로 선언된 요소에 디렉티브가 적용된다.
 | selector: :not(foo)  | foo 요소가 아닌 모든 요소에 디렉티브가 적용된다.
 | selector: 'foo, bar' | foo 또는 bar 요소에 디렉티브가 적용된다.
 
-이러한 selector 프로퍼티의 값에 의한 디렉티브의 적용은 컴포넌트에도 그대로 적용된다. @Component 메타데이터 객체의 selector 프로퍼티는 @Directive 메타데이터 객체의 selector 프로퍼티를 상속 받은 것이기 때문이다. 하지만 컴포넌트의 selector 프로퍼티에는 하나의 요소 이름을 설정하는 것이 일반적이다.
+selector 프로퍼티의 값에 의해 디렉티브의 적용이 결정되는 것은 컴포넌트에도 그대로 적용된다. @Component 메타데이터 객체의 selector 프로퍼티는 @Directive 메타데이터 객체의 selector 프로퍼티를 상속 받은 것이기 때문이다. 하지만 컴포넌트의 selector 프로퍼티에는 하나의 요소 이름을 설정하는 것이 일반적이다.
 
 <!-- 생성자에 ElementRef와 Renderer가 주입(inject)되었다. ElementRef는 nativeElement 프로퍼티를 통해 DOM에 직접 접근할 수 있는 서비스이다. DOM에 직접 접근하는 경우, XSS 공격에 노출될 수 있는 단점이 있다. 따라서 ElementRef 대신 Renderer의 setElementStyle 메소드를 사용하여 요소의 스타일을 변경하도록 한다. -->
 
@@ -311,7 +311,7 @@ export class TextColorDirective {
 
 <iframe src="https://stackblitz.com/edit/custom-attr-directive-4?ctl=1&embed=1&hideNavigation=1&file=src/app/text-color.directive.ts" frameborder="0" width="100%" height="500"></iframe>
 
-조금더 리팩터링를 해보자. 별도의 color 어트리뷰트에 바인딩한 컬러를 이번에는 textColor 디렉티브에 직접 바인딩하도록 수정한다.
+조금더 리팩터링를 해보자. 별도의 color 프로퍼티에 바인딩한 컬러를 이번에는 textColor 디렉티브에 직접 바인딩하도록 수정한다.
 
 ```typescript
 // app.component.ts

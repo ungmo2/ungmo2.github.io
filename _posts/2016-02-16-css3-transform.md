@@ -131,7 +131,7 @@ transform: func1 func2 func3 ...;
 </html>
 ```
 
-<div class="result"></div>
+<div class="result" style="height: 230px"></div>
 
 ## 1.2 transform-origin
 
@@ -199,7 +199,7 @@ transform: func1 func2 func3 ...;
 </html>
 ```
 
-<div class="result"></div>
+<div class="result" style="height: 235px"></div>
 
 | Property         | Chrome | Edge   | IE     | Firefox| Safari | Opera  |
 |:-----------------|:------:|:------:|:------:|:------:|:------:|:------:|

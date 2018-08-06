@@ -29,9 +29,9 @@ transition으로도 어느 정도의 애니메이션 효과를 표현할 수 있
 | 프로퍼티                       |  설명                              | 기본값
 |:--------------------------|:----------------------------------|:-----:|
 | animation-name            | @keyframes 애니메이션 이름을 지정한다
-| animation-duration        | 한 싸이클의 애니메이션에 소요되는 시간을 초 단위로 지정한다. | 0s
+| animation-duration        | 한 싸이클의 애니메이션에 소요되는 시간을 초 단위(s) 또는 밀리 초 단위(ms)로 지정한다. | 0s
 | animation-timing-function | 애니메이션 효과를 위한 타이밍 함수를 지정한다. | ease
-| animation-delay           | 요소가 로드된 시점과 애니메이션이 실제로 시작하는 사이에 대기하는 시간을 초 단위로 지정한다 | 0s
+| animation-delay           | 요소가 로드된 시점과 애니메이션이 실제로 시작하는 사이에 대기하는 시간을 초 단위(s) 또는 밀리 초 단위(ms)로 지정한다 | 0s
 | animation-iteration-count | 애니메이션 재생 횟수를 지정한다. | 1
 | animation-direction       | 애니메이션이 종료된 이후 반복될 때 진행하는 방향을 지정한다.| normal
 | animation-fill-mode       | 애니메이션 미실행 시(종료 또는 대기) 요소의 스타일을 지정한다.
@@ -108,7 +108,7 @@ CSS 애니메이션과 트랜지션 방식의 주된 차이는 @keyframes rule�
 </html>
 ```
 
-<div class="result"></div>
+<div class="result" style="height: 150px"></div>
 
 @keyframes rule은 시간의 흐름에 따라 애니메이션을 정의한다. 여러 개의 키프레임을 정의하거나 애니메이션 중에 특정 CSS 프로퍼티에 값을 지정하는 지점을 정의할 수 있다.
 
@@ -182,23 +182,26 @@ from, to 키워드 대신 %를 사용할 수 있다. 또한 시작과 끝 키프
 </html>
 ```
 
-<div class="result"></div>
+<div class="result" style="height: 150px"></div>
 
 # 3. animation-duration
 
-한 싸이클의 애니메이션에 소요되는 시간을 초 단위로 지정한다.
+한 싸이클의 애니메이션에 소요되는 시간을 초 단위(s) 또는 밀리 초 단위(ms)로 지정한다.
 
 ```
-animation-duration: 5s;
+animation-duration: .5s;
+animation-duration: 500ms;
 ```
+
+animation-duration은 반드시 지정해야 한다. 지정하지 않는 경우 기본값 0s가 셋팅되어 어떠한 애니메이션도 실행되지 않는다.
 
 # 4. animation-timing-function
 
-애니메이션 효과를 위한 수치 함수를 지정한다. 수치 함수에 대한 설명은 [트랜지션 transition-timing-function 프로퍼티](./css3-effect#43-transition-timing-function) 을 참조하기 바란다.
+애니메이션 효과를 위한 수치 함수를 지정한다. 수치 함수에 대한 설명은 [트랜지션 transition-timing-function 프로퍼티](./css3-effect#43-transition-timing-function)를 참조하기 바란다.
 
 # 5. animation-delay
 
-요소가 로드된 시점과 애니메이션이 실제로 시작하는 사이에 대기하는 시간을 초 단위로 지정한다.
+요소가 로드된 시점과 애니메이션이 실제로 시작하는 사이에 대기하는 시간을 초 단위(s) 또는 밀리 초 단위(ms)로 지정한다.
 
 ```
 animation-delay: 2s;
@@ -252,8 +255,10 @@ animation-iteration-count: 3;
 </html>
 ```
 
-<p data-height="365" data-theme-id="0" data-slug-hash="NREYmy" data-default-tab="result" data-user="ungmo2" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ungmo2/pen/NREYmy/">animation-direction</a> by Ungmo Lee (<a href="http://codepen.io/ungmo2">@ungmo2</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="result" style="height: 370px"></div>
+
+<!--p data-height="365" data-theme-id="0" data-slug-hash="NREYmy" data-default-tab="result" data-user="ungmo2" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ungmo2/pen/NREYmy/">animation-direction</a> by Ungmo Lee (<a href="http://codepen.io/ungmo2">@ungmo2</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script-- async src="//assets.codepen.io/assets/embed/ei.js"></script-->
 
 # 8. animation-fill-mode
 
@@ -327,8 +332,10 @@ animation-iteration-count: 3;
 </html>
 ```
 
-<p data-height="900" data-theme-id="0" data-slug-hash="yaQKWR" data-default-tab="result" data-user="ungmo2" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ungmo2/pen/yaQKWR/">animation-fill-mode</a> by Ungmo Lee (<a href="http://codepen.io/ungmo2">@ungmo2</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="result" style="height: 900px"></div>
+
+<!--p data-height="900" data-theme-id="0" data-slug-hash="yaQKWR" data-default-tab="result" data-user="ungmo2" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ungmo2/pen/yaQKWR/">animation-fill-mode</a> by Ungmo Lee (<a href="http://codepen.io/ungmo2">@ungmo2</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script-- async src="//assets.codepen.io/assets/embed/ei.js"></script-->
 
 # 9. animation-play-state
 
@@ -432,7 +439,7 @@ animation-iteration-count: 3;
 animation: name duration timing-function delay iteration-count direction fill-mode play-state
 ```
 
-animation-duration은 반드시 지정해야 한다. 지정하지 않는 경우 기본값 0이 셋팅되어 어떠한 애니메이션도 실행되지 않는다. 기본값은 아래와 같다.
+animation-duration은 반드시 지정해야 한다. 지정하지 않는 경우 기본값 0s가 셋팅되어 어떠한 애니메이션도 실행되지 않는다. 기본값은 아래와 같다.
 
 ```
 none 0 ease 0 1 normal none running

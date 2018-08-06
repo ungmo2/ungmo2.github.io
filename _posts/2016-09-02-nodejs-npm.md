@@ -167,7 +167,7 @@ $ npm install node-emoji --save
 [npm@5](http://blog.npmjs.org/post/161081169345/v500)부터 `--save`는 기본 옵션이 되었다. `--save` 옵션을 사용하지 않더라도 모든 install 명령은 package.json의 dependencies에 설치된 패키지와 버전을 기록한다. 기존의 `--save-dev`은 변경되지 않았다.
 {: .info}
 
-`devDependencies`에는 개발 시에만 사용하는 개발용 의존 패키지를 명시한다. 예를 들어 TypeScript와 같은 트랜스파일러는 개발 단계에서만 필요하고 배포할 필요는 없으므로 devDependencies에 포함시킨다. npm install 명령어에 `--save-dev` 옵션을 사용하면 패키지 설치와 함께 package.json의 devDependencies에 설치된 패키지와 버전이 기록된다.
+`devDependencies`에는 개발 시에만 사용하는 개발용 의존 패키지를 명시한다. 예를 들어 TypeScript와 같은 트랜스파일러는 개발 단계에서만 필요하고 배포할 필요는 없으므로 devDependencies에 포함시킨다. npm install 명령어에 `--save-dev`(축약형 -D) 옵션을 사용하면 패키지 설치와 함께 package.json의 devDependencies에 설치된 패키지와 버전이 기록된다.
 
 ```bash
 $ npm install <package> --save-dev

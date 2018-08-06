@@ -68,9 +68,9 @@ description: 트랜지션(transition)은 CSS 프로퍼티 변경에 따른 표�
 
 <div class="result"></div>
 
-위 예제에서는 div 요소에 마우스가 올라갈 때(hover on)와 마우스가 내려올 때(hover off) border-radius, background 프로퍼티의 변경이 발생한다. 그리고 이들 프로퍼티의 변경을 2초에 걸쳐 변화하도록 한 것이다.
+위 예제에서는 div 요소에 마우스가 올라갈 때(hover on)와 마우스가 내려올 때(hover off) border-radius, background 프로퍼티 값의 변화가 발생한다. 그리고 이들 프로퍼티 값의 변화를 2초에 걸쳐 이루어지도록 설정한 것이다.
 
-div에 transition을 설정하면 마우스가 올라갈 때(hover on)와 마우스가 내려올 때(hover off) 모두 transition이 발동한다. 하지만 div:hover에 transition을 설정하면 마우스가 올라갈 때(hover on)는 transition이 발동하지만 마우스가 내려올 때(hover off)는 transition이 발동하지 않는다.
+div 셀렉터의 룰셋에 트랜지션을 설정하면 마우스가 올라갈 때(hover on)와 마우스가 내려올 때(hover off) 모두 트랜지션이 발동한다. 하지만 div:hover 셀렉터의 룰셋에 트랜지션을 설정하면 마우스가 올라갈 때(hover on)는 트랜지션이 발동하지만 마우스가 내려올 때(hover off)는 트랜지션이 발동하지 않는다.
 {: .info}
 
 ```html
@@ -99,16 +99,19 @@ div에 transition을 설정하면 마우스가 올라갈 때(hover on)와 마우
 
 <div class="result"></div>
 
-**transition은 자동으로 발동되지 않는다.** :hover와 같은 [가상 클래스 선택자(Pseudo-Classes)](./css3-selector#7-가상-클래스-셀렉터-pseudo-class-selector) 또는 JavaScript의 이벤트와 같은 부수적인 액션에 의해 발동한다. 위 예제의 div 요소에 적용된 transition은 이와 같은 부수적 액션없이는 어떤 효과도 볼 수 없다.
+**transition은 자동으로 발동되지 않는다.** :hover와 같은 [가상 클래스 선택자(Pseudo-Classes)](./css3-selector#7-가상-클래스-셀렉터-pseudo-class-selector) 또는 JavaScript의 이벤트와 같은 부수적인 액션에 의해 발동한다. 위 예제의 div 요소에 적용된 트랜지션은 이와 같은 부수적 액션없이는 어떤 효과도 볼 수 없다.
+
+만약 트랜지션이 자동 발동(self-invoking transition)하도록 하고 싶다면 애니메이션(./css3-animation)을 사용하도록 한다.
+{: .info}
 
 transition의 프로퍼티는 아래와 같다.
 
 | 프로퍼티                     |  설명        | 기본값
 |:---------------------------|:------------|:-----:|
 | transition-property        | 트랜지션의 대상이 되는 CSS 프로퍼티를 지정한다 | all
-| transition-duration        | 트랜지션이 일어나는 지속시간(duration)을 초 단위로 지정한다 | 0s
+| transition-duration        | 트랜지션이 일어나는 지속시간(duration)을 초 단위(s) 또는 밀리 초 단위(ms)로 지정한다 | 0s
 | transition-timing-function | 트랜지션 효과를 위한 수치 함수를 지정한다. | ease
-| transition-delay           | 프로퍼티가 변화한 시점과 트랜지션이 실제로 시작하는 사이에 대기하는 시간을 초 단위로 지정한다 | 0s
+| transition-delay           | 프로퍼티가 변화한 시점과 트랜지션이 실제로 시작하는 사이에 대기하는 시간을 초 단위(s) 또는 밀리 초 단위(ms)로 지정한다 | 0s
 | transition                 | 모든 트랜지션 프로퍼티를 한번에 지정한다 ([shorthand syntax](https://www.w3.org/TR/css3-transitions/#transition-shorthand-property))
 
 # 1. transition-property
@@ -163,7 +166,7 @@ opacity outline-color outline-offset outline-width
 visibility z-index
 ```
 
-또한 요소의 프로퍼티가 변화하면 브라우저는 프로퍼티 변화에 영향을 받는 모든 요소의 기하값(위치와 크기)를 계산하여 layout 작업을 수행해야 한다. 이것은 브라우저에게 스트레스를 주어 성능 저하의 요인이 된다. 심지어 다수의 자식 요소를 가지고 있는 요소(예를 들어 body 요소)가 변경되면 모든 자식 요소의 기하값이 재계산될 수도 있다. 따라서 layout에 영향을 주는 트랜지션 효과는 회피하기 위한 노력이 필요하다.
+또한 요소의 프로퍼티 값이 변화하면 브라우저는 프로퍼티 값의 변화에 영향을 받는 모든 요소의 기하값(위치와 크기)를 계산하여 layout 작업을 수행한다. 이것은 브라우저에게 스트레스를 주어 성능 저하의 요인이 된다. 심지어 다수의 자식 요소를 가지고 있는 요소(예를 들어 body 요소)가 변경되면 모든 자식 요소의 기하값이 재계산될 수도 있다. 따라서 layout에 영향을 주는 트랜지션 효과는 회피하도록 노력해야 한다.
 
 layout에 영향을 주는 프로퍼티는 다음과 같다.
 
@@ -178,7 +181,7 @@ clear white-space
 
 # 2. transition-duration
 
-`transition-duration` 프로퍼티는 트랜지션에 일어나는 지속시간(duration)을 초 단위로 지정한다. **프로퍼티값을 지정하지 않을 경우 기본값 0s이 적용되어 어떠한 트랜지션 효과도 볼 수 없다.**
+`transition-duration` 프로퍼티는 트랜지션에 일어나는 지속시간(duration)을 초 단위(s) 또는 밀리 초 단위(ms)로 지정한다. **프로퍼티값을 지정하지 않을 경우 기본값 0s이 적용되어 어떠한 트랜지션 효과도 볼 수 없다.**
 
 ```html
 <!DOCTYPE html>
@@ -219,7 +222,7 @@ clear white-space
 
 <div class="result"></div>
 
-transition-duration 프로퍼티값은 transition-property 프로퍼티값과 1:1 대응한다. 아래의 경우, width 프로퍼티는 2초에 지속시간을 갖는다(2초에 걸쳐 변화한다).
+transition-duration 프로퍼티값은 transition-property 프로퍼티값과 1:1 대응한다. 아래의 경우, width 프로퍼티는 2초의 지속시간을 갖는다(2초에 걸쳐 변화한다).
 
 ```css
 div {
@@ -237,7 +240,7 @@ div {
 }
 ```
 
-또한 transition 프로퍼티만으로 표현이 가능하다.
+또한 transition 프로퍼티만으로 축약 표현이 가능하다.
 
 ```css
 div {
@@ -319,7 +322,7 @@ div {
 
 # 4. transition-delay
 
-프로퍼티가 변화한 시점과 트랜지션이 실제로 시작하는 사이에 대기하는 시간을 초 단위로 지정한다. 즉, transition-delay로 대기 사간을 지정하여 프로퍼티가 변화하여도 즉각 트랜지션이 실행되지 않고, 일정 시간 대기한 후 트랜지션이 실행되도록 한다.
+프로퍼티가 변화한 시점과 트랜지션이 실제로 시작하는 사이에 대기하는 시간을 초 단위(s) 또는 밀리 초 단위(ms)로 지정한다. 즉, transition-delay로 대기 사간을 지정하여 프로퍼티의 값이 변화하여도 즉시 트랜지션이 실행되지 않고, 일정 시간 대기한 후 트랜지션이 실행되도록 한다.
 
 ```html
 <!DOCTYPE html>

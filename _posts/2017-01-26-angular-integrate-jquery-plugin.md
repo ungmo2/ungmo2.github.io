@@ -196,7 +196,7 @@ slick 플러그인의 타입 정의 파일을 설치한다.
 $ npm install --save-dev @types/slick-carousel
 ```
 
-에러는 발생하지 않지만 slick 플러그인이 정상적으로 동작하지 않는다. 그 이유는 템플릿의 컴파일이 완료되어 DOM이 완성되기 이전에 slick 메서드을 호출하였기 때문이다. ngOnInit 생명주기 훅 메서드에서 호출하던 slick 메서드를 ngAfterViewInit 생명주기 훅 메서드에서 호출하도록 수정한다.
+에러는 발생하지 않지만 slick 플러그인이 정상적으로 동작하지 않는다. 그 이유는 템플릿의 컴파일이 완료되어 DOM이 완성되기 이전에 slick 메서드를 호출하였기 때문이다. ngOnInit 생명주기 훅 메서드에서 호출하던 slick 메서드를 ngAfterViewInit 생명주기 훅 메서드에서 호출하도록 수정한다.
 
 ```typescript
 // app.component.ts

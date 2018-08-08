@@ -167,10 +167,15 @@ Angular는 컴포넌트의 CSS 스타일을 컴포넌트의 뷰에 캡슐화하�
 | ViewEncapsulation  | 의미
 |:-------------------|:----------------------
 | Emulated           | 임의의 어트리뷰트를 추가하는 방식으로 뷰 캡슐화를 구현한다. 컴포넌트의 스타일은 해당 컴포넌트에만 적용된다. (기본 전략)
-| Native             | 웹 컴포넌트의 Shadow DOM을 사용하여 뷰 캡슐화를 구현한다. 컴포넌트의 스타일은 해당 컴포넌트에만 적용된다.
+| ShadowDom/Native   | 웹 컴포넌트의 Shadow DOM을 사용하여 뷰 캡슐화를 구현한다. 컴포넌트의 스타일은 해당 컴포넌트에만 적용된다. Native 대신 ShadowDom을 사용하도록 한다. 현재 대부분의 브라우저는 Shadow DOM을 지원하지 않는다.
 | None               | 스타일 캡슐화를 지원하지 않는다. 컴포넌트의 CSS는 전역에 지정되어 다른 다른 컴포넌트에 영향을 준다.
 
-위에서 살펴본 예제를 웹 컴포넌트의 Shadow DOM을 사용하는 Native 전략으로 변경하여 보자. AppComponent와 ChildComponent의 @Component 메타데이터 객체에 아래와 같이 encapsulation 프로퍼티를 추가하고 ViewEncapsulation.Native를 지정한다.
+위에서 살펴본 예제를 웹 컴포넌트의 Shadow DOM을 사용하는 Native 전략으로 변경하여 보자.
+
+[각 브라우저의 Shadow DOM 지원 현황](https://caniuse.com/#search=shadow)에서 확인할 수 있듯이 현재 크롬과 오페라를 제외한 대부분의 브라우저는 Shadow DOM을 지원하지 않는다. 따라서 현재 권장하는 ViewEncapsulation 옵션은 기본 전략인 Emulated과 None이다.
+{: .info}
+
+AppComponent와 ChildComponent의 @Component 메타데이터 객체에 아래와 같이 encapsulation 프로퍼티를 추가하고 ViewEncapsulation.Native를 지정한다.
 
 ```typescript
 // app.component.ts

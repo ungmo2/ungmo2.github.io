@@ -49,7 +49,8 @@ jQuery(document).ready(function ($) {
   // Scroll to next section
   $('#scroll-icon').click( function() {
     $('html, body').animate({
-      scrollTop: ($('.index-title').offset().top)
+      // scrollTop: ($('.index-title').offset().top)
+      scrollTop: ($('.book').offset().top - 50)
     }, 1000);
   });
 

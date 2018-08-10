@@ -1,0 +1,17 @@
+.book {
+  max-width: 380px;
+  width: 100%;
+  color: white;
+  background: white;
+  padding: 20px;
+  margin: 0px auto 40px;
+  text-align: center;
+  position: relative;
+  top: 50px;
+  border-radius: 4px;
+
+  @include mobile {
+    top: 0;
+    margin: 10px auto;
+  }
+}

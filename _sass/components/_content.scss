@@ -33,6 +33,10 @@
     // position: relative;
     // top: -1px;
 
+    // CodeMirror theme css가 적용된 이후 표시하도록 한다.
+    // javascript/post.js:118
+    visibility: hidden;
+
     background-color: #f9f2f4;
     border-radius: 3px;
     color: #c7254e;

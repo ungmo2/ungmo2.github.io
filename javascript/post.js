@@ -87,7 +87,7 @@ jQuery(document).ready(function ($) {
   /////////////////////////
   // CodeMirror
   CodeMirror.modeURL = '/assets/vendor/codemirror/mode/%N/%N.js';
-  var codeBlocks = document.querySelectorAll('pre code');
+  var codeBlocks = document.querySelectorAll('pre > code');
 
   function parseMode(mode) {
     // switch (mode) {
@@ -106,11 +106,17 @@ jQuery(document).ready(function ($) {
     CodeMirror.requireMode(syntax.mode, () => {
       var value = _.unescape(block.innerHTML);
       block.innerHTML = '';
+
+      // SET CODEMIRROR's THEME
       block.parentNode.className = 'cm-s-dracula CodeMirror';
       // block.parentNode.className = 'cm-s-default CodeMirror';
+
       CodeMirror.runMode(value, syntax.mime, block, {
         tabSize: 2
       });
+
+      // CodeMirror theme css가 적용된 이후 표시하도록 한다.
+      block.style.visibility = 'visible';
     });
   });
 });

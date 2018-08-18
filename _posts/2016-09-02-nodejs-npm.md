@@ -246,15 +246,75 @@ semantic versioning(유의적 버전)
 
 버전에 대한 보다 자세한 사항은 [semver : The semantic versioner for npm](https://docs.npmjs.com/misc/semver)를 참조하기 바란다.
 
-## 2.5 npm help
+## 2.5 자주 사용하는 npm 명령어
 
-`npm help` 명령어를 사용하면 npm CLI 명령어에 대한 설명을 참조할 수 있다.
+package.json 생성
+
+```bash
+$ npm init
+# 기본 설정
+$ npm init -y
+```
+
+패키지 설치
+
+```bash
+# 로컬 설치
+$ npm install <package-name>
+# 전역 설치
+$ npm install -g <package-name>
+# 개발 설치
+$ npm install --save-dev <package-name>
+# package.json의 모든 패키지 설치
+$ npm install
+```
+
+패키지 제거
+
+```bash
+# 로컬/개발 패키지 제거
+$ npm uninstall <package-name>
+# 전역 패키지 제거
+$ npm uninstall -g <package-name>
+```
+
+패키지 업데이트
+
+```bash
+$ npm update <package-name>
+```
+
+전역 설치 패키지 확인
+
+```bash
+$ npm ls -g --depth=0
+```
+
+package.json scripts 프로퍼티의 start 실행
+
+```bash
+$ npm start
+```
+
+package.json scripts 프로퍼티의 start 이외의 scripts 실행
+
+```bash
+$ npm run <script-name>
+```
+
+버전 확인
+
+```bash
+$ npm -v
+```
+
+npm 명령어 설명 참조
 
 ```bash
 $ npm help <command>
 ```
 
-npm의 명령어에 대한 자세한 설명은 [npm CLI 명령어](https://docs.npmjs.com/#cli)을 참조하기 바란다.
+npm 명령어에 대한 자세한 설명은 [npm CLI 명령어](https://docs.npmjs.com/#cli)을 참조하기 바란다.
 
 # Reference
 

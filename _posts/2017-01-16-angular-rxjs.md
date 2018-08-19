@@ -41,6 +41,8 @@ Observable과 Observer
 옵저버 패턴
 {: .desc-img}
 
+<iframe src="https://stackblitz.com/edit/typescript-observer-pattern-exam?ctl=1&embed=1&hideNavigation=1&file=index.ts" frameborder="0" width="100%" height="500"></iframe>
+
 <!-- ![reactive-programming](/img/reactive-programming.png)
 
 리액티브 프로그래밍

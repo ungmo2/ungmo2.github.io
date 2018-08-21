@@ -338,15 +338,15 @@ font: italic small-caps bolder 16px/3 cursive;
 
 # 9. white-space 프로퍼티
 
-white space는 공백(space), 들여쓰기(tab), 줄바꿈(line break)을 의미한다. html은 기본적으로 연속된 공백(space), 들여쓰기(tab)는 1번만 실행되며 줄바꿈(line break)은 무시된다. 또한 텍스트는 부모 가로 영역을 벗어나지 않고 자동 줄바꿈(wrap)된다. `white-space` 프로퍼티는 이러한 기본 동작을 제어하기 위한 프로퍼티이다.
+white space는 공백(space), 들여쓰기(tab), 줄바꿈(line break)을 의미한다. html은 기본적으로 연속된 공백(space), 들여쓰기(tab)는 1번만 실행되며 줄바꿈(line break)은 무시된다. 또한 텍스트는 부모의 가로 영역을 벗어나지 않고 자동 줄바꿈(wrap)된다. `white-space` 프로퍼티는 이러한 기본 동작을 제어하기 위한 프로퍼티이다.
 
 | 프로퍼티값  |line break | space/tab | wrapping(자동줄바꿈)
 |:---------|:---------:|:---------:|:---------:|
-| normal   | 무시       | 1번만      | O
-| nowrap   | 무시       | 1번만      | X
-| pre      | 반영       | 반영       | X
-| pre-wrap | 반영       | 반영       | O
-| pre-line | 반영       | 1번만      | O
+| normal   | 무시       | 1번만 반영  | O
+| nowrap   | 무시       | 1번만 반영  | X
+| pre      | 반영       | 그대로 반영  | X
+| pre-wrap | 반영       | 그대로 반영  | O
+| pre-line | 반영       | 1번만 반영  | O
 
 ```html
 <!DOCTYPE html>
@@ -392,6 +392,106 @@ white space는 공백(space), 들여쓰기(tab), 줄바꿈(line break)을 의미
 ```
 
 <div class="result"></div>
+
+아래는 float 대신 inline-block을 사용한 가로 정렬 예제이다.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Infinite looping Crousel Slider</title>
+  <style>
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400);
+
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: #58666e;
+      background-color: #f0f3f4;
+    }
+
+    .carousel-view {
+      /* 자식 컨텐츠 너비에 fit */
+      display: inline-block;
+      position: relative;
+      margin: 0 auto;
+      border: 1px dotted red;
+    }
+
+    .carousel-container {
+      /* 자식 컨텐츠의 줄바꿈을 무시하여 1줄로 가로 정렬한다. */
+      white-space: nowrap;
+      /* inline-block 레벨 요소 뒤에 공백(엔터, 스페이스 등)이 있는 경우,
+         정의하지 않은 space(4px)가 자동 지정된다. 이것을 회피하는 방법이다. */
+      font-size: 0;
+      margin: 0;
+      padding: 0;
+    }
+
+    .carousel-item {
+      display: inline-block;
+      list-style: none;
+      padding: 5px;
+    }
+
+    .carousel-item:last-child {
+      margin-right: 0;
+    }
+
+    .carousel-control {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2em;
+      color: #fff;
+      background-color: transparent;
+      border-color: transparent;
+      cursor: pointer;
+      z-index: 99;
+    }
+
+    .carousel-control:focus {
+      outline: none;
+    }
+
+    .carousel-control.prev {
+      left: 0;
+    }
+
+    .carousel-control.next {
+      right: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="carousel" class="carousel-view">
+    <button class="carousel-control prev">&laquo;</button>
+    <ul class="carousel-container">
+      <li class="carousel-item">
+        <a href="#">
+          <img src="http://via.placeholder.com/400x150/3498db/fff&text=1">
+        </a>
+      </li>
+      <li class="carousel-item">
+        <a href="#">
+          <img src="http://via.placeholder.com/400x150/3498db/fff&text=2">
+        </a>
+      </li>
+      <li class="carousel-item">
+        <a href="#">
+          <img src="http://via.placeholder.com/400x150/3498db/fff&text=3">
+        </a>
+      </li>
+    </ul>
+    <button class="carousel-control next">&raquo;</button>
+  </div>
+</body>
+</html>
+```
+
+<div class="result" style="height: 350px"></div>
 
 # 10. text-overflow 프로퍼티
 

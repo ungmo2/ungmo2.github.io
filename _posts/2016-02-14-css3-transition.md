@@ -10,7 +10,7 @@ description: 트랜지션(transition)은 CSS 프로퍼티 변경에 따른 표�
 * TOC
 {:toc}
 
-트랜지션(transition)은 2개의 상태(state) 간에 변화(transition)가 발생하였을 경우, 이에 반응하여 동작한다. 예를 들어 아래의 예제를 살펴보자. div 요소는 기본 상태에서 hover 상태로 변화할 수 있으며 이때 CSS 프로퍼티 border-radius와 background의 값이 변화한다.
+트랜지션(transition)은 CSS 프로퍼티의 값이 변화할 때, 프로퍼티 값의 변화가 <strong>일정 시간(duration)</strong>에 걸쳐 일어나도록 하는 것이다. 예를 들어 아래의 예제를 살펴보자. div 요소는 기본 상태에서 hover 상태로 변화할 때, CSS 프로퍼티 border-radius와 background 프로퍼티의 값이 변화한다.
 
 ```html
 <!DOCTYPE html>
@@ -36,7 +36,7 @@ description: 트랜지션(transition)은 CSS 프로퍼티 변경에 따른 표�
 
 <div class="result"></div>
 
-상태 변화에 따라 CSS 프로퍼티가 변경되면 프로퍼티 변경에 따른 표시의 변화(transition)는 지체없이 즉시 발생한다. 위 예제의 경우, div 요소에 마우스가 올라가서 hover 상태로 변화하면 div 요소의 border-radius, background의 값을 즉시 반영한다.
+상태 변화에 따라 CSS 프로퍼티가 변경되면 프로퍼티 변경에 따른 표시의 변화(transition)는 지체없이 즉시 발생한다. 위 예제의 경우, div 요소에 마우스가 올라가서 hover 상태가 되면 div 요소의 border-radius, background 프로퍼티의 값이 즉시 변경된다.
 
 트랜지션(transition)은 상태 변화에 동반하여 변경되는 CSS 프로퍼티 값에 의한 표시의 변화를 부드럽게 하기 위해 애니메이션 속도를 조절한다. 즉, 프로퍼티 값의 변경이 표시의 변화에 즉시 영향을 미치게 하는 대신 그 프로퍼티 값의 변화가 <strong>일정 시간(duration)</strong>에 걸쳐 일어나도록 하는 것이다.
 
@@ -99,9 +99,45 @@ div 셀렉터의 룰셋에 트랜지션을 설정하면 마우스가 올라갈 �
 
 <div class="result"></div>
 
-**transition은 자동으로 발동되지 않는다.** :hover와 같은 [가상 클래스 선택자(Pseudo-Classes)](./css3-selector#7-가상-클래스-셀렉터-pseudo-class-selector) 또는 JavaScript의 이벤트와 같은 부수적인 액션에 의해 발동한다. 위 예제의 div 요소에 적용된 트랜지션은 이와 같은 부수적 액션없이는 어떤 효과도 볼 수 없다.
+**transition은 자동으로 발동되지 않는다.** :hover와 같은 [가상 클래스 선택자(Pseudo-Classes)](./css3-selector#7-가상-클래스-셀렉터-pseudo-class-selector) 또는 JavaScript의 부수적인 액션에 의해 발동한다. 위 예제의 div 요소에 적용된 트랜지션은 이와 같은 부수적 액션없이는 어떤 효과도 볼 수 없다.
 
-만약 트랜지션이 자동 발동(self-invoking transition)하도록 하고 싶다면 애니메이션(./css3-animation)을 사용하도록 한다.
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    div {
+      width: 100px;
+      height: 100px;
+      background: red;
+      transition: all 2s;
+    }
+    .hover {
+      background: blue;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+<script>
+  const elem = document.querySelector('div');
+
+  elem.addEventListener('mouseover', function () {
+    this.classList.add('hover');
+  });
+
+  elem.addEventListener('mouseleave', function () {
+    this.classList.remove('hover');
+  });
+</script>
+</body>
+</html>
+```
+
+<div class="result"></div>
+
+만약 트랜지션이 자동 발동(self-invoking transition)하도록 하고 싶다면 [CSS 애니메이션](./css3-animation)을 사용하도록 한다.
 {: .info}
 
 transition의 프로퍼티는 아래와 같다.

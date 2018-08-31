@@ -145,7 +145,7 @@ val = val + '';
 console.log(typeof val + ': ' + val); // string: 123
 ```
 
-# 3. Truthy & Falsy value
+# 4. Truthy & Falsy value
 
 아래 값들은 Boolean context에서 `false`로 평가된다.
 
@@ -206,7 +206,7 @@ console.log(truthy('0'));
 console.log(truthy({}));
 ```
 
-# 4. 동등성 체크 (Checking equality)
+# 5. 동등성 체크 (Checking equality)
 
 두 값이 같은 값인지 비교할 때에 동등 연산자(==, !=)보다 일치 연산자(===, !==)를 사용하여야 한다. 동등 연산자는 암묵적으로 타입 변환된 값을 비교하지만 일치 연산자는 타입까지 비교하므로 보다 정확한 결과를 얻을 수 있다.
 
@@ -215,7 +215,7 @@ console.log(1 == '1');  // true
 console.log(1 === '1'); // false
 ```
 
-# 5. 존재 확인 (Checking existence)
+# 6. 존재 확인 (Checking existence)
 
 객체나 배열(배열도 객체이다)은 인스턴스가 생성된 상태라면 빈 객체, 빈 배열이라도 truthy로 취급된다. 이를 이용하여 존재 여부를 확인할 수 있다. 아래의 예제를 살펴보자.
 

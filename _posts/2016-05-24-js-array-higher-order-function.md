@@ -505,3 +505,5 @@ console.log(result); // { id: 2, name: 'Kim' }
 * [Array APIs](https://gist.github.com/rauschma/f7b96b8b7274f2e2d8dab899803346c3)
 
 * [ECMAScript APIs: TypeScript](https://github.com/Microsoft/TypeScript/blob/master/lib/lib.es6.d.ts)
+
+* [Which algorithm does the JavaScript Array#sort() function use?](https://stackoverflow.com/questions/234683/javascript-array-sort-implementation)

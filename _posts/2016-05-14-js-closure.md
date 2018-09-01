@@ -12,11 +12,19 @@ description: 클로저(closure)는 자바스크립트에서 중요한 개념 중
 
 # 1. 클로저(closure)의 개념
 
-클로저(closure)는 자바스크립트에서 중요한 개념 중 하나로 자바스크립트에 관심을 가지고 있다면 한번쯤은 들어보았을 내용이다. [execution context](./js-execution-context)에 대한 사전 지식이 있으면 이해하기 어렵지 않은 개념이다. 클로저는 자바스크립트 고유의 개념이 아니라 함수를 일급 객체로 취급하는 함수형 언어(Functional language: Python, Haskell, Erlang, Perl, D, R...)에서 사용되는 중요한 특성이다.
+클로저(closure)는 자바스크립트에서 중요한 개념 중 하나로 자바스크립트에 관심을 가지고 있다면 한번쯤은 들어보았을 내용이다. [execution context](./js-execution-context)에 대한 사전 지식이 있으면 이해하기 어렵지 않은 개념이다. 클로저는 자바스크립트 고유의 개념이 아니라 함수를 일급 객체로 취급하는 함수형 프로그래밍 언어(Functional Programming language: 얼랭(Erlnag), 스칼라(Scala), 하스켈(Haskell), 리스프(Lisp)...)에서 사용되는 중요한 특성이다.
 
-**클로저는 내부함수가 참조하는 외부함수의 지역변수가 외부함수에 의해 내부함수가 반환된 이후에도 life-cycle이 유지되는 것을 의미한다.**
+클로저에 대해 [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)은 아래와 같이 정의하고 있다.
 
-말이 난해하니 우선 예제를 살펴보자. 우리 모두는 자신의 힘으로 발견한 내용을 가장 쉽게 익힌다.("The Art of Computer Programming"의 저자 [도널드 커누스](https://ko.wikipedia.org/wiki/%EB%8F%84%EB%84%90%EB%93%9C_%EC%BB%A4%EB%88%84%EC%8A%A4))
+“A closure is the combination of a function and the lexical environment within which that function was declared.”<br>
+클로저는 함수와 그 함수가 선언될 때의 어휘적 환경(Lexical environment)과의 조합이다.
+{:.info}
+
+무슨 의미인지 잘 와닿지 않는다. 좀 더 풀어서 말하자면 아래와 같다.
+
+**클로저는 자신이 생성될 때의 환경(Lexical environment)을 기억하는 기능을 말한다.** 보다 자세히 설명하면 클로저는 내부함수가 참조하는 외부함수의 지역변수를 외부함수에 의해 내부함수가 반환되고 난 후, 외부함수가 소멸한 이후에도 반환된 내부함수가 참조할 수 있는 기능을 의미한다.
+
+말이 무척이나 난해하니 우선 예제부터 살펴보자. "The Art of Computer Programming"의 저자 [도널드 커누스](https://ko.wikipedia.org/wiki/도널드_커누스)의 말처럼 우리 모두는 자신의 힘으로 발견한 내용을 가장 쉽게 익힌다.
 
 ```javascript
 function outerFunc() {
@@ -28,14 +36,21 @@ function outerFunc() {
 outerFunc(); // 10
 ```
 
-함수 outerFunc 내에 내부함수 innerFunc가 선언되고 호출되었다. 이때 내부함수 innerFunc는 자신을 포함하고 있는 외부함수 outerFunc의 변수 x에 접근할 수 있다.
+함수 outerFunc 내에 내부함수 innerFunc가 선언되고 호출되었다. 이때 내부함수 innerFunc는 자신을 포함하고 있는 외부함수 outerFunc의 변수 x에 접근할 수 있다. 이는 함수 innerFunc가 함수 outerFunc의 내부에 선언되었기 때문이다.
 
-이것은 중첩된 함수의 스코프 레퍼런스를 차례대로 저장하고 있는 실행 컨텍스트의 <strong>스코프 체인</strong>을 자바스크립트 엔진이 검색하였기에 가능한 것이다. 좀더 자세히 설명하면 아래와 같다.
+스코프는 함수를 호출할 때가 아니라 함수를 어디에 선언하였는지에 따라 결정된다. 이를 **[렉시컬 스코핑(Lexical scoping)](./js-scope#5-lexical-scoping-static-scoping)**라 한다. 만약 함수 innerFunc이 함수 outerFunc의 내부가 아닌 전역에 선언되었다면 함수 innerFunc의 상위 스코프는 전역 스코프가 된다.
+{:.info}
 
-1. innerFunc 함수 내에서 변수 x를 검색한다. 검색이 실패하였다.
-2. innerFunc 함수를 포함하는 외부 함수 outerFunc에서 변수 x를 검색한다. 검색이 성공하였다.
+함수 innerFunc가 함수 outerFunc의 내부에 선언된 내부함수이므로 함수 innerFunc는 자신이 속한 렉시컬 스코프(전역, 함수 outerFunc, 자신의 스코프)를 참조할 수 있다. 이것을 [실행 컨텍스트](./js-execution-context)의 관점에서 설명해보자.
 
-이번에는 내부함수 innerFunc를 outerFunc내에서 호출하는 것이 아니라 반환하도록 변경해 보자.
+내부함수 innerFunc가 호출되면 자신의 실행 컨텍스트가 실행 컨텍스트 스택에 쌓이고 변수 객체(Variable Object)와 스코프 체인(Scope chain) 그리고 this가 결정되어 바인딩된다. 이때 스코프 체인은 전역 스코프를 가리키는 전역 객체와 함수 outerFunc의 스코프를 가리키는 함수 outerFunc의 활성 객체(Activation object) 그리고 함수 자신의 스코프를 가리키는 활성 객체를 순차적으로 바인딩한다. 스코프 체인이 바인딩한 객체가 바로 렉시컬 스코프의 실체이다.
+
+내부함수 innerFunc가 자신을 포함하고 있는 외부함수 outerFunc의 변수 x에 접근할 수 있는 것 다시 말해, 상위 스코프에 접근할 수 있는 것은 렉시컬 스코프의 레퍼런스를 차례대로 저장하고 있는 실행 컨텍스트의 <strong>스코프 체인</strong>을 자바스크립트 엔진이 검색하였기에 가능한 것이다. 좀더 자세히 설명하면 아래와 같다.
+
+1. innerFunc 함수 스코프(함수 자신의 스코프를 가리키는 활성 객체) 내에서 변수 x를 검색한다. 검색이 실패하였다.
+2. innerFunc 함수를 포함하는 외부 함수 outerFunc의 스코프(함수 outerFunc의 스코프를 가리키는 함수 outerFunc의 활성 객체)에서 변수 x를 검색한다. 검색이 성공하였다.
+
+이번에는 내부함수 innerFunc를 함수 outerFunc 내에서 호출하는 것이 아니라 반환하도록 변경해 보자.
 
 ```javascript
 function outerFunc() {
@@ -44,18 +59,23 @@ function outerFunc() {
   return innerFunc;
 }
 
-// 함수 outerFunc를 호출하면 내부 함수 innerFunc가 반환된다. 그리고 함수 outerFunc의 실행 컨텍스트는 소멸한다
+/**
+ *  함수 outerFunc를 호출하면 내부 함수 innerFunc가 반환된다.
+ *  그리고 함수 outerFunc의 실행 컨텍스트는 소멸한다.
+ */
 var inner = outerFunc();
 inner(); // 10
 ```
 
-함수 outerFunc는 내부함수 innerFunc를 반환하고 생을 마감했다. 즉, 함수 outerFunc는 실행된 이후 콜스택(실행 컨텍스트 스택)에서 제거되었으므로 함수 outerFunc의 변수 x 또한 더이상 유효하지 않게 되어 변수 x에 접근할 수 있는 방법은 달리 없어 보인다. 그러나 위 코드의 실행 결과는 변수 x의 값인 10이다. 이미 life-cycle이 종료된 함수 outerFunc의 지역변수 x가 다시 부활이라도 한 듯이 동작하고 있다. 뭔가 특별한 일이 일어나고 있는 것 같다.
+함수 outerFunc는 내부함수 innerFunc를 반환하고 생을 마감했다. 즉, 함수 outerFunc는 실행된 이후 콜스택(실행 컨텍스트 스택)에서 제거되었으므로 함수 outerFunc의 변수 x 또한 더이상 유효하지 않게 되어 변수 x에 접근할 수 있는 방법은 달리 없어 보인다. 그러나 위 코드의 실행 결과는 변수 x의 값인 10이다. 이미 life-cycle이 종료되어 실행 컨텍스트 스택에서 제거된 함수 outerFunc의 지역변수 x가 다시 부활이라도 한 듯이 동작하고 있다. 뭔가 특별한 일이 일어나고 있는 것 같다.
 
-위 예제는 자신을 포함하고 있는 외부함수보다 내부함수가 더 오래 유지되는 경우인데 이때 내부함수가 외부함수의 지역 변수에 접근할 수 있고, 외부함수는 외부함수의 지역변수를 사용하는 내부함수가 소멸될 때까지 소멸되지 못하고 상태가 유지되며 내부함수에 의해서 소멸하게 되는 특성을 클로저(Closure)라고 부른다.
+이처럼 자신을 포함하고 있는 외부함수보다 내부함수가 더 오래 유지되는 경우, 외부 함수 밖에서 내부함수가 호출되더라도 외부함수의 지역 변수에 접근할 수 있게 하는 기능을 클로저(Closure)라고 부른다. 다시 말해, 반환된 내부함수가 자신의 렉시컬 스코프를 기억하여 렉시컬 스코프 밖에서 호출될 때에도 스코프에 접근할 수 있게 하는 기능이 클로저이다.
+
+<!-- 위 예제는 자신을 포함하고 있는 외부함수보다 내부함수가 더 오래 유지되는 경우인데 이때 내부함수가 외부함수의 지역 변수에 접근할 수 있고, 외부함수는 외부함수의 지역변수를 사용하는 내부함수가 소멸될 때까지 소멸되지 못하고 상태가 유지되며 내부함수에 의해서 소멸하게 되는 기능을 클로저(Closure)라고 부른다. 다시 말해, 반환된 내부함수가 자신의 렉시컬 스코프를 기억하여 렉시컬 스코프 밖에서 호출될 때에도 스코프에 접근할 수 있게 하는 기능이 클로저이다. -->
 
 클로저에 의해 참조되는 외부함수의 변수 즉 outerFunc 함수의 변수 x를 <strong>자유변수(Free variable)</strong>라고 부른다. 클로저라는 이름은 자유변수에 함수가 닫혀있다(closed)라는 의미로 의역하면 자유변수에 엮여있는 함수라는 뜻이다.
 
-[실행 컨텍스트](./js-execution-context)의 관점에 설명하면, 내부함수가 유효한 상태에서 외부함수가 종료하여 외부함수의 실행 컨텍스트가 반환되어도, 외부함수 실행 컨텍스트 내의 <strong>Activation object</strong>(변수, 함수 선언 등의 정보를 가지고 있다)는 유효하여 내부함수가 <strong>스코프 체인</strong>을 통해 참조할 수 있는 것을 의미한다.
+[실행 컨텍스트](./js-execution-context)의 관점에 설명하면, 내부함수가 유효한 상태에서 외부함수가 종료하여 외부함수의 실행 컨텍스트가 반환되어도, 외부함수 실행 컨텍스트 내의 <strong>활성 객체(Activation object)</strong>(변수, 함수 선언 등의 정보를 가지고 있다)는 유효하여 내부함수가 <strong>스코프 체인</strong>을 통해 참조할 수 있는 것을 의미한다.
 
 즉 외부함수가 이미 반환되었어도 외부함수 내의 변수는 이를 필요로 하는 내부함수가 하나 이상 존재하는 경우 계속 유지된다. 이때 내부함수가 외부함수에 있는 변수의 복사본이 아니라 실제 변수에 접근한다는 것에 주의하여야 한다.
 
@@ -63,12 +83,12 @@ inner(); // 10
 
 ![closure](/img/closure.png)
 
-실행 컨텍스트의 Activation object와 클로저
+실행 컨텍스트의 활성 객체(Activation object)와 클로저
 {: .desc-img}
 
 # 2. 클로저의 활용
 
-클로저는 자바스크립트의 강력한 기능이지만 성능적인 면과 자원적인 면에서 손해를 볼 수 있다. 무분별한 클로저의 사용은 득보다는 실이 많다. 클로저를 사용하여야 할 장면에서 사용해야 하는데 사실 이것은 경험이 필요하다.
+클로저는 자바스크립트의 강력한 기능이지만 성능적인 면과 자원적인 면에서 손해를 볼 수 있다. <!-- 무분별한 클로저의 사용은 득보다는 실이 많다. 클로저를 사용하여야 할 장면에서 사용해야 하는데 사실 이것은 경험이 필요하다. -->
 
 ## 2.1 전역 변수의 사용 억제
 
@@ -163,7 +183,43 @@ add 함수가 호출될 때마다 지역변수 counter에 0이 할당되기 때�
 
 즉시실행함수는 한번만 실행되므로 add에 담겨있는 함수가 호출될 때마다 변수 counter가 재차 초기화될 일은 없을 것이다. 이때 중요한 것은 add에 담겨있는 함수 `function () {return ++counter;}`는 외부 함수의 변수 counter에 접근할 수 있고 변수 counter는 자신을 참조하는 함수가 소멸될 때가지 유지된다는 것이다. 이것이 바로 클로저이다.
 
-변수 counter는 외부에서 직접 접근할 수 없는 `private` 변수이므로 전역 변수를 사용했을 때와 같이 의도되지 않은 변경을 걱정할 필요도 없다.
+변수 counter는 외부에서 직접 접근할 수 없는 `private` 변수이므로 전역 변수를 사용했을 때와 같이 **의도되지 않은 변경**을 걱정할 필요도 없다.
+
+변수의 값은 누군가에 의해 언제든지 변경될 수 있어 오류 발생의 근본적 원인이 될 수 있다. 상태 변경이나 가변(mutable) 데이터를 피하고 **불변성(Immutability)을 지향**하는 함수형 프로그래밍에서 **부수 효과(Side effect)를 최대한 억제**하여 오류를 피하고 프로그램의 안정성을 높이기 위해 자주 사용된다.
+{:.info}
+
+아래는 함수형 프로그래밍에서 클로저를 활용하는 간단한 예제이다.
+
+```javascript
+// 함수를 인자로 전달받고 함수를 반환하는 고차 함수
+function makeCounter(predicate) {
+  // 자유 변수
+  var num = 0;
+  // 클로저
+  return function () {
+    num = predicate(num);
+    return num;
+  };
+}
+
+// 보조 함수
+function increase(n) {
+  return ++n;
+}
+
+// 보조 함수
+function decrease(n) {
+  return --n;
+}
+
+const increaser = makeCounter(increase);
+console.log(increaser()); // 1
+console.log(increaser()); // 2
+
+const decreaser = makeCounter(decrease);
+console.log(decreaser()); // -1
+console.log(decreaser()); // -2
+```
 
 <!--
 싱글톤 클래스를 사용한 방법
@@ -360,5 +416,3 @@ for (let i = 0; i < arr.length; i++) {
 # Reference
 
 * [http://dmitrysoshnikov.com/ecmascript/chapter-6-closures/](http://dmitrysoshnikov.com/ecmascript/chapter-6-closures/)
-
-* [http://www.w3schools.com/js/js_function_closures.asp](http://www.w3schools.com/js/js_function_closures.asp)

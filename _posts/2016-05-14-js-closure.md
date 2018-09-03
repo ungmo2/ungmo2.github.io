@@ -17,10 +17,10 @@ description: 클로저(closure)는 자바스크립트에서 중요한 개념 중
 클로저는 자바스크립트 고유의 개념이 아니므로 ECMAScript 명세에 클로저의 정의가 등장하지 않는다. 클로저에 대해 [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)은 아래와 같이 정의하고 있다.
 
 “A closure is the combination of a function and the lexical environment within which that function was declared.”<br>
-클로저는 함수와 그 함수가 선언됐을 때의 어휘적 환경(Lexical environment)과의 조합이다.
+클로저는 함수와 그 함수가 선언됐을 때의 렉시컬 환경(Lexical environment)과의 조합이다.
 {:.info}
 
-무슨 의미인지 잘 와닿지 않는다. 위 정의에서 중요한 키워드는 "함수가 선언될 때의 어휘적 환경(Lexical environment)"이다.
+무슨 의미인지 잘 와닿지 않는다. 위 정의에서 중요한 키워드는 "함수가 선언될 때의 렉시컬 환경(Lexical environment)"이다.
 
 말이 무척이나 난해하니 우선 예제부터 살펴보자. "The Art of Computer Programming"의 저자 [도널드 커누스](https://ko.wikipedia.org/wiki/도널드_커누스)의 말처럼 우리 모두는 자신의 힘으로 발견한 내용을 가장 쉽게 익힌다.
 
@@ -72,10 +72,10 @@ inner(); // 10
 다시 MDN의 정의로 돌아가 보자.
 
 “A closure is the combination of a function and the lexical environment within which that function was declared.”<br>
-클로저는 함수와 그 함수가 선언됐을 때의 어휘적 환경(Lexical environment)과의 조합이다.
+클로저는 함수와 그 함수가 선언됐을 때의 렉시컬 환경(Lexical environment)과의 조합이다.
 {:.info}
 
-위 정의에서 말하는 "함수"란 반환된 내부함수를 의미하고 "그 함수가 선언될 때의 어휘적 환경(Lexical environment)"란 내부 함수가 선언될 때의 렉시컬 스코프를 의미한다. 즉, **클로저는 반환된 내부함수가 자신이 생성될 때의 환경(Lexical environment)인 렉시컬 스코프를 기억하여 렉시컬 스코프 밖에서 호출될 때에도 스코프에 접근할 수 있게 하는 함수**를 말한다. 이를 조금 더 간단히 말하면 **클로저는 자신이 생성될 때의 환경(Lexical environment)을 기억하는 함수이다**라고 말할 수 있겠다.
+위 정의에서 말하는 "함수"란 반환된 내부함수를 의미하고 "그 함수가 선언될 때의 렉시컬 환경(Lexical environment)"란 내부 함수가 선언됐을 때의 스코프를 의미한다. 즉, **클로저는 반환된 내부함수가 자신이 선언됐을 때의 환경(Lexical environment)인 스코프를 기억하여 자신이 선언됐을 때의 환경(스코프) 밖에서 호출되어도 그 환경(스코프)에 접근할 수 있는 함수**를 말한다. 이를 조금 더 간단히 말하면 **클로저는 자신이 생성될 때의 환경(Lexical environment)을 기억하는 함수다**라고 말할 수 있겠다.
 
 <!-- 위 예제는 자신을 포함하고 있는 외부함수보다 내부함수가 더 오래 유지되는 경우인데 이때 내부함수가 외부함수의 지역 변수에 접근할 수 있고, 외부함수는 외부함수의 지역변수를 사용하는 내부함수가 소멸될 때까지 소멸되지 못하고 상태가 유지되며 내부함수에 의해서 소멸하게 되는 기능을 클로저(Closure)라고 부른다. 다시 말해, 반환된 내부함수가 자신의 렉시컬 스코프를 기억하여 렉시컬 스코프 밖에서 호출될 때에도 스코프에 접근할 수 있게 하는 기능이 클로저이다. -->
 
@@ -105,21 +105,19 @@ inner(); // 10
 <html>
 <body>
   <p>전역 변수를 사용한 Counting</p>
-
-  <button type="button" onclick="myFunction()">Count!</button>
-
-  <p id="demo">0</p>
-
+  <button id="inclease">+</button>
+  <p id="count">0</p>
   <script>
+    var count = document.getElementById('count');
     var counter = 0;
 
-    function add() {
+    function increaser() {
       return ++counter;
     }
 
-    function myFunction() {
-      document.getElementById('demo').innerHTML = add();
-    }
+    document.getElementById('inclease').onclick = function () {
+      count.innerHTML = increaser();
+    };
   </script>
 </body>
 </html>
@@ -127,69 +125,67 @@ inner(); // 10
 
 <div class='result'></div>
 
-위 코드는 잘 동작한다. 하지만 add 함수만을 위한 전역 변수 counter를 사용하고 있다. 전역 변수는 누구나 접근할 수 있어 의도하지 않게 변수명이 중복되거나 값이 변경되었을 때 문제가 될 수 있다. 그럼 전역 변수 counter를 add 함수의 지역 변수로 바꾸어보자.
+위 코드는 잘 동작한다. 하지만 increaser 함수는 전역 변수 counter의 값을 사용하고 있다. 전역 변수는 누구나 접근할 수 있어 값이 변경될 수 있다. 다시 말해 increaser 함수가 호출되기 직전에 전역변수 counter은 반드시 `0`이여하며 그렇지 않으면 제대로 동작하지 않는다. 그럼 전역 변수 counter를 increaser 함수의 지역 변수로 바꾸어 상태 변경을 방지해보자.
 
 ```html
 <!DOCTYPE html>
 <html>
 <body>
   <p>지역 변수를 사용한 Counting</p>
-
-  <button type="button" onclick="myFunction()">Count!</button>
-
-  <p id="demo">0</p>
-
+  <button id="inclease">+</button>
+  <p id="count">0</p>
   <script>
-    function add() {
+    var count = document.getElementById('count');
+
+    function increaser() {
       var counter = 0;
       return ++counter;
     }
 
-    function myFunction() {
-      document.getElementById('demo').innerHTML = add();
-    }
+    document.getElementById('inclease').onclick = function () {
+      count.innerHTML = increaser();
+    };
   </script>
-  </body>
+</body>
 </html>
 ```
 
 <div class='result'></div>
 
-add 함수가 호출될 때마다 지역변수 counter에 0이 할당되기 때문에 언제나 1이 표시된다. 클로저를 사용하여 문제를 해결해보자.
+전역변수를 지역변수로 변경하여 의도치 않은 상태 변경은 방지했지만, increaser 함수가 호출될 때마다 지역변수 counter에 0이 할당되기 때문에 언제나 1이 표시된다. 다시 말해 변경된 상태를 기억하지 못한다. 클로저를 사용하여 문제를 해결해보자.
 
 ```html
 <!DOCTYPE html>
 <html>
   <body>
   <p>클로저를 사용한 Counting</p>
-
-  <button type="button" onclick="myFunction()">Count!</button>
-
-  <p id="demo">0</p>
-
+  <button id="inclease">+</button>
+  <p id="count">0</p>
   <script>
-    var add = (function () {
+    var count = document.getElementById('count');
+
+    var increaser = (function () {
       var counter = 0;
       return function () {
         return ++counter;
       };
     }());
 
-    function myFunction() {
-      document.getElementById('demo').innerHTML = add();
-    }
+    document.getElementById('inclease').onclick = function () {
+      count.innerHTML = increaser();
+    };
   </script>
-  </body>
+</body>
 </html>
 ```
 
 <div class='result'></div>
 
-변수 add에는 즉시실행함수(immediately-invoked function expression)가 호출되어 그 결과 무명함수 `function () {return ++counter;}`를 반환한다. 따라서 `add()`를 실행하면 변수 add에 담긴 함수가 호출된다.
+변수 increaser에는 즉시실행함수(immediately-invoked function expression)가 호출되어 그 결과 함수 `function () {return ++counter;}`가 할당된다. 따라서 `increaser()`를 호출하면 변수 increaser에 담긴 함수가 호출된다.
 
-즉시실행함수는 한번만 실행되므로 add에 담겨있는 함수가 호출될 때마다 변수 counter가 재차 초기화될 일은 없을 것이다. 이때 중요한 것은 add에 담겨있는 함수 `function () {return ++counter;}`는 외부 함수의 변수 counter에 접근할 수 있고 변수 counter는 자신을 참조하는 함수가 소멸될 때가지 유지된다는 것이다. 이것이 바로 클로저이다.
+즉시실행함수는 한번만 실행되므로 increaser가 호출될 때마다 변수 counter가 재차 초기화될 일은 없을 것이다. 이때 중요한 것은 increaser에 담겨있는 함수 `function () {return ++counter;}`는 외부 함수의 변수 counter에 접근할 수 있고 변수 counter는 자신을 참조하는 함수가 소멸될 때가지 유지된다는 것이다. 이 increaser에 담긴 함수가 바로 클로저이다. increaser는 자신이 선언됐을 때의 환경(Lexical environment)인 스코프를 기억하여 그 환경 밖에서 호출되어도 그 환경(스코프)에 접근할 수 있는 함수이다.
 
-변수 counter는 외부에서 직접 접근할 수 없는 `private` 변수이므로 전역 변수를 사용했을 때와 같이 **의도되지 않은 변경**을 걱정할 필요도 없다.
+변수 counter는 외부에서 직접 접근할 수 없는 `private` 변수이므로 전역 변수를 사용했을 때와 같이 **의도되지 않은 변경**을 걱정할 필요도 없기 때문이 보다 안정적인 프로그래밍이 가능하다.
 
 변수의 값은 누군가에 의해 언제든지 변경될 수 있어 오류 발생의 근본적 원인이 될 수 있다. 상태 변경이나 가변(mutable) 데이터를 피하고 **불변성(Immutability)을 지향**하는 함수형 프로그래밍에서 **부수 효과(Side effect)를 최대한 억제**하여 오류를 피하고 프로그램의 안정성을 높이기 위해 자주 사용된다.
 {:.info}

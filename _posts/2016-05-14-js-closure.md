@@ -17,7 +17,7 @@ description: 클로저(closure)는 자바스크립트에서 중요한 개념 중
 클로저는 자바스크립트 고유의 개념이 아니므로 ECMAScript 명세에 클로저의 정의가 등장하지 않는다. 클로저에 대해 [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)은 아래와 같이 정의하고 있다.
 
 “A closure is the combination of a function and the lexical environment within which that function was declared.”<br>
-클로저는 함수와 그 함수가 선언될 때의 어휘적 환경(Lexical environment)과의 조합이다.
+클로저는 함수와 그 함수가 선언됐을 때의 어휘적 환경(Lexical environment)과의 조합이다.
 {:.info}
 
 무슨 의미인지 잘 와닿지 않는다. 위 정의에서 중요한 키워드는 "함수가 선언될 때의 어휘적 환경(Lexical environment)"이다.
@@ -72,7 +72,7 @@ inner(); // 10
 다시 MDN의 정의로 돌아가 보자.
 
 “A closure is the combination of a function and the lexical environment within which that function was declared.”<br>
-클로저는 함수와 그 함수가 선언될 때의 어휘적 환경(Lexical environment)과의 조합이다.
+클로저는 함수와 그 함수가 선언됐을 때의 어휘적 환경(Lexical environment)과의 조합이다.
 {:.info}
 
 위 정의에서 말하는 "함수"란 반환된 내부함수를 의미하고 "그 함수가 선언될 때의 어휘적 환경(Lexical environment)"란 내부 함수가 선언될 때의 렉시컬 스코프를 의미한다. 즉, **클로저는 반환된 내부함수가 자신이 생성될 때의 환경(Lexical environment)인 렉시컬 스코프를 기억하여 렉시컬 스코프 밖에서 호출될 때에도 스코프에 접근할 수 있게 하는 함수**를 말한다. 이를 조금 더 간단히 말하면 **클로저는 자신이 생성될 때의 환경(Lexical environment)을 기억하는 함수이다**라고 말할 수 있겠다.

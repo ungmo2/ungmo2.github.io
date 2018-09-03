@@ -181,7 +181,7 @@ inner(); // 10
 
 <div class='result'></div>
 
-변수 increaser에는 즉시실행함수(immediately-invoked function expression)가 호출되어 그 결과 함수 `function () {return ++counter;}`가 할당된다. 따라서 `increaser()`를 호출하면 변수 increaser에 담긴 함수가 호출된다.
+변수 increaser에는 즉시실행함수(immediately-invoked function expression)가 호출되어 그 결과 함수 `function () {return ++counter;}`가 할당된다. 따라서 increaser를 호출하면 변수 increaser에 담긴 함수가 호출된다.
 
 즉시실행함수는 한번만 실행되므로 increaser가 호출될 때마다 변수 counter가 재차 초기화될 일은 없을 것이다. 이때 중요한 것은 increaser에 담겨있는 함수 `function () {return ++counter;}`는 외부 함수의 변수 counter에 접근할 수 있고 변수 counter는 자신을 참조하는 함수가 소멸될 때가지 유지된다는 것이다. 이 increaser에 담긴 함수가 바로 클로저이다. increaser는 자신이 선언됐을 때의 환경(Lexical environment)인 스코프를 기억하여 그 환경 밖에서 호출되어도 그 환경(스코프)에 접근할 수 있는 함수이다.
 

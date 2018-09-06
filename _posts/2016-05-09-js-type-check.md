@@ -46,6 +46,7 @@ typeof NaN;             // number
 typeof true;            // boolean
 typeof [];              // object
 typeof {};              // object
+typeof new String();    // object
 typeof new Date();      // object
 typeof /test/gi;        // object
 typeof function () {};  // function
@@ -69,20 +70,23 @@ obj.toString(); // [object Object]
 
 ```javascript
 Object.prototype.toString.call('');             // [object String]
+Object.prototype.toString.call(new String());   // [object String]
 Object.prototype.toString.call(1);              // [object Number]
+Object.prototype.toString.call(new Number());   // [object Number]
 Object.prototype.toString.call(NaN);            // [object Number]
+Object.prototype.toString.call(Infinity);       // [object Number]
 Object.prototype.toString.call(true);           // [object Boolean]
+Object.prototype.toString.call(undefined);      // [object Undefined]
+Object.prototype.toString.call();               // [object Undefined]
+Object.prototype.toString.call(null);           // [object Null]
 Object.prototype.toString.call([]);             // [object Array]
 Object.prototype.toString.call({});             // [object Object]
 Object.prototype.toString.call(new Date());     // [object Date]
-Object.prototype.toString.call(new String());   // [object String]
 Object.prototype.toString.call(Math);           // [object Math]
 Object.prototype.toString.call(/test/i);        // [object RegExp]
 Object.prototype.toString.call(function () {}); // [object Function]
 Object.prototype.toString.call(document);       // [object HTMLDocument]
-Object.prototype.toString.call(undefined);      // [object Undefined]
-Object.prototype.toString.call();               // [object Undefined]
-Object.prototype.toString.call(null);           // [object Null]
+Object.prototype.toString.call(argument);       // [object Arguments]
 Object.prototype.toString.call(undeclared);     // ReferenceError
 ```
 
@@ -94,14 +98,19 @@ function getType(target) {
 }
 ```
 
-[String.prototype.slice](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String/slice) 메소드를 사용하여 Object.prototype.toString.call 메소드가 반환한 문자열에서 `[object `과 `]`를 제외하고 타입을 나타내는 문자열만을 추출하였다.
+[String.prototype.slice](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String/slice) 메소드를 사용하여 Object.prototype.toString.call 메소드가 반환한 문자열에서 "[object"와 "]"를 제외하고 타입을 나타내는 문자열만을 추출하였다.
 
 ```javascript
-getType('');      // String
-getType(1);       // Number
-getType({});      // Object
-getType([]);      // Array
-getType(/test/i); // RegExp
+getType('');         // String
+getType(1);          // Number
+getType(true);       // Boolean
+getType(undefined);  // Undefined
+getType(null);       // Null
+getType({});         // Object
+getType([]);         // Array
+getType(/test/i);    // RegExp
+getType(Math);       // Math
+getType(new Date()); // Date
 getType(function () {}); // Function
 ```
 
@@ -111,7 +120,7 @@ getType(function () {}); // Function
 function sum(a, b) {
   // a와 b가 number 타입인지 체크
   if (getType(a) !== 'Number' || getType(b) !== 'Number') {
-    throw new TypeError('파라미터 a 또는 b에 number 타입이 아닌 값이 할당되었습니다.');
+    throw new TypeError('파라미터에 number 타입이 아닌 값이 할당되었습니다.');
   }
   return a + b;
 }

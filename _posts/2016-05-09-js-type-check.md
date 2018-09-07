@@ -28,7 +28,7 @@ function sum(a, b) {
 sum('x', 'y'); // 'xy'
 ```
 
-위 코드는 자바스크립트 문법 상 어떠한 문제도 없으므로 자바스크립트 엔진은 아무런 이의 제기없이 위 코드를 실행할 것이다. 이러한 상황이 발생한 이유는 변수나 반환값의 타입을 사전에 지정하지 않는 자바스크립트의 동적 타이핑(Dynamic Typing)에 의한 것이다.
+위 코드는 자바스크립트 문법 상 어떠한 문제도 없으므로 자바스크립트 엔진은 아무런 이의 제기없이 위 코드를 실행할 것이다. 이러한 상황이 발생한 이유는 변수나 반환값의 타입을 사전에 지정하지 않는 자바스크립트의 동적 타이핑(Dynamic Typing)에 의한 것이다. 이와 같은 이유로 자바스크립트는 타입 체크가 필요하다.
 
 ```javascript
 function sum(a, b) {
@@ -37,7 +37,7 @@ function sum(a, b) {
 }
 ```
 
-이와 같은 이유로 자바스크립트는 타입 체크가 필요하다. [타입 연산자(Type Operators)](./js-operator#6-%ED%83%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90-type-operators)는 피연산자의 데이터 타입(자료형)을 문자열로 반환한다.
+[타입 연산자(Type Operators)](./js-operator#6-%ED%83%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90-type-operators)는 피연산자의 데이터 타입(자료형)을 문자열로 반환한다.
 
 ```javascript
 typeof '';              // string
@@ -55,11 +55,9 @@ typeof null;            // object (설계적 결함)
 typeof undeclared;      // undefined (설계적 결함)
 ```
 
-그런데 `typeof`는 null과 배열의 경우 object, 함수의 경우 function를 반환하고, Date, RegExp, 사용자 정의 객체 등 거의 모든 객체의 경우, object를 반환한다. 따라서 `typeof`는 기본자료형을 체크하는 데는 문제가 없지만 객체의 종류까지 구분하여 체크하려할 때는 사용하기는 곤란하다. 여러 종류의 객체(일반 객체, 배열, Date, RegExp, Function, DOM 요소 등)를 구분할 수 있는 타입 체크 기능을 만들어보자.
-
+그런데 `typeof` 연산자는 null과 배열의 경우 object, 함수의 경우 function를 반환하고, Date, RegExp, 사용자 정의 객체 등 거의 모든 객체의 경우, object를 반환한다. 따라서 `typeof`는 null을 제외한 기본자료형을 체크하는 데는 문제가 없지만 객체의 종류까지 구분하여 체크하려할 때는 사용하기는 곤란하다. 여러 종류의 객체(일반 객체, 배열, Date, RegExp, Function, DOM 요소 등)를 구분할 수 있는 타입 체크 기능을 만들어보자.
 
 [Object.prototype.toString](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/toString) 메소드는 객체를 나타내는 문자열을 반환한다.
-
 
 ```javascript
 var obj = new Object();

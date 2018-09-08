@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Javascript <strong>Built-in Object</strong>
+title: <strong>Built-in Object</strong>
 subtitle: 자바스크립트가 제공하는 내장 객체
 categories: javascript
 section: javascript

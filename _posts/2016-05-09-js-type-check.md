@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Javascript <strong>Type Checking</strong>
+title: <strong>Type Checking</strong>
 subtitle: 타입 체크
 categories: javascript
 section: javascript

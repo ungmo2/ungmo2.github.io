@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ECMAScript6 - <strong>Arrow function</strong>
+title: <strong>Arrow function</strong>
 subtitle: 화살표 함수
 categories: es6
 section: es6

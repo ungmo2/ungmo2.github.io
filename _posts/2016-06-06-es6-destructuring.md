@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ECMAScript6 - <strong>Destructuring</strong>
+title: <strong>Destructuring</strong>
 subtitle: 디스트럭처링
 categories: es6
 section: es6

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Javascript <strong>Control Flow</strong>
+title: <strong>Control Flow</strong>
 subtitle: 제어문
 categories: javascript
 section: javascript

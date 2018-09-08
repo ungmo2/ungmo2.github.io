@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Javascript <strong>Type coercion</strong>
+title: <strong>Type coercion</strong>
 subtitle: 암묵적 타입 강제 변환
 categories: javascript
 section: javascript

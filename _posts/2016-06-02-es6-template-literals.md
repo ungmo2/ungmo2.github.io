@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ECMAScript6 - <strong>Template Literals</strong>
+title: <strong>Template Literals</strong>
 subtitle: 템플릿 리터럴
 categories: es6
 section: es6

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ECMAScript6 - <strong>Extended Parameter Handling</strong>
+title: <strong>Extended Parameter Handling</strong>
 subtitle: 파라미터 기본값, Rest 파라미터, Spread 연산자
 categories: es6
 section: es6

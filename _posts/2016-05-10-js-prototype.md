@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Javascript <strong>Prototype</strong>
+title: <strong>Prototype</strong>
 subtitle: 프로토타입과 객체지향
 categories: javascript
 section: javascript

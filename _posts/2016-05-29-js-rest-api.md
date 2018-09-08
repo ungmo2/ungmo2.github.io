@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Javascript <strong>REST API</strong>
+title: <strong>REST API</strong>
 subtitle: REST(Representational State Transfer) API
 categories: javascript
 section: javascript

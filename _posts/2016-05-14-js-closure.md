@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Javascript <strong>Closure</strong>
+title: <strong>Closure</strong>
 subtitle: 클로저
 categories: javascript
 section: javascript

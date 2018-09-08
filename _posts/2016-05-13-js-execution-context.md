@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Javascript <strong>Execution Context</strong>
+title: <strong>Execution Context</strong>
 subtitle: 실행 컨텍스트와 자바스크립트의 동작 원리
 categories: javascript
 section: javascript
@@ -9,6 +9,9 @@ description: Execution Context(실행 컨텍스트)는 scope, hoisting, this, fu
 
 * TOC
 {:toc}
+
+이 포스팅의 내용은 ES3를 기반으로 하고 있다.
+{:.info}
 
 # 1. 실행 컨텍스트
 

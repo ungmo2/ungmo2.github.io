@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ECMAScript6 - <strong>let, const</strong>
+title: <strong>let, const</strong>
 subtitle: let, const와 블록 레벨 스코프
 categories: es6
 section: es6

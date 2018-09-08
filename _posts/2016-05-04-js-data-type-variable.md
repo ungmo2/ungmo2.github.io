@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Javascript <strong>Data type & Variable</strong>
+title: <strong>Data type & Variable</strong>
 subtitle: 자료형과 변수
 categories: javascript
 section: javascript

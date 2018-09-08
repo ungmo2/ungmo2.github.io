@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ECMAScript6 - <strong>Generator</strong>
+title: <strong>Generator</strong>
 subtitle: 제너레이터
 categories: es6
 section: es6

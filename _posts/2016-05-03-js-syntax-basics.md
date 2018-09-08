@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Javascript <strong>Syntax Basics</strong>
+title: <strong>Syntax Basics</strong>
 subtitle: Hello Javascript
 categories: javascript
 section: javascript

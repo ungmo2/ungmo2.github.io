@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Javascript <strong>Object-Oriented Programming</strong>
+title: <strong>Object-Oriented Programming</strong>
 subtitle: 자바스크립트 객체지향 프로그래밍
 categories: javascript
 section: javascript

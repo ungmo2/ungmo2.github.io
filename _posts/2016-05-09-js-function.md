@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Javascript <strong>Function</strong>
+title: <strong>Function</strong>
 subtitle: 함수
 categories: javascript
 section: javascript

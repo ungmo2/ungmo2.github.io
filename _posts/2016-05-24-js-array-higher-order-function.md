@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Javascript <strong>Higher order function</strong>
+title: <strong>Higher order function</strong>
 subtitle: 고차 함수
 categories: javascript
 section: javascript

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Javascript <strong>Introduction</strong>
+title: <strong>Introduction</strong>
 subtitle: 자바스크립트란 무엇인가? 또 어떻게 동작하는가?
 categories: javascript
 section: javascript

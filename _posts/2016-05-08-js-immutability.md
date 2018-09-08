@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Javascript <strong>Immutability</strong>
+title: <strong>Immutability</strong>
 subtitle: 객체와 변경불가성(Immutability)
 categories: javascript
 section: javascript

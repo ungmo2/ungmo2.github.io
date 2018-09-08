@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ECMAScript6 - <strong>Iteration protocol & for-of</strong>
+title: <strong>Iteration protocol & for-of</strong>
 subtitle: 이터레이션 프로토콜(iteration protocol)과 for-of 루프
 categories: es6
 section: es6

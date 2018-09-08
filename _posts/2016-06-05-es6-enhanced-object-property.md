@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ECMAScript6 - <strong>Enhanced Object property</strong>
+title: <strong>Enhanced Object property</strong>
 subtitle: 객체 리터럴 프로퍼티 기능 확장
 categories: es6
 section: es6

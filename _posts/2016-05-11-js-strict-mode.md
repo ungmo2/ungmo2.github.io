@@ -110,11 +110,31 @@ foo();
 }());
 ```
 
-# 4. strict mode가 발생시키는 에러
+# 4. 함수 단위로 strict mode를 적용하는 것도 피하자.
+
+앞서 말한 바와 같이 함수 단위로 strict mode를 적용할 수도 있다. 그러나 어떤 함수는 strict mode를 적용하고 어떤 함수는 strict mode를 적용하지 않는 것은 바람직하지 않으며 모든 함수에 일일이 strict mode를 적용하는 것은 번거로운 일이다. 그리고 strict mode가 적용된 함수가 참조할 함수 외부의 컨텍스트에 strict mode를 적용하지 않는다면 이또한 문제가 발생할 수 있다.
+
+```javascript
+(function () {
+  // non-strict mode
+  var lеt = 10; // OK
+
+  function foo() {
+    'use strict';
+
+    let = 20; // SyntaxError: Unexpected strict mode reserved word
+  }
+  foo();
+}());
+```
+
+따라서 strict mode는 즉시실행 함수로 감싼 스크립트 단위로 적용하는 것이 바람직하다.
+
+# 5. strict mode가 발생시키는 에러
 
 다음은 strict mode를 적용했을 때의 에러가 발생하는 대표적인 사례이다.
 
-## 4.1 암묵적 전역 변수
+## 5.1 암묵적 전역 변수
 
 선언하지 않은 변수를 참조하면 ReferenceError가 발생한다.
 
@@ -127,7 +147,7 @@ foo();
 }());
 ```
 
-## 4.2 변수, 함수, 매개변수의 삭제
+## 5.2 변수, 함수, 매개변수의 삭제
 
 ```javascript
 (function () {
@@ -146,7 +166,7 @@ foo();
 }());
 ```
 
-## 4.3 매개변수 이름의 중복
+## 5.3 매개변수 이름의 중복
 
 중복된 함수 파라미터 이름을 사용하면 SyntaxError가 발생한다.
 
@@ -162,7 +182,7 @@ foo();
 }());
 ```
 
-## 4.3 with 문의 사용
+## 5.3 with 문의 사용
 
 with 문을 사용하면 SyntaxError가 발생한다.
 
@@ -177,7 +197,7 @@ with 문을 사용하면 SyntaxError가 발생한다.
 }());
 ```
 
-## 4.4 일반 함수의 this
+## 5.4 일반 함수의 this
 
 일반 함수를 호출하면 this에 undefined가 바인딩된다. 일반 함수 내부에서 this를 사용할 필요가 없기 때문이다. 이때 에러는 발생하지 않는다.
 
@@ -197,6 +217,6 @@ with 문을 사용하면 SyntaxError가 발생한다.
 }());
 ```
 
-# 5. 브라우저 호환성
+# 6. 브라우저 호환성
 
 IE 9 이하는 지원하지 않는다.

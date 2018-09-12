@@ -4,13 +4,13 @@ title: <strong>Strict mode</strong>
 subtitle: 보다 안정적인 자바스크립트 개발 환경
 categories: javascript
 section: javascript
-description: Strict mode를 적용하려면 전역의 선두 또는 함수 몸체의 선두에 'use strict';를 추가한다. 전역에 추가하면 코드 전체에 Strict mode가 적용되고 함수 몸체에 추가하면 해당 함수와 중첩된 내부 함수에 Strict mode가 적용된다.
+description: ES5부터 strict mode가 추가되었다. strict mode는 자바스크립트 언어 문법을 보다 엄격히 적용하여 기존에는 무시되던 오류를 발생시킬 가능성이 높거나 자바스크립트 엔진의 최적화 작업에 문제를 일으킬 수 있는 코드에 대해 명시적인 에러를 발생시킨다.
 ---
 
 * TOC
 {:toc}
 
-# 1. Strict mode란?
+# 1. strict mode란?
 
 아래 예제의 실행 결과는 무엇일지 생각해보자.
 
@@ -30,60 +30,91 @@ foo 함수 내에 선언되지 않은 변수 x에 값 1을 할당하였다. 이�
 
 개발자의 의도와는 상관없이 동작하는 암묵적 전역 변수는 오류 발생의 원인될 가능성이 크므로 변수를 선언할 때는 반드시 var 키워드를 사용하여야 한다. 하지만, 오타나 문법 지식의 미비로 인한 오류는 언제나 발생하는 것이므로 오류를 줄여 안정적인 코드를 생산하기 위해서는 보다 근본적인 접근이 필요하다. 다시말해, 잠재적인 오류를 발생시키기 어려운 개발 환경을 만들고 그 환경에서 개발을 하는 것이 보다 근본적인 해결책이라고 할 수 있다.
 
-이를 지원하기 위해 ES5부터 **Strict mode**가 추가되었다. Strict mode는 자바스크립트 언어 문법을 보다 엄격히 적용하여 오류를 발생시킬 가능성이 높거나 성능상 문제를 일으킬만 한 코드에 명시적인 에러를 발생시킨다.
+이를 지원하기 위해 ES5부터 **strict mode**가 추가되었다. strict mode는 자바스크립트 언어의 문법을 보다 엄격히 적용하여 기존에는 무시되던 오류를 발생시킬 가능성이 높거나 자바스크립트 엔진의 최적화 작업에 문제를 일으킬 수 있는 코드에 대해 명시적인 에러를 발생시킨다.
 
-[ESLint](./eslint)와 같은 린트 프로그램을 사용하여도 Strict mode와 유사한 효과를 얻을 수 있다. 린트 프로그램은 실제 실행없이 코드를 분석할 수 있는 정적 분석(static analysis)을 제공하며 Strict mode가 제한하는 코드뿐만이 아니라 코딩 컨벤션을 강제할 수 있기 때문에 보다 강력한 효과를 얻을 수 있다.
+[ESLint](./eslint)와 같은 린트 프로그램을 사용하여도 strict mode와 유사한 효과를 얻을 수 있다. 린트 프로그램은 실제 실행없이 코드를 분석할 수 있는 정적 분석(static analysis)을 제공하므로 코드를 실행하지 않고도 문제가 있는 코드를 감지할 수 있고, strict mode가 제한하는 코드뿐만이 아니라 코딩 컨벤션을 강제할 수 있기 때문에 보다 강력한 효과를 얻을 수 있다.
 
-# 2. Strict mode의 적용
+# 2. strict mode의 적용
 
-Strict mode를 적용하려면 전역의 선두 또는 함수 몸체의 선두에 `'use strict';` 디렉티브를 추가한다. 전역에 추가하면 코드 전체에 Strict mode가 적용되고 함수 몸체에 추가하면 해당 함수와 중첩된 내부 함수에 Strict mode가 적용된다.
+strict mode를 적용하려면 전역의 선두 또는 함수 몸체의 선두에 `'use strict';` 디렉티브를 추가한다.
+
+전역의 선두에 추가하면 코드 전체에 strict mode가 적용된다.
 
 ```javascript
+// 전역에 strict mode의 적용하는 것은 바람직하지 않다!
 'use strict';
 
 function foo() {
-  x = 10;
+  x = 10; // ReferenceError: x is not defined
 }
-
-console.log(x); // ReferenceError: x is not defined
+foo();
 ```
 
-여러 개의 자바스크립트 파일을 script 태크를 사용해 로드할 경우, 전역에 적용한 Strict mode는 자신의 script 태크 내에서만 적용된다.
+함수 몸체의 선두에 추가하면 해당 함수와 중첩된 내부 함수에 strict mode가 적용된다.
+
+```javascript
+// 함수 단위로 strict mode 적용
+function foo() {
+  'use strict';
+
+  x = 10; // ReferenceError: x is not defined
+}
+foo();
+```
+
+코드의 선두에 strict mode를 위치시키지 않으면 제대로 동작하지 않는다.
+
+```javascript
+function foo() {
+  x = 10; // OK
+  'use strict';
+}
+foo();
+```
+
+# 3. 전역에 strict mode를 적용하는 것은 피하자.
+
+전역에 적용한 strict mode는 스크립트 파일 단위로 적용된다.
 
 ```html
 <!DOCTYPE html>
 <html>
 <body>
   <script>
+    'use strict';
+  </script>
+  <script>
     x = 1; // 에러가 발생하지 않는다.
+    console.log(x); // 1
   </script>
   <script>
     'use strict';
 
     y = 1; // ReferenceError: y is not defined
+    console.log(y);
   </script>
 </body>
 </html>
 ```
 
-따라서 전역에 Strict mode를 적용하는 것은 바람직 하지 않다. 함수 단위로 Strict mode를 적용하는 것이 좋다. 여러 개의 함수에 Strict mode를 적용하려면 즉시실행 함수로 함수들을 감싸고 즉시실행 함수의 선두에 Strict mode를 적용한다.
+위 예제와 같이 스크립트 파일 단위로 적용된 strict mode는 다른 스크립트에 영향을 주지 않고 자신의 스크립트 파일에 한정되어 적용된다.
+
+하지만 strict mode의 스크립트와 non-strict mode를 혼용하는 것은 오류를 발생시킬 수 있다. 특히 외부 서드 파티 라이브러리를 사용하는 경우, 라이브러리가 non-strict mode일 경우도 있기 때문에 **전역에 strict mode를 적용하는 것은 바람직하지 않다.** 이러한 경우, 즉시실행 함수로 스코프를 구분하고 즉시실행 함수의 선두에 strict mode를 적용한다.
 
 ```javascript
+// 즉시실행 함수에 strict mode 적용
 (function () {
   'use strict';
 
+  // Do something...
 }());
-
-console.log(x); // ReferenceError: x is not defined
 ```
 
-위 자바스크립트 파일을 script 태크로 로드하여도 다른 자바스크립트 파일은 Strict mode에 영향을 받지 않는다.
+# 4. strict mode가 발생시키는 에러
 
-# 3. Strict mode의 제약 사항
+다음은 strict mode를 적용했을 때의 에러가 발생하는 대표적인 사례이다.
 
-다음은 Strict mode를 적용했을 때의 대표적인 제약 사항이다.
-
-## 3.1 암묵적 전역 변수
+## 4.1 암묵적 전역 변수
 
 선언하지 않은 변수를 참조하면 ReferenceError가 발생한다.
 
@@ -96,7 +127,26 @@ console.log(x); // ReferenceError: x is not defined
 }());
 ```
 
-## 3.2 함수 파라미터 이름의 중복
+## 4.2 변수, 함수, 매개변수의 삭제
+
+```javascript
+(function () {
+  'use strict';
+
+  var x = 1;
+  delete x;
+  // SyntaxError: Delete of an unqualified identifier in strict mode.
+
+  function foo(a) {
+    delete a;
+    // SyntaxError: Delete of an unqualified identifier in strict mode.
+  }
+  delete foo;
+  // SyntaxError: Delete of an unqualified identifier in strict mode.
+}());
+```
+
+## 4.3 매개변수 이름의 중복
 
 중복된 함수 파라미터 이름을 사용하면 SyntaxError가 발생한다.
 
@@ -112,7 +162,7 @@ console.log(x); // ReferenceError: x is not defined
 }());
 ```
 
-## 3.3 with 문의 사용
+## 4.3 with 문의 사용
 
 with 문을 사용하면 SyntaxError가 발생한다.
 
@@ -127,9 +177,9 @@ with 문을 사용하면 SyntaxError가 발생한다.
 }());
 ```
 
-## 3.4 this
+## 4.4 일반 함수의 this
 
-일반 함수를 호출하면 this에 undefined가 바인딩된다.
+일반 함수를 호출하면 this에 undefined가 바인딩된다. 일반 함수 내부에서 this를 사용할 필요가 없기 때문이다. 이때 에러는 발생하지 않는다.
 
 ```javascript
 (function () {
@@ -139,5 +189,14 @@ with 문을 사용하면 SyntaxError가 발생한다.
     console.log(this); // undefined
   }
   foo();
+
+  function Foo() {
+    console.log(this); // Foo
+  }
+  new Foo();
 }());
 ```
+
+# 5. 브라우저 호환성
+
+IE 9 이하는 지원하지 않는다.

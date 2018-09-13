@@ -37,7 +37,9 @@ function sum(a, b) {
 }
 ```
 
-[타입 연산자(Type Operators)](./js-operator#6-%ED%83%80%EC%9E%85-%EC%97%B0%EC%82%B0%EC%9E%90-type-operators)는 피연산자의 데이터 타입(자료형)을 문자열로 반환한다.
+# 1. typeof
+
+[타입 연산자(Type Operators)](./js-operator#6-타입-연산자-type-operators) `typeof`는 피연산자의 데이터 타입을 문자열로 반환한다.
 
 ```javascript
 typeof '';              // string
@@ -56,6 +58,8 @@ typeof undeclared;      // undefined (설계적 결함)
 ```
 
 그런데 `typeof` 연산자는 null과 배열의 경우 object, 함수의 경우 function를 반환하고, Date, RegExp, 사용자 정의 객체 등 거의 모든 객체의 경우, object를 반환한다. 따라서 `typeof`는 null을 제외한 기본자료형을 체크하는 데는 문제가 없지만 객체의 종류까지 구분하여 체크하려할 때는 사용하기는 곤란하다. 여러 종류의 객체(일반 객체, 배열, Date, RegExp, Function, DOM 요소 등)를 구분할 수 있는 타입 체크 기능을 만들어보자.
+
+# 2. Object.prototype.toString
 
 [Object.prototype.toString](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/toString) 메소드는 객체를 나타내는 문자열을 반환한다.
 
@@ -174,4 +178,71 @@ function isRegExp(target) {
 function isFunction(target) {
   return getType(target) === 'Function';
 }
+```
+
+# 3. instanceof
+
+이와 같이 `Object.prototype.toString`를 사용하여 객체의 종류(일반 객체, 배열, Date, RegExp, Function, DOM 요소 등)까지 식별할 수 있는 타입 체크 기능을 작성하였다.
+
+그런데, 이 방법으로는 객체의 상속 관계까지 체크할 수는 없다. 아래의 예제를 살펴보자.
+
+```javascript
+// HTMLElement를 상속받은 모든 DOM 요소에 css 프로퍼티를 추가하고 값을 할당한다.
+function css(elem, prop, val) {
+  // type checking...
+  elem.style[prop] = val;
+}
+
+css({}, 'color', 'red');
+// TypeError: Cannot set property 'color' of undefined
+```
+
+css 함수의 첫번째 매개변수에는 반드시 HTMLElement를 상속받은 모든 DOM 요소를 전달하여야 한다. 다시말해, css 함수의 첫번째 매개변수에는 HTMLDivElement, HTMLUListElement, HTMLLIElement, HTMLParagraphElement 등 모든 DOM 요소가 전달될 수 있다. 이를 일일이 체크할 수는 없기 때문에 HTMLElement를 상속받은 객체, 즉 DOM 요소인지 확인하여야 한다.
+
+![Element Node](/img/HTMLElement.png)
+
+[DOM tree의 객체 구성](https://web.stanford.edu/class/cs98si/slides/the-document-object-model.html)
+{: .desc-img}
+
+[타입 연산자(Type Operators)](./js-operator#6-타입-연산자-type-operators)에는 앞서 살펴본 `typeof` 이외에 `instanceof`를 제공한다. instanceof 연산자는 피연산자인 객체가 우항에 명시한 타입의 인스턴스인지 여부를 알려준다. 이때 타입이란 constructor를 말하며 프로토타입 체인에 존재하는 모든 constructor를 검색하여 일치하는 constructor가 있다면 true를 반환한다.
+
+```javascript
+function Person() {}
+const person = new Person();
+
+console.log(person instanceof Person); // true
+console.log(person instanceof Object); // true
+```
+
+이를 이용해 css 함수에 타입 체크 기능을 추가해 보자.
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+  <p>Hello</p>
+  <script>
+    function getType(target) {
+      return Object.prototype.toString.call(target).slice(8, -1);
+    }
+
+    function isString(target) {
+      return getType(target) === 'String';
+    }
+
+    // HTMLElement를 상속받은 모든 DOM 요소에 css 프로퍼티를 추가하고 값을 할당한다.
+    function css(elem, prop, val) {
+      // type checking
+      if (!(elem instanceof HTMLElement) || !isString(prop) || !isString(val)) {
+        throw new TypeError('매개변수의 타입이 맞지 않습니다.');
+      }
+      elem.style[prop] = val;
+    }
+
+    css(document.querySelector('p'), 'color', 'red');
+    css(document.querySelector('div'), 'color', 'red');
+    // TypeError: 매개변수의 타입이 맞지 않습니다.
+  </script>
+</body>
+</html>
 ```

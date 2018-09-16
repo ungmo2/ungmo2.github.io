@@ -230,10 +230,16 @@ console.log(person instanceof Object); // true
       return getType(target) === 'String';
     }
 
+    function isElement(target) {
+      return !!(target && target instanceof HTMLElement);
+      // 또는 `nodeType`을 사용할 수도 있다.
+      // return !!(target && target.nodeType === 1);
+    }
+
     // HTMLElement를 상속받은 모든 DOM 요소에 css 프로퍼티를 추가하고 값을 할당한다.
     function css(elem, prop, val) {
       // type checking
-      if (!(elem instanceof HTMLElement) || !isString(prop) || !isString(val)) {
+      if (!(isElement(elem) && isString(prop) && isString(val))) {
         throw new TypeError('매개변수의 타입이 맞지 않습니다.');
       }
       elem.style[prop] = val;
@@ -242,6 +248,60 @@ console.log(person instanceof Object); // true
     css(document.querySelector('p'), 'color', 'red');
     css(document.querySelector('div'), 'color', 'red');
     // TypeError: 매개변수의 타입이 맞지 않습니다.
+  </script>
+</body>
+</html>
+```
+
+# 4. 유사 배열 객체
+
+배열인지 체크하기 위해서는 Array.isArray 메소드를 사용한다.
+
+```javascript
+console.log(Array.isArray([]));    // true
+console.log(Array.isArray({}));    // false
+console.log(Array.isArray('123')); // false
+```
+
+유사 배열 객체(array-like object)은 length 프로퍼티를 갖는 객체로 문자열, arguments, HTMLCollection, NodeList 등은 유사 배열이다. 유사 배열 객체는 length 프로퍼티가 있으므로 순회할 수 있으며 call, apply 함수를 사용하여 배열의 메소드를 사용할 수도 있다.
+
+어떤 객체가 유사 배열인지 체크하려면 우선 length 프로퍼티를 갖는지 length 프로퍼티의 값이 정상적인 값인지 체크한다.
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+  <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  <script>
+    console.log(undefined == null)
+    const isArrayLike = function (collection) {
+      const MAX_ARRAY_INDEX = Math.pow(2, 53) - 1;
+      // 빈문자열은 유사배열이다. undefined == null => true
+      const length = collection == null ? undefined : collection.length;
+      return typeof length === 'number' && length >= 0 && length <= MAX_ARRAY_INDEX;
+    };
+
+    // true
+    console.log(isArrayLike([]));
+    console.log(isArrayLike('abc'));
+    console.log(isArrayLike(''));
+    console.log(isArrayLike(document.querySelectorAll('li')));
+    console.log(isArrayLike(document.getElementsByName('li')));
+    console.log(isArrayLike({ length: 0 }));
+    (function () {
+      console.log(isArrayLike(arguments));
+    }());
+
+    // false
+    console.log(isArrayLike(123));
+    console.log(isArrayLike(document.querySelector('li')));
+    console.log(isArrayLike({ foo: 1 }));
+    console.log(isArrayLike());
+    console.log(isArrayLike(null));
   </script>
 </body>
 </html>

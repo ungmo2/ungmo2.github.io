@@ -279,6 +279,8 @@ console.log(Array.isArray('123')); // false
   <script>
     console.log(undefined == null)
     const isArrayLike = function (collection) {
+      // 배열 인덱스: 32bit 정수(2의 32제곱 - 1)
+      // 유사 배열 인덱스: 자바스크립트로 표현할 수 있는 양의 정수(2의 53제곱 - 1)
       const MAX_ARRAY_INDEX = Math.pow(2, 53) - 1;
       // 빈문자열은 유사배열이다. undefined == null => true
       const length = collection == null ? undefined : collection.length;

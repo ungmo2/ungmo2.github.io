@@ -168,13 +168,13 @@ Javascript에서 data를 표시하는 방법은 아래와 같다.
 
 # 5. Javascript Syntax Basics
 
-## 5.1 구문 (Statement)
+## 5.1 문 (Statement)
 
 프로그램(스크립트)은 컴퓨터(Client-side Javascript의 경우, 엄밀히 말하면 웹 브라우저)에 의해 단계별로 수행될 명령들의 집합이다.
 
-각각의 명령을 statement(구문)이라 하며 statement가 실행되면 무슨 일인가가 일어나게 된다.
+각각의 명령을 문(statement)이라 하며 문이 실행되면 무슨 일인가가 일어나게 된다.
 
-구문은 값(Value), 연산자(Operator), 표현식(Expression), 키워드(Keyword), 주석(Comment)으로 구성되며 세미콜론( ; )으로 끝나야 한다.
+문은 값(Value), 연산자(Operator), 표현식(Expression), 키워드(Keyword), 주석(Comment)으로 구성되며 세미콜론( ; )으로 끝나야 한다.
 
 ```javascript
 var x = 5;
@@ -184,7 +184,7 @@ var z = x + y;
 console.log(z);
 ```
 
-구문은 코드 블록(code block, {…})으로 그룹화할 수 있다. 그룹화의 목적은 함께 실행되어져야 하는 구문을 정의하기 위함이다.
+문은 코드 블록(code block, {…})으로 그룹화할 수 있다. 그룹화의 목적은 함께 실행되어져야 하는 문을 정의하기 위함이다.
 
 ```javascript
 // 함수
@@ -203,7 +203,7 @@ for (var i = 0; i < 10; i++) {
 }
 ```
 
-구문들은 일반적으로 위에서 아래로 순서대로 실행된다. 이러한 실행 순서는 조건문(if, switch)이나 반복문(while, for)의 사용으로 제어할 수 있다 이를 흐름제어(Control Flow)라 한다. 또는 함수 호출로 변경될 수 있다.
+문들은 일반적으로 위에서 아래로 순서대로 실행된다. 이러한 실행 순서는 조건문(if, switch)이나 반복문(while, for)의 사용으로 제어할 수 있다 이를 흐름제어(Control Flow)라 한다. 또는 함수 호출로 변경될 수 있다.
 
 ```javascript
 var time = 10;
@@ -224,7 +224,7 @@ console.log(greeting);
 
 ## 5.2 표현식 (Expression)
 
-표현식(Expression)은 값, 변수, 연산자의 조합이며 이 조합은 연산을 통해 하나의 값을 만든다. 즉, **표현식은 하나의 값으로 평가될 수 있는 구문이다.** 아래의 예에서 5 * 10은 50으로 평가(연산)된다.
+표현식(Expression)은 값(리터럴), 변수, 객체의 프로퍼티, 배열의 요소, 함수 호출, 메소드 호출, 연산자의 조합을 말한다. **표현식은 평가(Evaluation)되고 그 결과, 하나의 값으로 수렴된다.** 즉, **표현식은 하나의 값으로 평가될 수 있는 문(Statement)**이다. 아래의 예에서 5 * 10은 50으로 평가(연산)된다.
 
 ```javascript
 // 표현식
@@ -232,20 +232,10 @@ console.log(greeting);
 'Hello' + ' ' + 'world'  // 'Hello world'
 ```
 
-표현식은 구문이 될 수 있지만 구문은 표현식이 될 수 없다. 예를 들어 표현식은 함수의 매개변수에 전달할 수 있지만 구문은 그럴 수 없다.
+표현식은 하나의 값으로 수렴하지만 문은 값이 되지 않는다. 일반적으로 문은 표현식을 사용하여 무슨 일인가를 수행한다.
 
 ```javascript
-var x; // 구문
-
-// 구문
-if (y >= 0) {  // y >= 0은 표현식
-  x = y;
-} else {
-  x = -y;
-}
-
-// 구문
-var x = (y >= 0 ? y : -y); // y >= 0 ? y : -y은 표현식
+var x = 1 * 10; // 문
 ```
 
 ## 5.3 변수 (Variable)
@@ -270,41 +260,68 @@ String str = "Hello World";
 < 1 > < 2 >      < 3 >
 ```
 
-위의 Java 예제에서 <1> 은 데이터 타입(자료형), <2>는 변수명, <3>은 문자열 리터럴(literal)이다.
+위의 Java 예제에서 <1> 은 데이터 타입(자료형), <2>는 변수명, <3>은 문자열 리터럴(literal)이다. 위 예제의 변수 str은 문자열 타입의 값을 할당받는 변수이다.
 
-리터럴(literal)이란 변수 또는 상수에 저장되는 값 자체를 의미한다. 변수명은 메모리에 할당된 공간을 가리키는 식별자(identifier)이며 리터럴은 이 공간에 저장되는 값이다.
-{: .info}
+데이터 타입이란, 변수가 할당받을 값의 타입을 말한다.
 
-```javascript
-// literal : Number
-10.50
-1001
+변수명은 메모리에 확보된 공간을 가리키는 식별자(identifier)이다.
 
-// literal : String
-'Hello'
-"World"
-
-// literal : Object
-{ name: 'Lee', gender: 'male' }
-
-// literal : Array
-[ 'Black', 'Gray', 'White' ];
-```
+**리터럴(literal)이란, 프로그램 안에서 직접 만들어 낸 상수 값 자체를 의미한다.** 리터럴은 변수명이 가리키는 메모리 공간에 값으로 저장된다.
 
 자바스크립트는 7가지 데이터 타입을 제공한다.
 
 * 기본 자료형 (primitive data type)
+  * `Number`
+  * `String`
   * `Boolean`
   * `null`
   * `undefined`
-  * `Number`
-  * `String`
   * `Symbol` (New in ECMAScript 6)
 * `Object`
 
-자바스크립트는 자바와는 달리 값의 자료형에 따라 변수에 데이터 타입을 명시하지 않는다.
+```javascript
+// 숫자 리터럴
+10.50
+1001
+
+// 문자열 리터럴
+'Hello'
+"World"
+
+// 불리언 리터럴
+true
+false
+
+// null
+null
+
+// undefined
+undefined
+
+// 심볼
+Symbol()
+
+// 객체 리터럴
+{ name: 'Lee', gender: 'male' }
+
+// 배열 리터럴
+[ 1, 2, 3 ]
+
+// 함수 리터럴
+function() {}
+```
+
+자바스크립트는 Java와 같이 변수를 선언할 때 데이터 타입을 미리 지정하지 않는다. 다시 말해, 변수에 할당된 리터럴의 타입에 의해 동적으로 변수의 타입이 결정된다. 이를 동적 타이핑이라 하며 자바스크립트가 다른 프로그래밍 언어와 구별되는 특징 중 하나이다.
 
 ```javascript
+// Number
+var num1 = 1001;
+var num2 = 10.50;
+
+// String
+var string1 = 'Hello';
+var string2 = "World";
+
 // Boolean
 var bool = true;
 
@@ -314,19 +331,14 @@ var foo = null;
 // undefined
 var bar;
 
-// Number
-var num1 = 1001;
-var num2 = 10.50;
-
-// String
-var string1 = 'Hello';
-var string2 = "World";
-
 // Object
 var obj = { name: 'Lee', gender: 'male' };
 
 // Array
-var array = [ 'Black', 'Gray', 'White' ];
+var array = [ 1, 2, 3 ];
+
+// function
+var foo = function() {};
 ```
 
 ## 5.5 연산자 (Operator)

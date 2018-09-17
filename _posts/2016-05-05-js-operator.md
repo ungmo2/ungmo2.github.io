@@ -10,9 +10,35 @@ description: 연산자(Operators)는 하나 혹은 그 이상의 값을 하나�
 * TOC
 {:toc}
 
-연산자(Operators)는 하나 혹은 그 이상의 값을 하나의 값으로 만들 때 사용한다.
+표현식(Expression)은 값(리터럴), 변수, 객체의 프로퍼티, 배열의 요소, 함수 호출, 메소드 호출, 연산자의 조합을 말한다.
 
-# 1. 산술 연산자 (Arithmetic Operators)
+```javascript
+// 표현식
+10
+sum
+person.name
+arr[1]
+square()
+person.getBirthday()
+```
+
+위와 같이 **표현식은 평가(Evaluation)되고 그 결과, 하나의 값으로 수렴된다.** 즉, **표현식은 하나의 값으로 평가될 수 있는 구문(Statement)**이다. 위와 같은 표현식은 하나의 값으로 이루어진 표현식이지만 하나 이상의 값을 하나의 값으로 평가할 필요가 있을 경우, 연산자를 사용하며 이 또한 표현식이다.
+
+```javascript
+// 연산자 표현식
+10 + 20
+sum = 10 + 20
+person.name !== 'Lee'
+!arr[1]
+typeof square()
+person.getBirthday() instanceof Date
+```
+
+연산자(Operator)는 하나 이상의 표현식을 대상으로 산술, 할당, 비교, 논리, 타입 연산 등을 수행하여 하나의 값을 만든다. 이때 연산의 대상을 피연산자(Operand)라 한다. 표현식이 명사의 역할을 한다면 연산자는 동사의 역할을 한다고 볼 수 있다.
+
+자바스크립트가 제공하는 다양한 연산자에 대해 살펴보도록 하자.
+
+# 1. 산술 연산자 (Arithmetic Operator)
 
 | Operator	  | Description   |
 | :---------: |:------------- |
@@ -38,18 +64,21 @@ z = x++;    // 5 선대입후증가
 z = ++x;    // 7 선증가후대입
 z = x--;    // 7 선대입후감소
 z = --x;    // 5 선감소후대입
-
-var str1 = '5' + 5;      // '55'
-var str2 = 5 + '5';      // '55'
-var str3 = 'Hello' + 5;  // 'Hello5'
 ```
 
-`+ 연산자`는 덧셈 연산과 문자열 연결 연산을 수행한다.
+`+ 연산자`는 경우에 따라 덧셈 연산과 문자열 연결 연산을 수행한다.
 
-- 연산 대상이 모두 숫자인 경우 : 덧셈 연산
-- 그 외의 경우 : 문자열 연결 연산
+- 피연산자가 모두 숫자인 경우 : 덧셈 연산자로 동작
+- 그 외의 경우 : 문자열 연결 연산자로 동작
 
-# 2. 대입 연산자 (Assignment Operators)
+```javascript
+5 + 5         // 10
+'5' + 5;      // '55'
+5 + '5';      // '55'
+'Hello' + 5;  // 'Hello5'
+```
+
+# 2. 할당 연산자 (Assignment Operator)
 
 | Operator	  | Example	 | Same As
 | :---------: |:-------- | :-------- |
@@ -78,7 +107,7 @@ txt1 = 'What a very ';
 txt1 += 'nice day'; // What a very nice day
 ```
 
-# 3. 비교 연산자 (Comparison Operators)
+# 3. 비교 연산자 (Comparison Operator)
 
 | Operator	  | Description
 | :---------: |:-------------- |
@@ -139,7 +168,7 @@ var errMsg = id.length < INPUT_ID_MIN_LEN ? '아이디는 5자리 이상으로 �
 console.log(errMsg); // '아이디는 5자리 이상으로 입력하세요'
 ```
 
-# 4. 논리 연산자 (Logical Operators)
+# 4. 논리 연산자 (Logical Operator)
 
 논리 연산자는 Boolean 값과 함께 사용하여 Boolean 값을 반환하는 것이 일반적이다. 사실 논리 연산자는 피연산자 중 하나를 반환한다.
 

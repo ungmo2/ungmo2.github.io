@@ -169,7 +169,7 @@ Error 이외에 Error에 관련한 객체는 아래와 같다.
 
 Symbol은 ECMAScript 6(Javascript 2015) 에서 추가된 유일하고 변경 불가능한(immutable) 기본자료형으로 Symbol 객체는 기본자료형 Symbol을 위한 레퍼(wrapper) 객체를 생성한다.
 
-# 1.12 기본자료형과 래퍼객체(Wrapper Object)
+## 1.12 기본자료형과 래퍼객체(Wrapper Object)
 
 앞서 살펴본 바와 같이 각 네이티브 객체는 각자의 프로퍼티와 메소드를 가진다. 정적(static) 프로퍼티, 메소드는 해당 인스턴스를 생성하지 않아도 사용할 수 있고 prototype에 속해있는 메소드는 해당 prototype을 상속받은 인스턴스가 있어야만 사용할 수 있다.
 

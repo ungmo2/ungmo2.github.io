@@ -70,7 +70,7 @@ console.log(typeof foo); // number
 
 자료형(Data Type)은 프로그래밍 언어에서 문자열, 숫자, 불리언, 객체 등 여러 종류의 데이터를 식별하는 분류를 말한다. 모든 프로그래밍 언어의 학습은 자료형을 파악하는 것으로부터 시작된다.
 
-ECMAScript 표준(ECMAScript 2015 (6th Edition, ECMA-262) / 2015.06)은 7개의 Data type을 정의한다
+ECMAScript 표준(ECMAScript 2015 (6th Edition, ECMA-262) / 2015.06)은 7개의 Data type을 제공한다
 
 * 기본 자료형 (primitive data type)
   * `Boolean`

@@ -399,7 +399,7 @@ parseFloat('He was 40') // NaN
 
 #### 2.1.2.5 parseInt()
 
-매개변수에 전달된 문자열을 정수형 숫자(Integer)로 파싱하여 반환한다.
+매개변수에 전달된 문자열을 정수형 숫자(Integer)로 파싱하여 반환한다. 반환값은 언제나 10진수이다.
 
 ```javascript
 parseInt(string, radix);
@@ -428,6 +428,9 @@ parseInt('10', 2);  // 2진수 10 → 10진수 2
 parseInt('10', 8);  // 8진수 10 → 10진수 8
 parseInt('10', 16); // 16진수 10 → 10진수 16
 ```
+
+기수를 지정하여 10진수 숫자를 해당 기수의 문자열로 변환하여 반환하고 싶을 때는 [Number.prototype.toString](./js-number#38-numberprototypetostringradix-number-string-es1) 메소드를 사용한다.
+{:.info}
 
 두번째 매개변수에 진법을 나타내는 기수를 지정하지 않더라도 첫번째 매개변수에 전달된 문자열이 "0x" 또는 "0X"로 시작한다면 16진수로 파싱하여 반환한다.
 

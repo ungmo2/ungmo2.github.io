@@ -4,7 +4,7 @@ title: <strong>Operator</strong>
 subtitle: 연산자
 categories: javascript
 section: javascript
-description: 연산자(Operators)는 하나 혹은 그 이상의 값을 하나의 값으로 만들 때 사용한다.
+description: 연산자(Operator)는 하나 혹은 그 이상의 값을 하나의 값으로 만들 때 사용한다.
 ---
 
 * TOC
@@ -302,7 +302,7 @@ if (obj && obj.foo) {
 }
 ```
 
-# 6. 타입 연산자 (Type Operators)
+# 6. 타입 연산자 (Type Operator)
 
 | Operator	  | Description
 | :---------: |:-------------- |

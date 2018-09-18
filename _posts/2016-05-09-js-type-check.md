@@ -39,7 +39,7 @@ function sum(a, b) {
 
 # 1. typeof
 
-[타입 연산자(Type Operators)](./js-operator#6-타입-연산자-type-operators) `typeof`는 피연산자의 데이터 타입을 문자열로 반환한다.
+[타입 연산자(Type Operator)](./js-operator#6-타입-연산자-type-operator) `typeof`는 피연산자의 데이터 타입을 문자열로 반환한다.
 
 ```javascript
 typeof '';              // string
@@ -204,7 +204,7 @@ css 함수의 첫번째 매개변수에는 반드시 HTMLElement를 상속받은
 [DOM tree의 객체 구성](https://web.stanford.edu/class/cs98si/slides/the-document-object-model.html)
 {: .desc-img}
 
-[타입 연산자(Type Operators)](./js-operator#6-타입-연산자-type-operators)에는 앞서 살펴본 `typeof` 이외에 `instanceof`를 제공한다. instanceof 연산자는 피연산자인 객체가 우항에 명시한 타입의 인스턴스인지 여부를 알려준다. 이때 타입이란 constructor를 말하며 프로토타입 체인에 존재하는 모든 constructor를 검색하여 일치하는 constructor가 있다면 true를 반환한다.
+[타입 연산자(Type Operator)](./js-operator#6-타입-연산자-type-operator)에는 앞서 살펴본 `typeof` 이외에 `instanceof`를 제공한다. instanceof 연산자는 피연산자인 객체가 우항에 명시한 타입의 인스턴스인지 여부를 알려준다. 이때 타입이란 constructor를 말하며 프로토타입 체인에 존재하는 모든 constructor를 검색하여 일치하는 constructor가 있다면 true를 반환한다.
 
 ```javascript
 function Person() {}

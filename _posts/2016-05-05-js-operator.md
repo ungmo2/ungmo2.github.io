@@ -238,7 +238,7 @@ var n3 = !'Cat'; // false
 
 # 5. 단축 평가
 
-**논리 연산자는 사실 피연산자 중 하나를 반환한다.** 따라서 논리 연산자가 피연산자가 불리언 값이 아닌 경우, 피연산자의 값을 그대로 반환한다. 논리 연산자는 다음의 규칙을 따라서 "단축 평가(Short-Circuit Evaluation)"된다.
+**논리 연산자는 사실 피연산자 중 하나를 반환한다.** 따라서 논리 연산자가 피연산자가 불리언 값이 아닌 경우, 피연산자의 값을 그대로 반환한다. 논리 연산자는 다음의 규칙을 따라서 "단축 평가(Short-Circuit evaluation)"된다.
 
 | 평가식                 | 평가 결과        |
 | :-------------------: | :------------- |
@@ -278,15 +278,18 @@ var a1 = 'Cat' && 'Dog';    // t && t returns Dog
 var a2 = false && 'Cat';    // f && t returns false
 var a3 = 'Cat' && false;    // t && f returns false
 
-// example
-function foo (str) {
+// example: Short-Circuit evaluation에 의한 파라미터 기본값
+function getStringLength(str) {
   str = str || '';
-  // do somethig with str
-  console.log(str.length);
+  return str.length;
+}
+// ES6 파라미터 기본값
+function getStringLength(str = '') {
+  return str.length;
 }
 
-foo();     // 0
-foo('hi'); // 2
+getStringLength();     // 0
+getStringLength('hi'); // 2
 
 // example
 var obj = {

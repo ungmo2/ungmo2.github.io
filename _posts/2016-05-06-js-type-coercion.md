@@ -1,10 +1,10 @@
 ---
 layout: post
 title: <strong>Type coercion</strong>
-subtitle: 암묵적 타입 강제 변환
+subtitle: 암묵적 타입 강제 변환과 단축 평가
 categories: javascript
 section: javascript
-description: 바스크립트는 암묵적 타입 강제 변환을 통해 조건식을 평가한다. 다시 말해, 조건식에 주어진 값이 Boolean 값이 아니더라도 암묵적 타입 강제 변환을 통해 Boolean 값으로 변환하여 평가한다.
+description: 자바스크립트는 암묵적 타입 강제 변환을 통해 조건식을 평가한다. 다시 말해, 조건식에 주어진 값이 Boolean 값이 아니더라도 암묵적 타입 강제 변환을 통해 Boolean 값으로 변환하여 평가한다.
 ---
 
 * TOC
@@ -206,7 +206,66 @@ console.log(truthy('0'));
 console.log(truthy({}));
 ```
 
-# 5. 동등성 체크 (Checking equality)
+# 5. 단축 평가
+
+논리 연산자는 다음의 규칙을 따라서 "단축 평가(Short-Circuit evaluation)"된다.
+
+| 평가식                 | 평가 결과        |
+| :-------------------: | :------------- |
+| true  &#124;&#124; anything     | true
+| false &#124;&#124; anything     | anything
+| true  && anything     | anything
+| false && anything     | false
+
+논리 연산자는 좌우항의 피연산자가 불리언 타입이 아닌 경우, 피연산자를 불리언 타입으로 변환한 후, 연산한다. 이때 논리 연산자는 연산의 결과를 반환하기 위해 피연산자 모두를 평가할 필요가 없는 경우도 있다. 아래 예제를 통해 살펴보자.
+
+
+```javascript
+'Cat' && 'Dog'; // 'Dog'
+```
+
+'Cat'은 truthy 값이므로 `true`로 평가된다. 논리곱 연산자 `&&`의 경우, 좌우항의  피연산자 모두 `true`로 평가되어야 `true`를 반환하므로 연산 결과를 알기 위해서는 'Dog'까지 평가해 보아야 한다. 이때 논리 연산의 결과를 결정한 우항 피연산자의 값 'Dog'를 그대로 반환한다.
+
+```javascript
+false && 'Cat'; // false
+```
+
+위 예제의 경우, 좌항 피연산자의 값이 `false`이므로 논리곱 연산자 `&&`는 우항 피연산자의 값까지 평가할 필요가 없다. 따라서 논리 연산의 결과가 결정한 좌항 피연산자의 값 `false`를 그대로 반환한다.
+
+```javascript
+'Cat' || 'Dog'; // 'Cat'
+```
+
+위 예제의 경우, 좌항 피연산자의 값 'Cat'은 truthy 값이므로 `true`로 평가된다. 이때 논리합 연산자 `||`는 우항 피연산자의 값까지 평가할 필요가 없다. 따라서 논리 연산의 결과가 결정한 좌항 피연산자의 값 'Cat'을 그대로 반환한다.
+
+이처럼 **논리 연산자는 좌우항 피연산자 중 논리 연산의 결과를 결정한 피연산자의 값을 그대로 반환한다.**
+
+```javascript
+// || (논리 합) 연산자
+'Cat' || 'Dog';  // 'Cat'
+false || 'Cat';  // 'Cat'
+'Cat' || false;  // 'Cat'
+
+// && (논리곱) 연산자
+'Cat' && 'Dog';  // Dog
+false && 'Cat';  // false
+'Cat' && false;  // alse
+
+// Short-Circuit evaluation에 의한 파라미터 기본값
+function getStringLength(str) {
+  str = str || '';
+  return str.length;
+}
+// ES6 파라미터 기본값
+function getStringLength(str = '') {
+  return str.length;
+}
+
+getStringLength();     // 0
+getStringLength('hi'); // 2
+```
+
+# 6. 동등성 체크 (Checking equality)
 
 두 값이 같은 값인지 비교할 때에 동등 연산자(==, !=)보다 일치 연산자(===, !==)를 사용하여야 한다. 동등 연산자는 암묵적으로 타입 변환된 값을 비교하지만 일치 연산자는 타입까지 비교하므로 보다 정확한 결과를 얻을 수 있다.
 
@@ -215,7 +274,7 @@ console.log(1 == '1');  // true
 console.log(1 === '1'); // false
 ```
 
-# 6. 존재 확인 (Checking existence)
+# 7. 존재 확인 (Checking existence)
 
 객체나 배열(배열도 객체이다)은 인스턴스가 생성된 상태라면 빈 객체, 빈 배열이라도 truthy로 취급된다. 이를 이용하여 존재 여부를 확인할 수 있다. 아래의 예제를 살펴보자.
 
@@ -248,6 +307,33 @@ if (elem == true) // false
 ```javascript
 var b = new Boolean(false);
 if (b) // true
+```
+
+# 8. !!
+
+부정 연산자 `!`를 두번 언이어 사용하면 피연산자를 불리언 타입으로 변경하고 두번 부정 연산을 실행한다. 따라서 `!!`는 피연산자를 불리언 타입의 값으로 타입 변환하는 역할을 한다.
+
+```javascript
+console.log(!!1);         // true
+console.log(!!0);         // false
+console.log(!!'string');  // true
+console.log(!!'');        // false
+console.log(!!null);      // false
+console.log(!!undefined); // false
+console.log(!!{});        // true
+console.log(!![]);        // true
+```
+
+객체(배열 포함)의 경우 빈 객체라도 존재하기만하면 true로 변환된다.
+
+객체의 존재 확인 후 그 결과를 반환해야 하는 경우, !!를 사용하면 강제로 피연산자를 불리언으로 형 변환할 수 있다.
+
+```javascript
+var obj;
+console.log(!!obj); // false
+
+obj = {};
+console.log(!!obj); // true
 ```
 
 # Reference

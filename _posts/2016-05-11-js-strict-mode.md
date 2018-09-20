@@ -1,7 +1,7 @@
 ---
 layout: post
 title: <strong>Strict mode</strong>
-subtitle: 보다 안정적인 자바스크립트 개발 환경
+subtitle: 보다 안정적인 자바스크립트 개발 환경을 위한 Strict mode
 categories: javascript
 section: javascript
 description: ES5부터 strict mode가 추가되었다. strict mode는 자바스크립트 언어 문법을 보다 엄격히 적용하여 기존에는 무시되던 오류를 발생시킬 가능성이 높거나 자바스크립트 엔진의 최적화 작업에 문제를 일으킬 수 있는 코드에 대해 명시적인 에러를 발생시킨다.

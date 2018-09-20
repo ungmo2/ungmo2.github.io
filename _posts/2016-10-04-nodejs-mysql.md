@@ -1,6 +1,7 @@
 ---
 layout: post
-title: Node.js(Express)와 <strong>MySQL 연동</strong>
+title: <strong>MySQL 연동</strong>
+subtitle: Node.js(Express)와 <strong>MySQL 연동</strong>
 categories: express
 section: express
 description: Node.js(express)와 MySQL 연동
@@ -31,8 +32,8 @@ Node.js(express)와 MySQL 연동을 위한 모듈 중 대표적인 [mysql](https
 
 Express에 대한 자세한 내용은 아래의 포스트를 참조하기 바란다.
 
-- [Express Basics](./express-basics)  
-- [Express Error Handling](./express-error-handling)  
+- [Express Basics](./express-basics)
+- [Express Error Handling](./express-error-handling)
 - [Express Session Handling](./express-session-handling)
 
 적당한 위치에 애플리케이션 디렉터리를 생성하고 `npm init`를 실행한다. 일단 기본 설정(yes option)으로 package.json을 생성한다.
@@ -202,8 +203,8 @@ localhost:3000/persons에 접속하여 결과를 확인한다.
 
 # Reference
 
-* [Node.js - module](./nodejs-module)  
-* [Express Basics](./express-basics)  
-* [Express Error Handling](./express-error-handling)  
+* [Node.js - module](./nodejs-module)
+* [Express Basics](./express-basics)
+* [Express Error Handling](./express-error-handling)
 * [Express Session Handling](./express-session-handling)
-* [Node.js에서 비밀 설정 정보(Secrets) 관리](./nodejs-kepping-secrets)  
+* [Node.js에서 비밀 설정 정보(Secrets) 관리](./nodejs-kepping-secrets)

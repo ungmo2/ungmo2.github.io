@@ -78,7 +78,9 @@ function 키워드로 생성한 일반 함수와 화살표 함수의 가장 큰 
 
 ## 3.1 일반 함수의 this
 
-일반 함수의 경우, 해당 함수를 호출하는 패턴에 따라 [this](./js-this)에 바인딩되는 객체가 달라진다. 콜백 함수 내부의 this는 전역 객체 window를 가리킨다.
+일반 함수의 경우, 함수 호출 방식에 의해 [this](./js-this)에 바인딩할 어떤 객체가 결정된다. 다시 말해, 함수를 선언할 때 this에 바인딩할 객체가 결정되는 것이 아니고, 함수를 호출할 때 함수가 어떻게 호출되었는지에 따라 this에 바인딩할 객체가 결정된다.
+
+콜백 함수 내부의 this는 전역 객체 window를 가리킨다.
 
 ```javascript
 function Prefixer(prefix) {
@@ -157,7 +159,12 @@ console.log(pre.prefixArray(['Lee', 'Kim']));
 
 ## 3.2 화살표 함수의 this
 
-화살표 함수는 언제나 자신을 포함하는 외부 스코프에서 this를 계승 받는다. 다시 말해 화살표 함수는 자신만의 this를 생성하지 않고 자신을 포함하고 있는 상위 컨텍스트로 부터 this를 계승 받는다. 이를 <strong>Lexical this</strong>라 한다. 화살표 함수는 앞서 살펴본 Solution 3의 Syntactic sugar이다.
+일반 함수는 함수를 선언할 때 this에 바인딩할 객체가 결정되는 것이 아니고, 함수를 호출할 때 함수가 어떻게 호출되었는지에 따라 this에 바인딩할 객체가 결정된다.
+
+화살표 함수는 함수를 선언할 때 this에 바인딩할 객체가 결정되며 언제나 상위 스코프의 this를 가리킨다. 이를 <strong>Lexical this</strong>라 한다. 화살표 함수는 앞서 살펴본 Solution 3의 Syntactic sugar이다.
+
+화살표 함수의 this 바인딩 객체 결정 방식은 스코프를 결정하는 방식인 [렉시컬 스코프](./js-scope#7-렉시컬-스코프)와 유사하다.
+{:.info}
 
 ```javascript
 function Prefixer(prefix) {

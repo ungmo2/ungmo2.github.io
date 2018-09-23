@@ -151,10 +151,10 @@ function error(message: string): never {
 타입은 소문자, 대문자를 구별하므로 주의가 필요하다. 위에서 살펴본 바와 같이 TypeScript가 기본 제공하는 타입은 모두 소문자이다. 아래 코드를 살펴보자.
 
 ```typescript
-// string: 기본자료형 문자열 타입
+// string: 원시 타입 문자열 타입
 let primiteveStr: string;
 primiteveStr = 'hello'; // OK
-// 기본자료형 문자열 타입에 객체를 할당하였다.
+// 원시 타입 문자열 타입에 객체를 할당하였다.
 primiteveStr = new String('hello'); // Error
 /*
 Type 'String' is not assignable to type 'string'.

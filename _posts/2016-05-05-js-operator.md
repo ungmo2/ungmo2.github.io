@@ -260,24 +260,31 @@ false && false; // false
 
 | 타입 연산자 	 | 의미
 | :---------: |:-------------- |
-| typeof	    | 피연산자의 데이터 타입(자료형)을 문자열로 반환한다. null과 배열의 경우 object, 함수의 경우 function를 반환하는 것에 유의하여야 한다.
+| typeof	    | 피연산자의 데이터 타입을 문자열로 반환한다. null과 배열의 경우 object, 함수의 경우 function를 반환하는 것에 유의하여야 한다.
 | instanceof	| 객체가 동일 객체형의 인스턴스이면 `true`를 반환한다.
 
 ```javascript
-console.log(typeof '');              // string
-console.log(typeof 1);               // number
-console.log(typeof NaN);             // number
-console.log(typeof true);            // boolean
-console.log(typeof []);              // object
-console.log(typeof {});              // object
-console.log(typeof new Date());      // object
-console.log(typeof /test/gi);        // object
-console.log(typeof function () {});  // function
-console.log(typeof undefined);       // undefined
-console.log(typeof null);            // object (설계적 결함)
-console.log(typeof undeclared);      // undefined (설계적 결함)
+typeof ''              // "string"
+typeof 1               // "number"
+typeof NaN             // "number"
+typeof true            // "boolean"
+typeof undefined       // "undefined"
+typeof Symbol()        // "symbol"
+typeof null            // "object" (설계적 결함)
+typeof []              // "object"
+typeof {}              // "object"
+typeof new Date()      // "object"
+typeof /test/gi        // "object"
+typeof function () {}  // "function"
+typeof undeclared      // undefined (설계적 결함)
+
+
+var arr = [];
+arr instanceof Array  // true
+arr instanceof Object // true
 
 function Person() {}
 var me = new Person();
-console.log(me instanceof Person); // true
+me instanceof Person // true
+me instanceof Object // true
 ```

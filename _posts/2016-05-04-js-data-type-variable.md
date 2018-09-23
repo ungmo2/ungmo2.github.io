@@ -19,11 +19,11 @@ description: 자료형(Data Type)은 프로그래밍 언어에서 객체, 정수
 변수 선언과 할당의 구조
 {: .desc-img}
 
-변수(memory address에 접근하기 위한 식별자)를 통해 메모리에 값을 저장하기 위해서는 먼저 확보해야 할 메모리의 크기([byte](https://ko.wikipedia.org/wiki/바이트))를 알아야한다. 이는 값의 종류에 따라 확보해야 할 메모리의 크기가 다르기 때문이다. 이때 값의 종류, 즉 데이터의 종류를 자료형(Data Type)이라 한다.
+변수(memory address에 접근하기 위한 식별자)를 통해 메모리에 값을 저장하기 위해서는 먼저 확보해야 할 메모리의 크기([byte](https://ko.wikipedia.org/wiki/바이트))를 알아야한다. 이는 값의 종류에 따라 확보해야 할 메모리의 크기가 다르기 때문이다. 이때 값의 종류, 즉 데이터의 종류를 데이터 타입(Data Type)이라 한다.
 
 예를 들어 1byte(8bit)로 표현할 수 있는 경우의 수, 즉 값의 총 개수는 256개(2<sup>8</sup>)로 [아스키코드(ASCII)](https://ko.wikipedia.org/wiki/ASCII)를 표현할 수 있으며, 4byte(32bit)로 표현할 수 있는 값의 총수는 4,294,967,296개(2<sup>32</sup>)로 -2,147,483,648 ~ 2,147,483,647의 정수를 표현할 수 있다.
 
-C나 Java같은 C-family 언어는 Static Typing(정적 타이핑) 언어로 변수 선언 시 변수에 저장할 값의 종류에 따라 사전에 자료형을 지정(Type annotation)하여야 한다. 다음은 C에서 정수형 변수를 선언하는 예이다.
+C나 Java같은 C-family 언어는 정적 타입(Static/Strong Type) 언어로 변수 선언 시 변수에 저장할 값의 종류를 사전에 타입 지정(Type annotation)하여야 한다. 다음은 C에서 정수형 변수를 선언하는 예이다.
 
 ```c
 // 1byte 정수형: -128 ~ 127
@@ -51,7 +51,7 @@ int main(void) {
 }
 ```
 
-자바스크립트는 동적 타이핑(Dynamic Typing) 언어로 변수의 Type annotation이 필요없이 값이 할당되는 과정에서 자동으로 변수의 자료형이 결정(타입 추론, Type Inference)된다. 따라서 같은 변수에 여러 자료형의 값을 할당할 수 있다.
+자바스크립트는 동적 타입(Dynamic/Weak Type) 언어이다. 변수의 타입 지정(Type annotation)없이 값이 할당되는 과정에서 자동으로 변수의 타입이 결정(타입 추론, Type Inference)된다. 따라서 같은 변수에 여러 타입의 값을 할당할 수 있다.
 
 ```javascript
 var str  = 'Hello';
@@ -64,29 +64,29 @@ foo = 1;
 console.log(typeof foo); // number
 ```
 
-자바스크립트에는 어떠한 자료형이 있는지 그리고 변수는 어떻게 사용하는지 알아보도록 하자.
+자바스크립트에는 어떠한 데이터 타입이 있는지 그리고 변수는 어떻게 사용하는지 알아보도록 하자.
 
-# 1. Data Type (자료형)
+# 1. 데이터 타입
 
-자료형(Data Type)은 프로그래밍 언어에서 문자열, 숫자, 불리언, 객체 등 여러 종류의 데이터를 식별하는 분류를 말한다. 모든 프로그래밍 언어의 학습은 자료형을 파악하는 것으로부터 시작된다.
+**데이터 타입(Data Type)은 프로그래밍 언어에서 문자열, 숫자, 불리언, 객체 등 데이터의 종류를 구별할 수 있는 분류 체계를 말한다.** 자바스크립트의 모든 값은 데이터 타입을 갖으며 변수는 할당된 값에 의해 데이터 타입이 결정되는 동적 타입 언어이다.
 
-ECMAScript 표준(ECMAScript 2015 (6th Edition, ECMA-262) / 2015.06)은 7개의 Data type을 제공한다
+ECMAScript 표준(ECMAScript 2015 (6th Edition, ECMA-262) / 2015.06)은 7개의 데이터 타입을 제공한다
 
-* 기본 자료형 (primitive data type)
+* 원시 타입 (primitive data type)
   * `Boolean`
   * `null`
   * `undefined`
   * `Number`
   * `String`
   * `Symbol` (ECMAScript 6에서 추가)
-* 객체형 (Object type, Reference type)
+* 객체 타입 (object type, Reference type)
   * `Object`
 
-Javascript의 자료형은 크게 기본 자료형(primitive data type)과 객체형(reference type)으로 구분할 수 있다.
+자바스크립트의 데이터 타입은 크게 원시 타입(primitive data type)과 객체 타입(object/reference type)으로 구분할 수 있다.
 
-## 1.1 기본자료형 (Primitive Data Type)
+## 1.1 원시 타입 (Primitive Data Type)
 
-기본 자료형의 값은 [변경 불가능한 값(immutable value)](./js-immutability)이며 **[pass-by-value(값에 의한 전달)](./js-object#5-pass-by-value)** 이다. 또한 이들 값은 메모리의 스택 영역(Stack Segment)에 고정된 메모리 영역을 점유하고 저장된다.
+원시 타입의 값은 [변경 불가능한 값(immutable value)](./js-immutability)이며 **[pass-by-value(값에 의한 전달)](./js-object#5-pass-by-value)** 이다. 또한 이들 값은 메모리의 스택 영역(Stack Segment)에 고정된 메모리 영역을 점유하고 저장된다.
 
 ### 1.1.1 Boolean
 
@@ -99,9 +99,9 @@ var bar = false;
 
 ### 1.1.2 null
 
-null 타입은 딱 한 가지 값, `null`을 가질 수 있다. 자바스크립트는 case-sensitive하므로 `null`은 Null, NULL등과 다르다.
+null 타입의 값은 `null`이 유일하다. 자바스크립트는 case-sensitive하므로 `null`은 Null, NULL등과 다르다.
 
-Computer science에서 `null`은 의도적으로 기본자료형 또는 객체형 변수에 값이 없다는 것을 명시한 것이다. 이는 변수와 메모리 어드레스의 참조 정보를 제거하는 것을 의미하며 자바스크립트 엔진은 참조가 없어진 메모리 영역에 대해 [가비지 콜렉션](https://developer.mozilla.org/ko/docs/Web/JavaScript/Memory_Management)을 수행할 것이다.
+Computer science에서 `null`은 의도적으로 변수에 값이 없다는 것을 명시할 때 사용한다. 이는 변수가 기억하는 메모리 어드레스의 참조 정보를 제거하는 것을 의미하며 자바스크립트 엔진은 누구도 참조하지 않는 메모리 영역에 대해 [가비지 콜렉션](https://developer.mozilla.org/ko/docs/Web/JavaScript/Memory_Management)을 수행할 것이다.
 
 ```javascript
 var foo = 'Lee';
@@ -115,7 +115,7 @@ var foo = null;
 console.log(typeof foo); // object
 ```
 
-따라서 null 타입 변수인지 확인할 때 typeof 연산자를 사용하면 안되고 일치 연산자(===)를 사용하여야 한다.
+따라서 null 타입을 확인할 때 typeof 연산자를 사용하면 안되고 일치 연산자(===)를 사용하여야 한다.
 
 ```javascript
 var foo = null;
@@ -143,7 +143,7 @@ console.log(bar.baz); // undefined
 
 C 언어의 경우, 정수형과 실수형을 구분하여 int, long, float, double 등과 같은 다양한 숫자 자료형이 존재한다. 하지만 자바스크립트는 하나의 숫자 자료형만 존재한다.
 
-ECMAScript 표준에 따르면, 숫자 자료형은 배정밀도 64비트 부동소수점 형([double-precision 64-bit floating-point format](https://en.wikipedia.org/wiki/Double-precision_floating-point_format) : -(2<sup>53</sup> -1) 와 2<sup>53</sup> -1 사이의 숫자값) 단 하나만 존재한다. 정수만을 표현하기 위한 특별한 자료형(integer type)은 없다.
+ECMAScript 표준에 따르면, 숫자 자료형은 배정밀도 64비트 부동소수점 형([double-precision 64-bit floating-point format](https://en.wikipedia.org/wiki/Double-precision_floating-point_format) : -(2<sup>53</sup> -1) 와 2<sup>53</sup> -1 사이의 숫자값) 단 하나만 존재한다. 정수만을 표현하기 위한 특별한 데이터 타입(integer type)은 없다.
 
 추가적으로 세가지 의미있는 기호적인 값들도 표현할 수 있다.
 
@@ -168,19 +168,19 @@ console.log(typeof bar); // number
 
 ### 1.1.5 String
 
-String(문자열) 타입은 텍스트 데이터를 나타내는데 사용한다. 이는 0개 이상의 유니코드(16비트 부호없는 정수 값) 문자들의 집합이다. 문자열은 작은 따옴표('') 또는 큰 따옴표("") 안에 텍스트를 넣어 생성한다.
+String(문자열) 타입은 텍스트 데이터를 나타내는데 사용한다. 문자열은 0개 이상의 유니코드(16비트 부호없는 정수 값) 문자들의 집합이다. 문자열은 작은 따옴표('') 또는 큰 따옴표("") 안에 텍스트를 넣어 생성한다.
 
 ```javascript
-var str = "string";      // double quotes
-    str = 'string';      // single quotes
+var str = "string";  // double quotes
+str = 'string';      // single quotes
 console.log(typeof str); // string
 
 var answer = "It's alright";        // Single quote inside double quotes
-    answer = "He is called 'John'"; // Single quotes inside double quotes
-    answer = 'He is called "John"'; // Double quotes inside single quotes
+answer = "He is called 'John'"; // Single quotes inside double quotes
+answer = 'He is called "John"'; // Double quotes inside single quotes
 ```
 
-C와 같은 언어와는 다르게, 자바스크립트의 문자열은 기본자료형으로 변경 불가능(immutable)하다. 이것은 한 번 문자열이 생성되면, 그 문자열을 변경할 수 없다는 것을 의미한다. 아래의 코드를 살펴보자.
+C와 같은 언어와는 다르게, 자바스크립트의 문자열은 원시 타입이며 변경 불가능(immutable)하다. 이것은 한 번 문자열이 생성되면, 그 문자열을 변경할 수 없다는 것을 의미한다. 아래의 코드를 살펴보자.
 
 ```javascript
 var str = 'Hello';
@@ -223,7 +223,9 @@ console.log(str); // STR
 
 ### 1.1.6 Symbol
 
-[Symbol](./es6-symbol)은 ES6에서 새롭게 추가된 7번째 타입이다. Symbol은 애플리케이션 전체에서 유일하며 변경 불가능한(immutable) 기본 자료형(primitive)이다. 주로 객체의 프로퍼티 키(property key)를 생성할 때 사용한다. Symbol 값은 애플리케이션 전역에서 유일하기 때문에 Symbol 값을 키로 갖는 프로퍼티는 다른 어떠한 프로퍼티와도 충돌하지 않는다.
+[Symbol](./es6-symbol)은 ES6에서 새롭게 추가된 7번째 타입이다.
+
+Symbol은 유일하며 변경 불가능한(immutable) 원시 타입(primitive) 값이다. Symbol은 주로 충돌하지 않는 객체의 프로퍼티 키(property key)로 사용한다.
 
 ```javascript
 var key = Symbol('key');
@@ -234,11 +236,11 @@ obj[key] = 'value';
 console.log(obj[key]); // value
 ```
 
-## 1.2 객체형 (Object type, Reference type)
+## 1.2 객체 타입 (Object type, Reference type)
 
 [객체](./js-object)는 데이터와 그 데이터에 관련한 동작(절차, 방법, 기능)을 모두 포함할 수 있는 개념적 존재이다. 달리 말해, 이름과 값을 가지는 데이터를 의미하는 프로퍼티(property)와 동작을 의미하는 메소드(method)를 포함할 수 있는 독립적 주체이다.
 
-자바스크립트는 객체(object) 기반의 스크립트 언어로서 자바스크립트를 이루고 있는 거의 "모든 것"이 객체이다. 기본자료형(Primitives)을 제외한 나머지 값들(배열, 함수, 정규표현식 등)은 모두 객체이다. 또한 객체는 <strong>[pass-by-reference(참조에 의한 전달)](./js-object#4-pass-by-reference)</strong>이며 메모리의 힙 영역(Heap Segment)에 저장된다.
+자바스크립트는 객체(object) 기반의 스크립트 언어로서 자바스크립트를 이루고 있는 거의 "모든 것"이 객체이다. 원시 타입(Primitives)을 제외한 나머지 값들(배열, 함수, 정규표현식 등)은 모두 객체이다. 또한 객체는 <strong>[pass-by-reference(참조에 의한 전달)](./js-object#4-pass-by-reference)</strong>이며 메모리의 힙 영역(Heap Segment)에 저장된다.
 
 # 2. 변수 (Variable)
 

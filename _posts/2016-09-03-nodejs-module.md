@@ -66,7 +66,7 @@ $ node app
 
 # 3. module.exports
 
-**exports 객체는 프로퍼티 또는 메소드를 여러 개 정의할 수 있었다. 하지만 module.exports에는 하나의 값(기본자료형, 함수, 객체)을 할당할 수 있다.**
+**exports 객체는 프로퍼티 또는 메소드를 여러 개 정의할 수 있었다. 하지만 module.exports에는 하나의 값(원시 타입, 함수, 객체)을 할당할 수 있다.**
 
 ```javascript
 // circle.js
@@ -110,7 +110,7 @@ exports와 module.exports는 혼동하기 쉽다. exports는 module.exports에�
 | 구분            | 모듈 정의 방식                                  | require 함수의 호출 결과
 |:---------------|:---------------------------------------------|----------------
 | exports        | **exports 객체에는 값을 할당할 수 없고 공개할 대상을 exports 객체에 프로퍼티 또는 메소드로 추가한다.** | exports 객체에 추가한 프로퍼티와 메소드가 담긴 객체가 전달된다.
-| module.exports | **module.exports 객체에 하나의 값(기본자료형, 함수, 객체)만을 할당한다.** | module.exports 객체에 할당한 값이 전달된다.
+| module.exports | **module.exports 객체에 하나의 값(원시 타입, 함수, 객체)만을 할당한다.** | module.exports 객체에 할당한 값이 전달된다.
 
 ## 3.1 module.exports에 함수를 할당하는 방식
 

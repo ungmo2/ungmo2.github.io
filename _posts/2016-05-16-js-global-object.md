@@ -99,7 +99,7 @@ console.log(typeof NaN);    // number
 
 ## 1.3. undefined
 
-undefined 프로퍼티는 기본자료형 undefined를 값으로 갖는다.
+undefined 프로퍼티는 원시 타입 undefined를 값으로 갖는다.
 
 ```javascript
 console.log(window.undefined); // undefined

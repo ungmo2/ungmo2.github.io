@@ -274,9 +274,9 @@ foo.sayHello();
 
 ![extension of prototype](/img/extension_prototype.png)
 
-# 6. 기본자료형(Primitive data type)의 확장
+# 6. 원시 타입(Primitive data type)의 확장
 
-자바스크립트에서 기본자료형(숫자, 문자열, boolean, null, undefined)을 제외한 모든것은 객체이다. 그런데 아래 예제를 살펴보면 기본자료형인 문자열이 객체와 유사하게 동작한다.
+자바스크립트에서 원시 타입(숫자, 문자열, boolean, null, undefined)을 제외한 모든것은 객체이다. 그런데 아래 예제를 살펴보면 원시 타입인 문자열이 객체와 유사하게 동작한다.
 
 ```javascript
 var str = 'test';
@@ -294,9 +294,9 @@ console.log(str.toUpperCase());    // TEST
 console.log(strObj.toUpperCase()); // TEST
 ```
 
-기본자료형 문자열과 String() 생성자 함수로 생성한 문자열 객체의 타입은 분명이 다르다. 기본 자료형은 객체가 아니므로 프로퍼티나 메소드를 가질수 없다. 하지만 **기본자료형으로 프로퍼티나 메소드를 호출할 때 기본자료형과 연관된 객체로 일시적으로 변환되어 프로토타입 객체를 공유하게 된다.**
+원시 타입 문자열과 String() 생성자 함수로 생성한 문자열 객체의 타입은 분명이 다르다. 기본 자료형은 객체가 아니므로 프로퍼티나 메소드를 가질수 없다. 하지만 **원시 타입으로 프로퍼티나 메소드를 호출할 때 원시 타입과 연관된 객체로 일시적으로 변환되어 프로토타입 객체를 공유하게 된다.**
 
-기본자료형은 객체가 아니므로 프로퍼티나 메소드를 직접 추가할 수 없다.
+원시 타입은 객체가 아니므로 프로퍼티나 메소드를 직접 추가할 수 없다.
 
 ```javascript
 var str = 'test';
@@ -309,7 +309,7 @@ str.myMethod = function () {
 str.myMethod(); // Uncaught TypeError: str.myMethod is not a function
 ```
 
-하지만 String 객체의 프로토타입 객체 String.prototype에 메소드를 추가하면 기본자료형, 객체 모두 메소드를 사용할 수 있다.
+하지만 String 객체의 프로토타입 객체 String.prototype에 메소드를 추가하면 원시 타입, 객체 모두 메소드를 사용할 수 있다.
 
 ```javascript
 var str = 'test';

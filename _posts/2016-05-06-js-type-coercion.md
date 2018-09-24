@@ -4,13 +4,29 @@ title: <strong>Type coercion</strong>
 subtitle: 타입 변환과 단축 평가
 categories: javascript
 section: javascript
-description: 자바스크립트의 모든 값은 타입이 있다. 값의 타입은 자바스크립트 엔진에 의해 다른 타입으로 자동  변환되기도 한다. 이러한 암묵적 타입 강제 변환은 개발자의 의도와는 상관없이 자동 변환되기 때문에 코드를 작성할 때 암묵적 타입 강제 변환이 발생하는지, 발생한다면 어떤 타입의 어떤 값으로 변환되는지 예측 가능해야 한다. 만약 예측하지 못하거나 예측한 내용과 결과가 일치하지 않는다면 버그가 발생할 가능성이 매우 크다.
+description: 자바스크립트의 모든 값은 타입이 있다. 값의 타입은 자바스크립트 엔진에 의해 다른 타입으로 자동 변환되기도 한다. 이러한 암묵적 타입 강제 변환은 개발자의 의도와는 상관없이 자동 변환되기 때문에 코드를 작성할 때 암묵적 타입 강제 변환이 발생하는지, 발생한다면 어떤 타입의 어떤 값으로 변환되는지 예측 가능해야 한다. 만약 예측하지 못하거나 예측한 내용과 결과가 일치하지 않는다면 버그가 발생할 가능성이 매우 크다.
 ---
 
 * TOC
 {:toc}
 
-자바스크립트의 모든 값은 타입이 있다. 값의 타입은 자바스크립트 엔진에 의해 다른 타입으로 자동  변환되기도 한다. 이러한 암묵적 타입 강제 변환은 개발자의 의도와는 상관없이 자동 변환되기 때문에 코드를 작성할 때 암묵적 타입 강제 변환이 발생하는지, 발생한다면 어떤 타입의 어떤 값으로 변환되는지 예측 가능해야 한다. 만약 예측하지 못하거나 예측한 내용과 결과가 일치하지 않는다면 버그가 발생할 가능성이 매우 크다.
+자바스크립트의 모든 값은 타입이 있다. 값의 타입은 개발자의 의도에 의해 명시적으로 타입을 변환할 수 있다. 이를 **명시적 타입 변환 또는 타입 캐스팅(type casting)**이라 한다.
+
+또는 개발자의 의도와는 상관없이 자바스크립트 엔진에 의해 암묵적으로 타입이 자동 변환되기도 한다. 이를 **암묵적 타입 강제 변환 또는 타입 강제(type coercion)**라고 한다.
+
+```javascript
+var x = 10;
+
+// 명시적 타입 변환
+var str1 = x.toString(); // 숫자를 문자열로 타입 캐스팅한다.
+console.log(typeof str1, str1); // string 10
+
+// 암묵적 타입 강제 변환
+var str2 = x + ''; // 숫자가 문자열로 타입 강제된다.
+console.log(typeof str2, str2); // string 10
+```
+
+암묵적 타입 강제 변환은 개발자의 의도와는 상관없이 암묵적으로 타입이 자동 변환되기 때문에 자신이 작성한 코드에서 암묵적 타입 강제 변환이 발생하는지, 발생한다면 어떤 타입의 어떤 값으로 변환되는지 예측 가능해야 한다. 만약 예측하지 못하거나 예측한 내용이 결과와 일치하지 않는다면 버그가 발생할 가능성이 매우 크다.
 
 # 1. 암묵적 타입 강제 변환
 
@@ -63,11 +79,11 @@ if (null) {
 ```javascript
 var name = 'Lee';
 
-if (!name) {
-  console.log(name.length);
+if (name) {
+  console.log(name.toUpperCase());
 }
 
-console.log(name); // ''
+console.log(name); // 'Lee'
 ```
 
 의도적으로 암묵적 타입 강제 변환을 이용하는 것은 가독성이 좋지 않고 오류를 만들 가능성이 있으므로 바람직하지 않다.
@@ -110,9 +126,9 @@ console.log(num - parseInt(str));
 | undefined    | <b style='color:red'>NaN</b> | 'undefined'	| <b style='color:red'>false</b>
 
 
-# 3. 타입 변환 (Type Casting)
+# 3. 타입 캐스팅
 
-값의 타입을 변경(casting)하는 방법은 다양하다. 아래와 같이 래퍼 객체 생성자 함수를 new 연산자없이 호출하면 타입을 변경한 값을 생성할 수 있다.
+값의 타입을 의도적으로 변경(Type casting)하는 방법은 다양하다. 아래와 같이 래퍼 객체 생성자 함수를 new 연산자없이 호출하면 타입을 변경한 값을 생성할 수 있다.
 
 ```javascript
 var x = false;
@@ -143,14 +159,14 @@ console.log(+NaN);    // NaN
 var val = '123';
 console.log(typeof val + ': ' + val); // string: 123
 
-// sting -> number
+// 문자열 -> 숫자
 val = +val; // "+": 단항 연산자(unary operator)
 // val = val * 1;
 // val = parseInt(val);
 // val = Number(val);
 console.log(typeof val + ': ' + val); // number: 123
 
-// number -> sting
+// 숫자 -> 문자열
 val = val + '';
 // val = String(val);
 // val = val.toString();

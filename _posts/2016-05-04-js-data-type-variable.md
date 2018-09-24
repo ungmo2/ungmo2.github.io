@@ -51,7 +51,7 @@ int main(void) {
 }
 ```
 
-자바스크립트는 동적 타입(Dynamic/Weak Type) 언어이다. 변수의 타입 지정(Type annotation)없이 값이 할당되는 과정에서 자동으로 변수의 타입이 결정(타입 추론, Type Inference)된다. 따라서 같은 변수에 여러 타입의 값을 할당할 수 있다.
+자바스크립트는 동적 타입(Dynamic/Weak Type) 언어이다. 변수의 타입 지정(Type annotation)없이 값이 할당되는 과정에서 자동으로 변수의 타입이 결정(타입 추론, Type Inference)된다. 즉, 변수는 고정된 타입이 없다. 따라서 같은 변수에 여러 타입의 값을 자유롭게 할당할 수 있다.
 
 ```javascript
 var str  = 'Hello';
@@ -73,14 +73,14 @@ console.log(typeof foo); // number
 ECMAScript 표준(ECMAScript 2015 (6th Edition, ECMA-262) / 2015.06)은 7개의 데이터 타입을 제공한다
 
 * 원시 타입 (primitive data type)
-  * `Boolean`
+  * `boolean`
   * `null`
   * `undefined`
-  * `Number`
-  * `String`
-  * `Symbol` (ECMAScript 6에서 추가)
-* 객체 타입 (object type, Reference type)
-  * `Object`
+  * `number`
+  * `string`
+  * `symbol` (ECMAScript 6에서 추가)
+* 객체 타입 (object/reference type)
+  * `object`
 
 자바스크립트의 데이터 타입은 크게 원시 타입(primitive data type)과 객체 타입(object/reference type)으로 구분할 수 있다.
 
@@ -259,7 +259,7 @@ var circleArea = 3.141592653589793 * 2 * 2;
 var cylinderVolume = circleArea * 5;
 ```
 
-원주율 3.141592653589793은 재사용할 가능성이 크므로 변수에 저장하도록 하자. 원주율은 변하지 않는 상수이지만 자바스크립트는 상수를 별도 지원하지 않으므로 변수 이름을 대문자로 하여 상수임을 암시한다. 그리고 반지름과 원기둥의 높이도 변수에 담아 값의 의미를 명확히하자.
+원주율 3.141592653589793은 재사용할 가능성이 크므로 변수에 저장하도록 하자. 원주율은 변하지 않는 상수이지만 자바스크립트는 상수를 별도 지원하지 않으므로 변수 이름을 대문자로 하여 상수임을 암시하도록 하자. 그리고 반지름과 원기둥의 높이도 값의 의미를 명확히하고 변화에 대처하기 쉽도록 변수에 저장하도록 하자.
 
 자바스크립트 빌트인 상수인 Math.PI와 ES6의 const 키워드를 사용할 수 있지만 변수를 설명하기 위해 사용하지 않도록 한다.
 {:.info}
@@ -288,7 +288,7 @@ var score = 100;  // OK
 * 반드시 영문자(특수문자 제외), underscore ( _ ), 또는 달러 기호($)로 시작하여야 한다. 이어지는 문자에는 숫자(0~9)도 사용할 수 있다.
 * 자바스크립트는 대/소문자를 구별하므로 사용할 수 있는 문자는 "A" ~ "Z" (대문자)와 "a" ~ "z" (소문자)이다.
 
-변수를 선언할 때 `var` keyword가 사용된다. 등호(=, equal sign)는 변수에 값을 할당하기 위해 사용된다.
+변수를 선언할 때는 `var` 키워드를 사용한다. 등호(=, equal sign)는 변수에 값을 할당하는 할당 연산자이다.
 
 ```javascript
 var name;     // 선언
@@ -305,7 +305,7 @@ var tax   = 1;
 var total = price + tax;
 ```
 
-값을 할당하지 않은 변수 즉 선언만 되어 있는 변수는 `undefined`로 초기값을 갖게 된다. 선언하지 않은 변수에 접근하면 `ReferenceError`가 발생한다.
+값을 할당하지 않은 변수 즉 선언만 되어 있는 변수는 `undefined`로 초기값을 갖는다. 선언하지 않은 변수에 접근하면 `ReferenceError`가 발생한다.
 
 ```javascript
 var x;
@@ -450,4 +450,4 @@ ES6는 이러한 var의 단점을 보완하기 위해 [let과 const 키워드](.
 
 * [자바스크립트의 메모리관리](https://developer.mozilla.org/ko/docs/Web/JavaScript/Memory_Management)
 
-* [자바스크립트는 어떻게 작동하는가](https://engineering.huiseoul.com/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EB%8A%94-%EC%96%B4%EB%96%BB%EA%B2%8C-%EC%9E%91%EB%8F%99%ED%95%98%EB%8A%94%EA%B0%80-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC-4%EA%B0%80%EC%A7%80-%ED%9D%94%ED%95%9C-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%88%84%EC%88%98-%EB%8C%80%EC%B2%98%EB%B2%95-5b0d217d788d)
+* [자바스크립트는 어떻게 작동하는가](https://engineering.huiseoul.com/자바스크립트는-어떻게-작동하는가-메모리-관리-4가지-흔한-메모리-누수-대처법-5b0d217d788d)

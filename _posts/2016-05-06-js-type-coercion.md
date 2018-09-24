@@ -10,39 +10,66 @@ description: 자바스크립트의 모든 값은 타입이 있다. 값의 타입
 * TOC
 {:toc}
 
-자바스크립트의 모든 값은 타입이 있다. 값의 타입은 개발자의 의도에 의해 명시적으로 타입을 변환할 수 있다. 이를 **명시적 타입 변환 또는 타입 캐스팅(type casting)**이라 한다.
+자바스크립트의 모든 값은 타입이 있다. 값의 타입은 다른 타입으로 의도적으로 변환하거나 암묵적으로 자동 변환될 수 있다.
 
-또는 개발자의 의도와는 상관없이 자바스크립트 엔진에 의해 암묵적으로 타입이 자동 변환되기도 한다. 이를 **암묵적 타입 강제 변환 또는 타입 강제(type coercion)**라고 한다.
+개발자의 의도에 의해 명시적으로 값의 타입을 변환하는 경우, 이를 **명시적 타입 강제 변환(explicit coercion) 또는 타입 캐스팅(type casting)**이라 한다. 명시적 타입 강제 변환은 타입을 변경하겠다는 개발자의 의지가 코드에 명백히 드러나므로 오해의 여지가 적다.
 
 ```javascript
 var x = 10;
 
-// 명시적 타입 변환
-var str1 = x.toString(); // 숫자를 문자열로 타입 캐스팅한다.
-console.log(typeof str1, str1); // string 10
-
-// 암묵적 타입 강제 변환
-var str2 = x + ''; // 숫자가 문자열로 타입 강제된다.
-console.log(typeof str2, str2); // string 10
+// 명시적 타입 강제 변환
+var str = x.toString(); // 숫자를 문자열로 타입 캐스팅한다.
+console.log(typeof str, str); // string 10
 ```
 
-암묵적 타입 강제 변환은 개발자의 의도와는 상관없이 암묵적으로 타입이 자동 변환되기 때문에 자신이 작성한 코드에서 암묵적 타입 강제 변환이 발생하는지, 발생한다면 어떤 타입의 어떤 값으로 변환되는지 예측 가능해야 한다. 만약 예측하지 못하거나 예측한 내용이 결과와 일치하지 않는다면 버그가 발생할 가능성이 매우 크다.
+개발자의 의도와는 상관없이 자바스크립트 엔진에 의해 암묵적으로 타입이 자동 변환되기도 한다. 이를 **암묵적 타입 강제 변환(implicit coercion) 또는 타입 강제 변환(type coercion)**이라고 한다. 암묵적 타입 강제 변환은 다른 처리의 부수 효과(side effect)로 인해 자동 발생한다.
+
+```javascript
+var x = 10;
+
+// 암묵적 타입 강제 변환
+var str = x + ''; // 숫자가 문자열로 타입이 자동 변환된다.
+console.log(typeof str, str); // string 10
+```
+
+암묵적 타입 강제 변환은 개발자의 의도와는 상관없이 암묵적으로 타입이 자동 변환되기 때문에 자신이 작성한 코드에서 암묵적 타입 강제 변환이 발생하는지, 발생한다면 어떤 타입의 어떤 값으로 변환되는지 예측 가능해야 한다. 만약 예측하지 못하거나 예측한 내용이 결과와 일치하지 않는다면 버그가 발생할 가능성이 매우 크다. 또한 타입을 변경하겠다는 개발자의 의지가 코드에 명백히 드러나지 않기 때문에 명시적 타입 강제 변환에 비교할 때 가독성이 좋지 않다.
 
 # 1. 암묵적 타입 강제 변환
 
-자바스크립트는 필요에 따라 다양한 방식으로 값을 암묵적 타입 강제 변환(Type coercion)한다. 아래의 예제를 살펴보자.
+자바스크립트는 필요에 따라 다양한 방식으로 암묵적 타입 강제 변환이 일어난다. 암묵적 타입 강제 변환이 발생하면 문자열, 숫자, 불리언과 같은 원시 타입 중 하나로 값을 자동 변환한다.
+
+## 1.1 ToString
+
+아래의 예제를 살펴보자.
 
 ```javascript
-1 + '2'            // '12'
-2 - '1'            // 1
-'1' > 0            // true
-'10' == 10         // true
-undefined == null  // true
+1 + '2' // '12'
 ```
 
-위 예제의 `+` 연산자는 산술 연산자가 아니라 문자열 연산자이다. 문자열 연산자는 좌후항 피연산자 중에서 문자열이 아닌 피연산자를 암묵적 타입 강제 변환을 통해 문자열 타입으로 변환한다.
+위 예제의 `+` 연산자는 산술 연산자가 아니라 문자열 연산자이다. 문자열 연산자는 좌후항 피연산자 중에서 문자열이 아닌 피연산자를 문자열 타입으로 암묵적 타입 강제 변환한 후 연산한다.
 
-피연산자만이 암묵적 타입 강제 변환의 대상이 되는 것은 아니다. if문이나 for문과 같은 제어문의 조건식도 필요에 따라 암묵적 타입 강제 변환의 대상이 될 수 있다.
+## 1.2 ToNumber
+
+아래의 예제를 살펴보자.
+
+```javascript
+2 - '1'       // 1
+2 - true      // 1
+2 - undefined // NaN
+2 - 'ten'     // NaN
+```
+
+위 예제의 `-` 연산자는 산술 연산자이다. 산술 연산자는 좌후항 피연산자 중에서 숫자가 아닌 피연산자를 숫자 타입으로 암묵적 타입 강제 변환한 후 연산한다. 만일 숫자 타입으로 변환할 수 없으면 `NaN`을 반환한다.
+
+```javascript
+'1' > 0   // true
+```
+
+비교 연산자는 불리언 값을 반환해야 한다. 따라서 불리언 값을 반환할 수 있도록 피연산자의 타입을 변환해야 한다. 위 예제의 경우, 문자열을 숫자로 변환하여 연산한다.
+
+## 1.3 ToBoolean
+
+아래의 예제를 살펴보자.
 
 ```javascript
 var x = '';
@@ -51,6 +78,8 @@ if (x) {
   console.log(x);
 }
 ```
+
+피연산자만이 암묵적 타입 강제 변환의 대상이 되는 것은 아니다. if문이나 for문과 같은 제어문의 조건식도 필요에 따라 암묵적 타입 강제 변환의 대상이 될 수 있다.
 
 조건식(conditional expression)은 표현식의 일종이다. 따라서 피연산자와 연산자로 구성된 일반적 표현식은 물론 하나의 값으로 수렴할 수 있는 문자열이나 숫자와 같은 리터럴 값, 변수, 내장값들(true, false, null, undefined, Nan, Infinity...)등 또한 조건식으로 사용될 수 있다.
 
@@ -74,61 +103,9 @@ if (null) {
 }
 ```
 
-암묵적 타입 강제 변환에 의해 값 자체가 변경되는 것은 아니다. 연산 또는 조건식의 평가를 위해 값을 변환하여 평가할 뿐이다.
+# 2. 명시적 타입 강제 변환
 
-```javascript
-var name = 'Lee';
-
-if (name) {
-  console.log(name.toUpperCase());
-}
-
-console.log(name); // 'Lee'
-```
-
-의도적으로 암묵적 타입 강제 변환을 이용하는 것은 가독성이 좋지 않고 오류를 만들 가능성이 있으므로 바람직하지 않다.
-
-```javascript
-var num = 2;
-var str = '1';
-
-// Bad
-console.log(num - str);
-
-// Good
-console.log(num - parseInt(str));
-```
-
-# 2. 타입 변환 테이블 (Type Conversion Table)
-
-|Original Value|Converted to Number	|Converted to String |Converted to Boolean|
-|:-------------|:------------------:|:------------------:|:------------------:|
-| false        | <b style='color:red'>0</b> | 'false'	   | false
-| true         | <b style='color:red'>1</b> | 'true'	   | true
-| 0	           | 0	                | '0'	               | <b style='color:red'>false</b>
-| 1	           | 1  	              | '1'	               | true
-| '0'	         | <b style='color:red'>0</b>	| '0'	       | <b style='color:red'>true</b>
-| '1'	         | <b style='color:red'>1</b>	| '1'        | true
-| NaN	         | NaN	              | 'NaN'	             | <b style='color:red'>false</b>
-| Infinity	   | Infinity	          | 'Infinity'	       | true
-| -Infinity	   | -Infinity	        | '-Infinity'	       | true
-| ''	         | <b style='color:red'>0</b>| ''	         | <b style='color:red'>false</b>
-| '10'	       | 10	                | '10'	             | true
-| 'ten'	       | NaN	              | 'ten'	             | true
-| [ ]	         | <b style='color:red'>0</b>| ''	         | true
-| [10]	       | <b style='color:red'>10</b>| '10'	     | true
-| [10, 20]	   | NaN	              | '10,20'	           | true
-| ['ten']	     | NaN	              | 'ten'	         | true
-| ['ten', 'twenty']|	NaN	            | 'ten, twenty'	     | true
-| function(){} | NaN	              | 'function(){}'	   | true
-| { }	         | NaN	              | '[object Object]'	 | true
-| null	       | <b style='color:red'>0</b> | 'null'	   | <b style='color:red'>false</b>
-| undefined    | <b style='color:red'>NaN</b> | 'undefined'	| <b style='color:red'>false</b>
-
-
-# 3. 타입 캐스팅
-
-값의 타입을 의도적으로 변경(Type casting)하는 방법은 다양하다. 아래와 같이 래퍼 객체 생성자 함수를 new 연산자없이 호출하면 타입을 변경한 값을 생성할 수 있다.
+개발자의 의도에 의해 명시적으로 값의 타입을 변경하는 방법은 다양하다. 아래와 같이 래퍼 객체 생성자 함수를 new 연산자없이 호출하면 타입을 변경한 값을 생성할 수 있다.
 
 ```javascript
 var x = false;
@@ -171,6 +148,52 @@ val = val + '';
 // val = String(val);
 // val = val.toString();
 console.log(typeof val + ': ' + val); // string: 123
+```
+
+# 3. 타입 변환 테이블 (Type Conversion Table)
+
+암묵적 또는 명시적 타입 강제 변환은 숫자, 문자열, 불리언과 같은 원시 타입으로 값의 타입을 변경한다. 타입 강제 변환은 타입만이 아니라 값을 변경할 수도 있다. 예를 들어 불리언 타입 true를 숫자로 변환하면 에러를 발생시키는 것이 아니라 1이 된다.
+
+```javascript
++true // 1
+```
+
+아래의 표는 타입 강제 변환이 일어날 때 그 결과를 나타낸 타입 변환 테이블이다.
+
+|Original Value|Converted to Number	|Converted to String |Converted to Boolean|
+|:-------------|:------------------:|:------------------:|:------------------:|
+| true         | <b style='color:red'>1</b> | 'true'	   | true
+| false        | <b style='color:red'>0</b> | 'false'	   | false
+| 0	           | 0	                | '0'	               | <b style='color:red'>false</b>
+| 1	           | 1  	              | '1'	               | true
+| '0'	         | <b style='color:red'>0</b>	| '0'	       | <b style='color:red'>true</b>
+| '1'	         | <b style='color:red'>1</b>	| '1'        | true
+| ''	         | <b style='color:red'>0</b>| ''	         | <b style='color:red'>false</b>
+| NaN	         | NaN	              | 'NaN'	             | <b style='color:red'>false</b>
+| '10'	       | 10	                | '10'	             | true
+| 'ten'	       | NaN	              | 'ten'	             | true
+| Infinity	   | Infinity	          | 'Infinity'	       | true
+| -Infinity	   | -Infinity	        | '-Infinity'	       | true
+| [ ]	         | <b style='color:red'>0</b>| ''	         | true
+| [10]	       | <b style='color:red'>10</b>| '10'	     | true
+| [10, 20]	   | NaN	              | '10,20'	           | true
+| ['ten']	     | NaN	              | 'ten'	         | true
+| ['ten', 'twenty']|	NaN	            | 'ten, twenty'	     | true
+| function(){} | NaN	              | 'function(){}'	   | true
+| { }	         | NaN	              | '[object Object]'	 | true
+| null	       | <b style='color:red'>0</b> | 'null'	   | <b style='color:red'>false</b>
+| undefined    | <b style='color:red'>NaN</b> | 'undefined'	| <b style='color:red'>false</b>
+
+타입 강제 변환에 의해 값 자체가 변경되는 것은 아니다. 연산 또는 조건식의 평가를 위해 값을 변환하여 평가할 뿐이다.
+
+```javascript
+var name = 'Lee';
+
+if (name) {
+  console.log(name.toUpperCase());
+}
+
+console.log(name); // 'Lee'
 ```
 
 # 4. Truthy & Falsy value

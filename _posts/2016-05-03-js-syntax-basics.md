@@ -1,7 +1,7 @@
 ---
 layout: post
 title: <strong>Syntax Basics</strong>
-subtitle: Hello Javascript
+subtitle: 자바스크립트의 기본 문법
 categories: javascript
 section: javascript
 description: Javascript는 interactive한 웹페이지 작성을 가능하게 한다. 예를 들면, 이벤트(e.g. 버튼 클릭, 웹페이지 로딩 완료 등)에 반응하여 HTML 요소에 접근하고 HTML 요소를 조작할 수 있다. 정적인 HTML을 동적으로 변경할 수 있는 유일한 방법은 Javascript를 사용하는 것이다
@@ -10,165 +10,7 @@ description: Javascript는 interactive한 웹페이지 작성을 가능하게 �
 * TOC
 {:toc}
 
-# 1. Hello World
-
-Javascript는 interactive한 웹페이지 작성을 가능하게 한다. 예를 들면, 이벤트(e.g. 버튼 클릭, 웹페이지 로딩 완료 등)에 반응하여 HTML 요소에 접근하고 조작할 수 있다. 정적인 HTML을 동적으로 조작할 수 있는 유일한 방법은 Javascript를 사용하는 것이다.
-
-사용자에 의해 버튼이 클릭되면 정적 HTML을 동적으로 조작하는 간단한 Javascript 예제를 만들어 보자.
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Hello World</title>
-  <style>
-    button { color: red; }
-  </style>
-</head>
-<body>
-  <h1 id="heading"></h1>
-  <button id="my-btn">click me!</button>
-
-  <script>
-    var heading = document.getElementById('heading');
-    var myButton = document.getElementById('my-btn');
-
-    myButton.addEventListener('click', function () {
-      heading.innerHTML = 'Hello World!';
-    });
-  </script>
-</body>
-</html>
-```
-
-<div class='result' style="height: 136px;"></div>
-
-# 2. 외부의 Javascript 실행하기 (External JavaScript)
-
-HTML은 웹페이지의 내용(content)과 구조(structure)을 담당한다. Javascript의 역할은 정적인 HTML에 동적 기능을 부여하는 것이다. 즉, HTML과 Javascript는 역할(관심사, Concern)이 다르므로 분리된 파일로 작성하는 것이 바람직하다.
-
-위 코드를 역할에 따라 HTML과 CSS, JavaScript로 각각 분리해 보자.
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Hello World</title>
-  <link rel="stylesheet" href="style.css"></link>
-</head>
-<body>
-  <h1 id="heading"></h1>
-  <button id="my-btn">click me!</button>
-
-  <script src="main.js"></script>
-</body>
-</html>
-```
-
-```css
-/* style.css */
-button {
-  color: red;
-}
-```
-
-```javascript
-// main.js
-var heading = document.getElementById('heading');
-var myButton = document.getElementById('my-btn');
-
-myButton.addEventListener('click', function () {
-  heading.innerHTML = 'Hello World!';
-});
-```
-
-# 3. 브라우저 동작 원리
-
-구글의 Chrome V8 JavaScript 엔진으로 빌드된 JavaScript 런타임 환경(Runtime Environment)인 <strong>Node.js</strong>의 등장으로 JavaScript는 웹 브라우저를 벗어나 서버 사이드 애플리케이션 개발에서도 사용되는 Full-stack 개발 언어가 되었다. 하지만 JavaScript가 가장 많이 사용되는 분야는 역시 웹 브라우저 환경에서 동작하는 웹 페이지/애플리케이션이다.
-
-대부분의 프로그래밍 언어는 운영체제(Operating System, OS) 위에서 실행되지만 웹 애플리케이션의 JavaScript는 브라우저에서 HTML, CSS와 함께 실행된다. 따라서 브라우저 환경을 고려할 때 보다 효율적인 JavaScript 프로그래밍이 가능하다.
-
-브라우저의 주요 기능은 사용자가 참조하고자 하는 웹페이지를 서버에 요청(Request)하고 응답(Response)을 받아 브라우저에 표시하는 것이다. 브라우저는 서버로부터 html, css, javascript 파일을 응답받는다. html, css 파일은 렌더링 엔진의 HTML 파서와 CSS 파서에 의해 파싱(Parsing)되어 DOM, CSSOM 트리로 변환되고 렌더 트리로 결합된다.
-
-![브라우저 동작 원리](./img/client-server.png)
-{: .w-700}
-
-브라우저 동작 원리
-{: .desc-img}
-
-HTML 파서는 script 태그를 만나면 DOM 생성 프로세스를 중지하고 자바스크립트 엔진에 제어 권한을 넘긴다. 자바스크립트 엔진의 실행이 완료된 후 브라우저가 중지했던 시점부터 DOM 생성을 재개한다. 이것은 script 태그의 위치에 의해 DOM의 생성이 지연될 수 있음을 의미한다.
-
-브라우저는 위 코드를 아래와 같이 실행할 것이다.
-
-1. script 요소를 만나면 웹페이지의 파싱을 잠시 중단한다.
-2. src 어트리뷰트에 정의된 자바스크립트 파일을 로드한 후 파싱하고 **실행한다**.
-3. 중단된 웹페이지의 파싱을 계속 진행한다.
-
-body 요소의 가장 아래에 스크립트를 위치시키는 것은 좋은 아이디어이다. 그 이유는 아래와 같다.
-
-- HTML 요소들이 스크립트 로딩 지연으로 인해 렌더링에 지장 받는 일이 발생하지 않아 페이지 로딩 시간이 단축된다.
-
-- DOM이 완성되지 않은 상태에서 자바스크립트가 DOM을 조작한다면 에러가 발생한다.
-
-# 4. script 태그의 async / defer 어트리뷰트
-
-이와 같이 스크립트 로딩 지연으로 인한 병목 현상을 근본적으로 방지하기 위해 HTML5부터 script 태그에 `async`와 `defer` 어트리뷰트가 추가되었다.
-
-```html
-<script async src="extern.js"></script>
-<script defer src="extern.js"></script>
-```
-
-async
-: 웹페이지 파싱과 외부 스크립트 파일의 다운로드가 동시에 진행된다. 스크립트는 다운로드 완료 직후 실행된다. IE9 이하 버전은 지원하지 않는다.
-
-defer
-: 웹페이지 파싱과 외부 스크립트 파일의 다운로드가 동시에 진행된다. 스크립트는 웹페이지 파싱 완료 직후 실행된다. IE9 이하 버전에서 정상적으로 동작하지 않을 수 있다.
-
-![script-execution](./img/script-execution.jpg)
-{: .w-650}
-
-script 태그의 async, defer 어트리뷰트 (출처: [Peter Beverloo](http://peter.sh/experiments/asynchronous-and-deferred-javascript-execution-explained/))
-{: .desc-img}
-
-async와 defer 어트리뷰트는 웹페이지 파싱과 외부 스크립트 파일의 다운로드가 동시에 진행된다는 면에서는 동일하다. 하지만 스크립트의 실행 시점이 다르다.
-
-<!-- # 4. JavaScript Output
-
-Javascript에서 data를 표시하는 방법은 아래와 같다.
-
-| Type            | Code             |
-| --------------- | ---------------- |
-| alert box       | alert()          |
-| HTML output     | document.write() |
-| HTML element    | innerHTML        |
-| Browser console | console.log()    |
-
-```html
-<!DOCTYPE html>
-<html>
-<body>
-  <h1>My First Web Page</h1>
-  <p id="demo"></p>
-  <script>
-    alert('alert');
-    document.write('document.write');
-    document.getElementById('demo').innerHTML = 'innerHTML';
-    console.log('console.log');
-  </script>
-</body>
-</html>
-``` -->
-
-# 5. Javascript Syntax Basics
-
-## 5.1 문 (Statement)
+# 1. 문
 
 프로그램(스크립트)은 컴퓨터(Client-side Javascript의 경우, 엄밀히 말하면 웹 브라우저)에 의해 단계별로 수행될 명령들의 집합이다.
 
@@ -222,7 +64,7 @@ console.log(greeting);
 
 다른 언어와 달리 자바스크립트에서는 블록 유효범위(Block-level scope)를 생성하지 않는다. 함수 단위의 유효범위(Function-level scope)만이 생성된다.
 
-## 5.2 표현식 (Expression)
+# 2. 표현식
 
 표현식(Expression)은 값(리터럴), 변수, 객체의 프로퍼티, 배열의 요소, 함수 호출, 메소드 호출, 연산자의 조합을 말한다. **표현식은 평가(Evaluation)되고 그 결과, 하나의 값으로 수렴된다.** 아래의 예에서 5 * 10은 50으로 평가(연산)된다.
 
@@ -232,7 +74,7 @@ console.log(greeting);
 'Hello' + ' ' + 'world'  // 'Hello world'
 ```
 
-## 5.3 문과 표현식의 구분
+# 3. 문과 표현식의 비교
 
 자연어에서 문(Statement)이 마침표로 끝나는 하나의 완전한 문장(Sentence)이라고 한다면 표현식은 문을 구성하는 요소이다. 표현식은 그자체로 하나의 문이 될 수도 있다. 아래의 예제는 표현식이 포함된 문이다.
 
@@ -245,11 +87,11 @@ x = 100;
 
 첫번째 선언문은 표현식 `x = 5 * 10`를 포함하는 문이다. 두번째 할당문은 그자체가 표현식이지만 완전한 문이기도 하다.
 
-## 5.4 변수 (Variable)
+# 4. 변수
 
 프로그래밍 언어에서 변수는 값(value)을 저장(할당), 참조하기 위해 사용된다. 한번 쓰고 버리는 값이 아닌 유지할 필요가 있는 값의 경우, 변수를 사용한다.
 
-변수는 위치(주소)를 기억하는 저장소이다. 위치란 메모리 상의 주소(address)를 의미한다. 즉, 변수란 메모리 주소(Memory address)에 접근하기 위해 사람이 이해할 수 있는 언어로 지정한 식별자(identifier)이다.
+변수(Variable)는 위치(주소)를 기억하는 저장소이다. 위치란 메모리 상의 주소(address)를 의미한다. 즉, 변수란 메모리 주소(Memory address)에 접근하기 위해 사람이 이해할 수 있는 언어로 지정한 식별자(identifier)이다.
 
 변수를 선언할 때 `var` keyword가 사용된다. 등호(=, equal sign)는 변수에 값을 할당하기 위해 사용된다.
 
@@ -260,7 +102,7 @@ var x; // 변수의 선언과 초기화
 x = 6; // 정수값의 할당
 ```
 
-## 5.5 값 (Value)
+# 5. 값
 
 ```java
 String str = "Hello World";
@@ -348,9 +190,9 @@ var array = [ 1, 2, 3 ];
 var foo = function() {};
 ```
 
-## 5.6 연산자 (Operator)
+# 6. 연산자
 
-연산자는 하나 혹은 그 이상의 값을 하나의 값으로 만들 때 사용한다.
+연산자(Operator)는 하나 혹은 그 이상의 값을 하나의 값으로 만들 때 사용한다.
 
 ```javascript
 // 대입 연산자
@@ -372,9 +214,9 @@ var bar = (5 > 3) && (2 < 4);  // true
 var today = new Date();
 ```
 
-## 5.7 키워드 (keyword)
+# 7. 키워드
 
-키워드는 수행할 동작을 규정한 것이다. 예를 들어 `var` keyword는 브라우저에게 새로운 변수를 생성할 것을 지시한다.
+키워드(keyword)는 수행할 동작을 규정한 것이다. 예를 들어 `var` keyword는 브라우저에게 새로운 변수를 생성할 것을 지시한다.
 
 ```javascript
 // 변수의 선언
@@ -414,9 +256,9 @@ while (1) {
 | var             | Declares a variable
 -->
 
-## 5.8 주석 (Comment)
+# 8. 주석
 
-주석(코멘트)은 작성된 코드의 의미를 설명하기 위해 사용한다. 코드는 읽기(이해하기) 쉬워야 한다.(가독성이 좋아야 한다)
+주석(Comment)은 작성된 코드의 의미를 설명하기 위해 사용한다. 코드는 읽기(이해하기) 쉬워야 한다.(가독성이 좋아야 한다)
 
 여러분이 작성한 코드를 다른 누군가가 읽는다면 “아니, 이게 뭐하는 코드야?”라고 생각하는 순간이 있기 마련이다. 여러분이 해야 하는 일은 바로 그런 부분에 주석을 다는 것이다. (읽기 좋은 코드가 좋은 코드이다)
 
@@ -444,16 +286,3 @@ var x = 10;
 // Good
 var age = 10;
 ```
-
-# Reference
-
-* [브라우저는 어떻게 동작하는가?](http://d2.naver.com/helloworld/59361)
-
-* [Render-tree Construction, Layout, and Paint](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction?hl=ko)
-
-* [Adding interactivity with javascript](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/adding-interactivity-with-javascript?hl=ko)
-
-* [오픈소스 웹킷(WebKit)의 구조와 원리](http://rtcc.hanyang.ac.kr/sitedata/2015_2_ISP/howbrowserswork_20150915.pdf)
-
-* [Asynchronous and deferred JavaScript execution explained](http://peter.sh/experiments/asynchronous-and-deferred-javascript-execution-explained/)
-

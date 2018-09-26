@@ -82,24 +82,32 @@ ECMAScript 표준(ECMAScript 2015 (6th Edition), 이하 ES6)은 7개의 데이�
 * 객체 타입 (object/reference type)
   * `object`
 
+예를 들어 숫자(number) 타입 1과 문자열(string) 타입 '1'은 비슷하게 보이지만 다른 타입의 값이다. 숫자 타입의 값은 주로 산술 연산을 위해 만들지만 문자열 타입의 값은 주로 텍스트로 출력하기 위해 만든다. 이처럼 개발자는 명확한 의도를 가지고 타입을 구별하여 값을 만들 것이고 자바스크립트 엔진은 타입을 구별하여 값을 취급할 것이다.
+
 자바스크립트에서 제공하는 7개의 데이터 타입은 크게 원시 타입(primitive data type)과 객체 타입(object/reference type)으로 구분할 수 있다.
 
 ## 1.1 원시 타입 (Primitive Data Type)
 
 원시 타입의 값은 [변경 불가능한 값(immutable value)](./js-immutability)이며 **[pass-by-value(값에 의한 전달)](./js-object#5-pass-by-value)** 이다. 또한 이들 값은 메모리의 스택 영역(Stack Segment)에 고정된 메모리 영역을 점유하고 저장된다.
 
-### 1.1.1 Boolean
+### 1.1.1 boolean
 
-논리적인 요소를 나타내며 `true`와 `false` 두가지 값을 가질 수 있다. 비어있는 문자열과 `null`, `undefined`, 숫자 0은 `false`로 간주된다.
+불리언(boolean) 타입의 값은 논리적 참, 거짓을 나타내는 `true`와 `false` 뿐이다.
 
 ```javascript
 var foo = true;
 var bar = false;
+
+// typeof 연산자는 타입을 나타내는 문자열을 반환한다.
+console.log(typeof foo); // boolean
+console.log(typeof bar); // boolean
 ```
+
+비어있는 문자열과 `null`, `undefined`, 숫자 0은 `false`로 간주된다. 이에 대해서는 [타입 변환](./js-type-coercion)에서 살펴볼 것이다.
 
 ### 1.1.2 null
 
-null 타입의 값은 `null`이 유일하다. 자바스크립트는 case-sensitive하므로 `null`은 Null, NULL등과 다르다.
+null 타입의 값은 `null`이 유일하다. 자바스크립트는 대소문자를 구별(case-sensitive)하므로 `null`은 Null, NULL등과 다르다.
 
 Computer science에서 `null`은 의도적으로 변수에 값이 없다는 것을 명시할 때 사용한다. 이는 변수가 기억하는 메모리 어드레스의 참조 정보를 제거하는 것을 의미하며 자바스크립트 엔진은 누구도 참조하지 않는 메모리 영역에 대해 [가비지 콜렉션](https://developer.mozilla.org/ko/docs/Web/JavaScript/Memory_Management)을 수행할 것이다.
 
@@ -108,7 +116,7 @@ var foo = 'Lee';
 foo = null;  // 참조 정보가 제거됨
 ```
 
-주의할 것은 자료형을 나타내는 문자열을 반환하는 typeof 연산자로 null값은 가진 변수를 연산해 보면 null이 아닌 object가 나온다. 이는 설계상의 오류이다.
+주의할 것은 타입을 나타내는 문자열을 반환하는 `typeof` 연산자로 null 값을 연산해 보면 null이 아닌 object가 나온다. 이는 설계상의 오류이다.
 
 ```javascript
 var foo = null;
@@ -125,7 +133,7 @@ console.log(foo === null);        // true
 
 ### 1.1.3 undefined
 
-선언 이후 값을 할당하지 않은 변수는 `undefined` 값을 가진다. 즉, 선언은 되었지만 할당된 적이 없는 변수에 접근하거나 존재하지 않는 객체 프로퍼티에 접근할 경우 반환된다.
+undefined 타입의 값은 `undefined`이 유일하다. 선언 이후 값을 할당하지 않은 변수는 `undefined` 값을 가진다. 즉, 선언은 되었지만 값을 할당하지 않은 변수에 접근하거나 존재하지 않는 객체 프로퍼티에 접근할 경우 undefined가 반환된다.
 
 ```javascript
 var foo;
@@ -135,19 +143,20 @@ var bar = {
   name: 'Lee',
   gender: 'male'
 };
-console.log(bar);     // { name: 'Lee', gender: 'male' }
-console.log(bar.baz); // undefined
+console.log(bar);   // { name: 'Lee', gender: 'male' }
+console.log(bar.x); // undefined
 ```
 
-### 1.1.4 Number
+### 1.1.4 number
 
-C 언어의 경우, 정수형과 실수형을 구분하여 int, long, float, double 등과 같은 다양한 숫자 자료형이 존재한다. 하지만 자바스크립트는 하나의 숫자 자료형만 존재한다.
+C 언어의 경우, 정수형과 실수형을 구분하여 int, long, float, double 등과 같은 다양한 숫자 자료형이 존재한다. 하지만 자바스크립트는 하나의 숫자 타입만 존재한다.
 
-ECMAScript 표준에 따르면, 숫자 자료형은 배정밀도 64비트 부동소수점 형([double-precision 64-bit floating-point format](https://en.wikipedia.org/wiki/Double-precision_floating-point_format) : -(2<sup>53</sup> -1) 와 2<sup>53</sup> -1 사이의 숫자값) 단 하나만 존재한다. 정수만을 표현하기 위한 특별한 데이터 타입(integer type)은 없다.
+ECMAScript 표준에 따르면, 숫자 타입의 값은 배정밀도 64비트 부동소수점 형([double-precision 64-bit floating-point format](https://en.wikipedia.org/wiki/Double-precision_floating-point_format) : -(2<sup>53</sup> -1) 와 2<sup>53</sup> -1 사이의 숫자값)의 숫자이다. 정수만을 표현하기 위한 특별한 데이터 타입(integer type)은 없다.
 
 추가적으로 세가지 의미있는 기호적인 값들도 표현할 수 있다.
 
-* `+/- Infinity`
+* `Infinity`
+* `-Infinity`
 * `NaN` (not-a-number)
 
 ```javascript
@@ -166,7 +175,7 @@ console.log(typeof bar); // number
 
 수학적 의미의 실수(實數, real number)는 허수(虛數, imaginary number)가 아닌 유리수와 무리수를 통틀은 말이지만 프로그래밍 언어에서 실수는 일반적으로 소수를 가리킨다.
 
-### 1.1.5 String
+### 1.1.5 string
 
 String(문자열) 타입은 텍스트 데이터를 나타내는데 사용한다. 문자열은 0개 이상의 유니코드(16비트 부호없는 정수 값) 문자들의 집합이다. 문자열은 작은 따옴표('') 또는 큰 따옴표("") 안에 텍스트를 넣어 생성한다.
 
@@ -221,11 +230,11 @@ str = str.toUpperCase();
 console.log(str); // STR
 ```
 
-### 1.1.6 Symbol
+### 1.1.6 symbol
 
-[Symbol](./es6-symbol)은 ES6에서 새롭게 추가된 7번째 타입이다.
+[symbol](./es6-symbol)은 ES6에서 새롭게 추가된 7번째 타입이다.
 
-Symbol은 유일하며 변경 불가능한(immutable) 원시 타입(primitive) 값이다. Symbol은 주로 충돌하지 않는 객체의 프로퍼티 키(property key)로 사용한다.
+symbol은 유일하며 변경 불가능한(immutable) 원시 타입(primitive) 값이다. symbol은 주로 충돌하지 않는 객체의 프로퍼티 키(property key)로 사용한다.
 
 ```javascript
 var key = Symbol('key');

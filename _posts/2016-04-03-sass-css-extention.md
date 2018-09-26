@@ -4,7 +4,7 @@ title: Sass - <strong>CSS Extensions</strong>
 subtitle: Nesting, import, extend, 조건과 반복, Mixin, Function
 categories: Sass
 section: Sass
-description: ass의 유용한 확장 기능으로 선언을 중첩(Nesting)하는 것이다. CSS는 후손 셀렉터(Descendant Combinator)의 경우, 부모요소를 기술하여야 한다.
+description: Sass의 유용한 확장 기능으로 선언을 중첩(Nesting)하는 것이다. CSS는 후손 셀렉터(Descendant Combinator)의 경우, 부모요소를 기술하여야 한다.
 ---
 
 * TOC
@@ -14,7 +14,7 @@ description: ass의 유용한 확장 기능으로 선언을 중첩(Nesting)하�
 
 # 1. Nesting
 
-Sass의 유용한 확장 기능으로 선언을 중첩(Nesting)하는 것이다.
+Nesting은 Sass의 유용한 확장 기능으로 선언을 중첩(Nesting)하는 것이다.
 
 CSS는 [후손 셀렉터(Descendant Combinator)](./css3-selector#61-후손-셀렉터-descendant-combinator)의 경우, 부모요소를 기술하여야 한다.
 

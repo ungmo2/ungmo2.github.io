@@ -12,14 +12,14 @@ description: 자료형(Data Type)은 프로그래밍 언어에서 객체, 정수
 
 프로그래밍은 변수를 통해 값을 저장하고 참조하며 연산자로 값을 연산, 평가하고 조건문과 반복문에 의한 흐름제어로 데이터의 흐름을 제어하고 함수로 재사용이 가능한 구문의 집합을 만들며 객체, 배열 등으로 자료를 구조화하는 것이다.
 
-변수는 위치(주소)를 기억하는 저장소이다. 위치란 메모리 상의 주소(address)를 의미한다. 즉, 변수란 메모리 주소(Memory address)에 접근하기 위해 사람이 이해할 수 있는 언어로 지정한 식별자(identifier)이다.
+변수는 값의 위치(주소)를 기억하는 저장소이다. 값의 위치란 값이 위치하고 있는 메모리 상의 주소(address)를 의미한다. 즉, 변수란 값이 위치하고 있는 메모리 주소(Memory address)에 접근하기 위해 사람이 이해할 수 있는 언어로 명명한 식별자(identifier)이다.
 
 ![memory_address](./img/memory_address.png)
 
 변수 선언과 할당의 구조
 {: .desc-img}
 
-변수(memory address에 접근하기 위한 식별자)를 통해 메모리에 값을 저장하기 위해서는 먼저 확보해야 할 메모리의 크기([byte](https://ko.wikipedia.org/wiki/바이트))를 알아야한다. 이는 값의 종류에 따라 확보해야 할 메모리의 크기가 다르기 때문이다. 이때 값의 종류, 즉 데이터의 종류를 데이터 타입(Data Type)이라 한다.
+메모리에 값을 저장하기 위해서는 먼저 메모리 공간을 확보해야 할 메모리의 크기([byte](https://ko.wikipedia.org/wiki/바이트))를 알아야한다. 이는 값의 종류에 따라 확보해야 할 메모리의 크기가 다르기 때문이다. 이때 값의 종류, 즉 데이터의 종류를 데이터 타입(Data Type)이라 한다.
 
 예를 들어 1byte(8bit)로 표현할 수 있는 경우의 수, 즉 값의 총 개수는 256개(2<sup>8</sup>)로 [아스키코드(ASCII)](https://ko.wikipedia.org/wiki/ASCII)를 표현할 수 있으며, 4byte(32bit)로 표현할 수 있는 값의 총수는 4,294,967,296개(2<sup>32</sup>)로 -2,147,483,648 ~ 2,147,483,647의 정수를 표현할 수 있다.
 
@@ -68,9 +68,9 @@ console.log(typeof foo); // number
 
 # 1. 데이터 타입
 
-**데이터 타입(Data Type)은 프로그래밍 언어에서 문자열, 숫자, 불리언, 객체 등 데이터의 종류를 구별할 수 있는 분류 체계를 말한다.** 자바스크립트의 모든 값은 데이터 타입을 갖으며 변수는 할당된 값에 의해 데이터 타입이 결정되는 동적 타입 언어이다.
+**데이터 타입(Data Type)은 프로그래밍 언어에서 사용할 수 있는 값의 종류를 말한다.** 자바스크립트의 모든 값은 데이터 타입을 갖는다.
 
-ECMAScript 표준(ECMAScript 2015 (6th Edition, ECMA-262) / 2015.06)은 7개의 데이터 타입을 제공한다
+ECMAScript 표준(ECMAScript 2015 (6th Edition), 이하 ES6)은 7개의 데이터 타입을 제공한다
 
 * 원시 타입 (primitive data type)
   * `boolean`
@@ -78,11 +78,11 @@ ECMAScript 표준(ECMAScript 2015 (6th Edition, ECMA-262) / 2015.06)은 7개의 
   * `undefined`
   * `number`
   * `string`
-  * `symbol` (ECMAScript 6에서 추가)
+  * `symbol` (ES6에서 추가)
 * 객체 타입 (object/reference type)
   * `object`
 
-자바스크립트의 데이터 타입은 크게 원시 타입(primitive data type)과 객체 타입(object/reference type)으로 구분할 수 있다.
+자바스크립트에서 제공하는 7개의 데이터 타입은 크게 원시 타입(primitive data type)과 객체 타입(object/reference type)으로 구분할 수 있다.
 
 ## 1.1 원시 타입 (Primitive Data Type)
 

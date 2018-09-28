@@ -100,14 +100,14 @@ route: post
         {% if page.previous %}
           <a class="pagination-previous" href="{{ page.previous.url }}">
             <em>&larr; Previous</em>
-            <strong>{{ page.previous.title }}</strong>
+            <strong>{{ page.previous.seq }}.{{ page.previous.subseq }} {{ page.previous.title }}</strong>
           </a>
         {% endif %}
 
         {% if page.next %}
           <a class="pagination-next" href="{{ page.next.url }}">
             <em>Next &rarr;</em>
-            <strong>{{ page.next.title }}</strong>
+            <strong>{{ page.next.seq }}.{{ page.next.subseq }} {{ page.next.title }}</strong>
           </a>
         {% endif %}
       </nav>

@@ -23,12 +23,8 @@ Netscape Navigator 2
 
 * 초창기 자바스크립트는 웹페이지 제작에 있어서 보조적인 기능을 수행하기 위해 한정적인 용도로 주로 사용되었다. 이 시기에 대부분 로직은 주로 웹서버에서 실행되었고 브라우저(클라이언트)는 서버로 부터 전달받은 HTML과 CSS를 렌더링하는 수준이었다. 하지만 웹이 더욱 발전하면서 과거 웹서버에서 수행되던 많은 역할들이 클라이언트로 이동하였는데 이것은 자바스크립트의 발전 덕분이다. 특히 [jQuery](https://jquery.com/)의 등장으로 다소 번거롭고 논란이 있던 DOM(Document Object Model)를 보다 쉽게 제어할 수 있게 되었다. 이는 정적인 웹페이지에 역동성을 부여하기 위한 목적으로 자바스크립트의 위상을 더욱 높이는 계기가 되었다.
 
-<!--
-* 자바스크립트는 JIT(Just-In-Time) 컴파일 방식의 [인터프리터](https://ko.wikipedia.org/wiki/인터프리터) 언어(Interpreter language)이다. 텍스트 기반 소스 코드를 파싱하여 중간 코드인 byte code로 전환한다. 이후 ...
-=>
-https://trustyoo86.github.io/node.js/2017/11/17/javascript-v8-change-history.html
-https://meetup.toast.com/posts/77
--->
+* 자바스크립트는 별도의 컴파일 작업을 개발자가 수행하지 않는 [인터프리터](https://ko.wikipedia.org/wiki/인터프리터) 언어(Interpreter language)이다. 대부분의 모던 자바스크립트 엔진(Safari, Chrome, FireFox 등)은 텍스트 기반 소스 코드를 파싱하여 중간 언어(IR, intermediate representation)인 바이트 코드로 변환한다. 그런 다음 중간 언어인 바이트 코드를 native code로 컴파일하여 동작을 수행한다.
+<!--https://meetup.toast.com/posts/77-->
 
 * 자바스크립트는 다른 언어에서 많은 영향을 받았다. C, Java와는 기본 문법이 유사하다. 그리고 Self에서는 프로토타입 기반 상속을, Scheme에서는 일급 함수의 개념을 차용했다.
 
@@ -92,9 +88,9 @@ IE를 제외한 대부분의 모던 브라우저는 ES6를 지원하고 있지�
 
 # Reference
 
-* [자바스크립트 v8 엔진의 변경 내용 및 Node.js 적용](https://trustyoo86.github.io/node.js/2017/11/17/javascript-v8-change-history.html)
-
 * [자바스크립트는 어떻게 작동하는가: V8 엔진의 내부 + 최적화된 코드를 작성을 위한 다섯 가지 팁](https://engineering.huiseoul.com/자바스크립트는-어떻게-작동하는가-v8-엔진의-내부-최적화된-코드를-작성을-위한-다섯-가지-팁-6c6f9832c1d9)
+
+* [자바스크립트 엔진의 최적화 기법](https://meetup.toast.com/posts/77)
 
 * [ECMAScript Version](https://developer.mozilla.org/ko/docs/Web/JavaScript/언어_리소스)
 

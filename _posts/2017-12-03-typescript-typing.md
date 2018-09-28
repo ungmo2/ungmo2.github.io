@@ -16,7 +16,7 @@ description: 타입 선언은 코드 예측성을 향상시킨다. 또한 타입
 
 # 1. 타입 선언 (Type Declaration)
 
-TypeScript는 아래와 같이 변수명 뒤에 타입(자료형)을 명시하는 것으로 타입을 선언할 수 있다.
+TypeScript는 아래와 같이 변수명 뒤에 타입을 명시하는 것으로 타입을 선언할 수 있다.
 
 ```typescript
 // 변수 foo는 string 타입이다.
@@ -54,7 +54,7 @@ console.log(multiply2(10, 3));
 console.log(multiply1(true, 1)); // error TS2345: Argument of type 'true' is not assignable to parameter of type 'number'.
 ```
 
-TypeScript는 ES5, ES6의 Superset(상위확장)이므로 [자바스크립트의 타입](./js-data-type-variable#1-data-type-자료형)을 그대로 사용할 수 있다. 자바스크립트의 타입 이외에도 TypeScript 고유의 타입이 추가로 제공된다.
+TypeScript는 ES5, ES6의 Superset(상위확장)이므로 [자바스크립트의 타입](./js-data-type-variable#1-데이터-타입)을 그대로 사용할 수 있다. 자바스크립트의 타입 이외에도 TypeScript 고유의 타입이 추가로 제공된다.
 
 | Type        | JS | TS | Description      |
 |:------------|:--:|:--:|:-----------------|
@@ -66,7 +66,7 @@ TypeScript는 ES5, ES6의 Superset(상위확장)이므로 [자바스크립트의
 | symbol      |◯   |◯   | 고유하고 수정 불가능한 데이터 타입이며 주로 객체 프로퍼티들의 식별자로 사용(ES6에서 추가)
 | object      |◯   |◯   | 객체형(참조형)
 | array       |    |◯   | 배열
-| tuple       |    |◯   | 고정된 요소수 만큼의 자료형을 미리 선언후 배열을 표현
+| tuple       |    |◯   | 고정된 요소수 만큼의 타입을 미리 선언후 배열을 표현
 | enum        |    |◯   | 열거형. 숫자값 집합에 이름을 지정한 것이다.
 | any         |    |◯   | 타입 추론(type inference)할 수 없거나 타입 체크가 필요없는 변수에 사용. var 키워드로 선언한 변수와 같이 어떤 타입의 값이라도 할당 가능.
 | void        |    |◯   | 일반적으로 함수에서 반환값이 없을 경우 사용한다.
@@ -169,7 +169,7 @@ objectStr = 'hello'; // OK
 objectStr = new String('hello'); // OK
 ```
 
-string 타입은 TypeScript가 기본으로 제공하는 기본 자료형 문자열 타입을 의미한다. 하지만 대문자로 시작하는 String 타입은 String 생성자 함수로 생성된 String 래퍼 객체 타입을 의미한다. 따라서 string 타입에 String 타입을 할당하면 에러가 발생한다. 하지만 String 타입에는 string 타입을 할당할 수 있다. 이처럼 객체의 유형도 타입이 될 수 있다.
+string 타입은 TypeScript가 기본으로 제공하는 원시 타입인 문자열 타입을 의미한다. 하지만 대문자로 시작하는 String 타입은 String 생성자 함수로 생성된 String 래퍼 객체 타입을 의미한다. 따라서 string 타입에 String 타입을 할당하면 에러가 발생한다. 하지만 String 타입에는 string 타입을 할당할 수 있다. 이처럼 객체의 유형도 타입이 될 수 있다.
 
 ```typescript
 // Date 타입

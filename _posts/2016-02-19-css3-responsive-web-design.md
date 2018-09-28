@@ -1,9 +1,11 @@
 ---
 layout: post
 title: CSS3 <strong>Responsive Web Design</strong>
-subtitle: 브라우저의 크기에 반응하는 웹사이트를 위한 기술
+subtitle: 반응형 레이아웃
 categories: css
 section: css
+seq: 2
+subseq: 19
 description: CSS3 'Responsive Web Design' '반응형 웹디자인' viewport @media
 ---
 

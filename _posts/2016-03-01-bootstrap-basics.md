@@ -1,9 +1,11 @@
 ---
 layout: post
 title: <strong>Bootstrap</strong> Basics
-subtitle: HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.
+subtitle: Bootstrap 소개와 설치
 categories: bootstrap
 section: bootstrap
+seq: 3
+subseq: 1
 description: Bootstrap은 빠르고 간편한 반응형 웹 디자인(responsive web design)을 위한 open-source front-end framework이다.  HTML, CSS, JavaScript로 만들어진 typography, 입력 양식(forms), 버튼, 테이블, 탭, 내비게이션, 모달, 이미지 캐러셀(image carousel) 등을 제공하며 추가적으로 JavaScript plugin들을 제공한다. Twitter의 Mark Otto와 Jacob Thornton이 개발한 오픈 소스로 2011년 공개되었다.
 ---
 

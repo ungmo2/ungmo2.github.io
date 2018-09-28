@@ -1,9 +1,11 @@
 ---
 layout: post
 title: CSS3 <strong>Font & Text</strong>
-subtitle: 폰트 및 텍스트에 관련된 프로퍼티
+subtitle: 폰트와 텍스트
 categories: css
 section: css
+seq: 2
+subseq: 7
 description: 폰트 및 텍스트 관련 프로퍼티는 폰트의 크기, 폰트의 지정, 폰트의 스타일, 텍스트 정렬 등을 정의한다.
 ---
 

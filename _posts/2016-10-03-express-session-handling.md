@@ -4,6 +4,8 @@ title: Express <strong>Session Handling</strong>
 subtitle: MemoryStore를 사용한 Session 관리와 Redis를 사용한 영속적 Session 관리
 categories: express
 section: express
+seq: 10
+subseq: 3
 description: MemoryStore를 사용한 Session 관리와 Redis를 사용한 영속적 Session 관리
 ---
 

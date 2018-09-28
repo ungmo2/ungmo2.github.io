@@ -4,6 +4,8 @@ title: CSS3 <strong>Transition</strong>
 subtitle: 트랜지션
 categories: css
 section: css
+seq: 2
+subseq: 14
 description: 트랜지션(transition)은 CSS 프로퍼티 변경에 따른 표시의 변화를 부드럽게 하기 위해 애니메이션 속도를 조절한다. 즉, 프로퍼티 변경이 표시의 변화에 즉시 영향을 미치게 하는 대신 그 프로퍼티의 변화가 일정 시간(duration)에 걸쳐 일어나도록 하는 것이다.
 ---
 

@@ -4,6 +4,8 @@ title: HTML5 Tag - Image & Multimedia
 subtitle: 이미지의 표현과 동영상, 음악 등 멀티미디어를 지원하는 태그
 category: html
 section: html
+seq: 1
+subseq: 7
 description: 이미지의 표현과 동영상, 음악 등 멀티미디어를 지원하는 태그
 ---
 

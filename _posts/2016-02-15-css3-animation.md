@@ -4,6 +4,8 @@ title: CSS3 <strong>Animation</strong>
 subtitle: 애니메이션
 categories: css
 section: css
+seq: 2
+subseq: 15
 description: 애니메이션(Animation) 효과는 HTML 요소에 적용되는 CSS 스타일을 다른 CSS 스타일로 부드럽게 변화시킨다. 애니메이션은 애니메이션을 나타내는 CSS 스타일과 애니메이션의 sequence를 나타내는 복수의 키프레임 들로 이루어진다.
 ---
 

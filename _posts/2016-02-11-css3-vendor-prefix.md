@@ -4,6 +4,8 @@ title: CSS3 <strong>Vendor Prefix</strong>
 subtitle: 벤더 프리픽스
 categories: css
 section: css
+seq: 2
+subseq: 11
 description: CSS3 표준으로 확정되기 이전 또는 브라우저 개발사가 실험적으로 제공하는 기능을 사용하기 위해서는 벤더 프리픽스를 사용하여야 한다.
 ---
 

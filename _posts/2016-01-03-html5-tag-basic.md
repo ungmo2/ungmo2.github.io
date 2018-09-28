@@ -1,9 +1,11 @@
 ---
 layout: post
 title: HTML5 Tag - Basic
-subtitle: 웹페이지의 기본을 구성하는 태그
+subtitle: 웹페이지의 구성하는 기본 태그
 category: html
 section: html
+seq: 1
+subseq: 3
 description: 문서 형식 정의(Document Type Definition, DTD) 태그는 출력할 웹 페이지의 형식을 브라우저에게 전달한다. 문서의 최상위에 위치해야 하며 대소문자를 구별하지 않는다. 문서별 기술 양식은 아래와 같다.
 ---
 

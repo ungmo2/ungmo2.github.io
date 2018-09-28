@@ -4,6 +4,8 @@ title: Express <strong>Error Handling</strong>
 subtitle: Express의 기본적인 에러 처리 방식
 categories: express
 section: express
+seq: 10
+subseq: 2
 description: Express의 기본적인 에러 처리 방식
 ---
 

@@ -1,9 +1,11 @@
 ---
 layout: post
 title: CSS3 <strong>Box Model</strong>
-subtitle: 모든 HTML 요소는 <strong>Box</strong>라고 불리는 사각형의 영역을 생성한다.
+subtitle: 박스 모델
 categories: css
 section: css
+seq: 2
+subseq: 4
 description: 모든 HTML 요소는 Box 형태의 영역을 가지고 있다. Box 형태란 물론 사각형을 의미한다. 이 Box는 마진(Margin), 테두리(Border), 패딩(Padding), 콘텐츠(Contents)로 구성된다. 브라우저는 박스 모델의 크기(dimension)와 프로퍼티(색, 배경, 모양 등), 위치를 근거로 하여 렌더링을 실행한다. 웹디자인은 콘텐츠를 담을 박스 모델을 정의하고 CSS 프로퍼티를 통해 스타일(배경, 폰트와 텍스트 등)과 위치 및 정렬을 지정하는 것이라고 할 수 있다.
 ---
 

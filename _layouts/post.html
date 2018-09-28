@@ -7,12 +7,13 @@ route: post
   <section class="heading">
     <div class="container">
       <h1>
-        {% assign year = page.date | date: "%-y"  %}
+        <!-- {% assign year = page.date | date: "%-y"  %}
         {% case year %}
           {% when '17' %}<em>{{ page.date | date: "%-m" | plus:'12' }}.{{ page.date | date: "%-d" }}</em>
           {% else %}<em>{{ page.date | date: "%-m.%-d" }}</em>
-        {% endcase %}
+        {% endcase %} -->
         <!-- <em>{{ page.date | date: "%-m.%-d" }}</em> -->
+        <em>{{ page.seq }}.{{ page.subseq }}</em>
         {{ page.title }}
       </h1>
       <h2>{{ page.subtitle }}</h2>

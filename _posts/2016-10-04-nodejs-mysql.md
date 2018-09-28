@@ -4,6 +4,8 @@ title: <strong>MySQL 연동</strong>
 subtitle: Node.js(Express)와 <strong>MySQL 연동</strong>
 categories: express
 section: express
+seq: 10
+subseq: 4
 description: Node.js(express)와 MySQL 연동
 ---
 

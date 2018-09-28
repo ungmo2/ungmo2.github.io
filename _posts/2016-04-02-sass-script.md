@@ -4,6 +4,8 @@ title: Sass - <strong>SassScript</strong>
 subtitle: CSS를 프로그래밍 언어와 같이 작성할 수 있게 확장한 SassScript
 categories: Sass
 section: Sass
+seq: 4
+subseq: 2
 description: SassScript는 CSS에서는 불가능한 연산, 변수, 함수 등의 확장 기능을 의미한다.
 ---
 

@@ -4,6 +4,8 @@ title: Snippet - Shape
 subtitle:
 categories: snippet
 section: snippet
+seq: 8
+subseq: 3
 ---
 
 * TOC
@@ -1408,7 +1410,7 @@ section: snippet
 
   .ribbon-green:before, .ribbon-green:after {
     content: "";
-    border-top:   3px solid #6e8900;   
+    border-top:   3px solid #6e8900;
     border-left:  3px solid transparent;
     border-right: 3px solid transparent;
     position: absolute;

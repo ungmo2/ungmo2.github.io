@@ -1,9 +1,11 @@
 ---
 layout: post
 title: CSS3 <strong>Background</strong>
-subtitle: HTML 요소의 배경으로 이미지 또는 색상을 정의
+subtitle: 백그라운드
 categories: css
 section: css
+seq: 2
+subseq: 6
 description: Background 관련 프로퍼티는 해당 요소의 배경으로 이미지 또는 색상을 정의한다.
 ---
 
@@ -207,22 +209,22 @@ body {
 
     .bg-wrap {
       /* page-wrap 보다 bg-wrap이 작은 경우, page-wrap이 가리는 문제를 해결 */
-      min-height: 600px; 
+      min-height: 600px;
       height: 100%;
-      background-size: cover; 
+      background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       /* 마진 상쇄 문제 해결을 위한 코드
         https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing
       */
-      overflow: auto; 
+      overflow: auto;
       /* or padding: 0.1px; */
     }
 
     .parallax {
       background-image: url("http://poiemaweb.com/img/bg/stock-photo-125979219.jpg");
       /* parallax scrolling effect */
-      background-attachment: fixed;  
+      background-attachment: fixed;
     }
 
     .normal {
@@ -307,7 +309,7 @@ body {
     .example7 {
       /*
         <length> values
-        xpos ypos     
+        xpos ypos
       */
       background-position: 10px 20px;
     }

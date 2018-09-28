@@ -4,6 +4,8 @@ title: CSS3 <strong>Display</strong>
 subtitle: display, visibility, opacity 프로퍼티
 categories: css
 section: css
+seq: 2
+subseq: 5
 description: display 프로퍼티는 layout 정의에 자주 사용되는 중요한 프로퍼티이다.
 ---
 

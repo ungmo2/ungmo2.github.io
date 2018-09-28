@@ -4,6 +4,8 @@ title: <strong>Extended Parameter Handling</strong>
 subtitle: 파라미터 기본값, Rest 파라미터, Spread 연산자
 categories: es6
 section: es6
+seq: 6
+subseq: 4
 description: Rest 파라미터는 Spread 연산자(...)를 사용하여 파라미터를 작성한 형태를 말한다. Rest 파라미터를 사용하면 인수를 함수 내부에서 배열로 전달받을 수 있다.
 ---
 

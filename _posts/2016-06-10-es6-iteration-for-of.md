@@ -4,6 +4,8 @@ title: <strong>Iteration protocol & for-of</strong>
 subtitle: 이터레이션 프로토콜(iteration protocol)과 for-of 루프
 categories: es6
 section: es6
+seq: 6
+subseq: 10
 description: ES6에는 이터러블(iterable)과 이터레이터(iterator)를 정의한 이터레이션 프로토콜(iteration protocol)이 추가되었다. 이터러블은 순회 가능한 자료 구조이다. Symbol.iterator를 프로퍼티 키로 사용한 메소드를 구현하는 것에 의해 순회 가능한 자료 구조인 이터러블이 된다. 이터러블의 Symbol.iterator를 프로퍼티 키로 사용한 메소드는 이터레이터를 반환한다. 이터레이터는 순회 가능한 자료 구조인 이터러블의 요소를 탐색하기 위한 포인터이다.
 ---
 

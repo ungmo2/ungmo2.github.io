@@ -4,6 +4,8 @@ title: Snippet - jQuery
 subtitle:
 categories: snippet
 section: snippet
+seq: 8
+subseq: 9
 ---
 
 * TOC

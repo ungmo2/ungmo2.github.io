@@ -3,6 +3,8 @@ layout: post
 title: Jekyll와 GitHub Pages를 사용한 <strong>Static WebSite</strong> 구축
 categories: tools
 section: tools
+seq: 14
+subseq: 1
 description: Jekyll와 GitHub Pages를 사용한 Static WebSite 구축
 ---
 

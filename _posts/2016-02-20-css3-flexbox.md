@@ -1,9 +1,11 @@
 ---
 layout: post
 title: CSS3 <strong>Flexbox</strong> Layout
-subtitle: CSS3의 새로운 layout
+subtitle: 플렉스 박스 레이아웃
 categories: css
 section: css
+seq: 2
+subseq: 20
 ---
 
 * TOC

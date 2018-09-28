@@ -4,6 +4,8 @@ title: Node.js <strong>Basics</strong>
 subtitle: 네트워크 애플리케이션을 위한 자바스크립트 런타임 환경
 categories: nodejs
 section: nodejs
+seq: 9
+subseq: 1
 description: Node.js는 Chrome V8 자바스크립트 엔진으로 빌드된 자바스크립트 런타임으로 주로 서버 사이드 애플리케이션 개발에 사용되는 소프트웨어 플랫폼이다. Node.js는 브라우저 외부 환경에서 자바스크립트 애플리케이션 개발에 사용되며 이에 필요한 모듈, 파일 시스템, HTTP 등 Built-in API가 제공한다. 2009년 Ryan Dahl이 발표된 Node.js는 폭발적인 관심을 받아왔고 Node.js를 사용하는 기업수도 대폭 증가했다. 이후 엔터프라이즈 영역에서 기존 Java나 .NET을 Node.js로 대체하려는 검토가 활발히 진행될 것으로 예상된다. 현재 Node.js를 사용하는 기업은 Microsoft, Paypal, eBay, Yahoo, GoDaddy 등이 있다.
 ---
 

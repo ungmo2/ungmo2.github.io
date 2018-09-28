@@ -4,6 +4,8 @@ title: CSS3 <strong>Gradient</strong>
 subtitle: 그레이디언트
 categories: css
 section: css
+seq: 2
+subseq: 13
 description: 그레이디언트(Gradient)는 2가지 이상의 색상을 혼합하여 부드러운 색감의 배경 등을 생성하는 것이다. CSS3가 이 기능을 제공하기 이전에는 포토샵 등의 소프트웨어를 사용하여 그레이디언트 효과의 이미지를 제작하여 사용하였다. 그러나 이러한 방법은 이미지 다운로드에 시간이 소요되는 문제와 이미지를 확대하였을 때 해상도가 나빠지는 문제 등을 내포하고 있었다.
 ---
 

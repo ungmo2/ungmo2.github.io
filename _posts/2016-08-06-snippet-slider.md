@@ -4,6 +4,8 @@ title: Snippet - Slider
 subtitle:
 categories: snippet
 section: snippet
+seq: 8
+subseq: 6
 ---
 
 * TOC

@@ -4,6 +4,8 @@ title: Angular <strong>jQuery 플러그인</strong>
 subtitle: Angular CLI 환경에서 jQuery 플러그인 사용하기
 categories: angular
 section: angular
+seq: 13
+subseq: 26
 description: Angular CLI 환경에서 jQuery 플러그인 사용하기
 ---
 

@@ -4,6 +4,8 @@ title: Snippet - Resets
 subtitle:
 categories: snippet
 section: snippet
+seq: 8
+subseq: 2
 ---
 
 * TOC

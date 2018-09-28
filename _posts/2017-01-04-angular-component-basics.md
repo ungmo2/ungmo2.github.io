@@ -4,6 +4,8 @@ title: Angular Component - <strong>Basics</strong>
 subtitle: 컴포넌트 소개와 기본 구조
 categories: angular
 section: angular
+seq: 13
+subseq: 4
 description: 컴포넌트는 Angular의 핵심 구성 요소로서 Angular 애플리케이션은 컴포넌트를 중심(CBD, Component Based Development)으로 구성된다. 컴포넌트의 역할은 애플리케이션의 화면을 구성하는 뷰(View)를 생성하고 관리하는 것이다. 컴포넌트는 동작 가능한 하나의 부품으로서 다른 컴포넌트에 간섭을 받지 않는 독립적인 뷰를 소유한다. Angular는 이러한 컴포넌트를 조합하여 하나의 완성된 애플리케이션을 작성한다.
 ---
 

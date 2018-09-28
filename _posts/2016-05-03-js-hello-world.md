@@ -4,6 +4,8 @@ title: <strong>Hello world</strong>
 subtitle: 자바스크립트의 실행
 categories: javascript
 section: javascript
+seq: 5
+subseq: 3
 description: 자바스크립트는 interactive한 웹페이지 작성을 가능하게 한다. 예를 들면, 이벤트(e.g. 버튼 클릭, 웹페이지 로딩 완료 등)에 반응하여 HTML 요소에 접근하고 조작할 수 있다. 정적인 HTML을 동적으로 조작할 수 있는 유일한 방법은 Javascript를 사용하는 것이다.
 ---
 

@@ -4,6 +4,8 @@ title: Node.js <strong>module</strong>
 subtitle: Node.js의 module loading system
 categories: nodejs
 section: nodejs
+seq: 9
+subseq: 3
 description: Node.js는 사실상 모듈 시스템의 사실상 표준(de facto standard)인 CommonJS를 채택하였고 현재는 독자적인 진화를 거쳐 CommonJS 사양과 100% 동일하지는 않지만 기본적으로 CommonJS 방식을 따르고 있다. Node.js는 module 단위로 각 기능을 분할할 수 있다. module은 파일과 1대1의 대응 관계를 가지며 하나의 모듈은 자신만의 독립적인 실행 영역(Scope)를 가지게 된다. 따라서 클라이언트 사이드 JavaScript와는 달리 전역변수의 중복 문제가 발생하지 않는다. 모듈은 module.exports 또는 exports 객체를 통해 정의하고 외부로 공개한다. 그리고 공개된 모듈은 require 함수를 사용하여 임포트한다.
 ---
 

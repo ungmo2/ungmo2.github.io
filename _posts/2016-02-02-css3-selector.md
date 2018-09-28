@@ -1,9 +1,11 @@
 ---
 layout: post
 title: CSS3 <strong>Selector</strong>
-subtitle: Styling 대상을 특정하는 셀렉터
+subtitle: 셀렉터
 category: css
 section: css
+seq: 2
+subseq: 2
 description: CSS(Cascading Style Sheets)는 HTML 요소(Element)의 style(design, layout etc)을 정의한다. 그리하려면 HTML이 존재하여야 하고 또한 style을 적용하고자하는 HTML 요소를 특정할 필요가 있다. 이러한 목적으로 사용되는 것이 셀렉터(Selector)이다. 즉, style을 적용하고자하는 HTML 요소를 셀렉터로 특정하고 선택된 요소에 스타일을 정의하는 것이다.
 ---
 

@@ -4,6 +4,8 @@ title: <strong>Destructuring</strong>
 subtitle: 디스트럭처링
 categories: es6
 section: es6
+seq: 6
+subseq: 6
 description: 디스트럭처링(Destructuring)은 구조화된 객체(배열 또는 객체)를 Destructuring(비구조화, 파괴)하여 개별적인 변수에 할당하는 것이다. 배열 또는 객체 리터럴에서 필요한 값만을 추출하여 변수에 할당하거나 반환할 때 유용하다.
 ---
 

@@ -4,6 +4,8 @@ title: HTML5 Tag - List & Table
 subtitle: 목록(List)와 표(Table) 형식 표현을 위한 태그
 category: html
 section: html
+seq: 1
+subseq: 6
 description: 목록(List)와 표(Table) 형식 표현을 위한 태그 순서없는 목록 (Unordered List) 순서있는 목록 (Ordered List) 중첩 목록 테이블
 ---
 
@@ -23,7 +25,7 @@ description: 목록(List)와 표(Table) 형식 표현을 위한 태그 순서없
       <li>Coffee</li>
       <li>Tea</li>
       <li>Milk</li>
-    </ul>  
+    </ul>
   </body>
 </html>
 ```
@@ -41,7 +43,7 @@ description: 목록(List)와 표(Table) 형식 표현을 위한 태그 순서없
       <li>Coffee</li>
       <li>Tea</li>
       <li>Milk</li>
-    </ol>  
+    </ol>
   </body>
 </html>
 ```
@@ -137,22 +139,22 @@ description: 목록(List)와 표(Table) 형식 표현을 위한 태그 순서없
     <table border="1">
       <tr>
         <th>First name</th>
-        <th>Last name</th>		
+        <th>Last name</th>
         <th>Score</th>
       </tr>
       <tr>
         <td>Jill</td>
-        <td>Smith</td>		
+        <td>Smith</td>
         <td>50</td>
       </tr>
       <tr>
         <td>Eve</td>
-        <td>Jackson</td>		
+        <td>Jackson</td>
         <td>94</td>
       </tr>
       <tr>
         <td>John</td>
-        <td>Doe</td>		
+        <td>Doe</td>
         <td>80</td>
       </tr>
     </table>
@@ -177,7 +179,7 @@ description: 목록(List)와 표(Table) 형식 표현을 위한 태그 순서없
     <style>
       table, th, td {
         border: 1px solid black;
-        border-collapse: collapse; 
+        border-collapse: collapse;
       }
       th, td {
         padding: 15px;

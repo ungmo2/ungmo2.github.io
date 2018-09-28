@@ -1,9 +1,11 @@
 ---
 layout: post
 title: HTML5 <strong>Introduction & Syntax</strong>
-subtitle: HyperText Markup Language
+subtitle: HTML5 기본 문법
 category: html
 section: html
+seq: 1
+subseq: 1
 description: HTML (HyperText Markup Language)은 웹페이지를 기술하기 위한 마크업 언어이다. 조금 더 자세히 말하면 웹페이지의　내용(content)과 구조(structure)을 담당하는 언어로써 HTML 태그를 통해 정보를 구조화하는 것이다.　HTML5는 HTML의 최신 버전으로 아래와 같은 기능들이 추가되었다.
 ---
 
@@ -65,13 +67,13 @@ CSS3
 
 <p class="result"></p>
 
-HTML document는 .html 확장자를 갖는 순수한 텍스트 파일이다. 따라서 메모장 등으로도 편집할 수 있으나 다양한 편의 기능을 제공하는 editor 또는 IDE(Integrated Development Environment)를 사용하는 것이 일반적이다. 대표적인 editor 또는 IDE는 아래와 같다. 
+HTML document는 .html 확장자를 갖는 순수한 텍스트 파일이다. 따라서 메모장 등으로도 편집할 수 있으나 다양한 편의 기능을 제공하는 editor 또는 IDE(Integrated Development Environment)를 사용하는 것이 일반적이다. 대표적인 editor 또는 IDE는 아래와 같다.
 
-* [Visual Studio Code](https://code.visualstudio.com/)  
-* [WebStorm](https://www.jetbrains.com/webstorm/)  
-* [Atom](https://www.atom.io/)  
-* [Brackets](http://brackets.io/)  
-* [Sublime text](https://www.sublimetext.com/)  
+* [Visual Studio Code](https://code.visualstudio.com/)
+* [WebStorm](https://www.jetbrains.com/webstorm/)
+* [Atom](https://www.atom.io/)
+* [Brackets](http://brackets.io/)
+* [Sublime text](https://www.sublimetext.com/)
 
 # 3. HTML5의 기본 문법
 
@@ -175,14 +177,14 @@ HTML Attribute
 
 # 4. HTML History
 
-| Year      | Version	             
+| Year      | Version
 |:----------|:------------------------
 | 1989.06   | 팀 버너스리가 월드와이드웹(WWW)의 하이퍼텍스트 시스템, URL, HTTP, HTML 설계/개발.
-| 1993.06   | HTML 1.0       
-| 1995.11   | HTML 2.0       
-| 1996      | CSS 1 + JavaScript       
-| 1997.01   | HTML 3.2        
-| 1997.12   | HTML 4.0        
+| 1993.06   | HTML 1.0
+| 1995.11   | HTML 2.0
+| 1996      | CSS 1 + JavaScript
+| 1997.01   | HTML 3.2
+| 1997.12   | HTML 4.0
 | 1998      | CSS 2
 | 1998.10   | DOM Level 1
 | 1999.12   | HTML 4.01
@@ -191,7 +193,7 @@ HTML Attribute
 | 2001.05   | XHTML 1.1
 | 2007.11   | HTML5 디자인 원칙 초안
 | 2010.01   | HTML5 초안 공개(FPWD. First Publication Working Draft)
-| 2014.10   | HTML5 최종 표준안 공개(Rec. Recommendation)       
+| 2014.10   | HTML5 최종 표준안 공개(Rec. Recommendation)
 
 # Reference
 

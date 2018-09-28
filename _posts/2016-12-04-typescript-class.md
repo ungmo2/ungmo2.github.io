@@ -4,6 +4,8 @@ title: TypeScript - <strong>Class</strong>
 subtitle: 클래스
 categories: typescript
 section: typescript
+seq: 12
+subseq: 4
 description: ES6에서 새롭게 도입된 클래스는 기존 프로토타입 기반 객체지향 언어보다 클래스 기반 언어에 익숙한 개발자가 보다 빠르게 학습할 수 있는 단순명료한 새로운 문법을 제시하고 있다. 하지만 클래스가 새로운 객체지향 모델을 제공하는 것은 아니다. 사실 클래스도 함수이고 기존 프로토타입 기반 패턴의 Syntactic sugar일 뿐이다. Typescript가 지원하는 클래스는 ECMAScript 6의 클래스와 상당히 유사하지만 몇가지 Typescript 고유 기능이 존재한다.
 ---
 

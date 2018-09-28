@@ -4,6 +4,8 @@ title: HTML5 Tag - Text
 subtitle: 텍스트 관련 태그
 category: html
 section: html
+seq: 1
+subseq: 4
 description: 최근의 웹 트랜드는 텍스트를 줄이고 이미지나 동영상 등으로 콘텐츠를 구성하는 것이지만 HTML 콘텐츠의 대부분은 텍스트로 구성된다. 제목이나 본문, 글자의 형태와 중요도를 나타내는 텍스트에 관련된 태그들을 알아보도록 하자. Heading 태그는 제목을 나타낼 때 사용하며 h1에서 h6까지의 태그가 있다. h1이 가장 중요한 제목을 의미하며 글자의 크기도 가장 크다.
 ---
 

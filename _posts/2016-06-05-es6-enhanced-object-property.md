@@ -4,6 +4,8 @@ title: <strong>Enhanced Object property</strong>
 subtitle: 객체 리터럴 프로퍼티 기능 확장
 categories: es6
 section: es6
+seq: 6
+subseq: 5
 description: ES6에서는 객체 리터럴 프로퍼티 기능을 확장하여 더욱 간편하고 동적인 객체 생성 기능을 제공한다.
 ---
 

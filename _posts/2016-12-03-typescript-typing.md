@@ -4,6 +4,8 @@ title: TypeScript - <strong>Typing</strong>
 subtitle: 정적 타이핑
 categories: typescript
 section: typescript
+seq: 12
+subseq: 3
 description: 타입 선언은 코드 예측성을 향상시킨다. 또한 타입 선언은 강력한 타입 체크를 가능하게 하여 문법 에러나 타입과 일치하지 않는 값의 할당 등 기본적인 오류를 런타임 이전에 검출한다. VSCode와 같은 툴을 사용하면 코드 작성 시점에 에러를 검출할 수 있어서 개발효율이 대폭 향상된다.
 ---
 

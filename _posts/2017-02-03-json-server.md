@@ -3,6 +3,8 @@ layout: post
 title: JSON Server
 categories: tools
 section: tools
+seq: 14
+subseq: 3
 description: json-server는 json 파일을 사용하여 간단한 시뮬레이션을 위한 REST API Mock server를 구축할 수 있는 툴이다.
 ---
 

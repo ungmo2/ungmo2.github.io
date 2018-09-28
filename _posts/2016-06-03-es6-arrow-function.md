@@ -4,6 +4,8 @@ title: <strong>Arrow function</strong>
 subtitle: 화살표 함수
 categories: es6
 section: es6
+seq: 6
+subseq: 3
 description: Arrow function(화살표 함수)은 function 키워드 대신 화살표(=>)를 사용하여 간략한 방법으로 함수를 선언할 수 있다. 하지만 모든 경우 사용할 수 있는 것은 아니다. 문법은 아래와 같다.
 ---
 

@@ -4,6 +4,8 @@ title: Snippet - Gallery
 subtitle:
 categories: snippet
 section: snippet
+seq: 8
+subseq: 8
 ---
 
 * TOC

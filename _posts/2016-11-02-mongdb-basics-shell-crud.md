@@ -4,6 +4,8 @@ title: MongoDB Shell - <strong>CRUD</strong>
 subtitle: MongoDB Shell method를 사용한 CRUD의 기본
 categories: mongodb
 section: mongodb
+seq: 11
+subseq: 2
 description: MongoDB Shell method를 사용한 CRUD의 기본
 ---
 

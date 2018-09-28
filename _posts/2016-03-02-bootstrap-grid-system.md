@@ -1,9 +1,11 @@
 ---
 layout: post
 title: <strong>Bootstrap</strong> Grid System
-subtitle: Responsive, mobile first fluid grid system.
+subtitle: Bootstrap 그리드 시스템
 categories: bootstrap
 section: bootstrap
+seq: 3
+subseq: 2
 ---
 
 * TOC

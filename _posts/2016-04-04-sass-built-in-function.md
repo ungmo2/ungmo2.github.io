@@ -4,6 +4,8 @@ title: Sass - <strong>Built-in Function</strong>
 subtitle: Sass가 제공하는 기본 내장 함수
 categories: Sass
 section: Sass
+seq: 4
+subseq: 4
 ---
 
 * TOC

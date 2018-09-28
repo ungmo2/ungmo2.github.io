@@ -4,6 +4,8 @@ title: TypeScript - <strong>Interface</strong>
 subtitle: 인터페이스
 categories: typescript
 section: typescript
+seq: 12
+subseq: 5
 description: 인터페이스는 일반적으로 타입 체크를 위해 사용되며 변수, 함수, 클래스에 사용할 수 있다. 인터페이스는 여러가지 자료형을 갖는 프로퍼티로 이루어진 새로운 자료형을 정의하는 것과 유사하다. 인터페이스에 선언된 프로퍼티 또는 메소드의 구현을 강제하여 일관성을 유지할 수 있도록 하는 것이다.
 ---
 

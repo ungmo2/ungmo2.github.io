@@ -4,6 +4,8 @@ title: jQuery <strong>Basics</strong>
 subtitle: Write less, Do more.
 categories: jquery
 section: jquery
+seq: 7
+subseq: 1
 description: jQuery는 존 레식이 2006년에 발표한 크로스 플랫폼을 지원하는 경량의 자바스크립트 라이브러리이다. HTML 문서의 탐색이나 조작, 이벤트 핸들링, 애니메이션, Ajax등을 멀티 브라우저를 지원하는 API를 통해 더욱 간편하게 사용할 수 있다. 2017년 기준으로 상위 100만개의 웹 페이지중 89%가 jQuery를 사용하고 있다. jQuery의 특징은 아래와 같다.
 ---
 

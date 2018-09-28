@@ -4,6 +4,8 @@ title: Angular <strong>JWT Authentication</strong>
 subtitle: Token 기반 인증
 categories: angular
 section: angular
+seq: 13
+subseq: 22
 description: http 프로토콜은 상태(state)를 유지하지 않는다. 이를 stateless protocol이라 한다. HTTP 프로토콜은 요청(request)를 전송하고 응답(response)를 전송받은 시점에서 통신이 종료되며 어떠한 상태 정보도 남지 않는다. 즉, 특정 클라이언트에서 동일 서버에 반복하여 접속하여도 각각의 접속은 독립적인 트랜잭션으로 취급된다.
 ---
 

@@ -4,6 +4,8 @@ title: jQuery <strong>Deferred Object</strong>
 subtitle: Promise를 위한 jQuery Deferred Object
 categories: jquery
 section: jquery
+seq: 7
+subseq: 3
 description: jQuery Deferred는 각각의 비동기식 처리에 Promise 객체를 연계하여 그 상태를 전파하는 것으로 promise를 구현한 jQuery 객체이다. 브라우저 호환성과 편의성을 고려하여 만든 Promise 모듈이라고 생각하면 무리가 없을 듯하다. jQuery Deferred에서 각각의 비동기식 처리를 Deferred 객체로 wrapping한다. Deferred 객체는 상태를 가지고 있는데 이는 비동기식 처리의 상태가 변경되는 시점에 특정 함수(resolve(), reject())를 호출하여 Deferred 객체에 상태를 부여하기 때문이다. deferred.state()로 상태를 확인할 수 있다.
 ---
 

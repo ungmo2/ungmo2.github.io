@@ -1,9 +1,11 @@
 ---
 layout: post
 title: HTML5 Tag - Forms
-subtitle: 사용자와의 커뮤니케이션을 위한 태그
+subtitle: 사용자와의 커뮤니케이션을 위한 폼 태그
 category: html
 section: html
+seq: 1
+subseq: 8
 description: form 태그는 사용자가 입력한 데이터를 수집하기 위해 사용되며 input, textarea, button, select, checkbox, radio button, submit button 등의 입력 양식 태그를 포함할 수 있다.
 ---
 
@@ -22,7 +24,7 @@ form elements (input, checkbox, radio button, submit button...)
 </form>
 ```
 
-| attribute   | Value       | Description 
+| attribute   | Value       | Description
 | :---------: |:------------|:-----------------------------------
 | action      | URL         | 입력 데이터(form data)가 전송될 URL 지정
 | method      | get / post  | 입력 데이터(form data) 전달 방식 지정
@@ -37,7 +39,7 @@ GET
 - [REST API](./js-rest-api)에서 GET 메소드는 모든 또는 특정 리소스의 조회를 요청한다.
 
 POST
-: - POST 방식은 Request Body에 담아 보내는 방식이다. 
+: - POST 방식은 Request Body에 담아 보내는 방식이다.
 - ex) http://jsonplaceholder.typicode.com/posts
 - URL에 전송 데이터가 모두 노출되지 않지만 GET에 비해 속도가 느리다.
 - [REST API](./js-rest-api)에서 POST 메소드는 특정 리소스의 생성을 요청한다.
@@ -78,8 +80,8 @@ input 태그는 다양한 종류가 있는데 type 어트리뷰트에 의해 구
 | checkbox       | checkbox 생성            |          | ◯  | ◯  | ◯  | ◯  | ◯  |
 | color          | 컬러 선택 생성             | ◯         | X  | ◯  | ◯  | X  | ◯  |
 | date           | date control (년월일) 생성 | ◯         | X  | X  | ◯  | ◯  | ◯  |
-| datetime       | date & time control (년월일시분초) 생성. HTML spec에서 drop되었다. | ◯ | X  | X  | X  | X  | X  |   
-| datetime-local | 지역 date & time control (년월일시분초) 생성 | ◯ | X  | X  | ◯  | ◯  | ◯  |   
+| datetime       | date & time control (년월일시분초) 생성. HTML spec에서 drop되었다. | ◯ | X  | X  | X  | X  | X  |
+| datetime-local | 지역 date & time control (년월일시분초) 생성 | ◯ | X  | X  | ◯  | ◯  | ◯  |
 | email          | 이메일 입력 form 생성. subumit 시 자동 검증한다. | ◯ | ◯(10~) | ◯  | ◯  | X  | ◯  |
 | file           | 파일 선택 form 생성        |          |  ◯  | ◯  | ◯  | ◯  | ◯  |
 | hidden         | 감추어진 입력 form 생성     |          | ◯  | ◯  | ◯  | ◯  | ◯  |
@@ -283,7 +285,7 @@ type 어트리뷰트는 반드시 지정하는 것이 바람직하며 어트리�
 
 <div class='result'></div>
 
-button 태그는 어트리뷰트만을 받아들이는 input 태그와 달리 콘텐츠로 문자열은 물론 HTML 요소를 받을 수도 있다는 장점이 있다. 주의할 것은 IE의 경우, submit되는 값이 다를 수 있는 것이다. 
+button 태그는 어트리뷰트만을 받아들이는 input 태그와 달리 콘텐츠로 문자열은 물론 HTML 요소를 받을 수도 있다는 장점이 있다. 주의할 것은 IE의 경우, submit되는 값이 다를 수 있는 것이다.
 
 ```html
 <button type="submit" name="myButton" value="foo">Click me</button>

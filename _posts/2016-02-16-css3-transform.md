@@ -4,6 +4,8 @@ title: CSS3 <strong>Transform</strong>
 subtitle: 트랜스폼
 categories: css
 section: css
+seq: 2
+subseq: 16
 description: 트랜스폼(Transform)은 요소에 이동(translate), 회전(rotate), 확대축소(scale), 비틀기(skew) 효과를 부여하기 위한 함수를 제공한다. 단 애니메이션 효과를 제공하지는 않기 때문에 정의된 프로퍼티가 바로 적용되어 화면에 표시된다. 트랜스폼은 애니메이션 효과를 위해 사용하여야 하는 것은 아니지만 애니메이션 효과를 부여할 필요가 있다면 트랜지션이나 애니메이션과 함께 사용한다.
 ---
 

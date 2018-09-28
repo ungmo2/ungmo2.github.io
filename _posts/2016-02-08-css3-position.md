@@ -1,9 +1,11 @@
 ---
 layout: post
 title: CSS3 <strong>Position</strong>
-subtitle: 요소의 위치를 지정하는 레이아웃의 기본
+subtitle: 요소의 위치 정의
 categories: css
 section: css
+seq: 2
+subseq: 8
 description: position 프로퍼티는 요소의 위치를 정의한다. top, bottom, left, right 프로퍼티와 함께 사용하여 위치를 지정한다.
 ---
 

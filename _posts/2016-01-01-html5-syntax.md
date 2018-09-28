@@ -14,7 +14,7 @@ description: HTML (HyperText Markup Language)은 웹페이지를 기술하기 �
 
 # 1. HTML5
 
-[HTML (HyperText Markup Language)](https://ko.wikipedia.org/wiki/HTML)은 웹페이지를 기술하기 위한 [마크업 언어](https://ko.wikipedia.org/wiki/%EB%A7%88%ED%81%AC%EC%97%85_%EC%96%B8%EC%96%B4)이다. 조금 더 자세히 말하면 웹페이지의 <strong>내용(content)</strong>과 <strong>구조(structure)</strong>을 담당하는 언어로써 HTML 태그를 통해 정보를 구조화하는 것이다.
+[HTML (HyperText Markup Language)](https://ko.wikipedia.org/wiki/HTML)은 웹페이지를 기술하기 위한 [마크업 언어](https://ko.wikipedia.org/wiki/마크업_언어)이다. 조금 더 자세히 말하면 웹페이지의 <strong>내용(content)</strong>과 <strong>구조(structure)</strong>을 담당하는 언어로써 HTML 태그를 통해 정보를 구조화하는 것이다.
 
 ![html5](/img/html5.png)
 
@@ -47,7 +47,7 @@ CSS3
 
 - 실제적인 HTML document은 2행부터 시작되는데 `<html>`과 `</html>` 사이에 기술한다.
 
-- `<head>`와 `</head>` 사이에는 document title, 외부파일의 참조, [metadata](https://ko.wikipedia.org/wiki/%EB%A9%94%ED%83%80%EB%8D%B0%EC%9D%B4%ED%84%B0)의 설정 등이 위치하며 이 정보들은 브라우저에 표시되지 않는다.
+- `<head>`와 `</head>` 사이에는 document title, 외부 파일의 참조, [메타데이터](https://ko.wikipedia.org/wiki/메타데이터)의 설정 등이 위치하며 이 정보들은 브라우저에 표시되지 않는다.
 
 - 웹브라우저에 출력되는 모든 요소는 `<body>`와 `</body>` 사이에 위치한다.
 
@@ -162,7 +162,7 @@ HTML Attribute
 | tabindex    | 사용자가 키보드로 페이지를 내비게이션 시 이동 순서를 지정한다.
 | title       | 요소에 관한 제목을 지정한다.
 
-* [Global attributes](https://www.w3.org/TR/html-markup/global-attributes)
+* [Global attributes](https://www.w3.org/TR/2010/WD-html-markup-20101019/global-attributes.html)
 
 ## 3.3 주석 (Comments)
 
@@ -201,8 +201,8 @@ HTML Attribute
 
 * [The Evolution of the Web](http://evolutionofweb.appspot.com/)
 
-* [Browser Wars](https://ko.wikipedia.org/wiki/%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80_%EC%A0%84%EC%9F%81)
+* [브라우저 전쟁](https://ko.wikipedia.org/wiki/브라우저_전쟁)
 
-* [웹 호환성 문제](https://ko.wikipedia.org/wiki/%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD%EC%9D%98_%EC%9B%B9_%ED%98%B8%ED%99%98%EC%84%B1_%EB%AC%B8%EC%A0%9C)
+* [웹 호환성 문제](https://ko.wikipedia.org/wiki/대한민국의_웹_호환성_문제)
 
-* [플래쉬를 버리고 HTML5를 채택한 기술적 이유에 대해서-스티브 잡스(2010년)](https://www.facebook.com/poiemaweb/videos/179322715885247)
+* [플래쉬를 버리고 HTML5를 채택한 기술적 이유에 대해서 - 스티브 잡스(2010년)](https://www.facebook.com/poiemaweb/videos/179322715885247)

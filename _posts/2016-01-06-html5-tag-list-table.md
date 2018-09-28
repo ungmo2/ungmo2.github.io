@@ -219,17 +219,3 @@ description: 목록(List)와 표(Table) 형식 표현을 위한 태그 순서없
 ```
 
 <div class="result"></div>
-
-# Reference
-
-* [HTML elements: ordered list](https://www.w3.org/TR/html-markup/ol)
-
-* [HTML elements: unordered list](https://www.w3.org/TR/html-markup/ul)
-
-* [HTML elements: list item](https://www.w3.org/TR/html-markup/li)
-
-* [HTML elements: table](https://www.w3.org/TR/html-markup/table)
-
-* [HTML elements: table row](https://www.w3.org/TR/html-markup/tr)
-
-* [HTML elements: table cell](https://www.w3.org/TR/html-markup/td)

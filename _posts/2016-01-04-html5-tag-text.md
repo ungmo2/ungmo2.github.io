@@ -337,7 +337,3 @@ console.log(myArray[0]);     // undefined
 # Reference
 
 * [HTML 요소 레퍼런스](https://developer.mozilla.org/ko/docs/Web/HTML/Element)
-
-* [HTML elements](https://www.w3.org/TR/html-markup/elements)
-
-* [HTML attributes](https://www.w3.org/TR/html-markup/global-attributes#common.attrs.core)

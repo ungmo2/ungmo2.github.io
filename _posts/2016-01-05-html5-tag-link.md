@@ -140,7 +140,3 @@ target 어트리뷰트는 링크를 클릭했을 때 윈도우를 어떻게 오�
 ```
 
 <div class="result"></div>
-
-# Reference
-
-* [HTML elements: a – hyperlink](https://www.w3.org/TR/html-markup/a#a)

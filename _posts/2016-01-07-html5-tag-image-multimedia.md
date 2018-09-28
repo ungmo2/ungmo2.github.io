@@ -33,7 +33,7 @@ description: 이미지의 표현과 동영상, 음악 등 멀티미디어를 지
 </html>
 ```
 
-<div class="result"></div>
+<div class="result" style="height: 155px;"></div>
 
 # 2. 미디어
 
@@ -116,20 +116,11 @@ audio 태그와 마찬가지로 파일 형식의 차이 문제가 발생할 수 
 <html>
   <body>
     <video width="640" height="360" controls>
-      <source src="assets/video/Wildlife.mp4" type="video/mp4">
-      <source src="assets/video/Wildlife.webm" type="video/webm">
+      <source src="assets/video/wildlife.mp4" type="video/mp4">
+      <source src="assets/video/wildlife.webm" type="video/webm">
     </video>
   </body>
 </html>
 ```
 
 <div class="result"></div>
-
-
-# Reference
-
-* [HTML elements: image](https://www.w3.org/TR/html-markup/img)
-
-* [HTML elements: audio](https://www.w3.org/TR/html-markup/audio)
-
-* [HTML elements: video](https://www.w3.org/TR/html-markup/video)

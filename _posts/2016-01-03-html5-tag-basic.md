@@ -62,7 +62,7 @@ html은 글로벌 어트리뷰트를 지원한다. 특히 `lang` 어트리뷰트
 
 # 3. head tag
 
-head 요소는 [메타데이터](https://ko.wikipedia.org/wiki/%EB%A9%94%ED%83%80%EB%8D%B0%EC%9D%B4%ED%84%B0)를 포함하기 위한 요소이며 웹페이지에 단 하나만 존재한다. 메타데이터는 HTML 문서의 title, style, link, script에 대한 데이터로 화면에 표시되지 않는다.
+head 요소는 [메타데이터](https://ko.wikipedia.org/wiki/메타데이터)를 포함하기 위한 요소이며 웹페이지에 단 하나만 존재한다. 메타데이터는 HTML 문서의 title, style, link, script에 대한 데이터로 화면에 표시되지 않는다.
 
 head 요소에는 메타데이터 이외의 화면에 표시되는 일체의 요소를 포함시킬 수 없다.
 
@@ -232,7 +232,3 @@ body tag는 HTML 문서의 내용을 나타내며 웹페이지에 단 하나만 
 # Reference
 
 * [HTML 요소 레퍼런스](https://developer.mozilla.org/ko/docs/Web/HTML/Element)
-
-* [HTML elements](https://www.w3.org/TR/html-markup/elements)
-
-* [HTML attributes](https://www.w3.org/TR/html-markup/global-attributes#common.attrs.core)

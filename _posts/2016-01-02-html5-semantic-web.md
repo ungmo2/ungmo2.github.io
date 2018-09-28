@@ -11,7 +11,7 @@ description: 검색엔진은 대체로 h1 요소 내의 콘텐츠를 웹문서�
 
 # 시맨틱 웹(Semantic Web)
 
-2016년 현재 전세계적으로 웹사이트는 10억개, 인터넷 사용자 수는 33억명이다.
+2018년 현재 전세계적으로 웹사이트는 19억개, 인터넷 사용자 수는 40억명이다.
 
 ![Total number of Websites](/img/Total-number-of-Websites.png)
 
@@ -67,4 +67,4 @@ HTML Semantic element
 
 # Reference
 
-[Wikipedia: 시맨틱 웹](https://ko.wikipedia.org/wiki/%EC%8B%9C%EB%A7%A8%ED%8B%B1_%EC%9B%B9)
+[시맨틱 웹](https://ko.wikipedia.org/wiki/시맨틱_웹)

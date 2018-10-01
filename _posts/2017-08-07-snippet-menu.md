@@ -20,7 +20,9 @@ subseq: 7
 <head>
   <meta charset="UTF-8">
   <title>Accordion Menu</title>
-  <link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" rel="stylesheet">
+
   <style>
     * {
       margin: 0;
@@ -28,8 +30,12 @@ subseq: 7
       box-sizing: border-box;
     }
 
+    html, body {
+      height: 100%;
+    }
+
     body {
-      background: #2d2c41;
+      background-image: linear-gradient(20deg, #08aeea 0%, #2af598 100%);
       font-family: 'Open Sans', Arial, Helvetica, Sans-serif, Verdana, Tahoma;
     }
 
@@ -37,92 +43,86 @@ subseq: 7
       list-style-type: none;
     }
 
-    a {
-      color: #b63b4d;
-      text-decoration: none;
-    }
-
     h1 {
-      color: #FFF;
-      font-size: 24px;
-      font-weight: 400;
+      color: #fff;
+      font-size: 2.5rem;
+      font-weight: bold;
       text-align: center;
-      margin-top: 80px;
-    }
-
-    h1 a {
-      color: #c12c42;
-      font-size: 16px;
+      padding: 40px;
     }
 
     .accordion {
       width: 100%;
       max-width: 360px;
-      margin: 30px auto 20px;
-      background: #FFF;
+      margin: auto;
+      background: #fff;
       border-radius: 4px;
     }
 
-    .accordion .link {
-      cursor: pointer;
-      display: block;
-      padding: 15px 15px 15px 42px;
-      color: #4D4D4D;
-      font-size: 14px;
-      font-weight: 700;
-      border-bottom: 1px solid #CCC;
+    .accordion .menu {
       position: relative;
+      padding: 15px 15px 15px 45px;
+      color: #4d4d4d;
+      font-weight: bold;
+      border-bottom: 1px solid #ccc;
+      cursor: pointer;
       transition: all 0.4s ease;
     }
 
-    .accordion li:last-child .link {
+    .accordion li:last-child .menu {
       border-bottom: 0;
     }
 
     .accordion li i {
       position: absolute;
-      top: 16px;
-      left: 12px;
-      font-size: 18px;
+      top: 1.2rem;
+      left: 1rem;
       color: #595959;
-      -webkit-transition: all 0.4s ease;
-      -o-transition: all 0.4s ease;
       transition: all 0.4s ease;
     }
 
     .accordion li i.fa-chevron-down {
-      right: 12px;
+      right: 1rem;
       left: auto;
-      font-size: 16px;
     }
 
-    .accordion li.open .link {
-      color: #b63b4d;
-    }
-
-    .accordion li.open i {
-      color: #b63b4d;
-    }
-
-    .accordion li.open i.fa-chevron-down {
-      -webkit-transform: rotate(180deg);
-      -ms-transform: rotate(180deg);
-      -o-transform: rotate(180deg);
+    .accordion li.show i.fa-chevron-down {
       transform: rotate(180deg);
     }
 
-    .accordion li.default .submenu {
-      display: block;
+    .accordion li.show .menu {
+      color: #b63b4d;
+    }
+
+    .accordion li.show i {
+      color: #b63b4d;
+    }
+
+    /* Show submenu */
+    .accordion li.show .submenu {
+      /* height: auto;를 지정하면 transition이 동작하지 않는다 */
+      max-height: 500px;
     }
 
     .submenu {
-      display: none;
+      /* height: auto;를 지정하면 transition이 동작하지 않는다 */
+      max-height: 0;
+      overflow: hidden;
       background: #444359;
       font-size: 14px;
+      transition: max-height 0.4s ease;
     }
 
     .submenu li {
       border-bottom: 1px solid #4b4a5e;
+    }
+
+    .accordion li:last-child .submenu {
+      border-radius: 0 0 4px 4px;
+    }
+
+    .accordion li:last-child .submenu li:last-child {
+      border-bottom: 0;
     }
 
     .submenu a {
@@ -131,14 +131,12 @@ subseq: 7
       color: #d9d9d9;
       padding: 12px;
       padding-left: 42px;
-      -webkit-transition: all 0.25s ease;
-      -o-transition: all 0.25s ease;
-      transition: all 0.25s ease;
+      transition: all 0.25s ease-in-out;
     }
 
     .submenu a:hover {
       background: #b63b4d;
-      color: #FFF;
+      color: #fff;
     }
   </style>
 </head>
@@ -147,25 +145,16 @@ subseq: 7
   <h1>Accordion Menu</h1>
 
   <ul id="accordion" class="accordion">
-    <li class="default open">
-      <div class="link"><i class="fa fa-paint-brush"></i>Web Design<i class="fa fa-chevron-down"></i></div>
+    <li class="show">
+      <div class="menu"><i class="fa fa-code"></i>Front-end<i class="fa fa-chevron-down"></i></div>
       <ul class="submenu">
-        <li><a href="#">Photoshop</a></li>
         <li><a href="#">HTML</a></li>
         <li><a href="#">CSS</a></li>
-        <li><a href="#">Bootstrap</a></li>
-      </ul>
-    </li>
-    <li>
-      <div class="link"><i class="fa fa-code"></i>Front-end<i class="fa fa-chevron-down"></i></div>
-      <ul class="submenu">
         <li><a href="#">Javascript</a></li>
-        <li><a href="#">jQuery</a></li>
-        <li><a href="#">Angular2</a></li>
       </ul>
     </li>
     <li>
-      <div class="link"><i class="fa fa-mobile"></i>Responsive web<i class="fa fa-chevron-down"></i></div>
+      <div class="menu"><i class="fa fa-mobile"></i>Responsive web<i class="fa fa-chevron-down"></i></div>
       <ul class="submenu">
         <li><a href="#">Tablets</a></li>
         <li><a href="#">Mobiles</a></li>
@@ -173,7 +162,7 @@ subseq: 7
       </ul>
     </li>
     <li>
-      <div class="link"><i class="fa fa-globe"></i>Web Browser<i class="fa fa-chevron-down"></i></div>
+      <div class="menu"><i class="fa fa-globe"></i>Web Browser<i class="fa fa-chevron-down"></i></div>
       <ul class="submenu">
         <li><a href="#">Chrome</a></li>
         <li><a href="#">Firfox</a></li>
@@ -182,42 +171,50 @@ subseq: 7
     </li>
   </ul>
 </body>
-<script src="assets/vendor/jquery/dist/jquery.js"></script>
 <script>
-  (function ($) {
-    $.fn.accordion = function(opt) {
-      // var settings = $.extend({
-      //   multi: false
-      // }, opt );
+  class Accordion {
+    constructor(options) {
+      // 기본 옵션과 사용자 지정 옵션을 병합
+      this.config = Accordion.mergeConfig(options);
+      this.accordion = document.querySelector(this.config.selector);
+      // 이벤트 핸들러 내부의 this는 currentTartget
+      this.accordion.addEventListener('click', this.toogle.bind(this));
+    }
 
-      var $links = this.find('.link');
+    static mergeConfig(options) {
+      // 기본 옵션
+      const config = {
+        selector: '#accordion',
+        multi: true
+      };
 
-      $links.on('click', function() {
-        // click 이벤트를 발생시킨 <div class="link"> 요소
-        var $this = $(this),
-        // click 이벤트를 발생시킨 <div class="link"> 요소 아래의 <ul class="submenu"> 요소
-            $next = $this.next();
+      return { ...config, ...options };
+    }
 
-        $this.parent().toggleClass('open');
-        $next.slideToggle();
+    toogle(event) {
+      if (!event.target.classList.contains('menu')) return;
+      // click 이벤트를 발생시킨 <div class="menu"> 요소의 부모 요소인 li 요소
+      const targetLi = event.target.parentNode;
 
-        // opt.multi이 false이면 서브메뉴가 오픈되었을 때 다른 서브메뉴를 클로즈한다.
-        if (!opt.multi) {
-          $('.submenu').not($next).slideUp().parent().removeClass('open');
-        }
-      });
+      // 멀티 오픈을 허용하지 않으면 타깃 이외의 모든 서브메뉴를 클로즈한다.
+      if (!this.config.multi) {
+        [].filter.call(
+          this.accordion.childNodes,
+          li => li.nodeType === Node.ELEMENT_NODE && li !== targetLi
+        ).forEach(li => li.classList.remove('show'));
+      }
 
-      return this;
-    };
-  }(jQuery));
+      // li 요소의 class에 "show"가 있으면 제거하고 없으면 추가한다.
+      targetLi.classList.toggle('show');
+    }
+  }
 
-  $(function() {
-    $('#accordion').accordion({
-      multi: false
-    });
-  });
+  window.onload = function () {
+    const accordion = new Accordion({ multi: false });
+    // const accordion = new Accordion();
+  };
 </script>
 </html>
 ```
 
-<div class="result h-1000"></div>
+<div class="result" style="height: 800px"></div>

@@ -9,6 +9,9 @@ subseq: 37
 description: Accordion UI(Collapse UI)는 컨텐츠의 일부 영역만을 노출시키고 다른 영역은 감추는 기능을 말한다. 구현할 아코디언 UI의 이미지는 아래와 같다.
 ---
 
+* TOC
+{:toc}
+
 Accordion UI(Collapse UI)는 컨텐츠의 일부 영역만을 노출시키고 다른 영역은 감추는 기능을 말한다. 구현할 아코디언 UI의 이미지는 아래와 같다.
 
 ![accordion-ui](/img/accordion-ui.gif)
@@ -335,7 +338,7 @@ Accordion UI(Collapse UI)는 컨텐츠의 일부 영역만을 노출시키고 �
       <div class="menu"><i class="fa fa-globe"></i>Web Browser<i class="fa fa-chevron-down"></i></div>
       <ul class="submenu">
         <li><a href="#">Chrome</a></li>
-        <li><a href="#">Firfox</a></li>
+        <li><a href="#">Firefox</a></li>
         <li><a href="#">Safari</a></li>
       </ul>
     </li>
@@ -404,3 +407,9 @@ Accordion UI(Collapse UI)는 컨텐츠의 일부 영역만을 노출시키고 �
 ```
 
 <div class="result" style="height: 600px"></div>
+
+# 3. Angular Accordion UI
+
+바닐라 자바스크립트로 구현한 아코디언 UI를 이번에는 Angular로 구현해 보자.
+
+<iframe src="https://stackblitz.com/edit/angular-accordion-menu?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="700"></iframe>

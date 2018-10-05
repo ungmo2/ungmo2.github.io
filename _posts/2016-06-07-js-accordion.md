@@ -45,7 +45,7 @@ Accordion UI(Collapse UI)는 컨텐츠의 일부 영역만을 노출시키고 �
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Collapse</title>
   <style>
-    * {
+    *, *:before, *:after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -112,7 +112,7 @@ Accordion UI(Collapse UI)는 컨텐츠의 일부 영역만을 노출시키고 �
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Collapse</title>
   <style>
-    * {
+    *, *:before, *:after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -191,7 +191,7 @@ Accordion UI(Collapse UI)는 컨텐츠의 일부 영역만을 노출시키고 �
   <link href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" rel="stylesheet">
 
   <style>
-    * {
+    *, *:before, *:after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -213,9 +213,8 @@ Accordion UI(Collapse UI)는 컨텐츠의 일부 영역만을 노출시키고 �
     h1 {
       color: #fff;
       font-size: 2.5rem;
-      font-weight: bold;
       text-align: center;
-      padding: 40px;
+      padding: 50px 0;
     }
 
     .accordion {

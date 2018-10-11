@@ -357,18 +357,20 @@ console.log(result); // [ 1, 3, 5 ]
 배열을 순회하며 각 요소에 대하여 이전의 콜백함수 실행 반환값을 전달하여 콜백함수를 실행하고 그 결과를 반환한다. IE 9 이상에서 정상 동작한다.
 
 ```javascript
+var arr = [1, 2, 3, 4, 5];
+
 /*
 previousValue: 이전 콜백의 반환값
 currentValue : 배열 요소의 값
 currentIndex : 인덱스
 array        : 순회할 배열
 */
-var result = [1, 2, 3, 4, 5].reduce(function (previousValue, currentValue, currentIndex, array) {
+var sum = arr.reduce(function (previousValue, currentValue, currentIndex, array) {
   console.log(previousValue + '+' + currentValue + '=' + (previousValue + currentValue));
   return previousValue + currentValue; // 결과는 다음 콜백의 첫번째 인자로 전달된다
 });
 
-console.log(result); // 15: 1~5까지의 합
+console.log(sum); // 15: 1~5까지의 합
 /*
 1: 1+2=3
 2: 3+3=6
@@ -376,12 +378,18 @@ console.log(result); // 15: 1~5까지의 합
 4: 10+5=15
 15
 */
+
+var max = arr.reduce(function (prev, cur) {
+  return prev > cur ? prev : cur;
+});
+
+console.log(max); // 5: 최대값
 ```
 
 ![reduce](/img/reduce.png)
 {: .w-450}
 
-Array.prototype.reduce()
+Array.prototype.reduce
 {: .desc-img}
 
 <!-- reduce()는 Promise를 사용한 비동기 처리의 순차적 실행에 사용되기도 한다. -->

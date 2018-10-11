@@ -51,9 +51,12 @@ console.log(decreaser()); // -2
 
 자바스크립트는 고차 함수를 다수 지원하고 있다. 이들 함수에 대해 살펴보도록 하자.
 
+* ✏️ 메소드는 `this`(원본 배열)를 변경한다.
+* 🔒 메소드는 `this`(원본 배열)를 변경하지 않는다.
+
 # 1. Array.prototype.sort(compareFn?: (a: T, b: T) => number): this ✏️ <sup>ES1</sup>
 
-배열의 내용을 적절하게 정렬한다. 원본 배열을 직접 변경하며 정렬된 배열을 반환한다. 반환된 배열은 복사본이 아닌 원본 배열이다.
+배열의 요소를 적절하게 정렬한다. 원본 배열을 직접 변경하며 정렬된 배열을 반환한다.
 
 ```javascript
 var fruits = ['Banana', 'Orange', 'Apple'];
@@ -80,13 +83,13 @@ console.log(points); // [ 1, 10, 100, 2, 25, 40, 5 ]
 
 예를 들어 문자열 1의 Unicode 코드 포인트는 `U+0031`, 문자열 2의 Unicode 코드 포인트는 `U+0032`이다. 따라서 문자열 1의 Unicode 코드 포인트 순서가 문자열 2의 Unicode 코드 포인트 순서보다 앞서므로 문자열 1과 2를 sort 메소드로 정렬하면 1이 2보다 앞으로 정렬된다. 하지만 10의 Unicode 코드 포인트는 `U+0031U+0030`이므로 2와 10를 sort 메소드로 정렬하면 10이 2보다 앞으로 정렬된다.
 
-이러한 경우, sort 메소드의 인자로 정렬 순서를 정의하는 함수를 전달한다. 이 함수를 생략하면 배열의 각 요소는 일시적으로 문자열로 변환되어 Unicode 코드 포인트 순서에 따라 정렬된다.
+이러한 경우, sort 메소드의 인자로 정렬 순서를 정의하는 비교 함수를 전달한다. 이 함수를 생략하면 배열의 각 요소는 일시적으로 문자열로 변환되어 Unicode 코드 포인트 순서에 따라 정렬된다.
 
 ```javascript
 var points = [40, 100, 1, 5, 2, 25, 10];
 
 // 숫자 배열 오름차순 정렬
-// compareFunction의 반환값이 0보다 작은 경우, a를 우선한다.
+// 비교 함수의 반환값이 0보다 작은 경우, a를 우선하여 정렬한다.
 points.sort(function (a, b) { return a - b; });
 console.log(points); // [ 1, 2, 5, 10, 25, 40, 100 ]
 
@@ -94,7 +97,7 @@ console.log(points); // [ 1, 2, 5, 10, 25, 40, 100 ]
 console.log(points[0]); // 1
 
 // 숫자 배열 내림차순 정렬
-// compareFunction의 반환값이 0보다 큰 경우, b를 우선한다.
+// 비교 함수의 반환값이 0보다 큰 경우, b를 우선하여 정렬한다.
 points.sort(function (a, b) { return b - a; });
 console.log(points); // [ 100, 40, 25, 10, 5, 2, 1 ]
 
@@ -102,7 +105,7 @@ console.log(points); // [ 100, 40, 25, 10, 5, 2, 1 ]
 console.log(points[0]); // 100
 ```
 
-<iframe height="400px" width="100%" src="https://repl.it/@ungmo2/Arrayprototypesort-1?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
+<iframe height="600px" width="100%" src="https://repl.it/@ungmo2/Arrayprototypesort-1?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
 
 객체를 요소로 갖는 배열을 정렬하는 예제는 아래와 같다.
 
@@ -113,22 +116,24 @@ var todos = [
   { id: 2, content: 'CSS' }
 ];
 
+// 비교 함수
+function compare(key) {
+  return function (a, b) {
+    // 프로퍼티 값이 문자열인 경우 - 산술 연산으로 비교하면 NaN이 나오므로 비교 연산을 사용한다.
+    return a[key] > b[key] ? 1 : a[key] < b[key] ? -1 : 0;
+  };
+}
+
 // id를 기준으로 정렬
-todos.sort(function (a, b) {
-  return (a.id > b.id) ? 1: (a.id < b.id) ? -1 : 0;
-});
-// todos.sort((a, b) => (a.id > b.id) ? 1 : (a.id < b.id) ? -1 : 0);
+todos.sort(compare('id'));
 console.log(todos);
 
 // content를 기준으로 정렬
-todos.sort(function (a, b) {
-  return (a.content > b.content) ? 1 : (a.content < b.content) ? -1 : 0;
-});
-// todos.sort((a, b) => (a.content > b.content) ? 1 : (a.content < b.content) ? -1 : 0);
+todos.sort(compare('content'));
 console.log(todos);
 ```
 
-<iframe height="400px" width="100%" src="https://repl.it/@ungmo2/Arrayprototypesort-2?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
+<iframe height="600px" width="100%" src="https://repl.it/@ungmo2/Arrayprototypesort-2?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
 
 # 2. Array.prototype.forEach(callback: (value: T, index: number, array: T[]) => void, thisArg?: any): void 🔒 <sup>ES5</sup>
 
@@ -214,7 +219,7 @@ var total = 0;
 console.log('Total: ', total);
 ```
 
-# 3. Array.prototype.map<U>(callbackfn: (value: T, index: number, array: T[]) => U, thisArg?: any): U[] 🔒 <sup>ES5</sup>
+# 3. Array.prototype.map\<U>(callbackfn: (value: T, index: number, array: T[]) => U, thisArg?: any): U[] 🔒 <sup>ES5</sup>
 
 배열을 순회하며 각 요소에 대하여 인자로 주어진 **콜백함수의 반환값(결과값)으로 새로운 배열을 생성하여 반환한다.** 이때 원본 배열은 변경되지 않는다. IE 9 이상에서 정상 동작한다.
 
@@ -347,7 +352,7 @@ var result = [1, 2, 3, 4, 5].myFilter(function (item, index, array) {
 console.log(result); // [ 1, 3, 5 ]
 ```
 
-# 5. Array.prototype.reduce<U>(callback: (state: U, element: T, index: number, array: T[]) => U, firstState?: U): U 🔒 <sup>ES5</sup>
+# 5. Array.prototype.reduce\<U>(callback: (state: U, element: T, index: number, array: T[]) => U, firstState?: U): U 🔒 <sup>ES5</sup>
 
 배열을 순회하며 각 요소에 대하여 이전의 콜백함수 실행 반환값을 전달하여 콜백함수를 실행하고 그 결과를 반환한다. IE 9 이상에서 정상 동작한다.
 

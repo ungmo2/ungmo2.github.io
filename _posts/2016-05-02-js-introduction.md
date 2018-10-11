@@ -35,7 +35,7 @@ Netscape Navigator 2
 
 * 자바스크립트는 다른 언어에서 많은 영향을 받았다. C, Java와는 기본 문법이 유사하다. 그리고 Self에서는 프로토타입 기반 상속을, Scheme에서는 일급 함수의 개념을 차용했다.
 
-* 구글의 [Chrome V8 자바스크립트 엔진](https://developers.google.com/v8/)으로 빌드된 자바스크립트 [런타임](https://ko.wikipedia.org/wiki/%EB%9F%B0%ED%83%80%EC%9E%84) 환경(Runtime Environment)인 <strong>Node.js</strong>의 등장으로 자바스크립트는 웹 브라우저를 벗어나 서버 사이드 애플리케이션 개발에서도 사용되는 범용 개발 언어가 되었다. 웹 브라우저에서만 동작하는 반쪽짜리 언어 취급을 받던 자바스크립트는 프런트엔드 영역은 물론 백엔드 영역까지 아우르는 웹 프로그래밍 언어의 표준으로 자리잡고 있다.
+* 구글의 [Chrome V8 자바스크립트 엔진](https://developers.google.com/v8/)으로 빌드된 자바스크립트 [런타임](https://ko.wikipedia.org/wiki/런타임) 환경(Runtime Environment)인 <strong>Node.js</strong>의 등장으로 자바스크립트는 웹 브라우저를 벗어나 서버 사이드 애플리케이션 개발에서도 사용되는 범용 개발 언어가 되었다. 웹 브라우저에서만 동작하는 반쪽짜리 언어 취급을 받던 자바스크립트는 프런트엔드 영역은 물론 백엔드 영역까지 아우르는 웹 프로그래밍 언어의 표준으로 자리잡고 있다.
 
 * 자바스크립트는 모바일 웹/앱 개발 분야에서도 [크로스 플랫폼](https://ko.wikipedia.org/wiki/크로스_플랫폼)을 위한 가장 중요한 언어로 주목받고 있다. 웹은 물론 모바일 하이브리드 앱([PhoneGap](http://phonegap.com), [Sencha Touch](https://www.sencha.com/products/touch), [Ionic](https://ionicframework.com)), 서버 사이드([NodeJS](https://nodejs.org/)), Desktop([Electron](https://electron.atom.io/), [AppJS](http://appjs.com/)), 로봇 제어([Cylon.js](https://cylonjs.com/), [NodeBots](http://nodebots.io/)) 언어로서 세계에서 가장 인기있는 언어이다.
 

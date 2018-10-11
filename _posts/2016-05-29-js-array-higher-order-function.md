@@ -503,6 +503,39 @@ const result = users.myFind(function (item, index, array) {
 console.log(result); // { id: 2, name: 'Kim' }
 ```
 
+# 9. Array.prototype.findIndex(predicate: (value: T, index: number, obj: T[]) => boolean, thisArg?: any): number 🔒 <sup>ES6</sup>
+
+ES6에서 새롭게 도입된 메소드로 Internet Explorer에서는 지원하지 않는다.
+
+배열을 순회하며 각 요소에 대하여 인자로 주어진 **콜백함수를 실행하여 그 결과가 참인 첫번째 요소의 인덱스를 반환한다.** 콜백함수의 실행 결과가 참인 요소가 존재하지 않는다면 -1을 반환한다.
+
+콜백함수의 매개변수를 통해 배열 요소의 값, 요소 인덱스, 순회할 배열을 전달 받을 수 있다.
+
+```javascript
+var users = [
+  { id: 1, name: 'Lee' },
+  { id: 2, name: 'Kim' },
+  { id: 2, name: 'Choi' },
+  { id: 3, name: 'Park' }
+];
+
+// 콜백함수를 실행하여 그 결과가 참인 첫번째 요소의 인덱스를 반환한다.
+function predicate(key, value) {
+  return function (item) {
+    return item[key] === value;
+  };
+}
+
+// id가 2인 요소의 인덱스
+var index = users.findIndex(predicate('id', 2));
+console.log(index); // 3
+
+// name이 'Park'인 요소의 인덱스
+index = users.findIndex(predicate('name', 'Park'));
+console.log(index); // 3
+```
+
+
 <!-- # 9. Array.from<T, U>(arrayLike: ArrayLike<T>, mapfn: (v: T, k: number) => U, thisArg?: any): U[] 🔒 <sup>ES6</sup>
 
 ES6에서 새롭게 도입된 메소드로 Internet Explorer에서는 지원하지 않는다.

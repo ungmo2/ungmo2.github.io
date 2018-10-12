@@ -637,7 +637,59 @@ sayHello('lee');  // Hello lee
 logHello('lee');  // logHello is not defined
 ```
 
-## 7.3 콜백 함수
+## 7.3 재귀 함수
+
+재귀 함수(Recusive function)는 자기 자신을 호출하는 함수를 말한다.
+
+```javascript
+// 피보나치 수열
+// 피보나치 수는 0과 1로 시작하며, 다음 피보나치 수는 바로 앞의 두 피보나치 수의 합이 된다.
+// 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, ...
+function fibonacci(n) {
+  if (n < 2) return n;
+  return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+console.log(fibonacci(0)); // 0
+console.log(fibonacci(1)); // 1
+console.log(fibonacci(2)); // 1
+console.log(fibonacci(3)); // 2
+console.log(fibonacci(4)); // 3
+console.log(fibonacci(5)); // 5
+console.log(fibonacci(6)); // 8
+
+// 팩토리얼
+// 팩토리얼(계승)은 1부터 자신까지의 모든 양의 정수의 곱이다.
+// n! = 1 * 2 * ... * (n-1) * n
+function factorial(n) {
+  if (n < 2) return 1;
+  return factorial(n - 1) * n;
+}
+
+console.log(factorial(0)); // 1
+console.log(factorial(1)); // 1
+console.log(factorial(2)); // 2
+console.log(factorial(3)); // 6
+console.log(factorial(4)); // 24
+console.log(factorial(5)); // 120
+console.log(factorial(6)); // 720
+```
+
+재귀 함수는 자신을 무한히 연쇄 호출하므로 호출을 멈출 수 있는 탈출 조건을 반드시 만들어야 한다. 탈출 조건이 없는 경우, 함수가 무한 호출되어 stackoverflow 에러가 발생한다. 위의 두개의 예제 모두 조건식을 통해 재귀 호출을 중지하고 있다.
+
+![recursive call](./img/recursive-call.png)
+재귀 함수의 호출
+{: .desc-img}
+
+**재귀 함수는 반복 연산을 간단히 구현할 수 있다는 장점이 있지만 무한 반복에 빠질 수 있고, stackoverflow 에러를 발생시킬 수 있으므로 주의하여야 한다.**
+
+![stackoverflow](./img/stackoverflow.png)
+stackoverflow 에러
+{: .desc-img}
+
+대부분의 재귀 함수는 for나 while 문으로 구현이 가능하다. 반복문보다 재귀 함수를 통해 보다 직관적으로 이해하기 쉬운 구현이 가능한 경우에만 한정적으로 적용하는 것이 바람직하다.
+
+## 7.4 콜백 함수
 
 콜백 함수(Callback function)는 함수를 명시적으로 호출하는 방식이 아니라 특정 이벤트가 발생했을 때 시스템에 의해 호출되는 함수를 말한다.
 

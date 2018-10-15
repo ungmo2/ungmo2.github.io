@@ -79,9 +79,9 @@ for (const val of generator) {
 const arr = [...foo()];
 ```
 
-제너레이터 함수의 함수 블록을 실행하려면 제너레이터 함수가 생성한 제너레이터 객체의 next() 메소드를 호출한다. yield 구문은 next() 메소드를 일시 중지시킨다. return처럼 값을 반환할 수 있다.
+제너레이터 함수의 함수 블록을 실행하려면 제너레이터 함수가 생성한 제너레이터 객체의 next 메소드를 호출한다. yield 구문은 next 메소드를 일시 중지시킨다. return처럼 값을 반환할 수 있다.
 
-next() 메소드가 처음으로 호출되면 yield 이전까지 실행하고 실행을 일시 중지한다. next() 메소드가 호출되면 일시 중지된 코드를 다시 실행하고 yield를 만나면 또 다시 실행을 일시 중지한다.
+next 메소드가 처음으로 호출되면 yield 이전까지 실행하고 실행을 일시 중지한다. next 메소드가 호출되면 일시 중지된 코드를 다시 실행하고 yield를 만나면 또 다시 실행을 일시 중지한다.
 
 ```
 next() -> yield -> next() ->  yield
@@ -118,9 +118,9 @@ console.log(generator.next());
 // { value: undefined, done: true }
 ```
 
-제너레이터 객체는 기본적으로 next() 메소드를 가지고 있다. 이는 제너레이터 객체가 이터레이터인 것을 의미한다. 이터레이터의 next() 메소드는 value, done 프로퍼티를 갖는 객체를 반환한다. value 프로퍼티는 yield 구문이 반환한 값이고 done 프로퍼티는 제너레이터 함수 내의 모든 yield 구문이 실행되었는지를 나타내는 boolean 타입의 값이다.
+제너레이터 객체는 기본적으로 next 메소드를 가지고 있다. 이는 제너레이터 객체가 이터레이터인 것을 의미한다. 이터레이터의 next 메소드는 value, done 프로퍼티를 갖는 객체를 반환한다. value 프로퍼티는 yield 구문이 반환한 값이고 done 프로퍼티는 제너레이터 함수 내의 모든 yield 구문이 실행되었는지를 나타내는 boolean 타입의 값이다.
 
-이터레이터의 next()와 다르게 제너레이터 객체의 next()는 인자를 받을 수도 있다.
+이터레이터의 next 메소드와 다르게 제너레이터 객체의 next 메소드는 인자를 받을 수도 있다.
 
 ```javascript
 function* foo(n) {
@@ -146,11 +146,11 @@ console.log(iterator.next(30));
 // {value:60, done:true}
 ```
 
-이때 yield는 대입문 변수에 값을 할당하지 않고, next()의 인자가 대입문 변수에 할당된다.
+이때 yield는 대입문 변수에 값을 할당하지 않고, next 메소드의 인자가 대입문 변수에 할당된다.
 
 ![generator-next](./img/generator-next.png)
 
-제너레이터 객체의 next() 메소드
+제너레이터 객체의 next 메소드
 {: .desc-img}
 
 <!--# 2. 제너레이터의 활용
@@ -158,7 +158,7 @@ console.log(iterator.next(30));
 ## 2.1 이터러블의 구현-->
 # 3. 이터러블의 구현
 
-제너레이터 함수를 호출하면 함수 블록이 실행되는 것이 아니라, 제너레이터 객체를 반환한다. 이 제너레이터 객체는 for-of 루프로 순회할 수 있으며 next() 메소드를 가지고 있다. 즉, <strong>제너레이터 객체는 이터러블(iterable)임과 동시에 이터레이터(iterator)이다.</strong>
+제너레이터 함수를 호출하면 함수 블록이 실행되는 것이 아니라, 제너레이터 객체를 반환한다. 이 제너레이터 객체는 for-of 루프로 순회할 수 있으며 next 메소드를 가지고 있다. 즉, <strong>제너레이터 객체는 이터러블(iterable)임과 동시에 이터레이터(iterator)이다.</strong>
 
 ```javascript
 // 제너레이터 함수
@@ -172,7 +172,7 @@ function* foo() {
 // 제너레이터 함수를 호출하면 제너레이터 객체를 반환한다.
 const generator = foo();
 
-// 제너레이터 객체는 next() 메소드를 갖는 이터레이터이다.
+// 제너레이터 객체는 next 메소드를 갖는 이터레이터이다.
 console.log(generator.next());
 console.log(generator.next());
 console.log(generator.next());
@@ -207,7 +207,7 @@ for (const num of fibonacci) {
 }
 ```
 
-위와 같이 이터레이터를 생성하려면 [이터레이션 프로토콜](./es6-iteration-for-of#1-이터레이션-프로토콜iteration-protocol)을 준수해야 한다. 즉, Symbol.iterator를 프로퍼티 키로 사용한 메소드를 구현하여 이터러블 객체를 만들고 Symbol.iterator를 프로퍼티 키로 사용한 메소드가 value, done 프로퍼티를 갖는 객체를 반환하는 next() 함수를 메소드로 갖는 객체를 반환해야 한다.
+위와 같이 이터레이터를 생성하려면 [이터레이션 프로토콜](./es6-iteration-for-of#1-이터레이션-프로토콜iteration-protocol)을 준수해야 한다. 즉, Symbol.iterator를 프로퍼티 키로 사용한 메소드를 구현하여 이터러블 객체를 만들고 Symbol.iterator를 프로퍼티 키로 사용한 메소드가 value, done 프로퍼티를 갖는 객체를 반환하는 next 메소드를 갖는 객체를 반환해야 한다.
 
 이러한 이터레이션 프로토콜을 보다 간단하게 처리하기 위해 제너레이터를 활용할 수 있다. 제너레이터를 활용하여 피보나치 수열을 구현한 이터러블 객체를 만들어 보자.
 
@@ -231,7 +231,7 @@ for (const num of fibonacci) {
 
 \* [Symbol.iterator\]\(\)는 이터레이터를 제너레이터로 구현한 것이다. 따라서 fibonacci 객체는 이터레이터를 구현한 이터러블 객체이다.
 
-이처럼 제너레이터로 이터레이터를 구현하면 value, done 프로퍼티를 갖는 객체를 반환하는 next() 메소드를 별도로 구현하지 않아도 value, done 프로퍼티를 갖는 객체를 반환하기 때문에 구현도 간단해지며 가독성도 높아진다.
+이처럼 제너레이터로 이터레이터를 구현하면 value, done 프로퍼티를 갖는 객체를 반환하는 next 메소드를 별도로 구현하지 않아도 value, done 프로퍼티를 갖는 객체를 반환하기 때문에 구현도 간단해지며 가독성도 높아진다.
 
 위 예제는 제너레이터를 사용하여 이터레이터를 구현한 것이다. 제너레이터는 그 자신이 이터러블인 특성을 이용하여 직접 이터러블 객체를 구현할 수 있다. 이를 활용하여 위 예제를 수정해 보자.
 

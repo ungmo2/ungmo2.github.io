@@ -94,7 +94,7 @@ for (;;) {
 
 # 2. for-of 루프
 
-for-of 루프는 이터러블 객체를 순회한다. for-of 루프는 이터레이터의 next 메소드를 호출하고 next 메소드가 반환하는 객체(iterator result)의 done 프로퍼티가 true가 될 때까지 반복한다. iterator result의 value 프로퍼티에는 차례대로 꺼내진 이터러블의 값이 저장된다
+for-of 루프는 이터러블 객체를 순회한다. for-of 루프는 이터러블 객체를 순회할 때마다 이터레이터의 next 메소드를 호출한다. next 메소드가 반환하는 객체(iterator result)의 done 프로퍼티가 true가 될 때까지 반복하며 value 프로퍼티의 값을 for-of 루프의 of 앞에 선언한 변수에 할당하고 반복문의 코드 블럭을 실행한다.
 
 ```javascript
 // 배열

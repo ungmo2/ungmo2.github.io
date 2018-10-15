@@ -17,7 +17,7 @@ description: Arrow function(화살표 함수)은 function 키워드 대신 화�
 
 # 1. 화살표 함수의 선언
 
-화살표 함수(Arrow function)는 function 키워드 대신 화살표(=>)를 사용하여 보다 간략한 방법으로 함수를 선언할 수 있다. 하지만 모든 경우 사용할 수 있는 것은 아니다. 기본 문법은 아래와 같다.
+화살표 함수(Arrow function)는 function 키워드 대신 화살표(=>)를 사용하여 보다 간략한 방법으로 함수를 선언할 수 있다. 하지만 모든 경우 화살표 함수를 사용할 수 있는 것은 아니다. 화살표 함수의 기본 문법은 아래와 같다.
 
 ```javascript
 // 매개변수 지정 방법
@@ -174,6 +174,7 @@ function Prefixer(prefix) {
 }
 
 Prefixer.prototype.prefixArray = function (arr) {
+  // this는 상위 스코프인 prefixArray 메소드 내의 this를 가리킨다.
   return arr.map(x => `${this.prefix}  ${x}`);
 };
 
@@ -196,6 +197,17 @@ class Prefixer {
 const pre = new Prefixer('Hi');
 console.log(pre.prefixArray(['Lee', 'Kim']));
 ```-->
+
+화살표 함수는 call, applay, bind 메소드를 사용하여 this를 변경할 수 없다.
+
+```javascript
+window.x = 1;
+const normal = function () { return this.x; };
+const arrow = () => this.x;
+
+console.log(normal.call({ x: 10 })); // 10
+console.log(arrow.call({ x: 10 }));  // 1
+```
 
 # 4. 화살표 함수를 사용해서는 안되는 경우
 
@@ -288,7 +300,7 @@ button.addEventListener('click', () => {
 });
 ```
 
-따라서 addEventListener 함수의 콜백 함수에서 this를 사용하는 경우, function 키워드로 정의한 일반 함수를 사용하여야 한다. 일반 함수로 정의된 addEventListener 함수의 콜백 함수 내부의 [this](./js-event#43-dom-level-2-event-listener)는 이벤트 리스너에 바인딩된 요소(currentTarget)를 가리킨다.
+따라서 addEventListener 함수의 콜백 함수 내에서 this를 사용하는 경우, function 키워드로 정의한 일반 함수를 사용하여야 한다. 일반 함수로 정의된 addEventListener 함수의 콜백 함수 내부의 [this](./js-event#43-dom-level-2-event-listener)는 이벤트 리스너에 바인딩된 요소(currentTarget)를 가리킨다.
 
 ```javascript
 // Good

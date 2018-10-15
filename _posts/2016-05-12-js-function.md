@@ -678,12 +678,14 @@ console.log(factorial(6)); // 720
 재귀 함수는 자신을 무한히 연쇄 호출하므로 호출을 멈출 수 있는 탈출 조건을 반드시 만들어야 한다. 탈출 조건이 없는 경우, 함수가 무한 호출되어 stackoverflow 에러가 발생한다. 위의 두개의 예제 모두 조건식을 통해 재귀 호출을 중지하고 있다.
 
 ![recursive call](./img/recursive-call.png)
+{: .w-250}
 재귀 함수의 호출
 {: .desc-img}
 
 **재귀 함수는 반복 연산을 간단히 구현할 수 있다는 장점이 있지만 무한 반복에 빠질 수 있고, stackoverflow 에러를 발생시킬 수 있으므로 주의하여야 한다.**
 
 ![stackoverflow](./img/stackoverflow.png)
+{: .w-300}
 stackoverflow 에러
 {: .desc-img}
 

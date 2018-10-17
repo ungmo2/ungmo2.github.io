@@ -118,7 +118,7 @@ console.log(generator.next());
 // { value: undefined, done: true }
 ```
 
-제너레이터 객체는 기본적으로 next 메소드를 가지고 있다. 이는 제너레이터 객체가 이터레이터인 것을 의미한다. 이터레이터의 next 메소드는 value, done 프로퍼티를 갖는 객체를 반환한다. value 프로퍼티는 yield 구문이 반환한 값이고 done 프로퍼티는 제너레이터 함수 내의 모든 yield 구문이 실행되었는지를 나타내는 boolean 타입의 값이다.
+제너레이터 객체는 기본적으로 next 메소드를 가지고 있다. **이는 제너레이터 객체가 이터레이터인 것을 의미한다.** 이터레이터의 next 메소드는 value, done 프로퍼티를 갖는 객체를 반환한다. value 프로퍼티는 yield 구문이 반환한 값이고 done 프로퍼티는 제너레이터 함수 내의 모든 yield 구문이 실행되었는지를 나타내는 boolean 타입의 값이다.
 
 이터레이터의 next 메소드와 다르게 제너레이터 객체의 next 메소드는 인자를 받을 수도 있다.
 

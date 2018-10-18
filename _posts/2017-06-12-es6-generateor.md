@@ -74,9 +74,6 @@ const generator = foo();
 for (const val of generator) {
   console.log(val); // 1 2 3
 }
-
-// spead operator
-const arr = [...foo()];
 ```
 
 제너레이터 함수의 함수 블록을 실행하려면 제너레이터 함수가 생성한 제너레이터 객체의 next 메소드를 호출한다. yield 구문은 next 메소드를 일시 중지시킨다. return처럼 값을 반환할 수 있다.

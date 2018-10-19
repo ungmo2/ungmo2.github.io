@@ -102,7 +102,7 @@ image 요소는 inline 요소이며 텍스트로 취급된다고 하였다. 이�
 
 <div class="result" style="height: 210px;"></div>
 
-하지만 이 방법은 imgae 요소를 블록 요소로 전환할 수 없는 레이아웃에서는 사용할 수 없다.
+하지만 이 방법은 image 요소를 블록 요소로 전환할 수 없는 레이아웃에서는 사용할 수 없다.
 
 두번째, inline 요소에 사용할 수 있는 [vertical-align](https://developer.mozilla.org/ko/docs/Web/CSS/vertical-align) 프로퍼티를 사용하는 방법이 있다. vertical-align 프로퍼티의 기본값은 baseline인데 이를 변경하여 이미지 표시 위치를 조정하는 것이다.
 

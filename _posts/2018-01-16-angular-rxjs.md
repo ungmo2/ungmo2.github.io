@@ -29,7 +29,7 @@ map 오퍼레이터를 통해 변환(Transforming)된 옵저버블을 반환하�
 
 리액티브 프로그래밍은 두번째 방식(푸시 시나리오)으로 동작하는 애플리케이션을 작성하는 것이다. 즉, 필요한 데이터를 획득하기 위해서 애플리케이션이 외부 환경에 요청하여 데이터를 획득하는 것이 아니라, 애플리케이션은 외부 환경을 관찰하고 있다가 외부 환경에서 데이터 스트림을 방출하면 그것에 반응하여 데이터를 획득하는 것이다.
 
-이때 외부 환경에서 애플리케이션 내부로 연속적으로 흐르는 데이터, 즉 데이터 스트림을 생성하고 방출하는 객체를 **옵저버블(Observable)**이라 하고, 옵저버블이 방출한(emit) **노티피케이션(Notification: 옵저버블이 방출할 수 있는 푸시 기반 이벤트 또는 값)**을 획득하여 사용하는 객체를 **옵저버(Observer)**라 한다. 다시 말해 데이터 소비자(Data consumer)인 옵저버는 데이터 생산자(Data producer)인 옵저버블을 **구독(subscribe)**한다. 이 구독에 의해 옵저버는 옵저버블에 연결되어 옵저버블의 상태를 관찰한다. 그리고 옵저버블이 방출한 노티피케이션은 옵저버에게 자동으로 전파된다. 방송국의 예에서 TV 방송국은 옵저버블이고 TV는 옵저버이며 영상 정보 프레임은 옵저버블이 방출한 노티피케이션이라고 할 수 있다.
+이때 외부 환경에서 애플리케이션 내부로 연속적으로 흐르는 데이터, 즉 데이터 스트림을 생성하고 방출하는 객체를 **옵저버블(Observable)**이라 하고, 옵저버블이 방출한(emit) **노티피케이션(Notification: 옵저버블이 방출할 수 있는 푸시 기반 이벤트 또는 값)**을 획득하여 사용하는 객체를 **옵저버(Observer)**라 한다. 다시 말해 데이터 소비자(Data consumer)인 옵저버는 데이터 생산자(Data producer)인 옵저버블을 **구독(subscription)**한다. 이 구독에 의해 옵저버는 옵저버블에 연결되어 옵저버블의 상태를 관찰한다. 그리고 옵저버블이 방출한 노티피케이션은 옵저버에게 자동으로 전파된다. 방송국의 예에서 TV 방송국은 옵저버블이고 TV는 옵저버이며 영상 정보 프레임은 옵저버블이 방출한 노티피케이션이라고 할 수 있다.
 
 ![observable](/img/observable.png)
 
@@ -87,6 +87,7 @@ import { map, filter, scan, tap } from 'rxjs/operators';
 
 ```typescript
 import { Component, OnInit } from '@angular/core';
+
 // RxJS 임포트
 import { Observable } from 'rxjs';
 
@@ -99,27 +100,22 @@ export class AppComponent implements OnInit {
 
     // 옵저버블이 구독될 때 호출되는 구독 함수
     const subscriber = (observer) => {
-      // next 노티피케이션 방출
-      setTimeout(() => {
+      try {
+        // next 노티피케이션 방출
         observer.next(1);
-      }, 1000);
-
-      setTimeout(() => {
         observer.next(2);
-      }, 2000);
 
-      // error 노티피케이션 방출
-      setTimeout(() => {
-        observer.error(new Error('Something wrong!'));
-      }, 3000);
+        // throw new Error('Something wrong!');
 
-      // complete 노티피케이션 방출
-      setTimeout(() => {
+        // complete 노티피케이션 방출
         observer.complete();
-      }, 4000);
-
-      // 구독 해지될 때 호출되는 콜백 함수
-      return () => console.log('Unsubscribed!')
+      } catch(e) {
+        // error 노티피케이션 방출
+        observer.error(e);
+      } finally {
+        // 구독 해지될 때 호출되는 콜백 함수
+        return () => console.log('Unsubscribed!')
+      }
     }
 
     // 옵저버블 생성
@@ -140,7 +136,14 @@ export class AppComponent implements OnInit {
 
 <iframe src="https://stackblitz.com/edit/rxjs6-observable-1?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
-위 예제는 옵저버블이 구독될 때 호출되는 구독 함수 내에서 next, error, complte 메소드를 사용하여 노티피케이션을 방출하고 있다. 이 예제는 옵버버블의 이해를 돕기 위한 예제이므로 애플리케이션의 외부 환경에 반응하고 있지는 않다. 이번에는 애플리케이션의 외부 환경에 반응하는 옵저버블을 생성해보자. 마우스의 움직임에 반응하여 화면에 좌표를 표시하는 예제이다.
+<!-- 위 예제는 옵저버블이 구독될 때 호출되는 구독 함수인 subscribe 내에서 next, error, complte 메소드를 사용하여 노티피케이션을 방출하고 있다. next, error, complte 메소드는 옵저버가 소유하는 메소드이며 옵저버는 옵저버블을 구독할 때 subscribe 오퍼레이터의 인자로 전달한다. -->
+
+위 예제를 보면, Observable 생성자를 new 연산자와 함께 호출하여 옵저버블을 생성한다. 이때 Observable 생성자의 인자로 구독 함수(Subscription function)인 subscriber를 전달한다. 구독 함수는 옵저버블의 역할인 데이터 스트림을 생성하고 방출하는 처리를 정의한 함수이다. 구독 함수는 Observable 생성자의 인자로 전달되고 바로 실행되는 것이 아니라 subscribe 오퍼레이터에 의해 옵저버블이 구독될 때 호출되는 콜백 함수이다.
+<!-- 구독함수 subscriber와 subscribe 오퍼레이터의 이름이 비슷해 혼동하기 쉬우나 이 둘은 다른 것이므로 주의하기 바란다. -->
+
+구독 함수 subscriber는 next, error, complte 메소드를 사용하여 노티피케이션을 방출하고 있다. 이때 방출된 노티피케이션은 subscribe 오퍼레이터의 인자로 전달되어 옵저버블을 구독하고 있는 모든 옵저버의 next, error, complte 메소드에 전달된다. 다시 말해 구독함수가 next, error, complte 메소드를 호출하여 노티피케이션을 방출하면 옵저버의 next, error, complte 메소드가 방출된 노티피케이션에 반응하여 동작한다.
+
+이 예제는 옵버버블의 이해를 돕기 위한 예제이므로 애플리케이션의 외부 환경에 반응하고 있지는 않다. 이번에는 애플리케이션의 외부 환경에 반응하는 옵저버블을 생성해보자. 마우스의 움직임에 반응하여 화면에 좌표를 표시하는 예제이다.
 
 ```typescript
 import { Component, OnInit } from '@angular/core';

@@ -16,9 +16,9 @@ description: 옵저버블은 구독(subscribe)되기 전까지 실행되지 않�
 
 # 1. Cold observable
 
-옵저버블은 구독(subscribe)되기 전까지 동작하지 않는다고 하였다. 이러한 특성을 갖는 옵저버블을 Cold observable이라 한다. RxJS의 옵저버블은 기본적으로 Cold observable이다. Cold observable은 구독되기 이전에는 데이터 스트림을 방출(emit)하지 않으며 Cold observable을 옵저버가 구독하면 처음부터 동작하기 시작한다. 따라서 옵저버는 옵저버블이 방출하는 모든 데이터 스트림을 빠짐없이 처음부터 받을 수 있다.
+옵저버블은 구독(subscribe)되기 전까지 동작하지 않는다고 하였다. 이러한 특성을 갖는 옵저버블을 Cold observable이라 한다. RxJS의 옵저버블은 기본적으로 Cold observable이다. Cold observable은 구독되기 이전에는 데이터 스트림을 방출(emit)하지 않으며 **Cold observable을 옵저버가 구독하면 처음부터 동작하기 시작한다.** 따라서 옵저버는 옵저버블이 방출하는 모든 데이터 스트림을 빠짐없이 처음부터 받을 수 있다.
 
-옵저버블을 구독하는 옵저버는 하나 이상일 수 있는데 Cold observable을 구독하는 모든 옵저버들은 Cold observable이 방출하는 모든 데이터를 구독하는 시점에 상관없이 처음부터 모두 받을 수 있다. 이것은 Cold observable을 구독하는 모든 옵저버는 자신만을 위해 독립적으로 실행하는 옵저버블을 갖게 된다고 볼 수 있는데 이러한 특징을 가리켜 [유니캐스트(unicast)](https://ko.wikipedia.org/wiki/유니캐스트)라 한다.
+옵저버블을 구독하는 옵저버는 하나 이상일 수 있는데 Cold observable을 구독하는 모든 옵저버들은 구독하는 시점과 상관없이 Cold observable이 방출하는 모든 데이터를 처음부터 빠짐없이 모두 받을 수 있다. 이것은 Cold observable을 구독하는 모든 옵저버는 자신만을 위해 독립적으로 실행하는 옵저버블을 갖게 된다고 볼 수 있는데 이러한 특징을 가리켜 [유니캐스트(unicast)](https://ko.wikipedia.org/wiki/유니캐스트)라 한다.
 
 아래는 Cold observable의 예제이다.
 
@@ -92,6 +92,7 @@ subject.next(2);
 subject.next(3);
 
 // 이 시점에는 구독할 데이터가 없다.
+
 numbersBySubject$.subscribe(
   value => console.log(`1st next: ${value}`),  //next
   error => console.log(`1st error: ${error}`), // error
@@ -105,9 +106,9 @@ numbersBySubject$.subscribe(
 );
 
 // 데이터 방출
-subject.next(1);
-subject.next(2);
-subject.next(3);
+subject.next(10);
+subject.next(20);
+subject.next(30);
 
 /*----------------------------------------------------*/
 // BehaviorSubject는 Observable의 마지막 데이터만을 받는다.
@@ -115,9 +116,9 @@ const behaviorSubject = new BehaviorSubject<number>(0);
 const numbersByBehaviorSubject$ = behaviorSubject.asObservable();
 
 // 마지막 데이터만을 받는다.
-behaviorSubject.next(1);
-behaviorSubject.next(2);
-behaviorSubject.next(3);
+behaviorSubject.next(100);
+behaviorSubject.next(200);
+behaviorSubject.next(300);
 
 numbersByBehaviorSubject$.subscribe(
   value => console.log(`1st next: ${value}`),  //next

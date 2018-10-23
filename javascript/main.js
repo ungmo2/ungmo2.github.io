@@ -217,11 +217,11 @@ jQuery(document).ready(function ($) {
   });
 
   // detect mobile : stackblits 버그 대응
-  var filter = "win16|win32|win64|mac|macintel";
-  if ( navigator.platform ) {
-    // mobile로 접속한 경우, stackblits iframe 요소를 제거
-    if ( filter.indexOf( navigator.platform.toLowerCase() ) < 0 ) {
-      $('iframe[src^="https://stackblitz.com"]').remove();
-    }
-  }
+  // var filter = "win16|win32|win64|mac|macintel";
+  // if ( navigator.platform ) {
+  //   // mobile로 접속한 경우, stackblits iframe 요소를 제거
+  //   if ( filter.indexOf( navigator.platform.toLowerCase() ) < 0 ) {
+  //     $('iframe[src^="https://stackblitz.com"]').remove();
+  //   }
+  // }
 });

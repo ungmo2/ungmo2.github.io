@@ -24,14 +24,14 @@ Accordion UI(Collapse UI)는 컨텐츠의 일부 영역만을 노출시키고 �
 
 이 기능에 대한 요구 사항은 아래와 같다.
 
-1. 요소의 height는 알 수 없다. 하지만 어떤 height라도 동작해야 한다.
+1. 대상 요소의 height는 알 수 없다. 하지만 어떤 height라도 동작해야 한다.
 2. CSS animation/transition를 이용하여 슬라이드 효과를 구현한다.
 3. CSS animation/transition은 적절한 타이밍을 유지해야 한다. 다시 말해 열고 닫히는 타이밍이 같아야 한다.
 4. Vanilla javascript로 구현한다.
 
 위 요구 사항을 충족하기 위해 아래와 같은 방법으로 가설을 세우고 구현해보자.
 
-1. 대상 요소에 `height: 0`을 지정하여 감춘다.
+1. 세로 방향으로 슬라이드 효과를 구현하기 위해 대상 요소에 `height: 0`을 지정하여 감춘다.
 2. 감춤 상태에서 버튼을 클릭하면 대상 요소에 `height: auto`를 지정하여 노출시킨다.
 3. 노출 상태에서 버튼을 클릭하면 대상 요소에 `height: 0`을 지정하여 감춘다.
 4. 애니메이션 효과를 위해 transition에 height를 등록한다.
@@ -102,7 +102,8 @@ Accordion UI(Collapse UI)는 컨텐츠의 일부 영역만을 노출시키고 �
 [box-sizing: border-box](./css3-box-model#4-box-sizing-프로퍼티)를 지정한 상태에서 `height: 0`을 지정하면 요소의 border, padding, content 영역의 height가 모두 0이 될 것으로 예상하기 쉽지만 그렇지 않다. `box-sizing: border-box`은 **border와 padding을 유지한 상태에서 content 영역의 widhth/height를 계산**한다. 다시말해 height는 padding 20px(padding-top + padding-bottom)이 유지된 상태에서 계산되어 -20px이 되지만 height는 음수가 될 수 없으므로 0px로 계산된다.
 
 ![height-0](/img/height-0.png)
-`box-sizing: border-box`은 border와 padding을 유지한 상태에서 content 영역의 widhth/height를 계산한다.
+{: .w-250}
+box-sizing: border-box은 border와 padding을 유지한 상태에서 content 영역의 widhth/height를 계산한다.
 {:.desc-img}
 
 이 문제를 회피하기 위해 대상 요소를 감싸는 컨테이너 요소가 필요하다. 컨테이너 요소에 `padding: 0`, `height: 0`을 지정하고 `overflow: hidden`를 지정하면 자식 요소를 감출 수 있다.

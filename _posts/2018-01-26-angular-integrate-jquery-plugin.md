@@ -180,7 +180,7 @@ export class AppComponent implements OnInit {
 }
 ```
 
-참고로 from이 없는 import는 모듈에서 어떠한 값도 취득할 필요가 없이 사이드 이펙트만을 발생시키는 모듈에 사용한다. slick 플러그인이 로드되면 jQuery 객체에 slick 메서드를 바인딩한다.
+참고로 from이 없는 import는 모듈에서 어떠한 값도 취득할 필요가 없이 사이드 이펙트만을 발생시키는 모듈에 사용한다. slick 플러그인이 로드되면 jQuery 객체에 slick 메소드를 바인딩한다.
 
 `ng serve` 명령어로 프로젝트를 실행하면 아래와 같은 에러가 발생한다.
 
@@ -188,7 +188,7 @@ export class AppComponent implements OnInit {
 ERROR in src/app/app.component.ts(21,19): error TS2551: Property 'slick' does not exist ontype 'JQuery<HTMLElement>'. Did you mean 'click'?
 ```
 
-이 에러는 slick 플러그인의 타입 정의 파일이 없어서 타입스크립트가 slick 메서드를 알지 못하기 때문에 발생한 것이다.
+이 에러는 slick 플러그인의 타입 정의 파일이 없어서 타입스크립트가 slick 메소드를 알지 못하기 때문에 발생한 것이다.
 
 # 6. slick 플러그인 타입 정의 파일 설치
 
@@ -198,7 +198,7 @@ slick 플러그인의 타입 정의 파일을 설치한다.
 $ npm install --save-dev @types/slick-carousel
 ```
 
-에러는 발생하지 않지만 slick 플러그인이 정상적으로 동작하지 않는다. 그 이유는 템플릿의 컴파일이 완료되어 DOM이 완성되기 이전에 slick 메서드를 호출하였기 때문이다. ngOnInit 생명주기 훅 메서드에서 호출하던 slick 메서드를 ngAfterViewInit 생명주기 훅 메서드에서 호출하도록 수정한다.
+에러는 발생하지 않지만 slick 플러그인이 정상적으로 동작하지 않는다. 그 이유는 템플릿의 컴파일이 완료되어 DOM이 완성되기 이전에 slick 메소드를 호출하였기 때문이다. ngOnInit 생명주기 훅 메소드에서 호출하던 slick 메소드를 ngAfterViewInit 생명주기 훅 메소드에서 호출하도록 수정한다.
 
 ```typescript
 // app.component.ts

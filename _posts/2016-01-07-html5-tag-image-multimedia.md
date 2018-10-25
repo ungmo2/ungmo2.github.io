@@ -27,7 +27,7 @@ description: 이미지의 표현과 동영상, 음악 등 멀티미디어를 지
 <!DOCTYPE html>
 <html>
   <body>
-    <img src="assets/images/doug.jpg" alt="Smiley face" width="100">
+    <img src="assets/images/doug.jpg" alt="doug" width="100">
     <img src="assets/images/wrongname.gif" alt="이미지가 없습니다.">
   </body>
 </html>

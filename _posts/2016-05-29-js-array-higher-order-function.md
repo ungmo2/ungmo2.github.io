@@ -536,7 +536,7 @@ function predicate(key, value) {
 
 // id가 2인 요소의 인덱스
 var index = users.findIndex(predicate('id', 2));
-console.log(index); // 3
+console.log(index); // 1
 
 // name이 'Park'인 요소의 인덱스
 index = users.findIndex(predicate('name', 'Park'));

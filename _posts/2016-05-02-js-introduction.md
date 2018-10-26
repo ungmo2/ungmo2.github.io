@@ -77,7 +77,22 @@ ECMAScript 6 : [ECMA-262 6th edition](http://www.ecma-international.org/ecma-262
 ![history javascript evolution es6](/img/history-javascript-evolution-es6.png)
 {: .w-650}
 
-# 3. Browsers Support
+# 3. 자바스크립트의 구성 요소
+
+일반적으로 자바스크립트는 ESCMAScript뿐만 아니라 클라이언트 사이드 API를 아우르는 개념이다. ESCMAScript 명세에서는 자바스크립트의 핵심 기술을 관리하고 클라이언트 사이드 API는 별도의 명세로 관리된다.
+
+ESCMAScript
+: Object, String, Number, Boolean, Symbol, Function, Array, RegExp, Date, Math, Promise…
+
+클라이언트 사이드 API
+: - Global object: window, global(Node.js)
+  - DOM: Document, Event, HTMLElement, HTMLCollection, NodeList…
+  - BOM: Location, History, Navigator, Screen
+  - Ajax: XMLHttpRequest, fetch
+  - HTML5 APIs: Blob, File, Canvas, Geolocation, Drag&Drop, Web storage, Web worker…
+
+
+# 4. Browsers Support
 
 IE를 제외한 대부분의 모던 브라우저는 ES6를 지원하고 있지만 100% 지원하고 있지는 않다. 그리고 Node.js의 경우 v4부터 지원을 시작하였다.
 

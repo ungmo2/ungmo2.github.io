@@ -97,7 +97,7 @@ Accordion UI(Collapse UI)는 컨텐츠의 일부 영역만을 노출시키고 �
 
 위와 같은 구현 방법으로는 아래와 같은 2가지의 문제가 발생하는 것을 알 수 있다.
 
-1. 대상 요소에 `height: 0`, `box-sizing: border-box`, `overflow: hidden`을 지정했음에도 불구하고 padding이 유지되어 height는 20px(padding-top + padding-bottom)이 된다.
+첫번째, 대상 요소에 `height: 0`, `box-sizing: border-box`, `overflow: hidden`을 지정했음에도 불구하고 padding이 유지되어 height는 20px(padding-top + padding-bottom)이 된다.
 
 [box-sizing: border-box](./css3-box-model#4-box-sizing-프로퍼티)를 지정한 상태에서 `height: 0`을 지정하면 요소의 border, padding, content 영역의 height가 모두 0이 될 것으로 예상하기 쉽지만 그렇지 않다. `box-sizing: border-box`은 **border와 padding을 유지한 상태에서 content 영역의 widhth/height를 계산**한다. 다시말해 height는 padding 20px(padding-top + padding-bottom)이 유지된 상태에서 계산되어 -20px이 되지만 height는 음수가 될 수 없으므로 0px로 계산된다.
 
@@ -108,7 +108,7 @@ box-sizing: border-box은 border와 padding을 유지한 상태에서 content �
 
 이 문제를 회피하기 위해 대상 요소를 감싸는 컨테이너 요소가 필요하다. 컨테이너 요소에 `padding: 0`, `height: 0`을 지정하고 `overflow: hidden`를 지정하면 자식 요소를 감출 수 있다.
 
-2. `height: 0`에서 `height: auto`로의 변화는 transition이 동작하지 않는다. 이 문제를 회피하기 위해 자바스크립트를 사용하여 height에 명확한 수치를 지정할 필요가 있다. max-height에 임의의 높이(1000px)를 지정하는 방법도 있지만 이 방법을 사용하면 애니메이션 타이밍이 망가진다.
+두번째, transition이 동작하지 않는다. 이것은 `height: 0`에서 `height: auto`로의 변화는 transition이 동작하지 않기 때문이다. 이 문제를 회피하기 위해 자바스크립트를 사용하여 height에 명확한 수치를 지정할 필요가 있다. max-height에 임의의 높이(1000px)를 지정하는 방법도 있지만 이 방법을 사용하면 애니메이션 타이밍이 망가진다.
 
 문제 발생 원인과 대응 방법을 알았으니 다시 구현해보자.
 

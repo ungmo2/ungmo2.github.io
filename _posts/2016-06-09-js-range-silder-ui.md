@@ -1,12 +1,12 @@
 ---
 layout: post
 title: <strong>Range slider UI</strong>
-subtitle: Range slider UI 구현하기
+subtitle: Range slider UI
 categories: javascript
 section: javascript
 seq: 5
-subseq: 38
-description:
+subseq: 39
+description: 마우스 이벤트를 사용하여 Range slider UI를 구현해 보자. 구현할 Range silider UI의 이미지는 아래와 같다.
 ---
 
 * TOC
@@ -26,7 +26,7 @@ Range silider UI를 구현하려면 마우스 이벤트를 사용해 DOM 요소�
 
 1. 마우스로 드래그 대상 요소를 선택하고 마우스를 드래그하면 대상 요소가 마우스의 위치를 따라 이동하도록 한다. 드래그를 끝내면 이동을 멈춘다.
 2. 마우스 이벤트만을 사용하여 구현한다. HTML5의 Drag & Drop API는 사용하지 않는다.
-2. Vanilla javascript로 구현한다.
+2. 라이브러리를 사용하지 않고 Vanilla javascript로 구현한다.
 
 위 요구 사항을 충족하기 위해 아래와 같은 방법으로 가설을 세우고 구현해보자.
 

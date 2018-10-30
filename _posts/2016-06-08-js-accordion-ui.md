@@ -5,7 +5,7 @@ subtitle: 아코디언 UI
 categories: javascript
 section: javascript
 seq: 5
-subseq: 37
+subseq: 38
 description: Accordion UI(Collapse UI)는 컨텐츠의 일부 영역만을 노출시키고 다른 영역은 감추는 기능을 말한다. 구현할 아코디언 UI의 이미지는 아래와 같다.
 ---
 
@@ -27,7 +27,7 @@ Accordion UI(Collapse UI)는 컨텐츠의 일부 영역만을 노출시키고 �
 1. 대상 요소의 height는 알 수 없다. 하지만 어떤 height라도 동작해야 한다.
 2. CSS animation/transition를 이용하여 슬라이드 효과를 구현한다.
 3. CSS animation/transition은 적절한 타이밍을 유지해야 한다. 다시 말해 열고 닫히는 타이밍이 같아야 한다.
-4. Vanilla javascript로 구현한다.
+4. 라이브러리를 사용하지 않고 Vanilla javascript로 구현한다.
 
 위 요구 사항을 충족하기 위해 아래와 같은 방법으로 가설을 세우고 구현해보자.
 

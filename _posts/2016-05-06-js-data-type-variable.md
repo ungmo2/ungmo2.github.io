@@ -76,6 +76,14 @@ console.log(typeof foo); // number
 
 데이터 타입은 한정된 메모리 공간을 효율적으로 사용하기 위해서, 그리고 2진수 데이터로 메모리에 저장된 데이터를 다양한 형태로 사용하기 위해 존재한다.
 
+<!--
+```javascript
+// 0x41를 정수로 해석하면 65이지만 문자열로 해석하면 'A'이다.
+console.log(parseInt(0x41)); // 65
+String.fromCodePoint(0x41);  // "A"
+```
+-->
+
 자바스크립트의 모든 값은 데이터 타입을 갖는다. ECMAScript 표준(ECMAScript 2015 (6th Edition), 이하 ES6)은 7개의 데이터 타입을 제공한다
 
 * 원시 타입 (primitive data type)

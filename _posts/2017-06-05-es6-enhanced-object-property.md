@@ -44,43 +44,39 @@ const obj = { x, y };
 console.log(obj); // { x: 1, y: 2 }
 ```
 
-# 2. 프로퍼티 이름 조합
+# 2. 프로퍼티 키 동적 생성
 
-ES5에서 객체 리터럴의 프로퍼티 이름을 문자열 또는 변수를 조합하여 동적으로 생성하고 싶은 때, 객체 리터럴 외부에서 프로퍼티 이름을 생성하고 객체에 할당해야 한다.
+ES5에서 객체 리터럴의 프로퍼티 키를 동적으로 생성하고 싶은 경우, 객체 리터럴 외부에서 대괄호([]) 표기법을 사용해야 한다. 대괄호 내에서는 문자열을 반환하는 표현식을 사용할 수 있다.
 
 ```javascript
 // ES5
 var i = 0;
-var propNamePrefix = 'prop_';
-
 var obj = {};
 
-obj[propNamePrefix + ++i] = i;
-obj[propNamePrefix + ++i] = i;
-obj[propNamePrefix + ++i] = i;
+obj[++i] = i;
+obj[++i] = i;
+obj[++i] = i;
 
-console.log(obj); // { prop_1: 1, prop_2: 2, prop_3: 3 }
+console.log(obj); // {1: 1, 2: 2, 3: 3}
 ```
 
-ES6에서는 객체 리터럴 내부에서 프로퍼티 이름을 동적으로 생성(Computed property name)할 수 있다.
+ES6에서는 객체 리터럴 내부에서도 대괄호([])를 사용해 프로퍼티 키를 동적으로 생성(Computed property name)할 수 있다.
 
 ```javascript
 // ES6
 let i = 0;
-const propNamePrefix = 'prop_';
-
 const obj = {
-  [propNamePrefix + ++i]: i,
-  [propNamePrefix + ++i]: i,
-  [propNamePrefix + ++i]: i
+  [++i]: i,
+  [++i]: i,
+  [++i]: i
 };
 
-console.log(obj); // { prop_1: 1, prop_2: 2, prop_3: 3 }
+console.log(obj); // {1: 1, 2: 2, 3: 3}
 ```
 
 # 3. 메소드 축약 표현
 
-ES5에서 메소드를 선언하려면 프로퍼티의 값으로 함수 선언식을 사용한다.
+ES5에서 메소드를 선언하려면 프로퍼티 값으로 함수 선언식을 할당한다.
 
 ```javascript
 // ES5

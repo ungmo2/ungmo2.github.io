@@ -12,16 +12,16 @@ description: 연산자(Operator)는 하나 혹은 그 이상의 값을 하나의
 * TOC
 {:toc}
 
-표현식(Expression)은 값(리터럴), 변수, 객체의 프로퍼티, 배열의 요소, 함수 호출, 메소드 호출, 연산자의 조합을 말한다.
+표현식(Expression)은 값(리터럴), 변수, 객체의 프로퍼티, 배열의 요소, 함수 호출, 메소드 호출, 피연산자와 연산자의 조합을 말한다.
 
 ```javascript
 // 표현식
-10
-sum
-person.name
-arr[1]
-square()
-person.getBirthday()
+10          // 리터럴
+sum         // 변수
+person.name // 객체의 프로퍼티
+arr[1]      // 배열의 요소
+square()    // 함수 호출
+person.getBirthday() // 메소드 호출
 ```
 
 위와 같이 **표현식은 평가(Evaluation)되고 그 결과, 하나의 값으로 수렴된다.** 위 예제는 하나의 표현식으로만 이루어져 있지만 하나 이상의 표현식을 결합하여 하나의 값을 만들어낼 수 있다.
@@ -36,7 +36,7 @@ typeof square()
 person.getBirthday() instanceof Date
 ```
 
-이처럼 **연산자(Operator)는 하나 이상의 표현식을 대상으로 산술, 할당, 비교, 논리, 타입 연산 등을 수행하여 하나의 값을 만든다.** 이때 연산의 대상을 피연산자(Operand)라 한다. 표현식이 명사의 역할을 한다면 연산자는 동사의 역할을 한다고 볼 수 있다.
+이처럼 **연산자(Operator)는 하나 이상의 표현식을 대상으로 산술, 할당, 비교, 논리, 타입 연산 등을 수행하여 하나의 값을 만든다.** 이때 연산의 대상을 피연산자(Operand)라 한다. 피연산자와 연산자의 조합은 하나의 값으로 평가되므로 표현식이다. 표현식이 명사의 역할을 한다면 연산자는 동사의 역할을 한다고 볼 수 있다.
 
 자바스크립트가 제공하는 다양한 연산자에 대해 살펴보도록 하자.
 
@@ -79,10 +79,10 @@ res = x % y;  // 1
 var x = 5;
 var res;
 
-res = x++; // 5 선대입후증가
-res = ++x; // 7 선증가후대입
-res = x--; // 7 선대입후감소
-res = --x; // 5 선감소후대입
+res = x++; // 5 선대입후증가 / Postfix increment operator
+res = ++x; // 7 선증가후대입 / Prefix increment operator
+res = x--; // 7 선대입후감소 / Postfix decrement operator
+res = --x; // 5 선감소후대입 / Prefix decrement operator
 
 +x; // 5
 -x; // -5
@@ -90,14 +90,17 @@ res = --x; // 5 선감소후대입
 
 `+ 연산자`는 경우에 따라 덧셈 연산과 문자열 연결 연산을 수행한다.
 
-- 피연산자가 모두 숫자인 경우 : 덧셈 연산자로 동작
-- 그 외의 경우 : 문자열 연결 연산자로 동작
+- 피연산자가 숫자이거나 숫자로 타입을 변환할 수 있는 경우 : 덧셈 연산자로 동작
+- 피연산자 중 하나가 문자열인 경우 : 문자열 연결 연산자로 동작
 
 ```javascript
-5 + 5         // 10
-'5' + 5;      // '55'
-5 + '5';      // '55'
-'Hello' + 5;  // 'Hello5'
+1 + 2         // 3
+1 + true      // 2 (true → 1)
+1 + false     // 1 (false → 0)
+true + false  // 1 (true → 1 / false → 0)
+1 + null      // 1 (null → 0)
+1 + undefined // NaN (undefined → NaN)
+'1' + 2       // '12'
 ```
 
 # 2. 할당 연산자
@@ -290,3 +293,12 @@ var me = new Person();
 me instanceof Person // true
 me instanceof Object // true
 ```
+
+<!--
+# 6. 우선 순위
+
+```javascript
+foo.a = b + c; // foo is not defined => 왼쪽 -> 오른쪽 방향으로
+a = b + c; // b is not defined => 왼쪽 -> 오른쪽 방향으로
+```
+ -->

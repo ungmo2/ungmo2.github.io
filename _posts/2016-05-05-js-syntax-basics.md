@@ -23,7 +23,7 @@ description: Javascript는 interactive한 웹페이지 작성을 가능하게 �
 아래의 예에서 x는 변수로 선언되었고 변수 x에는 정수값 6이 할당되었다.
 
 ```javascript
-var x; // 변수의 선언과 초기화
+var x; // 변수의 선언
 x = 6; // 정수값의 할당
 ```
 

@@ -56,14 +56,11 @@ var str = 'Hello World';
 true
 false
 
-// null
+// null 리터럴
 null
 
-// undefined
+// undefined 리터럴
 undefined
-
-// symbol
-Symbol()
 
 // 객체 리터럴
 { name: 'Lee', gender: 'male' }

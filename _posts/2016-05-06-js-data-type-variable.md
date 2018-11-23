@@ -104,103 +104,74 @@ String.fromCodePoint(0x41);  // "A"
 
 원시 타입의 값은 [변경 불가능한 값(immutable value)](./js-immutability)이며 **[pass-by-value(값에 의한 전달)](./js-object#5-pass-by-value)** 이다. <!--또한 이들 값은 메모리의 스택 영역(Stack Segment)에 고정된 메모리 영역을 점유하고 저장된다. -->
 
-### 1.1.1 boolean
+### 1.1.1 number
 
-불리언(boolean) 타입의 값은 논리적 참, 거짓을 나타내는 `true`와 `false` 뿐이다.
+C나 Java의 경우, 정수와 실수를 구분하여 int, long, float, double 등과 같은 다양한 숫자 타입이 존재한다. 하지만 자바스크립트는 독특하게 하나의 숫자 타입만 존재한다.
+
+ECMAScript 표준에 따르면, 숫자 타입의 값은 배정밀도 64비트 부동소수점 형([double-precision 64-bit floating-point format](https://en.wikipedia.org/wiki/Double-precision_floating-point_format) : -(2<sup>53</sup> -1) 와 2<sup>53</sup> -1 사이의 숫자값)을 따른다. 즉, 모든 수를 실수를 처리하며 정수만을 표현하기 위한 특별한 데이터 타입(integer type)은 없다.
 
 ```javascript
-var foo = true;
-var bar = false;
-
-// typeof 연산자는 타입을 나타내는 문자열을 반환한다.
-console.log(typeof foo); // boolean
-console.log(typeof bar); // boolean
+var integer = 10;        // 정수
+var double = 10.12;      // 실수
+var negative = -20;      // 음의 정수
+var binary = 0b01000001; // 2진수
+var octal = 0o101;       // 8진수
+var hex = 0x41;          // 16진수
 ```
 
-비어있는 문자열과 `null`, `undefined`, 숫자 0은 `false`로 간주된다. 이에 대해서는 [타입 변환](./js-type-coercion)에서 살펴볼 것이다.
-
-### 1.1.2 null
-
-null 타입의 값은 `null`이 유일하다. 자바스크립트는 대소문자를 구별(case-sensitive)하므로 `null`은 Null, NULL등과 다르다.
-
-Computer science에서 `null`은 의도적으로 변수에 값이 없다는 것을 명시할 때 사용한다. 이는 변수가 기억하는 메모리 어드레스의 참조 정보를 제거하는 것을 의미하며 자바스크립트 엔진은 누구도 참조하지 않는 메모리 영역에 대해 [가비지 콜렉션](https://developer.mozilla.org/ko/docs/Web/JavaScript/Memory_Management)을 수행할 것이다.
+2진수, 8진수, 16진수 리터럴은 메모리에 동일한 배정밀도 64비트 부동소수점 형식의 2진수로 저장된다. 자바스크립트는 2진수, 8진수, 16진수 데이터 타입을 제공하지 않기 때문에 이들 값을 참조하면 모두 10진수로 해석된다.
 
 ```javascript
-var foo = 'Lee';
-foo = null;  // 참조 정보가 제거됨
+console.log(binary); // 65
+console.log(octal);  // 65
+console.log(hex);    // 65
+
+// 표기법만 다를뿐 같은 값이다.
+console.log(binary === octal); // true
+console.log(octal === hex);    // true
 ```
 
-주의할 것은 타입을 나타내는 문자열을 반환하는 `typeof` 연산자로 null 값을 연산해 보면 null이 아닌 object가 나온다. 이는 설계상의 오류이다.
+자바스크립트의 숫자 타입은 정수만을 위한 타입이 없고 모든 수를 실수를 처리한다. 정수로 표시된다해도 사실은 실수다. 따라서 정수로 표시되는 수 끼리 나누더라도 실수가 나올 수 있다.
 
 ```javascript
-var foo = null;
-console.log(typeof foo); // object
+console.log(1 === 1.0); // true
+
+var result = 4 / 2;
+console.log(result); // 2
+result = 3 /2;
+console.log(result); // 1.5
 ```
 
-따라서 null 타입을 확인할 때 typeof 연산자를 사용하면 안되고 일치 연산자(===)를 사용하여야 한다.
+추가적으로 3가지 특별한 값들도 표현할 수 있다.
+
+*	`Infinity` : 양의 무한대
+*	`-Infinity` : 음의 무한대
+*	`NaN` : 산술 연산 불가(not-a-number)
+
 
 ```javascript
-var foo = null;
-console.log(typeof foo === null); // false
-console.log(foo === null);        // true
-```
+var pInf = 10 / 0;  // 양의 무한대
+console.log(pInf);  // Infinity
 
-### 1.1.3 undefined
+var nInf = 10 / -0; // 음의 무한대
+console.log(nInf);  // -Infinity
 
-undefined 타입의 값은 `undefined`이 유일하다. 선언 이후 값을 할당하지 않은 변수는 `undefined` 값을 가진다. 즉, 선언은 되었지만 값을 할당하지 않은 변수에 접근하거나 존재하지 않는 객체 프로퍼티에 접근할 경우 undefined가 반환된다.
-
-```javascript
-var foo;
-console.log(foo); // undefined
-
-var bar = {
-  name: 'Lee',
-  gender: 'male'
-};
-console.log(bar);   // { name: 'Lee', gender: 'male' }
-console.log(bar.x); // undefined
-```
-
-### 1.1.4 number
-
-C 언어의 경우, 정수형과 실수형을 구분하여 int, long, float, double 등과 같은 다양한 숫자 타입이 존재한다. 하지만 자바스크립트는 하나의 숫자 타입만 존재한다.
-
-ECMAScript 표준에 따르면, 숫자 타입의 값은 배정밀도 64비트 부동소수점 형([double-precision 64-bit floating-point format](https://en.wikipedia.org/wiki/Double-precision_floating-point_format) : -(2<sup>53</sup> -1) 와 2<sup>53</sup> -1 사이의 숫자값)의 숫자이다. 정수만을 표현하기 위한 특별한 데이터 타입(integer type)은 없다.
-
-추가적으로 세가지 의미있는 기호적인 값들도 표현할 수 있다.
-
-* `Infinity`
-* `-Infinity`
-* `NaN` (not-a-number)
-
-```javascript
-var x = 10;    // 정수
-var y = 10.12; // 실수
-var z = -20;   // 음의 정수
-
-var foo = 42 / -0;
-console.log(foo);        // -Infinity
-console.log(typeof foo); // number
-
-var bar = 1 * 'string';
-console.log(bar);        // NaN
-console.log(typeof bar); // number
+var nan = 1 * 'string'; // 산술 연산 불가
+console.log(nan);       // NaN
 ```
 
 수학적 의미의 실수(實數, real number)는 허수(虛數, imaginary number)가 아닌 유리수와 무리수를 통틀은 말이지만 프로그래밍 언어에서 실수는 일반적으로 소수를 가리킨다.
 
-### 1.1.5 string
+### 1.1.2 string
 
-String(문자열) 타입은 텍스트 데이터를 나타내는데 사용한다. 문자열은 0개 이상의 유니코드(16비트 부호없는 정수 값) 문자들의 집합이다. 문자열은 작은 따옴표('') 또는 큰 따옴표("") 안에 텍스트를 넣어 생성한다.
+문자열(String) 타입은 텍스트 데이터를 나타내는데 사용한다. 문자열은 0개 이상의 16bit 유니코드 문자(UTF-16) 들의 집합으로 대부분의 전세계의 문자를 표현할 수 있다. 문자열은 작은 따옴표('') 또는 큰 따옴표("") 안에 텍스트를 넣어 생성한다.
 
 ```javascript
-var str = "string";  // double quotes
-str = 'string';      // single quotes
-console.log(typeof str); // string
+var str = "string"; // 큰 따옴표
+str = 'string';     // 작은 따옴표
 
-var answer = "It's alright";        // Single quote inside double quotes
-answer = "He is called 'John'"; // Single quotes inside double quotes
-answer = 'He is called "John"'; // Double quotes inside single quotes
+str = "큰 따옴표로 감싼 문자열 내의 '작은 따옴표'는 문자열이다.";
+str = '작은 따옴표로 감싼 문자열 내의 "큰 따옴표"는 문자열이다.';
 ```
 
 C와 같은 언어와는 다르게, 자바스크립트의 문자열은 원시 타입이며 변경 불가능(immutable)하다. 이것은 한 번 문자열이 생성되면, 그 문자열을 변경할 수 없다는 것을 의미한다. 아래의 코드를 살펴보자.
@@ -244,17 +215,78 @@ str = str.toUpperCase();
 console.log(str); // STR
 ```
 
+### 1.1.3 boolean
+
+불리언(boolean) 타입의 값은 논리적 참, 거짓을 나타내는 `true`와 `false` 뿐이다.
+
+```javascript
+var foo = true;
+var bar = false;
+
+// typeof 연산자는 타입을 나타내는 문자열을 반환한다.
+console.log(typeof foo); // boolean
+console.log(typeof bar); // boolean
+```
+
+비어있는 문자열과 `null`, `undefined`, 숫자 0은 `false`로 간주된다. 이에 대해서는 [타입 변환](./js-type-coercion)에서 살펴볼 것이다.
+
+### 1.1.4 undefined
+
+undefined 타입의 값은 `undefined`가 유일하다. 선언 이후 값을 할당하지 않은 변수는 `undefined` 값을 가진다. 즉, 선언은 되었지만 값을 할당하지 않은 변수에 접근하거나 존재하지 않는 객체 프로퍼티에 접근할 경우 undefined가 반환된다.
+
+이는 변수 선언에 의해 확보된 메모리 공간을 처음 할당이 이루어질 때까지 빈 상태(대부분 비어있지 않고 쓰레기 값(Garbage value)이 들어 있다)로 내버려두지 않고 자바스크립트 엔진이 undefined로 초기화하기 때문이다.
+
+```javascript
+var foo;
+console.log(foo); // undefined
+```
+
+이처럼 undefined는 개발자가 의도적으로 할당한 값이 아니라 자바스크립트 엔진에 의해 초기화된 값이다. 변수를 참조했을 때 undefined가 반환된다면 참조한 변수가 선언 이후 값이 할당된 적인 없는 변수라는 것을 개발자는 간파할 수 있다. 그렇다면 개발자가 의도적으로 undefined를 할당해야하는 경우가 있을까? 자바스크립트 엔진이 변수 초기화에 사용하는 이 값을 만약 개발자가 마음대로 할당한다면 undefined의 본래의 취지와 어긋날 뿐더러 혼란을 줄 수 있으므로 권장하지 않는다. 그럼 변수의 값이 없다는 것을 명시하고 싶은 경우 어떻게 하면 좋을까? 그런 경우는 undefined를 할당하는 것이 아니라 null을 할당한다.
+
+### 1.1.5 null
+
+null 타입의 값은 `null`이 유일하다. 자바스크립트는 대소문자를 구별(case-sensitive)하므로 `null`은 Null, NULL등과 다르다.
+
+프로그래밍 언어에서 `null`은 의도적으로 변수에 값이 없다는 것을 명시할 때 사용한다. 이는 변수가 기억하는 메모리 어드레스의 참조 정보를 제거하는 것을 의미하며 자바스크립트 엔진은 누구도 참조하지 않는 메모리 영역에 대해 [가비지 콜렉션](https://developer.mozilla.org/ko/docs/Web/JavaScript/Memory_Management)을 수행할 것이다.
+
+```javascript
+var foo = 'Lee';
+foo = null;  // 참조 정보가 제거됨
+```
+
+또는 함수가 호출되었으나 유효한 값을 반환할 수 없는 경우, 명시적으로 null을 반환하기도 한다. 예를 들어, 조건에 부합하는 HTML 요소를 검색해 반환하는 Document.querySelector()는 조건에 부합하는 HTML 요소를 검색할 수 없는 경우, null을 반환한다.
+
+```javascript
+var element = document.querySelector('.myElem');
+// HTML 문서에 myElem 클래스를 갖는 요소가 없다면 null을 반환한다.
+console.log(element); // null
+```
+
+타입을 나타내는 문자열을 반환하는 `typeof` 연산자로 null 값을 연산해 보면 null이 아닌 object가 나온다. 이는 자바스크립트의 설계상의 오류이다.
+
+```javascript
+var foo = null;
+console.log(typeof foo); // object
+```
+
+따라서 null 타입을 확인할 때 typeof 연산자를 사용하면 안되고 일치 연산자(===)를 사용하여야 한다.
+
+```javascript
+var foo = null;
+console.log(typeof foo === null); // false
+console.log(foo === null);        // true
+```
+
 ### 1.1.6 symbol
 
-[symbol](./es6-symbol)은 ES6에서 새롭게 추가된 7번째 타입이다.
-
-symbol은 유일하며 변경 불가능한(immutable) 원시 타입(primitive) 값이다. symbol은 주로 충돌하지 않는 객체의 프로퍼티 키(property key)로 사용한다.
+[심볼(symbol)](./es6-symbol)은 ES6에서 새롭게 추가된 7번째 타입으로 변경 불가능한 원시 타입의 값이다. 심볼은 주로 이름의 충돌 위험이 없는 유일한 객체의 프로퍼티 키(property key)를 만들기 위해 사용한다. 심볼은 Symbol 함수를 호출해 생성한다.
 
 ```javascript
 var key = Symbol('key');
 console.log(typeof key); // symbol
 
 var obj = {};
+// 심볼 key는 이름의 충돌 위험이 없는 유일한 객체의 프로퍼티 키
 obj[key] = 'value';
 console.log(obj[key]); // value
 ```

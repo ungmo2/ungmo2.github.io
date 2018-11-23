@@ -164,11 +164,12 @@ console.log(nan);       // NaN
 
 ### 1.1.2 string
 
-문자열(String) 타입은 텍스트 데이터를 나타내는데 사용한다. 문자열은 0개 이상의 16bit 유니코드 문자(UTF-16) 들의 집합으로 대부분의 전세계의 문자를 표현할 수 있다. 문자열은 작은 따옴표('') 또는 큰 따옴표("") 안에 텍스트를 넣어 생성한다.
+문자열(String) 타입은 텍스트 데이터를 나타내는데 사용한다. 문자열은 0개 이상의 16bit 유니코드 문자(UTF-16) 들의 집합으로 대부분의 전세계의 문자를 표현할 수 있다. 문자열은 작은 따옴표('') 또는 큰 따옴표("") 안에 텍스트를 넣어 생성한다. 가장 일반적인 표기법은 작은 따옴표를 사용하는 것이다.
 
 ```javascript
 var str = "string"; // 큰 따옴표
 str = 'string';     // 작은 따옴표
+str = `string`;     // 백틱(ES6 템플릿 리터럴)
 
 str = "큰 따옴표로 감싼 문자열 내의 '작은 따옴표'는 문자열이다.";
 str = '작은 따옴표로 감싼 문자열 내의 "큰 따옴표"는 문자열이다.';
@@ -185,9 +186,12 @@ str = 'world';
 
 ```javascript
 var str = 'string';
-// 문자열은 유사배열이다
-console.log(str[0], str[1], str[2], str[3], str[4], str[5]);
+// 문자열은 유사배열이다.
+for (var i = 0; i < str.length; i++) {
+  console.log(str[i]);
+}
 
+// 문자열을 변경할 수 없다.
 str[0] = 'S';
 console.log(str); // string
 ```
@@ -227,6 +231,8 @@ var bar = false;
 console.log(typeof foo); // boolean
 console.log(typeof bar); // boolean
 ```
+
+불리언 타입의 값은 참과 거짓으로 구분되는 조건에 의해 프로그램의 흐름을 제어하는 조건문에서 자주 사용한다.
 
 비어있는 문자열과 `null`, `undefined`, 숫자 0은 `false`로 간주된다. 이에 대해서는 [타입 변환](./js-type-coercion)에서 살펴볼 것이다.
 
@@ -279,14 +285,14 @@ console.log(foo === null);        // true
 
 ### 1.1.6 symbol
 
-[심볼(symbol)](./es6-symbol)은 ES6에서 새롭게 추가된 7번째 타입으로 변경 불가능한 원시 타입의 값이다. 심볼은 주로 이름의 충돌 위험이 없는 유일한 객체의 프로퍼티 키(property key)를 만들기 위해 사용한다. 심볼은 Symbol 함수를 호출해 생성한다.
+[심볼(symbol)](./es6-symbol)은 ES6에서 새롭게 추가된 7번째 타입으로 변경 불가능한 원시 타입의 값이다. 심볼은 주로 이름의 충돌 위험이 없는 유일한 객체의 프로퍼티 키(property key)를 만들기 위해 사용한다. 심볼은 Symbol 함수를 호출해 생성한다. 이때 생성된 심볼 값은 다른 심볼 값들과 다른 유일한 심볼 값이다.
 
 ```javascript
+// 심볼 key는 이름의 충돌 위험이 없는 유일한 객체의 프로퍼티 키
 var key = Symbol('key');
 console.log(typeof key); // symbol
 
 var obj = {};
-// 심볼 key는 이름의 충돌 위험이 없는 유일한 객체의 프로퍼티 키
 obj[key] = 'value';
 console.log(obj[key]); // value
 ```

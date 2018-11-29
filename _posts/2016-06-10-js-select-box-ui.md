@@ -1,12 +1,12 @@
 ---
 layout: post
-title: <strong>Select box</strong>
+title: <strong>Select box UI</strong>
 subtitle: 셀렉트 박스 UI
 categories: javascript
 section: javascript
 seq: 5
 subseq: 40
-description:
+description: 셀렉트 박스 UI는 HTML의 select를 커스텀하여 리모트 데이터 또는 배열을 지원하도록 구현한 것이다. 구현할 Range silider UI의 이미지는 아래와 같다.
 ---
 
 * TOC

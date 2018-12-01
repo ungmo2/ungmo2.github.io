@@ -126,17 +126,17 @@ var foo = function() {};
 
 # 3. 연산자
 
-연산자(Operator)는 하나 혹은 그 이상의 값을 하나의 값으로 만들 때 사용한다.
+연산자(Operator)는 하나 이상의 표현식을 대상으로 산술, 할당, 비교, 논리, 타입 연산 등을 수행해 하나의 값을 만든다. 이때 연산의 대상을 피연산자(Operand)라 한다.
 
 ```javascript
-// 대입 연산자
-var color = 'red';
-
 // 산술 연산자
-var area = 5 * 4;
+var area = 5 * 4; // 20
 
-// 문자열 연산자
-var str = 'Hi! ' + 'My name is Lee';
+// 문자열 연결 연산자
+var str = 'My name is ' + 'Lee'; // "My name is Lee"
+
+// 할당 연산자
+var color = 'red'; // "red"
 
 // 비교 연산자
 var foo = 3 > 5; // false
@@ -144,8 +144,11 @@ var foo = 3 > 5; // false
 // 논리 연산자
 var bar = (5 > 3) && (2 < 4);  // true
 
+// 타입 연산자
+var type = typeof 'Hi'; // "string"
+
 // 인스턴스 생성 연산자
-var today = new Date();
+var today = new Date(); // Sat Dec 01 2018 00:57:19 GMT+0900 (한국 표준시)
 ```
 
 피연산자의 타입은 반드시 일치할 필요는 없다. 이때 자바스크립트는 [암묵적 타입 강제 변환](./js-type-coercion#1-암묵적-타입-강제-변환)을 통해 연산을 수행한다.
@@ -206,22 +209,19 @@ while (1) {
 한줄 주석은 `//` 다음에 작성하며 여러 줄 주석은 `/*`과 `*/`의 사이에 작성한다. 주석은 해석기(parser)가 무시하며 실행되지 않는다.
 
 ```javascript
-/*
-주석(Comment)은 작성된 코드의 의미를 설명하기 위해 사용한다.
-코드는 읽기(이해하기) 쉬워야 한다.
-*/
+// 주석(Comment)은 작성된 코드의 의미를 설명하기 위해 사용한다. 코드는 읽기(이해하기) 쉬워야 한다.
 
-// 주석(Comment)은 작성된 코드의 의미를 설명하기 위해 사용한다.
-document.getElementById('myH').innerHTML = 'My Header';
-// 코드는 읽기(이해하기) 쉬워야 한다.
-document.getElementById('myP').innerHTML = 'My Paragraph.';
+/*
+  주석(Comment)은 작성된 코드의 의미를 설명하기 위해 사용한다.
+  코드는 읽기(이해하기) 쉬워야 한다.
+*/
 ```
 
-하지만 과도한 주석은 오히려 가독성을 해칠 수 있다. 주석없이도 읽을 수 있는 코드가 최선이다.
+하지만 과도한 주석은 오히려 가독성을 해칠 수 있다. 주석 없이도 읽을 수 있는 코드가 최선이다.
 
 ```javascript
 // Bad
-// 변수 x에 정수 10을 할당한다.
+// 변수 x는 나이를 나타낸다. x에는 정수 10을 할당한다.
 var x = 10;
 
 // Good
@@ -234,7 +234,7 @@ var age = 10;
 
 각각의 명령을 문(statement)이라 하며 문이 실행되면 무슨 일인가가 일어나게 된다.
 
-문은 값(Value), 연산자(Operator), 표현식(Expression), 키워드(Keyword), 주석(Comment)으로 구성되며 세미콜론( ; )으로 끝나야 한다.
+문은 리터럴, 연산자(Operator), 표현식(Expression), 키워드(Keyword) 등으로 구성되며 세미콜론( ; )으로 끝나야 한다.
 
 ```javascript
 var x = 5;

@@ -163,7 +163,7 @@ console.log(x, y); // 10 10
 | <	          | 관계비교
 | >=	        | 관계비교
 | <=	        | 관계비교
-| ?	          | 삼항 연산자
+
 
 ```javascript
 // 동등비교
@@ -201,21 +201,52 @@ console.log(x, y); // 10 10
 5 <= 0    // false
 5 <= 5    // true
 5 <= 8    // true
+```
 
-// 삼항연산자(ternary operator)
-// 조건 ? 조건이 ture일때 반환할 값 : 조건이 false일때 반환할 값
-var condition = true;
-var result = condition ? 'true' : 'false';
-console.log(result); // 'true'
+# 4. 삼항 조건 연산자
+
+삼항 조건 연산자(ternary operator)는 조건식의 평가 결과에 따라 반환할 값을 결정한다. 자바스크립트의 유일한 삼항 연산자다. 삼항 조건 연산자식은 아래와 같이 사용한다.
+
+```
+조건식 ? 조건식이 ture일때 반환할 값 : 조건식이 false일때 반환할 값
+```
+
+물음표(?) 앞의 첫번째 피연산자가 조건식이다. 즉, 불리언 타입의 값으로 평가될 표현식이다. 첫번째 피연산자가 불리언 타입의 값이 아닌 경우, 불리언 타입의 값으로 강제 타입 변환된다.
+
+만일 첫번째 피연산자인 조건식이 참이면 콜론(:) 앞의 두번째 피연산자가 반환되고, 거짓이면 콜론(:) 뒤의 세번째 피연산자가 반환된다.
+
+```javascript
+// x가 짝수이면 ‘짝수’를 홀수이면 ‘홀수’를 반환한다.
+var x = 2;
+var result = x % 2 ? '홀수' : '짝수'; // 2 % 2는 0이고 0은 false로 강제 타입 변환된다
+console.log(result); // 짝수
 
 // id의 길이가 INPUT_ID_MIN_LEN보다 작으면 에러 메시지를 출력한다.
 var id = 'lee';
 var INPUT_ID_MIN_LEN = 5;
-var errMsg = id.length < INPUT_ID_MIN_LEN ? '아이디는 5자리 이상으로 입력하세요' : '성공';
-console.log(errMsg); // '아이디는 5자리 이상으로 입력하세요'
+var errMsg = id.length < INPUT_ID_MIN_LEN ? '5자리 이상으로 입력하세요' : '성공';
+console.log(errMsg); // '5자리 이상으로 입력하세요'
 ```
 
-# 4. 논리 연산자
+삼항 조건 연산자는 다음 장에서 살펴볼 if … else 문을 사용해도 동일한 처리를 할 수 있다.
+
+```javascript
+// x가 짝수이면 ‘짝수’를 홀수이면 ‘홀수’를 반환한다.
+var x = 2;
+var result;
+
+if (x % 2) { // 2 % 2는 0이고 0은 false로 강제 타입 변환된다
+  result = '홀수';
+} else {
+  result = '짝수';
+}
+
+console.log(result); // 짝수
+```
+
+하지만 if … else 문은 표현식이 아닌 문으로 값으로 평가할 수 없다. 하지만 삼항 조건 연산자식은 값으로 평가할 수 있는 표현식이다. 따라서 삼항 조건 연산자식은 다른 표현식의 일부가 될 수 있어 매우 유용하다.
+
+# 5. 논리 연산자
 
 논리 연산자(Logical Operator)는 우항과 좌항의 피연산자(부정 논리 연산자의 경우, 우항의 피연산자)를 논리 연산하여 불리언 값을 반환하는 것이 일반적이다.
 
@@ -259,7 +290,7 @@ false && false; // false
 
 이에 대해서는 다음의 [암묵적 강제 타입 변환](./js-type-coercion#1-암묵적-타입-강제-변환)과 [단축 평가](./js-type-coercion#5-단축-평가)에서 살펴보기로 하자.
 
-# 5. 타입 연산자
+# 6. 타입 연산자
 
 타입 연산자(Type Operator)는 데이터 타입을 반환하거나 객체의 종류를 반환한다.
 

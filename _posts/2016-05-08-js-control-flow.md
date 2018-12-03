@@ -12,53 +12,53 @@ description: 제어문(Control flow statement)은 조건에 따른 명령 실행
 * TOC
 {:toc}
 
-제어문(Control flow statement)은 조건에 따른 명령 실행(조건문)이나 반복 실행(반복문)이 필요할 때 사용된다.
+제어문(Control flow statement)은 조건에 따라 코드 블록을 실행(조건문)하거나 반복 실행(반복문)할 때 사용한다.
 
-일반적으로 코드는 위에서 아래 방향으로 순차적 실행을 하지만 실행 순서를 변경하거나 조건에 따라 실행 여부를 결정하기도 하고 반복할 수도 있다.
+일반적으로 코드는 위에서 아래 방향으로 순차적 실행을 한다. 제어문은 코드의 실행 순서를 인위적으로 변경할 수 있다. 조건에 따라 코드의 실행 여부를 결정하기도 하고 반복할 수도 있다.
 
-# 1. 블록 구문(Block statement)
+# 1. 코드 블록(Block statement)
 
-블록 구문(Block statement)는 구문들의 집합으로 중괄호로 그 범위를 정한다.
-블록 구문은 일반적으로 함수, 객체리터럴, 흐름 제어 구문(control flow statement)에서 사용된다. (e.g. if, for, while)
+코드 블록(Block statement)는 0개 이상의 문들을 묶은 문으로 중괄호로 그 범위를 정한다. 코드 블록은 일반적으로 함수, 객체리터럴, 흐름 제어 구문(control flow statement)에서 사용된다.
 
 ```javascript
 // 함수 선언문
-function foo() {
-  var x = 1, y = 2;
-  console.log(x + y);
+function sum(x, y) {
+  return x + y;
 }
-foo();
+console.log(sum(1, 2)); // 3
 
 // 객체리터럴에 의한 객체 선언
 var obj = {
   x: 1,
   y: 2
 };
-console.log(obj.x + obj.y);
+console.log(obj); // { x: 1, y: 2 }
 
-// 흐름 제어 구문(control flow statement)
+// 제어문(control flow statement)
 var x = 0;
 while (x < 10) {
   x++;
 }
-console.log(x);
+console.log(x); // 10
 ```
 
 # 2. 조건문(Conditional statement)
 
-프로그래밍(coding)이란 변수를 통해 값를 저장하고 참조하며 연산자로 값을 연산, 평가하고 조건문과 반복문에 의한 **흐름제어로 데이터의 흐름을 제어** 하고 함수로 구문의 집합을 만들며 객체, 배열 등으로 자료를 구조화한다.
+프로그래밍(coding)이란 변수를 통해 값를 저장하고 참조하며 연산자로 값을 연산, 평가하고 조건문과 반복문에 의한 **흐름 제어(control flow)로 데이터의 흐름을 제어** 하고 함수로 구문의 집합을 만들며 객체, 배열 등으로 자료를 구조화한다.
 
 > 프로그래밍은 요구사항의 집합을 분석하여 적절한 자료구조와 함수의 집합으로 변환한 후 그 흐름을 제어하는 것이다.
 
-데이터의 흐름을 제어한다는 것은 일정 조건에 따른 의사결정(decision)을 통해 다음 진행 흐름으로 유도(Control flow)하는 것이다. 이는 가장 원시적인 형태의 인공 지능(Artificial Intelligence)을 부여하는 것이라고 볼 수 있다. 즉, 의사결정(상황판단)의 기준을 제시하고 그 결과에 따른 행위를 지시하는 것이다.
+데이터의 흐름을 제어한다는 것은 일정 조건에 따른 의사 결정을 통해 다음 진행 흐름으로 유도하는 것이다. 즉, 의사 결정(상황 판단)의 기준을 제시하고 그 결과에 따른 행위를 지시하는 것이다.
 
 조건문(conditional statement)을 통해 이를 수행할 수 있다. 조건문은 주어진 조건식(conditional expression)이 참(`true`)인지 거짓(`false`)인지에 따라 실행되어질 구문들의 집합이다.
 
-JavaScript는 2가지의 조건문 `if...else` 와 `switch`를 제공한다.
+자바스크립트는 2가지의 조건문 `if...else`문과 `switch` 문을 제공한다.
 
-## 2.1 if 문
+## 2.1 if..else 문
 
-`if` 문은 주어진 조건식을 평가하여 논리적 참, 거짓을 구별하는 구문이다. 조건식은 표현식이며 하나의 boolean 값(true/false)으로 수렴되어야 한다.
+if…else 문은 주어진 조건식을 평가하여 논리적 참, 거짓을 구별하여 실행할 코드 블록을 결정한다. 조건식은 불리언 값으로 평가될 수 있는 표현식이다.
+
+만약 조건식의 평가 결과가 불리언 값이 아니라면 암묵적 강제 타입 변환을 통해 불리언 값으로 변환되어 논리적 참, 거짓을 구별한다.
 
 ```javascript
 if (조건식) {
@@ -68,72 +68,89 @@ if (조건식) {
 }
 ```
 
-조건식의 평가 결과가 참(true)일 경우, `if` 문 직후에 존재하는 코드 블록이 실행된다. 거짓(false)일 경우, `else` 구문 직후에 존재하는 코드 블록이 실행된다. (`else if`와 `else` 구문은 option이다.)
+조건식의 평가 결과가 참(true)일 경우, if 문 다음의 코드 블록이 실행된다. 거짓(false)일 경우, else 문 다음의 코드 블록이 실행된다. else if 문과 else 문은 옵션으로 사용할 수도 있고 사용하지 않을 수도 있다.
 
 ```javascript
-var hour = 20;
-var greeting;
+var num = 2;
+var kind;
 
 // if 문
-if (hour < 18) {
-  greeting = 'Good day';
+if (num > 0) {
+  kind = '양수';
 }
+console.log(kind); // 양수
 
-console.log(greeting);
-
-// if-else 문
-if (hour < 18) {
-  greeting = 'Good day';
+// if…else 문
+if (num > 0) {
+  kind = '양수';
 } else {
-  greeting = 'Good evening';
+  kind = '음수'; // 0은 음수가 아니다
 }
+console.log(kind); // 양수
 
-console.log(greeting);
-
-// if-else if 문
-if (hour < 10) {
-  greeting = 'Good morning';
-} else if (hour < 20) {
-  greeting = 'Good day';
+// if…else if 문
+if (num > 0) {
+  kind = '양수';
+} else if (num < 0) {
+  kind = '음수';
 } else {
-  greeting = 'Good evening';
+  kind = '영';
 }
-
-console.log(greeting);
+console.log(kind); // 양수
 ```
 
 ## 2.2 switch 문
 
-switch 문의 경우, `switch`변수의 값과 일치되는 `case`문으로 실행 순서가 이동하게 된다. `switch`변수의 값과 일치되는 `case`문이 없다면 실행 순서는 `default`로 이동한다.
+switch 문은 switch 변수의 값과 일치되는 case 문으로 실행 순서를 이동시킨다. switch 변수는 반드시 변수이여야 하는 것은 아니고 값으로 평가될 수 있는 표현식일 수 있다. switch 변수의 값과 일치하는 case 문이 없다면 실행 순서는 default 문으로 이동한다.
 
-```javascript
-var color = 'red';
-
-// color = switch 변수
-switch (color) {
-  // color == 'yellow'인 경우
-  case 'yellow':
-    console.log('yellow color');
-  // color == 'red'인 경우
-  case 'red':
-    console.log('red color');
-  // color == 'blue'인 경우
-  case 'blue':
-    console.log('blue color');
-  // 그외의 경우
+```
+switch (switch 변수) {
+  case 표현식:
+    switch 변수와 case 문의 표현식이 일치하면 실행될 문;
+    break;
+  case 표현식:
+    switch 변수와 case 문의 표현식이 일치하면 실행될 문;
+    break;
   default:
-    console.log('unknown color');
+    switch 변수와 일치하는 case 문의 표현식이 없을 때 실행될 문;
 }
 ```
 
-`break` 키워드는 코드 블록에서 탈출하는 역할을 수행한다. `break`가 없다면 `case`문의 조건과 일치하지 않더라도 실행 순서는 다음 `case`문으로 이동한다.
+아래 예제를 살펴보자. switch 변수는 변수 color이다. 변수 color의 값은 문자열이다. switch 변수인 변수 color의 값과 일치하는 case 문으로 실행 순서가 이동한다.
 
 ```javascript
+// switch 변수
 var color = 'red';
 
 switch (color) {
   case 'yellow':
     console.log('yellow color');
+  case 'red':
+    console.log('red color');
+  case 'blue':
+    console.log('blue color');
+  default:
+    console.log('unknown color');
+}
+```
+
+위 예제를 실행해 보면 switch 변수의 값이 ‘red’이므로 case 'red' 문이 실행될 것이다. 그런데 case 'red' 문만이 실행된 것이 아니라 아래와 같이 case 'red' 문 이후의 모든 case 문이 실행된다.
+
+```
+red color
+blue color
+unknown color
+```
+
+실행 결과가 이러한 이유는 case 문의 마지막에 `break` 키워드를 사용하지 않았기 때문이다.
+break 키워드는 코드 블록에서 탈출하는 역할을 수행한다. break 키워드가 없다면 case 문의 조건과 일치하지 않더라도 실행 순서는 다음 case 문으로 연이어 이동한다. 올바른 switch 문은 아래와 같다.
+
+```javascript
+var color = 'red';
+
+switch (color) {
+  case 'yellow':
+    console.log('yellow color');
     break;
   case 'red':
     console.log('red color');
@@ -146,13 +163,14 @@ switch (color) {
 }
 ```
 
-`default`문에는 `break` 키워드를 생략하여도 무방하다. 이유는 `default`문이 가장 마지막에 위치하므로 다음 `case`문으로 이동할 수 없기 때문이다.
+default 문에는 break 키워드를 생략해도 좋다. 이유는 default 문이 가장 마지막에 위치하므로 다음  case 문으로 연이어 이동할 수 없기 때문이다.
+
 
 # 3. 반복문(Loop)
 
 반복문은 주어진 조건식(conditional expression)이 참인 경우 코드 블록을 실행한다. 그 후 조건식을 다시 검사하여 여전히 참인 경우 코드 블록을 다시 실행하며 이는 조건식이 거짓일 때까지 반복된다.
 
-JavaScript는 3가지의 반복문 `for`, `while`, `do while`을 제공한다.
+자바스크립트는 3가지의 반복문 `for`, `while`, `do while`을 제공한다.
 
 ## 3.1 for 문
 

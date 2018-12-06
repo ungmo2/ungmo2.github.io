@@ -33,7 +33,7 @@ const template = `<ul class="nav-items">
 console.log(template);
 ```
 
-템플릿 리터럴은 + 연산자를 사용하지 않아도 간단한 방법으로 새로운 문자열을 삽입할 수 있는 기능을 제공한다. 이를 String Interpolation(문자열 삽입)이라 한다.
+템플릿 리터럴은 + 연산자를 사용하지 않아도 간단한 방법으로 새로운 문자열을 삽입할 수 있는 기능을 제공한다. 이를 문자열 인터폴레이션(String Interpolation)이라 한다.
 
 ```javascript
 const first = 'Ung-mo';
@@ -41,20 +41,17 @@ const last = 'Lee';
 
 // ES5: 문자열 연결
 console.log('My name is ' + first + ' ' + last + '.');
+// "My name is Ung-mo Lee."
 
 // ES6: String Interpolation
-console.log(`My name is ${first} ${last}.`); // My name is Ung-mo Lee.
+console.log(`My name is ${first} ${last}.`);
+// "My name is Ung-mo Lee."
 ```
 
-`${expression}`을 템플릿 대입문(Template substitution)이라 한다. 템플릿 대입문에는 문자열뿐만 아니라 자바스크립트 표현식을 사용할 수 있다.
+문자열 인터폴레이션은 `${ … }`으로 표현식을 감싼다. 문자열 인터폴레이션 내의 표현식은 문자열로 강제 타입 변환된다.
 
 ```javascript
-// 템플릿 대입문에는 문자열뿐만 아니라 표현식도 사용할 수 있다.
-console.log(`1 + 1 = ${1 + 1}`); // 1 + 1 = 2
-
-const name = 'ungmo';
-
-console.log(`Hello ${name.toUpperCase()}`); // Hello UNGMO
+console.log(`1 + 1 = ${1 + 1}`); // "1 + 1 = 2"
 ```
 
 # Reference

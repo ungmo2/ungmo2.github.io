@@ -515,3 +515,38 @@ console.log(count); // 3
 // 참고로 String.prototype.match 메소드를 사용할 수 있다.
 console.log(string.match(/l/g).length); // 3
 ```
+
+위 예제의 for 문은 아래와 동일하게 동작한다.
+
+```javascript
+for (var i = 0; i < string.length; i++) {
+  // 'l'이면 카운트를 증가시킨다.
+  if (string[i] === 'l') count++;
+}
+```
+
+위와 같이 if 문 내에서 실행해야 할 코드가 한 줄이라면 continue 문을 사용했을 때보다 간편하며 가독성도 좋다. 하지만 if 문 내에서 실행해야 할 코드가 길다면 들여쓰기가 한 단계 더 깊어지므로 continue 문을 사용하는 것이 가독성이 더 좋다.
+
+```javascript
+// continue 문을 사용하지 않으면 if 문 내에 코드를 작성해야 한다.
+for (var i = 0; i < string.length; i++) {
+  // 'l'이면 카운트를 증가시킨다.
+  if (string[i] === 'l') {
+    count++;
+    // code
+    // code
+    // code
+  }
+}
+
+// continue 문을 사용면 if 문 밖에 코드를 작성할 수 있다.
+for (var i = 0; i < string.length; i++) {
+  // 'l'이 아니면 카운트를 증가시키지 않는다.
+  if (string[i] !== 'l') continue;
+
+  count++;
+  // code
+  // code
+  // code
+}
+```

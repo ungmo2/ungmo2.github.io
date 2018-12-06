@@ -293,9 +293,9 @@ button 태그는 어트리뷰트만을 받아들이는 input 태그와 달리 �
 
 위 예제의 경우, IE6, IE7에는 'foo' 대신 'Click me'를 서버로 전송한다. 따라서 오래된 IE를 지원해야 한다면 input 태그를 사용하는 것이 바람직하다.
 
-# 6. filedset / legend
+# 6. fieldset / legend
 
-fieldset 태그는 관련된 입력 양식들을 그룹화할 때 사용한다. legend 태그는 filedset 태그 내에서 사용되야 하며 그룹화된 filedset의 제목을 정의한다.
+fieldset 태그는 관련된 입력 양식들을 그룹화할 때 사용한다. legend 태그는 fieldset 태그 내에서 사용되야 하며 그룹화된 fieldset의 제목을 정의한다.
 
 ```html
 <!DOCTYPE html>

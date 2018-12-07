@@ -5,7 +5,7 @@ subtitle: image 요소 아래에 패딩된 여분의 공간 제거하기
 categories: css
 section: css
 seq: 2
-subseq: 21
+subseq: 22
 description: 컨테이너 요소로 img 요소를 래핑하면 img 요소 아래에 의도하지 않은 여분의 공간이 패딩된다.
 ---
 

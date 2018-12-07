@@ -4,8 +4,8 @@ title: Snippet - Centering
 subtitle: CSS를 사용한 HTML 요소의 수평 수직 중앙 정렬 (Horizontal & Vertical Centering)
 categories: snippet
 section: snippet
-seq: 8
-subseq: 1
+seq: 2
+subseq: 21
 description: CSS를 사용한 HTML 요소의 수평 수직 중앙 정렬 (Horizontal & Vertical Centering)
 ---
 

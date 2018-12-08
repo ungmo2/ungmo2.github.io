@@ -232,7 +232,7 @@ logappend = true
 diaglog=3
 
 ##It ensures write durability and data consistency much as any journaling scheme would be expected to do.
-##Only set this to false if you don’t really care about your data (or more so, the loss of it).
+##Only set this to false if you don't really care about your data (or more so, the loss of it).
 journal = true
 
 ##For mongodb 32 bit

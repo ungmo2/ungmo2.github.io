@@ -119,6 +119,45 @@ else              kind = '영';
 console.log(kind); // 양수
 ```
 
+대부분의 if...else 문은 연산자에서 살펴본 [삼항 조건 연산자](./js-operator#4-삼항-조건-연산자)로 바꿔쓸 수 있다. 아래 예제를 살펴보자.
+
+```javascript
+// x가 짝수이면 ‘짝수'를 홀수이면 ‘홀수'를 반환한다.
+var x = 2;
+var result;
+
+if (x % 2) { // 2 % 2는 0이고 0은 false로 취급된다.
+  result = '홀수';
+} else {
+  result = '짝수';
+}
+
+console.log(result); // 짝수
+```
+
+위 예제는 아래와 같이 삼항 조건 연산자로 바꿔쓸 수 있다.
+
+```javascript
+// x가 짝수이면 '짝수'를 홀수이면 '홀수'를 반환한다.
+var x = 2;
+
+// 0은 false로 취급된다.
+var result = x % 2 ? '홀수' : '짝수';
+console.log(result); // 짝수
+```
+
+위 예제는 두가지 경우의 수('홀수' 또는 '짝수')를 갖는 경우이다. 만약 세가지 경우의 수를 경우는 아래와 같이 바꿔쓸 수 있다.
+
+```javascript
+var num = 2;
+
+// 0은 false로 취급된다.
+var kind = num ? (num > 0 ? '양수' : '음수') : '영';
+console.log(kind); // 양수
+```
+
+`num > 0 ? '양수' : '음수'`는 표현식이므로 다른 표현식의 일부가 될 수 있다.
+
 ## 2.2 switch 문
 
 switch 문은 switch 문의 표현식을 평가하여 그 값과 일치하는 표현식을 갖는 case 문으로 실행 순서를 이동시킨다.
@@ -182,7 +221,7 @@ switch (month) {
 console.log(monthName); // Invalid month
 ```
 
-그런데 위 예제를 실행해 보면 'November'가 출력되지 않고 'Invalid month'가 출력된다. 이는 switch 문의 표현식의 평가 결과와 일치하는 case 문으로 실행 순서가 이동하여 문을 실행한 것은 맞지만, 문을 실행한 후 switch 문을 탈출하지 않고 switch 문이 끝날 때까지 모든 case 문과 default 문을 실행했기 때문이다. 다시 말해 변수 monthName에 'November'가 할당된 후 switch 문을 탈출하지 않고 연이어 'December'가 재할당되고 마지막으로 'Invalid month'가 재할당되었다.
+그런데 위 예제를 실행해 보면 'November'가 출력되지 않고 'Invalid month'가 출력된다. 이는 switch 문의 표현식의 평가 결과와 일치하는 case 문으로 실행 순서가 이동하여 문을 실행한 것은 맞지만, 문을 실행한 후 switch 문을 탈출하지 않고 switch 문이 끝날 때까지 모든 case 문과 default 문을 실행했기 때문이다. 이를 폴스루(fall through)라 한다. 다시 말해 변수 monthName에 'November'가 할당된 후 switch 문을 탈출하지 않고 연이어 'December'가 재할당되고 마지막으로 'Invalid month'가 재할당되었다.
 
 결과가 이러한 이유는 case 문에 해당하는 문의 마지막에 `break` 문을 사용하지 않았기 때문이다. break 키워드로 구성된 break 문은 코드 블록에서 탈출하는 역할을 수행한다. break 문이 없다면 case 문의 표현식과 일치하지 않더라도 실행 순서는 다음 case 문으로 연이어 이동한다. 올바른 switch 문은 아래와 같다.
 
@@ -237,11 +276,10 @@ console.log(monthName); // November
 
 default 문에는 break 문을 생략하는 것이 일반적이다. default 문은 switch 문의 가장 마지막에 위치하므로 default 문의 실행이 종료하면 switch 문을 빠져나간다. 따라서 별도로 break 문이 필요없다.
 
-case 문은 반드시 단독으로 사용되어야 하는 것은 아니다. 아래 예제와 같이 여러 개의 case 문을 중복해 사용할 수도 있다.
+case 문은 반드시 단독으로 사용되어야 하는 것은 아니다. 아래 예제와 같이 여러 개의 case 문을 중복해 사용할 수도 있다. 아래는 윤년인지 판별해서 2월의 일수를 계산하는 예제다.
 
 ```javascript
-// 윤년인지 판별해서 2월의 일수를 계산한다.
-var year = 2000; // 2000년은 윤년으로 2월이 29일
+var year = 2000; // 2000년은 윤년으로 2월이 29일이다.
 var month = 2;
 var days = 0;
 
@@ -266,7 +304,7 @@ switch (month) {
 console.log(days); // 29
 ```
 
-switch 문은 case, default, break 등 다양한 키워드를 사용해야 하고 문법도 복잡하다. if...else 문으로 해결할 수 있다면 if...else 문을 사용하는 편이 좋다. 하지만 if...else 문보다 switch 문을 사용했을 때 가독성이 더 좋다면 switch 문을 사용하는 편이 좋다.
+switch 문은 case, default, break 등 다양한 키워드를 사용해야 하고 폴스루가 발생하는 등 문법도 복잡하다. if...else 문으로 해결할 수 있다면 if...else 문을 사용하는 편이 좋다. 하지만 if...else 문보다 switch 문을 사용했을 때 가독성이 더 좋다면 switch 문을 사용하는 편이 좋다.
 
 # 3. 반복문
 

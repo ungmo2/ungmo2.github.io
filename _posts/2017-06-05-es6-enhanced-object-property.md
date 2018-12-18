@@ -52,28 +52,32 @@ ES5에서 프로퍼티 키를 동적으로 생성하려면 객체 리터럴 외�
 
 ```javascript
 // ES5
+var prefix = 'prop';
 var i = 0;
+
 var obj = {};
 
-obj[++i] = i;
-obj[++i] = i;
-obj[++i] = i;
+obj[prefix + '-' + ++i] = i;
+obj[prefix + '-' + ++i] = i;
+obj[prefix + '-' + ++i] = i;
 
-console.log(obj); // {1: 1, 2: 2, 3: 3}
+console.log(obj); // {prop-1: 1, prop-2: 2, prop-3: 3}
 ```
 
-ES6에서는 객체 리터럴 내부에서도 대괄호([…]) 표기법을 사용해 프로퍼티 키를 동적으로 생성할 수 있다.
+ES6에서는 객체 리터럴 내부에서도 프로퍼티 키를 동적으로 생성할 수 있다.
 
 ```javascript
 // ES6
+const prefix = 'prop';
 let i = 0;
+
 const obj = {
-  [++i]: i,
-  [++i]: i,
-  [++i]: i
+  [`${prefix}-${++i}`]: i,
+  [`${prefix}-${++i}`]: i,
+  [`${prefix}-${++i}`]: i
 };
 
-console.log(obj); // {1: 1, 2: 2, 3: 3}
+console.log(obj); // {prop-1: 1, prop-2: 2, prop-3: 3}
 ```
 
 # 3. 메소드 축약 표현

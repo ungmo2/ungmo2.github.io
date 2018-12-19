@@ -41,7 +41,9 @@ console.dir(student);
 Google chrome에서 student 객체 출력 결과
 {: .desc-img}
 
-ECMAScript spec에서는 **자바스크립트의 모든 객체는 자신의 프로토타입을 가리키는 [[Prototype]]이라는 숨겨진 프로퍼티를 가진다** 라고 되어있다. 크롬, 파이어폭스 등에서는 숨겨진 [[Prototype]] 프로퍼티가 \_\_proto\_\_ 프로퍼티로 구현되어 있다. 즉, \_\_proto\_\_과 [[Prototype]]은 같은 개념이다.
+[ECMAScript spec](https://tc39.github.io/ecma262/#sec-ordinary-and-exotic-objects-behaviours)에서는 **자바스크립트의 모든 객체는 [[Prototype]]이라는 인터널 슬롯(internal slot)를 가진다. [[Prototype]]의 값은 null 또는 객체이며 상속을 구현하는데 사용된다. [[Prototype]] 객체의 데이터 프로퍼티는 get 액세스를 위해 상속되어 자식 객체의 프로퍼티처럼 사용할 수 있다. 하지만 set 액세스는 허용되지 않는다.** 라고 되어있다.
+
+[[Prototype]]의 값은 Prototype(프로토타입) 객체이며, 크롬, 파이어폭스 등에서는 \_\_proto\_\_ accessor property로 [[Prototype]]에 접근할 수 있다.
 
 student 객체는 \_\_proto\_\_ 프로퍼티로 자신의 부모 객체(프로토타입 객체)인 Object.prototype을 가리키고 있다.
 
@@ -55,15 +57,13 @@ console.log(student.__proto__ === Object.prototype); // true
 
 객체를 생성할 때 프로토타입은 결정된다. 결정된 프로토타입 객체는 다른 임의의 객체로 변경할 수 있다. 이것은 부모 객체인 프로토타입을 동적으로 변경할 수 있다는 것을 의미한다. 이러한 특징을 활용하여 객체의 상속을 구현할 수 있다.
 
-# 2. [[Prototype]] 프로퍼티 vs prototype 프로퍼티
+# 2. [[Prototype]] vs prototype 프로퍼티
 
-[[Prototype]] 프로퍼티는 자신의 프로토타입 객체를 가리키는 숨겨진 프로퍼티이다.
+모든 객체는 자신의 프로토타입 객체를 가리키는 [[Prototype]] 인터널 슬롯(internal slot) 을 갖으며 상속을 위해 사용된다.
 
-[[Prototype]] 프로퍼티는 \_\_proto\_\_ 프로퍼티로 구현되어 있어 \_\_proto\_\_과 [[Prototype]]은 같은 개념이다.
+함수도 객체이므로 [[Prototype]] 인터널 슬롯을 갖는다. 그런데 함수 객체는 일반 객체와는 달리 prototype 프로퍼티도 소유하게 된다.
 
-함수도 객체이므로 [[Prototype]] 프로퍼티를 갖는다. 그런데 함수 객체는 일반 객체와는 달리 prototype 프로퍼티도 소유하게 된다.
-
-주의해야 할 것은 prototype 프로퍼티는 프로토타입 객체를 가리키는 [[Prototype]] 프로퍼티(\_\_proto\_\_ 프로퍼티)와는 다르다는 것이다. prototype 프로퍼티와 [[Prototype]] 프로퍼티는 모두 프로토타입 객체를 가리키지만 관점의 차이가 있다.
+주의해야 할 것은 prototype 프로퍼티는 프로토타입 객체를 가리키는 [[Prototype]] 인터널 슬롯은 다르다는 것이다. prototype 프로퍼티와 [[Prototype]]은 모두 프로토타입 객체를 가리키지만 관점의 차이가 있다.
 {: .info}
 
 ```javascript
@@ -77,9 +77,9 @@ console.dir(Person); // prototype 프로퍼티가 있다.
 console.dir(foo);    // prototype 프로퍼티가 없다.
 ```
 
-- [[Prototype]] 프로퍼티
-  - 함수를 포함한 모든 객체가 가지고 있는 프로퍼티이다.
-  - **객체의 입장에서 자신의 부모 역할을 하는 프로토타입 객체을 가리키며 함수 객체의 경우 `Function.prototype`를 가리킨다.** 그 이유에 대해서는 [4.2 생성자 함수로 생성된 객체의 프로토타입 체인](./js-prototype#42-생성자-함수로-생성된-객체의-프로토타입-체인)을 참조하기 바란다.
+- [[Prototype]]
+  - 함수를 포함한 모든 객체가 가지고 있는 인터널 슬롯이다.
+  - **객체의 입장에서 자신의 부모 역할을 하는 프로토타입 객체를 가리키며 함수 객체의 경우 `Function.prototype`를 가리킨다.** 그 이유에 대해서는 [4.2 생성자 함수로 생성된 객체의 프로토타입 체인](./js-prototype#42-생성자-함수로-생성된-객체의-프로토타입-체인)을 참조하기 바란다.
 
     ```javascript
     console.log(Person.__proto__ === Function.prototype);
@@ -118,7 +118,7 @@ console.log(Person.constructor === Function);
 
 # 4. Prototype chain
 
-자바스크립트는 특정 객체의 프로퍼티나 메소드에 접근하려고 할 때 해당 객체에 접근하려는 프로퍼티 또는 메소드가 없다면 [[Prototype]] 프로퍼티가 가리키는 링크를 따라 자신의 부모 역할을 하는 프로토타입 객체의 프로퍼티나 메소드를 차례대로 검색한다. 이것을 프로토타입 체인이라 한다.
+자바스크립트는 특정 객체의 프로퍼티나 메소드에 접근하려고 할 때 해당 객체에 접근하려는 프로퍼티 또는 메소드가 없다면 [[Prototype]]이 가리키는 링크를 따라 자신의 부모 역할을 하는 프로토타입 객체의 프로퍼티나 메소드를 차례대로 검색한다. 이것을 프로토타입 체인이라 한다.
 
 ```javascript
 var student = {
@@ -130,7 +130,7 @@ var student = {
 console.log(student.hasOwnProperty('name')); // true
 ```
 
-student 객체는 hasOwnProperty 메소드를 가지고 있지 않으므로 에러가 발생하여야 하나 정상적으로 결과가 출력되었다. 이는 student 객체의 [[Prototype]] 프로퍼티가 가리키는 링크를 따라가서 student 객체의 부모 역할을 하는 프로토타입 객체(Object.prototype)의 메소드 hasOwnProperty를 호출하였기 때문에 가능한 것이다.
+student 객체는 hasOwnProperty 메소드를 가지고 있지 않으므로 에러가 발생하여야 하나 정상적으로 결과가 출력되었다. 이는 student 객체의 [[Prototype]]이 가리키는 링크를 따라가서 student 객체의 부모 역할을 하는 프로토타입 객체(Object.prototype)의 메소드 hasOwnProperty를 호출하였기 때문에 가능한 것이다.
 
 ```javascript
 var student = {
@@ -156,7 +156,7 @@ console.log(Object.prototype.hasOwnProperty('hasOwnProperty')); // true
 Object() 생성자 함수는 물론 함수이다. 따라서 함수 객체인 Object() 생성자 함수는 일반 객체와 달리 prototype 프로퍼티가 있다.
 
 - prototype 프로퍼티는 함수 객체가 생성자로 사용될 때 이 함수를 통해 생성된 객체의 부모 역할을 하는 객체, 즉 프로토타입 객체를 가리킨다.
-- [[Prototype]] 프로퍼티는 객체의 입장에서 자신의 부모 역할을 하는 객체, 즉 프로토타입 객체를 가리킨다.
+- [[Prototype]]은 객체의 입장에서 자신의 부모 역할을 하는 객체, 즉 프로토타입 객체를 가리킨다.
 
 ```javascript
 var person = {
@@ -357,10 +357,10 @@ console.log(Function.prototype.__proto__  === Object.prototype); // ⑤ true
 이때 주의할 것은 프로토타입 객체를 변경하면
 
 - 프로토타입 객체 변경 시점 이전에 생성된 객체
-: 기존 프로토타입 객체를 [[Prototype]] 프로퍼티에 바인딩한다.
+: 기존 프로토타입 객체를 [[Prototype]]에 바인딩한다.
 
 - 프로토타입 객체 변경 시점 이후에 생성된 객체
-: 변경된 프로토타입 객체를 [[Prototype]] 프로퍼티에 바인딩한다.
+: 변경된 프로토타입 객체를 [[Prototype]]에 바인딩한다.
 
 ```javascript
 function Person(name) {

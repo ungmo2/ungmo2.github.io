@@ -43,7 +43,7 @@ Google chrome에서 student 객체 출력 결과
 
 [ECMAScript spec](https://tc39.github.io/ecma262/#sec-ordinary-and-exotic-objects-behaviours)에서는 **자바스크립트의 모든 객체는 [[Prototype]]이라는 인터널 슬롯(internal slot)를 가진다. [[Prototype]]의 값은 null 또는 객체이며 상속을 구현하는데 사용된다. [[Prototype]] 객체의 데이터 프로퍼티는 get 액세스를 위해 상속되어 자식 객체의 프로퍼티처럼 사용할 수 있다. 하지만 set 액세스는 허용되지 않는다.** 라고 되어있다.
 
-[[Prototype]]의 값은 Prototype(프로토타입) 객체이며 [__proto__](https://tc39.github.io/ecma262/#sec-object.prototype.__proto__) accessor property로 접근할 수 있다. \_\_proto\_\_ 프로퍼티에 접근하면 내부적으로 [Object.getPrototypeOf](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf)가 호출되어 프로토타입 객체를 반환한다.
+[[Prototype]]의 값은 Prototype(프로토타입) 객체이며 [\_\_proto\_\_](https://tc39.github.io/ecma262/#sec-object.prototype.__proto__) accessor property로 접근할 수 있다. \_\_proto\_\_ 프로퍼티에 접근하면 내부적으로 [Object.getPrototypeOf](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf)가 호출되어 프로토타입 객체를 반환한다.
 
 student 객체는 \_\_proto\_\_ 프로퍼티로 자신의 부모 객체(프로토타입 객체)인 Object.prototype을 가리키고 있다.
 

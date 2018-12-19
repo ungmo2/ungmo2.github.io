@@ -209,44 +209,41 @@ var square = function(number) {
 다음 조건을 만족하면 일급 객체로 간주한다.
 
 > 1. 무명의 리터럴로 표현이 가능하다.
-> 2. 변수나 자료 구조(객체, 배열...)에 저장할 수 있다.
-> 3. 함수의 파라미터로 전달할 수 있다.
-> 4. 반환값(return value)으로 사용할 수 있다.
+> 2. 변수나 자료 구조(객체, 배열 등)에 저장할 수 있다.
+> 3. 함수의 매개변수에 전달할 수 있다.
+> 4. 반환값으로 사용할 수 있다.
 
 ```javascript
 // 1. 무명의 리터럴로 표현이 가능하다.
-// 2. 변수나 데이터 구조안에 담을 수 있다.
-var increase = function(num) {
-  return num + 1;
+// 2. 변수나 자료 구조에 저장할 수 있다.
+var increase = function (num) {
+  return ++num;
 };
 
-var decrease = function(num){
-  return num - 1;
+var decrease = function (num) {
+  return --num;
 };
 
-var obj = {
-  increase: increase,
-  decrease: decrease
-};
+var predicates = { increase, decrease };
 
-// 2. 함수의 파라미터로 전달 할 수 있다.
-function calc(func, num){
-  return func(num);
-}
+// 3. 함수의 매개변수에 전달할 수 있다.
+// 4. 반환값으로 사용할 수 있다.
+function makeCounter(predicate) {
+  var num = 0;
 
-console.log(calc(increase, 1));
-console.log(calc(decrease, 1));
-
-// 3. 반환값(return value)으로 사용할 수 있다.
-function calc(mode){
-  var funcs = {
-    plus:  function(left, right){ return left + right; },
-    minus: function(left, right){ return left - right; }
+  return function () {
+    num = predicate(num);
+    return num;
   };
-  return funcs[mode];
 }
-console.log(calc('plus')(2,1));
-console.log(calc('minus')(2,1));
+
+var increaser = makeCounter(predicates.increase);
+console.log(increaser()); // 1
+console.log(increaser()); // 2
+
+var decreaser = makeCounter(predicates.decrease);
+console.log(decreaser()); // -1
+console.log(decreaser()); // -2
 ```
 
 Javascript의 함수는 위의 조건을 모두 만족하므로 **Javascript의 함수는 일급객체이다.** 따라서 Javascript의 함수는 흡사 변수와 같이 사용할 수 있으며 코드의 어디에서든지 정의할 수 있다.

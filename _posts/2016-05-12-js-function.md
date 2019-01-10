@@ -358,7 +358,7 @@ square.y = 20;
 console.log(square.x, square.y);
 ```
 
-함수는 일반 객체와는 다른 함수만의 표준 프로퍼티를 갖는다.
+함수는 일반 객체와는 다른 함수만의 프로퍼티를 갖는다.
 
 ```javascript
 function square(number) {
@@ -500,66 +500,55 @@ console.log(namedFunc.name);     // multiply
 console.log(anonymousFunc.name); // ''
 ```
 
-## 6.5 \_\_proto\_\_ 프로퍼티
+## 6.5 \_\_proto\_\_ 접근자 프로퍼티
 
-ECMAScript spec에서는 **모든 객체는 자신의 프로토타입을 가리키는 [[Prototype]]이라는 숨겨진 프로퍼티를 가진다** 라고 되어있다. 크롬, 파이어폭스 등에서는 숨겨진 [[Prototype]] 프로퍼티가 \_\_proto\_\_ 프로퍼티로 구현되어 있다. 즉, \_\_proto\_\_과 [[Prototype]]은 같은 개념이다.
+모든 객체는 [[Prototype]]이라는 내부 슬롯이 있다. [[Prototype]] 내부 슬롯은 프로토타입 객체를 가리킨다. 프로토타입 객체란 프로토타입 기반 객체 지향 프로그래밍의 근간을 이루는 객체로서 객체간의 상속(Inheritance)을 구현하기 위해 사용된다. 즉, 프로토타입 객체는 다른 객체에 공유 프로퍼티를 제공하는 객체를 말한다.
+
+\_\_proto\_\_ 프로퍼티는 [[Prototype]] 내부 슬롯이 가리키는 프로토타입 객체에 접근하기 위해 사용하는 접근자 프로퍼티이다. 즉, \_\_proto\_\_ 접근자 프로퍼티를 통해 자신의 프로토타입 객체에 접근할 수 있다.
 
 ```javascript
-function square(number) {
-  return number * number;
-}
-
-console.dir(square);
+// __proto__ 접근자 프로퍼티를 통해 자신의 프로토타입 객체에 접근할 수 있다.
+// 객체 리터럴로 셍성한 객체의 프로토타입 객체는 Object.prototype이다.
+console.log({}.__proto__ === Object.prototype); // true
 ```
 
-square() 함수 역시 객체이므로 [[Prototype]] 프로퍼티(\_\_proto\_\_ 프로퍼티)을 가지며 이를 통해 자신의 부모 역할을 하는 프로토타입 객체를 가리킨다.
-
-함수의 프로토타입 객체는 `Function.prototype`이며 이것 역시 함수이다.
+\_\_proto\_\_ 프로퍼티는 객체가 직접 소유하는 프로퍼티가 아니라 모든 객체의 프로토타입 객체인 Object.prototype 객체의 프로퍼티이다. 모든 객체는 상속을 통해 \_\_proto\_\_ 접근자 프로퍼티는 사용할 수 있다.
 
 ```javascript
-function square(number) {
-  return number * number;
-}
+// 객체는 __proto__ 프로퍼티를 소유하지 않는다.
+console.log(Object.getOwnPropertyDescriptor({}, '__proto__'));
+// undefined
 
-console.log(square.__proto__ === Function.prototype);
-console.log(Object.getPrototypeOf(square) === Function.prototype);
+// __proto__ 프로퍼티는 모든 객체의 프로토타입 객체인 Object.prototype의 접근자 프로퍼티이다.
+console.log(Object.getOwnPropertyDescriptor(Object.prototype, '__proto__'));
+// {get: ƒ, set: ƒ, enumerable: false, configurable: true}
+
+// 모든 객체는 Object.prototype의 접근자 프로퍼티 __proto__를 상속받아 사용할 수 있다.
+console.log({}.__proto__ === Object.prototype); // true
+```
+
+함수도 객체이므로 \_\_proto\_\_ 접근자 프로퍼티를 통해 프로토타입 객체에 접근할 수 있다.
+
+```javascript
+// 함수 객체의 프로토타입 객체는 Function.prototype이다.
+console.log((function() {}).__proto__ === Function.prototype); // true
 ```
 
 ## 6.6 prototype 프로퍼티
 
-함수 객체만이 가지고 있는 프로퍼티로 자바스크립트 객체지향의 근간이다.
+prototype 프로퍼티는 함수 객체만이 소유하는 프로퍼티이다. 즉 일반 객체에는 prototype 프로퍼티가 없다.
 
-**주의해야 할 것은 함수 객체만이 가지고 있는 prototype 프로퍼티는 프로토타입 객체를 가리키는 [[Prototype]] 프로퍼티(\_\_proto\_\_ 프로퍼티)와는 다르다는 것이다.**
+```javascript
+// 함수 객체는 prototype 프로퍼티를 소유한다.
+console.log(Object.getOwnPropertyDescriptor(function() {}, 'prototype'));
+// {value: {…}, writable: true, enumerable: false, configurable: false}
 
-prototype 프로퍼티와 [[Prototype]] 프로퍼티는 모두 프로토타입 객체를 가리키지만 관점의 차이가 있다.
+// 일반 객체는 prototype 프로퍼티를 소유하지 않는다.
+console.log(Object.getOwnPropertyDescriptor({}, 'prototype'));
+// undefined
+```
 
-- [[Prototype]] 프로퍼티
-  - 모든 객체가 가지고 있는 프로퍼티이다.
-  - **객체의 입장에서 자신의 부모 역할을 하는 프로토타입 객체를 가리키며 함수 객체의 경우 `Function.prototype`를 가리킨다.**
-
-- prototype 프로퍼티
-  - 함수 객체만 가지고 있는 프로퍼티이다.
-  - **함수 객체가 생성자로 사용될 때 이 함수를 통해 생성된 객체의 부모 역할을 하는 객체를 가리킨다.**
-  - 함수가 생성될 때 만들어 지며 `constructor` 프로퍼티를 가지는 객체를 가리킨다. 이 `constructor` 프로퍼티는 함수 객체 자신을 가리킨다.
-
-  ```javascript
-  function square(number) {
-    return number * number;
-  }
-
-  // console.dir(square);
-  console.dir(square.__proto__);
-  console.dir(square.prototype);
-
-  console.log(square.__proto__ === Function.prototype); // true ①
-  console.log(square.__proto__ === square.prototype);   // false
-  console.log(square.prototype.constructor === square); // true ②
-  console.log(square.__proto__.constructor === square.prototype.constructor); // false
-  ```
-
-  ![function property](/img/function_prototype.png)
-
-**[[Prototype]] 프로퍼티는 함수 객체의 부모 객체(Function.prototype)를 가리키며 prototype 프로퍼티는 함수객체가 생성자 함수로 사용되어 객체를 생성할 때 생성된 객체의 부모 객체 역할을 하는 객체를 가리킨다.**
+prototype 프로퍼티는 함수가 객체를 생성하는 생성자 함수로 사용될 때, 생성자 함수가 생성한 인스턴스의 프로토타입 객체를 가리킨다.
 
 # 7. 함수의 다양한 형태
 

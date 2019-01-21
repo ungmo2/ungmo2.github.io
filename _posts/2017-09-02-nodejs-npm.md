@@ -310,6 +310,15 @@ $ npm run <script-name>
 $ npm -v
 ```
 
+전역 패키지 설치 폴더 확인
+
+```bash
+$ npm root -g
+/usr/local/lib/node_modules
+# 파인더 오픈
+$ open /usr/local/lib/node_modules
+```
+
 npm 명령어 설명 참조
 
 ```bash

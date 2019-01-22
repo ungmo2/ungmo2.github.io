@@ -32,7 +32,7 @@ const array = [1, 2, 3];
 
 // 배열은 Symbol.iterator 메소드를 소유한다.
 // 따라서 배열은 이터러블 프로토콜을 준수한 이터러블 객체이다.
-console.log(typeof array[Symbol.iterator]); // function
+console.log(Symbol.iterator in array); // true
 
 // 이터러블 프로토콜을 준수한 배열은 for...of 문에서 순회 가능하다.
 for (const item of array) {
@@ -52,7 +52,7 @@ const array = [1, 2, 3];
 const iterator = array[Symbol.iterator]();
 
 // 이터레이터 객체는 next 메소드를 갖는다.
-console.log(typeof iterator.next); // function
+console.log('next' in iterator); // true
 ```
 
 ![iteration-protocol](./img/iteration-protocol.png)
@@ -66,13 +66,13 @@ console.log(typeof iterator.next); // function
 // 배열은 이터러블 프로토콜을 준수한 이터러블 객체이다.
 const array = [1, 2, 3];
 
-// Symbol.iterator 메소드는 이터레이터(iterator) 객체를 반환한다.
+// Symbol.iterator 메소드는 이터레이터 객체를 반환한다.
 const iterator = array[Symbol.iterator]();
 
 // 이터레이터 객체는 next 메소드를 갖는다.
-console.log(typeof iterator.next); // function
+console.log('next' in iterator); // true
 
-// 이터레이터 객체의 next 메소드를 호출하면 value, done 프로퍼티를 갖는 이터레이터 리절트(iterator result) 객체를 반환한다.
+// 이터레이터 객체의 next 메소드를 호출하면 value, done 프로퍼티를 갖는 이터레이터 리절트 객체를 반환한다.
 let iteratorResult = iterator.next();
 console.log(iteratorResult); // {value: 1, done: false}
 ```
@@ -87,9 +87,9 @@ const array = [1, 2, 3];
 const iterator = array[Symbol.iterator]();
 
 // 이터레이터 객체는 next 메소드를 갖는다.
-console.log(typeof iterator.next); // function
+console.log('next' in iterator); // true
 
-// 이터레이터 객체의 next 메소드를 호출하면 value, done 프로퍼티를 갖는 이터레이터 리절트(iterator result) 객체를 반환한다.
+// 이터레이터 객체의 next 메소드를 호출하면 value, done 프로퍼티를 갖는 이터레이터 리절트 객체를 반환한다.
 // next 메소드를 호출할 때 마다 이터러블 객체를 순회하며 이터레이터 리절트 객체를 반환한다.
 console.log(iterator.next()); // {value: 1, done: false}
 console.log(iterator.next()); // {value: 2, done: false}

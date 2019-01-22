@@ -29,6 +29,8 @@ $ npm install json-server --save-dev
 
 ## 2.2 db.json 파일 생성
 
+프로젝트 루트 폴더에 아래와 같이 db.json 파일을 생성한다. db.json 파일은 데이터베이스 역할을 한다.
+
 ```json
 {
   "todos": [
@@ -54,23 +56,23 @@ $ json-server --watch db.json
 $ json-server --watch db.json --port 5000
 ```
 
-package.json script를 아래와 수정하여 json-server을 실행하여 보자.
+위와 같이 매번 명령어를 입력하는 것이 번거로우니 package.json 파일의 scripts를 아래와 수정하여 json-server을 실행하여 보자.
 
 ```json
 {
   "name": "json-server-exam",
   "version": "1.0.0",
   "scripts": {
-    "serve": "json-server --watch db.json"
+    "start": "json-server --watch db.json"
   },
   "devDependencies": {
-    "json-server": "^0.12.0"
+    "json-server": "^0.14.2"
   }
 }
 ```
 
 ```bash
-$ npm run serve
+$ npm start
 ```
 
 # 3. json-server 접속

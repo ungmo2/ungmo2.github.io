@@ -1,7 +1,7 @@
 ---
 layout: post
 title: <strong>Babel + Webpack</strong>
-subtitle: Babel 6와 Webpack 4를 이용한 ES6 환경 구축
+subtitle: Babel과 Webpack을 이용한 ES6 환경 구축
 categories: es6
 section: es6
 seq: 6

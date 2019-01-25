@@ -36,10 +36,10 @@ ES6를 사용하여 프로젝트를 진행하려면 ES6로 작성된 코드를 I
 
 # 1. Babel CLI 설치
 
-Babel은 트랜스파일러(Transpiler)로서 ES6를 ES5 이하의 버전으로 트랜스파일링한다.
+Babel은 트랜스파일러(Transpiler)로서 ES6+를 ES5 이하의 버전으로 트랜스파일링한다.
 
 ```javascript
-// ES6
+// ES6(Arrow Function) + ES7(Exponential operator)
 [1, 2, 3].map(n => n ** n);
 
 // Babel을 사용하여 ES6 코드를 트랜스파일링하면 ES5 이하의 코드로 변환한다.
@@ -77,7 +77,9 @@ $ npm install @babel/core @babel/cli --save-dev
 
 # 2. .babelrc 설정 파일 작성
 
-Babel을 사용하려면 먼저 `env preset`을 설치해야 한다. [env preset](https://babeljs.io/docs/plugins/preset-env/)은 설정된 환경에 적합한 플러그인을 자동으로 설정해준다.
+Babel을 사용하려면 먼저 `@babel/preset-env`을 설치해야 한다. [@babel/preset-env](https://babeljs.io/docs/plugins/preset-env/)은 Babel 플러그인의 모음(Babel 프리셋)이다. Babel 프리셋은 함께 사용되어야 하는 플러그인을 모아 둔 것으로 Babel이 공식 지원하는 Babel 프리셋에는 [@babel/preset-typescript](https://babeljs.io/docs/en/babel-preset-typescript), [@babel/preset-react](https://babeljs.io/docs/en/babel-preset-react), [babel-preset-minify](https://babeljs.io/docs/en/babel-preset-minify) 등이 있다.
+
+@babel/preset-env은 필요한 플러그인들을 프로젝트 지원 환경에 맞춰서 동적으로 결정해 주는 Babel 프리셋이다. 프로젝트 지원 환경은 [Browserslist](https://github.com/browserslist/browserslist) 형식으로 .browserslistrc 파일에 설정할 수 있다. 프로젝트 지원 환경 설정 작업을 생략하면 기본값으로 설정된다. 일단은 기본 설정으로 진행하도록 하자.
 
 ```bash
 # env preset 설치
@@ -390,21 +392,32 @@ index.html을 아래와 같이 수정하고 브라우저에서 실행해 보자.
 
 hello.js, world.js, entry.js 모듈이 하나로 번들링된 bundle.js가 브라우저에서 문제없이 실행된 것을 확인할 수 있다.
 
-<!-- # 5. babel-polyfill
+# 5. babel-polyfill
 
-ES6에서 새롭게 추가된 객체나 메소드를 사용하기 위해서는 [babel-polyfill](https://babeljs.io/docs/en/babel-polyfill)을 설치해야 한다.
+## 5.1 babel-polyfill이란?
+
+ES5 이하로 트랜스파일링하여도 브라우저가 지원하지 않는 코드가 남아 있을 수 있다. 예를 들어, ES6에서 추가된 Promise, Object.assign, Array.from 등은 ES5 이하로 트랜스파일링하여도 대체할 ES5 기능이 없기 때문에 그대로 남아 있다.
+
+![babel-polyfill](./img/babel-polyfill.png)
+
+트랜스파일링이 불가능한 기능들
+{: .desc-img}
+
+## 5.2 babel-polyfill 설치
+
+따라서 오래된 브라우저에서도 ES6에서 새롭게 추가된 객체나 메소드를 사용하기 위해서는 [@babel/polyfill](https://babeljs.io/docs/en/babel-polyfill)을 설치해야 한다.
 
 ```bash
-$ npm install --save babel-polyfill
-# bebel 7
-$ npm install --save @babel/polyfill
+$ npm install @babel/polyfill
 ```
 
-ES6의 import를 사용하는 경우에는 진입점의 맨 위에서 먼저 폴리필을 로드하여 전역을 조작하도록 한다.
+babel-polyfill은 개발 환경만 사용하는 것이 아니라 실제 환경에서도 사용하여야 하므로 --save-dev 옵션으로 개발 설치를 하지 않도록 한다.
+
+## 5.3 babel-polyfill 로드
+
+ES6의 import를 사용하는 경우에는 진입점의 맨 위에서 먼저 폴리필을 로드하여 폴리필이 전역을 조작하도록 한다.
 
 ```javascript
-import 'babel-polyfill';
-// babel 7
 import "@babel/polyfill";
 ...
 ```
@@ -416,11 +429,10 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    entry: ['babel-polyfill', './src/js/entry.js'],
-    // babel 7
     entry: ['@babel/polyfill', './src/js/entry.js'],
   ...
-``` -->
+```
+
 # Reference
 
 * [Babel](https://babeljs.io/)

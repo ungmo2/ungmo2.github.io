@@ -377,14 +377,15 @@ const newArray = [...htmlCollection]; // Spread 연산자
 
 # 4. Rest/Spread 프로퍼티
 
-[ES2018(stage 4)](https://github.com/tc39/proposal-object-rest-spread)에 제안된 Rest/Spread 프로퍼티(Object Rest/Spread Properties)는 객체 리터럴을 분해하고 병합하는 편리한 기능을 제공한다.
+ECMAScript 언어 표준에 제안(proposal)된 [Rest/Spread 프로퍼티(Object Rest/Spread Properties)](https://github.com/tc39/proposal-object-rest-spread)는 객체 리터럴을 분해하고 병합하는 편리한 기능을 제공한다.
 
-- stage 4(Finished)에 도달해 정식 사양이 된 제안은 [finished-proposals](https://github.com/tc39/proposals/blob/master/finished-proposals.md)를 참고하기 바란다.
+- 2019년 1월 현재 Rest/Spread 프로퍼티는 [TC39 프로세스](https://tc39.github.io/process-document/)의 stage 4(Finished) 단계이다.
 
-- ECMAScript에 정식 제안된 사양(ECMAScript proposal)은
-[The TC39 Process](https://tc39.github.io/process-document/)를 따라 진행된다.
+- stage 4에 도달한 제안은 [finished-proposals](https://github.com/tc39/proposals/blob/master/finished-proposals.md)를 참고하기 바란다.
 
-- 2019년 1월 현재 Babel에서 객체 리터럴 Rest/Spread 프로퍼티를 트랜스파일링하려면 [@babel/plugin-proposal-object-rest-spread](https://babeljs.io/docs/en/babel-plugin-proposal-object-rest-spread) 플러그인을 사용해야 한다.
+- [지원 현황](http://kangax.github.io/compat-table/es2016plus/#test-object_rest/spread_properties)
+
+- 2019년 1월 현재 객체 리터럴 Rest/Spread 프로퍼티를 Babel로 트랜스파일링하려면 [@babel/plugin-proposal-object-rest-spread](https://babeljs.io/docs/en/babel-plugin-proposal-object-rest-spread) 플러그인을 사용해야 한다.
 
 ```javascript
 // 객체 리터럴 Rest/Spread 프로퍼티

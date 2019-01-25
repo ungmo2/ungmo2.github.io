@@ -164,9 +164,9 @@ console.log(...{ a: 1, b: 2 });
 // TypeError: Found non-callable @@iterator
 ```
 
-## 3.1 함수의 인자로 사용하는 경우
+## 3.1 함수의 인수로 사용하는 경우
 
-배열을 함수의 인자로 사용하고, 배열의 각 요소를 개별적인 파라미터로 전달하고 싶은 경우, Function.prototype.apply를 사용하는 것이 일반적이다.
+배열을 분해하여 배열의 각 요소를 파라미터에 전달하고 싶은 경우, Function.prototype.apply를 사용하는 것이 일반적이다.
 
 ```javascript
 // ES5
@@ -176,15 +176,15 @@ function foo(x, y, z) {
   console.log(z); // 3
 }
 
-// 배열을 foo 함수의 인자로 전달하려고 한다.
+// 배열을 분해하여 배열의 각 요소를 파라미터에 전달하려고 한다.
 const arr = [1, 2, 3];
 
-// apply 함수의 2번째 인자(배열)는 호출하려는 함수(foo)의 개별 인자로 전달된다.
+// apply 함수의 2번째 인수(배열)는 분해되어 함수 foo의 파라이터에 전달된다.
 foo.apply(null, arr);
 // foo.call(null, 1, 2, 3);
 ```
 
-ES6의 Spread 연산자(...)를 사용한 배열을 함수의 인수로 사용하면 배열의 요소를 개별적으로 분리하여 순차적으로 파라미터에 할당한다.
+ES6의 Spread 연산자(...)를 사용한 배열을 인수로 함수에 전달하면 배열의 요소를 분해하여 순차적으로 파라미터에 할당한다.
 
 ```javascript
 // ES6
@@ -363,9 +363,24 @@ console.log(copy); // [ 1, 2, 3, 4 ]
 console.log(arr);  // [ 1, 2, 3 ]
 ```
 
-## 3.3 객체에서 사용하는 경우
+## 3.3 객체 리터럴에서 사용하는 경우
 
-Spread 연산자를 사용하면 객체를 손쉽게 병합 또는 변경할 수 있다.
+Spread 연산자의 피연산자는 이터러블이어야 한다. 하지만 [ES2018(stage 4)][https://github.com/tc39/proposal-object-rest-spread]에 제안된 **객체 리터럴 Rest/Spread 프로퍼티(Object Rest/Spread Properties)**는 일반 객체에 Spread 연산자의 사용을 허용한다.
+
+```javascript
+// 객체 리터럴 Rest/Spread 프로퍼티
+// Spread 프로퍼티
+const n = { x: 1, y: 2, ...{ a: 3, b: 4 } };
+console.log(n); // { x: 1, y: 2, a: 3, b: 4 }
+
+// Rest 프로퍼티
+const { x, y, ...z } = n;
+console.log(x, y, z); // 1 2 { a: 3, b: 4 }
+```
+
+2019년 1월 현재 Babel에서 객체 리터럴 Rest/Spread 프로퍼티를 트랜스파일링하려면 [@babel/plugin-proposal-object-rest-spread](https://babeljs.io/docs/en/babel-plugin-proposal-object-rest-spread) 플러그인을 사용해야 한다.
+
+Spread 연산자를 사용하면 객체를 손쉽게 병합 또는 변경할 수 있다. 이는 Object.assign을 대체할 수 있는 간편한 문법이다.
 
 ```javascript
 // 객체의 병합

@@ -146,7 +146,7 @@ console.log(arrowFunc.hasOwnProperty('arguments')); // false
 
 # 3. Spread 연산자
 
-Spread 연산자(Spread Operator, `...`)는 연산자의 대상 배열 또는 [이터러블](./es6-iteration-for-of)을 개별 요소로 분리한다.
+Spread 연산자(Spread Operator, `...`)는 피연산자를 개별 요소로 분리한다. Spread 연산자의 피연산자는 [이터러블](./es6-iteration-for-of)이어야 한다.
 
 ```javascript
 // ...[1, 2, 3]는 [1, 2, 3]을 개별 요소로 분리한다(→ 1, 2, 3)
@@ -158,6 +158,10 @@ console.log(...'Hello');  // H e l l o
 // Map과 Set은 이터러블이다.
 console.log(...new Map([['a', '1'], ['b', '2']]));  // [ 'a', '1' ] [ 'b', '2' ]
 console.log(...new Set([1, 2, 3]));  // 1 2 3
+
+// 이터러블이 아닌 일반 객체는 Spread 연산자의 피연산자가 될 수 없다.
+console.log(...{ a: 1, b: 2 });
+// TypeError: Found non-callable @@iterator
 ```
 
 ## 3.1 함수의 인자로 사용하는 경우

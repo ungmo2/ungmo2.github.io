@@ -1,7 +1,7 @@
 ---
 layout: post
 title: <strong>Extended Parameter Handling</strong>
-subtitle: 파라미터 기본값, Rest 파라미터, Spread 연산자
+subtitle: 파라미터 기본값, Rest 파라미터, Spread 연산자, Rest/Spread 프로퍼티
 categories: es6
 section: es6
 seq: 6
@@ -363,9 +363,28 @@ console.log(copy); // [ 1, 2, 3, 4 ]
 console.log(arr);  // [ 1, 2, 3 ]
 ```
 
-## 3.3 객체 리터럴에서 사용하는 경우
+Spread 연산자를 사용하면 유사 배열 객체(Array-like Object)를 배열로 손쉽게 변환할 수 있다.
 
-Spread 연산자의 피연산자는 이터러블이어야 한다. 하지만 [ES2018(stage 4)][https://github.com/tc39/proposal-object-rest-spread]에 제안된 **객체 리터럴 Rest/Spread 프로퍼티(Object Rest/Spread Properties)**는 일반 객체에 Spread 연산자의 사용을 허용한다.
+```javascript
+const htmlCollection = document.getElementsByTagName('li');
+
+// 유사 배열인 HTMLCollection을 배열로 변환한다.
+const newArray = [...htmlCollection]; // Spread 연산자
+
+// ES6의 Array.from 메소드를 사용할 수도 있다.
+// const newArray = Array.from(htmlCollection);
+```
+
+# 4. Rest/Spread 프로퍼티
+
+[ES2018(stage 4)](https://github.com/tc39/proposal-object-rest-spread)에 제안된 Rest/Spread 프로퍼티(Object Rest/Spread Properties)는 객체 리터럴을 분해하고 병합하는 편리한 기능을 제공한다.
+
+- stage 4(Finished)에 도달해 정식 사양이 된 제안은 [finished-proposals](https://github.com/tc39/proposals/blob/master/finished-proposals.md)를 참고하기 바란다.
+
+- ECMAScript에 정식 제안된 사양(ECMAScript proposal)은
+[The TC39 Process](https://tc39.github.io/process-document/)를 따라 진행된다.
+
+- 2019년 1월 현재 Babel에서 객체 리터럴 Rest/Spread 프로퍼티를 트랜스파일링하려면 [@babel/plugin-proposal-object-rest-spread](https://babeljs.io/docs/en/babel-plugin-proposal-object-rest-spread) 플러그인을 사용해야 한다.
 
 ```javascript
 // 객체 리터럴 Rest/Spread 프로퍼티
@@ -378,9 +397,9 @@ const { x, y, ...z } = n;
 console.log(x, y, z); // 1 2 { a: 3, b: 4 }
 ```
 
-2019년 1월 현재 Babel에서 객체 리터럴 Rest/Spread 프로퍼티를 트랜스파일링하려면 [@babel/plugin-proposal-object-rest-spread](https://babeljs.io/docs/en/babel-plugin-proposal-object-rest-spread) 플러그인을 사용해야 한다.
+Spread 연산자의 피연산자는 이터러블이어야 한다. Rest/Spread 프로퍼티는 일반 객체에 Spread 연산자의 사용을 허용한다.
 
-Spread 연산자를 사용하면 객체를 손쉽게 병합 또는 변경할 수 있다. 이는 Object.assign을 대체할 수 있는 간편한 문법이다.
+Rest/Spread 프로퍼티를 사용하면 객체를 손쉽게 병합 또는 변경할 수 있다. 이는 Object.assign을 대체할 수 있는 간편한 문법이다.
 
 ```javascript
 // 객체의 병합
@@ -412,18 +431,6 @@ console.log(changed); // { x: 1, y: 100 }
 // 프로퍼티 추가
 const added = Object.assign({}, { x: 1, y: 2 }, { z: 0 });
 console.log(added); // { x: 1, y: 2, z: 0 }
-```
-
-Spread 연산자를 사용하면 유사 배열 객체(Array-like Object)를 배열로 손쉽게 변환할 수 있다.
-
-```javascript
-const htmlCollection = document.getElementsByTagName('li');
-
-// 유사 배열인 HTMLCollection을 배열로 변환한다.
-const newArray = [...htmlCollection]; // Spread 연산자
-
-// ES6의 Array.from 메소드를 사용할 수도 있다.
-// const newArray = Array.from(htmlCollection);
 ```
 
 # Reference

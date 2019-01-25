@@ -411,7 +411,7 @@ ES5 이하로 트랜스파일링하여도 브라우저가 지원하지 않는 �
 $ npm install @babel/polyfill
 ```
 
-babel-polyfill은 개발 환경만 사용하는 것이 아니라 실제 환경에서도 사용하여야 하므로 --save-dev 옵션으로 개발 설치를 하지 않도록 한다.
+babel-polyfill은 개발 환경만 사용하는 것이 아니라 실제 환경에서도 사용하여야 하므로 \-\-save-dev 옵션으로 개발 설치를 하지 않도록 한다.
 
 ## 5.3 babel-polyfill 로드
 

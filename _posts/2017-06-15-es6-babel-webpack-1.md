@@ -269,6 +269,8 @@ index.html을 브라우저에서 불러오면 아래와 같이 에러가 발생�
 
 이 에러는 브라우저에서 CommonJS 모듈을 사용하려고 시도하였으나 실패한 것이다.
 
+[다음 장](./es6-babel-webpack-2)에서는 Webpack을 통해 이러한 문제를 해결해보도록 하자.
+
 # Reference
 
 * [Babel](https://babeljs.io/)

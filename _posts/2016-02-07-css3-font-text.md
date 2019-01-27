@@ -499,17 +499,27 @@ white space는 공백(space), 들여쓰기(tab), 줄바꿈(line break)을 의미
 
 부모 영역을 벗어난 wrapping(자동줄바꿈)이 되지 않은 텍스트의 처리 방법을 정의한다. 이 프로퍼티를 사용하기 위해서는 아래의 조건이 필요하다.
 
-- overflow 프로퍼티에 반드시 "visible" 이외의 값이 지정되어 있어야 한다.
-- width 프로퍼티가 지정되어 있어야 한다. 이를 위해 필요할 경우 block 레벨 요소로 변경하여야한다.
+- width 프로퍼티가 지정되어 있어야 한다. 이를 위해 필요할 경우 block 레벨 요소로 변경하여야 한다.
 - 자동 줄바꿈을 방지하려면 white-space 프로퍼티를 nowrap으로 설정한다.
+- overflow 프로퍼티에 반드시 "visible" 이외의 값이 지정되어 있어야 한다.
 
-text-overflow 프로퍼티에 설정할 수 있는 프로퍼티값은 아래와 같다.
+```css
+/* 부모 영역을 벗어난 텍스트를 잘라내어 보이지 않게 하고 말줄임표(...)를 표시한다. */
+.truncate {
+  width: 150px;             /* width가 지정되어 있어야 한다. */
+  white-space: nowrap;      /* 자동 줄바꿈을 방지 */
+  overflow: hidden;         /* 반드시 "visible" 이외의 값이 지정되어 있어야 한다. */
+  text-overflow: ellipsis;  /* ellipsis or clip */
+}
+```
 
-| 프로퍼티값	     | Description
+text-overflow 프로퍼티에 설정할 수 있는 프로퍼티 값은 아래와 같다.
+
+| 프로퍼티값	 | Description
 |:----------|:-----------------
-| clip      | 영역을 벗어난 부분을 표시하지 않는다. (기본값)
-| ellipsis  | 영역을 벗어난 부분을 잘라내어 보이지 않게 하고 말줄임표(...)를 표시한다.
-| \<string\>  | 값으로 지정한 임의의 문자열을 출력한다. Firefox(9.0~)만 지원하는 기능이다.
+| clip      | 영역을 벗어난 텍스트를 표시하지 않는다. (기본값)
+| ellipsis  | 영역을 벗어난 텍스트를 잘라내어 보이지 않게 하고 말줄임표(...)를 표시한다.
+<!-- | \<string\>  | 프로퍼티 값으로 지정한 임의의 문자열을 출력한다. Firefox(9.0~)만 지원하는 기능이다. -->
 
 ```html
 <!DOCTYPE html>
@@ -530,22 +540,17 @@ text-overflow 프로퍼티에 설정할 수 있는 프로퍼티값은 아래와 
     }
     .clip     { text-overflow: clip; }
     .ellipsis { text-overflow: ellipsis; }
-    .string   { text-overflow: '☺'; } /* only Firefox(9.0~) */
   </style>
 </head>
 <body>
   <h1>text-overflow</h1>
   <div class="clip">
     <h3>clip</h3>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit
   </div>
   <div class="ellipsis">
     <h3>ellipsis</h3>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  </div>
-  <div class="string">
-    <h3>string</h3>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit
   </div>
 </body>
 </html>
@@ -555,7 +560,7 @@ text-overflow 프로퍼티에 설정할 수 있는 프로퍼티값은 아래와 
 
 # 11. word-wrap 프로퍼티
 
-한 단어의 길이가 길어서 부모 영역을 벗어난 텍스트의 처리 방법을 정의한다. link 등을 표기할 때(e.g. http://poiemaweb.com/css3-font-text) 그 길이가 매우 길어지는데 이 프로퍼티를 사용하지 않으면 부모 영역을 넘어가게 된다.
+한 단어의 길이가 길어서 부모 영역을 벗어난 텍스트의 처리 방법을 정의한다. link 등을 표기할 때(e.g. https://poiemaweb.com/css3-font-text) 그 길이가 매우 길어지는데 이 프로퍼티를 사용하지 않으면 부모 영역을 넘어가게 된다.
 
 ```html
 <!DOCTYPE html>

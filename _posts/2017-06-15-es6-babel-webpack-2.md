@@ -121,6 +121,7 @@ module.exports = {
     ]
   },
   devtool: 'source-map',
+  // https://webpack.js.org/concepts/mode/#mode-development
   mode: 'development'
 };
 ```
@@ -321,6 +322,7 @@ module.exports = {
     ]
   },
   devtool: 'source-map',
+  // https://webpack.js.org/concepts/mode/#mode-development
   mode: 'development'
 };
 ```
@@ -456,6 +458,7 @@ module.exports = {
     ]
   },
   devtool: 'source-map',
+  // https://webpack.js.org/concepts/mode/#mode-development
   mode: 'development'
 };
 ```

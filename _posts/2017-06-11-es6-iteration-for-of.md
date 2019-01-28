@@ -484,7 +484,7 @@ for(const item of squareMap([1, 2, 3])) {
 이터러블을 통해 메모리는 효율적으로 사용할 수 있겠으나 코드는 장황해졌다. 따라서 좀 더 간편하게 이터러블을 생성할 수 있는 제너레이터(generator)가 등장했다.
 
 ```javascript
-// 더 간편한 이터러블을 생성할 수 있는 제너레이터
+// 더 간편하게 이터러블을 생성할 수 있는 제너레이터
 function* squareMap(array, condition) {
   for(const item of array) yield item * item;
 }

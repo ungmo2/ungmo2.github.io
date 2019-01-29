@@ -15,7 +15,7 @@ description: ES6에서 도입된 이터레이션 프로토콜(iteration protocol
 ![es6 Logo](./img/es6.png)
 {: .w-650}
 
-# 1. 이터레이션 프로토콜(Iteration protocol)
+# 1. 이터레이션 프로토콜
 
 ES6에서 도입된 이터레이션 프로토콜(iteration protocol)은 데이터 컬렉션을 순회하기 위한 프로토콜(미리 약속된 규칙)이다. 이 프로토콜을 준수한 객체는 for...of 문으로 순회할 수 있고 [Spread 연산자](./es6-extended-parameter-handling#3-spread-연산자)의 피연산자가 될 수 있다.
 
@@ -449,7 +449,7 @@ console.log(f1, f2, f3); // 1 2 3
 ```javascript
 // 원본 배열의 각 요소를 제곱한 배열 반환
 const arr = [1, 2, 3];
-const result = arr.map(item => item * item); // [1, 4, 9]
+const result = arr.map(item => item * 2); // [2, 4, 6]
 
 for(const item of result) {
   console.log(item);
@@ -460,23 +460,19 @@ Array.prototype.map 메소드는 원본 배열과 동일한 length를 갖는 배
 
 ```javascript
 // 전달받은 배열의 각 요소를 제곱한 이터러블을 반환
-function squareMap(array) {
+function doubleMap(array) {
   let i = -1;
   return {
-    [Symbol.iterator]() {
-      return this;
-    },
+    [Symbol.iterator]() { return this; },
     next() {
       i++;
-      let v = array[i];
-      // done 프로퍼티를 생략한다.
-      return { value: v * v, done: (i === array.length) };
+      return { value: array[i] * 2, done: (i === array.length) };
     }
   };
 }
 
 // Lazy evaluation(지연 평가)을 통해 데이터를 생성한다.
-for(const item of squareMap([1, 2, 3])) {
+for(const item of doubleMap([1, 2, 3])) {
   console.log(item);
 }
 ```
@@ -485,11 +481,11 @@ for(const item of squareMap([1, 2, 3])) {
 
 ```javascript
 // 더 간편하게 이터러블을 생성할 수 있는 제너레이터
-function* squareMap(array, condition) {
-  for(const item of array) yield item * item;
+function* doubleMap(array) {
+  for(const item of array) yield item * 2;
 }
 
-for (const iterator of squareMap([1, 2, 3])) {
+for (const iterator of doubleMap([1, 2, 3])) {
   console.log(iterator);
 }
 ```

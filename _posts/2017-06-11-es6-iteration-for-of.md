@@ -447,11 +447,12 @@ console.log(f1, f2, f3); // 1 2 3
 이터러블을 통해 메모리를 효율적으로 사용하는 예제를 살펴보자.
 
 ```javascript
-// 원본 배열의 각 요소를 제곱한 배열 반환
+// 원본 배열의 각 요소의 제곱근 배열 반환
 const arr = [1, 2, 3];
-const result = arr.map(item => item * 2); // [2, 4, 6]
+const result = arr.map(Math.sqrt);
+// [ 1, 1.4142135623730951, 1.7320508075688772 ]
 
-for(const item of result) {
+for (const item of result) {
   console.log(item);
 }
 ```
@@ -459,20 +460,20 @@ for(const item of result) {
 Array.prototype.map 메소드는 원본 배열과 동일한 length를 갖는 배열을 생성한다. 따라서 메모리는 원본의 2배를 소비한다. 다음은 이터러블을 통해 Array.prototype.map 메소드와 동일한 결과를 얻을 수 있도록 작성한 예제이다.
 
 ```javascript
-// 전달받은 배열의 각 요소를 제곱한 이터러블을 반환
-function doubleMap(array) {
+// 전달받은 배열의 각 요소의 제곱근 이터러블 반환
+function map(array, fn) {
   let i = -1;
   return {
     [Symbol.iterator]() { return this; },
     next() {
       i++;
-      return { value: array[i] * 2, done: (i === array.length) };
+      return { value: fn(array[i]), done: (i === array.length) };
     }
   };
 }
 
 // Lazy evaluation(지연 평가)을 통해 데이터를 생성한다.
-for(const item of doubleMap([1, 2, 3])) {
+for (const item of map([1, 2, 3])) {
   console.log(item);
 }
 ```
@@ -481,12 +482,12 @@ for(const item of doubleMap([1, 2, 3])) {
 
 ```javascript
 // 더 간편하게 이터러블을 생성할 수 있는 제너레이터
-function* doubleMap(array) {
-  for(const item of array) yield item * 2;
+function* map(iterable, fn) {
+  for (const v of iterable) yield fn(v);
 }
 
-for (const iterator of doubleMap([1, 2, 3])) {
-  console.log(iterator);
+for (const v of map([1, 2, 3], Math.sqrt)) {
+  console.log(v);
 }
 ```
 

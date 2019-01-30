@@ -6,7 +6,7 @@ categories: es6
 section: es6
 seq: 6
 subseq: 12
-description: ES6에서 도입된 제너레이터(Generator)는 함수 블록을 한번에 실행하지 않고, 실행을 일시 중지했다가 필요한 시점에 다시 시작할 수 있는 함수이다. 제너레이터는 함수이지만 일반 함수와는 다른 독특한 움직임을 한다. 함수를 호출하면 함수 블록이 실행되지만, 제너레이터는 제너레이터 객체를 반환한다. 이 제너레이터 객체는 순회 가능한(iterable)한 값이다. 즉, 제너레이터는 순회 가능한(iterable)한 값을 생성하는(gererate) 함수이다. 제너레이터는 이터러블의 구현과 비동기 함수의 호출 차단 등에 유용하다.
+description: ES6에서 도입된 제너레이터(Generator) 함수는 이터러블을 생성하는 함수이다. 제너레이터 함수를 사용하면 이터레이션 프로토콜을 준수해 이터러블을 생성하는 방식보다 간편하게 이터러블을 구현할 수 있다. 또한 제너레이터 함수는 비동기 처리에 유용하게 사용된다.
 ---
 
 * TOC
@@ -15,242 +15,340 @@ description: ES6에서 도입된 제너레이터(Generator)는 함수 블록을 
 ![es6 Logo](./img/es6.png)
 {: .w-650}
 
-ES6에서 도입된 제너레이터(Generator)는 함수이지만 일반 함수와는 다른 독특한 동작을 한다. 제너레이터는 일반 함수와 같이 함수의 코드 블록을 한 번에 실행하지 않고, 함수 코드 블록의 실행을 일시 중지했다가 필요한 시점에 다시 시작할 수 있는 특수한 함수이다.
+# 1. 제너레이터란?
 
-일반 함수를 호출하면 함수의 코드 블록이 실행되지만, 제너레이터는 제너레이터 객체를 반환한다. 이 제너레이터 객체는 순회 가능한(iterable) 값이다. 즉, 제너레이터는 순회 가능한(iterable)한 값을 생성하는(gererate) 함수이다.
-
-제너레이터는 이터러블의 구현과 비동기 함수의 호출 차단 등에 유용하다.
-
-# 1. 제너레이터 함수의 생성
-
-제너레이터 함수는 function* 키워드로 선언한다. 그리고 하나 이상의 yield 구문을 포함한다.
+ES6에서 도입된 제너레이터(Generator) 함수는 이터러블을 생성하는 함수이다. 제너레이터 함수를 사용하면 [이터레이션 프로토콜](./es6-iteration-for-of)을 준수해 이터러블을 생성하는 방식보다 간편하게 이터러블을 구현할 수 있다. 또한 제너레이터 함수는 비동기 처리에 유용하게 사용된다.
 
 ```javascript
-// 제너레이터 함수 선언: 함수 선언식
-function* genFunc() {
-  var index = 0;
-  while (index < 3) {
-    yield index++;
-  }
+// 이터레이션 프로토콜을 구현하여 무한 이터러블을 생성하는 함수
+const createInfinityByIteration = function () {
+  let i = 0; // 자유 변수
+  return {
+    [Symbol.iterator]() { return this; },
+    next() {
+      return { value: ++i };
+    }
+  };
+};
+
+for (const n of createInfinityByIteration()) {
+  if (n > 5) break;
+  console.log(n); // 1 2 3 4 5
+}
+
+// 무한 이터러블을 생성하는 제너레이터 함수
+function* createInfinityByGenerator() {
+  let i = 0;
+  while (true) { yield ++i; }
+}
+
+for (const n of createInfinityByGenerator()) {
+  if (n > 5) break;
+  console.log(n); // 1 2 3 4 5
 }
 ```
 
-제너레이터 함수는 일반함수와 같이 함수 선언식, 함수 표현식, 메소드로 선언할 수 있다.
+제너레이터 함수는 일반 함수와는 다른 독특한 동작을 한다. 제너레이터 함수는 일반 함수와 같이 함수의 코드 블록을 한 번에 실행하지 않고 함수 코드 블록의 실행을 일시 중지했다가 필요한 시점에 재시작할 수 있는 특수한 함수이다.
 
 ```javascript
-// 제너레이터 함수 선언: 함수 표현식
-const genFunc = function* () {
- ...
+function* counter() {
+  console.log('첫번째 호출');
+  yield 1;                  // 첫번째 호출 시에 이 지점까지 실행된다.
+  console.log('두번째 호출');
+  yield 2;                  // 두번째 호출 시에 이 지점까지 실행된다.
+  console.log('세번째 호출');  // 세번째 호출 시에 이 지점까지 실행된다.
+}
+
+const generatorObj = counter();
+
+console.log(generatorObj.next()); // 첫번째 호출 {value: 1, done: false}
+console.log(generatorObj.next()); // 두번째 호출 {value: 2, done: false}
+console.log(generatorObj.next()); // 세번째 호출 {value: undefined, done: true}
+```
+
+일반 함수를 호출하면 return 문으로 반환값을 리턴하지만 제너레이터 함수를 호출하면 제너레이터를 반환한다. 이 <strong>제너레이터는 이터러블(iterable)이면서 동시에 이터레이터(iterator)인 객체이다.</strong> 다시 말해 제너레이터 함수가 생성한 제너레이터는 Symbol.iterator 메소드를 소유한 이터러블이다. 그리고 제너레이터는 next 메소드를 소유하며 next 메소드를 호출하면 value, done 프로퍼티를 갖는 이터레이터 리절트 객체를 반환하는 이터레이터이다.
+
+```javascript
+// 제너레이터 함수 정의
+function* counter() {
+  for (const v of [1, 2, 3]) yield v;
+  // => yield* [1, 2, 3];
+}
+
+// 제너레이터 함수를 호출하면 제너레이터를 반환한다.
+let generatorObj = counter();
+
+// 제너레이터는 이터러블이다.
+console.log(Symbol.iterator in generatorObj); // true
+
+for (const i of generatorObj) {
+  console.log(i); // 1 2 3
+}
+
+generatorObj = counter();
+
+// 제너레이터는 이터레이터이다.
+console.log('next' in generatorObj); // true
+
+console.log(generatorObj.next()); // {value: 1, done: false}
+console.log(generatorObj.next()); // {value: 2, done: false}
+console.log(generatorObj.next()); // {value: 3, done: false}
+console.log(generatorObj.next()); // {value: undefined, done: true}
+```
+
+# 2. 제너레이터 함수의 정의
+
+제너레이터 함수는 function* 키워드로 선언한다. 그리고 하나 이상의 yield 문을 포함한다.
+
+```javascript
+// 제너레이터 함수 선언문
+function* genDecFunc() {
+  yield 1;
+}
+
+let generatorObj = genDecFunc();
+
+// 제너레이터 함수 표현식
+const genExpFunc = function* () {
+  yield 1;
 };
+
+generatorObj = genExpFunc();
 
 // 제너레이터 메소드
 const obj = {
-  * generatorMethod() {
-    ···
+  * generatorObjMethod() {
+    yield 1;
   }
 };
+
+generatorObj = obj.generatorObjMethod();
 
 // 제너레이터 클래스 메소드
 class MyClass {
-  * generatorMethod() {
-    ···
+  * generatorClsMethod() {
+    yield 1;
   }
 }
+
+const myClass = new MyClass();
+generatorObj = myClass.generatorClsMethod();
 ```
 
-# 2. 제너레이터 함수의 호출
+# 3. 제너레이터 함수의 호출과 제너레이터 객체
 
-제너레이터 함수를 호출하면 함수 블록이 실행되는 것이 아니라, 제너레이터 객체를 반환한다.
+제너레이터 함수를 호출하면 제너레이터 함수의 코드 블록이 실행되는 것이 아니라 제너레이터 객체를 반환한다. 앞에서 살펴본 바와 같이 제너레이터 객체는 이터러블이며 동시에 이터레이터이다. 따라서 next 메소드를 호출하기 위해 Symbol.iterator 메소드로 이터레이터를 별도 생성할 필요가 없다. 아래 예제를 살펴보자.
 
 ```javascript
-// 제너레이터 함수 선언
-function* foo() {
-  yield 1;
-  yield 2;
-  yield 3;
-}
-
-// 제너레이터 함수 호출. 제너레이터 객체를 생성하고 반환한다.
-const generator = foo();
-
-for (const val of generator) {
-  console.log(val); // 1 2 3
-}
-```
-
-제너레이터 함수의 함수 블록을 실행하려면 제너레이터 함수가 생성한 제너레이터 객체의 next 메소드를 호출한다. yield 구문은 next 메소드를 일시 중지시킨다. return처럼 값을 반환할 수 있다.
-
-next 메소드가 처음으로 호출되면 yield 이전까지 실행하고 실행을 일시 중지한다. next 메소드가 호출되면 일시 중지된 코드를 다시 실행하고 yield를 만나면 또 다시 실행을 일시 중지한다.
-
-```
-next() -> yield -> next() ->  yield
-```
-
-이러한 흐름은 return을 만나거나 또는 함수의 마지막 라인까지 실행하여 해당 함수가 종료할 때까지 진행된다. 제너레이터 함수로 제너레이터 객체를 생성하여 보자.
-
-```javascript
-// 제너레이터 함수 선언
-function* genFunc() {
-  console.log('제너레이터 함수 시작');
-  yield 1;
-  console.log('제너레이터 함수 재시작');
-  yield 2;
-  console.log('제너레이터 함수 종료');
-}
-
-// 제너레이터 함수 호출. 제너레이터 객체를 생성하고 반환한다.
-const generator = genFunc();
-
-// 처음 실행
-console.log(generator.next());
-// 제너레이터 함수 시작
-// { value: 1, done: false }
-
-// 두번째 실행
-console.log(generator.next());
-// 제너레이터 함수 재시작
-// { value: 2, done: false }
-
-// 마지막 실행
-console.log(generator.next());
-// 제너레이터 함수 종료
-// { value: undefined, done: true }
-```
-
-제너레이터 객체는 기본적으로 next 메소드를 가지고 있다. **이는 제너레이터 객체가 이터레이터인 것을 의미한다.** 이터레이터의 next 메소드는 value, done 프로퍼티를 갖는 객체를 반환한다. value 프로퍼티는 yield 구문이 반환한 값이고 done 프로퍼티는 제너레이터 함수 내의 모든 yield 구문이 실행되었는지를 나타내는 boolean 타입의 값이다.
-
-이터레이터의 next 메소드와 다르게 제너레이터 객체의 next 메소드는 인자를 받을 수도 있다.
-
-```javascript
-function* foo(n) {
-  const x = yield n;       // x = 10
-  const y = yield (x + 1); // y = 20
-  const z = yield (y + 2); // z = 30
-  return x + y + z;
-}
-
-// 파라미터 n에 1을 할당하고 제너레이터 객체를 iterator에 할당
-const iterator = foo(1);
-
-console.log(iterator.next());
-// {value:1, done:false}
-
-console.log(iterator.next(10));
-// {value:11, done:false}
-
-console.log(iterator.next(20));
-// {value:22, done:false}
-
-console.log(iterator.next(30));
-// {value:60, done:true}
-```
-
-이때 yield는 대입문 변수에 값을 할당하지 않고, next 메소드의 인자가 대입문 변수에 할당된다.
-
-![generator-next](./img/generator-next.png)
-
-제너레이터 객체의 next 메소드
-{: .desc-img}
-
-<!--# 2. 제너레이터의 활용
-
-## 2.1 이터러블의 구현-->
-# 3. 이터러블의 구현
-
-제너레이터 함수를 호출하면 함수 블록이 실행되는 것이 아니라, 제너레이터 객체를 반환한다. 이 제너레이터 객체는 for-of 루프로 순회할 수 있으며 next 메소드를 가지고 있다. 즉, <strong>제너레이터 객체는 이터러블(iterable)임과 동시에 이터레이터(iterator)이다.</strong>
-
-```javascript
-// 제너레이터 함수
-function* foo() {
-  let index = 0;
-  while (index < 3) {
-    yield index++;
-  }
+// 제너레이터 함수 정의
+function* counter() {
+  console.log('Point 1');
+  yield 1;                // 첫번째 next 메소드 호출 시 여기까지 실행된다.
+  console.log('Point 2');
+  yield 2;                // 두번째 next 메소드 호출 시 여기까지 실행된다.
+  console.log('Point 3');
+  yield 3;                // 세번째 next 메소드 호출 시 여기까지 실행된다.
+  console.log('Point 4'); // 네번째 next 메소드 호출 시 여기까지 실행된다.
 }
 
 // 제너레이터 함수를 호출하면 제너레이터 객체를 반환한다.
-const generator = foo();
+// 제너레이터 객체는 이터러블이며 동시에 이터레이터이다.
+// 따라서 Symbol.iterator 메소드로 이터레이터를 별도 생성할 필요가 없다
+const generatorObj = counter();
 
-// 제너레이터 객체는 next 메소드를 갖는 이터레이터이다.
-console.log(generator.next());
-console.log(generator.next());
-console.log(generator.next());
+// 첫번째 next 메소드 호출: 첫번째 yield 문까지 실행되고 일시 중단된다.
+console.log(generatorObj.next());
+// Point 1
+// {value: 1, done: false}
 
-// 제너레이터 객체는 순회가능한 이터러블이다.
-for (const val of foo()) {
-  console.log(val); // 0 1 2
-}
+// 두번째 next 메소드 호출: 두번째 yield 문까지 실행되고 일시 중단된다.
+console.log(generatorObj.next());
+// Point 2
+// {value: 2, done: false}
+
+// 세번째 next 메소드 호출: 세번째 yield 문까지 실행되고 일시 중단된다.
+console.log(generatorObj.next());
+// Point 3
+// {value: 3, done: false}
+
+// 네번째 next 메소드 호출: 제너레이터 함수 내의 모든 yield 문이 실행되면 done 프로퍼티 값은 true가 된다.
+console.log(generatorObj.next());
+// Point 4
+// {value: undefined, done: true}
 ```
 
-제너레이터는 이터레이터이므로 제너레이터를 활용하여 커스텀 이터러블 객체를 생성할 수 있다.
+제너레이터 함수가 생성한 제너레이터 객체의 next 메소드를 호출하면 처음 만나는 yield 문까지 실행되고 일시 중단(suspend)된다. 또 다시 next 메소드를 호출하면 중단된 위치에서 다시 실행(resume)이 시작하여 다음 만나는 yield 문까지 실행되고 또 다시 일시 중단된다.
 
-이터레이션 프로토콜을 사용하여 피보나치 수열을 구현한 간단한 이터러블 객체를 만들어 보자.
-
-```javascript
-const fibonacci = {
-  [Symbol.iterator]() {
-    let [prev, curr] = [0, 1];
-    let step = 0;
-    const maxStep = 10;
-    return {
-      next() {
-        [prev, curr] = [curr, prev + curr];
-        return { value: curr, done: step++ >= maxStep };
-      }
-    };
-  }
-};
-
-for (const num of fibonacci) {
-  console.log(num);
-}
+```
+start -> generatorObj.next() -> yield 1 -> generatorObj.next() -> yield 2 -> ... -> end
 ```
 
-위와 같이 이터레이터를 생성하려면 [이터레이션 프로토콜](./es6-iteration-for-of#1-이터레이션-프로토콜iteration-protocol)을 준수해야 한다. 즉, Symbol.iterator를 프로퍼티 키로 사용한 메소드를 구현하여 이터러블 객체를 만들고 Symbol.iterator를 프로퍼티 키로 사용한 메소드가 value, done 프로퍼티를 갖는 객체를 반환하는 next 메소드를 갖는 객체를 반환해야 한다.
+next 메소드는 이터레이터 리절트 객체와 같이 value, done 프로퍼티를 갖는 객체를 반환한다. value 프로퍼티는 yield 문이 반환한 값이고 done 프로퍼티는 제너레이터 함수 내의 모든 yield 문이 실행되었는지를 나타내는 boolean 타입의 값이다. 마지막 yield 문까지 실행된 상태에서 next 메소드를 호출하면 done 프로퍼티 값은 true가 된다.
 
-이러한 이터레이션 프로토콜을 보다 간단하게 처리하기 위해 제너레이터를 활용할 수 있다. 제너레이터를 활용하여 피보나치 수열을 구현한 이터러블 객체를 만들어 보자.
+# 4. 제너레이터의 활용
+
+## 4.1 이터러블의 구현
+
+제너레이터 함수를 사용하면 [이터레이션 프로토콜](./es6-iteration-for-of)을 준수해 이터러블을 생성하는 방식보다 간편하게 이터러블을 구현할 수 있다. 이터레이션 프로토콜을 준수하여 무한 피보나치 수열을 생성하는 함수는 아래와 같다.
 
 ```javascript
-const fibonacci = {
-  * [Symbol.iterator]() {
-    let [prev, curr] = [0, 1];
-    const maxStep = 10;
+// 무한 이터러블을 생성하는 함수
+const infiniteFibonacci = (function () {
+  let [pre, cur] = [0, 1];
 
-    for (let i = 0; i < maxStep; i++) {
-      [prev, curr] = [curr, prev + curr];
-      yield curr;
+  return {
+    [Symbol.iterator]() { return this; },
+    next() {
+      [pre, cur] = [cur, pre + cur];
+      // done 프로퍼티를 생략한다.
+      return { value: cur };
     }
-  }
-};
+  };
+}());
 
-for (const num of fibonacci) {
+// infiniteFibonacci는 무한 이터러블이다.
+for (const num of infiniteFibonacci) {
+  if (num > 10000) break;
+  console.log(num); // 1 2 3 5 8...
+}
+```
+
+이터레이션 프로토콜을 보다 간단하게 처리하기 위해 제너레이터를 활용할 수 있다. 제너레이터를 활용하여 무한 피보나치 수열을 구현한 이터러블을 만들어 보자.
+
+```javascript
+// 무한 이터러블을 생성하는 제너레이터 함수
+const infiniteFibonacci = (function* () {
+  let [pre, cur] = [0, 1];
+
+  while (true) {
+    [pre, cur] = [cur, pre + cur];
+    yield cur;
+  }
+}());
+
+// infiniteFibonacci는 무한 이터러블이다.
+for (const num of infiniteFibonacci) {
+  if (num > 10000) break;
   console.log(num);
 }
 ```
 
-\* [Symbol.iterator\]\(\)는 이터레이터를 제너레이터로 구현한 것이다. 따라서 fibonacci 객체는 이터레이터를 구현한 이터러블 객체이다.
-
-이처럼 제너레이터로 이터레이터를 구현하면 value, done 프로퍼티를 갖는 객체를 반환하는 next 메소드를 별도로 구현하지 않아도 value, done 프로퍼티를 갖는 객체를 반환하기 때문에 구현도 간단해지며 가독성도 높아진다.
-
-위 예제는 제너레이터를 사용하여 이터레이터를 구현한 것이다. 제너레이터는 그 자신이 이터러블인 특성을 이용하여 직접 이터러블 객체를 구현할 수 있다. 이를 활용하여 위 예제를 수정해 보자.
+제너레이터 함수에 최대값을 인수를 전달해보자.
 
 ```javascript
-// 제너레이터 객체는 이터러블이다.
-const fibonacci = function* (maxStep) {
+// 무한 이터러블을 생성하는 제너레이터 함수
+const createInfiniteFibByGen = function* (max) {
   let [prev, curr] = [0, 1];
 
-  for (let i = 0; i < maxStep; i++) {
+  while (true) {
     [prev, curr] = [curr, prev + curr];
+    if (curr >= max) return; // 제너레이터 함수 종료
     yield curr;
   }
 };
 
-for (const num of fibonacci(10)) {
+for (const num of createInfiniteFibByGen(10000)) {
   console.log(num);
 }
 ```
 
-<!--## 2.2 비동기 처리-->
+이터레이터의 next 메소드와 다르게 제너레이터 객체의 next 메소드에는 인수를 전달할 수도 있다. 이를 통해 제너레이터 객체에 데이터를 전달할 수 있다.
+
+```javascript
+function* gen(n) {
+  let res;
+  res = yield n;    // n: 0 ⟸ gen 함수에 전달한 인수
+
+  console.log(res); // res: 1 ⟸ 두번째 next 호출 시 전달한 데이터
+  res = yield res;
+
+  console.log(res); // res: 2 ⟸ 세번째 next 호출 시 전달한 데이터
+  res = yield res;
+
+  console.log(res); // res: 3 ⟸ 네번째 next 호출 시 전달한 데이터
+  return res;
+}
+const generatorObj = gen(0);
+
+console.log(generatorObj.next());  // 제너레이터 함수 시작
+console.log(generatorObj.next(1)); // 제너레이터 객체에 1 전달
+console.log(generatorObj.next(2)); // 제너레이터 객체에 2 전달
+console.log(generatorObj.next(3)); // 제너레이터 객체에 3 전달
+/*
+{ value: 0, done: false }
+{ value: 1, done: false }
+{ value: 2, done: false }
+{ value: 3, done: true }
+*/
+```
+
+이터레이터의 next 메소드는 이터러블의 데이터를 꺼내 온다. 이에 반해 제너레이터의 next 메소드에 인수를 전달하면 제너레이터 객체에 데이터를 밀어 넣는다. 제너레이터의 이런 특성은 동시성 프로그래밍을 가능하게 한다.
+
+## 4.2 비동기 처리
+
+제너레이터를 사용해 비동기 처리를 동기 처리처럼 구현할 수 있다. 다시 말해 비동기 처리 함수가 처리 결과를 반환하도록 구현할 수 있다.
+
+```javascript
+const fetch = require('node-fetch');
+
+function getUser(genObj, username) {
+  fetch(`https://api.github.com/users/${username}`)
+    .then(res => res.json())
+    // ① 제너레이터 객체에 비동기 처리 결과를 전달한다.
+    .then(user => genObj.next(user.name));
+}
+
+// 제너레이터 객체 생성
+const g = (function* () {
+  let user;
+  // ② 비동기 처리 함수가 결과를 반환한다.
+  // 비동기 처리의 순서가 보장된다.
+  user = yield getUser(g, 'jeresig');
+  console.log(user); // John Resig
+
+  user = yield getUser(g, 'ahejlsberg');
+  console.log(user); // Anders Hejlsberg
+
+  user = yield getUser(g, 'ungmo2');
+  console.log(user); // Ungmo Lee
+}());
+
+// 제너레이터 함수 시작
+g.next();
+```
+
+① 비동기 처리가 완료되면 next 메소드를 통해 제너레이터 객체에 비동기 처리 결과를 전달한다.
+
+② 제너레이터 객체에 전달된 비동기 처리 결과는 user 변수에 할당된다.
+
+제너레이터을 통해 비동기 처리를 동기 처리처럼 구현할 수 있으나 코드는 장황해졌다. 따라서 좀 더 간편하게 비동기 처리를 구현할 수 있는 async/awit가 ES7에서 도입되었다.
+
+위 예제를 async/awit 구현해 보자.
+
+```javascript
+const fetch = require('node-fetch');
+
+// Promise를 반환하는 함수 정의
+function getUser(username) {
+  return fetch(`https://api.github.com/users/${username}`)
+    .then(res => res.json())
+    .then(user => user.name);
+}
+
+async function getUserAll() {
+  let user;
+  user = await getUser('jeresig');
+  console.log(user);
+
+  user = await getUser('ahejlsberg');
+  console.log(user);
+
+  user = await getUser('ungmo2');
+  console.log(user);
+}
+
+getUserAll();
+```
 
 # Reference
 
@@ -259,6 +357,4 @@ for (const num of fibonacci(10)) {
 * [ES6 In Depth: 제너레이터(Generator)](hhttp://hacks.mozilla.or.kr/2015/08/es6-in-depth-generators/)
 
 * [이터레이션 프로토콜(iteration protocol)과 for-of 루프](./es6-iteration-for-of)
-
-* [Generators](http://exploringjs.com/es6/ch_generators.html)
 

@@ -1,29 +1,32 @@
 .logo {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  font-size: 10px;
+  letter-spacing: -1.5px;
+  transform: translate3D(0, -50%, 0);
   // @include replace(url("/images/marksheet-logo.png"), 230px, 48px);
   // font-family: 'Baloo Tamma', cursive;
-  font-family: 'Righteous', cursive;
-  font-weight: 400;
-	font-size: 1.8em;
-	color: white;
+  // font-family: 'Righteous', cursive;
+  // font-weight: 400;
+	// font-size: 1.8em;
+	// color: white;
   // text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+  // float: left;
+  // left: 10px;
+  // position: absolute;
+  // top: 15px;
+  // transition: text-shadow 0.5s ease;
+  // &:visited {
+  //   color: white;
+  // }
 
-  float: left;
-  left: 10px;
-  position: absolute;
-  top: 15px;
+  // &:hover {
+  //   color: white;
+  //   text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+  // }
 
-  transition: text-shadow 0.5s ease;
-
-  &:visited {
-    color: white;
-  }
-
-  &:hover {
-    color: white;
-    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
-  }
-
-  @include mobile {
-    font-size: 1.5em;
-  }
+  // @include mobile {
+  //   font-size: 1.5em;
+  // }
 }

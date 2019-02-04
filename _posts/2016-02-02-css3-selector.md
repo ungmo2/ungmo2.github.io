@@ -866,7 +866,51 @@ n은 0부터 시작하는 정수이다.
 </html>
 ```
 
+<div class="result" style="height: 500px"></div>
+
+## 7.5 정합성 체크 셀렉터(validity pseudo-class)
+
+
+| pseudo-class          | Description                          |
+|:----------------------|:-------------------------------------|
+| :valid(셀렉터)          | 정합성 검증이 성공한 input 요소 또는 form 요소를 선택한다.
+| :invalid(셀렉터)        | 정합성 검증이 실패한 input 요소 또는 form 요소를 선택한다.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    input[type="text"]:valid {
+      background-color: greenyellow;
+    }
+
+    input[type="text"]:invalid {
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <label>입력값이 반드시 필요
+    <input type="text" required>
+  </label>
+  <br>
+  <label>특수문자를 포함하지 않는 4자리 문자 또는 숫자
+    <input type="text" value="ab1!"
+      pattern="[a-zA-Z0-9]{4}" required>
+  </label>
+  <br>
+  <label>핸드폰 번호 형식
+    <input type="text" value="010-1111-2222"
+      pattern="^\d{3}-\d{3,4}-\d{4}$" required>
+  </label>
+</body>
+</html>
+```
+
 <div class="result"></div>
+
+- [Browser Support](https://caniuse.com/#feat=form-validation)
 
 # 8. 가상 요소 셀렉터 (Pseudo-Element Selector)
 

@@ -284,14 +284,14 @@ console.log(generatorObj.next(3)); // 제너레이터 객체에 3 전달
 
 이터레이터의 next 메소드는 이터러블의 데이터를 꺼내 온다. 이에 반해 제너레이터의 next 메소드에 인수를 전달하면 제너레이터 객체에 데이터를 밀어 넣는다. 제너레이터의 이런 특성은 동시성 프로그래밍을 가능하게 한다.
 
-## 4.3 배열 메소드와의 성능 비교
+<!-- ## 4.3 배열 고차함수와의 성능 비교
 
-[무한 이터러블과 Lazy evaluation(지연 평가)](./es6-iteration-for-of#34-무한-이터러블과-lazy-evaluation지연-평가)에서 살펴 보았듯이 Array.prototype.forEach, Array.prototype.map, Array.prototype.filter 등과 같은 고차함수는 for 문과는 달리 break 문을 사용할 수 없어서 불필요한 순회를 하는 경우가 있고, 처리 결과를 배열로 반환하기 때문에 이터러블은 고차함수보다 빠르고 메모리를 효율적으로 사용한다.
+[무한 이터러블과 Lazy evaluation(지연 평가)](./es6-iteration-for-of#34-무한-이터러블과-lazy-evaluation지연-평가)에서 살펴 보았듯이 Array.prototype.forEach, Array.prototype.map, Array.prototype.filter 등과 같은 배열 고차함수는 for 문과는 달리 break 문을 사용할 수 없어서 불필요한 순회를 하는 경우가 있고, 처리 결과를 배열로 반환한다. 이터러블은 지연 평가를 통해 데이터를 생성하기 때문에 배열 고차함수보다 빠르고 메모리를 효율적으로 사용한다.
 
 이는 제러네이터 함수로 이터러블을 생성할 때도 마찬가지다. 아래 예제는 id와 name 프로퍼티를 갖는 user 객체들의 배열인 users에서 user 객체를 Array.prototype.filter과 이터러블을 통해 필터링하는 경우, 각각 퍼포먼스를 측정한 것이다. 약 25배 정도의 성능 차이를 보인다. 대상 배열이 크면 클수록 격차는 더 벌어진다.
 
 ```javascript
-// 퍼포먼스 테스트를 위해 1,000,000개의 요소를 갖는 배열을 생성
+// 퍼포먼스 테스트를 위해 id로 sort되어 있는 1,000,000개의 요소를 갖는 배열을 생성
 const users = [];
 for (let i = 0; i < 1000000; i++) {
   users.push({ id: i + 1, name: String.fromCharCode(65 + i) });
@@ -304,18 +304,18 @@ console.timeEnd('Array#filter'); // 약 25 ~ 30ms
 
 // Generator를 사용한 경우의 퍼포먼스
 console.time('Generator');
-function* filter(array, fn) {
-  for (const item of array) {
+function* filter(iterable, fn) {
+  for (const item of iterable) {
     if (fn(item)) yield item;
-    else return;
+    else return; // 필터링 조건에 맞지 않으면 이터러블 순회를 멈추고 종료
   }
 }
 
 console.log([...filter(users, user => user.id <= 3)]);
 console.timeEnd('Generator'); // 약 1ms
-```
+``` -->
 
-## 4.4 비동기 처리
+## 4.3 비동기 처리
 
 제너레이터를 사용해 비동기 처리를 동기 처리처럼 구현할 수 있다. 다시 말해 비동기 처리 함수가 처리 결과를 반환하도록 구현할 수 있다.
 

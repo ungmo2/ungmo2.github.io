@@ -478,17 +478,55 @@ for (const item of map([1, 2, 3])) {
 }
 ```
 
-이터러블을 통해 메모리는 효율적으로 사용할 수 있겠으나 코드는 장황해졌다. 따라서 좀 더 간편하게 이터러블을 생성할 수 있는 제너레이터(generator)가 등장했다.
+Array.prototype.forEach, Array.prototype.map, Array.prototype.filter 등과 같은 고차함수는 for 문과는 달리 break 문을 사용할 수 없다. 따라서 불필요한 순회를 하는 경우가 있다. 예를 들어 id와 name 프로퍼티를 갖는 user 객체들의 배열인 users에서 id로 user 객체를 Array.prototype.filter과 이터러블을 통해 필터링하는 경우, 각각 퍼포먼스를 측정해 보자.
+
+```javascript
+// 퍼포먼스 테스트를 위해 1,000,000개의 요소를 갖는 배열을 생성
+const users = [];
+for (let i = 0; i < 1000000; i++) {
+  users.push({ id: i + 1, name: String.fromCharCode(65 + i) });
+}
+
+// Array.prototype.filetr를 사용한 경우의 퍼포먼스
+console.time('Array#filter');
+console.log(users.filter(user => user.id <= 3));
+console.timeEnd('Array#filter'); // 약 25 ~ 30ms
+
+// 이터러블을 사용한 경우의 퍼포먼스
+console.time('Iterable');
+function filter(array, fn) {
+  let i = -1;
+  return {
+    [Symbol.iterator]() { return this; },
+    next() {
+      i++;
+      return { value: array[i], done: !fn(array[i]) };
+    }
+  };
+}
+
+console.log([...filter(users, user => user.id <= 3)]);
+console.timeEnd('Iterable'); // 약 1ms
+```
+
+이터러블이 Array.prototype.filter보다 약 25배 정도 빠른 것을 알 수 있다. 대상 배열이 크면 클수록 격차는 더 벌어진다.
+
+이터러블을 통해 메모리는 효율적으로 사용할 수 있고 퍼퍼먼스도 향상되었으나 코드는 장황해졌다. 따라서 좀 더 간편하게 이터러블을 생성할 수 있는 제너레이터(generator)가 등장했다.
 
 ```javascript
 // 더 간편하게 이터러블을 생성할 수 있는 제너레이터
 function* map(iterable, fn) {
-  for (const v of iterable) yield fn(v);
+  for (const item of iterable) yield fn(item);
 }
+console.log([...map([1, 2, 3], Math.sqrt)]);
 
-for (const v of map([1, 2, 3], Math.sqrt)) {
-  console.log(v);
+function* filter(array, fn) {
+  for (const item of array) {
+    if (fn(item)) yield item;
+    else return;
+  }
 }
+console.log([...filter([1, 2, 3], item => item <= 2)]);
 ```
 
 다음 장에서 제너레이터에 대해 살펴보도록 하자.

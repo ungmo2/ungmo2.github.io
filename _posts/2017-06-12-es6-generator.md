@@ -315,7 +315,7 @@ console.log([...filter(users, user => user.id <= 3)]);
 console.timeEnd('Generator'); // 약 1ms
 ``` -->
 
-## 4.3 비동기 처리
+## 4.2 비동기 처리
 
 제너레이터를 사용해 비동기 처리를 동기 처리처럼 구현할 수 있다. 다시 말해 비동기 처리 함수가 처리 결과를 반환하도록 구현할 수 있다.
 

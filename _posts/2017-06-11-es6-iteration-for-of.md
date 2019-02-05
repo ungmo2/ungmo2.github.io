@@ -442,9 +442,9 @@ console.log(f1, f2, f3); // 1 2 3
 
 "[이터레이션 프로토콜의 필요성](./es6-iteration-for-of#4-이터레이션-프로토콜의-필요성)"에서 살펴보았듯이 이터러블은 데이터 공급자(Data provider)의 역할을 한다. 배열, 문자열, Map, Set 등의 빌트인 이터러블은 데이터를 모두 메모리에 확보한 다음 동작한다. 하지만 이터러블은 **[Lazy evaluation(지연 평가)](https://ko.wikipedia.org/wiki/느긋한_계산법)**를 통해 값을 생성한다. Lazy evaluation은 평가 결과가 필요할 때까지 평가를 늦추는 기법이다. 위 예제를 통해 Lazy evaluation에 대해 좀 더 자세히 살펴보자.
 
-위 예제의 fibonacciFunc 함수는 무한 이터러블을 생성한다. 하지만 fibonacciFunc 함수가 생성한 무한 이터러블은 데이터를 공급하는 메커니즘을 구현한 것으로 데이터 소비자인 for...of 문이나 디스트럭처링 할당이 실행되기 이전까지 데이터를 생성하지는 않는다. for...of 문의 경우, 이터러블을 순회할 때 내부에서 이터레이터의 next 메소드를 호출하는데 바로 이때 데이터가 생성된다. next 메소드가 호출되기 이전까지는 데이터를 생성하지 않는다. 즉, 데이터가 필요할 때까지 데이터의 생성을 지연하다가 데이터가 필요한 순간 데이터를 생성한다. 이를 통해 메모리를 효율적으로 사용할 수 있다.
+위 예제의 fibonacciFunc 함수는 무한 이터러블을 생성한다. 하지만 fibonacciFunc 함수가 생성한 무한 이터러블은 데이터를 공급하는 메커니즘을 구현한 것으로 데이터 소비자인 for...of 문이나 디스트럭처링 할당이 실행되기 이전까지 데이터를 생성하지는 않는다. for...of 문의 경우, 이터러블을 순회할 때 내부에서 이터레이터의 next 메소드를 호출하는데 바로 이때 데이터가 생성된다. next 메소드가 호출되기 이전까지는 데이터를 생성하지 않는다. 즉, 데이터가 필요할 때까지 데이터의 생성을 지연하다가 데이터가 필요한 순간 데이터를 생성한다.
 
-이터러블을 통해 메모리를 효율적으로 사용하는 예제를 살펴보자.
+<!-- 이를 통해 메모리를 효율적으로 사용할 수 있다.이터러블을 통해 메모리를 효율적으로 사용하는 예제를 살펴보자.
 
 ```javascript
 // 원본 배열의 각 요소의 제곱근 배열 반환
@@ -473,15 +473,15 @@ function map(array, fn) {
 }
 
 // Lazy evaluation(지연 평가)을 통해 데이터를 생성한다.
-for (const item of map([1, 2, 3])) {
+for (const item of map([1, 2, 3], Math.sqrt)) {
   console.log(item);
 }
-```
+``` -->
 
-Array.prototype.forEach, Array.prototype.map, Array.prototype.filter 등과 같은 고차함수는 for 문과는 달리 break 문을 사용할 수 없다. 따라서 불필요한 순회를 하는 경우가 있다. 예를 들어 id와 name 프로퍼티를 갖는 user 객체들의 배열인 users에서 id로 user 객체를 Array.prototype.filter과 이터러블을 통해 필터링하는 경우, 각각 퍼포먼스를 측정해 보자.
+<!-- Array.prototype.forEach, Array.prototype.map, Array.prototype.filter 등과 같은 고차함수는 for 문과는 달리 break 문을 사용할 수 없다. 따라서 불필요한 순회를 하는 경우가 있다. 예를 들어 id와 name 프로퍼티를 갖는 user 객체들의 배열인 users에서 id로 user 객체를 Array.prototype.filter과 이터러블을 통해 필터링하는 경우, 각각 퍼포먼스를 측정해 보자.
 
 ```javascript
-// 퍼포먼스 테스트를 위해 1,000,000개의 요소를 갖는 배열을 생성
+// 퍼포먼스 테스트를 위해 id로 sort되어 있는 1,000,000개의 요소를 갖는 배열을 생성
 const users = [];
 for (let i = 0; i < 1000000; i++) {
   users.push({ id: i + 1, name: String.fromCharCode(65 + i) });
@@ -509,9 +509,9 @@ console.log([...filter(users, user => user.id <= 3)]);
 console.timeEnd('Iterable'); // 약 1ms
 ```
 
-이터러블이 Array.prototype.filter보다 약 25배 정도 빠른 것을 알 수 있다. 대상 배열이 크면 클수록 격차는 더 벌어진다.
+이터러블이 Array.prototype.filter보다 약 25배 정도 빠른 것을 알 수 있다. 대상 배열이 크면 클수록 격차는 더 벌어진다. -->
 
-이터러블을 통해 메모리는 효율적으로 사용할 수 있고 퍼퍼먼스도 향상되었으나 코드는 장황해졌다. 따라서 좀 더 간편하게 이터러블을 생성할 수 있는 제너레이터(generator)가 등장했다.
+<!-- 이터러블을 통해 메모리는 효율적으로 사용할 수 있었으나 코드는 장황해졌다. 따라서 좀 더 간편하게 이터러블을 생성할 수 있는 제너레이터(generator)가 등장했다.
 
 ```javascript
 // 더 간편하게 이터러블을 생성할 수 있는 제너레이터
@@ -519,17 +519,9 @@ function* map(iterable, fn) {
   for (const item of iterable) yield fn(item);
 }
 console.log([...map([1, 2, 3], Math.sqrt)]);
-
-function* filter(array, fn) {
-  for (const item of array) {
-    if (fn(item)) yield item;
-    else return;
-  }
-}
-console.log([...filter([1, 2, 3], item => item <= 2)]);
 ```
 
-다음 장에서 제너레이터에 대해 살펴보도록 하자.
+다음 장에서 제너레이터에 대해 살펴보도록 하자. -->
 
 # Reference
 

@@ -100,3 +100,9 @@ $ npm start
 - [json-server](https://github.com/typicode/json-server)
 
 - [Postman](https://www.getpostman.com/)
+
+<script>
+  fetch('https://mock-server-lebuyxyalo.now.sh/todos/1')
+  .then(res => res.json())
+  .then(console.log);
+</script>

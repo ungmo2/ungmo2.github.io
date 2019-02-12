@@ -34,7 +34,7 @@ npm
 : 6.7.0
 
 Babel
-: - @babel/cli : 7.23.0
+: - @babel/cli : 7.2.3
 - @babel/core : 7.2.2
 - @babel/preset-env : 7.3.1
 - @babel/polyfill : 7.2.5

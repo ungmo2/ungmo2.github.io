@@ -12,11 +12,11 @@ description: Express는 Node.js 환경에서 동작하는 Web application Framew
 * TOC
 {:toc}
 
-[Express](http://expressjs.com/)는 Node.js 환경에서 동작하는 Web application Framework이다. Express는 Web Application 구성에 필요한 Routing, View Helper, Session([영속적 Session관리](http://poiemaweb.com/express/Express-Session-handling/)를 위해서는 [Redis](http://www.redis.io/)등의 Data store가 필요하다)등의 기능을 제공한다.
+[Express](http://expressjs.com/)는 Node.js 환경에서 동작하는 웹 애플리케이션 프레임워크이다. Express는 웹 애플리케이션 구성에 필요한 Routing, View Helper, Session([영속적 Session관리](http://poiemaweb.com/express/Express-Session-handling/)를 위해서는 [Redis](http://www.redis.io/)등의 Data store가 필요하다)등의 기능을 제공한다.
 
-Express 4.16.2 버전을 기준으로 한다.
+Express 4.16.4 버전을 기준으로 한다.
 
-# 1. Install
+# 1. Express 설치
 
 [Node.js](https://nodejs.org/)가 install되어 있음을 전제로 한다.
 
@@ -28,9 +28,9 @@ $ npm init -y
 $ npm install express
 ```
 
-# 2. Hello world example
+# 2. Hello world 만들기
 
-프로젝트 폴더(myapp)에 app.js를 생성한다.
+프로젝트 폴더(myapp)에 아래와 같이 app.js를 생성한다.
 
 ```javascript
 const express = require('express');
@@ -41,13 +41,14 @@ app.get('/', (req, res) => res.send('Hello World!'));
 app.listen(3000, () => console.log('Example app listening on port 3000!'));
 ```
 
-터미널에서 다음 명령을 실행하여 application을 구동시킨다.
+터미널에서 다음 명령을 실행하여 애플리케이션을 구동시킨다.
 
 ```bash
 $ node app.js
+Example app listening on port 3000!
 ```
 
-서버는 port 3000에서 사용자의 접속을 대기하고 있다. 클라언트가 root URL(http://localhost:3000/)로 요청를 보내면 서버는 'Hello World!'로 응답할 것이다.
+서버는 port 3000에서 사용자의 접속을 대기하고 있다. 클라이언트가 GET 방식으로 루트 URL(http://localhost:3000/)에 요청을 보내면 서버는 'Hello World!'로 응답할 것이다.
 
 # 3. Routing
 

@@ -12,104 +12,118 @@ description: 자바스크립트는 HTML, CSS와 함께 웹을 구성하는 요�
 * TOC
 {:toc}
 
-# 1. Introduction
+# 1. 자바스크립트의 탄생
 
-* 자바스크립트는 HTML, CSS와 함께 웹을 구성하는 요소중 하나로 <strong>웹브라우저에서 동작하는 유일한 언어</strong>이다. 1995년 브렌던 아이크(Brendan Eich)가 [Netscape Navigator 2](https://en.wikipedia.org/wiki/Netscape_Navigator_2)를 위하여 개발한 웹페이지에 포함되는 [스크립트 언어](https://ko.wikipedia.org/wiki/%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8_%EC%96%B8%EC%96%B4)이다.
+1995년 당시 약 90%의 시장 점유율로 웹 브라우저 시장을 지배하고 있던 [넷스케이프 커뮤니케이션즈(Netscape comunications)](https://ko.wikipedia.org/wiki/넷스케이프)는 정적인 HTML을 동적으로 표현하기 위해 경량의 프로그래밍 언어를 도입하기로 결정했다. 그래서 탄생한 것이 브렌던 아이크(Brendan Eich)가 개발한 [스크립트 언어](https://ko.wikipedia.org/wiki/스크립트_언어)인 자바스크립트이다.
+
+자바스크립트는 1996년 3월 넷스케이프 커뮤니케이션즈의 웹 브라우저인 [Netscape Navigator 2](https://en.wikipedia.org/wiki/Netscape_Navigator_2)에 탑재되었고 "Mocha"로 명명되었다. 그해 9월 "LiveScript"로 이름이 변경되었고, 12월 "JavaScript"로 최종 명명되었다.
 
 ![Netscape Navigator 2](/img/navigator-2.png)
 
 Netscape Navigator 2
 {: .desc-img}
 
-* 초창기 자바스크립트는 웹페이지 제작에 있어서 보조적인 기능을 수행하기 위해 한정적인 용도로 주로 사용되었다. 이 시기에 대부분 로직은 주로 웹서버에서 실행되었고 브라우저(클라이언트)는 서버로 부터 전달받은 HTML과 CSS를 렌더링하는 수준이었다. 하지만 웹이 더욱 발전하면서 과거 웹서버에서 수행되던 많은 역할들이 클라이언트로 이동하였는데 이것은 자바스크립트의 발전 덕분이다. 특히 [jQuery](https://jquery.com/)의 등장으로 다소 번거롭고 논란이 있던 DOM(Document Object Model)를 보다 쉽게 제어할 수 있게 되었다. 이는 정적인 웹페이지에 역동성을 부여하기 위한 목적으로 자바스크립트의 위상을 더욱 높이는 계기가 되었다.
+이렇게 탄생한 자바스크립트는 현재 모든 브라우저의 표준 프로그래밍 언어가 되었다. 그러나 자바스크립트가 순탄하게 성장했던 것은 아니다. 자바스크립트가 탄생한 뒤 얼마 지나지 않아 자바스크립트의 파생 버전인 JScript가 출시되어 파편화의 길을 걷게 된다.
 
-* 자바스크립트는 별도의 컴파일 작업을 개발자가 수행하지 않는 [인터프리터](https://ko.wikipedia.org/wiki/인터프리터) 언어(Interpreter language)이다. 대부분의 모던 자바스크립트 엔진(Chrome의 V8, FireFox의 Spidermonkey, Safari의 JavaScriptCore, Microsoft Edge의 Chakra 등)은 인터프리터와 컴파일러의 장점을 결합하여 비교적 느린 인터프리터의 단점을 해결했다. 인터프리터는 소스코드를 즉시 실행하고 컴파일러는 빠르게 동작하는 머신 코드를 생성하고 최적화한다. 이를 통해 컴파일 단계에서 추가적인 시간이 필요함에도 불구하고 보다 빠른 코드의 실행이 가능하다.
+# 2. 자바스크립트의 파편화와 표준화
 
-<!-- http://devtimothy.tistory.com/m/94 -->
-<!-- 텍스트 기반 소스 코드를 파싱하여 중간 언어(IR, intermediate representation)인 바이트 코드로 변환한다. 그런 다음 중간 언어인 바이트 코드를 native code로 컴파일하여 동작을 수행한다. -->
-<!-- https://meetup.toast.com/posts/77 -->
+1996년 8월, 마이크로소프트는 자바스크립트의 파생 버전인 "JScript"를 Internet Explorer 3.0에 탑재하였다. 그런데 문제는 JScript와 자바스크립트가 표준화되지 못하고 적당히 호환되었다는 것이다. 즉, 자사 브라우저의 시장 점유율을 점유하기 위해 자사 브라우저에서만 동작하는 기능을 경쟁적으로 추가하기 시작했다는 것이다. 이로 인해 브라우저에 따라 웹 페이지가 정상 동작하지 않는 **크로스 브라우징 이슈**가 발생하기 시작했고 모든 브라우저에서 동작하는 웹 페이지를 개발하는 것은 무척 어려워졌다.
 
-* 자바스크립트는 다른 언어에서 많은 영향을 받았다. C, Java와는 기본 문법이 유사하다. 그리고 Self에서는 프로토타입 기반 상속을, Scheme에서는 일급 함수의 개념을 차용했다.
+이에 자바스크립트의 파편화를 방지하고 모든 브라우저에서 동일하게 동작하는 표준화된 자바스크립트에 대한 필요성이 제기되기 시작했다. 이를 위해 1996년 11월, 넷스케이프 커뮤니케이션즈는 컴퓨터 시스템의 표준을 관리하는 비영리 표준화 기구인 [ECMA 인터내셔널](https://www.ecma-international.org)에 자바스크립트의 표준화를 요청하였다.
 
-* 자바스크립트는 [명령형(imperative)](https://ko.wikipedia.org/wiki/명령형_프로그래밍), [함수형(functional)](https://ko.wikipedia.org/wiki/함수형_프로그래밍), [프로토타입 기반(prototype-based) 객체지향 프로그래밍](https://ko.wikipedia.org/wiki/프로토타입_기반_프로그래밍)을 지원하는 [멀티-패러다임 프로그래밍 언어](https://ko.wikipedia.org/wiki/다중_패러다임_프로그래밍_언어)다. 비록 다른 객체지향 언어들과의 차이점에 대한 논쟁들이 있긴 하지만, 자바스크립트는 강력한 객체지향 프로그래밍 능력을 지니고 있다. 간혹 클래스(ES6에서 새롭게 도입되었다), 상속, 정보 은닉을 위한 키워드 private가 없어서 객체지향 언어가 아니라고 오해([자바스크립트는 가장 많은 오해를 받는 언어이다.](http://javascript.crockford.com/javascript.html))하는 경우도 있지만 자바스크립트는 클래스 기반 객체지향 언어보다 효율적이면서 강력한 <strong>프로토타입 기반의 객체지향 언어</strong>이다.
+1997년 7월, ECMA-262라 불리는 표준화된 자바스크립트 초판(ECMAScript 6)의 명세(specification)가 완성되었고 상표권 문제로 자바스크립트는 <strong>ECMAScript</strong>로 명명되었다. 이후 1999년 ECMAScript 3(ES3)이 공개되었고 10년 만인 2009년 출시된 ECMAScript 5(ES5)는 HTML5와 함께 출현한 표준안이다.
 
-* 자바스크립트는 다른 언어에서 많은 영향을 받았다. C, Java와는 기본 문법이 유사하다. 그리고 Self에서는 프로토타입 기반 상속을, Scheme에서는 일급 함수의 개념을 차용했다.
+2015년 ECMAScript 6(ECMAScript 2015)가 공개되었고 [let/const 키워드](./es6-block-scope), [module system](./es6-module), [Arrow Function](./es6-arrow-function), [class](./es6-class) 등이 추가되었다. ES5에서 ES6로의 버전업은 범용 프로그래밍 언어로서 갖추어야 할 기능 들을 대거 도입하는 큰 변화가 있었다. ES6 이후의 버전업은 작은 기능의 추가 레벨로 매년 공개할 것으로 예고되었다. ECMAScript 버전별 특징은 아래와 같다.
 
-* 구글의 [Chrome V8 자바스크립트 엔진](https://developers.google.com/v8/)으로 빌드된 자바스크립트 [런타임](https://ko.wikipedia.org/wiki/런타임) 환경(Runtime Environment)인 <strong>Node.js</strong>의 등장으로 자바스크립트는 웹 브라우저를 벗어나 서버 사이드 애플리케이션 개발에서도 사용되는 범용 개발 언어가 되었다. 웹 브라우저에서만 동작하는 반쪽짜리 언어 취급을 받던 자바스크립트는 프런트엔드 영역은 물론 백엔드 영역까지 아우르는 웹 프로그래밍 언어의 표준으로 자리잡고 있다.
+| Vesion                | 출시년도   | 기능
+|:----------------------|:---------|:----------------
+| ES1                   | 1997     | 초판
+| ES2                   | 1998     | ISO/IEC 16262 국제 표준과 동일한 규격을 적용
+| ES3                   | 1999     | 정규 표현식, try...catch 예외 처리
+| ES5                   | 2009     | HTML5와 함께 출현한 표준안. JSON, strict mode, 접근자 프로퍼티(getter, setter), 향상된 배열 조작 기능(forEach, map, filter, reduce, some, every)
+| ES6 (ECMAScript 2015) | 2015     | let, const, class, 화살표 함수, 템플릿 리터럴, 디스트럭처링 할당, spread 연산자, rest 파라미터, Symbol, Promise, Map/Set, iterator/generator, module import/export
+| ES7 (ECMAScript 2016) | 2016     | 지수(**) 연산자, Array.prototype.includes, String.prototype.includes
+| ES8 (ECMAScript 2017) | 2017     | async/await, Object 정적 메소드(Object.values, Object.entries, Object.getOwnPropertyDescriptors)
+| ES9 (ECMAScript 2018) | 2018     | [Object Rest/Spread 프로퍼티](https://github.com/tc39/proposal-object-rest-spread)
 
-* 자바스크립트는 모바일 웹/앱 개발 분야에서도 [크로스 플랫폼](https://ko.wikipedia.org/wiki/크로스_플랫폼)을 위한 가장 중요한 언어로 주목받고 있다. 웹은 물론 모바일 하이브리드 앱([PhoneGap](http://phonegap.com), [Sencha Touch](https://www.sencha.com/products/touch), [Ionic](https://ionicframework.com)), 서버 사이드([NodeJS](https://nodejs.org/)), Desktop([Electron](https://electron.atom.io/), [AppJS](http://appjs.com/)), 로봇 제어([Cylon.js](https://cylonjs.com/), [NodeBots](http://nodebots.io/)) 언어로서 세계에서 가장 인기있는 언어이다.
+# 3. 자바스크립트를 성장시킨 기술의 역사
 
-* SPA(Single Page Application)가 대중화되면서 [Angular](https://angular.io/), [React](https://facebook.github.io/react/), [Vue.js](https://vuejs.org/) 등 다양한 SPA Framework/Library 또한 많은 사용층을 확보하고 있다.
+초창기 자바스크립트는 웹 페이지의 보조적인 기능을 수행하기 위해 한정적인 용도로 사용되었다. 이 시기에 대부분 로직은 주로 웹 서버에서 실행되었고 브라우저는 서버로 부터 전달받은 HTML과 CSS를 렌더링하는 수준이었다.
+
+1999년, 자바스크립트를 이용해서 **비동기적(Asynchronous)**으로 서버와 브라우저가 데이터를 교환할 수 있는 통신 기능인 **Ajax(Asynchronous JavaScript and XML)**가 XMLHttpRequest이라는 이름으로 등장했다.
+
+이전의 웹 페이지는 서버로부터 완전한 HTML을 전송받아 웹 페이지 전체를 다시 렌더링하는 방식으로 동작했다. Ajax의 등장은 이전의 패러다임을 획기적으로 전환했다. 즉, 웹 페이지의 변경이 필요없는 부분은 다시 렌더링하지 않고, 서버로부터 데이터를 전송받아 변경이 필요한 부분만을 한정적으로 렌더링하는 방식이 가능해진 것이다. 이로 인해 웹 브라우저에서도 데스크톱 애플리케이션과 유사한 빠른 퍼포먼스와 부드러운 화면 표시가 가능케 되었다.
+
+2005년, 구글이 발표한 **[Google Maps](https://www.google.com/maps)**는 웹 애플리케이션 개발 프로그래밍 언어로서 자바스크립트의 가능성을 확인하는 계기를 마련했다. 웹 브라우저에서 자바스크립트와 Ajax를 기반으로 동작하는 Google Maps가 데스크톱 애플리케이션과 비교해 손색이 없을 정도의 퍼포먼스를 보여준 것이다.
+
+![Google Maps Beta](/img/Google_Maps_Beta.png)
+Google Maps Beta
+{: .desc-img}
+
+2006년, **[jQuery](https://jquery.com)**의 등장으로 다소 번거롭고 논란이 있던 DOM(Document Object Model)를 보다 쉽게 제어할 수 있게 되었고 크로스 브라우징 이슈도 어느 정도 해결되었다. jQuery는 넓은 사용자 층을 순식간에 확보했다. 이로 인해 당시 다소 까다로운 자바스크립트보다 배우기 쉽고 직관적인 jQuery를 더 선호하는 개발자가 양산되기도 했다.
+
+![jquery-web-site](/img/jquery-web-site.png)
+jQuery 웹사이트
+{: .desc-img}
+
+Google Maps를 통해 가능성이 확인된 자바스크립트로 웹 애플리케이션을 구축하려는 시도가 늘어가면서 보다 빠르게 동작하는 자바스크립트 엔진이 요구되었다. 2008년 등장한 구글의 **[V8 자바스크립트 엔진](https://v8.dev)**은 이러한 요구에 부합하는 빠른 성능을 보여 주었다. V8 자바스크립트 엔진의 등장으로 자바스크립트는 데스크톱 애플리케이션과 유사한 사용자 경험(user experience)을 제공할 수 있는 웹 애플리케이션 개발 프로그래밍 언어로 정착하게 되었다. V8 자바스크립트 엔진으로 촉발된 자바스크립트의 발전으로 말마암아 과거 웹 서버에서 수행되던 역할들이 클라이언트(브라우저)로 이동하였고, 이로써 웹 애플리케이션에서 프런트엔드 영역이 주목받는 계기가 되었다.
+
+![jquery-web-site](/img/v8-web-site.png)
+V8 자바스크립트 엔진 웹사이트
+{: .desc-img}
+
+2009년, V8 자바스크립트 엔진으로 빌드된 자바스크립트 런타임 환경(Runtime Environment)인 **[Node.js](https://nodejs.org)**의 등장으로 자바스크립트는 웹 브라우저를 벗어나 서버 사이드 애플리케이션 개발에서도 사용되는 범용 프로그래밍 언어가 되었다. 웹 브라우저에서만 동작하는 반쪽짜리 프로그래밍 언어 취급을 받던 자바스크립트는 이제 프런트엔드 영역은 물론 백엔드 영역까지 아우르는 웹 프로그래밍 언어의 표준으로 자리잡고 있다.
+
+![node-homepage](./img/node-homepage.png)
+Node.js 웹사이트
+{: .desc-img}
+
+자바스크립트는 [크로스 플랫폼](https://ko.wikipedia.org/wiki/크로스_플랫폼)을 위한 가장 중요한 언어로 주목받고 있다. 자바스크립트는 웹은 물론 모바일 하이브리드 앱([PhoneGap](http://phonegap.com), [Ionic](https://ionicframework.com)), 서버 사이드([NodeJS](https://nodejs.org)), 데스크톱([Electron](https://electronjs.org)), 머신 러닝([TensorFlow.js](https://js.tensorflow.org)), 로보틱스([Johnny-Five](http://johnny-five.io)) 프로그래밍 언어로서 세계에서 가장 인기있는 프로그래밍 언어이다.
 
 ![Most Popular Technologies](/img/most-Popular-technologies.png)
 
 [Stackoverflow Developer Survey Results 2018](https://insights.stackoverflow.com/survey/2018#most-popular-technologies)
 {: .desc-img}
 
-<!-- ![rank_of_top_language_github](/img/rank_of_top_language_github.png)
+이제 웹 애플리케이션은 데스크톱 애플리케이션과 비교해도 손색없는 성능과 사용자 경험을 제공하는 것이 필수가 되었고, 개발 규모와 복잡도도 더불어 상승했다. 이전의 개발 방식으로는 복잡해진 개발 과정을 수행하기 어려워졌고, 이러한 필요에 따라 많은 패턴과 라이브러리가 출현하였다. 이는 개발에 많은 도움을 주었지만 유연하면서 확장이 쉬운 애플리케이션 아키텍처 구축을 어렵게 하였고 필연적으로 프레임워크가 등장하게 되었다. SPA(Single Page Application)가 대중화되면서 [Angular](https://angular.io), [React](https://facebook.github.io/react), [Vue.js](https://vuejs.org) 등 다양한 SPA 프레임워크/라이브러리 또한 많은 사용층을 확보하고 있다.
 
-The rank of top languages on Github.com over time
-{: .desc-img}
+# 4. JavaScript와 ECMAScript
 
-* 월마트, 이베이, 페이팔, 우버, 야후, 그루폰 등 거대 글로벌 기업들의 자바스크립트 환경으로 전환함에 따라 이와 같은 추세는 앞으로 더욱 가속될 전망이다. 빠르고 쉽게 서비스를 구축할 수 있는 장점을 가지고 있어 많은 Start-up기업 또한 자바스크립트 환경을 사용하고 있다. -->
+ECMAScript는 자바스크립트의 표준 명세인 ECMA-262를 말하며 프로그래밍 언어의 타입, 값, 객체와 프로퍼티, 함수, 빌트인 객체 등 핵심 문법(core syntax)을 규정한다.
 
-# 2. History
+자바스크립트는 일반적으로 프로그래밍 언어로서 기본 뼈대를 이루는 ECMAScript와 브라우저가 지원하는 [클라이언트 사이드 Web API](https://www.w3.org/standards/webdesign/script), 즉 DOM, BOM, Canvas, XMLHttpRequest, Fetch, requestAnimationFrame, SVG, Web Storage, Web Component, Web worker 등을 아우르는 개념이다.
 
-자바스크립트는 1995년 Brendan Eich(Nescape)이 Navigator 2를 위하여 웹페이지에 포함되는 스크립트 언어로서 개발되었으며 "Mocha"로 명명되었다. 그해 9월 "LiveScript"로 이름이 변경되었고, 10월 "JavaScript"로 최종 명명되었다.
+클라이언트 사이드 Web API는 ECMAScript와는 별도로 [World Wide Web Consortium (W3C)](https://www.w3.org)에서 별도의 명세로 관리하고 있다. 클라이언트 사이드 Web API의 자세한 내용은 [MDN web docs: Web API](https://developer.mozilla.org/ko/docs/Web/API)를 참고하기 바란다.
 
-이후 Microsoft는 IE 3.0에서 동작하는 "JScript"를 만들었고 Nescape는 [Ecma International](https://ko.wikipedia.org/wiki/Ecma_인터내셔널)에 자바스크립트의 표준화를 요청하였다.
+# 5. 자바스크립트의 특징
 
-1997년 7월 ECMA-262라 불리는 명세(spec)가 완성되었고 상표권의 문제로 JavaScript는 <strong>ECMAScript</strong>로 명명되었다. 이후 1999년 ECMAScript 3(ES3)이 공개되었고 10년만인 2009년 출시된 ECMAScript 5(ES5)는 HTML5와 함께 출현한 표준안이다.
+자바스크립트는 HTML, CSS와 함께 웹을 구성하는 요소 중 하나로 <strong>웹 브라우저에서 동작하는 유일한 프로그래밍 언어</strong>이다. 자바스크립트는 기존의 프로그래밍 언어에서 많은 영향을 받았다. 기본 문법은 C, Java와 유사하고 Self에서는 프로토타입 기반 상속을, Scheme에서는 일급 함수의 개념을 차용했다.
 
-2015년 ECMAScript 6(ES6)가 공개되었고 [let/const keyword](./es6-block-scope), [module system](./es6-module), [Arrow Function](./es6-arrow-function), [class](./es6-class) 등이 추가되었다. ES5에서 ES6로의 버전업은 기능 상의 큰 변화가 있었고 이후의 버전업은 작은 기능의 추가 레벨로 매년 공개할 것으로 예고되었다.
+자바스크립트는 개발자가 별도의 컴파일 작업을 수행하지 않는 [인터프리터](https://ko.wikipedia.org/wiki/인터프리터) 언어(Interpreter language)이다. 대부분의 모던 자바스크립트 엔진(Chrome의 V8, FireFox의 Spidermonkey, Safari의 JavaScriptCore, Microsoft Edge의 Chakra 등)은 인터프리터와 컴파일러의 장점을 결합하여 비교적 느린 인터프리터의 단점을 해결했다. 인터프리터는 소스코드를 즉시 실행하고 컴파일러는 빠르게 동작하는 머신 코드를 생성하고 최적화한다. 이를 통해 컴파일 단계에서 추가적인 시간이 필요함에도 불구하고 보다 빠른 코드의 실행이 가능하다.
+<!-- http://devtimothy.tistory.com/m/94 -->
+<!-- 텍스트 기반 소스 코드를 파싱하여 중간 언어(IR, intermediate representation)인 바이트 코드로 변환한다. 그런 다음 중간 언어인 바이트 코드를 native code로 컴파일하여 동작을 수행한다. -->
+<!-- https://meetup.toast.com/posts/77 -->
 
-* ECMAScript Version
+자바스크립트는 [명령형(imperative)](https://ko.wikipedia.org/wiki/명령형_프로그래밍), [함수형(functional)](https://ko.wikipedia.org/wiki/함수형_프로그래밍), [프로토타입 기반(prototype-based) 객체지향 프로그래밍](https://ko.wikipedia.org/wiki/프로토타입_기반_프로그래밍)을 지원하는 [멀티 패러다임 프로그래밍 언어](https://ko.wikipedia.org/wiki/다중_패러다임_프로그래밍_언어)다. 비록 다른 객체지향 언어들과의 차이점에 대한 논쟁들이 있긴 하지만, 자바스크립트는 강력한 객체지향 프로그래밍 능력을 지니고 있다. 간혹 클래스(ES6에서 새롭게 도입되었다), 상속, 정보 은닉을 위한 키워드 private가 없어서 객체지향 언어가 아니라고 오해([자바스크립트는 가장 많은 오해를 받는 언어이다.](http://javascript.crockford.com/javascript.html))하는 경우도 있지만 자바스크립트는 클래스 기반 객체지향 언어보다 효율적이면서 강력한 <strong>프로토타입 기반의 객체지향 언어</strong>이다.
 
-ECMAScript 3 : [ECMA-262 3rd edition](http://www.ecma-international.org/publications/files/ECMA-ST-ARCH/ECMA-262,%203rd%20edition,%20December%201999.pdf) (1999.12)
-: 가장 범용적으로 지원되는 버전이다.
+# 6. ES6 브라우저 지원 현황
 
-ECMAScript 5 : [ECMA-262 5th edition](http://www.ecma-international.org/publications/files/ECMA-ST-ARCH/ECMA-262%205th%20edition%20December%202009.pdf) (2009.12)
-: HTML5와 함께 출현한 표준안이다. JSON(JavaScript Object Notation)과 Strict Mode가 추가되었다. [IE 9 이상(85%)](http://kangax.github.io/compat-table/es5/)이나 그 외 브라우저에서만 작동한다.
-
-ECMAScript 6 : [ECMA-262 6th edition](http://www.ecma-international.org/ecma-262/6.0/ECMA-262.pdf.) (2015.06)
-: let, const 키워드, Arrow Function, class, Symbol 타입 등이 추가되었다.
-
-![history javascript evolution es6](/img/history-javascript-evolution-es6.png)
-{: .w-650}
-
-# 3. 자바스크립트의 구성 요소
-
-일반적으로 자바스크립트는 ESCMAScript뿐만 아니라 클라이언트 사이드 API를 아우르는 개념이다. ESCMAScript 명세에서는 자바스크립트의 핵심 기술을 관리하고 클라이언트 사이드 API는 별도의 명세로 관리된다.
-
-ESCMAScript
-: Object, String, Number, Boolean, Symbol, Function, Array, RegExp, Date, Math, Promise…
-
-클라이언트 사이드 API
-: - Global object: window, global(Node.js)
-  - DOM: Document, Event, HTMLElement, HTMLCollection, NodeList…
-  - BOM: Location, History, Navigator, Screen
-  - Ajax: XMLHttpRequest, fetch
-  - HTML5 APIs: Blob, File, Canvas, Geolocation, Drag&Drop, Web storage, Web worker…
-
-
-# 4. Browsers Support
-
-IE를 제외한 대부분의 모던 브라우저는 ES6를 지원하고 있지만 100% 지원하고 있지는 않다. 그리고 Node.js의 경우 v4부터 지원을 시작하였다.
+Internet Explorer를 제외한 대부분의 모던 브라우저는 ES6를 지원하고 있지만 100% 지원하고 있지는 않다. Node.js의 경우 v4부터 ES6를 지원하기 시작했다. ES6 지원 현황은 아래의 웹 사이트에서 확인할 수 있다.
 
 ![kangax](/img/kangax.png)
 {: .w-650}
 
-[ES6 compat table](https://kangax.github.io/compat-table/es6/)
+[ECMAScript compatibility table](https://kangax.github.io/compat-table/es6)
 {: .desc-img}
 
-모던 브라우저의 ES6 지원은 97%로 거의 100%에 육박하지만 IE 지원을 고려한다면 [babel](https://babeljs.io/)과 같은 Transpiler를 사용하여야 한다.
+Internet Explorer를 제외한 모던 브라우저의 ES6 지원 비율은 96~ 99%로 거의 100%에 육박하지만 Internet Explorer나 구형 브라우저는 ES6를 대부분 지원하지 않는다. 따라서 Internet Explorer나 구형 브러우저를 고려해야 하는 상황이라면 [babel](https://babeljs.io)과 같은 트랜스파일러를 사용하여 ES6로 구현한 소스코드를 ES5 이하의 버전으로 다운그레이드할 필요가 있다. 또한 ES6에서 도입된 모듈 import/export는 아직 대부분의 브라우저가 지원하고 있지 않다. 따라서 프로젝트에서 모듈을 도입하려면 [Webpack](https://webpack.js.org)과 같은 모듈 번들러를 사용해야 한다.
 
 # Reference
 
-* [자바스크립트는 어떻게 작동하는가: V8 엔진의 내부 + 최적화된 코드를 작성을 위한 다섯 가지 팁](https://engineering.huiseoul.com/자바스크립트는-어떻게-작동하는가-v8-엔진의-내부-최적화된-코드를-작성을-위한-다섯-가지-팁-6c6f9832c1d9)
-
-* [자바스크립트 엔진의 최적화 기법](https://meetup.toast.com/posts/77)
-
 * [ECMAScript Version](https://developer.mozilla.org/ko/docs/Web/JavaScript/언어_리소스)
 
+* [ECMAScript compatibility table](https://kangax.github.io/compat-table/es6)
+
 * [ECMAScript 6 New Features: Overview & Comparison](http://es6-features.org)
+
+* [MDN web docs: Web API](https://developer.mozilla.org/ko/docs/Web/API)

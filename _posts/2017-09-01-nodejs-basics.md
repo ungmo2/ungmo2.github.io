@@ -38,14 +38,14 @@ Node.js에는 [Socket.io](./nodejs-socketio)라는 실시간 통신을 실현하
 
 # 2. Install
 
-Node.js를 인스톨하기 위해 [Node.js의 공식 홈페이지(http://nodejs.org)](https://nodejs.org/)에 접속한다.
+Node.js를 설치하기 위해 [Node.js의 웹사이트(http://nodejs.org)](https://nodejs.org/)에 접속해 보자.
 
 ![node-homepage](./img/node-homepage.png)
 
-Node.js의 공식 홈페이지
+Node.js 웹사이트
 {: .desc-img}
 
-Node.js 홈페이지에 접속하면 두 개의 다운로드 버튼이 보이는데 왼쪽은 LTS 버전을, 오른쪽은 Current 버전을 다운로드할 수 있다. LTS(Long Term Supported) 버전은 장기적으로 안정된 지원이 보장되는 버전이고, Current 버전은 변경이 발생하고 있는 버전으로 안정적이지 않을 수 있다. 따라서 최신의 LTS 버전을 다운로드하도록 한다.
+Node.js 웹사이트에 접속하면 두 개의 다운로드 버튼이 보이는데 왼쪽은 LTS 버전, 오른쪽은 Current 버전을 다운로드할 수 있다. LTS(Long Term Supported) 버전은 장기적으로 안정된 지원이 보장된다. Current 버전은 최신 기능을 제공하지만 업데이트가 발생하고 있는 버전으로 안정적이지 않을 수 있다. 따라서 LTS 버전을 다운로드하도록 하자.
 
 <!-- LTS(Long Term Supported) 버전은 장기적으로 안정된 지원이 보장되는 버전이다.
 
@@ -54,7 +54,7 @@ Node.js 홈페이지에 접속하면 두 개의 다운로드 버튼이 보이는
 [LTS Release Schedule](https://github.com/nodejs/Release#release-schedule)
 {: .desc-img} -->
 
-Current 버전은 변경이 발생하고 있는 버전으로 안정적이지 않을 수 있다. 따라서 최신의 LTS 버전을 다운로드하도록 한다. "8.11.1 LTS Recommended For Most Users" 버튼을 클릭하면 사용자 OS에 적합한 설치 파일을 다운로드하여 설치할 수 있다. 이때 `npm`도 동시에 설치된다.
+"10.15.1 LTS Recommended For Most Users" 버튼을 클릭하면 사용자의 운영체제에 적합한 설치 파일을 다운로드하여 설치할 수 있다. 이때 `npm`도 동시에 설치된다.
 
 설치가 완료되면 다음의 디렉터리에 Node.js가 설치된다. 버전에 따라 설치 장소는 바뀔 수 있다.
 
@@ -66,9 +66,9 @@ Current 버전은 변경이 발생하고 있는 버전으로 안정적이지 않
 
 ```bash
 $ node -v
-v8.11.1
+v10.15.1
 $ npm -v
-5.6.0
+6.4.1
 ```
 
 # 3. Update
@@ -79,8 +79,6 @@ $ npm -v
 
 ```bash
 $ npm install -g n
-/usr/local/bin/n -> /usr/local/lib/node_modules/n/bin/n
-+ n@2.1.8
 ```
 
 관리자 권한이 필요할 수 있으므로 permission 에러가 발생하는 경우, `sudo`를 명령어 선두에 추가한다.
@@ -96,29 +94,23 @@ npm WARN using --force I sure hope you know what you are doing.
 버전을 지정하거나 lts/stable/latest를 지정하여 Node.js를 설치한다.
 
 ```bash
-$ n 8.0.0   # 버전 지정 설치
+$ n 10.0.0  # 버전 지정 설치
 $ n lts     # 최신 LTS 버전 설치
 $ n stable  # stable 버전 설치
 $ n latest  # 최신 currunt 버전 설치
 ```
 
-stable 버전을 설치하도록 하자.
+latest 버전을 설치하도록 하자.
 
 ```bash
 $ node -v
-v8.11.1
+v10.15.1
 $ n latest # sudo n latest
-
-     install : node-v10.0.0
-       mkdir : /usr/local/n/versions/node/10.0.0
-       fetch : https://nodejs.org/dist/v10.0.0/node-v10.0.0-darwin-x64.tar.gz
-######################################################################## 100.0%
-   installed : v10.0.0
 $ n
- ο node/10.0.0
-   node/8.11.1
+    node/10.15.1
+  ο node/11.10.0
 $ node -v
-v10.0.0
+v11.10.0
 ```
 
 설치에 실패하였거나 버전이 변경되지 않는 경우, 해당 폴더(위의 경우, /usr/local/n/versions/node/10.0.0)를 삭제하고 재설치한다.
@@ -127,19 +119,19 @@ v10.0.0
 특정 버전을 삭제하고 싶은 경우, 아래와 같이 명령어를 실행한다.
 
 ```bash
-$ n rm 8.0.0  # 버전 지정 삭제
-$ n - 8.0.0   # rm 대신 -를 사용할 수 있다
-$ n prune     # 현재 사용중인 버전을 제외한 나머지를 일괄 삭제
+$ n rm 10.15.1  # 버전 지정 삭제
+$ n - 10.15.1   # rm 대신 -를 사용할 수 있다
+$ n prune       # 현재 사용중인 버전을 제외한 나머지를 일괄 삭제
 ```
 
 ## 3.2 npm
 
-npm은 Node.js에 포함되어 있어 Node.js 설치시 자동 설치되므로 별도의 설치가 필요없다. 하지만 Node.js보다 자주 업데이트되므로 최신 버전이 아닐 수 있다. 최신 버전으로 npm을 업데이트하도록 한다.
+npm은 Node.js에 포함되어 있어 Node.js 설치시 자동 설치된다. 따라서 별도의 설치가 필요없다. 하지만 Node.js보다 자주 업데이트되므로 최신 버전이 아닐 수 있다. 최신 버전으로 npm을 업데이트하도록 한다.
 
 ```bash
 $ npm install -g npm@latest
 $ npm -v
-6.0.0
+6.8.0
 ```
 
 설치 도중에 permission 에러가 발생하는 경우, `sudo`를 명령어 선두에 추가한다.
@@ -171,7 +163,7 @@ Node.js 파일을 실행하려면 node 명령어 뒤에 파일명을 입력한�
 $ node index.js
 ```
 
-CTRL + C 키를 두번 실행하면 REPL을 종료시킨다. Node.js REPL에 관한 더 자세한 내용은 [Node.js Documentation : REPL](https://nodejs.org/dist/latest-v8.x/docs/api/repl.html)을 참조하기 바란다.
+CTRL + C 키를 두번 실행하면 REPL을 종료시킨다. Node.js REPL에 관한 더 자세한 내용은 [Node.js Documentation : REPL](https://nodejs.org/dist/latest-v11.x/docs/api/repl.html)을 참조하기 바란다.
 
 # 5. Node.js 맛보기 : HTTP Server
 
@@ -209,4 +201,4 @@ $ node app.js
 
 * [Node.js](https://nodejs.org/)
 
-* [Node.js Documentation : REPL](https://nodejs.org/dist/latest-v8.x/docs/api/repl.html)
+* [Node.js Documentation : REPL](https://nodejs.org/dist/latest-v11.x/docs/api/repl.html)

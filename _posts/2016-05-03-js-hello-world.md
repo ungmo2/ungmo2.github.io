@@ -351,6 +351,6 @@ Live Server 확장 플러그인으로 가상 서버 기동
 
 
 # Reference
-
+* [22 Best Visual Studio Code Extensions for Web Development](https://scotch.io/bar-talk/22-best-visual-studio-code-extensions-for-web-development)
 * [10 VS Code Extensions for FrontEnd Developers in 2019](https://blog.bitsrc.io/top-10-vs-code-extensions-for-frontend-developers-in-2018-7992282db2ca)
 * [Best Visual Studio Code Extensions](https://blog.elmah.io/best-visual-studio-code-extensions/)

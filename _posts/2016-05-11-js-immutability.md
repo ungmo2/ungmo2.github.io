@@ -165,7 +165,7 @@ console.log(merge2); // { a: 1, b: 2, c: 3 }
 console.log(o4);     // { a: 1 }
 ```
 
-Object.assign을 사용하여 기존 객체를 변경하지 않고 객체를 복사(Shallow copy)하여 사용할 수 있다.
+Object.assign을 사용하여 기존 객체를 변경하지 않고 객체를 복사하여 사용할 수 있다. Object.assign은 완전한 deep copy를 지원하지 않는다. 객체 내부의 객체(Nested Object)는 Shallow copy된다.
 
 ```javascript
 const user1 = {
@@ -175,17 +175,21 @@ const user1 = {
   }
 };
 
-// Shallow copy
-const user2 = Object.assign({}, user1); // user1을 {}에 Copy
+// 새로운 빈 객체에 user1을 copy한다.
+const user2 = Object.assign({}, user1);
+// user1과 user2는 참조값이 다르다.
+console.log(user1 === user2); // false
 
 user2.name = 'Kim';
-
-// 상기 2행은 아래와 동치이다.
-// {name: 'Kim'}은 user1에 병합되는 것이 아니라 첫번째 인자인 {}에 병합된다.
-// const user2 = Object.assign({}, user1, {name: 'Kim'});
-
 console.log(user1.name); // Lee
 console.log(user2.name); // Kim
+
+// 객체 내부의 객체(Nested Object)는 Shallow copy된다.
+console.log(user1.address === user2.address); // true
+
+user1.address.city = 'Busan';
+console.log(user1.address.city); // Busan
+console.log(user2.address.city); // Busan
 ```
 
 user1 객체를 빈객체에 복사하여 새로운 객체 user2를 생성하였다. user1과 user2는 어드레스를 공유하지 않으므로 한 객체를 변경하여도 다른 객체에 아무런 영향을 주지 않는다.
@@ -204,7 +208,7 @@ const user1 = {
   }
 };
 
-// Shallow copy
+// Object.assign은 완전한 deep copy를 지원하지 않는다.
 const user2 = Object.assign({}, user1, {name: 'Kim'});
 
 console.log(user1.name); // Lee

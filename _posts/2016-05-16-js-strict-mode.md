@@ -45,13 +45,13 @@ ESLint의 오류 리포팅
 또한 strict mode가 제한하는 오류는 물론 코딩 컨벤션을 설정 파일 형태로 정의하고 강제할 수 있기 때문에 보다 강력한 효과를 얻을 수 있다. 필자는 개인적으로 strict mode보다 린트 도구의 사용을 선호한다.
 
 ESLint의 설치 및 비주얼 스튜디오 코드에서 ESLint 사용에 대해서는 [이곳](https://poiemaweb.com/eslint)을 참고하기 바란다.
-{.info}
+{: .info}
 
 strict mode의 적용 방법과 strict mode가 발생시키는 에러에 대해 간략히 살펴보도록 하자.
 
 # 2. strict mode의 적용
 
-strict mode를 적용하려면 전역의 선두 또는 함수 몸체의 선두에 'use strict';를 추가한다.
+strict mode를 적용하려면 전역의 선두 또는 함수 몸체의 선두에 `'use strict';`를 추가한다.
 
 전역의 선두에 추가하면 스크립트 전체에 strict mode가 적용된다.
 
@@ -114,7 +114,7 @@ foo();
 
 위 예제와 같이 스크립트 단위로 적용된 strict mode는 다른 스크립트에 영향을 주지 않고 자신의 스크립트에 한정되어 적용된다.
 
-하지만 strict mode 스크립트와 non-strict mode 스크립트를 혼용하는 것은 오류를 발생시킬 수 있다. 특히 외부 서드 파티 라이브러리를 사용하는 경우, 라이브러리가 non-strict mode일 경우도 있기 때문에 **전역에 strict mode를 적용하는 것은 바람직하지 않다.** 이러한 경우, 즉시 실행 함수로 스크립트 전체를 감싸서 스코프를 구분하고 즉시실행함수의 선두에 strict mode를 적용한다.
+하지만 strict mode 스크립트와 non-strict mode 스크립트를 혼용하는 것은 오류를 발생시킬 수 있다. 특히 외부 서드 파티 라이브러리를 사용하는 경우, 라이브러리가 non-strict mode일 경우도 있기 때문에 **전역에 strict mode를 적용하는 것은 바람직하지 않다.** 이러한 경우, 즉시 실행 함수로 스크립트 전체를 감싸서 스코프를 구분하고 즉시 실행 함수의 선두에 strict mode를 적용한다.
 
 ```javascript
 // 즉시실행 함수에 strict mode 적용

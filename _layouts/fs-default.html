@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html class="route-{{ page.route }} route-{{ page.layout }}{% if page.section %} section-{{ page.section }}{% endif %}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <title>{{ page.title | strip_html }} | {{ site.name }}</title>
+
+    <link rel="icon" href="https://poiemaweb.com/img/poiemaweb.jpg">
+    <link rel="stylesheet" href="/assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/vendor/devicon/devicon.min.css">
+    <link rel="stylesheet" href="/assets/vendor/codemirror/codemirror.css">
+    <link rel="stylesheet" href="/assets/vendor/codemirror/theme/dracula.css">
+    <link rel="stylesheet" href="/css/main.css?{{site.time | date: '%s%N'}}">
+  <body>
+    <div class="page-hero"></div>
+    <div class="page-body">
+      {{ content }}
+    </div>
+
+    <script src="/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="/assets/vendor/typed.min.js"></script>
+    <script src="/javascript/main.js"></script>
+
+    {% if page.layout == 'fs-post' %}
+      <script src="/assets/vendor/bootstrap/js/affix.js"></script>
+      <script src="/assets/vendor/lodash.min.js"></script>
+      <script src="/assets/vendor/codemirror/codemirror.js"></script>
+      <script src="/assets/vendor/codemirror/addon/runmode/runmode.js"></script>
+      <script src="/assets/vendor/codemirror/mode/meta.js"></script>
+      <script src="/assets/vendor/codemirror/addon/mode/loadmode.js"></script>
+      <script src="/assets/vendor/codemirror/addon/mode/overlay.js"></script>
+      <script src="/javascript/post.js"></script>
+    {% endif %}
+  </body>
+</html>

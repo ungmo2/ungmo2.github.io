@@ -1,0 +1,42 @@
+---
+layout: fs-default
+route: post
+---
+
+<main class="page-container">
+  <section class="heading">
+    <div class="container" style="padding: 0 0 100px;">
+      <h1 style="font-size: 48px;">
+        <em>{{ page.seq }}.{{ page.subseq }}</em>
+        {{ page.title }}
+      </h1>
+    </div>
+  </section>
+
+  <div class="page-content">
+    <div class="container">
+      <div class="breadcrumb-holder">
+        <header id="breadcrumb" class="breadcrumb" data-spy="affix">
+          <span class="breadcrumb-section">
+            {% case page.section %}
+            {% when "fastcampus" %}
+              <i class="devicon-javascript-plain"></i>
+            {% endcase %}
+            {{ page.section }}
+          </span>
+        </header>
+      </div>
+      <nav id="menu" class="menu">
+        <ul></ul>
+      </nav>
+      <article class="content">
+        {{ content }}
+      </article>
+    </div>
+  </div>
+</main>
+
+<a id="top" class="elevator">
+  <i class="fa fa-angle-up"></i>
+  <span>Back to top</span>
+</a>

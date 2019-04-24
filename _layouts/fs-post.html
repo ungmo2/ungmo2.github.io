@@ -17,13 +17,15 @@ route: post
     <div class="container">
       <div class="breadcrumb-holder">
         <header id="breadcrumb" class="breadcrumb" data-spy="affix">
-          <span class="breadcrumb-section">
-            {% case page.section %}
-            {% when "fastcampus" %}
-              <i class="devicon-javascript-plain"></i>
-            {% endcase %}
-            {{ page.section }}
-          </span>
+          <a href="https://poiemaweb.com/fastcampus.html">
+            <span class="breadcrumb-section">
+              {% case page.section %}
+              {% when "fastcampus" %}
+                <i class="devicon-javascript-plain"></i>
+              {% endcase %}
+              {{ page.section }}
+            </span>
+          </a>
         </header>
       </div>
       <nav id="menu" class="menu">

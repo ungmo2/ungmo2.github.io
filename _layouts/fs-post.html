@@ -7,8 +7,7 @@ route: post
   <section class="heading">
     <div class="container" style="padding: 0 0 100px;">
       <h1 style="font-size: 48px;">
-        <em>{{ page.seq }}.{{ page.subseq }}</em>
-        {{ page.title }}
+        <em>{{ page.seq }}.</em> {{ page.title }}
       </h1>
     </div>
   </section>
@@ -17,7 +16,7 @@ route: post
     <div class="container">
       <div class="breadcrumb-holder">
         <header id="breadcrumb" class="breadcrumb" data-spy="affix">
-          <a href="https://poiemaweb.com/fastcampus.html">
+          <a href="/fastcampus.html">
             <span class="breadcrumb-section">
               {% case page.section %}
               {% when "fastcampus" %}

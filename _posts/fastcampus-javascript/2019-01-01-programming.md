@@ -4,7 +4,6 @@ title: <strong>프로그래밍이란?</strong>
 categories: fastcampus
 section: fastcampus
 seq: 1
-subseq: 1
 permalink: /:categories/:title
 description:
 ---

@@ -27,9 +27,20 @@ Netscape Navigator 2
 
 # 2.	자바스크립트의 파편화와 표준화
 
-1996년 8월, 마이크로소프트는 자바스크립트의 파생 버전인 "JScript"를 Internet Explorer 3.0에 탑재하였다. 그런데 문제는 Jscript와 자바스크립트가 표준화되지 못하고 적당히 호환되었다는 것이다. 즉, 자사 브라우저의 시장 점유율을 점유하기 위해 자사 브라우저에서만 동작하는 기능을 경쟁적으로 추가하기 시작했다는 것이다.
+1996년 8월, 마이크로소프트는 자바스크립트의 파생 버전인 "JScript"를 Internet Explorer 3.0에 탑재하였다. 그런데 문제는 JScript와 자바스크립트가 표준화되지 못하고 적당히 호환되었다는 것이다. 즉, 자사 브라우저의 시장 점유율을 점유하기 위해 자사 브라우저에서만 동작하는 기능을 경쟁적으로 추가하기 시작했다는 것이다.
 
 이로 인해 브라우저에 따라 웹 페이지가 정상 동작하지 않는 크로스 브라우징 이슈가 발생하기 시작했고 모든 브라우저에서 동작하는 웹 페이지를 개발하는 것은 무척 어려워졌다.
+
+아래는 크로스 브라우징 이슈의 한 예이다.
+
+```javascript
+// IE 9 이전 버전은 표준인 addEventListener 메소드를 지원하지 않는다.
+if (el.addEventListener) {
+  el.addEventListener('click', modifyText, false);
+} else if (el.attachEvent)  {
+  el.attachEvent('onclick', modifyText);
+}
+```
 
 이에 자바스크립트의 파편화를 방지하고 모든 브라우저에서 동일하게 동작하는 표준화된 자바스크립트에 대한 필요성이 제기되기 시작했다. 이를 위해 1996년 11월, 넷스케이프 커뮤니케이션즈는 컴퓨터 시스템의 표준을 관리하는 비영리 표준화 기구인 [ECMA 인터내셔널](https://www.ecma-international.org)에 자바스크립트의 표준화를 요청하였다.
 
@@ -52,8 +63,8 @@ Netscape Navigator 2
 
 초창기 자바스크립트는 웹 페이지의 보조적인 기능을 수행하기 위해 한정적인 용도로 사용되었다. 이 시기에 대부분 로직은 주로 웹 서버에서 실행되었고 브라우저는 서버로부터 전달받은 HTML과 CSS를 단순히 렌더링하는 수준이었다.
 
-렌더링이란 HTML과 CSS로 표현된 데이터를 해석하여 시각적으로 브라우저에 표현하는 것을 말한다. 브라우저가 HTML과 CSS를 로드하고 해석하여 렌더링하는 과정은 “문서 객체 모델(DOM)”에서 살펴볼 것이다.
-{: .info}
+렌더링(Rendering)
+: 렌더링이란 HTML과 CSS로 표현된 데이터를 해석하여 시각적으로 브라우저에 표현하는 것을 말한다. 브라우저가 HTML과 CSS를 로드하고 해석하여 렌더링하는 과정은 "문서 객체 모델(DOM)"에서 살펴볼 것이다.
 
 1999년, 자바스크립트를 이용해서 **비동기적(Asynchronous)**으로 서버와 브라우저가 데이터를 교환할 수 있는 통신 기능인 **Ajax(Asynchronous JavaScript and XML)**가 XMLHttpRequest이라는 이름으로 등장했다.
 
@@ -109,7 +120,7 @@ Node.js 웹사이트
 
 이전의 개발 방식으로는 복잡해진 개발 과정을 수행하기 어려워졌고, 이러한 필요에 따라 많은 패턴과 라이브러리가 출현하였다. 이는 개발에 많은 도움을 주었지만 유연하면서 확장이 쉬운 애플리케이션 아키텍처 구축을 어렵게 하였고 필연적으로 프레임워크가 등장하게 되었다.
 
-SPA(Single Page Application)가 대중화되면서 Angular(각주 https://angular.io), React(각주 https://facebook.github.io/react), Vue.js(각주 https://vuejs.org) 등 다양한 SPA 프레임워크/라이브러리 또한 많은 사용층을 확보하고 있다.
+SPA(Single Page Application)가 대중화되면서 [Angular](https://angular.io), [React](https://facebook.github.io/react), [Vue.js](https://vuejs.org) 등 다양한 SPA 프레임워크/라이브러리 또한 많은 사용층을 확보하고 있다.
 
 # 4. JavaScript와 ECMAScript
 

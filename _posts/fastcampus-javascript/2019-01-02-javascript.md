@@ -130,7 +130,7 @@ ECMAScript는 자바스크립트의 표준 명세인 ECMA-262를 말하며 프�
 
 클라이언트 사이드 Web API는 ECMAScript와는 별도로 [World Wide Web Consortium (W3C)](https://www.w3.org)에서 별도의 명세로 관리하고 있다. 클라이언트 사이드 Web API의 자세한 내용은 [MDN web docs: Web API](https://developer.mozilla.org/ko/docs/Web/API)를 참고하기 바란다.
 
-#5.	자바스크립트의 특징
+# 5.	자바스크립트의 특징
 
 자바스크립트는 HTML, CSS와 함께 웹을 구성하는 요소 중 하나로 웹 브라우저에서 동작하는 유일한 프로그래밍 언어이다. 자바스크립트는 기존의 프로그래밍 언어에서 많은 영향을 받았다. 기본 문법은 C, Java와 유사하고 Self에서는 프로토타입 기반 상속을, Scheme에서는 일급 함수의 개념을 차용했다.
 

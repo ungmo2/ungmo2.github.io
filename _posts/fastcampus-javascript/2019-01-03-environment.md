@@ -183,7 +183,31 @@ head 요소 내부에 script 태그를 위치시키면 HTML 요소가 파싱되�
 
 자바스크립트가 실행될 때에는 이미 HTML 파서가 HTML 요소를 모두 파싱하여 DOM 객체를 생성한 이후이다. 자바스크립트가 실행되기 이전에 HTML 요소가 파싱되어 렌더링되므로 페이지 로딩 시간이 단축된다. 또한 DOM이 완성되지 않은 상태에서 자바스크립트가 DOM을 조작하는 에러가 발생할 우려도 없다.
 
-- [script의 async와 defer 속성](https://blog.asamaru.net/2017/05/04/script-async-defer/)
+script 태그의 async / defer 어트리뷰트
+{: .title}
+
+이와 같이 스크립트 로딩 지연으로 인한 병목 현상을 근본적으로 방지하기 위해 HTML5부터 script 태그에 `async`와 `defer` 어트리뷰트가 추가되었다.
+
+```html
+<script async src="extern.js"></script>
+<script defer src="extern.js"></script>
+```
+
+async
+: 웹페이지 파싱과 외부 스크립트 파일의 다운로드가 동시에 진행된다. 스크립트는 다운로드 완료 직후 실행된다. IE9 이하 버전은 지원하지 않는다.
+
+defer
+: 웹페이지 파싱과 외부 스크립트 파일의 다운로드가 동시에 진행된다. 스크립트는 웹페이지 파싱 완료 직후 실행된다. IE9 이하 버전에서 정상적으로 동작하지 않을 수 있다.
+
+![script-execution](/img/script-execution.jpg)
+{: .w-650}
+
+script 태그의 async, defer 어트리뷰트 (출처: [Peter Beverloo](http://peter.sh/experiments/asynchronous-and-deferred-javascript-execution-explained/))
+{: .desc-img}
+
+async와 defer 어트리뷰트는 웹페이지 파싱과 외부 스크립트 파일의 다운로드가 동시에 진행된다는 면에서는 동일하다. 하지만 스크립트의 실행 시점이 다르다.
+
+<!-- - [script의 async와 defer 속성](https://blog.asamaru.net/2017/05/04/script-async-defer/) -->
 
 ## 2.2.	개발자 도구
 

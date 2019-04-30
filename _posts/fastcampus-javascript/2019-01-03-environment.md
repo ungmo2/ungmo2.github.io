@@ -425,9 +425,9 @@ arr.forEach(alert);
 
 위 코드를 실행하면 "ReferenceError: alert is not defined"이란 에러가 발생한다. 브라우저에 알림창을 띄우는 alert 함수는 클라이언트 사이트 Web API이다. 즉, alert 함수는 브라우저 환경에서만 유효하다.
 
-그런데 Code Runner 확장 플러그인은 Node.js 환경을 사용하여 자바스크립트를 실행한다. 따라서 Code Runner 확장 플러그인을 통해 자바스크립트를 실행할 경우, 클라이언트 사이트 Web API가 포함된 소스 코드는 에러가 발생한다.
+그런데 Code Runner 확장 플러그인은 Node.js 환경을 사용하여 자바스크립트를 실행한다. 따라서 클라이언트 사이트 Web API인 alert 함수를 Node.js 환경에서는 알 수 없기 때문에 에러가 발생한 것이다.
 
-Code Runner 확장 플러그인를 통해 실행된 위 코드는 Node.js 환경에서 실행된 것이다. 따라서 클라이언트 사이트 Web API인 alert 함수를 Node.js 환경에서는 알 수 없기 때문에 에러가 발생한 것이다.
+클라이언트 사이트 Web API가 포함된 소스 코드는 Code Runner 확장 플러그인을 통해 실행하지 말고, 브라우저에서 실행하도록 한다.
 
 ## 4.4.	Live Server 확장 플러그인
 

@@ -92,7 +92,7 @@ var person = {
   'last-name': 'Lee'    // 유효하지 않은 이름
 };
 
-console.log(person); // {first-name: "Ung-mo", last_name: "Lee"}
+console.log(person); // {first_name: "Ung-mo", last-name: "Lee"}
 ```
 
 프로퍼티 키로 사용한 first_name은 식별자 네이밍 규칙을 준수하고 있다. 따라서 따옴표를 생략할 수 있다. 하지만 last-name은 식별자 네이밍 규칙을 준수하고 있지 않다. 따라서 따옴표를 생략할 수 없다. 자바스크립트 엔진은 last-name을 - 연산자가 있는 표현식으로 인식한다.

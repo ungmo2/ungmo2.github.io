@@ -235,7 +235,7 @@ let x = 1;
 
 // let, const 키워드로 선언한 전역 변수는 전역 객체의 프로퍼티가 아니다.
 console.log(window.x); // undefined
-console.log(x); // 2
+console.log(x); // 1
 ```
 
 # 3.	const 키워드
@@ -299,7 +299,6 @@ const TAX_RATE = 0.1
 let preTaxPrice = 100;
 
 // 세후 가격
-// 0.1의 의미를 명확히 알기 어렵기 때문에 가독성이 좋지 않다.
 let afterTaxPrice = preTaxPrice + (preTaxPrice * TAX_RATE);
 
 console.log(afterTaxPrice); // 110

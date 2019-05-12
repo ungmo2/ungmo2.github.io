@@ -1537,7 +1537,6 @@ for (const prop in person) {
 // age: 20
 ```
 
-<참고>
 for...in 문은 프로퍼티 키가 심볼인 프로퍼티는 열거하지 않는다.
 
 ```javascript
@@ -1552,7 +1551,6 @@ for (const prop in obj) {
 }
 // a: 1
 ```
-<참고>
 
 상속받은 프로퍼티는 제외하고 객체 자신의 프로퍼티만을 열거하려면 Object.prototype.hasOwnProperty 메소드를 사용하여 객체 자신의 프로퍼티인지 확인해야 한다.
 

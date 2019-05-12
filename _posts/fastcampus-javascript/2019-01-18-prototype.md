@@ -1311,6 +1311,46 @@ console.log(Object.getPrototypeOf(obj) === Person.prototype); // true
 -	프로토타입을 지정하면서 객체를 생성할 수 있다. 이때 생성자 함수와 프로토타입 간의 링크가 파괴되지 않는다.
 -	객체 리터럴에 의해 생성된 객체도 상속받을 수 있다.
 
+Object.prototype의 메소드, 즉 Object.prototype.hasOwnProperty, Object.prototype.isPrototypeOf, Object.prototype.propertyIsEnumerable 등은 모든 객체의 프로토타입 체인의 종점, 즉 Object.prototype의 메소드이므로 모든 객체가 호출할 수 있다.
+
+```javascript
+const obj = { a: 1 };
+const child = Object.create(obj);
+
+console.log(obj.hasOwnProperty('a'));       // true
+console.log(obj.isPrototypeOf(child));      // true
+console.log(obj.propertyIsEnumerable('a')); // true
+```
+
+그런데 ESLint에서는 위 예제와 같이 Object.prototype의 빌트인 메소드를 객체가 직접 호출하는 것을 비추천하고 있다. 그 이유는 Object.create 메소드를 통해 프로토타입 체인을 생성하지 않는 객체를 생성할 수 있기 때문이다. 이때 프로토타입 체인을 생성하지 않는 객체는 Object.prototype의 빌트인 메소드를 사용할 수 없다.
+
+```javascript
+// 프로토타입이 null인 객체를 생성한다.
+const obj = Object.create(null);
+obj.a = 1;
+
+// 즉, 생성된 객체는 프로토타입 체인의 종점이므로 프로토타입 체인이 생성되지 않는다.
+console.log(Object.getPrototypeOf(obj) === null); // true
+
+// obj는 Object.prototype의 빌트인 메소드를 사용할 수 없다.
+console.log(obj.hasOwnProperty('a')); // TypeError: obj.isPrototypeOf is not a function
+```
+
+따라서 이같은 에러를 만들지 않기 위해 Object.prototype의 빌트인 메소드는 아래와 같이 호출하는 것이 좋다.
+
+```javascript
+// 프로토타입이 null인 객체를 생성한다.
+const obj = Object.create(null);
+obj.a = 1;
+
+// console.log(obj.hasOwnProperty('a')); // TypeError: obj.isPrototypeOf is not a function
+
+// Object.prototype의 빌트인 메소드는 객체로 직접 호출하지 않는다.
+console.log(Object.prototype.hasOwnProperty.call(obj, 'a')); // true
+```
+
+Functionprototype.call 메소드에 대해서는 “21.2.4. Function.prototype.apply/call/bind 메소드에 의한 간접 호출”을 참고하도록 하자.
+
 # 13. 객체 리터럴 내부에서 __proto__에 의한 직접 상속
 
 Object.create 메소드는 직접 상속은 위와 같이 여러 장점이 있다. 하지만 두번째 인자로 프로퍼티를 정의하는 것은 번거롭다. 일단 객체를 생성한 이후, 프로퍼티를 추가하는 방법도 있으나 이 또한 깔끔한 방법은 아니다.

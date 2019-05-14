@@ -625,7 +625,7 @@ console.log(obj.hasOwnProperty('x'));    // true
 
 명시적으로 Object 생성자 함수를 호출하여 객체를 생성하면 빈 객체가 생성된다. Object 생성자 함수를 호출하면 객체 리터럴과 마찬가지로 추상 연산 ObjectCreate를 호출한다.
 
-![](/assets/fs-images/18-11.png)
+![](/assets/fs-images/18-19.png)
 
 Object 생성자 함수
 {: .desc-img}
@@ -639,7 +639,7 @@ obj.x = 1;
 
 위 코드가 실행되면 추상 연산 ObjectCreate에 의해 아래와 같이 Object 생성자 함수와 Object.prototype과 생성된 객체 사이에 연결이 만들어 진다. 객체 리터럴에 의해 생성된 객체와 동일한 구조를 갖는 것을 알 수 있다.
 
-![](/assets/fs-images/18-18.png)
+![](/assets/fs-images/18-20.png)
 
 Object 생성자 함수에 의해 생성된 객체의 프로토타입
 {: .desc-img}

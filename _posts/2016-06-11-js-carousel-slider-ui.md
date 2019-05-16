@@ -180,7 +180,14 @@ HTMLElement.offsetWidth와 HTMLElement.offsetHeight
 
 <div class="result" style="height: 250px"></div>
 
-위 예제를 실행해보면 캐러셀 슬라이더 UI의 윈도우 역할을 하는 carousel 요소가 원래의 크기(whidth를 지정하지 않았으므로 100%)에서 자바스크립트로 width/height를 셋팅할 때 요소의 크기가 바뀌는 모습이 노출된다. carousel 요소에 `opacity: 0`을 지정하여 carousel 요소의 width/height의 셋팅이 완료될 때까지 감추었다가 셋팅이 완료되면 `opacity: 1`을 지정하여 보여주도록 하자.
+위 예제를 실행해보면 캐러셀 슬라이더 UI의 윈도우 역할을 하는 carousel 요소가 원래의 크기(whidth를 지정하지 않았으므로 100%)에서 자바스크립트로 width/height를 셋팅할 때 요소의 크기가 바뀌는 모습이 그대로 노출된다.
+
+![](/img/carousel-slider-error.gif)
+{: .w-650}
+자바스크립트로 width/height를 셋팅할 때 요소의 크기가 바뀌는 모습이 그대로 노출된다.
+{: .desc-img}
+
+carousel 요소에 `opacity: 0`을 지정하여 carousel 요소의 width/height의 셋팅이 완료될 때까지 감추었다가 셋팅이 완료되면 `opacity: 1`을 지정하여 보여주도록 하자.
 
 ```html
 <!DOCTYPE html>

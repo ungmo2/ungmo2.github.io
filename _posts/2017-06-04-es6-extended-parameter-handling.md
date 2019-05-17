@@ -379,7 +379,7 @@ const newArray = [...htmlCollection]; // Spread 연산자
 
 ECMAScript 언어 표준에 제안(proposal)된 [Rest/Spread 프로퍼티(Object Rest/Spread Properties)](https://github.com/tc39/proposal-object-rest-spread)는 객체 리터럴을 분해하고 병합하는 편리한 기능을 제공한다.
 
-- 2019년 1월 현재 Rest/Spread 프로퍼티는 [TC39 프로세스](https://tc39.github.io/process-document/)의 stage 4(Finished) 단계이다.
+- 2019년 5월 현재 Rest/Spread 프로퍼티는 [TC39 프로세스](https://tc39.github.io/process-document/)의 stage 4(Finished) 단계이다.
 
 - stage 4에 도달한 제안은 [finished-proposals](https://github.com/tc39/proposals/blob/master/finished-proposals.md)를 참고하기 바란다.
 

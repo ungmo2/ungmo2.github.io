@@ -37,7 +37,7 @@ console.log(evenOrOdd(3)); // Odd
 console.log(evenOrOdd(1000)); // Even
 ```
 
-<!-- ```javascript
+```javascript
 // if문
 function evenOrOdd(num) {
   var result = '';
@@ -63,7 +63,7 @@ function evenOrOdd(num) {
 console.log(evenOrOdd(2)); // Even
 console.log(evenOrOdd(3)); // Odd
 console.log(evenOrOdd(1000)); // Even
-``` -->
+```
 
 # 2. 1 ~ 10,000의 숫자 중 8이 등장하는 횟수 구하기 (Google)
 
@@ -81,20 +81,19 @@ function getCount8 () {
 console.log(getCount8()); // 4000
 ```
 
-<!--```javascript
-function getCount8 () {
-  var str = ''; // 1 ~ 10,000의 숫자를 연결하여 문자열로 만들기 위한 변수
-  var sum = 0;  // 리턴용 변수
+```javascript
+function getCount8() {
+  let str = ''; // 1 ~ 10,000의 숫자를 연결하여 문자열로 만들기 위한 변수
+  let sum = 0;  // 리턴용 변수
 
   // looping: 0 ~ 10000
-  for (var i = 0; i < 10001; i++) {
-    // str += i.toString();
+  for (let i = 0; i < 10001; i++) {
     str += i;
   }
 
   // console.log(str);
 
-  for (var j = 0; j < str.length; j++) {
+  for (let j = 0; j < str.length; j++) {
     // if (str.charAt(i) === '8') sum++;
     if (str[j] === '8') sum++;
   }
@@ -103,7 +102,7 @@ function getCount8 () {
 }
 
 console.log(getCount8()); // 4000
-```-->
+```
 
 # 3. 문자열 다루기
 
@@ -124,7 +123,7 @@ console.log(alphaString46(''));     // false
 console.log(alphaString46());       // false
 ```
 
-<!-- ```javascript
+```javascript
 function alphaString46(s) {
   if (!s) return false;
 
@@ -133,6 +132,7 @@ function alphaString46(s) {
   return ((s.length >= 4 && s.length <= 6) && !isNaN(s));
 }
 
+// 정규 표현식
 function alphaString46(s) {
   if (!s) return false;
 
@@ -147,7 +147,7 @@ console.log(alphaString46('a234'));  // false
 console.log(alphaString46('12x4'));  // false
 console.log(alphaString46(''));      // false
 console.log(alphaString46());        // false
-``` -->
+```
 
 # 4. 문자열 내 p와 y의 개수
 
@@ -167,7 +167,7 @@ console.log(numPY(''));        // true
 console.log(numPY());          // true
 ```
 
-<!-- ```javascript
+```javascript
 function numPY(s) {
   if (!s) return true;
 
@@ -199,9 +199,9 @@ console.log(numPY('Pyy'));     // false
 console.log(numPY('ab'));      // true
 console.log(numPY(''));        // true
 console.log(numPY());          // true
-``` -->
+```
 
-# 5. 이상한 문자만들기
+# 5. 이상한 문자 만들기
 
 toWeirdCase함수는 문자열을 인수로 전달받는다. 문자열 s에 각 단어의 짝수번째 인덱스 문자는 대문자로, 홀수번째 인덱스 문자는 소문자로 바꾼 문자열을 리턴하도록 함수를 완성하라.
 
@@ -218,7 +218,7 @@ console.log(toWeirdCase('hello world'));    // 'HeLlO WoRlD'
 console.log(toWeirdCase('my name is lee')); // 'My NaMe Is LeE'
 ```
 
-<!-- ```javascript
+```javascript
 function toWeirdCase(str) {
   // str을 단어로 구분하여 array화
   const wordArr = str.split(' ');
@@ -242,7 +242,7 @@ function toWeirdCase(str) {
 
 console.log(toWeirdCase('hello world'));    // 'HeLlO WoRlD'
 console.log(toWeirdCase('my name is lee')); // 'My NaMe Is LeE'
-``` -->
+```
 
 # 6. 핸드폰번호 가리기
 
@@ -259,7 +259,7 @@ console.log(hideNumbers('01033334444')); // *******4444
 console.log(hideNumbers('027778888'));   // *****8888
 ```
 
-<!-- ```javscript
+```javascript
 function hideNumbers(str) {
   // 문자열을 뒤에서 4자리 잘라내기
   // console.log(str.slice(-4));
@@ -270,7 +270,7 @@ function hideNumbers(str) {
 
 console.log(hideNumbers('01033334444')); // *******4444
 console.log(hideNumbers('027778888'));   // *****8888
-``` -->
+```
 
 # 7. 문자열을 숫자로 바꾸기
 
@@ -287,7 +287,7 @@ console.log(strToInt('1234'));  // 1234
 console.log(strToInt('-1234')); // -1234
 ```
 
-<!-- ```javascript
+```javascript
 function strToInt(str) {
   return +str;
   // return str * 1;
@@ -297,7 +297,7 @@ function strToInt(str) {
 
 console.log(strToInt('1234'));  // 1234
 console.log(strToInt('-1234')); // -1234
-``` -->
+```
 
 # 8. 수박수박수박수박수박수?
 
@@ -314,7 +314,7 @@ console.log('n이 3인 경우: '+ waterMelon(3));
 console.log('n이 4인 경우: '+ waterMelon(4));
 ```
 
-<!-- ```javascript
+```javascript
 function waterMelon(n) {
   let result = '';
 
@@ -326,7 +326,7 @@ function waterMelon(n) {
 
 console.log('n이 3인 경우: '+ waterMelon(3));
 console.log('n이 4인 경우: '+ waterMelon(4));
-``` -->
+```
 
 # 9. 정수제곱근 판별하기
 
@@ -349,18 +349,27 @@ console.log(nextSqaure(165)); // no
 console.log(nextSqaure(400)); // 441
 ```
 
-<!-- ```javascript
+```javascript
 function nextSqaure(n) {
   // Math.sqrt: 양의 제곱근을 반환
   // n = 9 이면 3 반환
   // n = 3 이면 1.7320508075688772 반환
-  var root = Math.sqrt(n);
+  const root = Math.sqrt(n);
 
   // console.log(root);
 
   return Number.isInteger(root) ? Math.pow((root + 1), 2) : 'no';
 }
-``` -->
+
+console.log(nextSqaure());    // no
+console.log(nextSqaure(0));   // 1
+console.log(nextSqaure(1));   // 4
+console.log(nextSqaure(2));   // no
+console.log(nextSqaure(3));   // no
+console.log(nextSqaure(121)); // 144
+console.log(nextSqaure(165)); // no
+console.log(nextSqaure(400)); // 441
+```
 
 # 10. 배열의 최대/최소값 구하기
 
@@ -378,17 +387,19 @@ function getMinValueFromArray(array) {
 console.log(getMinValueFromArray([3, 6, -2, -5, 7, 3])); // -5
 ```
 
-<!-- ```javascript
+```javascript
 function getMaxValueFromArray(array) {
   return Math.max.apply(null, array);
+  // return Math.max(...array);
 }
 console.log(getMaxValueFromArray([3, 6, -2, -5, 7, 3])); // 7
 
 function getMinValueFromArray(array) {
   return Math.min.apply(null, array);
+  // return Math.min(...array);
 }
 console.log(getMinValueFromArray([3, 6, -2, -5, 7, 3])); // -5
-``` -->
+```
 
 # 11. Check Palindrom
 
@@ -405,7 +416,7 @@ console.log(checkPalindrom('palindrom')); // false
 console.log(checkPalindrom('s')); // true
 ```
 
-<!-- ```javascript
+<!--```javascript
 
 function checkPalindrom(str) {
   // str.split('') => 각 문자를 요소로 하는 배열

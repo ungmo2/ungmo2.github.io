@@ -60,6 +60,8 @@ console.log(render());
 
 요소의 프로퍼티(id, content, completed)를 문자열 인수로 전달하면 todos의 각 요소 중, 해당 프로퍼티의 값만을 추출한 배열을 반환하는 함수를 작성하라.
 
+단, for 문이나 Array#forEach는 사용하지 않도록 하자.
+
 ```javascript
 const todos = [
   { id: 3, content: 'HTML', completed: false },
@@ -296,6 +298,8 @@ function toggleCompletedAll() {
 # 8. completed 프로퍼티의 값이 true인 요소의 갯수 구하기
 
 todos에서 완료(completed: true)한 할일의 갯수를 구하는 함수를 작성하라.
+
+단, for 문, Array#forEach는 사용하지 않도록 하자.
 
 ```javascript
 let todos = [

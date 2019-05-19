@@ -34,26 +34,24 @@ function render() {
 
 console.log(render());
 /*
-<li>
-  <input type="checkbox" id="3" >
-  <label for="3">HTML</label>
+<li id="3">
+  <label><input type="checkbox">HTML</label>
 </li>
-<li>
-  <input type="checkbox" id="2" checked>
-  <label for="2">CSS</label>
+<li id="2">
+  <label><input type="checkbox" checked>CSS</label>
 </li>
-<li>
-  <input type="checkbox" id="1" >
-  <label for="1">Javascript</label>
+<li id="1">
+  <label><input type="checkbox">Javascript</label>
 </li>
 */
 ```
 
 <!--
   todos.forEach(function (todo) {
-    html += `<li>
-      <input type="checkbox" id="${todo.id}" ${todo.completed ? 'checked' : ''}>
-      <label for="${todo.id}">${todo.content}</label>
+    html += `<li id="${todo.id}">
+      <label>
+        <input type="checkbox" ${todo.completed ? 'checked ' : ''}>${todo.content}
+      </label>
     </li>`;
   });
 -->

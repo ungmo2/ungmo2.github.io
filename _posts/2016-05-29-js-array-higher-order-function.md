@@ -200,7 +200,7 @@ console.log(numbers); // [ 1, 3, 5, 7, 9 ]
 ```javascript
 const numbers = [1, 2, 3, 4];
 
-// forEach 메소드는 원본 배열(this)을 변경하지 않는다. 하지만 콜백 함수는 변경할 수는 있다.
+// forEach 메소드는 원본 배열(this)을 변경하지 않는다. 하지만 콜백 함수는 원본 배열(this)을 변경할 수는 있다.
 // 원본 배열을 직접 변경하려면 콜백 함수의 3번째 인자(this)를 사용한다.
 numbers.forEach(function (item, index, self) {
   self[index] = Math.pow(item, 2);

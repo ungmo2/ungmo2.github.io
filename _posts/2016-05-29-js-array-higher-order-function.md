@@ -144,7 +144,11 @@ console.log(todos);
 
 # 2. Array.prototype.forEach(callback: (value: T, index: number, array: T[]) => void, thisArg?: any): void 🔒 <sup>ES5</sup>
 
-- 배열을 순회하며 배열의 각 요소에 대하여 인자로 주어진 콜백함수를 실행한다. 콜백함수의 매개변수를 통해 배열 요소의 값, 요소 인덱스, forEach 메소드를 호출한 배열, 즉 this를 전달 받을 수 있다. **반환값은 undefined이다.**
+- forEach 메소드는 for 문 대신 사용할 수 있다.
+
+- 배열을 순회하며 배열의 각 요소에 대하여 인자로 주어진 콜백함수를 실행한다. **반환값은 undefined이다.**
+
+- 콜백 함수의 매개변수를 통해 배열 요소의 값, 요소 인덱스, forEach 메소드를 호출한 배열, 즉 this를 전달 받을 수 있다.
 
 - forEach 메소드는 원본 배열(this)을 변경하지 않는다. 하지만 콜백 함수는 원본 배열(this)을 변경할 수는 있다.
 
@@ -291,6 +295,7 @@ const numbers = [1, 4, 9];
 
 // 배열을 순회하며 각 요소에 대하여 인자로 주어진 콜백함수를 실행
 const roots = numbers.map(function (item) {
+  // 반환값이 새로운 배열의 요소가 된다.
   return Math.sqrt(item);
 });
 
@@ -370,9 +375,15 @@ console.log(result); // [ 1, 2, 3 ]
 
 # 4. Array.prototype.filter(callback: (value: T, index: number, array: Array<T>) => any, thisArg?: any): T[] 🔒 <sup>ES5</sup>
 
-배열을 순회하며 각 요소에 대하여 인자로 주어진 **콜백함수의 실행 결과가 true인 배열 요소의 값만을 추출한 새로운 배열을 반환한다.** 배열에서 특정 케이스만 필터링 조건으로 추출하여 새로운 배열을 만들고 싶을 때 사용한다. 이때 원본 배열은 변경되지 않는다. IE 9 이상에서 정상 동작한다.
+- filter 메소드를 사용하면 if 문을 대체할 수 있다.
 
-콜백함수의 매개변수를 통해 배열 요소의 값, 요소 인덱스, filter 메소드를 호출한 배열, 즉 this를 전달 받을 수 있다.
+- 배열을 순회하며 각 요소에 대하여 인자로 주어진 **콜백함수의 실행 결과가 true인 배열 요소의 값만을 추출한 새로운 배열을 반환한다.**
+
+- 콜백 함수의 매개변수를 통해 배열 요소의 값, 요소 인덱스, filter 메소드를 호출한 배열, 즉 this를 전달 받을 수 있다.
+
+- 배열에서 특정 케이스만 필터링 조건으로 추출하여 새로운 배열을 만들고 싶을 때 사용한다. 이때 원본 배열은 변경되지 않는다.
+
+- IE 9 이상에서 정상 동작한다.
 
 ```javascript
 const result = [1, 2, 3, 4, 5].filter(function (item, index, self) {

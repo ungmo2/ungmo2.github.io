@@ -136,6 +136,10 @@ function alphaString46(s) {
 function alphaString46(s) {
   if (!s) return false;
 
+  // /^ / => 문자열의 시작점
+  // \d => decimal
+  // {4,6} => 4~6자리
+  // / $/ => 문자열의 끝
   return /^\d{4,6}$/.test(s);
 }
 

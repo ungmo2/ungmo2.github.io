@@ -278,9 +278,9 @@ console.log('Total: ', total);
 
 # 3. Array.prototype.map\<U>(callbackfn: (value: T, index: number, array: T[]) => U, thisArg?: any): U[] 🔒 <sup>ES5</sup>
 
-배열을 순회하며 각 요소에 대하여 인자로 주어진 **콜백 함수의 반환값(결과값)으로 새로운 배열을 생성하여 반환한다.** 이때 원본 배열은 변경되지 않는다. IE 9 이상에서 정상 동작한다.
+- 배열을 순회하며 각 요소에 대하여 인자로 주어진 **콜백 함수의 반환값(결과값)으로 새로운 배열을 생성하여 반환한다.** 이때 원본 배열은 변경되지 않는다. IE 9 이상에서 정상 동작한다.
 
-forEach 메소드는 배열을 순회하며 요소 값을 참조하여 무언가를 하기 위한 함수이며 map 메소드는 배열을 순회하며 요소 값을 다른 값으로 맵핑하기 위한 함수이다.
+- forEach 메소드는 배열을 순회하며 요소 값을 참조하여 무언가를 하기 위한 함수이며 map 메소드는 배열을 순회하며 요소 값을 다른 값으로 맵핑하기 위한 함수이다.
 
 ![map](/img/array-map.png)
 {: .w-450}
@@ -288,14 +288,14 @@ forEach 메소드는 배열을 순회하며 요소 값을 참조하여 무언가
 Array.prototype.map
 {: .desc-img}
 
-콜백 함수의 매개변수를 통해 배열 요소의 값, 요소 인덱스, map 메소드를 호출한 배열, 즉 this를 전달 받을 수 있다.
+- 콜백 함수의 매개변수를 통해 배열 요소의 값, 요소 인덱스, map 메소드를 호출한 배열, 즉 this를 전달 받을 수 있다.
 
 ```javascript
 const numbers = [1, 4, 9];
 
 // 배열을 순회하며 각 요소에 대하여 인자로 주어진 콜백함수를 실행
 const roots = numbers.map(function (item) {
-  // 반환값이 새로운 배열의 요소가 된다.
+  // 반환값이 새로운 배열의 요소가 된다. 반환값이 없으면 새로운 배열은 비어 있다.
   return Math.sqrt(item);
 });
 
@@ -304,20 +304,6 @@ const roots = numbers.map(function (item) {
 
 // map 메소드는 새로운 배열을 반환한다
 console.log(roots);   // [ 1, 2, 3 ]
-// map 메소드는 원본 배열은 변경하지 않는다
-console.log(numbers); // [ 1, 4, 9 ]
-```
-
-```javascript
-const numbers = [1, 4, 9];
-
-// 배열을 순회하며 각 요소에 대하여 인자로 주어진 콜백함수를 실행
-const roots = numbers.map(function (item) {
-  return ++item; // return하지 않으면 새로운 배열에 반영되지 않는다.
-});
-
-// map 메소드는 새로운 배열을 반환한다
-console.log(roots);   // [ 2, 5, 10 ]
 // map 메소드는 원본 배열은 변경하지 않는다
 console.log(numbers); // [ 1, 4, 9 ]
 ```

@@ -149,7 +149,7 @@ function sortBy(key) {
 
 # 4. 새로운 요소 추가
 
-새로운 요소(예를 들어 `{ id: 4, content: 'Test', completed: false }`)를 인수로 전달하면 todos의 선두에 새로운 요소를 추가하는 함수를 작성하라.
+새로운 요소(예를 들어 `{ id: 4, content: 'Test', completed: false }`)를 인수로 전달하면 todos의 선두에 새로운 요소를 추가하는 함수를 작성하라. 단, Array#push는 사용하지 않도록 하자.
 
 ```javascript
 let todos = [
@@ -221,7 +221,7 @@ function removeTodo(id) {
 
 todos에서 대상 요소의 id를 인수로 전달하면 해당 요소의 completed 프로퍼티 값을 반전하는 함수를 작성하라.
 
-(Hint) object merge: [Object.assign](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
+단, [Object.assign](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)를 사용하도록 한다.
 
 ```javascript
 let todos = [
@@ -261,7 +261,7 @@ function toggleCompletedById(id) {
 
 todos의 모든 요소의 completed 프로퍼티 값을 true로 설정하는 함수를 작성하라.
 
-(Hint) object merge: [Object.assign](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
+단, [Object.assign](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)를 사용하도록 한다.
 
 ```javascript
 let todos = [

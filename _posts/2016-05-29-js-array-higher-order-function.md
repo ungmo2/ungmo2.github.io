@@ -154,7 +154,9 @@ console.log(todos);
 
 - **forEach 메소드는 for 문과는 달리 break 문을 사용할 수 없다.** 다시 말해, 배열의 모든 요소를 순회하며 중간에 순회를 중단할 수 없다.
 
-- forEach 메소드는 for 문에 비해 성능이 좋지는 않다. 하지만 for 문보다 가독성이 좋으므로 적극 사용을 권장한다. IE 9 이상에서 정상 동작한다.
+- forEach 메소드는 for 문에 비해 성능이 좋지는 않다. 하지만 for 문보다 가독성이 좋으므로 적극 사용을 권장한다.
+
+- IE 9 이상에서 정상 동작한다.
 
 ```javascript
 const numbers = [1, 2, 3];
@@ -278,7 +280,7 @@ console.log('Total: ', total);
 
 # 3. Array.prototype.map\<U>(callbackfn: (value: T, index: number, array: T[]) => U, thisArg?: any): U[] 🔒 <sup>ES5</sup>
 
-- 배열을 순회하며 각 요소에 대하여 인자로 주어진 **콜백 함수의 반환값(결과값)으로 새로운 배열을 생성하여 반환한다.** 이때 원본 배열은 변경되지 않는다. IE 9 이상에서 정상 동작한다.
+- 배열을 순회하며 각 요소에 대하여 인자로 주어진 **콜백 함수의 반환값(결과값)으로 새로운 배열을 생성하여 반환한다.** 이때 원본 배열은 변경되지 않는다.
 
 - forEach 메소드는 배열을 순회하며 요소 값을 참조하여 무언가를 하기 위한 함수이며 map 메소드는 배열을 순회하며 요소 값을 다른 값으로 맵핑하기 위한 함수이다.
 
@@ -289,6 +291,8 @@ Array.prototype.map
 {: .desc-img}
 
 - 콜백 함수의 매개변수를 통해 배열 요소의 값, 요소 인덱스, map 메소드를 호출한 배열, 즉 this를 전달 받을 수 있다.
+
+- IE 9 이상에서 정상 동작한다.
 
 ```javascript
 const numbers = [1, 4, 9];
@@ -365,9 +369,9 @@ console.log(result); // [ 1, 2, 3 ]
 
 - 배열을 순회하며 각 요소에 대하여 인자로 주어진 **콜백함수의 실행 결과가 true인 배열 요소의 값만을 추출한 새로운 배열을 반환한다.**
 
-- 콜백 함수의 매개변수를 통해 배열 요소의 값, 요소 인덱스, filter 메소드를 호출한 배열, 즉 this를 전달 받을 수 있다.
-
 - 배열에서 특정 케이스만 필터링 조건으로 추출하여 새로운 배열을 만들고 싶을 때 사용한다. 이때 원본 배열은 변경되지 않는다.
+
+- 콜백 함수의 매개변수를 통해 배열 요소의 값, 요소 인덱스, filter 메소드를 호출한 배열, 즉 this를 전달 받을 수 있다.
 
 - IE 9 이상에서 정상 동작한다.
 
@@ -380,7 +384,7 @@ const result = [1, 2, 3, 4, 5].filter(function (item, index, self) {
 console.log(result); // [ 1, 3, 5 ]
 ```
 
-filter()도 map(), forEach()와 같이 두번째 인자로 this를 전달할 수 있다.
+filter도 map, forEach와 같이 두번째 인자로 this를 전달할 수 있다.
 
 filter 메소드의 이해를 돕기 위해 filter의 동작을 흉내낸 myFilter 메소드를 작성해 보자.
 
@@ -526,9 +530,10 @@ let result = users.find(function (item) {
 // ES6
 // const result = users.find(item => item.id === 2;);
 
+// Array#find는 배열이 아니라 요소를 반환한다.
 console.log(result); // { id: 2, name: 'Kim' }
 
-// filter는 콜백함수의 실행 결과가 true인 배열 요소의 값만을 추출한 새로운 배열을 반환한다.
+// Array#filter는 콜백함수의 실행 결과가 true인 배열 요소의 값만을 추출한 새로운 배열을 반환한다.
 result = users.filter(function (item) {
   return item.id === 2;
 });

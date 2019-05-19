@@ -144,11 +144,13 @@ console.log(todos);
 
 # 2. Array.prototype.forEach(callback: (value: T, index: number, array: T[]) => void, thisArg?: any): void 🔒 <sup>ES5</sup>
 
-배열을 순회하며 배열의 각 요소에 대하여 인자로 주어진 콜백함수를 실행한다. 콜백함수의 매개변수를 통해 배열 요소의 값, 요소 인덱스, forEach 메소드를 호출한 배열, 즉 this를 전달 받을 수 있다. **반환값은 undefined이다.**
+- 배열을 순회하며 배열의 각 요소에 대하여 인자로 주어진 콜백함수를 실행한다. 콜백함수의 매개변수를 통해 배열 요소의 값, 요소 인덱스, forEach 메소드를 호출한 배열, 즉 this를 전달 받을 수 있다. **반환값은 undefined이다.**
 
-forEach 메소드는 원본 배열(this)을 변경하지 않는다. 하지만 콜백 함수는 변경할 수는 있다.
+- forEach 메소드는 원본 배열(this)을 변경하지 않는다. 하지만 콜백 함수는 원본 배열(this)을 변경할 수는 있다.
 
-**forEach 메소드는 for 문과는 달리 break 문을 사용할 수 없다.** 다시 말해, 배열의 모든 요소를 순회하며 중간에 순회를 중단할 수 없다. 일반 for 구문에 비해 성능이 좋지는 않다. IE 9 이상에서 정상 동작한다.
+- **forEach 메소드는 for 문과는 달리 break 문을 사용할 수 없다.** 다시 말해, 배열의 모든 요소를 순회하며 중간에 순회를 중단할 수 없다.
+
+- forEach 메소드는 for 문에 비해 성능이 좋지는 않다. 하지만 for 문보다 가독성이 좋으므로 적극 사용을 권장한다. IE 9 이상에서 정상 동작한다.
 
 ```javascript
 const numbers = [1, 2, 3];

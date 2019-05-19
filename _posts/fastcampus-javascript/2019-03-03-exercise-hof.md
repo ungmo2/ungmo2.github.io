@@ -93,7 +93,7 @@ function getValues(key) {
 
 단, todos는 변경되지 않도록 하자.
 
-참고: [Array.prototype.sort](http://localhost:4000/js-array-higher-order-function#1-arrayprototypesortcomparefn-a-t-b-t--number-this-%EF%B8%8F-es1)
+참고: [Array.prototype.sort](https://poiemaweb.com/js-array-higher-order-function#1-arrayprototypesortcomparefn-a-t-b-t--number-this-%EF%B8%8F-es1)
 
 ```javascript
 const todos = [

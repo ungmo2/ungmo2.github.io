@@ -479,7 +479,7 @@ const products = [
 // 프로퍼티 값을 합산
 const priceSum = products.reduce(function (pre, cur) {
   console.log(pre.price, cur.price);
-  // 숫자값이 두번째 콜백 함수 호출의 인수로 전달된다. 따라서 pre.price는 undefined이다.
+  // 숫자값이 두번째 콜백 함수 호출의 인수로 전달된다. 이때 pre.price는 undefined이다.
   return pre.price + cur.price;
 });
 

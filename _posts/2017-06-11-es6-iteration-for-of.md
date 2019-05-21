@@ -17,7 +17,7 @@ description: ES6에서 도입된 이터레이션 프로토콜(iteration protocol
 
 # 1. 이터레이션 프로토콜
 
-ES6에서 도입된 이터레이션 프로토콜(iteration protocol)은 데이터 컬렉션을 순회하기 위한 프로토콜(미리 약속된 규칙)이다. 이 프로토콜을 준수한 객체는 for...of 문으로 순회할 수 있고 [Spread 연산자](./es6-extended-parameter-handling#3-spread-연산자)의 피연산자가 될 수 있다.
+ES6에서 도입된 이터레이션 프로토콜(iteration protocol)은 데이터 컬렉션을 순회하기 위한 프로토콜(미리 약속된 규칙)이다. **이터레이션 프로토콜을 준수한 객체는 for...of 문으로 순회할 수 있고 [Spread 연산자](./es6-extended-parameter-handling#3-spread-연산자)의 피연산자가 될 수 있다.** <!-- 다시 말해, 이터레이션 프로토콜을 준수한 객체는 순회할 수 있는 객체, 즉 이터러블(iterable)이 되며 이터러블은 for...of 문으로 순회할 수 있고 Spread 연산자의 피연산자로 사용할 수 있다. -->
 
 이터레이션 프로토콜에는 이터러블 프로토콜(iterable protocol)과 이터레이터 프로토콜(iterator protocol)이 있다.
 
@@ -30,7 +30,7 @@ ES6에서 도입된 이터레이션 프로토콜(iteration protocol)은 데이�
 
 ## 1.1 이터러블
 
-이터러블 프로토콜을 준수한 객체를 이터러블이라 한다. 이터러블은 <strong>Symbol.iterator 메소드</strong>를 구현하거나 프로토타입 체인에 의해 상속한 객체를 말한다. Symbol.iterator 메소드는 이터레이터를 반환한다. 이터러블은 for…of 문에서 순회가 가능하다.
+이터러블 프로토콜을 준수한 객체를 이터러블이라 한다. 이터러블은 <strong>Symbol.iterator 메소드</strong>를 구현하거나 프로토타입 체인에 의해 상속한 객체를 말한다. Symbol.iterator 메소드는 이터레이터를 반환한다. 이터러블은 for…of 문에서 순회할 수 있으며 Spread 연산자의 피연산자로 사용할 수 있다.
 
 배열은 Symbol.iterator 메소드를 소유한다. 따라서 배열은 이터러블 프로토콜을 준수한 이터러블이다.
 
@@ -62,6 +62,8 @@ for (const p of obj) {
   console.log(p);
 }
 ```
+
+일반 객체는 이터레이션 프로토콜을 준수(Symbol.iterator 메소드를 소유)하지 않기 때문에 이터러블이 아니다. 따라서 일반 객체는 for…of 문에서 순회할 수 없으며 Spread 연산자의 피연산자로 사용할 수도 없다. 하지만 일반 객체도 이터러블 프로토콜을 준수하도록 구현하면 이터러블이 된다. 이에 대해서는 [3. 커스텀 이터러블](./es6-iteration-for-of#3-커스텀-이터러블)에서 살펴보도록 하자.
 
 ## 1.2 이터레이터
 

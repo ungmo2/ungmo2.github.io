@@ -427,6 +427,7 @@ currentValue : 배열 요소의 값
 currentIndex : 인덱스
 array        : 메소드를 호출한 배열, 즉 this
 */
+// 합산
 const sum = arr.reduce(function (previousValue, currentValue, currentIndex, self) {
   console.log(previousValue + '+' + currentValue + '=' + (previousValue + currentValue));
   return previousValue + currentValue; // 결과는 다음 콜백의 첫번째 인자로 전달된다
@@ -441,8 +442,9 @@ console.log(sum); // 15: 1~5까지의 합
 15
 */
 
-const max = arr.reduce(function (prev, cur) {
-  return prev > cur ? prev : cur;
+// 최대값 취득
+const max = arr.reduce(function (pre, cur) {
+  return pre > cur ? pre : cur;
 });
 
 console.log(max); // 5: 최대값
@@ -453,6 +455,75 @@ console.log(max); // 5: 최대값
 
 Array.prototype.reduce
 {: .desc-img}
+
+Array.prototype.reduce의 두번째 인수로 초기값을 전달할 수 있다. 이 값은 콜백 함수에 최초로 전달된다.
+
+```javascript
+const sum = [1, 2, 3, 4, 5].reduce(function (pre, cur) {
+  return pre + cur;
+}, 5);
+
+console.log(sum); // 20
+// 5 + 1 => 6 + 2 => 8 + 3 => 11 + 4 => 15 + 5
+```
+
+객체의 프로퍼티 값을 합산하는 경우를 생각해 보자. 반드시 초기값을 전달해야 한다.
+
+```javascript
+const products = [
+  { id: 1, price: 100 },
+  { id: 2, price: 200 },
+  { id: 3, price: 300 }
+];
+
+// 프로퍼티 값을 합산
+const priceSum = products.reduce(function (pre, cur) {
+  console.log(pre.price, cur.price);
+  // 숫자값이 두번째 콜백 함수 호출의 인수로 전달된다. 따라서 pre.price는 undefined이다.
+  return pre.price + cur.price;
+});
+
+console.log(priceSum); // NaN
+```
+
+이처럼 객체의 프로퍼티 값을 합산하는 경우에는 반드시 초기값을 전달해야 한다.
+
+```javascript
+const products = [
+  { id: 1, price: 100 },
+  { id: 2, price: 200 },
+  { id: 3, price: 300 }
+];
+
+// 프로퍼티 값을 합산
+const priceSum = products.reduce(function (pre, cur) {
+  console.log(pre, cur.price);
+  return pre + cur.price;
+}, 0);
+
+console.log(priceSum); // 600
+```
+
+reduce로 빈 배열을 호출하면 에러가 발생한다.
+
+```javascript
+const sum = [].reduce(function (pre, cur) {
+  console.log(pre, cur.price);
+  return pre + cur.price;
+});
+// TypeError: Reduce of empty array with no initial value
+```
+
+초기값을 전달하면 에러를 회피할 수 있다. 따라서 **초기값을 전달하는 것이 보다 안전하다.**
+
+```javascript
+const sum = [].reduce(function (pre, cur) {
+  console.log(pre, cur.price);
+  return pre + cur.price;
+}, 0);
+
+console.log(sum); // 0
+```
 
 <!-- reduce()는 Promise를 사용한 비동기 처리의 순차적 실행에 사용되기도 한다. -->
 

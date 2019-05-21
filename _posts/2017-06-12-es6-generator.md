@@ -1,7 +1,7 @@
 ---
 layout: post
 title: <strong>Generator</strong>
-subtitle: 제너레이터
+subtitle: 제너레이터와 async/awit
 categories: es6
 section: es6
 seq: 6

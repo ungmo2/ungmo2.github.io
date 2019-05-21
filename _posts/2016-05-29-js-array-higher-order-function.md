@@ -508,8 +508,8 @@ reduce로 빈 배열을 호출하면 에러가 발생한다.
 
 ```javascript
 const sum = [].reduce(function (pre, cur) {
-  console.log(pre, cur.price);
-  return pre + cur.price;
+  console.log(pre, cur);
+  return pre + cur;
 });
 // TypeError: Reduce of empty array with no initial value
 ```
@@ -518,8 +518,8 @@ const sum = [].reduce(function (pre, cur) {
 
 ```javascript
 const sum = [].reduce(function (pre, cur) {
-  console.log(pre, cur.price);
-  return pre + cur.price;
+  console.log(pre, cur);
+  return pre + cur;
 }, 0);
 
 console.log(sum); // 0

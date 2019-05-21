@@ -310,6 +310,7 @@ Symbol.iterator 메소드는 next 메소드를 갖는 이터레이터를 반환�
 이터러블은 for...of 문뿐만 아니라 spread 연산자, 디스트럭쳐링 할당, Map과 Set의 생성자에도 사용된다.
 
 ```javascript
+// spread 연산자와 디스트럭처링을 사용하면 이터러블을 손쉽게 배열로 변환할 수 있다.
 // spread 연산자
 const arr = [...fibonacci];
 console.log(arr); // [ 1, 2, 3, 5, 8 ]

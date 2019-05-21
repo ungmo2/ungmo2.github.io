@@ -39,7 +39,10 @@ ES6의 배열 디스트럭처링은 배열의 각 요소를 배열로부터 추�
 const arr = [1, 2, 3];
 
 // 배열의 인덱스를 기준으로 배열로부터 요소를 추출하여 변수에 할당
+// 변수 one, two, three가 선언되고 arr(initializer(초기화자))가 Destructuring(비구조화, 파괴)되어 할당된다.
 const [one, two, three] = arr;
+// 디스트럭처링을 사용할 때는 반드시 initializer(초기화자)를 할당해야 한다.
+// const [one, two, three]; // SyntaxError: Missing initializer in destructuring declaration
 
 console.log(one, two, three); // 1 2 3
 ```
@@ -86,10 +89,10 @@ console.log(x, y); // 1 [ 2, 3 ]
 ES6의 배열 디스트럭처링은 배열에서 필요한 요소만 추출하여 변수에 할당하고 싶은 경우에 유용하다. 아래의 코드는 Date 객체에서 년도, 월, 일을 추출하는 예제이다.
 
 ```javascript
-const today = new Date();
-const formattedDate = today.toISOString().substring(0, 10);
+const today = new Date(); // Tue May 21 2019 22:19:42 GMT+0900 (한국 표준시)
+const formattedDate = today.toISOString().substring(0, 10); // "2019-05-21"
 const [year, month, day] = formattedDate.split('-');
-console.log([year, month, day]); // [ '2018', '05', '05' ]
+console.log([year, month, day]); // [ '2019', '05', '21' ]
 ```
 
 <!--```javascript
@@ -118,7 +121,9 @@ ES6의 객체 디스트럭처링은 객체의 각 프로퍼티를 객체로부�
 // ES6 Destructuring
 const obj = { firstName: 'Ungmo', lastName: 'Lee' };
 
-const { firstName, lastName } = obj;
+// 프로퍼티 키를 기준으로 디스트럭처링 할당이 이루어진다. 순서는 의미가 없다.
+// 변수 lastName, firstName가 선언되고 obj(initializer(초기화자))가 Destructuring(비구조화, 파괴)되어 할당된다.
+const { lastName, firstName } = obj;
 
 console.log(firstName, lastName); // Ungmo Lee
 ```
@@ -126,6 +131,8 @@ console.log(firstName, lastName); // Ungmo Lee
 객체 디스트럭처링을 위해서는 할당 연산자 왼쪽에 객체 형태의 변수 리스트가 필요하다.
 
 ```javascript
+// 프로퍼티 키가 prop1인 프로퍼티의 값을 변수 p1에 할당
+// 프로퍼티 키가 prop2인 프로퍼티의 값을 변수 p2에 할당
 const { prop1: p1, prop2: p2 } = { prop1: 'a', prop2: 'b' };
 console.log(p1, p2); // 'a' 'b'
 console.log({ prop1: p1, prop2: p2 }); // { prop1: 'a', prop2: 'b' }

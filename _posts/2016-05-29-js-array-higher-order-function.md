@@ -514,7 +514,7 @@ const sum = [].reduce(function (pre, cur) {
 // TypeError: Reduce of empty array with no initial value
 ```
 
-초기값을 전달하면 에러를 회피할 수 있다. 따라서 **초기값을 전달하는 것이 보다 안전하다.**
+초기값을 전달하면 에러를 회피할 수 있다. 따라서 reduce를 호출할 때는 **언제나 초기값을 전달하는 것이 보다 안전하다.**
 
 ```javascript
 const sum = [].reduce(function (pre, cur) {

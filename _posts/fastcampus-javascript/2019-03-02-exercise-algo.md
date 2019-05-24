@@ -420,8 +420,7 @@ console.log(checkPalindrom('palindrom')); // false
 console.log(checkPalindrom('s')); // true
 ```
 
-<!--```javascript
-
+```javascript
 function checkPalindrom(str) {
   // str.split('') => 각 문자를 요소로 하는 배열
   // str.split('').reverse() => 배열을 반대로
@@ -433,13 +432,13 @@ console.log(checkPalindrom('dad')); // true
 console.log(checkPalindrom('mom')); // true
 console.log(checkPalindrom('palindrom')); // false
 console.log(checkPalindrom('s')); // true
-``` -->
+```
 
 # 12. 중복 요소 제거
 
 인수로 전달된 배열의 요소 중에서 중복된 요소를 제외하고 유니크한 요소만을 반환하는 함수를 작성하라.
 
-for 문 대신 forEach를 사용하도록 하자.
+for 문은 사용하지 않도록 하자.
 
 
 ```javascript
@@ -449,24 +448,54 @@ function uniq(array) {
 
 console.log(uniq([2, 1, 2, 3, 4, 3, 4])); // [ 2, 1, 3, 4 ]
 ```
-<!-- ```javascript
+
+```javascript
 function uniq(array) {
-  // const result = [];
-  // array.forEach(item => {
-  //   if (result.indexOf(item) === -1) result.push(item);
-  // });
-  // return result;
-  return array.filter((item, i, self) => self.indexOf(item) === i);
+  return array.filter((v, i, self) => self.indexOf(v) === i);
 }
 
 console.log(uniq([2, 1, 2, 3, 4, 3, 4])); // [ 2, 1, 3, 4 ]
-``` -->
+```
 
-# 13. 중복된 요소
+# 13. 중복없는 배열
+
+길이가 n인 배열에 1부터 n까지 숫자가 중복 없이 한 번씩 들어 있는지를 확인하려고 한다.
+1부터 n까지 숫자가 중복 없이 한 번씩 들어 있는 경우 true를, 아닌 경우 false를 반환하도록 함수 isNotOverlapArray을 완성하라. 단, 배열의 요소는 정수이다.
+
+예를 들어 주어진 배열이 [4, 1, 3, 2]이라면 true, [4, 1, 3] 또는 [1, 3]이라면 false를 반환한다.
+
+```javascript
+function isNotOverlapArray(array) {
+
+}
+
+console.log(isNotOverlapArray([4, 1, 3, 2])); // true
+console.log(isNotOverlapArray([4, 1, 3]));    // false
+```
+
+```javascript
+function isNotOverlapArray(array) {
+  let res = 0;
+
+  // 정렬 => 2개 요소 비교
+  array.sort((a, b) => a - b).reduce((pre, cur) => {
+    // 2개 요소 비교: 차이가 1이 아니면 1 증가
+    cur - pre !== 1 ? res++ : res;
+    return cur;
+  });
+
+  return (res === 0);
+}
+
+console.log(isNotOverlapArray([4, 1, 3, 2])); // true
+console.log(isNotOverlapArray([4, 1, 3]));    // false
+```
+
+# 14. 중복된 요소
 
 인수로 전달된 배열의 요소 중에서 중복된 요소만으로 구성된 배열을 반환하는 함수를 작성하라.
 
-for 문 대신 forEach를 사용하도록 하자.
+for 문은 사용하지 않도록 하자.
 
 ```javascript
 function findDuplicated(array) {
@@ -475,15 +504,16 @@ function findDuplicated(array) {
 
 console.log(findDuplicated([1, 2, 3, 4, 1, 2, 3])); // [ 1, 2, 3 ]
 ```
-<!--
+
+```javascript
 function findDuplicated(array) {
-  return array.filter((item, i, self) => self.indexOf(item) !== i);
+  return array.filter((v, i, self) => self.indexOf(v) !== i);
 }
 
 console.log(findDuplicated([1, 2, 3, 4, 1, 2, 3])); // [ 1, 2, 3 ]
--->
+```
 
-# 14. 약수의 합
+# 15. 약수의 합
 
 어떤 수를 입력받아 그 수의 약수를 모두 더한 수를 구하는 sumDivisor 함수를 완성하라. 예를 들어 12가 입력된다면 12의 약수는 [1, 2, 3, 4, 6, 12]가 되고, 총 합은 28이 되므로 28을 반환한다.
 
@@ -496,32 +526,28 @@ function sumDivisor(num) {
 
 console.log(sumDivisor(12)); // 28
 ```
-<!--
+
+```javascript
 // 약수의 배열의 구한다
 function getDivisorArray(num) {
   const divisors = [];
 
   for (let i = 1; i <= num; i++) {
-    if (num % i === 0) {
-      divisors.push(i);
-    }
+    if (num % i === 0) divisors.push(i);
   }
+
   return divisors;
 }
 
 // 약수의 배열 요소를 모두 합한 값을 구한다.
 function sumDivisor(num) {
-  let result = 0;
-  const arr = getDivisorArray(num);
-  // for (var i = 0; i < arr.length; i++) {
-  //   result += arr[i];
-  // }
-  // return result;
-  return arr.reduce((p, c) => p + c);
+  return getDivisorArray(num).reduce((pre, cur) => pre + cur);
 }
--->
 
-# 15. 소수 찾기
+console.log(sumDivisor(12)); // 28
+```
+
+# 16. 소수 찾기
 
 numberOfPrime 메소드는 정수 n을 매개변수로 입력받는다. 1부터 입력받은 숫자 n 사이에 있는 소수의 개수를 반환하도록 numberOfPrime 함수를 완성하라.
 예를 들어 10을 입력받았다면, 1부터 10 사이의 소수는 [2,3,5,7] 4개가 존재하므로 4를 반환한다.
@@ -535,14 +561,15 @@ function numberOfPrime(n) {
 
 console.log(numberOfPrime(10)); // 4
 ```
-<!--
+
+```javascript
 function isPrime(n) {
   // 2보다 작으면 소수가 아니다
   if (n < 2) return false;
 
   // 2부터 n-1까지의 모든수로 n을 나눠서 나머지가 있는지 확인한다.
   // 만약 나머지가 없다면 약수가 존재한다는 의미이므로 소수가 아니다.
-  for (var i = 2; i < n; i++) {
+  for (let i = 2; i < n; i++) {
     if (n % i === 0) return false;
   }
 
@@ -568,40 +595,9 @@ function numberOfPrime(n) {
   }
   return cnt;
 }
--->
-<!--
-# 13. 최대공약수와 최소공배수
+```
 
-두 수를 입력받아 두 수의 최대공약수와 최소공배수를 반환해주는 gcdlcm 함수를 완성하라. 배열의 맨 앞에 최대공약수, 그 다음 최소공배수를 넣어 반환한다. 예를 들어 gcdlcm(3,12)가 입력되면, [3, 12]를 반환하라.
-
-[최대공약수(最大公約數 greatest common divisor)](https://ko.wikipedia.org/wiki/%EC%B5%9C%EB%8C%80%EA%B3%B5%EC%95%BD%EC%88%98)란, 0이 아닌 두 정수나 다항식의 공통되는 약수 중에서 가장 큰 수를 말한다.
-
-두 수 a와 b의 최대공약수를 구하는 방법은 소인수 분해를 사용하는 방법과 [유클리드 호제법](https://ko.wikipedia.org/wiki/%EC%9C%A0%ED%81%B4%EB%A6%AC%EB%93%9C_%ED%98%B8%EC%A0%9C%EB%B2%95)이 있다.
-
-일반적으로 소인수 분해를 효율적으로 빠른 시간 내에 하는 방법은 알려져 있지 않다. 더 빠른 시간 안에 구하는 방법에는 호제법이 있다.
-
-똑같이 두 수 192와 72의 최대공약수를 이번에는 호제법으로 구하여 보자. 일단 192을 72로 나누어 나머지를 구한다.
-
-192 = 72 * 2 + 48이다. 이는 192을 72로 나누어 나온 나머지가 48라는 것을 의미한다. 이번에는 72을 나머지인 48로 나눈다.
-
-72 = 48 * 1 + 24이다. 이와 같은 연산을 나머지가 0이 될 때까지 반복한다. 48 = 24 * 2 + 0 나머지가 0이 되었으므로 연산을 중지한다. 이때, 나머지가 0이 되기 바로 직전의 연산에서의 나머지가 원래 두 수의 최대공약수가 된다.
-
-1071과 1029의 최대공약수를 구하면,
-
-1071은 1029로 나누어 떨어지지 않기 때문에, 1071을 1029로 나눈 나머지를 구한다. => 42
-1029는 42로 나누어 떨어지지 않기 때문에, 1029를 42로 나눈 나머지를 구한다. => 21
-42는 21로 나누어 떨어진다.
-따라서, 최대공약수는 21이다.
-
-```javascript
-function gcdlcm(a, b) {
-
-}
-
-console.log(gcdlcm(3, 12)); // [3, 12]
-``` -->
-
-# 16. 피보나치 수
+# 17. 피보나치 수
 
 피보나치 수는 0과 1로 시작하며, 다음 피보나치 수는 바로 앞의 두 피보나치 수의 합이 된다.
 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946...
@@ -619,22 +615,23 @@ console.log(fibonacci(4)); // 3
 console.log(fibonacci(5)); // 5
 console.log(fibonacci(6)); // 8
 ```
-<!--
-function fibonacci(n) {
-  if (n < 2) return n;
 
-  // n이 2 이상인 경우
-  var temp1 = 0;
-  var temp2 = 1;
-  var fibo = 1;
+```javascript
+// function fibonacci(n) {
+//   if (n < 2) return n;
 
-  for (var i = 2; i <= n; i++) {
-    fibo = temp1 + temp2;
-    temp1 = temp2;
-    temp2 = fibo;
-  }
-  return fibo;
-}
+//   // n이 2 이상인 경우
+//   let temp1 = 0;
+//   let temp2 = 1;
+//   let fibo = 1;
+
+//   for (let i = 2; i <= n; i++) {
+//     fibo = temp1 + temp2;
+//     temp1 = temp2;
+//     temp2 = fibo;
+//   }
+//   return fibo;
+// }
 
 // 재귀 함수를 사용한 방법
 function fibonacci(n) {
@@ -646,15 +643,48 @@ function fibonacci(n) {
 // 메모이제이션
 // 메모이제이션이란 함수에 전달한 인수와 함수의 반환값을 쌍으로 저장해 두는 기법을 말한다.
 // 메모이제이션을 사용하면 한번 호출한 이력이 있는 처리는 저장해 둔 인수와 반환값을 재사용할 수 있다.
-function fibonacci(n) {
-  if (n < 2) return n;
-  // fibonacci 함수 객체에 n 프로퍼티가 없으면 프로퍼티를 생성하고 값을 할당
-  if (!(n in fibonacci)) fibonacci[n] = fibonacci(n - 1) + fibonacci(n - 2);
-  return fibonacci[n];
-}
--->
+// function fibonacci(n) {
+//   if (n < 2) return n;
+//   // fibonacci 함수 객체에 n 프로퍼티가 없으면 프로퍼티를 생성하고 값을 할당
+//   if (!(n in fibonacci)) fibonacci[n] = fibonacci(n - 1) + fibonacci(n - 2);
+//   return fibonacci[n];
+// }
 
-# 17. 하샤드 수
+console.log(fibonacci(2)); // 1
+console.log(fibonacci(3)); // 2
+console.log(fibonacci(4)); // 3
+console.log(fibonacci(5)); // 5
+console.log(fibonacci(6)); // 8
+```
+
+# 18. 각 자릿수의 합 구하기
+
+정수 n이 주어지면, n의 각 자릿수의 합을 구해서 반환하는 digitSum 함수를 완성하라.
+예를 들어 n = 123이면 1 + 2 + 3 = 6을 반환한다. 단, n은 100,000,000 이하의 정수로 한다.
+
+```javascript
+function digitSum(n) {
+
+}
+
+console.log(digitSum(123));  // 6
+console.log(digitSum(987));  // 24
+console.log(digitSum(100000001));  // false
+```
+
+```javascript
+function digitSum(n) {
+  if (n < 0 || n > 100000000) return false;
+
+  return (n + '').split('').reduce((pre, cur) => (+pre) + (+cur));
+}
+
+console.log(digitSum(123)); // 6
+console.log(digitSum(987)); // 24
+console.log(digitSum(100000001)); // false
+```
+
+# 19. 하샤드 수
 
 하샤드 수는 그 수의 각 자릿수 숫자의 합으로 그 수가 나누어지는 양의 정수를 말한다.
 
@@ -664,7 +694,7 @@ function fibonacci(n) {
 
 Harshad함수는 양의 정수 n을 매개변수로 입력받는다. 이 n이 하샤드수인지 아닌지 판단하는 함수를 완성하라.
 
-예를들어 n이 10, 12, 18이면 True를 리턴 11, 13이면 False를 리턴한다.
+예를 들어 n이 10, 12, 18이면 True를 리턴 11, 13이면 False를 리턴한다.
 
 ```javascript
 function isHarshad(n){
@@ -677,62 +707,20 @@ console.log(isHarshad(18)); // true
 console.log(isHarshad(11)); // false
 console.log(isHarshad(13)); // false
 ```
-<!--
-function isHarshad(n) {
-  const str = n + '';
-  let sum = 0;
-
-  for (var i = 0; i < str.length; i++) {
-    sum += parseInt(str[i]);
-  }
-  // for (const digit of str) {
-  //   sum += parseInt(digit);
-  // }
-
-  // return n % sum ? false : true;
-  return !(n % sum);
-}
--->
-
-# 18. 두 정수 사이의 합
-
-adder함수는 정수 x, y를 매개변수로 입력받는다.
-두 수와 두 수 사이에 있는 모든 정수를 더해서 리턴하도록 함수를 완성하라.
-
-x와 y가 같은 경우는 둘 중 아무 수나 리턴한다.
-x, y는 음수나 0, 양수일 수 있으며 둘의 대소 관계도 정해져 있지 않다.
-
-예를들어 x가 3, y가 5이면 12를 리턴한다.
 
 ```javascript
-function adder(x, y){
-
+function isHarshad(n) {
+  return !(n % (n + '').split('').reduce((pre, cur) => (+pre) + (+cur)));
 }
 
-console.log(adder(3, 5)); // 12
+console.log(isHarshad(10)); // true
+console.log(isHarshad(12)); // true
+console.log(isHarshad(18)); // true
+console.log(isHarshad(11)); // false
+console.log(isHarshad(13)); // false
 ```
-<!--
-function adder(x, y) {
-  let sum = 0;
-  const sortedArgs = [];
 
-  if (x > y) {
-    sortedArgs.push(y, x);
-  } else if (x < y) {
-    sortedArgs.push(x, y);
-  } else {
-    return x;
-  }
-
-  for (var i = sortedArgs[0]; i <= sortedArgs[1]; i++) {
-    sum += i;
-  }
-
-  return sum;
-}
--->
-
-# 19. 배열의 첫 요소와 마지막 요소로 배열 만들기
+# 20. 배열의 첫 요소와 마지막 요소로 배열 만들기
 
 배열의 첫 요소와 마지막 요소를 나타내는 정수를 인자로 받아 정수의 배열을 반환하는 함수를 완성하라.
 예를 들어 인수가 [10, 15]인 경우, [ 10, 11, 12, 13, 14, 15 ]를 반환한다.
@@ -746,21 +734,61 @@ function generateRange(from, to) {
 
 console.log(generateRange(10, 15)); // [ 10, 11, 12, 13, 14, 15 ]
 ```
-<!--
+
+```javascript
+// function generateRange(from, to) {
+//   const res = [];
+
+//   while (from < to + 1) {
+//     res.push(from);
+//     from++;
+//   }
+//   return res;
+// }
+
+// function generateRange(from, to) {
+//   return Array(to - from + 1).fill().map((v, i) => i + from)
+// }
+
 function generateRange(from, to) {
-  const res = [];
-
-  while (from < to + 1) {
-    res.push(from);
-    from++;
-  }
-  return res;
+  return Array.from({ length: to - from + 1 }, (v, i) => i + from);
 }
--->
 
-# 20. 배열의 인접한 요소곱 중 가장 큰 값 구하기
+console.log(generateRange(10, 15)); // [ 10, 11, 12, 13, 14, 15 ]
+```
 
-정수의 배열에서 인접한 요소의 곱이 가장 큰 값을 반환하는 함수를 완성하라.
+# 21. 두 정수 사이의 합
+
+adder 함수는 정수 x, y를 인수로 전달받는다.
+두 수와 두 수 사이에 있는 모든 정수를 더해서 리턴하도록 함수를 완성하라.
+
+x와 y가 같은 경우는 둘 중 아무 수나 리턴한다.
+x, y는 음수나 0, 양수일 수 있으며 둘의 대소 관계도 정해져 있지 않다.
+
+예를 들어 x가 3, y가 5이면 12를 리턴한다.
+
+```javascript
+function adder(x, y){
+
+}
+
+console.log(adder(3, 5)); // 12
+```
+
+```javascript
+function adder(x, y) {
+  return Array.from({ length: Math.abs(x - y) + 1 }, (v, i) => i + (x > y ? y : x))
+    .reduce((pre, cur) => pre + cur);
+}
+
+console.log(adder(3, 5)); // 12
+console.log(adder(5, 1)); // 15
+console.log(adder(0, 0)); // 0
+```
+
+# 22. 배열의 인접한 요소곱 중 가장 큰 값 구하기
+
+인수로 주어진 정수의 배열에서 인접한 요소의 곱이 가장 큰 값을 반환하는 함수를 완성하라.
 예를 들어 인수가 [3, 6, -2, -5, 7, 3]인 경우, 21을 반환한다.
 
 ```javascript
@@ -770,36 +798,24 @@ function adjacentElementsProduct(arr) {
 
 console.log(adjacentElementsProduct([3, 6, -2, -5, 7, 3])); // 21
 ```
-<!--
-function adjacentElementsProduct(arr) {
-  // var buf = [];
-  // [3, 6, -2, -5, 7, 3]
-  // 0 ~ 4까지 루프
-  // for (let i = 0; i < arr.length - 1; i++) {
-  //   // i: 0 => 3, 6
-  //   // i: 1 => 6, -2
-  //   // ...
-  //   // i: 4 => 7, 3
-  //   buf.push(arr[i] * arr[i + 1]);
-  // }
-  // 최대값을 반환
-  // return Math.max.apply(null, buf);
 
-  const buf = [];
+```javascript
+function adjacentElementsProduct(arr) {
+  const temp = [];
 
   arr.reduce((pre, cur) => {
-    buf.push(pre * cur);
+    temp.push(pre * cur);
     return cur;
   });
 
   // 최대값을 반환
   return Math.max(...buf);
 }
--->
+```
 
-# 21. 배열에서 특정 값만을 구하기
+# 23. 배열에서 특정 값만을 구하기
 
-배열 arr에서 짝수이고 3보다 큰 수만을 구하여 이를 배열로 반환하는 함수를 작성하라
+인수로 주어진 배열 arr에서 짝수이고 3보다 큰 수만을 구하여 이를 배열로 반환하는 함수를 작성하라
 
 ```javascript
 function getArray(arr) {
@@ -808,15 +824,20 @@ function getArray(arr) {
 
 console.log(getArray([1, 2, 3, 4, 5, 6])); // [ 4, 6 ]
 ```
-<!--
+
+
+```javascript
 function getArray(arr) {
-  return arr.filter(el => (el % 2 === 0) && (el > 3));
+  return arr.filter(v => (v % 2 === 0) && (v > 3));
 }
--->
 
-# 22. 평균구하기
+console.log(getArray([1, 2, 3, 4, 5, 6])); // [ 4, 6 ]
+```
 
-배열을 인자로 전달받아 각 요소의 평균을 구하는 함수를 완성하라.
+
+# 24. 평균구하기
+
+인수로 주어진 배열의 평균을 구하는 함수를 완성하라.
 
 ```javascript
 function average(array){
@@ -825,13 +846,18 @@ function average(array){
 
 console.log(average([5, 3, 4])); // 4
 ```
-<!--
+
+
+```javascript
 function average(array) {
   return array.reduce((pre, cur) => pre + cur) / array.length;
 }
--->
 
-# 23. 최단 거리 1차원 점의 쌍 구하기 (DAUM)
+console.log(average([5, 3, 4])); // 4
+```
+
+
+# 25. 최단 거리 1차원 점의 쌍 구하기 (DAUM)
 
 1차원의 점들이 주어졌을 때, 그 중 가장 거리가 짧은 것(들)의 쌍을 배열로 반환하는 함수를 작성하라. (단 점들의 배열은 모두 정렬되어있다고 가정한다.) 예를들어 [1, 3, 4, 8, 13, 17, 20, 23, 24]이 주어졌다면, 결과값은 [[3, 4], [23, 24]]가 될 것이다.
 
@@ -844,16 +870,19 @@ function findMinDistance(array){
 var array = [1, 3, 4, 8, 13, 17, 20, 23, 24];
 console.log(findMinDistance(array)); // [[3, 4], [23, 24]]
 ```
-<!--
+
+```javascript
 function findMinDistance(array) {
   // 리턴용 배열
-  var shortests = [];
+  let shortests = [];
   // 두 점간의 최단 거리
-  var minDistance = Number.MAX_VALUE;
+  // 일단 자바스크립트에서 사용 가능한 가장 큰 숫자(1.7976931348623157e+308)인 Number.MAX_VALUE를 할당해 놓는다.
+  // 그리고 두 점간의 거리를 조사한 후, 현재 minDistance에 할당된 값과 비교하여 보다 작은 수를 할당한다.
+  let minDistance = Number.MAX_VALUE;
 
-  array.reduce(function (pre, cur) {
+  array.reduce((pre, cur) => {
     // 두 점 간의 거리
-    var distance = Math.abs(pre - cur);
+    const distance = Math.abs(pre - cur);
 
     // 두 점 간의 거리가 최단 거리이면 shortests에 푸시한다.
     // 가장 거리가 짧은 것의 쌍은 여러개 일 수 있다.
@@ -874,9 +903,14 @@ function findMinDistance(array) {
 
   return shortests;
 }
--->
 
-# 24. 특별한 정렬
+// 1차원 점의 배열
+const array = [1, 3, 4, 8, 13, 17, 20, 23, 24];
+console.log(findMinDistance(array)); // [[3, 4], [23, 24]]
+```
+
+
+# 26. 특별한 정렬
 
 n개의 정수를 가진 배열이 있다. 이 배열은 양의 정수와 음의 정수를 모두 가지고 있다. 이 배열을 좀 특별한 방법으로 정렬해야 한다. 음의 정수는 앞쪽에 내림차순으로, 양의 정수는 뒷쪽에 있어야 한다. 단, 인수로 주어진 원본 배열은 변경되지 않아야 한다.
 
@@ -892,84 +926,28 @@ const testArray = [-1, 1, 3, -2, 2, 0];
 console.log(testArray); // [ -1, 1, 3, -2, 2, 0 ]
 console.log(specialSort(testArray)); // [ -1, -2, 0, 1, 2, 3 ]
 ```
-<!--
+
+```javascript
 function specialSort(array) {
   // 배열 copy -> filter(음수만) -> sort(내림차순)
-  // var minus = array.slice().filter(function (e) { return e < 0; }).sort(function (a, b) { return b - a; });
   const minus = array.slice().filter(e => e < 0).sort((a, b) => b - a);
   // console.log(minus);
 
   // 배열 copy -> filter(0과 양수만) -> sort(오름차순)
-  // var plus = array.slice().filter(function (e) { return e >= 0; }).sort(function (a, b) { return a - b; });
   const plus = array.slice().filter(e => e >= 0).sort((a, b) => a - b);
   // console.log(plus);
 
-  return minus.concat(plus);
-}
--->
-
-# 25. 각 자릿수의 합 구하기
-
-정수 n이 주어지면, n의 각 자릿수의 합을 구해서 return 하는 digitSum 함수를 완성하라.
-예를 들어 n = 123이면 1 + 2 + 3 = 6을 return한다. 단, n은 100,000,000 이하의 정수로 한다.
-
-
-```javascript
-function digitSum(n) {
-
+  return [...minus, ...plus];
 }
 
-console.log(digitSum(123));  // 6
-console.log(digitSum(987));  // 24
-console.log(digitSum(100000001));  // false
+const testArray = [-1, 1, 3, -2, 2, 0];
+
+console.log(testArray); // [ -1, 1, 3, -2, 2, 0 ]
+console.log(specialSort(testArray)); // [ -1, -2, 0, 1, 2, 3 ]
 ```
 
-<!--
-function digitSum(n) {
-  if (n < 0 || n > 100000000) return false;
 
-  let sum = 0;
-  const arr = (n + '').split('');
-
-  arr.forEach(digit => {
-    sum += digit * 1;
-  });
-
-  return sum;
-}
--->
-
-# 26. 중복없는 배열
-
-길이가 n인 배열에 1부터 n까지 숫자가 중복 없이 한 번씩 들어 있는지를 확인하려고 한다.
-1부터 n까지 숫자가 중복 없이 한 번씩 들어 있는 경우 true를, 아닌 경우 false를 반환하도록 함수 isNotOverlapArray을 완성하라. 단, 배열의 요소는 정수이다.
-
-예를 들어 주어진 배열이 [4, 1, 3, 2]이라면 true, [4, 1, 3] 또는 [1, 3]이라면 false를 반환한다.
-
-```javascript
-function isNotOverlapArray(array) {
-
-}
-
-console.log(isNotOverlapArray([4, 1, 3, 2])); // true
-console.log(isNotOverlapArray([4, 1, 3]));    // false
-```
-<!--
-function isNotOverlapArray(array) {
-  let res = 0;
-
-  // 정렬 => 2개 요소 비교
-  array.sort((a, b) => a - b).reduce((pre, cur) => {
-    // 2개 요소 비교: 차이가 1이 아니면 1 증가
-    cur - pre !== 1 ? res++ : res;
-    return cur;
-  });
-
-  return (res === 0);
-}
--->
-
-# 28. 요일 구하기
+# 27. 요일 구하기
 
 2016년 1월 1일은 금요일이다. 2016년 a월 b일은 무슨 요일일까? 두 수 a, b를 입력받아 a월 b일이 무슨 요일인지 출력하는 getDayName 함수를 완성하라.
 
@@ -982,7 +960,9 @@ function getDayName(a, b){
 
 console.log(getDayName(5, 24)); // TUE
 ```
-<!--
+
+
+```javascript
 function getDayName(month, date) {
   const dayNames = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 
@@ -992,4 +972,5 @@ function getDayName(month, date) {
 }
 
 console.log(getDayName(5, 24)); // TUE
--->
+```
+

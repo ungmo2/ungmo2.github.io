@@ -47,13 +47,27 @@ console.log(render());
 ```
 
 <!--
-  todos.forEach(function (todo) {
-    html += `<li id="${todo.id}">
+function render() {
+  let html = '';
+
+  // todos.forEach(function (todo) {
+  //   html += `<li id="${todo.id}">
+  //     <label>
+  //       <input type="checkbox" ${todo.completed ? 'checked ' : ''}>${todo.content}
+  //     </label>
+  //   </li>`;
+  // });
+
+  todos.forEach(({ id, content, completed }) => {
+    html += `<li id="${id}">
       <label>
-        <input type="checkbox" ${todo.completed ? 'checked ' : ''}>${todo.content}
+        <input type="checkbox" ${completed ? 'checked ' : ''}>${content}
       </label>
     </li>`;
   });
+
+  return html;
+}
 -->
 
 # 2. 특정 프로퍼티 값 추출

@@ -204,7 +204,7 @@ import { Component } from '@angular/core';
     <!-- img 요소의 src 프로퍼티에 컴포넌트 클래스의 imageUrl 프로퍼티 값을 프로퍼티 바인딩 -->
     <img [src]="imageUrl"><br>
 
-    <!-- button 요소의 disabled 프로퍼티에 컴포넌트 클래스의 isUnchanged 프로퍼티 값을 프로퍼티 바인딩 -->
+    <!-- button 요소의 disabled 프로퍼티에 컴포넌트 클래스의 isDisabled 프로퍼티 값을 프로퍼티 바인딩 -->
     <button [disabled]="isDisabled">disabled button</button>
   `
 })
@@ -449,7 +449,7 @@ export class AppComponent {
 만약 isError의 값이 참이면 위 예제는 아래와 같이 변환된다.
 
 ```html
-<div lass="alert">...</div>
+<div class="alert">...</div>
 ```
 
 만약 isError의 값이 거짓이면 위 예제는 아래와 같이 변환된다.

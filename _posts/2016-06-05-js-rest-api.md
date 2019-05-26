@@ -43,13 +43,14 @@ DELETE /books/1
 
 # 2. HTTP Method
 
-4가지의 Method(GET, POST, PUT, DELETE)를 사용하여 CRUD를 구현한다.
+주로 5가지의 Method(GET, POST, PUT, PATCH, DELETE)를 사용하여 CRUD를 구현한다.
 
 | Method | Action         | 역할
 |:-------|:---------------|--------------------
 | GET    | index/retrieve | 모든/특정 리소스를 조회
 | POST   | create         | 리소스를 생성
 | PUT    | update         | 리소스를 갱신
+| PATCH  | update all     | 리소스를 일괄 갱신
 | DELETE | delete         | 리소스를 삭제
 
 # 3. REST API의 구성
@@ -98,7 +99,7 @@ npm script를 사용하여 json-server를 실행한다. 아래와 같이 package
     "serve": "json-server --watch db.json --port 5000"
   },
   "dependencies": {
-    "json-server": "^0.12.0"
+    "json-server": "^0.15.0"
   }
 }
 ```
@@ -140,14 +141,14 @@ $ curl -X GET http://localhost:5000/books
 {: .desc-img}
 
 ```javascript
-var req = new XMLHttpRequest();
-req.open('GET', 'http://localhost:5000/books');
-req.send();
+const xhr = new XMLHttpRequest();
+xhr.open('GET', 'http://localhost:5000/books');
+xhr.send();
 
-req.onreadystatechange = function (e) {
-  if (req.readyState === XMLHttpRequest.DONE) {
-    if(req.status === 200) {
-      console.log(req.responseText);
+xhr.onreadystatechange = function (e) {
+  if (xhr.readyState === XMLHttpRequest.DONE) {
+    if(xhr.status === 200) { // 200: OK => https://httpstatuses.com
+      console.log(xhr.responseText);
     } else {
       console.log("Error!");
     }
@@ -169,14 +170,14 @@ $ curl -X GET http://localhost:5000/books/1
 ![get-books](/img/get-books-retrieve.png)
 
 ```javascript
-var req = new XMLHttpRequest();
-req.open('GET', 'http://localhost:5000/books/1');
-req.send();
+const xhr = new XMLHttpRequest();
+xhr.open('GET', 'http://localhost:5000/books/1');
+xhr.send();
 
-req.onreadystatechange = function (e) {
-  if (req.readyState === XMLHttpRequest.DONE) {
-    if(req.status === 200) {
-      console.log(req.responseText);
+xhr.onreadystatechange = function (e) {
+  if (xhr.readyState === XMLHttpRequest.DONE) {
+    if(xhr.status === 200) {
+      console.log(xhr.responseText);
     } else {
       console.log("Error!");
     }
@@ -200,18 +201,18 @@ $ curl -X POST http://localhost:5000/books -H "Content-Type: application/json" -
 ![post-books](/img/post-books.png)
 
 ```javascript
-var req = new XMLHttpRequest();
-req.open('POST', 'http://localhost:5000/books');
-req.setRequestHeader('Content-type', 'application/json');
-req.send(JSON.stringify({
+const xhr = new XMLHttpRequest();
+xhr.open('POST', 'http://localhost:5000/books');
+xhr.setRequestHeader('Content-type', 'application/json');
+xhr.send(JSON.stringify({
   title: "ES6",
   author: "Choi"
 }));
 
-req.onreadystatechange = function (e) {
-  if (req.readyState === XMLHttpRequest.DONE) {
-    if(req.status === 201) {
-      console.log(req.responseText);
+xhr.onreadystatechange = function (e) {
+  if (xhr.readyState === XMLHttpRequest.DONE) {
+    if(xhr.status === 201) { // 201: Created
+      console.log(xhr.responseText);
     } else {
       console.log("Error!");
     }
@@ -235,18 +236,18 @@ $ curl -X PUT http://localhost:5000/books/4 -H "Content-Type: application/json" 
 ![put-books](/img/put-books.png)
 
 ```javascript
-var req = new XMLHttpRequest();
-req.open('PUT', 'http://localhost:5000/books/4');
-req.setRequestHeader('Content-type', 'application/json');
-req.send(JSON.stringify({
+const xhr = new XMLHttpRequest();
+xhr.open('PUT', 'http://localhost:5000/books/4');
+xhr.setRequestHeader('Content-type', 'application/json');
+xhr.send(JSON.stringify({
   title: 'ecmascript',
   author: "Choi"
 }));
 
-req.onreadystatechange = function (e) {
-  if (req.readyState === XMLHttpRequest.DONE) {
-    if(req.status === 200) {
-      console.log(req.responseText);
+xhr.onreadystatechange = function (e) {
+  if (xhr.readyState === XMLHttpRequest.DONE) {
+    if(xhr.status === 200) {
+      console.log(xhr.responseText);
     } else {
       console.log("Error!");
     }
@@ -266,14 +267,14 @@ $ curl -X DELETE http://localhost:5000/books/4
 ![delete-books](/img/delete-books.png)
 
 ```javascript
-var req = new XMLHttpRequest();
-req.open('DELETE', 'http://localhost:5000/books/4');
-req.send();
+const xhr = new XMLHttpRequest();
+xhr.open('DELETE', 'http://localhost:5000/books/4');
+xhr.send();
 
-req.onreadystatechange = function (e) {
-  if (req.readyState === XMLHttpRequest.DONE) {
-    if(req.status === 200) {
-      console.log(req.responseText);
+xhr.onreadystatechange = function (e) {
+  if (xhr.readyState === XMLHttpRequest.DONE) {
+    if(xhr.status === 200) {
+      console.log(xhr.responseText);
     } else {
       console.log("Error!");
     }

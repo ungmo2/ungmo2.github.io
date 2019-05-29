@@ -24,21 +24,21 @@ REST에서 가장 중요한 기본적인 규칙은 두 가지이다. URI는 자�
 
 ```
 # bad
-GET /getBooks/1
-GET /books/show/1
+GET /getTodos/1
+GET /todos/show/1
 
 # good
-GET /books/1
+GET /todos/1
 ```
 
 **2. 자원에 대한 행위는 HTTP Method(GET, POST, PUT, DELETE 등)으로 표현한다.**
 
 ```
 # bad
-GET /books/delete/1
+GET /todos/delete/1
 
 # good
-DELETE /books/1
+DELETE /todos/1
 ```
 
 # 2. HTTP Method
@@ -49,8 +49,8 @@ DELETE /books/1
 |:-------|:---------------|--------------------
 | GET    | index/retrieve | 모든/특정 리소스를 조회
 | POST   | create         | 리소스를 생성
-| PUT    | update         | 리소스를 갱신
-| PATCH  | update all     | 리소스를 일괄 갱신
+| PUT    | update all     | **리소스의 전체를 갱신**
+| PATCH  | update         | **리소스의 일부를 갱신**
 | DELETE | delete         | 리소스를 삭제
 
 # 3. REST API의 구성
@@ -80,10 +80,10 @@ db.json 파일을 아래와 같이 생성한다.
 
 ```json
 {
-  "books": [
-    { "id": 1, "title": "html", "author": "Lee" },
-    { "id": 2, "title": "css", "author": "Kim" },
-    { "id": 3, "title": "javascript", "author": "Park" }
+  "todos": [
+    { "id": 1, "content": "HTML", "completed": false },
+    { "id": 2, "content": "CSS", "completed": true },
+    { "id": 3, "content": "Javascript", "completed": false }
   ]
 }
 ```
@@ -96,7 +96,7 @@ npm script를 사용하여 json-server를 실행한다. 아래와 같이 package
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "serve": "json-server --watch db.json --port 5000"
+    "start": "json-server --watch db.json --port 5000"
   },
   "dependencies": {
     "json-server": "^0.15.0"
@@ -107,42 +107,42 @@ npm script를 사용하여 json-server를 실행한다. 아래와 같이 package
 json-server를 실행한다. 포트는 5000을 사용한다.
 
 ```bash
-$ npm run serve
+$ npm start
 ```
 
 ## 4.2 GET
 
-books 리소스에서 모든 책을 조회(index)한다.
+todos 리소스에서 모든 todo를 조회(index)한다.
 
 ```bash
-$ curl -X GET http://localhost:5000/books
+$ curl -X GET http://localhost:5000/todos
 [
   {
     "id": 1,
-    "title": "html",
-    "author": "Lee"
+    "content": "HTML",
+    "completed": false
   },
   {
     "id": 2,
-    "title": "css",
-    "author": "Kim"
+    "content": "CSS",
+    "completed": true
   },
   {
     "id": 3,
-    "title": "javascript",
-    "author": "Park"
+    "content": "Javascript",
+    "completed": false
   }
 ]
 ```
 
-![get-books](/img/get-books.png)
+![get-todos](/img/get-todos.png)
 
 [Postman](https://www.getpostman.com/)
 {: .desc-img}
 
 ```javascript
 const xhr = new XMLHttpRequest();
-xhr.open('GET', 'http://localhost:5000/books');
+xhr.open('GET', 'http://localhost:5000/todos');
 xhr.send();
 
 xhr.onreadystatechange = function (e) {
@@ -156,22 +156,22 @@ xhr.onreadystatechange = function (e) {
 };
 ```
 
-books 리소스에서 특정 책을 조회(retrieve)한다.
+todos 리소스에서 id를 사용하여 특정 todo를 조회(retrieve)한다.
 
 ```bash
-$ curl -X GET http://localhost:5000/books/1
+$ curl -X GET http://localhost:5000/todos/1
 {
   "id": 1,
-  "title": "html",
-  "author": "Lee"
+  "content": "HTML",
+  "completed": false
 }
 ```
 
-![get-books](/img/get-books-retrieve.png)
+![get-todos](/img/get-todos-retrieve.png)
 
 ```javascript
 const xhr = new XMLHttpRequest();
-xhr.open('GET', 'http://localhost:5000/books/1');
+xhr.open('GET', 'http://localhost:5000/todos/1');
 xhr.send();
 
 xhr.onreadystatechange = function (e) {
@@ -187,27 +187,24 @@ xhr.onreadystatechange = function (e) {
 
 ## 4.3 POST
 
-books 리소스에 책을 생성한다.
+todos 리소스에 새로운 todo를 생성한다.
 
 ```bash
-$ curl -X POST http://localhost:5000/books -H "Content-Type: application/json" -d '{"title": "ES6", "author": "Choi"}'
+$ curl -X POST http://localhost:5000/todos -H "Content-Type: application/json" -d '{"id": 4, "content": "Angular", "completed": true}'
 {
-  "title": "ES6",
-  "author": "Choi",
-  "id": 4
+  "id": 4,
+  "content": "Angular",
+  "completed": true
 }
 ```
 
-![post-books](/img/post-books.png)
+![post-todos](/img/post-todos.png)
 
 ```javascript
 const xhr = new XMLHttpRequest();
-xhr.open('POST', 'http://localhost:5000/books');
+xhr.open('POST', 'http://localhost:5000/todos');
 xhr.setRequestHeader('Content-type', 'application/json');
-xhr.send(JSON.stringify({
-  title: "ES6",
-  author: "Choi"
-}));
+xhr.send(JSON.stringify({ id: 4, content: 'Angular', completed: true }));
 
 xhr.onreadystatechange = function (e) {
   if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -222,27 +219,24 @@ xhr.onreadystatechange = function (e) {
 
 ## 4.4 PUT
 
-books 리소스의 책의 타이틀을 "ES6"에서 "ECMAScript6"로 갱신한다.
+PUT은 특정 리소스의 전체를 갱신할 때 사용한다. todos 리소스에서 id를 사용하여 todo를 특정하여 id를 제외한 리소스 전체를 갱신한다.
 
 ```bash
-$ curl -X PUT http://localhost:5000/books/4 -H "Content-Type: application/json" -d '{"title": "ECMAScript6", "author": "Choi"}'
+$ curl -X PUT http://localhost:5000/todos/4 -H "Content-Type: application/json" -d '{"id": 4, "content": "React", "completed": false}'
 {
-  "title": "ECMAScript6",
-  "author": "Choi",
+  "content": "React",
+  "completed": false,
   "id": 4
 }
 ```
 
-![put-books](/img/put-books.png)
+![put-todos](/img/put-todos.png)
 
 ```javascript
 const xhr = new XMLHttpRequest();
-xhr.open('PUT', 'http://localhost:5000/books/4');
+xhr.open('PUT', 'http://localhost:5000/todos/4');
 xhr.setRequestHeader('Content-type', 'application/json');
-xhr.send(JSON.stringify({
-  title: 'ecmascript',
-  author: "Choi"
-}));
+xhr.send(JSON.stringify({ id: 4, content: 'React', completed: false }));
 
 xhr.onreadystatechange = function (e) {
   if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -255,20 +249,52 @@ xhr.onreadystatechange = function (e) {
 };
 ```
 
-## 4.5 DELETE
+## 4.5 PATCH
 
-books 리소스에서 책을 삭제한다.
+PATCH는 특정 리소스의 일부를 갱신할 때 사용한다. todos 리소스의 id를 사용하여 todo를 특정하여 completed만을 true로 갱신한다.
 
 ```bash
-$ curl -X DELETE http://localhost:5000/books/4
-{}
+$ curl -X PATCH http://localhost:5000/todos/4 -H "Content-Type: application/json" -d '{"completed": true}'
+{
+  "id": 4,
+  "content": "React",
+  "completed": true
+}
 ```
 
-![delete-books](/img/delete-books.png)
+![put-todos](/img/patch-todos.png)
 
 ```javascript
 const xhr = new XMLHttpRequest();
-xhr.open('DELETE', 'http://localhost:5000/books/4');
+xhr.open('PATCH', 'http://localhost:5000/todos/4');
+xhr.setRequestHeader('Content-type', 'application/json');
+xhr.send(JSON.stringify({ completed: true }));
+
+xhr.onreadystatechange = function (e) {
+  if (xhr.readyState === XMLHttpRequest.DONE) {
+    if(xhr.status === 200) {
+      console.log(xhr.responseText);
+    } else {
+      console.log("Error!");
+    }
+  }
+};
+```
+
+## 4.6 DELETE
+
+todos 리소스에서 id를 사용하여 todo를 특정하고 삭제한다.
+
+```bash
+$ curl -X DELETE http://localhost:5000/todos/4
+{}
+```
+
+![delete-todos](/img/delete-todos.png)
+
+```javascript
+const xhr = new XMLHttpRequest();
+xhr.open('DELETE', 'http://localhost:5000/todos/4');
 xhr.send();
 
 xhr.onreadystatechange = function (e) {

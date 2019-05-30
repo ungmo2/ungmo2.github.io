@@ -34,13 +34,33 @@ $ npm install json-server --save-dev
 ```json
 {
   "todos": [
-    { "id": 1, "todo": "html" },
-    { "id": 2, "todo": "css" },
-    { "id": 3, "todo": "javascript" }
+    {
+      "id": 1,
+      "content": "HTML",
+      "completed": true
+    },
+    {
+      "id": 2,
+      "content": "CSS",
+      "completed": false
+    },
+    {
+      "id": 3,
+      "content": "Javascript",
+      "completed": true
+    }
   ],
   "users": [
-    {"id": 1, "name": "Lee", "age": 20, "gender": "male"},
-    {"id": 2, "name": "Kim", "age": 30, "gender": "female"}
+    {
+      "id": 1,
+      "name": "Lee",
+      "role": "developer"
+    },
+    {
+      "id": 2,
+      "name": "Kim",
+      "role": "designer"
+    }
   ]
 }
 ```
@@ -66,7 +86,7 @@ $ json-server --watch db.json --port 5000
     "start": "json-server --watch db.json"
   },
   "devDependencies": {
-    "json-server": "^0.14.2"
+    "json-server": "^0.15.0"
   }
 }
 ```
@@ -79,30 +99,28 @@ $ npm start
 
 [Postman](https://www.getpostman.com/)을 사용하여 json-server에 접속하여 보자.
 
-## 3.1 Get request
+## 3.1 GET request
 
-![Get request](/img/get-req.png)
+![GET request](/img/get-req.png)
 
-## 3.2 Post request
+## 3.2 POST request
 
-![Post request](/img/post-req.png)
+![POST request](/img/post-req.png)
 
-## 3.3 Put request
+## 3.3 PUT request
 
-![Put request](/img/put-req.png)
+![PUT request](/img/put-req.png)
 
-## 3.4 Delete request
+## 3.4 PATCH request
 
-![Delete request](/img/delete-req.png)
+![PATCH request](/img/patch-req.png)
+
+## 3.5 DELETE request
+
+![DELETE request](/img/delete-req.png)
 
 # Reference
 
 - [json-server](https://github.com/typicode/json-server)
 
 - [Postman](https://www.getpostman.com/)
-
-<script>
-  fetch('https://mock-server-lebuyxyalo.now.sh/todos/1')
-  .then(res => res.json())
-  .then(console.log);
-</script>

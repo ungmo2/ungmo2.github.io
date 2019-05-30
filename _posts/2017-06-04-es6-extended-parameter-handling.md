@@ -363,6 +363,27 @@ console.log(copy); // [ 1, 2, 3, 4 ]
 console.log(arr);  // [ 1, 2, 3 ]
 ```
 
+이때 원본 배열의 각 요소를 얕은 복사(shallow copy)하여 새로운 복사본을 생성한다. 이는 Array#slice 메소드도 마찬가지다.
+
+```javascript
+const todo1 = { id: 1, content: 'HTML', completed: false };
+const todo2 = { id: 2, content: 'CSS', completed: true };
+const todo3 = { id: 3, content: 'Javascript', completed: false };
+
+const todos = [todo1, todo2, todo3];
+
+// shallow copy
+// const _todos = todos.slice();
+const _todos = [...todos];
+
+console.log(_todos === todos); // false
+
+// 배열의 요소는 같다. 즉, 얕은 복사되었다.
+todos.forEach((todo, i) => {
+  console.log(todo === _todos[i]); // true
+});
+```
+
 Spread 연산자를 사용하면 유사 배열 객체(Array-like Object)를 배열로 손쉽게 변환할 수 있다.
 
 ```javascript

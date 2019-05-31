@@ -146,13 +146,14 @@ xhr.open('GET', 'http://localhost:5000/todos');
 xhr.send();
 
 xhr.onreadystatechange = function (e) {
-  if (xhr.readyState === XMLHttpRequest.DONE) {
-    if(xhr.status === 200) { // 200: OK => https://httpstatuses.com
-      console.log(xhr.responseText);
-    } else {
-      console.log("Error!");
-    }
+  if (xhr.readyState !== XMLHttpRequest.DONE) return;
+
+  if(xhr.status === 200) { // 200: OK => https://httpstatuses.com
+    console.log(xhr.responseText);
+  } else {
+    console.log("Error!");
   }
+
 };
 ```
 
@@ -175,12 +176,12 @@ xhr.open('GET', 'http://localhost:5000/todos/1');
 xhr.send();
 
 xhr.onreadystatechange = function (e) {
-  if (xhr.readyState === XMLHttpRequest.DONE) {
-    if(xhr.status === 200) {
-      console.log(xhr.responseText);
-    } else {
-      console.log("Error!");
-    }
+  if (xhr.readyState !== XMLHttpRequest.DONE) return;
+
+  if(xhr.status === 200) {
+    console.log(xhr.responseText);
+  } else {
+    console.log("Error!");
   }
 };
 ```
@@ -207,12 +208,12 @@ xhr.setRequestHeader('Content-type', 'application/json');
 xhr.send(JSON.stringify({ id: 4, content: 'Angular', completed: true }));
 
 xhr.onreadystatechange = function (e) {
-  if (xhr.readyState === XMLHttpRequest.DONE) {
-    if(xhr.status === 201) { // 201: Created
-      console.log(xhr.responseText);
-    } else {
-      console.log("Error!");
-    }
+  if (xhr.readyState !== XMLHttpRequest.DONE) return;
+
+  if(xhr.status === 201) { // 201: Created
+    console.log(xhr.responseText);
+  } else {
+    console.log("Error!");
   }
 };
 ```
@@ -239,12 +240,12 @@ xhr.setRequestHeader('Content-type', 'application/json');
 xhr.send(JSON.stringify({ id: 4, content: 'React', completed: false }));
 
 xhr.onreadystatechange = function (e) {
-  if (xhr.readyState === XMLHttpRequest.DONE) {
-    if(xhr.status === 200) {
-      console.log(xhr.responseText);
-    } else {
-      console.log("Error!");
-    }
+  if (xhr.readyState !== XMLHttpRequest.DONE) return;
+
+  if(xhr.status === 200) {
+    console.log(xhr.responseText);
+  } else {
+    console.log("Error!");
   }
 };
 ```
@@ -271,12 +272,12 @@ xhr.setRequestHeader('Content-type', 'application/json');
 xhr.send(JSON.stringify({ completed: true }));
 
 xhr.onreadystatechange = function (e) {
-  if (xhr.readyState === XMLHttpRequest.DONE) {
-    if(xhr.status === 200) {
-      console.log(xhr.responseText);
-    } else {
-      console.log("Error!");
-    }
+  if (xhr.readyState !== XMLHttpRequest.DONE) return;
+
+  if(xhr.status === 200) {
+    console.log(xhr.responseText);
+  } else {
+    console.log("Error!");
   }
 };
 ```
@@ -298,12 +299,12 @@ xhr.open('DELETE', 'http://localhost:5000/todos/4');
 xhr.send();
 
 xhr.onreadystatechange = function (e) {
-  if (xhr.readyState === XMLHttpRequest.DONE) {
-    if(xhr.status === 200) {
-      console.log(xhr.responseText);
-    } else {
-      console.log("Error!");
-    }
+  if (xhr.readyState !== XMLHttpRequest.DONE) return;
+
+  if(xhr.status === 200) {
+    console.log(xhr.responseText);
+  } else {
+    console.log("Error!");
   }
 };
 ```

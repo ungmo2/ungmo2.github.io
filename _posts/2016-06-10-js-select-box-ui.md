@@ -406,12 +406,12 @@ $ curl -X GET https://api.github.com/users/ungmo2/repos
         xhr.send();
 
         xhr.onreadystatechange = function () {
-          if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) { // 정상 응답
-              resolve(JSON.parse(xhr.response).map(res => res.name));
-            } else { // 비정상 응답
-              reject(new Error(xhr.status));
-            }
+          if (xhr.readyState !== XMLHttpRequest.DONE) return;
+
+          if (xhr.status === 200) { // 정상 응답
+            resolve(JSON.parse(xhr.response).map(res => res.name));
+          } else { // 비정상 응답
+            reject(new Error(xhr.status));
           }
         };
       });

@@ -69,13 +69,13 @@ document.querySelector('button').addEventListener('click', function () {
   xhr.send(JSON.stringify(payload));
 
   xhr.onreadystatechange = function () {
-    if (xhr.readyState === XMLHttpRequest.DONE) {
-      if (xhr.status === 200) {
-        console.log(xhr.response)
-        document.querySelector('.result').innerHTML = xhr.response;
-      } else {
-        console.log("Error!");
-      }
+    if (xhr.readyState !== XMLHttpRequest.DONE) return;
+
+    if (xhr.status === 200) {
+      console.log(xhr.response)
+      document.querySelector('.result').innerHTML = xhr.response;
+    } else {
+      console.log("Error!");
     }
   };
 });

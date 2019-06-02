@@ -521,7 +521,7 @@ webpack.config.js 파일을 아래와 같이 수정한다.
 
 ```javascript
 const path = require('path');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   // entry files

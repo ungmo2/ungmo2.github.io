@@ -45,21 +45,21 @@ Babel
 - @babel/core : 7.4.5
 - @babel/preset-env : 7.4.5
 - @babel/plugin-proposal-class-properties :  7.4.4
-- @babel/polyfill : 7.2.5
+- @babel/polyfill : 7.4.4
 
 Webpack
-: - webpack : 4.29.1
-- webpack-cli : 3.2.1
+: - webpack : 4.32.3
+- webpack-cli : 3.3.2
 
 Webpack plug-in: ES6+ ⇒ ES5
-: - babel-loader : 8.0.5
+: - babel-loader : 8.0.6
 
 Webpack plug-in: Sass ⇒ CSS
-: - node-sass : 4.11.0
+: - node-sass : 4.12.0
 - style-loader : 0.23.1
-- css-loader : 2.1.0
+- css-loader : 2.1.1
 - sass-loader : 7.1.0
-- mini-css-extract-plugin : 0.5.0
+- mini-css-extract-plugin : 0.7.0
 
 # 1. Babel
 

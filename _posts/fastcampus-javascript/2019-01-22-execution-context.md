@@ -3,7 +3,7 @@ layout: fs-post
 title: <strong>실행 컨텍스트</strong>
 categories: fastcampus
 section: fastcampus
-seq: 23
+seq: 22
 permalink: /:categories/:title
 description:
 ---

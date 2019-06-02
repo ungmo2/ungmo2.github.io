@@ -212,7 +212,7 @@ npm install 명령어에 `--save-exact` 옵션을 지정하면 설치된 버전�
 ```json
 ...
   "dependencies": {
-    "node-emoji": ^1.10.0"
+    "node-emoji": "^1.10.0"
   },
 ...
 ```

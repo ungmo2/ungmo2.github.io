@@ -66,11 +66,12 @@ npm WARN emoji No repository field.
 npm WARN emoji No README data
 npm WARN emoji No license field.
 
-+ node-emoji@1.8.1
-added 2 packages in 2.971s
++ node-emoji@1.10.0
+added 2 packages from 4 contributors and audited 2 packages in 0.566s
+found 0 vulnerabilities
 ```
 
-경고가 발생하였으나 node-emoji 패키지는 잘 설치되었다. 경고에 대해서는 잠시 후에 설명한다.
+경고가 발생하였으나 node_modules 폴더가 생성되고 그 내부에 node-emoji 패키지가 설치되었다. 경고에 대해서는 잠시 후에 알아보도록 하자.
 
 ## 2.2 지역 설치와 전역 설치
 
@@ -99,7 +100,9 @@ node 명령어로 Node.js REPL을 실행하고 node-emoji를 로드한 후 emoji
 
 ```bash
 $ node
-> var emoji = require('node-emoji').emoji;
+Welcome to Node.js v12.3.1.
+Type ".help" for more information.
+> const emoji = require('node-emoji').emoji;
 undefined
 > console.log(emoji.heart);
 ❤️
@@ -146,7 +149,7 @@ Wrote to /Users/leeungmo/Desktop/emoji/package.json:
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "node-emoji": "^1.8.1"
+    "node-emoji": "^1.10.0"
   },
   "devDependencies": {},
   "scripts": {
@@ -163,7 +166,7 @@ package.json에서 가장 중요한 항목은 `name`과 `version`이다. 이것�
 npm install 명령어에 `--save` 옵션을 사용하면 패키지 설치와 함께 package.json의 dependencies에 설치된 패키지 이름과 버전이 기록된다.
 
 ```bash
-$ npm install node-emoji --save
+$ npm install --save node-emoji
 ```
 
 [npm@5](http://blog.npmjs.org/post/161081169345/v500)부터 `--save`는 기본 옵션이 되었다. `--save` 옵션을 사용하지 않더라도 모든 install 명령은 package.json의 dependencies에 설치된 패키지와 버전을 기록한다. 기존의 `--save-dev`은 변경되지 않았다.
@@ -172,7 +175,7 @@ $ npm install node-emoji --save
 `devDependencies`에는 개발 시에만 사용하는 개발용 의존 패키지를 명시한다. 예를 들어 TypeScript와 같은 트랜스파일러는 개발 단계에서만 필요하고 배포할 필요는 없으므로 devDependencies에 포함시킨다. npm install 명령어에 `--save-dev`(축약형 -D) 옵션을 사용하면 패키지 설치와 함께 package.json의 devDependencies에 설치된 패키지와 버전이 기록된다.
 
 ```bash
-$ npm install <package> --save-dev
+$ npm install --save-dev <package>
 ```
 
 npm install 명령어를 사용하면 package.json에 명시된 모든 의존 패키지를 한번에 설치할 수 있다.
@@ -194,7 +197,7 @@ $ npm install node-emoji@1.5.0
 ```json
 ...
   "dependencies": {
-    "node-emoji": "^1.5.1"
+    "node-emoji": "^1.5.0"
   },
 ...
 ```
@@ -204,12 +207,12 @@ $ npm install node-emoji@1.5.0
 npm install 명령어에 `--save-exact` 옵션을 지정하면 설치된 버전을 범위 지정없이 기록한다.
 {: .info}
 
-다시 `npm install node-emoji`을 실행하면 최신 버전 1.8.1로 자동 업데이트된다.
+다시 `npm install node-emoji`을 실행하면 최신 버전 1.10.0로 자동 업데이트된다.
 
 ```json
 ...
   "dependencies": {
-    "node-emoji": "^1.8.1"
+    "node-emoji": ^1.10.0"
   },
 ...
 ```

@@ -280,7 +280,7 @@ MongoDB Compass를 사용하여 아래와 같이 DB, Collection을 추가한다.
 ```bash
 $ npm install nodemon -g
 $ cd <project-name>
-$ npm install express body-parser dotenv mongoose
+$ npm install express body-parser dotenv mongoose cors
 ```
 
 package.json
@@ -290,6 +290,7 @@ package.json
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "mongoose": "^5.5.12"
@@ -441,8 +442,11 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const app = express();
+app.use(cors());
+
 const port = process.env.PORT || 4500;
 
 // Static File Service

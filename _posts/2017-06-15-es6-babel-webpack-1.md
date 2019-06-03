@@ -35,7 +35,7 @@ ES6+(ES6 이상의 버전)를 사용하여 프로젝트를 진행하려면 ES6+�
 본 문서에서 사용한 Babel, Webpack, 플러그인의 버전은 아래와 같다.
 
 Node.js
-: 11.3.1
+: 12.3.1
 
 npm
 : 6.9.0
@@ -184,11 +184,13 @@ import { pi, power, Foo } from './lib';
 
 console.log(pi);
 console.log(power(pi, pi));
-console.log(new Person('Lee'));
+
+const f = new Foo();
+console.log(f.foo());
+console.log(f.bar());
 ```
 
 ```javascript
-// src/js/lib.js
 // src/js/lib.js
 export const pi = Math.PI;
 

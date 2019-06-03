@@ -200,7 +200,75 @@ Child mini-css-extract-plugin node_modules/css-loader/dist/cjs.js!node_modules/s
 
 ### 3.1.1 MongoDB Install
 
-- [mLab Hosting service](http://poiemaweb.com/mongdb-basics#43-mlab-hosting-service)
+<!-- - [mLab Hosting service](http://poiemaweb.com/mongdb-basics#43-mlab-hosting-service) -->
+
+#### 3.1.1.1 Window
+
+**1. mongodb 설치**
+
+- [mongodb 다운로드](https://www.mongodb.com/download-center/community?jmp=homepage)
+
+자신의 OS에 알맞는 인스톨러를 다운로드하여 기본 설정으로 설치한다.
+
+
+**2. DB, Collection 추가**
+
+MongoDB Compass Community를 사용하여 아래와 같이 DB, Collection을 추가한다.
+
+- DB: mydb
+- Collection: todos
+
+![](/img/mongodb-compass.png)
+{: .w-700 }
+
+#### 3.1.1.2 Mac
+
+**1. download & install**
+
+Mac의 경우, Homebrew를 사용하여 install할 수 있다.
+
+```bash
+$ brew update && brew install mongodb
+
+$ mongo -version
+MongoDB shell version v4.0.3
+git version: 7ea530946fa7880364d88c8d8b6026bbc9ffa48c
+allocator: system
+modules: none
+build environment:
+    distarch: x86_64
+    target_arch: x86_64
+```
+
+**2. 기본 데이터베이스 디렉터리 생성**
+
+기본 데이터베이스 디렉터리(/data/db)를 생성한다. 기본 데이터베이스 디렉터리에 데이터가 store된다.
+
+```bash
+$ mkdir -p /data/db
+$ sudo chmod -R go+w /data/db
+```
+
+**3. DB 기동**
+
+MongoDB Server를 기동한다.
+
+```bash
+$ mongod
+```
+
+새로운 터미널에서 MongoDB Client를 기동한다.
+
+```bash
+$ mongo
+```
+
+**3. DB, Collection 추가**
+
+RoboMongo를 사용하여 아래와 같이 DB, Collection을 추가한다.
+
+- DB: mydb
+- Collection: todos
 
 ### 3.1.1 Dependency Install
 
@@ -209,7 +277,6 @@ $ npm install nodemon -g
 $ cd <project-name>
 $ npm install express body-parser dotenv mongoose
 ```
-
 
 package.json
 
@@ -233,9 +300,9 @@ package.json
 # port number
 PORT=4500
 # MongoDB URI & User/Password
-# MONGO_URI=mongodb://localhost/<db-name>
+MONGO_URI=mongodb://localhost:27017/mydb
 # mlab의 경우
-MONGO_URI=mongodb://<userid>:<password>@<database>:<port>/<db-name>
+# MONGO_URI=mongodb://<userid>:<password>@<database>:<port>/<db-name>
 ```
 
 **package.json**

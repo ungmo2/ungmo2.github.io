@@ -274,8 +274,9 @@ todoSchema.statics.create = function (payload) {
 
 // Find All
 todoSchema.statics.findAll = function () {
-  // return promise
-  return this.find({}, { _id: false, id: true, content: true, completed: true }).sort({ id: 'desc' });
+  return this.find({}, {
+    _id: false, id: true, content: true, completed: true
+  }).sort({ id: 'desc' });
 };
 
 // Update All
@@ -285,8 +286,7 @@ todoSchema.statics.updateAll = function (payload) {
 
 // Update by todoid
 todoSchema.statics.updateByTodoid = function (id, payload) {
-  // { new: true }: return the modified document rather than the original. defaults to false
-  return this.findOneAndUpdate({ id }, payload, { new: true });
+  return this.findOneAndUpdate({ id }, payload);
 };
 
 // Delete by todoid

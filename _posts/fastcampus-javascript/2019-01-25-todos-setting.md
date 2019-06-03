@@ -219,7 +219,6 @@ MongoDB Compass Community를 사용하여 아래와 같이 DB, Collection을 추
 - Collection: todos
 
 ![](/img/mongodb-compass.png)
-{: .w-700 }
 
 #### 3.1.1.2 Mac
 
@@ -246,7 +245,7 @@ build environment:
 
 ```bash
 $ mkdir -p /data/db
-$ sudo chmod -R go+w /data/db
+$ sudo chmod 777 /data/db
 ```
 
 **3. DB 기동**
@@ -257,20 +256,26 @@ MongoDB Server를 기동한다.
 $ mongod
 ```
 
-새로운 터미널에서 MongoDB Client를 기동한다.
+<!-- 새로운 터미널에서 MongoDB Client를 기동한다.
 
 ```bash
 $ mongo
-```
+``` -->
 
-**3. DB, Collection 추가**
+**4. MongoDB Compass 설치**
 
-RoboMongo를 사용하여 아래와 같이 DB, Collection을 추가한다.
+- [MongoDB Compass 다운로드](https://www.mongodb.com/download-center/compass)
+
+**5. DB, Collection 추가**
+
+MongoDB Compass를 사용하여 아래와 같이 DB, Collection을 추가한다.
 
 - DB: mydb
 - Collection: todos
 
-### 3.1.1 Dependency Install
+![](/img/mongodb-compass-mac.png)
+
+### 3.1.2 Dependency Install
 
 ```bash
 $ npm install nodemon -g

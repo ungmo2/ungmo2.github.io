@@ -54,8 +54,8 @@ Libsass를 Node.js 환경에서 사용하기 위해서는 [node-sass](https://gi
 ```
 $ npm install -g node-sass
 $ node-sass -v
-node-sass	4.7.2	(Wrapper)	[JavaScript]
-libsass  	3.5.0.beta.2	(Sass Compiler)	[C/C++]
+node-sass	4.12.0	(Wrapper)	[JavaScript]
+libsass  	3.5.4	(Sass Compiler)	[C/C++]
 ```
 
 ## 2.2 Ruby Sass
@@ -111,16 +111,58 @@ GUI 환경에서 컴파일 기능 제공하는 App은 아래와 같다. App에 �
 
 ```bash
 $ node-sass -v
-node-sass	4.7.2	(Wrapper)	[JavaScript]
-libsass  	3.5.0.beta.2	(Sass Compiler)	[C/C++]
+node-sass	4.12.0	(Wrapper)	[JavaScript]
+libsass  	3.5.4	(Sass Compiler)	[C/C++]
 ```
 
 ## 3.2 compile
 
+컴파일할 SCSS 파일인 foo.scss 파일을 sass-project 폴더에 아래와 같이 생성하자.
+
+```scss
+$site_max_width: 960px;
+$font_color: #333;
+$link_color: #00c;
+$font_family: Arial, sans-serif;
+$font_size: 16px;
+$line_height: percentage(20px / $font_size);
+
+body {
+  color: $font_color;
+
+  // Property Nesting
+  font: {
+    size: $font_size;
+    family: $font_family;
+  }
+
+  line-height: $line_height;
+}
+
+#main {
+  width: 100%;
+  max-width: $site_max_width;
+}
+```
+
+```css
+body {
+  color: #333;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  line-height: 125%;
+}
+
+#main {
+  width: 100%;
+  max-width: 960px;
+}
+```
+
 컴파일할 SCSS 파일의 경로와 컴파일 후 생성될 css 파일의 경로를 지정한다.
 
 ```bash
-$ cd my-project
+$ cd sass-project
 
 ## 특정 파일을 특정 파일 이름으로 컴파일
 ## Compile foo.scss to bar.css

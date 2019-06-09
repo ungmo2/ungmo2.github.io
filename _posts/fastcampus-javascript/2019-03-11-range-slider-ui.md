@@ -237,33 +237,7 @@ Range silider UI를 구현하려면 마우스 이벤트를 사용해 DOM 요소�
      * @param {MouseEvent} e - 이벤트 객체
      */
     function rangeHandler(e) {
-      // 뷰포트를 기준으로 한 마우스 포인터의 x축 위치
-      const { clientX } = e;
-
-      // 뷰포트를 기준으로 한 마우스 포인터의 x축 위치는 .range-track 요소의 범위를 벗어날 수 없다.
-      if (clientX < left || clientX > right) return;
-
-      // .range-track 요소을 기준으로 한 마우스 포인터의 상대 위치
-      // 크기는 0 ~ .range-track 요소의 너비이다.
-      const posX = e.clientX - left;
-
-      // console.log(`[mousemove] posX: ${posX}(clientX: ${clientX} - left: ${left})`);
-
-      // .range-handle 요소를 posX 만큼 수평 이동
-      $handle.style.transform = `translate3d(${posX}px, 0, 0)`;
-
-      // .range-track 요소의 width를 기준으로 posX를 % 단위로 환산
-      const ratio = (posX / width) * 100;
-
-      // .fill 요소의 너비를 변경
-      $fill.style.width = ratio + '%';
-
-      // ratio를 deg 단위로 환산(100% -> 360)
-      const angle = Math.round((360 * ratio) / 100);
-      // gradient angle 지정
-      $gradientAngle.textContent = angle;
-      // gradient Background 변경
-      $gradient.style.backgroundImage = `linear-gradient(${angle}deg, #f1a829, #f14429)`;
+      // do something!
     }
 
     // .range-track 요소의 좌우 영역 내에서 발생한 이벤트만 캐치하기 위해 .range 요소에 이벤트를 등록한다.
@@ -287,13 +261,13 @@ Range silider UI를 구현하려면 마우스 이벤트를 사용해 DOM 요소�
 </html>
 ```
 
-<div class="result" style="height: 600px"></div>
+<!-- <div class="result" style="height: 600px"></div>
 
 # 3. Angular Range slider UI
 
 바닐라 자바스크립트로 구현한  Range slider UI를 이번에는 Angular로 구현해 보자.
 
-<iframe src="https://stackblitz.com/edit/angular-range-slider-ui?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="700"></iframe>
+<iframe src="https://stackblitz.com/edit/angular-range-slider-ui?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="700"></iframe> -->
 
 # Reference
 

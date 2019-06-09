@@ -358,9 +358,7 @@ box-sizing: border-box은 border와 padding을 유지한 상태에서 content �
       this.config = Accordion.mergeConfig(options);
       this.$accordion = document.querySelector(this.config.selector);
 
-      this.init();
-      // 이벤트 핸들러 내부의 this는 currentTartget
-      this.$accordion.addEventListener('click', this.toogle.bind(this));
+      // do something!
     }
 
     static mergeConfig(options) {
@@ -373,36 +371,7 @@ box-sizing: border-box은 border와 padding을 유지한 상태에서 content �
       return { ...config, ...options };
     }
 
-    init() {
-      // active 클래스가 지정된 li 요소
-      const $ActiveSubmenu = this.$accordion.querySelector('.active .submenu');
-      // active 클래스가 지정된 li 요소를 노출시킨다.
-      if ($ActiveSubmenu) $ActiveSubmenu.style.height = $ActiveSubmenu.scrollHeight + 'px';
-    }
-
-    toogle(event) {
-      if (!event.target.classList.contains('menu')) return;
-      // click 이벤트를 발생시킨 <div class="menu"> 요소의 부모 요소인 li 요소
-      const $targetItem = event.target.parentNode;
-
-      // 멀티 오픈을 허용하지 않으면 타깃 이외의 모든 submenu를 클로즈한다.
-      if (!this.config.multi) {
-        [].filter.call(
-          this.$accordion.childNodes,
-          li => li.nodeType === Node.ELEMENT_NODE && li !== $targetItem && li.classList.contains('active')
-        ).forEach(li => {
-          li.classList.remove('active');
-          li.querySelector('.submenu').style.height = '0';
-        });
-      }
-
-      // 타깃 li 요소의 active class를 토글한다.
-      $targetItem.classList.toggle('active');
-      // 타깃 li 요소의 submenu
-      const $submenu = $targetItem.querySelector('.submenu');
-      // 타깃 li 요소의 submenu를 토글한다.
-      $submenu.style.height = $targetItem.classList.contains('active') ? $submenu.scrollHeight + 'px' : '0';
-    }
+    // do something!
   }
 
   window.onload = function () {
@@ -413,10 +382,10 @@ box-sizing: border-box은 border와 padding을 유지한 상태에서 content �
 </html>
 ```
 
-<div class="result" style="height: 600px"></div>
+<!-- <div class="result" style="height: 600px"></div>
 
 # 3. Angular Accordion UI
 
 바닐라 자바스크립트로 구현한 아코디언 UI를 이번에는 Angular로 구현해 보자.
 
-<iframe src="https://stackblitz.com/edit/angular-accordion-menu?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="700"></iframe>
+<iframe src="https://stackblitz.com/edit/angular-accordion-menu?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="700"></iframe> -->

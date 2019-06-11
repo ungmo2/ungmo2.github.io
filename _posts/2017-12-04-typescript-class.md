@@ -41,9 +41,6 @@ person.ts(4,10): error TS2339: Property 'name' does not exist on type 'Person'.
 person.ts(8,25): error TS2339: Property 'name' does not exist on type 'Person'.
 ```
 
-TypeScript는 자바스크립트의 Superset(상위 확장)이므로 자바스크립트 문법을 그대로 사용할 수 있다.
-{: .info}
-
 **Typescript 클래스는 클래스 몸체에 클래스 프로퍼티를 사전 선언하여야 한다.**
 
 ```typescript

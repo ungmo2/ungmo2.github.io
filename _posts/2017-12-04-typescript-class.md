@@ -59,7 +59,7 @@ class Person {
   }
 }
 
-const person = new Foo('Lee');
+const person = new Person('Lee');
 person.walk(); // Lee is walking
 ```
 

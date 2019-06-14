@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: fs-post
 title: Angular <strong>Basics</strong>
 subtitle: Angular의 소개와 특징
 categories: fastcampus-angular
@@ -12,7 +12,7 @@ description: Angular는 SPA(Single Page Application) 개발을 위한 구글의 
 * TOC
 {:toc}
 
-![angular logo](/img/angular-logo.png)
+![angular logo](../img/angular-logo.png)
 
 # 1. Angular 소개
 
@@ -61,7 +61,7 @@ AngularJS는 Controller와 $scope가 개발의 중심이었지만 Angular에서�
 
 ### 3.1.2 TypeScript의 도입
 
-[TypeScript](./typescript-introduction)는 2012년 Microsoft에서 발표한 오픈소스로 강력한 정적 타이핑 그리고 ECMAScript6의 클래스, 모듈 등과 ECMAScript7의 데코레이터를 지원한다.
+[TypeScript](../typescript-introduction)는 2012년 Microsoft에서 발표한 오픈소스로 강력한 정적 타이핑 그리고 ECMAScript6의 클래스, 모듈 등과 ECMAScript7의 데코레이터를 지원한다.
 
 TypeScript를 사용하는 이유는 여러가지 있지만 가장 큰 장점은 다양한 도구의 지원을 받을 수 있다는 것이다. TypeScript는 정적 타이핑을 지원하므로 높은 수준의 인텔리센스(IntelliSense), 코드 어시스트, 타입 체크, 리팩토링 등을 지원하며 이러한 도구의 지원은 대규모 프로젝트를 위한 필수적 요소이기도 하다.
 
@@ -75,7 +75,7 @@ Angular는 TypeScript 뿐만 아니라 JavaScript, Dart로도 작성할 수 있�
 
 Angular CLI의 contributor인 Mike Brocchi‏의 보고에 따르면 개발 환경 구축이 Angular 도입의 큰 장벽 중 하나로 조사되었다.
 
-![largest-barrier-to-getting-started-with-Angular 2](img/largest-barrier-to-getting-started-with-Angular2.png)
+![largest-barrier-to-getting-started-with-Angular 2](../img/largest-barrier-to-getting-started-with-Angular2.png)
 
 이러한 점을 감안해 Angular는 [Angular CLI](https://cli.angular.io/)를 통해 간편한 개발 환경 구축을 지원한다. 간단한 명령어를 사용하여 프로젝트 생성에서 빌드, 테스트, 구성요소 추가 등을 간편하게 할 수 있으며, 개발용 서버를 내장하고 있어 실행까지 할 수 있다. Angular CLI는 개발환경 구축에 소요되는 시간을 최소화할 수 있어서 개발작업에 집중할 수 있도록 돕는다.
 

@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: fs-post
 title: Angular Component - <strong>Basics</strong>
 subtitle: 컴포넌트 소개와 기본 구조
 categories: fastcampus-angular
@@ -12,7 +12,7 @@ description: 컴포넌트는 Angular의 핵심 구성 요소로서 Angular 애�
 * TOC
 {:toc}
 
-![angular Logo](/img/angular-logo.png)
+![angular Logo](../img/angular-logo.png)
 
 # 1. 컴포넌트 소개
 
@@ -26,7 +26,7 @@ description: 컴포넌트는 Angular의 핵심 구성 요소로서 Angular 애�
 
 컴포넌트는 동작 가능한 하나의 부품이다. 컴포넌트의 부품화를 위해서는 다른 컴포넌트에 간섭을 받지 않도록 독립된 스코프를 가져야 한다. 다시 말해 컴포넌트 내에서만 유효한 상태 정보와 로직, 스타일을 소유한 완결된 뷰를 생성하기 위한 것이 바로 컴포넌트이다. <strong>컴포넌트는 독립적이고 완결된 뷰를 생성하기 위하여 "HTML, CSS, 자바스크립트를 하나의 단위로 묶는 것"</strong>이며 W3C 표준인 [웹 컴포넌트(Web Component)](https://www.webcomponents.org/introduction)를 기반으로 한다.
 
-![web-component](/img/web-component.png)
+![web-component](../img/web-component.png)
 
 웹 컴포넌트(Web Component)
 {: .desc-img}
@@ -40,7 +40,7 @@ description: 컴포넌트는 Angular의 핵심 구성 요소로서 Angular 애�
 
 위에서 설명한 HTML Template, Shadow DOM, HTML import, Custom Element가 바로 웹 컴포넌트의 4대 기술 스펙이다. 웹 컴포넌트의 브라우저 지원 현황은 아래와 같다.
 
-![web component browser support](./img/web-component-browser-support.png)
+![web component browser support](../img/web-component-browser-support.png)
 
 [각 브라우저의 웹컴포넌트 지원 상황](https://www.webcomponents.org/)
 {: .desc-img}
@@ -51,7 +51,7 @@ description: 컴포넌트는 Angular의 핵심 구성 요소로서 Angular 애�
 
 대부분의 웹 애플리케이션은 아래와 같이 블록 구조(Block structure)를 갖는다. HTML5의 시멘틱 태그를 사용하면 의미론적으로 명확한 구조를 가질 수 있다.
 
-![HTML5 semantic elements](./img/building-structure.png)
+![HTML5 semantic elements](../img/building-structure.png)
 
 블록 구조(Block structure)
 {: .desc-img}
@@ -60,7 +60,7 @@ description: 컴포넌트는 Angular의 핵심 구성 요소로서 Angular 애�
 
 위의 블록 구조를 컴포넌트로 전환하면 아래와 같은 구조를 갖는다. 흡사 DOM 트리와 유사한 형태를 가지게 되는데 이를 <strong>컴포넌트 트리</strong>라고 한다.
 
-![component tree](./img/component-tree.png)
+![component tree](../img/component-tree.png)
 
 컴포넌트 트리
 {: .desc-img}
@@ -71,7 +71,7 @@ Angular 애플리케이션은 분할된 컴포넌트로 구성되기 때문에 �
 
 ## 2.1 컴포넌트의 코드 구조
 
-컴포넌트의 기본 구조를 알아보기 위해 [Angular CLI](./angular-cli)로 프로젝트를 생성하여 보자.
+컴포넌트의 기본 구조를 알아보기 위해 [Angular CLI](../angular-cli)로 프로젝트를 생성하여 보자.
 
 ng new 명령어 다음에 프로젝트명을 지정하면 프로젝트명과 일치하는 새로운 프로젝트 폴더가 생성되고 스캐폴딩(프로젝트 기본 골격)이 작성된다. 프로젝트명을 hello로 지정하여 프로젝트를 생성한다.
 
@@ -86,7 +86,7 @@ $ cd hello
 $ ng serve --open
 ```
 
-![app works](./img/ng-serve-1.png)
+![app works](../img/ng-serve-1.png)
 
 Visual Studio Code로 프로젝트를 오픈하여 생성된 파일을 확인하여 보자. 아래의 명령으로 Visual Studio Code를 실행한다.
 
@@ -94,9 +94,9 @@ Visual Studio Code로 프로젝트를 오픈하여 생성된 파일을 확인하
 $ code .
 ```
 
-![hello-component-project](/img/hello-component-project.png)
+![hello-component-project](../img/hello-component-project.png)
 
-ng new 명령어에 의해 생성된 프로젝트는 루트 컴포넌트와 루트 모듈을 각각 1개씩 갖는다. 루트 모듈은 프로젝트 최상위 모듈로 main.ts에 의해 부트스트랩되며 컴포넌트 트리 상 최상위 컴포넌트인 루트 컴포넌트는 루트 모듈에 의해 부트스트랩된다.([Angular 애플리케이션의 처리 흐름](./angular-architecture#2-angular-애플리케이션의-처리-흐름) 참고)
+ng new 명령어에 의해 생성된 프로젝트는 루트 컴포넌트와 루트 모듈을 각각 1개씩 갖는다. 루트 모듈은 프로젝트 최상위 모듈로 main.ts에 의해 부트스트랩되며 컴포넌트 트리 상 최상위 컴포넌트인 루트 컴포넌트는 루트 모듈에 의해 부트스트랩된다.([Angular 애플리케이션의 처리 흐름](../angular-architecture#2-angular-애플리케이션의-처리-흐름) 참고)
 
 생성된 루트 컴포넌트 src/app/app.component.ts를 살펴보자.
 
@@ -144,14 +144,14 @@ export class AppComponent {
 
 템플릿은 컴포넌트의 뷰를 정의하기 위해 HTML과 Angular 고유의 템플릿 문법(Template Syntax)으로 작성한다. `{{ "{{ title " }}}}`은 템플릿 문법 중 하나인 인터폴레이션(Interpolation)으로 컴포넌트 클래스의 데이터를 템플릿에 바인딩한다. 이러한 방식을 <strong>데이터 바인딩(Data Binding)</strong>이라고 한다.
 
-![data binding](./img/data-binding.png)
+![data binding](../img/data-binding.png)
 
 데이터 바인딩(Data Binding)
 {: .desc-img}
 
 컴포넌트는 데이터 바인딩에 의해 템플릿과 컴포넌트 클래스의 데이터를 유기적으로 연계한다. 기본적인 동작 구조는 아래와 같다.
 
-![component](./img/component.png)
+![component](../img/component.png)
 
 컴포넌트의 기본 동작 구조
 {: .desc-img}
@@ -173,7 +173,7 @@ hello 프로젝트에 새로운 컴포넌트를 추가해 보자. `ng generate c
 
 새로운 컴포넌트를 위해 src/app 폴더 아래 hello 폴더를 생성한다. 컴포넌트는 화면 전환(라우팅)의 단위가 되기 때문에 폴더로 구분하는 것이 바람직하다. hello 폴더를 추가하고 폴더 내에 hello.component.ts 파일을 생성한다.
 
-![hello-component](/img/hello-component.png)
+![hello-component](../img/hello-component.png)
 
 hello.component.ts 파일 생성
 {: .desc-img}
@@ -200,7 +200,7 @@ src/app/hello/hello.component.ts 파일을 아래와 같이 수정하여 컴포�
 export class HelloComponent {}
 ```
 
-선언한 클래스를 모듈화하여 외부에 공개하기 위해 export 키워드를 사용하였다. TypeScript는 [ECMAScript6 Module](./es6-module)을 지원하며 export 키워드가 선언된 파일을 모듈로 간주한다.
+선언한 클래스를 모듈화하여 외부에 공개하기 위해 export 키워드를 사용하였다. TypeScript는 [ECMAScript6 Module](../es6-module)을 지원하며 export 키워드가 선언된 파일을 모듈로 간주한다.
 
 ES6의 모듈과 Angular의 모듈은 다른 개념이므로 혼동에 주의하도록 하자.
 
@@ -252,7 +252,7 @@ import { Component } from '@angular/core';
 export class HelloComponent {}
 ```
 
-@angular/core 패키지에는 Component 이외에도 수많은 모듈로 구성되어 있다. ES6의 [객체 디스트럭처링 (Object destructuring)](./es6-destructuring#2-객체-디스트럭처링-object-destructuring)을 사용하여 필요한 모듈만을 임포트한다.
+@angular/core 패키지에는 Component 이외에도 수많은 모듈로 구성되어 있다. ES6의 [객체 디스트럭처링 (Object destructuring)](../es6-destructuring#2-객체-디스트럭처링-object-destructuring)을 사용하여 필요한 모듈만을 임포트한다.
 
 ## 3.5 메타데이터
 
@@ -321,7 +321,7 @@ import { Component } from '@angular/core';
 export class HelloComponent {}
 ```
 
-template 프로퍼티는 프로퍼티값으로 문자열을 취하는데 백틱(backtick) 문자 `` ` ``를 사용하였다. 이것은 ECMAScript6에서 도입된 새로운 문자열 표기법인 [템플릿 문자열(template string) 표기법](./es6-template-string)으로 일반적인 문자열과 달리 줄바꿈과 들여쓰기 등 템플릿 문자열 내의 모든 화이트스페이스(white-space)가 있는 그대로 적용된다.
+template 프로퍼티는 프로퍼티값으로 문자열을 취하는데 백틱(backtick) 문자 `` ` ``를 사용하였다. 이것은 ECMAScript6에서 도입된 새로운 문자열 표기법인 [템플릿 문자열(template string) 표기법](../es6-template-string)으로 일반적인 문자열과 달리 줄바꿈과 들여쓰기 등 템플릿 문자열 내의 모든 화이트스페이스(white-space)가 있는 그대로 적용된다.
 
 ### 3.5.3 styles/styleUrls 프로퍼티
 
@@ -455,7 +455,7 @@ export class HelloComponent {
 
 위 코드를 좀 더 자세히 알아보자.
 
-![template-class](./img/template-class.png)
+![template-class](../img/template-class.png)
 
 컴포넌트 클래스와 템플릿의 연동
 {: .desc-img}
@@ -524,7 +524,7 @@ declarations 프로퍼티에는 모듈에 소속될 구성요소(컴포넌트, �
 $ ng serve
 ```
 
-![viewing-hello-component](/img/viewing-hello-component.png)
+![viewing-hello-component](../img/viewing-hello-component.png)
 
 hello 프로젝트의 실행 결과
 {: .desc-img}

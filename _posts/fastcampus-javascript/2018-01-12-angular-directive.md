@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: fs-post
 title: Angular <strong>Directive</strong>
 subtitle: 디렉티브
 categories: fastcampus-angular
@@ -12,7 +12,7 @@ description: 디렉티브(Directive 지시자)는 “DOM의 모든 것(모양이
 * TOC
 {:toc}
 
-![angular Logo](/img/angular-logo.png)
+![angular Logo](../img/angular-logo.png)
 
 # 1. 디렉티브(directive)란?
 
@@ -44,13 +44,13 @@ description: 디렉티브(Directive 지시자)는 “DOM의 모든 것(모양이
 
 Angular는 3가지 유형의 디렉티브를 제공한다.
 
-[컴포넌트 디렉티브(Component Directives)](./angular-component-basics)
+[컴포넌트 디렉티브(Component Directives)](../angular-component-basics)
 : 컴포넌트의 템플릿을 표시하기 위한 디렉티브이다. @component 데코레이터의 메타데이터 객체의 seletor 프로퍼티에서 임의의 디렉티브의 이름을 정의한다.
 
-[어트리뷰트 디렉티브(Attribute Directives)](./angular-component-template-syntax#21-빌트인-어트리뷰트-디렉티브built-in-attribute-directive)
+[어트리뷰트 디렉티브(Attribute Directives)](../angular-component-template-syntax#21-빌트인-어트리뷰트-디렉티브built-in-attribute-directive)
 : 어트리뷰트 디렉티브는 DOM 요소의 어트리뷰트로 사용하여 해당 요소의 모양이나 동작을 제어한다. ngClass, ngStyle와 같은 빌트인 디렉티브가 있다.
 
-[구조 디렉티브(Structural Directives)](./angular-component-template-syntax#22-빌트인-구조-디렉티브built-in-structural-directive)
+[구조 디렉티브(Structural Directives)](../angular-component-template-syntax#22-빌트인-구조-디렉티브built-in-structural-directive)
 : 구조 디렉티브는 DOM 요소를 반복 생성(ngFor), 조건에 의한 추가 또는 제거(ngIf, ngSwitch)를 통해 DOM 레이아웃(layout)을 변경한다.
 
 이외에도 이번 장에서 살펴볼 사용자 정의 디렉티브가 있다. 사용자 정의 디렉티브는 Angular가 제공하는 빌트인 디렉티브가 아닌 사용자가 직접 정의하는 디렉티브이다.
@@ -138,7 +138,7 @@ selector 프로퍼티의 값에 의해 디렉티브의 적용이 결정되는 �
 
 ② 생성자에 [ElementRef](https://angular.io/api/core/ElementRef) 타입의 인스턴스가 주입(Depedency Inject, 의존성 주입)되었다.
 
-의존성 주입은 구성 요소 간의 의존 관계를 코드 내부가 아닌 외부의 설정 파일 등을 통해 정의하는 디자인 패턴 중의 하나로서 구성 요소 간 결합도를 낮추고 재사용성을 높인다. 의존성 주입에 대해서는 '[서비스와 의존성 주입](./angular-service#3-%EC%9D%98%EC%A1%B4%EC%84%B1-%EC%A3%BC%EC%9E%85dependency-injection)'에서 자세히 살펴볼 것이다.
+의존성 주입은 구성 요소 간의 의존 관계를 코드 내부가 아닌 외부의 설정 파일 등을 통해 정의하는 디자인 패턴 중의 하나로서 구성 요소 간 결합도를 낮추고 재사용성을 높인다. 의존성 주입에 대해서는 '[서비스와 의존성 주입](../angular-service#3-%EC%9D%98%EC%A1%B4%EC%84%B1-%EC%A3%BC%EC%9E%85dependency-injection)'에서 자세히 살펴볼 것이다.
 {: .info}
 
 ElementRef 클래스는 템플릿 내부의 DOM 요소를 감싼 래퍼 객체를 생성하며 네이티브 DOM 요소를 가리키는 nativeElement 프로퍼티를 소유한다. @ViewChild와 @ViewChildren 데코레이터와 템플릿 참조 변수를 사용하여 템플릿 내부의 네이티브 DOM을 탐색한 경우, 탐색 결과로 ElementRef 클래스의 인스턴스가 바인딩된다.
@@ -307,7 +307,7 @@ export class TextColorDirective {
 }
 ```
 
-@Input 데코레이터를 사용하여 호스트 요소에서 프로퍼티 바인딩한 값을 전달 받는다. @Input 데코레이터의 사용 방법은 [부모 컴포넌트에서 자식 컴포넌트로 상태 전달](./angular-component-interaction#21-부모-컴포넌트에서-자식-컴포넌트로-상태-전달) 시에 사용할 때와 동일하다.
+@Input 데코레이터를 사용하여 호스트 요소에서 프로퍼티 바인딩한 값을 전달 받는다. @Input 데코레이터의 사용 방법은 [부모 컴포넌트에서 자식 컴포넌트로 상태 전달](../angular-component-interaction#21-부모-컴포넌트에서-자식-컴포넌트로-상태-전달) 시에 사용할 때와 동일하다.
 
 모듈에 TextColorDirective를 등록하고 컴포넌트를 실행하면 color 프로퍼티에 바인딩한 컬러가 textColor 디렉티브로 전달되고 호스트 요소의 텍스트 컬러가 이벤트에 의해 변경되는 것을 확인할 수 있다.
 
@@ -526,7 +526,7 @@ myNgIf 디렉티브는 의존성 주입을 통해 TemplateRef와 ViewContainerRe
 
 ## 4.2 ng-template 디렉티브
 
-ngIf, ngFor, ngSwitch와 같은 [빌트인 구조 디렉티브](./angular-component-template-syntax#22-빌트인-구조-디렉티브built-in-structural-directive)는 디렉티브 이름 앞에 붙은 *(asterisk)에 의해 `ng-template`으로 변환된다. 예를 들어 ngIf 디렉티브의 경우를 살펴보자.
+ngIf, ngFor, ngSwitch와 같은 [빌트인 구조 디렉티브](../angular-component-template-syntax#22-빌트인-구조-디렉티브built-in-structural-directive)는 디렉티브 이름 앞에 붙은 *(asterisk)에 의해 `ng-template`으로 변환된다. 예를 들어 ngIf 디렉티브의 경우를 살펴보자.
 
 ```html
 <element *ngIf="expression">...</element>
@@ -743,7 +743,7 @@ export class RangeDirective {
 
 * [Angular NgModules](https://angular.io/guide/ngmodule)
 
-* [Angular Built-in directive](./angular-component-template-syntax#2-빌트인-디렉티브built-in-directive)
+* [Angular Built-in directive](../angular-component-template-syntax#2-빌트인-디렉티브built-in-directive)
 
 * [@Directive](https://angular.io/api/core/Directive)
 

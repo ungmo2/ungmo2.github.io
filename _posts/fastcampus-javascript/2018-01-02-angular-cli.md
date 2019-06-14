@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: fs-post
 title: Angular <strong>CLI</strong>
 subtitle: Angular CLI를 사용한 프로젝트의 생성, 구성요소 추가와 빌드
 categories: fastcampus-angular
@@ -12,7 +12,7 @@ description: Angular CLI는 간단한 명령어를 사용하여 Angular 프로�
 * TOC
 {:toc}
 
-![angular logo](/img/angular-logo.png)
+![angular logo](../img/angular-logo.png)
 
 프레임워크는 애플리케이션 구축에 기본적으로 필요한 기능의 구현체를 정형화된 구조로 제공하며 이를 바탕으로 애플리케이션의 요구 사항을 구현해 나간다. 따라서 프레임워크의 학습은 정형화된 프레임워크의 기본 구조에 익숙해지는 것으로 시작한다. 하지만 처음 접하는 프레임워크의 기본 구조를 익히고 개발환경을 구축하는 것은 쉽지 않은 일이다.
 
@@ -34,7 +34,7 @@ Angular CLI가 지원하는 기능은 아래와 같다.
 
 Angular는 Angular CLI를 위한 별도의 홈페이지 [https://cli.angular.io/](https://cli.angular.io/)를 제공한다.
 
-![angular-cli-website](./img/angular-cli-website.png)
+![angular-cli-website](../img/angular-cli-website.png)
 
 각종 명령어와 옵션, Angular CLI의 설정 파일인 `angular.json`에 대한 상세한 문서를 제공하고 있으므로 참고하기 바란다.
 
@@ -73,7 +73,7 @@ $ npm install -g @angular/cli@latest
 
 설치가 완료되면 `ng` 명령어를 사용할 수 있다. 설치가 성공적으로 완료되었는지 `ng version` 명령어로 버전을 출력하여 확인하여 보자.
 
-![angular-cli-website](./img/ng-version.png)
+![angular-cli-website](../img/ng-version.png)
 
 Angular CLI의 사용법을 참조하기 위해서는 `ng help` 명령어를 사용한다.
 
@@ -150,7 +150,7 @@ my-app/
 └── tslint.json
 ```
 
-Angular 프로젝트의 파일 구조 및 구성요소에 대한 설명은 [Angular의 파일 구조와 구성 요소](./angular-architecture)에서 자세히 살펴볼 것이다. 이번 장에서는 Angular CLI의 기능에 집중하도록 하자.
+Angular 프로젝트의 파일 구조 및 구성요소에 대한 설명은 [Angular의 파일 구조와 구성 요소](../angular-architecture)에서 자세히 살펴볼 것이다. 이번 장에서는 Angular CLI의 기능에 집중하도록 하자.
 
 # 4. 프로젝트 실행
 
@@ -187,7 +187,7 @@ chunk {vendor} vendor.js, vendor.js.map (vendor) 3.37 MB [initial] [rendered]
 $ ng serve --open
 ```
 
-![app works](./img/ng-serve-1.png)
+![app works](../img/ng-serve-1.png)
 
 ng serve 명령어를 사용한 프로젝트 실행 결과
 {: .desc-img}
@@ -219,7 +219,7 @@ export class AppComponent {
 
 변경된 파일을 저장하면 잠시 후 브라우저가 리로드되고 변경된 내용이 반영된다.
 
-![app works](./img/ng-serve-2.png)
+![app works](../img/ng-serve-2.png)
 
 LiveReload 기능에 의한 소스 코드 변경 내용 자동 반영
 {: .desc-img}
@@ -604,7 +604,7 @@ Angular CLI 빌드 기능은 소스코드와 의존 모듈을 번들링한다. �
 
 빌드 처리는 아래 그림과 같이 진행되며 빌드가 완료되면 dist 폴더가 추가되고 그 내부에 빌드 결과물이 생성된다.
 
-![build-dist](./img/build-dist.png)
+![build-dist](../img/build-dist.png)
 
 빌드 처리의 흐름
 {: .desc-img}

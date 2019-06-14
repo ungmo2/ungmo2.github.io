@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: fs-post
 title: Angular Component - <strong>Data Binding</strong>
 subtitle: 데이터 바인딩
 categories: fastcampus-angular
@@ -22,7 +22,7 @@ description: 구조화된 웹 애플리케이션을 구축하기 위해서는 �
 
 jQuery를 사용하는 웹 애플리케이션의 경우를 살펴보자.
 
-![procedural-programming](./img/procedural-programming.png)
+![procedural-programming](../img/procedural-programming.png)
 
 jQuery에 의한 DOM 조작(Procedural programming)
 {: .desc-img}
@@ -33,7 +33,7 @@ jQuery에 의한 DOM 조작(Procedural programming)
 
 하지만 Angular는 DOM에 직접 접근하지 않고 템플릿과 컴포넌트 클래스의 상호 관계를 선언하는 방식(선언형 프로그래밍: Declarative programming)으로 뷰와 모델의 관계를 관리한다. 이때 사용되는 것이 <strong>데이터 바인딩</strong>이며 이를 통해 템플릿과 컴포넌트 클래스는 연결된다. 데이터 바인딩은 <strong>템플릿 문법</strong>으로 기술된다. HTML과 템플릿 문법으로 기술된 템플릿은 JIT 또는 AOT 컴파일러에 의해 브라우저가 이해할 수 있는 자바스크립트로 컴파일된다. Angular 웹 애플리케이션의 경우를 살펴보자.
 
-![declarative-programming](./img/declarative-programming.png)
+![declarative-programming](../img/declarative-programming.png)
 
 데이터 바인딩에 의한 템플릿과 컴포넌트 클래스의 연결(Declarative programming)
 {: .desc-img}
@@ -48,14 +48,14 @@ Angular의 데이터 바인딩은 뷰와 모델의 관계를 기존의 웹 애�
 
 AngularJS는 양방향 바인딩(Two-way binding)만을 지원하였고 AngularJS에서 제공하는 ng-click과 같은 이벤트만을 사용하여야 하는 등 제약이 있었다. 하지만 Angular는 양방향 바인딩과 단방향 바인딩(One-way binding)을 모두 지원하며 [zone.js](https://github.com/angular/zone.js/) 라이브러리를 사용하여 네이티브 DOM 이벤트를 사용하여도 변화 감지가 수행되도록 개선되었다.
 
-사실 Angular는 [양방향 바인딩](./angular-component-template-syntax#17-양방향-데이터-바인딩two-way-binding)을 지원하지 않는다. 양방향 바인딩을 위한 템플릿 문법 `[()]`(이것을 Banana in a box라고 부른다)에서 추측할 수 있듯이 양방향 바인딩은 이벤트 바인딩과 프로퍼티 바인딩의 축약 표현(Shorthand syntax)일 뿐이다. 즉, 양방향 바인딩의 실제 동작은 이벤트 바인딩과 프로퍼티 바인딩의 조합으로 이루어진다.
+사실 Angular는 [양방향 바인딩](../angular-component-template-syntax#17-양방향-데이터-바인딩two-way-binding)을 지원하지 않는다. 양방향 바인딩을 위한 템플릿 문법 `[()]`(이것을 Banana in a box라고 부른다)에서 추측할 수 있듯이 양방향 바인딩은 이벤트 바인딩과 프로퍼티 바인딩의 축약 표현(Shorthand syntax)일 뿐이다. 즉, 양방향 바인딩의 실제 동작은 이벤트 바인딩과 프로퍼티 바인딩의 조합으로 이루어진다.
 {: .info}
 
 변화 감지의 작동 원리에 대해 간단히 살펴보자.
 
 뷰의 상태 변화는 DOM 이벤트를 캐치하는 것으로 감지할 수 있다. 하지만 모델은 HTML 요소가 아니므로 이벤트가 발생하지 않는다. 따라서 모델의 변화 감지를 위해서는 별도의 조치가 필요하다. 모델이 변경된다는 것은 컴포넌트 클래스의 프로퍼티 값이 변경되는 것을 의미한다.
 
-![change detection](./img/change-detection.png)
+![change detection](../img/change-detection.png)
 
 변화 감지
 {: .desc-img}
@@ -230,7 +230,7 @@ Angular는 뷰를 렌더링하기 이전에 인터폴레이션을 프로퍼티 �
 <p [innerHTML]="contents"></p>
 ```
 
-프로퍼티 바인딩에는 객체를 포함한 모든 값을 사용할 수 있다. DOM 노드 객체의 프로퍼티에는 객체를 포함한 모든 값을 할당할 수 있기 때문이다. 이 특성을 이용하여 부모 컴포넌트에서 자식 컴포넌트로 값을 전달하는 경우 프로퍼티 바인딩을 사용한다. 이에 대해서는 [컴포넌트 간의 상태 공유](./angular-component-interaction)에서 자세히 다룬다.
+프로퍼티 바인딩에는 객체를 포함한 모든 값을 사용할 수 있다. DOM 노드 객체의 프로퍼티에는 객체를 포함한 모든 값을 할당할 수 있기 때문이다. 이 특성을 이용하여 부모 컴포넌트에서 자식 컴포넌트로 값을 전달하는 경우 프로퍼티 바인딩을 사용한다. 이에 대해서는 [컴포넌트 간의 상태 공유](../angular-component-interaction)에서 자세히 다룬다.
 
 ## 3.3 어트리뷰트 바인딩(Attribute binding)
 
@@ -244,7 +244,7 @@ Angular는 뷰를 렌더링하기 이전에 인터폴레이션을 프로퍼티 �
 
 브라우저는 HTML 문서를 파싱하여 DOM 트리로 변환하고 메모리에 적재한다. 이때 HTML 요소는 DOM 노드 객체로, HTML 어트리뷰트는 DOM 노드 객체의 프로퍼티로 변환된다.
 
-![브라우저 동작 원리](./img/client-server.png)
+![브라우저 동작 원리](../img/client-server.png)
 {: .w-700}
 
 브라우저 동작 원리
@@ -262,7 +262,7 @@ Angular는 뷰를 렌더링하기 이전에 인터폴레이션을 프로퍼티 �
 document.getElementById('user').getAttribute('value'); // ungmo2
 ```
 
-![html attributes](./img/html-attributes.png)
+![html attributes](../img/html-attributes.png)
 
 HTMLInputElement 객체의 attributes 프로퍼티
 {: .desc-img}
@@ -748,7 +748,7 @@ export class AppComponent {
 
 프로퍼티 바인딩 [ngModel]은 사용자 입력에 관련된 DOM 요소의 프로퍼티(위 예제의 경우 input 요소의 value 프로퍼티)를 업데이트한다. 그리고 이벤트 바인딩 (ngModelChange)는 이벤트를 수신하고 이벤트 핸들러를 통해 DOM의 변화를 외부에 알린다. 이때 ngModelChange는 $event에서 사용자 입력에 관련된 프로퍼티의 값(위 예제의 경우 target.value)을 내부적으로 추출하여 이벤트를 emit한다.
 
-양방향 바인딩은 반드시 ngModel 디렉티브만을 사용하여야 하는 것은 아니며 커스텀 양방향 데이터 바인딩도 작성할 수 있다. 이 방법에 대해서는 [Angular Forms: NgModel과 양방향 바인딩](./angular-form-template-driven-forms#3-ngmodel과-양방향-바인딩)에서 알아보도록 하자.
+양방향 바인딩은 반드시 ngModel 디렉티브만을 사용하여야 하는 것은 아니며 커스텀 양방향 데이터 바인딩도 작성할 수 있다. 이 방법에 대해서는 [Angular Forms: NgModel과 양방향 바인딩](../angular-form-template-driven-forms#3-ngmodel과-양방향-바인딩)에서 알아보도록 하자.
 
 # Reference
 

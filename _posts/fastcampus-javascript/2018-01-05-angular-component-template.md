@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: fs-post
 title: Angular Component - <strong>Template</strong>
 subtitle: 템플릿과 템플릿 문법
 categories: fastcampus-angular
@@ -12,13 +12,13 @@ description: 템플릿은 HTML과 Angular 고유의 템플릿 문법(Template Sy
 * TOC
 {:toc}
 
-![angular Logo](/img/angular-logo.png)
+![angular Logo](../img/angular-logo.png)
 
 # 1. 템플릿이란?
 
 템플릿(Template)은 HTML과 Angular 고유의 템플릿 문법(Template Syntax)을 사용하여 UI의 최소 단위인 컴포넌트의 뷰를 정의한다. 동적으로 변하는 데이터는 컴포넌트 클래스가 관리하며 템플릿 문법의 데이터 바인딩에 의해 정적 HTML에 포함된다.
 
-![template](./img/template.png)
+![template](../img/template.png)
 
 템플릿의 뷰 생성 과정
 {: .desc-img}
@@ -27,7 +27,7 @@ Angular는 템플릿과 컴포넌트 클래스로 뷰와 모델(데이터와 비
 
 Angular는 컴포넌트 기반 개발(CBD, Component Based Development) 프레임워크이기 때문에 MVC(Model-View-Controller) 또는 MVVM(Model-View-ViewModel) 패턴과 일치하지는 않지만, 템플릿은 뷰(View)를 나타내고 컴포넌트 클래스는 컨트롤러(Controller)와 뷰모델(ViewModel)의 일부를 담당한다고 할 수 있다.
 
-![mvc-mvvm](./img/mvc-mvvm.png)
+![mvc-mvvm](../img/mvc-mvvm.png)
 
 MVC(Model-View-Controller)과 MVVM(Model-View-ViewModel)
 {: .desc-img}
@@ -48,14 +48,14 @@ DOM은 상태(state. 예를 들어 input 요소에 값을 입력한 상태 또�
 
 DOM의 상태가 변화하면 템플릿은 변화를 감지하고 변화된 상태를 컴포넌트 클래스로 전달한다. 이때 컴포넌트 클래스는 비즈니스 로직을 실행하고 템플릿에 실행 결과를 공유한다. 템플릿은 이를 전달받아 DOM을 업데이트한다.
 
-![angular-view-model](./img/angular-view-model.png)
+![angular-view-model](../img/angular-view-model.png)
 
 Angular의 뷰와 모델
 {: .desc-img}
 
 이전의 웹 애플리케이션은 DOM을 직접 조작하는 방식으로 동작하지만 템플릿은 선언형 프로그래밍(Declarative programming) 방식으로 뷰와 모델의 관계를 관리한다. Angular는 변화 감지(Change detection) 메커니즘 위에서 동작하는 데이터 바인딩(Data binding)을 통해 템플릿과 컴포넌트 클래스를 긴밀히 연결하고 동기화를 유지한다.
 
-![databinding & change detection](./img/databinding-changedetection.png)
+![databinding & change detection](../img/databinding-changedetection.png)
 
 데이터 바인딩과 변화 감지
 {: .desc-img}

@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: fs-post
 title: Angular Component - <strong>Style</strong>
 subtitle: 컴포넌트와 스타일
 categories: fastcampus-angular
@@ -12,7 +12,7 @@ description: Angular 컴포넌트는 동작 가능한 하나의 부품으로 다
 * TOC
 {:toc}
 
-![angular Logo](/img/angular-logo.png)
+![angular Logo](../img/angular-logo.png)
 
 # 1. 컴포넌트 스타일
 

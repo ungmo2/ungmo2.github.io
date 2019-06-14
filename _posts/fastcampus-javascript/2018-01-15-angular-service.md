@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: fs-post
 title: Angular <strong>Service & Dependency Injection</strong>
 subtitle: 서비스와 의존성 주입
 categories: fastcampus-angular
@@ -12,7 +12,7 @@ description: 컴포넌트는 화면을 구성하는 뷰(View)를 생성하고 �
 * TOC
 {:toc}
 
-![angular Logo](/img/angular-logo.png)
+![angular Logo](../img/angular-logo.png)
 
 # 1. 서비스(Service)란?
 
@@ -293,7 +293,7 @@ export class GreetingService {
 })
 ```
 
-providers 프로퍼티는 컴포넌트의 데코레이터 @Component의 메타데이터 객체 또는 모듈의 데코레이터 @NgModule의 메타데이터 객체에 등록한다. 이때 서비스의 주입 범위가 달라진다. 자세한 내용은 "[인젝터 트리](./angular-service#4-%EC%9D%B8%EC%A0%9D%ED%84%B0-%ED%8A%B8%EB%A6%ACinjector-tree)"에서 살펴볼 것이다.
+providers 프로퍼티는 컴포넌트의 데코레이터 @Component의 메타데이터 객체 또는 모듈의 데코레이터 @NgModule의 메타데이터 객체에 등록한다. 이때 서비스의 주입 범위가 달라진다. 자세한 내용은 "[인젝터 트리](../angular-service#4-%EC%9D%B8%EC%A0%9D%ED%84%B0-%ED%8A%B8%EB%A6%ACinjector-tree)"에서 살펴볼 것이다.
 {: .info}
 
 이와 같은 방법으로 Angular는 주입할 의존 관계 객체의 생성 방법을 알게 되고 providers 프로퍼티의 설정 정보대로 동작하여 의존 관계 객체의 인스턴스를 생성하고 주입한다. 이제 컴포넌트는 의존 관계 객체의 생성 방법을 알 필요가 없고 인젝터가 생성하여 생성자의 인자로 주입한 인스턴스를 사용하기만 하면 된다.
@@ -490,7 +490,7 @@ providers: [{
 }]
 ```
 
-위 코드는 AnotherGreetingService 클래스로 생성한 인스턴스를 GreetingService란 이름의 토큰으로 인젝터의 컨테이너에 등록하고 검색할 것이라는 의미이다. 즉, 컴포넌트에서 의존성 주입을 요청할 때, GreetingService 타입의 인스턴스를 요청하면 인젝터는 컨테이너에서 GreetingService란 키(토큰)으로 인스턴스를 검색하여 AnotherGreetingService 클래스로 생성된 GreetingService 타입의 인스턴스를 주입할 것이다. GreetingService와 AnotherGreetingService 두 클래스는 비록 같은 인터페이스를 구현하지는 않았지만, 같은 메소드를 가지고 있기 때문에 [덕 타이핑(duck typing)](./typescript-interface#5-덕-타이핑-duck-typing)에 의해 같은 타입으로 인정된다.
+위 코드는 AnotherGreetingService 클래스로 생성한 인스턴스를 GreetingService란 이름의 토큰으로 인젝터의 컨테이너에 등록하고 검색할 것이라는 의미이다. 즉, 컴포넌트에서 의존성 주입을 요청할 때, GreetingService 타입의 인스턴스를 요청하면 인젝터는 컨테이너에서 GreetingService란 키(토큰)으로 인스턴스를 검색하여 AnotherGreetingService 클래스로 생성된 GreetingService 타입의 인스턴스를 주입할 것이다. GreetingService와 AnotherGreetingService 두 클래스는 비록 같은 인터페이스를 구현하지는 않았지만, 같은 메소드를 가지고 있기 때문에 [덕 타이핑(duck typing)](../typescript-interface#5-덕-타이핑-duck-typing)에 의해 같은 타입으로 인정된다.
 
 GreetingService의 인스턴스를 주입받아 사용하던 컴포넌트가 AnotherGreetingService의 인스턴스를 주입받아 사용하도록 변경되었지만, 컴포넌트는 어떠한 수정 없이도 문제없이 동작할 것이다. 이와 같이 의존성 주입을 사용하면 재사용성이 향상되고 긴밀히 결합된 의존 관계를 느슨한 결합으로 분리할 수 있다.
 
@@ -671,7 +671,7 @@ constructor(@Inject('API_URL') public apiUrl: string) {}
 
 주입 대상의 타입이 클래스이면 Angular에 의해 암묵적으로 클래스를 @Inject 데코레이터의 인자로 전달하기 때문에 @Inject 데코레이터를 선언하지 않아도 된다. 하지만 **클래스 이외의 토큰은 명시적으로 @Inject 데코레이터를 선언하여야 한다.**
 
-하지만 위 예제와 같이 문자열을 토큰으로 사용하는 것은 토큰이 중복될 위험이 있으므로 피해야 한다. 만약 외부 라이브러리에서 사용하는 토큰과 중복된다면 인젝터는 마지막에 선언된 프로바이더를 사용하여 인스턴스를 선택하고 주입할 것이다. 이러한 경우를 위하여 **[인젝션 토큰(Injection Token)](./angular-service#54-%EC%9D%B8%EC%A0%9D%EC%85%98-%ED%86%A0%ED%81%B0injection-token)**을 제공한다.
+하지만 위 예제와 같이 문자열을 토큰으로 사용하는 것은 토큰이 중복될 위험이 있으므로 피해야 한다. 만약 외부 라이브러리에서 사용하는 토큰과 중복된다면 인젝터는 마지막에 선언된 프로바이더를 사용하여 인스턴스를 선택하고 주입할 것이다. 이러한 경우를 위하여 **[인젝션 토큰(Injection Token)](../angular-service#54-%EC%9D%B8%EC%A0%9D%EC%85%98-%ED%86%A0%ED%81%B0injection-token)**을 제공한다.
 
 ## 5.3 팩토리 프로바이더(Factory Provider)
 
@@ -776,7 +776,7 @@ export class AppComponent {
 
 지금까지 살펴본 예제는 값 프로바이더를 사용하여 문자열이나 숫자 등을 애플리케이션의 공통 상수로 사용하는 경우를 제외하고 토큰으로 클래스를 사용하였다. 인젝션 토큰(Injection token)은 클래스가 아닌 의존성(non-class dependency) 토큰, 예를 들어 객체, 문자열, 함수 등을 위한 토큰을 주입받기 위해 사용한다. 앞에서 살펴본 값 프로바이더의 경우, 문자열로 이루어진 토큰을 사용할 수 있었지만 토큰이 중복될 위험이 있으므로 피해야 한다.
 
-예를 들어 객체 리터럴로 작성된 애플리케이션 설정 정보를 주입받기 위해 프로바이더를 등록하여 보자. [값 프로바이더](./angular-service#52-값-프로바이더value-provider)에서 살펴본 예제와 매우 유사하다. 다른 점은 주입 대상의 토큰을 나타내는 AppConfig가 이전 예제에서는 클래스였고 아래의 예제에서는 인터페이스이다.
+예를 들어 객체 리터럴로 작성된 애플리케이션 설정 정보를 주입받기 위해 프로바이더를 등록하여 보자. [값 프로바이더](../angular-service#52-값-프로바이더value-provider)에서 살펴본 예제와 매우 유사하다. 다른 점은 주입 대상의 토큰을 나타내는 AppConfig가 이전 예제에서는 클래스였고 아래의 예제에서는 인터페이스이다.
 
 ```typescript
 // app.config.ts
@@ -869,7 +869,7 @@ export class AppComponent {
 
 <iframe src="https://stackblitz.com/edit/injection-token-2?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
-[값 프로바이더](./angular-service#52-값-프로바이더value-provider)에서 살펴본 바와 같이 @Inject 데코레이터의 파라미터에는 주입할 대상의 토큰을 설정한다. InjectionToken 클래스로 생성한 인젝션 토큰 APP_CONFIG를 @Inject 데코레이터에 인자로 전달하면 클래스가 아닌 의존성(non-class dependency) 토큰을 사용할 수 있다.
+[값 프로바이더](../angular-service#52-값-프로바이더value-provider)에서 살펴본 바와 같이 @Inject 데코레이터의 파라미터에는 주입할 대상의 토큰을 설정한다. InjectionToken 클래스로 생성한 인젝션 토큰 APP_CONFIG를 @Inject 데코레이터에 인자로 전달하면 클래스가 아닌 의존성(non-class dependency) 토큰을 사용할 수 있다.
 
 ## 5.5 선택적 의존성 주입(Optional Dependency)
 
@@ -904,7 +904,7 @@ export class AppComponent {
 
 컴포넌트는 독립적인 존재이지만 다른 컴포넌트와 결합도를 낮게 유지하면서 상태 정보를 교환할 수 있어야 한다. @Input, @Output 데코레이터를 사용하여 컴포넌트 간에 상태를 공유할 수 있지만, 원거리 컴포넌트 간의 상태 공유를 위해서 상태 공유가 필요 없는 컴포넌트를 경유해야 하고, 일관된 자료 구조가 존재하지 않기 때문에 개별적인 프로퍼티만을 교환할 수밖에 없는 한계가 있다.
 
-![complex-component](./img/complex-component.png)
+![complex-component](../img/complex-component.png)
 {: .w-300}
 
 원거리 컴포넌트 간의 상태 공유

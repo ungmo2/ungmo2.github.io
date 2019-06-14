@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: fs-post
 title: Angular Component - <strong>Template reference variable & Safe navigation operator</strong>
 subtitle: 템플릿 참조 변수와 세이프 내비게이션 연산자
 categories: fastcampus-angular
@@ -12,7 +12,7 @@ description: 템플릿 참조 변수는 DOM 요소에 대한 참조를 담고 �
 * TOC
 {:toc}
 
-![angular Logo](/img/angular-logo.png)
+![angular Logo](../img/angular-logo.png)
 
 # 1. 템플릿 참조 변수(Template reference variable)
 

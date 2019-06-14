@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: fs-post
 title: Angular Forms - <strong>Template-driven Forms</strong>
 subtitle: 템플릿 기반 폼과 유효성 검증
 categories: fastcampus-angular
@@ -12,7 +12,7 @@ description: 템플릿 기반 폼은 컴포넌트 템플릿에서 디렉티브�
 * TOC
 {:toc}
 
-![angular Logo](/img/angular-logo.png)
+![angular Logo](../img/angular-logo.png)
 
 # 1. 템플릿 기반 폼(Template-driven Forms)이란?
 
@@ -178,7 +178,7 @@ NgForm 인스턴스 내에 생성된 FormControl
 
 이것은 폼 요소의 자식 요소 중 NgModel 디렉티브가 적용된 모든 자식 폼 컨트롤 요소의 상태 값을 나타낸다. 이때 키는 폼 컨트롤 요소의 name 어트리뷰트의 값이고, 값은 사용자 입력 값을 나타낸다. 따라서 **폼 컨트롤 요소에는 반드시 name 어트리뷰트를 지정하여야 한다.**
 
-NgModel 디렉티브는 [양방향 데이터 바인딩](./angular-component-data-binding#37-%EC%96%91%EB%B0%A9%ED%96%A5-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B0%94%EC%9D%B8%EB%94%A9two-way-binding)에서 사용할 때와는 달리 괄호와 할당문없이 선언한다.
+NgModel 디렉티브는 [양방향 데이터 바인딩](/angular-component-data-binding#37-%EC%96%91%EB%B0%A9%ED%96%A5-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B0%94%EC%9D%B8%EB%94%A9two-way-binding)에서 사용할 때와는 달리 괄호와 할당문없이 선언한다.
 
 ```html
 <form #userForm="ngForm" novalidate>

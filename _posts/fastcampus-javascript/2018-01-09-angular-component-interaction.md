@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: fs-post
 title: Angular Component - <strong>Interaction</strong>
 subtitle: 컴포넌트 간의 상태 공유
 categories: fastcampus-angular
@@ -12,7 +12,7 @@ description: Angular 애플리케이션은 컴포넌트를 중심(CBD, Component
 * TOC
 {:toc}
 
-![angular Logo](/img/angular-logo.png)
+![angular Logo](../img/angular-logo.png)
 
 # 1. 컴포넌트의 계층적 트리 구조
 
@@ -22,7 +22,7 @@ Angular 애플리케이션은 컴포넌트를 중심(CBD, Component Based Develo
 
 컴포넌트의 계층적 트리 구조, 즉 컴포넌트 간의 부모-자식 관계는 데이터와 이벤트가 왕래하는 상태 정보 흐름의 통로가 되며 이를 통해 다른 컴포넌트와의 상태 공유가 이루어지기 때문에 컴포넌트 간의 부모-자식 관계는 Angular 애플리케이션에서 중요한 의미를 갖는다. 이 계층적 구조는 DOM 트리와 유사한 형태를 가지게 되는데 이를 컴포넌트 트리라고 한다.
 
-![component-interaction](./img/component-interaction.png)
+![component-interaction](../img/component-interaction.png)
 {: .w-300}
 
 컴포넌트 트리와 컴포넌트 간 상태 공유
@@ -32,7 +32,7 @@ Angular 애플리케이션은 컴포넌트를 중심(CBD, Component Based Develo
 
 - @Input, @Output 데코레이터
 - @ViewChild, @ViewChildren과 @ContentChild, @ContentChildren 데코레이터
-- [서비스 중재자 패턴](./angular-service#7-서비스-중재자-패턴service-mediator-pattern)을 구현한 상태 공유 서비스
+- [서비스 중재자 패턴](../angular-service#7-서비스-중재자-패턴service-mediator-pattern)을 구현한 상태 공유 서비스
 - 상태 관리를 위한 외부 라이브러리([ngrx/store](https://github.com/ngrx/store), [Redux](http://redux.js.org) 등) 사용
 
 계층적 트리 구조에서 컴포넌트 간 상태 공유를 실습하기 위해 새로운 Angular 애플리케이션을 작성하도록 하자. 간단한 예제이므로 인라인 템플릿, 인라인 스타일을 사용하고 스펙 파일 없이 진행한다.
@@ -89,7 +89,7 @@ export class AppComponent {
 $ ng serve -o
 ```
 
-![component-iteraction-screenshot](./img/component-iteraction-screenshot.png)
+![component-iteraction-screenshot](../img/component-iteraction-screenshot.png)
 
 부모 컴포넌트와 자식 컴포넌트
 {: .desc-img}
@@ -126,7 +126,7 @@ $ npm install bootstrap@3.3.7
 
 개발용 서버를 재실행하면 부트스트랩이 적용된다.
 
-![component-iteraction-screenshot](./img/component-iteraction-screenshot-1.png)
+![component-iteraction-screenshot](../img/component-iteraction-screenshot-1.png)
 
 부트스트랩 임포트
 {: .desc-img}
@@ -139,7 +139,7 @@ $ npm install bootstrap@3.3.7
 
 form 요소를 가지고 있는 부모 컴포넌트의 경우, 사용자에 의해 상태(state)가 변경되면 이를 자식 컴포넌트와 공유할 필요가 있다. 이러한 경우 부모 컴포넌트는 <strong>프로퍼티 바인딩</strong>을 통해 자식 컴포넌트에게 상태 정보를 전달한다. 자식 컴포넌트는 부모 컴포넌트가 전달한 상태 정보를 <strong>@Input 데코레이터</strong>를 통해 컴포넌트 프로퍼티(입력 프로퍼티)에 바인딩한다.
 
-![parent to child](./img/parenttochild.png)
+![parent to child](../img/parenttochild.png)
 {: .w-300}
 
 부모 컴포넌트에서 자식 컴포넌트로 상태 전달
@@ -208,7 +208,7 @@ export class AppComponent {
 }
 ```
 
-부모 컴포넌트의 프로퍼티 users를 위하여 User 모델 클래스를 추가한다. 모델 클래스는 일관성을 유지하기 위한 [인터페이스](./typescript-interface)의 역할을 수행한다.
+부모 컴포넌트의 프로퍼티 users를 위하여 User 모델 클래스를 추가한다. 모델 클래스는 일관성을 유지하기 위한 [인터페이스](../typescript-interface)의 역할을 수행한다.
 
 ```bash
 $ ng g cl models/user.model
@@ -253,7 +253,7 @@ export class UserListComponent {
 
 @Input 데코레이터 바로 뒤의 프로퍼티명 users와 부모 컴포넌트에서 실행한 프로퍼티 바인딩의 프로퍼티명 users는 반드시 일치하여야 한다.
 
-![@input-property-1](./img/@input-property-1.png)
+![@input-property-1](../img/@input-property-1.png)
 {: .w-400}
 
 @Input 데코레이터 바로 뒤의 프로퍼티명은 부모 컴포넌트에서 실행한 프로퍼티 바인딩의 프로퍼티명과 반드시 일치하여야 한다.
@@ -264,7 +264,7 @@ export class UserListComponent {
 ```typescript
 // user-list.component.ts
 import { Component, Input } from '@angular/core';
-import { User } from '../models/user.model';
+import { User } from './models/user.model';
 
 @Component({
   selector: 'app-user-list',
@@ -297,7 +297,7 @@ export class UserListComponent {
 
 실행 결과는 아래와 같다.
 
-![component-iteraction-screenshot](./img/component-iteraction-screenshot-2.png)
+![component-iteraction-screenshot](../img/component-iteraction-screenshot-2.png)
 
 @Input 데코레이터를 이용한 부모 컴포넌트에서 자식 컴포넌트로 상태 전달
 {: .desc-img}
@@ -314,7 +314,7 @@ export class UserListComponent {
 
 이때 @Input 데코레이터에 전달한 문자열은 부모 컴포넌트에서 실행한 프로퍼티 바인딩의 프로퍼티명과 반드시 일치하여야 한다.
 
-![@input-property-2](./img/@input-property-2.png)
+![@input-property-2](../img/@input-property-2.png)
 {: .w-400}
 
 @Input 데코레이터에 전달한 문자열은 부모 컴포넌트에서 실행한 프로퍼티 바인딩의 프로퍼티명과 반드시 일치하여야 한다.
@@ -322,9 +322,9 @@ export class UserListComponent {
 
 ### 2.1.2 @Input 데코레이터와 setter를 이용한 입력 프로퍼티 조작
 
-[setter와 getter](./es6-class#6-getter-setter)를 사용하여 부모 컴포넌트가 전달한 데이터가 자식 컴포넌트의 입력 프로퍼티에 바인딩되는 시점에 필요한 로직을 동작시킬 수 있다.
+[setter와 getter](../es6-class#6-getter-setter)를 사용하여 부모 컴포넌트가 전달한 데이터가 자식 컴포넌트의 입력 프로퍼티에 바인딩되는 시점에 필요한 로직을 동작시킬 수 있다.
 
-![@input-property-3](./img/@input-property-3.png)
+![@input-property-3](../img/@input-property-3.png)
 {: .w-400}
 
 setter를 이용한 입력 프로퍼티 조작
@@ -335,7 +335,7 @@ setter를 이용한 입력 프로퍼티 조작
 ```typescript
 // user-list.component.ts
 import { Component, Input } from '@angular/core';
-import { User } from '../models/user.model';
+import { User } from './models/user.model';
 
 @Component({
   selector: 'app-user-list',
@@ -403,7 +403,7 @@ export class UserListComponent {
 
 실행 결과는 아래와 같다.
 
-![component-iteraction-screenshot](./img/component-iteraction-screenshot-3.png)
+![component-iteraction-screenshot](../img/component-iteraction-screenshot-3.png)
 
 setter를 이용한 입력 프로퍼티 조작
 {: .desc-img}
@@ -418,7 +418,7 @@ setter를 이용한 입력 프로퍼티 조작
 
 자식 컴포넌트는 <strong>@Output 데코레이터</strong>와 함께 선언된 컴포넌트 프로퍼티(출력 프로퍼티)를 EventEmitter 객체로 초기화한다. 그리고 부모 컴포넌트로 상태를 전달하기 위해 emit() 메소드를 사용하여 이벤트를 발생시키면서 상태를 전달한다. 부모 컴포넌트는 자식 컴포넌트가 전달한 상태를 <strong>이벤트 바인딩</strong>을 통해 접수한다.
 
-![child to parent](./img/childtoparent.png)
+![child to parent](../img/childtoparent.png)
 
 
 자식 컴포넌트에서 부모 컴포넌트로 상태 전달
@@ -431,7 +431,7 @@ setter를 이용한 입력 프로퍼티 조작
 ```typescript
 // user-list.component.ts
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { User } from '../models/user.model';
+import { User } from './models/user.model';
 
 @Component({
   selector: 'app-user-list',
@@ -606,7 +606,7 @@ removeUser(user: User) {
 
 실행 결과는 아래와 같다.
 
-![component-iteraction-screenshot](./img/component-iteraction-screenshot-4.png)
+![component-iteraction-screenshot](../img/component-iteraction-screenshot-4.png)
 
 자식 컴포넌트에서 부모 컴포넌트로 상태 전달
 {: .desc-img}
@@ -621,7 +621,7 @@ removeUser(user: User) {
 
 상태 정보에 대해 조금 더 자세히 생각해보자. 부모 컴포넌트와 자식 컴포넌트 모두 상태 객체 users에 대한 동일한 참조를 갖는다. 따라서 참조를 공유하고 있는 상태 객체 users를 어느 한쪽에서 변경하면 모두에게 변경이 반영되는데 이는 <strong>상태 정보의 변화를 예측</strong>하기 어렵게 만든다. 위 예제와 같이 간단한 구조로 되어 있다면 문제가 되지 않겠지만 복잡한 계층적 구조를 갖는 애플리케이션의 경우, 컴포넌트마다 상태 정보를 마음대로 변경할 수 있다면 상태 변경을 추적하기 어렵고 의도하지 않은 상태 정보의 변경이 발생하여 문제가 될 수 있다.
 
-![component-state](./img/component-state.png)
+![component-state](../img/component-state.png)
 {: .w-400}
 
 컴포넌트와 상태 정보
@@ -635,13 +635,13 @@ Stateful 컴포넌트는 애플리케이션의 현재 상태 정보를 관리하
 
 복잡한 컴포넌트 트리 구조를 갖는 애플리케이션의 경우, 부모-자식 관계를 뛰어넘어 컴포넌트 간의 상태 공유가 필요할 수 있다. 이와 같은 상황은 빈번히 발생한다. 예를 들어 아래와 같은 원거리 컴포넌트 간의 상태 공유를 살펴보자.
 
-![complex-component](./img/complex-component.png)
+![complex-component](../img/complex-component.png)
 {: .w-300}
 
 원거리 컴포넌트 간의 상태 공유
 {: .desc-img}
 
-A 컴포넌트에서 변경된 상태를 C 컴포넌트에서도 공유할 필요가 있을 때, 지금까지 살펴본 프로퍼티 바인딩과 이벤트 바인딩을 통해 상태를 공유할 수 있다. 이때 상태를 공유할 필요가 없는 B 컴포넌트에까지 상태를 전달하여야 한다. 이러한 불필요한 상태 공유를 피하기 위해 상태 공유를 위한 서비스를 사용할 수 있다. 이에 대한 자세한 사항은 [서비스 중재자 패턴(Service Mediator Pattern)](./angular-service#6-서비스-중재자-패턴service-mediator-pattern)에서 살펴보도록 하자.
+A 컴포넌트에서 변경된 상태를 C 컴포넌트에서도 공유할 필요가 있을 때, 지금까지 살펴본 프로퍼티 바인딩과 이벤트 바인딩을 통해 상태를 공유할 수 있다. 이때 상태를 공유할 필요가 없는 B 컴포넌트에까지 상태를 전달하여야 한다. 이러한 불필요한 상태 공유를 피하기 위해 상태 공유를 위한 서비스를 사용할 수 있다. 이에 대한 자세한 사항은 [서비스 중재자 패턴(Service Mediator Pattern)](../angular-service#6-서비스-중재자-패턴service-mediator-pattern)에서 살펴보도록 하자.
 
 # Reference
 

@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: fs-post
 title: Angular Forms - <strong>Reactive Forms</strong>
 subtitle: 리액티브 폼과 유효성 검증
 categories: fastcampus-angular
@@ -12,7 +12,7 @@ description: 리액티브 폼(모델 기반 폼)은 템플릿이 아닌 컴포�
 * TOC
 {:toc}
 
-![angular Logo](/img/angular-logo.png)
+![angular Logo](../img/angular-logo.png)
 
 # 1. 리액티브 폼(Reactive Forms / 모델 기반 폼)이란?
 
@@ -117,7 +117,7 @@ export class AppComponent implements OnInit {
 
 formGroupName 디렉티브에는 문자열을 할당하여야 한다. 이 문자열은 FormGroup 인스턴스를 값으로 하는 프로퍼티 이름이다.
 
-![form name](./img/formname.png)
+![form name](../img/formname.png)
 {: .w-300}
 
 formGroupName 디렉티브
@@ -185,7 +185,7 @@ export class AppComponent implements OnInit {
 
 <iframe src="https://stackblitz.com/edit/reactive-form-3?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
-FormControl은 폼 요소의 자식인 폼 컨트롤 요소를 위해 사용하기도 하지만, 폼 요소 없이 단독으로 사용할 수도 있다. [\[Reactive Programming과 RxJS\] 옵저버블 이벤트 스트림](./angular-rxjs#6-옵저버블-이벤트-스트림-예제)에서 살펴본 바와 같이 input 요소의 이벤트는 FormControl의 valueChanges 프로퍼티에 의해 옵저버블 스트림으로 변환된다.
+FormControl은 폼 요소의 자식인 폼 컨트롤 요소를 위해 사용하기도 하지만, 폼 요소 없이 단독으로 사용할 수도 있다. [\[Reactive Programming과 RxJS\] 옵저버블 이벤트 스트림](/angular-rxjs#6-옵저버블-이벤트-스트림-예제)에서 살펴본 바와 같이 input 요소의 이벤트는 FormControl의 valueChanges 프로퍼티에 의해 옵저버블 스트림으로 변환된다.
 
 ```typescript
 // app.component.ts

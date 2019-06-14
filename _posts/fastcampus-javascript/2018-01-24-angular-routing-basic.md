@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: fs-post
 title: Angular <strong>Routing & Navigation</strong>
 subtitle: 라우팅과 내비게이션
 categories: fastcampus-angular
@@ -12,7 +12,7 @@ description: 단일 페이지 애플리케이션(Single Page Application, SPA)�
 * TOC
 {:toc}
 
-![angular Logo](/img/angular-logo.png)
+![angular Logo](../img/angular-logo.png)
 
 # 1. SPA (Single Page Application)
 
@@ -716,7 +716,7 @@ export class AppComponent {
 
 # Reference
 
-* [Javascript SPA & Routing](./js-spa)
+* [Javascript SPA & Routing](../js-spa)
 
 * [Angular Routing & Navigation](https://angular.io/guide/router)
 

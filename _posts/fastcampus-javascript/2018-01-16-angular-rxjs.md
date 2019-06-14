@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: fs-post
 title: Angular <strong>RxJS</strong>
 subtitle: Reactive Programming과 RxJS
 categories: fastcampus-angular
@@ -12,7 +12,7 @@ description: 리액티브(Reactive, 반응형) 프로그래밍은 비동기 데�
 * TOC
 {:toc}
 
-![angular Logo](/img/angular-logo.png)
+![angular Logo](../img/angular-logo.png)
 
 # 1. 리액티브 프로그래밍이란?
 
@@ -54,7 +54,7 @@ Observable과 Observer
 
 # 2. 리액티브 프로그래밍의 특징
 
-HTTP 요청은 비동기로 처리되기 때문에 작업이 종료되지 않은 상태라도 대기하지 않고(Non-Blocking) 다음 작업을 수행할 수 있다. 이후 서버의 응답이 도착하면 데이터를 처리하거나 화면을 갱신한다. 이러한 비동기 처리는 콜백함수나 [프로미스](./es6-promise), Generator, async/await 또는 옵저버블로 구현할 수 있다. 콜백함수를 사용하는 경우, 에러 처리가 어렵고 콜백 헬(Callback Hell) 등의 문제가 발생하므로 프로미스를 사용하는 것이 더 나은 방법이지만 프로미스는 아래와 같은 단점이 있다.
+HTTP 요청은 비동기로 처리되기 때문에 작업이 종료되지 않은 상태라도 대기하지 않고(Non-Blocking) 다음 작업을 수행할 수 있다. 이후 서버의 응답이 도착하면 데이터를 처리하거나 화면을 갱신한다. 이러한 비동기 처리는 콜백함수나 [프로미스](../es6-promise), Generator, async/await 또는 옵저버블로 구현할 수 있다. 콜백함수를 사용하는 경우, 에러 처리가 어렵고 콜백 헬(Callback Hell) 등의 문제가 발생하므로 프로미스를 사용하는 것이 더 나은 방법이지만 프로미스는 아래와 같은 단점이 있다.
 
 - 한 번에 하나의 데이터를 처리하기 때문에 연속성을 갖는 데이터를 처리할 수 없다.
 - 서버로 보낸 요청은 취소할 수 없다.
@@ -188,7 +188,7 @@ export class AppComponent implements OnInit {
 
 주의할 것은 이 시점에 옵저버블은 아무런 동작을 하지 않는다는 것이다. 옵저버블은 구독(subscribe)되기 전까지 동작하지 않는다.
 
-옵저버블은 구독(subscribe)되기 전까지 동작하지 않는다고 하였다. 이러한 특성을 갖는 옵저버블을 [Cold observable](./angular-rxjs-observable)이라 한다. RxJS의 옵저버블은 기본적으로 Cold observable이다. Cold observable은 구독되기 이전에는 데이터 스트림을 방출(emit)하지 않으며 Cold observable을 옵저버가 구독하면 처음부터 동작하기 시작한다. 따라서 옵저버는 옵저버블이 방출하는 모든 데이터 스트림을 빠짐없이 처음부터 받을 수 있다.
+옵저버블은 구독(subscribe)되기 전까지 동작하지 않는다고 하였다. 이러한 특성을 갖는 옵저버블을 [Cold observable](/angular-rxjs-observable)이라 한다. RxJS의 옵저버블은 기본적으로 Cold observable이다. Cold observable은 구독되기 이전에는 데이터 스트림을 방출(emit)하지 않으며 Cold observable을 옵저버가 구독하면 처음부터 동작하기 시작한다. 따라서 옵저버는 옵저버블이 방출하는 모든 데이터 스트림을 빠짐없이 처음부터 받을 수 있다.
 {: .info}
 
 ③ subscribe 오퍼레이터를 사용하여 옵저버가 옵저버블을 구독하도록 하였다. 옵저버는 next, error, complete 메소드를 갖는 객체이며 subscribe 오퍼레이터의 인자로 사용하면 옵저버블을 구독한다.
@@ -273,15 +273,15 @@ export class ObservableComponent implements OnInit, OnDestroy {
 
 ① [from](https://www.learnrxjs.io/operators/creation/from.html) 오퍼레이터를 사용하여 옵저버블을 생성하였다.
 
-from 오퍼레이터는 배열과 같은 [이터러블(Iterable)](./es6-iteration-for-of)을 인자로 전달받아 옵저버블을 생성한다.
+from 오퍼레이터는 배열과 같은 [이터러블(Iterable)](../es6-iteration-for-of)을 인자로 전달받아 옵저버블을 생성한다.
 {: .info}
 
 ② map과 filter 오퍼레이터를 사용하여 옵저버블을 변형(transforming), 필터링하였다. 오퍼레이터는 옵저버블을 반환하므로 체이닝이 가능하다.
 
-[map](https://www.learnrxjs.io/operators/transformation/map.html) 오퍼레이터는 옵저버블이 방출한 데이터를 인자로 전달받는 콜백 함수를 실행하고 그 결과값으로 이루어진 새로운 옵저버블을 반환한다. [Array.prototype.map](./js-array#513-arrayprototypemap)과 유사하게 동작한다.
+[map](https://www.learnrxjs.io/operators/transformation/map.html) 오퍼레이터는 옵저버블이 방출한 데이터를 인자로 전달받는 콜백 함수를 실행하고 그 결과값으로 이루어진 새로운 옵저버블을 반환한다. [Array.prototype.map](../js-array#513-arrayprototypemap)과 유사하게 동작한다.
 {: .info}
 
-[filter](https://www.learnrxjs.io/operators/filtering/filter.html) 오퍼레이터는 옵저버블이 방출한 데이터를 인자로 전달받는 필터 함수를 실행하여 그 결과값이 true인 값만을 추출한 새로운 옵저버블을 반환한다. [Array.prototype.filter](./js-array#514-arrayprototypefilter)와 유사하게 동작한다.
+[filter](https://www.learnrxjs.io/operators/filtering/filter.html) 오퍼레이터는 옵저버블이 방출한 데이터를 인자로 전달받는 필터 함수를 실행하여 그 결과값이 true인 값만을 추출한 새로운 옵저버블을 반환한다. [Array.prototype.filter](../js-array#514-arrayprototypefilter)와 유사하게 동작한다.
 {: .info}
 
 ③ [subscribe](http://reactivex.io/documentation/operators/subscribe.html) 오퍼레이터의 인자에 옵저버를 전달하여 옵저버블을 구독하면 옵저버블은 방출한 데이터와 에러 그리고 스트리밍의 종료 여부를 옵저버에 전달한다. 옵저버는 3개의 콜백 함수 next, error, complete 메소드를 갖는데 이 콜백 함수로 옵저버블이 방출한 데이터와 에러 그리고 스트리밍의 종료 여부를 받아 처리한다.
@@ -382,7 +382,7 @@ export class ObservableEventHttpComponent implements OnInit, OnDestroy {
 
 <iframe src="https://stackblitz.com/edit/rxjs6-observable-http?ctl=1&embed=1&file=src/app/observable-event-http.component.ts&hideNavigation=1" frameborder="0" width="100%" height="500"></iframe>
 
-① input 요소의 이벤트는 FormControl인 searchInput의 valueChanges 프로퍼티에 의해 옵저버블로 변환된다. [FormControl](https://angular.io/api/forms/FormControlDirective)에 대해서는 [Angular Forms](./angular-form-reactive-forms#22-formcontrol-클래스와-formcontrolname-디렉티브)에서 상세히 살펴보도록 하고 지금은 옵저버블에 집중하도록 하자. FormControl 클래스를 사용하려면 모듈에 ReactiveFormsModule을 임포트하여야 한다.
+① input 요소의 이벤트는 FormControl인 searchInput의 valueChanges 프로퍼티에 의해 옵저버블로 변환된다. [FormControl](https://angular.io/api/forms/FormControlDirective)에 대해서는 [Angular Forms](../angular-form-reactive-forms#22-formcontrol-클래스와-formcontrolname-디렉티브)에서 상세히 살펴보도록 하고 지금은 옵저버블에 집중하도록 하자. FormControl 클래스를 사용하려면 모듈에 ReactiveFormsModule을 임포트하여야 한다.
 
 ```typescript
 // app.module.ts
@@ -404,7 +404,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 export class AppModule { }
 ```
 
-② [HttpClient](https://angular.io/api/common/http/HttpClient)는 HTTP 요청을 수행하는 주입 가능한 서비스이다. HttpClient에 대해서는 [HTTP](./angular-http)에서 상세히 알아볼 것이다. HttpClient 클래스를 사용하기 위해서는 모듈에 HttpClientModule을 임포트하여야 한다.
+② [HttpClient](https://angular.io/api/common/http/HttpClient)는 HTTP 요청을 수행하는 주입 가능한 서비스이다. HttpClient에 대해서는 [HTTP](../angular-http)에서 상세히 알아볼 것이다. HttpClient 클래스를 사용하기 위해서는 모듈에 HttpClientModule을 임포트하여야 한다.
 
 ```typescript
 // app.module.ts

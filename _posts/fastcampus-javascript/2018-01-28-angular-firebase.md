@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: fs-post
 title: Angular Deploy - <strong>Firebase</strong>
 subtitle: Firebase를 사용한 Angular 애플리케이션 배포
 categories: fastcampus-angular
@@ -12,7 +12,7 @@ description: 파이어베이스는 모바일 앱 및 웹 애플리케이션 개�
 * TOC
 {:toc}
 
-![angular firebase Logo](/img/angular-firebase.png)
+![angular firebase Logo](../img/angular-firebase.png)
 
 # 1. Firebase 소개
 

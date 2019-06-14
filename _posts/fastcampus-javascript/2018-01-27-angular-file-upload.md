@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: fs-post
 title: Angular <strong>Upload with Express</strong>
 subtitle: Angular 파일 업로드
 categories: fastcampus-angular
@@ -12,11 +12,11 @@ description: Angular 애플리케이션에서 파일 업로드를 구현해보�
 * TOC
 {:toc}
 
-![angular Logo](/img/angular-logo.png)
+![angular Logo](../img/angular-logo.png)
 
 Angular 애플리케이션에서 파일 업로드를 구현해보자. 백엔드는 Express와 [multer](https://github.com/expressjs/multer)를 사용할 것이다.
 
-![file-upload](/img/file-upload.png)
+![file-upload](../img/file-upload.png)
 
 웹 애플리케이션 파일 업로드는 크게 두가지의 방식이 있다.
 
@@ -46,7 +46,7 @@ $ npm init -y
 $ npm install express multer body-parser cors
 ```
 
-multer는 라우터에 삽입하여 [미들웨어](./express-basics#4-middleware)로 사용한다. multer에 설정 정보를 지정하여 호출하여 upload 객체를 생성한다. 이 upload 객체는 single, array, fields 메소드를 사용할 수 있다. single 메소드를 사용하여 하나의 바이너리 파일을 전달받도록 하자.
+multer는 라우터에 삽입하여 [미들웨어](../express-basics#4-middleware)로 사용한다. multer에 설정 정보를 지정하여 호출하여 upload 객체를 생성한다. 이 upload 객체는 single, array, fields 메소드를 사용할 수 있다. single 메소드를 사용하여 하나의 바이너리 파일을 전달받도록 하자.
 
 
 ```javascript

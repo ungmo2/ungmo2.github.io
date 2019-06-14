@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: fs-post
 title: Angular <strong>jQuery 플러그인</strong>
 subtitle: Angular CLI 환경에서 jQuery 플러그인 사용하기
 categories: fastcampus-angular
@@ -12,7 +12,7 @@ description: Angular CLI 환경에서 jQuery 플러그인 사용하기
 * TOC
 {:toc}
 
-![angular Logo](/img/angular-logo.png)
+![angular Logo](../img/angular-logo.png)
 
 Angular에서는 템플릿 문법을 사용한 선언형 프로그래밍 방식으로 뷰를 관리하므로 jQuery의 사용은 권장하지 않는다. 하지만 jQuery로 작성된 플러그인을 사용해야만 하는 상황이라면 한정적으로 jQuery를 사용할 수 있다. jQuery 플러그인을 사용하기 위한 방법에 대해 알아보기 위해 Angular CLI를 사용하여 생성한 프로젝트에서 캐러셀 슬라이드 jQuery 플러그인 [slick](http://kenwheeler.github.io/slick)을 사용하는 과정에 대해 살펴보도록 하자.
 
@@ -88,7 +88,7 @@ export class AppComponent {
 
 jQuery는 임포트되었다. 하지만 jQuery는 타입 정의 파일(Type definition file)을 제공하지 않기 때문에 VS Code와 같은 코드 에디터의 인텔리센스(IntelliSense) 기능을 사용할 수 없다.
 
-![import-jquery-without-type-definition-file](./img/import-jquery-without-type-definition-file.png)
+![import-jquery-without-type-definition-file](../img/import-jquery-without-type-definition-file.png)
 
 코드 에디터의 인텔리센스 기능을 사용할 수 없다
 {: .desc-img}
@@ -103,7 +103,7 @@ $ npm install --save-dev @types/jquery
 
 설치된 타입 정의 파일은 node_modules/@types 폴더에 설치되고 타입스크립트 컴파일러는 타입 정의 파일을 자동 반영한다. 이제 코드 에디터의 인텔리센스 기능이 활성화되었다.
 
-![import-jquery-with-type-definition-file](./img/import-jquery-with-type-definition-file.png)
+![import-jquery-with-type-definition-file](../img/import-jquery-with-type-definition-file.png)
 
 코드 에디터의 인텔리센스 기능이 활성화되었다.
 {: .desc-img}
@@ -218,7 +218,7 @@ export class AppComponent implements AfterViewInit {
 
 이제 slick 플러그인이 정상적으로 동작하기 시작한다.
 
-![slick-plugin](./img/slick-plugin.png)
+![slick-plugin](../img/slick-plugin.png)
 
 캐러셀 슬라이드가 동작한다
 {: .desc-img}
@@ -269,7 +269,7 @@ import { Component, ViewEncapsulation, ViewChild, ElementRef, AfterViewInit } fr
 })
 ```
 
-![slick-plugin](./img/slick-plugin-css.png)
+![slick-plugin](../img/slick-plugin-css.png)
 
 CSS 룰셋이 정상적으로 적용되었다
 {: .desc-img}

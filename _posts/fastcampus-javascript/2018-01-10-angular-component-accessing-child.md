@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: fs-post
 title: Angular Component - <strong>Accessing Child</strong>
 subtitle: 부모 컴포넌트에서 자식 요소로의 접근
 categories: fastcampus-angular
@@ -12,7 +12,7 @@ description: Angular 애플리케이션을 작성하다 보면 부모 컴포넌�
 * TOC
 {:toc}
 
-![angular Logo](/img/angular-logo.png)
+![angular Logo](../img/angular-logo.png)
 
 Angular 애플리케이션을 작성하다 보면 부모 컴포넌트에서 자식 요소(자식 컴포넌트, 네이티브 DOM 요소)에 접근이 필요한 경우가 있다. 템플릿 내부에서는 템플릿 참조 변수를 사용하여 자식 컴포넌트의 프로퍼티에 접근하거나 메소드를 호출할 수 있다. 예를 들어 아래와 같이 자식 컴포넌트 counter가 있을 경우를 살펴보자.
 
@@ -111,7 +111,7 @@ export class AppComponent {
 @ViewChild(탐색대상 클래스명) 프로퍼티명: 탐색대상 클래스명;
 ```
 
-![viewchild](./img/viewchild.png)
+![viewchild](../img/viewchild.png)
 {: .w-650}
 
 @ViewChild 데코레이터
@@ -119,7 +119,7 @@ export class AppComponent {
 
 예제를 통해 @ViewChild를 사용하여 보자. 완성된 예제는 아래와 같다.
 
-![example-view-child](./img/example-view-child.png)
+![example-view-child](../img/example-view-child.png)
 
 @ViewChild 예제 실행 화면
 {: .desc-img}
@@ -225,7 +225,7 @@ export class AppComponent {
 @ViewChildren(탐색대상 클래스명) 프로퍼티명: QueryList<탐색대상 클래스명>;
 ```
 
-![viewchild](./img/viewchildren.png)
+![viewchild](../img/viewchildren.png)
 {: .w-650}
 
 @ViewChildren 데코레이터
@@ -233,7 +233,7 @@ export class AppComponent {
 
 예제를 통해 @ViewChildren를 사용하여 보자. 완성된 예제는 아래와 같다.
 
-![example-view-children](./img/example-view-children.png)
+![example-view-children](../img/example-view-children.png)
 
 @ViewChildren 예제 실행 화면
 {: .desc-img}
@@ -334,9 +334,9 @@ export class AppComponent {
 @ViewChildren(ChildComponent) myChildren: QueryList<ChildComponent>;
 ```
 
-@ViewChildren의 탐색 결과가 바인딩된 myChildren 프로퍼티의 타입은 [QueryList](https://angular.io/api/core/QueryList)이다. QueryList 클래스는 배열과 같이 순회 가능한 이터러블(iterable) 객체이다. iterable 인터페이스를 구현하므로 ES6의 for of 루프에 사용할 수 있고 [ngFor](./angular-component-template-syntax#222-ngfor)와 함께 템플릿 내에서도 사용할 수 있다.
+@ViewChildren의 탐색 결과가 바인딩된 myChildren 프로퍼티의 타입은 [QueryList](https://angular.io/api/core/QueryList)이다. QueryList 클래스는 배열과 같이 순회 가능한 이터러블(iterable) 객체이다. iterable 인터페이스를 구현하므로 ES6의 for of 루프에 사용할 수 있고 [ngFor](../angular-component-template-syntax#222-ngfor)와 함께 템플릿 내에서도 사용할 수 있다.
 
-또한, QueryList 클래스 내부에는 탐색 결과를 저장하는 배열인 _result 프로퍼티를 가지고 있고 이 프로퍼티를 사용하는 [자바스크립트 배열 메소드](./js-array#5-array-method)와 동일하게 동작하는 map, filter, find, reduce, forEach, some 등의 메소드를 소유하고 있어서 **QueryList는 마치 자바스크립트 배열과 같이 사용할 수 있다.** QueryList는 옵저버블(Observable)한 컬렉션으로 변경 사항을 구독(subscribe)할 수 있다. 옵저버블에 대해서는 RxJS에서 살펴볼 것이다.
+또한, QueryList 클래스 내부에는 탐색 결과를 저장하는 배열인 _result 프로퍼티를 가지고 있고 이 프로퍼티를 사용하는 [자바스크립트 배열 메소드](../js-array#5-array-method)와 동일하게 동작하는 map, filter, find, reduce, forEach, some 등의 메소드를 소유하고 있어서 **QueryList는 마치 자바스크립트 배열과 같이 사용할 수 있다.** QueryList는 옵저버블(Observable)한 컬렉션으로 변경 사항을 구독(subscribe)할 수 있다. 옵저버블에 대해서는 RxJS에서 살펴볼 것이다.
 
 QueryList 클래스의 forEach 메소드를 사용하여 자식 컴포넌트 ChildComponent의 인스턴스들이 바인딩되어 있는 myChildren를 순회하며 자식 컴포넌트 ChildComponent의 프로퍼티에 접근하여 값을 변경한다.
 
@@ -350,7 +350,7 @@ this.myChildren.forEach(child => child.checkbox.checked = this.active);
 
 @ViewChild와 @ViewChildren 데코레이터를 통해 자식 컴포넌트의 인스턴스를 취득할 때, 탐색 대상인 자식 컴포넌트의 클래스 명을 데코레이터의 인자로 지정하였다. 또 다른 방식으로 템플릿 참조 변수를 사용하여 자식 요소에 접근할 수 있다. @ViewChild와 @ViewChildren 데코레이터의 인자로 탐색 대상 요소에 지정된 템플릿 참조 변수를 문자열의 형태로 전달한다.
 
-![elementref](./img/elementref.png)
+![elementref](../img/elementref.png)
 {: .w-650}
 
 템플릿 참조 변수를 사용한 DOM 접근
@@ -408,14 +408,14 @@ export class AppComponent implements AfterViewInit  {
 
 위 예제의 실행 결과는 아래와 같다.
 
-![example-view-children-ref](./img/example-view-children-ref.png)
+![example-view-children-ref](../img/example-view-children-ref.png)
 
 템플릿 참조 변수를 사용한 DOM 접근 예제 실행 화면
 {: .desc-img}
 
 @ViewChild와 @ViewChildren 데코레이터를 사용하여 자식 컴포넌트를 탐색하는 경우, 탐색 결과로 자식 컴포넌트의 인스턴스를 취득할 수 있었다. 취득한 인스턴스는 당연히 인스턴스를 생성한 컴포넌트 클래스가 타입이 된다. 템플릿 참조 변수를 사용하여 네이티브 DOM을 탐색한 경우, 탐색 결과로 [ElementRef](https://angular.io/api/core/ElementRef) 타입의 인스턴스가 바인딩된다. ElementRef는 네이티브 DOM 객체를 래핑한 nativeElement 프로퍼티를 소유한다. 따라서 `ElementRef.nativeElement`로 접근하면 네이티브 DOM의 프로퍼티에 접근할 수 있다.
 
-ngAfterViewInit 메소드는 컴포넌트의 뷰와 자식 컴포넌트의 뷰를 초기화한 이후 호출되는 컴포넌트 생명주기 메소드이다. @ViewChild와 @ViewChildren을 통해 바인딩한 프로퍼티는 ngAfterViewInit 이전에 초기화된다. 따라서 ngAfterViewInit에서 참조하는 것이 안전하다. [컴포넌트 생명주기](./angular-lifecycle)에 대해서는 다른 장에서 자세히 다룰 것이다.
+ngAfterViewInit 메소드는 컴포넌트의 뷰와 자식 컴포넌트의 뷰를 초기화한 이후 호출되는 컴포넌트 생명주기 메소드이다. @ViewChild와 @ViewChildren을 통해 바인딩한 프로퍼티는 ngAfterViewInit 이전에 초기화된다. 따라서 ngAfterViewInit에서 참조하는 것이 안전하다. [컴포넌트 생명주기](../angular-lifecycle)에 대해서는 다른 장에서 자세히 다룰 것이다.
 
 <iframe src="https://stackblitz.com/edit/access-native-dom?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="600"></iframe>
 
@@ -431,7 +431,7 @@ Angular는 DOM에 직접 접근하는 방식을 사용하지 않고 템플릿과
 
 HTML 요소는 시작 태그와 종료 태그 사이에 콘텐츠(Contents)를 포함할 수 있다. 이 콘텐츠는 텍스트일 수도 있고 또 다른 요소일 수도 있다.
 
-![HTML 요소](./img/tag.png)
+![HTML 요소](../img/tag.png)
 {: .w-300}
 
 HTML 요소와 콘텐츠
@@ -566,7 +566,7 @@ export class MultiContentProjectionComponent {}
 
 ng-content는 여러 개의 콘텐츠를 한번에 받아들일 수 있는 멀티 슬롯 콘텐트 프로젝션을 지원한다. 이때 ng-content의 select 어트리뷰트를 사용하여 부모 컴포넌트가 지정한 콘텐츠 내의 요소가 프로젝션될 위치를 지정한다.
 
-![multi-slot-content-projection](./img/multi-slot-content-projection.png)
+![multi-slot-content-projection](../img/multi-slot-content-projection.png)
 {: .w-650}
 
 멀티 슬롯 콘텐트 프로젝션

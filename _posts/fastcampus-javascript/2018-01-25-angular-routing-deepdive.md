@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: fs-post
 title: Angular <strong>Router state & Guard</strong>
 subtitle: 라우터 상태, 자식 라우트, 가드
 categories: fastcampus-angular
@@ -12,7 +12,7 @@ description: 화면 전환시에 라우트 파라미터(Route Parameter)를 사�
 * TOC
 {:toc}
 
-![angular Logo](/img/angular-logo.png)
+![angular Logo](../img/angular-logo.png)
 
 # 1. 라우터 상태(Router state)
 
@@ -157,7 +157,7 @@ export class TodosComponent implements OnInit {
 
 프로젝트를 실행하면 루트 URL에 해당하는 할일 리스트의 링크를 갖는 TodosComponent가 화면에 렌더링될 것이다.
 
-![](./img/route-params.png)
+![](../img/route-params.png)
 {: .w-300}
 
 ## 1.2 라우트 파라미터(Route Parameter) 취득
@@ -859,7 +859,7 @@ export class AppModule { }
 
 이를 그림으로 표현하면 아래와 같다.
 
-![모듈의 분리](./img/sep-module.png)
+![모듈의 분리](../img/sep-module.png)
 {: .w-600}
 모듈의 분리와 모듈별 라우트 구성
 {: .desc-img}

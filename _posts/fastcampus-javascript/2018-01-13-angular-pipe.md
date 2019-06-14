@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: fs-post
 title: Angular <strong>Pipe</strong>
 subtitle: 파이프
 categories: fastcampus-angular
@@ -12,7 +12,7 @@ description: 애플리케이션이 관리하는 데이터는 사용자가 실생
 * TOC
 {:toc}
 
-![angular Logo](/img/angular-logo.png)
+![angular Logo](../img/angular-logo.png)
 
 # 1. 파이프(Pipe)란?
 
@@ -262,7 +262,7 @@ export class AppComponent {
 
 # 5. 파이프와 변화 감지(Change detection)
 
-[변화 감지(Change detection)](./angular-component-data-binding#2-변화-감지change-detection)란 뷰와 모델의 동기화를 유지하기 위해 상태 변화를 감지하고 이를 반영하는 것을 말한다. 즉, 상태의 변화를 감지하여 뷰에 반영하는 것으로 데이터 바인딩은 변화 감지 매커니즘의 토대 위에서 수행된다.
+[변화 감지(Change detection)](../angular-component-data-binding#2-변화-감지change-detection)란 뷰와 모델의 동기화를 유지하기 위해 상태 변화를 감지하고 이를 반영하는 것을 말한다. 즉, 상태의 변화를 감지하여 뷰에 반영하는 것으로 데이터 바인딩은 변화 감지 매커니즘의 토대 위에서 수행된다.
 
 그런데 Angular는 DOM 이벤트(click, key press, mouse move 등), Timer(setTimeout, setInterval)의 tick 이벤트, 서버와의 Ajax 통신 이후 변화 감지를 통해 데이터 바인딩 대상의 변경 사항을 찾는다. 이것은 시스템에 부하를 증가시키는 작업이다. Angular는 가능한 부하를 최소한으로 하기 위해 파이프를 사용할 때는 보다 간단하고 빠른 변경 감지 알고리즘을 사용한다.
 

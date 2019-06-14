@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: fs-post
 title: Angular <strong>RxJS - Cold observable과 Hot observable</strong>
 subtitle: Cold observable과 Hot observable
 categories: fastcampus-angular
@@ -12,7 +12,7 @@ description: 옵저버블은 구독(subscribe)되기 전까지 실행되지 않�
 * TOC
 {:toc}
 
-![angular Logo](/img/angular-logo.png)
+![angular Logo](../img/angular-logo.png)
 
 # 1. Cold observable
 

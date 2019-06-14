@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: fs-post
 title: Angular <strong>NgModule</strong>
 subtitle: 모듈
 categories: fastcampus-angular
@@ -12,13 +12,13 @@ description: Angular의 모듈(NgModule)은 기능적으로 관련된 구성요�
 * TOC
 {:toc}
 
-![angular Logo](/img/angular-logo.png)
+![angular Logo](../img/angular-logo.png)
 
 # 1. 모듈(NgModule)이란?
 
 Angular의 모듈(NgModule)은 관련이 있는 구성요소(컴포넌트, 디렉티브, 파이프, 서비스 등)를 하나의 단위로 묶는 메커니즘을 말한다. 다시 말해 모듈은 관련이 있는 구성요소들로 구성된 응집된 기능 블록으로 애플리케이션을 구성하는 하나의 단위를 말한다. 모듈은 다른 모듈과 결합할 수 있으며 Angular는 여러 모듈들을 조합하여 애플리케이션을 구성한다.
 
-![lego](/img/lego.jpeg)
+![lego](../img/lego.jpeg)
 
 Angular 애플리케이션은 모듈들의 조합이다.
 {: .desc-img}
@@ -340,7 +340,7 @@ export class AppModule { }
 
 위 예제의 실행 결과는 아래와 같다.
 
-![](./img/module-exam.png)
+![](../img/module-exam.png)
 
 위 예제의 구성 요소를 기능 모듈, 핵심 모듈, 공유 모듈로 분리해보고 그 분리 기준에 대해 살펴보도록 하자.
 
@@ -427,7 +427,7 @@ HomeComponent는 HomeModule에 등록되었으므로 더이상 루트 모듈의 
 
 루트 모듈은 기능 모듈을 임포트하고 기능 모듈은 공유 모듈을 임포트하여 사용한다. 이렇게 모듈을 구성하여 기능 모듈의 중복을 제거하여 모듈 선언을 간소화한다. 다시 말해 공유 모듈은 루트 모듈에 직접 임포트되지 않고 기능 모듈에 의해 임포트되어 사용된다.
 
-![Shared module](./img/shared-module.png)
+![Shared module](../img/shared-module.png)
 
 공유 모듈
 {: .desc-img}

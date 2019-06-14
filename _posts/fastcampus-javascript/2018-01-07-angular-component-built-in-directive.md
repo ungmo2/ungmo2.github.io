@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: fs-post
 title: Angular Component - <strong>Built-in directive</strong>
 subtitle: 빌트인 디렉티브
 categories: fastcampus-angular
@@ -12,7 +12,7 @@ description: 디렉티브(Directive / 지시자)는 "DOM의 모든 것(모양이
 * TOC
 {:toc}
 
-![angular Logo](/img/angular-logo.png)
+![angular Logo](../img/angular-logo.png)
 
 # 1. 빌트인 디렉티브(Built-in directive)란?
 
@@ -55,13 +55,13 @@ export class AppComponent { }
 
 이전 버전인 AngularJS에는 70개 이상의 빌트인 디렉티브가 존재하였으나 컴포넌트 기반의 Angular 디렉티브는 단순화되어 아래와 같이 3가지 유형의 디렉티브를 제공한다.
 
-[컴포넌트 디렉티브(Component Directives)](./angular-component-basics)
+[컴포넌트 디렉티브(Component Directives)](../angular-component-basics)
 : 컴포넌트의 템플릿을 표시하기 위한 디렉티브이다. @Component 데코레이터의 메타데이터 객체의 seletor 프로퍼티에 임의의 디렉티브의 이름을 정의한다.
 
-[어트리뷰트 디렉티브(Attribute Directives)](./angular-component-template-syntax#21-빌트인-어트리뷰트-디렉티브built-in-attribute-directive)
+[어트리뷰트 디렉티브(Attribute Directives)](../angular-component-template-syntax#21-빌트인-어트리뷰트-디렉티브built-in-attribute-directive)
 : 어트리뷰트 디렉티브는 HTML 요소의 어트리뷰트와 같이 사용하여 호스트 요소의 모양이나 동작을 제어한다. ngClass, ngStyle와 같은 빌트인 어트리뷰트 디렉티브가 있다.
 
-[구조 디렉티브(Structural Directives)](./angular-component-template-syntax#22-빌트인-구조-디렉티브built-in-structural-directive)
+[구조 디렉티브(Structural Directives)](../angular-component-template-syntax#22-빌트인-구조-디렉티브built-in-structural-directive)
 : 구조 디렉티브는 DOM 요소를 반복 생성(ngFor), 조건에 의한 추가 또는 제거(ngIf, ngSwitch)를 통해 DOM 레이아웃(layout)을 변경한다.
 
 이 장에서는 빌트인 어트리뷰트 디렉티브와 빌트인 구조 디렉티브에 집중하기로 한다. 커스텀 디렉티브는 [디렉티브](./angular-directive)에서 자세히 살펴보도록 하자.
@@ -287,7 +287,7 @@ ngIf 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설탕
 
 Angular는 *ngIf를 만나면 호스트 요소를 `ng-template` 디렉티브로 래핑하고 *ngIf를 프로퍼티 바인딩으로 변환한다. ngFor와 ngSwitch 디렉티브도 동일한 패턴을 따른다.
 
-ng-template 디렉티브는 컴포넌트 템플릿의 일부로서 정의되지만 단순히 정의된 상태에서는 주석 처리되어 뷰에 렌더링되지 않고 있다가 ngIf에 바인딩된 값이 참으로 평가되면 비로소 뷰에 렌더링된다. 일반적으로 ng-template 디렉티브는 템플릿화된 뷰 스니펫을 호스트 뷰에 추가해야 할 경우 사용한다. ng-template에 대해서는 [ng-template 디렉티브](./angular-directive#43-ng-template)를 참조하기 바란다.
+ng-template 디렉티브는 컴포넌트 템플릿의 일부로서 정의되지만 단순히 정의된 상태에서는 주석 처리되어 뷰에 렌더링되지 않고 있다가 ngIf에 바인딩된 값이 참으로 평가되면 비로소 뷰에 렌더링된다. 일반적으로 ng-template 디렉티브는 템플릿화된 뷰 스니펫을 호스트 뷰에 추가해야 할 경우 사용한다. ng-template에 대해서는 [ng-template 디렉티브](../angular-directive#43-ng-template)를 참조하기 바란다.
 {: .info}
 
 버튼 클릭에 의해 요소를 show/hide하는 간단한 예제를 살펴보자.
@@ -319,7 +319,7 @@ export class AppComponent {
 
 ngIf 디렉티브를 사용하지 않고 스타일 바인딩 또는 클래스 바인딩을 사용하여 요소의 표시/비표시를 구현할 수도 있다. 하지만 스타일 바인딩 또는 클래스 바인딩에 의해 비표시된 요소는 브라우저에 의해 렌더링되지 않지만 DOM에 남아있다. ngIf 디렉티브에 의해 제거된 요소는 DOM에 남아 있지 않고 완전히 제거되어 불필요한 자원의 낭비를 방지한다.
 
-![show-hide](./img/show-hide.png)
+![show-hide](../img/show-hide.png)
 
 ngIf에 의해 제거된 요소는 DOM에 남아있지 않는다.
 {: .desc-img}
@@ -398,7 +398,7 @@ ngFor 디렉티브 앞에 붙은 *(asterisk)는 아래 구문의 문법적 설�
 </ng-template>
 ```
 
-위 코드는 컴포넌트 클래스의 프로퍼티 items를 바인딩한 후 items의 요소 개수만큼 순회하며 개별 요소를 item에 할당한다. item(템플릿 입력 변수, template input variable)은 호스트 요소 및 하위 요소에서만 유효한 로컬 변수이다. items에 해당하는 바인딩 객체는 일반적으로 배열을 사용하지만 반드시 배열만 사용할 수 있는 것은 아니다. ES6의 [for...of](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/for...of)에서 사용할 수 있는 [이터러블(iterable)](./es6-iteration-for-of)이라면 사용이 가능하다.
+위 코드는 컴포넌트 클래스의 프로퍼티 items를 바인딩한 후 items의 요소 개수만큼 순회하며 개별 요소를 item에 할당한다. item(템플릿 입력 변수, template input variable)은 호스트 요소 및 하위 요소에서만 유효한 로컬 변수이다. items에 해당하는 바인딩 객체는 일반적으로 배열을 사용하지만 반드시 배열만 사용할 수 있는 것은 아니다. ES6의 [for...of](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/for...of)에서 사용할 수 있는 [이터러블(iterable)](../es6-iteration-for-of)이라면 사용이 가능하다.
 
 인덱스를 취득할 필요가 있는 경우, 인덱스를 의미하는 템플릿 입력 변수 index를 사용하여 변수에 인덱스를 할당받을 수 있다. index 이외에도 first, last, even, odd와 같은 템플릿 입력 변수가 제공된다. 자세한 내용은 [ngFor API reference](https://angular.io/docs/ts/latest/api/common/index/NgFor-directive.html)를 참조하기 바란다.
 
@@ -535,7 +535,7 @@ add user 또는 X 버튼을 클릭하면 해당 user를 추가/제거한다. 예
 
 <!--X 버튼을 클릭하면 해당 user를 제거한다. 예를 들어 3번째 user인 'Park'을 제거하면 users의 변경을 DOM에 반영하여야 한다. 이때 Angular는 변경을 트래킹할 수 없다.
 
-![non-trackby](./img/non-trackby.png)
+![non-trackby](../img/non-trackby.png)
 {: .w-700}
 
 trackBy를 사용하지 않은 경우, 변경을 트래킹할 수 없다
@@ -543,7 +543,7 @@ trackBy를 사용하지 않은 경우, 변경을 트래킹할 수 없다
 
 위의 그림과 같이 변경을 트래킹할 수 없기 때문에 Angular는 컬렉션과 연결된 모든 DOM 요소를 제거하고 다시 생성한다. 하지만 trackBy를 사용한 경우, Angular는 user 객체의 id 프로퍼티를 기준으로 아래와 같이 변경을 트랙킹한다.
 
-![trackby](./img/trackby.png)
+![trackby](../img/trackby.png)
 {: .w-700}
 
 trackBy를 사용한 경우, 변경 트래킹이 가능하다

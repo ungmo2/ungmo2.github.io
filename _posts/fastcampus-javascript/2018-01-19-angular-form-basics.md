@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: fs-post
 title: Angular Forms - <strong>Basics</strong>
 subtitle: HTML 표준 폼과 Angular 폼
 categories: fastcampus-angular
@@ -12,7 +12,7 @@ description: 폼(Form)은 애플리케이션에서 사용자의 데이터를 입
 * TOC
 {:toc}
 
-![angular Logo](/img/angular-logo.png)
+![angular Logo](../img/angular-logo.png)
 
 # 1. 폼이란?
 
@@ -20,7 +20,7 @@ description: 폼(Form)은 애플리케이션에서 사용자의 데이터를 입
 
 따라서 사용자가 입력한 폼 데이터는 애플리케이션이 기대하는 데이터 형식에 부합하는지 그렇지 아니한지 체크가 필요한데 이를 유효성 검증(Form data validation)이라 한다. 유효성 검증을 통해 부적절한 데이터가 데이터 처리 로직으로 넘어가는 것을 방지하여야 하고 사용자에게는 애플리케이션이 기대하는 데이터를 형식에 맞게 입력하도록 효과적인 방식으로 안내하여야 한다.
 
-HTML 표준 폼으로도 어느 정도의 유효성 검증이 가능하고 사용자가 입력한 폼 데이터를 서버로 전송할 수 있지만, 여러모로 단점과 한계가 있기 때문에 애플리케이션 개발에 적용하기 어렵다. Angular는 HTML 표준 폼의 단점과 한계를 보완한 [템플릿 기반 폼](./angular-form-template-driven-forms)과 [리액티브(모델 기반) 폼](./angular-form-reactive-forms)을 제공한다.
+HTML 표준 폼으로도 어느 정도의 유효성 검증이 가능하고 사용자가 입력한 폼 데이터를 서버로 전송할 수 있지만, 여러모로 단점과 한계가 있기 때문에 애플리케이션 개발에 적용하기 어렵다. Angular는 HTML 표준 폼의 단점과 한계를 보완한 [템플릿 기반 폼](/angular-form-template-driven-forms)과 [리액티브(모델 기반) 폼](/angular-form-reactive-forms)을 제공한다.
 
 # 2. HTML 표준 폼
 

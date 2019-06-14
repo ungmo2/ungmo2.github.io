@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: fs-post
 title: Angular <strong>JWT Authentication</strong>
 subtitle: Token 기반 인증
 categories: fastcampus-angular
@@ -12,7 +12,7 @@ description: http 프로토콜은 상태(state)를 유지하지 않는다. 이�
 * TOC
 {:toc}
 
-![angular Logo](/img/angular-logo.png)
+![angular Logo](../img/angular-logo.png)
 
 # 1. JWT(JSON Web Token)이란?
 
@@ -54,13 +54,13 @@ JWT(JSON Web Token) 기반 인증(토큰 기반 인증)은 상태를 서버에 �
 
 Angular에서 토큰 기반 인증 방식으로 간단한 로그인 애플리케이션을 구현해보자. 완성된 애플리케이션의 실행결과는 아래와 같다.
 
-![](./img/jwt-exam.png)
+![](../img/jwt-exam.png)
 
 ## 2.1 Backend
 
 Backend는 Express와 MongDB를 사용하여 구현하였다. 전체 소스코드는 [이곳](https://github.com/ungmo2/jwt-express)에서 참조할 수 있다.
 
-- [MongDB 설치](./mongdb-basics#4-install)
+- [MongDB 설치](../mongdb-basics#4-install)
 
 ```bash
 $ git clone https://github.com/ungmo2/jwt-express.git server
@@ -157,7 +157,7 @@ font-awesome과 bootstrap을 적용하기 위해 angular.json을 아래와 같�
 
 ### 2.2.1 로그인 컴포넌트 (signin.component.ts)
 
-로그인 컴포넌트는 사용자 아이디와 패스워드를 입력받는 폼이다. [리액티브 폼](./angular-form-reactive-forms)을 사용하여 유효성을 검증하고 인증 서비스로 서버에 사용자 인증을 요청한다. 인증 성공시에는 대시보드로 이동한다.
+로그인 컴포넌트는 사용자 아이디와 패스워드를 입력받는 폼이다. [리액티브 폼](/angular-form-reactive-forms)을 사용하여 유효성을 검증하고 인증 서비스로 서버에 사용자 인증을 요청한다. 인증 성공시에는 대시보드로 이동한다.
 
 ```typescript
 // signin/signin.component.ts

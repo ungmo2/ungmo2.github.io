@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: fs-post
 title: Angular <strong>HttpClient</strong>
 subtitle: HttpClient와 HTTP 통신
 categories: fastcampus-angular
@@ -12,7 +12,7 @@ description: 대부분의 웹 애플리리케이션이 그러하듯이 Angular �
 * TOC
 {:toc}
 
-![angular Logo](/img/angular-logo.png)
+![angular Logo](../img/angular-logo.png)
 
 # 1. HttpClient
 
@@ -89,7 +89,7 @@ this.http.get('/api/todos').subscribe(...);
 
 ## 3.1 REST API Mock 서버 구축
 
-HTTP 요청 실습을 위해 [json-server](./json-server)를 사용하여 REST API Mock 서버를 구축해보자. json-server는 json 파일을 사용하여 간단한 시뮬레이션을 위한 REST API Mock server를 구축할 수 있는 툴이다. json-server는 npm을 사용하여 설치할 수 있다.
+HTTP 요청 실습을 위해 [json-server](../json-server)를 사용하여 REST API Mock 서버를 구축해보자. json-server는 json 파일을 사용하여 간단한 시뮬레이션을 위한 REST API Mock server를 구축할 수 있는 툴이다. json-server는 npm을 사용하여 설치할 수 있다.
 
 ```bash
 $ npm install -g json-server
@@ -192,7 +192,7 @@ this.http.get(this.url)
   .subscribe(todos => this.todos = todos);
 ```
 
-HttpClient.get 메소드는 기본적으로 응답 데이터의 타입을 Object로 해석한다. HttpClient.get 메소드에 응답 데이터의 타입을 알리려면 [제네릭](./typescript-generic)을 사용하여 타입 파라미터(형식 매개변수)를 설정해 주어야 한다. 타입 파라미터를 설정하여 응답 데이터의 타입을 명확히 하면 HttpClient.get 메소드는 설정한 타입의 데이터를 방출하는 옵저버블을 반환한다.
+HttpClient.get 메소드는 기본적으로 응답 데이터의 타입을 Object로 해석한다. HttpClient.get 메소드에 응답 데이터의 타입을 알리려면 [제네릭](../typescript-generic)을 사용하여 타입 파라미터(형식 매개변수)를 설정해 주어야 한다. 타입 파라미터를 설정하여 응답 데이터의 타입을 명확히 하면 HttpClient.get 메소드는 설정한 타입의 데이터를 방출하는 옵저버블을 반환한다.
 
 ```typescript
 // HTTP GET 요청: 타입 파라미터를 명기한다.
@@ -1000,7 +1000,7 @@ export class AuthInterceptor implements HttpInterceptor {
 }
 ```
 
-① intercept 메소드는 2개의 파라미터를 갖는다. 첫 번째 req는 처리할 요청이고 두 번째 next는 다음 인터셉터를 가리키는 핸들러다. 이 핸들러는 [HttpHandler](https://angular.io/api/common/http/HttpHandler) 클래스 타입으로 HttpHandler는 [Express의 미들웨어](./express-basics#4-middleware)와 유사하게 인터셉터를 체이닝할 때 사용한다. 다음 인터셉터가 존재하는 경우, 요청을 다음 인터셉터에 전달하고 다음 인터셉터가 존재하지 않는 경우, 최종 HttpHandler인 [HttpBackend](https://angular.io/api/common/http/HttpBackend)가 되어 요청을 전송하고 Observable을 반환한다.
+① intercept 메소드는 2개의 파라미터를 갖는다. 첫 번째 req는 처리할 요청이고 두 번째 next는 다음 인터셉터를 가리키는 핸들러다. 이 핸들러는 [HttpHandler](https://angular.io/api/common/http/HttpHandler) 클래스 타입으로 HttpHandler는 [Express의 미들웨어](../express-basics#4-middleware)와 유사하게 인터셉터를 체이닝할 때 사용한다. 다음 인터셉터가 존재하는 경우, 요청을 다음 인터셉터에 전달하고 다음 인터셉터가 존재하지 않는 경우, 최종 HttpHandler인 [HttpBackend](https://angular.io/api/common/http/HttpBackend)가 되어 요청을 전송하고 Observable을 반환한다.
 
 **인터셉터는 HttpClient 인터페이스와 HTTP 요청을 브라우저 HTTP API를 통해 백엔드로 전달하는 최종 HttpHandler인 HttpBackend 사이에 있으며 여러 개의 인터셉터가 존재할 때 각각의 인터셉터를 순차적으로 연결하는 역할을 하는 것이 HttpHandler이다.**
 

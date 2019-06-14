@@ -5,6 +5,7 @@ subtitle: 부모 컴포넌트에서 자식 요소로의 접근
 categories: fastcampus-angular
 section: fastcampus-angular
 seq: 10
+permalink: /:categories/:title
 description: Angular 애플리케이션을 작성하다 보면 부모 컴포넌트에서 자식 요소(자식 컴포넌트, 네이티브 DOM 요소)에 접근이 필요한 경우가 있다. 예를 들어 부모 컴포넌트에서 자식 컴포넌트의 프로퍼티를 직접 변경하고 싶다던지 메소드를 직접 실행하고 싶은 경우이다. Angular는 부모 컴포넌트에서 자식 요소에 접근할 수 있는 데코레이터들을 제공한다. 컴포넌트 템플릿에 배치된 자식요소(자식 컴포넌트, 네이티브 DOM 요소)를 ViewChild라고 한다. 이름에서 알 수 있듯이 @ViewChild는 탐색 조건에 부합하는 1개의 요소를 취득할 수 있고, @ViewChildren는 탐색 조건에 부합하는 여러 개의 요소를 한꺼번에 취득할 수 있다.
 ---
 

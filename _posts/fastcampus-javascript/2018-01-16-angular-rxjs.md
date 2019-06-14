@@ -5,6 +5,7 @@ subtitle: Reactive Programming과 RxJS
 categories: fastcampus-angular
 section: fastcampus-angular
 seq: 16
+permalink: /:categories/:title
 description: 리액티브(Reactive, 반응형) 프로그래밍은 비동기 데이터 스트림(Asynchronous data stream)에 기반을 둔 프로그래밍 패러다임이다. 데이터 스트림이란 연속된 데이터의 흐름을 말하며 리액티브 프로그래밍은 기본적으로 모든 것을 연속성을 갖는 데이터의 흐름인 스트림으로 본다.
 ---
 

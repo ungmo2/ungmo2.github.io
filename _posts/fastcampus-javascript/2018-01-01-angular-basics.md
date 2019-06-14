@@ -5,6 +5,7 @@ subtitle: Angular의 소개와 특징
 categories: fastcampus-angular
 section: fastcampus-angular
 seq: 1
+permalink: /:categories/:title
 description: Angular는 SPA(Single Page Application) 개발을 위한 구글의 오픈소스 자바스크립트 프레임워크이다. 웹뿐만 아니라 모바일 웹, 네이티브 모바일과 데스크탑 애플리케이션까지 프론트엔드 개발에 필요한 대부분의 기능을 갖추고 있다. 정적 타입을 제공하는 TypeScript를 주력 언어로 채택하여 대규모 애플리케이션 개발에 보다 적합한 환경을 제공한다.
 ---
 

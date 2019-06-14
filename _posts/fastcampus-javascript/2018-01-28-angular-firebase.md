@@ -5,6 +5,7 @@ subtitle: Firebase를 사용한 Angular 애플리케이션 배포
 categories: fastcampus-angular
 section: fastcampus-angular
 seq: 28
+permalink: /:categories/:title
 description: 파이어베이스는 모바일 앱 및 웹 애플리케이션 개발에 필요한 데이터베이스, 사용자 인증, 호스팅, 스토리지, 크래시리포팅(문제보고), 퍼포먼스, 광고 등을 API의 형태로 제공하는 백엔드 서비스(BaaS, Backend as a service)이다. 파이어베이스는 유료 서비스이지만 1GB의 스토리지와 월 10GB의 트래픽은 무료로 제공된다. 이번 장에서는 파이어베이스의 사용자 인증, 데이터베이스, 호스팅 기능을 사용하여 Angular 애플리케이션을 배포하여 보자.
 ---
 

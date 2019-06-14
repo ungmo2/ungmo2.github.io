@@ -5,6 +5,7 @@ subtitle: 리액티브 폼과 유효성 검증
 categories: fastcampus-angular
 section: fastcampus-angular
 seq: 21
+permalink: /:categories/:title
 description: 리액티브 폼(모델 기반 폼)은 템플릿이 아닌 컴포넌트 클래스에서 폼 모델을 구성하는 방식이다. 리액티브 폼은 템플릿 기반 폼보다 비교적 복잡한 경우 사용한다. 템플릿 기반 폼은 NgForm, NgModel, NgModelGroup 디렉티브를 템플릿 내의 폼 요소 또는 폼 컨트롤 요소에 선언하고 이들 디렉티브가 자신이 적용된 폼 요소 또는 폼 컨트롤 요소에 해당하는 FormGroup, FormControl 인스턴스(폼 모델)를 생성한다. 그리고 NgForm, NgModel, NgModelGroup 디렉티브는 이들 인스턴스(폼 모델)를 폼 요소 또는 폼 컨트롤 요소에 바인딩하여 값이나 유효성 검증 상태를 추적할 수 있었다. 템플릿 기반 폼은 폼 모델을 직접 정의/생성할 수 없고 NgForm, NgModel, NgModelGroup 디렉티브가 생성한 폼 모델을 템플릿 참조 변수에 할당하여 값이나 유효성 검증 상태에 접근할 수 있다.
 ---
 

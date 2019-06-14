@@ -5,6 +5,7 @@ subtitle: 생명주기와 훅 메소드
 categories: fastcampus-angular
 section: fastcampus-angular
 seq: 14
+permalink: /:categories/:title
 description: 컴포넌트와 디렉티브는 생명주기(Lifecycle)를 갖는다. 이 생명주기는 컴포넌트와 디렉티브가 생성하고 소멸되기까지의 여러 과정을 말하며 Angular에 의해 관리된다. Angular는 생명주기를 통해 컴포넌트와 디렉티브를 생성하고 렌더링하며, 프로퍼티의 변화를 체크하고 DOM에서 제거하는 일련의 과정을 관리한다. 개발자는 Angular가 제공하는 생명주기 훅 메소드(Lifecycle hooks)를 구현하여 생명주기 단계에서 처리하여야 행위를 정의할 수 있다.
 ---
 

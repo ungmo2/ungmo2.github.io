@@ -5,6 +5,7 @@ subtitle: Angular CLI를 사용한 프로젝트의 생성, 구성요소 추가�
 categories: fastcampus-angular
 section: fastcampus-angular
 seq: 2
+permalink: /:categories/:title
 description: Angular CLI는 간단한 명령어를 사용하여 Angular 프로젝트 스캐폴딩(scaffolding)을 생성, 실행, 빌드할 수 있으며 다양한 구성 요소를 선별적으로 추가할 수 있는 커맨드-라인 인터페이스(command line interface)이다. 개발용 서버를 내장하고 있어서 빌드없이 프로젝트를 실행하고 확인할 수 있다.
 ---
 

@@ -5,6 +5,7 @@ subtitle: 컴포넌트와 스타일
 categories: fastcampus-angular
 section: fastcampus-angular
 seq: 11
+permalink: /:categories/:title
 description: Angular 컴포넌트는 동작 가능한 하나의 부품으로 다른 컴포넌트에 간섭을 받지 않는 독립된 스코프의 스타일 정보를 갖는다. 다시 말해 컴포넌트에서 정의한 스타일은 그 컴포넌트에서만 유효하다. 스타일을 정의하는 방법은 @Component 데코레이터의 메타데이터 객체의 styles 프로퍼티에 직접 정의하는 방법과 styleUrls 프로퍼티에 외부 CSS 파일의 경로를 정의하는 방법이 있다.
 ---
 

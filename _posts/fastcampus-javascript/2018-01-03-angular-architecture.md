@@ -5,6 +5,7 @@ subtitle: Angular의 파일 구조와 처리 흐름, 구성 요소
 categories: fastcampus-angular
 section: fastcampus-angular
 seq: 3
+permalink: /:categories/:title
 description: Angular는 프레임워크이므로 웹 애플리케이션에 필요한 기본적인 기능의 구현체를 정형화된 구조로 제공한다. 이것을 바탕으로 우리의 애플리케이션에 요구되는 기능을 추가하는 방식으로 애플리케이션을 완성해 간다. 따라서 프레임워크의 학습은 정형화된 프레임워크의 구조에 익숙해지는 것으로 시작한다. Angular가 제공하는 기본 구조와 각 파일의 기능을 살펴보도록 하자. Angular CLI를 사용하여 프로젝트를 생성하면 아래와 같은 파일 구조의 스캐폴딩이 생성된다. Angular 프로젝트는 컴포넌트, 디렉티브, 서비스, 모듈 등 Angular 구성요소와 각종 설정 파일로 구성된다.
 ---
 

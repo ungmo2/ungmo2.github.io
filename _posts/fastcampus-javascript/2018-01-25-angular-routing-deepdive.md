@@ -5,6 +5,7 @@ subtitle: 라우터 상태, 자식 라우트, 가드
 categories: fastcampus-angular
 section: fastcampus-angular
 seq: 25
+permalink: /:categories/:title
 description: 화면 전환시에 라우트 파라미터(Route Parameter)를 사용하여 활성화될 컴포넌트에 데이터를 전달하는 방법에 대해 살펴보도록 하자. RouterLink 디렉티브는 자신의 값 즉 URL 패스를 라우터에 전달하고 라우터는 이를 전달받아 라우트 구성에서 전달받은 값(URL 패스)에 해당하는 컴포넌트를 검색하고 활성화하여 <router-outlet></router-outlet> 영역에 뷰를 출력한다.
 ---
 

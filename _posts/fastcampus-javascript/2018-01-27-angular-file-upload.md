@@ -5,6 +5,7 @@ subtitle: Angular 파일 업로드
 categories: fastcampus-angular
 section: fastcampus-angular
 seq: 27
+permalink: /:categories/:title
 description: Angular 애플리케이션에서 파일 업로드를 구현해보자. 백엔드는 Express와 multer를 사용할 것이다. 웹 애플리케이션 파일 업로드는 크게 두가지의 방식이 있다.
 ---
 

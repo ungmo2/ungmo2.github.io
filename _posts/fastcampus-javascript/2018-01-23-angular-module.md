@@ -5,6 +5,7 @@ subtitle: 모듈
 categories: fastcampus-angular
 section: fastcampus-angular
 seq: 23
+permalink: /:categories/:title
 description: Angular의 모듈(NgModule)은 기능적으로 관련된 구성요소(컴포넌트, 디렉티브, 파이프, 서비스)를 하나의 단위로 묶는 메커니즘을 말한다. 모듈은 관련이 있는 기능들이 응집된 기능 블록으로 애플리케이션을 구성하는 하나의 단위를 만든다. 모듈은 다른 모듈과 결합할 수 있으며 Angular는 여러 모듈들을 조합하여 애플리케이션을 구성한다.
 ---
 

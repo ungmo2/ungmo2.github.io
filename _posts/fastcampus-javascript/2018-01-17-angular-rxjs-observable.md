@@ -5,6 +5,7 @@ subtitle: Cold observable과 Hot observable
 categories: fastcampus-angular
 section: fastcampus-angular
 seq: 17
+permalink: /:categories/:title
 description: 옵저버블은 구독(subscribe)되기 전까지 실행되지 않는다고 하였다. 이러한 특성을 갖는 옵저버블을 Cold observable이라 하며 RxJS의 옵저버블은 기본적으로 Cold observable이다. Cold observable은 구독되기 이전에는 데이터 스트림을 방출(emit)하지 않으며 Cold observable을 구독하는 옵저버는 옵저버블이 방출(emit)하는 모든 데이터 스트림을 빠짐없이 처음부터 받을 수 있다.
 ---
 

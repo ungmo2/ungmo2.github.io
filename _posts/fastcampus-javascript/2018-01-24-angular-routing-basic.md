@@ -5,6 +5,7 @@ subtitle: 라우팅과 내비게이션
 categories: fastcampus-angular
 section: fastcampus-angular
 seq: 24
+permalink: /:categories/:title
 description: 단일 페이지 애플리케이션(Single Page Application, SPA)은 모던 웹의 패러다임이다. SPA는 기본적으로 단일 페이지로 구성되며 기존의 서버 사이드 렌더링과 비교할 때, 배포가 간단하며 네이티브 앱과 유사한 사용자 경험을 제공할 수 있다는 장점이 있다.
 ---
 

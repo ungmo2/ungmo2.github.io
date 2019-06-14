@@ -5,6 +5,7 @@ subtitle: Angular CLI 환경에서 jQuery 플러그인 사용하기
 categories: fastcampus-angular
 section: fastcampus-angular
 seq: 26
+permalink: /:categories/:title
 description: Angular CLI 환경에서 jQuery 플러그인 사용하기
 ---
 

@@ -5,6 +5,7 @@ subtitle: HTML 표준 폼과 Angular 폼
 categories: fastcampus-angular
 section: fastcampus-angular
 seq: 19
+permalink: /:categories/:title
 description: 폼(Form)은 애플리케이션에서 사용자의 데이터를 입력받는 인터페이스를 의미한다. 다시 말해 사용자는 폼을 통해 애플리케이션에 데이터를 제공할 수 있으며 이 데이터는 일반적으로 유효성 검증 절차을 통과한 후 서버로 전송된다. 하지만 사용자가 애플리케이션이 기대하는 유효한 형식의 데이터를 입력하리라는 낙관은 금물이다. 예를 들어 이메일을 입력받는 폼이 있다고 할 때, 애플리케이션이 기대하는 데이터는 이메일 형식에 부합하는 데이터이지만 반드시 사용자가 그 형식에 맞는 데이터를 입력할 지는 알 수 없다.
 ---
 

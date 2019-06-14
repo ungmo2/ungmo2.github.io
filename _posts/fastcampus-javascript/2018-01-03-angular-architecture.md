@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: fs-post
 title: Angular <strong>Architecture</strong>
 subtitle: Angular의 파일 구조와 처리 흐름, 구성 요소
 categories: fastcampus-angular
@@ -12,7 +12,7 @@ description: Angular는 프레임워크이므로 웹 애플리케이션에 필�
 * TOC
 {:toc}
 
-![angular Logo](/img/angular-logo.png)
+![angular Logo](../img/angular-logo.png)
 
 # 1. Angular 애플리케이션의 파일 구조
 
@@ -284,7 +284,7 @@ Angular의 핵심 구성요소는 아래와 같다. Angular 애플리케이션�
 
 Angular는 컴포넌트를 중심으로 Angular 구성요소를 조합하여 애플리케이션을 구축한다. 뷰를 담당하는 컴포넌트를 중심으로 화면을 구성하고, 디렉티브와 서비스를 사용하여 애플리케이션 전역 관심사를 분리하고 컴포넌트는 필요 시 디렉티브와 서비스를 사용한다. 라우터(Router)는 컴포넌트를 교체하는 방식으로 뷰를 전환하여 화면 간 이동을 구현하고, 모듈은 관련된 구성 요소를 하나로 묶어 애플리케이션을 구성하는 하나의 단위를 만드는 역할을 한다.
 
-![angular-archtecture](./img/angular-archtecture.png)
+![angular-archtecture](../img/angular-archtecture.png)
 
 Angular의 구성요소와 아키텍처
 {: .desc-img}

@@ -326,6 +326,9 @@ function waterMelon(n) {
     result += i % 2 ? '박' : '수';
   }
   return result;
+
+  // return new Array(n).fill('').map((v, i) => (i % 2 ? '박' : '수')).join('');
+  // return Array.from({ length: n }, (v, i) => (i % 2 ? '박' : '수')).join('');
 }
 
 console.log('n이 3인 경우: '+ waterMelon(3));

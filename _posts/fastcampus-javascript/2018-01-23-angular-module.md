@@ -127,7 +127,7 @@ Angular 애플리케이션은 적어도 하나 이상의 모듈을 소유하여�
 
 모든 애플리케이션은 루트 모듈을 가져야 하고 이 루트 모듈은 애플리케이션의 시작점이 된다. 즉, Angular 애플리케이션은 모듈 단위로 동작하여 루트 모듈이 부트스트랩 되는 것에 의해 애플리케이션이 동작하게 된다.
 
-![angular-process](img/angular-process.png)
+![angular-process](../img/angular-process.png)
 {: .w-700}
 
 Angular 애플리케이션의 흐름

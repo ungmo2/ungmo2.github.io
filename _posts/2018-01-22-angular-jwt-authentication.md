@@ -94,12 +94,15 @@ PORT=5500
 
 # 패스워드 암호화 시크릿키
 SECRET_KEY=<Your-secret-key>
+#SECRET_KEY=my-secret-key
 
 # JWT 시크릿키
 JWT_SECRET=<Your-jwt-secret-key>
+#JWT_SECRET=my-jwt-secret-key
 
 # Database URI
 MONGO_URI=<Your-MongoDB-URI>
+#MONGO_URI=mongodb://localhost:27017/mydb
 ```
 
 ## 2.2 Frontend

@@ -201,7 +201,7 @@ import { User } from '../user';
   selector: 'app-header',
   template: `
     <nav>
-      <span>{{ "{{title" }}}}</span>
+      <span class="title">{{ "{{title" }}}}</span>
       <a class="user" href="#">{{ "{{user.name" }}}}</a>
     </nav>
   `,

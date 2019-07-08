@@ -363,7 +363,7 @@ export class TodoDetailComponent implements OnInit {
 
 지금까지는 루트 컴포넌트에 하나의 `<router-outlet>`을 가진 예제만을 살펴보았다. 자식 컴포넌트도 루트 컴포넌트의 `<router-outlet>`와는 별도로 자신의 자식 컴포넌트를 위한 `<router-outlet>`을 가질 수 있다. 예를 들어 아래의 그림을 살펴보자.
 
-![Child Route](img/child-route.png)
+![Child Route](../img/child-route.png)
 {: .w-700}
 
 자식 라우트

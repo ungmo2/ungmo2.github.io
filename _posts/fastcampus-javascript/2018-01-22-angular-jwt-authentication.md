@@ -115,11 +115,11 @@ MONGO_URI=<Your-MongoDB-URI>
 
 3. 서버 인증이 성공한 경우, 인증 서비스는 서버가 응답한 토큰을 로컬 스토리지에 저장하고 대시보드 뷰로 이동한다. 이때 가드(auth.guard.ts)를 사용하여 토큰을 검증한다.
 
-4. 대시보드 컴포넌트는 사용자 서비스(users.service.ts)를 사용하여 서버에 사용자 정보를 요청한다. 이때 요청 헤더(Request Header)에 토큰을 담아 전송한다.
+4. 대시보드 컴포넌트는 사용자 서비스(user.service.ts)를 사용하여 서버에 사용자 정보를 요청한다. 이때 요청 헤더(Request Header)에 토큰을 담아 전송한다.
 
 5. 대시보드 컴포넌트는 서버의 응답을 받아 뷰에 표시한다.
 
-파일 구성은 아래와 같다. 전체 소스코드는 [이곳](https://github.com/ungmo2/angular-jwt-auth)에서 참조할 수 있다.
+파일 구성은 아래와 같다. 전체 소스코드는 [이곳](https://github.com/ungmo2/angular8-jwt-auth)에서 참조할 수 있다.
 
 ```
 app/
@@ -132,7 +132,7 @@ app/
 │   └── user.ts
 ├── services/
 │   ├── auth.service.ts
-│   └── users.service.ts
+│   └── user.service.ts
 ├── signin/
 │   └── signin.component.ts
 ├── app-routing.module.ts
@@ -143,7 +143,7 @@ app/
 추가로 설치할 의존성은 아래와 같다.
 
 ```bash
-$ npm install font-awesome bootstrap angular2-jwt
+$ npm install font-awesome bootstrap@3.3.7 @auth0/angular-jwt
 ```
 
 font-awesome과 bootstrap을 적용하기 위해 angular.json을 아래와 같이 수정한다.
@@ -151,8 +151,8 @@ font-awesome과 bootstrap을 적용하기 위해 angular.json을 아래와 같�
 ```json
 ...
   "styles": [
-    "../node_modules/font-awesome/css/font-awesome.min.css",
-    "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+    "node_modules/font-awesome/css/font-awesome.min.css",
+    "node_modules/bootstrap/dist/css/bootstrap.min.css",
     "styles.css"
   ],
 ...
@@ -165,10 +165,9 @@ font-awesome과 bootstrap을 적용하기 위해 angular.json을 아래와 같�
 ```typescript
 // signin/signin.component.ts
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { User } from '../models/user';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -176,7 +175,7 @@ import { AuthService } from '../services/auth.service';
   template: `
     <div class="container">
       <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-        <form [formGroup]="signinForm" (ngSubmit)="signin()" novalidate>
+        <form [formGroup]="signinForm" (ngSubmit)="signin()">
           <div id="userid" class="input-group">
             <div class="input-group-addon">
               <i class="fa fa-user"></i>
@@ -219,7 +218,33 @@ import { AuthService } from '../services/auth.service';
       </div>
     </div>
   `,
-  styles: [`...`]
+  styles: [`
+    :host {
+      display: block;
+      height: 100%;
+      background: -webkit-radial-gradient(0 100%, ellipse cover, rgba(104, 128, 138, .4) 10%, rgba(138, 114, 76, 0) 40%), linear-gradient(180deg, rgba(57, 173, 219, .25) 0, rgba(42, 60, 87, .4)), linear-gradient(135deg, #670d10, #092756);
+    }
+    .container {
+      padding-top: 120px;
+    }
+    .alert {
+      padding: 10px;
+    }
+    form {
+      padding: 30px;
+      background: #fff;
+      border-radius: 5px;
+    }
+    .alert-box {
+      min-height: 30px;
+      padding: 5px 0;
+    }
+    button[type=submit] {
+      margin-top: 30px;
+      background-color: #00d1b2;
+      border-color: transparent;
+    }
+  `]
 })
 export class SigninComponent implements OnInit {
   signinForm: FormGroup;
@@ -274,6 +299,7 @@ export class SigninComponent implements OnInit {
 // dashboard/dashboard.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user';
@@ -355,31 +381,32 @@ export class DashboardComponent implements OnInit {
 ```typescript
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { JwtHelper } from 'angular2-jwt';
-
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/shareReplay';
+import { Observable, of } from 'rxjs';
+import { tap, shareReplay } from 'rxjs/operators';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { environment } from '../../environments/environment';
 
 import { User } from '../models/user';
 import { Token } from '../models/token';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
   appUrl = environment.apiUrl;
   TOKEN_NAME = 'jwt_token';
 
-  constructor(private http: HttpClient, private jwtHelper: JwtHelper) {
+  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {
     console.log('[appUrl] ', this.appUrl);
   }
 
   signin(credential: User): Observable<Token> {
     return this.http.post<Token>(`${this.appUrl}/auth/signin`, credential)
-      .do(res => this.setToken(res.token))
-      .shareReplay();
+      .pipe(
+        tap(res => this.setToken(res.token)),
+        shareReplay()
+      );
   }
 
   signout(): void {
@@ -412,7 +439,7 @@ export class AuthService {
     getTokenExpirationDate
     isTokenExpired
 
-    npm install angular2-jwt
+    npm install @auth0/angular-jwt
     https://github.com/auth0/angular2-jwt
   */
   isTokenExpired(token: string) {
@@ -434,7 +461,9 @@ import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthGuard implements CanActivate {
 
   constructor(private router: Router, private auth: AuthService) { }
@@ -483,22 +512,26 @@ const routes: Routes = [
 export class AppRoutingModule { }
 ```
 
-### 2.2.5 사용자 서비스 (users.service.ts)
+### 2.2.5 사용자 서비스 (user.service.ts)
 
 사용자 서비스는 사용자 정보를 서버에 요청할 때 사용한다. 사용자 정보를 요청할 때 요청 헤더에 토큰을 담아 전송한다.
 
 ```typescript
 import { Injectable } from '@angular/core';
+
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
+import { shareReplay } from 'rxjs/operators';
 
-import { User } from '../models/user';
 import { AuthService } from './auth.service';
-
 import { environment } from '../../environments/environment';
+import { User } from '../models/user';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class UserService {
+
   appUrl = environment.apiUrl;
 
   constructor(private http: HttpClient, private auth: AuthService) {}
@@ -508,7 +541,7 @@ export class UserService {
       .set('Authorization', this.auth.getToken());
 
     return this.http.get<User[]>(`${this.appUrl}/users`, { headers })
-      .shareReplay();
+      .pipe(shareReplay());
   }
 }
 ```

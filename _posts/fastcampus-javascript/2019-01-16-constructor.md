@@ -186,10 +186,10 @@ console.log(radius); // 15
 // 함수는 객체이다.
 function foo() {}
 
-// 함수는 일반 객체처럼 프로퍼티를 소유할 수 있다.
+// 함수는 객체이므로 프로퍼티를 소유할 수 있다.
 foo.prop = 10;
 
-// 함수는 일반 객체처럼 메소드를 소유할 수 있다.
+// 함수는 객체이므로 메소드를 소유할 수 있다.
 foo.method = function () {
   console.log(this.prop);
 };
@@ -458,7 +458,7 @@ inst = new createUser('Lee', 'admin');
 console.log(inst); // {name: "Lee", role: "admin"}
 ```
 
-반대로 new 연산자 없이 생성자 함수를 호출하면 일반 함수로 호출된다. 다시 말해, 함수 객체의 내부 메소드 [[Constructor]]가 호출되는 것이 아니라 [[Call]]가 호출된다.
+반대로 new 연산자 없이 생성자 함수를 호출하면 일반 함수로 호출된다. 다시 말해, 함수 객체의 내부 메소드 [[Constructor]]가 호출되는 것이 아니라 [[Call]]이 호출된다.
 
 ```javascript
 // 생성자 함수
@@ -482,7 +482,7 @@ circle.getDiameter(); //
 
 Circle 함수를 new 연산자와 함께 생성자 함수로서 호출하면 함수 내부의 this는 Circle 생성자 함수가 생성할 인스턴스를 가리킨다. 하지만 Circle 함수를 일반적인 함수로서 호출하면 함수 내부의 this는 전역 객체 window를 가리킨다.
 
-위 예제의 Circle 함수는 일반 함수로서 호출되었으므로 Circle 함수 내부의 this는 전역 객체 window를 가리킨다. 따라서 radius 프로퍼티와 getDiameter 메소드는 전역 객체의 프로퍼티와 메소드가 된다. (“20. 전역 객체” 참고)
+위 예제의 Circle 함수는 일반 함수로서 호출되었으므로 Circle 함수 내부의 this는 전역 객체 window를 가리킨다. 따라서 radius 프로퍼티와 getDiameter 메소드는 전역 객체의 프로퍼티와 메소드가 된다. ("20. 전역 객체" 참고)
 
 일반 함수와 생성자 함수에 특별한 형식적 차이는 없다. 따라서 생성자 함수는 일반적으로 첫문자를 대문자로 기술하는 파스칼 케이스로 명명하여 일반 함수와 구별할 수 있도록 노력한다.
 

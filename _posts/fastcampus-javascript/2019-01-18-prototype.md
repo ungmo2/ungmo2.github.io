@@ -170,7 +170,7 @@ getArea 메소드는 단 하나만 생성되어 프로토타입인 Circle.protot
 
 위 그림처럼 객체는 `__proto__` 접근자 프로퍼티를 통해 자신의 프로토타입, 즉 자신의 [[Prototype]] 내부 슬롯이 가리키는 객체에 접근할 수 있다. 그리고 프로토타입은 constructor 프로퍼티를 통해 생성자 함수에 접근할 수 있다. 생성자 함수는 prototype 프로퍼티를 통해 프로토타입에 접근할 수 있다.
 
-## 3.1.	객체의 \_\_proto\_\_ 접근자 프로퍼티
+## 3.1.	\_\_proto\_\_ 접근자 프로퍼티
 
 **모든 객체는 \_\_proto\_\_ 접근자 프로퍼티를 통해 자신의 프로토타입, 즉 [[Prototype]] 내부 슬롯에 접근할 수 있다.** 아래 예제를 크롬 브라우저의 콘솔에서 출력해보자.
 
@@ -219,34 +219,6 @@ console.log(obj.x); // 1
 Object.prototype.\_\_proto\_\_
 {: .desc-img}
 
-\_\_proto\_\_ 접근자 프로퍼티를 코드 내에서 직접 사용하는 것은 비추천이다.
-{: .title}
-
-\_\_proto\_\_ 접근자 프로퍼티는 ES5까지 ECMAScript 사양에 포함되지 않은 비표준이었다. 하지만 일부 브라우저에서 __proto__를 지원하고 있었기 때문에 ES6에서 브라우저 호환성을 고려하여 __proto__를 표준으로 채택하였다. 현재 대부분의 브라우저(IE 11 이상)가 __proto__를 지원하고 있다.
-
-하지만 코드 내에서 __proto__를 직접 사용하는 것은 추천하지 않는다. 대신 프로토타입의 참조를 취득할 경우는 [Object.getPrototypeOf 메소드](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf)를, 프로토타입을 교체하는 경우는 [Object.setPrototypeOf 메소드](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf)를 사용하는 것을 권장한다.
-
-```javascript
-const obj = {};
-const parent = { x: 1 };
-
-// obj 객체의 프로토타입을 취득
-Object.getPrototypeOf(obj); // obj.__proto__;
-// obj 객체의 프로토타입을 교체
-Object.setPrototypeOf(obj, parent); // obj.__proto__ = parent;
-
-console.log(obj.x); // 1
-```
-
-Object.getPrototypeOf 메소드와 Object.setPrototypeOf 메소드는 get Object.prototype.__proto__와 set Object.prototype.__proto__의 처리 내용("그림 18-6 Object.prototype.\_\_proto\_\_" 참고)과 정확히 일치한다.
-
-![](/assets/fs-images/18-7.png)
-
-Object.getPrototypeOf 메소드와 Object.setPrototypeOf 메소드
-{: .desc-img}
-
-Object.getPrototypeOf 메소드는 ES5에서 도입된 메소드이며 IE9 이상을 지원한다. Object.setPrototypeOf 메소드는 ES6에서 도입된 메소드이며 IE11 이상을 지원한다.
-
 \_\_proto\_\_ 접근자 프로퍼티는 상속을 통해 사용된다.
 {: .title}
 
@@ -291,6 +263,46 @@ Cyclic \_\_proto\_\_ value
 {: .desc-img}
 
 프로토타입 체인은 단방향 링크드 리스트로 구현되어야 한다. 하지만 위 그림과 같이 순환 참조(circular reference)적인 프로토타입 체인이 만들어지면 프로토타입 체인 종점이 존재하지 않기 때문에 프로토타입 체인에서 프로퍼티를 검색할 때 무한 루프에 빠진다. 따라서 무조건적으로 프로토타입을 교체할 수 없도록 \_\_proto\_\_ 접근자 프로퍼티를 통해 프로토타입에 접근하고 교체하도록 구현되어 있다.
+
+\_\_proto\_\_ 접근자 프로퍼티를 코드 내에서 직접 사용하는 것은 비추천이다.
+{: .title}
+
+\_\_proto\_\_ 접근자 프로퍼티는 ES5까지 ECMAScript 사양에 포함되지 않은 비표준이었다. 하지만 일부 브라우저에서 __proto__를 지원하고 있었기 때문에 ES6에서 브라우저 호환성을 고려하여 __proto__를 표준으로 채택하였다. 현재 대부분의 브라우저(IE 11 이상)가 \_\_proto\_\_를 지원하고 있다.
+
+하지만 코드 내에서 \_\_proto\_\_를 직접 사용하는 것은 추천하지 않는다. 모든 객체가 \_\_proto\_\_ 접근자 프로퍼티를 사용할 수 있는 것은 아니기 때문이다. 나중에 살펴보겠지만 직접 상속("18.12 직접 상속" 참고)를 통해 아래와 같이 Object.prototype을 상속받지 않는 객체를 생성할 수도 있다.
+
+```javascript
+// obj는 프로토타입 체인의 종점이다. 따라서 Object.__proto__를 상속받을 수 없다.
+const obj = Object.create(null);
+
+// obj는 Object.__proto__를 상속받을 수 없다.
+console.log(obj.__proto__); // undefined
+// 따라서 Object.getPrototypeOf 메소드를 사용하는 편이 좋다.
+console.log(Object.getPrototypeOf(obj)); // null
+```
+
+따라서 \_\_proto\_\_ 접근자 프로퍼티 대신 프로토타입의 참조를 취득할 경우는 [Object.getPrototypeOf 메소드](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf)를, 프로토타입을 교체하는 경우는 [Object.setPrototypeOf 메소드](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf)를 사용하는 것을 권장한다.
+
+```javascript
+const obj = {};
+const parent = { x: 1 };
+
+// obj 객체의 프로토타입을 취득
+Object.getPrototypeOf(obj); // obj.__proto__;
+// obj 객체의 프로토타입을 교체
+Object.setPrototypeOf(obj, parent); // obj.__proto__ = parent;
+
+console.log(obj.x); // 1
+```
+
+Object.getPrototypeOf 메소드와 Object.setPrototypeOf 메소드는 get Object.prototype.__proto__와 set Object.prototype.__proto__의 처리 내용("그림 18-6 Object.prototype.\_\_proto\_\_" 참고)과 정확히 일치한다.
+
+![](/assets/fs-images/18-7.png)
+
+Object.getPrototypeOf 메소드와 Object.setPrototypeOf 메소드
+{: .desc-img}
+
+Object.getPrototypeOf 메소드는 ES5에서 도입된 메소드이며 IE9 이상을 지원한다. Object.setPrototypeOf 메소드는 ES6에서 도입된 메소드이며 IE11 이상을 지원한다.
 
 ## 3.2.	함수 객체의 prototype 프로퍼티
 
@@ -830,7 +842,7 @@ name 프로퍼티를 캡슐화하여 외부로 노출되지 않도록 수정해�
 
 ```javascript
 const Person = (function () {
-  // 자유 변수
+  // 자유 변수이며 private하다
   let _name = '';
 
   // 생성자 함수
@@ -847,8 +859,8 @@ const Person = (function () {
 
 const me = new Person('Lee');
 
-// name 프로퍼티는 private하다. 즉, 외부에서 접근하고 변경할 수 없다.
-me.name = 'Kim';
+// _name은 지역 변수이므로 외부에서 접근하여 변경할 수 없다. 즉, private하다.
+me._name = 'Kim';
 me.sayHello(); // Hi! My name is Lee
 ```
 
@@ -1241,7 +1253,9 @@ console.log(me instanceof Person); // true
 console.log(me instanceof Object); // true
 ```
 
-# 12. Object.create에 의한 직접 상속
+# 12. 직접 상속
+
+## 12.1 Object.create에 의한 직접 상속
 
 Object.create 메소드는 명시적으로 프로토타입을 지정하여 새로운 객체를 생성한다. Object.create 메소드도 다른 객체 생성 방식과 마찬가지로 추상 연산 ObjectCreate를 호출한다.
 
@@ -1309,9 +1323,9 @@ console.log(Object.getPrototypeOf(obj) === Person.prototype); // true
 
 -	new 연산자가 없이도 객체를 생성할 수 있다.
 -	프로토타입을 지정하면서 객체를 생성할 수 있다. 이때 생성자 함수와 프로토타입 간의 링크가 파괴되지 않는다.
--	객체 리터럴에 의해 생성된 객체도 상속받을 수 있다.
+-	객체 리터럴에 의해 생성된 객체도 특정 객체를 상속받을 수 있다.
 
-Object.prototype의 메소드, 즉 Object.prototype.hasOwnProperty, Object.prototype.isPrototypeOf, Object.prototype.propertyIsEnumerable 등은 모든 객체의 프로토타입 체인의 종점, 즉 Object.prototype의 메소드이므로 모든 객체가 호출할 수 있다.
+Object.prototype의 빌트인 메소드인 Object.prototype.hasOwnProperty, Object.prototype.isPrototypeOf, Object.prototype.propertyIsEnumerable 등은 모든 객체의 프로토타입 체인의 종점, 즉 Object.prototype의 메소드이므로 모든 객체가 상속받아 호출할 수 있다.
 
 ```javascript
 const obj = { a: 1 };
@@ -1322,7 +1336,7 @@ console.log(obj.isPrototypeOf(child));      // true
 console.log(obj.propertyIsEnumerable('a')); // true
 ```
 
-그런데 ESLint에서는 위 예제와 같이 Object.prototype의 빌트인 메소드를 객체가 직접 호출하는 것을 비추천하고 있다. 그 이유는 Object.create 메소드를 통해 프로토타입 체인을 생성하지 않는 객체를 생성할 수 있기 때문이다. 이때 프로토타입 체인을 생성하지 않는 객체는 Object.prototype의 빌트인 메소드를 사용할 수 없다.
+그런데 ESLint에서는 위 예제와 같이 Object.prototype의 빌트인 메소드를 객체가 직접 호출하는 것을 비추천하고 있다. 그 이유는 Object.create 메소드를 통해 프로토타입 체인을 생성하지 않는 객체, 다시 말해 프로토타입의 종점에 위치하는 객체를 생성할 수 있기 때문이다. 이때 프로토타입 체인을 생성하지 않는 객체는 Object.prototype의 빌트인 메소드를 사용할 수 없다.
 
 ```javascript
 // 프로토타입이 null인 객체를 생성한다.
@@ -1336,7 +1350,7 @@ console.log(Object.getPrototypeOf(obj) === null); // true
 console.log(obj.hasOwnProperty('a')); // TypeError: obj.isPrototypeOf is not a function
 ```
 
-따라서 이같은 에러를 만들지 않기 위해 Object.prototype의 빌트인 메소드는 아래와 같이 호출하는 것이 좋다.
+따라서 이같은 에러를 발생시키는 가능성을 없애기 위해 Object.prototype의 빌트인 메소드는 아래와 같이 간접적으로 호출하는 것이 좋다.
 
 ```javascript
 // 프로토타입이 null인 객체를 생성한다.
@@ -1349,9 +1363,9 @@ obj.a = 1;
 console.log(Object.prototype.hasOwnProperty.call(obj, 'a')); // true
 ```
 
-Functionprototype.call 메소드에 대해서는 “21.2.4. Function.prototype.apply/call/bind 메소드에 의한 간접 호출”을 참고하도록 하자.
+Function.prototype.call 메소드에 대해서는 “21.2.4. Function.prototype.apply/call/bind 메소드에 의한 간접 호출”을 참고하도록 하자.
 
-# 13. 객체 리터럴 내부에서 __proto__에 의한 직접 상속
+## 12.2 객체 리터럴 내부에서 __proto__에 의한 직접 상속
 
 Object.create 메소드는 직접 상속은 위와 같이 여러 장점이 있다. 하지만 두번째 인자로 프로퍼티를 정의하는 것은 번거롭다. 일단 객체를 생성한 이후, 프로퍼티를 추가하는 방법도 있으나 이 또한 깔끔한 방법은 아니다.
 
@@ -1374,7 +1388,7 @@ console.log(obj.x, obj.y); // 10 20
 console.log(Object.getPrototypeOf(obj) === myProto); // true
 ```
 
-# 14. 정적 프로퍼티/메소드
+# 13. 정적 프로퍼티/메소드
 
 정적(static) 프로퍼티/메소드는 생성자 함수로 인스턴스를 생성하지 않아도 참조/호출할 수 있는 프로퍼티/메소드를 말한다. 아래 예제를 살펴보자.
 
@@ -1459,7 +1473,7 @@ Foo.x(); // x
 
 참고로 프로토타입 프로퍼티/메소드를 표기할 때 prototype을 #으로 표기(예를들어 Object.prototype.isPrototypeOf을 Object#isPrototypeOf으로 표기)하는 경우도 있으니 알아두도록 하자.
 
-# 15. 프로퍼티 존재 확인
+# 14. 프로퍼티 존재 확인
 
 in 연산자는 객체 내에 프로퍼티가 존재하는지 여부를 확인한다. in 연산자의 사용 방법은 아래와 같다.
 
@@ -1506,7 +1520,7 @@ Object.prototype.hasOwnProperty 메소드는 이름에서 알 수 있듯이 객�
 console.log(person.hasOwnProperty('toString')); // false
 ```
 
-# 16. 프로퍼티 열거
+# 15. 프로퍼티 열거
 
 객체의 모든 프로퍼티를 순회하며 열거(enumeration)하려면 for…in 문을 사용한다. for…in 문은 프로퍼티를 열거할 때 순서를 보장하지 않는다
 

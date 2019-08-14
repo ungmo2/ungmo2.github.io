@@ -131,7 +131,7 @@ person.fullName = 'Heegun Lee';
 console.log(person); // {firstName: "Heegun", lastName: "Lee"}
 
 // 접근자 프로퍼티를 통한 프로퍼티 값의 참조
-// 접근자 프로퍼티 prop에 접근하면 getter 함수가 호출된다.
+// 접근자 프로퍼티 fullName에 접근하면 getter 함수가 호출된다.
 console.log(person.fullName); // Heegun Lee
 
 // firstName는 데이터 프로퍼티이다.

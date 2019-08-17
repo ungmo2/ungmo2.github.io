@@ -153,7 +153,7 @@ console.log(foo); // ReferenceError: foo is not defined
 
 ## 3.2. 네임 스페이스 객체
 
-전역에 네임 스페이스 역할을 담당할 객체를 생성하고 전역 변수처럼 사용하고 싶은 변수를 프로퍼티로 추가하는 방법이다.
+전역에 [네임 스페이스(Namespace)](https://ko.wikipedia.org/wiki/이름공간) 역할을 담당할 객체를 생성하고 전역 변수처럼 사용하고 싶은 변수를 프로퍼티로 추가하는 방법이다.
 
 ```javascript
 var MYAPP = {}; // 전역 네임 스페이스 객체

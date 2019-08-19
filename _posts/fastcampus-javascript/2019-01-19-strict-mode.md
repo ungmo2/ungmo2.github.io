@@ -182,7 +182,7 @@ delete 연산자로 변수, 함수, 매개변수를 삭제하면 SyntaxError가 
 
 ## 5.3.	매개변수 이름의 중복
 
-중복된 함수 파라미터 이름을 사용하면 SyntaxError가 발생한다.
+중복된 함수 매개변수 이름을 사용하면 SyntaxError가 발생한다.
 
 ```javascript
 (function () {

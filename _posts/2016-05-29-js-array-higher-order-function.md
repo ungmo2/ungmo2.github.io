@@ -61,6 +61,12 @@ console.log(decreaser()); // -2
 
 배열의 요소를 적절하게 정렬한다. 원본 배열을 직접 변경하며 정렬된 배열을 반환한다.
 
+Array.prototype.sort 메서드는 10개 이상의 요소가 있는 배열을 정렬할 때 불안정한 알고리즘인 [quicksort 알고리즘](https://en.wikipedia.org/wiki/Quicksort)을 사용했다. 배열이 올바르게 정렬되도록 ECMAScript 2019는 Array.prototype.sort() 메서드에 [Timsort 알고리즘](https://en.wikipedia.org/wiki/Timsort)을 사용한다.
+
+https://d2.naver.com/helloworld/4007447
+{ .info }
+
+
 ```javascript
 const fruits = ['Banana', 'Orange', 'Apple'];
 

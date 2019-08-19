@@ -6,7 +6,7 @@ categories: es6
 section: es6
 seq: 6
 subseq: 10
-description: ES6에서 도입된 이터레이션 프로토콜(iteration protocol)은 데이터 컬렉션을 순회하기 위한 프로토콜(미리 약속된 규칙)이다. 이 프로토콜을 준수한 객체는 for...of 문으로 순회할 수 있고 Spread 연산자)의 피연산자가 될 수 있다. 이터레이션 프로토콜에는 이터러블 프로토콜(iterable protocol)과 이터레이터 프로토콜(iterator protocol)이 있다.
+description: ES6에서 도입된 이터레이션 프로토콜(iteration protocol)은 데이터 컬렉션을 순회하기 위한 프로토콜(미리 약속된 규칙)이다. 이 프로토콜을 준수한 객체는 for...of 문으로 순회할 수 있고 Spread 문법의 대상이 될 수 있다. 이터레이션 프로토콜에는 이터러블 프로토콜(iterable protocol)과 이터레이터 프로토콜(iterator protocol)이 있다.
 ---
 
 * TOC
@@ -17,7 +17,7 @@ description: ES6에서 도입된 이터레이션 프로토콜(iteration protocol
 
 # 1. 이터레이션 프로토콜
 
-ES6에서 도입된 이터레이션 프로토콜(iteration protocol)은 데이터 컬렉션을 순회하기 위한 프로토콜(미리 약속된 규칙)이다. **이터레이션 프로토콜을 준수한 객체는 for...of 문으로 순회할 수 있고 [Spread 연산자](./es6-extended-parameter-handling#3-spread-연산자)의 피연산자가 될 수 있다.** <!-- 다시 말해, 이터레이션 프로토콜을 준수한 객체는 순회할 수 있는 객체, 즉 이터러블(iterable)이 되며 이터러블은 for...of 문으로 순회할 수 있고 Spread 연산자의 피연산자로 사용할 수 있다. -->
+ES6에서 도입된 이터레이션 프로토콜(iteration protocol)은 데이터 컬렉션을 순회하기 위한 프로토콜(미리 약속된 규칙)이다. **이터레이션 프로토콜을 준수한 객체는 for...of 문으로 순회할 수 있고 [Spread 문법](./es6-extended-parameter-handling#3-spread-문법)의 피연산자가 될 수 있다.** <!-- 다시 말해, 이터레이션 프로토콜을 준수한 객체는 순회할 수 있는 객체, 즉 이터러블(iterable)이 되며 이터러블은 for...of 문으로 순회할 수 있고 Spread 문법의 대상으로 사용할 수 있다. -->
 
 이터레이션 프로토콜에는 이터러블 프로토콜(iterable protocol)과 이터레이터 프로토콜(iterator protocol)이 있다.
 
@@ -30,7 +30,7 @@ ES6에서 도입된 이터레이션 프로토콜(iteration protocol)은 데이�
 
 ## 1.1 이터러블
 
-이터러블 프로토콜을 준수한 객체를 이터러블이라 한다. 이터러블은 <strong>Symbol.iterator 메소드</strong>를 구현하거나 프로토타입 체인에 의해 상속한 객체를 말한다. Symbol.iterator 메소드는 이터레이터를 반환한다. 이터러블은 for…of 문에서 순회할 수 있으며 Spread 연산자의 피연산자로 사용할 수 있다.
+이터러블 프로토콜을 준수한 객체를 이터러블이라 한다. 이터러블은 <strong>Symbol.iterator 메소드</strong>를 구현하거나 프로토타입 체인에 의해 상속한 객체를 말한다. Symbol.iterator 메소드는 이터레이터를 반환한다. 이터러블은 for…of 문에서 순회할 수 있으며 Spread 문법의 대상으로 사용할 수 있다.
 
 배열은 Symbol.iterator 메소드를 소유한다. 따라서 배열은 이터러블 프로토콜을 준수한 이터러블이다.
 
@@ -63,7 +63,7 @@ for (const p of obj) {
 }
 ```
 
-일반 객체는 이터레이션 프로토콜을 준수(Symbol.iterator 메소드를 소유)하지 않기 때문에 이터러블이 아니다. 따라서 일반 객체는 for…of 문에서 순회할 수 없으며 Spread 연산자의 피연산자로 사용할 수도 없다. 하지만 일반 객체도 이터러블 프로토콜을 준수하도록 구현하면 이터러블이 된다. 이에 대해서는 [3. 커스텀 이터러블](./es6-iteration-for-of#3-커스텀-이터러블)에서 살펴보도록 하자.
+일반 객체는 이터레이션 프로토콜을 준수(Symbol.iterator 메소드를 소유)하지 않기 때문에 이터러블이 아니다. 따라서 일반 객체는 for…of 문에서 순회할 수 없으며 Spread 문법의 대상으로 사용할 수도 없다. 하지만 일반 객체도 이터러블 프로토콜을 준수하도록 구현하면 이터러블이 된다. 이에 대해서는 [3. 커스텀 이터러블](./es6-iteration-for-of#3-커스텀-이터러블)에서 살펴보도록 하자.
 
 ## 1.2 이터레이터
 
@@ -187,7 +187,7 @@ for (const letter of string) {
 
 # 4. 이터레이션 프로토콜의 필요성
 
-데이터 소비자(Data consumer)인 for...of 문, spread 연산자 등은 아래와 같이 다양한 데이터 소스를 사용한다.
+데이터 소비자(Data consumer)인 for...of 문, spread 문법 등은 아래와 같이 다양한 데이터 소스를 사용한다.
 
 Array, String, Map, Set, TypedArray(Int8Array, Uint8Array, Uint8ClampedArray, Int16Array, Uint16Array, Int32Array, Uint32Array, Float32Array, Float64Array), DOM data structure(NodeList, HTMLCollection), Arguments
 {: .info}
@@ -307,11 +307,11 @@ for (const num of fibonacci) {
 
 Symbol.iterator 메소드는 next 메소드를 갖는 이터레이터를 반환하여야 한다. 그리고 next 메소드는 done과 value 프로퍼티를 가지는 이터레이터 리절트 객체를 반환한다. for...of 문은 done 프로퍼티가 true가 될 때까지 반복하며 done 프로퍼티가 true가 되면 반복을 중지한다.
 
-이터러블은 for...of 문뿐만 아니라 spread 연산자, 디스트럭쳐링 할당, Map과 Set의 생성자에도 사용된다.
+이터러블은 for...of 문뿐만 아니라 spread 문법, 디스트럭쳐링 할당, Map과 Set의 생성자에도 사용된다.
 
 ```javascript
-// spread 연산자와 디스트럭처링을 사용하면 이터러블을 손쉽게 배열로 변환할 수 있다.
-// spread 연산자
+// spread 문법과 디스트럭처링을 사용하면 이터러블을 손쉽게 배열로 변환할 수 있다.
+// spread 문법
 const arr = [...fibonacci];
 console.log(arr); // [ 1, 2, 3, 5, 8 ]
 

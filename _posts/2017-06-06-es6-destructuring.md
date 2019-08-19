@@ -81,7 +81,7 @@ console.log(x, y, z); // 1 2 3
 [x, y = 10, z = 3] = [1, 2];
 console.log(x, y, z); // 1 2 3
 
-// spread 연산자
+// spread 문법
 [x, ...y] = [1, 2, 3];
 console.log(x, y); // 1 [ 2, 3 ]
 ```

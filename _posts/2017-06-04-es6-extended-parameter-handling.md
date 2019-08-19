@@ -1,12 +1,12 @@
 ---
 layout: post
 title: <strong>Extended Parameter Handling</strong>
-subtitle: 파라미터 기본값, Rest 파라미터, Spread 연산자, Rest/Spread 프로퍼티
+subtitle: 파라미터 기본값, Rest 파라미터, Spread 문법, Rest/Spread 프로퍼티
 categories: es6
 section: es6
 seq: 6
 subseq: 4
-description: Rest 파라미터는 Spread 연산자(...)를 사용하여 파라미터를 작성한 형태를 말한다. Rest 파라미터를 사용하면 인수를 함수 내부에서 배열로 전달받을 수 있다.
+description: Rest 파라미터는 Spread 문법(...)을 사용하여 파라미터를 작성한 형태를 말한다. Rest 파라미터를 사용하면 인수를 함수 내부에서 배열로 전달받을 수 있다.
 ---
 
 * TOC
@@ -49,7 +49,7 @@ console.log(plus(1, 2)); // 3
 
 ## 2.1 기본 문법
 
-Rest 파라미터(Rest Parameter)는 Spread 연산자(`...`)를 사용하여 파라미터를 정의한 것을 의미한다. Rest 파라미터를 사용하면 인수의 리스트를 함수 내부에서 배열로 전달받을 수 있다.
+Rest 파라미터(Rest Parameter)는 Spread 문법(`...`)을 사용하여 파라미터를 정의한 것을 의미한다. Rest 파라미터를 사용하면 인수의 리스트를 함수 내부에서 배열로 전달받을 수 있다.
 
 ```javascript
 function foo(...rest) {
@@ -144,9 +144,9 @@ const arrowFunc = () => {};
 console.log(arrowFunc.hasOwnProperty('arguments')); // false
 ```
 
-# 3. Spread 연산자
+# 3. Spread 문법
 
-Spread 연산자(Spread Operator, `...`)는 피연산자를 개별 요소로 분리한다. Spread 연산자의 피연산자는 [이터러블](./es6-iteration-for-of)이어야 한다.
+Spread 문법(Spread Syntax, `...`)는 피연산자를 개별 요소로 분리한다. Spread 문법의 대상은 [이터러블](./es6-iteration-for-of)이어야 한다.
 
 ```javascript
 // ...[1, 2, 3]는 [1, 2, 3]을 개별 요소로 분리한다(→ 1, 2, 3)
@@ -159,7 +159,7 @@ console.log(...'Hello');  // H e l l o
 console.log(...new Map([['a', '1'], ['b', '2']]));  // [ 'a', '1' ] [ 'b', '2' ]
 console.log(...new Set([1, 2, 3]));  // 1 2 3
 
-// 이터러블이 아닌 일반 객체는 Spread 연산자의 피연산자가 될 수 없다.
+// 이터러블이 아닌 일반 객체는 Spread 문법의 대상이 될 수 없다.
 console.log(...{ a: 1, b: 2 });
 // TypeError: Found non-callable @@iterator
 ```
@@ -184,7 +184,7 @@ foo.apply(null, arr);
 // foo.call(null, 1, 2, 3);
 ```
 
-ES6의 Spread 연산자(...)를 사용한 배열을 인수로 함수에 전달하면 배열의 요소를 분해하여 순차적으로 파라미터에 할당한다.
+ES6의 Spread 문법(...)을 사용한 배열을 인수로 함수에 전달하면 배열의 요소를 분해하여 순차적으로 파라미터에 할당한다.
 
 ```javascript
 // ES6
@@ -198,14 +198,14 @@ function foo(x, y, z) {
 const arr = [1, 2, 3];
 
 /* ...[1, 2, 3]는 [1, 2, 3]을 개별 요소로 분리한다(→ 1, 2, 3)
-   spread 연산자에 의해 분리된 배열의 요소는 개별적인 인자로서 각각의 매개변수에 전달된다. */
+   spread 문법에 의해 분리된 배열의 요소는 개별적인 인자로서 각각의 매개변수에 전달된다. */
 foo(...arr);
 ```
 
-앞에서 살펴본 Rest 파라미터는 Spread 연산자를 사용하여 파라미터를 정의한 것을 의미한다. 형태가 동일하여 혼동할 수 있으므로 주의가 필요하다.
+앞에서 살펴본 Rest 파라미터는 Spread 문법을 사용하여 파라미터를 정의한 것을 의미한다. 형태가 동일하여 혼동할 수 있으므로 주의가 필요하다.
 
 ```javascript
-/* Spread 연산자를 사용한 매개변수 정의 (= Rest 파라미터)
+/* Spread 문법을 사용한 매개변수 정의 (= Rest 파라미터)
    ...rest는 분리된 요소들을 함수 내부에 배열로 전달한다. */
 function foo(param, ...rest) {
   console.log(param); // 1
@@ -213,7 +213,7 @@ function foo(param, ...rest) {
 }
 foo(1, 2, 3);
 
-/* Spread 연산자를 사용한 인수
+/* Spread 문법을 사용한 인수
   배열 인수는 분리되어 순차적으로 매개변수에 할당 */
 function bar(x, y, z) {
   console.log(x); // 1
@@ -222,11 +222,11 @@ function bar(x, y, z) {
 }
 
 // ...[1, 2, 3]는 [1, 2, 3]을 개별 요소로 분리한다(-> 1, 2, 3)
-// spread 연산자에 의해 분리된 배열의 요소는 개별적인 인자로서 각각의 매개변수에 전달된다.
+// spread 문법에 의해 분리된 배열의 요소는 개별적인 인자로서 각각의 매개변수에 전달된다.
 bar(...[1, 2, 3]);
 ```
 
-Rest 파라미터는 반드시 마지막 파라미터이어야 하지만 Spread 연산자를 사용한 인수는 자유롭게 사용할 수 있다.
+Rest 파라미터는 반드시 마지막 파라미터이어야 하지만 Spread 문법을 사용한 인수는 자유롭게 사용할 수 있다.
 
 ```javascript
 // ES6
@@ -239,13 +239,13 @@ function foo(v, w, x, y, z) {
 }
 
 // ...[2, 3]는 [2, 3]을 개별 요소로 분리한다(→ 2, 3)
-// spread 연산자에 의해 분리된 배열의 요소는 개별적인 인자로서 각각의 매개변수에 전달된다.
+// spread 문법에 의해 분리된 배열의 요소는 개별적인 인자로서 각각의 매개변수에 전달된다.
 foo(1, ...[2, 3], 4, ...[5]);
 ```
 
 ## 3.2 배열에서 사용하는 경우
 
-Spread 연산자를 배열에서 사용하면 보다 간결하고 가독성 좋게 표현할 수 있다. ES5에서 사용하던 방식과 비교하여 살펴보도록 하자.
+Spread 문법을 배열에서 사용하면 보다 간결하고 가독성 좋게 표현할 수 있다. ES5에서 사용하던 방식과 비교하여 살펴보도록 하자.
 
 ### 3.2.1 concat
 
@@ -257,7 +257,7 @@ var arr = [1, 2, 3];
 console.log(arr.concat([4, 5, 6])); // [ 1, 2, 3, 4, 5, 6 ]
 ```
 
-Spread 연산자를 사용하면 배열 리터럴 만으로 기존 배열의 요소를 새로운 배열 요소의 일부로 만들 수 있다.
+Spread 문법을 사용하면 배열 리터럴 만으로 기존 배열의 요소를 새로운 배열 요소의 일부로 만들 수 있다.
 
 ```javascript
 // ES6
@@ -281,7 +281,7 @@ Array.prototype.push.apply(arr1, arr2);
 console.log(arr1); // [ 1, 2, 3, 4, 5, 6 ]
 ```
 
-Spread 연산자를 사용하면 아래와 같이 보다 간편하게 표현할 수 있다.
+Spread 문법을 사용하면 아래와 같이 보다 간편하게 표현할 수 있다.
 
 ```javascript
 // ES6
@@ -313,7 +313,7 @@ Array.prototype.splice.apply(arr1, [3, 0].concat(arr2));
 console.log(arr1); // [ 1, 2, 3, 4, 5, 6 ]
 ```
 
-Spread 연산자를 사용하면 아래와 같이 보다 간편하게 표현할 수 있다.
+Spread 문법을 사용하면 아래와 같이 보다 간편하게 표현할 수 있다.
 
 ```javascript
 // ES6
@@ -345,7 +345,7 @@ console.log(copy); // [ 1, 2, 3, 4 ]
 console.log(arr);  // [ 1, 2, 3 ]
 ```
 
-Spread 연산자를 사용하면 보다 간편하게 배열을 복사할 수 있다.
+Spread 문법을 사용하면 보다 간편하게 배열을 복사할 수 있다.
 
 ```javascript
 // ES6
@@ -381,16 +381,16 @@ console.log(_todos === todos); // false
 console.log(_todos[0] === todos[0]); // true
 ```
 
-Spread 연산자와 Object.assign는 원본을 shallow copy한다. Deep copy를 위해서는 lodash의 [deepClone](https://lodash.com/docs/4.17.11#cloneDeep)을 사용하는 것을 추천한다.
+Spread 문법과 Object.assign는 원본을 shallow copy한다. Deep copy를 위해서는 lodash의 [deepClone](https://lodash.com/docs/4.17.11#cloneDeep)을 사용하는 것을 추천한다.
 {: .info }
 
-Spread 연산자를 사용하면 유사 배열 객체(Array-like Object)를 배열로 손쉽게 변환할 수 있다.
+Spread 문법을 사용하면 유사 배열 객체(Array-like Object)를 배열로 손쉽게 변환할 수 있다.
 
 ```javascript
 const htmlCollection = document.getElementsByTagName('li');
 
 // 유사 배열인 HTMLCollection을 배열로 변환한다.
-const newArray = [...htmlCollection]; // Spread 연산자
+const newArray = [...htmlCollection]; // Spread 문법
 
 // ES6의 Array.from 메소드를 사용할 수도 있다.
 // const newArray = Array.from(htmlCollection);
@@ -419,7 +419,7 @@ const { x, y, ...z } = n;
 console.log(x, y, z); // 1 2 { a: 3, b: 4 }
 ```
 
-Spread 연산자의 피연산자는 이터러블이어야 한다. Rest/Spread 프로퍼티는 일반 객체에 Spread 연산자의 사용을 허용한다.
+Spread 문법의 대상은 이터러블이어야 한다. Rest/Spread 프로퍼티는 일반 객체에 Spread 연산자의 사용을 허용한다.
 
 Rest/Spread 프로퍼티를 사용하면 객체를 손쉽게 병합 또는 변경할 수 있다. 이는 Object.assign을 대체할 수 있는 간편한 문법이다.
 

@@ -419,7 +419,7 @@ const { x, y, ...z } = n;
 console.log(x, y, z); // 1 2 { a: 3, b: 4 }
 ```
 
-Spread 문법의 대상은 이터러블이어야 한다. Rest/Spread 프로퍼티는 일반 객체에 Spread 연산자의 사용을 허용한다.
+Spread 문법의 대상은 이터러블이어야 한다. Rest/Spread 프로퍼티는 일반 객체에 Spread 문법의 사용을 허용한다.
 
 Rest/Spread 프로퍼티를 사용하면 객체를 손쉽게 병합 또는 변경할 수 있다. 이는 Object.assign을 대체할 수 있는 간편한 문법이다.
 

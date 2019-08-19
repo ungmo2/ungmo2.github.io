@@ -711,7 +711,7 @@ function foo() {
 
 * [Standard built-in objects: Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
 
-* [ES6 Spread 연산자 (Spread Operator)](./es6-extended-parameter-handling#32-배열에서-사용하는-경우)
+* [ES6 Spread 문법 (Spread Syntax)](./es6-extended-parameter-handling#32-배열에서-사용하는-경우)
 
 * [Rethinking JavaScript: Death of the For Loop](https://hackernoon.com/rethinking-javascript-death-of-the-for-loop-c431564c84a8)
 

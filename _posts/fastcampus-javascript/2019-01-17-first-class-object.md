@@ -13,16 +13,18 @@ description:
 
 # 1. 일급 객체
 
-"11. 함수"에서 살펴보았듯이 함수는 객체이고 값처럼 사용할 수 있다. 아래와 같은 조건을 만족하는 객체를 **일급 객체**([first-class object](https://ko.wikipedia.org/wiki/일급_객체))라 한다.
+아래와 같은 조건을 만족하는 객체를 **일급 객체**([first-class object](https://ko.wikipedia.org/wiki/일급_객체))라 한다.
 
--	무명의 리터럴로 생성할 수 있다. 즉, 런타임에 생성이 가능하다.
--	변수나 자료 구조(객체, 배열 등)에 저장할 수 있다.
--	함수의 매개 변수에게 전달할 수 있다.
--	함수의 반환값으로 사용할 수 있다.
+1. 무명의 리터럴로 생성할 수 있다. 즉, 런타임에 생성이 가능하다.
+2. 변수나 자료 구조(객체, 배열 등)에 저장할 수 있다.
+3. 함수의 매개 변수에게 전달할 수 있다.
+4. 함수의 결과값으로 반환할 수 있다.
+
+자바스크립트의 함수는 아래 예제와 같이 위의 조건을 모두 만족하므로 일급 객체이다.
 
 ```javascript
-// 1. 무명의 리터럴로 생성할 수 있다.
-// 2. 변수나 자료 구조에 저장할 수 있다.
+// 1. 함수는 무명의 리터럴로 생성할 수 있다.
+// 2. 함수는 변수에 저장할 수 있다.
 // 런타임(할당 단계)에 함수 리터럴이 평가되어 함수 객체가 생성되고 변수에 할당된다.
 const increase = function (num) {
   return ++num;
@@ -32,10 +34,10 @@ const decrease = function (num) {
   return --num;
 };
 
-// 함수 객체를 객체에 저장할 수 있다.
+// 2. 함수는 객체에 저장할 수 있다.
 const predicates = { increase, decrease };
 
-// 3. 함수의 매개변수에게 전달할 수 있다.
+// 3. 함수의 매개 변수에게 전달할 수 있다.
 // 4. 함수의 반환값으로 사용할 수 있다.
 function makeCounter(predicate) {
   let num = 0;
@@ -46,18 +48,20 @@ function makeCounter(predicate) {
   };
 }
 
-// makeCounter의 매개변수에게 함수 객체를 전달
+// 3. 함수는 매개 변수에게 함수를 전달할 수 있다.
 const increaser = makeCounter(predicates.increase);
 console.log(increaser()); // 1
 console.log(increaser()); // 2
 
-// makeCounter의 매개변수에게 함수 객체를 전달
+// 3. 함수는 매개 변수에게 함수를 전달할 수 있다.
 const decreaser = makeCounter(predicates.decrease);
 console.log(decreaser()); // -1
 console.log(decreaser()); // -2
 ```
 
-자바스크립트의 함수는 위의 조건을 모두 만족하므로 일급객체이다. 함수는 무명의 리터럴로 생성할 수 있으므로 코드의 어디에서든지 정의할 수 있다. 무명의 리터럴로 정의한 함수는 코드가 실행될 때, 즉 런타임(runtime)에 함수를 생성한다. 함수가 일급 객체라는 것은 함수를 값처럼 자유롭게 사용할 수 있다는 의미다. 즉, 자바스크립트의 함수는 일급 객체이므로 값처럼 인자로 전달할 수 있으며 반환할 수도 있다. 이는 함수형 프로그래밍을 가능케하는 자바스크립트의 장점 중에 하나이다.
+함수가 일급 객체라는 것은 함수를 객체와 동일하게 사용할 수 있다는 의미다. 객체는 값이므로 함수는 값과 동일하게 취급할 수 있다. 따라서 함수는 값을 사용할 수 있는 곳(변수 할당문, 객체의 프로퍼티, 배열의 요소, 함수 호출의 인수, 함수 반환문)이라면 어디서든지 리터럴로 정의할 수 있으며 런타임(runtime)에 함수 객체로 평가된다.
+
+함수 객체는 몇 가지 고유한 프로퍼티를 갖는 것을 제외하면 일반 객체와 동일하다. 따라서 함수 객체는 일반 객체와 같이 함수의 매개 변수에 전달할 수 있으며 함수의 결과값으로 반환할 수도 있다. 이는 함수형 프로그래밍을 가능케하는 자바스크립트의 장점 중에 하나이다.
 
 함수형 프로그래밍
 : 함수형 프로그래밍은 순수 함수(Pure function)와 보조 함수의 조합을 통해 외부 상태를 변경하는 부수 효과(side-effect)를 최소화하여 불변성(Immutability)을 지향하는 프로그래밍 패러다임이다.<br>
@@ -283,9 +287,9 @@ arguments 객체의 length 프로퍼티와 함수 객체의 length 프로퍼티�
 
 ## 2.4.	name 프로퍼티
 
-함수 객체의 name 프로퍼티는 함수명을 나타낸다. name 프로퍼티는 ES6 이전에는 비표준이었고 ES6에서 정식 표준이 되었다. name 프로퍼티는 ES5와 ES6에서 동작을 달리 하므로 주의하기 바란다.
+함수 객체의 name 프로퍼티는 함수명을 나타낸다.name 프로퍼티는 ES6 이전까지는 비표준이었지만 ES6에서 정식 표준이 되었다.
 
-익명 함수 표현식의 경우, ES5에서 name 프로퍼티는 빈 문자열을 값으로 갖는다. 하지만 ES6에서는 함수 객체를 가리키는 변수명을 값으로 갖는다.
+name 프로퍼티는 ES5와 ES6에서 동작을 달리 하므로 주의하기 바란다. 익명 함수 표현식의 경우, ES5에서 name 프로퍼티는 빈 문자열을 값으로 갖는다. 하지만 ES6에서는 함수 객체를 가리키는 변수명을 값으로 갖는다.
 
 ```javascript
 // 기명 함수 표현식
@@ -329,12 +333,10 @@ prototype 프로퍼티는 함수 객체만이 소유하는 프로퍼티이다. �
 
 ```javascript
 // 함수 객체는 prototype 프로퍼티를 소유한다.
-console.log(Object.getOwnPropertyDescriptor(function() {}, 'prototype'));
-// {value: {…}, writable: true, enumerable: false, configurable: false}
+console.log((function() {}).hasOwnProperty('prototype')); // true
 
 // 일반 객체는 prototype 프로퍼티를 소유하지 않는다.
-console.log(Object.getOwnPropertyDescriptor({}, 'prototype'));
-// undefined
+console.log(({}).hasOwnProperty('prototype')); // false
 ```
 
 prototype 프로퍼티는 함수가 객체를 생성하는 생성자 함수로 사용될 때, 생성자 함수가 생성할 인스턴스의 프로토타입 객체를 가리킨다.

@@ -1211,14 +1211,15 @@ instanceof 연산자는 좌변 피연산자의 프로토타입 체인 상에 우
 
 `me instanceof Person`의 경우, me 객체의 프로토타입 체인 상에 Person.prototype에 바인딩된 객체가 객체가 존재하는지 확인한다.
 
-`me instanceof Object`의 경우도 마찬가지다. me 객체의 프로토타입 체인 상에 Object.prototype에 바인딩된 객체가 객체가 존재하는지 확인한다. 이를 의사 코드(pseudo code)로 표현하면 아래와 같다.
+`me instanceof Object`의 경우도 마찬가지다. me 객체의 프로토타입 체인 상에 Object.prototype에 바인딩된 객체가 객체가 존재하는지 확인한다. instanceof 연산자를 함수로 표현하면 아래와 같다.
 
 ```javascript
 function isInstanceof(instance, constructor) {
   // 프로토타입 취득
   const prototype = Object.getPrototypeOf(instance);
 
-  // prototype이 null이면 프로토타입 체인의 을 넘어선 것이다.
+  // 재귀 탈출 조건
+  // prototype이 null이면 프로토타입 체인의 종점에 다다른 것이다.
   if (prototype === null) return false;
 
   // 프로토타입이 생성자 함수의 prototype 프로퍼티에 바인딩된 객체라면 true를 반환한다.
@@ -1286,6 +1287,8 @@ Object.create(prototype[, propertiesObject])
 // obj → null
 let obj = Object.create(null);
 console.log(Object.getPrototypeOf(obj) === null); // true
+// Object.prototype를 상속받지 못한다.
+console.log(obj.toString()); // TypeError: obj.toString is not a function
 
 // obj = {};와 동일하다.
 // obj → Object.prototype → null
@@ -1311,6 +1314,7 @@ obj = Object.create(myProto);
 console.log(obj.x); // 10
 console.log(Object.getPrototypeOf(obj) === myProto); // true
 
+// 생성자 함수
 function Person(name) {
   this.name = name;
 }
@@ -1351,7 +1355,7 @@ obj.a = 1;
 console.log(Object.getPrototypeOf(obj) === null); // true
 
 // obj는 Object.prototype의 빌트인 메소드를 사용할 수 없다.
-console.log(obj.hasOwnProperty('a')); // TypeError: obj.isPrototypeOf is not a function
+console.log(obj.hasOwnProperty('a')); // TypeError: obj.hasOwnProperty is not a function
 ```
 
 따라서 이같은 에러를 발생시키는 가능성을 없애기 위해 Object.prototype의 빌트인 메소드는 아래와 같이 간접적으로 호출하는 것이 좋다.
@@ -1361,13 +1365,13 @@ console.log(obj.hasOwnProperty('a')); // TypeError: obj.isPrototypeOf is not a f
 const obj = Object.create(null);
 obj.a = 1;
 
-// console.log(obj.hasOwnProperty('a')); // TypeError: obj.isPrototypeOf is not a function
+// console.log(obj.hasOwnProperty('a')); // TypeError: obj.hasOwnProperty is not a function
 
 // Object.prototype의 빌트인 메소드는 객체로 직접 호출하지 않는다.
 console.log(Object.prototype.hasOwnProperty.call(obj, 'a')); // true
 ```
 
-Function.prototype.call 메소드에 대해서는 “21.2.4. Function.prototype.apply/call/bind 메소드에 의한 간접 호출”을 참고하도록 하자.
+Function.prototype.call 메소드에 대해서는 "22.2.4. Function.prototype.apply/call/bind 메소드에 의한 간접 호출"을 참고하도록 하자.
 
 ## 12.2 객체 리터럴 내부에서 __proto__에 의한 직접 상속
 
@@ -1509,7 +1513,7 @@ in 연산자는 확인 대상 객체(위 예제의 경우, person 객체)의 프
 console.log('toString' in person); // true
 ```
 
-이는 in 연산자가 person 객체가 속한 프로토타입 체인 상에 존재하는 모든 프로토타입을 검색했기 때문이다. toString은 Object.prototype의 메소드이다.
+이는 in 연산자가 person 객체가 속한 프로토타입 체인 상에 존재하는 모든 프로토타입에서 toString 프로퍼티를 검색했기 때문이다. toString은 Object.prototype의 메소드이다.
 
 Object.prototype.hasOwnProperty 메소드를 사용해도 객체의 프로퍼티의 존재 여부를 확인할 수 있다.
 

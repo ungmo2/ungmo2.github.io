@@ -39,10 +39,18 @@ console.log(descriptor);
 프로퍼티 어트리뷰트는 `Object.getOwnPropertyDescriptor` 메소드를 사용해 참조할 수 있다. 이 메소드는 프로퍼티 어트리뷰트 정보를 제공하는 객체인 **프로퍼티 디스크립터(PropertyDescriptor)**를 반환한다. `Object.getOwnPropertyDescriptor` 메소드는 이름에서 알 수 있듯이 자신의 프로퍼티 디스크립터 객체를 반환한다. 존재하지 않는 프로퍼티나 상속받은 프로퍼티에 대한 프로퍼티 디스크립터를 요구하면 undefined가 반환된다. 인수는 객체의 참조와 데이터 프로퍼티의 키를 문자열로 전달한다.
 
 ```javascript
-// 프로퍼티 어트리뷰트를 표현하는 프로퍼티 디스크립터 객체를 취득한다.
+// 하나의 프로퍼티 어트리뷰트를 표현하는 프로퍼티 디스크립터 객체를 취득한다.
 var descriptor = Object.getOwnPropertyDescriptor(obj, 'prop');
 console.log(descriptor);
 // {value: 10, writable: true, enumerable: true, configurable: true}
+
+// ES8
+// 모든 프로퍼티 어트리뷰트를 표현하는 프로퍼티 디스크립터 객체를 취득한다.
+var descriptors = Object.getOwnPropertyDescriptors(obj);
+console.log(descriptors);
+// {
+//   prop: { value: 10, writable: true, enumerable: true, configurable: true }
+// }
 ```
 
 프로퍼티가 동적 생성될 때 자바스크립트 엔진은 프로퍼티 어트리뷰트를 기본값으로 정의한다. 이미 정의된 프로퍼티 어트리뷰트를 재정의하는 것도 가능하다.

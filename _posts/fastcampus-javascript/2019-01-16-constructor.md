@@ -176,7 +176,7 @@ console.log(circle3); // undefined
 console.log(radius); // 15
 ```
 
-## 2.3. 내부 메소드 [[Call]]과 [[Constructor]]
+## 2.3. 내부 메소드 [[Call]]과 [[Construct]]
 
 함수 선언문 또는 함수 표현식으로 정의한 함수는 일반적인 함수로서 호출할 수 있는 것은 물론 생성자 함수로서 호출할 수 있다. 생성자 함수로서 호출한다는 것은 new 연산자와 함께 호출하여 객체를 생성하는 것을 의미한다.
 
@@ -207,11 +207,11 @@ foo.method(); // 10
 함수 객체의 내부 메소드
 {: .desc-img}
 
-내부 메소드 [[Call]]이 구현되어 있는 객체를 callable이라 하며, 내부 메소드인 [[Constructor]]이 구현되어 있는 객체를 constructor, [[Constructor]]가 구현되어 있지 않은 객체를 non-constructor라고 부른다.
+내부 메소드 [[Call]]을 갖는 함수 객체를 callable이라 하며, 내부 메소드인 [[Construct]]를 갖는 함수 객체를 constructor, [[Construct]]를 갖지 않는 함수 객체를 non-constructor라고 부른다.
 
 callable은 호출할 수 있는 객체, 즉 함수를 말하며, constructor는 생성자 함수로서 호출할 수 있는 객체를 의미한다. 생성자 함수로서 호출할 수 있다는 것은 new 연산자(또는 super 연산자)와 함께 호출하는 것을 의미한다.
 
-함수가 일반적인 함수로서 호출되면 함수 객체의 내부 메소드 [[Call]]가 호출되고 new 연산자(또는 super 연산자)와 함께 생성자 함수로서 호출되면 내부 메소드 [[Constructor]]가 호출된다.
+함수가 일반적인 함수로서 호출되면 함수 객체의 내부 메소드 [[Call]]가 호출되고 new 연산자(또는 super 연산자)와 함께 생성자 함수로서 호출되면 내부 메소드 [[Construct]]가 호출된다.
 
 ```javascript
 function foo() {}
@@ -219,14 +219,14 @@ function foo() {}
 // 일반적인 함수로서 호출: [[Call]]이 호출된다.
 foo();
 
-// 생성자 함수로서 호출: [[Constructor]]이 호출된다.
+// 생성자 함수로서 호출: [[Construct]]가 호출된다.
 new foo();
 ```
 
 super 키워드
 : super는 ES6에서 도입된 클래스에서 부모 클래스를 참조(this와 유사하다)할 때 또는 부모 클래스의 생성자(constructor)를 호출할 때 사용한다. 이에 대해서는 "클래스"에서 살펴보도록 하자.
 
-호출할 수 없는 객체는 함수 객체가 아니므로 함수로서 기능하는 객체, 즉 함수 객체는 반드시 callable이여야 한다. 따라서 모든 함수 객체는 [[Call]]이 구현되어 있어 호출할 수 있다. 하지만 모든 함수 객체가 [[Constructor]]를 구현하지는 않는다. 다시 말해, 함수 객체는 constructor일 수도 있고 non-constructor일 수 있다.
+호출할 수 없는 객체는 함수 객체가 아니므로 함수로서 기능하는 객체, 즉 함수 객체는 반드시 callable이여야 한다. 따라서 모든 함수 객체는 내부 메소드 [[Call]]을 갖고 있으므로 호출할 수 있다. 하지만 모든 함수 객체가 [[Construct]]를 갖지는 않는다. 다시 말해, 함수 객체는 constructor일 수도 있고 non-constructor일 수 있다.
 
 결론적으로 함수 객체는 callable이면서 constructor이거나 callable이면서 non-constructor이다. 즉, 모든 함수 객체는 호출할 수 있지만 모든 함수 객체를 생성자 함수로서 호출할 수 있는 것은 아니다.
 
@@ -289,7 +289,7 @@ new obj.x(); // TypeError: obj.x is not a constructor
 
 위 예제와 같이 일반 함수로 정의된 함수만이 constructor이다. 함수의 종류가 Arrow, Method인 함수는 non-constructor가 된다. 즉, 같이 일반 함수로 정의된 함수만이 생성자 함수로서 호출될 수 있다.
 
-함수가 일반적인 함수로서 호출되면 함수 객체의 내부 메소드 [[Call]]가 호출되고 new 연산자 또는 super 연산자와 함께 생성자 함수로서 호출되면 내부 메소드 [[Constructor]]가 호출된다.
+함수가 일반적인 함수로서 호출되면 함수 객체의 내부 메소드 [[Call]]가 호출되고 new 연산자 또는 super 연산자와 함께 생성자 함수로서 호출되면 내부 메소드 [[Construct]]가 호출된다.
 
 ```javascript
 function foo() {}
@@ -298,12 +298,12 @@ function foo() {}
 // 모든 함수 객체는 [[Call]]이 구현되어 있다.
 foo();
 
-// 생성자 함수로서 호출: [[Constructor]]이 호출된다.
-// 이때 [[Constructor]]가 구현되어 있지 않다면 에러가 발생한다.
+// 생성자 함수로서 호출: [[Construct]]가 호출된다.
+// 이때 [[Construct]]를 갖지 않는다면 에러가 발생한다.
 new foo();
 ```
 
-non-constructor인 함수 객체는 내부 메소드 [[Constructor]]가 구현되어 있지 않다. 따라서 non-constructor인 함수 객체를 생성자 함수로서 호출하면 에러가 발생한다.
+non-constructor인 함수 객체는 내부 메소드 [[Construct]]를 갖지 않는다. 따라서 non-constructor인 함수 객체를 생성자 함수로서 호출하면 에러가 발생한다.
 
 주의할 것은 생성자 함수로서 호출될 것을 기대하고 정의하지 않은 일반 함수(callable이면서 constructor)에 new 연산자를 붙여 호출하면 생성자 함수처럼 동작할 수 있다는 것이다. 위 예제와 같이 일반 함수를 생성자 함수로서 호출할 수 있다.
 
@@ -369,7 +369,7 @@ function Circle(radius) {
 
 3. 인스턴스 반환
 
-생성자 함수 내부의 모든 처리가 끝나면 암묵적으로 this, 즉 생성자 함수가 생성한 인스턴스를 반환한다.
+생성자 함수 내부의 모든 처리가 끝나면 완성된 인스턴스가 바인딩된 this가 암묵적으로 반환된다.
 
 ```javascript
 function Circle(radius) {
@@ -381,7 +381,7 @@ function Circle(radius) {
     return 2 * this.radius;
   };
 
-  // 3. 암묵적으로 this, 즉 인스턴스를 반환한다.
+  // 3. 완성된 인스턴스가 바인딩된 this가 암묵적으로 반환된다
 }
 
 // 인스턴스 생성. Circle 생성자 함수는 암묵적으로 this를 반환한다.
@@ -461,7 +461,7 @@ inst = new createUser('Lee', 'admin');
 console.log(inst); // {name: "Lee", role: "admin"}
 ```
 
-반대로 new 연산자 없이 생성자 함수를 호출하면 일반 함수로 호출된다. 다시 말해, 함수 객체의 내부 메소드 [[Constructor]]가 호출되는 것이 아니라 [[Call]]이 호출된다.
+반대로 new 연산자 없이 생성자 함수를 호출하면 일반 함수로 호출된다. 다시 말해, 함수 객체의 내부 메소드 [[Construct]]가 호출되는 것이 아니라 [[Call]]이 호출된다.
 
 ```javascript
 // 생성자 함수
@@ -524,7 +524,7 @@ console.log(circle.getDiameter());
 // Scope-Safe Constructor Pattern
 function Circle(radius) {
   // 생성자 함수가 new 연산자와 함께 호출되면 함수의 선두에서 빈 객체를 생성하고
-// this에 바인딩한다. 이때 this와 Circle은 프로토타입에 의해 연결된다.
+  // this에 바인딩한다. 이때 this와 Circle은 프로토타입에 의해 연결된다.
 
   // 이 함수가 new 연산자와 함께 호출되지 않았다면 이 시점의 this는 전역 객체 window를 가리킨다.
   // 즉, this와 Circle은 프로토타입에 의해 연결되지 않는다.

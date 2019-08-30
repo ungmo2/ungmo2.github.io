@@ -13,7 +13,7 @@ description:
 
 # 1. 자바스크립트의 탄생
 
-1995년 당시 약 90%의 시장 점유율로 웹 브라우저 시장을 지배하고 있던 [넷스케이프 커뮤니케이션즈(Netscape comunications)](https://ko.wikipedia.org/wiki/넷스케이프)는 정적인 HTML을 동적으로 표현하기 위해 경량의 프로그래밍 언어를 도입하기로 결정했다. 그래서 탄생한 것이 브렌던 아이크(Brendan Eich)가 개발한 자바스크립트이다.
+1995년 당시 약 90%의 시장 점유율로 웹 브라우저 시장을 지배하고 있던 [넷스케이프 커뮤니케이션즈(Netscape communications)](https://ko.wikipedia.org/wiki/넷스케이프)는 정적인 HTML을 동적으로 표현하기 위해 경량의 프로그래밍 언어를 도입하기로 결정했다. 그래서 탄생한 것이 브렌던 아이크(Brendan Eich)가 개발한 자바스크립트이다.
 
 자바스크립트는 1996년 3월 넷스케이프 커뮤니케이션즈의 웹 브라우저인 [Netscape Navigator 2](https://en.wikipedia.org/wiki/Netscape_Navigator_2)에 탑재되었고 "Mocha"로 명명되었다. 그해 9월 "LiveScript"로 이름이 변경되었고, 12월 "JavaScript"로 최종 명명되었다.
 
@@ -134,7 +134,7 @@ ECMAScript는 자바스크립트의 표준 명세인 ECMA-262를 말하며 프�
 
 자바스크립트는 HTML, CSS와 함께 웹을 구성하는 요소 중 하나로 웹 브라우저에서 동작하는 유일한 프로그래밍 언어이다. 자바스크립트는 기존의 프로그래밍 언어에서 많은 영향을 받았다. 기본 문법은 C, Java와 유사하고 Self에서는 프로토타입 기반 상속을, Scheme에서는 일급 함수의 개념을 차용했다.
 
-자바스크립트는 개발자가 별도의 컴파일 작업을 수행하지 않는 **[인터프리터 언어(Interpreter language)](https://ko.wikipedia.org/wiki/인터프리터)**이다. 대부분의 모던 자바스크립트 엔진(Chrome의 V8, FireFox의 Spidermonkey, Safari의 JavaScriptCore, Microsoft Edge의 Chakra 등)은 인터프리터와 컴파일러의 장점을 결합하여 비교적 처리 속도가 느린 인터프리터의 단점을 해결했다. 인터프리터는 소스코드를 즉시 실행하고 컴파일러는 빠르게 동작하는 머신 코드를 생성하고 최적화한다. 이를 통해 컴파일 단계에서 추가적인 시간이 필요함에도 불구하고 보다 빠른 코드의 실행이 가능하다.
+자바스크립트는 개발자가 별도의 컴파일 작업을 수행하지 않는 **[인터프리터 언어(Interpreter language)](https://ko.wikipedia.org/wiki/인터프리터)**이다. 대부분의 모던 자바스크립트 엔진(크롬의 V8, 파이어폭스의 Spidermonkey, 사파리의 JavaScriptCore, 마이크로소프트 엣지의 Chakra 등)은 인터프리터와 컴파일러의 장점을 결합하여 비교적 처리 속도가 느린 인터프리터의 단점을 해결했다. 인터프리터는 소스코드를 즉시 실행하고 컴파일러는 빠르게 동작하는 머신 코드를 생성하고 최적화한다. 이를 통해 컴파일 단계에서 추가적인 시간이 필요함에도 불구하고 보다 빠른 코드의 실행이 가능하다.
 
 자바스크립트는 [명령형(imperative)](https://ko.wikipedia.org/wiki/명령형_프로그래밍), [함수형(functional)](https://ko.wikipedia.org/wiki/함수형_프로그래밍), [프로토타입 기반(prototype-based) 객체지향 프로그래밍](https://ko.wikipedia.org/wiki/프로토타입_기반_프로그래밍)을 지원하는 **[멀티 패러다임 프로그래밍 언어](https://ko.wikipedia.org/wiki/다중_패러다임_프로그래밍_언어)**이다.
 

@@ -92,14 +92,22 @@ console.log('Hello world');
 Colorless green ideas sleep furiously.<br> – 노엄 촘스키(Noam Chomsky)
 {: .info}
 
-MIT의 저명한 언어학자인 [노엄 촘스키](https://ko.wikipedia.org/wiki/노엄_촘스키)는 위 문장을 통해서 언어의 의미는 문맥에 있는 것이지 문법에 있는 것이 아니란 것을 지적하고 있다. 위 문장은 문법(Syntax)적으로 전혀 문제가 없지만 의미(Semantics)는 없다. 프로그래밍도 마찬가지다. C 언어로 구현된 아래 예제를 보자.
+MIT의 저명한 언어학자인 [노엄 촘스키](https://ko.wikipedia.org/wiki/노엄_촘스키)는 위 문장을 통해서 언어의 의미는 문맥에 있는 것이지 문법에 있는 것이 아니란 것을 지적하고 있다. 위 문장은 문법(Syntax)적으로 전혀 문제가 없지만 의미(Semantics)는 없다. 프로그래밍도 마찬가지다. 아래 예제를 보자.
+
+<!-- C 언어로 구현된 아래 예제를 보자.
 
 ```c
 int x = "five";
 // warning: incompatible pointer to integer conversion initializing 'int' with an expression of type 'char [5]' [-Wint-conversion]
 ```
+-->
+```javascript
+const number = 'string';
+```
 
-위 예제는 문법적으로 전혀 문제가 없으나 의미적으로는 옳지 않다. 값 "five"는 정수가 아니라 문자열이다.
+자바스크립트의 변수는 타입이 없으므로 어떠한 타입의 값이라도 할당할 수 있다. 따라서 위 예제는 문법적으로 전혀 문제가 없다. 하지만 의미적으로는 옳지 않다. number라는 변수 이름에 문자열이 할당되어 있기 때문이다. number라는 변수 이름에는 숫자를 할당하는 것이 의미적으로 옳다.
+
+<!-- 위 예제는 문법적으로 전혀 문제가 없으나 의미적으로는 옳지 않다. 값 "five"는 정수가 아니라 문자열이다. -->
 
 결국 문제 해결 능력을 통해 만들어낸 해결 방안은 프로그래밍 언어의 문법을 통해 표현된다. 이때 작성된 코드는 해결 방안의 구체적 구현물이다. 그리고 이것은 프로그래밍 언어의 문법에 부합하는 것은 물론이고 수행하고자 하는 바를 정확히 수행하는 것, 즉 **요구사항이 실현(문제가 해결)**되어야 의미가 있다.
 

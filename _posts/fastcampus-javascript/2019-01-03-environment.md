@@ -31,7 +31,7 @@ description:
 
 다양한 웹 브라우저가 있지만 구글 크롬(Chrome) 브라우저를 사용하기로 하자. 크롬 브라우저의 V8 자바스크립트 엔진은 Node.js에서도 사용하고 있다. 만약 크롬 브라우저가 설치되어 있지 않다면 아래의 웹사이트를 방문하여 최신 버전을 설치하도록 하자.
 
--	[Chrome 다운로드](https://www.google.com/intl/ko_ALL/chrome)
+-	[크롬 브라우저 다운로드](https://www.google.com/intl/ko_ALL/chrome)
 
 ## 2.1.	웹 브라우저는 어떻게 동작하는가?
 
@@ -344,7 +344,7 @@ $counter의 값이 null인 것을 확인했다. 그 원인은 13 라인에서 $c
 
 ## 3.1.	Node.js와 npm 소개
 
-2009년 [라이언 달(Ryan Dahl)](https://en.wikipedia.org/wiki/Ryan_Dahl)이 발표한 [Node.js](https://nodejs.org)는 Chrome V8 자바스크립트 엔진으로 빌드된 자바스크립트 [런타임 환경(Runtime Environment)](https://ko.wikipedia.org/wiki/런타임)이다. 간단히 말해 브라우저에서만 동작하던 자바스크립트를 브라우저 이외의 환경에서 동작시킬 수 있는 자바스크립트 실행 환경이 Node.js이다.
+2009년 [라이언 달(Ryan Dahl)](https://en.wikipedia.org/wiki/Ryan_Dahl)이 발표한 [Node.js](https://nodejs.org)는 크롬  V8 자바스크립트 엔진으로 빌드된 자바스크립트 [런타임 환경(Runtime Environment)](https://ko.wikipedia.org/wiki/런타임)이다. 간단히 말해 브라우저에서만 동작하던 자바스크립트를 브라우저 이외의 환경에서 동작시킬 수 있는 자바스크립트 실행 환경이 Node.js이다.
 
 Node.js는 주로 서버 사이드 애플리케이션 개발에 사용되며 이에 필요한 모듈, 파일 시스템, HTTP 등 [빌트인 API](https://nodejs.org/dist/latest-v12.x/docs/api)를 제공한다. Node.js는 데이터를 실시간 처리하여 빈번한 I/O가 발생하는 SPA(Single Page Application)에 적합하다. 하지만 CPU 사용률이 높은 애플리케이션에는 권장하지 않는다.
 

@@ -213,7 +213,7 @@ with 문을 사용하면 SyntaxError가 발생한다.
 
 ## 5.5.	일반 함수의 this
 
-일반 함수를 호출하면 this에 undefined가 바인딩된다. 일반 함수 내부에서 this를 사용할 필요가 없기 때문이다. 이때 에러는 발생하지 않는다.
+strict mode 에서 함수를 일반 함수로서 호출하면 this에 undefined가 바인딩된다. 생성자 함수가 아닌 일반 함수 내부에서는 this를 사용할 필요가 없기 때문이다. 이때 에러는 발생하지 않는다.
 
 ```javascript
 (function () {

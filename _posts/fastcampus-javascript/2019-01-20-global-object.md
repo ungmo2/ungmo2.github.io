@@ -90,9 +90,9 @@ console.log(foo); // undefined
 console.log(typeof undefined); // undefined
 ```
 
-# 2. 전역 함수(Global function)
+# 2. 빌트인 전역 함수
 
-전역 함수는 애플리케이션 전역에서 호출할 수 있는 함수로서 전역 객체의 메소드이다.
+빌트인 전역 함수(Built-in global function)는 애플리케이션 전역에서 호출할 수 있는 빌트인 함수로서 전역 객체의 메소드이다.
 
 ## 2.1.	eval
 

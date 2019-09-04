@@ -49,7 +49,7 @@ console.log(plus(1, 2)); // 3
 
 ## 2.1 기본 문법
 
-Rest 파라미터(Rest Parameter)는 Spread 문법(`...`)을 사용하여 파라미터를 정의한 것을 의미한다. Rest 파라미터를 사용하면 인수의 리스트를 함수 내부에서 배열로 전달받을 수 있다.
+Rest 파라미터(Rest Parameter, 나머지 매개변수)는 매개변수 이름 앞에 세개의 점 `...`을 붙여서 정의한 매개변수를 의미한다. Rest 파라미터는 함수에 전달된 인수들의 목록을 배열로 전달받는다.
 
 ```javascript
 function foo(...rest) {
@@ -60,7 +60,7 @@ function foo(...rest) {
 foo(1, 2, 3, 4, 5);
 ```
 
-인수는 순차적으로 파라미터와 Rest 파라미터에 할당된다.
+함수에 전달된 인수들은 순차적으로 파라미터와 Rest 파라미터에 할당된다.
 
 ```javascript
 function foo(param, ...rest) {
@@ -79,13 +79,26 @@ function bar(param1, param2, ...rest) {
 bar(1, 2, 3, 4, 5);
 ```
 
-Rest 파라미터는 반드시 마지막 파라미터이어야 한다.
+Rest 파라미터는 이름 그대로 먼저 선언된 파라미터에 할당된 인수를 제외한 나머지 인수들이 모두 배열에 담겨 할당된다. 따라서 Rest 파라미터는 반드시 마지막 파라미터이어야 한다.
 
 ```javascript
 function foo( ...rest, param1, param2) { }
 
 foo(1, 2, 3, 4, 5);
 // SyntaxError: Rest parameter must be last formal parameter
+```
+
+Rest 파라미터는 함수 정의 시 선언한 매개변수 개수를 나타내는 함수 객체의 length 프로퍼티에 영향을 주지 않는다.
+
+```javascript
+function foo(...rest) {}
+console.log(foo.length); // 0
+
+function bar(x, ...rest) {}
+console.log(bar.length); // 1
+
+function baz(x, y, ...rest) {}
+console.log(baz.length); // 2
 ```
 
 ## 2.2 arguments와 rest 파라미터

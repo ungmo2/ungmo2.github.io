@@ -15,15 +15,15 @@ description:
 
 모든 브라우저는 자바스크립트를 해석하고 실행할 수 있는 자바스크립트 엔진을 내장하고 있다. 브라우저뿐만 아니라 Node.js도 자바스크립트 엔진을 내장하고 있다. 따라서 자바스크립트는 브라우저와 Node.js 환경에서 실행할 수 있다. 기본적으로 브라우저에서 동작하는 코드는 Node.js 환경에서도 동작한다.
 
-그런데 브라우저와 Node.js는 존재 목적이 다르다. 브라우저는 HTML, CSS, 자바스크립트를 실행하여 웹 페이지를 화면에 렌더링하는 것이 주된 목적이지만, Node.js는 서버 개발 환경을 제공하는 것이 주된 목적이다. 따라서 브라우저와 Node.js 모두 자바스크립트의 코어인 ECMAScript를 실행할 수 있지만 브라우저와 Node.js에서 ECMAScript 이외에 추가적으로 제공하는 기능은 호환되지 않는다.
+주의해야 할 것은 브라우저와 Node.js는 용도가 다르다는 것이다. 브라우저는 HTML, CSS, 자바스크립트를 실행하여 웹 페이지를 브라우저의 화면에 렌더링하는 것이 주된 목적이지만, Node.js는 서버 개발 환경을 제공하는 것이 주된 목적이다. 따라서 브라우저와 Node.js 모두 자바스크립트의 코어인 ECMAScript를 실행할 수 있지만 브라우저와 Node.js에서 ECMAScript 이외에 추가적으로 제공하는 기능은 호환되지 않는다.
 
-예를 들어 브라우저는 HTML 요소를 선택하거나 조작하는 기능들의 집합인 DOM API를 기본적으로 제공한다. 하지만 서버 개발 환경을 제공하는 것이 주 목적인 Node.js는 클라이언트 사이드 Web API인 DOM API를 제공하지 않는다. 서버에서는 HTML 요소를 객체화한 DOM(Document Object Model)을 직접 다룰 필요가 없기 때문이다.
+예를 들어 브라우저는 파싱된 HTML 요소를 선택하거나 조작하는 기능들의 집합인 DOM API를 기본적으로 제공한다. 하지만 서버 개발 환경을 제공하는 것이 주 목적인 Node.js는 DOM API를 제공하지 않는다. 서버에서는 HTML 요소를 객체화한 DOM(Document Object Model)을 직접 다룰 필요가 없기 때문이다.
 
 반대로 Node.js에서는 파일을 create/read/update/delete할 수 있는 File 시스템을 기본 제공하지만 브라우저는 이를 지원하지 않는다. (Web API인 [FileReader 객체](https://blog.teamtreehouse.com/reading-files-using-the-html5-filereader-api)를 사용해 사용자가 지정한 파일을 읽어 들이는 것은 가능하다.)
 
 웹 애플리케이션의 자바스크립트는 사용자 컴퓨터의 브라우저에서 동작한다. 만약 자바스크립트가 브라우저를 통해 사용자 컴퓨터의 로컬 파일을 삭제하거나 수정하고 생성할 수 있다면 이는 사용자 컴퓨터가 악성 코드에 그대로 노출된 것과 마찬가지다. 따라서 보안 상 이유로 Web API에서는 File 시스템을 제공하지 않는다.
 
-이처럼 브라우저는 ECMAScript와 DOM, BOM, Canvas, XMLHttpRequest, Fetch, requestAnimationFrame, SVG, Web Storage, Web Component, Web worker와 같은 [클라이언트 사이드 Web API](https://www.w3.org/standards/webdesign/script)를 지원한다. Node.js는 클라이언트 사이드 Web API는 지원하지 않고 ECMAScript와 [Node.js 고유의 API](https://nodejs.org/dist/latest-v12.x/docs/api/)를 지원한다.
+이처럼 브라우저는 ECMAScript와 DOM, BOM, Canvas, XMLHttpRequest, Fetch, requestAnimationFrame, SVG, Web Storage, Web Component, Web worker와 같은 **[클라이언트 사이드 Web API](https://www.w3.org/standards/webdesign/script)**를 지원한다. Node.js는 클라이언트 사이드 Web API는 지원하지 않고 ECMAScript와 [Node.js 고유의 API](https://nodejs.org/dist/latest-v12.x/docs/api/)를 지원한다.
 
 이를 염두에 두고 자바스크립트 개발 환경을 구축하고 자바스크립트를 실행하는 방법에 대해 살펴보자. 자바스크립트를 웹 브라우저에서 실행하는 방법과 Node.js 환경에서 실행하는 방법 그리고 코드 에디터인 비주얼 스튜디오 코드(Visual Studio Code)에서 실행하는 방법에 대해 살펴볼 것이다.
 
@@ -37,7 +37,7 @@ description:
 
 구글의 V8 자바스크립트 엔진으로 빌드된 자바스크립트 런타임 환경(Runtime Environment)인 Node.js의 등장으로 자바스크립트는 웹 브라우저를 벗어나 서버 사이드 애플리케이션 개발에서도 사용되는 범용 개발 언어가 되었다. 하지만 자바스크립트가 가장 많이 사용되는 분야는 역시 웹 브라우저 환경에서 동작하는 웹 페이지/애플리케이션이다.
 
-대부분의 프로그래밍 언어는 운영 체제(Operating System, OS) 위에서 실행되지만 웹 애플리케이션의 자바스크립트는 브라우저에서 HTML, CSS와 함께 실행된다. 따라서 브라우저 환경을 고려할 때 보다 효율적인 자바스크립트 프로그래밍이 가능하다.
+대부분의 프로그래밍 언어는 운영 체제(Operating System, OS)나 [가상 머신(Virtual machine, VM)](https://ko.wikipedia.org/wiki/가상_머신) 위에서 실행되지만 웹 애플리케이션의 자바스크립트는 브라우저에서 HTML, CSS와 함께 실행된다. 따라서 브라우저 환경을 고려할 때 보다 효율적인 자바스크립트 프로그래밍이 가능하다.
 
 브라우저의 핵심 기능은 사용자가 참조하고자 하는 웹 페이지를 서버에 요청(Request)하고 서버의 응답(Response)을 받아 브라우저에 표시하는 것이다. 브라우저는 서버로부터 HTML, CSS, 자바스크립트, 이미지 파일 등을 응답 받는다. HTML, CSS 파일은 렌더링 엔진의 HTML 파서와 CSS 파서에 의해 파싱(Parsing)되어 DOM, CSSOM 트리로 변환되고 렌더 트리로 결합된다. 이렇게 생성된 렌더 트리를 기반으로 브라우저는 웹 페이지를 표시한다.
 
@@ -237,7 +237,7 @@ async와 defer 어트리뷰트는 웹페이지 파싱과 외부 스크립트 파
 
 개발자 도구의 Console(콘솔) 패널은 자바스크립트 코드에서 에러가 발생하여 애플리케이션이 정상적으로 동작하지 않을 때 가장 우선적으로 살펴보아야 할 곳이다. 구현 단계에서는 에러가 빈번하게 발생하므로 항상 콘솔을 열어둔 상태에서 개발을 진행하는 것이 좋다. 콘솔을 열어두지 않으면 에러가 발생했는지 조차 알 수 없는 경우가 있다.
 
-에러가 발생한 경우가 아니더라도 콘솔은 매우 유용하다. 구현 단계에서 디버깅을 실행하는 것보다 간편하게 값을 확인하며 개발을 진행하기 위해 console.log 함수를 사용하는 경우가 많다. console.log(...)는 소괄호 안에 있는 코드의 평가 결과를 콘솔에 출력하는 함수이다. 이 함수를 사용해 확인하고 싶은 값을 콘솔에 출력해 확인할 수 있다.
+에러가 발생한 경우가 아니더라도 콘솔은 매우 유용하다. 구현 단계에서 디버깅을 실행하는 것보다 간편하게 코드의 실행 결과를 확인하면서 개발을 진행하기 위해 console.log 함수를 사용하는 경우가 많다. console.log(...)는 소괄호 안에 있는 코드를 평가하여 그 결과를 콘솔에 출력하는 함수이다.
 
 콘솔은 자바스크립트 코드를 직접 입력하여 그 결과를 확인할 수 있는 REPL(Read Eval Print Loop: 입력 수행 출력 반복) 환경으로 사용할 수도 있다. 개발자 도구의 Console 패널을 클릭하면 아래와 같이 프롬프트(>)가 깜박이는 것을 확인할 수 있다.
 

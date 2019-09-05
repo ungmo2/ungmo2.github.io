@@ -1,12 +1,12 @@
 ---
 layout: post
 title: <strong>Extended Parameter Handling</strong>
-subtitle: 파라미터 기본값, Rest 파라미터, Spread 문법, Rest/Spread 프로퍼티
+subtitle: 매개변수 기본값, Rest 파라미터, Spread 문법, Rest/Spread 프로퍼티
 categories: es6
 section: es6
 seq: 6
 subseq: 4
-description: Rest 파라미터는 Spread 문법(...)을 사용하여 파라미터를 작성한 형태를 말한다. Rest 파라미터를 사용하면 인수를 함수 내부에서 배열로 전달받을 수 있다.
+description: Rest 파라미터는 Spread 문법(...)을 사용하여 매개변수를 작성한 형태를 말한다. Rest 파라미터를 사용하면 인수를 함수 내부에서 배열로 전달받을 수 있다.
 ---
 
 * TOC
@@ -15,34 +15,55 @@ description: Rest 파라미터는 Spread 문법(...)을 사용하여 파라미�
 ![es6 Logo](/img/es6.png)
 {: .w-650}
 
-# 1. 파라미터 기본값 (Default Parameter value)
+# 1. 매개변수 기본값 (Default Parameter value)
 
-ES5에서는 파라미터에 기본값을 설정할 수 없다. 따라서 적절한 인수가 전달되었는지 함수 내부에서 확인할 필요가 있다.
+함수를 호출할 때 매개변수의 개수만큼 인수를 전달하는 것이 일반적이지만 그렇지 않은 경우에도 에러가 발생하지는 않는다. 함수는 매개변수의 개수와 인수의 개수를 체크하지 않는다. 인수가 부족한 경우, 매개변수의 값은 undefined이다.
 
 ```javascript
-// ES5
-function plus(x, y) {
-  x = x || 0; // 매개변수 x에 인수를 할당하지 않은 경우, 기본값 0을 할당한다.
-  y = y || 0; // 매개변수 y에 인수를 할당하지 않은 경우, 기본값 0을 할당한다.
-
+function sum(x, y) {
   return x + y;
 }
 
-console.log(plus());     // 0
-console.log(plus(1, 2)); // 3
+console.log(sum(1)); // NaN
 ```
 
-ES6에서는 파라미터에 기본값을 설정하여 함수 내에서 수행하던 파라미터 체크 및 초기화를 간소화할 수 있다.
+따라서 매개변수에 적절한 인수가 전달되었는지 함수 내부에서 확인할 필요가 있다.
 
 ```javascript
-// ES6
-function plus(x = 0, y = 0) {
-  // 파라미터 x, y에 인수를 할당하지 않은 경우, 기본값 0을 할당한다.
+function sum(x, y) {
+  // 매개변수의 값이 falsy value인 경우, 기본값을 할당한다.
+  x = x || 0;
+  y = y || 0;
+
   return x + y;
 }
 
-console.log(plus());     // 0
-console.log(plus(1, 2)); // 3
+console.log(sum(1));    // 1
+console.log(sum(1, 2)); // 3
+```
+
+ES6에서는 매개변수 기본값을 사용하여 함수 내에서 수행하던 인수 체크 및 초기화를 간소화할 수 있다. 매개변수 기본값은 매개변수에 인수를 전달하지 않았을 경우에만 유효하다.
+
+```javascript
+function sum(x = 0, y = 0) {
+  return x + y;
+}
+
+console.log(sum(1));    // 1
+console.log(sum(1, 2)); // 3
+```
+
+매개변수 기본값은 함수 정의 시 선언한 매개변수 개수를 나타내는 함수 객체의 length 프로퍼티와 arguments 객체에 영향을 주지 않는다.
+
+```javascript
+function foo(x, y = 0) {
+  console.log(arguments);
+}
+
+console.log(foo.length); // 1
+
+sum(1);    // Arguments { '0': 1 }
+sum(1, 2); // Arguments { '0': 1, '1': 2 }
 ```
 
 # 2. Rest 파라미터
@@ -135,12 +156,12 @@ function sum() {
 console.log(sum(1, 2, 3, 4, 5)); // 15
 ```
 
-ES6에서는 [rest 파라미터](./es6-extended-parameter-handling#2-rest-파라미터-rest-parameter)를 사용하여 가변 인자를 함수 내부에 <string>배열</string>로 전달할 수 있다. 이렇게 하면 유사 배열인 arguments 객체를 배열로 변환하는 등의 번거로움을 피할 수 있다.
+ES6에서는 [rest 파라미터](./es6-extended-parameter-handling#2-rest-파라미터-rest-parameter)를 사용하여 가변 인자의 목록을 **배열**로 전달받을 수 있다. 이를 통해 유사 배열인 arguments 객체를 배열로 변환하는 번거로움을 피할 수 있다.
 
 ```javascript
 // ES6
 function sum(...args) {
-  console.log(arguments); // Arguments(5) [1, 2, 3, 4, 5, callee: (...), Symbol(Symbol.iterator): ƒ]
+  console.log(arguments); // Arguments(5) [1, 2, 3, 4, 5, callee: (...), Symbol(Symbol.iterator): ƒ]
   console.log(Array.isArray(args)); // true
   return args.reduce((pre, cur) => pre + cur);
 }

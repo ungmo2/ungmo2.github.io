@@ -188,6 +188,13 @@
   .container {
     background: white;
 
+    ::selection {
+      color: #fff;
+      text-shadow: none;
+      background: #d33a2c;
+      // background: #f7d500;
+    }
+
     @include desktop {
       border-radius: 3px 3px 0 0;
       box-shadow: 0 30px 60px rgba(black, 0.3);

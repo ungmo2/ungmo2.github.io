@@ -58,6 +58,7 @@ if (el.addEventListener) {
 | ES7(ECMAScript 2016) | 2016 | 지수(**) 연산자, Array.prototype.includes, String.prototype.includes
 | ES8(ECMAScript 2017) | 2017	| async/await, Object 정적 메소드(Object.values, Object.entries, Object.getOwnPropertyDescriptors)
 | ES9(ECMAScript 2018) | 2018	| [Object Rest/Spread 프로퍼티](https://github.com/tc39/proposal-object-rest-spread)
+| ES10(ECMAScript 2019) | 2019	| Object.fromEntries, Array.prototype.flat, Array.prototype.flatMap
 
 # 3.	자바스크립트 성장의 역사
 

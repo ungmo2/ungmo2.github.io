@@ -180,7 +180,7 @@ console.log(arrowFunc.hasOwnProperty('arguments')); // false
 
 # 3. Spread 문법
 
-Spread 문법(Spread Syntax, `...`)는 피연산자를 개별 요소로 분리한다. Spread 문법의 대상은 [이터러블](./es6-iteration-for-of)이어야 한다.
+Spread 문법(Spread Syntax, `...`)는 대상을 개별 요소로 분리한다. Spread 문법의 대상은 [이터러블](./es6-iteration-for-of)이어야 한다.
 
 ```javascript
 // ...[1, 2, 3]는 [1, 2, 3]을 개별 요소로 분리한다(→ 1, 2, 3)
@@ -338,7 +338,7 @@ var arr1 = [1, 2, 3, 6];
 var arr2 = [4, 5];
 
 /*
-apply 메소드의 2번째 인자는 배열. 이것은 개별 인자로 push 메소드에 전달된다.
+apply 메소드의 2번째 인자는 배열. 이것은 개별 인자로 splice 메소드에 전달된다.
 [3, 0].concat(arr2) → [3, 0, 4, 5]
 arr1.splice(3, 0, 4, 5) → arr1[3]부터 0개의 요소를 제거하고 그자리(arr1[3])에 새로운 요소(4, 5)를 추가한다.
 */

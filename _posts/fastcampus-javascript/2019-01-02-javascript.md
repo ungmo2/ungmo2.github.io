@@ -44,7 +44,7 @@ if (el.addEventListener) {
 
 이에 자바스크립트의 파편화를 방지하고 모든 브라우저에서 동일하게 동작하는 표준화된 자바스크립트에 대한 필요성이 제기되기 시작했다. 이를 위해 1996년 11월, 넷스케이프 커뮤니케이션즈는 컴퓨터 시스템의 표준을 관리하는 비영리 표준화 기구인 [ECMA 인터내셔널](https://www.ecma-international.org)에 자바스크립트의 표준화를 요청하였다.
 
-1997년 7월, ECMA-262라 불리는 표준화된 자바스크립트 초판(ECMAScript 1)의 명세(specification)가 완성되었고 상표권 문제로 자바스크립트는 <strong>ECMAScript</strong>로 명명되었다. 이후 1999년 ECMAScript 3(ES3)이 공개되었고 10년 만인 2009년 출시된 ECMAScript 5(ES5)는 HTML5와 함께 출현한 표준안이다.
+1997년 7월, ECMA-262라 불리는 표준화된 자바스크립트 초판(ECMAScript 1)의 사양(specification)가 완성되었고 상표권 문제로 자바스크립트는 <strong>ECMAScript</strong>로 명명되었다. 이후 1999년 ECMAScript 3(ES3)이 공개되었고 10년 만인 2009년 출시된 ECMAScript 5(ES5)는 HTML5와 함께 출현한 표준안이다.
 
 2015년 공개된 ECMAScript 6(ECMAScript 2015)는 범용 프로그래밍 언어로서 갖추어야 할 let/const 키워드, 화살표 함수, 클래스, 모듈 등과 같은 기능 들을 대거 도입하는 큰 변화가 있었다. ES6 이후의 버전업은 작은 기능의 추가 레벨로 매년 공개할 것으로 예고되었다. ECMAScript 버전별 특징은 아래와 같다.
 
@@ -125,7 +125,7 @@ SPA(Single Page Application)가 대중화되면서 [Angular](https://angular.io)
 
 # 4. JavaScript와 ECMAScript
 
-ECMAScript는 자바스크립트의 표준 명세인 ECMA-262를 말하며 프로그래밍 언어의 타입, 값, 객체와 프로퍼티, 함수, 빌트인 객체 등 핵심 문법(core syntax)을 규정한다. 각 브라우저 제조사는 ECMAScript를 준수하여 브라우저에 내장되는 자바스크립트 엔진을 구현한다.
+ECMAScript는 자바스크립트의 표준 사양인 ECMA-262를 말하며 프로그래밍 언어의 타입, 값, 객체와 프로퍼티, 함수, 표준 빌트인 객체(standard built-in object) 등 핵심 문법(core syntax)을 규정한다. 각 브라우저 제조사는 ECMAScript를 준수하여 브라우저에 내장되는 자바스크립트 엔진을 구현한다.
 
 자바스크립트는 일반적으로 프로그래밍 언어로서 기본 뼈대(core)를 이루는 ECMAScript와 브라우저가 별도 지원하는 **[클라이언트 사이드 Web API](https://www.w3.org/standards/webdesign/script)**, 즉 DOM, BOM, Canvas, XMLHttpRequest, Fetch, requestAnimationFrame, SVG, Web Storage, Web Component, Web worker 등을 아우르는 개념이다.
 

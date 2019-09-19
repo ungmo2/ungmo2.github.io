@@ -26,7 +26,7 @@ console.log(parseInt('F', 16)); // 15
 console.log(window.parseInt === parseInt); // true
 ```
 
--	전역 객체는 Object, String, Number, Boolean, Function, Array, RegExp, Date, Math, Promise와 같은 모든 빌트인 객체를 프로퍼티로 가지고 있다.
+-	전역 객체는 Object, String, Number, Boolean, Function, Array, RegExp, Date, Math, Promise와 같은 모든 표준 빌트인 객체를 프로퍼티로 가지고 있다.
 
 -	자바스크립트 실행 환경(브라우저 환경 또는 Node.js 환경. “3.1 자바스크립트 실행 환경” 참고)에 따라 추가적으로 프로퍼티와 메소드를 갖는다. 브라우저 환경의 window 객체는 DOM, BOM, Canvas, XMLHttpRequest, Fetch, requestAnimationFrame, SVG, Web Storage, Web Component, Web worker와 같은 [클라이언트 사이드 Web API](https://www.w3.org/standards/webdesign/script)를 프로퍼티로 소유한다.
 

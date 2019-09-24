@@ -299,14 +299,21 @@ foo(20); // 42
 
 ## 7.1.	전역 객체 생성
 
-전역 객체는 전역 코드가 평가되기 이전에 생성된다. 이때 전역 객체에는 전역 프로퍼티와 전역 함수, 표준 빌트인 객체가 추가되며 동작 환경(클라이언트 사이드 또는 서버 사이드)에 따라 클라이언트 사이드 Web API(DOM, BOM, Canvas, XMLHttpRequest, Fetch, requestAnimationFrame, SVG, Web Storage, Web Component, Web worker 등) 또는 특정 환경을 위한 API를 포함한다.
+전역 객체는 전역 코드가 평가되기 이전에 생성된다. 이때 전역 객체에는 전역 프로퍼티와 전역 함수, 표준 빌트인 객체가 추가되며 동작 환경(클라이언트 사이드 또는 서버 사이드)에 따라 클라이언트 사이드 Web API(DOM, BOM, Canvas, XMLHttpRequest, Fetch, requestAnimationFrame, SVG, Web Storage, Web Component, Web worker 등) 또는 특정 환경을 위한 호스트 객체("29.1 객체의 분류" 참고)를 포함한다.
 
 전역 객체도 Object.prototype을 상속받는다. 즉, 전역 객체도 프로토타입 체인의 일원이다.
 
-![](/assets/fs-images/22-9.png)
+```javascript
+// Object.prototype.toString
+window.toString(); // -> "[object Window]"
+
+window.__proto__.__proto__.__proto__.__proto__ === Object.prototype; // -> true
+```
+
+<!-- ![](/assets/fs-images/22-9.png)
 
 전역 객체도 프로토타입 체인의 일원이다.
-{: .desc-img}
+{: .desc-img} -->
 
 ## 7.2.	전역 코드 평가
 
@@ -697,20 +704,22 @@ if (true) {
 console.log(x); // 1
 ```
 
-if 문이 실행되면 if 문의 블록 레벨 스코프를 생성해야 한다. 이를 위해 if 문의 렉시컬 환경을 생성하고 새롭게 생성된 if 문의 렉시컬 환경을 실행 중인 실행 컨텍스트의 렉시컬 환경으로 교체한다.
+if 문이 실행되면 if 문의 블록 레벨 스코프를 생성해야 한다. 이를 위해 if 문을 위한 선언적 환경 레코드를 갖는 렉시컬 환경을 새롭게 생성하여 기존의 전역 렉시컬 환경을 교체한다. 이때 새롭게 생성된 if 문을 위한 렉시컬 환경의 외부 렉시컬 환경에 대한 참조는 교체된 이전의 전역 렉시컬 환경을 가리킨다. ([ES6 Spec: Block Evaluation](https://tc39.es/ecma262/#sec-block-runtime-semantics-evaluation) 참고)
 
 ![](/assets/fs-images/22-29.png)
 {: .w-700 }
 
-if 문의 렉시컬 환경
+if 문을 위한 렉시컬 환경으로 교체
 {: .desc-img}
 
-if 문 실행이 종료되면 if 문이 실행되기 이전의 렉시컬 환경을 실행 중인 실행 컨텍스트의 렉시컬 환경으로 되돌린다.
+if 문 실행이 종료되면 if 문이 실행되기 이전의 렉시컬 환경으로 되돌린다.
 
 ![](/assets/fs-images/22-30.png)
 {: .w-700 }
 
-if 문의 렉시컬 환경에서 이전 렉시컬 환경으로 복귀
+f 문을 위한 렉시컬 환경에서 이전 렉시컬 환경으로 복귀
 {: .desc-img}
 
-for 문의 경우, 반복될 때마다 새로운 렉시컬 환경을 생성한다. 만약 for 문 내에서 정의된 함수가 있다면 이 함수의 상위 스코프는 for 문이 생성한 렉시컬 환경이다. 이때 함수의 상위 스코프는 for 문이 반복될 때 마다 식별자(초기화 변수 및 for 문 내 지역 변수 등)의 값을 유지해야 한다. 이를 위해 반복될 때마다 새로운 렉시컬 환경을 생성하여 식별자의 값을 유지한다. 이에 대해서는 "클로저"에서 자세히 살펴보도록 하자.
+이는 if 문 뿐만이 아니라 모든 블록문에 적용된다.
+
+for 문의 경우, 초기문에 let 키워드를 사용한 for 문은 반복될 때마다 새로운 렉시컬 환경을 생성한다. 만약 for 문 내에서 정의된 함수가 있다면 이 함수의 상위 스코프는 for 문이 생성한 렉시컬 환경이다. 이때 함수의 상위 스코프는 for 문이 반복될 때 마다 식별자(초기화 변수 및 for 문 내 지역 변수 등)의 값을 유지해야 한다. 이를 위해 for 문이 반복될 때마다 독립적인 렉시컬 환경을 생성하여 식별자의 값을 유지한다. 이에 대해서는 "클로저"에서 자세히 살펴보도록 하자.

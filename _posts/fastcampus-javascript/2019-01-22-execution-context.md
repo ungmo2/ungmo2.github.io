@@ -258,7 +258,7 @@ console.log(value, queue); // 1 [ ]
 {: .desc-img}
 
 LexicalEnvironment 컴포넌트와 VariableEnvironment 컴포넌트
-: 실행 컨텍스트가 생성되면 VariableEnvironment 컴포넌트와 LexicalEnvironment 컴포넌트는 동일한 렉시컬 환경을 참조한다. 이후, 코드가 실행되다가 특수한 상황(예를 들어, [함수 파라미터 초기값](https://tc39.es/ecma262/#sec-functiondeclarationinstantiation)의 28)을 만나면 VariableEnvironment 컴포넌트를 위한 새로운 렉시컬 환경을 생성하여 생성하고 이때부터 VariableEnvironment 컴포넌트와 LexicalEnvironment 컴포넌트는 내용이 달라지게 된다.<br>대부분의 경우, 동일하지만 특수한 경우에 한해서 구분되는 VariableEnvironment 컴포넌트와 LexicalEnvironment 컴포넌트를 분리하여 설명하면 꽤나 복잡해져서 실행 컨텍스트를 이해하기 어려워진다. 따라서 이 책에서는 LexicalEnvironment 컴포넌트와 VariableEnvironment 컴포넌트를 구분하지 않고 렉시컬 환경으로 통일해 간략하게 설명하려고 한다.
+: 실행 컨텍스트가 생성되면 VariableEnvironment 컴포넌트와 LexicalEnvironment 컴포넌트는 동일한 렉시컬 환경을 참조한다. 이후, 코드가 실행되다가 특수한 상황을 만나면 VariableEnvironment 컴포넌트를 위한 새로운 렉시컬 환경을 생성하여 생성하고 이때부터 VariableEnvironment 컴포넌트와 LexicalEnvironment 컴포넌트는 내용이 달라지게 되며 이후 주로 LexicalEnvironment 컴포넌트를 사용한다.<br>대부분의 경우, 동일한 VariableEnvironment 컴포넌트와 LexicalEnvironment 컴포넌트를 분리하여 설명하면 꽤나 복잡해져서 실행 컨텍스트를 이해하기 어려워진다. 따라서 이 책에서는 LexicalEnvironment 컴포넌트와 VariableEnvironment 컴포넌트를 구분하지 않고 렉시컬 환경으로 통일해 간략하게 설명하려고 한다.
 
 렉시컬 환경은 아래의 3가지 컴포넌트로 구성된다.
 

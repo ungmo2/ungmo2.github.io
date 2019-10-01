@@ -277,7 +277,7 @@ Console 패널에서 자바스크립트 코드 줄바꿈
 
 ## 2.4.	HTML에 포함된 자바스크립트를 웹 브라우저에서 실행
 
-브라우저는 HTML 파일을 로드하면 script 태그에 포함한 자바스크립트 코드를 실행한다. 자바스크립트 코드 내에 console.log 함수가 있다면 콘솔에 실행 결과가 출력될 것이다. 아래와 같이 자바스크립트가 포함된 HTML 파일을 생성하고 브라우저로 열어보자.
+브라우저는 HTML 파일을 로드하면 script 태그에 포함한 자바스크립트 코드를 실행한다. 만약 자바스크립트 코드 내에서 console.log 함수가 호출되었다면 콘솔에 실행 결과가 출력될 것이다. 아래와 같이 자바스크립트가 포함된 HTML 파일을 생성하고 브라우저로 실행시켜 보자.
 
 ```html
 <!DOCTYPE html>
@@ -356,8 +356,6 @@ $counter의 값이 null인 것을 확인했다. 그 원인은 13 라인에서 $c
 
 Node.js는 주로 서버 사이드 애플리케이션 개발에 사용되며 이에 필요한 모듈, 파일 시스템, HTTP 등 [빌트인 API](https://nodejs.org/dist/latest-v12.x/docs/api)를 제공한다. Node.js는 데이터를 실시간 처리하여 빈번한 I/O가 발생하는 SPA(Single Page Application)에 적합하다. 하지만 CPU 사용률이 높은 애플리케이션에는 권장하지 않는다.
 
-Node.js는 백엔드 영역의 서버 애플리케이션 개발뿐만 아니라 프런트엔드 영역의 다양한 도구나 라이브러리도 Node.js 환경에서 동작한다. 따라서 Node.js는 프런트엔드 모던 자바스크립트 개발에 필수적인 환경이라고 할 수 있다.
-
 [npm(node package manager)](https://www.npmjs.com/)은 자바스크립트 패키지 매니저이다. Node.js에서 사용할 수 있는 모듈들을 패키지화하여 모아둔 저장소 역할과 패키지 설치 및 관리를 위한 CLI(Command line interface)를 제공한다. 자신이 작성한 패키지를 공개할 수도 있고 필요한 패키지를 검색하여 재사용할 수도 있다.
 
 ## 3.2.	Node.js 설치
@@ -371,7 +369,7 @@ Node.js 웹사이트
 
 Node.js 웹사이트에 접속하면 두 개의 다운로드 버튼이 보이는데 왼쪽은 LTS 버전, 오른쪽은 Current 버전을 다운로드할 수 있다. LTS(Long Term Supported) 버전은 장기적으로 안정된 지원이 보장된다. Current 버전은 최신 기능을 제공하지만 업데이트가 발생하고 있는 버전으로 안정적이지 않을 수 있다. 따라서 LTS 버전을 다운로드하도록 하자.
 
-"10.15.1 LTS Recommended For Most Users" 버튼을 클릭하면 사용자의 운영체제에 적합한 설치 파일을 다운로드하여 설치할 수 있다. 이때 npm도 동시에 설치된다. Node.js는 아래의 디렉터리에 설치된다. 버전에 따라 설치 장소는 바뀔 수 있다.
+"12.11.1 Current Latest Features" 버튼을 클릭하면 사용자의 운영체제에 적합한 설치 파일을 다운로드하여 설치할 수 있다. 이때 npm도 동시에 설치된다. Node.js는 아래의 디렉터리에 설치된다. 버전에 따라 설치 장소는 바뀔 수 있다.
 
 - Windows : C:\Program Files\nodejs\node.exe
 - Mac : /usr/local/bin/node
@@ -380,17 +378,9 @@ Node.js 웹사이트에 접속하면 두 개의 다운로드 버튼이 보이는
 
 ```bash
 $ node -v
-v10.15.1
+v12.11.1
 $ npm -v
-6.4.1
-```
-
-npm은 Node.js에 포함되어 있어 Node.js 설치 시 자동 설치된다. 따라서 별도의 설치가 필요 없다. 하지만 Node.js보다 자주 업데이트되므로 최신 버전이 아닐 수 있다. 최신 버전으로 npm을 업데이트하도록 하자.
-
-```bash
-$ npm install -g npm@latest
-$ npm -v
-6.8.0
+6.11.3
 ```
 
 ## 3.3.	Node.js REPL

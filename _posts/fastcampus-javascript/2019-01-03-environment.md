@@ -383,6 +383,11 @@ $ npm -v
 6.11.3
 ```
 
+npm에 대한 보다 자세한 내용은 아래를 참고하기 바란다.
+
+- [모듈화와 npm(node package manager)](https://poiemaweb.com/nodejs-npm)
+
+
 ## 3.3.	Node.js REPL
 
 REPL(Read Eval Print Loop)은 Node.js는 물론 대부분의 언어(Java, Python 등)가 제공하는 가상환경으로 간단한 코드를 직접 실행해 결과를 확인해 볼 수 있다. 터미널(윈도우에서는 명령 프롬프트)에 다음과 같은 명령어를 실행해 보자.
@@ -394,6 +399,8 @@ $ node
 프롬프트가 >로 변경되면 자바스크립트 코드를 실행해 볼 수 있다.
 
 ```bash
+Welcome to Node.js v12.11.1.
+Type ".help" for more information.
 > 1 + 2
 3
 > Math.max(1, 2, 3)
@@ -408,7 +415,8 @@ $ node
 $ node index.js
 ```
 
-CTRL + C 키를 두번 입력하면 Node.js REPL을 종료시킨다. Node.js REPL에 관한 더 자세한 내용은 [Node.js Documentation : REPL](https://nodejs.org/dist/latest-v12.x/docs/api/repl.html)을 참조하기 바란다.
+CTRL + C 키를 두번 입력하면 Node.js REPL을 종료시킨다. Node.js REPL에 대한 보다 자세한 내용은 아래를 참고하기 바란다.
+- [Node.js Documentation : REPL](https://nodejs.org/dist/latest-v12.x/docs/api/repl.html)
 
 # 4.	비주얼 스튜디오 코드
 
@@ -439,7 +447,7 @@ const arr = [1, 2, 3];
 arr.forEach(console.log);
 ```
 
-VS Code에는 터미널(윈도우에서는 명령 프롬프트)가 내장되어 있다. 내장 터미널을 오픈하려면 Ctrl + ` 단축키를 사용한다.
+VS Code에는 터미널(윈도우에서는 명령 프롬프트)이 내장되어 있다. 내장 터미널을 오픈하려면 Ctrl + ` 단축키를 사용한다.
 
 ![](/assets/fs-images/3-16.png)
 
@@ -462,7 +470,7 @@ VS Code에는 터미널(윈도우에서는 명령 프롬프트)가 내장되어 
 
 ## 4.3.	Code Runner 확장 플러그인
 
-VS Code 확장 플러그인의 저장소인 "마켓플레이스"에서 다양한 확장 플러그인을 다운로드하여 설치할 수 있다. Code Runner 확장 플러그인을 사용하면 자바스크립트를 비롯해 다양한 프로그래밍 언어로 구현된 소스 코드를 VS Code에서 실행할 수 있다.
+VS Code는 확장 플러그인의 저장소인 "마켓플레이스"에서 다양한 확장 플러그인을 다운로드하여 설치할 수 있다. Code Runner 확장 플러그인을 사용하면 VS Code의 내장 터미널에서 단축키를 사용해 자바스크립트를 비롯해 다양한 프로그래밍 언어로 구현된 소스 코드를 간단히 실행할 수 있다.
 
 Code Runner 확장 플러그인을 설치해 보자. VS Code의 확장을 클릭한 다음 "Code Runner"를 검색하고 설치 버튼을 클릭한다.
 
@@ -515,7 +523,7 @@ arr.forEach(alert);
 
 위 HTML 파일을 브라우저에서 직접 오픈하여도 좋지만 경로 문제가 발생할 수 있고, 소스 코드를 수정할 때마다 매번 새로고침을 해야 하므로 번거롭다.
 
-확장 플러그인 Live Server를 사용하면 소스 코드를 수정할 때마다 수정 사항을 자동으로 반영 해주기 때문에 매우 편리하다. VS Code의 확장을 클릭한 다음 "Live Server"를 검색하고 설치 버튼을 클릭한다.
+확장 플러그인 Live Server를 사용하면 소스 코드를 수정할 때마다 수정 사항을 브라우저에 자동으로 반영 해주기 때문에 매우 편리하다. VS Code의 확장을 클릭한 다음 "Live Server"를 검색하고 설치 버튼을 클릭한다.
 
 ![](/assets/fs-images/3-20.png)
 

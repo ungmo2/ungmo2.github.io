@@ -17,19 +17,27 @@ description:
 
 주의해야 할 것은 브라우저와 Node.js는 용도가 다르다는 것이다. 브라우저는 HTML, CSS, 자바스크립트를 실행하여 웹 페이지를 브라우저의 화면에 렌더링하는 것이 주된 목적이지만, Node.js는 서버 개발 환경을 제공하는 것이 주된 목적이다. 따라서 브라우저와 Node.js 모두 자바스크립트의 코어인 ECMAScript를 실행할 수 있지만 브라우저와 Node.js에서 ECMAScript 이외에 추가적으로 제공하는 기능은 호환되지 않는다.
 
-예를 들어 브라우저는 파싱된 HTML 요소를 선택하거나 조작하는 기능들의 집합인 DOM API를 기본적으로 제공한다. 하지만 서버 개발 환경을 제공하는 것이 주 목적인 Node.js는 DOM API를 제공하지 않는다. 서버에서는 HTML 요소를 객체화한 DOM(Document Object Model)을 직접 다룰 필요가 없기 때문이다.
+예를 들어 브라우저는 파싱된 HTML 요소를 선택하거나 조작하는 기능들의 집합인 DOM API를 기본적으로 제공한다. 하지만 서버 개발 환경을 제공하는 것이 주 목적인 Node.js는 DOM API를 제공하지 않는다. 서버에서는 HTML 요소를 파싱하여 객체화한 DOM(Document Object Model)을 직접 다룰 필요가 없기 때문이다.
 
 반대로 Node.js에서는 파일을 create/read/update/delete할 수 있는 File 시스템을 기본 제공하지만 브라우저는 이를 지원하지 않는다. (Web API인 [FileReader 객체](https://blog.teamtreehouse.com/reading-files-using-the-html5-filereader-api)를 사용해 사용자가 지정한 파일을 읽어 들이는 것은 가능하다.)
 
-웹 애플리케이션의 자바스크립트는 사용자 컴퓨터의 브라우저에서 동작한다. 만약 자바스크립트가 브라우저를 통해 사용자 컴퓨터의 로컬 파일을 삭제하거나 수정하고 생성할 수 있다면 이는 사용자 컴퓨터가 악성 코드에 그대로 노출된 것과 마찬가지다. 따라서 보안 상 이유로 Web API에서는 File 시스템을 제공하지 않는다.
+웹 애플리케이션의 자바스크립트는 사용자 컴퓨터의 브라우저에서 동작한다. 만약 브라우저를 통해 다운로드되어 실행되는 자바스크립트가 사용자 컴퓨터의 로컬 파일을 삭제하거나 수정하고 생성할 수 있다면 이는 사용자 컴퓨터가 악성 코드에 그대로 노출된 것과 마찬가지다. 따라서 보안 상 이유로 Web API에서는 File 시스템을 제공하지 않는다.
 
 이처럼 브라우저는 ECMAScript와 DOM, BOM, Canvas, XMLHttpRequest, Fetch, requestAnimationFrame, SVG, Web Storage, Web Component, Web worker와 같은 **[클라이언트 사이드 Web API](https://www.w3.org/standards/webdesign/script)**를 지원한다. Node.js는 클라이언트 사이드 Web API는 지원하지 않고 ECMAScript와 [Node.js 고유의 API](https://nodejs.org/dist/latest-v12.x/docs/api/)를 지원한다.
 
-이를 염두에 두고 자바스크립트 개발 환경을 구축하고 자바스크립트를 실행하는 방법에 대해 살펴보자. 자바스크립트를 웹 브라우저에서 실행하는 방법과 Node.js 환경에서 실행하는 방법 그리고 코드 에디터인 비주얼 스튜디오 코드(Visual Studio Code)에서 실행하는 방법에 대해 살펴볼 것이다.
+이를 염두에 두고 자바스크립트 개발 환경을 구축하고 자바스크립트를 실행하는 방법에 대해 살펴보자. 자바스크립트를 웹 브라우저에서 실행하는 방법과 Node.js 환경에서 실행하는 방법 그리고 코드 에디터인 비주얼 스튜디오 코드(Visual Studio Code)를 사용하여 브라우저나 Node.js 환경에서 실행하는 방법에 대해 살펴볼 것이다.
 
 # 2.	웹 브라우저
 
-다양한 웹 브라우저가 있지만 구글 크롬(Chrome) 브라우저를 사용하기로 하자. 크롬 브라우저의 V8 자바스크립트 엔진은 Node.js에서도 사용하고 있다. 만약 크롬 브라우저가 설치되어 있지 않다면 아래의 웹사이트를 방문하여 최신 버전을 설치하도록 하자.
+다양한 웹 브라우저가 있지만 구글 크롬(Chrome) 브라우저를 사용하기로 하자. 크롬 브라우저는 ECMAScript 사양을 준수하는 것은 물론이고 점유율도 가장 높다. 2019년 9월 현재, 구글 크롬 브라우저의 점유율은 63.7%로 2위인 사파리(16.34%)를 크게 앞서고 있다.
+
+![](/assets/fs-images/3-1.png)
+{: .w-650}
+
+[웹 브라우저 시장 점유율(2009/1 ~ 2019/9)](https://gs.statcounter.com/browser-market-share#monthly-200901-201909)
+{: .desc-img}
+
+크롬 브라우저의 V8 자바스크립트 엔진은 Node.js에서도 사용하고 있다. 만약 크롬 브라우저가 설치되어 있지 않다면 아래의 웹사이트를 방문하여 최신 버전을 설치하도록 하자.
 
 -	[크롬 브라우저 다운로드](https://www.google.com/intl/ko_ALL/chrome)
 
@@ -41,7 +49,7 @@ description:
 
 브라우저의 핵심 기능은 사용자가 참조하고자 하는 웹 페이지를 서버에 요청(Request)하고 서버의 응답(Response)을 받아 브라우저에 표시하는 것이다. 브라우저는 서버로부터 HTML, CSS, 자바스크립트, 이미지 파일 등을 응답 받는다. HTML, CSS 파일은 렌더링 엔진의 HTML 파서와 CSS 파서에 의해 파싱(Parsing)되어 DOM, CSSOM 트리로 변환되고 렌더 트리로 결합된다. 이렇게 생성된 렌더 트리를 기반으로 브라우저는 웹 페이지를 표시한다.
 
-![](/assets/fs-images/3-1.png)
+![](/assets/fs-images/3-2.png)
 {: .w-650}
 
 웹 브라우저의 동작
@@ -68,7 +76,7 @@ description:
 
 소스 코드는 단순히 문자열로 구성되어 있다. 따라서 문자열인 소스 코드를 해석하여 문법적 의미와 구조를 갖는 자료 구조인 AST(Abstract Syntax Tree, 추상적 구문 트리)를 생성한다. 그리고 AST를 통해 바이트 코드를 생성하여 실행한다.
 
-![](/assets/fs-images/3-2.png)
+![](/assets/fs-images/3-3.png)
 {: .w-650}
 
 자바스크립트 엔진의 소스 코드 실행 과정
@@ -85,7 +93,7 @@ description:
 
 AST(Abstract Syntax Tree, 추상적 구문 트리)
 : AST는 인터프리터나 컴파일러만이 사용하는 것은 아니다. AST를 사용하면 TypeScript, Babel, Prettier와 같은 트랜스파일러를 구현할 수도 있다. AST Explorer 웹사이트(https://astexplorer.net)에 방문하면 다양한 오픈 소스 자바스크립트 파서를 사용하여 AST를 생성해 볼 수 있다.<br>
-![](/assets/fs-images/3-3.png)
+![](/assets/fs-images/3-4.png)
 {: .w-650}
 
 [AST Explorer](https://astexplorer.net)
@@ -218,7 +226,7 @@ async와 defer 어트리뷰트는 웹페이지 파싱과 외부 스크립트 파
 | Windows  | F12 또는 Ctrl + Shift + I
 | macOS    | command ⌘ + option ⌥ + I
 
-![](/assets/fs-images/3-4.png)
+![](/assets/fs-images/3-5.png)
 
 크롬 브라우저의 개발자 도구
 {: .desc-img}
@@ -241,28 +249,28 @@ async와 defer 어트리뷰트는 웹페이지 파싱과 외부 스크립트 파
 
 콘솔은 자바스크립트 코드를 직접 입력하여 그 결과를 확인할 수 있는 REPL(Read Eval Print Loop: 입력 수행 출력 반복) 환경으로 사용할 수도 있다. 개발자 도구의 Console 패널을 클릭하면 아래와 같이 프롬프트(>)가 깜박이는 것을 확인할 수 있다.
 
-![](/assets/fs-images/3-5.png)
+![](/assets/fs-images/3-6.png)
 
 개발자 도구의 Console 패널
 {: .desc-img}
 
 프롬프트에 자바스크립트 코드를 입력하면 다음 줄에 실행 결과가 표시된다. 엔터 키를 입력하면 다음 프롬프트로 이동한다.
 
-![](/assets/fs-images/3-6.png)
+![](/assets/fs-images/3-7.png)
 
 Console 패널에서 자바스크립트 코드 실행
 {: .desc-img}
 
 여러 줄로 이루어진 코드를 실행할 때,  줄바꿈이 필요한 경우에는 Shift 키를 누른 상태에서 엔터 키를 누른다.
 
-![](/assets/fs-images/3-7.png)
+![](/assets/fs-images/3-8.png)
 
 Console 패널에서 자바스크립트 코드 줄바꿈
 {: .desc-img}
 
 자바스크립트 코드 실행 중에 에러가 발생하면 에러의 내용이 콘솔에 출력된다.
 
-![](/assets/fs-images/3-8.png)
+![](/assets/fs-images/3-9.png)
 
 에러 출력
 {: .desc-img}
@@ -309,7 +317,7 @@ Console 패널에서 자바스크립트 코드 줄바꿈
 
 '+' 또는 '-' 버튼을 클릭하면 에러가 발생한다. 만약 개발자도구의 콘솔을 열어둔 상태가 아니라면 에러가 발생한 것을 알아차리기 어렵다. 에러를 확인하기 위해 개발자 도구의 콘솔을 열어보자.
 
-![](/assets/fs-images/3-9.png)
+![](/assets/fs-images/3-10.png)
 
 에러 발생
 {: .desc-img}
@@ -320,7 +328,7 @@ Console 패널에서 자바스크립트 코드 줄바꿈
 
 에러 정보의 오른쪽에 에러 발생 위치를 나타내는 링크를 클릭해보자. 자바스크립트 코드를 디버깅을 할 수 있는 Sources 패널로 이동할 것이다.
 
-![](/assets/fs-images/3-10.png)
+![](/assets/fs-images/3-11.png)
 
 Sources 패널
 {: .desc-img}
@@ -329,7 +337,7 @@ Sources 패널
 
 $conter의 값이 null인지 확인해보고 null이라면 그 이유를 알아내어 에러 발생 원인을 제거해 보자. 에러가 발생한 코드 왼쪽의 라인 번호를 클릭하여 브레이크 포인트(중단점)을 걸고 다시 버튼을 클릭하면 아래와 같이 디버깅 모드로 들어가게 된다.
 
-![](/assets/fs-images/3-11.png)
+![](/assets/fs-images/3-12.png)
 
 디버깅 모드
 {: .desc-img}
@@ -356,7 +364,7 @@ Node.js는 백엔드 영역의 서버 애플리케이션 개발뿐만 아니라 
 
 Node.js를 설치하기 위해 Node.js의 웹사이트 [http://nodejs.org](http://nodejs.org)에 접속해 보자.
 
-![](/assets/fs-images/3-12.png)
+![](/assets/fs-images/3-13.png)
 
 Node.js 웹사이트
 {: .desc-img}
@@ -418,14 +426,14 @@ CTRL + C 키를 두번 입력하면 Node.js REPL을 종료시킨다. Node.js REP
 
 브라우저 또는 Node.js에서도 자바스크립트 코드를 실행할 수 있으나 구축 단계에서 사용하기에는 부족함이 많다. 코드 에디터를 사용하면 코드 자동 완성, 문법 오류 감지, 디버깅, Git 연동 등 강력하고 편리한 기능을 지원한다. 최근 인기를 끌고 있는 다양한 코드 에디터는 아래와 같다.
 
-![](/assets/fs-images/3-13.png)
+![](/assets/fs-images/3-14.png)
 
 [코드 에디터 인기 순위](https://2018.stateofjs.com)
 {: .desc-img}
 
 마이크로소프트의 비주얼 스튜디오 코드(이하 VS Code)를 사용하여 자바스크립트를 실행해보자. 먼저 VS Code를 설치하기 위해 [VS Code 웹사이트](https://code.visualstudio.com)에 접속하여 자신의 운영체제에 맞는 인스톨러를 내려받아 설치한다.
 
-![](/assets/fs-images/3-14.png)
+![](/assets/fs-images/3-15.png)
 
 비주얼 스튜디오 코드 웹사이트
 {: .desc-img}
@@ -443,7 +451,7 @@ arr.forEach(console.log);
 
 VS Code에는 터미널(윈도우에서는 명령 프롬프트)가 내장되어 있다. 내장 터미널을 오픈하려면 Ctrl + ` 단축키를 사용한다.
 
-![](/assets/fs-images/3-15.png)
+![](/assets/fs-images/3-16.png)
 
 비주얼 스튜디오 코드 내장 터미널
 {: .desc-img}
@@ -457,7 +465,7 @@ VS Code에는 터미널(윈도우에서는 명령 프롬프트)가 내장되어 
 3 2 [ 1, 2, 3 ]
 ```
 
-![](/assets/fs-images/3-16.png)
+![](/assets/fs-images/3-17.png)
 
 내장 터미널에서 자바스크립트 파일 실행
 {: .desc-img}
@@ -468,7 +476,7 @@ VS Code 확장 플러그인의 저장소인 "마켓플레이스"에서 다양한
 
 Code Runner 확장 플러그인을 설치해 보자. VS Code의 확장을 클릭한 다음 "Code Runner"를 검색하고 설치 버튼을 클릭한다.
 
-![](/assets/fs-images/3-17.png)
+![](/assets/fs-images/3-18.png)
 
 Code Runner 확장 플러그인 설치
 {: .desc-img}
@@ -480,7 +488,7 @@ Code Runner 확장 플러그인은 아래의 단축키를 사용하여 현재 �
 | Windows  | Ctrl + Alt + N
 | macOS    | control ⌃ + option ⌥ + N
 
-![](/assets/fs-images/3-18.png)
+![](/assets/fs-images/3-19.png)
 
 Code Runner 확장 플러그인으로 자바스크립트 실행
 {: .desc-img}
@@ -519,14 +527,14 @@ arr.forEach(alert);
 
 확장 플러그인 Live Server를 사용하면 소스 코드를 수정할 때마다 수정 사항을 자동으로 반영 해주기 때문에 매우 편리하다. VS Code의 확장을 클릭한 다음 "Live Server"를 검색하고 설치 버튼을 클릭한다.
 
-![](/assets/fs-images/3-19.png)
+![](/assets/fs-images/3-20.png)
 
 Live Server 확장 플러그인 설치
 {: .desc-img}
 
 Live Server 확장 플러그인이 설치되면 화면 아래에 "Go Live"라는 버튼이 생성된다.
 
-![](/assets/fs-images/3-20.png)
+![](/assets/fs-images/3-21.png)
 
 Live Server 확장 플러그인으로 가상 서버 기동
 {: .desc-img}

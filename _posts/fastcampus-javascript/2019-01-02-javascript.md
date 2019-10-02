@@ -139,6 +139,12 @@ ECMAScript는 자바스크립트의 표준 사양인 ECMA-262를 말하며 프�
 
 자바스크립트는 일반적으로 프로그래밍 언어로서 기본 뼈대(core)를 이루는 ECMAScript와 브라우저가 별도 지원하는 **[클라이언트 사이드 Web API](https://www.w3.org/standards/webdesign/script)**, 즉 DOM, BOM, Canvas, XMLHttpRequest, Fetch, requestAnimationFrame, SVG, Web Storage, Web Component, Web worker 등을 아우르는 개념이다.
 
+![](/assets/fs-images/2-7.png)
+{: .w-250}
+
+자바스크립트는 일반적으로 ECMAScript를 아우르는 개념이다.
+{: .desc-img}
+
 클라이언트 사이드 Web API는 ECMAScript와는 별도로 [World Wide Web Consortium (W3C)](https://www.w3.org)에서 별도의 명세로 관리하고 있다. 클라이언트 사이드 Web API의 자세한 내용은 [MDN web docs: Web API](https://developer.mozilla.org/ko/docs/Web/API)를 참고하기 바란다.
 
 # 5.	자바스크립트의 특징
@@ -155,7 +161,7 @@ ECMAScript는 자바스크립트의 표준 사양인 ECMA-262를 말하며 프�
 
 Internet Explorer를 제외한 대부분의 모던 브라우저는 ES6를 지원하고 있지만 100% 지원하고 있지는 않다. Node.js의 경우 v4부터 ES6를 지원하기 시작했다. ES6 지원 현황은 아래의 웹 사이트에서 확인할 수 있다.
 
-![](/assets/fs-images/2-7.png)
+![](/assets/fs-images/2-8.png)
 {: .w-450}
 
 [ECMAScript compatibility table](https://kangax.github.io/compat-table/es6)

@@ -352,7 +352,9 @@ $counter의 값이 null인 것을 확인했다. 그 원인은 13 라인에서 $c
 
 Node.js는 주로 서버 사이드 애플리케이션 개발에 사용되며 이에 필요한 모듈, 파일 시스템, HTTP 등 [빌트인 API](https://nodejs.org/dist/latest-v12.x/docs/api)를 제공한다. Node.js는 데이터를 실시간 처리하여 빈번한 I/O가 발생하는 SPA(Single Page Application)에 적합하다. 하지만 CPU 사용률이 높은 애플리케이션에는 권장하지 않는다.
 
-[npm(node package manager)](https://www.npmjs.com/)은 자바스크립트 패키지 매니저이다. Node.js에서 사용할 수 있는 모듈들을 패키지화하여 모아둔 저장소 역할과 패키지 설치 및 관리를 위한 CLI(Command line interface)를 제공한다. 자신이 작성한 패키지를 공개할 수도 있고 필요한 패키지를 검색하여 재사용할 수도 있다.
+[npm(node package manager)](https://www.npmjs.com/)은 자바스크립트 패키지 매니저이다. Node.js에서 사용할 수 있는 모듈들을 패키지화하여 모아둔 저장소 역할과 패키지 설치 및 관리를 위한 CLI(Command line interface)를 제공한다. 자신이 작성한 패키지를 공개할 수도 있고 필요한 패키지를 검색하여 재사용할 수도 있다. npm에 대한 보다 자세한 내용은 아래를 참고하기 바란다.
+
+- [모듈화와 npm(node package manager)](https://poiemaweb.com/nodejs-npm)
 
 ## 3.2.	Node.js 설치
 
@@ -378,11 +380,6 @@ v12.11.1
 $ npm -v
 6.11.3
 ```
-
-npm에 대한 보다 자세한 내용은 아래를 참고하기 바란다.
-
-- [모듈화와 npm(node package manager)](https://poiemaweb.com/nodejs-npm)
-
 
 ## 3.3.	Node.js REPL
 
@@ -496,7 +493,7 @@ const arr = [1, 2, 3];
 arr.forEach(alert);
 ```
 
-위 코드를 실행하면 "ReferenceError: alert is not defined"이란 에러가 발생한다. 브라우저에 알림창을 띄우는 alert 함수는 클라이언트 사이트 Web API이다. 즉, alert 함수는 브라우저 환경에서만 유효하다.
+위 코드를 실행하면 "ReferenceError: alert is not defined"이란 에러가 발생한다. 브라우저에 알림창을 띄우는 alert 함수는 브라우저에서만 동작하는 클라이언트 사이트 Web API이다. 즉, alert 함수는 브라우저 환경에서만 유효하다.
 
 그런데 Code Runner 확장 플러그인은 Node.js 환경을 사용하여 자바스크립트를 실행한다. 따라서 클라이언트 사이트 Web API인 alert 함수를 Node.js 환경에서는 알 수 없기 때문에 에러가 발생한 것이다.
 
@@ -512,7 +509,7 @@ arr.forEach(alert);
 <!DOCTYPE html>
 <html>
 <body>
-  <script src="/index.js"></script>
+  <script src="index.js"></script>
 </body>
 </html>
 ```

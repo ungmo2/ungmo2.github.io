@@ -187,6 +187,16 @@ head 요소 내부에 script 태그를 위치시키면 렌더링 엔진이 HTML 
 
 자바스크립트가 실행될 때에는 이미 렌더링 엔진이 HTML 요소를 모두 파싱하여 DOM tree를 생성한 이후이다. 자바스크립트가 실행되기 이전에 HTML 요소가 파싱되어 렌더링되므로 페이지 로딩 시간이 단축된다. 또한 DOM tree가 완성되지 않은 상태에서 자바스크립트가 DOM tree를 조작하는 에러가 발생할 우려도 없다.
 
+참고 자료
+{: .title}
+
+- [DOM tree와 CSSOM tree 생성](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model?hl=ko)
+
+- [렌더 트리 생성, 레이아웃 및 페인트](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction?hl=ko)
+
+- [자바스크립트로 상호작용 추가](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/adding-interactivity-with-javascript?hl=ko)
+
+
 script 태그의 async / defer 어트리뷰트
 {: .title}
 

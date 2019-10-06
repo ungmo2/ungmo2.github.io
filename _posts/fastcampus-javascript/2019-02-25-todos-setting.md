@@ -3,7 +3,7 @@ layout: fs-post
 title: <strong>Todos v3 project environment setting</strong>
 categories: fastcampus
 section: fastcampus
-seq: 25
+seq: 26
 permalink: /:categories/:title
 description:
 ---

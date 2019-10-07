@@ -144,7 +144,7 @@ console.log(obj); // {hello: "world"}
 
 ```javascript
 var foo = {
-  '': ''  // 빈문자열도 사용할 수 있다.
+  '': ''  // 빈문자열도 프로퍼티 키로 사용할 수 있다.
 };
 
 console.log(foo); // {"": ""}
@@ -267,9 +267,11 @@ console.log(person[1]);    // 10 : person[1] -> person['1']
 console.log(person['1']);  // 10
 ```
 
-여기서 퀴즈를 하나 풀어보자. 위 예제에서 `console.log(person.last-name);`의 결과가 ReferenceError: name is not defined인 이유는 무엇인가?
+여기서 퀴즈를 하나 풀어보자. 위 예제에서 `console.log(person.last-name);`의 실행 결과는 Node.js 환경에서 ReferenceError: name is not defined이고 브라우저에서는 NaN이다. 이유는 무엇인가?
 
-자바스크립트 엔진은 먼저 person.last를 평가한다. 평가 결과는 undefined이다. 그 이유는 person 객체에는 프로퍼티 키가 last인 프로퍼티가 없기 때문이다. 객체에 존재하지 않는 프로퍼티에 접근하면 undefined를 반환한다. 따라서 `person.last-name`는 표현식으로 `undefined – name`과 같다. 다음으로 자바스크립트 엔진은 name이라는 식별자를 찾는다. 이때 name은 프로퍼티 키가 아니라 식별자인 것에 주의하자. 현재 어디에도 name이라는 식별자(변수, 함수 등의 이름) 선언이 없으므로 이때 ReferenceError: name is not defined이라고 에러가 발생한다.
+자바스크립트 엔진은 먼저 person.last를 평가한다. 평가 결과는 undefined이다. 그 이유는 person 객체에는 프로퍼티 키가 last인 프로퍼티가 없기 때문이다. 객체에 존재하지 않는 프로퍼티에 접근하면 undefined를 반환한다. 따라서 `person.last-name`는 표현식으로 `undefined – name`과 같다. 다음으로 자바스크립트 엔진은 name이라는 식별자를 찾는다. 이때 name은 프로퍼티 키가 아니라 식별자인 것에 주의하자.
+
+Node.js 환경에서는 현재 어디에도 name이라는 식별자(변수, 함수 등의 이름) 선언이 없으므로 ReferenceError: name is not defined이라고 에러가 발생한다. 그런데 브라우저에서는 name이라는 전역 변수가 존재한다. 전역 변수 name은 창(window)의 이름을 가리키며 기본값은 빈문자열이다. 따라서 `person.last-name`는 표현식으로 `undefined – ''`과 같으므로 NaN이 된다.
 
 # 6. 프로퍼티 값 갱신
 
@@ -280,7 +282,7 @@ var person = {
   name: 'Lee'
 };
 
-// person객체에 name 프로퍼티가 존재하므로 name 프로퍼티의 값이 갱신된다.
+// person 객체에 name 프로퍼티가 존재하므로 name 프로퍼티의 값이 갱신된다.
 person.name = 'Kim';
 
 console.log(person);  // {name: "Kim"}
@@ -295,8 +297,8 @@ var person = {
   name: 'Lee'
 };
 
-// person객체에 address 프로퍼티가 존재하지 않는다.
-// 따라서 person객체에 address 프로퍼티가 동적으로 생성되고 값이 할당된다.
+// person 객체에는 address 프로퍼티가 존재하지 않는다.
+// 따라서 person 객체에 address 프로퍼티가 동적으로 생성되고 값이 할당된다.
 person.address = 'Seoul';
 
 console.log(person); // {name: "Lee", address: "Seoul"}

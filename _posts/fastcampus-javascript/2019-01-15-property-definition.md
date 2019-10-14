@@ -25,7 +25,7 @@ const obj = {};
 obj.prop = 10;
 
 // 정의된 프로퍼티 어트리뷰트는 Object.getOwnPropertyDescriptor 메소드로 확인할 수 있다.
-var descriptor = Object.getOwnPropertyDescriptor(obj, 'prop');
+const descriptor = Object.getOwnPropertyDescriptor(obj, 'prop');
 console.log(descriptor);
 // obj 객체의 prop 프로퍼티는 value, writable, enumerable, configurable
 // 어트리뷰트가 정의되어 있다.
@@ -40,13 +40,13 @@ console.log(descriptor);
 
 ```javascript
 // 하나의 프로퍼티 어트리뷰트를 표현하는 프로퍼티 디스크립터 객체를 취득한다.
-var descriptor = Object.getOwnPropertyDescriptor(obj, 'prop');
+const descriptor = Object.getOwnPropertyDescriptor(obj, 'prop');
 console.log(descriptor);
 // {value: 10, writable: true, enumerable: true, configurable: true}
 
 // ES8
 // 모든 프로퍼티 어트리뷰트를 표현하는 프로퍼티 디스크립터 객체를 취득한다.
-var descriptors = Object.getOwnPropertyDescriptors(obj);
+const descriptors = Object.getOwnPropertyDescriptors(obj);
 console.log(descriptors);
 // {
 //   prop: { value: 10, writable: true, enumerable: true, configurable: true }

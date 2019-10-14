@@ -213,13 +213,11 @@ ES6에서 도입된 이터레이션 프로토콜을 준수하면 순회 가능�
 
 ```javascript
 function sum() {
-  if (!arguments.length) return 0;
-
   // arguments 객체를 배열로 변환
   const array = Array.prototype.slice.call(arguments);
   return array.reduce(function (pre, cur) {
     return pre + cur;
-  });
+  }, 0);
 }
 
 console.log(sum(1, 2));          // 3
@@ -231,7 +229,7 @@ console.log(sum(1, 2, 3, 4, 5)); // 15
 ```javascript
 // ES6 Rest parameter
 function sum(...args) {
-  return !args.length ? 0 : args.reduce((pre, cur) => pre + cur);
+  return args.reduce((pre, cur) => pre + cur, 0);
 }
 
 console.log(sum(1, 2));          // 3
@@ -287,7 +285,7 @@ arguments 객체의 length 프로퍼티와 함수 객체의 length 프로퍼티�
 
 ## 2.4.	name 프로퍼티
 
-함수 객체의 name 프로퍼티는 함수 이름을 나타낸다.name 프로퍼티는 ES6 이전까지는 비표준이었지만 ES6에서 정식 표준이 되었다.
+함수 객체의 name 프로퍼티는 함수 이름을 나타낸다. name 프로퍼티는 ES6 이전까지는 비표준이었지만 ES6에서 정식 표준이 되었다.
 
 name 프로퍼티는 ES5와 ES6에서 동작을 달리 하므로 주의하기 바란다. 익명 함수 표현식의 경우, ES5에서 name 프로퍼티는 빈 문자열을 값으로 갖는다. 하지만 ES6에서는 함수 객체를 가리키는 변수 이름을 값으로 갖는다.
 

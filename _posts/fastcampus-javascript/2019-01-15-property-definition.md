@@ -228,8 +228,11 @@ obj.prop2 = 2;
 const descriptor = Object.getOwnPropertyDescriptor(obj, 'prop2');
 console.log(descriptor);
 // → { value: 2, writable: true, enumerable: true, configurable: true }
+```
 
 Object.defineProperty 메소드를 사용하면 프로퍼티의 어트리뷰트를 정의할 수 있다. 인수는 객체의 참조와 데이터 프로퍼티의 키인 문자열 그리고 프로퍼티 디스크립터 객체를 전달한다.
+
+```javascript
 const person = {};
 
 // 데이터 프로퍼티 정의

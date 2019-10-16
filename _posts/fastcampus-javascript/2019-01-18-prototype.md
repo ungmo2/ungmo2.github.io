@@ -756,14 +756,17 @@ const me = new Person('Lee');
 console.log(me.hasOwnProperty('name')); // true
 ```
 
-Person 생성자 함수에 의해 생성된 me 객체는 Object.prototype의 메소드인 hasOwnProperty를 호출할 수 있다. 이것은 me 객체가 Person.prototype 뿐만 아니라 Object.prototype를 상속받았다는 의미이다.
+Person 생성자 함수에 의해 생성된 me 객체는 Object.prototype의 메소드인 hasOwnProperty를 호출할 수 있다. 이것은 me 객체가 Person.prototype 뿐만 아니라 Object.prototype도 상속받았다는 의미이다.
 
 me 객체의 프로토타입은 Person.prototype이다.
 
 ```javascript
 console.log(Object.getPrototypeOf(me) === Person.prototype); // true
+```
 
 Person.prototype의 프로토타입은 Object.prototype이다. 프로토타입의 프로토타입은 언제나 Object.prototype이다.
+
+```javascript
 console.log(Object.getPrototypeOf(Person.prototype) === Object.prototype); // true
 ```
 
@@ -1541,6 +1544,8 @@ console.log(person.hasOwnProperty('toString')); // false
 
 # 15. 프로퍼티 열거
 
+## 15.1 for...in 문
+
 객체의 모든 프로퍼티를 순회하며 열거(enumeration)하려면 for…in 문을 사용한다. for…in 문은 프로퍼티를 열거할 때 순서를 보장하지 않는다
 
 ```javascript
@@ -1596,10 +1601,9 @@ for...in 문은 객체의 프로토타입 체인 상에 존재하는 모든 프�
 ```javascript
 const person = {
   name: 'Lee',
-  address: 'Seoul'
+  address: 'Seoul',
+  __proto__: { age: 20 }
 };
-
-Object.setPrototypeOf(person, { age: 20 });
 
 for (const prop in person) {
   console.log(prop + ': ' + person[prop]);
@@ -1625,15 +1629,14 @@ for (const prop in obj) {
 // a: 1
 ```
 
-상속받은 프로퍼티는 제외하고 객체 자신의 프로퍼티만을 열거하려면 Object.prototype.hasOwnProperty 메소드를 사용하여 객체 자신의 프로퍼티인지 확인해야 한다.
+상속받은 프로퍼티는 제외하고 객체 자신의 프로퍼티 만을 열거하려면 Object.prototype.hasOwnProperty 메소드를 사용하여 객체 자신의 프로퍼티인지 확인해야 한다.
 
 ```javascript
 const person = {
   name: 'Lee',
-  address: 'Seoul'
+  address: 'Seoul',
+  __proto__: { age: 20 }
 };
-
-Object.setPrototypeOf(person, { age: 20 });
 
 for (const prop in person) {
   // 객체 자신의 프로퍼티인지 확인한다.
@@ -1646,3 +1649,33 @@ for (const prop in person) {
 ```
 
 위 예제의 결과는 person 객체의 프로퍼티가 정의된 순서대로 열거되었다. 하지만 for…in 문은 프로퍼티를 열거할 때 순서를 보장하지 않으므로 주의하기 바란다. 또한 배열에는 for…in 문을 사용하지 않기 바란다. 배열에는 for…in 문보다 일반적인 for 문이나 for...of 문 또는 Array.prototype.forEach 메소드를 사용하기를 권장한다. 이에 대해서는 "배열"에서 살펴보도록 하자.
+
+## 15.2. Object.keys/values/entries 메소드
+
+지금까지 살펴보았듯이 for…in 문은 객체 자신의 프로퍼티 뿐만 아니라 상속받은 프로퍼티도 열거한다. 따라서 Object.prototype.hasOwnProperty 메소드를 사용하여 객체 자신의 프로퍼티인지 확인하는 추가 처리가 필요하다.
+
+객체 자신의 프로퍼티만을 열거하기 위해서는 for…in 문을 사용하는 것 보다 Object.keys/values/entries 메소드를 사용하는 것을 권장한다.
+
+Object.keys 메소드는 객체 자신의 열거 가능한 프로퍼티 키를 배열로 반환한다.
+
+```javascript
+const person = {
+  name: 'Lee',
+  address: 'Seoul',
+  __proto__: { age: 20 }
+};
+
+console.log(Object.keys(person)); // ["name", "address"]
+```
+
+ES8에서 도입된 Object.values 메소드는 객체 자신의 열거 가능한 프로퍼티 값을 배열로 반환한다.
+
+```javascript
+console.log(Object.values(person)); // ["Lee", "Seoul"]
+```
+
+ES8에서 도입된 Object.entries 메소드는 객체 자신의 열거 가능한 프로퍼티 키와 값의 쌍의 배열을 배열에 담아 반환한다.
+
+```javascript
+console.log(Object.entries(person)); // [["name", "Lee"], ["address", "Seoul"]]
+```

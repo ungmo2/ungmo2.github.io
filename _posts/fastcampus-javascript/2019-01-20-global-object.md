@@ -13,7 +13,7 @@ description:
 
 전역 객체(Global Object)는 코드가 실행되기 이전 단계에 자바스크립트 엔진에 의해 생성되는 특수한 객체이다. 전역 객체는 클라이언트 사이드 환경(브라우저)에서는 window, 서버 사이드 환경(Node.js)에서는 global 객체를 의미한다.
 
-전역 객체에는 표준 빌트인 객체(Object, String, Number, Function, Array…)들과 환경에 따른 호스트 API(클라이언트 web API 또는 Node.js의 호스트 API), 그리고 var 키워드로 선언한 전역 변수와 전역 함수를 프로퍼티로 갖는다. 전역 객체의 특징은 아래와 같다.
+전역 객체는 표준 빌트인 객체(Object, String, Number, Function, Array…)들과 환경에 따른 호스트 객체(클라이언트 web API 또는 Node.js의 호스트 API), 그리고 var 키워드로 선언한 전역 변수와 전역 함수를 프로퍼티로 갖는다. 전역 객체의 특징은 아래와 같다.
 
 -	전역 객체는 개발자가 의도적으로 생성할 수 없다.
 

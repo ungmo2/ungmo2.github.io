@@ -275,7 +275,7 @@ function toggleCompletedById(id) {
 
 todos의 모든 요소의 completed 프로퍼티 값을 true로 설정하는 함수를 작성하라.
 
-단, [Object.assign](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)를 사용하도록 한다.
+hint) 기존 객체의 특정 프로퍼티를 변경/추가하여 새로운 객체를 생성하려면 [Object.assign](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) 또는 [Spread 문법](https://poiemaweb.com/fastcampus/spread-syntax#3-객체-리터럴-내부에서-사용하는-경우)을 사용한다.
 
 ```javascript
 let todos = [
@@ -335,5 +335,32 @@ function countCompletedTodos() {
     return todo.completed;
   }).length;
   // return todos.filter(todo => todo.completed).length;
+}
+-->
+
+# 9. id 프로퍼티의 값 중에서 최대값 구하기
+
+todos의 id 프로퍼티의 값 중에서 최대값을 함수를 작성하라.
+
+단, for 문, Array#forEach는 사용하지 않도록 하자.
+
+```javascript
+let todos = [
+  { id: 3, content: 'HTML', completed: false },
+  { id: 2, content: 'CSS', completed: true },
+  { id: 1, content: 'Javascript', completed: false }
+];
+
+function getMaxId() {
+
+}
+
+console.log(getMaxId()); // 3
+```
+
+<!--
+function getMaxId() {
+  return Math.max.apply(null, todos.map(todo => todo.id));
+  // return Math.max(...todos.map(todo => todo.id));
 }
 -->

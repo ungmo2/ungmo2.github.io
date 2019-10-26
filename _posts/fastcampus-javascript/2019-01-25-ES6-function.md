@@ -297,8 +297,11 @@ console.log(person.sayHi()); // Hi? My name is Lee
 ```javascript
 const Foo = () => {};
 new Foo(); // TypeError: Foo is not a constructor
+```
 
 화살표 함수는 인스턴스를 생성할 수 없으므로 prototype 프로퍼티가 없고 프로토타입도 생성하지 않는다.
+
+```javascript
 // 화살표 함수 Foo는 prototype 프로퍼티가 없다.
 Object.prototype.hasOwnProperty.call(Foo, 'prototype'); // -> false
 ```
@@ -310,8 +313,11 @@ Object.prototype.hasOwnProperty.call(Foo, 'prototype'); // -> false
 ```javascript
 function normal(a, a) { return a + a; }
 console.log(normal(1, 2)); // 4
+```
 
 화살표 함수는 중복된 매개 변수 이름을 선언할 수 없다.
+
+```javascript
 const arrow = (a, a) => a + a;
 // SyntaxError: Duplicate parameter name not allowed in this context
 ```
@@ -480,8 +486,11 @@ const add = (a, b) => a + b;
 console.log(add.call(null, 1, 2));    // 3
 console.log(add.apply(null, [1, 2])); // 3
 console.log(add.bind(null, 1, 2)());  // 3
+```
 
 메소드를 화살표 함수로 정의하는 것은 피해야 한다. 화살표 함수로 메소드를 정의하여 보자.
+
+```javascript
 // Bad
 const person = {
   name: 'Lee',
@@ -678,14 +687,20 @@ function foo( ...rest, param1, param2) { }
 
 foo(1, 2, 3, 4, 5);
 // SyntaxError: Rest parameter must be last formal parameter
+```
 
 Rest 파라미터는 단 하나만 선언할 수 있다.
+
+```javascript
 function foo(...rest1, ...rest2) { }
 
 foo(1, 2, 3, 4, 5);
 // SyntaxError: Rest parameter must be last formal parameter
+```
 
 Rest 파라미터는 함수 정의 시 선언한 매개변수 개수를 나타내는 함수 객체의 length 프로퍼티에 영향을 주지 않는다.
+
+```javascript
 function foo(...rest) {}
 console.log(foo.length); // 0
 

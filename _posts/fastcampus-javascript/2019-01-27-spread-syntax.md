@@ -41,7 +41,7 @@ const list = ...arr; // SyntaxError: Unexpected token ...
 
 - 함수 호출문의 인수 목록
 - 배열 리터럴의 요소 목록
-- 객체 리터럴의 프로퍼티 목록 (2019년 9월 현재 Stage 4 제안)
+- 객체 리터럴의 프로퍼티 목록 (2019년 11월 현재 Stage 4 제안)
 
 # 1. 함수 호출문의 인수 목록에서 사용하는 경우
 
@@ -84,7 +84,7 @@ const maxValue = Math.max(...arr);
 console.log(maxValue); // 3
 ```
 
-앞에서 살펴본 Rest 파라미터는 Spread 문법과 형태가 동일하여 혼동할 수 있으므로 주의가 필요하다. Rest 파라미터는 매개변수를 정의할 때
+앞에서 살펴본 Rest 파라미터는 Spread 문법과 형태가 동일하여 혼동할 수 있으므로 주의가 필요하다.
 
 Rest 파라미터는 함수에 전달된 인수들의 목록을 배열로 전달받기 위해 매개변수 이름 앞에 …을 붙이는 것이다. Spread 문법은 하나로 뭉쳐 있는 배열과 같은 이터러블을 펼쳐서 개별적인 값들의 목록을 만드는 것이다. 따라서 Rest 파라미터와 Spread 문법은 서로 반대의 개념이다.
 
@@ -239,7 +239,7 @@ console.log(sum(1, 2, 3)); // 6
 
 # 3. 객체 리터럴 내부에서 사용하는 경우
 
-객체 리터럴의 프로퍼티 목록에서 Spread 문법을 사용할 수 있는 Spread 프로퍼티는 Rest 프로퍼티와 함께 2019년 9월 현재 TC39 프로세스의 stage 4(Finished) 단계에 제안되어 있다.(https://github.com/tc39/proposal-object-rest-spread)
+객체 리터럴의 프로퍼티 목록에서 Spread 문법을 사용할 수 있는 Spread 프로퍼티는 Rest 프로퍼티와 함께 2019년 11월 현재 TC39 프로세스의 stage 4(Finished) 단계에 제안되어 있다.(https://github.com/tc39/proposal-object-rest-spread)
 
 Spread 문법의 대상은 이터러블이어야 하지만 Spread 프로퍼티는 객체 리터럴 내부에서 Spread 문법의 사용을 허용한다.
 

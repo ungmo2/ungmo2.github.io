@@ -211,4 +211,4 @@ const { x, ...rest } = { x: 1, y: 2, z: 3 };
 console.log(x, rest); // 1 { y: 2, z: 3 }
 ```
 
-Rest 프로퍼티는 Spread 프로퍼티와 함께 2019년 11월 현재 Rest/Spread 프로퍼티는 TC39 프로세스의 stage 4(Finished) 단계에 제안되어 있다.(https://github.com/tc39/proposal-object-rest-spread)
+Rest 프로퍼티는 스프레드 프로퍼티와 함께 2019년 11월 현재 Rest/Spread 프로퍼티는 TC39 프로세스의 stage 4(Finished) 단계에 제안되어 있다.(https://github.com/tc39/proposal-object-rest-spread)

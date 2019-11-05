@@ -19,7 +19,6 @@ Stop watch
 요구 사항
 : 버튼을 처음 클릭하면 스톱워치가 시작하고 버튼을 다시 클릭하면 일시 정지와 시작을 반복한다.
 
-
 ```html
 <!DOCTYPE html>
 <html>
@@ -71,13 +70,14 @@ Stop watch
 <!--
     const $control = document.querySelector('.control');
 
-    const clickHandler = (function () {
-      let mm = 0, ss = 0, ms = 0;
+    $control.onclick = (() => {
+      let [mm, ss, ms] = [0, 0, 0];
       let isRunning = false;
       let timerID = 0;
       const $display = document.querySelector('.display');
 
-      const format = num => ((num + '').length === 1 ? '0' + num : num + '');
+      // 1 => 01
+      const format = num => (num < 10 ? '0' + num : num + '');
 
       return function () {
         if (isRunning) {
@@ -100,11 +100,9 @@ Stop watch
           }, 10);
         }
         isRunning = !isRunning;
-        $control.innerHTML = isRunning ? 'Stop' : 'Start';
+        $control.textContent = isRunning ? 'Stop' : 'Start';
       };
-    }());
-
-    $control.onclick = clickHandler;
+    })();
  -->
 # 2. Angular version
 

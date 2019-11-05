@@ -45,7 +45,7 @@ Scrolling goto top
       text-align: center;
     }
 
-    .scoll-icon {
+    .scroll-icon {
       position: fixed;
       left: 50%;
       bottom: 20px;
@@ -121,7 +121,7 @@ Scrolling goto top
     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum maiores nihil ad voluptates nostrum.
   </p>
 
-  <div class="scoll-icon fa fa-angle-double-up"></div>
+  <div class="scroll-icon fa fa-angle-double-up"></div>
 
   <script>
 
@@ -154,7 +154,7 @@ Scrolling goto top
       text-align: center;
     }
 
-    .scoll-icon {
+    .scroll-icon {
       position: fixed;
       left: 50%;
       bottom: 20px;
@@ -230,11 +230,11 @@ Scrolling goto top
     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum maiores nihil ad voluptates nostrum.
   </p>
 
-  <div class="scoll-icon fa fa-angle-double-up"></div>
+  <div class="scroll-icon fa fa-angle-double-up"></div>
 
   <script>
   (function () {
-    const $scollIcon = document.querySelector('.scoll-icon');
+    const $scrollIcon = document.querySelector('.scroll-icon');
     // 버튼이 활성화될 스크롤 포지션
     const topPosToStartShowing = 100;
 
@@ -243,10 +243,10 @@ Scrolling goto top
       const scrollPosition = window.pageYOffset || 0;
       // console.log(scrollPosition);
 
-      $scollIcon.style.display = scrollPosition >= topPosToStartShowing ? 'block' : 'none';
+      $scrollIcon.style.display = scrollPosition >= topPosToStartShowing ? 'block' : 'none';
     };
 
-    $scollIcon.onclick = function () {
+    $scrollIcon.onclick = function () {
       window.scroll({
         top: 0,
         left: 0,

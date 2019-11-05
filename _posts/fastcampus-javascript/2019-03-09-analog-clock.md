@@ -106,34 +106,19 @@ Analog clock
     const $secondHand = document.querySelector('.second');
     const $digitalClock = document.querySelector('.digital-clock');
 
-    // 현재 시간 취득
-    const date = new Date();
-    let hour = date.getHours();
-    let minute = date.getMinutes();
-    let second = date.getSeconds();
-    // FOR TEST
-    // let hour = 12;
-    // let minute = 59;
-    // let second = 50;
-    console.log(hour, minute, second);
-
     // 1 => 01
-    const format = num => ((num + '').length === 1 ? '0' + num : num + '');
+    const format = num => (num < 10 ? '0' + num : num + '');
 
-    setInterval(() => {
-      second += 1;
-      if (second === 60) {
-        second = 0;
-        minute += 1;
-      }
-      if (minute === 60) {
-        minute = 0;
-        hour += 1;
-      }
-      if (hour > 12) {
-        hour -= 12;
-      }
-      $digitalClock.innerHTML = `${format(hour)}:${format(minute)}:${format(second)}`;
+    const renderTime = () => {
+      // 현재 시간 취득
+      const date = new Date();
+      let hour = date.getHours();
+      // 15 => 3
+      if (hour > 12) hour -= 12;
+      const minute = date.getMinutes();
+      const second = date.getSeconds();
+
+      $digitalClock.textContent = `${format(hour)}:${format(minute)}:${format(second)}`;
 
       // 시계의 눈금 => 60개 => 1개당 6도
       // 60초 / 360도 => 1초 / 6도
@@ -146,6 +131,8 @@ Analog clock
       $hourHand.style.transform = `translate3d(-50%, 0, 0) rotate(${(hour * 30) + (minute * 0.5) + (second * (0.5 / 60))}deg)`;
       // 6시 => 6*15=90
       // 9시 => 9*15=139
-    }, 1000);
+    };
+
+    setInterval(renderTime, 1000);
   }());
  -->

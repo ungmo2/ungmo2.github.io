@@ -316,15 +316,15 @@ $ npm root -g
 $ open /usr/local/lib/node_modules
 ```
 
-패티지 정보 참조
+패키지 정보 참조
 
 ```bash
 $ npm view <package-name>
 ```
 
 ```bash
-# eslint-config-airbnb의 정보 확인
-$ npm view "react-create-app"
+# react-create-app 패키지 정보 확인
+$ npm view react-create-app
 
 react-create-app@2.0.6 | MIT | deps: 19 | versions: 19
 This helper exports a function returning a ready-to-use React App component with the following: - react-router-redux - history - redux-persist
@@ -335,16 +335,25 @@ dist
 .integrity: sha512-YT8WiWx9wuJFM35EyW/Z9R/75MYj3hW9DsT7f1Dj6M3bdTRnWOocOh9r4HkM5OKFQDzZwTvyQrzITTEn6JxCqg==
 
 dependencies:
-babel-eslint: 7.2.3                             eslint-plugin-jest: 20.0.3
-babel-jest: 20.0.3                              eslint-plugin-react: 7.3.0
-babel-loader: 7.1.2                             eslint: 4.5.0
-babel-plugin-transform-class-properties: 6.24.1 prop-types: 15.5.10
-babel-plugin-transform-decorators-legacy: 1.3.4 react-redux: 5.0.6
-babel-preset-env: next                          react: 15.6.1
-babel-preset-react: 6.24.1                      redux-persist-crosstab: 3.6.0
-babel-preset-stage-0: 6.24.1                    redux-persist: 4.9.1
-eslint-loader: 1.9.0                            redux: 3.7.2
+babel-eslint: 7.2.3
+babel-jest: 20.0.3
+babel-loader: 7.1.2
+babel-plugin-transform-class-properties: 6.24.1
+babel-plugin-transform-decorators-legacy: 1.3.4
+babel-preset-env: next
+babel-preset-react: 6.24.1
+babel-preset-stage-0: 6.24.1
+eslint-loader: 1.9.0
 eslint-plugin-import: 2.7.0
+eslint-plugin-jest: 20.0.3
+eslint-plugin-react: 7.3.0
+eslint: 4.5.0
+prop-types: 15.5.10
+react-redux: 5.0.6
+react: 15.6.1
+redux-persist-crosstab: 3.6.0
+redux-persist: 4.9.1
+redux: 3.7.2
 
 maintainers:
 - damianobarbati <damiano@mvpbld.com>
@@ -352,17 +361,20 @@ maintainers:
 dist-tags:
 latest: 2.0.6
 
-published a year ago by damianobarbati <damiano@mvpbld.com>
+published over a year ago by damianobarbati <damiano@mvpbld.com>
 ```
 
 ```bash
 # eslint-config-airbnb와 함께 설치해야 하는 다른 패키지 확인
-$ npm view "eslint-config-airbnb@latest" peerDependencies
+$ npm view eslint-config-airbnb@latest peerDependencies
 
-{ eslint: '^4.19.1 || ^5.3.0',
-  'eslint-plugin-import': '^2.14.0',
-  'eslint-plugin-jsx-a11y': '^6.1.1',
-  'eslint-plugin-react': '^7.11.0' }
+{
+  eslint: '^5.16.0 || ^6.1.0',
+  'eslint-plugin-import': '^2.18.2',
+  'eslint-plugin-jsx-a11y': '^6.2.3',
+  'eslint-plugin-react': '^7.14.3',
+  'eslint-plugin-react-hooks': '^1.7.0'
+}
 ```
 
 버전 확인

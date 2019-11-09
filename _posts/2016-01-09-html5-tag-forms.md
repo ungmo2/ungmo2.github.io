@@ -5,7 +5,7 @@ subtitle: 사용자와의 커뮤니케이션을 위한 폼 태그
 category: html
 section: html
 seq: 1
-subseq: 8
+subseq: 9
 description: form 태그는 사용자가 입력한 데이터를 수집하기 위해 사용되며 input, textarea, button, select, checkbox, radio button, submit button 등의 입력 양식 태그를 포함할 수 있다.
 ---
 

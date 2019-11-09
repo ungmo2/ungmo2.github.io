@@ -5,7 +5,7 @@ subtitle: HTML5 기본 문법
 category: html
 section: html
 seq: 1
-subseq: 1
+subseq: 2
 description: HTML (HyperText Markup Language)은 웹페이지를 기술하기 위한 마크업 언어이다. 조금 더 자세히 말하면 웹페이지의　내용(content)과 구조(structure)을 담당하는 언어로써 HTML 태그를 통해 정보를 구조화하는 것이다.　HTML5는 HTML의 최신 버전으로 아래와 같은 기능들이 추가되었다.
 ---
 

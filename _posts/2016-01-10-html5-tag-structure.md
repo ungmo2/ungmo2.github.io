@@ -5,7 +5,7 @@ subtitle: 웹페이지의 레이아웃을 구성하기 위해 공간을 분할�
 category: html
 section: html
 seq: 1
-subseq: 9
+subseq: 10
 description: 웹페이지의 레이아웃을 구성하기 위해 공간을 분할하는 태그
 ---
 

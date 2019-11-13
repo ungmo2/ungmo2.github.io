@@ -25,7 +25,7 @@ description: 앞에서 테스트해 본 바와 같이 ES6 모듈을 현재의 �
 [Webpack](https://webpack.js.org/)
 {: .desc-img}
 
-Webpack과 Babel을 이용하여 ES6 개발 환경을 구축하여 보자. Webpack이 자바스크립트 파일을 번들링하기 전에 Babel을 로드하여 ES6+ 코드를 ES5 코드로 트랜스파일링하는 작업을 실행하도록 설정할 것이다. 그리고 Sass를 사용하는 경우, Sass 컴파일도 Webpack에서 관리하도록 할 것이다.
+Webpack과 Babel을 이용하여 ES6+ 개발 환경을 구축하여 보자. Webpack이 자바스크립트 파일을 번들링하기 전에 Babel을 로드하여 ES6+ 코드를 ES5 코드로 트랜스파일링하는 작업을 실행하도록 설정할 것이다. 그리고 Sass를 사용하는 경우, Sass 트랜스파일링도 Webpack에서 관리하도록 할 것이다.
 
 ## 2.2 Webpack 설치
 
@@ -46,20 +46,15 @@ $ npm install --save-dev webpack webpack-cli
     "build": "babel src/js -w -d dist/js"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5",
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
-    "@babel/preset-env": "^7.4.5",
-    "webpack": "^4.32.2",
-    "webpack-cli": "^3.3.2"
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/plugin-proposal-class-properties": "^7.7.0",
+    "@babel/preset-env": "^7.7.1",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
   }
 }
 ```
-
-<!--```javascript
-// bundle.js : line 78
-document.getElementById('demo').innerHTML = `${__WEBPACK_IMPORTED_MODULE_0__hello__["a" /* default */]}, ${__WEBPACK_IMPORTED_MODULE_1__world__["a" /* default */]}!`;
-```-->
 
 ## 2.3 babel-loader
 
@@ -80,13 +75,13 @@ $ npm install --save-dev babel-loader
     "build": "webpack -w"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5",
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
-    "@babel/preset-env": "^7.4.5",
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/plugin-proposal-class-properties": "^7.7.0",
+    "@babel/preset-env": "^7.7.1",
     "babel-loader": "^8.0.6",
-    "webpack": "^4.32.2",
-    "webpack-cli": "^3.3.2"
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
   }
 }
 ```
@@ -140,15 +135,15 @@ $ npm run build
 
 webpack is watching the files…
 
-Hash: 4b21ef06781a83e8d0c3
-Version: webpack 4.32.2
-Time: 1078ms
-Built at: 2019-06-02 17:21:56
-        Asset      Size  Chunks             Chunk Names
-    bundle.js  8.13 KiB    main  [emitted]  main
-bundle.js.map  5.07 KiB    main  [emitted]  main
+Hash: f820f0d61705cdd50948
+Version: webpack 4.41.2
+Time: 1137ms
+Built at: 2019. 11. 13. 오후 4:40:12
+        Asset      Size  Chunks                   Chunk Names
+    bundle.js   8.5 KiB    main  [emitted]        main
+bundle.js.map  5.08 KiB    main  [emitted] [dev]  main
 Entrypoint main = bundle.js bundle.js.map
-[./src/js/lib.js] 3.29 KiB {main} [built]
+[./src/js/lib.js] 3.66 KiB {main} [built]
 [./src/js/main.js] 147 bytes {main} [built]
 ```
 
@@ -174,14 +169,13 @@ main.js, lib.js 모듈이 하나로 번들링된 bundle.js가 브라우저에서
 
 ## 2.5 babel-polyfill
 
-ES5 이하로 트랜스파일링하여도 브라우저가 지원하지 않는 코드가 남아 있을 수 있다. 예를 들어, ES6에서 추가된 Promise, Object.assign, Array.from 등은 ES5 이하로 트랜스파일링하여도 대체할 ES5 기능이 없기 때문에 그대로 남아 있다.
+Babel을 사용하여 ES6+ 코드를 ES5 이하로 트랜스파일링하여도 브라우저가 지원하지 않는 코드가 남아 있을 수 있다. 예를 들어, ES6에서 추가된 Promise, Object.assign, Array.from 등은 ES5 이하로 트랜스파일링하여도 대체할 ES5 기능이 없기 때문에 그대로 남아 있다.
 
 src/js/main.js를 아래와 같이 수정하여 ES6에서 추가된 Promise, Object.assign, Array.from 등이 어떻게 트랜스파일링되는지 확인해 보자.
 
 ```javascript
 // src/js/main.js
 import { pi, power, Foo } from './lib';
-import { resolve } from 'path';
 
 console.log(pi);
 console.log(power(pi, pi));
@@ -192,13 +186,13 @@ console.log(f.bar());
 
 // polyfill이 필요한 코드
 console.log(new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve(1);
-  }, 100);
+  setTimeout(() => resolve(1), 100);
 }));
 
+// polyfill이 필요한 코드
 console.log(Object.assign({}, { x: 1 }, { y: 2 }));
 
+// polyfill이 필요한 코드
 console.log(Array.from([1, 2, 3], v => v + v));
 ```
 
@@ -206,19 +200,19 @@ console.log(Array.from([1, 2, 3], v => v + v));
 
 ```javascript
 ...
-// 619 line
-console.log(f.bar()); // polyfill이 필요한 코드
-
+// 190 line
 console.log(new Promise(function (resolve, reject) {
   setTimeout(function () {
-    resolve(1);
+    return resolve(1);
   }, 100);
-}));
+})); // polyfill이 필요한 코드
+
 console.log(Object.assign({}, {
   x: 1
 }, {
   y: 2
-}));
+})); // polyfill이 필요한 코드
+
 console.log(Array.from([1, 2, 3], function (v) {
   return v + v;
 }));
@@ -227,7 +221,7 @@ console.log(Array.from([1, 2, 3], function (v) {
 
 위와 같이 Promise, Object.assign, Array.from 등과 같이 ES5 이하로 대체할 수 없는 기능은 트랜스파일링이 되지 않는다.
 
-따라서 오래된 브라우저에서도 ES6에서 새롭게 추가된 객체나 메소드를 사용하기 위해서는 [@babel/polyfill](https://babeljs.io/docs/en/babel-polyfill)을 설치해야 한다.
+따라서 오래된 브라우저에서도 ES6+에서 새롭게 추가된 객체나 메소드를 사용하기 위해서는 [@babel/polyfill](https://babeljs.io/docs/en/babel-polyfill)을 설치해야 한다.
 
 ```bash
 $ npm install @babel/polyfill
@@ -243,21 +237,21 @@ $ npm install @babel/polyfill
     "build": "webpack -w"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5",
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
-    "@babel/preset-env": "^7.4.5",
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/plugin-proposal-class-properties": "^7.7.0",
+    "@babel/preset-env": "^7.7.1",
     "babel-loader": "^8.0.6",
-    "webpack": "^4.32.2",
-    "webpack-cli": "^3.3.2"
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.4.4"
+    "@babel/polyfill": "^7.7.0"
   }
 }
 ```
 
-babel-polyfill은 개발 환경만 사용하는 것이 아니라 실제 환경에서도 사용하여야 하므로 \-\-save-dev 옵션으로 개발 설치를 하지 않도록 한다.
+babel-polyfill은 개발 환경에서만 사용하는 것이 아니라 실제 환경에서도 사용하여야 하므로 \-\-save-dev 옵션으로 개발 설치를 하지 않도록 한다.
 
 ES6의 import를 사용하는 경우에는 진입점의 선두에서 먼저 폴리필을 로드하도록 한다.
 
@@ -267,7 +261,7 @@ import "@babel/polyfill";
 ...
 ```
 
-webpack을 사용하는 경우에는 폴리필을 webpack.config.js 파일의 entry 배열에 추가한다.
+webpack을 사용하는 경우에는 위 방법을 대신 폴리필을 webpack.config.js 파일의 entry 배열에 추가한다.
 
 ```javascript
 // webpack.config.js
@@ -289,18 +283,18 @@ $ npm run build
 
 webpack is watching the files…
 
-Hash: a243daf5f2849cd5a2e3
-Version: webpack 4.32.2
-Time: 2933ms
-Built at: 2019-06-02 17:50:24
-        Asset     Size  Chunks             Chunk Names
-    bundle.js  420 KiB    main  [emitted]  main
-bundle.js.map  338 KiB    main  [emitted]  main
+Hash: ff92f8edebb4e2a8613d
+Version: webpack 4.41.2
+Time: 1971ms
+Built at: 2019. 11. 13. 오후 4:55:26
+        Asset     Size  Chunks                   Chunk Names
+    bundle.js  408 KiB    main  [emitted]        main
+bundle.js.map  324 KiB    main  [emitted] [dev]  main
 Entrypoint main = bundle.js bundle.js.map
 [0] multi @babel/polyfill ./src/js/main.js 40 bytes {main} [built]
-[./src/js/lib.js] 3.29 KiB {main} [built]
-[./src/js/main.js] 438 bytes {main} [built]
-    + 309 hidden modules
+[./src/js/lib.js] 3.66 KiB {main} [built]
+[./src/js/main.js] 491 bytes {main} [built]
+    + 307 hidden modules
 ```
 
 dist/js/bundle.js을 확인해보면 아래와 같이 polyfill이 추가된 것을 확인할 수 있다.
@@ -332,20 +326,20 @@ $ npm install node-sass style-loader css-loader sass-loader --save-dev
     "build": "webpack -w"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5",
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
-    "@babel/preset-env": "^7.4.5",
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/plugin-proposal-class-properties": "^7.7.0",
+    "@babel/preset-env": "^7.7.1",
     "babel-loader": "^8.0.6",
-    "css-loader": "^2.1.1",
-    "node-sass": "^4.12.0",
-    "sass-loader": "^7.1.0",
-    "style-loader": "^0.23.1",
-    "webpack": "^4.32.2",
-    "webpack-cli": "^3.3.2"
+    "css-loader": "^3.2.0",
+    "node-sass": "^4.13.0",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.4.4"
+    "@babel/polyfill": "^7.7.0"
   }
 }
 ```
@@ -437,20 +431,20 @@ $ npm run build
 
 webpack is watching the files…
 
-Hash: fe8a8df6a068e9d9d414
-Version: webpack 4.32.2
-Time: 2144ms
-Built at: 2019-06-02 17:58:40
-        Asset     Size  Chunks             Chunk Names
-    bundle.js  438 KiB    main  [emitted]  main
-bundle.js.map  360 KiB    main  [emitted]  main
+Hash: b790cd4af9709201321f
+Version: webpack 4.41.2
+Time: 2370ms
+Built at: 2019. 11. 13. 오후 5:09:35
+        Asset     Size  Chunks                   Chunk Names
+    bundle.js  420 KiB    main  [emitted]        main
+bundle.js.map  337 KiB    main  [emitted] [dev]  main
 Entrypoint main = bundle.js bundle.js.map
 [0] multi @babel/polyfill ./src/js/main.js ./src/sass/main.scss 52 bytes {main} [built]
-[./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/sass/main.scss] 245 bytes {main} [built]
-[./src/js/lib.js] 3.29 KiB {main} [built]
-[./src/js/main.js] 438 bytes {main} [built]
-[./src/sass/main.scss] 1.2 KiB {main} [built]
-    + 312 hidden modules
+[./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/sass/main.scss] 244 bytes {main} [built]
+[./src/js/lib.js] 3.66 KiB {main} [built]
+[./src/js/main.js] 491 bytes {main} [built]
+[./src/sass/main.scss] 452 bytes {main} [built]
+    + 309 hidden modules
 ```
 
 CSS가 적용되는 것을 확인하기 위해 index.html을 아래와 같이 수정하자.
@@ -498,21 +492,21 @@ $ npm install --save-dev mini-css-extract-plugin
     "build": "webpack -w"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5",
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
-    "@babel/preset-env": "^7.4.5",
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/plugin-proposal-class-properties": "^7.7.0",
+    "@babel/preset-env": "^7.7.1",
     "babel-loader": "^8.0.6",
-    "css-loader": "^2.1.1",
-    "mini-css-extract-plugin": "^0.7.0",
-    "node-sass": "^4.12.0",
-    "sass-loader": "^7.1.0",
-    "style-loader": "^0.23.1",
-    "webpack": "^4.32.2",
-    "webpack-cli": "^3.3.2"
+    "css-loader": "^3.2.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.13.0",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.4.4"
+    "@babel/polyfill": "^7.7.0"
   }
 }
 ```

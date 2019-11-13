@@ -550,8 +550,7 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
-          'sass-loader?outputStyle=expanded'
-          // 'sass-loader?outputStyle=compressed'
+          'sass-loader'
         ],
         exclude: /node_modules/
       }
@@ -573,24 +572,24 @@ $ npm run build
 
 webpack is watching the files…
 
-Hash: 0d14eca447fc0218ad37
-Version: webpack 4.32.2
-Time: 2243ms
-Built at: 2019-06-02 18:09:45
-            Asset       Size  Chunks             Chunk Names
-    css/style.css  136 bytes    main  [emitted]  main
-css/style.css.map  278 bytes    main  [emitted]  main
-     js/bundle.js    420 KiB    main  [emitted]  main
- js/bundle.js.map    338 KiB    main  [emitted]  main
+Hash: 533f7b41094e8037b3c2
+Version: webpack 4.41.2
+Time: 2227ms
+Built at: 2019. 11. 14. 오전 8:48:35
+            Asset       Size  Chunks                   Chunk Names
+    css/style.css  136 bytes    main  [emitted]        main
+css/style.css.map  279 bytes    main  [emitted] [dev]  main
+     js/bundle.js    408 KiB    main  [emitted]        main
+ js/bundle.js.map    324 KiB    main  [emitted] [dev]  main
 Entrypoint main = css/style.css js/bundle.js css/style.css.map js/bundle.js.map
 [0] multi @babel/polyfill ./src/js/main.js ./src/sass/main.scss 52 bytes {main} [built]
-[./src/js/lib.js] 3.29 KiB {main} [built]
-[./src/js/main.js] 438 bytes {main} [built]
+[./src/js/lib.js] 3.66 KiB {main} [built]
+[./src/js/main.js] 491 bytes {main} [built]
 [./src/sass/main.scss] 39 bytes {main} [built]
-    + 310 hidden modules
-Child mini-css-extract-plugin node_modules/css-loader/dist/cjs.js!node_modules/sass-loader/lib/loader.js?outputStyle=expanded!src/sass/main.scss:
+    + 308 hidden modules
+Child mini-css-extract-plugin node_modules/css-loader/dist/cjs.js!node_modules/sass-loader/dist/cjs.js!src/sass/main.scss:
     Entrypoint mini-css-extract-plugin = *
-    [./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js?outputStyle=expanded!./src/sass/main.scss] 246 bytes {mini-css-extract-plugin} [built]
+    [./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/sass/main.scss] 244 bytes {mini-css-extract-plugin} [built]
         + 1 hidden module
 ```
 

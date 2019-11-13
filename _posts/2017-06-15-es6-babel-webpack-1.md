@@ -14,16 +14,18 @@ description: 현재 브라우저는 ES6를 완전하게 지원하지 않는다. 
 
 ![babel-webpack](./img/babel-webpack.png)
 
-현재 브라우저는 ES6를 완전하게 지원하지 않는다.
+크롬, 사파리, 파이어폭스와 같은 에버그린 브라우저(Evergreen browser, 사용자의 업데이트 없이도 최신 버전으로 자동 업데이트를 수행하는 모던 브라우저)의 ES6지원 비율은 약 98%로 거의 대부분의 ES6 사양을 구현하고 있다.
 
 ![es6-browser-support](./img/es6-browser-support.png)
 
 [ECMAScript 6 Browser Support](https://kangax.github.io/compat-table/es6/)
 {: .desc-img}
 
-ES6+(ES6 이상의 버전)를 사용하여 프로젝트를 진행하려면 ES6+로 작성된 코드를 IE를 포함한 모든 브라우저에서 문제 없이 동작시키기 위한 개발 환경을 구축하는 것이 필요하다. 특히 모듈의 경우, 모듈 로더가 필요하다.
+하지만 인터넷 익스플로어(IE) 11의 ES6지원 비율은 약 11%이다. 그리고 매년 새롭게 도입되는 ES6 이상의 버전(ES6+)과 제안 단계에 있는 ES 제안 사양(ES NEXT)은 브라우저에 따라 지원 비율이 제각각이다.
 
-2019년 5월 현재, 모던 브라우저(Chrome 61, FF 60, SF 10.1, Edge 16 이상)에서 ES6 모듈을 사용할 수 있다. 단, 아래와 같은 이유로 아직까지는 브라우저가 지원하는 ES6 모듈 기능보다는 Webpack 등의 모듈 번들러를 사용하는 것이 일반적이다.
+따라서 ES6+ 또는 ES NEXT의 ES 최신 사양을 사용하여 프로젝트를 진행하려면 최신 사양으로 작성된 코드를 경우에 따라 IE를 포함한 구형 브라우저에서 문제 없이 동작시키기 위한 개발 환경을 구축하는 것이 필요하다. 특히 모듈의 경우, 모듈 로더가 필요하다.
+
+2019년 11월 현재, 모던 브라우저(Chrome 61, FF 60, SF 10.1, Edge 16 이상)에서 ES6 모듈을 사용할 수 있다. 단, 아래와 같은 이유로 아직까지는 브라우저가 지원하는 ES6 모듈 기능보다는 Webpack 등의 모듈 번들러를 사용하는 것이 일반적이다.
 
 - IE를 포함한 구형 브라우저는 ES6 모듈을 지원하지 않는다.
 - 브라우저의 ES6 모듈 기능을 사용하더라도 트랜스파일링이나 번들링이 필요하다.
@@ -35,44 +37,44 @@ ES6+(ES6 이상의 버전)를 사용하여 프로젝트를 진행하려면 ES6+�
 본 문서에서 사용한 Babel, Webpack, 플러그인의 버전은 아래와 같다.
 
 Node.js
-: 12.3.1
+: 13.1.0
 
 npm
-: 6.9.0
+: 6.13.0
 
 Babel
-: - @babel/cli : 7.4.4
-- @babel/core : 7.4.5
-- @babel/preset-env : 7.4.5
-- @babel/plugin-proposal-class-properties :  7.4.4
-- @babel/polyfill : 7.4.4
+: - @babel/cli : 7.7.0
+- @babel/core : 7.7.2
+- @babel/preset-env : 7.7.1
+- @babel/plugin-proposal-class-properties :  7.7.0
+- @babel/polyfill : 7.7.4
 
 Webpack
-: - webpack : 4.32.3
-- webpack-cli : 3.3.2
+: - webpack : 4.41.2
+- webpack-cli : 3.3.10
 
 Webpack plug-in: ES6+ ⇒ ES5
 : - babel-loader : 8.0.6
 
 Webpack plug-in: Sass ⇒ CSS
-: - node-sass : 4.12.0
-- style-loader : 0.23.1
-- css-loader : 2.1.1
-- sass-loader : 7.1.0
-- mini-css-extract-plugin : 0.7.0
+: - node-sass : 4.13.0
+- style-loader : 1.0.0
+- css-loader : 3.2.0
+- sass-loader : 8.0.0
+- mini-css-extract-plugin : 0.8.0
 
 # 1. Babel
 
 ## 1.2 Babel이란?
 
-Babel은 ES6+ 코드를 ES5 이하의 버전으로 트랜스파일링한다.
+아래 예제는 ES6의 화살표 함수와 ES7의 지수 연산자를 사용하고 있다.
 
 ```javascript
-// ES6(Arrow Function) + ES7(Exponentiation operator)
+// ES6 화살표 함수와 ES7 지수 연산자
 [1, 2, 3].map(n => n ** n);
 ```
 
-위 코드는 ES6에서 도입된 화살표 함수와 ES7에서 도입된 거듭제곱 연산자를 사용하고 있다. 이 두가지 기능은 IE는 물론이고 구형 브라우저에서 지원하지 않는다. 따라서 IE나 구형 브라우저에서도 동작하는 애플리케이션을 구현하기 위해 ES6+ 코드를 ES5 이하의 버전으로 변환(트랜스파일링)할 필요가 있다. Babel을 사용하면 위 코드를 아래와 같이 ES5 이하의 버전으로 트랜스파일링할 수 있다.
+IE와 다른 구형 브라우저에서는 이 두가지 기능을 지원하지 않을 수 있다. Babel을 사용하면 위 코드를 아래와 같이 ES5 이하의 버전으로 변환할 수 있다.
 
 ```javascript
 // ES5
@@ -82,6 +84,8 @@ Babel은 ES6+ 코드를 ES5 이하의 버전으로 트랜스파일링한다.
   return Math.pow(n, n);
 });
 ```
+
+이처럼 Babel는 최신 사양의 자바스크립트 코드를 IE나 구형 브라우저에서도 동작하는 ES5 이하의 코드로 변환(트랜스파일링)할 수 있다. Babel을 사용하기 위한 개발 환경을 구축해 보자.
 
 ## 1.2 Babel CLI 설치
 
@@ -103,22 +107,24 @@ $ npm install --save-dev @babel/core @babel/cli
   "name": "es6-project",
   "version": "1.0.0",
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5"
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2"
   }
 }
 ```
 
 ## 1.3 .babelrc 설정 파일 작성
 
-Babel을 사용하려면 먼저 `@babel/preset-env`을 설치해야 한다. [@babel/preset-env](https://babeljs.io/docs/plugins/preset-env/)은 함께 사용되어야 하는 Babel 플러그인을 모아 둔 것으로 [Babel 프리셋](https://babeljs.io/docs/en/presets)이라고 부른다. Babel이 제공하는 공식 Babel 프리셋(Official Preset)은 아래와 같다.
+Babel을 사용하려면 `@babel/preset-env`을 설치해야 한다. [@babel/preset-env](https://babeljs.io/docs/plugins/preset-env/)은 함께 사용되어야 하는 Babel 플러그인을 모아 둔 것으로 [Babel 프리셋](https://babeljs.io/docs/en/presets)이라고 부른다. Babel이 제공하는 공식 Babel 프리셋(Official Preset)은 아래와 같다.
 
 - [@babel/preset-env](https://babeljs.io/docs/en/babel-preset-env)
 - [@babel/preset-flow](https://babeljs.io/docs/en/babel-preset-flow)
 - [@babel/preset-react](https://babeljs.io/docs/en/babel-preset-react)
 - [@babel/preset-typescript](https://babeljs.io/docs/en/babel-preset-typescript)
 
-@babel/preset-env도 공식 프리셋의 하나이며 필요한 플러그인 들을 프로젝트 지원 환경에 맞춰서 동적으로 결정해 준다. 프로젝트 지원 환경은 [Browserslist](https://github.com/browserslist/browserslist) 형식으로 .browserslistrc 파일에 상세히 설정할 수 있다. 프로젝트 지원 환경 설정 작업을 생략하면 기본값으로 설정된다. 일단은 기본 설정으로 진행하도록 하자.
+`@babel/preset-env`도 공식 프리셋의 하나이며 필요한 플러그인 들을 프로젝트 지원 환경에 맞춰서 동적으로 결정해 준다. 프로젝트 지원 환경은 [Browserslist](https://github.com/browserslist/browserslist) 형식으로 .browserslistrc 파일에 상세히 설정할 수 있다. 프로젝트 지원 환경 설정 작업을 생략하면 기본값으로 설정된다.
+
+일단은 기본 설정으로 진행하도록 하자. 기본 설정은 모든 ES6+ 코드를 변환한다.
 
 ```bash
 # env preset 설치
@@ -132,14 +138,14 @@ $ npm install --save-dev @babel/preset-env
   "name": "es6-project",
   "version": "1.0.0",
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.2.2",
-    "@babel/preset-env": "^7.4.5"
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1"
   }
 }
 ```
 
-설치가 완료되었으면 프로젝트 루트에 .babelrc 파일을 생성하고 아래와 같이 작성한다. 지금 설치한 @babel/preset-env을 사용하겠다는 의미이다.
+설치가 완료되었으면 프로젝트 루트에 .babelrc 파일을 생성하고 아래와 같이 작성한다. 지금 설치한 `@babel/preset-env`를 사용하겠다는 의미이다.
 
 ```json
 {
@@ -161,9 +167,9 @@ package.json 파일에 scripts를 추가한다. 완성된 package.json 파일은
     "build": "babel src/js -w -d dist/js"
   },
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.2.2",
-    "@babel/preset-env": "^7.3.1"
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1"
   }
 }
 ```
@@ -176,35 +182,25 @@ package.json 파일에 scripts를 추가한다. 완성된 package.json 파일은
 -d
 : 트랜스파일링된 결과물이 저장될 폴더를 지정한다. (\-\-out-dir 옵션의 축약형)
 
-이제 트랜스파일링을 테스트하기 위해 ES6 파일을 작성해 보자. 프로젝트 루트에 src/js 폴더를 생성한 후 main.js와 lib.js를 추가한다.
-
-```javascript
-// src/js/main.js
-import { pi, power, Foo } from './lib';
-
-console.log(pi);
-console.log(power(pi, pi));
-
-const f = new Foo();
-console.log(f.foo());
-console.log(f.bar());
-```
+이제 트랜스파일링을 테스트하기 위해 ES6+ 파일을 작성해 보자. 프로젝트 루트에 src/js 폴더를 생성한 후 lib.js와 main.js를 추가한다.
 
 ```javascript
 // src/js/lib.js
+// ES6 모듈
 export const pi = Math.PI;
 
 export function power(x, y) {
-  // ES7: exponentiation operator
+  // ES7: 지수 연산자
   return x ** y;
 }
 
+// ES6 클래스
 export class Foo {
-  // stage 3: Class field declarations proposal
+  // stage 3: 클래스 필드 정의 제안
   #private = 10;
 
   foo() {
-    // stage 4: Object Rest/Spread Properties
+    // stage 4: 객체 Rest/Spread 프로퍼티
     const { a, b, ...x } = { ...{ a: 1, b: 2 }, c: 3, d: 4 };
     return { a, b, x };
   }
@@ -215,6 +211,19 @@ export class Foo {
 }
 ```
 
+```javascript
+// src/js/main.js
+// ES6 모듈
+import { pi, power, Foo } from './lib';
+
+console.log(pi);
+console.log(power(pi, pi));
+
+const f = new Foo();
+console.log(f.foo());
+console.log(f.bar());
+```
+
 터미널에서 아래 명령으로 트랜스파일링을 실행한다.
 
 ```bash
@@ -223,29 +232,29 @@ $ npm run build
 > es6-project@1.0.0 build /Users/leeungmo/Desktop/es6-project
 > babel src/js -w -d dist/js
 
-SyntaxError: /Users/leeungmo/Desktop/es6-project/src/js/lib.js: Unexpected character '#' (11:2)
+SyntaxError: /Users/leeungmo/Desktop/es6-project/src/js/lib.js: Unexpected character '#' (12:2)
 
-   9 | export class Foo {
-  10 |   // stage 3: Class field declarations proposal
-> 11 |   #private = 10;
+  10 | export class Foo {
+  11 |   // stage 3: 클래스 필드 정의 제안
+> 12 |   #private = 10;
      |   ^
-  12 |
-  13 |   foo() {
-  14 |     // stage 4: Object Rest/Spread Properties
+  13 |
+  14 |   foo() {
+  15 |     // stage 4: 객체 Rest/Spread 프로퍼티
 ...
 ```
 
-2019년 5월 현재 TC39 프로세스의 stage 3(candidate) 단계에 있는 [Class field declarations proposal](https://github.com/tc39/proposal-class-fields)에서 에러가 발생하였다.
+2019년 11월 현재 TC39 프로세스의 stage 3(candidate) 단계에 있는 [Class field declarations proposal](https://github.com/tc39/proposal-class-fields)에서 에러가 발생하였다.
 
-@babel/preset-env는 현재 제안 단계에 있는 사양에 대한 플러그인을 지원하지 않기 때문에 발생한 에러이다. 현재 제안 단계에 있는 사양을 지원하려면 플러그인을 설치하여야 한다.
+`@babel/preset-env`는 현재 제안 단계에 있는 사양에 대한 플러그인을 지원하지 않기 때문에 발생한 에러이다. 현재 제안 단계에 있는 사양을 지원하려면 별도의 플러그인을 설치하여야 한다.
 
 ## 1.5 Babel 플러그인
 
-설치가 필요한 플러그인은 Babel 홈페이지에서 검색할 수 있다. 상단 메뉴의 Search에 프로포절의 이름을 입력하면 해당 플러그인을 검색할 수 있다.
+설치가 필요한 플러그인은 Babel 홈페이지에서 검색할 수 있다. 상단 메뉴의 Search에 제안(프로포절)의 이름을 입력하면 해당 플러그인을 검색할 수 있다. 클래스 필드 정의 제안 플러그인을 검색하기 위해 "Class field"를 입력해보자.
 
 ![](/img/babel-plugin-search.png)
 
-검색한 플러그인을 설치해보자.
+검색한 플러그인 `@babel/plugin-proposal-class-properties`를 설치해보자.
 
 ```bash
 $ npm install --save-dev @babel/plugin-proposal-class-properties
@@ -261,10 +270,10 @@ $ npm install --save-dev @babel/plugin-proposal-class-properties
     "build": "babel src/js -w -d dist/js"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5",
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
-    "@babel/preset-env": "^7.4.5"
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/plugin-proposal-class-properties": "^7.7.0",
+    "@babel/preset-env": "^7.7.1"
   }
 }
 ```
@@ -303,7 +312,7 @@ $ node dist/js/main
 
 ## 1.6 브라우저에서 모듈 로딩 테스트
 
-앞에서 main.js와 lib.js 모듈을 트랜스파일링하여 ES5로 변환된 main.js을 실행한 결과, 문제없이 실행되는 것을 확인하였다. ES6+에서 새롭게 추가된 기능은 물론 현재 제안 상태에 있는 사양도 ES5로 트랜스파일링된 것은 물론 ES6의 모듈의 import와 export 키워드도 트랜스파일링되어 모듈 기능도 정상적으로 동작하는 것을 확인하였다.
+앞에서 main.js와 lib.js 모듈을 트랜스파일링하여 ES5로 변환된 main.js을 실행한 결과, 문제없이 실행되는 것을 확인하였다. ES6+에서 새롭게 추가된 기능은 물론 현재 제안 상태에 있는 "클래스 필드 정의 제안"도 ES5로 트랜스파일링되었고 ES6의 모듈의 import와 export 키워드도 트랜스파일링되어 모듈 기능도 정상적으로 동작하는 것을 확인하였다.
 
 하지만 모듈 기능은 node.js 환경에서 동작한 것이고 Babel이 모듈을 트랜스파일링한 것도 node.js가 기본 지원하는 CommonJS 방식의 module loading system에 따른 것이다. 아래는 src/js/main.js가 Babel에 의해 트랜스파일링된 결과이다.
 
@@ -322,7 +331,7 @@ console.log(f.bar());
 
 브라우저는 CommonJS 방식의 module loading system(require 함수)을 지원하지 않으므로 위에서 트랜스파일링된 결과를 그대로 브라우저에서 실행하면 에러가 발생한다.
 
-트랜스파일링된 자바스크립트 파일을 브라우저에서 실행해보자.
+프로젝트 루트 폴더에 아래와 같이 index.html을 작성하여 트랜스파일링된 자바스크립트 파일을 브라우저에서 실행해보자.
 
 ```html
 <!DOCTYPE html>

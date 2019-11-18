@@ -25,7 +25,7 @@ Netscape Navigator 2
 
 이렇게 탄생한 자바스크립트는 현재 모든 브라우저의 표준 프로그래밍 언어가 되었다. 그러나 자바스크립트가 순탄하게 성장했던 것은 아니다. 자바스크립트가 탄생한 뒤 얼마 지나지 않아 자바스크립트의 파생 버전인 JScript가 출시되어 자바스크립트는 위기를 맞게 된다.
 
-# 2.	자바스크립트의 파편화와 표준화
+# 2. 자바스크립트의 표준화
 
 1996년 8월, 마이크로소프트는 자바스크립트의 파생 버전인 "JScript"를 Internet Explorer 3.0에 탑재하였다. 그런데 문제는 JScript와 자바스크립트가 표준화되지 못하고 적당히 호환되었다는 것이다. 즉, 넷스케이프 커뮤니케이션즈와 마이크로소프트는 자사 브라우저의 시장 점유율을 높이기 위해 자사 브라우저에서만 동작하는 기능을 경쟁적으로 추가하기 시작했다는 것이다.
 
@@ -54,11 +54,12 @@ if (el.addEventListener) {
 | ES2     | 1998	 | ISO/IEC 16262 국제 표준과 동일한 규격을 적용
 | ES3     | 1999	 | 정규 표현식, try...catch 예외 처리
 | ES5	    | 2009	 | HTML5와 함께 출현한 표준안. JSON, strict mode, 접근자 프로퍼티(getter, setter), 향상된 배열 조작 기능(forEach, map, filter, reduce, some, every)
-| ES6(ECMAScript 2015) | 2015	| let, const, class, 화살표 함수, 템플릿 리터럴, 디스트럭처링 할당, 스프레드 문법, rest 파라미터, Symbol, Promise, Map/Set, iterator/generator, module import/export
+| ES6(ECMAScript 2015) | 2015	| let, const, class, 화살표 함수, 템플릿 리터럴, 디스트럭처링 할당, 스프레드 문법, rest 파라미터, Symbol, Promise, Map/Set, iterator, for...of, generator, Proxy, module import/export
 | ES7(ECMAScript 2016) | 2016 | 지수(**) 연산자, Array.prototype.includes, String.prototype.includes
 | ES8(ECMAScript 2017) | 2017	| async/await, Object 정적 메소드(Object.values, Object.entries, Object.getOwnPropertyDescriptors)
-| ES9(ECMAScript 2018) | 2018	| [Object Rest/Spread 프로퍼티](https://github.com/tc39/proposal-object-rest-spread)
-| ES10(ECMAScript 2019) | 2019	| Object.fromEntries, Array.prototype.flat, Array.prototype.flatMap
+| ES9(ECMAScript 2018) | 2018	| [Object Rest/Spread 프로퍼티](https://github.com/tc39/proposal-object-rest-spread), Promise.prototype.finally, async generator, for await...of
+| ES10(ECMAScript 2019) | 2019	| Object.fromEntries, Array.prototype.flat, Array.prototype.flatMap, optional catch binding
+| ES11(ECMAScript 2020) | 2020	| String.prototype.matchAll, BigInt, Promise.allSettled, globalThis
 
 # 3. 자바스크립트 성장의 역사
 

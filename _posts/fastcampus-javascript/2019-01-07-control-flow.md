@@ -505,6 +505,7 @@ console.log(string.indexOf(search)); // 2
 # 5. continue 문
 
 continue 문은 반복문의 코드 블록 실행을 현 지점에서 중단하고 반복문의 증감식으로 이동한다. break 문처럼 반복문을 탈출하지는 않는다.
+
 아래는 문자열에서 특정 문자의 개수를 카운트하는 예제이다.
 
 ```javascript
@@ -524,8 +525,11 @@ console.log(count); // 3
 // 참고로 String.prototype.match 메소드를 사용해도 같은 동작을 한다.
 const regexp = new RegExp(search, 'g');
 console.log(string.match(regexp).length); // 3
+```
 
 위 예제의 for 문은 아래와 동일하게 동작한다.
+
+```javascript
 for (var i = 0; i < string.length; i++) {
   // 'l'이면 카운트를 증가시킨다.
   if (string[i] === search) count++;

@@ -249,10 +249,21 @@ export class AppComponent {
   bgColor = '#4caf50';
   isShow = true;
 
-  increaseWidth()  { this.width  += 10; }
-  decreaseWidth()  { this.width  -= 10; }
-  increaseHeight() { this.height += 10; }
-  decreaseHeight() { this.height -= 10; }
+  increaseWidth()  {
+    this.width = +this.width + 10;
+  }
+
+  decreaseWidth()  {
+    this.width = +this.width - 10;
+  }
+
+  increaseHeight() {
+    this.height = +this.height + 10;
+  }
+
+  decreaseHeight() {
+    this.height = +this.height - 10;
+  }
 }
 ```
 

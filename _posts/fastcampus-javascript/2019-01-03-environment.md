@@ -23,7 +23,7 @@ description:
 
 웹 애플리케이션의 자바스크립트는 사용자 컴퓨터의 브라우저에서 동작한다. 만약 브라우저를 통해 다운로드되어 실행되는 자바스크립트가 사용자 컴퓨터의 로컬 파일을 삭제하거나 수정하고 생성할 수 있다면 이는 사용자 컴퓨터가 악성 코드에 그대로 노출된 것과 마찬가지다. 따라서 보안 상 이유로 Web API에서는 File 시스템을 제공하지 않는다.
 
-이처럼 브라우저는 ECMAScript와 DOM, BOM, Canvas, XMLHttpRequest, Fetch, requestAnimationFrame, SVG, Web Storage, Web Component, Web worker와 같은 **[클라이언트 사이드 Web API](https://www.w3.org/standards/webdesign/script)**를 지원한다. Node.js는 클라이언트 사이드 Web API는 지원하지 않고 ECMAScript와 [Node.js 고유의 Host API](https://nodejs.org/dist/latest/docs/api/)를 지원한다.
+이처럼 브라우저는 ECMAScript와 DOM, BOM, Canvas, XMLHttpRequest, Fetch, requestAnimationFrame, SVG, Web Storage, Web Component, Web worker와 같은 **[클라이언트 사이드 Web API](https://developer.mozilla.org/ko/docs/Web/API)**를 지원한다. Node.js는 클라이언트 사이드 Web API는 지원하지 않고 ECMAScript와 [Node.js 고유의 Host API](https://nodejs.org/dist/latest/docs/api/)를 지원한다.
 
 ![](/assets/fs-images/3-1.png)
 {: .w-350}

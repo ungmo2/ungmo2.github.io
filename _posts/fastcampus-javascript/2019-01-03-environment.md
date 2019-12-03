@@ -23,7 +23,7 @@ description:
 
 웹 애플리케이션의 자바스크립트는 사용자 컴퓨터의 브라우저에서 동작한다. 만약 브라우저를 통해 다운로드되어 실행되는 자바스크립트가 사용자 컴퓨터의 로컬 파일을 삭제하거나 수정하고 생성할 수 있다면 이는 사용자 컴퓨터가 악성 코드에 그대로 노출된 것과 마찬가지다. 따라서 보안 상 이유로 Web API에서는 File 시스템을 제공하지 않는다.
 
-이처럼 브라우저는 ECMAScript와 DOM, BOM, Canvas, XMLHttpRequest, Fetch, requestAnimationFrame, SVG, Web Storage, Web Component, Web worker와 같은 **[클라이언트 사이드 Web API](https://www.w3.org/standards/webdesign/script)**를 지원한다. Node.js는 클라이언트 사이드 Web API는 지원하지 않고 ECMAScript와 [Node.js 고유의 Host API](https://nodejs.org/dist/latest-v12.x/docs/api/)를 지원한다.
+이처럼 브라우저는 ECMAScript와 DOM, BOM, Canvas, XMLHttpRequest, Fetch, requestAnimationFrame, SVG, Web Storage, Web Component, Web worker와 같은 **[클라이언트 사이드 Web API](https://www.w3.org/standards/webdesign/script)**를 지원한다. Node.js는 클라이언트 사이드 Web API는 지원하지 않고 ECMAScript와 [Node.js 고유의 Host API](https://nodejs.org/dist/latest/docs/api/)를 지원한다.
 
 ![](/assets/fs-images/3-1.png)
 {: .w-350}
@@ -360,7 +360,7 @@ $counter의 값이 null인 것을 확인했다. 그 원인은 13 라인에서 $c
 
 2009년 [라이언 달(Ryan Dahl)](https://en.wikipedia.org/wiki/Ryan_Dahl)이 발표한 [Node.js](https://nodejs.org)는 크롬  V8 자바스크립트 엔진으로 빌드된 자바스크립트 [런타임 환경(Runtime Environment)](https://ko.wikipedia.org/wiki/런타임)이다. 간단히 말해 브라우저에서만 동작하던 자바스크립트를 브라우저 이외의 환경에서 동작시킬 수 있는 자바스크립트 실행 환경이 Node.js이다.
 
-Node.js는 주로 서버 사이드 애플리케이션 개발에 사용되며 이에 필요한 모듈, 파일 시스템, HTTP 등 [빌트인 API](https://nodejs.org/dist/latest-v12.x/docs/api)를 제공한다. Node.js는 데이터를 실시간 처리하여 빈번한 I/O가 발생하는 SPA(Single Page Application)에 적합하다. 하지만 CPU 사용률이 높은 애플리케이션에는 권장하지 않는다.
+Node.js는 주로 서버 사이드 애플리케이션 개발에 사용되며 이에 필요한 모듈, 파일 시스템, HTTP 등 [빌트인 API](https://nodejs.org/dist/latest/docs/api)를 제공한다. Node.js는 데이터를 실시간 처리하여 빈번한 I/O가 발생하는 SPA(Single Page Application)에 적합하다. 하지만 CPU 사용률이 높은 애플리케이션에는 권장하지 않는다.
 
 [npm(node package manager)](https://www.npmjs.com/)은 자바스크립트 패키지 매니저이다. Node.js에서 사용할 수 있는 모듈들을 패키지화하여 모아둔 저장소 역할과 패키지 설치 및 관리를 위한 CLI(Command line interface)를 제공한다. 자신이 작성한 패키지를 공개할 수도 있고 필요한 패키지를 검색하여 재사용할 수도 있다. npm에 대한 보다 자세한 내용은 아래를 참고하기 바란다.
 
@@ -419,7 +419,7 @@ $ node index.js
 ```
 
 CTRL + C 키를 두번 입력하면 Node.js REPL을 종료시킨다. Node.js REPL에 대한 보다 자세한 내용은 아래를 참고하기 바란다.
-- [Node.js Documentation : REPL](https://nodejs.org/dist/latest-v12.x/docs/api/repl.html)
+- [Node.js Documentation : REPL](https://nodejs.org/dist/latest/docs/api/repl.html#repl_repl)
 
 # 4.	비주얼 스튜디오 코드
 

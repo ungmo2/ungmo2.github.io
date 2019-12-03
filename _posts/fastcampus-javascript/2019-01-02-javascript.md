@@ -138,7 +138,7 @@ Node.js 웹사이트
 
 ECMAScript는 자바스크립트의 표준 사양인 ECMA-262를 말하며 프로그래밍 언어의 타입, 값, 객체와 프로퍼티, 함수, 표준 빌트인 객체(standard built-in object) 등 핵심 문법(core syntax)을 규정한다. 각 브라우저 제조사는 ECMAScript를 준수하여 브라우저에 내장되는 자바스크립트 엔진을 구현한다.
 
-자바스크립트는 일반적으로 프로그래밍 언어로서 기본 뼈대(core)를 이루는 ECMAScript와 브라우저가 별도 지원하는 **[클라이언트 사이드 Web API](https://www.w3.org/standards/webdesign/script)**, 즉 DOM, BOM, Canvas, XMLHttpRequest, Fetch, requestAnimationFrame, SVG, Web Storage, Web Component, Web worker 등을 아우르는 개념이다.
+자바스크립트는 일반적으로 프로그래밍 언어로서 기본 뼈대(core)를 이루는 ECMAScript와 브라우저가 별도 지원하는 **[클라이언트 사이드 Web API](https://developer.mozilla.org/ko/docs/Web/API)**, 즉 DOM, BOM, Canvas, XMLHttpRequest, Fetch, requestAnimationFrame, SVG, Web Storage, Web Component, Web worker 등을 아우르는 개념이다.
 
 ![](/assets/fs-images/2-7.png)
 {: .w-250}

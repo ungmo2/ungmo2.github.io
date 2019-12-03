@@ -22,15 +22,15 @@ description:
 ```javascript
 // 문자열 'F'를 16진수로 해석하여 10진수로 변환하여 반환한다.
 console.log(window.parseInt('F', 16)); // 15
-// 전역 객체 window의 메소드인 parseInt은 window.parseInt 또는 parseInt으로 호출할 수 있다.
+// window.parseInt는 parseInt으로 호출할 수 있다.
 console.log(parseInt('F', 16)); // 15
 
 console.log(window.parseInt === parseInt); // true
 ```
 
--	전역 객체는 Object, String, Number, Boolean, Function, Array, RegExp, Date, Math, Promise와 같은 모든 표준 빌트인 객체를 프로퍼티로 가지고 있다.
+-	전역 객체는 Object, String, Number, Boolean, Function, Array, RegExp, Date, Math, Promise와 같은 모든 표준 빌트인 객체("29. 표준 빌트인 객체와 레퍼 객체" 참고)를 프로퍼티로 가지고 있다.
 
--	자바스크립트 실행 환경(브라우저 환경 또는 Node.js 환경. “3.1 자바스크립트 실행 환경” 참고)에 따라 추가적으로 프로퍼티와 메소드를 갖는다. 브라우저 환경의 window 객체는 DOM, BOM, Canvas, XMLHttpRequest, Fetch, requestAnimationFrame, SVG, Web Storage, Web Component, Web worker와 같은 [클라이언트 사이드 Web API](https://www.w3.org/standards/webdesign/script)를 프로퍼티로 소유한다.
+-	자바스크립트 실행 환경(브라우저 환경 또는 Node.js 환경. "3.1 자바스크립트 실행 환경" 참고)에 따라 추가적으로 프로퍼티와 메소드를 갖는다. 브라우저 환경의 window 객체는 DOM, BOM, Canvas, XMLHttpRequest, Fetch, requestAnimationFrame, SVG, Web Storage, Web Component, Web worker와 같은 [클라이언트 사이드 Web API](https://www.w3.org/standards/webdesign/script)를 프로퍼티로 소유한다.
 
 -	var 키워드로 선언한 전역 변수와 선언하지 않은 변수에 값을 할당한 암묵적 전역 변수(“12.8 암묵적 전역 변수” 참고) 그리고 전역 함수는 전역 객체의 프로퍼티가 된다.
 
@@ -46,11 +46,11 @@ let foo = 123; // 전역변수
 console.log(window.foo); // undefined
 ```
 
--	전역 객체는 몇가지 프로퍼티와 메소드를 가지고 있다. 전역 객체의 프로퍼티와 메소드는 window를 생략하여 참조/호출할 수 있으므로 전역 변수와 전역 함수처럼 사용할 수 있다. 이에 대해 살펴보자.
+전역 객체는 몇가지 프로퍼티와 메소드를 가지고 있다. 전역 객체의 프로퍼티와 메소드는 window를 생략하여 참조/호출할 수 있으므로 전역 변수와 전역 함수처럼 사용할 수 있다. 이에 대해 살펴보자.
 
-# 1.	전역 프로퍼티(Global property)
+# 1. 빌트인 전역 프로퍼티
 
-전역 프로퍼티는 전역 객체의 프로퍼티를 의미한다. 애플리케이션 전역에서 사용하는 값들을 나타내기 위해 사용한다.
+빌트인 전역 프로퍼티(Built-in global property)는 전역 객체의 프로퍼티를 의미한다. 애플리케이션 전역에서 사용하는 값들을 나타내기 위해 사용한다.
 
 ## 1.1.	Infinity
 

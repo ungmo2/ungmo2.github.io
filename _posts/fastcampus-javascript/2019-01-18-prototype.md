@@ -1596,7 +1596,7 @@ console.log(Object.getOwnPropertyDescriptor(Object.prototype, 'toString'));
 
 따라서 for...in 문에 대해 좀 더 정확히 표현하면 아래와 같다.
 
-for...in 문은 객체의 프로토타입 체인 상에 존재하는 모든 프로토타입의 프로퍼티 중에서 프로퍼티 어트리뷰트 [[Enumerable]]의 값인 ture인 프로퍼티를 순회하며 열거(enumeration)한다.
+for...in 문은 객체의 프로토타입 체인 상에 존재하는 모든 프로토타입의 프로퍼티 중에서 프로퍼티 어트리뷰트 [[Enumerable]]의 값이 ture인 프로퍼티를 순회하며 열거(enumeration)한다.
 
 ```javascript
 const person = {

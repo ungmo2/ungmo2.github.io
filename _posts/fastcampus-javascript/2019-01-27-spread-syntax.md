@@ -13,7 +13,7 @@ description:
 
 ES6에서 새롭게 도입된 스프레드 문법(Spread syntax, 전개 문법)  …은 하나로 뭉쳐 있는 여러 값들의 집합을 펼쳐서(전개, 분산하여, spread) 개별적인 값들의 목록으로 만든다.
 
-스프레드 문법을 사용할 수 있는 대상은 Array, String, Map, Set, DOM data structure(NodeList, HTMLCollection), Arguments와 같이 for…of 문으로 순회할 수 있는 이터러블에 한정된다.
+스프레드 문법을 사용할 수 있는 대상은 Array, String, Map, Set, DOM 컬렉션(NodeList, HTMLCollection), Arguments와 같이 for…of 문으로 순회할 수 있는 이터러블에 한정된다.
 
 이터러블
 : 이터러블 프로토콜을 준수한 객체를 이터러블(iterable)이라 한다. 이터러블은 Well-known Symbol인 Symbol.iterator을 프로퍼티 키로 갖는 메소드를 직접 구현하거나 프로토타입 체인에 의해 상속한 객체를 말한다. 이터러블에 대해서는 "31. 이터러블", Well-known Symbol에 대해서는 "30. 7번째 타입 Symbol"에서 자세히 살펴볼 것이다.

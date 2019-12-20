@@ -190,7 +190,7 @@ Object.getOwnPropertyDescriptor 메소드가 반환한 프로퍼티 어트리뷰
 | 프로퍼티 어트리뷰트 | 설명                     | 프로퍼티 디스크립터 객체의 프로퍼티
 |:---------------|:------------------------|:-------
 | [[Value]]      | - 프로퍼티 키로 프로퍼티 값에 접근하면 내부 메소드 [[Get]]에 의해 반환되는 값이다.<br> -	프로퍼티 키로 프로퍼티 값을 저장하면 [[Value]]에 값을 저장한다. 이때 프로퍼티가 없으면 프로퍼티를 생성하고 생성된 프로퍼티의 [[Value]]에 값을 저장한다. | value
-| [[Writable]]   | - 프로퍼티 값의 변경 가능 여부를 나타내며 불리언 값을 갖는다.<br> - [[Writable]]의 값이 false인 경우, 해당 프로퍼티의 [[Value]]의 값을 변경할 수 없다. | writable
+| [[Writable]]   | - 프로퍼티 값의 변경 가능 여부를 나타내며 불리언 값을 갖는다.<br> - [[Writable]]의 값이 false인 경우, 해당 프로퍼티의 [[Value]]의 값을 변경할 수 없는 읽기 전용 프로퍼티가 된다. | writable
 | [[Enumerable]] | - 프로퍼티의 열거 가능 여부를 나타내며 불리언 값을 갖는다.<br> - [[Enumerable]]의 값이 false인 경우, 해당 프로퍼티는 for…in 문이나 Object.keys 메소드 등으로 열거할 수 없다. | enumerable
 | [[Configurable]] | - 프로퍼티의 재정의 가능 여부를 나타내며 불리언 값을 갖는다.<br> - [[Configurable]]의 값이 false인 경우, 해당 프로퍼티의 삭제, 프로퍼티 어트리뷰트 값의 변경이 금지된다. 단, [[Writable]]이 true인 경우, [[Value]]의 변경과 [[Writable]]을 false로 변경하는 것은 허용된다. | configurable
 

@@ -33,7 +33,7 @@ description:
 
 이를 염두에 두고 자바스크립트 개발 환경을 구축하고 자바스크립트를 실행하는 방법에 대해 살펴보자. 자바스크립트를 웹 브라우저에서 실행하는 방법과 Node.js 환경에서 실행하는 방법 그리고 코드 에디터인 비주얼 스튜디오 코드(Visual Studio Code)를 사용하여 브라우저나 Node.js 환경에서 실행하는 방법에 대해 살펴볼 것이다.
 
-# 2.	웹 브라우저
+# 2. 웹 브라우저
 
 다양한 웹 브라우저가 있지만 구글 크롬(Chrome) 브라우저를 사용하기로 하자. 크롬 브라우저는 ECMAScript 사양을 준수하는 것은 물론이고 점유율도 가장 높다. 2019년 9월 현재, 구글 크롬 브라우저의 점유율은 63.7%로 2위인 사파리(16.34%)를 크게 앞서고 있다.
 
@@ -47,183 +47,7 @@ description:
 
 -	[크롬 브라우저 다운로드](https://www.google.com/intl/ko_ALL/chrome)
 
-## 2.1.	웹 브라우저는 어떻게 동작하는가?
-
-구글의 V8 자바스크립트 엔진으로 빌드된 자바스크립트 런타임 환경(Runtime Environment)인 Node.js의 등장으로 자바스크립트는 웹 브라우저를 벗어나 서버 사이드 애플리케이션 개발에서도 사용할 수 있는 범용 개발 언어가 되었다. 하지만 자바스크립트가 가장 많이 사용되는 분야는 역시 웹 브라우저 환경에서 동작하는 웹 페이지/애플리케이션이다.
-
-대부분의 프로그래밍 언어는 운영 체제(Operating System, OS)나 [가상 머신(Virtual machine, VM)](https://ko.wikipedia.org/wiki/가상_머신) 위에서 실행되지만 웹 애플리케이션의 자바스크립트는 브라우저에서 HTML, CSS와 함께 실행된다. 따라서 브라우저 환경을 고려할 때 보다 효율적인 자바스크립트 프로그래밍이 가능하다. 아래 그림을 살펴보자.
-
-![](/assets/fs-images/3-3.png)
-{: .w-650}
-
-웹 브라우저의 동작
-{: .desc-img}
-
-브라우저의 핵심 기능은 사용자가 참조하고자 하는 웹 페이지를 서버에 요청(Request)하고 서버의 응답(Response)을 받아 브라우저에 표시하는 것이다. 브라우저가 웹 페이지를 서버에 요청하면 서버는 HTML, CSS, 자바스크립트, 이미지 파일 등을 응답한다.
-
-렌더링 엔진의 HTML 파서와 CSS 파서는 HTML, CSS 파일을 파싱(Parsing)하여 DOM tree, CSSOM tree를 생성하고 이것들을 결합하여 Render Tree를 생성한다. 이렇게 생성된 Render Tree를 기반으로 브라우저는 웹 페이지를 표시한다.
-
-자바스크립트는 렌더링 엔진이 아닌 자바스크립트 엔진이 처리한다. HTML 파서는 script 태그를 만나면 자바스크립트 코드를 실행하기 위해 DOM 생성 프로세스를 일시 중지하고 자바스크립트 엔진으로 제어 권한을 넘긴다.
-
-제어 권한을 넘겨 받은 자바스크립트 엔진은 script 태그 내의 자바스크립트 코드 또는 script 태그의 src 어트리뷰트에 정의된 자바스크립트 파일을 로드하고 파싱하여 실행한다. 렌더링 엔진이 HTML과 CSS를 파싱하여 DOM tree와 CSSOM tree를 생성하듯이 자바스크립트 엔진은 자바스크립트를 파싱하여 AST(Abstract Syntax Tree, 추상적 구문 트리)를 생성한다. 그리고 AST를 통해 바이트 코드를 생성하여 실행한다.
-
-![](/assets/fs-images/3-4.png)
-{: .w-650}
-
-자바스크립트 엔진의 소스 코드 실행 과정
-{: .desc-img}
-
-- 토크나이징(Tokenizing)
-: 단순한 문자열인 소스 코드를 어휘 분석(Lexical analysis)하여 의미를 갖는 코드의 최소 단위인 토큰(Token)들로 분리한다. 이 과정을 렉싱(Lexing)이라고 부르기도 하지만 토크나이징과 미묘한 차이가 있다.
-
-- 파싱(Parsing)
-: 토큰들의 집합을 구문 분석(Syntactic analysis)하여 AST(Abstract Syntax Tree, 추상적 구문 트리)를 생성한다. AST는 토큰에 문법적 의미와 구조를 반영한 트리 구조의 자료 구조이다.
-
-- 코드 실행
-: 생성된 AST는 인터프리터가 실행할 수 있는 중간 코드(Intermediate code)인 바이트 코드(bytecode)로 변환되고 인터프리터에 의해 실행된다. 참고로 V8 엔진의 경우, 자주 사용되는 코드는 터보팬(TurboFan)이라 불리는 컴파일러에 의해 최적화된 머신 코드(Optimized Machine Code)로 컴파일되어 성능을 최적화한다. 만약 코드의 사용 빈도가 적어지면 다시 디오티마이징(Deoptimizing)하기도 한다.
-
-- AST(Abstract Syntax Tree, 추상적 구문 트리)
-: AST는 인터프리터나 컴파일러만이 사용하는 것은 아니다. AST를 사용하면 TypeScript, Babel, Prettier와 같은 트랜스파일러를 구현할 수도 있다. AST Explorer 웹사이트(https://astexplorer.net)에 방문하면 다양한 오픈 소스 자바스크립트 파서를 사용하여 AST를 생성해 볼 수 있다.<br>
-![](/assets/fs-images/3-5.png)
-{: .w-650}
-
-[AST Explorer](https://astexplorer.net)
-{: .desc-img}
-
-인터프리터에 의해 실행되는 자바스크립트에 HTML 요소를 조작하는 코드가 존재한다면 자바스크립트는 DOM tree 또는 CSSOM tree를 조작하여 수정한다. 수정된 DOM tree 또는 CSSOM tree는 다시 Render tree로 결합되어 브라우저에 웹 페이지를 표시한다.
-
-자바스크립트의 실행이 완료되면 다시 HTML 파서로 제어 권한을 넘겨서 브라우저가 중지했던 시점부터 DOM 생성을 재개한다.
-
-이처럼 브라우저는 동기(Synchronous)적으로, 즉 위에서 아래로 순서대로 HTML, CSS, 자바스크립트를 파싱하고 실행한다. 이것은 script 태그의 위치에 따라 블로킹(예를 들어 HTML 파싱 중에 script 태그를 만나면 HTML 파싱이 일시 중단되고 자바스크립트를 로드하고 파싱하는 것)이 발생하여 DOM tree의 생성이 지연될 수 있다는 것을 의미한다. 따라서 script 태그의 위치는 중요한 의미를 갖는다.
-
-간단한 카운터 예제를 살펴보자. 아래 자바스크립트 코드의 동작에 대해 지금 이해할 필요는 없다. 지금 주목할 것은 script 태그의 위치에 의해 블로킹이 발생하는 것이다.
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Counter</title>
-  <script>
-    // HTML 요소를 선택하는 아래 코드가 실행되는 시점에는 아직 HTML 요소를 파싱하여 DOM 객체로 생성하지 않았다.
-    // 따라서 아래 코드는 HTML 요소를 선택하지 못한다.
-    const $counter = document.getElementById('counter');
-    const $increase = document.getElementById('increase');
-    const $decrease = document.getElementById('decrease');
-
-    // 상태 변수
-    let num = 0;
-    const render = function () { $counter.innerHTML = num; };
-
-    // increase 버튼을 클릭했을 때, num 변수값을 1 증가시켜서 counter 요소에 반영한다.
-    $increase.onclick = function () {
-      num++;
-      render();
-    };
-
-    // decrease 버튼을 클릭했을 때, num 변수값을 1 감소시켜서 counter 요소에 반영한다.
-    $decrease.onclick = function () {
-      num--;
-      render();
-    };
-  </script>
-</head>
-<body>
-  <div id="counter">0</div>
-  <button id="increase">+</button>
-  <button id="decrease">-</button>
-</body>
-</html>
-```
-<div class='result'></div>
-
-head 요소 내부에 script 태그를 위치시키면 렌더링 엔진이 HTML 요소를 파싱하여 DOM tree를 생성하는 과정이 일시 중단되고 자바스크립트 엔진이 자바스크립트 코드를 로드하고 파싱하여 실행한다. 위 예제의 자바스크립트는 DOM tree 내에 존재하는 DOM 요소를 참조한다. 이때 아직 DOM tree에 생성이 완료되지 않은 HTML 요소를 참조하므로 위 예제는 정상적으로 동작하지 않는다.
-
-따라서 body 요소의 가장 아래에 자바스크립트를 위치시키는 것은 좋은 아이디어이다. 그 이유는 아래와 같다.
-- DOM이 완성되지 않은 상태에서 자바스크립트가 DOM을 조작한다면 에러가 발생한다.
-- 스크립트 로딩/파싱/실행 지연으로 인해 HTML 요소들의 렌더링에 지장 받는 일이 발생하지 않아 페이지 로딩 시간이 단축된다.
-
-
-위 예제의 자바스크립트를 body 요소의 가장 아래, 즉 닫는 body 태그 바로 위에 위치시켜 보자.
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Counter</title>
-</head>
-<body>
-  <div id="counter">0</div>
-  <button id="increase">+</button>
-  <button id="decrease">-</button>
-  <script>
-    // 이미 HTML 파서가 HTML 요소를 모두 파싱하여 DOM 객체를 생성하였다.
-    // 따라서 아래 코드는 HTML 요소를 선택할 수 있다.
-    const $counter = document.getElementById('counter');
-    const $increase = document.getElementById('increase');
-    const $decrease = document.getElementById('decrease');
-
-    // 상태 변수
-    let num = 0;
-    const render = function () { $counter.innerHTML = num; };
-
-    // increase 버튼을 클릭했을 때, num 변수값을 1 증가시켜서 counter 요소에 반영한다.
-    $increase.onclick = function () {
-      num++;
-      render();
-    };
-
-    // decrease 버튼을 클릭했을 때, num 변수값을 1 감소시켜서 counter 요소에 반영한다.
-    $decrease.onclick = function () {
-      num--;
-      render();
-    };
-  </script>
-</body>
-</html>
-```
-<div class='result'></div>
-
-자바스크립트가 실행될 때에는 이미 렌더링 엔진이 HTML 요소를 모두 파싱하여 DOM tree를 생성한 이후이다. 자바스크립트가 실행되기 이전에 HTML 요소가 파싱되어 렌더링되므로 페이지 로딩 시간이 단축된다. 또한 DOM tree가 완성되지 않은 상태에서 자바스크립트가 DOM tree를 조작하는 에러가 발생할 우려도 없다.
-
-참고 자료
-{: .title}
-
-- [DOM tree와 CSSOM tree 생성](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model?hl=ko)
-
-- [렌더 트리 생성, 레이아웃 및 페인트](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction?hl=ko)
-
-- [자바스크립트로 상호작용 추가](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/adding-interactivity-with-javascript?hl=ko)
-
-
-script 태그의 async / defer 어트리뷰트
-{: .title}
-
-이와 같이 스크립트 로딩 지연으로 인한 병목 현상을 근본적으로 방지하기 위해 HTML5부터 script 태그에 `async`와 `defer` 어트리뷰트가 추가되었다.
-
-```html
-<script async src="extern.js"></script>
-<script defer src="extern.js"></script>
-```
-
-async
-: 웹페이지 파싱과 외부 스크립트 파일의 다운로드가 동시에 진행된다. 스크립트는 다운로드 완료 직후 실행된다. IE9 이하 버전은 지원하지 않는다.
-
-defer
-: 웹페이지 파싱과 외부 스크립트 파일의 다운로드가 동시에 진행된다. 스크립트는 웹페이지 파싱 완료 직후 실행된다. IE9 이하 버전에서 정상적으로 동작하지 않을 수 있다.
-
-![script-execution](/img/script-execution.jpg)
-{: .w-650}
-
-script 태그의 async, defer 어트리뷰트 (출처: [Peter Beverloo](http://peter.sh/experiments/asynchronous-and-deferred-javascript-execution-explained/))
-{: .desc-img}
-
-async와 defer 어트리뷰트는 웹페이지 파싱과 외부 스크립트 파일의 다운로드가 동시에 진행된다는 면에서는 동일하다. 하지만 스크립트의 실행 시점이 다르다.
-
-<!-- - [script의 async와 defer 속성](https://blog.asamaru.net/2017/05/04/script-async-defer/) -->
-
-## 2.2.	개발자 도구
+## 2.1.	개발자 도구
 
 크롬 브라우저가 제공하는 개발자 도구(DevTools)는 웹 개발에 필수적인 강력한 도구이다. 개발자 도구는 브라우저에 기본 내장되어 있으므로 별도로 설치할 필요가 없다. 개발자 도구는 아래의 단축키로 오픈할 수 있다.
 
@@ -247,7 +71,7 @@ async와 defer 어트리뷰트는 웹페이지 파싱과 외부 스크립트 파
 | Network	 | 로딩된 웹 페이지에 관련한 네트워크 요청(request) 정보와 퍼포먼스를 확인할 수 있다.
 | Application	| 웹 스토리지, 세션, 쿠키를 확인하고 관리할 수 있다.
 
-## 2.3.	콘솔
+## 2.2.	콘솔
 
 개발자 도구의 Console(콘솔) 패널은 자바스크립트 코드에서 에러가 발생하여 애플리케이션이 정상적으로 동작하지 않을 때 가장 우선적으로 살펴보아야 할 곳이다. 구현 단계에서는 에러가 빈번하게 발생하므로 항상 콘솔을 열어둔 상태에서 개발을 진행하는 것이 좋다. 콘솔을 열어두지 않으면 에러가 발생했는지 조차 알 수 없는 경우가 있다.
 
@@ -281,9 +105,11 @@ Console 패널에서 자바스크립트 코드 줄바꿈
 에러 출력
 {: .desc-img}
 
-## 2.4.	HTML에 포함된 자바스크립트를 웹 브라우저에서 실행
+## 2.3. 브라우저에서 자바스크립트 실행
 
-브라우저는 HTML 파일을 로드하면 script 태그에 포함한 자바스크립트 코드를 실행한다. 만약 자바스크립트 코드 내에서 console.log 함수가 호출되었다면 콘솔에 실행 결과가 출력될 것이다. 아래와 같이 자바스크립트가 포함된 HTML 파일을 생성하고 브라우저로 실행시켜 보자.
+브라우저는 HTML 파일을 로드하면 script 태그에 포함된 자바스크립트 코드를 실행한다. 만약 자바스크립트 코드 내에서 console.log 함수가 호출되었다면 콘솔에 실행 결과가 출력될 것이다.
+
+아래와 같이 자바스크립트가 포함된 HTML 파일을 생성하고 브라우저로 실행시켜 보자. 지금은 아래 코드에 대해 이해할 필요가 없다. 지금 주목할 것은 HTML에 포함된 자바스크립트를 브라우저에서 실행하는 방법이다.
 
 ```html
 <!DOCTYPE html>
@@ -330,7 +156,7 @@ Console 패널에서 자바스크립트 코드 줄바꿈
 
 에러가 발생하기는 했으나 HTML 파일에 포함된 자바스크립트가 실행된 것은 확인하였다. 다음은 디버깅에 대해 살펴보자.
 
-## 2.5.	디버깅
+## 2.4.	디버깅
 
 에러 정보의 오른쪽에 에러 발생 위치를 나타내는 링크를 클릭해보자. 자바스크립트 코드를 디버깅을 할 수 있는 Sources 패널로 이동할 것이다.
 
@@ -352,7 +178,7 @@ $counter의 값이 null인 것을 확인했다. 그 원인은 13 라인에서 $c
 
 콘솔과 디버깅에 대한 보다 자세한 내용은 구글의 [Tools for Web Developers: 콘솔 사용](https://developers.google.com/web/tools/chrome-devtools/console/?hl=ko)과 [Tools for Web Developers: Chrome DevTools에서 자바스크립트 디버깅 시작하기](https://developers.google.com/web/tools/chrome-devtools/javascript/?hl=ko)를 참고하기 바란다.
 
-# 3.	Node.js
+# 3. Node.js
 
 클라이언트 사이드, 즉 웹 브라우저에서 동작하는 간단한 웹 애플리케이션은 브라우저만으로도 개발을 할 수 있다. 하지만 프로젝트의 규모가 커짐에 따라 React, jQuery와 같은 외부 라이브러리를 도입하거나 Babel, Webpack, ESLint 등 여러 가지 도구를 사용해야 할 필요가 있다. 이때 Node.js와 npm이 필요하다.
 
@@ -375,9 +201,9 @@ Node.js를 설치하기 위해 Node.js의 웹사이트 [http://nodejs.org](http:
 Node.js 웹사이트
 {: .desc-img}
 
-Node.js 웹사이트에 접속하면 두 개의 다운로드 버튼이 보이는데 왼쪽은 LTS 버전, 오른쪽은 Current 버전을 다운로드할 수 있다. LTS(Long Term Supported) 버전은 장기적으로 안정된 지원이 보장된다. Current 버전은 최신 기능을 제공하지만 업데이트가 발생하고 있는 버전으로 안정적이지 않을 수 있다. 따라서 LTS 버전을 다운로드하도록 하자.
+Node.js 웹사이트에 접속하면 두 개의 다운로드 버튼이 보이는데 왼쪽은 LTS 버전, 오른쪽은 Current 버전을 다운로드할 수 있다. LTS(Long Term Supported) 버전은 장기적으로 안정된 지원이 보장된다. Current 버전은 최신 기능을 제공하지만 업데이트가 발생하고 있는 버전으로 안정적이지 않을 수 있다. 실제 서버 환경이라면 LTS 버전을 설치하는 것이 좋지만 학습을 위해 최신 기능을 제공하는 Current 버전을 다운로드하도록 하자.
 
-"12.11.1 Current Latest Features" 버튼을 클릭하면 사용자의 운영체제에 적합한 설치 파일을 다운로드하여 설치할 수 있다. 이때 npm도 동시에 설치된다. Node.js는 아래의 디렉터리에 설치된다. 버전에 따라 설치 장소는 바뀔 수 있다.
+"13.1.0 Current Latest Features" 버튼을 클릭하면 사용자의 운영체제에 적합한 설치 파일을 다운로드하여 설치할 수 있다. 이때 npm도 동시에 설치된다. Node.js는 아래의 디렉터리에 설치된다. 버전에 따라 설치 장소는 바뀔 수 있다.
 
 - Windows : C:\Program Files\nodejs\node.exe
 - Mac : /usr/local/bin/node
@@ -386,9 +212,9 @@ Node.js 웹사이트에 접속하면 두 개의 다운로드 버튼이 보이는
 
 ```bash
 $ node -v
-v12.11.1
+v13.1.0
 $ npm -v
-6.11.3
+6.12.1
 ```
 
 ## 3.3.	Node.js REPL
@@ -402,7 +228,7 @@ $ node
 프롬프트가 >로 변경되면 자바스크립트 코드를 실행해 볼 수 있다.
 
 ```bash
-Welcome to Node.js v12.11.1.
+Welcome to Node.js v13.1.0.
 Type ".help" for more information.
 > 1 + 2
 3

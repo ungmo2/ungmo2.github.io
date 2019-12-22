@@ -155,6 +155,35 @@ Hello World
 undefined
 ```
 
+객체 이름과 마침표를 입력하고 탭키를 입력하면 객체의 프로퍼티를 확인할 수도 있다.
+
+```bash
+> Object.
+Object.__defineGetter__           Object.__defineSetter__
+Object.__lookupGetter__           Object.__lookupSetter__
+Object.__proto__                  Object.hasOwnProperty
+Object.isPrototypeOf              Object.propertyIsEnumerable
+Object.toLocaleString             Object.valueOf
+
+Object.apply                      Object.arguments
+Object.bind                       Object.call
+Object.caller                     Object.constructor
+Object.toString
+
+Object.assign                     Object.create
+Object.defineProperties           Object.defineProperty
+Object.entries                    Object.freeze
+Object.fromEntries                Object.getOwnPropertyDescriptor
+Object.getOwnPropertyDescriptors  Object.getOwnPropertyNames
+Object.getOwnPropertySymbols      Object.getPrototypeOf
+Object.is                         Object.isExtensible
+Object.isFrozen                   Object.isSealed
+Object.keys                       Object.length
+Object.name                       Object.preventExtensions
+Object.prototype                  Object.seal
+Object.setPrototypeOf             Object.values
+```
+
 Node.js 파일을 실행하려면 node 명령어 뒤에 파일명을 입력한다. 파일 확장자 .js는 생략할 수 있다.
 
 ```bash

@@ -19,6 +19,9 @@ description:
 
 예를 들어 브라우저는 파싱된 HTML 요소를 선택하거나 조작하는 기능들의 집합인 DOM API를 기본적으로 제공한다. 하지만 서버 개발 환경을 제공하는 것이 주 목적인 Node.js는 DOM API를 제공하지 않는다. 서버에서는 HTML 요소를 파싱하여 객체화한 DOM(Document Object Model)을 직접 다룰 필요가 없기 때문이다.
 
+웹 크롤링
+: 서버에서 웹사이트의 컨텐츠를 수집하기 위해 웹사이트에서 HTML 문서를 가져온 다음, 가공하여 필요한 데이터만을 추출하는 경우도 있다. 이를 웹 크롤링(web crawling)이라 한다. 서버 환경은 DOM API를 제공하지 않으므로 [cheerio](https://cheerio.js.org)와 같은 DOM 라이브러리를 사용하여 HTML 문서를 가공하기도 한다.
+
 반대로 Node.js에서는 파일을 create/read/update/delete할 수 있는 File 시스템을 기본 제공하지만 브라우저는 이를 지원하지 않는다. (Web API인 [FileReader 객체](https://blog.teamtreehouse.com/reading-files-using-the-html5-filereader-api)를 사용해 사용자가 지정한 파일을 읽어 들이는 것은 가능하다.)
 
 웹 애플리케이션의 자바스크립트는 사용자 컴퓨터의 브라우저에서 동작한다. 만약 브라우저를 통해 다운로드되어 실행되는 자바스크립트가 사용자 컴퓨터의 로컬 파일을 삭제하거나 수정하고 생성할 수 있다면 이는 사용자 컴퓨터가 악성 코드에 그대로 노출된 것과 마찬가지다. 따라서 보안 상 이유로 Web API에서는 File 시스템을 제공하지 않는다.

@@ -45,13 +45,13 @@ DELETE /todos/1
 
 주로 5가지의 Method(GET, POST, PUT, PATCH, DELETE)를 사용하여 CRUD를 구현한다.
 
-| Method | Action         | 역할
-|:-------|:---------------|--------------------
-| GET    | index/retrieve | 모든/특정 리소스를 조회
-| POST   | create         | 리소스를 생성
-| PUT    | update all     | **리소스의 전체를 갱신**
-| PATCH  | update         | **리소스의 일부를 갱신**
-| DELETE | delete         | 리소스를 삭제
+| Method | Action         | 역할                 | 페이로드
+|:-------|:---------------|:--------------------|:-----:
+| GET    | index/retrieve | 모든/특정 리소스를 조회   | x
+| POST   | create         | 리소스를 생성           | ○
+| PUT    | replace        | **리소스의 전체를 교체** | ○
+| PATCH  | modify         | **리소스의 일부를 수정** | ○
+| DELETE | delete         | 모든/특정 리소스를 삭제   | x
 
 # 3. REST API의 구성
 

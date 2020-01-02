@@ -787,15 +787,25 @@ console.log(sum(1));    // 1
 console.log(sum(1, 2)); // 3
 ```
 
-ES6에서는 매개변수 기본값을 사용하여 함수 내에서 수행하던 인수 체크 및 초기화를 간소화할 수 있다. 매개변수 기본값은 매개변수에 인수를 전달하지 않았을 경우에만 유효하다.
+ES6에서는 매개변수 기본값을 사용하여 함수 내에서 수행하던 인수 체크 및 초기화를 간소화할 수 있다. 매개변수 기본값은 매개변수에 인수를 전달하지 않았을 경우와 undefined를 전달한 경우에만 유효하다.
 
 ```javascript
 function sum(x = 0, y = 0) {
   return x + y;
 }
 
-console.log(sum(1));    // 1
+console.log(sum(1)); // 1
 console.log(sum(1, 2)); // 3
+console.log(sum(1, undefined)); // 1
+```
+
+앞서 살펴본 Rest 파라미터에는 기본값을 지정할 수 없다.
+
+```javascript
+function foo(...rest = []) {
+  console.log(rest);
+}
+// SyntaxError: Rest parameter may not have a default initializer
 ```
 
 매개변수 기본값은 함수 정의 시 선언한 매개변수 개수를 나타내는 함수 객체의 length 프로퍼티와 arguments 객체에 영향을 주지 않는다.

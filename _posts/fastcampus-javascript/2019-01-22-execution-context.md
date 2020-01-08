@@ -637,7 +637,7 @@ if (true) {
 console.log(x); // 1
 ```
 
-if 문이 실행되면 if 문의 블록 레벨 스코프를 생성해야 한다. 이를 위해 if 문을 위한 선언적 환경 레코드를 갖는 렉시컬 환경을 새롭게 생성하여 기존의 전역 렉시컬 환경을 교체한다. 이때 새롭게 생성된 if 문을 위한 렉시컬 환경의 외부 렉시컬 환경에 대한 참조는 교체된 이전의 전역 렉시컬 환경을 가리킨다. ([ES6 Spec: Block Evaluation](https://tc39.es/ecma262/#sec-block-runtime-semantics-evaluation) 참고)
+if 문이 실행되면 if 문의 블록 레벨 스코프를 생성해야 한다. 이를 위해 if 문을 위한 선언적 환경 레코드를 갖는 렉시컬 환경을 새롭게 생성하여 기존의 전역 렉시컬 환경을 교체한다. 이때 새롭게 생성된 if 문을 위한 렉시컬 환경의 외부 렉시컬 환경에 대한 참조는 교체된 이전의 전역 렉시컬 환경을 가리킨다. ([ES6 Spec: Block Evaluation](https://www.ecma-international.org/ecma-262/10.0/#sec-block-runtime-semantics-evaluation) 참고)
 
 ![](/assets/fs-images/22-29.png)
 {: .w-700 }

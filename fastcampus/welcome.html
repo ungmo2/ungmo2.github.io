@@ -1,0 +1,93 @@
+---
+layout: fs-default
+title: Fasctcampus Front-end School
+description: Fasctcampus Frontend School
+route: index
+---
+
+<!-- TEST -->
+<button class="signout" style="background-color: transparent;color: transparent;border: 0;">
+  signout
+</button>
+<script>
+  document.querySelector('.signout').onclick = () => {
+    firebase.auth().signOut()
+      .then(() => {
+        location.href = '/fastcampus';
+      })
+      .catch(console.log);
+  };
+</script>
+<!-- TEST -->
+
+<div class="index-title">Fastcampus Frontend School</div>
+<section class="toc-component">
+  <div class="container">
+    <!-- <article class="toc-section toc-section--javascript">
+        <div class="toc-heading">
+          <i class="devicon-javascript-plain"></i>
+          <h3>JavaScript Basics</h3>
+          <small><span>{{ site.categories.fastcampus-js-basics | size }}</span> lessons</small>
+        </div>
+        <ol class="toc-content">
+        {% assign counter = 0 %}
+        {% for post in site.categories.fastcampus-js-basics reversed %}
+          {% assign counter = counter | plus: 1 %}
+            <li class="toc-month">
+              <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
+            </li>
+        {% endfor %}
+        </ol>
+      </article> -->
+
+    <article class="toc-section toc-section--es6">
+      <div class="toc-heading">
+        <i class="devicon-javascript-plain"></i>
+        <h3>JavaScript</h3>
+        <small><span>{{ site.categories.fastcampus | size }}</span> lessons</small>
+      </div>
+      <ol class="toc-content">
+      {% assign counter = 0 %}
+      {% for post in site.categories.fastcampus reversed %}
+        {% assign counter = counter | plus: 1 %}
+          <li class="toc-month">
+            <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
+          </li>
+      {% endfor %}
+      </ol>
+    </article>
+    <!-- <article class="toc-section toc-section--javascript">
+      <div class="toc-heading">
+        <i class="devicon-angularjs-plain"></i>
+        <h3>Angular</h3>
+        <small><span>{{ site.categories.fastcampus-angular | size }}</span> lessons</small>
+      </div>
+      <ol class="toc-content">
+      {% assign counter = 0 %}
+      {% for post in site.categories.fastcampus-angular reversed %}
+        {% assign counter = counter | plus: 1 %}
+          <li class="toc-month">
+            <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
+          </li>
+      {% endfor %}
+      </ol>
+    </article>
+    -->
+    <article class="toc-section toc-section--express">
+      <div class="toc-heading">
+        <i class="devicon-nodejs-plain"></i>
+        <h3>Exercise</h3>
+        <small><span>{{ site.categories.fastcampus-exercise | size }}</span> lessons</small>
+      </div>
+      <ol class="toc-content">
+      {% assign counter = 0 %}
+      {% for post in site.categories.fastcampus-exercise reversed %}
+        {% assign counter = counter | plus: 1 %}
+          <li class="toc-month">
+            <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
+          </li>
+      {% endfor %}
+      </ol>
+    </article>
+  </div>
+</section>

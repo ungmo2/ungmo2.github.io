@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Signin</title>
+  <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-auth.js"></script>
+  <script src="/javascript/init-firebase.js"></script>
+  <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900&subset=latin,latin-ext'>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="signin-container">
+    <div class="title">SIGNIN</div>
+    <div class="input-container">
+      <input type="text" id="signin-email" required>
+      <label for="signin-email">email</label>
+      <span class="bar"></span>
+    </div>
+    <div class="input-container">
+      <input type="password" id="signin-password" required>
+      <label for="signin-password">Password</label>
+      <span class="bar"></span>
+    </div>
+    <div class="signin-message"></div>
+    <button class="signin" disabled>GO</button>
+    <!-- <div class="reset-password">Forgot your password?</div> -->
+  </div>
+  <div class="reset-password-container">
+    <div class="title">REST PASSWORD</div>
+    <div class="input-container">
+      <input type="text" id="reset-email" required>
+      <label for="reset-email">email</label>
+      <span class="bar"></span>
+    </div>
+    <div class="reset-message"></div>
+    <button class="reset" disabled>RESET</button>
+  </div>
+  <script>
+  const $signinButton = document.querySelector('.signin');
+  const $email = document.getElementById('signin-email');
+  const $password = document.getElementById('signin-password');
+  const $message = document.querySelector('.signin-message');
+
+  const signinFormStatus = {
+    email: false,
+    password: false,
+    dispatchEvent() {
+      $signinButton.dispatchEvent(
+        new CustomEvent('signinFormStatusChange', { detail: { valid: this.email && this.password } })
+      );
+    }
+  };
+
+  $email.oninput = (() => {
+    const regexr = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+    return ({ target }) => {
+      const valid = regexr.test(target.value);
+      if (signinFormStatus.email === valid) return;
+      signinFormStatus.email = valid;
+      signinFormStatus.dispatchEvent();
+    };
+  })();
+
+  $password.oninput = ({ target }) => {
+    const valid = target.value.length > 5;
+    if (signinFormStatus.password === valid) return;
+    signinFormStatus.password = valid;
+    signinFormStatus.dispatchEvent();
+  };
+
+  $signinButton.addEventListener('signinFormStatusChange', ({ target, detail }) => {
+    target.disabled = !detail.valid;
+  });
+
+  // signin by firebase
+  $signinButton.onclick = () => {
+    $message.textContent = '';
+    firebase.auth().signInWithEmailAndPassword($email.value, $password.value)
+      .then(() => {
+        location.href = '/fastcampus/welcome';
+      })
+      .catch(error => {
+        console.error('[error.message]: ' + error.message + '\n[error.code]: ' + error.code);
+        $message.textContent = error.message;
+      });
+  };
+  </script>
+</body>
+</html>

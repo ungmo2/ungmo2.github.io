@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html class="route-{{ page.route }} route-{{ page.layout }}{% if page.section %} section-{{ page.section }}{% endif %}">
   <head>
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-auth.js"></script>
+    <script src="/javascript/init-firebase.js"></script>
+    <script src="/javascript/auth.js"></script>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-
     <title>{{ page.title | strip_html }} | {{ site.name }}</title>
-
     <link rel="icon" href="https://poiemaweb.com/img/poiemaweb.jpg">
     <link rel="stylesheet" href="/assets/vendor/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/assets/vendor/devicon/devicon.min.css">
     <link rel="stylesheet" href="/assets/vendor/codemirror/codemirror.css">
     <link rel="stylesheet" href="/assets/vendor/codemirror/theme/dracula.css">
     <link rel="stylesheet" href="/css/main.css?{{site.time | date: '%s%N'}}">
-  <body>
+  <body style="display: none;">
     <div class="page-hero"></div>
     <div class="page-body">
       {{ content }}

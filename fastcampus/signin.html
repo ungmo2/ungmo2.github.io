@@ -39,54 +39,56 @@
     <button class="reset" disabled>RESET</button>
   </div>
   <script>
-  const $signinButton = document.querySelector('.signin');
-  const $email = document.getElementById('signin-email');
-  const $password = document.getElementById('signin-password');
-  const $message = document.querySelector('.signin-message');
+    const $signinButton = document.querySelector('.signin');
+    const $email = document.getElementById('signin-email');
+    const $password = document.getElementById('signin-password');
+    const $message = document.querySelector('.signin-message');
 
-  const signinFormStatus = {
-    email: false,
-    password: false,
-    dispatchEvent() {
-      $signinButton.dispatchEvent(
-        new CustomEvent('signinFormStatusChange', { detail: { valid: this.email && this.password } })
-      );
-    }
-  };
-
-  $email.oninput = (() => {
-    const regexr = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
-    return ({ target }) => {
-      const valid = regexr.test(target.value);
-      if (signinFormStatus.email === valid) return;
-      signinFormStatus.email = valid;
-      signinFormStatus.dispatchEvent();
+    const signinFormStatus = {
+      email: false,
+      password: false,
+      get valid() {
+        return this.email && this.password;
+      }
     };
-  })();
 
-  $password.oninput = ({ target }) => {
-    const valid = target.value.length > 5;
-    if (signinFormStatus.password === valid) return;
-    signinFormStatus.password = valid;
-    signinFormStatus.dispatchEvent();
-  };
+    $email.oninput = (() => {
+      const regexr = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+      return ({ target }) => {
+        const valid = regexr.test(target.value);
+        if (signinFormStatus.email === valid) return;
+        signinFormStatus.email = valid;
+        $signinButton.disabled = !signinFormStatus.valid;
+      };
+    })();
 
-  $signinButton.addEventListener('signinFormStatusChange', ({ target, detail }) => {
-    target.disabled = !detail.valid;
-  });
+    $password.oninput = ({ target }) => {
+      const valid = target.value.length > 5;
+      if (signinFormStatus.password === valid) return;
+      signinFormStatus.password = valid;
+      $signinButton.disabled = !signinFormStatus.valid;
+    };
 
-  // signin by firebase
-  $signinButton.onclick = () => {
-    $message.textContent = '';
-    firebase.auth().signInWithEmailAndPassword($email.value, $password.value)
-      .then(() => {
-        location.href = '/fastcampus/welcome';
-      })
-      .catch(error => {
-        console.error('[error.message]: ' + error.message + '\n[error.code]: ' + error.code);
-        $message.textContent = error.message;
-      });
-  };
+    const clickHandle = () => {
+      $message.textContent = '';
+      // signin by firebase
+      firebase.auth().signInWithEmailAndPassword($email.value, $password.value)
+        .then(() => {
+          location.href = '/success.html';
+        })
+        .catch(error => {
+          console.error('[error.message]: ' + error.message + '\n[error.code]: ' + error.code);
+          $message.textContent = error.message;
+        });
+    };
+
+    const enterHandle = ({ keyCode }) => {
+      if (keyCode === 13 && signinFormStatus.valid) clickHandle();
+    };
+
+    $email.onkeyup = enterHandle;
+    $password.onkeyup = enterHandle;
+    $signinButton.onclick = clickHandle;
   </script>
 </body>
 </html>

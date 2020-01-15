@@ -39,6 +39,22 @@ route: index
         {% endfor %}
         </ol>
       </article> -->
+    <article class="toc-section toc-section--mongodb">
+      <div class="toc-heading">
+        <i class="devicon-mongodb-plain"></i>
+        <h3>Orientation</h3>
+        <small><span>{{ site.categories.fastcampus-orientation | size }}</span> lessons</small>
+      </div>
+      <ol class="toc-content">
+      {% assign counter = 0 %}
+      {% for post in site.categories.fastcampus-orientation reversed %}
+        {% assign counter = counter | plus: 1 %}
+          <li class="toc-month">
+            <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
+          </li>
+      {% endfor %}
+      </ol>
+    </article>
 
     <article class="toc-section toc-section--es6">
       <div class="toc-heading">

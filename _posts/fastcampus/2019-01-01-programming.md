@@ -129,9 +129,3 @@ console.log(number * number); // NaN
 프로그래밍 언어가 제공하는 문법을 적절히 사용하여 변수를 통해 값을 저장하고 참조하며 연산자로 값을 연산, 평가하고 조건문과 반복문에 의한 흐름제어로 코드의 실행 순서를 제어하고 함수로 재사용이 가능한 문의 집합을 만들며 객체, 배열 등으로 자료를 구조화한다.
 
 **결국 프로그래밍은 요구사항의 집합을 분석하여 적절한 자료구조와 함수의 집합으로 변환한 후, 그 흐름을 제어하는 것이다.**
-
-# Reference
-
-* [Why Learning to Code is So Damn Hard](https://www.vikingcodeschool.com/posts/why-learning-to-code-is-so-damn-hard)
-
-* [Web development roadmap 2019](https://github.com/kamranahmedse/developer-roadmap)

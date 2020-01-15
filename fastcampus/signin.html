@@ -74,7 +74,7 @@
       // signin by firebase
       firebase.auth().signInWithEmailAndPassword($email.value, $password.value)
         .then(() => {
-          location.href = '/success.html';
+          location.href = '/fastcampus/welcome';
         })
         .catch(error => {
           console.error('[error.message]: ' + error.message + '\n[error.code]: ' + error.code);

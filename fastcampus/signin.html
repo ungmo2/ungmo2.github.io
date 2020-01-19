@@ -73,9 +73,7 @@
       $message.textContent = '';
       // signin by firebase
       firebase.auth().signInWithEmailAndPassword($email.value, $password.value)
-        .then(() => {
-          location.href = '/fastcampus/welcome';
-        })
+        .then(() => { location.href = '/fastcampus'; })
         .catch(error => {
           console.error('[error.message]: ' + error.message + '\n[error.code]: ' + error.code);
           $message.textContent = error.message;

@@ -190,10 +190,10 @@ console.log(person.sayHello());
 
 이때 트랜스파일링된 person.js의 자바스크립트 버전은 ES3이다. 이는 TypeScript 컴파일 타겟 자바스크립트 기본 버전이 ES3이기 때문이다.
 
-만약, 자바스크립트 버전을 변경하려면 컴파일 옵션에 `--target` 또는 `-t`를 사용한다. 현재 tsc가 지원하는 자바스크립트 버전은 ES3, ES5, ES6(ES2015), ES2016, ES2017(ESNext)이다. 예를 들어, ES6 버전으로 트랜스파일링을 실행하려면 아래와 같이 옵션을 추가한다.
+만약, 자바스크립트 버전을 변경하려면 컴파일 옵션에 `--target` 또는 `-t`를 사용한다. 현재 tsc가 지원하는 자바스크립트 버전은 'ES3'(default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ESNEXT'이다. 예를 들어, ES6 버전으로 트랜스파일링을 실행하려면 아래와 같이 옵션을 추가한다.
 
 ```bash
-$ tsc person -t es6
+$ tsc person -t ES2015
 ```
 
 ```javascript
@@ -217,7 +217,38 @@ $ node person
 Hello, Lee
 ```
 
-여러 개의 TypeScript 파일을 한번에 트랜스파일링할 수도 있다. 상속 관계에 있는 두 개의 TypeScript class를 작성해보자.
+매번 옵션을 지정하는 것은 번거로우므로 tsc 옵션 설정 파일을 생성하도록 하자.
+
+```bash
+$ tsc --init
+message TS6071: Successfully created a tsconfig.json file.
+```
+
+아래와 같이 tsc 옵션 설정 파일인 tsconfig.json이 생성된다.
+
+```json
+{
+  "compilerOptions": {
+    /* Basic Options */
+    // "incremental": true,                   /* Enable incremental compilation */
+    "target": "es5",                          /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019' or 'ESNEXT'. */
+    "module": "commonjs",                     /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
+    // "lib": [],
+```
+
+**tsc 명령어 뒤에 파일명을 지정하면 tsconfig.json이 무시되므로 주의하기 바란다.**
+
+```bash
+$ tsc person # ✘ tsconfig.json이 무시된다.
+```
+
+tsconfig.json을 적용하려면 아래와 같이 트랜스파일링하도록 한다.
+
+```bash
+$ tsc
+```
+
+위와 같이 파일명을 지정하지 않으면 프로젝트 폴더 내의 모든 TypeScript 파일이 모두 트랜스파일링된다. 상속 관계에 있는 두 개의 TypeScript class를 작성해보자.
 
 ```typescript
 // person.ts
@@ -252,16 +283,7 @@ console.log(student.study());
 코드 작성을 마쳤으면 다음 명령으로 두 개의 TypeScript 파일을 한번에 트랜스파일링한다.
 
 ```bash
-$ tsc person student
-$ node student
-Hello, Lee
-Lee is studying.
-```
-
-또는 와일드카드를 사용하여 모든 TypeScript 파일을 한꺼번에 트랜스파일링할 수도 있다.
-
-```bash
-$ tsc *.ts
+$ tsc
 $ node student
 Hello, Lee
 Lee is studying.
@@ -270,8 +292,17 @@ Lee is studying.
 `--watch` 또는 `-w` 옵션을 사용하면 트랜스파일링 대상 파일의 내용이 변경되었을 때 이를 감지하여 자동으로 트랜스파일링이 실행된다.
 
 ```bash
-$ tsc student --watch
+$ tsc --watch
 21:23:30 - Compilation complete. Watching for file changes.
+```
+
+또는 아래와 같이 tsconfig.json에 watch 옵션을 추가할 수도 있다.
+
+```json
+{
+  // ...
+  "watch": true
+}
 ```
 
 student.ts를 변경해 watch 기능이 동작하는지 확인해 보자.
@@ -295,8 +326,9 @@ console.log(student.study());
 아래와 같이 파일 변경이 감지되고 자동으로 트랜스파일링이 실행된다.
 
 ```bash
-21:24:39 - File change detected. Starting incremental compilation...
-21:24:39 - Compilation complete. Watching for file changes.
+[오전 12:40:06] File change detected. Starting incremental compilation...
+
+[오전 12:40:07] Found 0 errors. Watching for file changes.
 ```
 
 ```bash

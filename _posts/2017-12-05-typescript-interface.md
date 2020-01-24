@@ -20,25 +20,6 @@ description: 인터페이스는 일반적으로 타입 체크를 위해 사용�
 
 인터페이스는 프로퍼티와 메소드를 가질 수 있다는 점에서 클래스와 유사하나 직접 인스턴스를 생성할 수 없고 모든 메소드는 추상 메소드이다. 단, 추상 클래스의 추상 메소드와 달리 abstract 키워드를 사용하지 않는다.
 
-<!-- # Interface 상속
-
-인터페이스는 extends 키워드를 사용하여 상속이 가능하다.
-
-```typescript
-interface IPerson {
-  name: string;
-}
-
-interface IStudent extends IPerson {
-  grade: number;
-}
-
-const person: IStudent =  {
-  name: 'Lee',
-  grade: 3
-}
-``` -->
-
 # 2. 변수와 인터페이스
 
 인터페이스는 변수의 타입으로 사용할 수 있다. 이때 인터페이스를 타입으로 선언한 변수는 해당 인터페이스를 준수하여야 한다. 이것은 새로운 타입을 정의하는 것과 유사하다.
@@ -245,6 +226,66 @@ console.log(userInfo);
 ```
 
 이렇게 선택적 프로퍼티를 사용하면 사용 가능한 프로퍼티를 파악할 수 있어서 코드를 이해하기 쉬워진다.
+
+# 7. 인터페이스 상속
+
+인터페이스는 extends 키워드를 사용하여 인터페이스 또는 클래스를 상속받을 수 있다.
+
+```typescript
+interface Person {
+  name: string;
+  age?: number;
+}
+
+interface Student extends Person {
+  grade: number;
+}
+
+const student: Student =  {
+  name: 'Lee',
+  age: 20,
+  grade: 3
+}
+```
+
+복수의 인터페이스를 상속받을 수도 있다.
+
+```typescript
+interface Person {
+  name: string;
+  age?: number;
+}
+
+interface Developer {
+  skills: string[];
+}
+
+interface WebDeveloper extends Person, Developer {}
+
+const webDeveloper: WebDeveloper =  {
+  name: 'Lee',
+  age: 20,
+  skills: ['HTML', 'CSS', 'JavaScript']
+}
+```
+
+인터페이스는 인터페이스 뿐만 아니라 클래스도 상속받을 수 있다. 단, 클래스의 모든 멤버(public, protected, private)가 상속되지만 구현까지 상속하지는 않는다.
+
+```typescript
+class Person {
+  constructor(public name: string, public age: number) {}
+}
+
+interface Developer extends Person {
+  skills: string[];
+}
+
+const developer: Developer =  {
+  name: 'Lee',
+  age: 20,
+  skills: ['HTML', 'CSS', 'JavaScript']
+}
+```
 
 # Reference
 

@@ -436,6 +436,40 @@ false && 'Dog'  // false
 'Cat' && false  // false
 ```
 
+단축 평가를 사용하면 아래와 같이 간단한 if문을 대체할 수 있다.
+
+```javascript
+var x = true;
+var res;
+
+// x가 true로 평가되면 res에 1을 할당
+if (x) res = 1;
+console.log(res); // 1
+
+x = false;
+// x가 false로 평가되면 res에 2를 할당
+if (!x) res = 2;
+console.log(res); // 2
+```
+
+위 예제는 아래와 같이 단축 평가를 통해 표현할 수 있다.
+
+```javascript
+var x = true;
+var res;
+
+// x가 true로 평가되면 res에 1이 할당된다.
+// if (x) res = 1;과 동일하게 동작한다
+res = x && 1;
+console.log(res); // value
+
+x = false;
+// x가 false로 평가되면 res에 2가 할당된다.
+// if (!x) res = 2;와 동일하게 동작한다
+res = x || 2;
+console.log(res); // value
+```
+
 단축 평가는 아래와 같은 상황에서 유용하게 사용된다. 아직 살펴보지 않은 객체와 함수에 대한 내용이 나와서 혼란스러울 수 있겠다. 지금은 아래와 같은 단축 평가의 유용한 패턴이 있다는 정도로 이해하고 넘어가도 좋다. 객체와 함수에 대해서는 해당 장에서 자세히 살펴볼 것이다.
 
 -	객체가 null인지 확인하고 프로퍼티를 참조할 때

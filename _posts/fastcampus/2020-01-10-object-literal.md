@@ -110,7 +110,7 @@ symbol 값도 프로퍼티 키로 사용할 수 있지만 일반적으로 문자
 ```javascript
 var person = {
   firstName: 'Ung-mo', // 유효한 이름
-  'last-name': 'Lee'    // 유효하지 않은 이름
+  'last-name': 'Lee'   // 유효하지 않은 이름
 };
 
 console.log(person); // {firstName: "Ung-mo", last-name: "Lee"}
@@ -121,11 +121,11 @@ console.log(person); // {firstName: "Ung-mo", last-name: "Lee"}
 ```javascript
 var person = {
   firstName: 'Ung-mo',
-  last-name: 'Lee'  // SyntaxError: Unexpected token -
+  last-name: 'Lee' // SyntaxError: Unexpected token -
 };
 ```
 
-문자열 또는 타입 변환을 통해 문자열로 평가할 수 있는 표현식을 사용해 프로퍼티 키를 동적으로 생성할 수도 있다. 이 경우에는 프로퍼티 키로 사용할 표현식을 대괄호([…])로 묶어야 한다. 이를 계산된 프로퍼티 이름(Computed Property name)이라고 한다.
+문자열 또는 타입 변환을 통해 문자열로 평가할 수 있는 표현식을 사용해 프로퍼티 키를 동적으로 생성할 수도 있다. 이 경우에는 프로퍼티 키로 사용할 표현식을 대괄호([…])로 묶어야 한다. 이를 계산된 프로퍼티 이름(Computed Property name, ["10.9.2. 프로퍼티 키 동적 생성"](/fastcampus/object-literal#92-프로퍼티-키-동적-생성) 참고)이라고 한다.
 
 ```javascript
 var obj = {};
@@ -138,8 +138,6 @@ obj[key] = 'world';
 
 console.log(obj); // {hello: "world"}
 ```
-
-계산된 프로퍼티 이름에 대해서는 ["10.9.2. 프로퍼티 키 동적 생성"](/fastcampus/object-literal#92-프로퍼티-키-동적-생성)을 참고하도록 하자.
 
 빈 문자열을 프로퍼티 키로 사용해도 에러가 발생하지는 않는다. 하지만 키로서의 의미를 갖지 못하므로 권장하지 않는다.
 
@@ -187,7 +185,7 @@ console.log(foo); // {name: "Kim"}
 
 # 4. 메소드
 
-자바스크립트에서 사용할 수 있는 모든 값을 프로퍼티 값으로 사용할 수 있다고 했다. 아직 살펴보지 않았지만 자바스크립트의 함수는 객체(일급 객체, First-class object)이다. 따라서 함수는 값으로 취급할 수 있으며 프로퍼티의 값이 될 수 있다.
+자바스크립트에서 사용할 수 있는 모든 값을 프로퍼티 값으로 사용할 수 있다고 했다. 아직 살펴보지 않았지만 자바스크립트의 함수는 객체([일급 객체](/fastcampus/first-class-object#1-일급-객체), First-class object)이다. 따라서 함수는 값으로 취급할 수 있으며 프로퍼티의 값이 될 수 있다.
 
 프로퍼티 값이 함수일 경우, 일반 함수와 구분하기 위해 메소드(Method)라 부른다. 즉, 메소드는 객체에 제한되어 있는 함수를 의미한다. 함수는 다음 장에서 자세히 살펴볼 것이다.
 
@@ -204,7 +202,7 @@ var circle = {
 console.log(circle.getDiameter());  // 10
 ```
 
-메소드 내부에서 사용한 this 키워드는 객체 자신(위 예제에서는 circle 객체)을 가리키는 참조변수이다. 이에 대해서는 "21. this"에서 자세히 살펴볼 것이다.
+메소드 내부에서 사용한 this 키워드는 객체 자신(위 예제에서는 circle 객체)을 가리키는 참조변수이다. 이에 대해서는 ["22. this"](/fastcampus/this)에서 자세히 살펴볼 것이다.
 
 # 5. 프로퍼티 접근
 
@@ -226,7 +224,7 @@ console.log(person.name); // Lee
 console.log(person['name']); // Lee
 ```
 
-대괄호 표기법을 사용하는 경우, **대괄호 내부에 지정하는 프로퍼티 키는 반드시 따옴표로 감싼 문자열이어야 한다.** 자바스크립트 엔진은 대괄호 내의 따옴표로 감싸지 않은 이름을 프로퍼티 키로 인식하지 않고 식별자로 취급한다.
+대괄호 표기법을 사용하는 경우, **대괄호 내부에 지정하는 프로퍼티 키는 반드시 따옴표로 감싼 문자열이어야 한다.** 대괄호 내의 따옴표로 감싸지 않은 이름을 프로퍼티 키로 사용하면 자바스크립트 엔진은 식별자로 해석한다.
 
 ```javascript
 var person = {
@@ -236,7 +234,7 @@ var person = {
 console.log(person[name]); // ReferenceError: name is not defined
 ```
 
-위 예제에서 ReferenceError가 발생한 이유는 대괄호 내의 따옴표로 감싸지 않은 이름, 즉 식별자 name을 평가하기 위해 찾았지만 선언된 name을 찾지 못했기 때문이다.
+위 예제에서 ReferenceError가 발생한 이유는 대괄호 내의 따옴표로 감싸지 않은 이름, 즉 식별자 name을 평가하기 위해 선언된 name을 찾았지만 찾지 못했기 때문이다.
 
 객체에 존재하지 않는 프로퍼티에 접근하면 undefined를 반환한다. 이때 ReferenceError가 발생하지 않는 것에 주의하자.
 
@@ -268,11 +266,11 @@ console.log(person[1]);    // 10 : person[1] -> person['1']
 console.log(person['1']);  // 10
 ```
 
-여기서 퀴즈를 하나 풀어보자. 위 예제에서 `console.log(person.last-name);`의 실행 결과는 Node.js 환경에서 ReferenceError: name is not defined이고 브라우저에서는 NaN이다. 이유는 무엇인가?
+여기서 퀴즈를 하나 풀어보자. 위 예제에서 `console.log(person.last-name);`의 실행 결과는 Node.js 환경에서 ReferenceError: name is not defined이고 브라우저 환경에서는 NaN이다. 이유는 무엇인가?
 
-자바스크립트 엔진은 먼저 person.last를 평가한다. 평가 결과는 undefined이다. 그 이유는 person 객체에는 프로퍼티 키가 last인 프로퍼티가 없기 때문이다. 객체에 존재하지 않는 프로퍼티에 접근하면 undefined를 반환한다. 따라서 `person.last-name`는 표현식으로 `undefined - name`과 같다. 다음으로 자바스크립트 엔진은 name이라는 식별자를 찾는다. 이때 name은 프로퍼티 키가 아니라 식별자인 것에 주의하자.
+자바스크립트 엔진은 먼저 person.last를 평가한다. 평가 결과는 undefined이다. person 객체에는 프로퍼티 키가 last인 프로퍼티가 없기 때문에 평가 결과는 undefined이다. 따라서 `person.last-name`는 `undefined - name`과 같다. 다음으로 자바스크립트 엔진은 name이라는 식별자를 찾는다. 이때 name은 프로퍼티 키가 아니라 식별자로 해석되는 것에 주의하자.
 
-Node.js 환경에서는 현재 어디에도 name이라는 식별자(변수, 함수 등의 이름) 선언이 없으므로 ReferenceError: name is not defined이라고 에러가 발생한다. 그런데 브라우저에서는 name이라는 전역 변수가 존재한다. 전역 변수 name은 창(window)의 이름을 가리키며 기본값은 빈문자열이다. 따라서 `person.last-name`는 표현식으로 `undefined - ''`과 같으므로 NaN이 된다.
+Node.js 환경에서는 현재 어디에도 name이라는 식별자(변수, 함수 등의 이름) 선언이 없으므로 ReferenceError: name is not defined이라고 에러가 발생한다. 그런데 그런데 브라우저 환경에서는 name이라는 전역 변수가 자바스크립트 엔진에 의해 암묵적으로 존재한다. 전역 변수 name은 창(window)의 이름을 가리키며 기본값은 빈문자열이다. 따라서 `person.last-name`는 `undefined - ''`과 같으므로 NaN이 된다.
 
 # 6. 프로퍼티 값 갱신
 
@@ -364,7 +362,7 @@ console.log(obj); // {x: 1, y: 2}
 
 문자열 또는 문자열로 변환 가능한 값을 반환하는 표현식을 사용해 프로퍼티 키를 동적으로 생성할 수 있다. 단, 프로퍼티 키로 사용할 표현식을 대괄호([…])로 묶어야 한다. 이를 계산된 프로퍼티 이름(Computed property name)이라 한다.
 
-ES5에서 프로퍼티 키를 동적으로 생성하려면 객체 리터럴 외부에서 대괄호([…]) 표기법을 사용해야 한다.
+ES5에서 계산된 프로퍼티 이름으로 프로퍼티 키를 동적 생성하려면 객체 리터럴 외부에서 대괄호([…]) 표기법을 사용해야 한다.
 
 ```javascript
 // ES5
@@ -381,7 +379,7 @@ obj[prefix + '-' + ++i] = i;
 console.log(obj); // {prop-1: 1, prop-2: 2, prop-3: 3}
 ```
 
-ES6에서는 객체 리터럴 내부에서도 프로퍼티 키를 동적으로 생성할 수 있다.
+ES6에서는 객체 리터럴 내부에서도 계산된 프로퍼티 이름으로 프로퍼티 키를 동적 생성할 수 있다.
 
 ```javascript
 // ES6
@@ -429,4 +427,4 @@ const obj = {
 obj.sayHi(); // Hi! Lee
 ```
 
-ES6의 메소드 축약 표현으로 정의한 메소드는 프로퍼티에 할당한 함수와 다르게 동작한다. 이에 대해서는 "26.2 메소드"에서 자세히 살펴보도록 하자.
+ES6의 메소드 축약 표현으로 정의한 메소드는 프로퍼티에 할당한 함수와 다르게 동작한다. 이에 대해서는 ["26.2 메소드"](/fastcampus/es6-function#2-메소드)에서 자세히 살펴보도록 하자.

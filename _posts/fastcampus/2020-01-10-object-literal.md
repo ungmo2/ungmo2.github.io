@@ -20,14 +20,14 @@ description:
 자바스크립트의 객체는 키(key)과 값(value)으로 구성된 프로퍼티(Property)들의 집합이다.
 
 ![](/assets/fs-images/10-1.png)
-{: .w-450}
+{: .w-350}
 객체는 프로퍼티의 집합이며 프로퍼티는 키(key)과 값(value)으로 구성된다.
 {: .desc-img}
 
 자바스크립트에서 사용할 수 있는 모든 값은 프로퍼티 값이 될 수 있다. 자바스크립트의 함수는 일급 객체(["18.1. 일급 객체"](/fastcampus/first-class-object#1-일급-객체) 참고)이므로 값으로 취급할 수 있다. 따라서 프로퍼티 값으로 함수를 사용할 수도 있다. 프로퍼티 값이 함수일 경우, 일반 함수와 구분하기 위해 메소드(Method)라 부른다.
 
 ![](/assets/fs-images/10-2.png)
-{: .w-450}
+{: .w-400}
 객체의 프로퍼티와 메소드
 {: .desc-img}
 
@@ -93,8 +93,8 @@ console.log(typeof empty); // object
 var person = {
   // 프로퍼티 키는 name, 프로퍼티 값은 'Lee'
   name: 'Lee',
-  // 프로퍼티 키는 gender, 프로퍼티 값은 'male'
-  gender: 'male'
+  // 프로퍼티 키는 age, 프로퍼티 값은 20
+  age: 20
 };
 ```
 

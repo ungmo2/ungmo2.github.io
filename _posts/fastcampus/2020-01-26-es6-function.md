@@ -128,6 +128,14 @@ Object.prototype.hasOwnProperty.call(obj.foo, 'prototype'); // -> false
 Object.prototype.hasOwnProperty.call(obj.bar, 'prototype'); // -> true
 ```
 
+참고로 표준 빌드인 객체의 메소드는 모두 non-constructor이다.
+
+```javascript
+console.log(String.prototype.toUpperCase.prototype); // undefined
+console.log(Number.prototype.toFixed.prototype); // undefined
+console.log(Array.prototype.map.prototype); // undefined
+```
+
 ES6 메소드는 메소드가 바인딩된 객체를 가리키는 내부 슬롯 [[HomeObject]]를 갖는다. super 참조는 내부 슬롯 [[HomeObject]]를 사용하여 수퍼 클래스의 메소드를 참조하므로 내부 슬롯 [[HomeObject]]를 갖는 ES6 메소드 만이 super 키워드를 사용할 수 있다.
 
 ```javascript

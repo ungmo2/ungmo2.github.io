@@ -457,7 +457,7 @@ function bar() {
   return 'caller : ' + bar.caller;
 }
 
-console.log(foo(bar)); // function foo(func) {...}
+console.log(foo(bar)); // caller : function foo(func) {...}
 console.log(bar());    // null (browser에서의 실행 결과)
 ```
 

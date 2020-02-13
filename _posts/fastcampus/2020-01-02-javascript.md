@@ -53,7 +53,7 @@ if (el.addEventListener) {
 | ES1     | 1997   | 초판
 | ES2     | 1998	 | ISO/IEC 16262 국제 표준과 동일한 규격을 적용
 | ES3     | 1999	 | 정규 표현식, try...catch 예외 처리
-| ES5	    | 2009	 | HTML5와 함께 출현한 표준안. JSON, strict mode, 접근자 프로퍼티(getter, setter), 향상된 배열 조작 기능(forEach, map, filter, reduce, some, every)
+| ES5	    | 2009	 | HTML5와 함께 출현한 표준안. JSON, strict mode, 접근자 프로퍼티, 프로퍼티 어트리뷰트 제어, 향상된 배열 조작 기능(forEach, map, filter, reduce, some, every)
 | ES6(ECMAScript 2015) | 2015	| let, const, class, 화살표 함수, 템플릿 리터럴, 디스트럭처링 할당, 스프레드 문법, rest 파라미터, Symbol, Promise, Map/Set, iterator, for...of, generator, Proxy, module import/export
 | ES7(ECMAScript 2016) | 2016 | 지수(**) 연산자, Array.prototype.includes, String.prototype.includes
 | ES8(ECMAScript 2017) | 2017	| async/await, Object 정적 메소드(Object.values, Object.entries, Object.getOwnPropertyDescriptors)

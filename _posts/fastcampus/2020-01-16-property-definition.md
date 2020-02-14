@@ -22,13 +22,13 @@ description:
 [내부 슬롯과 내부 메소드](http://ecma-international.org/ecma-262/10.0/#sec-object-internal-methods-and-internal-slots)
 {: .desc-img}
 
-내부 슬롯과 내부 메소드는 정의된 사양대로 자바스크립트 엔진에 구현되어 자바스크립트 엔진에서 실제로 동작하지만 외부로 공개된 객체의 프로퍼티는 아니다. 즉, 내부 슬롯과 내부 메소드는 자바스크립트 엔진의 내부 동작이므로 원칙적으로 자바스크립트는 내부 슬롯과 내부 메소드에 직접적으로 접근하거나 호출할 수 있는 방법을 제공하지 않는다. 단, 일부 내부 슬롯과 내부 메소드에 한하여 간접적으로 접근할 수 있는 수단을 제공하기는 한다.
+내부 슬롯과 내부 메소드는 ECMAScript 사양에 정의된 대로 구현되어 자바스크립트 엔진에서 실제로 동작하지만 외부로 공개된 객체의 프로퍼티는 아니다. 즉, 내부 슬롯과 내부 메소드는 자바스크립트 엔진의 내부 로직이므로 원칙적으로 자바스크립트는 내부 슬롯과 내부 메소드에 직접적으로 접근하거나 호출할 수 있는 방법을 제공하지 않는다. 단, 일부 내부 슬롯과 내부 메소드에 한하여 간접적으로 접근할 수 있는 수단을 제공하기는 한다.
 
 # 2. 프로퍼티 어트리뷰트와 프로퍼티 디스크립터 객체
 
 자바스크립트 엔진은 프로퍼티를 생성할 때, 프로퍼티의 상태를 나타내는 프로퍼티 어트리뷰트를 기본값으로 자동 정의한다. 프로퍼티의 상태란 프로퍼티의 값(value), 값의 갱신 가능 여부(writable), 열거 가능 여부(enumerable), 재정의 가능 여부(configurable)를 말한다.
 
-프로퍼티 어트리뷰트는 자바스크립트 엔진이 관리하는 내부 상태 값인 내부 슬롯이므로 직접 접근할 수 없지만, Object.getOwnPropertyDescriptor 메소드를 사용하여 간접적으로 확인할 수 있다.
+프로퍼티 어트리뷰트는 자바스크립트 엔진이 관리하는 내부 상태 값(meta-property)인 내부 슬롯([[Value]], [[Writable]], [[Enumerable]], [[Configurable]])이다. 따라서 프로퍼티 어트리뷰트에 직접 접근할 수 없지만, Object.getOwnPropertyDescriptor 메소드를 사용하여 간접적으로 확인할 수는 있다.
 
 ```javascript
 const person = {
@@ -40,7 +40,7 @@ console.log(Object.getOwnPropertyDescriptor(person, 'name'));
 // {value: "Lee", writable: true, enumerable: true, configurable: true}
 ```
 
-Object.getOwnPropertyDescriptor 메소드는 첫번째 매개변수에 객체의 참조를 전달하고 두번째 매개변수에 프로퍼티 키를 문자열로 전달한다. 이때 Object.getOwnPropertyDescriptor 메소드는 프로퍼티 어트리뷰트 정보를 제공하는 프로퍼티 디스크립터(PropertyDescriptor) 객체를 반환한다. 존재하지 않는 프로퍼티나 상속받은 프로퍼티에 대한 프로퍼티 디스크립터를 요구하면 undefined가 반환된다.
+Object.getOwnPropertyDescriptor 메소드를 호출할 때, 첫번째 매개변수에는 객체의 참조를 전달하고 두번째 매개변수에는 프로퍼티 키를 문자열로 전달한다. 이때 Object.getOwnPropertyDescriptor 메소드는 프로퍼티 어트리뷰트 정보를 제공하는 프로퍼티 디스크립터(PropertyDescriptor) 객체를 반환한다. 만약 존재하지 않는 프로퍼티나 상속받은 프로퍼티에 대한 프로퍼티 디스크립터를 요구하면 undefined가 반환된다.
 
 Object.getOwnPropertyDescriptor 메소드는 하나의 프로퍼티에 대해 프로퍼티 디스크립터 객체를 반환하지만 ES8에서 도입된 Object.getOwnPropertyDescriptors 메소드는 모든 프로퍼티의 프로퍼티 어트리뷰트 정보를 제공하는 프로퍼티 디스크립터 객체들을 반환한다.
 
@@ -173,7 +173,7 @@ console.log(descriptor);
 // {get: ƒ, set: ƒ, enumerable: true, configurable: true}
 ```
 
-person 객체의 firstName과 lastName 프로퍼티는 일반적인 데이터 프로퍼티다. 메소드 앞에 get, set이 붙은 메소드가 있는데 이것들이 바로 getter와 setter 함수이고 getter/setter 함수의 이름 fullName이 접근자 프로퍼티이다. 접근자 프로퍼티는 자체적으로 값([[Value]] 프로퍼티 어트리뷰트)을 가지지 않으며 다만 데이터 프로퍼티의 값을 읽거나 저장할 때 관여할 뿐이다.
+person 객체의 firstName과 lastName 프로퍼티는 일반적인 데이터 프로퍼티다. 메소드 앞에 get, set이 붙은 메소드가 있는데 이것들이 바로 getter와 setter 함수이고 getter/setter 함수의 이름 fullName이 접근자 프로퍼티이다. 접근자 프로퍼티는 자체적으로 값(프로퍼티 어트리뷰트 [[Value]])을 가지지 않으며 다만 데이터 프로퍼티의 값을 읽거나 저장할 때 관여할 뿐이다.
 
 이를 내부 슬롯/메소드 관점에서 설명하면 다음과 같다. 접근자 프로퍼티 fullName으로 프로퍼티 값에 접근하면 내부적으로 [[Get]] 내부 메소드가 호출되어 아래와 같이 동작한다.
 
@@ -212,7 +212,7 @@ Object.getOwnPropertyDescriptor 메소드가 반환한 프로퍼티 어트리뷰
 
 # 4. 프로퍼티 정의
 
-프로퍼티 정의란 새로운 프로퍼티를 생성하면서 프로퍼티 어트리뷰트를 명시적으로 정의하거나, 기존 프로퍼티의 프로퍼티 어트리뷰트를 재정의하는 것을 말한다. .예를 들어 프로퍼티 값을 갱신 가능하도록 할 것인지, 프로퍼티를 열거 가능하도록 할 것인지, 프로퍼티를 재정의 가능하도록 할 것인지 정의할 수 있다. 이를 통해 객체의 프로퍼티가 어떻게 동작해야 하는지를 명확히 정의할 수 있다.
+프로퍼티 정의란 새로운 프로퍼티를 추가하면서 프로퍼티 어트리뷰트를 명시적으로 정의하거나, 기존 프로퍼티의 프로퍼티 어트리뷰트를 재정의하는 것을 말한다. .예를 들어 프로퍼티 값을 갱신 가능하도록 할 것인지, 프로퍼티를 열거 가능하도록 할 것인지, 프로퍼티를 재정의 가능하도록 할 것인지 정의할 수 있다. 이를 통해 객체의 프로퍼티가 어떻게 동작해야 하는지를 명확히 정의할 수 있다.
 
 Object.defineProperty 메소드를 사용하면 프로퍼티의 어트리뷰트를 정의할 수 있다. 인수는 객체의 참조와 데이터 프로퍼티의 키인 문자열 그리고 프로퍼티 디스크립터 객체를 전달한다.
 
@@ -246,13 +246,13 @@ console.log('lastName', descriptor);
 console.log(Object.keys(person)); // ["firstName"]
 
 // [[Writable]]의 값이 false인 경우, 해당 프로퍼티의 [[Value]]의 값을 변경할 수 없다.
-// 에러는 발생하지 않고 무시된다.
 // lastName 프로퍼티는 [[Writable]]의 값이 false이므로 값을 변경할 수 없다.
+// 이때 값을 변경하면 에러는 발생하지 않고 무시된다.
 person.lastName = 'Kim';
 
 // [[Configurable]]의 값이 false인 경우, 해당 프로퍼티를 삭제할 수 없다.
-// 에러는 발생하지 않고 무시된다.
 // lastName 프로퍼티는 [[Configurable]]의 값이 false이므로 삭제할 수 없다.
+// 이때 프로퍼티를 삭제하면 에러는 발생하지 않고 무시된다.
 delete person.lastName;
 
 // [[Configurable]]의 값이 false인 경우, 해당 프로퍼티를 재정의할 수 없다.
@@ -266,11 +266,11 @@ console.log('lastName', descriptor);
 // 접근자 프로퍼티 정의
 Object.defineProperty(person, 'fullName', {
   // getter 함수
-  get: function () { // === get() {
-    return this.firstName + ' ' + this.lastName;
+  get() {
+    return `${this.firstName} ${this.lastName}`;
   },
   // setter 함수
-  set: function (name) { // === set(name) {
+  set(name) {
     [this.firstName, this.lastName] = name.split(' ');
   },
   enumerable: true,
@@ -285,7 +285,7 @@ person.fullName = 'Heegun Lee';
 console.log(person); // {firstName: "Heegun", lastName: "Lee"}
 ```
 
-Object.defineProperty 메소드로 프로퍼티 정의할 때 프로퍼티 디스크립터 객체의 프로퍼티를 일부 누락할 수 있다. 프로퍼티 디스크립터 객체에서 누락된 어트리뷰트는 아래와 같이 기본값이 적용된다.
+Object.defineProperty 메소드로 프로퍼티 정의할 때 프로퍼티 디스크립터 객체의 프로퍼티를 일부 생략할 수 있다. 프로퍼티 디스크립터 객체에서 생략된 어트리뷰트는 아래와 같이 기본값이 적용된다.
 
 | 프로퍼티 디스크립터 객체의 프로퍼티 | 대응하는 프로퍼티 어트리뷰트 | 디스크립터 객체의 프로퍼티 누락 시의 기본값
 |:---------------------------|:----------------------|:-----
@@ -318,11 +318,11 @@ Object.defineProperties(person, {
   // 접근자 프로퍼티 정의
   fullName: {
     // getter 함수
-    get: function () {
-      return this.firstName + ' ' + this.lastName;
+    get() {
+      return `${this.firstName} ${this.lastName}`;
     },
     // setter 함수
-    set: function (name) {
+    set(name) {
       [this.firstName, this.lastName] = name.split(' ');
     },
     enumerable: true,

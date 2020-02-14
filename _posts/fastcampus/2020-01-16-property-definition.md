@@ -338,9 +338,7 @@ console.log(person); // {firstName: "Heegun", lastName: "Lee"}
 
 객체는 변경 가능한 값이므로 재할당없이 직접 변경이 가능하다. 즉, 프로퍼티를 추가하거나 삭제할 수 있고, 프로퍼티의 값을 갱신할 수 있으며 Object.defineProperty 또는 Object.defineProperties 메소드를 사용하여 프로퍼티 어트리뷰트를 재정의할 수도 있다.
 
-자바스크립트는 객체의 변경을 방지할 수 있는 다양한 메소드를 제공한다. 이 메소드들은 얕은 변경 방지(Shallow only)로 중첩 객체에 영향을 주지는 못하고 직속 프로퍼티에만 영향을 준다. 객체의 깊은 변경 방지를 구현하려면 재귀적으로 모든 프로퍼티에 대해 변경을 방지해야 한다.
-
-객체 변경 방지 메소드들은 객체의 변경을 금지하는 강도가 다르다.
+자바스크립트는 객체의 변경을 방지할 수 있는 다양한 메소드를 제공한다. 객체 변경 방지 메소드 들은 객체의 변경을 금지하는 강도가 다르다.
 
 | 구분 | 메소드 | 프로퍼티 추가 | 프로퍼티 삭제 | 프로퍼티 값 읽기 | 프로퍼티 값 쓰기 | 프로퍼티 어트리뷰트 재정의
 |:----|:-----|:----------:|:----------:|:----------:|:----------:|:----------:|
@@ -463,4 +461,60 @@ console.log(person); // {name: "Lee"}
 // 프로퍼티 어트리뷰트 재정의가 금지된다.
 Object.defineProperty(person, 'name', { value: 'Kim' });
 // TypeError: Cannot redefine property: name
+```
+
+## 5.4. 불변 객체
+
+지금까지 살펴본 변경 방지 메소드들은 얕은 변경 방지(Shallow only)로 직속 프로퍼티만 변경이 방지되고 중첩 객체까지는 영향을 주지는 못하다. 따라서 Object.freeze 메소드로 객체를 동결하여도 중첩 객체까지 동결할 수 없다.
+
+```javascript
+const person = {
+  name: 'Lee',
+  address: { city: 'Seoul' }
+};
+
+// 얕은 객체 동결
+Object.freeze(person);
+
+console.log(Object.isFrozen(person)); // true
+// 중첩 객체까지 동결하지 못한다.
+console.log(Object.isFrozen(person.address)); // false
+
+person.address.city = 'Busan';
+console.log(person); // {name: "Lee", address: {city: "Busan"}}
+```
+
+객체의 중첩 객체까지 동결하여 읽기 전용의 변경이 불가능한 불변 객체를 구현하려면 객체를 값으로 갖는 모든 프로퍼티에 대해 재귀적으로 Object.freeze 메소드를 호출해야 한다.
+
+```javascript
+function deepFreeze(obj) {
+  // 객체가 아니거나 동결된 객체는 무시하고 객체이고 동결되지 않은 객체만 동결한다.
+  if (typeof obj === 'object' && !Object.isFrozen(obj)) {
+    /*
+      모든 프로퍼티를 순회하며 재귀적으로 동결한다.
+      Object.keys 메소드는 객체 자신의 열거 가능한 프로퍼티 키를 배열로 반환한다.
+      ("19.15.2. Object.keys/values/entries 메소드" 참고)
+      forEach 메소드는 배열을 순회하며 배열의 각 요소에 대하여 콜백 함수를 실행한다.
+      ("27.9.2. Array.prototype.forEach" 참고)
+    */
+    Object.keys(obj).forEach(key => deepFreeze(obj[key]));
+    Object.freeze(obj);
+  }
+  return obj;
+}
+
+const person = {
+  name: 'Lee',
+  address: { city: 'Seoul' }
+};
+
+// 깊은 객체 동결
+deepFreeze(person);
+
+console.log(Object.isFrozen(person)); // true
+// 중첩 객체까지 동결한다.
+console.log(Object.isFrozen(person.address)); // true
+
+person.address.city = 'Busan';
+console.log(person); // {name: "Lee", address: {city: "Seoul"}}
 ```

@@ -487,10 +487,10 @@ console.log(person); // {name: "Lee", address: {city: "Busan"}}
 객체의 중첩 객체까지 동결하여 변경이 불가능한 읽기 전용의 불변 객체(immutable object, ["12.6. 참조에 의한 전달과 외부 상태의 변경"](/fastcampus/function#6-참조에-의한-전달과-외부-상태의-변경) 참고)를 구현하려면 객체를 값으로 갖는 모든 프로퍼티에 대해 재귀적으로 Object.freeze 메소드를 호출해야 한다.
 
 ```javascript
-function deepFreeze(obj) {
+function deepFreeze(target) {
   // 객체가 아니거나 동결된 객체는 무시하고 객체이고 동결되지 않은 객체만 동결한다.
-  if (obj && typeof obj === 'object' && !Object.isFrozen(obj)) {
-    Object.freeze(obj);
+  if (target && typeof target === 'object' && !Object.isFrozen(target)) {
+    Object.freeze(target);
     /*
       모든 프로퍼티를 순회하며 재귀적으로 동결한다.
       Object.keys 메소드는 객체 자신의 열거 가능한 프로퍼티 키를 배열로 반환한다.
@@ -498,9 +498,9 @@ function deepFreeze(obj) {
       forEach 메소드는 배열을 순회하며 배열의 각 요소에 대하여 콜백 함수를 실행한다.
       ("27.9.2. Array.prototype.forEach" 참고)
     */
-    Object.keys(obj).forEach(key => deepFreeze(obj[key]));
+    Object.keys(target).forEach(key => deepFreeze(target[key]));
   }
-  return obj;
+  return target;
 }
 
 const person = {

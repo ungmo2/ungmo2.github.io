@@ -1709,7 +1709,7 @@ for (const value of arr) {
 
 객체 자신의 프로퍼티만을 열거하기 위해서는 for…in 문을 사용하는 것 보다 Object.keys/values/entries 메소드를 사용하는 것을 권장한다.
 
-Object.keys 메소드는 객체 자신의 열거 가능한 프로퍼티 키를 배열로 반환한다.
+Object.keys 메소드는 객체 자신의 열거 가능한(enumerable) 프로퍼티 키를 배열로 반환한다.
 
 ```javascript
 const person = {

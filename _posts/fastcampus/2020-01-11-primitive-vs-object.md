@@ -217,17 +217,26 @@ var copy = score;
 따라서 객체는 원시 값과는 다른 방식으로 동작하도록 디자인되어 있다. 원시 값과의 비교를 통해 객체를 이해해 보도록 하자.
 
 <dl>
-  <dt>자바스크립트의 객체 관리 방식</dt>
+  <dt>자바스크립트 객체의 관리 방식</dt>
   <dd>
-    <p>Java와 같은 클래스 기반 객체 지향 프로그래밍 언어는 사전에 정의된 클래스에 기반하여 객체(인스턴스)를 생성한다. 다시 말해, 객체를 생성하기 이전에 이미 프로퍼티와 메소드가 정해져 있으며 그대로 객체를 생성한다. 객체가 생성된 이후에는 프로퍼티를 삭제하거나 추가할 수 없다. 하지만 자바스크립트는 클래스없이 객체를 생성할 수 있으며 객체가 생성된 이후라도 동적으로 프로퍼티와 메소드를 추가할 수 있다.</p>
-    <p>이러한 이유로 대부분의 모던 자바스크립트 엔진은 객체의 프로퍼티 값의 위치를 메모리에 저장하기 위해 해시 함수 기반의 유사 딕셔너리 구조(dictionary-like structure)를 사용한다.</p>
-    <p class="w-300"><img src="/assets/fs-images/11-6.png" alt=""></p>
-    <p class="desc-img">딕셔너리와 리스트</p>
-    <p>이는 이론적으로 Java와 같은 클래스 기반 객체 지향 프로그래밍 언어의 객체 관리 방식보다 더 비용이 많이 드는 비효율적인 방식이다. 따라서 V8 자바스크립트 엔진은 히든 클래스(hidden class)라는 방식을 사용한다. 히든 클래스는 Java와 같이 고정된 객체 레이아웃(클래스)과 유사하게 동작한다.</p>
+    <p>자바스크립트 객체는 프로퍼티 키를 인덱스로 사용하는 <a href="https://ko.wikipedia.org/wiki/해시_테이블">해시 테이블</a>(hash table, 해시 테이블은 <a href="https://ko.wikipedia.org/wiki/연관_배열">연관 배열</a>, map, dictionary, lookup table이라고 부르기도 한다)이라고 생각할 수 있다.</p>
+    <p class="w-350"><img src="/assets/fs-images/11-6.png" alt=""></p>
+    <p class="desc-img"><a href="https://ko.wikipedia.org/wiki/해시_테이블">해시 테이블</a></p>
+    <p>Java, C++과 같은 클래스 기반 객체 지향 프로그래밍 언어는 사전에 정의된 클래스에 기반하여 객체(인스턴스)를 생성한다. 다시 말해, 객체를 생성하기 이전에 이미 프로퍼티와 메소드가 정해져 있으며 그대로 객체를 생성한다. 객체가 생성된 이후에는 프로퍼티를 삭제하거나 추가할 수 없다. 하지만 자바스크립트는 클래스없이 객체를 생성할 수 있으며 객체가 생성된 이후라도 동적으로 프로퍼티와 메소드를 추가할 수 있다.</p>
+    <p>이는 이론적으로 클래스 기반 객체 지향 프로그래밍 언어의 객체보다 생성과 프로퍼티 접근에  비용이 더 많이 드는 비효율적인 방식이다. 따라서 대부분의 자바스크립트 엔진은 해시 테이블과 유사하지만 보다 높은 성능을 위해 해시 테이블보다 나은 방법으로 객체를 구현한다. V8 자바스크립트 엔진의 경우, 프로퍼티에 접근하기 위해 동적 탐색(dynamic lookup) 대신 <strong>히든 클래스</strong>(Hidden class, 아래 아티클 참고)라는 방식을 사용해 C++ 객체의 프로퍼티에 접근하는 정도의 성능을 보장한다. 히든 클래스는 Java와 같이 고정된 객체 레이아웃(클래스)과 유사하게 동작한다.</p>
     <p>크롬 V8 자바스크립트 엔진이 객체를 어떻게 관리하는지에 대해 관심이 있다면 아래의 아티클을 참고하기 바란다.</p>
     <ul>
       <li>
         <a href="https://v8.dev/blog/fast-properties">Fast properties in V8</a>
+      </li>
+      <li>
+        <a href="https://engineering.linecorp.com/ko/blog/v8-hidden-class">V8의 히든 클래스 이야기</a>
+      </li>
+      <li>
+        <a href="https://meetup.toast.com/posts/78">자바스크립트 엔진의 최적화 기법 (2) - Hidden class, Inline Caching</a>
+      </li>
+      <li>
+        <a href="http://thibaultlaurens.github.io/javascript/2013/04/29/how-the-v8-engine-works">How the V8 engine works?</a>
       </li>
       <li>
         <a href="https://blog.sessionstack.com/how-javascript-works-inside-the-v8-engine-5-tips-on-how-to-write-optimized-code-ac089e62b12e">How JavaScript works: inside the V8 engine + 5 tips on how to write optimized code</a>

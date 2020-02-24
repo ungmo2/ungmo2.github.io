@@ -17,14 +17,14 @@ description:
 
 원시 타입은 단 하나의 값만을 나타내지만 객체 타입(object / reference type)은 다양한 타입의 값(원시 값 또는 다른 객체)들을 하나의 단위로 구성한 복합적인 자료 구조(Data structure)이다. 또한 **원시 타입의 값, 즉 원시 값은 변경 불가능한 값(immutable value)이지만 객체 타입의 값, 즉 객체는 변경 가능한 값(mutable value)이다.** 이에 대해서는 다음 장 ["11. 원시 값과 객체의 비교"](/fastcampus/primitive-vs-object)에서 자세히 살펴볼 것이다.
 
-자바스크립트의 객체는 키(key)과 값(value)으로 구성된 프로퍼티(Property)들의 집합이다.
+객체는 0개 이상의 프로퍼티의 집합이며 프로퍼티는 키(key)와 값(value)으로 구성된다.
 
 ![](/assets/fs-images/10-1.png)
 {: .w-350}
-객체는 프로퍼티의 집합이며 프로퍼티는 키(key)과 값(value)으로 구성된다.
+객체는 프로퍼티의 집합이다.
 {: .desc-img}
 
-자바스크립트에서 사용할 수 있는 모든 값은 프로퍼티 값이 될 수 있다. 자바스크립트의 함수는 일급 객체(["18.1. 일급 객체"](/fastcampus/first-class-object#1-일급-객체) 참고)이므로 값으로 취급할 수 있다. 따라서 프로퍼티 값으로 함수를 사용할 수도 있다. 프로퍼티 값이 함수일 경우, 일반 함수와 구분하기 위해 메소드(Method)라 부른다.
+자바스크립트에서 사용할 수 있는 모든 값은 프로퍼티 값이 될 수 있다. 자바스크립트의 함수는 일급 객체(["18.1. 일급 객체"](/fastcampus/first-class-object#1-일급-객체) 참고)이므로 값으로 취급할 수 있다. 따라서 함수도 프로퍼티 값으로 사용할 수 있다. 프로퍼티 값이 함수일 경우, 일반 함수와 구분하기 위해 메소드(method)라 부른다.
 
 ![](/assets/fs-images/10-2.png)
 {: .w-400}
@@ -87,7 +87,7 @@ console.log(typeof empty); // object
 
 # 3. 프로퍼티
 
-**객체는 프로퍼티(Property)들의 집합이며 프로퍼티는 키(key)과 값(value)으로 구성된다.** 프로퍼티를 나열할 때는 쉼표(,)로 구분한다. 일반적으로 마지막 프로퍼티 뒤에는 쉼표를 사용하지 않으나 사용해도 좋다.
+**객체는 프로퍼티(Property)들의 집합이며 프로퍼티는 키(key)와 값(value)으로 구성된다.** 프로퍼티를 나열할 때는 쉼표(,)로 구분한다. 일반적으로 마지막 프로퍼티 뒤에는 쉼표를 사용하지 않으나 사용해도 좋다.
 
 ```javascript
 var person = {
@@ -105,7 +105,7 @@ var person = {
 
 프로퍼티 키는 프로퍼티 값에 접근할 수 있는 이름으로 식별자 역할을 한다. 하지만 반드시 식별자 네이밍 규칙(["4.7. 식별자 네이밍 규칙"](/fastcampus/variable#8-식별자-네이밍-규칙) 참고)을 따라야 하는 것은 아니다. 단, 식별자 네이밍 규칙을 준수하는 프로퍼티 키와 그렇지 않은 프로퍼티 키는 미묘한 차이가 있다.
 
-symbol 값도 프로퍼티 키로 사용할 수 있지만 일반적으로 문자열(빈 문자열 포함)을 사용한다. 이때 프로퍼티 키는 문자열이므로 따옴표('…' 또는 "…")로 묶어야 한다. 하지만 식별자 네이밍 규칙을 준수하는 이름, 즉 자바스크립트에서 사용 가능한 유효한 이름인 경우, 따옴표를 생략할 수 있다. 반대로 말하면 **식별자 네이밍 규칙을 따르지 않는 이름에는 반드시 따옴표를 사용하여야 한다.** 아래 예제를 살펴보자.
+symbol 값도 프로퍼티 키로 사용할 수 있지만 일반적으로 문자열을 사용한다. 이때 프로퍼티 키는 문자열이므로 따옴표('…' 또는 "…")로 묶어야 한다. 하지만 식별자 네이밍 규칙을 준수하는 이름, 즉 자바스크립트에서 사용 가능한 유효한 이름인 경우, 따옴표를 생략할 수 있다. 반대로 말하면 **식별자 네이밍 규칙을 따르지 않는 이름에는 반드시 따옴표를 사용하여야 한다.** 아래 예제를 살펴보자.
 
 ```javascript
 var person = {
@@ -116,7 +116,7 @@ var person = {
 console.log(person); // {firstName: "Ung-mo", last-name: "Lee"}
 ```
 
-프로퍼티 키로 사용한 firstName은 식별자 네이밍 규칙을 준수하고 있다. 따라서 따옴표를 생략할 수 있다. 하지만 last-name은 식별자 네이밍 규칙을 준수하고 있지 않다. 따라서 따옴표를 생략할 수 없다. 자바스크립트 엔진은 last-name을 - 연산자가 있는 표현식으로 해석한다.
+프로퍼티 키로 사용한 firstName은 식별자 네이밍 규칙을 준수하고 있다. 따라서 따옴표를 생략할 수 있다. 하지만 last-name은 식별자 네이밍 규칙을 준수하고 있지 않다. 따라서 따옴표를 생략할 수 없다. 자바스크립트 엔진은 따옴표를 생략한 last-name을 - 연산자가 있는 표현식으로 해석한다.
 
 ```javascript
 var person = {
@@ -125,7 +125,7 @@ var person = {
 };
 ```
 
-문자열 또는 타입 변환을 통해 문자열로 평가할 수 있는 표현식을 사용해 프로퍼티 키를 동적으로 생성할 수도 있다. 이 경우에는 프로퍼티 키로 사용할 표현식을 대괄호([…])로 묶어야 한다. 이를 계산된 프로퍼티 이름(Computed Property name, ["10.9.2. 프로퍼티 키 동적 생성"](/fastcampus/object-literal#92-프로퍼티-키-동적-생성) 참고)이라고 한다.
+문자열 또는 문자열로 평가할 수 있는 표현식을 사용해 프로퍼티 키를 동적으로 생성할 수도 있다. 이 경우에는 프로퍼티 키로 사용할 표현식을 대괄호([…])로 묶어야 한다. 이를 계산된 프로퍼티 이름(Computed property name, ["10.9.2. 프로퍼티 키 동적 생성"](/fastcampus/object-literal#92-프로퍼티-키-동적-생성) 참고)이라고 한다.
 
 ```javascript
 var obj = {};
@@ -185,9 +185,9 @@ console.log(foo); // {name: "Kim"}
 
 # 4. 메소드
 
-자바스크립트에서 사용할 수 있는 모든 값을 프로퍼티 값으로 사용할 수 있다고 했다. 아직 살펴보지 않았지만 자바스크립트의 함수는 객체([일급 객체](/fastcampus/first-class-object#1-일급-객체), First-class object)이다. 따라서 함수는 값으로 취급할 수 있으며 프로퍼티의 값이 될 수 있다.
+자바스크립트에서 사용할 수 있는 모든 값은 프로퍼티 값으로 사용할 수 있다고 했다. 아직 살펴보지 않았지만 자바스크립트의 함수는 객체([일급 객체](/fastcampus/first-class-object#1-일급-객체), First-class object)이다. 따라서 함수는 값으로 취급할 수 있기 때문에 프로퍼티 값으로 사용할 수 있다.
 
-프로퍼티 값이 함수일 경우, 일반 함수와 구분하기 위해 메소드(Method)라 부른다. 즉, 메소드는 객체에 제한되어 있는 함수를 의미한다. 함수는 다음 장에서 자세히 살펴볼 것이다.
+프로퍼티 값이 함수일 경우, 일반 함수와 구분하기 위해 메소드(method)라 부른다. 즉, 메소드는 객체에 제한되어 있는 함수를 의미한다. 함수는 ["12. 함수"](/fastcampus/function)에서 자세히 살펴볼 것이다.
 
 ```javascript
 var circle = {
@@ -254,19 +254,20 @@ var person = {
   1: 10
 };
 
-console.log(person.'last-name');  // SyntaxError: Unexpected string
-console.log(person.last-name);    // ReferenceError: name is not defined
-console.log(person[last-name]);   // ReferenceError: last is not defined
-console.log(person['last-name']); // Lee
+person.'last-name';  // -> SyntaxError: Unexpected string
+person.last-name;    // -> 브라우저 환경: NaN
+                     // -> Node.js 환경: ReferenceError: name is not defined
+person[last-name];   // -> ReferenceError: last is not defined
+person['last-name']; // -> Lee
 
 // 프로퍼티 키가 숫자로 이루어진 문자열인 경우, 따옴표를 생략 가능하다.
-console.log(person.1);     // SyntaxError: missing ) after argument list
-console.log(person.'1');   // SyntaxError: Unexpected string
-console.log(person[1]);    // 10 : person[1] -> person['1']
-console.log(person['1']);  // 10
+person.1;     // -> SyntaxError: Unexpected number
+person.'1';   // -> SyntaxError: Unexpected string
+person[1];    // -> 10 : person[1] -> person['1']
+person['1'];  // -> 10
 ```
 
-여기서 퀴즈를 하나 풀어보자. 위 예제에서 `console.log(person.last-name);`의 실행 결과는 Node.js 환경에서 ReferenceError: name is not defined이고 브라우저 환경에서는 NaN이다. 이유는 무엇인가?
+여기서 퀴즈를 하나 풀어보자. 위 예제에서 `person.last-name`의 실행 결과는 Node.js 환경에서 ReferenceError: name is not defined이고 브라우저 환경에서는 NaN이다. 이유는 무엇인가?
 
 자바스크립트 엔진은 먼저 person.last를 평가한다. 평가 결과는 undefined이다. person 객체에는 프로퍼티 키가 last인 프로퍼티가 없기 때문에 평가 결과는 undefined이다. 따라서 `person.last-name`는 `undefined - name`과 같다. 다음으로 자바스크립트 엔진은 name이라는 식별자를 찾는다. 이때 name은 프로퍼티 키가 아니라 식별자로 해석되는 것에 주의하자.
 

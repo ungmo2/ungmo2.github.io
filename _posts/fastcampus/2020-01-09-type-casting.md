@@ -486,16 +486,27 @@ console.log(message); // 완료
 
 단축 평가는 아래와 같은 상황에서 유용하게 사용된다. 아직 살펴보지 않은 객체와 함수에 대한 내용이 나와서 혼란스러울 수 있겠다. 지금은 아래와 같은 단축 평가의 유용한 패턴이 있다는 정도로 이해하고 넘어가도 좋다. 객체와 함수에 대해서는 나중에 자세히 살펴볼 것이다.
 
--	객체가 null인지 확인하고 프로퍼티를 참조할 때
+-	객체를 가리키는 변수가 null(또는 undefined)인지 확인하고 프로퍼티를 참조할 때
 
 ```javascript
 var elem = null;
 
-console.log(elem.value); // TypeError: Cannot read property 'value' of null
-console.log(elem && elem.value); // null
+var value = elem.value; // TypeError: Cannot read property 'value' of null
+var value = elem && elem.value; // null
 ```
 
-객체는 키(key)과 값(value)으로 구성된 프로퍼티(Property)들의 집합이다. 만약 객체가 null인 경우, 객체의 프로퍼티를 참조하면 타입 에러(TypeError)가 발생한다. 이때 단축 평가를 사용하면 에러를 발생시키지 않는다.
+객체는 키(key)과 값(value)으로 구성된 프로퍼티(Property)들의 집합이다. 만약 객체를 가리키는 변수가 null인 경우, 객체의 프로퍼티를 참조하면 타입 에러(TypeError)가 발생한다. 이때 단축 평가를 사용하면 에러를 발생시키지 않는다.
+
+ES11(ECMAScript2020)에 도입될 것으로 알려진 [옵셔널 체이닝](https://github.com/tc39/proposal-optional-chaining)(optional chaining, 2020년 2월 현재, stage 4) 문법을 사용하면 논리곱(&&) 연산자 표현식을 대체할 수 있다.
+
+```javascript
+const elem = null;
+
+// elem이 null 또는 undefined인 경우, 옵셔널 체이닝 문법은 undefined를 반환한다.
+const value = elem?.value; // undefined
+// 옵셔널 체이닝 문법은 아래와 같이 동작한다.
+// const value = (elem === null || elem === undefined) ? undefined : elem.value;
+```
 
 -	함수 매개변수에 기본값을 설정할 때
 

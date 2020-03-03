@@ -3,7 +3,7 @@ layout: fs-post
 title: <strong>브라우저의 렌더링 과정</strong>
 categories: fastcampus
 section: fastcampus
-seq: 32
+seq: 33
 permalink: /:categories/:title
 description:
 ---
@@ -25,7 +25,7 @@ description:
 
 아래 그림은 브라우저의 렌더링 과정(Critical rendering path)을 간략하게 표현한 것이다.
 
-![](/assets/fs-images/32-1.png)
+![](/assets/fs-images/33-1.png)
 {: .w-650 }
 
 브라우저의 렌더링 과정(Critical rendering path)
@@ -47,7 +47,7 @@ description:
 
 서버에 요청을 하기 위해 브라우저는 주소창을 제공한다. 브라우저의 주소창에 URL을 입력하고 엔터 키를 입력하면 URL의 [호스트 이름](https://ko.wikipedia.org/wiki/호스트명)은 [DNS](https://ko.wikipedia.org/wiki/도메인_네임_시스템)를 통해 IP 주소로 변환되고 이 IP 주소를 갖는 서버에게 요청(request)를 전송한다.
 
-![](/assets/fs-images/32-2.png)
+![](/assets/fs-images/33-2.png)
 {: .w-450 }
 
 URI(Uniform Resource Identifier)
@@ -63,7 +63,7 @@ URI(Uniform Resource Identifier)
 
 개발자 도구의 Network 패널을 활성화하기 이전에 브라우저가 이미 응답을 받은 경우, 응답된 리소스가 표시되지 않는다. 따라서 Network 패널에 아무런 리소스가 표시되지 않은 경우, 새로고침을 실행하여야 한다.
 
-![](/assets/fs-images/32-3.png)
+![](/assets/fs-images/33-3.png)
 {: .w-650 }
 
 개발자 도구의 Network 패널에서 확인한 요청과 응답
@@ -79,7 +79,7 @@ URI(Uniform Resource Identifier)
 
 HTTP/1.1은 기본적으로 커넥션(connection) 당 하나의 요청과 응답 만을 처리한다. 즉, 여러 개의 요청을 한번에 전송할 수 없고 응답 또한 마찬가지다. 따라서 HTML 문서 내에 포함된 여러 개의 리소스 요청 즉, CSS 파일을 로드하는 link 태그, 이미지 파일을 로드하는 이미지 태그, 자바스크립트를 로드하는 script 태그 등이 개별적으로 전송되고 응답 또한 개별적으로 전송된다. 이처럼 HTTP/1.1은 리소스의 동시 전송이 불가능한 구조이므로 요청할 리소스의 개수에 비례하여 응답 시간도 증가하는 단점이 있다.
 
-![](/assets/fs-images/32-4.png)
+![](/assets/fs-images/33-4.png)
 {: .w-300 }
 
 [HTTP/1.1](http://webs.co.kr/index.php?mid=https&document_srl=3315799)
@@ -87,7 +87,7 @@ HTTP/1.1은 기본적으로 커넥션(connection) 당 하나의 요청과 응답
 
 HTTP/1.1은 다중 요청/응답이 불가하다는 단점이 있지만 HTTP/2는 커넥션 당 여러 개의 요청과 응답, 즉 요청과 응답 다중화가 가능하다. 따라서 HTTP/2.0는 여러 개의 리소스의 동시 전송이 가능하므로 HTTP/1.1에 비해 페이지 로드 속도가 약 50% 정도 빠르다고 한다.
 
-![](/assets/fs-images/32-5.png)
+![](/assets/fs-images/33-5.png)
 {: .w-300 }
 
 [HTTP/2](http://webs.co.kr/index.php?mid=https&document_srl=3315799)
@@ -121,7 +121,7 @@ HTTP/2에 대한 보다 자세한 내용은 [구글의 HTTP/2 소개](https://de
 
 브라우저의 렌더링 엔진은 응답 받은 HTML을 아래 그림과 같은 과정을 통해 HTML 문서를 파싱하여 DOM(Document Object Model)을 생성한다.
 
-![](/assets/fs-images/32-6.png)
+![](/assets/fs-images/33-6.png)
 {: .w-650 }
 
 HTML 파싱과 DOM 생성
@@ -172,7 +172,7 @@ ul {
 
 CSSOM은 CSS의 상속을 반영하여 생성된다. 위 예제에서 body 요소에 적용한 `font-size` 프로퍼티와 ul 요소에 적용한 `list-style-type` 프로퍼티는 모든 li 요소에 상속된다. 이러한 상속 관계가 반영되어 아래와 같이 CSSOM이 생성된다.
 
-![](/assets/fs-images/32-7.png)
+![](/assets/fs-images/33-7.png)
 {: .w-650 }
 
 CSSOM 생성
@@ -184,7 +184,7 @@ CSSOM 생성
 
 렌더 트리는 렌더링을 위한 트리 구조의 자료 구조이다. 따라서 브라우저 화면에 렌더링되지 않는 노드(예를 들어 meta 태그, script 태그 등)와 CSS에 의해 비표시(예를 들어 display: none)되는 노드 들을 포함하지 않는다. 다시 말해 렌더 트리는 브라우저 화면에 렌더링되는 노드 들만으로 구성된다.
 
-![](/assets/fs-images/32-8.png)
+![](/assets/fs-images/33-8.png)
 {: .w-650 }
 
 렌더 트리 생성
@@ -192,7 +192,7 @@ CSSOM 생성
 
 이후 완성된 렌더 트리는 각 HTML 요소의 레이아웃(위치와 크기) 계산에 사용되며 브라우저 화면에 픽셀을 렌더링하는 페이팅(Painting) 처리에 입력된다.
 
-![](/assets/fs-images/32-9.png)
+![](/assets/fs-images/33-9.png)
 {: .w-450 }
 
 렌더 트리와 레이아웃/페인트
@@ -221,7 +221,7 @@ CSS 파싱 과정과 마찬가지로 렌더링 엔진은 HTML을 한줄씩 순�
 
 렌더링 엔진으로부터 제어권을 넘겨 받은 자바스크립트 엔진은 자바스크립트 코드를 파싱하기 시작한다. 렌더링 엔진이 HTML과 CSS를 파싱하여 DOM과 CSSOM을 생성하듯이 자바스크립트 엔진은 자바스크립트를 해석하여 AST(Abstract Syntax Tree, 추상적 구문 트리)를 생성한다. 그리고 AST를 기반으로 인터프리터가 실행할 수 있는 중간 코드(intermediate code)인 바이트 코드(bytecode)를 생성하여 실행한다.
 
-![](/assets/fs-images/32-10.png)
+![](/assets/fs-images/33-10.png)
 {: .w-650 }
 
 자바스크립트 파싱과 실행
@@ -233,7 +233,7 @@ CSS 파싱 과정과 마찬가지로 렌더링 엔진은 HTML을 한줄씩 순�
 -	파싱(Parsing)
 : 토큰들의 집합을 구문 분석(Syntactic analysis)하여 AST(Abstract Syntax Tree, 추상적 구문 트리)를 생성한다. AST는 토큰에 문법적 의미와 구조를 반영한 트리 구조의 자료 구조이다. AST는 인터프리터나 컴파일러만이 사용하는 것은 아니다. AST를 사용하면 TypeScript, Babel, Prettier와 같은 트랜스파일러를 구현할 수도 있다. [AST Explorer 웹사이트](https://astexplorer.net)에 방문하면 다양한 오픈 소스 자바스크립트 파서를 사용하여 AST를 생성해 볼 수 있다.
 
-![](/assets/fs-images/32-11.png)
+![](/assets/fs-images/33-11.png)
 {: .w-650 }
 
 AST Explorer
@@ -246,7 +246,7 @@ AST Explorer
 
 만약 자바스크립트 코드에 DOM이나 CSSOM을 변경하는 DOM API가 사용된 경우, DOM이나 CSSOM이 변경된다. 변경된 DOM과 CSSOM은 다시 렌더 트리로 결합되고 변경된 렌더 트리를 기반으로 레이아웃과 페인트 과정을 거쳐 브라우저의 화면에 다시 렌더링한다. 이를 리플로우(reflow), 리페인트(repaint)라 한다.
 
-![](/assets/fs-images/32-12.png)
+![](/assets/fs-images/33-12.png)
 {: .w-650 }
 
 DOM API에 의한 리플로우, 리페인트
@@ -260,7 +260,7 @@ DOM API에 의한 리플로우, 리페인트
 
 지금까지 살펴본 바와 같이 렌더링 엔진과 자바스크립트 엔진은 병렬적으로 파싱을 실행하지 않고 직렬적으로 파싱을 수행한다.
 
-![](/assets/fs-images/32-13.png)
+![](/assets/fs-images/33-13.png)
 {: .w-650 }
 
 직렬적 파싱
@@ -351,7 +351,7 @@ async와 defer 어트리뷰트를 사용하면 HTML 파싱과 외부 자바스�
 -	async 어트리뷰트
 : HTML 파싱과 외부 자바크립트 파일의 로드가 비동기적으로 동시에 진행된다. 단, 자바스크립트의 파싱과 실행은 자바스크립트 로드가 완료된 직후 진행되며 이때 HTML 파싱이 중단된다.
 
-![](/assets/fs-images/32-14.png)
+![](/assets/fs-images/33-14.png)
 {: .w-650 }
 
 script 태그의 async 어트리뷰트
@@ -362,7 +362,7 @@ script 태그의 async 어트리뷰트
 -	defer 어트리뷰트
 : HTML 파싱과 외부 자바스크립트 파일의 로드가 비동기적으로 동시에 진행된다. 단, 자바스크립트의 파싱과 실행은 HTML 파싱이 완료된 직후, 즉 DOM 생성이 완료된 직후 진행된다. 따라서 DOM 생성이 완료된 이후(이때 DOMContentLoaded 이벤트가 발생한다.) 실행되어야 할 자바스크립트에 유용하다. IE10 이상 버전에서 지원된다. IE6 ~ 9 버전에서도 지원되지만 정상적으로 동작하지 않을 수 있다.
 
-![](/assets/fs-images/32-15.png)
+![](/assets/fs-images/33-15.png)
 {: .w-650 }
 
 script 태그의 defer 어트리뷰트

@@ -102,7 +102,7 @@ console.log(circle2.getDiameter()); // 20
 
 객체는 프로퍼티를 통해 객체 고유의 상태(state)를 표현한다. 그리고 메소드를 통해 상태 데이터인 프로퍼티를 참조하고 조작하는 동작(behavior)을 표현한다. 따라서 프로퍼티는 객체마다 프로퍼티 값이 다를 수 있지만 메소드는 내용이 동일한 경우가 일반적이다.
 
-원을 표현한 객체인 circle1 객체와 circle2 객체는 프로퍼티 구조가 동일하다. 이때 객체 고유의 상태 데이터인 radius 프로퍼티의 값은 객체마다 다를 수 있지만 getDiameter 메소드는 완전히 동일하다.
+원을 표현한 객체인 circle1 객체와 circle2 객체는 프로퍼티 구조가 동일하다. 단, 객체 고유의 상태 데이터인 radius 프로퍼티의 값은 객체마다 다를 수 있지만 getDiameter 메소드는 완전히 동일하다.
 
 하지만 객체 리터럴에 의해 객체를 생성하는 경우, 프로퍼티 구조가 동일함에도 불구하고 매번 같은 프로퍼티와 메소드를 기술해야 한다. 위 예제처럼 객체가 한두개라면 넘어갈 수도 있겠지만 만약 수십개의 객체를 생성해야 한다면 문제가 크다.
 
@@ -134,7 +134,7 @@ this
 | 함수 호출 방식       | this가 가리키는 값
 |:------------------|:---------------
 | 일반 함수로서 호출    | 전역 객체
-| 메소드로서 호출       | 메소드를 호출한 객체
+| 메소드로서 호출       | 메소드를 호출한 객체(마침표 앞의 객체)
 | 생성자 함수로서 호출   | 생성자 함수가 (미래에) 생성할 인스턴스
 
 ```javascript
@@ -155,7 +155,7 @@ obj.foo(); // obj
 const inst = new foo(); // inst
 ```
 
-this에 대해서는 "21. this"에서 자세히 살펴보도록 하고 지금은 이 정도로만 정리하도록 하자.
+this에 대해서는 ["22. this"](/fastcampus/this)에서 자세히 살펴보도록 하고 지금은 이 정도로만 정리하도록 하자.
 
 생성자 함수는 이름 그대로 객체(인스턴스)를 생성하는 함수이다. 하지만 자바와 같은 클래스 기반 객체지향 언어의 생성자(constructor)와는 다르게 그 형식이 정해져 있는 것이 아니라 일반 함수와 동일한 방법으로 생성자 함수를 정의하고 **new 연산자와 함께 호출하면 해당 함수는 생성자 함수로 동작한다.**
 
@@ -163,150 +163,17 @@ this에 대해서는 "21. this"에서 자세히 살펴보도록 하고 지금은
 
 ```javascript
 // new 연산자와 함께 호출하지 않으면 생성자 함수로 동작하지 않는다.
-// 즉, 일반적인 함수의 호출이다.
+// 즉, 일반 함수로서 호출된다.
 const circle3 = Circle(15);
 
-// 일반 함수 Circle은 반환문이 없으므로 암묵적으로 undefined를 반환한다.
+// 일반 함수로서 호출된 Circle은 반환문이 없으므로 암묵적으로 undefined를 반환한다.
 console.log(circle3); // undefined
 
-// 일반 함수 Circle내의 this는 전역 객체를 가리킨다.
+// 일반 함수로서 호출된 Circle내의 this는 전역 객체를 가리킨다.
 console.log(radius); // 15
 ```
 
-## 2.3. 내부 메소드 [[Call]]과 [[Construct]]
-
-함수 선언문 또는 함수 표현식으로 정의한 함수는 일반적인 함수로서 호출할 수 있는 것은 물론 생성자 함수로서 호출할 수 있다. 생성자 함수로서 호출한다는 것은 new 연산자와 함께 호출하여 객체를 생성하는 것을 의미한다.
-
-함수는 객체이므로 일반 객체(Ordinary object)와 동일하게 동작할 수 있다. 즉, 함수 객체는 일반 객체의 내부 슬롯과 내부 메소드("15.2 내부 슬롯/메소드" 참고)를 모두 가지고 있다.
-
-```javascript
-// 함수는 객체이다.
-function foo() {}
-
-// 함수는 객체이므로 프로퍼티를 소유할 수 있다.
-foo.prop = 10;
-
-// 함수는 객체이므로 메소드를 소유할 수 있다.
-foo.method = function () {
-  console.log(this.prop);
-};
-
-foo.method(); // 10
-```
-
-함수 객체는 함수로서 동작하기 위해 일반 객체의 내부 슬롯과 내부 메소드 이외에 아래와 같은 [내부 슬롯](https://tc39.github.io/ecma262/#table-27)과 [내부 메소드](https://tc39.github.io/ecma262/#table-6)를 추가적으로 가지고 있다.
-
-![](/assets/fs-images/17-1.png)
-함수 객체의 내부 슬롯
-{: .desc-img}
-
-![](/assets/fs-images/17-2.png)
-함수 객체의 내부 메소드
-{: .desc-img}
-
-내부 메소드 [[Call]]을 갖는 함수 객체를 callable이라 하며, 내부 메소드인 [[Construct]]를 갖는 함수 객체를 constructor, [[Construct]]를 갖지 않는 함수 객체를 non-constructor라고 부른다.
-
-callable은 호출할 수 있는 객체, 즉 함수를 말하며, constructor는 생성자 함수로서 호출할 수 있는 객체를 의미한다. 생성자 함수로서 호출할 수 있다는 것은 new 연산자(또는 super 연산자)와 함께 호출하는 것을 의미한다.
-
-함수가 일반적인 함수로서 호출되면 함수 객체의 내부 메소드 [[Call]]가 호출되고 new 연산자(또는 super 연산자)와 함께 생성자 함수로서 호출되면 내부 메소드 [[Construct]]가 호출된다.
-
-```javascript
-function foo() {}
-
-// 일반적인 함수로서 호출: [[Call]]이 호출된다.
-foo();
-
-// 생성자 함수로서 호출: [[Construct]]가 호출된다.
-new foo();
-```
-
-super 키워드
-: super는 ES6에서 도입된 클래스에서 부모 클래스를 참조(this와 유사하다)할 때 또는 부모 클래스의 생성자(constructor)를 호출할 때 사용한다. 이에 대해서는 "클래스"에서 살펴보도록 하자.
-
-호출할 수 없는 객체는 함수 객체가 아니므로 함수로서 기능하는 객체, 즉 함수 객체는 반드시 callable이여야 한다. 따라서 모든 함수 객체는 내부 메소드 [[Call]]을 갖고 있으므로 호출할 수 있다. 하지만 모든 함수 객체가 [[Construct]]를 갖지는 않는다. 다시 말해, 함수 객체는 constructor일 수도 있고 non-constructor일 수 있다.
-
-결론적으로 함수 객체는 callable이면서 constructor이거나 callable이면서 non-constructor이다. 즉, 모든 함수 객체는 호출할 수 있지만 모든 함수 객체를 생성자 함수로서 호출할 수 있는 것은 아니다.
-
-![](/assets/fs-images/17-3.png)
-모든 함수 객체는 callable이지만 모든 함수 객체가 constructor인 것은 아니다.
-{: .desc-img}
-
-자바스크립트 엔진이 어떻게 constructor와 non-constructor를 구분하는지 살펴보도록 하자.
-
-## 2.4. constructor와 non-constructor의 구분
-
-자바스크립트 엔진은 함수를 생성할 때, [FunctionCreate](https://tc39.github.io/ecma262/#sec-functioncreate)이라는 추상 연산(abstract operation)을 사용한다.
-
-추상 연산(abstract operation)
-: 추상 연산은 ECMAScript 사양에서 내부 동작의 구현 알고리즘을 표현한 것이다. ECMAScript 사양에서 설명을 위해 사용되는 함수와 유사한 의사 코드라고 이해하도록 하자.
-
-![](/assets/fs-images/17-4.png)
-추상 연산(abstract operation)
-{: .desc-img}
-
-추상 연산 FunctionCreate는 함수 정의가 평가될 때 호출된다. 이때 함수 정의 방식에 따라 FunctionCreate의 첫번째 매개변수 kind에 함수의 종류를 나타내는 문자열이 전달된다.
-
-| 구분                                      | 함수의 종류를 나타내는 문자열
-|:-----------------------------------------|:----------
-| 일반 함수 정의(함수 선언문, 함수 표현식)를 평가할 때 | Normal
-| 화살표 함수 정의를 평가할 때                    | Arrow
-| 메소드 정의를 평가할 때                        | Method
-
-이때 주의할 것은 ECMAScript 사양에서 "메소드 정의"로 인정하는 범위가 일반적인 메소드보다 좁다는 것이다. 아래 예제를 살펴보자.
-
-```javascript
-// 일반 함수 정의 : kind = 'Normal'
-function foo() {}
-const bar = function () {};
-// 프로퍼티 x에 할당된 것은 일반 함수 정의이다. 메소드 정의로 인정하지 않는다.
-const baz = {
-  x: function () {}
-};
-
-// 일반 함수로 정의된 함수만이 constructor이다.
-new foo(); // OK
-new bar(); // OK
-new baz.x(); // OK
-
-// 화살표 함수 정의 : kind = 'Arrow'
-const arrow = () => {};
-
-new arrow(); // TypeError: arrow is not a constructor
-
-// 메소드 정의 : kind = 'Method'
-// ES6의 메소드 축약 표현만을 메소드 정의로 인정한다.
-const obj = {
-  x() {}
-};
-
-new obj.x(); // TypeError: obj.x is not a constructor
-```
-
-일반적으로 프로퍼티의 값인 함수는 모두 메소드로 통칭한다. 하지만 ECMAScript 사양에서 "메소드 정의"란 ES6의 메소드 축약 표현만을 의미한다. 다시 말해 함수가 어디에 할당되어 있는지에 따라 메소드 정의인지를 판단하는 것이 아니라 함수 정의 방식에 따라 함수의 종류를 구분한다.
-
-위 예제와 같이 일반 함수로 정의된 함수만이 constructor이다. 함수의 종류가 Arrow, Method인 함수는 non-constructor가 된다. 즉, 같이 일반 함수로 정의된 함수만이 생성자 함수로서 호출될 수 있다.
-
-함수가 일반적인 함수로서 호출되면 함수 객체의 내부 메소드 [[Call]]가 호출되고 new 연산자 또는 super 연산자와 함께 생성자 함수로서 호출되면 내부 메소드 [[Construct]]가 호출된다.
-
-```javascript
-function foo() {}
-
-// 일반적인 함수로서 호출: [[Call]]이 호출된다.
-// 모든 함수 객체는 [[Call]]이 구현되어 있다.
-foo();
-
-// 생성자 함수로서 호출: [[Construct]]가 호출된다.
-// 이때 [[Construct]]를 갖지 않는다면 에러가 발생한다.
-new foo();
-```
-
-non-constructor인 함수 객체는 내부 메소드 [[Construct]]를 갖지 않는다. 따라서 non-constructor인 함수 객체를 생성자 함수로서 호출하면 에러가 발생한다.
-
-주의할 것은 생성자 함수로서 호출될 것을 기대하고 정의하지 않은 일반 함수(callable이면서 constructor)에 new 연산자를 붙여 호출하면 생성자 함수처럼 동작할 수 있다는 것이다. 위 예제와 같이 일반 함수를 생성자 함수로서 호출할 수 있다.
-
-따라서 생성자 함수는 일반적으로 첫문자를 대문자로 기술하는 파스칼 케이스로 명명하여 일반 함수와 구별할 수 있도록 노력한다.
-
-## 2.5. 생성자 함수의 인스턴스 생성 과정
+## 2.3. 생성자 함수의 인스턴스 생성 과정
 
 먼저 생성자 함수의 함수 몸체에서 수행해야 하는 것이 무엇인지 생각해보자. 생성자 함수의 역할은 프로퍼티 구조가 동일한 인스턴스를 생성하기 위한 템플릿(클래스)으로서 동작하여 **인스턴스를 생성**하는 것과 **생성된 인스턴스를 초기화(인스턴스 프로퍼티 추가 및 초기값 할당)**하는 것이다. 생성자 함수가 인스턴스를 생성하는 것은 필수이고, 생성된 인스턴스를 초기화하는 것은 옵션이다. 아래 예제를 살펴보자.
 
@@ -324,13 +191,13 @@ function Circle(radius) {
 const circle1 = new Circle(5);  // 반지름이 5인 Circle 객체를 생성
 ```
 
-생성자 함수 내부의 코드를 살펴보면 this에 프로퍼티를 추가하고 필요에 따라 인수로 전달된 초기값을 프로퍼티 값으로 할당한다. 하지만 인스턴스를 생성하고 반환하는 코드는 보이지 않는다.
+생성자 함수 내부의 코드를 살펴보면 this에 프로퍼티를 추가하고 필요에 따라 전달된 인수를 프로퍼티의 초기값으로서 할당하여 인스턴스를 초기화한다. 하지만 인스턴스를 생성하고 반환하는 코드는 보이지 않는다.
 
-자바스크립트 엔진은 암묵적인 처리를 통해 인스턴스를 생성하고 반환한다. new 연산자와 함께 생성자 함수가 호출되면 자바스크립트 엔진은 아래와 같은 과정을 거쳐 인스턴스를 생성하고 인스턴스를 초기화한 후, 인스턴스를 반환한다.
+자바스크립트 엔진은 암묵적인 처리를 통해 인스턴스를 생성하고 반환한다. new 연산자와 함께 생성자 함수를 호출하면 자바스크립트 엔진은 아래와 같은 과정을 거쳐 암묵적으로 인스턴스를 생성하고 인스턴스를 초기화한 후, 인스턴스를 반환한다.
 
 **1. 인스턴스 생성과 this 바인딩**
 
-암묵적으로 빈 객체가 생성된다. 이 빈 객체가 바로 (아직 완성되지는 않았지만) 생성자 함수가 생성한 인스턴스이다. 그리고 암묵적으로 생성된 빈 객체, 즉 인스턴스는 this에 바인딩된다. 생성자 함수 내부의 this가 생성자 함수가 생성할 인스턴스를 가리키는 이유가 바로 이것이다.
+암묵적으로 빈 객체가 생성된다. 이 빈 객체가 바로 (아직 완성되지는 않았지만) 생성자 함수가 생성한 인스턴스이다. 그리고 암묵적으로 생성된 빈 객체, 즉 인스턴스는 this에 바인딩된다. 생성자 함수 내부의 this가 생성자 함수가 생성할 인스턴스를 가리키는 이유가 바로 이것이다. 이 처리는 함수 몸체의 코드가 한줄씩 실행되는 런타임 이전에 실행된다.
 
 바인딩(binding)
 : 바인딩이란 식별자와 값을 연결하는 과정을 의미한다. 예를 들어 변수는 할당에 의해 값이 바인딩된다.
@@ -339,8 +206,6 @@ const circle1 = new Circle(5);  // 반지름이 5인 Circle 객체를 생성
 function Circle(radius) {
   // 1. 암묵적으로 빈 객체가 생성되고 this에 바인딩된다.
   console.log(this); // Circle {}
-  console.log(Object.getPrototypeOf(this) === Circle.prototype); // true
-
 
   this.radius = radius;
   this.getDiameter = function () {
@@ -351,7 +216,7 @@ function Circle(radius) {
 
 **2. 인스턴스 초기화**
 
-생성자 함수에 기술되어 있는 코드가 실행되어 this에 바인딩되어 있는 인스턴스를 초기화한다. 즉, this에 바인딩되어 있는 인스턴스에 프로퍼티나 메소드를 추가하고 생성자 함수가 인수로 전달받은 초기값을 인스턴스 프로퍼티에 할당하여 초기화하거나 고정값을 할당한다. 이 처리는 개발자가 기술한다.
+생성자 함수에 기술되어 있는 코드가 한줄씩 실행되어 this에 바인딩되어 있는 인스턴스를 초기화한다. 즉, this에 바인딩되어 있는 인스턴스에 프로퍼티나 메소드를 추가하고 생성자 함수가 인수로 전달받은 초기값을 인스턴스 프로퍼티에 할당하여 초기화하거나 고정값을 할당한다. 이 처리는 개발자가 기술한다.
 
 ```javascript
 function Circle(radius) {
@@ -409,7 +274,7 @@ const circle = new Circle(1);
 console.log(circle); // {}
 ```
 
-하지만 명시적으로 원시 값을 반환하면 원시 값 반환은 무시되고 암묵적으로 this가 반환된다.
+하지만 명시적으로 원시값을 반환하면 원시 값 반환은 무시되고 암묵적으로 this가 반환된다.
 
 ```javascript
 function Circle(radius) {
@@ -422,7 +287,7 @@ function Circle(radius) {
   };
 
   // 3. 암묵적으로 this를 반환한다.
-  // 명시적으로 원시 값을 반환하면 원시 값 반환은 무시되고 암묵적으로 this가 반환된다.
+  // 명시적으로 원시값을 반환하면 원시값 반환은 무시되고 암묵적으로 this가 반환된다.
   return 100;
 }
 
@@ -433,9 +298,113 @@ console.log(circle); // Circle {radius: 1, getDiameter: ƒ}
 
 이처럼 생성자 함수 내부에서 명시적으로 this가 아닌 다른 값을 반환하는 것은 생성자 함수의 기본 동작을 훼손한다. 따라서 생성자 함수 내부에서 return 문을 반드시 생략해야 한다.
 
+## 2.4. 내부 메소드 [[Call]]과 [[Construct]]
+
+함수 선언문 또는 함수 표현식으로 정의한 함수는 일반적인 함수로서 호출할 수 있는 것은 물론 생성자 함수로서 호출할 수 있다. 생성자 함수로서 호출한다는 것은 new 연산자와 함께 호출하여 객체를 생성하는 것을 의미한다.
+
+함수는 객체이므로 일반 객체(Ordinary object)와 동일하게 동작할 수 있다. 함수 객체는 일반 객체가 가지고 있는 내부 슬롯과 내부 메소드(["16.1. 내부 슬롯/메소드"](/fastcampus/property-definition#1-내부-슬롯과-내부-메소드) 참고)를 모두 가지고 있기 때문이다.
+
+```javascript
+// 함수는 객체이다.
+function foo() {}
+
+// 함수는 객체이므로 프로퍼티를 소유할 수 있다.
+foo.prop = 10;
+
+// 함수는 객체이므로 메소드를 소유할 수 있다.
+foo.method = function () {
+  console.log(this.prop);
+};
+
+foo.method(); // 10
+```
+
+함수 객체는 [일반 객체가 가지고 있는 내부 슬롯과 내부 메소드](http://ecma-international.org/ecma-262/10.0/index.html#sec-ordinary-object-internal-methods-and-internal-slots)은 물론, 함수로서 동작하기 위해 함수 객체만을 위한 [[[Environment]], [[FormalParameters]] 등의 내부 슬롯과 [[Call]], [[Constructor]]와 같은 내부 메소드](http://ecma-international.org/ecma-262/10.0/index.html#sec-ecmascript-function-objects)를 추가적으로 가지고 있다.
+
+함수가 일반 함수로서 호출되면 함수 객체의 내부 메소드 [[Call]]가 호출되고 new 연산자와 함께 생성자 함수로서 호출되면 내부 메소드 [[Construct]]가 호출된다.
+
+```javascript
+function foo() {}
+
+// 일반적인 함수로서 호출: [[Call]]이 호출된다.
+foo();
+
+// 생성자 함수로서 호출: [[Construct]]가 호출된다.
+new foo();
+```
+
+내부 메소드 [[Call]]을 갖는 함수 객체를 callable이라 하며, 함수 객체 만을 위한 내부 메소드 [[Construct]]를 갖는 함수 객체를 constructor, [[Construct]]를 갖지 않는 함수 객체를 non-constructor라고 부른다. callable은 호출할 수 있는 객체, 즉 함수를 말하며, constructor는 생성자 함수로서 호출할 수 있는 객체를 의미한다.
+
+호출할 수 없는 객체는 함수 객체가 아니므로 함수로서 기능하는 객체, 즉 함수 객체는 반드시 callable이여야 한다. 따라서 모든 함수 객체는 내부 메소드 [[Call]]을 갖고 있으므로 호출할 수 있다. 하지만 모든 함수 객체가 [[Construct]]를 갖지는 않는다. 다시 말해, 함수 객체는 constructor일 수도 있고 non-constructor일 수 있다.
+
+결론적으로 함수 객체는 callable이면서 constructor이거나 callable이면서 non-constructor이다. 즉, 모든 함수 객체는 호출할 수 있지만 모든 함수 객체를 생성자 함수로서 호출할 수 있는 것은 아니다.
+
+![](/assets/fs-images/17-1.png)
+모든 함수 객체는 callable이지만 모든 함수 객체가 constructor인 것은 아니다.
+{: .desc-img}
+
+자바스크립트 엔진이 어떻게 constructor와 non-constructor를 구분하는지 살펴보도록 하자.
+
+## 2.5. constructor와 non-constructor의 구분
+
+자바스크립트 엔진이 함수 정의를 평가하여 함수 객체를 생성할 때, 함수 정의 방식에 따라 함수를 constructor와 non-constructor로 구분한다.
+
+-	constructor: 함수 선언문, 함수 표현식, 클래스(클래스도 함수다)
+-	non-constructor: 메소드(ES6 메소드 축약 표현), 화살표 함수
+
+이때 주의할 것은 ECMAScript 사양에서 메소드로 인정하는 범위가 일반적인 의미의 메소드보다 좁다는 것이다. 아래 예제를 살펴보자.
+
+```javascript
+// 일반 함수 정의: 함수 선언문, 함수 표현식
+function foo() {}
+const bar = function () {};
+// 프로퍼티 x의 값으로 할당된 것은 일반 함수 정의에 의해 생성된 함수 객체이다.
+// 이는 메소드로 인정하지 않는다.
+const baz = {
+  x: function () {}
+};
+
+// 일반 함수로 정의된 함수만이 constructor이다.
+new foo(); // OK
+new bar(); // OK
+new baz.x(); // OK
+
+// 화살표 함수 정의
+const arrow = () => {};
+
+new arrow(); // TypeError: arrow is not a constructor
+
+// 메소드 정의: ES6의 메소드 축약 표현만을 메소드로 인정한다.
+const obj = {
+  x() {}
+};
+
+new obj.x(); // TypeError: obj.x is not a constructor
+```
+
+함수를 프로퍼티 값으로 사용하면 일반적으로 메소드로 통칭한다. 하지만 ECMAScript 사양에서 메소드란 ES6의 메소드 축약 표현(["10.9.1. 메소드 축약 표현"](/fastcampus/object-literal#91-프로퍼티-축약-표현) 참고)만을 의미한다. 다시 말해 함수가 어디에 할당되어 있는지에 따라 메소드인지를 판단하는 것이 아니라 함수 정의 방식에 따라 constructor와 non-constructor를 구분한다.
+
+위 예제와 같이 일반 함수, 즉 함수 선언문과 함수 표현식으로 정의된 함수만이 constructor이고 ES6의 화살표 함수와 메소드 축약 표현으로 정의된 함수는 non-constructor이다.
+
+함수를 일반 함수로서 호출하면 함수 객체의 내부 메소드 [[Call]]가 호출되고 new 연산자와 함께 생성자 함수로서 호출하면 내부 메소드 [[Construct]]가 호출된다. non-constructor인 함수 객체는 내부 메소드 [[Construct]]를 갖지 않는다. 따라서 non-constructor인 함수 객체를 생성자 함수로서 호출하면 에러가 발생한다.
+
+```javascript
+function foo() {}
+
+// 일반 함수로서 호출: [[Call]]이 호출된다.
+// 모든 함수 객체는 [[Call]]이 구현되어 있다.
+foo();
+
+// 생성자 함수로서 호출: [[Construct]]가 호출된다.
+// 이때 [[Construct]]를 갖지 않는다면 에러가 발생한다.
+new foo();
+```
+
+주의할 것은 생성자 함수로서 호출될 것을 기대하고 정의하지 않은 일반 함수(callable이면서 constructor)에 new 연산자를 붙여 호출하면 생성자 함수처럼 동작할 수 있다는 것이다.
+
 ## 2.6.	new 연산자
 
-일반 함수와 생성자 함수에 특별한 형식적 차이는 없다. new 연산자와 함께 함수를 호출하면 해당 함수는 생성자 함수로 동작한다. 단, new 연산자와 함께 호출하는 함수는 non-constructor가 아닌 constructor이여야 한다.
+일반 함수와 생성자 함수에 특별한 형식적 차이는 없다. new 연산자와 함께 함수를 호출하면 해당 함수는 생성자 함수로 동작한다. 다시 말해, 함수 객체의 내부 메소드 [[Call]]이 호출되는 것이 아니라 [[Construct]]가 호출된다. 단, new 연산자와 함께 호출하는 함수는 non-constructor가 아닌 constructor이여야 한다.
 
 ```javascript
 // 생성자 함수로서 정의하지 않은 일반 함수
@@ -484,15 +453,15 @@ circle.getDiameter();
 
 Circle 함수를 new 연산자와 함께 생성자 함수로서 호출하면 함수 내부의 this는 Circle 생성자 함수가 생성할 인스턴스를 가리킨다. 하지만 Circle 함수를 일반적인 함수로서 호출하면 함수 내부의 this는 전역 객체 window를 가리킨다.
 
-위 예제의 Circle 함수는 일반 함수로서 호출되었으므로 Circle 함수 내부의 this는 전역 객체 window를 가리킨다. 따라서 radius 프로퍼티와 getDiameter 메소드는 전역 객체의 프로퍼티와 메소드가 된다. ("20. 전역 객체" 참고)
+위 예제의 Circle 함수는 일반 함수로서 호출되었기 때문에 Circle 함수 내부의 this는 전역 객체 window를 가리킨다. 따라서 radius 프로퍼티와 getDiameter 메소드는 전역 객체의 프로퍼티와 메소드가 된다.
 
 일반 함수와 생성자 함수에 특별한 형식적 차이는 없다. 따라서 생성자 함수는 일반적으로 첫문자를 대문자로 기술하는 파스칼 케이스로 명명하여 일반 함수와 구별할 수 있도록 노력한다.
 
 ## 2.7.	new.target
 
-new 연산자 없이 생성자 함수를 호출하는 것을 방지하기 위해 파스칼 케이스 컨벤션을 사용한다 하더라도 실수는 언제나 발생할 수 있다. 이러한 위험성을 회피하기 위해 ES6에서는 new.target을 지원한다.
+생성자 함수가 new 연산자 없이 호출되는 것을 방지하기 위해 파스칼 케이스 컨벤션을 사용한다 하더라도 실수는 언제나 발생할 수 있다. 이러한 위험성을 회피하기 위해 ES6에서는 new.target을 지원한다.
 
-new.target은 this와 유사하게 모든 함수 내부에서 암묵적인 지역 변수와 같이 사용되며 메타 프로퍼티([meta propery](https://tc39.github.io/ecma262/#sec-meta-properties))라고 부른다. IE는 new.target을 지원하지 않으므로 주의하기 바란다.
+new.target은 this와 유사하게 모든 함수 내부에서 암묵적인 지역 변수와 같이 사용되며 메타 프로퍼티라고 부른다. IE는 new.target을 지원하지 않으므로 주의하기 바란다.
 
 함수 내부에서 new.target를 사용하면 new 연산자와 함께 함수가 호출되었는지 확인할 수 있다. 함수가 new 연산자와 함께 호출되면 함수 내부의 new.target은 함수 자신을 가리킨다. new 연산자 없이 호출된 함수 내부의 new.target은 undefined이다.
 
@@ -501,7 +470,7 @@ new.target은 this와 유사하게 모든 함수 내부에서 암묵적인 지�
 function Circle(radius) {
   // 이 함수가 new 연산자와 함께 호출되지 않았다면 new.target은 undefined이다.
   if (!new.target) {
-    // new 연산자와 함께 호출하여 생성된 인스턴스를 반환한다.
+    // new 연산자와 함께 생성자 함수를 재귀 호출하여 생성된 인스턴스를 반환한다.
     return new Circle(radius);
   }
 
@@ -511,7 +480,7 @@ function Circle(radius) {
   };
 }
 
-// new 연산자 없이 생성자 함수를 호출하여도 생성자 함수로서 호출된다.
+// new 연산자 없이 생성자 함수를 호출하여도 new.target을 통해 생성자 함수로서 호출된다.
 const circle = Circle(5);
 console.log(circle.getDiameter());
 ```
@@ -543,7 +512,7 @@ const circle = Circle(5);
 console.log(circle.getDiameter()); // 10
 ```
 
-new 연산자와 함께 생성자 함수에 의해 생성된 객체(인스턴스)는 프로토타입에 의해 생성자 함수와 연결된다. 이를 이용해 new 연산자와 함께 호출되었는지를 확인할 수 있다. 프로토타입과 instanceof 연산자에 대해서는 "18. 프로토타입"에서 살펴볼 것이다.
+new 연산자와 함께 생성자 함수에 의해 생성된 객체(인스턴스)는 프로토타입에 의해 생성자 함수와 연결된다. 이를 이용해 new 연산자와 함께 호출되었는지를 확인할 수 있다. 프로토타입과 instanceof 연산자에 대해서는 ["19. 프로토타입"](/fastcampus/prototype)에서 살펴볼 것이다.
 
 대부분의 빌트인 생성자 함수(Object, String, Number, Boolean, Function, Array, Date, RegExp, Promise 등)는 new 연산자와 함께 호출되었는지를 확인한 후 적절한 값을 반환한다.
 
@@ -563,12 +532,15 @@ f = Function('x', 'return x ** x');
 console.log(f); // ƒ anonymous(x) { return x ** x }
 ```
 
-하지만 String 생성자 함수는 new 연산자와 함께 호출했을 때 String 객체를 생성하여 반환하지만 new 연산자 없이 호출하면 문자열 리터럴을 반환한다. 즉 문자열로 타입을 변환("8.3 명시적 타입 변환" 참고)한다.
+하지만 String, Number, Boolean 생성자 함수는 new 연산자와 함께 호출했을 때 String 객체를 생성하여 반환하지만 new 연산자 없이 호출하면 문자열, 숫자, 불리언 값을 반환한다. 이를 통해 데이터 타입을 변환(["9.3. 명시적 타입 변환"](/fastcampus/type-casting#3-명시적-타입-변환) 참고)하기도 한다.
 
 ```javascript
-let s = new String('abc');
-console.log(s); // String {"abc"}
+let v = String(123);
+console.log(v, typeof v); // 123 string
 
-s = String('abc');
-console.log(s); // abc
+v = Number('123');
+console.log(v, typeof v); // 123 number
+
+v = Boolean('true');
+console.log(v, typeof v); // true boolean
 ```

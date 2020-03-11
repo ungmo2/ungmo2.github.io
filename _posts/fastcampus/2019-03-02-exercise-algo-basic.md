@@ -101,7 +101,7 @@ function binarySearch(array, target) {
     // target이 중간값보다 작으면 작은 쪽(start ~ mid - 1)에서 검색.
     // 중간값(array[mid])는 target과 같지 않기 때문에 포함시키지 않는다.
     if (target < array[mid]) end = mid - 1;
-    // target이 중간값보다 크면 큰 쪽(mid ~ end + 1)에서 검색
+    // target이 중간값보다 크면 큰 쪽(mid + 1 ~ end)에서 검색
     // 중간값(array[mid])는 target과 같지 않기 때문에 포함시키지 않는다.
     else start = mid + 1;
   }

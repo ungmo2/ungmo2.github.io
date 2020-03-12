@@ -1493,7 +1493,7 @@ console.log(person.hasOwnProperty('name')); // true
 console.log(person.hasOwnProperty('age'));  // false
 ```
 
-Object.prototype.hasOwnProperty 메소드는 이름에서 알 수 있듯이 객체 고유의 프로퍼티인 경우에만 true를 반환하고 상속받은 프로토타입의 프로퍼티인 경우 false를 반환한다.
+Object.prototype.hasOwnProperty 메소드는 이름에서 알 수 있듯이 전달받은 프로퍼티 키가 객체 고유의 프로퍼티 키인 경우에만 true를 반환하고 상속받은 프로토타입의 프로퍼티 키인 경우 false를 반환한다.
 
 ```javascript
 console.log(person.hasOwnProperty('toString')); // false
@@ -1541,11 +1541,11 @@ for (const prop in person) {
 // address: Seoul
 ```
 
-이는 toString 메소드가 열거할 수 없도록 정의되어 있는 프로퍼티이기 때문이다. 다시 말해, Object.prototype.string 프로퍼티의 프로퍼티 어트리뷰트 [[Enumerable]]의 값이 false이기 때문이다. 프로퍼티 어트리뷰트 [[Enumerable]]는 프로퍼티의 열거 가능 여부를 나타내며 불리언 값을 갖는다. ("15.4 프로퍼티 어트리뷰트" 참고)
+이는 toString 메소드가 열거할 수 없도록 정의되어 있는 프로퍼티이기 때문이다. 다시 말해, Object.prototype.string 프로퍼티의 프로퍼티 어트리뷰트 [[Enumerable]]의 값이 false이기 때문이다. 프로퍼티 어트리뷰트 [[Enumerable]]는 프로퍼티의 열거 가능 여부를 나타내며 불리언 값을 갖는다. (["16. 프로퍼티 어트리뷰트"](/fastcampus/property-definition) 참고)
 
 ```javascript
-// Object.getOwnPropertyDescriptor 메소드는 프로퍼티의 Descriptor를 반환한다.
-// Descriptor는 프로퍼티의 정보를 담고 있는 객체이다.
+// Object.getOwnPropertyDescriptor 메소드는 프로퍼티 디스크립터 객체를 반환한다.
+// 프로퍼티 디스크립터 객체는 프로퍼티 어트리뷰트 정보를 담고 있는 객체이다.
 console.log(Object.getOwnPropertyDescriptor(Object.prototype, 'toString'));
 // {value: ƒ, writable: true, enumerable: false, configurable: true}
 ```
@@ -1602,7 +1602,7 @@ for (const key in person) {
 // address: Seoul
 ```
 
-위 예제의 결과는 person 객체의 프로퍼티가 정의된 순서대로 열거되었다. 하지만 for…in 문은 프로퍼티를 열거할 때 순서를 보장하지 않으므로 주의하기 바란다. 대부분의 모던 브라우저는 순서를 보장하지만 숫자인 프로퍼티 키에 대해서는 정렬을 실시한다.
+위 예제의 결과는 person 객체의 프로퍼티가 정의된 순서대로 열거되었다. 하지만 for…in 문은 프로퍼티를 열거할 때 순서를 보장하지 않으므로 주의하기 바란다. 하지만 대부분의 모던 브라우저는 순서를 보장하고 숫자(사실은 문자열)인 프로퍼티 키에 대해서는 정렬을 실시한다.
 
 ```javascript
 const obj = {
@@ -1652,7 +1652,7 @@ for (const value of arr) {
 };
 ```
 
-배열과 forEach 메소드에 대해서는 "27. 배열"에서, for...of 문에 대해서는 "29.3. for...of 문"에서 자세히 살펴보도록 하자.
+배열과 forEach 메소드에 대해서는 ["27.9.2. Array.prototype.forEach"](/fastcampus/array#92-arrayprototypeforeach)에서, for...of 문에 대해서는 ["29.3. for...of 문"](/fastcampus/iterable#3-forof-문)에서 자세히 살펴보도록 하자.
 
 ## 15.2. Object.keys/values/entries 메소드
 

@@ -474,7 +474,7 @@ const counter = {
 console.log(counter.increase()); // NaN
 ```
 
-화살표 함수 내부의 this는 Function.prototype.call, Function.prototype.applay, Function.prototype.bind 메소드를 사용하여 변경할 수 없다.
+화살표 함수 내부의 this는 Function.prototype.call, Function.prototype.apply, Function.prototype.bind 메소드를 사용하여 변경할 수 없다.
 
 ```javascript
 window.x = 1;
@@ -486,7 +486,7 @@ console.log(normal.call({ x: 10 })); // 10
 console.log(arrow.call({ x: 10 }));  // 1
 ```
 
-화살표 함수가 Function.prototype.call, Function.prototype.applay, Function.prototype.bind 메소드를 사용할 수 없다는 의미는 아니다. 단지 화살표 함수의 this는 일단 결정된 이후 변경할 수 없고 언제나 유지된다.
+화살표 함수가 Function.prototype.call, Function.prototype.apply, Function.prototype.bind 메소드를 사용할 수 없다는 의미는 아니다. 단지 화살표 함수의 this는 일단 결정된 이후 변경할 수 없고 언제나 유지된다.
 
 ```javascript
 const add = (a, b) => a + b;

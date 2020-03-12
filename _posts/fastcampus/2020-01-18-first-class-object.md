@@ -310,6 +310,9 @@ console.log(obj.hasOwnProperty('a'));         // true
 console.log(obj.hasOwnProperty('__proto__')); // false
 ```
 
+hasOwnProperty 메소드
+: hasOwnProperty 메소드는 이름에서 알 수 있듯이 전달받은 프로퍼티 키가 객체 고유의 프로퍼티 키인 경우에만 true를 반환하고 상속받은 프로토타입의 프로퍼티 키인 경우 false를 반환한다.(["19.14. 프로퍼티 존재 확인"](/fastcampus/prototype#14-프로퍼티-존재-확인) 참고)
+
 ## 2.6.	prototype 프로퍼티
 
 prototype 프로퍼티는 함수 객체만이 소유하는 프로퍼티이다. 일반 객체에는 prototype 프로퍼티가 없다.

@@ -198,7 +198,7 @@ const pre = new Prefixer('Hi');
 console.log(pre.prefixArray(['Lee', 'Kim']));
 ```-->
 
-화살표 함수는 call, applay, bind 메소드를 사용하여 this를 변경할 수 없다.
+화살표 함수는 call, apply, bind 메소드를 사용하여 this를 변경할 수 없다.
 
 ```javascript
 window.x = 1;

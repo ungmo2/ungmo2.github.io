@@ -19,7 +19,7 @@ description:
 : 표준 빌트인 객체(standard built-in objects / native objects / global objects)는 ECMAScript 사양에 정의된 객체를 말하며 애플리케이션 전역의 공통 기능을 제공한다. 표준 빌트인 객체는 ECMAScript 사양에 정의된 객체이므로 자바스크립트 실행 환경(브라우저 또는 Node.js 환경)과 관계없이 언제나 사용할 수 있다. 표준 빌트인 객체는 전역 객체의 프로퍼티로서 제공된다. 따라서 별도의 선언없이 전역 변수처럼 언제나 참조할 수 있다.
 
 - 호스트 객체
-: 호스트 객체(host objects)는 ECMAScript 사양에 정의되어 있지 않지만 자바스크립트 실행 환경(브라우저 환경 또는 Node.js 환경. "3.1 자바스크립트 실행 환경" 참고)에서 추가적으로 제공하는 객체를 말한다.<br>브라우저 환경에서는 DOM, BOM, Canvas, XMLHttpRequest, fetch, requestAnimationFrame, SVG, Web Storage, Web Component, Web worker와 같은 [클라이언트 사이드 Web API](https://developer.mozilla.org/ko/docs/Web/API)를 호스트 객체로 제공하고 Node.js 환경에서는 [Node.js 고유의 API](https://nodejs.org/dist/latest/docs/api/repl.html)를 호스트 객체로 제공한다.
+: 호스트 객체(host objects)는 ECMAScript 사양에 정의되어 있지 않지만 자바스크립트 실행 환경(브라우저 환경 또는 Node.js 환경. ["3.1 자바스크립트 실행 환경"](/fastcampus/environment#1-자바스크립트-실행-환경) 참고)에서 추가적으로 제공하는 객체를 말한다.<br>브라우저 환경에서는 DOM, BOM, Canvas, XMLHttpRequest, fetch, requestAnimationFrame, SVG, Web Storage, Web Component, Web worker와 같은 [클라이언트 사이드 Web API](https://developer.mozilla.org/ko/docs/Web/API)를 호스트 객체로 제공하고 Node.js 환경에서는 [Node.js 고유의 API](https://nodejs.org/dist/latest/docs/api/repl.html)를 호스트 객체로 제공한다.
 
 - 사용자 정의 객체
 : 사용자 정의 객체(user-defined objects)는 표준 빌트인 객체와 호스트 객체처럼 기본 제공되는 객체가 아닌 사용자가 직접 정의한 객체를 말한다.
@@ -80,7 +80,7 @@ console.log(strObj);        // String {"Lee"}
 console.log(Object.getPrototypeOf(strObj) === String.prototype); // true
 ```
 
-표준 빌트인 객체의 prototype 프로퍼티에 바인딩된 객체(애를 들어, String.prototype)는 다양한 기능의 메소드를 제공한다. 또한 인스턴스 없이도 호출 가능한 정적 메소드도 제공한다.
+표준 빌트인 객체의 prototype 프로퍼티에 바인딩된 객체(예를 들어, String.prototype)는 다양한 기능의 메소드를 제공한다. 또한 인스턴스 없이도 호출 가능한 정적 메소드도 제공한다.
 
 예를 들어 표준 빌트인 객체인 Number를 생성자 함수로 호출하여 생성한 Number 인스턴스는 Number.prototype이 제공하는 다양한 기능의 프로토타입 메소드를 사용할 수 있다.
 
@@ -144,17 +144,25 @@ console.log(typeof str); // string
 문자열 레퍼 객체의 프로토타입 체인
 {: .desc-img}
 
-그 후, 레퍼 객체의 처리가 종료하면 레퍼 객체의 [[StringData]] 내부 슬롯에 할당된 원시값을 되돌리고 레퍼 객체는 가비지 컬렉션의 대상이 된다.
+그 후, 레퍼 객체의 처리가 종료하면 레퍼 객체의 [[StringData]] 내부 슬롯에 할당된 원시값을 되돌리고 레퍼 객체는 가비지 컬렉션의 대상이 된다. 아래 예제를 살펴보자.
 
 ```javascript
-const str = 'hello';
+const str = 'hello'; // ①
 
 // 래퍼 객체에 프로퍼티 추가
-str.name = 'Lee';
+str.name = 'Lee'; // ②
+// ③ str은 이전의 원시값으로 돌아간다.
 
 // 이 시점에 str은 위 코드의 래퍼 객체가 아닌 새로운 래퍼 객체를 가리킨다.
-console.log(str.name); // undefined
+console.log(str.name); // ④ undefined
+// ⑤ str은 이전의 원시값으로 돌아간다.
 ```
+
+① 식별자 str은 문자열을 값으로 가지고 있다.
+② 식별자 str은 레퍼 객체를 가리킨다.
+③ 식별자 str은 다시 원래의 문자열, 즉 레퍼 객체의 [[StringData]] 내부 슬롯에 할당된 원시값을 갖는다.
+④ 식별자 str은 새로운(②에서 생성한 래퍼 객체와는 다른) 레퍼 객체를 가리킨다.
+⑤ 식별자 str은 다시 원래의 문자열, 즉 레퍼 객체의 [[StringData]] 내부 슬롯에 할당된 원시값을 갖는다.
 
 숫자도 마찬가지다. 숫자에 대해 마침표 표기법으로 접근하면 그 순간 레퍼 객체인 Number 생성자 함수의 인스턴스가 생성되고 숫자는 레퍼 객체의 [[NumberData]] 내부 슬롯에 할당된다. 이때 레퍼 객체인 Number 객체는 당연히 Number.prototype의 메소드를 상속받아 사용할 수 있다. 그 후, 레퍼 객체의 처리가 종료하면 레퍼 객체의 [[NumberData]] 내부 슬롯에 할당된 원시값을 되돌리고 레퍼 객체는 가비지 컬렉션의 대상이 된다.
 
@@ -165,16 +173,16 @@ const num = 1.5;
 console.log(num.toFixed()); // 2
 
 // 레퍼 객체로 프로퍼티 접근이나 메소드 호출한 후, 다시 원시값으로 되돌린다.
-console.log(typeof num); // number
+console.log(typeof num, num); // number 1.5
 ```
 
 불리언 값도 문자열이나 숫자와 마찬가지이지만 불리언 값으로 메소드를 호출할 일은 없으므로 그다지 유용하지는 않다.
 
-ES6에서 새롭게 도입된 원시값인 심볼도 레퍼 객체를 생성한다. 심볼은 일반적인 원시값과는 달리 리터럴 표기법으로 생성할 수 없고 Symbol 함수를 통해 생성해야 하므로 다른 원시값과는 차이가 있다. 심볼에 대해서는 "27. 7번째 데이터 타입 Symbol"에서 살펴보도록 하자.
+ES6에서 새롭게 도입된 원시값인 심볼도 레퍼 객체를 생성한다. 심볼은 일반적인 원시값과는 달리 리터럴 표기법으로 생성할 수 없고 Symbol 함수를 통해 생성해야 하므로 다른 원시값과는 차이가 있다. 심볼에 대해서는 ["28. 7번째 데이터 타입 Symbol"](/fastcampus/symbol)에서 자세히 살펴보도록 하자.
 
 이처럼 문자열, 숫자, 불리언, 심볼은 암묵적으로 생성되는 레퍼 객체에 의해 마치 객체처럼 사용할 수 있으며 표준 빌트인 객체인 String, Number, Boolean, Symbol의 프로토타입 메소드 또는 프로퍼티를 참조할 수 있다. 따라서 String, Number, Boolean 생성자 함수를 new 연산자와 함께 호출하여 문자열, 숫자, 불리언 인스턴스를 생성할 필요가 없으며 권장하지도 않는다. Symbol은 생성자 함수가 아니므로 이 논의에서는 제외하도록 한다.
 
-즉, 문자열, 숫자, 불리언, 심볼 이외의 원시값은 레퍼 객체를 생성하지 않는다. 원시값 null과 undefined의 래퍼 객체가 없다. 따라서 null과 undefined 값을 객체처럼 사용하면 에러가 발생한다.
+문자열, 숫자, 불리언, 심볼 이외의 원시값, 즉 null과 undefined는 레퍼 객체를 생성하지 않는다. 따라서 null과 undefined 값을 객체처럼 사용하면 에러가 발생한다.
 
 # 4. 전역 객체
 
@@ -184,6 +192,18 @@ ES6에서 새롭게 도입된 원시값인 심볼도 레퍼 객체를 생성한�
 
 globalThis
 : 2019년 12월 현재, 전역 객체를 가리키는 식별자를 [globalThis](https://github.com/tc39/proposal-global)로 통일하는 제안이 stage 4에 올라와 있다. globalThis는 크롬 71, 파이어폭스 65, 사파리 12.1, Edge 79, Node.js 12.0.0 이상에 이미 구현되어 있다.
+
+```javascript
+// 브라우저 환경
+globalThis === this   // true
+globalThis === window // true
+globalThis === self   // true
+globalThis === frames // true
+
+// Node.js 환경(12.0.0 이상)
+globalThis === this   // true
+globalThis === global // true
+```
 
 전역 객체는 표준 빌트인 객체(Object, String, Number, Function, Array…)들과 환경에 따른 호스트 객체(클라이언트 web API 또는 Node.js의 호스트 API) 그리고 var 키워드로 선언한 전역 변수와 전역 함수를 프로퍼티로 갖는다.
 
@@ -206,9 +226,9 @@ console.log(window.parseInt === parseInt); // true
 
 -	전역 객체는 Object, String, Number, Boolean, Function, Array, RegExp, Date, Math, Promise와 같은 모든 표준 빌트인 객체를 프로퍼티로 가지고 있다.
 
--	자바스크립트 실행 환경(브라우저 환경 또는 Node.js 환경. "3.1 자바스크립트 실행 환경" 참고)에 따라 추가적으로 프로퍼티와 메소드를 갖는다. 브라우저 환경에서는 DOM, BOM, Canvas, XMLHttpRequest, fetch, requestAnimationFrame, SVG, Web Storage, Web Component, Web worker와 같은 [클라이언트 사이드 Web API](https://developer.mozilla.org/ko/docs/Web/API)를 호스트 객체로 제공하고 Node.js 환경에서는 [Node.js 고유의 API](https://nodejs.org/dist/latest/docs/api/repl.html)를 호스트 객체로 제공한다.
+-	자바스크립트 실행 환경(브라우저 환경 또는 Node.js 환경. ["3.1 자바스크립트 실행 환경"](/fastcampus/environment#1-자바스크립트-실행-환경) 참고)에 따라 추가적으로 프로퍼티와 메소드를 갖는다. 브라우저 환경에서는 DOM, BOM, Canvas, XMLHttpRequest, fetch, requestAnimationFrame, SVG, Web Storage, Web Component, Web worker와 같은 [클라이언트 사이드 Web API](https://developer.mozilla.org/ko/docs/Web/API)를 호스트 객체로 제공하고 Node.js 환경에서는 [Node.js 고유의 API](https://nodejs.org/dist/latest/docs/api/repl.html)를 호스트 객체로 제공한다.
 
--	var 키워드로 선언한 전역 변수와 선언하지 않은 변수에 값을 할당한 암묵적 전역(“20.4.3. 암묵적 전역” 참고) 그리고 전역 함수는 전역 객체의 프로퍼티가 된다.
+-	var 키워드로 선언한 전역 변수와 선언하지 않은 변수에 값을 할당한 암묵적 전역(["21.4.3. 암묵적 전역"](/fastcampus/built-in-object#43-암묵적-전역) 참고) 그리고 전역 함수는 전역 객체의 프로퍼티가 된다.
 
 ```javascript
 // var 키워드로 선언한 전역 변수
@@ -229,7 +249,7 @@ console.log(window.baz()); // 3
 var 키워드로 선언한 변수와 전역 함수는 전역 객체의 프로퍼티가 된다.
 {: .desc-img} -->
 
-- let이나 const 키워드로 선언한 전역 변수는 전역 객체의 프로퍼티가 아니다. 즉, window.foo와 같이 접근할 수 없다. let이나 const 키워드로 선언한 전역 변수는 보이지 않는 개념적인 블록(전역 렉시컬 환경의 선언적 환경 레코드, "22. 실행 컨텍스트"에서 살펴볼 것이다.) 내에 존재하게 된다.
+- let이나 const 키워드로 선언한 전역 변수는 전역 객체의 프로퍼티가 아니다. 즉, window.foo와 같이 접근할 수 없다. let이나 const 키워드로 선언한 전역 변수는 보이지 않는 개념적인 블록(전역 렉시컬 환경의 선언적 환경 레코드, ["23. 실행 컨텍스트"](/fastcampus/execution-context)에서 살펴볼 것이다.) 내에 존재하게 된다.
 
 ```javascript
 let foo = 123;
@@ -337,13 +357,12 @@ function foo() {
 
 foo();
 
-// eval 함수는 자신이 호출된 스코프 외부에 영향을 주지 않는다.
 console.log(x); // 1
 ```
 
 위 예제의 eval 함수는 새로운 변수를 선언하면서 foo 함수의 스코프에 선언된 변수를 동적으로 추가한다. eval 함수가 호출되는 시점에는 이미 foo 함수의 스코프가 존재한다. 따라서 eval 함수는 기존의 스코프를 동적으로 수정하는 것이다. 그리고 eval 함수에 전달된 코드는 이미 그 위치에 존재하던 코드처럼 동작한다. 즉, eval 함수가 호출된 foo 함수의 스코프에서 실행된다.
 
-자바스크립트는 렉시컬 스코프("12.7 렉시컬 스코프" 참고)를 따르므로 스코프는 함수 정의가 평가되는 시점에 결정된다. 다시 말해 스코프는 런타임에 결정되는 것이 아니다. 하지만 eval 함수는 런타임에 기존의 스코프를 동적으로 수정할 수 있다. 다시 말해 eval 함수는 렉시컬 스코프를 동적으로 수정할 수 있다. 하지만 성능적인 면에서 손해를 감수해야 한다.
+자바스크립트는 렉시컬 스코프(["13.5. 렉시컬 스코프"](/fastcampus/scope#5-렉시컬-스코프) 참고)를 따르므로 스코프는 함수 정의가 평가되는 시점에 결정된다. 다시 말해 스코프는 런타임에 결정되는 것이 아니다. 하지만 eval 함수는 런타임에 기존의 스코프를 동적으로 수정할 수 있다. 다시 말해 eval 함수는 렉시컬 스코프를 동적으로 수정할 수 있다. 하지만 성능적인 면에서 손해를 감수해야 한다.
 
 엄격 모드(strict mode)에서 eval 함수는 기존의 스코프를 수정하지 않고 자신만의 독자적인 스코프를 생성한다.
 
@@ -407,7 +426,7 @@ console.log(isFinite('10'));      // true: '10' → 10
 console.log(isFinite(null));      // true: null → 0
 ```
 
-isFinite(null)은 true를 반환한다. 이것은 null을 숫자로 변환하여 검사를 수행하였기 때문이다. null을 숫자 타입으로 변환하면 0이 된다.(“8. 타입 변환과 단축 평가” 참고)
+isFinite(null)은 true를 반환한다. 이것은 null을 숫자로 변환하여 검사를 수행하였기 때문이다. null을 숫자 타입으로 변환하면 0이 된다.("9. 타입 변환과 단축 평가" 참고)
 
 ```javascript
 console.log(+null); // 0
@@ -656,7 +675,7 @@ console.log(dec);
 
 ### 4.2.7. encodeURIComponent / decodeURIComponent
 
-encodeURIComponent 함수은 매개변수로 전달된 URI(Uniform Resource Identifier) 구성 요소(component)를 인코딩한다. 여기서 인코딩이란 URI의 문자들을 이스케이프 처리하는 것을 의미한다. 단, 알파벳, 0~9의 숫자, - _ . ! ~ * ' ( ) 문자는 이스케이프 처리에서 제외된다. decodeURIComponent 함수는 매개변수로 전달된 URI 구성 요소를 디코딩한다.
+encodeURIComponent 함수는 매개변수로 전달된 URI(Uniform Resource Identifier) 구성 요소(component)를 인코딩한다. 여기서 인코딩이란 URI의 문자들을 이스케이프 처리하는 것을 의미한다. 단, 알파벳, 0~9의 숫자, - _ . ! ~ * ' ( ) 문자는 이스케이프 처리에서 제외된다. decodeURIComponent 함수는 매개변수로 전달된 URI 구성 요소를 디코딩한다.
 
 ```javascript
 /**

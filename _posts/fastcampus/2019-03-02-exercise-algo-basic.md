@@ -108,9 +108,11 @@ function binarySearch(array, target) {
 
     // target이 중간값보다 작으면 작은 쪽(start ~ mid - 1)에서 검색.
     // 중간값(array[mid])는 target과 같지 않기 때문에 포함시키지 않는다.
+    // end가 start보다 작아질 수 있다 => false
     if (target < array[mid]) end = mid - 1;
     // target이 중간값보다 크면 큰 쪽(mid + 1 ~ end)에서 검색
     // 중간값(array[mid])는 target과 같지 않기 때문에 포함시키지 않는다.
+    // start가 end보다 커질 수 있다 => false
     else start = mid + 1;
   }
   // 배열에서 target 검색 실패한 경우
@@ -131,8 +133,8 @@ console.log(binarySearch([1, 2, 3, 4, 5, 6], 7)); // -1
 
 ## 2.1. 버블 정렬
 
-- 버블 정렬(buble sort)은 가장 간단하지만 가장 느린 정렬 알고리즘이다.
-- 버블 정렬은 배열을 순회하면서 요소가 다른 요소보다 큰 경우 두 요소를 교환한다.
+- 버블 정렬(buble sort)은 순차적으로 배열을 순회하면서 인접한 두 요소를 비교하여 작은 요소를 왼쪽으로, 큰 요소를 오른쪽으로 교환한다.
+- 버블 정렬은 가장 간단하지만 가장 느린 정렬 알고리즘이다.
 - 시간 복잡도: O(n<sup>2</sup>)
 
 ![](/assets/fs-images/bubble-sort.png)
@@ -167,9 +169,7 @@ function bubbleSort(array) {
   for (let i = 0; i < length; i++) {
     for (let j = 0; j < length - i; j++) {
       console.log(j, j + 1);
-      if (array[j] > array[j + 1]) {
-        swap(array, j, j + 1);
-      }
+      if (array[j] > array[j + 1]) swap(array, j, j + 1);
     }
   }
 

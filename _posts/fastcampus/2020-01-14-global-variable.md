@@ -56,7 +56,7 @@ console.log(x); // ReferenceError: x is not defined
 위 예제를 조금 변형한 퀴즈를 풀어보자. 아래 예제의 ①에서 출력되는 값은 무엇인가?
 
 ```javascript
-var x = 'gloabl';
+var x = 'global';
 
 function foo() {
   console.log(x); // ①
@@ -65,7 +65,7 @@ function foo() {
 }
 
 foo();
-console.log(x); // gloabl
+console.log(x); // global
 ```
 
 함수 foo 내부에서 선언된 지역 변수 x는 ①의 시점에 이미 선언되고 undefined로 초기화 되었다. 따라서 전역 변수 x를 참조하는 것이 아니라 지역 변수 x를 참조하여 값을 출력한다. 즉, 지역 변수는 함수 전체에서 유효하다. 단, 변수 할당문이 실행되기 이전까지는 undefined 값을 갖는다.

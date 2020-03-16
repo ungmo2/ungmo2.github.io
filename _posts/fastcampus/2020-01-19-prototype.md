@@ -386,7 +386,7 @@ console.log(me.constructor === Person);  // true
 
 ![](/assets/fs-images/19-8.png)
 
-프토토타입의 constructor 프로퍼티
+프로토타입의 constructor 프로퍼티
 {: .desc-img}
 
 위 예제에서 Person 생성자 함수는 me 객체를 생성했다. 이때 me 객체는 프로토타입의 contructor 프로퍼티를 통해 생성자 함수와 연결된다. me 객체에는 constructor 프로퍼티가 없지만 me 객체의 프로토타입인 Person.prototye에 constructor 프로퍼티가 있다. me 객체는 프로토타입인 Person.prototye에 constructor 프로퍼티를 상속받아 사용할 수 있다.

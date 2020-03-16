@@ -324,7 +324,7 @@ let afterTaxPrice = preTaxPrice + (preTaxPrice * TAX_RATE);
 console.log(afterTaxPrice); // 110
 ```
 
-## 3.3.	const 키워드와 객체
+## 3.4.	const 키워드와 객체
 
 const 키워드로 선언된 변수에 원시값을 할당한 경우, 값을 변경할 수 없다. 하지만 **const 키워드로 선언된 변수에 객체를 할당한 경우, 값을 변경할 수 있다.** 변경 불가능한 값인 원시값은 재할당없이 변경(교체)할 수 있는 방법이 없지만 변경 가능한 값인 객체는 재할당없이도 직접 변경이 가능하기 때문이다.
 

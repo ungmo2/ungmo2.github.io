@@ -424,7 +424,7 @@ Object.defineProperty(person, 'name', { configurable: true });
 
 Object.freeze 메소드는 객체를 동결한다. 객체 동결(freeze)이란 프로퍼티 추가 및 삭제와 프로퍼티 어트리뷰트 재정의 금지, 프로퍼티 값 갱신 금지를 의미한다. 즉, **동결된 객체는 읽기만 가능하게 된다.**
 
-밀봉된 객체인지 여부는 Object.isFrozen 메소드로 확인 할 수 있다.
+동결된 객체인지 여부는 Object.isFrozen 메소드로 확인 할 수 있다.
 
 ```javascript
 const person = { name: 'Lee' };

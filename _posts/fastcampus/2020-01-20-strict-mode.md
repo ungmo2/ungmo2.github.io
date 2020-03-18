@@ -1,6 +1,6 @@
 ---
 layout: fs-post
-title: <strong>엄격 모드</strong>
+title: <strong>strict mode</strong>
 categories: fastcampus
 section: fastcampus
 seq: 20

@@ -1499,6 +1499,8 @@ Object.prototype.hasOwnProperty 메소드는 이름에서 알 수 있듯이 전�
 console.log(person.hasOwnProperty('toString')); // false
 ```
 
+in 연산자 대신 ES6에서 새롭게 도입된 [Reflect.has 메소드](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Reflect/has)를 사용할 수도 있다. Reflect.has 메소드는 in 연산자와 동일하게 동작한다.
+
 # 15. 프로퍼티 열거
 
 ## 15.1 for...in 문

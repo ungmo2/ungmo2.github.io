@@ -566,7 +566,7 @@ function foo (a) {
   function bar (b) {
     const z = 5;
     console.log(a + b + x + y + z);
-}
+  }
   bar(10);
 }
 

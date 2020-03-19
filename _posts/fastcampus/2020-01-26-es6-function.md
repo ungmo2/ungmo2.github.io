@@ -39,7 +39,7 @@ ES6 이전의 함수는 모두 일반 함수로서 호출할 수 있는 것은 �
 
 
 callable과 constructor/non-constructor
-: “16.2.3. 내부 메소드 [[Call]]과 [[Construct]]”에서 살펴보았듯이 호출할 수 있는 함수 객체를 callable이라 하며, 인스턴스를 생성할 수 있는 함수 객체를 constructor, 인스턴스를 생성할 수 없는 함수 객체를 있는 non-constructor라고 부른다.
+: ["17.2.4. 내부 메소드 [[Call]]과 [[Construct]]"](/fastcampus/constructor#24-내부-메소드-call과-construct)에서 살펴보았듯이 호출할 수 있는 함수 객체를 callable이라 하며, 인스턴스를 생성할 수 있는 함수 객체를 constructor, 인스턴스를 생성할 수 없는 함수 객체를 있는 non-constructor라고 부른다.
 
 ```javascript
 // foo는 일반 함수이다.
@@ -123,9 +123,10 @@ ES6 메소드는 인스턴스를 생성할 수 없으므로 prototype 프로퍼�
 
 ```javascript
 // obj.foo는 ES6 메소드이므로 prototype 프로퍼티가 없다.
-Object.prototype.hasOwnProperty.call(obj.foo, 'prototype'); // -> false
+obj.foo.hasOwnProperty('prototype'); // -> false
+
 // obj.bar는 일반 함수이므로 prototype 프로퍼티가 있다.
-Object.prototype.hasOwnProperty.call(obj.bar, 'prototype'); // -> true
+obj.bar.hasOwnProperty('prototype'); // -> true
 ```
 
 참고로 표준 빌드인 객체의 메소드는 모두 non-constructor이다.
@@ -267,7 +268,7 @@ var create = function (id, content) {
   return { id, content };
 };
 
-create(1, 'Javscript'); // -> { id: 1, content: 'Javscript' }
+create(1, 'JavaScript'); // -> {id: 1, content: "JavaScript"}
 ```
 
 화살표 함수도 즉시 실행 함수(IIFE)로 사용할 수 있다.
@@ -310,8 +311,9 @@ new Foo(); // TypeError: Foo is not a constructor
 화살표 함수는 인스턴스를 생성할 수 없으므로 prototype 프로퍼티가 없고 프로토타입도 생성하지 않는다.
 
 ```javascript
+const Foo = () => {};
 // 화살표 함수 Foo는 prototype 프로퍼티가 없다.
-Object.prototype.hasOwnProperty.call(Foo, 'prototype'); // -> false
+Foo.hasOwnProperty('prototype'); // -> false
 ```
 
 **2. 중복된 매개 변수 이름을 선언할 수 없다.**
@@ -338,13 +340,13 @@ const arrow = (a, a) => a + a;
 
 ## 3.3. this
 
-화살표 함수가 일반 함수와 구별되는 가장 큰 특징은 바로 this이다. 그리고 화살표 함수는 다른 함수의 인수로 전달되어 중첩 함수(콜백 함수)로 사용되는 경우가 많다.
+화살표 함수가 일반 함수와 구별되는 가장 큰 특징은 바로 this이다. 그리고 화살표 함수는 다른 함수의 인수로 전달되어 콜백 함수로 사용되는 경우가 많다.
 
-화살표 함수의 this는 일반 함수의 this와 다르게 동작한다. 이는 “중첩 함수 내부의 this 문제”, 즉 중첩 함수 내부의 this가 외부 함수의 this와 다르기 때문에 발생하는 문제를 해결하기 위해 의도적으로 설계된 것이다. 중첩 함수의 this에 대해 다시 한번 살펴보자.
+화살표 함수의 this는 일반 함수의 this와 다르게 동작한다. 이는 "콜백 함수 내부의 this 문제", 즉 콜백 함수 내부의 this가 외부 함수의 this와 다르기 때문에 발생하는 문제를 해결하기 위해 의도적으로 설계된 것이다. 콜백 함수의 this에 대해 다시 한번 살펴보자.
 
-“22. this”에서 살펴보았듯이 this 바인딩은 함수의 호출 방식, 즉 함수가 어떻게 호출되었는지에 따라 동적으로 결정된다. 다시 말해, 함수를 정의할 때 this에 바인딩할 객체가 정적으로 결정되는 것이 아니고, 함수를 호출할 때 함수가 어떻게 호출되었는지에 따라 this에 바인딩할 객체가 동적으로 결정된다.
+["22. this"](/fastcampus/this)에서 살펴보았듯이 this 바인딩은 함수의 호출 방식, 즉 함수가 어떻게 호출되었는지에 따라 동적으로 결정된다. 다시 말해, 함수를 정의할 때 this에 바인딩할 객체가 정적으로 결정되는 것이 아니고, 함수를 호출할 때 함수가 어떻게 호출되었는지에 따라 this에 바인딩할 객체가 동적으로 결정된다.
 
-이때 주의할 것은 일반 함수로 호출되는 중첩 함수의 경우이다. 어떤 함수의 인수로 전달되어 함수 내부에서 호출되는 콜백 함수도 중첩 함수라고 할 수 있다. 주어진 배열의 각 요소에 접두어를 추가하는 아래 예제를 살펴보자.
+이때 주의할 것은 일반 함수로 호출되는 콜백 함수의 경우이다. 어떤 함수의 인수로 전달되어 함수 내부에서 호출되는 콜백 함수도 중첩 함수라고 할 수 있다. 주어진 배열의 각 요소에 접두어를 추가하는 아래 예제를 살펴보자.
 
 ```javascript
 class Prefixer {
@@ -366,13 +368,13 @@ const prefixer = new Prefixer('Hi');
 console.log(prefixer.prefixArray(['Lee', 'Kim']));
 ```
 
-위 예제를 실행했을 때 기대하는 결과는 `[ 'Hi Lee', 'Hi Kim' ]`이다. 하지만 TypeError가 발생한다. 그 이유에 대해 살펴보자.
+위 예제를 실행했을 때 기대하는 결과는 `['Hi Lee', 'Hi Kim']`이다. 하지만 TypeError가 발생한다. 그 이유에 대해 살펴보자.
 
-프로토타입 메소드 내부인 ①에서 this는 메소드를 호출한 객체(위 예제의 경우 prefixer 객체)를 가리킨다. 그런데 Array.prototype.map의 인수로 전달한 콜백 함수의 내부인 ②에서 this는 전역 객체를 가리킨다. 이는 콜백 함수가 일반 함수로 호출되기 때문이다. 생성자 함수 또는 메소드로서 호출되지 않고 일반 함수로서 호출되는 모든 함수 내부의 this는 전역 객체를 가리킨다.
+프로토타입 메소드 내부인 ①에서 this는 메소드를 호출한 객체(위 예제의 경우 prefixer 객체)를 가리킨다. 그런데 Array.prototype.map의 인수로 전달한 콜백 함수의 내부인 ②에서 this는 전역 객체를 가리킨다. 이는 콜백 함수가 일반 함수로 호출되기 때문이다. 생성자 함수 또는 메소드로서 호출되지 않고 일반 함수로서 호출되는 모든 함수 내부의 this는 전역 객체를 가리킨다. 하지만 클래스 내부 코드는 모두 strict mode가 적용되고 strict mode에서 함수를 일반 함수로서 호출하면 this에 undefined가 바인딩된다.(["20.6.1. 일반 함수의 this"](/fastcampus/strict-mode#61-일반-함수의-this) 참고)
 
-이때 발생하는 문제가 바로 “중첩 함수 내부의 this 문제”이다. 즉, 콜백 함수의 this(②)와 외부 함수의 this(①)가 서로 다른 객체를 가리키고 있기 때문에 TypeError가 발생한 것이다
+이때 발생하는 문제가 바로 "콜백 함수 내부의 this 문제"이다. 즉, 콜백 함수의 this(②)와 외부 함수의 this(①)가 서로 다른 객체를 가리키고 있기 때문에 TypeError가 발생한 것이다
 
-ES6 이전에는 이와 같은 “중첩 함수 내부의 this 문제”를 해결하기 위해 아래와 같이 3가지 방법을 사용했다.
+ES6 이전에는 이와 같은 "콜백 함수 내부의 this 문제"를 해결하기 위해 아래와 같이 3가지 방법을 사용했다.
 
 **1. 메소드를 호출한 prefixer 객체를 가리키는 this를 일단 회피시킨 다음 콜백 함수 내부에서 사용한다.**
 
@@ -387,9 +389,9 @@ prefixArray(arr) {
 ...
 ```
 
-**2. Array.prototype.map의 2번째 매개변수에 메소드를 호출한 prefixer 객체를 가리키는 this를 전달한다.**
+**2. Array.prototype.map의 2번째 매개 변수에 메소드를 호출한 prefixer 객체를 가리키는 this를 전달한다.**
 
-ES5에서 도입된 Array.prototype.map은 “중첩 함수 내부의 this 문제”를 해결하기 위해 두번째 매개변수에 this로 사용할 객체를 전달할 수 있다.
+ES5에서 도입된 Array.prototype.map은 “콜백 함수 내부의 this 문제”를 해결하기 위해 두번째 매개 변수에 this로 사용할 객체를 전달할 수 있다.
 
 ```javascript
 ...
@@ -413,7 +415,7 @@ prefixArray(arr) {
 ...
 ```
 
-ES6에서는 화살표 함수를 사용하여 “중첩 함수 내부의 this 문제”를 해결할 수 있다.
+ES6에서는 화살표 함수를 사용하여 “콜백 함수 내부의 this 문제”를 해결할 수 있다.
 
 ```javascript
 class Prefixer {
@@ -429,7 +431,7 @@ const prefixer = new Prefixer('Hi');
 prefixer.prefixArray(['Lee', 'Kim']); // -> ['Hi Lee', 'Hi Kim']
 ```
 
-화살표 함수는 함수 자체의 this 바인딩이 없다. 화살표 함수 내부에서 this를 참조하면 상위 컨텍스트의 this를 그대로 참조한다. 이를 Lexical this라 한다. 이는 마치 렉시컬 스코프(“12.7. 렉시컬 스코프” 참고)와 같이 화살표 함수의 this가 함수가 정의된 위치에 의해 결정된다는 것을 의미한다.
+화살표 함수는 함수 자체의 this 바인딩이 없다. 화살표 함수 내부에서 this를 참조하면 상위 컨텍스트의 this를 그대로 참조한다. 이를 Lexical this라 한다. 이는 마치 [렉시컬 스코프](/fastcampus/scope#5-렉시컬-스코프)와 같이 화살표 함수의 this가 함수가 정의된 위치에 의해 결정된다는 것을 의미한다.
 
 화살표 함수를 제외한 모든 컨텍스트에는 this 바인딩이 반드시 존재한다. 따라서 일반적인 식별자와는 다르게 this는 스코프 체인을 통해 탐색하지 않는다. 아니 탐색할 필요가 없다. 하지만 화살표 함수 내부에는 this가 없다. 따라서 화살표 함수 내부에서 this를 참조하면 스코프 체인을 통해 this의 값을 탐색한다. 화살표 함수를 Function.prototype.bind를 사용하여 표현하면 아래와 같다.
 
@@ -648,9 +650,9 @@ const foo = () => console.log(arguments);
 foo(1, 2); // ReferenceError: arguments is not defined
 ```
 
-“17.2.1.	arguments 프로퍼티”에서 살펴본 바와 같이 arguments 객체는 매개변수 개수를 확정할 수 없는 가변 인자 함수를 구현할 때 유용하게 사용된다. 하지만 화살표 함수에서는 arguments 객체를 사용할 수 없다. 상위 컨텍스트의 arguments 객체를 참조할 수는 있지만 화살표 함수 자신에게 전달된 인수 목록을 확인할 수 없으므로 그다지 도움이 되지 않는다.
+["18.2.1. arguments 프로퍼티"](/fastcampus/first-class-object#21-arguments-프로퍼티)에서 살펴본 바와 같이 arguments 객체는 매개변수 개수를 확정할 수 없는 가변 인자 함수를 구현할 때 유용하다. 하지만 화살표 함수에서는 arguments 객체를 사용할 수 없다. 상위 컨텍스트의 arguments 객체를 참조할 수는 있지만 화살표 함수 자신에게 전달된 인수 목록을 확인할 수 없으므로 그다지 도움이 되지 않는다.
 
-따라서 화살표 함수로 가변 인자 함수를 구현해야 할 때는 반드시 rest 파라미터를 사용해야 한다. 이에 대해서는 “26.4 Rest 파라미터”에서 자세히 살펴보도록 하자.
+따라서 화살표 함수로 가변 인자 함수를 구현해야 할 때는 반드시 Rest 파라미터를 사용해야 한다.
 
 # 4. Rest 파라미터
 
@@ -669,7 +671,7 @@ function foo(...rest) {
 foo(1, 2, 3, 4, 5);
 ```
 
-함수에 전달된 인수들은 순차적으로 파라미터와 Rest 파라미터에 할당된다.
+함수에 전달된 인수들은 순차적으로 매개변수와 Rest 파라미터에 할당된다.
 
 ```javascript
 function foo(param, ...rest) {
@@ -688,7 +690,7 @@ function bar(param1, param2, ...rest) {
 bar(1, 2, 3, 4, 5);
 ```
 
-Rest 파라미터는 이름 그대로 먼저 선언된 파라미터에 할당된 인수를 제외한 나머지 인수들이 모두 배열에 담겨 할당된다. 따라서 Rest 파라미터는 반드시 마지막 파라미터이어야 한다.
+Rest 파라미터는 이름 그대로 먼저 선언된 매개변수에 할당된 인수를 제외한 나머지 인수들이 모두 배열에 담겨 할당된다. 따라서 Rest 파라미터는 반드시 마지막 이어야 한다.
 
 ```javascript
 function foo( ...rest, param1, param2) { }
@@ -730,10 +732,10 @@ function sum() {
   console.log(arguments);
 }
 
-sum(1, 2); // { length: 2, '0': 1, '1': 2 }
+sum(1, 2); // {length: 2, '0': 1, '1': 2}
 ```
 
-가변 인자 함수는 파라미터를 통해 인수를 전달받는 것이 불가능하므로 arguments 객체를 활용하여 인수를 전달받는다. 하지만 arguments 객체는 유사 배열 객체이므로 배열 메소드를 사용하려면 Function.prototype.call 메소드를 통해 this를 변경하여 배열 메소드를 호출해야 하는 번거로움이 있다.
+가변 인자 함수는 매개변수를 통해 인수를 전달받는 것이 불가능하므로 arguments 객체를 활용하여 인수를 전달받는다. 하지만 arguments 객체는 유사 배열 객체이므로 배열 메소드를 사용하려면 Function.prototype.call 메소드를 통해 this를 변경하여 배열 메소드를 호출해야 하는 번거로움이 있다.
 
 ```javascript
 function sum() {
@@ -742,7 +744,7 @@ function sum() {
 
   return array.reduce(function (pre, cur) {
     return pre + cur;
-  });
+  }, 0);
 }
 
 console.log(sum(1, 2, 3, 4, 5)); // 15
@@ -753,12 +755,12 @@ ES6에서는 rest 파라미터를 사용하여 가변 인자의 목록을 배열
 ```javascript
 function sum(...args) {
   // Rest 파라미터 args에는 배열 [1, 2, 3, 4, 5]이 할당된다.
-  return args.reduce((pre, cur) => pre + cur);
+  return args.reduce((pre, cur) => pre + cur, 0);
 }
 console.log(sum(1, 2, 3, 4, 5)); // 15
 ```
 
-일반 함수와 메소드는 Rest 파라미터와 arguments 객체를 모두 사용할 수 있다. 하지만 화살표 함수는 함수 자체의 arguments 객체를 갖지 않는다. 따라서 화살표 함수로 가변 인자 함수를 구현해야 할 때는 반드시 rest 파라미터를 사용해야 한다.
+일반 함수와 메소드는 Rest 파라미터와 arguments 객체를 모두 사용할 수 있다. 하지만 화살표 함수는 함수 자체의 arguments 객체를 갖지 않는다. 따라서 화살표 함수로 가변 인자 함수를 구현해야 할 때는 반드시 Rest 파라미터를 사용해야 한다.
 
 ```javascript
 var normalFunc = function () {};

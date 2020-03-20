@@ -3,7 +3,7 @@ layout: fs-post
 title: <strong>Array HOF 연습 문제</strong>
 categories: fastcampus-exercise
 section: fastcampus-exercise
-seq: 4
+seq: 3
 permalink: /:categories/:title
 description:
 ---

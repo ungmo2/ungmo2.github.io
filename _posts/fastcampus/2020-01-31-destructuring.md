@@ -90,12 +90,15 @@ console.log(x, y, z); // 1 2 3
 배열 디스트럭처링 할당은 배열에서 필요한 요소만 추출하여 변수에 할당하고 싶을 때 유용하다. 아래 예제는 Date 객체에서 년도, 월, 일을 추출하는 예제이다.
 
 ```javascript
-const today = new Date(); // Mon Sep 16 2019 02:03:42 GMT+0900 (한국 표준시)
-const formattedDate = today.toISOString().substring(0, 10); // "2019-09-15"
+const today = new Date();
+console.log(today); // Sun Mar 22 2020 22:00:55 GMT+0900 (대한민국 표준시)
+
+const formattedDate = today.toISOString().substring(0, 10);
+console.log(formattedDate); // "2020-03-22"
 
 // 문자열을 분리하여 배열로 변환한 후, 배열 디스트럭처링 할당을 통해 필요한 요소를 취득한다.
 const [year, month, day] = formattedDate.split('-');
-console.log([year, month, day]); // ['2019', '09', '15']
+console.log([year, month, day]); // ["2020", "03", "22"]
 ```
 
 배열 디스트럭처링 할당을 위한 변수에 Rest 파라미터와 유사하게 Rest 요소(Rest element) …을 사용할 수 있다. Rest 요소는 Rest 파라미터와 마찬가지로 반드시 마지막에 위치해야 한다.

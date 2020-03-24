@@ -25,7 +25,7 @@ const todos = [
 function render() {
   let html = '';
 
-  todos.forEach(function (todo) {
+  todos.forEach(todo => {
 
   });
 
@@ -88,8 +88,8 @@ function getValues(key) {
 }
 
 console.log(getValues('id')); // [3, 2, 1]
-console.log(getValues('content')); // [ 'HTML', 'CSS', 'Javascript' ]
-console.log(getValues('completed')); // [ false, true, false ]
+console.log(getValues('content')); // ['HTML', 'CSS', 'Javascript']
+console.log(getValues('completed')); // [false, true, false]
 ```
 
 <!--
@@ -340,7 +340,7 @@ function countCompletedTodos() {
 
 # 9. id 프로퍼티의 값 중에서 최대값 구하기
 
-todos의 id 프로퍼티의 값 중에서 최대값을 함수를 작성하라.
+todos의 id 프로퍼티의 값 중에서 최대값을 구하는 함수를 작성하라.
 
 단, for 문, Array#forEach는 사용하지 않도록 하자.
 
@@ -359,6 +359,10 @@ console.log(getMaxId()); // 3
 ```
 
 <!--
+function getMaxId() {
+  return todos.length ? Math.max(...todos.map(({ id }) => id)) : 0;
+}
+
 function getMaxId() {
   return Math.max.apply(null, todos.map(todo => todo.id));
   // return Math.max(...todos.map(todo => todo.id));

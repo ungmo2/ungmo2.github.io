@@ -48,7 +48,7 @@ description:
 서버에 요청을 하기 위해 브라우저는 주소창을 제공한다. 브라우저의 주소창에 URL을 입력하고 엔터 키를 입력하면 URL의 [호스트 이름](https://ko.wikipedia.org/wiki/호스트명)은 [DNS](https://ko.wikipedia.org/wiki/도메인_네임_시스템)를 통해 IP 주소로 변환되고 이 IP 주소를 갖는 서버에게 요청(request)를 전송한다.
 
 ![](/assets/fs-images/38-2.png)
-{: .w-450 }
+{: .w-650 }
 
 URI(Uniform Resource Identifier)
 {: .desc-img}

@@ -93,10 +93,8 @@ Toggle side nav
 ```
 
 <!--
-const $container = document.querySelector('.container');
-const $toggle = document.querySelector('.toggle');
+    const $container = document.querySelector('.container');
+    const $toggle = document.querySelector('.toggle');
 
-$toggle.onclick = function () {
-  $container.classList.toggle('active');
-};
+    $toggle.onclick = () => $container.classList.toggle('active');
 -->

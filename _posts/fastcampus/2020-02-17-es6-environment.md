@@ -321,7 +321,7 @@ console.log(f.bar());
 
 브라우저는 CommonJS 방식의 require 함수를 지원하지 않으므로 위에서 트랜스파일링된 결과를 그대로 브라우저에서 실행하면 에러가 발생한다. 프로젝트 루트 폴더에 아래와 같이 index.html을 작성하여 트랜스파일링된 자바스크립트 파일을 브라우저에서 실행해보자.
 
-```javascript
+```html
 <!DOCTYPE html>
 <html>
 <body>

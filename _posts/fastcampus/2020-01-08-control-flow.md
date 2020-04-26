@@ -11,7 +11,7 @@ description:
 * TOC
 {:toc}
 
-제어문(Control flow statement)은 주어진 조건에 따라 코드 블록을 실행(조건문)하거나 반복 실행(반복문)할 때 사용한다. 일반적으로 코드는 위에서 아래 방향으로 순차적으로 실행된다. 제어문을 사용하면 코드의 실행 흐름을 인위적으로 제어할 수 있다.
+제어문(control flow statement)은 주어진 조건에 따라 코드 블록을 실행(조건문)하거나 반복 실행(반복문)할 때 사용한다. 일반적으로 코드는 위에서 아래 방향으로 순차적으로 실행된다. 제어문을 사용하면 코드의 실행 흐름을 인위적으로 제어할 수 있다.
 
 하지만 코드의 실행 순서가 변경된다는 것은 단순하게 위에서 아래로 순차적으로 진행하는 직관적인 코드의 흐름을 혼란스럽게 만든다. 따라서 제어문은 코드의 흐름을 이해하기 어렵게 만들어 가독성을 해치는 단점이 있다. 가독성이 좋지 않은 코드는 오류를 발생시키는 원인이 된다. 나중에 살펴볼 forEach, map, filter, reduce와 같은 고차 함수를 사용한 함수형 프로그래밍 기법에서는 제어문의 사용을 억제하여 복잡성을 해결하려고 노력한다.
 
@@ -19,29 +19,26 @@ description:
 
 # 1. 블록문
 
-블록문(Block statement/Compound statement)는 0개 이상의 문을 중괄호로 묶은 것으로 코드 블록 또는 블록이라고 부르기도 한다. 자바스크립트는 블록문을 하나의 실행 단위로 취급한다. 블록문은 단독으로 사용할 수도 있으나 일반적으로 제어문이나 함수를 정의할 때 사용하는 것이 일반적이다.
+블록문(block statement/compound statement)는 0개 이상의 문을 중괄호로 묶은 것으로 코드 블록 또는 블록이라고 부르기도 한다. 자바스크립트는 블록문을 하나의 실행 단위로 취급한다. 블록문은 단독으로 사용할 수도 있으나 일반적으로 제어문이나 함수를 정의할 때 사용하는 것이 일반적이다.
 
-아래는 블록문이 사용되는 다양한 예제이다. 문의 끝에는 세미 콜론(;)을 붙이는 것이 일반적이지만 블록문의 끝에는 세미콜론을 붙이지 않는다는 것에 주의하기 바란다.
+아래는 블록문이 사용되는 다양한 예제이다. 문의 끝에는 [세미 콜론(;)](/fastcampus/expression#5-세미콜론과-세미콜론-자동-삽입-기능)을 붙이는 것이 일반적이다. 하지만 블록문은 언제나 문의 종료를 의미하는 자체 종결성(self closing)을 갖기 때문에 블록문의 끝에는 세미콜론을 붙이지 않는다는 것에 주의하기 바란다.
 
 ```javascript
 // 블록문
 {
   var foo = 10;
-  console.log(foo);
 }
 
 // 제어문
-var x = 0;
-while (x < 10) {
+var x = 1;
+if (x < 10) {
   x++;
 }
-console.log(x); // 10
 
 // 함수 선언문
 function sum(a, b) {
   return a + b;
 }
-console.log(sum(1, 2)); // 3
 ```
 
 # 2. 조건문
@@ -123,7 +120,7 @@ console.log(kind); // 양수
 대부분의 if...else 문은 삼항 조건 연산자(["7.4. 삼항 조건 연산자"](/fastcampus/operator#4-삼항-조건-연산자) 참고)로 바꿔 쓸 수 있다. 아래 예제를 살펴보자.
 
 ```javascript
-// x가 짝수이면 문자열 '짝수'를 반환하고 홀수이면 문자열 '홀수'를 반환한다.
+// x가 짝수이면 변수 result에 문자열 '짝수'를 할당하고 홀수이면 문자열 '홀수'를 할당한다.
 var x = 2;
 var result;
 
@@ -139,16 +136,14 @@ console.log(result); // 짝수
 위 예제는 아래와 같이 삼항 조건 연산자로 바꿔 쓸 수 있다.
 
 ```javascript
-// x가 짝수이면 문자열 '짝수'를 반환하고 홀수이면 문자열 '홀수'를 반환한다.
 var x = 2;
 
 // 0은 false로 취급된다.
 var result = x % 2 ? '홀수' : '짝수';
-
 console.log(result); // 짝수
 ```
 
-위 예제는 두가지 경우의 수('홀수' 또는 '짝수')를 갖는 경우이다. 만약 세가지 경우의 수(양수, 음수, 영)를 갖는 경우는 아래와 같이 바꿔 쓸 수 있다.
+위 예제는 두가지 경우의 수('홀수' 또는 '짝수')를 갖는 경우이다. 만약 세가지 경우의 수(양수, 음수, 영)를 갖는 경우, 아래와 같이 바꿔 쓸 수 있다.
 
 ```javascript
 var num = 2;
@@ -161,11 +156,13 @@ console.log(kind); // 양수
 
 `num > 0 ? '양수' : '음수'`는 표현식이다. 즉, 삼항 조건 연산자는 값으로 평가되는 표현식을 만든다. 하지만 if…else 문은 표현식이 아닌 문이다. 따라서 삼항 조건 연산자 표현식은 값처럼 사용할 수 있기 때문에 변수에 할당할 수 있다. 하지만 if…else 문은 값처럼 사용할 수 없기 때문에 변수에 할당할 수 없다는 차이가 있다.
 
+따라서 조건에 따라 단순히 값을 결정하여 변수에 할당하는 경우, if...else 문보다 삼항 조건 연산자를 사용하는 편이 가독성이 좋다. 하지만 조건에 따라 실행하여야 할 내용이 복잡하여 여러 줄의 문이 필요하다면 if...else 문을 사용하는 편이 가독성이 좋다.
+
 ## 2.2.	switch 문
 
 switch 문은 주어진 표현식을 평가하여 그 값과 일치하는 표현식을 갖는 case 문으로 실행 순서를 이동시킨다. case 문은 상황(case)을 의미하는 표현식을 지정하고 콜론으로 마친다. 그리고 그 뒤에 실행할 문들을 위치시킨다.
 
-switch 문의 표현식과 일치하는 표현식을 갖는 case 문이 없다면 실행 순서는 default 문으로 이동한다. default 옵션으로 사용할 수도 있고 사용하지 않을 수도 있다.
+switch 문의 표현식과 일치하는 표현식을 갖는 case 문이 없다면 실행 순서는 default 문으로 이동한다. default 문은 옵션으로 사용할 수도 있고 사용하지 않을 수도 있다.
 
 ```javascript
 switch (표현식) {
@@ -180,7 +177,7 @@ switch (표현식) {
 }
 ```
 
-if...else 문의 조건식은 반드시 불리언 값으로 평가되지만 switch 문의 표현식은 불리언 값보다는 문자열, 숫자 값인 경우가 많다. if…else 문은 논리적 참, 거짓으로 실행할 코드 블록을 결정한다. switch 문은 논리적 참, 거짓보다는 다양한 상황(case)에 따라 실행할 코드 블록을 결정할 때 사용한다.
+if...else 문의 조건식은 불리언 값으로 평가되어야 하지만, switch 문의 표현식은 불리언 값보다는 문자열, 숫자 값인 경우가 많다. if...else 문은 논리적 참, 거짓으로 실행할 코드 블록을 결정한다. switch 문은 논리적 참, 거짓보다는 다양한 상황(case)에 따라 실행할 코드 블록을 결정할 때 사용한다.
 
 아래 예제를 살펴보자. switch 문의 표현식, 즉 변수 month의 평가 결과인 숫자 값 11과 일치하는 case 문으로 실행 순서가 이동한다.
 
@@ -190,35 +187,22 @@ var month = 11;
 var monthName;
 
 switch (month) {
-  case 1:
-    monthName = 'January';
-  case 2:
-    monthName = 'February';
-  case 3:
-    monthName = 'March';
-  case 4:
-    monthName = 'April';
-  case 5:
-    monthName = 'May';
-  case 6:
-    monthName = 'June';
-  case 7:
-    monthName = 'July';
-  case 8:
-    monthName = 'August';
-  case 9:
-    monthName = 'September';
-  case 10:
-    monthName = 'October';
-  case 11:
-    monthName = 'November';
-  case 12:
-    monthName = 'December';
-  default:
-    monthName = 'Invalid month';
+  case 1: monthName = 'January';
+  case 2: monthName = 'February';
+  case 3: monthName = 'March';
+  case 4: monthName = 'April';
+  case 5: monthName = 'May';
+  case 6: monthName = 'June';
+  case 7: monthName = 'July';
+  case 8: monthName = 'August';
+  case 9: monthName = 'September';
+  case 10: monthName = 'October';
+  case 11: monthName = 'November';
+  case 12: monthName = 'December';
+  default: monthName = 'Invalid month';
 }
 
-console.log(monthName); // Invalid month
+console.log(monthName); // November
 ```
 
 그런데 위 예제를 실행해 보면 'November'가 출력되지 않고 'Invalid month'가 출력된다. 이는 switch 문의 표현식의 평가 결과와 일치하는 case 문으로 실행 순서가 이동하여 문을 실행한 것은 맞지만, 문을 실행한 후 switch 문을 탈출하지 않고 switch 문이 끝날 때까지 이후의 모든 case 문과 default 문을 실행했기 때문이다. 이를 **폴스루(fall through)**라 한다. 다시 말해 변수 monthName에 'November'가 할당된 후 switch 문을 탈출하지 않고 연이어 'December'가 재할당되고 마지막으로 'Invalid month'가 재할당되었다.
@@ -231,44 +215,31 @@ var month = 11;
 var monthName;
 
 switch (month) {
-  case 1:
-    monthName = 'January';
+  case 1: monthName = 'January';
     break;
-  case 2:
-    monthName = 'February';
+  case 2: monthName = 'February';
     break;
-  case 3:
-    monthName = 'March';
+  case 3: monthName = 'March';
     break;
-  case 4:
-    monthName = 'April';
+  case 4: monthName = 'April';
     break;
-  case 5:
-    monthName = 'May';
+  case 5: monthName = 'May';
     break;
-  case 6:
-    monthName = 'June';
+  case 6: monthName = 'June';
     break;
-  case 7:
-    monthName = 'July';
+  case 7: monthName = 'July';
     break;
-  case 8:
-    monthName = 'August';
+  case 8: monthName = 'August';
     break;
-  case 9:
-    monthName = 'September';
+  case 9: monthName = 'September';
     break;
-  case 10:
-    monthName = 'October';
+  case 10: monthName = 'October';
     break;
-  case 11:
-    monthName = 'November';
+  case 11: monthName = 'November';
     break;
-  case 12:
-    monthName = 'December';
+  case 12: monthName = 'December';
     break;
-  default:
-    monthName = 'Invalid month';
+  default: monthName = 'Invalid month';
 }
 
 console.log(monthName); // November
@@ -276,7 +247,7 @@ console.log(monthName); // November
 
 default 문에는 break 문을 생략하는 것이 일반적이다. default 문은 switch 문의 가장 마지막에 위치하므로 default 문의 실행이 종료하면 switch 문을 빠져나간다. 따라서 별도로 break 문이 필요 없다.
 
-break 문을 생략한 폴스루(fall through)가 유용한 경우도 있다. 아래 예제와 같이 폴스루를 활용해 여러 개의 case 문을 하나의 조건으로 사용할 수도 있다. 아래는 윤년인지 판별해서 2월의 일수를 계산하는 예제다.
+break 문을 생략한 폴스루가 유용한 경우도 있다. 아래 예제와 같이 폴스루를 활용해 여러 개의 case 문을 하나의 조건으로 사용할 수도 있다. 아래는 윤년인지 판별해서 2월의 일수를 계산하는 예제다.
 
 ```javascript
 var year = 2000; // 2000년은 윤년으로 2월이 29일이다.
@@ -292,9 +263,9 @@ switch (month) {
     break;
   case 2:
     // 윤년 계산 알고리즘
-    // 1. 년도가 4로 나누어 떨어지는 해는 윤년(2000, 2004, 2008, 2012, 2016, 2020…)
-    // 2. 그 중에서 년도가 100으로 나누어 떨어지는 해는 평년(2000, 2100, 2200...)
-    // 3. 그 중에서 년도가 400으로 나누어 떨어지는 해는 윤년(2000, 2400, 2800...)
+    // 1. 연도가 4로 나누어 떨어지는 해(2000, 2004, 2008, 2012, 2016, 2020…)는 윤년이다.
+    // 2. 연도가 4로 나누어 떨어지더라도 연도가 100으로 나누어 떨어지는 해(2000, 2100, 2200...)는 평년이다.
+    // 3. 연도가 400으로 나누어 떨어지는 해(2000, 2400, 2800...)는 윤년이다.
     days = ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)) ? 29 : 28;
     break;
   default:
@@ -304,18 +275,22 @@ switch (month) {
 console.log(days); // 29
 ```
 
-switch 문은 case, default, break 등 다양한 키워드를 사용해야 하고 상황에 따라 실행될 코드 블록이 중괄호로 묶어 있지 않으며 폴스루가 발생하는 등 문법도 복잡하다.
+switch 문은 case, default, break 등 다양한 키워드를 사용해야 하고 상황에 따라 실행될 코드 블록이 중괄호로 묶어 있지 않으며 폴스루가 발생하는 등 문법도 복잡하다. 따라서 C 언어를 기반으로 하는 프로그래밍 언어(C-family)는 대부분 switch 문을 지원하지만 파이썬과 같이 switch 문을 지원하지 않는 프로그래밍 언어도 존재한다.
+
 만약 if...else 문으로 해결할 수 있다면 switch 문보다 if...else 문을 사용하는 편이 좋다. 하지만 if...else 문보다 switch 문을 사용했을 때 가독성이 더 좋다면 switch 문을 사용하는 편이 좋다.
 
 # 3. 반복문
 
 반복문(Loop statement)은 주어진 조건식의 평가 결과가 참인 경우 코드 블럭을 실행한다. 그 후 조건식을 다시 검사하여 여전히 참인 경우 코드 블록을 다시 실행한다. 이는 조건식이 거짓일 때까지 반복된다.
 
-자바스크립트는 3가지의 반복문 for 문, while 문, do…while 문을 제공한다. 그 외에도 for..in 문, ES6에서 새롭게 도입된 for…of 문이 있다. for..in 문과 for…of 문에 대해서는 나중에 살펴보기로 하자.
+자바스크립트는 3가지의 반복문 for 문, while 문, do…while 문을 제공한다.
+
+반복문을 대체할 수 있는 다양한 기능
+: 자바스크립트는 배열을 순회할 때 사용하는 forEach 메소드(["27.9.2. Array.prototype.forEach"](/fastcampus/array#92-arrayprototypeforeach) 참고), 객체의 프로퍼티를 열거할 때 사용하는 for…in 문(["19.15.1. for…in 문"](/fastcampus/prototype#151-forin-문) 참고), ES6에서 새롭게 도입된 이터러블을 순회할 수 있는 for…of 문(["34.3. for…of 문"](/fastcampus/iterable#3-forof-문) 참고)과 같이 반복문을 대체할 수 있는 다양한 기능을 제공한다. 이에 대해서는 해당 장에서 자세히 살펴볼 것이다.
 
 ## 3.1. for 문
 
-for 문은 조건식이 거짓으로 판별될 때까지 코드 블록을 반복 실행한다. 가장 일반적으로 사용되는 반복문의 형태는 아래와 같다. 변수 선언문의 변수 이름은 반복을 의미하는 iteration의 i를 사용하는 것이 일반적이다.
+for 문은 조건식이 거짓으로 판별될 때까지 코드 블록을 반복 실행한다. 가장 일반적으로 사용되는 for 문의 형태는 아래와 같다. 변수 선언문의 변수 이름은 반복을 의미하는 iteration의 i를 사용하는 것이 일반적이다.
 
 ```javascript
 for (변수 선언문 또는 할당문; 조건식; 증감식) {
@@ -347,7 +322,7 @@ for문의 실행 순서
 7. 코드 블록의 실행이 종료하면 증감식으로 실행 순서가 이동한다. 증감식 i++가 실행되어 i는 2가 된다.
 8. 증감식 실행이 종료되면 다시 조건식으로 실행 순서가 이동한다. 현재 변수 i는 2이므로 조건식의 평가 결과는 false다. 조건식의 평가 결과가 false이므로 for 문의 실행이 종료된다.
 
-아래 예제는 위 예제를 역으로 반복하는 for 문이다. 변수 i가 1으로 초기화된 상태에서 시작하여 i가 0보다 같거나 커질 때까지 코드 블록을 2번 반복 실행한다.
+아래 예제는 위 예제를 역으로 반복하는 for 문이다. 변수 i가 1으로 초기화된 상태에서 시작하여 i가 0보다 같거나 클 때까지 코드 블록을 2번 반복 실행한다.
 
 ```javascript
 for (var i = 1; i >= 0; i--) {
@@ -391,9 +366,9 @@ var count = 0;
 
 // count가 3보다 작을 때까지 코드 블록을 계속 반복 실행한다.
 while (count < 3) {
-  console.log(count);
+  console.log(count); // 0 1 2
   count++;
-} // 0 1 2
+}
 ```
 
 조건식의 평가 결과가 언제나 참이면 무한루프가 된다.
@@ -441,7 +416,7 @@ if (true) {
 }
 ```
 
-레이블 문(Label statement)이란 식별자가 붙은 문을 말한다.
+레이블 문(label statement)이란 식별자가 붙은 문을 말한다.
 
 ```javascript
 // foo라는 레이블 식별자가 붙은 레이블 문
@@ -469,14 +444,14 @@ outer: for (var i = 0; i < 3; i++) {
   for (var j = 0; j < 3; j++) {
     // i + j === 3이면 outer라는 식별자가 붙은 레이블 for 문을 탈출한다.
     if (i + j === 3) break outer;
-    console.log('inner ' + j);
+    console.log(`inner [${i}, ${j}]`);
   }
 }
 
 console.log('Done!');
 ```
 
-중첩된 for 문을 외부로 탈출할 때 레이블 문은 유용하지만 그 외의 경우 레이블 문은 일반적으로 권장하지 않는다. 레이블 문을 사용하면 프로그램의 흐름이 복잡해져서 가독성이 나빠지고 오류를 발생시킬 가능성이 높아지기 때문이다.
+레이블 문은 중첩된 for 문 외부로 탈출할 때 유용하지만 그 외의 경우 레이블 문은 일반적으로 권장하지 않는다. 레이블 문을 사용하면 프로그램의 흐름이 복잡해져서 가독성이 나빠지고 오류를 발생시킬 가능성이 높아지기 때문이다.
 
 break 문은 레이블 문 뿐만이 아니라 반복문, switch 문에서도 사용할 수 있다. 이 경우에는 break 문에 레이블 식별자를 지정하지 않는다. break 문은 반복문을 더 이상 진행하지 않아도 될 때 불필요한 반복을 회피할 수 있어 유용하다.
 

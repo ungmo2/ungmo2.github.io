@@ -15,14 +15,25 @@ description:
 
 앞으로 살펴볼 프로퍼티 어트리뷰트를 이해하기 위해 먼저 내부 슬롯과 내부 메소드의 개념에 대해 알아보자.
 
-내부 슬롯(internal slot)과 내부 메소드(internal method)는 자바스크립트 엔진의 알고리즘을 설명하기 위해 ECMAScript 사양에서 사용하는 의사 프로퍼티(pseudo property)와 의사 메소드(pseudo method)이다. ECMAScript 사양에 등장하는 이중 대괄호([[…]])로 감싼 이름들이 내부 슬롯과 내부 메소드이다.
+내부 슬롯(internal slot)과 내부 메소드(internal method)는 자바스크립트 엔진의 구현 알고리즘을 설명하기 위해 ECMAScript 사양에서 사용하는 의사 프로퍼티(pseudo property)와 의사 메소드(pseudo method)이다. ECMAScript 사양에 등장하는 이중 대괄호([[…]])로 감싼 이름들이 내부 슬롯과 내부 메소드이다.
 
 ![](/assets/fs-images/16-1.png)
 {: .w-650 }
 [내부 슬롯과 내부 메소드](http://ecma-international.org/ecma-262/10.0/#sec-object-internal-methods-and-internal-slots)
 {: .desc-img}
 
-내부 슬롯과 내부 메소드는 ECMAScript 사양에 정의된 대로 구현되어 자바스크립트 엔진에서 실제로 동작하지만 외부로 공개된 객체의 프로퍼티는 아니다. 즉, 내부 슬롯과 내부 메소드는 자바스크립트 엔진의 내부 로직이므로 원칙적으로 자바스크립트는 내부 슬롯과 내부 메소드에 직접적으로 접근하거나 호출할 수 있는 방법을 제공하지 않는다. 단, 일부 내부 슬롯과 내부 메소드에 한하여 간접적으로 접근할 수 있는 수단을 제공하기는 한다.
+내부 슬롯과 내부 메소드는 ECMAScript 사양에 정의된 대로 구현되어 자바스크립트 엔진에서 실제로 동작하지만 개발자가 직접 접근할 수 있도록 외부로 공개된 객체의 프로퍼티는 아니다. 즉, 내부 슬롯과 내부 메소드는 자바스크립트 엔진의 내부 로직이므로 원칙적으로 자바스크립트는 내부 슬롯과 내부 메소드에 직접적으로 접근하거나 호출할 수 있는 방법을 제공하지 않는다. 단, 일부 내부 슬롯과 내부 메소드에 한하여 간접적으로 접근할 수 있는 수단을 제공하기는 한다.
+
+예를 들어, 모든 객체는 [[Prototype]]이라는 내부 슬롯을 갖는다. 내부 슬롯은 자바스크립트 엔진의 내부 로직이므로 원칙적으로 직접 접근할 수 없지만 [[Prototype]] 내부 슬롯의 경우, \_\_proto\_\_를 통해 간접적으로 접근할 수 있다.
+
+```javascript
+const o = {};
+
+// 내부 슬롯은 자바스크립트 엔진의 내부 로직이므로 직접 접근할 수 없다.
+o.[[Prototype]] // -> Uncaught SyntaxError: Unexpected token '['
+// 단, 일부 내부 슬롯과 내부 메소드에 한하여 간접적으로 접근할 수 있는 수단을 제공하기는 한다.
+o.__proto__ // -> Object.prototype
+```
 
 # 2. 프로퍼티 어트리뷰트와 프로퍼티 디스크립터 객체
 
@@ -413,7 +424,7 @@ delete person.name; // 무시. strict mode에서는 에러
 console.log(person); // {name: "Lee"}
 
 // 프로퍼티 값 갱신은 가능하다.
-Object.defineProperty(person, 'name', { value: 'Kim' });
+person.name = 'Kim';
 console.log(person); // {name: "Kim"}
 
 // 프로퍼티 어트리뷰트 재정의가 금지된다.

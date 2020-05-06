@@ -11,12 +11,12 @@ description:
 * TOC
 {:toc}
 
-자바스크립트는 명령형(Imperative), 함수형(Functional), 프로토타입 기반(Prototype-based) 객체지향 프로그래밍(OOP, Object Oriented Programming)을 지원하는 멀티 패러다임 프로그래밍 언어다.
+자바스크립트는 명령형(imperative), 함수형(functional), 프로토타입 기반(prototype-based) 객체지향 프로그래밍(OOP, Object Oriented Programming)을 지원하는 멀티 패러다임 프로그래밍 언어다.
 
 간혹 C++, Java와 같은 클래스 기반 객체지향 프로그래밍 언어의 특징인 클래스와 상속, 캡슐화를 위한 키워드 public, private, protected 등이 없어서 자바스크립트는 객체지향 언어가 아니라고 오해(자바스크립트는 가장 많은 오해를 받는 언어다)하는 경우도 있다. 하지만 자바스크립트는 클래스 기반 객체지향 프로그래밍 언어보다 효율적이며 더 강력한 객체지향 프로그래밍 능력을 지니고 있는 프로토타입 기반의 객체지향 프로그래밍 언어이다.
 
 클래스(class)
-: ES6에서 클래스가 새롭게 도입되었다. 하지만 ES6의 클래스가 기존의 프로토타입 기반 객체지향 모델을 폐지하고 새로운 객체지향 모델을 제공하는 것은 아니다. 사실 클래스도 함수이며 기존 프로토타입 기반 패턴의 [문법적 설탕(Syntactic sugar)](https://en.wikipedia.org/wiki/Syntactic_sugar)이라고 볼 수 있다.<br>하지만 클래스와 생성자 함수가 모두 프로토타입 기반의 인스턴스를 생성하지만 정확히 동일하게 동작하지는 않는다. 클래스는 생성자 함수보다 엄격하며 클래스는 생성자 함수에서는 제공하지 않는 기능도 제공한다.<br>따라서 클래스를 프로토타입 기반 객체 생성 패턴의 단순한 문법적 설탕이라고 보기 보다는 새로운 객체 생성 메카니즘으로 보는 것이 보다 합당하다고 할 수 있다. 클래스에 대해서는 나중에 자세히 살펴보기로 하자.
+: ES6에서 클래스가 새롭게 도입되었다. 하지만 ES6의 클래스가 기존의 프로토타입 기반 객체지향 모델을 폐지하고 새로운 객체지향 모델을 제공하는 것은 아니다. 사실 클래스도 함수이며 기존 프로토타입 기반 패턴의 [문법적 설탕(syntactic sugar)](https://en.wikipedia.org/wiki/Syntactic_sugar)이라고 볼 수 있다.<br>하지만 클래스와 생성자 함수가 모두 프로토타입 기반의 인스턴스를 생성하지만 정확히 동일하게 동작하지는 않는다. 클래스는 생성자 함수보다 엄격하며 클래스는 생성자 함수에서는 제공하지 않는 기능도 제공한다.<br>따라서 클래스를 프로토타입 기반 객체 생성 패턴의 단순한 문법적 설탕이라고 보기 보다는 새로운 객체 생성 메카니즘으로 보는 것이 보다 합당하다고 할 수 있다. 클래스에 대해서는 ["25. 클래스"](/fastcampus/class)에서 자세히 살펴보기로 하자.
 
 **자바스크립트는 객체 기반의 프로그래밍 언어이며 자바스크립트를 이루고 있는 거의 "모든 것"이 객체이다.** 원시 타입(primitive type)의 값을 제외한 나머지 값들(함수, 배열, 정규표현식 등)은 모두 객체이다.
 
@@ -24,11 +24,11 @@ description:
 
 # 1. 객체지향 프로그래밍
 
-객체지향 프로그래밍(Object Oriented Programming, OOP)은 프로그램을 명령어 또는 함수의 목록으로 보는 전통적인 명령형 프로그래밍(Imperative programming)의 절차지향적 관점에서 벗어나 여러 개의 독립적 단위, 즉 객체(object)들의 집합으로 프로그램을 표현하려는 프로그래밍 패러다임을 말한다.
+객체지향 프로그래밍(Object Oriented Programming, OOP)은 프로그램을 명령어 또는 함수의 목록으로 보는 전통적인 명령형 프로그래밍(imperative programming)의 절차지향적 관점에서 벗어나 여러 개의 독립적 단위, 즉 객체(object)들의 집합으로 프로그램을 표현하려는 프로그래밍 패러다임을 말한다.
 
 객체지향 프로그래밍은 실세계의 실체(사물이나 개념)를 인식하는 철학적 사고를 프로그래밍에 접목하려는 시도에서 시작한다. 실체는 특징이나 성질을 나타내는 **속성(attribute, property)**을 가지고 있고, 이를 통해 실체를 인식하거나 구별할 수 있다.
 
-예를 들어 사람은 이름, 주소, 성별, 나이, 신장, 체중, 학력, 성격, 직업 등 다양한 속성을 갖는다. 이때 "이름이 아무개이고 성별은 여성이며 나이는 20세인 사람"과 같이 속성을 구체적으로 표현하면 특정한 사람을 다른 사람과 구별하여 인식할 수 있다.
+예를 들어, 사람은 이름, 주소, 성별, 나이, 신장, 체중, 학력, 성격, 직업 등 다양한 속성을 갖는다. 이때 "이름이 아무개이고 성별은 여성이며 나이는 20세인 사람"과 같이 속성을 구체적으로 표현하면 특정한 사람을 다른 사람과 구별하여 인식할 수 있다.
 
 이러한 방식을 프로그래밍에 접목시켜보자. 사람에게는 다양한 속성이 있으나 우리가 구현하려는 프로그램에서는 사람의 "이름", "주소"라는 속성에만 관심이 있다고 가정하자. 이처럼 다양한 속성 중에서 프로그램에 필요한 속성만을 간추려 내어 표현하는 것을 **추상화(abstraction)**라 한다.
 
@@ -64,7 +64,7 @@ const circle = {
 
   // 원의 넓이: πrr
   getArea() {
-    return Math.PI * Math.pow(this.radius, 2);
+    return Math.PI * this.radius ** 2;
   }
 };
 
@@ -94,8 +94,7 @@ function Circle(radius) {
   this.radius = radius;
   this.getArea = function () {
     // Math.PI는 원주율을 나타내는 상수이다.
-    // Math.pow는 첫번째 인수를 두번째 인수로 거듭제곱한 값을 반환한다.
-    return Math.PI * Math.pow(this.radius, 2);
+    return Math.PI * this.radius ** 2;
   };
 }
 
@@ -114,7 +113,7 @@ console.log(circle1.getArea()); // 3.141592653589793
 console.log(circle2.getArea()); // 12.566370614359172
 ```
 
-"16.2 생성자 함수"에서 살펴본 바와 같이 생성자 함수는 동일한 프로퍼티(메소드 포함) 구조를 갖는 객체를 여러 개 생성할 때 유용하다. 하지만 위 예제의 생성자 함수는 문제가 있다.
+["17.2. 생성자 함수"](/fastcampus/constructor#2-생성자-함수)에서 살펴본 바와 같이 생성자 함수는 동일한 프로퍼티(메소드 포함) 구조를 갖는 객체를 여러 개 생성할 때 유용하다. 하지만 위 예제의 생성자 함수는 문제가 있다.
 
 Circle 생성자 함수가 생성하는 모든 객체(인스턴스)는 radius 프로퍼티와 getArea 메소드를 갖는다. radius 프로퍼티 값은 일반적으로 인스턴스마다 다르다.(같은 상태를 갖는 여러 개의 인스턴스가 필요하다면 radius 프로퍼티 값이 같을 수도 있다.) 하지만 getArea 메소드는 모든 인스턴스가 동일한 내용의 메소드를 사용하므로 하나만 생성하여 모든 인스턴스가 공유하는 것이 바람직하다. 그런데 Circle 생성자 함수는 인스턴스를 생성할 때마다 getArea 메소드를 중복 생성하고 모든 인스턴스가 중복 소유한다.
 
@@ -136,7 +135,7 @@ function Circle(radius) {
 // Circle 생성자 함수가 생성한 모든 인스턴스가 공유할 수 있도록 getArea 메소드를 프로토타입에 추가한다.
 // 프로토타입은 Circle 생성자 함수의 prototype 프로퍼티에 바인딩되어 있다.
 Circle.prototype.getArea = function () {
-  return Math.PI * Math.pow(this.radius, 2);
+  return Math.PI * this.radius ** 2;
 };
 
 // 인스턴스 생성
@@ -200,7 +199,7 @@ const person = { name: 'Lee' };
 
 ["16.1. 내부 슬롯과 내부 메소드"](/fastcampus/property-definition#1-내부-슬롯과-내부-메소드)에서 살펴보았듯이 내부 슬롯은 프로퍼티가 아니다. 따라서 자바스크립트는 원칙적으로 내부 슬롯과 내부 메소드에 직접적으로 접근하거나 호출할 수 있는 방법을 제공하지 않는다. 단, 일부 내부 슬롯과 내부 메소드에 한하여 간접적으로 접근할 수 있는 수단을 제공하기는 한다. [[Prototype]] 내부 슬롯에도 직접 접근할 수 없으며 \_\_proto\_\_ 접근자 프로퍼티를 통해 간접적으로 [[Prototype]] 내부 슬롯의 값, 즉 프로토타입에 접근할 수 있다.
 
-["16.3.2. 접근자 프로퍼티"](/fastcampus/property-definition#32-접근자-프로퍼티)에서 살펴본 것처럼 접근자 프로퍼티는 자체적으로는 값을 갖지 않고 다른 데이터 프로퍼티의 값을 읽거나 저장할 때 사용하는 접근자 함수(Accessor function)로 구성된 프로퍼티다.
+["16.3.2. 접근자 프로퍼티"](/fastcampus/property-definition#32-접근자-프로퍼티)에서 살펴본 것처럼 접근자 프로퍼티는 자체적으로는 값을 갖지 않고 다른 데이터 프로퍼티의 값을 읽거나 저장할 때 사용하는 접근자 함수(accessor function)로 구성된 프로퍼티다.
 
 ![](/assets/fs-images/19-5.png)
 
@@ -241,7 +240,7 @@ console.log({}.__proto__ === Object.prototype); // true
 ```
 
 Object.prototype
-: 모든 객체는 프로토타입의 계층 구조인 프로토타입 체인에 묶여 있다. 자바스크립트 엔진은 객체의 프로퍼티(메소드 포함)에 접근하려고 할 때 해당 객체에 접근하려는 프로퍼티가 없다면 \_\_proto\_\_ 접근자 프로퍼티가 가리키는 링크를 따라 자신의 부모 역할을 하는 프로토타입의 프로퍼티를 순차적으로 검색한다. 프로토타입 체인의 종점, 즉 프로토타입 체인의 최상위 객체는 Object.prototype이며 이 객체의 프로퍼티와 메소드는 모든 객체에게 상속된다. "18.7 프로토타입 체인"에서 자세히 살펴보도록 하자.
+: 모든 객체는 프로토타입의 계층 구조인 프로토타입 체인에 묶여 있다. 자바스크립트 엔진은 객체의 프로퍼티(메소드 포함)에 접근하려고 할 때 해당 객체에 접근하려는 프로퍼티가 없다면 \_\_proto\_\_ 접근자 프로퍼티가 가리키는 링크를 따라 자신의 부모 역할을 하는 프로토타입의 프로퍼티를 순차적으로 검색한다. 프로토타입 체인의 종점, 즉 프로토타입 체인의 최상위 객체는 Object.prototype이며 이 객체의 프로퍼티와 메소드는 모든 객체에게 상속된다. 이에 대해서는 ["19.7. 프로토타입 체인"](/fastcampus/prototype#7-프로토타입-체인)에서 자세히 살펴보도록 하자.
 
 \_\_proto\_\_ 접근자 프로퍼티를 통해 프로토타입에 접근하는 이유
 {: .title}
@@ -304,7 +303,7 @@ console.log(obj.x); // 1
 
 ## 3.2.	함수 객체의 prototype 프로퍼티
 
-**함수 객체는 \_\_proto\_\_ 접근자 프로퍼티 이외에 prototype 프로퍼티도 소유한다. 함수 객체만이 소유하는 prototype 프로퍼티는 생성자 함수가 생성할 인스턴스의 프로토타입을 가리킨다.**
+**함수 객체만이 소유하는 prototype 프로퍼티는 생성자 함수가 생성할 인스턴스의 프로토타입을 가리킨다.**
 
 ```javascript
 // 함수 객체는 prototype 프로퍼티를 소유한다.
@@ -314,7 +313,7 @@ console.log((function () {}).hasOwnProperty('prototype')); // true
 console.log({}.hasOwnProperty('prototype')); // false
 ```
 
-prototype 프로퍼티는 생성자 함수가 생성할 객체(인스턴스)의 프로토타입을 가리킨다. 따라서 생성자 함수로서 호출할 수 없는 함수, 즉 non-constructor(["17.2.5 constructor와 non-constructor의 구분"](/fastcampus/constructor#25-constructor와-non-constructor의-구분) 참고)인 화살표 함수와 메소드는 prototype 프로퍼티를 소유하지 않으며 프로토타입도 생성하지 않는다.
+prototype 프로퍼티는 생성자 함수가 생성할 객체(인스턴스)의 프로토타입을 가리킨다. 따라서 생성자 함수로서 호출할 수 없는 함수, 즉 non-constructor(["17.2.5 constructor와 non-constructor의 구분"](/fastcampus/constructor#25-constructor와-non-constructor의-구분) 참고)인 화살표 함수와 ES6 메소드 축약 표현으로 정의한 메소드는 prototype 프로퍼티를 소유하지 않으며 프로토타입도 생성하지 않는다.
 
 ```javascript
 // 화살표 함수는 non-constructor이다.
@@ -389,7 +388,7 @@ console.log(me.constructor === Person);  // true
 프로토타입의 constructor 프로퍼티
 {: .desc-img}
 
-위 예제에서 Person 생성자 함수는 me 객체를 생성했다. 이때 me 객체는 프로토타입의 contructor 프로퍼티를 통해 생성자 함수와 연결된다. me 객체에는 constructor 프로퍼티가 없지만 me 객체의 프로토타입인 Person.prototye에 constructor 프로퍼티가 있다. me 객체는 프로토타입인 Person.prototye에 constructor 프로퍼티를 상속받아 사용할 수 있다.
+위 예제에서 Person 생성자 함수는 me 객체를 생성했다. 이때 me 객체는 프로토타입의 contructor 프로퍼티를 통해 생성자 함수와 연결된다. me 객체에는 constructor 프로퍼티가 없지만 me 객체의 프로토타입인 Person.prototye에는 constructor 프로퍼티가 있다. 따라서 me 객체는 프로토타입인 Person.prototye의 constructor 프로퍼티를 상속받아 사용할 수 있다.
 
 # 4. 리터럴 표기법에 의해 생성된 객체의 생성자 함수와 프로토타입
 

@@ -392,21 +392,25 @@ console.log(me.constructor === Person);  // true
 
 # 4. 리터럴 표기법에 의해 생성된 객체의 생성자 함수와 프로토타입
 
-위에서 살펴본 바와 같이, 생성자 함수에 의해 생성된 인스턴스는 프로토타입의 constructor 프로퍼티에 의해 생성자 함수와 연결된다. 이때 생성자 함수는 인스턴스를 생성한 생성자 함수이다.
+위에서 살펴본 바와 같이, 생성자 함수에 의해 생성된 인스턴스는 프로토타입의 constructor 프로퍼티에 의해 생성자 함수와 연결된다. 이때 constructor 프로퍼티가 가리키는 생성자 함수는 인스턴스를 생성한 생성자 함수이다.
 
 ```javascript
 // obj 객체를 생성한 생성자 함수는 Object이다.
 const obj = new Object();
+console.log(obj.constructor === Object); // true
 
 // add 함수 객체를 생성한 생성자 함수는 Function이다.
 const add = new Function('a', 'b', 'return a + b');
+console.log(add.constructor === Function); // true
 
 // 생성자 함수
 function Person(name) {
   this.name = name;
 }
+
 // me 객체를 생성한 생성자 함수는 Person이다.
 const me = new Person('Lee');
+console.log(me.constructor === Person); // true
 ```
 
 하지만 리터럴 표기법에 의한 객체 생성 방식과 같이, 명시적으로 new 연산자와 함께 생성자 함수를 호출하여 인스턴스를 생성하지 않는 객체 생성 방식도 존재한다.
@@ -516,7 +520,7 @@ Object.create 메소드와 클래스에 의한 객체 생성
 
 ["17.2.5. constructor와 non-constructor의 구분"](/fastcampus/constructor#25-constructor와-non-constructor의-구분)에서 살펴본 바와 같이, 내부 메소드 [[Construct]]를 갖는 함수 객체, 즉 화살표 함수나 ES6의 메소드 축약 표현으로 정의하지 않고 일반 함수(함수 선언문, 함수 표현식)로 정의한 함수 객체는 new 연산자와 함께 생성자 함수로서 호출할 수 있다.
 
-생성자 함수로서 호출할 수 있는 함수, 즉 constructor는 함수 정의가 평가되어 함수 객체를 생성하는 시점에 프로토타입도 더불어 생성된다.
+**생성자 함수로서 호출할 수 있는 함수, 즉 constructor는 함수 정의가 평가되어 함수 객체를 생성하는 시점에 프로토타입도 더불어 생성된다.**
 
 ```javascript
 // 함수 정의(constructor)가 평가되어 함수 객체를 생성하는 시점에 프로토타입도 더불어 생성된다.
@@ -570,14 +574,14 @@ Object 생성자 함수와 프로토타입
 전역 객체는 표준 빌트인 객체(Object, String, Number, Function, Array…)들과 환경에 따른 호스트 객체(클라이언트 web API 또는 Node.js의 호스트 API), 그리고 var 키워드로 선언한 전역 변수와 전역 함수를 프로퍼티로 갖는다. Math를 제외한 표준 빌트인 객체는 모두 생성자 함수이다.
 
 ```javascript
-// 전역 객체 window는 브라우저에 종속적이므로 아래 코드는 브라우저 혼경에서 실행해야 한다.
+// 전역 객체 window는 브라우저에 종속적이므로 아래 코드는 브라우저 환경에서 실행해야 한다.
 // 빌트인 객체인 Object는 전역 객체 window의 프로퍼티이다.
 window.Object === Object // true
 ```
 
-표준 빌트인 객체인 Object도 전역 객체의 프로퍼티이며 전역 객체가 생성되는 시점에 생성된다. 전역 객체와 표준 빌트인 객체에 대해서는 나중에 자세히 살펴보도록 하자.
+표준 빌트인 객체인 Object도 전역 객체의 프로퍼티이며 전역 객체가 생성되는 시점에 생성된다. 전역 객체와 표준 빌트인 객체에 대해서는 ["21. 빌트인 객체"](/fastcampus/built-in-object)에서 자세히 살펴보도록 하자.
 
-이처럼 객체가 생성되기 이전에 생성자 함수와 프로토타입은 이미 객체화되어 존재하고 있다. 이후 생성자 함수 또는 리터럴 표기법으로 객체를 생성하면 프로토타입은 생성된 객체의 [[prototype]] 내부 슬롯에 할당된다. 이로써 생성된 객체는 프로토타입을 상속받는다.
+이처럼 객체가 생성되기 이전에 생성자 함수와 프로토타입은 이미 객체화되어 존재하고 있다. **이후 생성자 함수 또는 리터럴 표기법으로 객체를 생성하면 프로토타입은 생성된 객체의 [[prototype]] 내부 슬롯에 할당된다.** 이로써 생성된 객체는 프로토타입을 상속받는다.
 
 # 6. 객체 생성 방식과 프로토타입의 결정
 
@@ -737,7 +741,7 @@ console.log(Object.getPrototypeOf(Person.prototype) === Object.prototype); // tr
 프로토타입 체인
 {: .desc-img}
 
-자바스크립트는 객체의 프로퍼티(메소드 포함)에 접근하려고 할 때 해당 객체에 접근하려는 프로퍼티가 없다면 [[Prototype]] 내부 슬롯의 참조값을 따라 자신의 부모 역할을 하는 프로토타입의 프로퍼티를 순차적으로 검색한다. 이것을 프로토타입 체인이라 한다. 프로토타입 체인은 자바스크립트가 객체 지향 프로그래밍의 상속을 구현하는 메커니즘이다.
+자바스크립트는 객체의 프로퍼티(메소드 포함)에 접근하려고 할 때 해당 객체에 접근하려는 프로퍼티가 없다면 [[Prototype]] 내부 슬롯의 참조를 따라 자신의 부모 역할을 하는 프로토타입의 프로퍼티를 순차적으로 검색한다. 이것을 프로토타입 체인이라 한다. 프로토타입 체인은 자바스크립트가 객체 지향 프로그래밍의 상속을 구현하는 메커니즘이다.
 
 ```javascript
 // hasOwnProperty는 Object.prototype의 메소드이다.
@@ -760,7 +764,7 @@ Object.prototype.hasOwnProperty.call(me, 'name');
 call 메소드
 : call 메소드는 this로 사용할 객체를 전달하면서 함수를 호출한다. 이에 대해서는 ["22.2.4. Function.prototype.apply/call/bind 메소드에 의한 간접 호출"](/fastcampus/this#24-functionprototypeapplycallbind-메소드에-의한-간접-호출)에서 자세히 살펴볼 것이다. 지금은 this로 사용할 me 객체를 전달하면서 Object.prototype.hasOwnProperty 메소드를 호출한다고 이해하도록 하자.
 
-프로토타입 체인의 최상위에 위치하는 객체는 언제나 Object.prototype이다. 따라서 모든 객체는 Object.prototype을 상속받는다. **Object.prototype을 프로토타입 체인의 종점(End of prototype chain)**이라 한다. Object.prototype의 프로토타입, 즉 [[Prototype]] 내부 슬롯의 값은 null이다.
+프로토타입 체인의 최상위에 위치하는 객체는 언제나 Object.prototype이다. 따라서 모든 객체는 Object.prototype을 상속받는다. **Object.prototype을 프로토타입 체인의 종점(end of prototype chain)**이라 한다. Object.prototype의 프로토타입, 즉 [[Prototype]] 내부 슬롯의 값은 null이다.
 
 프로토타입 체인의 종점인 Object.prototype에서도 프로퍼티를 검색할 수 없는 경우, undefined를 반환한다. 이때 에러가 발생하지 않는 것에 주의하자.
 

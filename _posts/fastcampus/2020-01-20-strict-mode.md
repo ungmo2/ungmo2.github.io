@@ -38,12 +38,12 @@ foo 함수 내에서 선언하지 않은 변수 x에 값 10을 할당하였다. 
 
 [ESLint](https://eslint.org)와 같은 린트 도구를 사용하여도 strict mode와 유사한 효과를 얻을 수 있다. 린트 도구는 정적 분석(static analysis) 기능을 통해 소스 코드를 실행하기 전에 소스 코드를 스캔하여 문법적 오류만이 아니라 잠재적 오류까지 찾아내고 오류의 이유를 리포팅해주는 유용한 도구이다.
 
-![](/assets/fs-images/19-1.png)
+![](/assets/fs-images/20-1.png)
 {: .w-450 }
 ESLint의 오류 리포팅
 {: .desc-img}
 
-또한 strict mode가 제한하는 오류는 물론 코딩 컨벤션을 설정 파일 형태로 정의하고 강제할 수 있기 때문에 보다 강력한 효과를 얻을 수 있다. 필자는 개인적으로 strict mode보다 린트 도구의 사용을 선호한다.
+또한 린트 도구는 strict mode가 제한하는 오류는 물론 코딩 컨벤션을 설정 파일 형태로 정의하고 강제할 수 있기 때문에 보다 강력한 효과를 얻을 수 있다. 따라서 필자는 개인적으로 strict mode보다 린트 도구의 사용을 선호한다.
 
 ESLint
 : ESLint의 설치 및 비주얼 스튜디오 코드에서 ESLint 사용에 대해서는 https://poiemaweb.com/eslint을 참고하기 바란다.

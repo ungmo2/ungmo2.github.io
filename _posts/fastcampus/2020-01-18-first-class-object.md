@@ -82,7 +82,7 @@ console.dir(square);
 함수 객체의 프로퍼티
 {: .desc-img}
 
-일반 객체에는 없는 arguments, caller, length, name, prototype, \_\_proto\_\_ 프로퍼티가 함수 객체에는 존재한다. square 함수의 모든 프로퍼티의 프로퍼티 어트리뷰트를 Object.getOwnPropertyDescriptors 메소드로 확인해 보면 아래와 같다.
+square 함수의 모든 프로퍼티의 프로퍼티 어트리뷰트를 Object.getOwnPropertyDescriptors 메소드로 확인해 보면 아래와 같다.
 
 ```javascript
 function square(number) {
@@ -110,7 +110,7 @@ console.log(Object.getOwnPropertyDescriptor(Object.prototype, '__proto__'));
 // {get: ƒ, set: ƒ, enumerable: false, configurable: true}
 ```
 
-arguments, caller, length, name, prototype 프로퍼티는 모두 함수 객체의 데이터 프로퍼티이다. 하지만 \_\_proto\_\_는 접근자 프로퍼티이며 함수 객체의 프로퍼티가 아닌 Object.prototype 객체의 프로퍼티를 상속받은 것을 알 수 있다. 상속에 대해서는 ["19. 프로토타입"](/fastcampus/prototype)에서 자세히 살펴보도록 하자.
+이처럼 arguments, caller, length, name, prototype 프로퍼티는 모두 함수 객체의 데이터 프로퍼티이다. 이들 프로퍼티는 일반 객체에는 없는 함수 객체 고유의 프로퍼티이다. 하지만 \_\_proto\_\_는 접근자 프로퍼티이며 함수 객체 고유의 프로퍼티가 아니라 Object.prototype 객체의 프로퍼티를 상속받은 것을 알 수 있다. Object.prototype 객체의 프로퍼티는 모든 객체가 상속받아 사용할 수 있다. 즉, Object.prototype 객체의 \_\_proto\_\_ 접근자 프로퍼티는 모든 객체가 사용할 수 있다. 상속에 대해서는 ["19. 프로토타입"](/fastcampus/prototype)에서 자세히 살펴보도록 하자.
 
 함수 객체의 프로퍼티에 대해 하나씩 살펴보도록 하자.
 

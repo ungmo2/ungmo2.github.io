@@ -1104,7 +1104,7 @@ instanceof 연산자는 이항 연산자로서 좌변에 객체를 가리키는 
 객체 instanceof 생성자 함수
 ```
 
-우변의 생성자 함수의 prototype에 바인딩된 객체가 좌변의 객체의 프로토타입 체인 상에 존재하면 true로 평가되고 그렇지 않은 경우에는 false로 평가된다.
+**우변의 생성자 함수의 prototype에 바인딩된 객체가 좌변의 객체의 프로토타입 체인 상에 존재하면 true로 평가되고 그렇지 않은 경우에는 false로 평가된다.**
 
 ```javascript
 // 생성자 함수
@@ -1307,18 +1307,17 @@ console.log(Object.getPrototypeOf(obj) === Person.prototype); // true
 
 이처럼 Object.create 메소드는 첫번째 매개변수에 전달한 객체의 프로토타입 체인에 속하는 객체를 생성한다. 즉, 객체를 생성하면서 직접적으로 상속을 구현하는 것이다. 이 메소드의 장점은 아래와 같다.
 
--	new 연산자가 없이도 객체를 생성할 수 있다.
--	객체 리터럴에 의해 생성된 객체도 특정 객체를 상속받을 수 있다.
--	프로토타입을 지정하면서 객체를 생성할 수 있다.
+- new 연산자가 없이도 객체를 생성할 수 있다.
+- 프로토타입을 지정하면서 객체를 생성할 수 있다.
+- 객체 리터럴에 의해 생성된 객체도 상속받을 수 있다.
 
 Object.prototype의 빌트인 메소드인 Object.prototype.hasOwnProperty, Object.prototype.isPrototypeOf, Object.prototype.propertyIsEnumerable 등은 모든 객체의 프로토타입 체인의 종점, 즉 Object.prototype의 메소드이므로 모든 객체가 상속받아 호출할 수 있다.
 
 ```javascript
 const obj = { a: 1 };
 
-console.log(obj.hasOwnProperty('a'));       // true
-console.log(obj.isPrototypeOf(child));      // true
-console.log(obj.propertyIsEnumerable('a')); // true
+obj.hasOwnProperty('a');       // -> true
+obj.propertyIsEnumerable('a'); // -> true
 ```
 
 그런데 ESLint에서는 위 예제와 같이 Object.prototype의 빌트인 메소드를 객체가 직접 호출하는 것을 비추천하고 있다. 그 이유는 Object.create 메소드를 통해 프로토타입 체인을 생성하지 않는 객체, 다시 말해 프로토타입의 종점에 위치하는 객체를 생성할 수 있기 때문이다. 이때 프로토타입 체인을 생성하지 않는 객체는 Object.prototype의 빌트인 메소드를 사용할 수 없다.
@@ -1419,10 +1418,10 @@ Person 생성자 함수는 객체이므로 자신의 프로퍼티/메소드를 �
 
 ```javascript
 // Object.create는 정적 메소드이다.
-const obj = Object.create({});
+const obj = Object.create({ name: 'Lee' });
 
 // Object.prototype.hasOwnProperty는 프로토타입 메소드이다.
-console.log(obj.hasOwnProperty('name'));
+obj.hasOwnProperty('name'); // -> false
 ```
 
 만약 인스턴스/프로토타입 메소드 내에서 this를 사용하지 않는다면 그 메소드는 정적 메소드로 변경할 수 있다. 인스턴스가 호출한 인스턴스/프로토타입 메소드 내에서 this는 인스턴스를 가리킨다. 메소드 내에서 인스턴스를 참조할 필요가 없다면 정적 메소드로 변경하여도 동작한다. 프로토타입 메소드를 호출하려면 인스턴스를 생성해야 하지만 정적 메소드는 인스턴스를 생성하지 않아도 호출할 수 있다.
@@ -1507,6 +1506,13 @@ console.log(person.hasOwnProperty('toString')); // false
 
 in 연산자 대신 ES6에서 새롭게 도입된 [Reflect.has 메소드](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Reflect/has)를 사용할 수도 있다. Reflect.has 메소드는 in 연산자와 동일하게 동작한다.
 
+```javascript
+const person = { name: 'Lee' };
+
+console.log(Reflect.has(person, 'name'));     // true
+console.log(Reflect.has(person, 'toString')); // true
+```
+
 # 15. 프로퍼티 열거
 
 ## 15.1 for...in 문
@@ -1560,7 +1566,7 @@ console.log(Object.getOwnPropertyDescriptor(Object.prototype, 'toString'));
 
 따라서 for...in 문에 대해 좀 더 정확히 표현하면 아래와 같다.
 
-for...in 문은 객체의 프로토타입 체인 상에 존재하는 모든 프로토타입의 프로퍼티 중에서 프로퍼티 어트리뷰트 [[Enumerable]]의 값이 ture인 프로퍼티를 순회하며 열거(enumeration)한다.
+**for...in 문은 객체의 프로토타입 체인 상에 존재하는 모든 프로토타입의 프로퍼티 중에서 프로퍼티 어트리뷰트 [[Enumerable]]의 값이 ture인 프로퍼티를 순회하며 열거(enumeration)한다.**
 
 ```javascript
 const person = {
@@ -1660,7 +1666,7 @@ for (const value of arr) {
 };
 ```
 
-배열과 forEach 메소드에 대해서는 ["27.9.2. Array.prototype.forEach"](/fastcampus/array#92-arrayprototypeforeach)에서, for...of 문에 대해서는 ["29.3. for...of 문"](/fastcampus/iterable#3-forof-문)에서 자세히 살펴보도록 하자.
+배열과 forEach 메소드에 대해서는 ["27.9.2. Array.prototype.forEach"](/fastcampus/array#92-arrayprototypeforeach)에서, for...of 문에 대해서는 ["34.3. for...of 문"](/fastcampus/iterable#3-forof-문)에서 자세히 살펴보도록 하자.
 
 ## 15.2. Object.keys/values/entries 메소드
 

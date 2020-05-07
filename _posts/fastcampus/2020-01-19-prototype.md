@@ -439,17 +439,17 @@ const obj = {};
 console.log(obj.constructor === Object); // true
 ```
 
-위 예제의 객체 obj는 Object 생성자 함수로 생성한 객체가 아니라 객체 리터럴에 의해 생성된 객체이다. 하지만 객체 obj는 Object 생성자 함수와 constructor 프로퍼티로 연결되어 있다. 그렇다면 객체 리터럴에 의해 생성된 객체는 사실 Object 생성자 함수로 생성되는 것은 아닐까?  ECMAScript 사양을 살펴보자. Object 생성자 함수는 아래와 같이 동작하도록 정의되어 있다.
+위 예제의 객체 obj는 Object 생성자 함수로 생성한 객체가 아니라 객체 리터럴에 의해 생성된 객체이다. 하지만 객체 obj는 Object 생성자 함수와 constructor 프로퍼티로 연결되어 있다. 그렇다면 객체 리터럴에 의해 생성된 객체는 사실 Object 생성자 함수로 생성되는 것은 아닐까? ECMAScript 사양을 살펴보자. Object 생성자 함수는 아래와 같이 동작하도록 정의되어 있다.
 
 ![](/assets/fs-images/19-9.png)
 
 [Object 생성자 함수](https://www.ecma-international.org/ecma-262/10.0/#sec-object-value)
 {: .desc-img}
 
-Object 생성자 함수는 new 연산자와 함께 호출하지 않아도 new 연산자와 함께 호출한 것과 동일하게 동작한다. 그리고 인수가 전달되지 않았을 때 추상 연산 ObjectCreate을 호출하여 빈 객체를 생성한다. 인수가 전달된 경우에는 인수를 객체로 변환한다.
+Object 생성자 함수는 [new.target](/fastcampus/constructor#27-newtarget)을 확인하여 new 연산자와 함께 호출하지 않아도 new 연산자와 함께 호출한 것과 동일하게 동작한다. 그리고 인수가 전달되지 않았거나 null이 인수로 전달된 경우, 추상 연산 ObjectCreate을 호출하여 Object.prototype을 프로토타입으로 갖는 빈 객체를 생성한다. 인수가 전달된 경우에는 인수를 객체로 변환한다.
 
-추상 연산(abstract operation)
-: 추상 연산은 ECMAScript 사양에서 내부 동작의 구현 알고리즘을 표현한 것이다. ECMAScript 사양에서 설명을 위해 사용되는 함수와 유사한 의사 코드라고 이해하도록 하자.
+추상 연산
+: 추상 연산(abstract operation)은 ECMAScript 사양에서 내부 동작의 구현 알고리즘을 표현한 것이다. ECMAScript 사양에서 설명을 위해 사용되는 함수와 유사한 의사 코드라고 이해하도록 하자.
 
 ```javascript
 // Object 생성자 함수에 의한 객체 생성
@@ -626,7 +626,7 @@ console.log(obj.hasOwnProperty('x'));    // true
 
 ## 6.2.	Object 생성자 함수에 의해 생성된 객체의 프로토타입
 
-명시적으로 Object 생성자 함수를 호출하여 객체를 생성하면 빈 객체가 생성된다. Object 생성자 함수를 호출하면 객체 리터럴과 마찬가지로 [추상 연산 ObjectCreate를 호출](https://www.ecma-international.org/ecma-262/10.0/#sec-object-value)한다.  이때 추상 연산 ObjectCreate에 전달되는 프로토타입은 Object.prototype이다. 즉, Object 생성자 함수에 의해 생성되는 객체의 프로토타입은 Object.prototype이다. 아래 예제를 살펴보자.
+Object 생성자 함수를 인수 없이 호출하면 빈 객체가 생성된다. Object 생성자 함수를 호출하면 객체 리터럴과 마찬가지로 [추상 연산 ObjectCreate가 호출](https://www.ecma-international.org/ecma-262/10.0/#sec-object-value)된다.  이때 추상 연산 ObjectCreate에 전달되는 프로토타입은 Object.prototype이다. 즉, Object 생성자 함수에 의해 생성되는 객체의 프로토타입은 Object.prototype이다. 아래 예제를 살펴보자.
 
 ```javascript
 const obj = new Object();
@@ -655,7 +655,7 @@ console.log(obj.hasOwnProperty('x'));    // true
 
 ## 6.3. 생성자 함수에 의해 생성된 객체의 프로토타입
 
-new 연산자와 함께 생성자 함수를 호출하여 인스턴스를 생성하면 다른 객체 방식과 마찬가지로 [추상 연산 ObjectCreate를 호출](https://www.ecma-international.org/ecma-262/10.0/#sec-ordinarycreatefromconstructor)한다. 이때 추상 연산 ObjectCreate에 전달되는 프로토타입은 생성자 함수의 prototype 프로퍼티에 바인딩되어 있는 객체이다. 즉, 생성자 함수에 의해 생성되는 객체의 프로토타입은 생성자 함수의 prototype 프로퍼티에 바인딩되어 있는 객체이다. 아래 예제를 살펴보자.
+new 연산자와 함께 생성자 함수를 호출하여 인스턴스를 생성하면 다른 객체 생성 방식과 마찬가지로 [추상 연산 ObjectCreate가 호출](https://www.ecma-international.org/ecma-262/10.0/#sec-ordinarycreatefromconstructor)된다. 이때 추상 연산 ObjectCreate에 전달되는 프로토타입은 생성자 함수의 prototype 프로퍼티에 바인딩되어 있는 객체이다. 즉, 생성자 함수에 의해 생성되는 객체의 프로토타입은 생성자 함수의 prototype 프로퍼티에 바인딩되어 있는 객체이다. 아래 예제를 살펴보자.
 
 ```javascript
 function Person(name) {
@@ -720,7 +720,7 @@ const me = new Person('Lee');
 console.log(me.hasOwnProperty('name')); // true
 ```
 
-Person 생성자 함수에 의해 생성된 me 객체는 Object.prototype의 메소드인 hasOwnProperty를 호출할 수 있다. 이것은 me 객체가 Person.prototype 뿐만 아니라 Object.prototype도 상속받았다는 의미이다.
+Person 생성자 함수에 의해 생성된 me 객체는 Object.prototype의 메소드인 hasOwnProperty를 호출할 수 있다. 이것은 me 객체가 Person.prototype 뿐만 아니라 Object.prototype도 상속받았다는 것을 의미한다.
 
 me 객체의 프로토타입은 Person.prototype이다.
 
@@ -741,7 +741,7 @@ console.log(Object.getPrototypeOf(Person.prototype) === Object.prototype); // tr
 프로토타입 체인
 {: .desc-img}
 
-자바스크립트는 객체의 프로퍼티(메소드 포함)에 접근하려고 할 때 해당 객체에 접근하려는 프로퍼티가 없다면 [[Prototype]] 내부 슬롯의 참조를 따라 자신의 부모 역할을 하는 프로토타입의 프로퍼티를 순차적으로 검색한다. 이것을 프로토타입 체인이라 한다. 프로토타입 체인은 자바스크립트가 객체 지향 프로그래밍의 상속을 구현하는 메커니즘이다.
+**자바스크립트는 객체의 프로퍼티(메소드 포함)에 접근하려고 할 때 해당 객체에 접근하려는 프로퍼티가 없다면 [[Prototype]] 내부 슬롯의 참조를 따라 자신의 부모 역할을 하는 프로토타입의 프로퍼티를 순차적으로 검색한다. 이것을 프로토타입 체인이라 한다. 프로토타입 체인은 자바스크립트가 객체 지향 프로그래밍의 상속을 구현하는 메커니즘이다.**
 
 ```javascript
 // hasOwnProperty는 Object.prototype의 메소드이다.
@@ -815,7 +815,7 @@ Java의 경우, 클래스를 정의하고 그 클래스를 구성하는 멤버�
 
 자바스크립트는 public, private, protected와 같은 접근 제한자를 제공하지 않는다. 하지만 캡슐화가 불가능한 것은 아니다.
 
-현재 name 프로퍼티는 현재 외부로 노출되어 있어서 자유롭게 변경할 수 있다.
+위 예제의 name 프로퍼티는 현재 외부로 노출되어 있어서 아래와 같이 자유롭게 변경할 수 있다.
 
 ```javascript
 // name 프로퍼티는 public하다. 즉, 외부에서 자유롭게 접근하고 변경할 수 있다.
@@ -893,10 +893,10 @@ me.sayHello(); // Hey! My name is Lee
 
 프로토타입 프로퍼티와 같은 이름의 프로퍼티를 인스턴스에 추가하면 프로토타입 체인을 따라 프로토타입 프로퍼티를 검색하여 프로토타입 프로퍼티를 덮어쓰는 것이 아니라 인스턴스 프로퍼티로 추가한다. 이때 인스턴스 메소드 sayHello는 프로토타입 메소드 sayHello를 오버라이딩하였고 프로토타입 메소드 sayHello는 가려진다. 이처럼 상속 관계에 의해 프로퍼티가 가려지는 현상을  프로퍼티 쉐도잉(property shadowing)이라 한다.
 
-오버라이딩(Overriding)
+오버라이딩(overriding)
 : 상위 클래스가 가지고 있는 메소드를 하위 클래스가 재정의하여 사용하는 방식이다.
 
-오버로딩(Overloading)
+오버로딩(overloading)
 : 함수의 이름은 동일하지만 매개변수의 타입 또는 개수가 다른 메소드를 구현하고 매개변수에 의해 메소드를 구별하여 호출하는 방식이다. 자바스크립트는 오버로딩을 지원하지 않지만 arguments 객체를 사용하여 구현할 수는 있다.
 
 프로퍼티를 삭제하는 경우도 마찬가지다. 위 예제에서 추가한 인스턴스 메소드 sayHello를 삭제해보자.
@@ -911,7 +911,7 @@ me.sayHello(); // Hi! My name is Lee
 당연히 프로토타입 메소드가 아닌 인스턴스 메소드 sayHello가 삭제된다. 다시 한번 sayHello 메소드를 삭제하여 프로토타입 메소드의 삭제를 시도해보자.
 
 ```javascript
-// 프로토타입 메소드는 삭제되지 않는다.
+// 프로토타입 체인을 통해 프로토타입 메소드가 삭제되지 않는다.
 delete me.sayHello;
 // 프로토타입 메소드가 호출된다.
 me.sayHello(); // Hi! My name is Lee
@@ -1094,6 +1094,8 @@ console.log(Person.prototype === Object.getPrototypeOf(me)); // true
 
 이처럼 프로토타입 교체를 통해 객체 간의 상속 관계를 동적으로 변경하는 것은 꽤나 번거롭다. 하지만 ES6에서 도입된 클래스를 사용하면 간편하고 직관적으로 상속 관계를 구현할 수 있다. 이에 대해서는 ["25. 클래스"](/fastcampus/class)에서 자세히 살펴보도록 하자.
 
+이처럼 프로토타입 교체를 통해 객체 간의 상속 관계를 동적으로 변경하는 것은 꽤나 번거롭다. 따라서 프로토타입은 직접 교체하지 않는 것이 좋다. 상속 관계를 인위적으로 설정하려면 ["19.12. 직접 상속"](/fastcampus/prototype#12-직접-상속)에서 살펴볼 직접 상속이 보다 편리하고 안전하다. 또는 ES6에서 도입된 클래스를 사용하면 간편하고 직관적으로 상속 관계를 구현할 수 있다. 이에 대해서는 ["25. 클래스"](/fastcampus/class)에서 자세히 살펴보도록 하자.
+
 # 11. instanceof 연산자
 
 instanceof 연산자는 이항 연산자로서 좌변에 객체를 가리키는 식별자, 우변에 생성자 함수를 가리키는 식별자를 피연산자로 받는다. 만약 우변의 피연산자가 함수가 아닌 경우, TypeError가 발생한다.
@@ -1102,7 +1104,7 @@ instanceof 연산자는 이항 연산자로서 좌변에 객체를 가리키는 
 객체 instanceof 생성자 함수
 ```
 
-좌변의 객체가 우변의 생성자 함수와 연결된 인스턴스라면 true로 평가되고 그렇지 않은 경우에는 false로 평가된다. instanceof 연산자는 상속 관계를 고려한다는 것에 주의하기 바란다.
+우변의 생성자 함수의 prototype에 바인딩된 객체가 좌변의 객체의 프로토타입 체인 상에 존재하면 true로 평가되고 그렇지 않은 경우에는 false로 평가된다.
 
 ```javascript
 // 생성자 함수
@@ -1112,10 +1114,10 @@ function Person(name) {
 
 const me = new Person('Lee');
 
-// me 객체는 Person 생성자 함수에 의해 생성된 인스턴스이다.
+// Person.prototype이 me 객체의 프로토타입 체인 상에 존재하므로 true로 평가된다.
 console.log(me instanceof Person); // true
-// instanceof 연산자는 상속 관계를 고려한다.
-// me 객체는 Object.prototype을 상속받기 때문에 아래의 코드는 true로 평가된다.
+
+// Object.prototype이 me 객체의 프로토타입 체인 상에 존재하므로 true로 평가된다.
 console.log(me instanceof Object); // true
 ```
 
@@ -1132,55 +1134,53 @@ const me = new Person('Lee');
 // 프로토타입으로 교체할 객체
 const parent = {};
 
-// 인스턴스에 의한 프로토타입의 교체
-// 교체된 프로토타입에는 constructor 프로퍼티가 없기 때문에
-// 프로토타입과 생성자 함수의 링크가 파괴된다.
+// 프로토타입의 교체
 Object.setPrototypeOf(me, parent);
 
-// me 객체는 Person 생성자 함수에 의해 생성된 인스턴스이다.
-// 그러나 instanceof 연산자는 false를 반환한다.
+// Person 생성자 함수와 parent 객체는 연결되어 있지 않다.
+console.log(Person.prototype === parent); // false
+console.log(parent.constructor === Person); // false
+
+// Person.prototype이 me 객체의 프로토타입 체인 상에 존재하지 않기 때문에 false로 평가된다.
 console.log(me instanceof Person); // false
-// instanceof 연산자는 상속 관계를 고려한다.
-// me 객체는 Object.prototype을 상속받기 때문에 아래의 코드는 true로 평가된다.
+
+// Object.prototype이 me 객체의 프로토타입 체인 상에 존재하므로 true로 평가된다.
 console.log(me instanceof Object); // true
 ```
 
-me 객체는 비록 프로토타입이 교체되어 프로토타입과 생성자 함수의 링크가 파괴되었지만 Person 생성자 함수에 의해 생성된 인스턴스이다. 그러나 `me instanceof Person`의 평가 결과는 false이다.
+me 객체는 비록 프로토타입이 교체되어 프로토타입과 생성자 함수 간의 링크가 파괴되었지만 Person 생성자 함수에 의해 생성된 인스턴스임에는 틀림이 없다. 그러나 Person.prototype이 me 객체의 프로토타입 체인 상에 존재하지 않기 때문에 `me instanceof Person`은 false로 평가된다.
 
-프로토타입의 constructor 프로퍼티가 생성자 함수를 가리키지 않아서 이러한 문제가 발생할 지도 모르니 교체된 프로토타입의 constructor 프로퍼티가 생성자 함수를 가리키도록 재설정해보자.
-
-```javascript
-...
-// 프로토타입으로 교체할 객체
-const parent = {
-  constructor: Person
-};
-...
-
-console.log(me instanceof Person); // false
-console.log(me instanceof Object); // true
-```
-
-여전히 `me instanceof Person`의 평가 결과는 false이다. 이번에는 생성자 함수의 prototype 프로퍼티가 교체된 프로토타입을 가리키도록 재설정해보자.
+이는 Person.prototype이 me 객체의 프로토타입 체인 상에 존재하지 않기 때문이다. 따라서 프로토타입으로 교체한 객체 parent 객체를 Perosn 생성자 함수의 prototype 프로퍼티에 바인딩하면 `me instanceof Person`은 true로 평가될 것이다.
 
 ```javascript
-...
-// 프로토타입으로 교체할 객체
-const parent = {
-  constructor: Person
-};
+// 생성자 함수
+function Person(name) {
+  this.name = name;
+}
 
-// 생성자 함수의 prototype 프로퍼티와 프로토타입 간의 링크 설정
+const me = new Person('Lee');
+
+// 프로토타입으로 교체할 객체
+const parent = {};
+
+// 프로토타입의 교체
+Object.setPrototypeOf(me, parent);
+
+// Person 생성자 함수와 parent 객체는 연결되어 있지 않다.
+console.log(Person.prototype === parent); // false
+console.log(parent.constructor === Person); // false
+
+// parent 객체를 Perosn 생성자 함수의 prototype 프로퍼티에 바인딩한다.
 Person.prototype = parent;
-...
 
+// Person.prototype이 me 객체의 프로토타입 체인 상에 존재하므로 true로 평가된다.
 console.log(me instanceof Person); // true
+
+// Object.prototype이 me 객체의 프로토타입 체인 상에 존재하므로 true로 평가된다.
 console.log(me instanceof Object); // true
 ```
 
-`me instanceof Person`의 평가 결과가 true로 변경되었다. 이를 통해 instanceof 연산자는 프로토타입의 constructor 프로퍼티가 가리키는 생성자 함수를 찾는 것이 아니라 프로토타입 체인 상에 존재하는 프로토타입에 영향을 받는 것을 알 수 있다.
-
-instanceof 연산자는 생성자 함수의 prototype 프로퍼티가 가리키는 객체가 프로토타입 체인 상에 존재하는지 확인한다. 아래 그림을 살펴보자.
+이처럼 instanceof 연산자는 프로토타입의 constructor 프로퍼티가 가리키는 생성자 함수를 찾는 것이 아니라, **생성자 함수의 prototype에 바인딩된 객체가 프로토타입 체인 상에 존재하지 확인한다.** 아래 그림을 살펴보자.
 
 ![](/assets/fs-images/19-23.png)
 
@@ -1191,7 +1191,7 @@ instanceof 연산자는 좌변 피연산자의 프로토타입 체인 상에 우
 
 `me instanceof Person`의 경우, me 객체의 프로토타입 체인 상에 Person.prototype에 바인딩된 객체가 객체가 존재하는지 확인한다.
 
-`me instanceof Object`의 경우도 마찬가지다. me 객체의 프로토타입 체인 상에 Object.prototype에 바인딩된 객체가 객체가 존재하는지 확인한다. instanceof 연산자를 함수로 표현하면 아래와 같다.
+`me instanceof Object`의 경우도 마찬가지다. me 객체의 프로토타입 체인 상에 Object.prototype에 바인딩된 객체가 존재하는지 확인한다. instanceof 연산자를 함수로 표현하면 아래와 같다.
 
 ```javascript
 function isInstanceof(instance, constructor) {
@@ -1204,7 +1204,7 @@ function isInstanceof(instance, constructor) {
 
   // 프로토타입이 생성자 함수의 prototype 프로퍼티에 바인딩된 객체라면 true를 반환한다.
   // 그렇지 않다면 재귀 호출로 프로토타입 체인 상의 상위 프로토타입으로 이동하여 확인한다.
-  return prototype === constructor.prototype ? true : isInstanceof(prototype, constructor);
+  return prototype === constructor.prototype || isInstanceof(prototype, constructor);
 }
 
 console.log(isInstanceof(me, Person)); // true
@@ -1232,9 +1232,12 @@ const Person = (function () {
 
 const me = new Person('Lee');
 
-// constructor 프로퍼티와 생성자 함수 간의 링크가 파괴되어도
-// instanceof는 아무런 영향을 받지 않는다.
+// constructor 프로퍼티와 생성자 함수 간의 링크가 파괴되어도 instanceof는 아무런 영향을 받지 않는다.
+console.log(me.constructor === Person); // false
+
+// Person.prototype이 me 객체의 프로토타입 체인 상에 존재하므로 true로 평가된다.
 console.log(me instanceof Person); // true
+// Object.prototype이 me 객체의 프로토타입 체인 상에 존재하므로 true로 평가된다.
 console.log(me instanceof Object); // true
 ```
 

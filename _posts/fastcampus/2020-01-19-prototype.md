@@ -1276,7 +1276,7 @@ console.log(Object.getPrototypeOf(obj) === Object.prototype); // true
 // obj = { x: 1 };와 동일하다.
 // obj → Object.prototype → null
 obj = Object.create(Object.prototype, {
-  x: { value: 1 }
+  x: { value: 1, writable: true, enumerable: true, configurable: true }
 });
 // 위 코드는 아래와 동일하다.
 // obj = Object.create(Object.prototype);

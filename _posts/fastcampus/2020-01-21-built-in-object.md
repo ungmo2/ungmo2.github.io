@@ -618,7 +618,7 @@ parseInt(' 60 '); // 60
 
 ### 4.2.6. encodeURI / decodeURI
 
-encodeURI 함수는 매개변수로 전달된 URI(Uniform Resource Identifier)를 인코딩한다. URI는 인터넷에 있는 자원을 나타내는 유일한 주소를 말한다. URI의 하위개념으로 URL, URN이 있다.
+encodeURI 함수는 완전한 URI(Uniform Resource Identifier)를 문자열로 전달받아 이스케이프 처리를 위해 인코딩한다. URI는 인터넷에 있는 자원을 나타내는 유일한 주소를 말한다. URI의 하위개념으로 URL, URN이 있다.
 
 ![](/assets/fs-images/21-2.png)
 {: .w-650 }
@@ -627,48 +627,47 @@ URI(Uniform Resource Identifier)
 
 ```javascript
 /**
- * 완전한 URI를 전달받아 인코딩하여 이스케이프 처리한다.
+ * 완전한 URI를 전달받아 이스케이프 처리를 위해 인코딩한다.
  * @param {string} uri - 완전한 URI
  * @returns {string} 인코딩된 URI
  */
 encodeURI(uri)
 ```
+
+인코딩이란 URI의 문자들을 이스케이프 처리하는 것을 의미한다. 이스케이프 처리는 네트워크를 통해 정보를 공유할 때 어떤 시스템에서도 읽을 수 있는 [아스키 문자 셋(ASCII Character-set)](https://en.wikipedia.org/wiki/ASCII)으로 변환하는 것이다. UTF-8 특수 문자의 경우, 1문자당 1~3byte, UTF-8 한글 표현의 경우, 1문자당 3btye이다. 예를 들어, 특수 문자인 공백(space) 문자는 %20, 한글 '가'는 %EC%9E%90으로 인코딩된다.
+
+URI 문법 형식 표준 [RFC3986](http://www.ietf.org/rfc/rfc3986.txt)에 따르면 URL은 아스키 문자 셋으로만 구성되어야 하며 한글을 포함한 대부분의 외국어나 아스키 문자 셋에 정의되지 않은 특수 문자의 경우, URL에 포함될 수 없다. 따라서 URL 내에서 의미를 갖고 있는 문자(%, ?, #)나 URL에 올 수 없는 문자(한글, 공백 등) 또는 시스템에 의해 해석될 수 있는 문자(<, >)를 이스케이프 처리하여 야기될 수 있는 문제를 예방하기 위해 이스케이프 처리가 필요하다. 단, 알파벳, 0~9의 숫자, - _ . ! ~ * ' ( ) 문자는 이스케이프 처리에서 제외된다.
+
+```javascript
+// 완전한 URI
+const uri = 'http://example.com?name=이웅모&job=programmer&teacher';
+
+// encodeURI 함수는 완전한 URI를 전달받아 이스케이프 처리를 위해 인코딩한다.
+const enc = encodeURI(uri);
+console.log(enc);
+// http://example.com?name=%EC%9D%B4%EC%9B%85%EB%AA%A8&job=programmer&teacher
+```
+
+decodeURI 함수는 매개변수로 전달된 인코딩된 URI을 전달받아 이스케이프 처리되기 이전으로 디코딩한다.
+
 ```javascript
 /**
- * 인코딩된 URI을 전달받아 이스케이프 처리되기 이전으로 디코딩한다.
+ * 인코딩된 URI을 전달받아 이스케이프 처리 이전으로 디코딩한다.
  * @param {string} encodedURI - 인코딩된 URI
  * @returns {string} 디코딩된 URI
  */
 decodeURI(encodedURI)
 ```
 
-인코딩이란 URI의 문자들을 이스케이프 처리하는 것을 의미한다.
-
-```javascript
-// 완전한 URI
-const uri = 'http://example.com?name=이웅모&job=programmer&teacher';
-
-// encodeURI 함수는 완전한 URI를 전달받아 인코딩하여 이스케이프 처리한다.
-const enc = encodeURI(uri);
-console.log(enc);
-// http://example.com?name=%EC%9D%B4%EC%9B%85%EB%AA%A8&job=programmer&teacher
-```
-
-이스케이프 처리는 네트워크를 통해 정보를 공유할 때 어떤 시스템에서도 읽을 수 있는 [아스키 문자 셋(ASCII Character-set)](https://en.wikipedia.org/wiki/ASCII)으로 변환하는 것이다. UTF-8 특수문자의 경우, 1문자당 1~3byte, UTF-8 한글 표현의 경우, 1문자당 3btye이다. 예를 들어 특수문자 공백(space)은 %20, 한글 '가'는 %EC%9E%90으로 인코딩된다.
-
-URI 문법 형식 표준 [RFC3986](http://www.ietf.org/rfc/rfc3986.txt)에 따르면 URL은 아스키 문자 셋으로만 구성되어야 하며 한글을 포함한 대부분의 외국어나 아스키 문자 셋에 정의되지 않은 특수문자의 경우, URL에 포함될 수 없다. 따라서 URL 내에서 의미를 갖고 있는 문자(%, ?, #)나 URL에 올 수 없는 문자(한글, 공백 등) 또는 시스템에 의해 해석될 수 있는 문자(<, >)를 이스케이프 처리하여 야기될 수 있는 문제를 예방하기 위해 이스케이프 처리가 필요하다. 단, 알파벳, 0~9의 숫자, - _ . ! ~ * ' ( ) 문자는 이스케이프 처리에서 제외된다.
-
-decodeURI 함수는 매개변수로 전달된 인코딩된 URI을 전달받아 이스케이프 처리되기 이전으로 디코딩한다.
-
 ```javascript
 const uri = 'http://example.com?name=이웅모&job=programmer&teacher';
 
-// encodeURI 함수는 완전한 URI를 전달받아 인코딩하여 이스케이프 처리한다.
+// encodeURI 함수는 완전한 URI를 전달받아 이스케이프 처리를 위해 인코딩한다.
 const enc = encodeURI(uri);
 console.log(enc);
 // http://example.com?name=%EC%9D%B4%EC%9B%85%EB%AA%A8&job=programmer&teacher
 
-// decodeURI 함수는 인코딩된 완전한 URI를 전달받아 이스케이프 처리되기 이전으로 디코딩한다.
+// decodeURI 함수는 인코딩된 완전한 URI를 전달받아 이스케이프 처리 이전으로 디코딩한다.
 const dec = decodeURI(enc);
 console.log(dec);
 // http://example.com?name=이웅모&job=programmer&teacher
@@ -676,11 +675,11 @@ console.log(dec);
 
 ### 4.2.7. encodeURIComponent / decodeURIComponent
 
-encodeURIComponent 함수는 매개변수로 전달된 URI(Uniform Resource Identifier) 구성 요소(component)를 인코딩한다. 여기서 인코딩이란 URI의 문자들을 이스케이프 처리하는 것을 의미한다. 단, 알파벳, 0~9의 숫자, - _ . ! ~ * ' ( ) 문자는 이스케이프 처리에서 제외된다. decodeURIComponent 함수는 매개변수로 전달된 URI 구성 요소를 디코딩한다.
+encodeURIComponent 함수는 전달된 URI(Uniform Resource Identifier) 구성 요소(component)를 인코딩한다. 여기서 인코딩이란 URI의 문자들을 이스케이프 처리하는 것을 의미한다. 단, 알파벳, 0~9의 숫자, - _ . ! ~ * ' ( ) 문자는 이스케이프 처리에서 제외된다. decodeURIComponent 함수는 매개변수로 전달된 URI 구성 요소를 디코딩한다.
 
 ```javascript
 /**
- * URI의 구성요소를 전달받아 인코딩하여 이스케이프 처리한다.
+ * URI의 구성요소를 전달받아 이스케이프 처리를 위해 인코딩한다.
  * @param {string} uriComponent – URI의 구성요소
  * @returns {string} 인코딩된 URI의 구성요소
  */
@@ -688,23 +687,23 @@ encodeURIComponent(uriComponent)
 ```
 ```javascript
 /**
- * 인코딩된 URI의 구성요소를 전달받아 이스케이프 처리되기 이전으로 디코딩한다.
+ * 인코딩된 URI의 구성요소를 전달받아 이스케이프 처리 이전으로 디코딩한다.
  * @param {string} encodedURIComponent - 인코딩된 URI의 구성요소
  * @returns {string} 디코딩된 URI의 구성요소
  */
 decodeURIComponent(encodedURIComponent)
 ```
 
-encodeURIComponent 함수는 매개변수로 전달된 문자열을 URI의 구성요소인 쿼리 파라미터의 일부 간주한다. 따라서 쿼리 파라미터 구분자로 사용되는 =, ?, &를 인코딩한다.
+encodeURIComponent 함수는 인수로 전달된 문자열을 URI의 구성요소인 쿼리 파라미터의 일부 간주한다. 따라서 쿼리 파라미터 구분자로 사용되는 =, ?, &까지 인코딩한다.
 
-반면 encodeURI 함수는 매개변수로 전달된 문자열을 완전한 URI 전체라고 간주한다. 따라서 쿼리 파라미터 구분자로 사용되는 =, ?, &를 인코딩하지 않는다.
+반면 encodeURI 함수는 매개변수로 전달된 문자열을 완전한 URI 전체라고 간주한다. 따라서 쿼리 파라미터 구분자로 사용되는 =, ?, &은 인코딩하지 않는다.
 
 ```javascript
 // URI의 쿼리 파라미터
 const uriComp = 'name=이웅모&job=programmer&teacher';
 
-// encodeURIComponent 함수는 매개변수로 전달된 문자열을 URI의 구성요소인 쿼리 파라미터의 일부 간주한다.
-// 따라서 쿼리 파라미터 구분자로 사용되는 =, ?, &를 인코딩한다.
+// encodeURIComponent 함수는 인수로 전달받은 문자열을 URI의 구성요소인 쿼리 파라미터의 일부 간주한다.
+// 따라서 쿼리 파라미터 구분자로 사용되는 =, ?, &까지 인코딩한다.
 let enc = encodeURIComponent(uriComp);
 console.log(enc);
 // name%3D%EC%9D%B4%EC%9B%85%EB%AA%A8%26job%3Dprogrammer%26teacher
@@ -713,7 +712,7 @@ let dec = decodeURIComponent(enc);
 console.log(dec);
 // 이웅모&job=programmer&teacher
 
-// encodeURI 함수는 매개변수로 전달된 문자열을 완전한 URI로 간주한다.
+// encodeURI 함수는 인수로 전달받은 문자열을 완전한 URI로 간주한다.
 // 따라서 쿼리 파라미터 구분자로 사용되는 =, ?, &를 인코딩하지 않는다.
 enc = encodeURI(uriComp);
 console.log(enc);
@@ -732,7 +731,8 @@ console.log(dec);
 var x = 10; // 전역 변수
 
 function foo () {
-  y = 20; // 선언하지 않은 식별자에 값을 할당
+  // 선언하지 않은 식별자에 값을 할당
+  y = 20; // window.y = 20;
 }
 foo();
 
@@ -755,7 +755,8 @@ console.log(y); // ReferenceError: y is not defined
 var x = 10; // 전역 변수
 
 function foo () {
-  y = 20; // 선언하지 않은 식별자에 값을 할당
+  // 선언하지 않은 식별자에 값을 할당
+  y = 20; // window.y = 20;
 }
 foo();
 
@@ -769,8 +770,8 @@ console.log(x + y); // 30
 var x = 10; // 전역 변수
 
 function foo () {
-  // 선언하지 않은 변수
-  y = 20;
+  // 선언하지 않은 식별자에 값을 할당
+  y = 20; // window.y = 20;
   console.log(x + y);
 }
 

@@ -41,12 +41,12 @@ console.log(typeof str, str); // string 10
 console.log(typeof x, x); // number 10
 ```
 
-명시적 타입 변환이나 암묵적 타입 변환이 기존 원시값(위 예제의 경우, 변수 x의 값)을 직접 변경하는 것은 아니다. 원시값은 변경 불가능한 값(imuutable value)이므로 변경할 수 없다. 타입 변환이란 기존 원시값을 사용해 다른 타입의 새로운 원시값을 생성하는 것이다.
+명시적 타입 변환이나 암묵적 타입 변환이 기존 원시값(위 예제의 경우, 변수 x의 값)을 직접 변경하는 것은 아니다. 원시값은 변경 불가능한 값(immutable value)이므로 변경할 수 없다. 타입 변환이란 기존 원시값을 사용해 다른 타입의 새로운 원시값을 생성하는 것이다.
 
 ```javascript
 // 원시값 1이 '1'로 직접 변경되는 것이 아니다.
 // 1을 사용해 타입이 다른 '1'을 새롭게 생성하여 '1' + ''을 평가한다.
-1 + '' // '1'
+1 + '' // -> '1'
 ```
 
 암묵적 타입 변환은 변수의 값을 재할당해서 변경하는 것이 아니라 자바스크립트 엔진이 표현식을 에러없이 평가하기 위해 피연산자의 값을 바탕으로 새로운 타입의 값을 만들어 단 한번 사용하고 버린다.
@@ -67,13 +67,13 @@ console.log(typeof x, x); // number 10
 
 ```javascript
 // 피연산자가 모두 문자열 타입이여야 하는 문맥
-'10' + 2  // '102'
+'10' + 2 // -> '102'
 
 // 피연산자가 모두 숫자 타입이여야 하는 문맥
-5 * '10'  // 50
+5 * '10' // -> 50
 
 // 피연산자 또는 표현식이 불리언 타입이여야 하는 문맥
-!0 // true
+!0 // -> true
 if (1) { }
 ```
 
@@ -86,7 +86,7 @@ if (1) { }
 아래의 예제를 살펴보자.
 
 ```javascript
-1 + '2' // "12"
+1 + '2' // -> "12"
 ```
 
 위 예제의 + 연산자는 피연산자 중 하나 이상이 문자열이므로 문자열 연결 연산자로 동작한다. 문자열 연결 연산자의 역할은 문자열 값을 만드는 것이다. 따라서 문자열 연결 연산자의 모든 피연산자는 코드의 문맥 상 모두 문자열 타입이여야 한다.
@@ -98,41 +98,41 @@ if (1) { }
 예를 들어 ES6에서 도입된 템플릿 리터럴의 표현식 삽입(["6.3.2. 표현식 삽입"](/fastcampus/type#32-표현식-삽입) 참고)은 표현식의 평가 결과를 문자열 타입으로 암묵적 타입 변환한다.
 
 ```javascript
-console.log(`1 + 1 = ${1 + 1}`); // "1 + 1 = 2"
+`1 + 1 = ${1 + 1}` // -> "1 + 1 = 2"
 ```
 
 자바스크립트 엔진은 문자열 타입 아닌 값을 문자열 타입으로 암묵적 타입 변환을 수행할 때 아래와 같이 동작한다.
 
 ```javascript
 // 숫자 타입
-0 + ''              // "0"
--0 + ''             // "0"
-1 + ''              // "1"
--1 + ''             // "-1"
-NaN + ''            // "NaN"
-Infinity + ''       // "Infinity"
--Infinity + ''      // "-Infinity"
+0 + ''         // -> "0"
+-0 + ''        // -> "0"
+1 + ''         // -> "1"
+-1 + ''        // -> "-1"
+NaN + ''       // -> "NaN"
+Infinity + ''  // -> "Infinity"
+-Infinity + '' // -> "-Infinity"
 
 // 불리언 타입
-true + ''           // "true"
-false + ''          // "false"
+true + ''  // -> "true"
+false + '' // -> "false"
 
 // null 타입
-null + ''           // "null"
+null + '' // -> "null"
 
 // undefined 타입
-undefined + ''      // "undefined"
+undefined + '' // -> "undefined"
 
 // 심볼 타입
-(Symbol()) + ''     // TypeError: Cannot convert a Symbol value to a string
+(Symbol()) + '' // -> TypeError: Cannot convert a Symbol value to a string
 
 // 객체 타입
-({}) + ''           // "[object Object]"
-Math + ''           // "[object Math]"
-[] + ''             // ""
-[10, 20] + ''       // "10,20"
-(function(){}) + '' // "function(){}"
-Array + ''          // "function Array() { [native code] }"
+({}) + ''           // -> "[object Object]"
+Math + ''           // -> "[object Math]"
+[] + ''             // -> ""
+[10, 20] + ''       // -> "10,20"
+(function(){}) + '' // -> "function(){}"
+Array + ''          // -> "function Array() { [native code] }"
 ```
 
 ## 2.2. 숫자 타입으로 변환
@@ -140,9 +140,9 @@ Array + ''          // "function Array() { [native code] }"
 아래의 예제를 살펴보자.
 
 ```javascript
-1 - '1'    // 0
-1 * '10'   // 10
-1 / 'one'  // NaN
+1 - '1'   // -> 0
+1 * '10'  // -> 10
+1 / 'one' // -> NaN
 ```
 
 위 예제에서 사용한 연산자는 모두 산술 연산자이다. 산술 연산자의 역할은 숫자 값을 만드는 것이다. 따라서 산술 연산자의 모든 피연산자는 코드 문맥 상 모두 숫자 타입이여야 한다.
@@ -152,7 +152,7 @@ Array + ''          // "function Array() { [native code] }"
 피연산자를 숫자 타입으로 변환해야 할 문맥은 산술 연산자 뿐만이 아니다. 아래 예제를 살펴보자.
 
 ```javascript
-'1' > 0   // true
+'1' > 0  // -> true
 ```
 
 비교 연산자의 역할은 불리언 값을 만드는 것이다. > 비교 연산자는 피연산자의 크기를 비교하므로 모든 피연산자는 코드의 문맥 상 모두 숫자 타입이여야 한다. 자바스크립트 엔진은 비교 연산자 표현식을 평가하기 위해 비교 연산자의 피연산자 중에서 숫자 타입이 아닌 피연산자를 숫자 타입으로 암묵적 타입 변환한다.
@@ -161,29 +161,29 @@ Array + ''          // "function Array() { [native code] }"
 
 ```javascript
 // 문자열 타입
-+''             // 0
-+'0'            // 0
-+'1'            // 1
-+'string'       // NaN
++''       // -> 0
++'0'      // -> 0
++'1'      // -> 1
++'string' // -> NaN
 
 // 불리언 타입
-+true           // 1
-+false          // 0
++true     // -> 1
++false    // -> 0
 
 // null 타입
-+null           // 0
++null     // -> 0
 
 // undefined 타입
-+undefined      // NaN
++undefined // -> NaN
 
 // 심볼 타입
-+Symbol()       // TypeError: Cannot convert a Symbol value to a number
++Symbol() // -> ypeError: Cannot convert a Symbol value to a number
 
 // 객체 타입
-+{}             // NaN
-+[]             // 0
-+[10, 20]       // NaN
-+(function(){}) // NaN
++{}             // -> NaN
++[]             // -> 0
++[10, 20]       // -> NaN
++(function(){}) // -> NaN
 ```
 
 빈 문자열(''), 빈 배열([]), null, false는 0으로, true는 1로 변환된다. 객체와 빈 배열이 아닌 배열, undefined는 변환되지 않아 NaN이 된다는 것에 주의하자.
@@ -248,19 +248,18 @@ function isTruthy(v) {
 }
 
 // 모두 true를 반환한다.
-console.log(isFalsy(false));
-console.log(isFalsy(undefined));
-console.log(isFalsy(null));
-console.log(isFalsy(0));
-console.log(isFalsy(NaN));
-console.log(isFalsy(''));
+isFalsy(false);
+isFalsy(undefined);
+isFalsy(null);
+isFalsy(0);
+isFalsy(NaN);
+isFalsy('');
 
 // 모두 true를 반환한다.
-console.log(isTruthy(true));
-// 빈 문자열이 아닌 문자열은 Truthy 값이다.
-console.log(isTruthy('0'));
-console.log(isTruthy({}));
-console.log(isTruthy([]));
+isTruthy(true);
+isTruthy('0'); // 빈 문자열이 아닌 문자열은 Truthy 값이다.
+isTruthy({});
+isTruthy([]);
 ```
 
 # 3. 명시적 타입 변환
@@ -281,30 +280,30 @@ console.log(isTruthy([]));
 ```javascript
 // 1. String 생성자 함수를 new 연산자 없이 호출하는 방법
 // 숫자 타입 => 문자열 타입
-console.log(String(1));        // "1"
-console.log(String(NaN));      // "NaN"
-console.log(String(Infinity)); // "Infinity"
+String(1);        // -> "1"
+String(NaN);      // -> "NaN"
+String(Infinity); // -> "Infinity"
 // 불리언 타입 => 문자열 타입
-console.log(String(true));     // "true"
-console.log(String(false));    // "false"
+String(true);     // -> "true"
+String(false);    // -> "false"
 
 // 2. Object.prototype.toString 메소드를 사용하는 방법
 // 숫자 타입 => 문자열 타입
-console.log((1).toString());        // "1"
-console.log((NaN).toString());      // "NaN"
-console.log((Infinity).toString()); // "Infinity"
+(1).toString();        // -> "1"
+(NaN).toString();      // -> "NaN"
+(Infinity).toString(); // -> "Infinity"
 // 불리언 타입 => 문자열 타입
-console.log((true).toString());     // "true"
-console.log((false).toString());    // "false"
+(true).toString();     // -> "true"
+(false).toString();    // -> "false"
 
 // 3. 문자열 연결 연산자를 이용하는 방법
 // 숫자 타입 => 문자열 타입
-console.log(1 + '');        // "1"
-console.log(NaN + '');      // "NaN"
-console.log(Infinity + ''); // "Infinity"
+1 + '';        // -> "1"
+NaN + '';      // -> "NaN"
+Infinity + ''; // -> "Infinity"
 // 불리언 타입 => 문자열 타입
-console.log(true + '');     // "true"
-console.log(false + '');    // "false"
+true + '';     // -> "true"
+false + '';    // -> "false"
 ```
 
 ## 3.2.	숫자 타입으로 변환
@@ -319,36 +318,36 @@ console.log(false + '');    // "false"
 ```javascript
 // 1. Number 생성자 함수를 new 연산자 없이 호출하는 방법
 // 문자열 타입 => 숫자 타입
-console.log(Number('0'));     // 0
-console.log(Number('-1'));    // -1
-console.log(Number('10.53')); // 10.53
+Number('0');     // -> 0
+Number('-1');    // -> -1
+Number('10.53'); // -> 10.53
 // 불리언 타입 => 숫자 타입
-console.log(Number(true));    // 1
-console.log(Number(false));   // 0
+Number(true);    // -> 1
+Number(false);   // -> 0
 
 // 2. parseInt, parseFloat 함수를 사용하는 방법(문자열만 변환 가능)
 // 문자열 타입 => 숫자 타입
-console.log(parseInt('0'));       // 0
-console.log(parseInt('-1'));      // -1
-console.log(parseFloat('10.53')); // 10.53
+parseInt('0');       // -> 0
+parseInt('-1');      // -> -1
+parseFloat('10.53'); // -> 10.53
 
 // 3. + 단항 산술 연산자를 이용하는 방법
 // 문자열 타입 => 숫자 타입
-console.log(+'0');     // 0
-console.log(+'-1');    // -1
-console.log(+'10.53'); // 10.53
++'0';     // -> 0
++'-1';    // -> -1
++'10.53'; // -> 10.53
 // 불리언 타입 => 숫자 타입
-console.log(+true);    // 1
-console.log(+false);   // 0
++true;    // -> 1
++false;   // -> 0
 
 // 4. * 산술 연산자를 이용하는 방법
 // 문자열 타입 => 숫자 타입
-console.log('0' * 1);     // 0
-console.log('-1' * 1);    // -1
-console.log('10.53' * 1); // 10.53
+'0' * 1;     // -> 0
+'-1' * 1;    // -> -1
+'10.53' * 1; // -> 10.53
 // 불리언 타입 => 숫자 타입
-console.log(true * 1);    // 1
-console.log(false * 1);   // 0
+true * 1;    // -> 1
+false * 1;   // -> 0
 ```
 
 ## 3.3.	불리언 타입으로 변환
@@ -361,39 +360,39 @@ console.log(false * 1);   // 0
 ```javascript
 // 1. Boolean 생성자 함수를 new 연산자 없이 호출하는 방법
 // 문자열 타입 => 불리언 타입
-console.log(Boolean('x'));       // true
-console.log(Boolean(''));        // false
-console.log(Boolean('false'));   // true
+Boolean('x');       // -> true
+Boolean('');        // -> false
+Boolean('false');   // -> true
 // 숫자 타입 => 불리언 타입
-console.log(Boolean(0));         // false
-console.log(Boolean(1));         // true
-console.log(Boolean(NaN));       // false
-console.log(Boolean(Infinity));  // true
+Boolean(0);         // -> false
+Boolean(1);         // -> true
+Boolean(NaN);       // -> false
+Boolean(Infinity);  // -> true
 // null 타입 => 불리언 타입
-console.log(Boolean(null));      // false
+Boolean(null);      // -> false
 // undefined 타입 => 불리언 타 입
-console.log(Boolean(undefined)); // false
+Boolean(undefined); // -> false
 // 객체 타입 => 불리언 타입
-console.log(Boolean({}));        // true
-console.log(Boolean([]));        // true
+Boolean({});        // -> true
+Boolean([]);        // -> true
 
 // 2. ! 부정 논리 연산자를 두번 사용하는 방법
 // 문자열 타입 => 불리언 타입
-console.log(!!'x');       // true
-console.log(!!'');        // false
-console.log(!!'false');   // true
+!!'x';       // -> true
+!!'';        // -> false
+!!'false';   // -> true
 // 숫자 타입 => 불리언 타입
-console.log(!!0);         // false
-console.log(!!1);         // true
-console.log(!!NaN);       // false
-console.log(!!Infinity);  // true
+!!0;         // -> false
+!!1;         // -> true
+!!NaN;       // -> false
+!!Infinity;  // -> true
 // null 타입 => 불리언 타입
-console.log(!!null);      // false
+!!null;      // -> false
 // undefined 타입 => 불리언 타입
-console.log(!!undefined); // false
+!!undefined; // -> false
 // 객체 타입 => 불리언 타입
-console.log(!!{});        // true
-console.log(!![]);        // true
+!!{};        // -> true
+!![];        // -> true
 ```
 
 # 4. 단축 평가
@@ -403,7 +402,7 @@ console.log(!![]);        // true
 암묵적 타입 변환에 대해 살펴보았으므로 뒤로 미뤘던 위 내용을 이제 설명할 수 있다. 아래 예제를 살펴보자.
 
 ```javascript
-'Cat' && 'Dog' // 'Dog'
+'Cat' && 'Dog' // -> "Dog"
 ```
 
 논리곱(`&&`) 연산자는 두개의 피연산자가 모두 true로 평가될 때 true를 반환한다. 논리곱 연산자는 결합 순서(["7.13. 연산자의 결합 순서"](/fastcampus/operator#13-연산자의-결합-순서) 참고)가 좌항에서 우항으로 평가가 진행된다.
@@ -413,7 +412,7 @@ console.log(!![]);        // true
 논리합(`||`) 연산자도 논리곱(`&&`) 연산자와 동일하게 동작한다.
 
 ```javascript
-'Cat' || 'Dog' // 'Cat'
+'Cat' || 'Dog' // -> "Cat"
 ```
 
 논리합(`||`) 연산자는 두개의 피연산자 중 하나만 true로 평가되어도 true를 반환한다. 논리합 연산자도 왼쪽에서 오른쪽으로 평가가 진행된다.
@@ -433,14 +432,14 @@ console.log(!![]);        // true
 
 ```javascript
 // 논리합(||) 연산자
-'Cat' || 'Dog'  // 'Cat'
-false || 'Dog'  // 'Dog'
-'Cat' || false  // 'Cat'
+'Cat' || 'Dog'  // -> "Cat"
+false || 'Dog'  // -> "Dog"
+'Cat' || false  // -> "Cat"
 
 // 논리곱(&&) 연산자
-'Cat' && 'Dog'  // Dog
-false && 'Dog'  // false
-'Cat' && false  // false
+'Cat' && 'Dog'  // -> "Dog"
+false && 'Dog'  // -> false
+'Cat' && false  // -> false
 ```
 
 단축 평가를 사용하면 if 문을 대체할 수 있다. 주어진 조건이 Truthy 값(참으로 평가되는 값)일 때 무언가를 해야 한다면 논리곱(`&&`) 연산자 표현식으로 if 문을 대체할 수 있다.
@@ -497,7 +496,7 @@ console.log(message); // 완료
 var elem = null;
 
 var value = elem.value; // TypeError: Cannot read property 'value' of null
-var value = elem && elem.value; // null
+var value = elem && elem.value; // -> null
 ```
 
 객체는 키(key)과 값(value)으로 구성된 프로퍼티(property)들의 집합이다. 만약 객체를 가리키는 변수가 null인 경우, 객체의 프로퍼티를 참조하면 타입 에러(TypeError)가 발생한다. 이때 단축 평가를 사용하면 에러를 발생시키지 않는다.
@@ -508,7 +507,7 @@ ES11(ECMAScript2020)에 도입될 것으로 알려진 [옵셔널 체이닝](http
 const elem = null;
 
 // elem이 null 또는 undefined인 경우, 옵셔널 체이닝 문법은 undefined를 반환한다.
-const value = elem?.value; // undefined
+const value = elem?.value; // -> undefined
 // 옵셔널 체이닝 문법은 아래와 같이 동작한다.
 // const value = (elem === null || elem === undefined) ? undefined : elem.value;
 ```
@@ -522,16 +521,16 @@ function getStringLength(str) {
   return str.length;
 }
 
-getStringLength();     // 0
-getStringLength('hi'); // 2
+getStringLength();     // -> 0
+getStringLength('hi'); // -> 2
 
 // ES6의 매개변수의 기본값 설정
 function getStringLength(str = '') {
   return str.length;
 }
 
-getStringLength();     // 0
-getStringLength('hi'); // 2
+getStringLength();     // -> 0
+getStringLength('hi'); // -> 2
 ```
 
 함수를 호출할 때 인수를 전달하지 않으면 매개변수는 undefined를 갖는다. 이때 단축 평가를 사용하여 매개 변수의 기본값을 설정하면 undefined로 인해 발생할 수 있는 에러를 방지할 수 있다.

@@ -189,7 +189,7 @@ $conter의 값이 null인지 확인해보고 null이라면 그 이유를 알아�
 
 ## 3.1.	Node.js와 npm 소개
 
-2009년 [라이언 달(Ryan Dahl)](https://en.wikipedia.org/wiki/Ryan_Dahl)이 발표한 [Node.js](https://nodejs.org)는 크롬  V8 자바스크립트 엔진으로 빌드된 자바스크립트 [런타임 환경(Runtime Environment)](https://ko.wikipedia.org/wiki/런타임)이다. 간단히 말해 브라우저에서만 동작하던 자바스크립트를 브라우저 이외의 환경에서 동작시킬 수 있는 자바스크립트 실행 환경이 Node.js이다.
+2009년 [라이언 달(Ryan Dahl)](https://en.wikipedia.org/wiki/Ryan_Dahl)이 발표한 [Node.js](https://nodejs.org)는 크롬  V8 자바스크립트 엔진으로 빌드된 자바스크립트 [런타임 환경(runtime environment)](https://ko.wikipedia.org/wiki/런타임)이다. 간단히 말해 브라우저에서만 동작하던 자바스크립트를 브라우저 이외의 환경에서 동작시킬 수 있는 자바스크립트 실행 환경이 Node.js이다.
 
 Node.js는 주로 서버 사이드 애플리케이션 개발에 사용되며 이에 필요한 모듈, 파일 시스템, HTTP 등 [빌트인 API](https://nodejs.org/dist/latest/docs/api)를 제공한다. Node.js는 데이터를 실시간 처리하여 빈번한 I/O가 발생하는 SPA(Single Page Application)에 적합하다. 하지만 CPU 사용률이 높은 애플리케이션에는 권장하지 않는다.
 

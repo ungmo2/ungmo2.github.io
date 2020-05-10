@@ -147,7 +147,7 @@ console.log(obj); // {hello: "world"}
 
 ```javascript
 var foo = {
-  '': ''  // 빈문자열도 프로퍼티 키로 사용할 수 있다.
+  '': ''  // 빈 문자열도 프로퍼티 키로 사용할 수 있다.
 };
 
 console.log(foo); // {"": ""}
@@ -275,7 +275,7 @@ person['1'];  // -> 10
 
 자바스크립트 엔진은 먼저 person.last를 평가한다. 평가 결과는 undefined이다. person 객체에는 프로퍼티 키가 last인 프로퍼티가 없기 때문이다. 따라서 `person.last-name`는 `undefined - name`과 같다. 다음으로 자바스크립트 엔진은 name이라는 식별자를 찾는다. 이때 name은 프로퍼티 키가 아니라 식별자로 해석되는 것에 주의하자.
 
-Node.js 환경에서는 현재 어디에도 name이라는 식별자(변수, 함수 등의 이름) 선언이 없으므로 ReferenceError: name is not defined이라고 에러가 발생한다. 그런데 그런데 브라우저 환경에서는 name이라는 전역 변수(전역 객체 window의 프로퍼티)가 암묵적으로 존재한다. 전역 변수 name은 창(window)의 이름을 가리키며 기본값은 빈문자열이다. 따라서 `person.last-name`는 `undefined - ''`과 같으므로 NaN이 된다. 전역 객체 window에 대해서는 ["21.4. 전역 객체"](/fastcampus/built-in-object#4-전역-객체)에서 살펴보도록 하자.
+Node.js 환경에서는 현재 어디에도 name이라는 식별자(변수, 함수 등의 이름) 선언이 없으므로 ReferenceError: name is not defined이라고 에러가 발생한다. 그런데 그런데 브라우저 환경에서는 name이라는 전역 변수(전역 객체 window의 프로퍼티)가 암묵적으로 존재한다. 전역 변수 name은 창(window)의 이름을 가리키며 기본값은 빈 문자열이다. 따라서 `person.last-name`는 `undefined - ''`과 같으므로 NaN이 된다. 전역 객체 window에 대해서는 ["21.4. 전역 객체"](/fastcampus/built-in-object#4-전역-객체)에서 살펴보도록 하자.
 
 # 6. 프로퍼티 값 갱신
 

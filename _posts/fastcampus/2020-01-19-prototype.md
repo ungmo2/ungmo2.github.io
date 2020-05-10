@@ -1268,13 +1268,13 @@ console.log(Object.getPrototypeOf(obj) === null); // true
 // Object.prototype를 상속받지 못한다.
 console.log(obj.toString()); // TypeError: obj.toString is not a function
 
-// obj = {};와 동일하다.
 // obj → Object.prototype → null
+// obj = {};와 동일하다.
 obj = Object.create(Object.prototype);
 console.log(Object.getPrototypeOf(obj) === Object.prototype); // true
 
-// obj = { x: 1 };와 동일하다.
 // obj → Object.prototype → null
+// obj = { x: 1 };와 동일하다.
 obj = Object.create(Object.prototype, {
   x: { value: 1, writable: true, enumerable: true, configurable: true }
 });
@@ -1285,7 +1285,7 @@ console.log(obj.x); // 1
 console.log(Object.getPrototypeOf(obj) === Object.prototype); // true
 
 const myProto = { x: 10 };
-// 객체를 직접 상속받는다.
+// 임의의 객체를 직접 상속받는다.
 // obj → myProto → Object.prototype → null
 obj = Object.create(myProto);
 
@@ -1297,8 +1297,8 @@ function Person(name) {
   this.name = name;
 }
 
-// obj = new Person('Lee')와 동일하다.
 // obj → Person.prototype → Object.prototype → null
+// obj = new Person('Lee')와 동일하다.
 obj = Object.create(Person.prototype);
 obj.name = 'Lee';
 console.log(obj.name); // Lee

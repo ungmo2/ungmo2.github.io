@@ -297,11 +297,11 @@ console.log(typeof undefined); // undefined
 
 ### 4.2.1. eval
 
-eval 함수는 자바스크립트 코드를 나타내는 문자열을 인수로 전달받는다. 인수로 전달받은 자바스크립트 코드가 표현식이라면 eval 함수는 코드를 런타임에 평가하여 값을 생성하고, 인수로 전달받은 자바스크립트 코드가 표현식이 아닌 문이라면 eval 함수는 코드를 런타임에 실행한다. 전달된 문자열 코드가 여러 개의 문으로 이루어져 있다면 모든 문을 실행한다.
+eval 함수는 자바스크립트 코드를 나타내는 문자열을 인수로 전달받는다. 전달받은 인수가 표현식이라면 eval 함수는 코드를 런타임에 평가하여 값을 생성하고, 전달받은 인수가 표현식이 아닌 문이라면 eval 함수는 코드를 런타임에 실행한다. 전달받은 문자열 코드가 여러 개의 문으로 이루어져 있다면 모든 문을 실행한다.
 
 ```javascript
 /**
- * 주어진 코드를 런타임에 평가 또는 실행한다.
+ * 주어진 문자열 코드를 런타임에 평가 또는 실행한다.
  * @param {string} code - 코드를 나타내는 문자열
  * @returns {*} 문자열 코드를 평가/실행한 결과값
  */
@@ -325,7 +325,7 @@ var f = eval('(function() { return 1; })');
 console.log(f()); // 1
 ```
 
-전달된 문자열 코드가 여러 개의 문으로 이루어져 있다면 모든 문을 실행한 다음, 마지막 결과값을 반환한다.
+인수로 전달받은 문자열 코드가 여러 개의 문으로 이루어져 있다면 모든 문을 실행한 다음, 마지막 결과값을 반환한다.
 
 ```javascript
 console.log(eval('1 + 2; 3 + 4;')); // 7
@@ -366,14 +366,13 @@ foo();
 console.log(x); // 1
 ```
 
-또한 eval 함수에 전달한 변수 선언문이 let, const 키워드를 사용했다면 엄격 모드가 적용된다.
+또한 인수로 전달받은 문자열 코드가 let, const 키워드를 사용한 변수 선언문이라면 엄격 모드가 적용된다.
 
 ```javascript
 var x = 1;
 
 function foo() {
-  // 'use strict';
-  // eval 함수에 전달한 변수 선언문이 let, const 키워드를 사용했다면 엄격 모드가 적용된다.
+  // 엄격 모드 'use strict';가 적용된다.
   eval('const x = 2; console.log(x);'); // 2
   console.log(x); // 1
 }
@@ -387,11 +386,11 @@ eval 함수를 통해 사용자로부터 입력 받은 콘텐츠(untrusted data)
 
 ### 4.2.2. isFinite
 
-전달된 인수가 정상적인 유한수인지 검사하여 그 결과를 불리언 타입으로 반환한다. 전달된 인수가 유한수이면 true를 반환하고, 무한수이면 false를 반환한다. 전달된 인수가 숫자가 아닌 경우, 숫자로 타입을 변환한 후 검사를 수행한다. 이때 인수가 NaN으로 평가되는 값이라면 false를 반환한다.
+전달받은 인수가 정상적인 유한수인지 검사하여 그 결과를 불리언 타입으로 반환한다. 전달받은 인수가 유한수이면 true를 반환하고, 무한수이면 false를 반환한다. 전달받은 인수의 타입이 숫자가 아닌 경우, 숫자로 타입을 변환한 후 검사를 수행한다. 이때 인수가 NaN으로 평가되는 값이라면 false를 반환한다.
 
 ```javascript
 /**
- * 주어진 숫자가 유한수인지 확인하고 그 결과를 반환한다.
+ * 전달받은 인수가 유한수인지 확인하고 그 결과를 반환한다.
  * @param {number} testValue - 검사 대상 값
  * @returns {boolean} 유한수 여부 확인 결과
  */
@@ -423,185 +422,198 @@ console.log(+null); // 0
 
 ### 4.2.3. isNaN
 
-매개변수에 전달된 값이 NaN인지 검사하여 그 결과를 불리언 타입으로 반환한다. 매개변수에 전달된 값이 숫자가 아닌 경우, 숫자로 타입을 변환한 후 검사를 수행한다.
+전달받은 인수가 NaN인지 검사하여 그 결과를 불리언 타입으로 반환한다. 전달받은 인수의 타입이 숫자가 아닌 경우, 숫자로 타입을 변환한 후 검사를 수행한다.
 
 ```javascript
 /**
- * 주어진 숫자가 NaN인지 확인하고 그 결과를 반환한다.
+ * 전달받은 인수가 NaN인지 확인하고 그 결과를 반환한다.
  * @param {number} testValue - 검사 대상 값
- * @returns {boolean} NaN 여부 확인 결과값
+ * @returns {boolean} NaN 여부 확인 결과
  */
 isNaN(testValue)
 ```
 
 ```javascript
 // 숫자
-console.log(isNaN(NaN)); // true
-console.log(isNaN(10));  // false
+isNaN(NaN); // -> true
+isNaN(10);  // -> false
 
 // 문자열
-console.log(isNaN('blabla')); // true: 'blabla' → NaN
-console.log(isNaN('10'));     // false: '10' → 10
-console.log(isNaN('10.12'));  // false: '10.12' → 10.12
-console.log(isNaN(''));       // false: '' → 0
-console.log(isNaN(' '));      // false: ' ' → 0
+isNaN('blabla'); // -> true: 'blabla' => NaN
+isNaN('10');     // -> false: '10' => 10
+isNaN('10.12');  // -> false: '10.12' => 10.12
+isNaN('');       // -> false: '' => 0
+isNaN(' ');      // -> false: ' ' => 0
 
 // 불리언
-console.log(isNaN(true)); // false: true → 1
-console.log(isNaN(null)); // false: null → 0
+isNaN(true); // -> false: true → 1
+isNaN(null); // -> false: null → 0
 
 // undefined
-console.log(isNaN(undefined)); // true: undefined → NaN
+isNaN(undefined); // -> true: undefined => NaN
 
 // 객체
-console.log(isNaN({}));  // true: {} → NaN
+isNaN({}); // -> true: {} => NaN
 
 // date
-console.log(isNaN(new Date()));             // false: new Date() → Number
-console.log(isNaN(new Date().toString()));  // true:  String → NaN
+isNaN(new Date());            // -> false: new Date() => Number
+isNaN(new Date().toString()); // -> true:  String => NaN
 ```
 
 ### 4.2.4. parseFloat
 
-매개변수에 전달된 문자열을 부동소수점 숫자(floating point number)로 변환하여 반환한다.
+전달받은 문자열 인수를 부동소수점 숫자(floating point number), 즉 실수로 해석(parsing)하여 반환한다.
 
 ```javascript
 /**
- * 주어진 문자열을 부동소수점 숫자로 변환하여 반환한다.
+ * 전달받은 문자열 인수를 실수로 해석하여 반환한다.
  * @param {string} string - 변환 대상 값
- * @returns {number} 변환 결과값
+ * @returns {number} 변환 결과
  */
 parseFloat(string)
 ```
 
 ```javascript
-console.log(parseFloat('3.14'));  // 3.14
-console.log(parseFloat('10.00')); // 10
+// 문자열을 실수로 해석하여 반환한다.
+parseFloat('3.14');  // -> 3.14
+parseFloat('10.00'); // -> 10
+
 // 공백으로 구분된 문자열은 첫번째 문자열만 변환한다.
-console.log(parseFloat('34 45 66')); // 34
-console.log(parseFloat('40 years')); // 40
+parseFloat('34 45 66'); // 34
+parseFloat('40 years'); // 40
+
 // 첫번째 문자열을 숫자로 변환할 수 없다면 NaN을 반환한다.
-console.log(parseFloat('He was 40')); // NaN
+parseFloat('He was 40'); // NaN
+
 // 전후 공백은 무시된다.
-console.log(parseFloat(' 60 ')); // 60
+parseFloat(' 60 '); // 60
 ```
 
 ### 4.2.5. parseInt
 
-매개변수에 전달된 문자열을 정수형 숫자(Integer)로 해석(parsing)하여 반환한다. 반환값은 언제나 10진수이다.
+전달받은 문자열 인수를 정수(integer)로 해석(parsing)하여 반환한다.
 
 ```javascript
 /**
- * 주어진 문자열을 정수형 숫자(Integer)로 해석(parsing)하여 반환한다.
- * 반환값은 언제나 10진수이다.
+ * 전달받은 문자열 인수를 정수로 해석하여 반환한다.
  * @param {string} string - 변환 대상 값
  * @param {number} [radix] - 진법을 나타내는 기수(2 ~ 36, 기본값 10)
- * @returns {number} 변환 결과값
+ * @returns {number} 변환 결과
  */
 parseInt(string, radix);
 ```
 
 ```javascript
-// 주어진 문자열을 10진수 정수로 해석하여 반환한다.
-console.log(parseInt('10'));     // 10
-console.log(parseInt('10.123')); // 10
+// 문자열을 정수로 해석하여 반환한다.
+parseInt('10');     // -> 10
+parseInt('10.123'); // -> 10
 ```
 
-주어진 변환 대상 값이 문자열이 아니면 문자열로 변환한 후 정수형 숫자로 해석하여 반환한다.
+전달받은 인수가 문자열이 아니면 문자열로 변환한 다음, 정수로 해석하여 반환한다.
 
 ```javascript
-console.log(parseInt(10));     // 10
-console.log(parseInt(10.123)); // 10
+parseInt(10);     // -> 10
+parseInt(10.123); // -> 10
 ```
 
-2번째 매개변수에는 진법을 나타내는 기수(2 ~ 36)를 지정할 수 있다. 기수를 지정하면 첫번째 매개변수에 전달된 문자열을 해당 기수의 숫자로 해석하여 반환한다. 이때 반환값은 언제나 10진수이다. 기수를 생략하면 첫번째 매개변수에 전달된 문자열을 10진수로 해석하여 반환한다.
+두번째 인수로 진법을 나타내는 기수(2 ~ 36)를 전달할 수 있다. 기수를 지정하면 첫번째 인수로 전달된 문자열을 해당 기수의 숫자로 해석하여 반환한다. 이때 반환값은 언제나 10진수이다. 기수를 생략하면 첫번째 인수로 전달된 문자열을 10진수로 해석하여 반환한다.
 
 ```javascript
-// '10'을 10진수로 해석하고 10진수 정수로 그 결과를 반환한다
-console.log(parseInt('10')); // 10
-// '10'을 2진수로 해석하고 10진수 정수로 그 결과를 반환한다
-console.log(parseInt('10', 2)); // 2
-// '10'을 8진수로 해석하고 10진수 정수로 그 결과를 반환한다
-console.log(parseInt('10', 8)); // 8
-// '10'을 16진수로 해석하고 10진수 정수로 그 결과를 반환한다
-console.log(parseInt('10', 16)); // 16
+// 10'을 10진수로 해석하고 그 결과를 10진수 정수로 반환한다
+parseInt('10'); // -> 10
+// '10'을 2진수로 해석하고 그 결과를 10진수 정수로 반환한다
+parseInt('10', 2); // -> 2
+// '10'을 8진수로 해석하고 그 결과를 10진수 정수로 반환한다
+parseInt('10', 8); // -> 8
+// '10'을 16진수로 해석하고 그 결과를 10진수 정수로 반환한다
+parseInt('10', 16); // -> 16
 ```
 
-기수를 지정하여 10진수 숫자를 해당 기수의 문자열로 변환하여 반환하고 싶을 때는 Number.prototype.toString 메소드를 사용한다.
+참고로 기수를 지정하여 10진수 숫자를 해당 기수의 문자열로 변환하여 반환하고 싶을 때는 Number.prototype.toString 메소드(["28.3.8. Number.prototype.toString"](/fastcampus/number#38-numberprototypetostring) 참고)를 사용한다.
 
 ```javascript
 const x = 15;
 
-// 15을 2진수로 변환하여 그 결과를 문자열로 반환한다.
-console.log(x.toString(2)); // '1111'
-// 15을 8진수로 변환하여 그 결과를 문자열로 반환한다.
-console.log(x.toString(8)); // '17'
-// 15을 16진수로 변환하여 그 결과를 문자열로 반환한다.
-console.log(x.toString(16)); // 'f'
+// 10진수 15을 2진수로 변환하여 그 결과를 문자열로 반환한다.
+x.toString(2); // -> '1111'
+// 문자열 '1111'을 2진수로 해석하고 그 결과를 10진수 정수로 반환한다
+parseInt(x.toString(2), 2); // -> 15
+
+// 10진수 15을 8진수로 변환하여 그 결과를 문자열로 반환한다.
+x.toString(8); // -> '17'
+// 문자열 '17'을 8진수로 해석하고 그 결과를 10진수 정수로 반환한다
+parseInt(x.toString(8), 8); // -> 15
+
+// 10진수 15을 16진수로 변환하여 그 결과를 문자열로 반환한다.
+x.toString(16); // -> 'f'
+// 문자열 'f'을 16진수로 해석하고 그 결과를 10진수 정수로 반환한다
+parseInt(x.toString(8), 8); // -> 15
 
 // 숫자값을 문자열로 변환한다.
-console.log(x.toString()); // '15'
+x.toString(); // -> '15'
+// 문자열 '15'을 10진수로 해석하고 그 결과를 10진수 정수로 반환한다
+parseInt(x.toString()); // -> 15
 ```
 
-두번째 매개변수에 진법을 나타내는 기수를 지정하지 않더라도 첫번째 매개변수에 전달된 문자열이 "0x" 또는 "0X"로 시작하는 16진수 리터럴이라면 16진수로 해석하여 10진수 정수로 반환한다.
+두번째 인수로 진법을 나타내는 기수를 지정하지 않더라도 첫번째 인수로 전달된 문자열이 "0x" 또는 "0X"로 시작하는 16진수 리터럴이라면 16진수로 해석하여 10진수 정수로 반환한다.
 
 ```javascript
-// 16진수 리터럴 ‘0xf’를 16진수로 해석하고 10진수 정수로 그 결과를 반환한다.
-console.log(parseInt('0xf')); // 15
+// 16진수 리터럴 '0xf'를 16진수로 해석하고 10진수 정수로 그 결과를 반환한다.
+parseInt('0xf'); // -> 15
 // 위 코드와 같다.
-console.log(parseInt('f', 16)); // 15
+parseInt('f', 16); // -> 15
 ```
 
 하지만 2진수 리터럴과 8진수 리터럴은 제대로 해석하지 못한다.
 
 ```javascript
-// 2진수 리터럴(0b로 시작) => 0 이후 무시
-console.log(parseInt('0b10')); // 0
-// 8진수 리터럴(ES6에서 도입. 0o로 시작)  => 0 이후 무시
-console.log(parseInt('0o10')); // 0
+// 2진수 리터럴(0b로 시작)은 제대로 해석하지 못한다. 0 이후가 무시된다.
+parseInt('0b10'); // -> 0
+// 8진수 리터럴(ES6에서 도입. 0o로 시작)은 제대로 해석하지 못한다. 0 이후가 무시된다.
+parseInt('0o10'); // -> 0
 ```
 
 ES5 이전까지는 비록 사용을 금지하고는 있었지만 "0"로 시작하는 숫자를 8진수로 해석하였다. ES6부터는 "0"로 시작하는 숫자를 8진수로 해석하지 않고 10진수로 해석한다. 따라서 문자열을 8진수로 해석하려면 지수를 반드시 지정하여야 한다.
 
 ```javascript
-// 문자열 ‘10’을 2진수로 해석한다.
-console.log(parseInt('10', 2)); // 2
-// 문자열 ‘10’을 8진수로 해석한다.
-console.log(parseInt('10', 8)); // 8
+// 문자열 '10'을 2진수로 해석한다.
+parseInt('10', 2); // -> 2
+// 문자열 '10'을 8진수로 해석한다.
+parseInt('10', 8); // -> 8
 ```
 
-첫번째 매개변수에 전달된 문자열의 첫번째 문자가 해당 지수의 숫자로 변환될 수 없다면 NaN을 반환한다.
+첫번째 인수로 전달한 문자열의 첫번째 문자가 해당 지수의 숫자로 변환될 수 없다면 NaN을 반환한다.
 
 ```javascript
 // 'A'는 10진수로 해석할 수 없다.
-console.log(parseInt('A0')); // NaN
+parseInt('A0'); // -> NaN
 // '2'는 2진수로 해석할 수 없다.
-console.log(parseInt('20', 2)); // NaN
+parseInt('20', 2); // -> NaN
 ```
 
-하지만 첫번째 매개변수에 전달된 문자열의 두번째 문자부터 해당 진수를 나타내는 숫자가 아닌 문자(예를 들어 2진수의 경우, 2)와 마주치면 이 문자와 계속되는 문자들은 전부 무시되며 해석된 정수값만을 반환한다.
+하지만 첫번째 인수로 전달한 문자열의 두번째 문자부터 해당 진수를 나타내는 숫자가 아닌 문자(예를 들어 2진수의 경우, 2)와 마주치면 이 문자와 계속되는 문자들은 전부 무시되며 해석된 정수값만을 반환한다.
 
 ```javascript
 // 10진수로 해석할 수 없는 'A'이후의 문자는 모두 무시된다.
-console.log(parseInt('1A0')); // 1
+parseInt('1A0'); // -> 1
 // 2진수로 해석할 수 없는 '2'이후의 문자는 모두 무시된다.
-console.log(parseInt('102', 2)); // 2
+parseInt('102', 2); // -> 2
 // 8진수로 해석할 수 없는 '8'이후의 문자는 모두 무시된다.
-console.log(parseInt('58', 8)); // 5
+parseInt('58', 8); // -> 5
 // 16진수로 해석할 수 없는 'G'이후의 문자는 모두 무시된다.
-console.log(parseInt('FG', 16)); // 15
+parseInt('FG', 16); // -> 15
 ```
 
 첫번째 매개변수에 전달된 문자열에 공백이 있다면 첫번째 문자열만 해석하여 반환하며 전후 공백은 무시된다. 만일 첫번째 문자열을 숫자로 해석할 수 없는 경우, NaN을 반환한다.
 
 ```javascript
 // 공백으로 구분된 문자열은 첫번째 문자열만 변환한다.
-console.log(parseInt('34 45 66')); // 34
-console.log(parseInt('40 years')); // 40
+parseInt('34 45 66'); // 34
+parseInt('40 years'); // 40
 // 첫번째 문자열을 숫자로 변환할 수 없다면 NaN을 반환한다.
-console.log(parseInt('He was 40')); // NaN
+parseInt('He was 40'); // NaN
 // 전후 공백은 무시된다.
-console.log(parseInt(' 60 ')); // 60
+parseInt(' 60 '); // 60
 ```
 
 ### 4.2.6. encodeURI / decodeURI

@@ -34,72 +34,58 @@ Math, Reflect, JSON을 제외한 표준 빌트인 객체는 모두 인스턴스�
 
 ```javascript
 // String 생성자 함수에 의한 String 객체 생성
-const strObj = new String('Lee');
-console.log(typeof strObj); // object
-console.log(strObj);        // String {"Lee"}
+const strObj = new String('Lee'); // String {"Lee"}
+console.log(typeof strObj);       // object
 
 // Number 생성자 함수에 의한 Number 객체 생성
-const numObj = new Number(123);
-console.log(typeof numObj); // object
-console.log(numObj);        // Number {123}
+const numObj = new Number(123); // Number {123}
+console.log(typeof numObj);     // object
 
 // Boolean 생성자 함수에 의한 Boolean 객체 생성
-const boolObj= new Boolean(true);
-console.log(typeof boolObj); // object
-console.log(boolObj);        // Boolean {true}
+const boolObj= new Boolean(true); // Boolean {true}
+console.log(typeof boolObj);      // object
 
 // Function 생성자 함수에 의한 Function 객체(함수) 생성
-const func = new Function('x', 'return x * x');
-console.log(typeof func); // function
-console.dir(func);        // ƒ anonymous(x )
+const func = new Function('x', 'return x * x'); // ƒ anonymous(x )
+console.log(typeof func);                       // function
 
 // Array 생성자 함수에 의한 Array 객체(배열) 생성
-const arr = new Array(1, 2, 3);
-console.log(typeof arr); // object
-console.log(arr);        // (3) [1, 2, 3]
+const arr = new Array(1, 2, 3); // (3) [1, 2, 3]
+console.log(typeof arr);        // object
 
 // RegExp 생성자 함수에 의한 RegExp 객체(정규 표현식) 생성
-const regExp = new RegExp(/ab+c/i);
-console.log(typeof regExp); // object
-console.log(regExp);        // /ab+c/i
+const regExp = new RegExp(/ab+c/i); // /ab+c/i
+console.log(typeof regExp);         // object
 
 // Date 생성자 함수에 의한 Date 객체 생성
-const date = new Date();
+const date = new Date();  // Fri May 08 2020 10:43:25 GMT+0900 (대한민국 표준시)
 console.log(typeof date); // object
-console.log(date);        // Fri May 08 2020 10:43:25 GMT+0900 (대한민국 표준시)
 ```
 
-생성자 함수인 표준 빌트인 객체가 생성한 인스턴스의 프로토타입은 표준 빌트인 객체의 prototype 프로퍼티에 바인딩된 객체이다. 예를 들어 표준 빌트인 객체인 String을 생성자 함수로서 호출하여 생성한 String 인스턴스의 프로토타입은 String.prototype이다.
+생성자 함수인 표준 빌트인 객체가 생성한 인스턴스의 프로토타입은 표준 빌트인 객체의 prototype 프로퍼티에 바인딩된 객체이다. 예를 들어, 표준 빌트인 객체 String을 생성자 함수로서 호출하여 생성한 String 인스턴스의 프로토타입은 String.prototype이다.
 
 ```javascript
 // String 생성자 함수에 의한 String 객체 생성
-const strObj = new String('Lee');
-console.log(typeof strObj); // object
-console.log(strObj);        // String {"Lee"}
+const strObj = new String('Lee'); // String {"Lee"}
 
+// String 생성자 함수를 통해 생성한 strObj 객체의 프로토타입은 String.prototype이다.
 console.log(Object.getPrototypeOf(strObj) === String.prototype); // true
 ```
 
-표준 빌트인 객체의 prototype 프로퍼티에 바인딩된 객체(예를 들어, String.prototype)는 다양한 기능의 메소드를 제공한다. 또한 인스턴스 없이도 호출 가능한 정적 메소드도 제공한다.
+표준 빌트인 객체의 prototype 프로퍼티에 바인딩된 객체(예를 들어, String.prototype)는 다양한 기능의 빌트인 프로토타입 메소드를 제공한다. 그리고 표준 빌트인 객체는 인스턴스 없이도 호출 가능한 빌트인 정적 메소드를 제공한다.
 
-예를 들어 표준 빌트인 객체인 Number를 생성자 함수로 호출하여 생성한 Number 인스턴스는 Number.prototype이 제공하는 다양한 기능의 프로토타입 메소드를 사용할 수 있다.
+예를 들어, 표준 빌트인 객체인 Number의 prototype 프로퍼티에 바인딩된 객체, Number.prototype은 다양한 기능의 빌트인 프로토타입 메소드를 제공한다. 이 프로토타입 메소드는 모든 Number 인스턴스가 상속을 통해 사용할 수 있다. 그리고 표준 빌트인 객체인 Number는 인스턴스 없이 정적으로 호출할 수 있는 정적 메소드를 제공한다.
 
 ```javascript
 // Number 생성자 함수에 의한 Number 객체 생성
-const numObj = new Number(1.5);
-console.log(typeof numObj); // object
-console.log(numObj);        // Number {1.5}
+const numObj = new Number(1.5); // Number {1.5}
 
-// toFixed는 프로토타입 메소드이다.
-// 소숫점자리를 반올림하여 문자열로 반환한다.
+// toFixed는 Number.prototype의 프로토타입 메소드이다.
+// Number.prototype.toFixed는 소숫점자리를 반올림하여 문자열로 반환한다.
 console.log(numObj.toFixed()); // 2
-```
 
-표준 빌트인 객체인 Number는 인스턴스 없이 정적으로 호출할 수 있는 정적 메소드도 제공한다..
-
-```javascript
 // isInteger는 정적 메소드이다.
-// 정수(Integer)인지 검사하여 그 결과를 Boolean으로 반환한다.
+// Number.isInteger는 인수가 정수(integer)인지 검사하여 그 결과를 Boolean으로 반환한다.
 console.log(Number.isInteger(0.5)); // false
 ```
 
@@ -112,14 +98,12 @@ console.log(Number.isInteger(0.5)); // false
 ```javascript
 const str = 'hello';
 
-// 원시 타입인 문자열이 프로퍼티와 메소드를 갖고 있다.
+// 원시 타입인 문자열이 프로퍼티와 메소드를 갖고 있는 객체처럼 동작한다.
 console.log(str.length); // 5
 console.log(str.toUpperCase()); // HELLO
 ```
 
-표준 빌트인 객체가 제공하는 프로토타입 메소드를 사용하려면 반드시 인스턴스를 생성하고 인스턴스로 프로토타입 메소드를 호출해야 한다. 그런데 위 예제를 살펴보면 원시 값으로 표준 빌트인 객체의 프로토타입 메소드를 호출하면 정상적으로 동작한다.
-
-이는 원시값인 문자열, 숫자, 불리언 값의 경우, 마치 객체처럼 이들 원시 값에 대해 마침표 표기법(또는 대괄호 표기법)으로 접근하면 자바스크립트 엔진이 일시적으로 원시 값을 연관된 객체로 변환해 주기 때문이다. 즉, 원시 값을 객체처럼 사용하면 자바스크립트 엔진은 암묵적으로 연관된 객체를 생성하고 생성된 객체로 프로퍼티에 접근하거나 메소드를 호출하고 다시 원시 값으로 되돌린다.
+이는 원시 값인 문자열, 숫자, 불리언 값의 경우, 이들 원시 값에 대해 마치 객체처럼 마침표 표기법(또는 대괄호 표기법)으로 접근하면 자바스크립트 엔진이 일시적으로 원시 값을 연관된 객체로 변환해 주기 때문이다. 즉, 원시 값을 객체처럼 사용하면 자바스크립트 엔진은 암묵적으로 연관된 객체를 생성하여 생성된 객체로 프로퍼티에 접근하거나 메소드를 호출하고 다시 원시 값으로 되돌린다.
 
 이처럼 **문자열, 숫자, 불리언 값에 대해 객체처럼 접근하면 생성되는 임시 객체를 레퍼 객체(wrapper object)**라 한다.
 
@@ -144,41 +128,44 @@ console.log(typeof str); // string
 문자열 레퍼 객체의 프로토타입 체인
 {: .desc-img}
 
-그 후, 레퍼 객체의 처리가 종료하면 레퍼 객체의 [[StringData]] 내부 슬롯에 할당된 원시값을 되돌리고 레퍼 객체는 가비지 컬렉션의 대상이 된다. 아래 예제를 살펴보자.
+그 후, 레퍼 객체의 처리가 종료하면 레퍼 객체의 [[StringData]] 내부 슬롯에 할당된 원시값으로 원래의 상태, 즉 식별자가 원시값을 갖도록 되돌리고 레퍼 객체는 가비지 컬렉션의 대상이 된다. 아래 예제를 살펴보자.
 
 ```javascript
-const str = 'hello'; // ①
+// ① 식별자 str은 문자열을 값으로 가지고 있다.
+const str = 'hello';
 
-// 래퍼 객체에 프로퍼티 추가
-str.name = 'Lee'; // ②
-// ③ str은 이전의 원시값으로 돌아간다.
+// ② 식별자 str은 암묵적으로 생성된 래퍼 객체를 가리킨다.
+// 식별자 str의 값 'hello'는 레퍼 객체의 [[StringData]] 내부 슬롯에 할당된다.
+// 래퍼 객체에 name 프로퍼티가 동적 추가된다.
+str.name = 'Lee';
 
-// 이 시점에 str은 위 코드의 래퍼 객체가 아닌 새로운 래퍼 객체를 가리킨다.
-console.log(str.name); // ④ undefined
-// ⑤ str은 이전의 원시값으로 돌아간다.
+// ③ 식별자 str은 다시 원래의 문자열, 즉 레퍼 객체의 [[StringData]] 내부 슬롯에 할당된 원시값을 갖는다.
+// 이때 ②에서 생성된 래퍼 객체는 아무도 참조하지 않는 상태이므로 가비지 컬렉션의 대상이 된다.
+
+// ④ 식별자 str은 새롭게 암묵적으로 생성된(②에서 생성된 래퍼 객체와는 다른) 레퍼 객체를 가리킨다.
+// 새롭게 생성된 래퍼 객체에는 name 프로퍼티가 존재하지 않는다.
+console.log(str.name); // undefined
+
+// ⑤ 식별자 str은 다시 원래의 문자열, 즉 레퍼 객체의 [[StringData]] 내부 슬롯에 할당된 원시값을 갖는다.
+// 이때 ④에서 생성된 래퍼 객체는 아무도 참조하지 않는 상태이므로 가비지 컬렉션의 대상이 된다.
+console.log(typeof str, str);
 ```
 
-① 식별자 str은 문자열을 값으로 가지고 있다.
-②	식별자 str은 암묵적으로 생성된 래퍼 객체를 가리킨다.
-③	식별별자 str은 다시 원래의 문자열, 즉 레퍼 객체의 [[StringData]] 내부 슬롯에 할당된 원시값을 갖는다.
-④	식별자 str은 새롭게 암묵적으로 생성된(②에서 생성된 래퍼 객체와는 다른) 레퍼 객체를 가리킨다.
-⑤	식별자 str은 다시 원래의 문자열, 즉 레퍼 객체의 [[StringData]] 내부 슬롯에 할당된 원시값을 갖는다.
-
-숫자도 마찬가지다. 숫자에 대해 마침표 표기법으로 접근하면 그 순간 레퍼 객체인 Number 생성자 함수의 인스턴스가 생성되고 숫자는 레퍼 객체의 [[NumberData]] 내부 슬롯에 할당된다. 이때 레퍼 객체인 Number 객체는 당연히 Number.prototype의 메소드를 상속받아 사용할 수 있다. 그 후, 레퍼 객체의 처리가 종료하면 레퍼 객체의 [[NumberData]] 내부 슬롯에 할당된 원시값을 되돌리고 레퍼 객체는 가비지 컬렉션의 대상이 된다.
+숫자 값도 마찬가지다. 숫자 값에 대해 마침표 표기법으로 접근하면 그 순간 레퍼 객체인 Number 생성자 함수의 인스턴스가 생성되고 숫자는 레퍼 객체의 [[NumberData]] 내부 슬롯에 할당된다. 이때 레퍼 객체인 Number 객체는 당연히 Number.prototype의 메소드를 상속받아 사용할 수 있다. 그 후, 레퍼 객체의 처리가 종료하면 레퍼 객체의 [[NumberData]] 내부 슬롯에 할당된 원시값을 되돌리고 레퍼 객체는 가비지 컬렉션의 대상이 된다.
 
 ```javascript
 const num = 1.5;
 
-// 원시 타입인 숫자가 레퍼 객체인 String 객체로 변환된다.
+// 원시 타입인 숫자가 레퍼 객체인 Number 객체로 변환된다.
 console.log(num.toFixed()); // 2
 
 // 레퍼 객체로 프로퍼티 접근이나 메소드 호출한 후, 다시 원시값으로 되돌린다.
 console.log(typeof num, num); // number 1.5
 ```
 
-불리언 값도 문자열이나 숫자와 마찬가지이지만 불리언 값으로 메소드를 호출할 일은 없으므로 그다지 유용하지는 않다.
+불리언 값도 문자열이나 숫자와 마찬가지이지만 불리언 값으로 메소드를 호출하는 경우는 없으므로 그다지 유용하지는 않다.
 
-ES6에서 새롭게 도입된 원시값인 심볼도 레퍼 객체를 생성한다. 심볼은 일반적인 원시값과는 달리 리터럴 표기법으로 생성할 수 없고 Symbol 함수를 통해 생성해야 하므로 다른 원시값과는 차이가 있다. 심볼에 대해서는 ["33. 7번째 데이터 타입 Symbol"](/fastcampus/symbol)에서 자세히 살펴보도록 하자.
+ES6에서 새롭게 도입된 원시 값인 심볼도 레퍼 객체를 생성한다. 심볼은 일반적인 원시 값과는 달리 리터럴 표기법으로 생성할 수 없고 Symbol 함수를 통해 생성해야 하므로 다른 원시 값과는 차이가 있다. 심볼에 대해서는 ["33. 7번째 데이터 타입 Symbol"](/fastcampus/symbol)에서 자세히 살펴보도록 하자.
 
 이처럼 문자열, 숫자, 불리언, 심볼은 암묵적으로 생성되는 레퍼 객체에 의해 마치 객체처럼 사용할 수 있으며 표준 빌트인 객체인 String, Number, Boolean, Symbol의 프로토타입 메소드 또는 프로퍼티를 참조할 수 있다. 따라서 String, Number, Boolean 생성자 함수를 new 연산자와 함께 호출하여 문자열, 숫자, 불리언 인스턴스를 생성할 필요가 없으며 권장하지도 않는다. Symbol은 생성자 함수가 아니므로 이 논의에서는 제외하도록 한다.
 
@@ -236,7 +223,7 @@ var foo = 1;
 console.log(window.foo); // 1
 
 // 암묵적 전역. bar는 전역 변수가 아니라 전역 객체의 프로퍼티이다.
-bar = 2;
+bar = 2; // window.bar = 2
 console.log(window.bar); // 2
 
 // 전역 함수
@@ -310,11 +297,11 @@ console.log(typeof undefined); // undefined
 
 ### 4.2.1. eval
 
-문자열 형태로 매개변수에 전달된 코드를 런타임에 동적으로 평가하고 실행하여 결과값을 반환한다. 전달된 문자열 코드가 여러 개의 문으로 이루어져 있다면 모든 문을 실행 후 마지막 결과값을 반환한다.
+eval 함수는 자바스크립트 코드를 나타내는 문자열을 인수로 전달받는다. 인수로 전달받은 자바스크립트 코드가 표현식이라면 eval 함수는 코드를 런타임에 평가하여 값을 생성하고, 인수로 전달받은 자바스크립트 코드가 표현식이 아닌 문이라면 eval 함수는 코드를 런타임에 실행한다. 전달된 문자열 코드가 여러 개의 문으로 이루어져 있다면 모든 문을 실행한다.
 
 ```javascript
 /**
- * 주어진 코드를 런타임 평가하고 실행하여 결과값을 반환한다.
+ * 주어진 코드를 런타임에 평가 또는 실행한다.
  * @param {string} code - 코드를 나타내는 문자열
  * @returns {*} 문자열 코드를 평가/실행한 결과값
  */
@@ -338,13 +325,13 @@ var f = eval('(function() { return 1; })');
 console.log(f()); // 1
 ```
 
-전달된 문자열 코드가 여러 개의 문으로 이루어져 있다면 모든 문을 실행 후 마지막 결과값을 반환한다.
+전달된 문자열 코드가 여러 개의 문으로 이루어져 있다면 모든 문을 실행한 다음, 마지막 결과값을 반환한다.
 
 ```javascript
 console.log(eval('1 + 2; 3 + 4;')); // 7
 ```
 
-eval 함수는 런타임에 자신이 호출된 기존의 스코프를 동적으로 수정한다. 아래 예제를 살펴보자.
+eval 함수는 자신이 호출된 위치에 해당하는 기존의 스코프를 런타임에 동적으로 수정한다. 아래 예제를 살펴보자.
 
 ```javascript
 var x = 1;
@@ -360,11 +347,9 @@ foo();
 console.log(x); // 1
 ```
 
-위 예제의 eval 함수는 새로운 변수를 선언하면서 foo 함수의 스코프에 선언된 변수를 동적으로 추가한다. eval 함수가 호출되는 시점에는 이미 foo 함수의 스코프가 존재한다. 따라서 eval 함수는 기존의 스코프를 동적으로 수정하는 것이다. 그리고 eval 함수에 전달된 코드는 이미 그 위치에 존재하던 코드처럼 동작한다. 즉, eval 함수가 호출된 foo 함수의 스코프에서 실행된다.
+위 예제의 eval 함수는 새로운 변수를 선언하면서 foo 함수의 스코프에 선언된 변수를 동적으로 추가한다. 함수가 호출되면 런타임 이전에 먼저 함수 몸체 내부의 모든 선언문을 먼저 실행하고 그 결과를 스코프에 등록한다. 따라서 위 예제의 eval 함수가 호출되는 시점에는 이미 foo 함수의 스코프가 존재한다. 하지만 **eval 함수는 기존의 스코프를 런타임에 동적으로 수정한다.** 그리고 eval 함수에 전달된 코드는 이미 그 위치에 존재하던 코드처럼 동작한다. 즉, eval 함수가 호출된 foo 함수의 스코프에서 실행된다.
 
-자바스크립트는 렉시컬 스코프(["13.5. 렉시컬 스코프"](/fastcampus/scope#5-렉시컬-스코프) 참고)를 따르므로 스코프는 함수 정의가 평가되는 시점에 결정된다. 다시 말해 스코프는 런타임에 결정되는 것이 아니다. 하지만 eval 함수는 런타임에 기존의 스코프를 동적으로 수정할 수 있다. 다시 말해 eval 함수는 렉시컬 스코프를 동적으로 수정할 수 있다. 하지만 성능적인 면에서 손해를 감수해야 한다.
-
-엄격 모드(strict mode)에서 eval 함수는 기존의 스코프를 수정하지 않고 자신만의 독자적인 스코프를 생성한다.
+단, 엄격 모드(strict mode)에서 eval 함수는 기존의 스코프를 수정하지 않고 eval 함수 자신의 자체적인 스코프를 생성한다.
 
 ```javascript
 var x = 1;
@@ -372,13 +357,12 @@ var x = 1;
 function foo() {
   'use strict';
 
-  // 엄격 모드에서 eval 함수는 기존의 스코프를 수정하지 않고 자체적인 스코프를 생성한다.
+  // 엄격 모드에서 eval 함수는 기존의 스코프를 수정하지 않고 eval 함수 자신의 자체적인 스코프를 생성한다.
   eval('var x = 2; console.log(x);'); // 2
   console.log(x); // 1
 }
 
 foo();
-
 console.log(x); // 1
 ```
 
@@ -399,34 +383,39 @@ foo();
 console.log(x); // 1
 ```
 
-eval 함수를 통해 사용자로부터 입력 받은 콘텐츠(untrusted data)를 실행하는 것은 보안에 매우 취약하다. 또한 자바스크립트 엔진에 의해 최적화가 수행되지 않으므로 일반적인 코드 실행에 비해 처리 속도가 느리다. 따라서 eval 함수의 사용은 가급적 금지되어야 한다.
+eval 함수를 통해 사용자로부터 입력 받은 콘텐츠(untrusted data)를 실행하는 것은 보안에 매우 취약하다. 또한 eval 함수를 통해 실행되는 코드는 자바스크립트 엔진에 의해 최적화가 수행되지 않으므로 일반적인 코드 실행에 비해 처리 속도가 느리다. 따라서 **eval 함수의 사용은 금지되어야 한다.**
 
 ### 4.2.2. isFinite
 
-매개 변수에 전달된 값이 정상적인 유한수인지 검사하여 그 결과를 불리언 타입으로 반환한다. 매개변수에 전달된 값이 숫자가 아닌 경우, 숫자로 타입을 변환한 후 검사를 수행한다.
+전달된 인수가 정상적인 유한수인지 검사하여 그 결과를 불리언 타입으로 반환한다. 전달된 인수가 유한수이면 true를 반환하고, 무한수이면 false를 반환한다. 전달된 인수가 숫자가 아닌 경우, 숫자로 타입을 변환한 후 검사를 수행한다. 이때 인수가 NaN으로 평가되는 값이라면 false를 반환한다.
 
 ```javascript
 /**
  * 주어진 숫자가 유한수인지 확인하고 그 결과를 반환한다.
  * @param {number} testValue - 검사 대상 값
- * @returns {boolean} 유한수 여부 확인 결과값
+ * @returns {boolean} 유한수 여부 확인 결과
  */
 isFinite(testValue)
 ```
 
 ```javascript
-console.log(isFinite(Infinity));  // false
-console.log(isFinite(NaN));       // false
-console.log(isFinite('Hello'));   // false
-console.log(isFinite('2005/12/12'));   // false
+// 인수가 유한수이면 true를 반환한다.
+isFinite(0);    // -> true
+isFinite(2e64); // -> true
+isFinite('10'); // -> true: '10' → 10
+isFinite(null); // -> true: null → 0
 
-console.log(isFinite(0));         // true
-console.log(isFinite(2e64));      // true
-console.log(isFinite('10'));      // true: '10' → 10
-console.log(isFinite(null));      // true: null → 0
+// 인수가 무한수 또는 NaN으로 평가되는 값이라면 false를 반환한다.
+isFinite(Infinity);  // -> false
+isFinite(-Infinity); // -> false
+
+// 인수가 NaN으로 평가되는 값이라면 false를 반환한다.
+isFinite(NaN);     // -> false
+isFinite('Hello'); // -> false
+isFinite('2005/12/12'); // -> false
 ```
 
-isFinite(null)은 true를 반환한다. 이것은 null을 숫자로 변환하여 검사를 수행하였기 때문이다. null을 숫자 타입으로 변환하면 0이 된다.("9. 타입 변환과 단축 평가" 참고)
+isFinite(null)은 true를 반환한다. 이것은 null을 숫자로 변환하여 검사를 수행하였기 때문이다. null을 숫자 타입으로 변환하면 0이 된다.(["9. 타입 변환과 단축 평가"](/fastcampus/type-casting) 참고)
 
 ```javascript
 console.log(+null); // 0

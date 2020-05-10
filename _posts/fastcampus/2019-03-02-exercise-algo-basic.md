@@ -104,7 +104,7 @@ function binarySearch(array, target) {
     // 실수가 나올수 있기 때문에 Math.floor로 소수점 이하를 내림한 정수를 구한다.
     const mid = Math.floor((start + end) / 2);
 
-    // target이 중간값(array[mid])과 같으면 ture를 반환하고 종료
+    // target이 중간값(array[mid])과 같으면 mid를 반환하고 종료
     if (target === array[mid]) return mid;
 
     // target이 중간값보다 작으면 작은 쪽(start ~ mid - 1)에서 검색.

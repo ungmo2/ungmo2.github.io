@@ -663,7 +663,7 @@ const foo = () => console.log(arguments);
 foo(1, 2); // ReferenceError: arguments is not defined
 ```
 
-["18.2.1. arguments 프로퍼티"](/fastcampus/first-class-object#21-arguments-프로퍼티)에서 살펴본 바와 같이 arguments 객체는 매개변수 개수를 확정할 수 없는 가변 인자 함수를 구현할 때 유용하다. 하지만 화살표 함수에서는 arguments 객체를 사용할 수 없다. 상위 컨텍스트의 arguments 객체를 참조할 수는 있지만 화살표 함수 자신에게 전달된 인수 목록을 확인할 수 없으므로 그다지 도움이 되지 않는다.
+["18.2.1. arguments 프로퍼티"](/fastcampus/first-class-object#21-arguments-프로퍼티)에서 살펴본 바와 같이 arguments 객체는 매개변수 개수를 확정할 수 없는 가변 인자 함수를 구현할 때 유용하다. 하지만 화살표 함수에서는 arguments 객체를 사용할 수 없다. 상위 스코프의 arguments 객체를 참조할 수는 있지만 화살표 함수 자신에게 전달된 인수 목록을 확인할 수 없으므로 그다지 도움이 되지 않는다.
 
 따라서 화살표 함수로 가변 인자 함수를 구현해야 할 때는 반드시 Rest 파라미터를 사용해야 한다.
 
@@ -671,7 +671,7 @@ foo(1, 2); // ReferenceError: arguments is not defined
 
 ## 4.1.	기본 문법
 
-Rest 파라미터(Rest Parameter, 나머지 매개변수)는 매개변수 이름 앞에 세개의 점 ...을 붙여서 정의한 매개변수를 의미한다. Rest 파라미터는 함수에 전달된 인수들의 목록을 배열로 전달받는다.
+Rest 파라미터(Rest parameter, 나머지 매개변수)는 매개변수 이름 앞에 세개의 점 ...을 붙여서 정의한 매개변수를 의미한다. Rest 파라미터는 함수에 전달된 인수들의 목록을 배열로 전달받는다.
 
 ```javascript
 function foo(...rest) {
@@ -706,7 +706,7 @@ bar(1, 2, 3, 4, 5);
 Rest 파라미터는 이름 그대로 먼저 선언된 매개변수에 할당된 인수를 제외한 나머지 인수들이 모두 배열에 담겨 할당된다. 따라서 Rest 파라미터는 반드시 마지막 이어야 한다.
 
 ```javascript
-function foo( ...rest, param1, param2) { }
+function foo(...rest, param1, param2) { }
 
 foo(1, 2, 3, 4, 5);
 // SyntaxError: Rest parameter must be last formal parameter
@@ -736,7 +736,7 @@ console.log(baz.length); // 2
 
 ## 4.2. Rest 파라미터와 arguments 객체
 
-ES5에서는 인자의 개수를 사전에 알 수 없는 가변 인자 함수의 경우, arguments 객체를 통해 인수를 확인한다. arguments 객체는 함수 호출 시 전달된 인수(argument)들의 정보를 담고 있는 순회 가능한(iterable) 유사 배열 객체(array-like object)이며 함수 내부에서 지역 변수처럼 사용할 수 있다.
+ES5에서는 인수의 개수를 사전에 알 수 없는 가변 인자 함수의 경우, arguments 객체를 통해 인수를 확인한다. arguments 객체는 함수 호출 시 전달된 인수(argument)들의 정보를 담고 있는 순회 가능한(iterable) 유사 배열 객체(array-like object)이며 함수 내부에서 지역 변수처럼 사용할 수 있다.
 
 ```javascript
 // 매개변수의 개수를 사전에 알 수 없는 가변 인자 함수
@@ -774,14 +774,6 @@ console.log(sum(1, 2, 3, 4, 5)); // 15
 ```
 
 일반 함수와 메소드는 Rest 파라미터와 arguments 객체를 모두 사용할 수 있다. 하지만 화살표 함수는 함수 자체의 arguments 객체를 갖지 않는다. 따라서 화살표 함수로 가변 인자 함수를 구현해야 할 때는 반드시 Rest 파라미터를 사용해야 한다.
-
-```javascript
-var normalFunc = function () {};
-console.log(normalFunc.hasOwnProperty('arguments')); // true
-
-const arrowFunc = () => {};
-console.log(arrowFunc.hasOwnProperty('arguments')); // false
-```
 
 # 5. 매개변수 기본값
 

@@ -314,7 +314,7 @@ window.__proto__.__proto__.__proto__.__proto__ === Object.prototype; // -> true
 위 과정을 거쳐 생성된 전역 실행 컨텍스트와 렉시컬 환경은 아래와 같다.
 
 ![](/assets/fs-images/23-9.png)
-{: .w-650 }
+{: .w-700 }
 
 전역 실행 컨텍스트와 렉시컬 환경
 {: .desc-img}

@@ -112,10 +112,10 @@ console.log(obj.foo()); // 1
 console.log(obj.bar()); // 1
 ```
 
-ES6 사양에서 정의한 메소드(이하 ES6 메소드)는 인스턴스를 생성할 없는 non-constructor이다. 따라서 ES6 메소드는 생성자 함수로서 호출할 수 없다.
+ES6 사양에서 정의한 메소드(이하 ES6 메소드)는 인스턴스를 생성할 수 없는 non-constructor이다. 따라서 ES6 메소드는 생성자 함수로서 호출할 수 없다.
 
 ```javascript
-new obj.foo(); // TypeError: obj.foo is not a constructor
+new obj.foo(); // -> TypeError: obj.foo is not a constructor
 new obj.bar(); // -> bar {}
 ```
 
@@ -125,19 +125,24 @@ ES6 메소드는 인스턴스를 생성할 수 없으므로 prototype 프로퍼�
 // obj.foo는 ES6 메소드이므로 prototype 프로퍼티가 없다.
 obj.foo.hasOwnProperty('prototype'); // -> false
 
-// obj.bar는 일반 함수이므로 prototype 프로퍼티가 있다.
+// obj.bar는 constructor인 일반 함수이므로 prototype 프로퍼티가 있다.
 obj.bar.hasOwnProperty('prototype'); // -> true
 ```
 
-참고로 표준 빌드인 객체의 메소드는 모두 non-constructor이다.
+참고로 표준 빌드인 객체가 제공하는 프로토타입 메소드와 정적 메소드는 모두 non-constructor이다.
 
 ```javascript
-console.log(String.prototype.toUpperCase.prototype); // undefined
-console.log(Number.prototype.toFixed.prototype); // undefined
-console.log(Array.prototype.map.prototype); // undefined
+String.prototype.toUpperCase.prototype; // -> undefined
+String.fromCharCode.prototype           // -> undefined
+
+Number.prototype.toFixed.prototype; // -> undefined
+Number.isFinite.prototype;          // -> undefined
+
+Array.prototype.map.prototype; // -> undefined
+Array.from.prototype;          // -> undefined
 ```
 
-ES6 메소드는 메소드가 바인딩된 객체를 가리키는 내부 슬롯 [[HomeObject]]를 갖는다. super 참조는 내부 슬롯 [[HomeObject]]를 사용하여 수퍼 클래스의 메소드를 참조하므로 내부 슬롯 [[HomeObject]]를 갖는 ES6 메소드 만이 super 키워드를 사용할 수 있다.
+ES6 메소드는 자신을 바인딩한 객체를 가리키는 내부 슬롯 [[HomeObject]]를 갖는다.(["25.8.5. super 키워드"](/fastcampus/class#85-super-키워드) 참고) super 참조는 내부 슬롯 [[HomeObject]]를 사용하여 수퍼 클래스의 메소드를 참조하므로 내부 슬롯 [[HomeObject]]를 갖는 ES6 메소드 만이 super 키워드를 사용할 수 있다.
 
 ```javascript
 const base = {
@@ -149,7 +154,9 @@ const base = {
 
 const derived = {
   __proto__: base,
-  // ES6 메소드이다. [[HomeObject]]를 갖는다.
+  // ES6 메소드이다. ES6 메소드는 [[HomeObject]]를 갖는다.
+  // sayHi의 [[HomeObject]]은 derived.prototype이고
+  // super는 sayHi의 [[HomeObject]]의 프로토타입인 base.prototype이다.
   sayHi() {
     return `${super.sayHi()}. how are you doing?`;
   }
@@ -158,12 +165,13 @@ const derived = {
 console.log(derived.sayHi()); // Hi! Lee. how are you doing?
 ```
 
-ES6 메소드가 아니면 super 키워드를 사용할 수 없다. 내부 슬롯 [[HomeObject]]를 갖지 않기 때문이다
+ES6 메소드가 아닌 함수는 super 키워드를 사용할 수 없다. ES6 메소드가 아닌 함수는 내부 슬롯 [[HomeObject]]를 갖지 않기 때문이다
 
 ```javascript
 const derived = {
   __proto__: base,
-  // sayHi 프로퍼티의 값은 일반 함수이다. [[HomeObject]]를 갖지 않는다.
+  // sayHi는 ES6 메소드가 아니다.
+  // 따라서 sayHi는 [[HomeObject]]를 갖지 않으므로 super 키워드를 사용할 수 없다.
   sayHi: function () {
     // SyntaxError: 'super' keyword unexpected here
     return `${super.sayHi()}. how are you doing?`;
@@ -175,7 +183,7 @@ const derived = {
 
 # 3. 화살표 함수
 
-화살표 함수(Arrow function)는 function 키워드 대신 화살표(=>, fat arrow)를 사용하여 보다 기존의 함수 정의 방식보다 간략하게 함수를 정의할 수 있다. 화살표 함수는 표현만 간략한 것이 아니라 내부 동작도 기존의 함수보다 간략하다. 특히 화살표 함수는 콜백 함수 내부에서 this가 전역 객체를 가리키는 문제를 해결하기 위한 대안으로 유용하다.
+화살표 함수(arrow function)는 function 키워드 대신 화살표(=>, fat arrow)를 사용하여 보다 기존의 함수 정의 방식보다 간략하게 함수를 정의할 수 있다. 화살표 함수는 표현만 간략한 것이 아니라 내부 동작도 기존의 함수보다 간략하다. 특히 화살표 함수는 콜백 함수 내부에서 this가 전역 객체를 가리키는 문제를 해결하기 위한 대안으로 유용하다.
 
 ## 3.1. 화살표 함수 정의
 

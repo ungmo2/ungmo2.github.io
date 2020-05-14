@@ -245,7 +245,7 @@ var sum = function(a, b) {
 };
 ```
 
-함수 몸체가 여러 줄의 문으로 구성된다면 함수 몸체를 감싸는 중괄호 {}를 생략할 수 없다. 이때 반환값이 있다면 명시적으로 반환해야 한다
+함수 몸체가 여러 줄의 문으로 구성된다면 함수 몸체를 감싸는 중괄호 {}를 생략할 수 없다. 이때 반환값이 있다면 명시적으로 반환해야 한다.
 
 ```javascript
 // 화살표 함수
@@ -264,10 +264,12 @@ var sum = function (a, b) {
 객체 리터럴을 반환하는 경우, 객체 리터럴을 소괄호 ()로 감싸 주어야 한다.
 
 ```javascript
-() => { return { a: 1 }; }
+() => { return { a: 1 }; };
 // 위 표현과 동일하다.
-() => ({ a: 1 })
+() => ({ a: 1 });
+```
 
+```javascript
 // 화살표 함수
 const create = (id, content) => ({ id, content });
 
@@ -283,13 +285,13 @@ create(1, 'JavaScript'); // -> {id: 1, content: "JavaScript"}
 
 ```javascript
 const person = (name => ({
-  sayHi() { return `Hi? My name is ${name}`; }
+  sayHi() { return `Hi? My name is ${name}.`; }
 }))('Lee');
 
-console.log(person.sayHi()); // Hi? My name is Lee
+console.log(person.sayHi()); // Hi? My name is Lee.
 ```
 
-화살표 함수도 일급 객체이므로 Array.prototype.map, Array.prototype.filter, Array.prototype.reduce와 같은 고차 함수(Higher-Order Function, HOF)에 인수로 전달할 수 있다. 이 경우 일반적인 함수 표현식보다 표현이 간결하다.
+화살표 함수도 일급 객체이므로 Array.prototype.map, Array.prototype.filter, Array.prototype.reduce와 같은 고차 함수(Higher-Order Function, HOF)에 인수로 전달할 수 있다. 이 경우, 일반적인 함수 표현식보다 표현이 간결하고 가독성이 좋다.
 
 ```javascript
 // ES5
@@ -301,7 +303,7 @@ console.log(person.sayHi()); // Hi? My name is Lee
 [1, 2, 3].map(v => v * 2); // -> [ 2, 4, 6 ]
 ```
 
-이처럼 화살표 함수는 콜백 함수로서 정의할 때 유용하다. 표현만 간략한 것만이 아니다. 화살표 함수는 일반 함수의 기능을 간략화 했으며 this를 사용하는 것도 편리하게 설계되었다. 일반 함수와의 차이에 대해 살펴보자.
+이처럼 화살표 함수는 콜백 함수로서 정의할 때 유용하다. 표현만 간략한 것만이 아니다. 화살표 함수는 일반 함수의 기능을 간략화 했으며 this를 사용하는 것도 편리하게 설계되었다. 일반 함수와 화살표 함수의 차이에 대해 살펴보자.
 
 ## 3.2.	화살표 함수와 일반 함수의 차이
 
@@ -342,9 +344,9 @@ const arrow = (a, a) => a + a;
 
 **3. 화살표 함수는 함수 자체의 this, arguments, super, new.target 바인딩을 갖지 않는다.**
 
-따라서 화살표 함수 내부에서 this, arguments, super, new.target를 참조하면 스코프 체인을 통해 상위 컨텍스트의 this, arguments, super, new.target를 참조한다.
+따라서 화살표 함수 내부에서 this, arguments, super, new.target를 참조하면 스코프 체인을 통해 상위 스코프의 this, arguments, super, new.target를 참조한다.
 
-화살표 함수가 화살표 함수의 중첩 함수인 경우, 부모 화살표 함수에도 this, arguments, super, new.target 바인딩이 없으므로 부모 화살표 함수의 상위 컨텍스트의 this, arguments, super, new.target를 참조한다. 즉, 화살표 함수가 중첩 함수인 경우, 상위 스코프에 존재하는 가장 가까운 함수 중에서 화살표 함수가 아닌 부모 함수의 this, arguments, super, new.target를 참조한다..
+화살표 함수가 화살표 함수의 중첩 함수인 경우, 부모 화살표 함수에도 this, arguments, super, new.target 바인딩이 없으므로 부모 화살표 함수의 상위 스코프의 this, arguments, super, new.target를 참조한다. 즉, 화살표 함수가 중첩 함수인 경우, 상위 스코프에 존재하는 가장 가까운 함수 중에서 화살표 함수가 아닌 부모 함수의 this, arguments, super, new.target를 참조한다.
 
 ## 3.3. this
 
@@ -354,7 +356,7 @@ const arrow = (a, a) => a + a;
 
 ["22. this"](/fastcampus/this)에서 살펴보았듯이 this 바인딩은 함수의 호출 방식, 즉 함수가 어떻게 호출되었는지에 따라 동적으로 결정된다. 다시 말해, 함수를 정의할 때 this에 바인딩할 객체가 정적으로 결정되는 것이 아니고, 함수를 호출할 때 함수가 어떻게 호출되었는지에 따라 this에 바인딩할 객체가 동적으로 결정된다.
 
-이때 주의할 것은 일반 함수로 호출되는 콜백 함수의 경우이다. 어떤 함수의 인수로 전달되어 함수 내부에서 호출되는 콜백 함수도 중첩 함수라고 할 수 있다. 주어진 배열의 각 요소에 접두어를 추가하는 아래 예제를 살펴보자.
+이때 주의할 것은 일반 함수로서 호출되는 콜백 함수의 경우이다. 어떤 함수의 인수로 전달되어 함수 내부에서 호출되는 콜백 함수도 중첩 함수라고 할 수 있다. 주어진 배열의 각 요소에 접두어를 추가하는 아래 예제를 살펴보자.
 
 ```javascript
 class Prefixer {
@@ -364,6 +366,8 @@ class Prefixer {
 
   prefixArray(arr) {
     // ①
+    // Array.prototype.map 메소드는 배열을 순회하며 배열의 각 요소에 대하여 인수로 전달된 콜백 함수를 실행한다.
+    // 그리고 콜백 함수의 반환값들로 구성된 새로운 배열을 반환한다. ("27.9.3. Array.prototype.map" 참고)
     // 인수로 전달된 배열 arr을 순회하며 배열의 모든 요소에 prefix를 추가한다.
     return arr.map(function (item) {
       return this.prefix + ' ' + item; // ②
@@ -378,7 +382,7 @@ console.log(prefixer.prefixArray(['Lee', 'Kim']));
 
 위 예제를 실행했을 때 기대하는 결과는 `['Hi Lee', 'Hi Kim']`이다. 하지만 TypeError가 발생한다. 그 이유에 대해 살펴보자.
 
-프로토타입 메소드 내부인 ①에서 this는 메소드를 호출한 객체(위 예제의 경우 prefixer 객체)를 가리킨다. 그런데 Array.prototype.map의 인수로 전달한 콜백 함수의 내부인 ②에서 this는 전역 객체를 가리킨다. 이는 콜백 함수가 일반 함수로 호출되기 때문이다. 생성자 함수 또는 메소드로서 호출되지 않고 일반 함수로서 호출되는 모든 함수 내부의 this는 전역 객체를 가리킨다. 하지만 클래스 내부 코드는 모두 strict mode가 적용되고 strict mode에서 함수를 일반 함수로서 호출하면 this에 undefined가 바인딩된다.(["20.6.1. 일반 함수의 this"](/fastcampus/strict-mode#61-일반-함수의-this) 참고)
+프로토타입 메소드 내부인 ①에서 this는 메소드를 호출한 객체(위 예제의 경우 prefixer 객체)를 가리킨다. 그런데 Array.prototype.map의 인수로 전달한 콜백 함수의 내부인 ②에서 this는 전역 객체를 가리킨다. 이는 콜백 함수가 일반 함수로서 호출되기 때문이다. 생성자 함수 또는 메소드로서 호출되지 않고 일반 함수로서 호출되는 모든 함수 내부의 this는 전역 객체를 가리킨다. 하지만 클래스 내부 코드는 모두 strict mode가 적용되고 strict mode에서 함수를 일반 함수로서 호출하면 this에 undefined가 바인딩된다.(["20.6.1. 일반 함수의 this"](/fastcampus/strict-mode#61-일반-함수의-this) 참고)
 
 이때 발생하는 문제가 바로 "콜백 함수 내부의 this 문제"이다. 즉, 콜백 함수의 this(②)와 외부 함수의 this(①)가 서로 다른 객체를 가리키고 있기 때문에 TypeError가 발생한 것이다
 
@@ -397,9 +401,9 @@ prefixArray(arr) {
 ...
 ```
 
-**2. Array.prototype.map의 2번째 매개 변수에 메소드를 호출한 prefixer 객체를 가리키는 this를 전달한다.**
+**2. Array.prototype.map의 2번째 인수로 메소드를 호출한 prefixer 객체를 가리키는 this를 전달한다.**
 
-ES5에서 도입된 Array.prototype.map은 “콜백 함수 내부의 this 문제”를 해결하기 위해 두번째 매개 변수에 this로 사용할 객체를 전달할 수 있다.
+ES5에서 도입된 Array.prototype.map은 “콜백 함수 내부의 this 문제”를 해결하기 위해 두번째 인수로 this로 사용할 객체를 전달할 수 있다.
 
 ```javascript
 ...
@@ -423,7 +427,7 @@ prefixArray(arr) {
 ...
 ```
 
-ES6에서는 화살표 함수를 사용하여 “콜백 함수 내부의 this 문제”를 해결할 수 있다.
+ES6에서는 화살표 함수를 사용하여 "콜백 함수 내부의 this 문제"를 해결할 수 있다.
 
 ```javascript
 class Prefixer {
@@ -439,43 +443,44 @@ const prefixer = new Prefixer('Hi');
 prefixer.prefixArray(['Lee', 'Kim']); // -> ['Hi Lee', 'Hi Kim']
 ```
 
-화살표 함수는 함수 자체의 this 바인딩이 없다. 화살표 함수 내부에서 this를 참조하면 상위 컨텍스트의 this를 그대로 참조한다. 이를 Lexical this라 한다. 이는 마치 [렉시컬 스코프](/fastcampus/scope#5-렉시컬-스코프)와 같이 화살표 함수의 this가 함수가 정의된 위치에 의해 결정된다는 것을 의미한다.
+화살표 함수는 함수 자체의 this 바인딩이 없다. 화살표 함수 내부에서 this를 참조하면 상위 스코프의 this를 그대로 참조한다. 이를 **lexical this**라 한다. 이는 마치 [렉시컬 스코프](/fastcampus/scope#5-렉시컬-스코프)와 같이 화살표 함수의 this가 함수가 정의된 위치에 의해 결정된다는 것을 의미한다.
 
-화살표 함수를 제외한 모든 컨텍스트에는 this 바인딩이 반드시 존재한다. 따라서 일반적인 식별자와는 다르게 this는 스코프 체인을 통해 탐색하지 않는다. 아니 탐색할 필요가 없다. 하지만 화살표 함수 내부에는 this가 없다. 따라서 화살표 함수 내부에서 this를 참조하면 스코프 체인을 통해 this의 값을 탐색한다. 화살표 함수를 Function.prototype.bind를 사용하여 표현하면 아래와 같다.
+화살표 함수의 스코프를 제외한 모든 스코프에는 this 바인딩이 반드시 존재한다. 따라서 ES6에서 화살표 함수가 도입되기 이전에는 일반적인 식별자처럼 스코프 체인을 통해 this를 탐색할 필요가 없었다. 하지만 화살표 함수 내부에는 this가 없다. 따라서 화살표 함수 내부에서 this를 참조하면 스코프 체인을 통해 this의 값을 탐색한다. 화살표 함수를 Function.prototype.bind를 사용하여 표현하면 아래와 같다.
 
 ```javascript
-// 화살표 함수는 상위 컨텍스트의 this를 참조한다.
+// 화살표 함수는 상위 스코프의 this를 참조한다.
 () => this.x;
 
 // 익명 함수에 this를 주입한다. 위 화살표 함수와 동일하게 동작한다.
 (function () { return this.x; }).bind(this);
 ```
 
-만약 화살표 함수가 화살표 함수의 중첩 함수인 경우, 부모 화살표 함수가 참조하는 상위 컨텍스트의 this를 참조한다. 즉, 화살표 함수가 중첩 함수인 경우, 상위 스코프에 존재하는 가장 가까운 함수 중에서 화살표 함수가 아닌 부모 함수의 this를 참조한다. 만약 화살표 함수가 전역 함수라면 화살표 함수의 this는 전역 객체를 가리킨다.
+만약 화살표 함수가 화살표 함수의 중첩 함수인 경우, 부모 화살표 함수의 상위 스코프의 this를 참조한다. 즉, 화살표 함수가 중첩 함수인 경우, 상위 스코프에 존재하는 가장 가까운 함수 중에서 화살표 함수가 아닌 부모 함수의 this를 참조한다. 만약 화살표 함수가 전역 함수라면 화살표 함수의 this는 전역 객체를 가리킨다.
 
 ```javascript
 // 화살표 함수는 함수 자체의 this 바인딩이 없다.
-// 전역 함수 foo의 상위 컨텍스트는 전역이다.
-// 화살표 함수 foo의 this는 전역 객체를 가리킨다.
+// 전역 함수 foo의 상위 스코프는 전역이다.
+// 따라서 화살표 함수 foo의 this는 전역 객체를 가리킨다.
 const foo = () => console.log(this);
 foo(); // window
 
-// 중첩 함수 foo의 상위 컨텍스트는 즉시 실행 함수이다.
-// 화살표 함수 foo의 this는 즉시 실행 함수의 this를 가리킨다.
+// 중첩 함수 bar의 상위 스코프는 즉시 실행 함수이다.
+// 따라서 화살표 함수 foo의 this는 즉시 실행 함수의 this를 가리킨다.
 (function () {
-  const foo = () => console.log(this);
-  foo();
+  const bar = () => console.log(this);
+  bar();
 }).call({ a: 1 }); // { a: 1 }
 
-// 함수 foo는 화살표 함수를 반환한다.
-// 반환된 화살표 함수의 this는 즉시 실행 함수의 this를 가리킨다.
+// 함수 baz는 화살표 함수를 반환한다.
+// 반환된 화살표 함수의 상위 스코프는 화살표 함수 baz이고 화살표 함수 baz의 상위 스코프는
+// 즉시 실행 함수이므로 this는 즉시 실행 함수의 this를 가리킨다.
 (function () {
-  const foo = () => () => console.log(this);
-  foo()();
+  const baz = () => () => console.log(this);
+  baz()();
 }).call({ a: 1 }); // { a: 1 }
 
-// increase 프로퍼티에 할당한 화살표 함수의 상위 컨텍스트는 전역이다.
-// increase 프로퍼티에 할당한 화살표 함수의 this는 전역 객체를 가리킨다.
+// increase 프로퍼티에 할당한 화살표 함수의 상위 스코프는 전역이다.
+// 따라서 increase 프로퍼티에 할당한 화살표 함수의 this는 전역 객체를 가리킨다.
 const counter = {
   num: 1,
   increase: () => ++this.num
@@ -484,7 +489,7 @@ const counter = {
 console.log(counter.increase()); // NaN
 ```
 
-화살표 함수 내부의 this는 Function.prototype.call, Function.prototype.apply, Function.prototype.bind 메소드를 사용하여 변경할 수 없다.
+화살표 함수는 함수 자체의 this 바인딩이 없기 때문에 Function.prototype.call, Function.prototype.apply, Function.prototype.bind 메소드를 사용하여도 화살표 함수 내부의 this를 교체할 수 없다.
 
 ```javascript
 window.x = 1;
@@ -496,7 +501,7 @@ console.log(normal.call({ x: 10 })); // 10
 console.log(arrow.call({ x: 10 }));  // 1
 ```
 
-화살표 함수가 Function.prototype.call, Function.prototype.apply, Function.prototype.bind 메소드를 사용할 수 없다는 의미는 아니다. 단지 화살표 함수의 this는 일단 결정된 이후 변경할 수 없고 언제나 유지된다.
+화살표 함수가 Function.prototype.call, Function.prototype.apply, Function.prototype.bind 메소드를 사용할 수 없다는 의미는 아니다. 화살표 함수는 함수 자체의 this 바인딩이 없기 때문에 교체할 수 없고 언제나 상위 스코프의 this 바인딩을 참조한다.
 
 ```javascript
 const add = (a, b) => a + b;
@@ -517,11 +522,11 @@ const person = {
 
 // 전역 객체 window에는 빌트인 프로퍼티 name이 존재한다.
 // sayHi에 할당된 화살표 함수 내부의 this는 전역 객체를 가리키므로
-// 이 예제를 브라우저에서 실행하면 빈문자열을 갖는 window.name이 출력된다.
+// 이 예제를 브라우저에서 실행하면 빈 문자열을 갖는 window.name이 출력된다.
 person.sayHi(); // Hi
 ```
 
-위 예제의 경우, sayHi 프로퍼티에 할당한 화살표 함수 내부의 this는 메소드를 호출한 객체를 가리키지 않고 상위 컨텍스트인 전역 객체를 가리킨다. 따라서 화살표 함수로 메소드를 정의하는 것은 바람직하지 않다. 따라서 ES6 메소드 정의를 사용하는 것이 좋다.
+위 예제의 경우, sayHi 프로퍼티에 할당한 화살표 함수 내부의 this는 메소드를 호출한 객체를 가리키지 않고 상위 스코프인 전역의 this 바인딩인 전역 객체를 가리킨다. 따라서 화살표 함수로 메소드를 정의하는 것은 바람직하지 않다. 메소드를 정의할 때는 ES6 메소드 정의를 사용하는 것이 좋다.
 
 ```javascript
 // Good
@@ -535,7 +540,7 @@ const person = {
 person.sayHi(); // Hi Lee
 ```
 
-프로토타입 객체에 화살표 함수를 할당하는 경우도 동일한 문제가 발생한다.
+프로토타입 객체의 프로퍼티로 화살표 함수를 추가하는 경우도 동일한 문제가 발생한다.
 
 ```javascript
 // Bad
@@ -546,11 +551,11 @@ function Person(name) {
 Person.prototype.sayHi = () => console.log(`Hi ${this.name}`);
 
 const person = new Person('Lee');
-// 이 예제를 브라우저에서 실행하면 빈문자열을 갖는 window.name이 출력된다.
+// 이 예제를 브라우저에서 실행하면 빈 문자열을 갖는 window.name이 출력된다.
 person.sayHi(); // Hi
 ```
 
-프로토타입 객체에는 ES6 메소드 정의를 사용할 수 없으므로 일반 함수를 할당한다.
+객체에 프로퍼티를 동적 추가할 때는 ES6 메소드 정의를 사용할 수 없으므로 일반 함수를 할당한다.
 
 ```javascript
 // Good
@@ -578,7 +583,7 @@ const person = new Person();
 person.sayHi(); // Hi Lee
 ```
 
-이때 sayHi 클래스 필드에 할당한 화살표 함수 내부에서 this를 참조하면 상위 컨텍스트의 this를 그대로 가리킨다. 그렇다면 sayHi 클래스 필드에 할당한 화살표 함수의 상위 컨텍스트는 무엇일까? sayHi 클래스 필드는 인스턴스 프로퍼티이므로 아래와 같은 의미이다.
+이때 sayHi 클래스 필드에 할당한 화살표 함수 내부에서 this를 참조하면 상위 스코프의 this를 그대로 가리킨다. 그렇다면 sayHi 클래스 필드에 할당한 화살표 함수의 상위 스코프는 무엇일까? sayHi 클래스 필드는 인스턴스 프로퍼티이므로 아래와 같은 의미이다.
 
 ```javascript
 class Person {
@@ -591,7 +596,7 @@ class Person {
 }
 ```
 
-따라서 sayHi 클래스 필드에 할당한 화살표 함수의 상위 컨텍스트는 constructor이며 화살표 함수의 this는 constructor의 this와 같다. constructor의 this는 클래스가 생성한 인스턴스를 가리키므로 sayHi 클래스 필드에 할당한 화살표 함수 내부의 this 또한 클래스가 생성한 인스턴스를 가리킨다.
+따라서 sayHi 클래스 필드에 할당한 화살표 함수의 상위 스코프는 constructor이며 화살표 함수의 this는 constructor의 this와 같다. constructor의 this는 클래스가 생성한 인스턴스를 가리키므로 sayHi 클래스 필드에 할당한 화살표 함수 내부의 this 또한 클래스가 생성한 인스턴스를 가리킨다.
 
 하지만 클래스 필드에 할당한 화살표 함수는 프로토타입 메소드가 아니라 인스턴스 메소드가 된다. 따라서 ES6 메소드 정의를 사용하는 것이 좋다.
 
@@ -609,7 +614,7 @@ person.sayHi(); // Hi Lee
 
 ## 3.4. super
 
-화살표 함수는 함수 자체의 super 바인딩이 없다. 따라서 화살표 함수 내부에서 super를 참조하면 상위 컨텍스트의 super를 참조한다.
+화살표 함수는 함수 자체의 super 바인딩이 없다. 따라서 화살표 함수 내부에서 super를 참조하면 상위 스코프의 super를 참조한다.
 
 ```javascript
 class Base {
@@ -623,11 +628,11 @@ class Base {
 }
 
 class Derived extends Base {
-  // super 키워드는 ES6 메소드 내에서만 사용 가능하다.
-  // 화살표 함수는 함수 자체의 super 바인딩이 없다.
-  // 화살표 함수 foo의 상위 컨텍스트는 constructor이다.
-  // 화살표 함수 foo의 super는 constructor의 super를 가리킨다.
-  // 클래스 필드 정의 제안으로 클래스 필드에 화살표 함수를 할당한다.
+  /*
+  super 키워드는 ES6 메소드 내에서만 사용 가능하다.
+  화살표 함수는 ES6 메소드가 아니지만 함수 자체의 super 바인딩이 없으므로 에러가 발생하지 않고 상위 스코프의 super를 참조한다.
+  화살표 함수 sayHi의 상위 스코프는 constructor이다. 따라서 화살표 함수 sayHi의 super는 constructor의 super를 가리킨다.
+  */
   sayHi = () => `${super.sayHi()} how are you doing?`;
 }
 
@@ -635,24 +640,24 @@ const derived = new Derived('Lee');
 console.log(derived.sayHi()); // Hi! Lee how are you doing?
 ```
 
-super는 내부 슬롯 [[HomeObject]]를 갖는 ES6 메소드만이 사용할 수 있는 키워드이다. 위 예제의 sayHi 클래스 필드에 할당한 화살표 함수는 ES6 메소드가 아니지만 상위 컨텍스트의 super를 그대로 참조하기 때문에 super 참조가 가능하다.
+super는 내부 슬롯 [[HomeObject]]를 갖는 ES6 메소드만이 사용할 수 있는 키워드이다. 위 예제의 sayHi 클래스 필드에 할당한 화살표 함수는 ES6 메소드가 아니지만 상위 스코프의 super를 그대로 참조하기 때문에 super 참조가 가능하다.
 
-sayHi 클래스 필드에 할당한 화살표 함수의 상위 컨텍스트는 constructor이며 화살표 함수의 super는 constructor의 super와 같다.
+sayHi 클래스 필드에 할당한 화살표 함수의 상위 스코프는 constructor이므로 화살표 함수의 super는 constructor의 super와 같다.
 
 ## 3.5. arguments
 
-화살표 함수는 함수 자체의 arguments 바인딩이 없다. 따라서 화살표 함수 내부에서 arguments를 참조하면 상위 컨텍스트의 arguments를 참조한다.
+화살표 함수는 함수 자체의 arguments 바인딩이 없다. 따라서 화살표 함수 내부에서 arguments를 참조하면 상위 스코프의 arguments를 참조한다.
 
 ```javascript
 (function () {
   // 화살표 함수는 함수 자체의 arguments 바인딩이 없다.
-  // 중첩 함수 foo의 상위 컨텍스트는 즉시 실행 함수이다.
-  // 화살표 함수 foo의 arguments는 실행 함수의 arguments를 가리킨다.
+  // 중첩 함수 foo의 상위 스코프는 즉시 실행 함수이다.
+  // 따라서 화살표 함수 foo의 arguments는 즉시 실행 함수의 arguments를 가리킨다.
   const foo = () => console.log(arguments); // [Arguments] { '0': 1, '1': 2 }
   foo(3, 4);
 }(1, 2));
 
-// 전역 함수 foo의 상위 컨텍스트는 전역이다.
+// 전역 함수 foo의 상위 스코프는 전역이다.
 // 전역에는 arguments 객체가 없다. arguments 객체는 함수 내부에서만 유효하다.
 const foo = () => console.log(arguments);
 foo(1, 2); // ReferenceError: arguments is not defined

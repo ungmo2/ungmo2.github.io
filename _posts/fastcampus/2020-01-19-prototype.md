@@ -784,74 +784,7 @@ me.hasOwnProperty('name');
 
 이처럼 **스코프 체인과 프로토타입 체인은 별도로 서로 연관없이 동작하는 것이 아니라 서로 협력하여 식별자와 프로퍼티를 검색한다.**
 
-# 8. 캡슐화
-
-아래의 예제를 살펴보자.
-
-```javascript
-const Person = (function () {
-  // 생성자 함수
-  function Person(name) {
-    this.name = name;
-  }
-
-  // 프로토타입 메소드
-  Person.prototype.sayHello = function () {
-    console.log(`Hi! My name is ${this.name}`);
-  };
-
-  // 생성자 함수를 반환
-  return Person;
-}());
-
-const me = new Person('Lee');
-```
-
-이와 같이 즉시 실행 함수를 사용하여 생성자 함수와 프로토타입을 확장하는 코드를 하나의 함수 내에 깔끔하게 모을 수 있다.
-
-위 패턴을 사용하면 캡슐화를 쉽게 구현할 수 있다. 캡슐화(encapsulation)는 정보의 일부를 외부에 감추어 은닉(정보 은닉(information hiding))하는 것을 말한다. 즉, 외부에 공개할 필요가 없는 구현의 일부를 외부에 노출되지 않도록 감추어 적절치 못한 접근으로부터 정보를 보호하고 객체간의 상호 의존성, 즉 결합도를 낮추는 효과가 얻는다.
-
-Java의 경우, 클래스를 정의하고 그 클래스를 구성하는 멤버에 대하여 public, private, protected와 같은 접근 제한자(access modifier)를 선언하여 노출 범위를 한정할 수 있다. public으로 선언된 프로퍼티/메소드는 클래스 외부에서 참조할 수 있지만 private으로 선언된 경우는 클래스 외부에서 참조할 수 없다.
-
-자바스크립트는 public, private, protected와 같은 접근 제한자를 제공하지 않는다. 하지만 캡슐화가 불가능한 것은 아니다.
-
-위 예제의 name 프로퍼티는 현재 외부로 노출되어 있어서 아래와 같이 자유롭게 변경할 수 있다.
-
-```javascript
-// name 프로퍼티는 public하다. 즉, 외부에서 자유롭게 접근하고 변경할 수 있다.
-me.name = 'Kim';
-me.sayHello(); // Hi! My name is Kim
-```
-
-name 프로퍼티를 캡슐화하여 외부로 노출되지 않도록 수정해보자.
-
-```javascript
-const Person = (function () {
-  // 자유 변수이며 private하다
-  let _name = '';
-
-  // 생성자 함수
-  function Person(name) { _name = name; }
-
-  // 프로토타입 메소드
-  Person.prototype.sayHello = function () {
-    console.log(`Hi! My name is ${_name}`);
-  };
-
-  // 생성자 함수를 반환
-  return Person;
-}());
-
-const me = new Person('Lee');
-
-// _name은 지역 변수이므로 외부에서 접근하여 변경할 수 없다. 즉, private하다.
-me._name = 'Kim';
-me.sayHello(); // Hi! My name is Lee
-```
-
-아직 살펴보지 않았지만 즉시 실행 함수가 반환하는 Person 생성자 함수와 Person.prototype.sayHello 메소드는 클로저이다. 즉시 실행 함수가 반환하는 Person 생성자 함수와 Person 생성자 함수가 생성할 객체가 상속받아 호출할 sayHello 메소드는 즉시 실행 함수가 종료한 이후 호출된다. 하지만 Person 생성자 함수와 sayHello 메소드는 이미 종료되어 소멸한 즉시 실행 함수의 지역 변수 _name을 참조할 수 있다. 클로저는 자바스크립트의 매우 유용한 기능 중 하나이다. 이에 대해서는 ["24. 클로저"](/fastcampus/closure)에서 자세히 살펴보도록 하자.
-
-# 9. 오버라이딩과 프로퍼티 쉐도잉
+# 8. 오버라이딩과 프로퍼티 쉐도잉
 
 아래의 예제를 살펴보자.
 

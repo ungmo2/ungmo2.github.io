@@ -104,7 +104,7 @@ const [year, month, day] = formattedDate.split('-');
 console.log([year, month, day]); // ["2020", "03", "22"]
 ```
 
-배열 디스트럭처링 할당을 위한 변수에 Rest 파라미터와 유사하게 Rest 요소(Rest element) …을 사용할 수 있다. Rest 요소는 Rest 파라미터와 마찬가지로 반드시 마지막에 위치해야 한다.
+배열 디스트럭처링 할당을 위한 변수에 Rest 파라미터와 유사하게 Rest 요소(Rest element) `...`을 사용할 수 있다. Rest 요소는 Rest 파라미터와 마찬가지로 반드시 마지막에 위치해야 한다.
 
 ```javascript
 // Rest 요소
@@ -242,4 +242,4 @@ const { x, ...rest } = { x: 1, y: 2, z: 3 };
 console.log(x, rest); // 1 { y: 2, z: 3 }
 ```
 
-Rest 프로퍼티는 스프레드 프로퍼티와 함께 2019년 11월 현재 Rest/Spread 프로퍼티는 TC39 프로세스의 stage 4(Finished) 단계에 제안되어 있다.(https://github.com/tc39/proposal-object-rest-spread)
+Rest 프로퍼티는 스프레드 프로퍼티와 함께 2020년 5월 현재 Rest/Spread 프로퍼티는 TC39 프로세스의 stage 4(Finished) 단계에 제안되어 있다.(https://github.com/tc39/proposal-object-rest-spread)

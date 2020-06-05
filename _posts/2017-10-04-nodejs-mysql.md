@@ -41,15 +41,15 @@ Express에 대한 자세한 내용은 아래의 포스트를 참조하기 바란
 적당한 위치에 애플리케이션 디렉터리를 생성하고 `npm init`를 실행한다. 일단 기본 설정(yes option)으로 package.json을 생성한다.
 
 ```bash
-$ mkdir express-mysql
-$ cd express-mysql
+$ mkdir express-mysql-example
+$ cd express-mysql-example
 $ npm init --yes
 ```
 
 express와 mysql 모듈을 설치한다.
 
 ```bash
-$ npm install express mysql --save --save-exact
+$ npm install express mysql
 ```
 
 package.json을 아래와 같이 수정한다.
@@ -65,8 +65,8 @@ package.json을 아래와 같이 수정한다.
     "start": "node index"
   },
   "dependencies": {
-    "express": "4.14.0",
-    "mysql": "2.11.1"
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
   }
 }
 ```
@@ -89,21 +89,18 @@ $ npm start
 MySQL에 접속하여 테이블을 생성하고 테스트용 데이터를 insert해 놓자.
 
 ```sql
-CREATE DATABASE my_db;
+CREATE DATABASE IF NOT EXISTS my_db;
 
 USE my_db;
 
-CREATE TABLE Persons
-(
-id int,
-name varchar(255),
-age int
-);
+CREATE TABLE IF NOT EXISTS Users (
+  id VARCHAR(45) NOT NULL,
+  password VARCHAR(45) NOT NULL,
+  PRIMARY KEY (id));
 
-INSERT INTO Persons (id, name, age)
-VALUES (1, 'John Doe', 20);
+INSERT INTO Users (id, password) VALUES ('ungmo2', '1234');
 
-SELECT * FROM Persons;
+SELECT password FROM Users WHERE id='ungmo2';
 ```
 
 # 4. Node.js와 MySQL 연동
@@ -113,31 +110,35 @@ index.js를 아래와 같이 변경한다.
 `createConnection` 메소드의 인자로 전달되는 객체에 자신의 데이터베이스 정보(유저명과 패스워드 등)를 입력하여야 한다. 설정 정보의 관리에 대해서는 [Node.js에서 비밀 설정 정보(Secrets) 관리](./nodejs-kepping-secrets)를 참조하기 바란다.
 
 ```javascript
-var mysql      = require('mysql');
-var connection = mysql.createConnection({
+const mysql      = require('mysql');
+const connection = mysql.createConnection({
   host     : 'localhost',
   user     : '< MySQL username >',
   password : '< MySQL password >',
-  port     : < port >,
   database : 'my_db'
 });
 
 connection.connect();
 
-connection.query('SELECT * from Persons', function(err, rows, fields) {
-  if (!err)
-    console.log('The solution is: ', rows);
-  else
-    console.log('Error while performing Query.', err);
+connection.query('SELECT * from Users', (error, rows, fields) => {
+  if (error) throw error;
+  console.log('User info is: ', rows);
 });
 
 connection.end();
 ```
 
-console에 이하의 결과가 출력되면 성공이다.
+콘솔에 이하의 결과가 출력되면 성공이다.
 
 ```
-The solution is:  [ RowDataPacket { id: 1, name: 'John Doe', age: 20 } ]
+User info is:  [ RowDataPacket { id: 'ungmo2', password: '1234' } ]
+```
+
+만약 'ER_NOT_SUPPORTED_AUTH_MODE' 에러가 발생하면 아래 sql을 실행하고 다시 접속해보자.
+
+```sql
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '< MySQL password >';
+FLUSH PRIVILEGES;
 ```
 
 # 5. Route 작성
@@ -149,31 +150,29 @@ The solution is:  [ RowDataPacket { id: 1, name: 'John Doe', age: 20 } ]
 index.js를 아래와 같이 변경한다.
 
 ```javascript
-var express    = require('express');
-var mysql      = require('mysql');
-var dbconfig   = require('./config/database.js');
-var connection = mysql.createConnection(dbconfig);
+const express    = require('express');
+const mysql      = require('mysql');
+const dbconfig   = require('./config/database.js');
+const connection = mysql.createConnection(dbconfig);
 
-var app = express();
+const app = express();
 
-// configuration ===============================================================
+// configuration =========================
 app.set('port', process.env.PORT || 3000);
 
-app.get('/', function(req, res){
+app.get('/', (req, res) => {
   res.send('Root');
 });
 
-app.get('/persons', function(req, res){
-
-  connection.query('SELECT * from Persons', function(err, rows) {
-    if(err) throw err;
-
-    console.log('The solution is: ', rows);
+app.get('/users', (req, res) => {
+  connection.query('SELECT * from Users', function(error, rows) {
+    if (error) throw error;
+    console.log('User info is: ', rows);
     res.send(rows);
   });
 });
 
-app.listen(app.get('port'), function () {
+app.listen(app.get('port'), () => {
   console.log('Express server listening on port ' + app.get('port'));
 });
 ```
@@ -188,7 +187,6 @@ module.exports = {
   host     : 'localhost',
   user     : '< MySQL username >',
   password : '< MySQL password >',
-  port     : < port >,
   database : 'my_db'
 };
 ```
@@ -199,7 +197,7 @@ module.exports = {
 $ npm start
 ```
 
-localhost:3000/persons에 접속하여 결과를 확인한다.
+localhost:3000/users에 접속하여 결과를 확인한다.
 
 ![node mysql routing](/img/nodejs-mysql-routing.png)
 

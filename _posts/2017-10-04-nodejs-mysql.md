@@ -165,7 +165,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/users', (req, res) => {
-  connection.query('SELECT * from Users', function(error, rows) {
+  connection.query('SELECT * from Users', (error, rows) => {
     if (error) throw error;
     console.log('User info is: ', rows);
     res.send(rows);

@@ -13,7 +13,7 @@ description:
 
 # 1. 제너레이터란?
 
-ES6에서 도입된 제너레이터(generator) 함수는 이터러블을 생성하는 함수이다. 제너레이터 함수를 사용하면 [이터레이션 프로토콜](/fastcampus/iterable#1-이터레이션-프로토콜)을 준수해 이터러블을 생성하는 방식보다 간편하게 이터러블을 구현할 수 있다. 또한 제너레이터 함수는 비동기 처리에 유용하게 사용된다.
+ES6에서 도입된 제너레이터(generator) 함수는 이터러블을 생성하는 함수이다. 제너레이터 함수를 사용하면 [이터레이션 프로토콜](/fastcampus/iterable#1-이터레이션-프로토콜)을 준수해 이터러블을 생성하는 방식보다 간편하게 이터러블을 구현할 수 있다. 또한 제너레이터 함수는 비동기 처리를 동기 처리처럼 구현하기 위해 유용하게 사용된다.
 
 먼저 이터레이션 프로토콜을 준수해 무한 이터러블을 생성하는 함수를 구현해보자.
 
@@ -48,7 +48,7 @@ for (const n of createInfinityByGenerator()) {
 }
 ```
 
-제너레이터 함수는 일반 함수처럼 함수의 코드 블록을 한 번에 실행하지 않는다. 제너레이터 함수는 함수 코드 블록의 실행을 일시 중지했다가 필요한 시점에 재시작할 수 있는 특수한 함수이다.
+제너레이터 함수는 일반 함수처럼 함수의 코드 블록을 한 번에 실행하지 않고, 코드 블록의 실행을 일시 중지했다가 필요한 시점에 재개할 수 있는 특수한 함수이다.
 
 ```javascript
 // 제너레이터 함수 정의
@@ -57,9 +57,7 @@ function* counter(n) {
   yield ++n;              // 첫 번째 next 메서드 호출 시에 이 지점까지 실행된다.
   console.log('Point 2');
   yield ++n;              // 두 번째 next 메서드 호출 시에 이 지점까지 실행된다.
-  console.log('Point 3');
-  yield ++n;              // 세 번째 next 메서드 호출 시에 이 지점까지 실행된다.
-  console.log('Point 4'); // 네 번째 next 메서드 호출 시에 이 지점까지 실행된다.
+  console.log('Point 3'); // 세 번째 next 메서드 호출 시에 이 지점까지 실행된다.
 }
 
 // 제너레이터 함수를 호출하면 이터러블이며 동시에 이터레이터인 제너레이터 객체를 반환한다.
@@ -67,49 +65,46 @@ const generator = counter(0);
 
 console.log(generator.next()); // Point 1 {value: 1, done: false}
 console.log(generator.next()); // Point 2 {value: 2, done: false}
-console.log(generator.next()); // Point 3 {value: 3, done: false}
-console.log(generator.next()); // Point 4 {value: undefined, done: true}
+console.log(generator.next()); // Point 3 {value: undefined, done: true}
 ```
 
-일반 함수를 호출하면 코드 블록을 실행하고 return 키워드 뒤의 값을 반환한다. 하지만 제너레이터 함수를 호출하면 코드 블록을 실행하는 것이 아니라 제너레이터를 생성해 반환한다. 이 <strong>제너레이터는 이터러블(iterable)이면서 동시에 이터레이터(iterator)인 객체다.</strong> 다시 말해, 제너레이터 함수가 생성해 반환한 제너레이터는 Symbol.iterator 메서드를 소유한 이터러블이면서 next 메서드를 소유하며 next 메서드를 호출하면 value, done 프로퍼티를 갖는 이터레이터 리절트 객체를 반환하는 이터레이터다.
+일반 함수를 호출하면 코드 블록을 실행하고 return 키워드 뒤의 값을 반환한다. 하지만 **제너레이터 함수를 호출하면 일반 함수처럼 코드 블록을 실행하지 것이 아니라 이터러블(iterable)이면서 동시에 이터레이터(iterator)인 제너레이터 객체를 생성해 반환한다.** 다시 말해, 제너레이터 함수가 생성해 반환한 제너레이터 객체는 Symbol.iterator 메서드를 소유한 이터러블이면서 next 메서드를 소유하며 next 메서드를 호출하면 value, done 프로퍼티를 갖는 이터레이터 리절트 객체를 반환하는 이터레이터다.
 
 ```javascript
 // 제너레이터 함수 정의
-function* counter() {
-  for (const v of [1, 2, 3]) yield v;
-  // yield*는 이터러블을 순회한다.
-  // yield* [1, 2, 3];
+function* counter(n) {
+  yield ++n;
+  yield ++n;
 }
 
 // 제너레이터 함수를 호출하면 제너레이터를 반환한다.
-let generator = counter();
+let generator = counter(0);
 
 // 제너레이터는 이터러블이다.
 // 이터러블은 Symbol.iterator을 프로퍼티 키로 사용한 메서드를 직접 구현하거나 프로토타입 체인에 의해 상속한 객체다.
 console.log(Symbol.iterator in generator); // true
 
 // 제너레이터는 이터러블이므로 for...of 문으로 순회할 수 있다.
-for (const i of generator) {
-  console.log(i); // 1 2 3
+for (const v of generator) {
+  console.log(v); // 1 2
 }
 
-generator = counter();
+generator = counter(0);
 // 제너레이터는 이터러블이므로 스프레드 문법의 대상이 될 수 있다.
-console.log([...generator]); // [1, 2, 3]
+console.log([...generator]); // [1, 2]
 
-generator = counter();
+generator = counter(0);
 // 제너레이터는 이터러블이므로 배열 디스트럭처링 할당의 대상이 될 수 있다.
 const [x, y, z] = generator;
-console.log(x, y, z); // 1 2 3
+console.log(x, y, z); // 1 2
 
-generator = counter();
+generator = counter(0);
 // 제너레이터는 이터러블이면서 동시에 이터러레이터다.
 // 이터레이터는 next 메서드를 갖는다.
 console.log('next' in generator); // true
 
 console.log(generator.next()); // {value: 1, done: false}
 console.log(generator.next()); // {value: 2, done: false}
-console.log(generator.next()); // {value: 3, done: false}
 console.log(generator.next()); // {value: undefined, done: true}
 ```
 
@@ -170,9 +165,11 @@ function* genFunc() {
 new genFunc(); // TypeError: genFunc is not a constructor
 ```
 
-# 3. 제너레이터 함수의 호출과 제너레이터 객체
+# 3. 제너레이터 실행의 일시 중단과 재개
 
-앞에서 살펴본 바와 같이 제너레이터 함수를 호출하면 제너레이터 함수의 코드 블록이 실행되는 것이 아니라 제너레이터 객체를 반환한다. 제너레이터 객체는 이터러블이면서 동시에 이터레이터이다. 따라서 next 메서드를 호출하기 위해 Symbol.iterator 메서드로 이터레이터를 별도 생성할 필요가 없다. 다음 예제를 살펴보자.
+앞에서 살펴본 바와 같이 제너레이터 함수를 호출하면 제너레이터 함수의 코드 블록이 실행되는 것이 아니라 제너레이터 객체를 반환한다. 제너레이터 객체는 이터러블이면서 동시에 이터레이터다. 이터레이터인 제너레이터 객체는 next 메서드를 가지므로 next 메서드를 호출하기 위해 Symbol.iterator 메서드로 이터레이터를 별도 생성할 필요가 없다.
+
+제너레이터 함수가 생성한 제너레이터 객체의 next 메서드를 호출하면 제너레이터 함수의 코드 블록을 실행한다. 단, 일반 함수처럼 한 번에 코드 블록의 모든 코드를 실행하는 것이 아니라 yield 문까지 실행한다. 다음 예제를 살펴보자.
 
 ```javascript
 // 제너레이터 함수 정의
@@ -181,9 +178,7 @@ function* counter() {
   yield 1;                // 첫 번째 next 메서드 호출 시 여기까지 실행된다.
   console.log('Point 2');
   yield 2;                // 두 번째 next 메서드 호출 시 여기까지 실행된다.
-  console.log('Point 3');
-  yield 3;                // 세 번째 next 메서드 호출 시 여기까지 실행된다.
-  console.log('Point 4'); // 네번째 next 메서드 호출 시 여기까지 실행된다.
+  console.log('Point 3'); // 세 번째 next 메서드 호출 시 여기까지 실행된다.
 }
 
 // 제너레이터 함수를 호출하면 이터러블이며 동시에 이터레이터인 제너레이터 객체를 반환한다.
@@ -191,29 +186,90 @@ function* counter() {
 const generator = counter(0);
 
 // 첫 번째 next 메서드 호출: 첫 번째 yield 문까지 실행되고 일시 중단된다.
-console.log(generatorObj.next()); // Point 1 {value: 1, done: false}
+console.log(generator.next()); // Point 1 {value: 1, done: false}
 
 // 두 번째 next 메서드 호출: 두 번째 yield 문까지 실행되고 일시 중단된다.
-console.log(generatorObj.next()); // Point 2 {value: 2, done: false}
+console.log(generator.next()); // Point 2 {value: 2, done: false}
 
-// 세 번째 next 메서드 호출: 세 번째 yield 문까지 실행되고 일시 중단된다.
-console.log(generatorObj.next()); // Point 3 {value: 3, done: false}
-
-// 네번째 next 메서드 호출: 제너레이터 함수 내의 모든 yield 문이 실행되면 done 프로퍼티 값은 true가 된다.
-console.log(generatorObj.next()); // Point 4 {value: undefined, done: true}
+// 세 번째 next 메서드 호출: 제너레이터 함수 내의 모든 yield 문이 실행되면 done 프로퍼티 값은 true가 된다.
+console.log(generator.next()); // Point 3 {value: undefined, done: true}
 ```
 
-제너레이터 함수가 생성한 제너레이터 객체의 next 메서드를 처음 호출하면 첫 번째 yield 문까지 실행되고 일시 중단(suspend)된다. 또 다시 next 메서드를 호출하면 중단된 위치에서 다시 실행(resume)하기 시작하여 두 번째 yield 문까지 실행되고 또 다시 일시 중단된다.
+제너레이터 함수가 생성한 제너레이터 객체의 next 메서드를 처음 호출하면 첫 번째 yield 문까지 실행되고 일시 중단(suspend)된다. 또 다시 next 메서드를 호출하면 중단된 위치에서 다시 실행을 재개(resume)하기 시작하여 두 번째 yield 문까지 실행되고 또 다시 일시 중단된다.
 
 ```
-start -> generatorObj.next() -> yield 1 -> generatorObj.next() -> yield 2 -> ... -> end
+start -> generator.next() -> yield 1 -> generator.next() -> yield 2 -> generator.next() -> end
 ```
 
-이터러블이면서 동시에 이터러이터인 제너레이터 객체의 next 메서드는 value, done 프로퍼티를 갖는 이터레이터 리절트 객체(["34.1.2. 이터레이터"](/fastcampus/iterable#12-이터레이터) 참고)를 반환한다. value 프로퍼티는 yield 문이 반환한 값이고 done 프로퍼티는 제너레이터 함수 내의 모든 yield 문이 실행되었는지를 나타내는 불리언 타입의 값이다. 마지막 yield 문까지 실행된 상태에서 next 메서드를 호출하면 done 프로퍼티 값은 true가 된다.
+# 4. next 메서드와 yield
 
-# 4. 제너레이터의 활용
+이터러블이면서 동시에 이터러이터인 제너레이터 객체의 next 메서드는 value, done 프로퍼티를 갖는 이터레이터 리절트 객체(["34.1.2. 이터레이터"](/fastcampus/iterable#12-이터레이터) 참고)를 반환한다.
 
-## 4.1 이터러블의 구현
+제너레이터 객체의 next 메서드가 호출되면 제너레이터 함수의 yield 문까지 실행된다. 이때 **yield 키워드 뒤의 반환값은 next 메서드가 반환한 이터레이터 리절트 객체의 value 프로퍼티에 할당된다. 그리고 done 프로퍼티에는 제너레이터 함수 내의 모든 yield 문이 실행되었는지를 나타내는 불리언 값이 할당된다.**
+
+```javascript
+function* genFunc(n) {
+  yield ++n;
+  yield ++n;
+  return ++n;
+}
+
+// 제너레이터 함수를 호출하면 이터러블이며 동시에 이터레이터인 제너레이터 객체를 반환한다.
+// 이터레이터는 next 메서드를 갖는다.
+const generator = genFunc(0);
+
+// 제너레이터 객체의 next 메서드는 이터레이터 리절트 객체({value, done})를 반환한다.
+// value 프로퍼티에는 yield 문이 반환한 값이 할당된다.
+// done 프로퍼티에는 모든 yield 문이 실행되었는지를 나타내는 불리언 값이 할당된다.
+let res = generator.next();
+console.log(res); // {value: 1, done: false}
+
+res = generator.next();
+console.log(res); // {value: 2, done: false}
+
+res = generator.next();
+console.log(res); // {value: 3, done: true}
+```
+
+이터레이터의 next 메서드와 다르게 제너레이터의 next 메서드에는 인수를 전달할 수 있다. next 메서드에 전달한 인수는 제너레이터 함수의 yield 문을 할당받는 변수에 할당된다.
+
+```javascript
+function* genFunc(n) {
+  // n은 첫 번째 next 메서드를 호출했을 때 반환된 이터레이터 리절트 객체의 value 프로퍼티에 할당된다.
+  // x 변수에는 두 번째 next 메서드를 호출할 때 전달한 인수가 할당된다.
+  const x = yield n;
+
+  // x + 1은 두 번째 next 메서드를 호출했을 때 반환된 이터레이터 리절트 객체의 value 프로퍼티에 할당된다.
+  // y 변수에는 세 번째 next 메서드를 호출할 때 전달한 인수가 할당된다.
+  const y = yield (x + 1);
+
+  // x + y는 세 번째 next 메서드를 호출했을 때 반환된 이터레이터 리절트 객체의 value 프로퍼티에 할당된다.
+  return x + y;
+}
+
+// 제너레이터 함수를 호출하면 이터러블이며 동시에 이터레이터인 제너레이터 객체를 반환한다.
+// 이터레이터는 next 메서드를 갖는다.
+const generator = genFunc(0);
+
+// 첫 번째 호출하는 next 메서드에는 인수를 전달하지 않는다.
+// 만약 첫 번째 호출하는 next 메서드에 인수를 전달하면 무시된다.
+let res = generator.next();
+console.log(res); // {value: 0, done: false}
+
+// next 메서드에 인수로 전달한 10은 genFunc 함수의 x 변수에 할당된다.
+res = generator.next(10);
+console.log(res); // {value: 11, done: false}
+
+// next 메서드에 인수로 전달한 20은 genFunc 함수의 y 변수에 할당된다.
+res = generator.next(20);
+console.log(res); // {value: 30, done: true}
+```
+
+이처럼 next 메서드와 yield를 통해 제너레이터 객체의 데이터를 외부로 전달할 수 있고, 외부의 데이터를 제너레이터 객체에 전달할 수도 있다.
+
+# 5. 제너레이터의 활용
+
+## 5.1 이터러블의 구현
 
 제너레이터 함수를 사용하면 [이터레이션 프로토콜](/fastcampus/iterable#1-이터레이션-프로토콜)을 준수해 이터러블을 생성하는 방식보다 간편하게 이터러블을 구현할 수 있다. 이터레이션 프로토콜을 준수하여 무한 피보나치 수열을 생성하는 함수를 구현해 보자.
 
@@ -278,7 +334,7 @@ for (const num of createInfiniteFibByGen(10000)) {
 }
 ```
 
-이터레이터의 next 메서드와 다르게 제너레이터 객체의 next 메서드에는 인수를 전달할 수도 있다. 이를 통해 제너레이터 객체에 데이터를 전달할 수 있다.
+제너레이터 객체의 next 메서드에는 인수를 전달할 수도 있다. 이를 통해 제너레이터 객체에 데이터를 전달할 수 있다.
 
 ```javascript
 function* gen(n) {
@@ -342,7 +398,7 @@ console.log([...filter(users, user => user.id <= 3)]);
 console.timeEnd('Generator'); // 약 1ms
 ``` -->
 
-## 4.2 비동기 처리
+## 5.2 비동기 처리
 
 제너레이터를 사용해 비동기 처리를 동기 처리처럼 구현할 수 있다. 다시 말해, 비동기 처리 함수가 처리 결과를 반환하도록 구현할 수 있다. 다음 예제를 살펴보자.
 
@@ -396,10 +452,9 @@ g.next();
 
 4. 3에서 제너레이터 객체의 next 메서드가 두 번째 호출되었으므로 제너레이터 함수의 두 번째 yield 문까지 실행한다. 이때 비동기 함수인 getUser가 호출된다(③). getUser 함수가 호출되면 3을 반복한다.
 
+# 6. async/await
 
-# 5. async/await
-
-제너레이터을 통해 비동기 처리를 동기 처리처럼 구현할 수 있으나 코드는 장황해졌다. 따라서 좀 더 간편하게 비동기 처리를 구현할 수 있는 async/awit가 ES7에서 도입되었다.
+제너레이터를 통해 비동기 처리를 동기 처리처럼 구현할 수 있게 되었지만 코드는 장황해졌다. 따라서 좀 더 간편하게 비동기 처리를 동기 처리처럼 구현할 수 있는 async/awit가 ES7에서 도입되었다.
 
 async/await를 사용하면 프로미스의 then/catch/finally 후속 처리 메서드에 콜백 함수를 전달해서 후속 처리를 할 필요없이 마치 동기 처리처럼 프로미스를 사용할 수 있다. 위 예제를 async/awit 구현해 보자.
 
@@ -428,7 +483,7 @@ async function getUserAll() {
 getUserAll();
 ```
 
-## 5.1. async 함수
+## 6.1. async 함수
 
 await 키워드는 반드시 async 함수 내부에서 사용해야 한다. async 함수는 async 키워드를 사용해 정의하며 언제나 프로미스를 반환한다. async 함수가 명시적으로 프라미스를 반환하지 않더라도 async 함수의 반환값을 프로미스로 래핑하여 반환한다.
 
@@ -459,7 +514,7 @@ const myClass = new MyClass();
 myClass.bar(5).then(v => console.log(v));
 ```
 
-## 5.2. await 키워드
+## 6.2. await 키워드
 
 await 키워드는 프라미스가 settled 상태(비동기 처리가 수행된 상태)가 될 때까지 대기하다가 settled 상태가 되면 resolve된 처리 결과 또는 reject된 에러를 반환한다.
 
@@ -475,7 +530,7 @@ const getGithubUserName = async id => {
 getGithubUserName('ungmo2'); // Ungmo Lee
 ```
 
-## 5.3. 에러 처리
+## 6.3. 에러 처리
 
 비동기 처리를 위한 콜백 패턴의 단점 중 ["45.1.2. 에러 처리의 한계"](/fastcampus/promise#12-에러-처리의-한계)에서 살펴본 바와 같이, 에러는 호출자(caller) 방향으로 전파된다. 즉, 콜 스택의 아래 방향(실행 중인 실행 컨텍스트에서 직전에 푸시된 실행 컨텍스트 방향)으로 전파된다. 하지만 비동기 함수의 콜백 함수를 호출한 것은 비동기 함수가 아니기 때문에 try/catch 문을 사용해 에러를 캐치할 수 없다.
 
@@ -512,6 +567,6 @@ getGithubUserName('ungmo2'); // Ungmo Lee
 
 * [MDN: function\*](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/function*)
 
-* [ES6 In Depth: 제너레이터(Generator)](hhttp://hacks.mozilla.or.kr/2015/08/es6-in-depth-generators/)
+* [ES6 In Depth: 제너레이터(Generator)](http://hacks.mozilla.or.kr/2015/08/es6-in-depth-generators/)
 
 * [이터레이션 프로토콜(iteration protocol)과 for-of 루프](./es6-iteration-for-of)

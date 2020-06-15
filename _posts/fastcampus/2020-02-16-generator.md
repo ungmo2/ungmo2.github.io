@@ -400,7 +400,7 @@ console.timeEnd('Generator'); // 약 1ms
 
 ## 5.2 비동기 처리
 
-제너레이터를 사용해 비동기 처리를 동기 처리처럼 구현할 수 있다. 다시 말해, 비동기 처리 함수가 처리 결과를 반환하도록 구현할 수 있다. 다음 예제를 살펴보자.
+제너레이터를 사용하면 비동기 처리를 동기 처리처럼 구현할 수 있다. 다시 말해, 비동기 처리 함수가 처리 결과를 반환하도록 구현할 수 있다. 다음 예제를 살펴보자.
 
 ```javascript
 // node-fetch는 node.js 환경에서 window.fetch 함수를 사용하기 위한 패키지다.
@@ -408,8 +408,8 @@ console.timeEnd('Generator'); // 약 1ms
 const fetch = require('node-fetch');
 
 // 비동기 함수
-const getUser = (genObj, username) => {
-  fetch(`https://api.github.com/users/${username}`)
+const getGithubUserName = (genObj, githubId) => {
+  fetch(`https://api.github.com/users/${githubId}`)
     .then(res => res.json())
     // ④ 제너레이터 객체의 next 메서드를 호출하면서 비동기 처리 결과를 전달한다.
     .then(user => genObj.next(user.name));
@@ -418,24 +418,24 @@ const getUser = (genObj, username) => {
 // ① 제너레이터 함수를 즉시 실행하여 제너레이터 객체를 생성하고 g 변수에 할당한다.
 const g = (function* () {
   // next 메서드의 처음 호출하면 이 곳부터 실행이 시작된다.
-  let user;
-  // ③ 비동기 함수 getUser가 호출된다.
-  // user 변수에는 ④의 비동기 처리 결과가 할당한다. 이로써 비동기 처리의 순서가 보장된다.
-  user = yield getUser(g, 'jeresig');
+  let userName;
+  // ③ 비동기 함수 getgithubUserName이 호출된다.
+  // userName 변수에는 ④의 비동기 처리 결과가 할당한다. 이로써 비동기 처리의 순서가 보장된다.
+  userName = yield getGithubUserName(g, 'jeresig');
   // next 메서드의 처음 호출하면 이 곳에서 실행이 일시 정지된다.
 
   // next 메서드의 두 번째 호출하면 이 곳부터 실행이 재개된다.
-  console.log(user); // John Resig
-  user = yield getUser(g, 'ahejlsberg');
+  console.log(userName); // John Resig
+  userName = yield getGithubUserName(g, 'ahejlsberg');
   // next 메서드의 두 번째하면 이 곳에서 실행이 일시 정지된다.
 
   // next 메서드의 세 번째 호출하면 이 곳부터 실행이 재개된다.
-  console.log(user); // Anders Hejlsberg
-  user = yield getUser(g, 'ungmo2');
+  console.log(userName); // Anders Hejlsberg
+  userName = yield getGithubUserName(g, 'ungmo2');
   // next 메서드의 세 번째 호출하면 이 곳부터 실행이 재개된다.
 
   // next 메서드의 네 번째 호출하면 이 곳부터 실행이 재개된다.
-  console.log(user); // Ungmo Lee
+  console.log(userName); // Ungmo Lee
 }());
 
 // ② 제너레이터 객체의 next 메서드를 호출해서 제너레이터 함수의 첫 번째 yield 문까지 실행한다.
@@ -446,11 +446,17 @@ g.next();
 
 1. ①에서 제너레이터 함수를 즉시 호출하여 제너레이터 객체를 생성하고 g 변수에 할당한다. 제너레이터 함수가 호출됐지만 현재 제너레이터 함수의 코드 블록은 아직 실행되지 않았고 제너레이터 객체를 생성해 반환했을 뿐이다.
 
-2. ②에서 제너레이터 객체의 next 메서드를 처음 호출(첫 번째 호출)해서 제너레이터 함수의 첫 번째 yield 문까지 실행한다. 이때 비동기 함수인 getUser가 호출된다(③). 현재 user 변수의 값은 undefined다.
+2. ②에서 제너레이터 객체의 next 메서드를 처음 호출(첫 번째 호출)해서 제너레이터 함수의 첫 번째 yield 문까지 실행한다. 이때 비동기 함수인 getGithubUserName이 호출된다(③). 현재 userName 변수의 값은 undefined다.
 
-3. 비동기 함수인 getUser가 호출되면 fetch 함수를 통해 HTTP 요청이 전송되고 서버의 응답이 도착하면 getUser 함수 내부의 두 번째 then 메서드가 호출된다(④). then 메서드가 호출되면 then 메서드의 콜백 함수가 호출되어 제너레이터 객체의 next 메서드를 호출(두 번째 호출)하면서 비동기 처리 결과 user.name을 인수로 전달한다. 이때 next 메서드의 인수로 전달한 비동기 처리 결과 user.name은 ③의 user 변수에 할당된다.
+3. 비동기 함수인 getUser가 호출되면 fetch 함수를 통해 HTTP 요청이 전송되고 서버의 응답이 도착하면 getGithubUserName 함수 내부의 두 번째 then 메서드가 호출된다(④). then 메서드가 호출되면 then 메서드의 콜백 함수가 호출되어 제너레이터 객체의 next 메서드를 호출(두 번째 호출)하면서 비동기 처리 결과 user.name을 인수로 전달한다. 이때 next 메서드의 인수로 전달한 비동기 처리 결과 user.name은 ③의 userName 변수에 할당된다.
 
-4. 3에서 제너레이터 객체의 next 메서드가 두 번째 호출되었으므로 제너레이터 함수의 두 번째 yield 문까지 실행한다. 이때 비동기 함수인 getUser가 호출된다(③). getUser 함수가 호출되면 3을 반복한다.
+4. 3에서 제너레이터 객체의 next 메서드가 두 번째 호출되었으므로 제너레이터 함수의 두 번째 yield 문까지 실행한다. 이때 비동기 함수인 getGithubUserName이 호출(③)되고 3을 반복한다.
+
+![](/assets/fs-images/46-1.png)
+{: .w-450 }
+
+제너레이터를 사용하면 비동기 처리를 동기 처리처럼 구현할 수 있다.
+{: .desc-img}
 
 # 6. async/await
 
@@ -462,22 +468,22 @@ async/await를 사용하면 프로미스의 then/catch/finally 후속 처리 메
 const fetch = require('node-fetch');
 
 // Promise를 반환하는 함수 정의
-function getUser(username) {
-  return fetch(`https://api.github.com/users/${username}`)
+function getGithubUserName(githubId) {
+  return fetch(`https://api.github.com/users/${githubId}`)
     .then(res => res.json())
     .then(user => user.name);
 }
 
 async function getUserAll() {
-  let user;
-  user = await getUser('jeresig');
-  console.log(user);
+  let userName;
+  userName = await getGithubUserName('jeresig');
+  console.log(userName);
 
-  user = await getUser('ahejlsberg');
-  console.log(user);
+  userName = await getGithubUserName('ahejlsberg');
+  console.log(userName);
 
-  user = await getUser('ungmo2');
-  console.log(user);
+  userName = await getGithubUserName('ungmo2');
+  console.log(userName);
 }
 
 getUserAll();

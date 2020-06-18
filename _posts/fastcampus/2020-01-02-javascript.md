@@ -48,7 +48,7 @@ if (el.addEventListener) {
 
 2015년에 공개된 ECMAScript 6(ECMAScript 2015, ES6)는 let/const 키워드, 화살표 함수, 클래스, 모듈 등과 같이 범용 프로그래밍 언어로서 갖춰야 할 기능들을 대거 도입하는 큰 변화가 있었다. ES6 이후의 버전업은 비교적 작은 기능을 추가하는 수준으로 매년 공개할 것으로 예고되었다. ECMAScript 버전별 특징은 다음과 같다.
 
-| 버전	   | 출시년도 | 특징
+| 버전	   | 출시 연도 | 특징
 |:--------|:-------|:---------
 | ES1     | 1997   | 초판
 | ES2     | 1998	 | ISO/IEC 16262 국제 표준과 동일한 규격을 적용
@@ -59,7 +59,7 @@ if (el.addEventListener) {
 | ES8(ECMAScript 2017) | 2017	| async/await, Object 정적 메서드(Object.values, Object.entries, Object.getOwnPropertyDescriptors)
 | ES9(ECMAScript 2018) | 2018	| Object Rest/Spread 프로퍼티, Promise.prototype.finally, async generator, for await...of
 | ES10(ECMAScript 2019) | 2019	| Object.fromEntries, Array.prototype.flat, Array.prototype.flatMap, optional catch binding
-| ES11(ECMAScript 2020) | 2020	| String.prototype.matchAll, BigInt, Promise.allSettled, globalThis
+| ES11(ECMAScript 2020) | 2020	| String.prototype.matchAll, BigInt, Promise.allSettled, globalThis, nullish coalescing, optional chaining, for...in enumation order
 
 # 3. 자바스크립트 성장의 역사
 

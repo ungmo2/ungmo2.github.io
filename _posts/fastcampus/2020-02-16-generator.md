@@ -16,17 +16,17 @@ description:
 ES6에서 도입된 제너레이터(generator)는 코드 블록의 실행을 일시 중지했다가 필요한 시점에 재개할 수 있는 특수한 함수이다. 제너레이터와 일반 함수는 다음과 같은 차이가 있다.
 
 1. 제너레이터 함수는 함수 호출자에게 함수 실행의 제어권을 양도할 수 있다.
-: 일반 함수를 호출하면 제어권이 함수에게 넘어가고 함수 코드를 일괄 실행한다. 즉, 함수 호출자(caller)는 함수를 호출한 후에 함수의 실행을 제어할 수 없다. 제너레이터 함수는 함수의 실행을 함수 호출자가 제어할 수 있다. 다시 말해, 함수 호출자가 함수의 실행을 일시 중지시키거나 재개시킬 수 있다. 이는 **함수의 제어권을 함수가 독점하는 것이 아니라 함수 호출자에게 양도(yield)할 수 있다**는 것을 의미한다.
+: 일반 함수를 호출하면 제어권이 함수에게 넘어가고 함수 코드를 일괄 실행한다. 즉, 함수 호출자(caller)는 함수를 호출한 이후 함수의 실행을 제어할 수 없다. 제너레이터 함수는 함수의 실행을 함수 호출자가 제어할 수 있다. 다시 말해, 함수 호출자가 함수의 실행을 일시 중지시키거나 재개시킬 수 있다. 이는 **함수의 제어권을 함수가 독점하는 것이 아니라 함수 호출자에게 양도(yield)할 수 있다**는 것을 의미한다.
 
 2. 제너레이터 함수는 함수 호출자와 함수의 상태를 주고 받을 수 있다.
-: 일반 함수를 호출하면 매개변수를 통해 함수 외부에서 값을 주입받고 함수 코드를 일괄 실행하여 결과값을 함수 외부로 반환한다. 즉, 함수가 실행되고 있는 동안에는 함수 외부에서 함수 내부로 값을 전달하여 함수의 상태를 변경할 수 없다. 제너레이터 함수는 함수 호출자와 함수의 상태를 주고 받을 수 있다. 다시 말해, **함수 호출자에게 상태를 전달할 수 있고 함수 호출자로부터 상태를 전달받을 수도 있다.**
+: 일반 함수를 호출하면 매개변수를 통해 함수 외부에서 값을 주입받고 함수 코드를 일괄 실행하여 결과값을 함수 외부로 반환한다. 즉, 함수가 실행되고 있는 동안에는 함수 외부에서 함수 내부로 값을 전달하여 함수의 상태를 변경할 수 없다. 제너레이터 함수는 함수 호출자와 양방향으로 함수의 상태를 주고 받을 수 있다. 다시 말해, **제너레이터 함수는 함수 호출자에게 상태를 전달할 수 있고 함수 호출자로부터 상태를 전달받을 수도 있다.**
 
 3. 제너레이터 함수를 호출하면 제너레이터 객체를 반환한다.
 : 일반 함수를 호출하면 함수 코드를 일괄 실행하고 값을 반환한다. **제너레이터 함수를 호출하면 함수 코드를 실행하는 것이 아니라 제너레이터 객체를 반환한다.**
 
 # 2. 제너레이터 함수의 정의
 
-제너레이터 함수는 function* 키워드로 선언한다. 그리고 하나 이상의 yield 문을 포함한다. 이것을 제외하면 일반 함수를 정의하는 방법과 같다.
+제너레이터 함수는 function* 키워드로 선언한다. 그리고 하나 이상의 yield 표현식을 포함한다. 이것을 제외하면 일반 함수를 정의하는 방법과 같다.
 
 ```javascript
 // 제너레이터 함수 선언문
@@ -54,6 +54,18 @@ class MyClass {
 }
 ```
 
+애스터리스크(*)의 위치는 function 키워드와 함수 이름 사이라면 어디든지 상관없다. 다음 예제의 제너레이터 함수는 모두 유효하다. 하지만 일관성을 유지하기 위해 function 키워드 바로 뒤에 붙이는 것을 권장한다.
+
+```javascript
+function* genFunc() { yield 1; }
+
+function * genFunc() { yield 1; }
+
+function *genFunc() { yield 1; }
+
+function*genFunc() { yield 1; }
+```
+
 제너레이터 함수는 화살표 함수로 정의할 수 없다.
 
 ```javascript
@@ -69,6 +81,7 @@ const genArrowFunc = * () => {
 function* genFunc() {
   yield 1;
 }
+
 new genFunc(); // TypeError: genFunc is not a constructor
 ```
 
@@ -94,11 +107,13 @@ console.log(Symbol.iterator in generator); // true
 console.log('next' in generator); // true
 ```
 
-# 4. 제너레이터 함수 실행의 일시 중단과 재개
+# 4. 제너레이터의 일시 중지과 재개
 
-앞에서 살펴본 바와 같이 제너레이터 함수를 호출하면 제너레이터 함수의 코드 블록이 실행되는 것이 아니라 제너레이터 객체를 반환한다. 이터러블이며 동시에 이터레이터인 제너레이터 객체는 next 메서드를 갖는다.
+제너레이터는 next 메서드와 yield 키워드를 통해 실행을 일시 중지했다가 필요한 시점에 다시 재개할 수 있다. 일반 함수는 호출 이후 제어권을 함수가 독점하지만 제너레이터는 함수 호출자에게 제어권을 양도(yield)하여 필요한 시점에 함수 실행을 재개할 수 있다.
 
-제너레이터 객체의 next 메서드를 호출하면 제너레이터 함수의 코드 블록을 실행한다. 단, 일반 함수처럼 한 번에 코드 블록의 모든 코드를 실행하는 것이 아니라 yield 문까지만 실행한다. 이를 통해 제너레이터 함수는 코드 블록의 실행을 일시 중지했다가 필요한 시점에 재개할 수 있다. 다음 예제를 살펴보자.
+앞에서 살펴본 바와 같이 제너레이터 함수를 호출하면 제너레이터 함수의 코드 블록이 실행되는 것이 아니라 제너레이터 객체를 반환한다. 이터러블이면서 동시에 이터레이터인 제너레이터 객체는 next 메서드를 갖는다. 제너레이터 객체의 next 메서드를 호출하면 제너레이터 함수의 코드 블록을 실행한다.
+
+단, 일반 함수처럼 한 번에 코드 블록의 모든 코드를 실행하는 것이 아니라 yield 표현식까지만 실행한다. **yield 키워드는 제너레이터 함수의 실행을 일시 중지시키거나 yield 키워드 뒤에 오는 표현식의 평가 결과를 제너레이터 함수 호출자에게 반환한다.** 다음 예제를 살펴보자.
 
 ```javascript
 // 제너레이터 함수
@@ -112,66 +127,71 @@ function* genFunc() {
 // 이터러블이며 동시에 이터레이터인 제너레이터 객체는 next 메서드를 갖는다.
 const generator = genFunc();
 
-// 첫 번째 next 메서드를 호출하면 첫 번째 yield 문까지 실행되고 일시 중단된다.
+// 처음 next 메서드를 호출하면 첫 번째 yield 표현식까지 실행되고 일시 중지된다.
 // next 메서드는 이터레이터 리절트 객체({value, done})를 반환한다.
-// value 프로퍼티에는 첫 번째 yield 문에서 yield된 값 1이 할당된다.
+// value 프로퍼티에는 첫 번째 yield 표현식에서 yield된 값 1이 할당된다.
 // done 프로퍼티에는 제너레이터 함수가 끝까지 실행되었는지를 나타내는 false가 할당된다.
 console.log(generator.next()); // {value: 1, done: false}
 
-// 두 번째 next 메서드를 호출하면 두 번째 yield 문까지 실행되고 일시 중단된다.
+// 다시 next 메서드를 호출하면 두 번째 yield 표현식까지 실행되고 일시 중지된다.
 // next 메서드는 이터레이터 리절트 객체({value, done})를 반환한다.
-// value 프로퍼티에는 두 번째 yield 문에서 yield된 값 2가 할당된다.
+// value 프로퍼티에는 두 번째 yield 표현식에서 yield된 값 2가 할당된다.
 // done 프로퍼티에는 제너레이터 함수가 끝까지 실행되었는지를 나타내는 false가 할당된다.
 console.log(generator.next()); // {value: 2, done: false}
 
-// 세 번째 next 메서드를 호출하면 세 번째 yield 문까지 실행되고 일시 중단된다.
+// 다시 next 메서드를 호출하면 세 번째 yield 표현식까지 실행되고 일시 중지된다.
 // next 메서드는 이터레이터 리절트 객체({value, done})를 반환한다.
-// value 프로퍼티에는 세 번째 yield 문에서 yield된 값 3이 할당된다.
+// value 프로퍼티에는 세 번째 yield 표현식에서 yield된 값 3이 할당된다.
 // done 프로퍼티에는 제너레이터 함수가 끝까지 실행되었는지를 나타내는 false가 할당된다.
 console.log(generator.next()); // {value: 3, done: false}
 
-// 네 번째 next 메서드를 호출하면 남은 yield 문이 없으므로 제너레이터 함수의 마지막까지 실행한다.
+// 다시 next 메서드를 호출하면 남은 yield 표현식이 없으므로 제너레이터 함수의 마지막까지 실행한다.
 // next 메서드는 이터레이터 리절트 객체({value, done})를 반환한다.
 // value 프로퍼티에는 제너레이터 함수의 반환값 undefined가 할당된다.
 // done 프로퍼티에는 제너레이터 함수가 끝까지 실행되었음을 나타내는 true가 할당된다.
 console.log(generator.next()); // {value: undefined, done: true}
 ```
 
-**제너레이터 객체의 next 메서드를 호출하면 yield 문까지 실행되고 일시 중단(suspend)된다. 이때 제너레이터 객체의 next 메서드는 value, done 프로퍼티를 갖는 이터레이터 리절트 객체(["34.1.2. 이터레이터"](/fastcampus/iterable#12-이터레이터) 참고)를 반환한다. next 메서드가 반환한 이터레이터 리절트 객체의 value 프로퍼티에는 yield 문에서 yield된 값(yield 키워드 뒤의 값)은 할당된다. 그리고 done 프로퍼티에는 제너레이터 함수가 끝까지 실행되었는지를 나타내는 불리언 값이 할당된다.**
+**제너레이터 객체의 next 메서드를 호출하면 yield 표현식까지 실행되고 일시 중지(suspend)된다. 이때 함수의 제어권이 호출자가 양도된다.** 이후 필요한 시점에 호출자가 또 다시 next 메서드를 호출하면 일시 중지된 코드부터 실행을 재개(resume)하기 시작하여 다음 yield 표현식까지 실행되고 또 다시 일시 중지된다.
 
-또 다시 next 메서드를 호출하면 중단된 위치에서 다시 실행을 재개(resume)하기 시작하여 두 번째 yield 문까지 실행되고 또 다시 일시 중단된다.
+**이때 제너레이터 객체의 next 메서드는 value, done 프로퍼티를 갖는 이터레이터 리절트 객체(["34.1.2. 이터레이터"](/fastcampus/iterable#12-이터레이터) 참고)를 반환한다. next 메서드가 반환한 이터레이터 리절트 객체의 value 프로퍼티에는 yield 표현식에서 yield된 값(yield 키워드 뒤의 값)이 할당되고 done 프로퍼티에는 제너레이터 함수가 끝까지 실행되었는지를 나타내는 불리언 값이 할당된다.**
 
-이처럼 next 메서드를 반복 호출하여 yield 문까지 실행과 일시 중단을 반복하다가 제너레이터 함수가 끝까지 실행되면 next 메서드가 반환하는 이터레이터 리절트 객체의 value 프로퍼티에는 제너레이터 함수의 반환값이 할당되고 done 프로퍼티에는 제너레이터 함수가 끝까지 실행되었음을 나타내는 false가 할당된다.
+이처럼 next 메서드를 반복 호출하여 yield 표현식까지 실행과 일시 중지를 반복하다가 제너레이터 함수가 끝까지 실행되면 next 메서드가 반환하는 이터레이터 리절트 객체의 value 프로퍼티에는 제너레이터 함수의 반환값이 할당되고 done 프로퍼티에는 제너레이터 함수가 끝까지 실행되었음을 나타내는 false가 할당된다.
 
 ```
 generator.next() -> yield -> generator.next() -> yield -> ... -> generator.next() -> return
 ```
 
-이터레이터의 next 메서드와는 달리 제너레이터 객체의 next 메서드에는 인수를 전달할 수 있다. 제너레이터 객체의 next 메서드에 전달한 인수는 제너레이터 함수의 yield 문을 할당받는 변수에 할당된다. 다음 예제를 살펴보자.
+이터레이터의 next 메서드와는 달리 제너레이터 객체의 next 메서드에는 인수를 전달할 수 있다. **제너레이터 객체의 next 메서드에 전달한 인수는 제너레이터 함수의 yield 표현식을 할당받는 변수에 할당된다.** yield 표현식을 할당받는 변수에 yield 표현식의 평가 결과가 할당되지 않는 것에 주의하기 바란다. 다음 예제를 살펴보자.
 
 ```javascript
 function* genFunc() {
-  // 첫 번째 next 메서드를 호출하면 첫 번째 yield 문까지 실행되고 일시 중단된다.
-  // yield된 값 1은 next 메서드가 반환한 이터레이터 리절트 객체의 value 프로퍼티에 할당된다.
+  // 처음 next 메서드를 호출하면 첫 번째 yield 표현식까지 실행되고 일시 중지된다.
+  // 이때 yield된 값 1은 next 메서드가 반환한 이터레이터 리절트 객체의 value 프로퍼티에 할당된다.
+  // x 변수에는 아직 아무것도 할당되지 않았다. x 변수의 값은 next 메서드가 두 번째 호출될 때 결정된다.
   const x = yield 1;
 
-  // 두 번째 next 메서드를 호출할 때 전달한 인수 10은 x 변수에 할당된다.
-  // 두 번째 next 메서드를 호출하면 두 번째 yield 문까지 실행되고 일시 중단된다.
-  // yield된 값 x + 10은 next 메서드가 반환한 이터레이터 리절트 객체의 value 프로퍼티에 할당된다.
+  // 두 번째 next 메서드를 호출할 때 전달한 인수 10은 첫 번째 yield 표현식을 할당받는 x 변수에 할당된다.
+  // 즉, const x = yield 1;는 두 번째 next 메서드를 호출했을 때 완료된다.
+  // 두 번째 next 메서드를 호출하면 두 번째 yield 표현식까지 실행되고 일시 중지된다.
+  // 이때 yield된 값 x + 10은 next 메서드가 반환한 이터레이터 리절트 객체의 value 프로퍼티에 할당된다.
   const y = yield (x + 10);
 
-  // 세 번째 next 메서드를 호출할 때 전달한 인수 20은 y 변수에 할당된다.
+  // 세 번째 next 메서드를 호출할 때 전달한 인수 20은 두 번째 yield 표현식을 할당받는 y 변수에 할당된다.
+  // 즉, const y = yield (x + 10);는 세 번째 next 메서드를 호출했을 때 완료된다.
   // 세 번째 next 메서드를 호출하면 함수 끝까지 실행된다.
-  // 반환값 x + y는 next 메서드가 반환한 이터레이터 리절트 객체의 value 프로퍼티에 할당된다.
+  // 이때 제너레이터 함수의 반환값 x + y는 next 메서드가 반환한 이터레이터 리절트 객체의 value 프로퍼티에 할당된다.
+  // 일반적으로 제너레이터의 반환값은 의미가 없다.
+  // 따라서 제너레이터에서는 값을 반환할 필요가 없고 return은 종료의 의미로만 사용해야 한다.
   return x + y;
 }
 
-// 제너레이터 함수를 호출하면 이터러블이며 동시에 이터레이터인 제너레이터 객체를 반환한다.
-// 이터레이터는 next 메서드를 갖는다.
+// 제너레이터 함수를 호출하면 제너레이터 객체를 반환한다.
+// 이터러블이며 동시에 이터레이터인 next 메서드를 갖는다.
 const generator = genFunc(0);
 
-// 첫 번째 호출하는 next 메서드에는 인수를 전달하지 않는다.
-// 만약 첫 번째 호출하는 next 메서드에 인수를 전달하면 무시된다.
+// 처음 호출하는 next 메서드에는 인수를 전달하지 않는다.
+// 만약 처음 호출하는 next 메서드에 인수를 전달하면 무시된다.
 // next 메서드가 반환한 이터레이터 리절트 객체의 value 프로퍼티에는 첫 번째 yield된 값 1이 할당된다.
 let res = generator.next();
 console.log(res); // {value: 1, done: false}
@@ -182,18 +202,18 @@ res = generator.next(10);
 console.log(res); // {value: 20, done: false}
 
 // next 메서드에 인수로 전달한 20은 genFunc 함수의 y 변수에 할당된다.
-// next 메서드가 반환한 이터레이터 리절트 객체의 value 프로퍼티에는 빈환값 30이 할당된다.
+// next 메서드가 반환한 이터레이터 리절트 객체의 value 프로퍼티에는 제너레이터 함수의 반환값 30이 할당된다.
 res = generator.next(20);
 console.log(res); // {value: 30, done: true}
 ```
 
-이처럼 제너레이터 함수는 next 메서드와 yield 문을 통해 함수 호출자와 함수의 상태를 주고 받을 수 있다. 함수 호출자는 next 메서드를 통해 제너레이터 객체가 관리하는 상태(yield된 값)를 꺼내올 수 있고, 제너레이터의 next 메서드에 인수를 전달하면서 호출하면 제너레이터 객체에 상태(yield 문을 할당받는 변수)를 밀어 넣을 수 있다. 제너레이터의 이런 특성은 비동기 처리를 동기 처리처럼 구현할 수 있게 한다. 이에 대해서는 "46.5.2. 비동기 처리"에서 살펴보자.
+이처럼 제너레이터 함수는 next 메서드와 yield 표현식을 통해 함수 호출자와 함수의 상태를 주고 받을 수 있다. 함수 호출자는 next 메서드를 통해 yield 표현식까지 함수를 실행시켜서 제너레이터 객체가 관리하는 상태(yield된 값)를 꺼내올 수 있고, next 메서드에 인수를 전달해서 제너레이터 객체에 상태(yield 표현식을 할당받는 변수)를 밀어 넣을 수 있다. 이러한 제너레이터의 특성을 활용하면 비동기 처리를 동기 처리처럼 구현할 수 있다. 이에 대해서는 ["46.5.2. 비동기 처리"](/fastcampus/generator#52-비동기-처리)에서 살펴보자.
 
 # 5. 제너레이터의 활용
 
 ## 5.1 이터러블의 구현
 
-제너레이터 함수를 사용하면 [이터레이션 프로토콜](/fastcampus/iterable#1-이터레이션-프로토콜)을 준수해 이터러블을 생성하는 방식보다 간편하게 이터러블을 구현할 수 있다. 먼저 이터레이션 프로토콜을 준수하여 무한 피보나치 수열을 생성하는 함수를 구현해 보자.
+제너레이터 함수를 사용하면 [이터레이션 프로토콜](/fastcampus/iterable#1-이터레이션-프로토콜)을 준수해 이터러블을 생성하는 방식보다 간단히 이터러블을 구현할 수 있다. 먼저 이터레이션 프로토콜을 준수하여 무한 피보나치 수열을 생성하는 함수를 구현해 보자.
 
 ```javascript
 // 무한 이터러블을 생성하는 함수
@@ -217,7 +237,7 @@ for (const num of infiniteFibonacci) {
 }
 ```
 
-이터레이션 프로토콜을 보다 간단하게 처리하기 위해 제너레이터를 활용할 수 있다. 제너레이터를 활용하여 무한 피보나치 수열을 생성하는 함수를 구현해 보자.
+이번에는 제너레이터를 사용하여 무한 피보나치 수열을 생성하는 함수를 구현해 보자. 제너레이터 함수를 사용하면 이터레이션 프로토콜을 준수해 이터러블을 생성하는 방식보다 간단히 이터러블을 구현할 수 있다.
 
 ```javascript
 // 무한 이터러블을 생성하는 제너레이터 함수
@@ -239,83 +259,94 @@ for (const num of infiniteFibonacci) {
 
 ## 5.2 비동기 처리
 
-제너레이터를 사용하면 비동기 처리를 동기 처리처럼 구현할 수 있다. 다시 말해, 비동기 처리 함수가 처리 결과를 반환하도록 구현할 수 있다. 다음 예제를 살펴보자.
+제너레이터 함수는 next 메서드와 yield 표현식을 통해 함수 호출자와 함수의 상태를 주고 받을 수 있다. 이러한 특성을 활용하면 프로미스를 사용한 비동기 처리를 동기 처리처럼 구현할 수 있다. 다시 말해, 프로미스의 후속 처리 메서드 then/catch/finally 없이 비동기 처리 결과를 반환하도록 구현할 수 있다. 다음 예제를 살펴보자.
+
+```javascript
+// node-fetch는 node.js 환경에서 window.fetch 함수를 사용하기 위한 패키지다.
+// 브라우저 환경에서 이 예제를 실행한다면 아래 코드는 필요없다.
+// https://github.com/node-fetch/node-fetch
+const fetch = require('node-fetch');
+
+// 제너레이터 실행기
+const async = generatorFunc => {
+  const generator = generatorFunc(); // ②
+
+  const onResolved = arg => {
+    const result = generator.next(arg); // ⑤
+
+    return result.done
+      ? result.value // ⑨
+      : result.value.then(res => onResolved(res)); // ⑦
+  };
+
+  return onResolved; // ③
+};
+
+(async(function* fetchTodo() { // ①
+  const url = 'https://jsonplaceholder.typicode.com/todos/1';
+
+  const response = yield fetch(url); // ⑥
+  const todo = yield response.json(); // ⑧
+  console.log(todo);
+  // {userId: 1, id: 1, title: 'delectus aut autem', completed: false}
+})()); // ④
+```
+
+위 예제는 다음과 같이 동작한다. 순서대로 살펴보자.
+
+1. async 함수가 호출(①)되면 인수로 전달받은 제너레이터 함수 fetchTodo를 호출하여 제너레이터 객체를 생성(②)하고 onResolved 함수를 반환(③)한다. onResolved 함수는 상위 스코프의 generator 변수를 기억하는 클로저다. async 함수가 반환한 onResolved 함수를 즉시 호출(④)하여 ②에서 생성한 제너레이터 객체의 next 메서드를 처음 호출(⑤)한다.
+
+2. next 메서드가 처음 호출(⑤)되면 첫 번째 yeild 문(⑥)까지 실행된다. 이때 next 메서드가 반환한 이터레이터 리절트 객체의 done 프로퍼티 값이 false, 즉 아직 제너레이터 함수가 끝까지 실행되지 않았다면 이터레이터 리절트 객체의 value 프로퍼티 값, 즉 첫 번째 yeild된 fetch 함수가 반환한 프로미스가 resolve한 Response 객체를 onResolved 함수에 인수로 전달하면서 재귀 호출(⑦)한다.
+
+3. onResolved 함수에 인수로 전달된 Response 객체를 next 메서드에 인수로 전달하면서 next 메서드를 두 번째 호출(⑤)한다. 이때 next 메서드에 인수로 전달한 Response 객체는 제너레이터 함수 fetchTodo의 response 변수(⑥)에 할당되고 두 번째 yeild 문(⑧)까지 실행된다.
+
+4. next 메서드가 반환한 이터레이터 리절트 객체의 done 프로퍼티 값이 false, 즉 아직 제너레이터 함수 fetchTodo가 끝까지 실행되지 않았다면 이터레이터 리절트 객체의 value 프로퍼티 값, 즉 두 번째 yeild된 response.json 메서드가 반환한 프로미스가 resolve한 todo 객체를 onResolved 함수에 인수로 전달하면서 재귀 호출(⑦)한다.
+
+5. onResolved 함수에 인수로 전달된 todo 객체를 next 메서드에 인수로 전달하면서 next 메서드를 세 번째 호출(⑤)한다. 이때 next 메서드에 인수로 전달한 todo 객체는 제너레이터 함수 fetchTodo의 todo 변수(⑧)에 할당되고 제너레이터 함수의 끝까지 실행된다.
+
+6. next 메서드가 반환한 이터레이터 리절트 객체의 done 프로퍼티 값이 true, 즉 제너레이터 함수 fetchTodo가 끝까지 실행되었다면 이터레이터 리절트 객체의 value 프로퍼티 값, 즉 제너레이터 함수 fetchTodo의 반환값인 undefined를 그대로 반환(⑨)하고 처리를 종료한다.
+
+위 예제의 제너레이터 함수를 실행하는 제너레이터 실행기인 async 함수는 이해를 돕기 위해 간략화한 예제이므로 완전하지 않다. 다음에 설명할 async/await를 사용하면 async 함수와 같은 제너레이터 실행기를 사용할 필요가 없지만 혹시 제너레이터 실행기가 필요하다면 직접 구현하는 것보다 [co](https://github.com/tj/co)를 사용하기 바란다.
 
 ```javascript
 const fetch = require('node-fetch');
+// https://github.com/tj/co
+const co = require('co');
 
-const async = generatorFunc => {
-  // 제너레이터 함수를 호출하여 제너레이터 객체를 생성한다.
-  const generator = generatorFunc();
+co(function* fetchTodo() {
+  const url = 'https://jsonplaceholder.typicode.com/todos/1';
 
-  const onResolved = arg => {
-    // 첫 번째 next 메서드 호출: 첫 번째 yeild까지 실행하고 yeild한 값(sleep(1000)이 resolve한 1000)을 value 프로퍼티 값으로 반환
-    // {value: Promise, done: false}
-    // 두 번째 next 메서드 호출: 두 번째 yeild까지 실행하고 yeild한 값(sleep(2000)이 resolve한 2000)을 value 프로퍼티 값으로 반환
-    // {value: Promise, done: false}
-    // 세 번째 next 메서드 호출: 세 번째 yeild까지 실행하고 yeild한 값(Promise.all([sleep(3000), sleep(4000)])이 resolve한 3000과 4000)을 value 프로퍼티 값으로 반환
-    // {value: Promise, done: false}
-    // 네 번째 next 메서드 호출: 마지막까지 실행하고 반환문이 없을므로 undefined를 value 프로퍼티 값으로 반환
-    // {value: undefined, done: true}
-    const result = generator.next(arg);
-
-    // result.done이 true가 아니면 result.value(yeild한 값)를 인수로 전달하면서 onResolved를 재귀 호출한다.
-    // 이때 next 메서드가 다시 호출된다.
-    return result.done
-      ? result.value
-      : Promise.resolve(result.value).then(onResolved); // ③
-  };
-  return onResolved; // ①
-};
-
-(async(
-  function* () {
-    const response = yield fetch('https://jsonplaceholder.typicode.com/todos/1');
-    const todos = yield response.json();
-    console.log(todos);
-    // { userId: 1, id: 1, title: 'delectus aut autem', completed: false }
-  }
-)()); // ②
+  const response = yield fetch(url);
+  const todo = yield response.json();
+  console.log(todo);
+  // { userId: 1, id: 1, title: 'delectus aut autem', completed: false }
+});
 ```
-
-위 예제의 async 함수는 제너레이터 함수를 인수로 전달받아 제너레이터 객체를 생성하고 onResolved 함수를 반환한다.(①)
-
-async 함수를 즉시 실행(②)하여 onResolved 함수가 호출되면 제너레이터 객체의 next 메서드가 호출되고 이터레이터 리절트 객체를 반환한다. 이때 제너레이터 함수가 끝까지 실행되었음을 나타내는 이터레이터 리절트 객체의 done 프로퍼티의 값이 false이면 onResolved 함수를 재귀 호출(③)하여 제너레이터 함수를 끝까지 실행시킨다. 이처럼 제너레이터를 사용하면 비동기 처리를 동기 처리처럼 구현할 수 있다.
 
 # 6. async/await
 
-제너레이터를 사용해서 비동기 처리를 동기 처리처럼 구현했지만 코드는 장황해졌다. ES7에서는 제너레이터보다 간편하게 비동기 처리를 동기 처리처럼 구현할 수 있는 async/awit가 도입되었다.
+제너레이터를 사용해서 비동기 처리를 동기 처리처럼 구현하기는 했지만 코드가 무척이나 장황해지고 가독성도 나빠졌다. ES8에서는 제너레이터보다 간단하고 가독성 좋게 비동기 처리를 동기 처리처럼 구현할 수 있는 async/awit가 도입되었다.
 
-async/await를 사용하면 프로미스의 then/catch/finally 후속 처리 메서드에 콜백 함수를 전달해서 후속 처리를 할 필요없이 마치 동기 처리처럼 프로미스를 사용할 수 있다. 위 예제를 async/awit 구현해 보자.
+async/await를 사용하면 프로미스의 then/catch/finally 후속 처리 메서드에 콜백 함수를 전달해서 비동기 처리 결과를 후속 처리할 필요 없이 마치 동기 처리처럼 프로미스를 사용할 수 있다. 다시 말해, 프로미스의 후속 처리 메서드 없이 마치 동기 처리처럼 프로미스가 처리 결과를 반환하도록 구현할 수 있다. 위 예제를 async/awit로 다시 구현해 보자.
 
 ```javascript
 const fetch = require('node-fetch');
 
-// Promise를 반환하는 함수 정의
-function getGithubUserName(githubId) {
-  return fetch(`https://api.github.com/users/${githubId}`)
-    .then(res => res.json())
-    .then(user => user.name);
+async function fetchTodo() {
+  const url = 'https://jsonplaceholder.typicode.com/todos/1';
+
+  const response = await fetch(url);
+  const todo = await response.json();
+  console.log(todo);
+  // {userId: 1, id: 1, title: 'delectus aut autem', completed: false}
 }
 
-async function getUserAll() {
-  let userName;
-  userName = await getGithubUserName('jeresig');
-  console.log(userName);
-
-  userName = await getGithubUserName('ahejlsberg');
-  console.log(userName);
-
-  userName = await getGithubUserName('ungmo2');
-  console.log(userName);
-}
-
-getUserAll();
+fetchTodo();
 ```
 
 ## 6.1. async 함수
 
-await 키워드는 반드시 async 함수 내부에서 사용해야 한다. async 함수는 async 키워드를 사용해 정의하며 언제나 프로미스를 반환한다. async 함수가 명시적으로 프라미스를 반환하지 않더라도 async 함수의 반환값을 프로미스로 래핑하여 반환한다.
+await 키워드는 반드시 async 함수 내부에서 사용해야 한다. async 함수는 async 키워드를 사용해 정의하며 언제나 프로미스를 반환한다. async 함수가 명시적으로 프로미스를 반환하지 않더라도 async 함수의 반환값을 프로미스로 래핑하여 반환한다.
 
 ```javascript
 // async 함수 선언문
@@ -346,23 +377,55 @@ myClass.bar(5).then(v => console.log(v));
 
 ## 6.2. await 키워드
 
-await 키워드는 프라미스가 settled 상태(비동기 처리가 수행된 상태)가 될 때까지 대기하다가 settled 상태가 되면 resolve된 처리 결과 또는 reject된 에러를 반환한다.
+await 키워드는 프로미스가 settled 상태(비동기 처리가 수행된 상태)가 될 때까지 대기하다가 settled 상태가 되면 resolve된 처리 결과 또는 reject된 에러를 반환한다.
 
 ```javascript
 const fetch = require('node-fetch');
 
 const getGithubUserName = async id => {
-  const res = await fetch(`https://api.github.com/users/${id}`);
-  const { name } = await res.json();
-  console.log(name);
+  const res = await fetch(`https://api.github.com/users/${id}`); // ①
+  const { name } = await res.json(); // ②
+  console.log(name); // Ungmo Lee
+};
+
+getGithubUserName('ungmo2');
+```
+
+await 키워드는 프로미스가 settled 상태가 될 때까지 될 때까지 대기한다고 했다. 따라서 ①의 fetch 함수가 수행한 HTTP 요청에 대한 서버의 응답이 도착해서 fetch 함수가 반환한 프로미스가 settled 상태가 될 때까지 ①은 대기하게 된다. 이후 프로미스가 settled 상태가 되면 프로미스의 resolve된 처리 결과가 res 변수에 할당된다.
+
+이처럼 await 키워드는 다음 실행을 일시 중지시켰다가 프로미스가 settled 상태가 되면 다시 재개한다. 아래 예제를 살펴보자.
+
+```javascript
+async function foo() {
+  const a = await new Promise(resolve => setTimeout(() => resolve(1), 3000));
+  const b = await new Promise(resolve => setTimeout(() => resolve(2), 2000));
+  const c = await new Promise(resolve => setTimeout(() => resolve(3), 1000));
+
+  console.log([a, b, c]); // [1, 2, 3]
 }
 
-getGithubUserName('ungmo2'); // Ungmo Lee
+foo(); // 약 6초 소요된다.
+```
+
+위 예제의 foo 함수의 실행에는 약 6초가 소요된다. 첫 번째 프로미스가 settled 상태가 될 때까지 3초, 두 번째 프로미스가 settled 상태가 될 때까지 2초, 세 번째 프로미스가 settled 상태가 될 때까지 1초가 소요되기 때문이다. 그런데 foo 함수가 수행하는 3개의 비동기 처리는 서로 연관이 없다. 앞의 비동기 처리 결과를 가지고 다음 비동기 처리를 수행해야 한다면 처리 순서가 보장되어야 하므로 위와 같이 순차적으로 처리할 수 밖에 없지만 foo 함수가 수행하는 3개의 비동기 처리는 서로 연관이 없이 개별적으로 수행되는 비동기 처리이므로 앞의 비동기 처리가 완료될 때까지 대기할 필요가 없다. 따라서 위 예제는 아래와 같이 처리하는 것이 좋다.
+
+```javascript
+async function foo() {
+  const res = await Promise.all([
+    new Promise(resolve => setTimeout(() => resolve(1), 3000)),
+    new Promise(resolve => setTimeout(() => resolve(2), 2000)),
+    new Promise(resolve => setTimeout(() => resolve(3), 1000))
+  ]);
+
+  console.log(res); // [1, 2, 3]
+}
+
+foo(); // 약 3초 소요된다.
 ```
 
 ## 6.3. 에러 처리
 
-비동기 처리를 위한 콜백 패턴의 단점 중 ["45.1.2. 에러 처리의 한계"](/fastcampus/promise#12-에러-처리의-한계)에서 살펴본 바와 같이, 에러는 호출자(caller) 방향으로 전파된다. 즉, 콜 스택의 아래 방향(실행 중인 실행 컨텍스트에서 직전에 푸시된 실행 컨텍스트 방향)으로 전파된다. 하지만 비동기 함수의 콜백 함수를 호출한 것은 비동기 함수가 아니기 때문에 try/catch 문을 사용해 에러를 캐치할 수 없다.
+비동기 처리를 위한 콜백 패턴의 단점 중 ["45.1.2. 에러 처리의 한계"](/fastcampus/promise#12-에러-처리의-한계)에서 살펴본 바와 같이 에러는 호출자(caller) 방향으로 전파된다. 즉, 콜 스택의 아래 방향(실행 중인 실행 컨텍스트에서 직전에 푸시된 실행 컨텍스트 방향)으로 전파된다. 하지만 비동기 함수의 콜백 함수를 호출한 것은 비동기 함수가 아니기 때문에 try/catch 문을 사용해 에러를 캐치할 수 없다.
 
 ```javascript
 try {
@@ -373,22 +436,42 @@ try {
 }
 ```
 
-async/await에서 에러 처리는 try/catch 문을 사용할 수 있다. 콜백 함수를 인수로 전달받는 비동기 함수와는 달리, 프로미스를 반환하는 비동기 함수는 명시적으로 호출할 수 있기 때문에 호출자가 명확하다.
+async/await에서 에러 처리는 try/catch 문을 사용할 수 있다. 콜백 함수를 인수로 전달받는 비동기 함수와는 달리 프로미스를 반환하는 비동기 함수는 명시적으로 호출할 수 있기 때문에 호출자가 명확하다.
 
 ```javascript
 const fetch = require('node-fetch');
 
-const getGithubUserName = async id => {
+const foo = async () => {
   try {
-    const res = await fetch(`https://api.github.com/users/${id}`);
-    const { name } = await res.json();
-    console.log(name);
-  } catch(err) {
-    console.error(err);
-  }
-}
+    const wrongUrl = 'https://wrong.url';
 
-getGithubUserName('ungmo2'); // Ungmo Lee
+    const response = await fetch(wrongUrl);
+    const data = await response.json();
+    console.log(data);
+  } catch (err) {
+    console.error(err); // TypeError: Failed to fetch
+  }
+};
+
+foo();
 ```
 
-위 예제의 getGithubUserName 함수의 catch 문은 HTTP 통신에서 발생한 네트워크 에러뿐만 try 문 내부의 모든 문에서 발생한 일반적인 에러까지 모두 캐치할 수 있다.
+위 예제의 foo 함수의 catch 문은 HTTP 통신에서 발생한 네트워크 에러뿐만 try 문 내부의 모든 문에서 발생한 일반적인 에러까지 모두 캐치할 수 있다.
+
+async 함수 내에서 catch 문을 사용해서 에러 처리를 하지 않으면 async 함수는 발생한 에러를 reject하는 프로미스를 반환한다. 따라서 async 함수를 호출하고 Promise.prototype.catch 후속 처리 메서드를 사용해 에러를 캐치할 수 있다.
+
+```javascript
+const fetch = require('node-fetch');
+
+const foo = async () => {
+  const wrongUrl = 'https://wrong.url';
+
+  const response = await fetch(wrongUrl);
+  const data = await response.json();
+  return data;
+};
+
+foo()
+  .then(console.log)
+  .catch(console.error); // TypeError: Failed to fetch
+```

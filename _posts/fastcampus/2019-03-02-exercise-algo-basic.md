@@ -1,6 +1,6 @@
 ---
 layout: fs-post
-title: <strong>자료 구조와 알고리즘</strong>
+title: <strong>자료구조와 알고리즘</strong>
 categories: fastcampus-exercise
 section: fastcampus-exercise
 seq: 2
@@ -294,7 +294,7 @@ console.log(insertionSort([5, 2, 1, 3, 4, 6]));  // [1, 2, 3, 4, 5, 6]
 
 ## 2.4. 퀵 정렬
 ## 2.6. 계수 정렬 ?
-힙 정렬 => 힙 자료 구조
+힙 정렬 => 힙 자료구조
 
 # 3. 해시 테이블
 # 4. 스택

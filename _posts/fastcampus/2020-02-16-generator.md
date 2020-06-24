@@ -325,9 +325,9 @@ co(function* fetchTodo() {
 
 # 6. async/await
 
-제너레이터를 사용해서 비동기 처리를 동기 처리처럼 구현하기는 했지만 코드가 무척이나 장황해지고 가독성도 나빠졌다. ES8에서는 제너레이터보다 간단하고 가독성 좋게 비동기 처리를 동기 처리처럼 구현할 수 있는 async/awit가 도입되었다.
+제너레이터를 사용해서 비동기 처리를 동기 처리처럼 구현하기는 했지만 코드가 무척이나 장황해지고 가독성도 나빠졌다. ES8(ECMAScript 2017)에서는 제너레이터보다 간단하고 가독성 좋게 비동기 처리를 동기 처리처럼 구현할 수 있는 async/awit가 도입되었다.
 
-async/await를 사용하면 프로미스의 then/catch/finally 후속 처리 메서드에 콜백 함수를 전달해서 비동기 처리 결과를 후속 처리할 필요 없이 마치 동기 처리처럼 프로미스를 사용할 수 있다. 다시 말해, 프로미스의 후속 처리 메서드 없이 마치 동기 처리처럼 프로미스가 처리 결과를 반환하도록 구현할 수 있다. 위 예제를 async/awit로 다시 구현해 보자.
+async/await는 프로미스를 기반으로 동작한다. async/await를 사용하면 프로미스의 then/catch/finally 후속 처리 메서드에 콜백 함수를 전달해서 비동기 처리 결과를 후속 처리할 필요 없이 마치 동기 처리처럼 프로미스를 사용할 수 있다. 다시 말해, 프로미스의 후속 처리 메서드 없이 마치 동기 처리처럼 프로미스가 처리 결과를 반환하도록 구현할 수 있다. 위 예제를 async/await로 다시 구현해 보자.
 
 ```javascript
 const fetch = require('node-fetch');
@@ -346,7 +346,7 @@ fetchTodo();
 
 ## 6.1. async 함수
 
-await 키워드는 반드시 async 함수 내부에서 사용해야 한다. async 함수는 async 키워드를 사용해 정의하며 언제나 프로미스를 반환한다. async 함수가 명시적으로 프로미스를 반환하지 않더라도 async 함수의 반환값을 프로미스로 래핑하여 반환한다.
+await 키워드는 반드시 async 함수 내부에서 사용해야 한다. async 함수는 async 키워드를 사용해 정의하며 언제나 프로미스를 반환한다. async 함수가 명시적으로 프로미스를 반환하지 않더라도 async 함수는 암묵적으로 반환값을 resolve하는 프로미스를 반환한다.
 
 ```javascript
 // async 함수 선언문
@@ -375,9 +375,20 @@ const myClass = new MyClass();
 myClass.bar(5).then(v => console.log(v));
 ```
 
+클래스의 constructor 메서드는 async 메서드가 될 수 없다. 클래스의 constructor 메서드는 인스턴스를 반환해야 하지만 async 함수는 언제나 프로미스를 반환해야 한다.
+
+```javascript
+class MyClass {
+  async constructor() { }
+  // SyntaxError: Class constructor may not be an async method
+}
+
+const myClass = new MyClass();
+```
+
 ## 6.2. await 키워드
 
-await 키워드는 프로미스가 settled 상태(비동기 처리가 수행된 상태)가 될 때까지 대기하다가 settled 상태가 되면 resolve된 처리 결과 또는 reject된 에러를 반환한다.
+await 키워드는 프로미스가 settled 상태(비동기 처리가 수행된 상태)가 될 때까지 대기하다가 settled 상태가 되면 프로미스가 resolve한 처리 결과를 반환한다. await 키워드는 반드시 프로미스 앞에서 사용해야 한다.
 
 ```javascript
 const fetch = require('node-fetch');
@@ -391,7 +402,7 @@ const getGithubUserName = async id => {
 getGithubUserName('ungmo2');
 ```
 
-await 키워드는 프로미스가 settled 상태가 될 때까지 될 때까지 대기한다고 했다. 따라서 ①의 fetch 함수가 수행한 HTTP 요청에 대한 서버의 응답이 도착해서 fetch 함수가 반환한 프로미스가 settled 상태가 될 때까지 ①은 대기하게 된다. 이후 프로미스가 settled 상태가 되면 프로미스의 resolve된 처리 결과가 res 변수에 할당된다.
+await 키워드는 프로미스가 settled 상태가 될 때까지 될 때까지 대기한다고 했다. 따라서 ①의 fetch 함수가 수행한 HTTP 요청에 대한 서버의 응답이 도착해서 fetch 함수가 반환한 프로미스가 settled 상태가 될 때까지 ①은 대기하게 된다. 이후 **프로미스가 settled 상태가 되면 프로미스가 resolve한 처리 결과가 res 변수에 할당된다.**
 
 이처럼 await 키워드는 다음 실행을 일시 중지시켰다가 프로미스가 settled 상태가 되면 다시 재개한다. 아래 예제를 살펴보자.
 
@@ -407,7 +418,23 @@ async function foo() {
 foo(); // 약 6초 소요된다.
 ```
 
-위 예제의 foo 함수의 실행에는 약 6초가 소요된다. 첫 번째 프로미스가 settled 상태가 될 때까지 3초, 두 번째 프로미스가 settled 상태가 될 때까지 2초, 세 번째 프로미스가 settled 상태가 될 때까지 1초가 소요되기 때문이다. 그런데 foo 함수가 수행하는 3개의 비동기 처리는 서로 연관이 없다. 앞의 비동기 처리 결과를 가지고 다음 비동기 처리를 수행해야 한다면 처리 순서가 보장되어야 하므로 위와 같이 순차적으로 처리할 수 밖에 없지만 foo 함수가 수행하는 3개의 비동기 처리는 서로 연관이 없이 개별적으로 수행되는 비동기 처리이므로 앞의 비동기 처리가 완료될 때까지 대기할 필요가 없다. 따라서 위 예제는 아래와 같이 처리하는 것이 좋다.
+위 예제의 foo 함수의 실행에는 약 6초가 소요된다. 첫 번째 프로미스는 settled 상태가 될 때까지 3초, 두 번째 프로미스는 settled 상태가 될 때까지 2초, 세 번째 프로미스는 settled 상태가 될 때까지 1초가 소요되기 때문이다. 그런데 foo 함수가 수행하는 3개의 비동기 처리는 서로 연관이 없다. 다음의 bar 함수와 같이 앞선 비동기 처리의 결과를 가지고 다음 비동기 처리를 수행해야 한다면 처리 순서가 보장되어야 하므로 순차적으로 처리할 수 밖에 없다.
+
+```javascript
+async function bar(n) {
+  const a = await new Promise(resolve => setTimeout(() => resolve(n), 3000));
+  // 두 번째 비동기 처리를 수행하려면 첫 번째 비동기 처리 결과가 필요하다.
+  const b = await new Promise(resolve => setTimeout(() => resolve(a + 1), 2000));
+  // 세 번째 비동기 처리를 수행하려면 두 번째 비동기 처리 결과가 필요하다.
+  const c = await new Promise(resolve => setTimeout(() => resolve(b + 1), 1000));
+
+  console.log([a, b, c]); // [1, 2, 3]
+}
+
+bar(1); // 약 6초 소요된다.
+```
+
+하지만 foo 함수가 수행하는 3개의 비동기 처리는 서로 연관이 없이 개별적으로 수행되는 비동기 처리이므로 앞선 비동기 처리가 완료될 때까지 대기할 필요가 없다. 따라서 foo 함수는 다음과 같이 처리하는 것이 좋다.
 
 ```javascript
 async function foo() {
@@ -458,7 +485,7 @@ foo();
 
 위 예제의 foo 함수의 catch 문은 HTTP 통신에서 발생한 네트워크 에러뿐만 try 문 내부의 모든 문에서 발생한 일반적인 에러까지 모두 캐치할 수 있다.
 
-async 함수 내에서 catch 문을 사용해서 에러 처리를 하지 않으면 async 함수는 발생한 에러를 reject하는 프로미스를 반환한다. 따라서 async 함수를 호출하고 Promise.prototype.catch 후속 처리 메서드를 사용해 에러를 캐치할 수 있다.
+**async 함수 내에서 catch 문을 사용해서 에러 처리를 하지 않으면 async 함수는 발생한 에러를 reject하는 프로미스를 반환한다.** 따라서 async 함수를 호출하고 Promise.prototype.catch 후속 처리 메서드를 사용해 에러를 캐치할 수도 있다.
 
 ```javascript
 const fetch = require('node-fetch');

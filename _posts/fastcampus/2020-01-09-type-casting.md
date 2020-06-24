@@ -490,16 +490,23 @@ console.log(message); // 완료
 
 -	객체를 가리키는 변수가 null(또는 undefined)인지 확인하고 프로퍼티를 참조할 때
 
-객체는 키(key)과 값(value)으로 구성된 프로퍼티(property)들의 집합이다. 만약 객체를 가리키는 변수가 null인 경우, 객체의 프로퍼티를 참조하면 타입 에러(TypeError)가 발생한다. 이때 단축 평가를 사용하면 에러를 발생시키지 않는다.
+객체는 키(key)과 값(value)으로 구성된 프로퍼티(property)들의 집합이다. 만약 객체를 가리키는 변수가 null인 경우 객체의 프로퍼티를 참조하면 타입 에러(TypeError)가 발생한다. 에러가 발생하면 프로그램이 강제 종료된다.
 
 ```javascript
 var elem = null;
-
 var value = elem.value; // TypeError: Cannot read property 'value' of null
+```
+
+이때 단축 평가를 사용하면 에러를 발생시키지 않는다.
+
+```javascript
+var elem = null;
+// elem이 null이나 undefined와 같은 Falsy 값이면 elem으로 평가되고
+// elem이 Truthy 값이면 elem.value로 평가된다.
 var value = elem && elem.value; // -> null
 ```
 
-ES11(ECMAScript2020)에 도입될 것으로 알려진 [옵셔널 체이닝](https://github.com/tc39/proposal-optional-chaining)(optional chaining. 2020년 5월 현재, stage 4) 문법을 사용하면 논리곱(&&) 연산자 표현식을 대체할 수 있다.
+ES11(ECMAScript2020)에서 새롭게 도입된 [옵셔널 체이닝](https://github.com/tc39/proposal-optional-chaining)(optional chaining) 연산자 `?.`를 사용하면 단축 평가를 대체할 수 있다.
 
 ```javascript
 const elem = null;

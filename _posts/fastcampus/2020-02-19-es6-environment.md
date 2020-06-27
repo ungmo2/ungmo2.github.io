@@ -11,7 +11,7 @@ description:
 * TOC
 {:toc}
 
-크롬, 사파리, 파이어폭스, 엣지와 같은 에버그린 브라우저(Evergreen browser, 사용자의 업데이트 없이도 최신 버전으로 자동 업데이트를 수행하는 모던 브라우저)의 ES6 지원 비율은 약 98%로 거의 대부분의 ES6 사양을 구현하고 있다.
+크롬, 사파리, 파이어폭스, 엣지와 같은 에버그린 브라우저(Evergreen browser, 사용자의 업데이트 없이도 최신 버전으로 자동 업데이트를 수행하는 모던 브라우저)의 ES6 지원율은 약 98%로 거의 대부분의 ES6 사양을 구현하고 있다.
 
 ![](/assets/fs-images/49-1.png)
 {: .w-650 }
@@ -19,36 +19,34 @@ description:
 [브라우저별 ES6 지원 현황](https://kangax.github.io/compat-table/es6)
 {: .desc-img}
 
-하지만 인터넷 익스플로어 11의 ES6 지원 비율은 약 11%이다. 그리고 매년 새롭게 도입되는 ES6 이상의 버전(ES6+)과 제안 단계에 있는 ES 제안 사양(ES.NEXT)은 브라우저에 따라 지원 비율이 제각각이다.
+하지만 IE 11의 ES6 지원율은 약 11%이다. 그리고 매년 새롭게 도입되는 ES6 이상의 버전(ES6+)과 제안 단계에 있는 ES 제안 사양(ES.NEXT)은 브라우저에 따라 지원율이 제각각이다.
 
-따라서 ES6+ 또는 ES.NEXT의 최신 ECMAScript 사양을 사용하여 프로젝트를 진행하려면 최신 사양으로 작성된 코드를 경우에 따라 인터넷 익스플로어를 포함한 구형 브라우저에서 문제 없이 동작시키기 위한 개발 환경을 구축하는 것이 필요하다. 특히 모듈의 경우, 모듈 로더가 필요하다.
+따라서 ES6+과 ES.NEXT의 최신 ECMAScript 사양을 사용하여 프로젝트를 진행하려면 최신 사양으로 작성된 코드를 경우에 따라 IE를 포함한 구형 브라우저에서 문제 없이 동작시키기 위한 개발 환경을 구축하는 것이 필요하다.
 
-2020년 5월 현재, 모던 브라우저(Chrome 61, FF 60, SF 10.1, Edge 16 이상)에서 ES6 모듈을 사용할 수 있다. 단, 다음과 같은 이유로 아직까지는 브라우저가 지원하는 ES6 모듈 기능보다는 Webpack 등의 모듈 번들러를 사용하는 것이 일반적이다.
+또한 대부분의 프로젝트가 모듈을 사용하므로 모듈 로더도 필요하다. ES6 모듈(ESM)은 대부분의 모던 브라우저(Chrome 61, FF 60, SF 10.1, Edge 16 이상)에서 사용할 수 있다. 하지만 다음과 같은 이유로 아직까지는 ES6 모듈보다는 별도의 모듈 로더를 사용하는 것이 일반적이다.
 
--	인터넷 익스플로어를 포함한 구형 브라우저는 ES6 모듈을 지원하지 않는다.
--	브라우저의 ES6 모듈을 사용하더라도 트랜스파일링이나 번들링이 필요한 것은 변함이 없다.
--	아직 지원하지 않는 기능(Bare import 등)과 점차 해결되고는 있지만 아직 몇가지 이슈가 있다. ([ECMAScript modules in browsers](https://jakearchibald.com/2017/es-modules-in-browsers) 참고)
+-	IE를 포함한 구형 브라우저는 ES6 모듈을 지원하지 않는다.
+-	ES6 모듈을 사용하더라도 트랜스파일링이나 번들링이 필요한 것은 변함이 없다.
+-	ES6 모듈이 아직 지원하지 않는 기능(bare import 등)이 있고 점차 해결되고는 있지만 아직 몇가지 이슈가 존재한다.([ECMAScript modules in browsers](https://jakearchibald.com/2017/es-modules-in-browsers) 참고)
 
-트랜스파일러(Transpiler) [Babel](https://babeljs.io)과 모듈 번들러(Module bundler) [Webpack](https://webpack.js.org)을 이용하여 ES6+/ES.NEXT 개발 환경을 구축하여 보자. 아울러 Webpack을 통해 Babel을 로드하여 ES6+/ES.NEXT 코드를 트랜스파일링하는 방법도 알아볼 것이다.
+트랜스파일러(Transpiler) [Babel](https://babeljs.io)과 모듈 번들러(Module bundler) [Webpack](https://webpack.js.org)을 이용하여 ES6+/ES.NEXT 개발 환경을 구축하여 보자. 아울러 Webpack을 통해 Babel을 로드하여 ES6+/ES.NEXT로 구현된 소스코드를 구현 브라우저에서도 동작하는 ES5/ES3 소스코드로 트랜스파일링하는 방법도 알아볼 것이다.
 
-이 책에서 사용한 Babel, Webpack 그리고 플러그인 들의 버전은 다음과 같다.
+이 책에서 사용한 Node.js와 npm의 버전은 다음과 같다.
+-	Node.js: 14.3.0
+-	npm: 6.14.5
 
-Node.js
-: 13.13.0
-
-npm
-: 6.14.4
+Babel, Webpack 그리고 플러그인의 버전은 다음과 같다.
 
 Babel
-: - @babel/cli : 7.8.4
-- @babel/core : 7.9.0
-- @babel/preset-env : 7.9.5
-- @babel/plugin-proposal-class-properties : 7.8.3
+: - @babel/cli : 7.10.3
+- @babel/core : 7.10.3
+- @babel/preset-env : 7.10.3
+- @babel/plugin-proposal-class-properties : 7.10.1
 - @babel/polyfill : 7.8.7
 
 Webpack
-: - webpack : 4.42.1
-- webpack-cli : 3.3.11
+: - webpack : 4.43.0
+- webpack-cli : 3.3.12
 
 Webpack plug-in: ES6+ ⇒ ES5
 : - babel-loader : 8.1.0
@@ -62,7 +60,7 @@ Webpack plug-in: ES6+ ⇒ ES5
 [1, 2, 3].map(n => n ** n);
 ```
 
-인터넷 익스플로어와 같은 구형 브라우저에서는 ES6의 화살표 함수와 ES7의 지수 연산자를 지원하지 않을 수 있다. Babel을 사용하면 위 코드를 다음과 같이 ES5 이하의 버전으로 변환할 수 있다.
+IE와 같은 구형 브라우저에서는 ES6의 화살표 함수와 ES7의 지수 연산자를 지원하지 않을 수 있다. Babel을 사용하면 위 코드를 다음과 같이 ES5 이하의 버전으로 변환할 수 있다.
 
 ```javascript
 // ES5
@@ -73,7 +71,7 @@ Webpack plug-in: ES6+ ⇒ ES5
 });
 ```
 
-이처럼 Babel은 최신 ECMAScript 사양의 자바스크립트 소스코드를 인터넷 익스플로어와 같은 구형 브라우저에서도 동작하는 ES5 이하의 코드로 변환(트랜스파일링)할 수 있다. Babel을 사용하기 위한 개발 환경을 구축해 보자.
+이처럼 Babel은 최신 ECMAScript 사양의 자바스크립트 소스코드를 IE와 같은 구형 브라우저에서도 동작하는 ES5 이하의 코드로 변환(트랜스파일링)할 수 있다. Babel을 사용하기 위한 개발 환경을 구축해 보자.
 
 ## 1.1. Babel 설치
 
@@ -95,8 +93,8 @@ $ npm install --save-dev @babel/core @babel/cli
   "name": "esnext-project",
   "version": "1.0.0",
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.0"
+    "@babel/cli": "^7.10.3",
+    "@babel/core": "^7.10.3"
   }
 }
 ```
@@ -126,14 +124,14 @@ $ npm install --save-dev @babel/preset-env
   "name": "esnext-project",
   "version": "1.0.0",
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.5"
+    "@babel/cli": "^7.10.3",
+    "@babel/core": "^7.10.3",
+    "@babel/preset-env": "^7.10.3"
   }
 }
 ```
 
-설치가 완료되었으면 프로젝트 루트에 babel.config.json 설정 파일을 생성하고 다음과 같이 작성한다. 지금 설치한 @babel/preset-env를 사용하겠다는 의미이다.
+설치가 완료되었으면 프로젝트 루트에 .babelrc 설정 파일을 생성하고 다음과 같이 작성한다. 지금 설치한 @babel/preset-env를 사용하겠다는 의미이다.
 
 ```json
 {
@@ -155,9 +153,9 @@ package.json 파일에 scripts를 추가한다. 완성된 package.json 파일은
     "build": "babel src/js -w -d dist/js"
   },
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.5"
+    "@babel/cli": "^7.10.3",
+    "@babel/core": "^7.10.3",
+    "@babel/preset-env": "^7.10.3"
   }
 }
 ```
@@ -171,7 +169,6 @@ package.json 파일에 scripts를 추가한다. 완성된 package.json 파일은
 
 ```javascript
 // src/js/lib.js
-// ES6 모듈
 export const pi = Math.PI;
 
 export function power(x, y) {
@@ -198,7 +195,6 @@ export class Foo {
 
 ```javascript
 // src/js/main.js
-// ES6 모듈
 import { pi, power, Foo } from './lib';
 
 console.log(pi);
@@ -217,20 +213,20 @@ $ npm run build
 > esnext-project@1.0.0 build /Users/leeungmo/Desktop/esnext-project
 > babel src/js -w -d dist/js
 
-SyntaxError: /Users/leeungmo/Desktop/esnext-project/src/js/lib.js: Unexpected character '#' (13:2)
+SyntaxError: /Users/leeungmo/Desktop/esnext-project/src/js/lib.js: Support for the experimental syntax 'classPrivateProperties' isn't currently enabled (12:3):
 
-  11 | export class Foo {
-  12 |   // stage 3: 클래스 필드 정의 제안
-> 13 |   #private = 10;
+  10 | export class Foo {
+  11 |   // stage 3: 클래스 필드 정의 제안
+> 12 |   #private = 10;
      |   ^
-  14 |
-  15 |   foo() {
-  16 |     // stage 4: 객체 Rest/Spread 프로퍼티
+  13 |
+  14 |   foo() {
+  15 |     // stage 4: 객체 Rest/Spread 프로퍼티
 
 ...
 ```
 
-2020년 4월 현재 TC39 프로세스의 stage 3(candidate) 단계에 있는 [private 필드 정의 제안](/fastcampus/class#74-private-필드-정의-제안)에서 에러가 발생하였다.
+2020년 7월 현재 TC39 프로세스의 stage 3(candidate) 단계에 있는 [private 필드 정의 제안](/fastcampus/class#74-private-필드-정의-제안)에서 에러가 발생하였다.
 
 @babel/preset-env는 현재 제안 단계에 있는 사양에 대한 플러그인을 지원하지 않기 때문에 발생한 에러이다. 현재 제안 단계에 있는 사양을 지원하려면 별도의 플러그인을 설치하여야 한다.
 
@@ -244,7 +240,7 @@ SyntaxError: /Users/leeungmo/Desktop/esnext-project/src/js/lib.js: Unexpected ch
 Babel 플러그인 검색
 {: .desc-img}
 
-검색한 Babel 플러그인 @babel/plugin-proposal-class-properties를 설치해보자.
+검색된 Babel 플러그인 중에서 @babel/plugin-proposal-class-properties를 설치하자.
 
 ```bash
 $ npm install --save-dev @babel/plugin-proposal-class-properties
@@ -260,10 +256,10 @@ $ npm install --save-dev @babel/plugin-proposal-class-properties
     "build": "babel src/js -w -d dist/js"
   },
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.0",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/preset-env": "^7.9.5"
+    "@babel/cli": "^7.10.3",
+    "@babel/core": "^7.10.3",
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@babel/preset-env": "^7.10.3"
   }
 }
 ```
@@ -285,7 +281,7 @@ $ npm run build
 > esnext-project@1.0.0 build /Users/leeungmo/Desktop/esnext-project
 > babel src/js -w -d dist/js
 
-Successfully compiled 2 files with Babel.
+Successfully compiled 2 files with Babel (954ms).
 ```
 
 트랜스파일링에 성공하면 프로젝트 루트에 dist/js 폴더가 자동 생성되고 트랜스파일링된 main.js와 lib.js가 저장된다. 트랜스파일링된 main.js를 실행하여 보자. 결과는 다음과 같다.
@@ -311,7 +307,6 @@ $ node dist/js/main
 var _lib = require("./lib");
 
 // src/js/main.js
-// ES6 모듈
 console.log(_lib.pi);
 console.log((0, _lib.power)(_lib.pi, _lib.pi));
 var f = new _lib.Foo();
@@ -352,7 +347,7 @@ main.js:3 Uncaught ReferenceError: require is not defined
 Webpack 홈페이지
 {: .desc-img}
 
-Webpack과 Babel을 이용하여 ES6+ 개발 환경을 구축하여 보자. Webpack이 자바스크립트 파일을 번들링하기 전에 Babel을 로드하여 ES6+ 코드를 ES5 코드로 트랜스파일링하는 작업을 실행하도록 설정할 것이다.
+Webpack과 Babel을 이용하여 ES6+/ES.NEXT 개발 환경을 구축하여 보자. Webpack이 자바스크립트 파일을 번들링하기 전에 Babel을 로드하여 ES6+/ES.NEXT 코드를 ES5 코드로 트랜스파일링하는 작업을 실행하도록 설정할 것이다.
 
 ## 2.1. Webpack 설치
 
@@ -372,19 +367,19 @@ $ npm install --save-dev webpack webpack-cli
     "build": "babel src/js -w -d dist/js"
   },
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.0",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/preset-env": "^7.9.5",
-    "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11"
+    "@babel/cli": "^7.10.3",
+    "@babel/core": "^7.10.3",
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@babel/preset-env": "^7.10.3",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
   }
 }
 ```
 
 ## 2.2. babel-loader 설치
 
-Webpack이 모듈을 번들링할 때 Babel을 사용하여 ES6+ 코드를 ES5 코드로 트랜스파일링하도록 babel-loader를 설치한다.
+Webpack이 모듈을 번들링할 때 Babel을 사용하여 ES6+/ES.NEXT 코드를 ES5 코드로 트랜스파일링하도록 babel-loader를 설치한다.
 
 ```bash
 $ npm install --save-dev babel-loader
@@ -400,13 +395,13 @@ $ npm install --save-dev babel-loader
     "build": "webpack -w"
   },
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.0",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/preset-env": "^7.9.5",
+    "@babel/cli": "^7.10.3",
+    "@babel/core": "^7.10.3",
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@babel/preset-env": "^7.10.3",
     "babel-loader": "^8.1.0",
-    "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11"
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
   }
 }
 ```
@@ -460,16 +455,16 @@ $ npm run build
 
 webpack is watching the files…
 
-Hash: adcc0e0f453a5be2a78b
-Version: webpack 4.42.1
-Time: 1281ms
-Built at: 2020. 04. 15. 오후 8:18:32
+Hash: 912e4ad621459698288f
+Version: webpack 4.43.0
+Time: 1263ms
+Built at: 2020. 06. 27. 오후 3:45:33
         Asset      Size  Chunks                   Chunk Names
-    bundle.js  8.56 KiB    main  [emitted]        main
-bundle.js.map  5.14 KiB    main  [emitted] [dev]  main
+    bundle.js  8.55 KiB    main  [emitted]        main
+bundle.js.map  5.09 KiB    main  [emitted] [dev]  main
 Entrypoint main = bundle.js bundle.js.map
 [./src/js/lib.js] 3.69 KiB {main} [built]
-[./src/js/main.js] 179 bytes {main} [built]
+[./src/js/main.js] 165 bytes {main} [built]
 ```
 
 Webpack을 실행한 결과, dist/js 폴더에 bundle.js이 생성되었다. 이 파일은 main.js, lib.js 모듈이 하나로 번들링된 결과물이다. index.html을 다음과 같이 수정하고 브라우저에서 실행해 보자.
@@ -559,16 +554,16 @@ $ npm install @babel/polyfill
     "build": "webpack -w"
   },
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.0",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/preset-env": "^7.9.5",
+    "@babel/cli": "^7.10.3",
+    "@babel/core": "^7.10.3",
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@babel/preset-env": "^7.10.3",
     "babel-loader": "^8.1.0",
-    "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11"
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.8.7"
+    "@babel/polyfill": "^7.10.1"
   }
 }
 ```
@@ -590,7 +585,7 @@ webpack을 사용하는 경우에는 위 방법을 대신 폴리필을 webpack.c
 const path = require('path');
 
 module.exports = {
-  // enntry file
+  // entry file
   entry: ['@babel/polyfill', './src/js/main.js'],
 ...
 ```
@@ -605,17 +600,17 @@ $ npm run build
 
 webpack is watching the files…
 
-Hash: 5e56791e9e5dd2d9d5d9
-Version: webpack 4.42.1
-Time: 2133ms
-Built at: 2020. 04. 15. 오후 10:30:35
+Hash: 5f1a654d0873b7633f49
+Version: webpack 4.43.0
+Time: 2111ms
+Built at: 2020. 06. 27. 오후 3:50:37
         Asset     Size  Chunks                   Chunk Names
     bundle.js  408 KiB    main  [emitted]        main
-bundle.js.map  325 KiB    main  [emitted] [dev]  main
+bundle.js.map  324 KiB    main  [emitted] [dev]  main
 Entrypoint main = bundle.js bundle.js.map
 [0] multi @babel/polyfill ./src/js/main.js 40 bytes {main} [built]
 [./src/js/lib.js] 3.69 KiB {main} [built]
-[./src/js/main.js] 509 bytes {main} [built]
+[./src/js/main.js] 165 bytes {main} [built]
     + 307 hidden modules
 ```
 

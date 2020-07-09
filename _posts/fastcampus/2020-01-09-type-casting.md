@@ -395,6 +395,8 @@ Boolean([]);        // -> true
 
 # 4. 단축 평가
 
+## 4.1. 논리 연산자를 사용한 단축 평가
+
 ["7.5. 논리 연산자"](/fastcampus/operator#5-논리-연산자)에서 설명하지 않고 뒤로 나중으로 미룬 내용이 있다. 그것은 바로 "논리합(`||`) 연산자와 논리곱(`&&`) 연산자 표현식의 평가 결과는 불리언 값이 아닐 수도 있다. 논리합(`||`), 논리곱(`&&`) 연산자 표현식은 언제나 2개의 피연산자 중 어느 한쪽으로 평가된다."라는 것이다.
 
 앞에서 암묵적 타입 변환에 대해 살펴봤으므로 뒤로 미뤘던 위 내용을 이제 설명할 수 있다. 다음 예제를 보자.
@@ -488,9 +490,9 @@ console.log(message); // 완료
 
 단축 평가는 다음과 같은 상황에서 유용하게 사용된다. 아직 살펴보지 않은 객체와 함수에 대한 내용이 나와서 혼란스러울 수 있겠지만 지금은 다음과 같은 단축 평가의 유용한 패턴이 있다는 정도로 이해하고 넘어가도 좋다. 객체와 함수에 대해서는 나중에 자세히 살펴볼 것이다.
 
--	객체를 가리키는 변수가 null(또는 undefined)인지 확인하고 프로퍼티를 참조할 때
+-	객체를 가리키기를 기대하는 변수가 null 또는 undefined인지 확인하고 프로퍼티를 참조할 때
 
-객체는 키(key)과 값(value)으로 구성된 프로퍼티(property)들의 집합이다. 만약 객체를 가리키는 변수가 null인 경우 객체의 프로퍼티를 참조하면 타입 에러(TypeError)가 발생한다. 에러가 발생하면 프로그램이 강제 종료된다.
+객체는 키(key)과 값(value)으로 구성된 프로퍼티(property)들의 집합이다. 만약 객체를 가리키기를 기대하는 변수가 null 또는 undefined인 경우 객체의 프로퍼티를 참조하면 타입 에러(TypeError)가 발생한다. 에러가 발생하면 프로그램이 강제 종료된다.
 
 ```javascript
 var elem = null;
@@ -504,17 +506,6 @@ var elem = null;
 // elem이 null이나 undefined와 같은 Falsy 값이면 elem으로 평가되고
 // elem이 Truthy 값이면 elem.value로 평가된다.
 var value = elem && elem.value; // -> null
-```
-
-ES11(ECMAScript2020)에서 새롭게 도입된 [옵셔널 체이닝](https://github.com/tc39/proposal-optional-chaining)(optional chaining) 연산자 `?.`를 사용하면 단축 평가를 대체할 수 있다.
-
-```javascript
-const elem = null;
-
-// elem이 null 또는 undefined인 경우, 옵셔널 체이닝 문법은 undefined를 반환한다.
-const value = elem?.value; // -> undefined
-// 옵셔널 체이닝 문법은 다음과 같이 동작한다.
-// const value = (elem === null || elem === undefined) ? undefined : elem.value;
 ```
 
 -	함수 매개변수에 기본값을 설정할 때
@@ -538,4 +529,75 @@ function getStringLength(str = '') {
 
 getStringLength();     // -> 0
 getStringLength('hi'); // -> 2
+```
+
+## 4.2. 옵셔널 체이닝 연산자
+
+ES11(ECMAScript2020)에서 도입된 옵셔널 체이닝(optional chaining) 연산자 ?.는 좌항의 피연산자가 null 또는 undefined인 경우 undefined를 반환하고, 그렇지 않으면 우항의 프로퍼티 참조를 이어간다.
+
+```javascript
+var elem = null;
+
+// elem이 Falsy 값이면 elem으로 평가되고 elem이 Truthy 값이면 elem.value로 평가된다.
+var value = elem?.value;
+console.log(value); // null
+```
+
+옵셔널 체이닝 연산자 ?.는 객체를 가리키기를 기대하는 변수가 null 또는 undefined인지 확인하고 프로퍼티를 참조할 때 유용하다. 옵셔널 체이닝 연산자 ?.가 도입되기 이전에는 논리 연산자 &&를 사용한 단축 평가를 통해 변수가 null 또는 undefined인지 확인하였다.
+
+```javascript
+var elem = null;
+
+// elem이 Falsy 값이면 elem으로 평가되고 elem이 Truthy 값이면 elem.value로 평가된다.
+var value = elem && elem.value;
+console.log(value); // null
+```
+
+논리 연산자 &&는 좌항 피연산자가 false로 평가되는 Falsy 값(false, undefined, null, 0, -0, NaN, '')이면 좌항 피연산자를 그대로 반환한다. 좌항 피연산자가 Falsy 값인 0이나 ''인 경우도 마찬가지다. 하지만 0이나 ''은 객체로 평가될 때도 있다. (이에 대해서는 ["21.3. 원시 값과 래퍼 객체"](/fastcampus/built-in-object#3-원시-값과-래퍼-객체)에서 자세히 살펴보자.)
+
+```javascript
+var str = '';
+
+// 문자열의 길이(length)를 참조한다.
+var length = str && str.length;
+
+// 문자열의 길이(length)를 참조하지 못한다.
+console.log(length); // ''
+```
+
+하지만 옵셔널 체이닝 연산자 ?.는 좌항 피연산자가 false로 평가되는 Falsy 값(false, undefined, null, 0, -0, NaN, '')이라도 null 또는 undefined가 아니면 우항의 프로퍼티 참조를 이어간다.
+
+```javascript
+var str = '';
+
+/* 문자열의 길이(length)를 참조한다. 이때 좌항 피연산자가 false로 평가되는 Falsy 값이라도
+null 또는 undefined가 아니면 우항의 프로퍼티 참조를 이어간다. */
+var length = str?.length;
+console.log(length); // 0
+```
+
+## 4.3. null 병합 연산자
+
+ES11(ECMAScript2020)에서 도입된 null 병합(nullish coalescing) 연산자 ??는 좌항의 피연산자가 null 또는 undefined인 경우 우항의 피연산자를 반환하고, 그렇지 않으면 좌항의 피연산자를 반환한다.
+
+```javascript
+// 좌항의 피연산자가 null 또는 undefined이면 우항의 피연산자를 반환하고, 그렇지 않으면 좌항의 피연산자를 반환한다.
+var foo = null ?? 'default string';
+console.log(foo); // "default string"
+```
+
+null 병합 연산자 ??는 변수에 기본값을 설정할 때 유용하다. null 병합 연산자 ??가 도입되기 이전에는 논리 연산자 `||`를 사용한 단축 평가를 통해 변수에 기본값을 설정하였다. 논리 연산자 `||`를 사용한 단축 평가의 경우 좌항의 피연산자가 false로 평가되는 Falsy 값(false, undefined, null, 0, -0, NaN, '')이면 우항의 피연산자를 반환한다. 만약 Falsy 값인 0이나 ''도 기본값으로서 유효하다면 예기치 않는 동작이 발생할 수 있다.
+
+```javascript
+// Falsy 값인 0이나 ''도 기본값으로서 유효하다면 예기치 않는 동작이 발생할 수 있다.
+var foo = '' || 'default string';
+console.log(foo); // "default string"
+```
+
+하지만 null 병합 연산자 ??는 좌항의 피연산자가 false로 평가되는 Falsy 값(false, undefined, null, 0, -0, NaN, '')이라도 null 또는 undefined가 아니면 좌항의 피연산자를 그대로 반환한다.
+
+```javascript
+// 좌항 피연산자가 Falsy 값이라도 null 또는 undefined이 아니면 좌항 피연산자를 반환한다.
+var foo = '' ?? 'default string';
+console.log(foo); // ""
 ```

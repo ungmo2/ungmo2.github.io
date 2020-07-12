@@ -193,7 +193,7 @@ CSSOM 생성
 이후 완성된 렌더 트리는 각 HTML 요소의 레이아웃(위치와 크기)을 계산하는 데 사용되며 브라우저 화면에 픽셀을 렌더링하는 페인팅(painting) 처리에 입력된다.
 
 ![](/assets/fs-images/38-9.png)
-{: .w-450 }
+{: .w-650 }
 
 렌더 트리와 레이아웃/페인트
 {: .desc-img}
@@ -300,7 +300,7 @@ DOM API에 의한 리플로우, 리페인트
 </html>
 ```
 
-DOM API인 `document.getElementById('apple')`는 DOM에서 id가 apple인 HTML 요소를 취득한다. `document.getElementById('apple')`를 실행하는 시점에는 아직 id가 apple인 HTML 요소를 파싱하지 않았기 때문에DOM에는 id가 apple인 HTML 요소가 포함되어 있지 않은 상태다. 따라서 위 예제는 정상적으로 동작하지 않는다.
+DOM API인 `document.getElementById('apple')`는 DOM에서 id가 apple인 HTML 요소를 취득한다. 하지만 `document.getElementById('apple')`를 실행하는 시점에는 아직 id가 apple인 HTML 요소를 파싱하지 않았기 때문에 DOM에는 id가 apple인 HTML 요소가 포함되어 있지 않은 상태다. 따라서 위 예제는 정상적으로 동작하지 않는다.
 
 이러한 문제를 회피하기 위해 body 요소의 가장 아래에 자바스크립트를 위치시키는 것은 좋은 아이디어다. 그 이유는 다음과 같다.
 

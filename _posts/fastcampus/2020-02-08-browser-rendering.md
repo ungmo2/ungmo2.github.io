@@ -61,7 +61,7 @@ description:
 
 요청과 응답은 개발자 도구의 [Network] 패널에서 확인할 수 있다. 브라우저의 주소창에 `https://poiemaweb.com`을 입력하고 엔터 키를 입력하여 서버에 루트 요청을 전송해 보자. 다음 그림처럼 브라우저가 poiemaweb.com 서버에 요청한 내용과 응답한 내용을 개발자 도구의 [Network] 패널에서 확인할 수 있다.
 
-개발자 도구의 [Network] 패널을 활성화하기 이전에 브라우저가 이미 응답을 받은 경우 응답된 리소스가 표시되지 않는다. 따라서 [Network] 패널에 아무런 리소스가 표시되지 않았다면 페이지를 새로고침하여야 한다.
+개발자 도구의 [Network] 패널을 활성화하기 이전에 브라우저가 이미 응답을 받은 경우 응답된 리소스가 표시되지 않는다. 따라서 [Network] 패널에 아무런 리소스가 표시되지 않았다면 페이지를 새로고침해야 한다.
 
 ![](/assets/fs-images/38-3.png)
 {: .w-650 }
@@ -279,14 +279,14 @@ DOM API에 의한 리플로우, 리페인트
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
     <script>
-      /* DOM API인 document.getElementById는 DOM에서 id가 apple인 HTML 요소를 취득한다.
-      아래 DOM API가 실행되는 시점에는 아직 id가 apple인 HTML 요소를 파싱하지 않았기 때문에
-      DOM에는 id가 apple인 HTML 요소가 포함되어 있지 않다.
-      따라서 아래 코드는 정상적으로 id가 apple인 HTML 요소를 취득하지 못한다. */
+      // DOM API인 document.getElementById는 DOM에서 id가 apple인 HTML 요소를 취득한다.
+      // 아래 DOM API가 실행되는 시점에는 아직 id가 apple인 HTML 요소를 파싱하지 않았기 때문에
+      // DOM에는 id가 apple인 HTML 요소가 포함되어 있지 않다.
+      // 따라서 아래 코드는 정상적으로 id가 apple인 HTML 요소를 취득하지 못한다.
       const $apple = document.getElementById('apple');
 
-      /* id가 apple인 HTML 요소의 css color 프로퍼티 값을 변경한다.
-      이때 DOM에는 id가 apple인 HTML 요소가 포함되어 있지 않기 때문에 에러가 발생한다. */
+      // id가 apple인 HTML 요소의 css color 프로퍼티 값을 변경한다.
+      // 이때 DOM에는 id가 apple인 HTML 요소가 포함되어 있지 않기 때문에 에러가 발생한다.
       $apple.style.color = 'red'; // TypeError: Cannot read property 'style' of null
     </script>
   </head>
@@ -324,9 +324,9 @@ DOM API인 `document.getElementById('apple')`는 DOM에서 id가 apple인 HTML �
       <li id="orange">Orange</li>
     </ul>
     <script>
-      /* DOM API인 document.getElementById는 DOM에서 id가 apple인 HTML 요소를 취득한다.
-      아래 코드가 실행되는 시점에는 id가 apple인 HTML 요소의 파싱이 완료되어 DOM에 포함되어
-      있기 때문에 정상적으로 동작한다. */
+      // DOM API인 document.getElementById는 DOM에서 id가 apple인 HTML 요소를 취득한다.
+      // 아래 코드가 실행되는 시점에는 id가 apple인 HTML 요소의 파싱이 완료되어 DOM에 포함되어
+      // 있기 때문에 정상적으로 동작한다.
       const $apple = document.getElementById('apple');
 
       // apple 요소의 css color 프로퍼티 값을 변경한다.

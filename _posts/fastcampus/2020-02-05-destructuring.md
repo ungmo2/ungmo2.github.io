@@ -33,9 +33,9 @@ ES6의 배열 디스트럭처링 할당은 배열의 각 요소를 배열로부�
 ```javascript
 const arr = [1, 2, 3];
 
-/* ES6 배열 디스트럭처링 할당
-변수 one, two, three를 선언하고 배열 arr을 디스트럭처링하여 할당한다.
-이때 할당 기준은 배열의 인덱스다. */
+// ES6 배열 디스트럭처링 할당
+// 변수 one, two, three를 선언하고 배열 arr을 디스트럭처링하여 할당한다.
+// 이때 할당 기준은 배열의 인덱스다.
 const [one, two, three] = arr;
 
 console.log(one, two, three); // 1 2 3
@@ -155,9 +155,9 @@ ES6의 객체 디스트럭처링 할당은 객체의 각 프로퍼티를 객체�
 ```javascript
 const user = { firstName: 'Ungmo', lastName: 'Lee' };
 
-/* ES6 객체 디스트럭처링 할당
-변수 lastName, firstName을 선언하고 객체 user를 디스트럭처링하여 할당한다.
-이때 프로퍼티 키를 기준으로 디스트럭처링 할당이 이루어진다. 순서는 의미가 없다. */
+// ES6 객체 디스트럭처링 할당
+// 변수 lastName, firstName을 선언하고 객체 user를 디스트럭처링하여 할당한다.
+// 이때 프로퍼티 키를 기준으로 디스트럭처링 할당이 이루어진다. 순서는 의미가 없다.
 const { lastName, firstName } = user;
 
 console.log(firstName, lastName); // Ungmo Lee
@@ -192,9 +192,9 @@ const { lastName: lastName, firstName: firstName } = user;
 ```javascript
 const user = { firstName: 'Ungmo', lastName: 'Lee' };
 
-/* 프로퍼티 키를 기준으로 디스트럭처링 할당이 이루어진다.
-프로퍼티 키가 lastName인 프로퍼티 값을 ln에 할당하고,
-프로퍼티 키가 firstName인 프로퍼티 값을 fn에 할당한다. */
+// 프로퍼티 키를 기준으로 디스트럭처링 할당이 이루어진다.
+// 프로퍼티 키가 lastName인 프로퍼티 값을 ln에 할당하고,
+// 프로퍼티 키가 firstName인 프로퍼티 값을 fn에 할당한다.
 const { lastName: ln, firstName: fn } = user;
 
 console.log(fn, ln); // Ungmo Lee

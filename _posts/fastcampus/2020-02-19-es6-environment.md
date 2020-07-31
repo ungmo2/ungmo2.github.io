@@ -104,7 +104,7 @@ $ npm install --save-dev @babel/core @babel/cli
 npm install --save-dev @babel/core@7.10.3 @babel/cli@7.10.3
 ```
 
-## 1.2. Babel 프리셋 설치와 .babelrc.json 설정 파일 작성
+## 1.2. Babel 프리셋 설치와 babel.config.json 설정 파일 작성
 
 
 Babel을 사용하려면 @babel/preset-env를 설치해야 한다. @babel/preset-env는 함께 사용되어야 하는 Babel 플러그인을 모아 둔 것으로 [Babel 프리셋(preset)](https://babeljs.io/docs/en/presets)이라고 부른다. Babel이 제공하는 공식 Babel 프리셋(official preset)은 다음과 같다.
@@ -137,7 +137,7 @@ $ npm install --save-dev @babel/preset-env
 }
 ```
 
-설치가 완료되면 프로젝트 루트 폴더에 .babelrc.json 설정 파일을 생성하고 다음과 같이 작성한다. 지금 설치한 @babel/preset-env를 사용하겠다는 의미다.
+설치가 완료되면 프로젝트 루트 폴더에 babel.config.json 설정 파일을 생성하고 다음과 같이 작성한다. 지금 설치한 @babel/preset-env를 사용하겠다는 의미다.
 
 ```json
 {
@@ -266,7 +266,7 @@ $ npm install --save-dev @babel/plugin-proposal-class-properties
 }
 ```
 
-설치한 플러그인은 .babelrc.json 설정 파일에 추가해야 한다. .babelrc.json 설정 파일을 다음과 같이 수정한다.
+설치한 플러그인은 babel.config.json 설정 파일에 추가해야 한다. babel.config.json 설정 파일을 다음과 같이 수정한다.
 
 ```json
 {

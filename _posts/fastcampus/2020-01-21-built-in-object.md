@@ -178,7 +178,7 @@ ES6에서 새롭게 도입된 원시 값인 심벌도 래퍼 객체를 생성한
 전역 객체는 자바스크립트 환경에 따라 지칭하는 이름이 제각각이다. 브라우저 환경에서는 window(또는 self, this, frames)가 전역 객체를 가리키지만 Node.js 환경에서는 global이 전역 객체를 가리킨다.
 
 globalThis
-: 2020년 5월 현재, 전역 객체를 가리키는 식별자를 [globalThis](https://github.com/tc39/proposal-global)로 통일하는 제안이 stage 4에 올라와 있다. globalThis는 크롬 71, 파이어폭스 65, 사파리 12.1, Edge 79, Node.js 12.0.0 이상에 이미 구현되어 있다.
+: ES11(ECMAScript 11)에서 도입된 [globalThis](https://www.ecma-international.org/ecma-262/11.0/#sec-globalthis)는 브라우저 환경과 Node.js 환경에서 전역 객체를 가리키던 다양한 식별자를 통일한 식별자다. globalThis는 표준 사양이므로 ECMAScript 표준 사양을 준수하는 모든 환경에서 사용할 수 있다.
 
 ```javascript
 // 브라우저 환경

@@ -244,7 +244,7 @@ console.log(bar());    // caller : null
 
 함수 호출 foo(bar)의 경우 bar 함수를 foo 함수 내에서 호출했다. 이때 bar 함수의 caller 프로퍼티는 bar 함수를 호출한 foo 함수를 가리킨다. 함수 호출 bar()의 경우, bar 함수를 호출한 함수는 없다. 따라서 caller 프로퍼티는 null을 가리킨다.
 
-위 결과는 브라우저에서 실행한 결과다. 만약 Node.js 환경에서 위 예제를 실행하면 다른 결과가 나온다. 이는 모듈과 관계가 있다. 모듈에 대해서는 Webpack 모듈 번들러와 함께 나중에 자세히 살펴볼 것이다.
+위 결과는 브라우저에서 실행한 결과다. 만약 Node.js 환경에서 위 예제를 실행하면 다른 결과가 나온다. 이는 모듈과 관계가 있다. 모듈에 대해서는 ["48. 모듈"](/fastcampus/module)에서 자세히 살펴볼 것이다.
 
 ## 2.3.	length 프로퍼티
 
@@ -265,7 +265,7 @@ function baz(x, y) {
 console.log(baz.length); // 2
 ```
 
-arguments 객체의 length 프로퍼티와 함수 객체의 length 프로퍼티의 값은 다를 수 있으므로 주의하여야 한다. arguments 객체의 length 프로퍼티는 인자(argument)의 개수를 가리키고, 함수 객체의 length 프로퍼티는 매개변수(parameter)의 개수를 가리킨다.
+arguments 객체의 length 프로퍼티와 함수 객체의 length 프로퍼티의 값은 다를 수 있으므로 주의해야 한다. arguments 객체의 length 프로퍼티는 인자(argument)의 개수를 가리키고, 함수 객체의 length 프로퍼티는 매개변수(parameter)의 개수를 가리킨다.
 
 ## 2.4.	name 프로퍼티
 
@@ -293,9 +293,9 @@ console.log(bar.name); // bar
 
 ## 2.5.	\_\_proto\_\_ 접근자 프로퍼티
 
-모든 객체는 [`[[Prototype]]`](http://ecma-international.org/ecma-262/10.0/index.html#sec-ordinary-object-internal-methods-and-internal-slots)이라는 내부 슬롯을 갖는다. [[Prototype]] 내부 슬롯은 객체 지향 프로그래밍의 상속을 구현하는 프로토타입 객체를 가리킨다. 프로토타입 객체에 대해서는 "[19. 프로토타입"](/fastcampus/prototype)에서 자세히 살펴볼 것이다.
+모든 객체는 [`[[Prototype]]`](http://ecma-international.org/ecma-262/11.0/index.html#sec-ordinary-object-internal-methods-and-internal-slots)이라는 내부 슬롯을 갖는다. [[Prototype]] 내부 슬롯은 객체 지향 프로그래밍의 상속을 구현하는 프로토타입 객체를 가리킨다. 프로토타입 객체에 대해서는 "[19. 프로토타입"](/fastcampus/prototype)에서 자세히 살펴볼 것이다.
 
-[\_\_proto\_\_ 프로퍼티](http://ecma-international.org/ecma-262/10.0/index.html#sec-object.prototype.__proto__)는 [[Prototype]] 내부 슬롯이 가리키는 프로토타입 객체에 접근하기 위해 사용하는 접근자 프로퍼티다. 내부 슬롯에는 직접 접근할 수 없고 간접적인 접근 방법을 제공하는 경우에 한하여 접근할 수 있다. [[Prototype]] 내부 슬롯에도 직접 접근할 수 없으며 \_\_proto\_\_ 접근자 프로퍼티를 통해 간접적으로 프로토타입 객체에 접근할 수 있다.
+[\_\_proto\_\_ 프로퍼티](http://ecma-international.org/ecma-262/11.0/index.html#sec-object.prototype.__proto__)는 [[Prototype]] 내부 슬롯이 가리키는 프로토타입 객체에 접근하기 위해 사용하는 접근자 프로퍼티다. 내부 슬롯에는 직접 접근할 수 없고 간접적인 접근 방법을 제공하는 경우에 한하여 접근할 수 있다. [[Prototype]] 내부 슬롯에도 직접 접근할 수 없으며 \_\_proto\_\_ 접근자 프로퍼티를 통해 간접적으로 프로토타입 객체에 접근할 수 있다.
 
 ```javascript
 const obj = { a: 1 };
@@ -310,11 +310,11 @@ console.log(obj.hasOwnProperty('__proto__')); // false
 ```
 
 hasOwnProperty 메서드
-: hasOwnProperty 메서드는 이름에서 알 수 있듯이 전달받은 프로퍼티 키가 객체 고유의 프로퍼티 키인 경우에만 true를 반환하고 상속받은 프로토타입의 프로퍼티 키인 경우 false를 반환한다(["19.14. 프로퍼티 존재 확인"](/fastcampus/prototype#14-프로퍼티-존재-확인) 참고).
+: [hasOwnProperty 메서드](/fastcampus/prototype#132-objectprototypehasownproperty-메서드)는 이름에서 알 수 있듯이 인수로 전달받은 프로퍼티 키가 객체 고유의 프로퍼티 키인 경우에만 true를 반환하고 상속받은 프로토타입의 프로퍼티 키인 경우 false를 반환한다.
 
 ## 2.6.	prototype 프로퍼티
 
-prototype 프로퍼티는 생성자 함수로 호출할 수 있는 함수 객체(constructor)만이 소유하는 프로퍼티다. 일반 객체와 생성자 함수로 호출할 수 없는 non-constructor에는 prototype 프로퍼티가 없다.
+prototype 프로퍼티는 생성자 함수로 호출할 수 있는 함수 객체, 즉 constructor만이 소유하는 프로퍼티다. 일반 객체와 생성자 함수로 호출할 수 없는 non-constructor에는 prototype 프로퍼티가 없다.
 
 ```javascript
 // 함수 객체는 prototype 프로퍼티를 소유한다.

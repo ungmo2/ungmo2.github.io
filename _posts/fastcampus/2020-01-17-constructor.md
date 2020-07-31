@@ -33,7 +33,7 @@ console.log(person); // {name: "Lee", sayHello: ƒ}
 person.sayHello(); // Hi! My name is Lee
 ```
 
-생성자 함수(constructor)란 new 연산자와 함께 호출하여 객체(인스턴스)를 생성하는 함수를 말한다. 생성자 함수에 의해 생성된 객체를 인스턴스(instance)라 한다. (["10.2. 객체 리터럴에 의한 객체 생성"](/fastcampus/object-literal#2-객체-리터럴에-의한-객체-생성) 참고)
+생성자 함수(constructor)란 new 연산자와 함께 호출하여 객체(인스턴스)를 생성하는 함수를 말한다. 생성자 함수에 의해 생성된 객체를 인스턴스(instance)라 한다.
 
 자바스크립트는 Object 생성자 함수 이외에도 [String](/fastcampus/string), [Number](/fastcampus/number), Boolean, [Function](/fastcampus/function#44-function-생성자-함수), [Array](/fastcampus/array), [Date](/fastcampus/date), [RegExp](/fastcampus/regexp), [Promise](/fastcampus/promise) 등의 빌트인(built-in, 내장) 생성자 함수를 제공한다.
 
@@ -104,7 +104,7 @@ console.log(circle2.getDiameter()); // 20
 
 객체는 프로퍼티를 통해 객체 고유의 상태(state)를 표현한다. 그리고 메서드를 통해 상태 데이터인 프로퍼티를 참조하고 조작하는 동작(behavior)을 표현한다. 따라서 프로퍼티는 객체마다 프로퍼티 값이 다를 수 있지만 메서드는 내용이 동일한 경우가 일반적이다.
 
-원을 표현한 객체인 circle1 객체와 circle2 객체는 프로퍼티 구조가 동일하다. 단, 객체 고유의 상태 데이터인 radius 프로퍼티의 값은 객체마다 다를 수 있지만 getDiameter 메서드는 완전히 동일하다.
+원을 표현한 객체인 circle1 객체와 circle2 객체는 프로퍼티 구조가 동일하다. 객체 고유의 상태 데이터인 radius 프로퍼티의 값은 객체마다 다를 수 있지만 getDiameter 메서드는 완전히 동일하다.
 
 하지만 객체 리터럴에 의해 객체를 생성하는 경우 프로퍼티 구조가 동일함에도 불구하고 매번 같은 프로퍼티와 메서드를 기술해야 한다. 앞의 예제처럼 객체가 한두 개라면 넘어갈 수도 있겠지만 만약 수십 개의 객체를 생성해야 한다면 문제가 크다.
 
@@ -158,9 +158,7 @@ const inst = new foo(); // inst
 
 this에 대해서는 ["22. this"](/fastcampus/this)에서 자세히 살펴보기로 하고 지금은 이 정도로만 정리하도록 하자.
 
-생성자 함수는 이름 그대로 객체(인스턴스)를 생성하는 함수이다. 하지만 자바와 같은 클래스 기반 객체지향 언어의 생성자(constructor)와는 다르게 그 형식이 정해져 있는 것이 아니라 일반 함수와 동일한 방법으로 생성자 함수를 정의하고 **new 연산자와 함께 호출하면 해당 함수는 생성자 함수로 동작한다.**
-
-만약 new 연산자와 함께 생성자 함수를 호출하지 않으면 생성자 함수가 아니라 일반 함수로 동작한다.
+생성자 함수는 이름 그대로 객체(인스턴스)를 생성하는 함수이다. 하지만 자바와 같은 클래스 기반 객체지향 언어의 생성자(constructor)와는 다르게 그 형식이 정해져 있는 것이 아니라 일반 함수와 동일한 방법으로 생성자 함수를 정의하고 **new 연산자와 함께 호출하면 해당 함수는 생성자 함수로 동작한다.** 만약 new 연산자와 함께 생성자 함수를 호출하지 않으면 생성자 함수가 아니라 일반 함수로 동작한다.
 
 ```javascript
 // new 연산자와 함께 호출하지 않으면 생성자 함수로 동작하지 않는다.
@@ -320,7 +318,7 @@ foo.method = function () {
 foo.method(); // 10
 ```
 
-함수는 객체이지만 일반 객체와는 다르다. **일반 객체는 호출할 수 없지만 함수는 호출할 수 있다.** 따라서 함수 객체는 [일반 객체가 가지고 있는 내부 슬롯과 내부 메서드](http://ecma-international.org/ecma-262/10.0/index.html#sec-ordinary-object-internal-methods-and-internal-slots)는 물론, 함수로서 동작하기 위해 함수 객체만을 위한 [[[Environment]], [[FormalParameters]] 등의 내부 슬롯과 [[Call]], [[Construct]]와 같은 내부 메서드](http://ecma-international.org/ecma-262/10.0/index.html#sec-ecmascript-function-objects)를 추가로 가지고 있다.
+함수는 객체이지만 일반 객체와는 다르다. **일반 객체는 호출할 수 없지만 함수는 호출할 수 있다.** 따라서 함수 객체는 [일반 객체가 가지고 있는 내부 슬롯과 내부 메서드](http://ecma-international.org/ecma-262/11.0/#sec-ordinary-object-internal-methods-and-internal-slots)는 물론, 함수로서 동작하기 위해 함수 객체만을 위한 [[[Environment]], [[FormalParameters]] 등의 내부 슬롯과 [[Call]], [[Construct]]와 같은 내부 메서드](http://ecma-international.org/ecma-262/11.0/#sec-ecmascript-function-objects)를 추가로 가지고 있다.
 
 함수가 일반 함수로서 호출되면 함수 객체의 내부 메서드 [[Call]]이 호출되고 new 연산자와 함께 생성자 함수로서 호출되면 내부 메서드 [[Construct]]가 호출된다.
 
@@ -344,11 +342,9 @@ new foo();
 모든 함수 객체는 callable이지만 모든 함수 객체가 constructor인 것은 아니다.
 {: .desc-img}
 
-자바스크립트 엔진이 어떻게 constructor와 non-constructor를 구분하는지 살펴보자.
-
 ## 2.5. constructor와 non-constructor의 구분
 
-자바스크립트 엔진이 함수 정의를 평가하여 함수 객체를 생성할 때, 함수 정의 방식에 따라 함수를 constructor와 non-constructor로 구분한다.
+자바스크립트 엔진이 어떻게 constructor와 non-constructor를 구분하는지 살펴보자. 자바스크립트 엔진은 함수 정의를 평가하여 함수 객체를 생성할 때, 함수 정의 방식에 따라 함수를 constructor와 non-constructor로 구분한다.
 
 -	constructor: 함수 선언문, 함수 표현식, 클래스(클래스도 함수다)
 -	non-constructor: 메서드(ES6 메서드 축약 표현), 화살표 함수
@@ -485,8 +481,8 @@ const circle = Circle(5);
 console.log(circle.getDiameter());
 ```
 
-스코프 세이프 생성자 패턴
-: new.target은 ES6에서 도입된 최신 문법으로 IE에서는 지원하지 않는다. new.target을 사용할 수 없는 상황이라면 스코프 세이프 생성자(scope-safe constructor) 패턴을 사용할 수 있다.
+스코프 세이프 생성자 패턴(scope-safe constructor)
+: new.target은 ES6에서 도입된 최신 문법으로 IE에서는 지원하지 않는다. new.target을 사용할 수 없는 상황이라면 스코프 세이프 생성자 패턴을 사용할 수 있다.
 
 ```javascript
 // Scope-Safe Constructor Pattern

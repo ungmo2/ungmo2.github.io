@@ -424,7 +424,7 @@ const add = function (a, b) { return a + b; };
 const arr = [1, 2, 3];
 
 // 정규표현식 리터럴
-const regexr = /is/ig;
+const regexp = /is/ig;
 ```
 
 리터럴 표기법에 의해 생성된 객체도 물론 프로토타입이 존재한다. 하지만 리터럴 표기법에 의해 생성된 객체의 경우 프로토타입의 constructor 프로퍼티가 가리키는 생성자 함수가 반드시 객체를 생성한 생성자 함수라고 단정할 수는 없다.

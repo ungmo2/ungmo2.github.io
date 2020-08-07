@@ -26,7 +26,7 @@ description:
 
 # 2. 표준 빌트인 객체
 
-자바스크립트는 Object, String, Number, Boolean, Symbol, Date, Math, RegExp, Array, Map/Set, WeakMap/WeakSet, Function, Promise, Reflect, Proxy, JSON, Error 등 40여개의 [표준 빌트인 객체](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects)를 제공한다.
+자바스크립트는 Object, String, Number, Boolean, Symbol, Date, Math, RegExp, Array, Map/Set, WeakMap/WeakSet, Function, Promise, Reflect, Proxy, JSON, Error 등 40여 개의 [표준 빌트인 객체](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects)를 제공한다.
 
 Math, Reflect, JSON을 제외한 표준 빌트인 객체는 모두 인스턴스를 생성할 수 있는 생성자 함수 객체다. 생성자 함수 객체인 표준 빌트인 객체는 프로토타입 메서드와 정적 메소드를 제공하고 생성자 함수 객체가 아닌 표준 빌트인 객체는 정적 메소드만 제공한다.
 
@@ -89,11 +89,11 @@ console.log(numObj.toFixed()); // 2
 console.log(Number.isInteger(0.5)); // false
 ```
 
-# 3. 원시 값과 래퍼 객체
+# 3. 원시값과 래퍼 객체
 
-문자열이나 숫자, 불리언 등의 원시 값이 있는데도 문자열, 숫자, 불리언 객체를 생성하는 String, Number, Boolean 등의 표준 빌트인 생성자 함수가 존재하는 이유는 무엇일까?
+문자열이나 숫자, 불리언 등의 원시값이 있는데도 문자열, 숫자, 불리언 객체를 생성하는 String, Number, Boolean 등의 표준 빌트인 생성자 함수가 존재하는 이유는 무엇일까?
 
-다음 예제를 살펴보자. 원시 값은 객체가 아니므로 프로퍼티나 메서드를 가질 수 없는데도 원시 값인 문자열이 마치 객체처럼 동작한다.
+다음 예제를 살펴보자. 원시값은 객체가 아니므로 프로퍼티나 메서드를 가질 수 없는데도 원시값인 문자열이 마치 객체처럼 동작한다.
 
 ```javascript
 const str = 'hello';
@@ -103,7 +103,7 @@ console.log(str.length); // 5
 console.log(str.toUpperCase()); // HELLO
 ```
 
-이는 원시 값인 문자열, 숫자, 불리언 값의 경우 이들 원시 값에 대해 마치 객체처럼 마침표 표기법(또는 대괄호 표기법)으로 접근하면 자바스크립트 엔진이 일시적으로 원시 값을 연관된 객체로 변환해 주기 때문이다. 즉, 원시 값을 객체처럼 사용하면 자바스크립트 엔진은 암묵적으로 연관된 객체를 생성하여 생성된 객체로 프로퍼티에 접근하거나 메서드를 호출하고 다시 원시 값으로 되돌린다.
+이는 원시값인 문자열, 숫자, 불리언 값의 경우 이들 원시값에 대해 마치 객체처럼 마침표 표기법(또는 대괄호 표기법)으로 접근하면 자바스크립트 엔진이 일시적으로 원시값을 연관된 객체로 변환해 주기 때문이다. 즉, 원시값을 객체처럼 사용하면 자바스크립트 엔진은 암묵적으로 연관된 객체를 생성하여 생성된 객체로 프로퍼티에 접근하거나 메서드를 호출하고 다시 원시값으로 되돌린다.
 
 이처럼 **문자열, 숫자, 불리언 값에 대해 객체처럼 접근하면 생성되는 임시 객체를 래퍼 객체(wrapper object)**라 한다.
 
@@ -128,7 +128,7 @@ console.log(typeof str); // string
 문자열 래퍼 객체의 프로토타입 체인
 {: .desc-img}
 
-그 후, 래퍼 객체의 처리가 종료되면 래퍼 객체의 [[StringData]] 내부 슬롯에 할당된 원시값으로 원래의 상태, 즉 식별자가 원시값을 갖도록 되돌리고 래퍼 객체는 가비지 컬렉션의 대상이 된다. 다음 예제를 살펴보자.
+그 후 래퍼 객체의 처리가 종료되면 래퍼 객체의 [[StringData]] 내부 슬롯에 할당된 원시값으로 원래의 상태, 즉 식별자가 원시값을 갖도록 되돌리고 래퍼 객체는 가비지 컬렉션의 대상이 된다. 다음 예제를 살펴보자.
 
 ```javascript
 // ① 식별자 str은 문자열을 값으로 가지고 있다.
@@ -151,7 +151,7 @@ console.log(str.name); // undefined
 console.log(typeof str, str);
 ```
 
-숫자값도 마찬가지다. 숫자값에 대해 마침표 표기법으로 접근하면 그 순간 래퍼 객체인 Number 생성자 함수의 인스턴스가 생성되고 숫자는 래퍼 객체의 [[NumberData]] 내부 슬롯에 할당된다. 이때 래퍼 객체인 Number 객체는 당연히 Number.prototype의 메서드를 상속받아 사용할 수 있다. 그 후, 래퍼 객체의 처리가 종료되면 래퍼 객체의 [[NumberData]] 내부 슬롯에 할당된 원시값을 되돌리고 래퍼 객체는 가비지 컬렉션의 대상이 된다.
+숫자값도 마찬가지다. 숫자값에 대해 마침표 표기법으로 접근하면 그 순간 래퍼 객체인 Number 생성자 함수의 인스턴스가 생성되고 숫자는 래퍼 객체의 [[NumberData]] 내부 슬롯에 할당된다. 이때 래퍼 객체인 Number 객체는 당연히 Number.prototype의 메서드를 상속받아 사용할 수 있다. 그 후 래퍼 객체의 처리가 종료되면 래퍼 객체의 [[NumberData]] 내부 슬롯에 할당된 원시값을 되돌리고 래퍼 객체는 가비지 컬렉션의 대상이 된다.
 
 ```javascript
 const num = 1.5;
@@ -165,7 +165,7 @@ console.log(typeof num, num); // number 1.5
 
 불리언 값도 문자열이나 숫자와 마찬가지이지만 불리언 값으로 메서드를 호출하는 경우는 없으므로 그다지 유용하지는 않다.
 
-ES6에서 새롭게 도입된 원시 값인 심벌도 래퍼 객체를 생성한다. 심벌은 일반적인 원시 값과는 달리 리터럴 표기법으로 생성할 수 없고 Symbol 함수를 통해 생성해야 하므로 다른 원시 값과는 차이가 있다. 심벌에 대해서는 ["33. 7번째 데이터 타입 Symbol"](/fastcampus/symbol)에서 자세히 살펴보도록 하자.
+ES6에서 새롭게 도입된 원시값인 심벌도 래퍼 객체를 생성한다. 심벌은 일반적인 원시값과는 달리 리터럴 표기법으로 생성할 수 없고 Symbol 함수를 통해 생성해야 하므로 다른 원시값과는 차이가 있다. 심벌에 대해서는 ["33. 7번째 데이터 타입 Symbol"](/fastcampus/symbol)에서 자세히 살펴보도록 하자.
 
 이처럼 문자열, 숫자, 불리언, 심벌은 암묵적으로 생성되는 래퍼 객체에 의해 마치 객체처럼 사용할 수 있으며, 표준 빌트인 객체인 String, Number, Boolean, Symbol의 프로토타입 메서드 또는 프로퍼티를 참조할 수 있다. 따라서 String, Number, Boolean 생성자 함수를 new 연산자와 함께 호출하여 문자열, 숫자, 불리언 인스턴스를 생성할 필요가 없으며 권장하지도 않는다. Symbol은 생성자 함수가 아니므로 이 논의에서는 제외하도록 한다.
 
@@ -205,7 +205,7 @@ globalThis === global // true
 ```javascript
 // 문자열 'F'를 16진수로 해석하여 10진수로 변환하여 반환한다.
 window.parseInt('F', 16); // -> 15
-// window.parseInt는 parseInt으로 호출할 수 있다.
+// window.parseInt는 parseInt로 호출할 수 있다.
 parseInt('F', 16); // -> 15
 
 window.parseInt === parseInt; // -> true
@@ -344,7 +344,6 @@ function foo() {
 }
 
 foo();
-
 console.log(x); // 1
 ```
 
@@ -375,7 +374,7 @@ const x = 1;
 
 function foo() {
   eval('var x = 2; console.log(x);'); // 2
-  // let, const 키워드를 사용한 변수 선언문은 엄격 모드가 적용된다.
+  // let, const 키워드를 사용한 변수 선언문은 strict mode가 적용된다.
   eval('const x = 3; console.log(x);'); // 3
   console.log(x); // 2
 }
@@ -481,14 +480,14 @@ parseFloat('3.14');  // -> 3.14
 parseFloat('10.00'); // -> 10
 
 // 공백으로 구분된 문자열은 첫 번째 문자열만 변환한다.
-parseFloat('34 45 66'); // 34
-parseFloat('40 years'); // 40
+parseFloat('34 45 66'); // -> 34
+parseFloat('40 years'); // -> 40
 
 // 첫 번째 문자열을 숫자로 변환할 수 없다면 NaN을 반환한다.
-parseFloat('He was 40'); // NaN
+parseFloat('He was 40'); // -> NaN
 
 // 앞뒤 공백은 무시된다.
-parseFloat(' 60 '); // 60
+parseFloat(' 60 '); // -> 60
 ```
 
 ### 4.2.5. parseInt
@@ -610,12 +609,12 @@ parseInt('FG', 16); // -> 15
 
 ```javascript
 // 공백으로 구분된 문자열은 첫 번째 문자열만 변환한다.
-parseInt('34 45 66'); // 34
-parseInt('40 years'); // 40
+parseInt('34 45 66'); // -> 34
+parseInt('40 years'); // -> 40
 // 첫 번째 문자열을 숫자로 변환할 수 없다면 NaN을 반환한다.
-parseInt('He was 40'); // NaN
+parseInt('He was 40'); // -> NaN
 // 앞뒤 공백은 무시된다.
-parseInt(' 60 '); // 60
+parseInt(' 60 '); // -> 60
 ```
 
 ### 4.2.6. encodeURI / decodeURI
@@ -636,7 +635,7 @@ URI
 encodeURI(uri)
 ```
 
-인코딩이란 URI의 문자들을 이스케이프 처리하는 것을 의미한다. 이스케이프 처리는 네트워크를 통해 정보를 공유할 때 어떤 시스템에서도 읽을 수 있는 [아스키 문자 셋(ASCII Character-set)](https://en.wikipedia.org/wiki/ASCII)으로 변환하는 것이다. UTF-8 특수 문자의 경우 1문자당 1~3byte, UTF-8 한글 표현의 경우, 1문자당 3btye다. 예를 들어, 특수 문자인 공백(space) 문자는 %20, 한글 '가'는 %EC%9E%90으로 인코딩된다.
+인코딩이란 URI의 문자들을 이스케이프 처리하는 것을 의미한다. 이스케이프 처리는 네트워크를 통해 정보를 공유할 때 어떤 시스템에서도 읽을 수 있는 [아스키 문자 셋(ASCII Character-set)](https://en.wikipedia.org/wiki/ASCII)으로 변환하는 것이다. UTF-8 특수 문자의 경우 1문자당 1~3바이트, UTF-8 한글 표현의 경우 1문자당 3바이트다. 예를 들어, 특수 문자인 공백(space) 문자는 %20, 한글 '가'는 %EC%9E%90으로 인코딩된다.
 
 URI 문법 형식 표준 [RFC3986](http://www.ietf.org/rfc/rfc3986.txt)에 따르면 URL은 아스키 문자 셋으로만 구성되어야 하며 한글을 포함한 대부분의 외국어나 아스키 문자 셋에 정의되지 않은 특수 문자의 경우 URL에 포함될 수 없다. 따라서 URL 내에서 의미를 갖고 있는 문자(%, ?, #)나 URL에 올 수 없는 문자(한글, 공백 등) 또는 시스템에 의해 해석될 수 있는 문자(<, >)를 이스케이프 처리하여 야기될 수 있는 문제를 예방하기 위해 이스케이프 처리가 필요하다. 단, 알파벳, 0~9의 숫자, - _ . ! ~ * ' ( ) 문자는 이스케이프 처리에서 제외된다.
 
@@ -650,11 +649,11 @@ console.log(enc);
 // http://example.com?name=%EC%9D%B4%EC%9B%85%EB%AA%A8&job=programmer&teacher
 ```
 
-decodeURI 함수는 매개변수로 전달된 인코딩된 URI를 전달받아 이스케이프 처리되기 이전으로 디코딩한다.
+decodeURI 함수는 인코딩된 URI를 인수로 전달받아 이스케이프 처리 이전으로 디코딩한다.
 
 ```javascript
 /**
- * 인코딩된 URI을 전달받아 이스케이프 처리 이전으로 디코딩한다.
+ * 인코딩된 URI를 전달받아 이스케이프 처리 이전으로 디코딩한다.
  * @param {string} encodedURI - 인코딩된 URI
  * @returns {string} 디코딩된 URI
  */
@@ -696,16 +695,16 @@ encodeURIComponent(uriComponent)
 decodeURIComponent(encodedURIComponent)
 ```
 
-encodeURIComponent 함수는 인수로 전달된 문자열을 URI의 구성요소인 쿼리 파라미터의 일부로 간주한다. 따라서 쿼리 파라미터 구분자로 사용되는 =, ?, &까지 인코딩한다.
+encodeURIComponent 함수는 인수로 전달된 문자열을 URI의 구성요소인 쿼리 스트링의 일부로 간주한다. 따라서 쿼리 스트링 구분자로 사용되는 =, ?, &까지 인코딩한다.
 
-반면 encodeURI 함수는 매개변수로 전달된 문자열을 완전한 URI 전체라고 간주한다. 따라서 쿼리 파라미터 구분자로 사용되는 =, ?, &은 인코딩하지 않는다.
+반면 encodeURI 함수는 매개변수로 전달된 문자열을 완전한 URI 전체라고 간주한다. 따라서 쿼리 스트링 구분자로 사용되는 =, ?, &은 인코딩하지 않는다.
 
 ```javascript
-// URI의 쿼리 파라미터
+// URI의 쿼리 스트링
 const uriComp = 'name=이웅모&job=programmer&teacher';
 
-// encodeURIComponent 함수는 인수로 전달받은 문자열을 URI의 구성요소인 쿼리 파라미터의 일부로 간주한다.
-// 따라서 쿼리 파라미터 구분자로 사용되는 =, ?, &까지 인코딩한다.
+// encodeURIComponent 함수는 인수로 전달받은 문자열을 URI의 구성요소인 쿼리 스트링의 일부로 간주한다.
+// 따라서 쿼리 스트링 구분자로 사용되는 =, ?, &까지 인코딩한다.
 let enc = encodeURIComponent(uriComp);
 console.log(enc);
 // name%3D%EC%9D%B4%EC%9B%85%EB%AA%A8%26job%3Dprogrammer%26teacher
@@ -715,7 +714,7 @@ console.log(dec);
 // 이웅모&job=programmer&teacher
 
 // encodeURI 함수는 인수로 전달받은 문자열을 완전한 URI로 간주한다.
-// 따라서 쿼리 파라미터 구분자로 사용되는 =, ?, &를 인코딩하지 않는다.
+// 따라서 쿼리 스트링 구분자로 사용되는 =, ?, &를 인코딩하지 않는다.
 enc = encodeURI(uriComp);
 console.log(enc);
 // name=%EC%9D%B4%EC%9B%85%EB%AA%A8&job=programmer&teacher

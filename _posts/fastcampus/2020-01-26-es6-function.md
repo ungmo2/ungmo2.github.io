@@ -13,7 +13,7 @@ description:
 
 # 1. 함수의 구분
 
-ES6 이전까지 자바스크립트의 함수는 별다른 구분없이 다양한 목적으로 사용되었다. 자바스크립트의 함수는 일반적인 함수로서 호출할 수도 있고, new 연산자와 함께 호출하여 인스턴스를 생성할 수 있는 생성자 함수로서 호출할 수도 있으며, 객체에 바인딩되어 메서드로서 호출할 수도 있다. 이는 언뜻 보면 편리한 것 같지만 실수를 유발시킬 수 있으며 성능 면에서도 손해다.
+ES6 이전까지 자바스크립트의 함수는 별다른 구분 없이 다양한 목적으로 사용되었다. 자바스크립트의 함수는 일반적인 함수로서 호출할 수도 있고, new 연산자와 함께 호출하여 인스턴스를 생성할 수 있는 생성자 함수로서 호출할 수도 있으며, 객체에 바인딩되어 메서드로서 호출할 수도 있다. 이는 언뜻 보면 편리한 것 같지만 실수를 유발시킬 수 있으며 성능 면에서도 손해다.
 
 다음 예제를 살펴보자. ES6 이전의 함수는 동일한 함수라도 다양한 형태로 호출할 수 있다.
 
@@ -33,12 +33,12 @@ var obj = { foo: foo };
 obj.foo(); // -> 1
 ```
 
-이처럼 ES6 이전의 함수는 사용 목적에 따라 명확히 구분되지 않는다. 즉, **ES6 이전의 모든 함수는 일반 함수로서 호출할 수 있는 것은 물론 생성자 함수로서 호출할 수 있다.** 다시 말해, ES6 이전의 모든 함수는 callable이며 constructor다.
+이처럼 ES6 이전의 함수는 사용 목적에 따라 명확히 구분되지 않는다. 즉, **ES6 이전의 모든 함수는 일반 함수로서 호출할 수 있는 것은 물론 생성자 함수로서 호출할 수 있다.** 다시 말해, ES6 이전의 모든 함수는 callable이면서 constructor다.
 
 ```javascript
 var foo = function () {};
 
-// ES6 이전의 모든 함수는 callable이며 constructor다.
+// ES6 이전의 모든 함수는 callable이면서 constructor다.
 foo(); // -> undefined
 new foo(); // -> foo {}
 ```
@@ -151,8 +151,8 @@ const base = {
 const derived = {
   __proto__: base,
   // sayHi는 ES6 메서드다. ES6 메서드는 [[HomeObject]]를 갖는다.
-  // sayHi의 [[HomeObject]]는 derived.prototype를 가리키고
-  // super는 sayHi의 [[HomeObject]]의 프로토타입인 base.prototype를 가리킨다.
+  // sayHi의 [[HomeObject]]는 derived.prototype을 가리키고
+  // super는 sayHi의 [[HomeObject]]의 프로토타입인 base.prototype을 가리킨다.
   sayHi() {
     return `${super.sayHi()}. how are you doing?`;
   }
@@ -292,7 +292,7 @@ console.log(person.sayHi()); // Hi? My name is Lee.
 [1, 2, 3].map(v => v * 2); // -> [ 2, 4, 6 ]
 ```
 
-이처럼 화살표 함수는 콜백 함수로서 정의할 때 유용하다. 화살표 함수는 표현만 간략한 것만이 아니다. 화살표 함수는 일반 함수의 기능을 간략화 했으며 this도 편리하게 설계되었다. 일반 함수와 화살표 함수의 차이에 대해 살펴보자.
+이처럼 화살표 함수는 콜백 함수로서 정의할 때 유용하다. 화살표 함수는 표현만 간략한 것만이 아니다. 화살표 함수는 일반 함수의 기능을 간략화했으며 this도 편리하게 설계되었다. 일반 함수와 화살표 함수의 차이에 대해 살펴보자.
 
 ## 3.2.	화살표 함수와 일반 함수의 차이
 
@@ -375,12 +375,12 @@ const prefixer = new Prefixer('-webkit-');
 console.log(prefixer.add(['transition', 'user-select']));
 ```
 
-위 예제를 실행했을 때 기대하는 결과는 `['-webkit-transition', '-webkit-user-select']`이다. 하지만 TypeError가 발생한다. 그 이유에 대해 살펴보자.
+위 예제를 실행했을 때 기대하는 결과는 `['-webkit-transition', '-webkit-user-select']`다. 하지만 TypeError가 발생한다. 그 이유에 대해 살펴보자.
 
 프로토타입 메서드 내부인 ①에서 this는 메서드를 호출한 객체(위 예제의 경우 prefixer 객체)를 가리킨다. 그런데 Array.prototype.map의 인수로 전달한 콜백 함수의 내부인 ②에서 this는 undefined를 가리킨다. 이는 Array.prototype.map 메서드가 콜백 함수를 일반 함수로서 호출하기 때문이다.
 
 Array.prototype.map 메서드
-: 아직 살펴보지 않았지만 Array.prototype.map 메서드는 배열을 순회하며 배열의 각 요소에 대하여 인수로 전달된 콜백 함수를 호출한다. 그리고 콜백 함수의 반환값들로 구성된 새로운 배열을 반환한다. 위 예제에서 map 메서드는 매개변수 arr에게 전달된 ['transition', 'user-select']을 순회하며 콜백 함수의 item 매개변수에게 arr의 요소 값을 전달하면서 콜백 함수를 arr의 요소 개수만큼 호출한다. 그리고 콜백 함수의 반환값들로 구성된 새로운 배열을 반환한다 이에 대해서는  ["27.9.3. Array.prototype.map"](/fastcampus/array#93-arrayprototypemap)에서 자세히 살펴볼 것이다. 지금은 일반 함수로서 호출되는 "콜백 함수 내부의 this 문제"에 주목하자.
+: 아직 살펴보지 않았지만 Array.prototype.map 메서드는 배열을 순회하며 배열의 각 요소에 대하여 인수로 전달된 콜백 함수를 호출한다. 그리고 콜백 함수의 반환값들로 구성된 새로운 배열을 반환한다. 위 예제에서 map 메서드는 매개변수 arr에 전달된 ['transition', 'user-select']를 순회하며 콜백 함수의 item 매개변수에게 arr의 요소값을 전달하면서 콜백 함수를 arr의 요소 개수만큼 호출한다. 그리고 콜백 함수의 반환값들로 구성된 새로운 배열을 반환한다 이에 대해서는  ["27.9.3. Array.prototype.map"](/fastcampus/array#93-arrayprototypemap)에서 자세히 살펴볼 것이다. 지금은 일반 함수로서 호출되는 "콜백 함수 내부의 this 문제"에 주목하자.
 
 ["22. this"](/fastcampus/this)에서 살펴보았듯이 일반 함수로서 호출되는 모든 함수 내부의 this는 전역 객체를 가리킨다. 그런데 클래스 내부의 모든 코드에는 strict mode가 암묵적으로 적용된다. 따라서 Array.prototype.map 메서드의 콜백 함수에도 strict mode가 적용된다. strict mode에서 일반 함수로서 호출된 모든 함수 내부의 this에는 전역 객체가 아니라 undefined가 바인딩되므로 일반 함수로서 호출되는 Array.prototype.map 메서드의 콜백 함수 내부의 this에는 undefined가 바인딩된다(["20.6.1. 일반 함수의 this"](/fastcampus/strict-mode#61-일반-함수의-this) 참고).
 
@@ -681,7 +681,7 @@ const foo = () => console.log(arguments);
 foo(1, 2); // ReferenceError: arguments is not defined
 ```
 
-["18.2.1. arguments 프로퍼티"](/fastcampus/first-class-object#21-arguments-프로퍼티)에서 살펴본 바와 같이 arguments 객체는 함수를 정의할 때 매개변수의 개수를 확정할 수 없는 가변 인자 함수를 구현할 때 유용하다. 하지만 화살표 함수에서는 arguments 객체를 사용할 수 없다. 상위 스코프의 arguments 객체를 참조할 수는 있지만 화살표 함수 자신에게 전달된 인수 목록을 확인할 수 없고 상위 함수에게 전달된 인수 목록을 참조하므로 그다지 도움이 되지 않는다.
+["18.2.1. arguments 프로퍼티"](/fastcampus/first-class-object#21-arguments-프로퍼티)에서 살펴보았듯이 arguments 객체는 함수를 정의할 때 매개변수의 개수를 확정할 수 없는 가변 인자 함수를 구현할 때 유용하다. 하지만 화살표 함수에서는 arguments 객체를 사용할 수 없다. 상위 스코프의 arguments 객체를 참조할 수는 있지만 화살표 함수 자신에게 전달된 인수 목록을 확인할 수 없고 상위 함수에게 전달된 인수 목록을 참조하므로 그다지 도움이 되지 않는다.
 
 따라서 화살표 함수로 가변 인자 함수를 구현해야 할 때는 반드시 Rest 파라미터를 사용해야 한다.
 

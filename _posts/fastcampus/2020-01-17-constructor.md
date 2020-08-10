@@ -273,7 +273,7 @@ const circle = new Circle(1);
 console.log(circle); // {}
 ```
 
-하지만 명시적으로 원시 값을 반환하면 원시 값 반환은 무시되고 암묵적으로 this가 반환된다.
+하지만 명시적으로 원시값을 반환하면 원시값 반환은 무시되고 암묵적으로 this가 반환된다.
 
 ```javascript
 function Circle(radius) {
@@ -286,7 +286,7 @@ function Circle(radius) {
   };
 
   // 3. 암묵적으로 this를 반환한다.
-  // 명시적으로 원시 값을 반환하면 원시 값 반환은 무시되고 암묵적으로 this가 반환된다.
+  // 명시적으로 원시값을 반환하면 원시값 반환은 무시되고 암묵적으로 this가 반환된다.
   return 100;
 }
 

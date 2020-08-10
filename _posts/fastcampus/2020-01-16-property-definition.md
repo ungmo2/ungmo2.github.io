@@ -212,7 +212,7 @@ Object.getOwnPropertyDescriptor(Object.prototype, '__proto__');
 
 // 함수 객체의 prototype은 데이터 프로퍼티다.
 Object.getOwnPropertyDescriptor(function() {}, 'prototype');
-// {value: {…}, writable: true, enumerable: false, configurable: false}
+// {value: {...}, writable: true, enumerable: false, configurable: false}
 ```
 
 Object.getOwnPropertyDescriptor 메서드가 반환한 프로퍼티 어트리뷰트를 객체로 표현한 프로퍼티 디스크립터 객체를 유심히 살펴보자. 접근자 프로퍼티와 데이터 프로퍼티의 프로퍼티 디스크립터 객체의 프로퍼티가 다른 것을 알 수 있다.
@@ -248,7 +248,7 @@ console.log('lastName', descriptor);
 // lastName {value: "Lee", writable: false, enumerable: false, configurable: false}
 
 // [[Enumerable]]의 값이 false인 경우
-// 해당 프로퍼티는 for…in 문이나 Object.keys 등으로 열거할 수 없다.
+// 해당 프로퍼티는 for...in 문이나 Object.keys 등으로 열거할 수 없다.
 // lastName 프로퍼티는 [[Enumerable]]의 값이 false이므로 열거되지 않는다.
 console.log(Object.keys(person)); // ["firstName"]
 

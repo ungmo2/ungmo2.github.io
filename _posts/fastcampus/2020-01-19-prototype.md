@@ -1561,7 +1561,7 @@ for (const key in person) {
 // address: Seoul
 ```
 
-위 예제의 결과는 person 객체의 프로퍼티가 정의된 순서대로 열거되었다. 하지만 for…in 문은 프로퍼티를 열거할 때 순서를 보장하지 않으므로 주의하기 바란다. 하지만 대부분의 모던 브라우저는 순서를 보장하고 숫자(사실은 문자열)인 프로퍼티 키에 대해서는 정렬을 실시한다.
+위 예제의 결과는 person 객체의 프로퍼티가 정의된 순서대로 열거되었다. 하지만 for...in 문은 프로퍼티를 열거할 때 순서를 보장하지 않으므로 주의하기 바란다. 하지만 대부분의 모던 브라우저는 순서를 보장하고 숫자(사실은 문자열)인 프로퍼티 키에 대해서는 정렬을 실시한다.
 
 ```javascript
 const obj = {
@@ -1586,7 +1586,7 @@ a: a
 */
 ```
 
-배열에는 for…in 문을 사용하지 말고 일반적인 for 문이나 for...of 문 또는 Array.prototype.forEach 메서드를 사용하기를 권장한다. 사실 배열도 객체이므로 프로퍼티와 상속받은 프로퍼티가 포함될 수 있다.
+배열에는 for...in 문을 사용하지 말고 일반적인 for 문이나 for...of 문 또는 Array.prototype.forEach 메서드를 사용하기를 권장한다. 사실 배열도 객체이므로 프로퍼티와 상속받은 프로퍼티가 포함될 수 있다.
 
 ```javascript
 const arr = [1, 2, 3];
@@ -1615,9 +1615,9 @@ forEach 메서드에 대해서는 ["27.9.2. Array.prototype.forEach"](/fastcampu
 
 ## 14.2. Object.keys/values/entries 메서드
 
-지금까지 살펴보았듯이 for…in 문은 객체 자신의 고유 프로퍼티 뿐만 아니라 상속받은 프로퍼티도 열거한다. 따라서 Object.prototype.hasOwnProperty 메서드를 사용하여 객체 자신의 프로퍼티인지 확인하는 추가 처리가 필요하다.
+지금까지 살펴보았듯이 for...in 문은 객체 자신의 고유 프로퍼티 뿐만 아니라 상속받은 프로퍼티도 열거한다. 따라서 Object.prototype.hasOwnProperty 메서드를 사용하여 객체 자신의 프로퍼티인지 확인하는 추가 처리가 필요하다.
 
-객체 자신의 고유 프로퍼티만을 열거하기 위해서는 for…in 문을 사용하는 것 보다 Object.keys/values/entries 메서드를 사용하는 것을 권장한다.
+객체 자신의 고유 프로퍼티만을 열거하기 위해서는 for...in 문을 사용하는 것 보다 Object.keys/values/entries 메서드를 사용하는 것을 권장한다.
 
 Object.keys 메서드는 객체 자신의 열거 가능한(enumerable) 프로퍼티 키를 배열로 반환한다.
 

@@ -31,9 +31,9 @@ description:
 브라우저의 렌더링 과정
 {: .desc-img}
 
-브라우저는 다음과 같는 과정을 거쳐 렌더링을 수행한다.
+브라우저는 다음과 같은 과정을 거쳐 렌더링을 수행한다.
 
-1. 브라우저는 HTML, CSS, 자바스크립트, 이미지, 폰트 파일 등의 렌더링에 필요한 리소스를 요청하고 서버로부터 응답을 받는다.
+1. 브라우저는 HTML, CSS, 자바스크립트, 이미지, 폰트 파일 등 렌더링에 필요한 리소스를 요청하고 서버로부터 응답을 받는다.
 
 2. 브라우저의 렌더링 엔진은 서버로부터 응답된 HTML과 CSS를 파싱하여 DOM과 CSSOM을 생성하고 이들을 결합하여 렌더 트리를 생성한다.
 
@@ -45,7 +45,7 @@ description:
 
 브라우저의 핵심 기능은 필요한 리소스(HTML, CSS, 자바스크립트, 이미지, 폰트 등의 정적 파일 또는 서버가 동적으로 생성한 데이터)를 서버에 요청(request)하고 서버로부터 응답(response) 받아 브라우저에 시각적으로 렌더링하는 것이다. 즉, 렌더링에 필요한 리소스는 모두 서버에 존재하므로 필요한 리소스를 서버에 요청하고 서버가 응답한 리소스를 파싱하여 렌더링하는 것이다.
 
-서버에 요청을 하기 위해 브라우저는 주소창을 제공한다. 브라우저의 주소창에 URL을 입력하고 엔터 키를 입력하면 URL의 [호스트 이름](https://ko.wikipedia.org/wiki/호스트명)은 [DNS](https://ko.wikipedia.org/wiki/도메인_네임_시스템)를 통해 IP 주소로 변환되고 이 IP 주소를 갖는 서버에게 요청을 전송한다.
+서버에 요청을 전송하기 위해 브라우저는 주소창을 제공한다. 브라우저의 주소창에 URL을 입력하고 엔터 키를 누르면 URL의 [호스트 이름](https://ko.wikipedia.org/wiki/호스트명)이 [DNS](https://ko.wikipedia.org/wiki/도메인_네임_시스템)를 통해 IP 주소로 변환되고 이 IP 주소를 갖는 서버에게 요청을 전송한다.
 
 ![](/assets/fs-images/38-2.png)
 {: .w-650 }
@@ -53,20 +53,20 @@ description:
 [URI(Uniform Resource Identifier)](https://ko.wikipedia.org/wiki/통합_자원_식별자)
 {: .desc-img}
 
-예를 들어, 브라우저의 주소창에 `https://poiemaweb.com`을 입력하고 엔터 키를 입력하면 루트 요청(/, 스킴(scheme)과 호스트(host) 만으로 구성된 URI에 의한 요청)이 poiemaweb.com 서버로 전송된다. 루루트 요청에는 명확히 리소스를 요청하는 내용이 없지만 일반적으로 서버는 루트 요청에 대해 암묵적으로 index.html을 응답하도록 기본 설정되어 있다. 즉, `https://poiemaweb.com`은 [https://poiemaweb.com/index.html](https://poiemaweb.com/index.html)과 같은 요청이다.
+예를 들어, 브라우저의 주소창에 `https://poiemaweb.com`을 입력하고 엔터 키를 누르면 루트 요청(/, 스킴(scheme)과 호스트(host) 만으로 구성된 URI에 의한 요청)이 poiemaweb.com 서버로 전송된다. 루루트 요청에는 명확히 리소스를 요청하는 내용이 없지만 일반적으로 서버는 루트 요청에 대해 암묵적으로 index.html을 응답하도록 기본 설정되어 있다. 즉, `https://poiemaweb.com`은 [https://poiemaweb.com/index.html](https://poiemaweb.com/index.html)과 같은 요청이다.
 
 따라서 서버는 루트 요청에 대해 서버의 루트 폴더에 존재하는 정적 파일 index.html을 클라이언트(브라우저)로 응답한다. 만약 index.html이 아닌 다른 정적 파일을 서버에 요청하려면 브라우저의 주소창에 [https://poiemaweb.com/assets/data/data.json](https://poiemaweb.com/assets/data/data.json)과 같이 요청할 정적 파일의 경로(서버의 루트 폴더 기준)와 파일 이름을 URI의 호스트 뒤의 패스(path)에 기술하여 서버에 요청한다. 그러면 서버는 루트 폴더의 assets/data 폴더 내에 있는 정적 파일 data.json을 응답할 것이다.
 
 반드시 브라우저의 주소창을 통해 서버에게 정적 파일만을 요청할 수 있는 것은 아니다. 자바스크립트를 통해 동적으로 서버에 정적/동적 데이터를 요청할 수도 있다. 이에 대해서는 ["43. ajax"](/fastcampus/ajax)와 ["44. REST API"](/fastcampus/rest-api)에서 자세히 살펴보자.
 
-요청과 응답은 개발자 도구의 [Network] 패널에서 확인할 수 있다. 브라우저의 주소창에 `https://poiemaweb.com`을 입력하고 엔터 키를 입력하여 서버에 루트 요청을 전송해 보자. 다음 그림처럼 브라우저가 poiemaweb.com 서버에 요청한 내용과 응답한 내용을 개발자 도구의 [Network] 패널에서 확인할 수 있다.
+요청과 응답은 개발자 도구의 Network 패널에서 확인할 수 있다. 브라우저의 주소창에 `https://poiemaweb.com`을 입력하고 엔터 키를 눌러 서버에 루트 요청을 전송해 보자. 다음 그림처럼 브라우저가 poiemaweb.com 서버에 요청한 내용과 응답한 내용을 개발자 도구의 Network 패널에서 확인할 수 있다.
 
-개발자 도구의 [Network] 패널을 활성화하기 이전에 브라우저가 이미 응답을 받은 경우 응답된 리소스가 표시되지 않는다. 따라서 [Network] 패널에 아무런 리소스가 표시되지 않았다면 페이지를 새로고침해야 한다.
+개발자 도구의 Network 패널을 활성화하기 이전에 브라우저가 이미 응답을 받은 경우 응답된 리소스가 표시되지 않는다. 따라서 Network 패널에 아무런 리소스가 표시되지 않았다면 페이지를 새로고침해야 한다.
 
 ![](/assets/fs-images/38-3.png)
 {: .w-650 }
 
-개발자 도구의 [Network] 패널에서 확인한 요청과 응답
+개발자 도구의 Network 패널에서 확인한 요청과 응답
 {: .desc-img}
 
 위 그림을 살펴보면 index.html(poiemaweb.com)뿐만 아니라 CSS, 자바스크립트, 이미지, 폰트 파일들도 응답된 것을 확인할 수 있다. 요청도 하지 않은 이 리소스들은 왜 응답되었을까?
@@ -77,7 +77,7 @@ description:
 
 [HTTP(HyperText Transfer Protocol)](https://ko.wikipedia.org/wiki/HTTP)는 웹에서 브라우저와 서버가 통신을 하기 위한 프로토콜(규약)이다. 1989년, HTML, URL과 함께 팀 버너스 리 경(Sir Tim Berners-Lee)이 고안한 HTTP는 1991년 최초로 문서화되었고 1996년 HTTP/1.0, 1999년 HTTP/1.1, 2015년 HTTP/2가 발표되었다. 이 가운데 HTTP/1.1과 HTTP/2의 차이점을 간략히 살펴보자.
 
-HTTP/1.1은 기본적으로 커넥션(connection)당 하나의 요청과 응답만 처리한다. 즉, 여러 개의 요청을 한번에 전송할 수 없고 응답 또한 마찬가지다. 따라서 HTML 문서 내에 포함된 여러 개의 리소스 요청, 즉 CSS 파일을 로드하는 link 태그, 이미지 파일을 로드하는 img 태그, 자바스크립트를 로드하는 script 태그 등에 의한 리소스 요청이 개별적으로 전송되고 응답 또한 개별적으로 전송된다. 이처럼 HTTP/1.1은 리소스의 동시 전송이 불가능한 구조이므로 요청할 리소스의 개수에 비례하여 응답 시간도 증가하는 단점이 있다.
+HTTP/1.1은 기본적으로 커넥션(connection)당 하나의 요청과 응답만 처리한다. 즉, 여러 개의 요청을 한 번에 전송할 수 없고 응답 또한 마찬가지다. 따라서 HTML 문서 내에 포함된 여러 개의 리소스 요청, 즉 CSS 파일을 로드하는 link 태그, 이미지 파일을 로드하는 img 태그, 자바스크립트를 로드하는 script 태그 등에 의한 리소스 요청이 개별적으로 전송되고 응답 또한 개별적으로 전송된다. 이처럼 HTTP/1.1은 리소스의 동시 전송이 불가능한 구조이므로 요청할 리소스의 개수에 비례하여 응답 시간도 증가하는 단점이 있다.
 
 ![](/assets/fs-images/38-4.png)
 {: .w-250 }
@@ -202,7 +202,7 @@ CSSOM 생성
 
 - 자바스크립트에 의한 노드 추가 또는 삭제
 
-- 브라우저 윈도우의 리사이징에 의한 뷰포트(viewport) 크기 변경
+- 브라우저 창의 리사이징에 의한 뷰포트(viewport) 크기 변경
 
 - HTML 요소의 레이아웃(위치, 크기)에 변경을 발생시키는 width/height, margin, padding, border, display,
 position, top/right/bottom/left 등의 스타일 변경
@@ -279,14 +279,16 @@ DOM API에 의한 리플로우, 리페인트
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
     <script>
-      // DOM API인 document.getElementById는 DOM에서 id가 apple인 HTML 요소를 취득한다.
-      // 아래 DOM API가 실행되는 시점에는 아직 id가 apple인 HTML 요소를 파싱하지 않았기 때문에
-      // DOM에는 id가 apple인 HTML 요소가 포함되어 있지 않다.
-      // 따라서 아래 코드는 정상적으로 id가 apple인 HTML 요소를 취득하지 못한다.
+      /*
+      DOM API인 document.getElementById는 DOM에서 id가 'apple'인 HTML 요소를
+      취득한다. 아래 DOM API가 실행되는 시점에는 아직 id가 'apple'인 HTML 요소를 파싱하지
+      않았기 때문에 DOM에는 id가 'apple'인 HTML 요소가 포함되어 있지 않다.
+      따라서 아래 코드는 정상적으로 id가 'apple'인 HTML 요소를 취득하지 못한다.
+      */
       const $apple = document.getElementById('apple');
 
-      // id가 apple인 HTML 요소의 css color 프로퍼티 값을 변경한다.
-      // 이때 DOM에는 id가 apple인 HTML 요소가 포함되어 있지 않기 때문에 에러가 발생한다.
+      // id가 'apple'인 HTML 요소의 css color 프로퍼티 값을 변경한다.
+      // 이때 DOM에는 id가 'apple'인 HTML 요소가 포함되어 있지 않기 때문에 에러가 발생한다.
       $apple.style.color = 'red'; // TypeError: Cannot read property 'style' of null
     </script>
   </head>
@@ -300,7 +302,7 @@ DOM API에 의한 리플로우, 리페인트
 </html>
 ```
 
-DOM API인 `document.getElementById('apple')`는 DOM에서 id가 apple인 HTML 요소를 취득한다. 하지만 `document.getElementById('apple')`를 실행하는 시점에는 아직 id가 apple인 HTML 요소를 파싱하지 않았기 때문에 DOM에는 id가 apple인 HTML 요소가 포함되어 있지 않은 상태다. 따라서 위 예제는 정상적으로 동작하지 않는다.
+DOM API인 `document.getElementById('apple')`은 DOM에서 id가 'apple'인 HTML 요소를 취득한다. 하지만 `document.getElementById('apple')`을 실행하는 시점에는 아직 id가 'apple'인 HTML 요소를 파싱하지 않았기 때문에 DOM에는 id가 'apple'인 HTML 요소가 포함되어 있지 않은 상태다. 따라서 위 예제는 정상적으로 동작하지 않는다.
 
 이러한 문제를 회피하기 위해 body 요소의 가장 아래에 자바스크립트를 위치시키는 것은 좋은 아이디어다. 그 이유는 다음과 같다.
 
@@ -324,9 +326,11 @@ DOM API인 `document.getElementById('apple')`는 DOM에서 id가 apple인 HTML �
       <li id="orange">Orange</li>
     </ul>
     <script>
-      // DOM API인 document.getElementById는 DOM에서 id가 apple인 HTML 요소를 취득한다.
-      // 아래 코드가 실행되는 시점에는 id가 apple인 HTML 요소의 파싱이 완료되어 DOM에 포함되어
-      // 있기 때문에 정상적으로 동작한다.
+      /*
+      DOM API인 document.getElementById는 DOM에서 id가 'apple'인 HTML 요소를
+      취득한다. 아래 코드가 실행되는 시점에는 id가 'apple'인 HTML 요소의 파싱이 완료되어
+      DOM에 포함되어 있기 때문에 정상적으로 동작한다.
+      */
       const $apple = document.getElementById('apple');
 
       // apple 요소의 css color 프로퍼티 값을 변경한다.
@@ -363,7 +367,7 @@ script 태그의 async 어트리뷰트
 여러 개의 script 태그에 async 어트리뷰트를 지정하면 script 태그의 순서와는 상관없이 로드가 완료된 자바스크립트부터 먼저 실행되므로 순서가 보장되지 않는다. 따라서 순서 보장이 필요한 script 태그에는 async 어트리뷰트를 지정하지 않아야 한다. async 어트리뷰트는 IE10 이상에서 지원된다.
 
 -	defer 어트리뷰트
-: async 어트리뷰트와 마찬가지로 HTML 파싱과 외부 자바스크립트 파일의 로드가 비동기적으로 동시에 진행된다. 단, 자바스크립트의 파싱과 실행은 HTML 파싱이 완료된 직후, 즉 DOM 생성이 완료된 직후(이때 DOMContentLoaded 이벤트가 발생한다) 진행된다. 따라서 DOM 생성이 완료된 이후 실행되어야 할 자바스크립트에 유용하다. defer 어트리뷰트는 IE10 이상에서 지원된다. IE6 ~ 9에서도 지원되기는 하만 정상적으로 동작하지 않을 수 있다.
+: async 어트리뷰트와 마찬가지로 HTML 파싱과 외부 자바스크립트 파일의 로드가 비동기적으로 동시에 진행된다. 단, 자바스크립트의 파싱과 실행은 HTML 파싱이 완료된 직후, 즉 DOM 생성이 완료된 직후(이때 DOMContentLoaded 이벤트가 발생한다) 진행된다. 따라서 DOM 생성이 완료된 이후 실행되어야 할 자바스크립트에 유용하다. defer 어트리뷰트는 IE10 이상에서 지원된다. IE6 ~ 9에서도 지원되기는 하지만 정상적으로 동작하지 않을 수 있다.
 
 ![](/assets/fs-images/38-15.png)
 {: .w-650 }

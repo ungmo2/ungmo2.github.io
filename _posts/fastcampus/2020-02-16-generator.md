@@ -86,7 +86,9 @@ new genFunc(); // TypeError: genFunc is not a constructor
 
 # 3. 제너레이터 객체
 
-**제너레이터 함수를 호출하면 일반 함수처럼 함수 코드 블록을 실행하는 것이 아니라 제너레이터 객체를 생성해 반환한다. 제너레이터 함수가 반환한 제너레이터 객체는 이터러블(iterable)이면서 동시에 이터레이터(iterator)다.** 다시 말해, 제너레이터 객체는 Symbol.iterator 메서드를 상속받는 이터러블이면서 value, done 프로퍼티를 갖는 이터레이터 리절트 객체를 반환하는 next 메서드를 소유하는 이터레이터다. 제너레이터 객체는 next 메서드를 가지는 이터레이터이므로 Symbol.iterator 메서드를 호출해서 별도로 이터레이터를 생성할 필요가 없다.
+**제너레이터 함수를 호출하면 일반 함수처럼 함수 코드 블록을 실행하는 것이 아니라 제너레이터 객체를 생성해 반환한다. 제너레이터 함수가 반환한 제너레이터 객체는 이터러블(iterable)이면서 동시에 이터레이터(iterator)다.**
+
+다시 말해, 제너레이터 객체는 Symbol.iterator 메서드를 상속받는 이터러블이면서 value, done 프로퍼티를 갖는 이터레이터 리절트 객체를 반환하는 next 메서드를 소유하는 이터레이터다. 제너레이터 객체는 next 메서드를 가지는 이터레이터이므로 Symbol.iterator 메서드를 호출해서 별도로 이터레이터를 생성할 필요가 없다.
 
 - [이터레이션 프로토콜](/fastcampus/iterable#1-이터레이션-프로토콜) 참고
 
@@ -108,6 +110,48 @@ console.log(Symbol.iterator in generator); // true
 console.log('next' in generator); // true
 ```
 
+제너레이터 객체는 next 메서드를 갖는 이터레이터이지만 이터레이터에는 없는 return, throw 메서드를 갖는다. 제너레이터 객체의 세 개의 메서드를 호출하면 다음과 같이 동작한다.
+
+-	next 메서드를 호출하면 제너레이터 함수의 yield 표현식까지 코드 블록을 실행하고 yield된 값을 value 프로퍼티 값으로, false를 done 프로퍼티 값으로 갖는 이터레이터 리절트 객체를 반환한다.
+
+-	return 메서드를 호출하면 인수로 전달받은 value 프로퍼티 값으로, true를 done 프로퍼티 값으로 갖는 이터레이터 리절트 객체를 반환한다.
+
+```javascript
+function* genFunc() {
+  try {
+    yield 1;
+    yield 2;
+    yield 3;
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+const generator = genFunc();
+
+console.log(generator.next()); // {value: 1, done: false}
+console.log(generator.return('End!')); // {value: "End!", done: true}
+```
+
+-	throw 메서드를 호출하면 인수로 전달받은 에러를 발생시키고undefined를 value 프로퍼티 값으로, true를 done 프로퍼티 값으로 갖는 이터레이터 리절트 객체를 반환한다.
+
+```javascript
+function* genFunc() {
+  try {
+    yield 1;
+    yield 2;
+    yield 3;
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+const generator = genFunc();
+
+console.log(generator.next()); // {value: 1, done: false}
+console.log(generator.throw('Error!')); // {value: undefined, done: true}
+```
+
 # 4. 제너레이터의 일시 중지와 재개
 
 제너레이터는 yield 키워드와 next 메서드를 통해 실행을 일시 중지했다가 필요한 시점에 다시 재개할 수 있다. 일반 함수는 호출 이후 제어권을 함수가 독점하지만 제너레이터는 함수 호출자에게 제어권을 양도(yield)하여 필요한 시점에 함수 실행을 재개할 수 있다.
@@ -125,7 +169,7 @@ function* genFunc() {
 }
 
 // 제너레이터 함수를 호출하면 제너레이터 객체를 반환한다.
-// 이터러블이며 동시에 이터레이터인 제너레이터 객체는 next 메서드를 갖는다.
+// 이터러블이면서 동시에 이터레이터인 제너레이터 객체는 next 메서드를 갖는다.
 const generator = genFunc();
 
 // 처음 next 메서드를 호출하면 첫 번째 yield 표현식까지 실행되고 일시 중지된다.
@@ -153,7 +197,7 @@ console.log(generator.next()); // {value: 3, done: false}
 console.log(generator.next()); // {value: undefined, done: true}
 ```
 
-**제너레이터 객체의 next 메서드를 호출하면 yield 표현식까지 실행되고 일시 중지(suspend)된다. 이때 함수의 제어권이 호출자가 양도(yield)된다.** 이후 필요한 시점에 호출자가 또 다시 next 메서드를 호출하면 일시 중지된 코드부터 실행을 재개(resume)하기 시작하여 다음 yield 표현식까지 실행되고 또 다시 일시 중지된다.
+**제너레이터 객체의 next 메서드를 호출하면 yield 표현식까지 실행되고 일시 중지(suspend)된다. 이때 함수의 제어권이 호출자로 양도(yield)된다.** 이후 필요한 시점에 호출자가 또다시 next 메서드를 호출하면 일시 중지된 코드부터 실행을 재개(resume)하기 시작하여 다음 yield 표현식까지 실행되고 또다시 일시 중지된다.
 
 **이때 제너레이터 객체의 next 메서드는 value, done 프로퍼티를 갖는 이터레이터 리절트 객체(["34.1.2. 이터레이터"](/fastcampus/iterable#12-이터레이터) 참고)를 반환한다. next 메서드가 반환한 이터레이터 리절트 객체의 value 프로퍼티에는 yield 표현식에서 yield된 값(yield 키워드 뒤의 값)이 할당되고 done 프로퍼티에는 제너레이터 함수가 끝까지 실행되었는지를 나타내는 불리언 값이 할당된다.**
 
@@ -208,7 +252,7 @@ res = generator.next(20);
 console.log(res); // {value: 30, done: true}
 ```
 
-이처럼 제너레이터 함수는 next 메서드와 yield 표현식을 통해 함수 호출자와 함수의 상태를 주고받을 수 있다. 함수 호출자는 next 메서드를 통해 yield 표현식까지 함수를 실행시켜 제너레이터 객체가 관리하는 상태(yield된 값)를 꺼내올 수 있고, next 메서드에 인수를 전달해서 제너레이터 객체에 상태(yield 표현식을 할당받는 변수)를 밀어넣을 수 있다. 이러한 제너레이터의 특성을 활용하면 비동기 처리를 동기 처리처럼 구현할 수 있다. 이에 대해서는 ["46.5.2. 비동기 처리"](/fastcampus/generator#52-비동기-처리)에서 살펴보자.
+이처럼 제너레이터 함수는 next 메서드와 yield 표현식을 통해 함수 호출자와 함수의 상태를 주고받을 수 있다. 함수 호출자는 next 메서드를 통해 yield 표현식까지 함수를 실행시켜 제너레이터 객체가 관리하는 상태(yield된 값)를 꺼내올 수 있고, next 메서드에 인수를 전달해서 제너레이터 객체에 상태(yield 표현식을 할당받는 변수)를 밀어넣을 수 있다. 이러한 제너레이터의 특성을 활용하면 비동기 처리를 동기 처리처럼 구현할 수 있다. 이에 대해서는 ["46.5.2. 비동기 처리"](/fastcampus/generator#52-비동기-처리)에서 자세히 살펴보자.
 
 # 5. 제너레이터의 활용
 
@@ -307,7 +351,7 @@ const async = generatorFunc => {
 
 6. next 메서드가 반환한 이터레이터 리절트 객체의 done 프로퍼티 값이 true, 즉 제너레이터 함수 fetchTodo가 끝까지 실행되었다면 이터레이터 리절트 객체의 value 프로퍼티 값, 즉 제너레이터 함수 fetchTodo의 반환값인 undefined를 그대로 반환(⑨)하고 처리를 종료한다.
 
-위 예제의 제너레이터 함수를 실행하는 제너레이터 실행기인 async 함수는 이해를 돕기 위해 간략화한 예제이므로 완전하지 않다. 다음에 설명할 async/await를 사용하면 async 함수와 같은 제너레이터 실행기를 사용할 필요가 없지만 혹시 제너레이터 실행기가 필요하다면 직접 구현하는 것보다 [co](https://github.com/tj/co)를 사용하기 바란다.
+위 예제의 제너레이터 함수를 실행하는 제너레이터 실행기인 async 함수는 이해를 돕기 위해 간략화한 예제이므로 완전하지 않다. 다음에 설명할 async/await를 사용하면 async 함수와 같은 제너레이터 실행기를 사용할 필요가 없지만 혹시 제너레이터 실행기가 필요하다면 직접 구현하는 것보다 [co 라이브러리](https://github.com/tj/co)를 사용하기 바란다.
 
 ```javascript
 const fetch = require('node-fetch');

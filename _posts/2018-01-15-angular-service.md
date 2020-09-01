@@ -411,7 +411,7 @@ providedIn 프로퍼티의 값으로 모듈을 설정할 수도 있다. 이것�
 ```typescript
 // @Injectable 프로바이더
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'UserModule'
 })
 ```
 

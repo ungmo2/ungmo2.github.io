@@ -205,7 +205,7 @@ switch (month) {
 console.log(monthName); // Invalid month
 ```
 
-그런데 위 예제를 실행해 보면 'November'가 출력되지 않고 'Invalid month'가 출력된다. 이는 switch 문의 표현식의 평가 결과와 일치하는 case 문으로 실행 흐름이 이동하여 문을 실행한 것은 맞지만 문을 실행한 후 switch 문을 탈출하지 않고 switch 문이 끝날 때까지 이후의 모든 case 문과 default 문을 실행했기 때문이다. 이를 **폴스루fall through**라 한다. 다시 말해 monthName 변수에 'November'가 할당된 후 switch 문을 탈출하지 않고 연이어 'December'가 재할당되고 마지막으로 'Invalid month'가 재할당된 것이다.
+그런데 위 예제를 실행해 보면 'November'가 출력되지 않고 'Invalid month'가 출력된다. 이는 switch 문의 표현식의 평가 결과와 일치하는 case 문으로 실행 흐름이 이동하여 문을 실행한 것은 맞지만 문을 실행한 후 switch 문을 탈출하지 않고 switch 문이 끝날 때까지 이후의 모든 case 문과 default 문을 실행했기 때문이다. 이를 **폴스루fall through**라 한다. 다시 말해, monthName 변수에 'November'가 할당된 후 switch 문을 탈출하지 않고 연이어 'December'가 재할당되고 마지막으로 'Invalid month'가 재할당된 것이다.
 
 이러한 결과가 나온 이유는 case 문에 해당하는 문의 마지막에 break 문을 사용하지 않았기 때문이다. break 키워드로 구성된 break 문은 코드 블록에서 탈출하는 역할을 한다. break 문이 없다면 case 문의 표현식과 일치하지 않더라도 실행 흐름이 다음 case 문으로 연이어 이동한다. 따라서 올바른 switch 문은 다음과 같다.
 

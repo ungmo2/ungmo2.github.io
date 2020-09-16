@@ -1,7 +1,7 @@
 ---
 layout: post
 title: <strong>Generator</strong>
-subtitle: 제너레이터와 async/awit
+subtitle: 제너레이터와 async/await
 categories: es6
 section: es6
 seq: 6
@@ -352,9 +352,9 @@ g.next();
 
 ② 제너레이터 객체에 전달된 비동기 처리 결과는 user 변수에 할당된다.
 
-제너레이터을 통해 비동기 처리를 동기 처리처럼 구현할 수 있으나 코드는 장황해졌다. 따라서 좀 더 간편하게 비동기 처리를 구현할 수 있는 async/awit가 ES7에서 도입되었다.
+제너레이터을 통해 비동기 처리를 동기 처리처럼 구현할 수 있으나 코드는 장황해졌다. 따라서 좀 더 간편하게 비동기 처리를 구현할 수 있는 async/await가 ES7에서 도입되었다.
 
-위 예제를 async/awit 구현해 보자.
+위 예제를 async/await 구현해 보자.
 
 ```javascript
 const fetch = require('node-fetch');

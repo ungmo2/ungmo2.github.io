@@ -204,7 +204,7 @@ const person = { name: 'Lee' };
 Object.prototype.__proto__는 접근자 프로퍼티다.
 {: .desc-img}
 
-Object.prototype의 접근자 프로퍼티인 \_\_proto\_\_는 getter/setter 함수라고 부르는 접근자 함수([[Get]], [[Set]] 프로퍼티 어트리뷰트에 할당된 함수)를 통해 [[Prototype]] 내부 슬롯의 값, 즉 프로토타입을 취득하거나 할당한다. \_\_proto\_\_ 접근자 프로퍼티를 통해 프로토타입에 접근하면 내부적으로 \_\_proto\_\_ 접근자 프로퍼티의 getter 함수인 [[Get]](그림 19-5의 get \_\_proto\_\_)이 호출된다. \_\_proto\_\_ 접근자 프로퍼티를 통해 새로운 프로토타입을 할당하면 \_\_proto\_\_ 접근자 프로퍼티의 setter 함수인 [[Set]](그림 19-5의 set \_\_proto\_\_)이 호출된다.
+Object.prototype의 접근자 프로퍼티인 \_\_proto\_\_는 getter/setter 함수라고 부르는 접근자 함수([[Get]], [[Set]] 프로퍼티 어트리뷰트에 할당된 함수)를 통해 [[Prototype]] 내부 슬롯의 값, 즉 프로토타입을 취득하거나 할당한다. \_\_proto\_\_ 접근자 프로퍼티를 통해 프로토타입에 접근하면 내부적으로 \_\_proto\_\_ 접근자 프로퍼티의 getter 함수인 \[\[Get\]\](그림 19-5의 get \_\_proto\_\_)이 호출된다. \_\_proto\_\_ 접근자 프로퍼티를 통해 새로운 프로토타입을 할당하면 \_\_proto\_\_ 접근자 프로퍼티의 setter 함수인 \[\[Set\]\](그림 19-5의 set \_\_proto\_\_)이 호출된다.
 
 ```javascript
 const obj = {};

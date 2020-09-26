@@ -410,14 +410,14 @@ baz(3).then(v => console.log(v)); // 3
 const obj = {
   async foo(n) { return n; }
 };
-obj.foo(4).then(v => console.log(v));
+obj.foo(4).then(v => console.log(v)); // 4
 
 // async 클래스 메서드
 class MyClass {
   async bar(n) { return n; }
 }
 const myClass = new MyClass();
-myClass.bar(5).then(v => console.log(v));
+myClass.bar(5).then(v => console.log(v)); // 5
 ```
 
 클래스의 constructor 메서드는 async 메서드가 될 수 없다. 클래스의 constructor 메서드는 인스턴스를 반환해야 하지만 async 함수는 언제나 프로미스를 반환해야 한다.

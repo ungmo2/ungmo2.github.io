@@ -129,7 +129,7 @@ HTML 파싱과 DOM 생성
 
 1. 서버에 존재하던 HTML 파일이 브라우저의 요청에 의해 응답된다. 이때 서버는 브라우저가 요청한 HTML 파일을 읽어 들여 메모리에 저장한 다음 메모리에 저장된 바이트(2진수)를 인터넷을 경유하여 응답한다.
 
-2. 브라우저는 서버가 응답한 HTML 문서를 바이트(2진수) 형태로 응답받는다. 그리고 바이트 형태의 HTML 문서는 meta 태그의 charset 어트리뷰트에 의해 지정된 인코딩 방식(예: UTF-8)을 기준으로 문자열로 변환한다. 참고로 meta 태그의 charset 어트리뷰트에 선언된 인코딩 방식(예: UTF-8)은 `content-type: text/html; charset=utf-8`과 같이 [응답 헤더(response header)](https://developer.mozilla.org/ko/docs/Glossary/Response_header)에 담겨 응답된다. 브라우저는 이를 확인하고 문자열로 변환한다.
+2. 브라우저는 서버가 응답한 HTML 문서를 바이트(2진수) 형태로 응답받는다. 그리고 바이트 형태의 HTML 문서는 meta 태그의 charset 어트리뷰트에 의해 지정된 인코딩 방식(예: UTF-8)을 기준으로 문자열로 변환된다. 참고로 meta 태그의 charset 어트리뷰트에 선언된 인코딩 방식(예: UTF-8)은 `content-type: text/html; charset=utf-8`과 같이 [응답 헤더(response header)](https://developer.mozilla.org/ko/docs/Glossary/Response_header)에 담겨 응답된다. 브라우저는 이를 확인하고 문자열로 변환한다.
 
 3. 문자열로 변환된 HTML 문서를 읽어 들여 문법적 의미를 갖는 코드의 최소 단위인 **토큰(token)**들로 분해한다.
 

@@ -53,7 +53,7 @@ description:
 [URI(Uniform Resource Identifier)](https://ko.wikipedia.org/wiki/통합_자원_식별자)
 {: .desc-img}
 
-예를 들어, 브라우저의 주소창에 `https://poiemaweb.com`을 입력하고 엔터 키를 누르면 루트 요청(/, 스킴(scheme)과 호스트(host) 만으로 구성된 URI에 의한 요청)이 poiemaweb.com 서버로 전송된다. 루루트 요청에는 명확히 리소스를 요청하는 내용이 없지만 일반적으로 서버는 루트 요청에 대해 암묵적으로 index.html을 응답하도록 기본 설정되어 있다. 즉, `https://poiemaweb.com`은 [https://poiemaweb.com/index.html](https://poiemaweb.com/index.html)과 같은 요청이다.
+예를 들어, 브라우저의 주소창에 `https://poiemaweb.com`을 입력하고 엔터 키를 누르면 루트 요청(/, 스킴(scheme)과 호스트(host) 만으로 구성된 URI에 의한 요청)이 poiemaweb.com 서버로 전송된다. 루트 요청에는 명확히 리소스를 요청하는 내용이 없지만 일반적으로 서버는 루트 요청에 대해 암묵적으로 index.html을 응답하도록 기본 설정되어 있다. 즉, `https://poiemaweb.com`은 [https://poiemaweb.com/index.html](https://poiemaweb.com/index.html)과 같은 요청이다.
 
 따라서 서버는 루트 요청에 대해 서버의 루트 폴더에 존재하는 정적 파일 index.html을 클라이언트(브라우저)로 응답한다. 만약 index.html이 아닌 다른 정적 파일을 서버에 요청하려면 브라우저의 주소창에 [https://poiemaweb.com/assets/data/data.json](https://poiemaweb.com/assets/data/data.json)과 같이 요청할 정적 파일의 경로(서버의 루트 폴더 기준)와 파일 이름을 URI의 호스트 뒤의 패스(path)에 기술하여 서버에 요청한다. 그러면 서버는 루트 폴더의 assets/data 폴더 내에 있는 정적 파일 data.json을 응답할 것이다.
 

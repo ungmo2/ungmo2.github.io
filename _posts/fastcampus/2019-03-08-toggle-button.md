@@ -143,7 +143,7 @@ counter
     $toggleButtonSwitch.onclick = toggleButton.toggle;
  -->
 
-# 2. Angular version
+<!-- # 2. Angular version -->
 
 <!--
 <iframe src="https://stackblitz.com/edit/angular-toggle-button?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="500"></iframe> -->

@@ -104,10 +104,11 @@ Stop watch
       };
     })();
  -->
-# 2. Angular version
+
+<!-- # 2. Angular version
 
 <iframe src="https://stackblitz.com/edit/angular-stop-watch?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="500"></iframe>
 
 # 3. React version
 
-<iframe src="https://stackblitz.com/edit/react-stop-watch?ctl=1&embed=1&hideNavigation=1&file=index.js" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://stackblitz.com/edit/react-stop-watch?ctl=1&embed=1&hideNavigation=1&file=index.js" frameborder="0" width="100%" height="500"></iframe> -->

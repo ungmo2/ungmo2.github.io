@@ -133,129 +133,185 @@ Scrolling goto top
 <!--
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>scrolling-goto-top</title>
-  <style>
-    @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400);
-    @import url(https://use.fontawesome.com/releases/v5.5.0/css/all.css);
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>scrolling-goto-top</title>
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400);
+      @import url(https://use.fontawesome.com/releases/v5.5.0/css/all.css);
 
-    body {
-      font-family: 'Open Sans';
-      font-weight: 300;
-      background-color: #D6E1E5;
-    }
-
-    h1 {
-      color: #DB5B33;
-      font-weight: 300;
-      text-align: center;
-    }
-
-    .scroll-icon {
-      position: fixed;
-      left: 50%;
-      bottom: 20px;
-      font-size: 36px;
-      cursor: pointer;
-      animation: glow 4s infinite;
-      display: none;
-    }
-
-    @keyframes glow {
-      0% {
-        opacity: 1;
+      body {
+        font-family: 'Open Sans';
+        font-weight: 300;
+        background-color: #d6e1e5;
       }
 
-      50% {
-        opacity: 0.3;
-        transform: translateY(10px);
+      h1 {
+        color: #db5b33;
+        font-weight: 300;
+        text-align: center;
       }
-    }
-  </style>
-</head>
-<body>
-  <h1>JavaScript Scrolling goto top</h1>
-  <p>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum maiores nihil ad voluptates nostrum.
-  </p>
-  <p>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum maiores nihil ad voluptates nostrum.
-  </p>
-  <p>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum maiores nihil ad voluptates nostrum.
-  </p>
-  <p>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum maiores nihil ad voluptates nostrum.
-  </p>
-  <p>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum maiores nihil ad voluptates nostrum.
-  </p>
-  <p>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum maiores nihil ad voluptates nostrum.
-  </p>
-  <p>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum maiores nihil ad voluptates nostrum.
-  </p>
-  <p>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum maiores nihil ad voluptates nostrum.
-  </p>
-  <p>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum maiores nihil ad voluptates nostrum.
-  </p>
-  <p>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum maiores nihil ad voluptates nostrum.
-  </p>
-  <p>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum maiores nihil ad voluptates nostrum.
-  </p>
-  <p>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum maiores nihil ad voluptates nostrum.
-  </p>
-  <p>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum maiores nihil ad voluptates nostrum.
-  </p>
-  <p>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum maiores nihil ad voluptates nostrum.
-  </p>
-  <p>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum maiores nihil ad voluptates nostrum.
-  </p>
-  <p>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum maiores nihil ad voluptates nostrum.
-  </p>
-  <p>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum maiores nihil ad voluptates nostrum.
-  </p>
 
-  <div class="scroll-icon fa fa-angle-double-up"></div>
+      .scroll-icon {
+        position: fixed;
+        left: 50%;
+        bottom: 20px;
+        font-size: 36px;
+        cursor: pointer;
+        animation: glow 4s infinite;
+        display: none;
+      }
 
-  <script>
-  (function () {
-    const $scrollIcon = document.querySelector('.scroll-icon');
-    // 버튼이 활성화될 스크롤 포지션
-    const topPosToStartShowing = 100;
+      @keyframes glow {
+        0% {
+          opacity: 1;
+        }
 
-    window.onscroll = function () {
-      // window의 scroll top
-      const scrollPosition = window.pageYOffset || 0;
-      // console.log(scrollPosition);
+        50% {
+          opacity: 0.3;
+          transform: translateY(10px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>JavaScript Scrolling goto top</h1>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet
+      fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum
+      maiores nihil ad voluptates nostrum.
+    </p>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet
+      fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum
+      maiores nihil ad voluptates nostrum.
+    </p>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet
+      fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum
+      maiores nihil ad voluptates nostrum.
+    </p>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet
+      fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum
+      maiores nihil ad voluptates nostrum.
+    </p>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet
+      fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum
+      maiores nihil ad voluptates nostrum.
+    </p>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet
+      fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum
+      maiores nihil ad voluptates nostrum.
+    </p>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet
+      fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum
+      maiores nihil ad voluptates nostrum.
+    </p>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet
+      fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum
+      maiores nihil ad voluptates nostrum.
+    </p>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet
+      fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum
+      maiores nihil ad voluptates nostrum.
+    </p>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet
+      fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum
+      maiores nihil ad voluptates nostrum.
+    </p>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet
+      fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum
+      maiores nihil ad voluptates nostrum.
+    </p>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet
+      fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum
+      maiores nihil ad voluptates nostrum.
+    </p>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet
+      fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum
+      maiores nihil ad voluptates nostrum.
+    </p>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet
+      fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum
+      maiores nihil ad voluptates nostrum.
+    </p>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet
+      fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum
+      maiores nihil ad voluptates nostrum.
+    </p>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet
+      fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum
+      maiores nihil ad voluptates nostrum.
+    </p>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repudiandae quia. Veniam amet
+      fuga, eveniet velit ipsa repudiandae nemo? Sit dolorem itaque laudantium dignissimos, rerum
+      maiores nihil ad voluptates nostrum.
+    </p>
 
-      $scrollIcon.style.display = scrollPosition >= topPosToStartShowing ? 'block' : 'none';
-    };
+    <div class="scroll-icon fa fa-angle-double-up"></div>
 
-    $scrollIcon.onclick = function () {
-      window.scroll({
-        top: 0,
-        left: 0,
-        behavior: 'smooth'
-      });
-    };
-  }());
-  </script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
+    <script>
+      (function () {
+        const $scrollIcon = document.querySelector('.scroll-icon');
+        // 버튼이 활성화될 스크롤 포지션
+        const topPosToStartShowing = 100;
+
+        // 아래의 throttle 함수는 이해를 위해 간략하게 구현하여 완전하지 않다.
+        // 실무에서는 Underscore의 throttle 함수나 Lodash의 throttle 함수를 사용하는 것을 권장한다.
+        const throttle = (callback, delay) => {
+          let timerId;
+          // throttle 함수는 timerId를 기억하는 클로저를 반환한다.
+          return event => {
+            // delay가 경과하기 이전에 이벤트가 발생하면 아무것도 하지 않다가
+            // delay가 경과했을 때 이벤트가 발생하면 새로운 타이머를 재설정한다.
+            // 따라서 delay 간격으로 callback이 호출된다.
+            if (timerId) return;
+            timerId = setTimeout(
+              () => {
+                callback(event);
+                timerId = null;
+              },
+              delay,
+              event
+            );
+          };
+        };
+
+        window.onscroll = _.throttle(() => {
+          // window의 scroll top
+          const scrollPosition = window.pageYOffset || 0;
+          console.log(scrollPosition);
+
+          $scrollIcon.style.display = scrollPosition >= topPosToStartShowing ? 'block' : 'none';
+        }, 100);
+
+        $scrollIcon.onclick = () => {
+          window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+          });
+        };
+      })();
+    </script>
+  </body>
 </html>
 -->
 

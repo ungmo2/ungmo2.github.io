@@ -259,9 +259,9 @@ Scrolling goto top
 </html>
 -->
 
-# 2. Angular version
+<!-- # 2. Angular version
 
-- [@HostListener](https://poiemaweb.com/fastcampus-angular/angular-directive#32-이벤트-처리)
+- [@HostListener](https://poiemaweb.com/fastcampus-angular/angular-directive#32-이벤트-처리) -->
 
 <!-- <iframe src="https://stackblitz.com/edit/angular-scrolling-goto-top-directive?ctl=1&embed=1&hideNavigation=1&file=src/app/app.component.ts" frameborder="0" width="100%" height="700"></iframe> -->
 

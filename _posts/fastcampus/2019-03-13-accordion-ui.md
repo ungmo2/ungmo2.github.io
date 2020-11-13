@@ -25,7 +25,7 @@ Accordion UI(Collapse UI)는 컨텐츠의 일부 영역만을 노출시키고 �
 
 1. 대상 요소의 height는 알 수 없다. 하지만 어떤 height라도 동작해야 한다.
 2. CSS animation/transition를 이용하여 슬라이드 효과를 구현한다.
-3. CSS animation/transition은 적절한 타이밍을 유지해야 한다. 다시 말해 열고 닫히는 타이밍이 같아야 한다.
+3. CSS animation/transition은 적절한 타이밍을 유지해야 한다. 다시 말해, 열고 닫히는 타이밍이 같아야 한다.
 4. 라이브러리를 사용하지 않고 Vanilla javascript로 구현한다.
 
 위 요구 사항을 충족하기 위해 아래와 같은 방법으로 가설을 세우고 구현해보자.
@@ -86,7 +86,7 @@ Accordion UI(Collapse UI)는 컨텐츠의 일부 영역만을 노출시키고 �
     const $btnToggle = document.querySelector('.toggle');
     const $collapse = document.querySelector('.collapse');
 
-    $btnToggle.addEventListener('click', () => $collapse.classList.toggle('active'));
+    $btnToggle.onclick = () => $collapse.classList.toggle('active');
   </script>
 </body>
 </html>
@@ -98,7 +98,7 @@ Accordion UI(Collapse UI)는 컨텐츠의 일부 영역만을 노출시키고 �
 
 첫 번째, 대상 요소에 `height: 0`, `box-sizing: border-box`, `overflow: hidden`을 지정했음에도 불구하고 padding이 유지되어 height는 20px(padding-top + padding-bottom)이 된다.
 
-[box-sizing: border-box](./css3-box-model#4-box-sizing-프로퍼티)를 지정한 상태에서 `height: 0`을 지정하면 요소의 border, padding, content 영역의 height가 모두 0이 될 것으로 예상하기 쉽지만 그렇지 않다. `box-sizing: border-box`은 **border와 padding을 유지한 상태에서 content 영역의 widhth/height를 계산**한다. 다시말해 height는 padding 20px(padding-top + padding-bottom)이 유지된 상태에서 계산되어 -20px이 되지만 height는 음수가 될 수 없으므로 0px로 계산된다.
+[box-sizing: border-box](./css3-box-model#4-box-sizing-프로퍼티)를 지정한 상태에서 `height: 0`을 지정하면 요소의 border, padding, content 영역의 height가 모두 0이 될 것으로 예상하기 쉽지만 그렇지 않다. `box-sizing: border-box`은 **border와 padding을 유지한 상태에서 content 영역의 widhth/height를 계산**한다. 따라서 height는 padding 20px(padding-top + padding-bottom)이 유지된 상태에서 계산되어 20px이 된다.
 
 ![height-0](/img/height-0.png)
 {: .w-250}
@@ -107,78 +107,152 @@ box-sizing: border-box은 border와 padding을 유지한 상태에서 content �
 
 이 문제를 회피하기 위해 대상 요소를 감싸는 컨테이너 요소가 필요하다. 컨테이너 요소에 `padding: 0`, `height: 0`을 지정하고 `overflow: hidden`를 지정하면 자식 요소를 감출 수 있다.
 
-두 번째, transition이 동작하지 않는다. 이것은 `height: 0`에서 `height: auto`로의 변화는 transition이 동작하지 않기 때문이다. 이 문제를 회피하기 위해 자바스크립트를 사용하여 height에 명확한 수치를 지정할 필요가 있다. max-height에 임의의 높이(1000px)를 지정하는 방법도 있지만 이 방법을 사용하면 애니메이션 타이밍이 망가진다.
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Collapse</title>
+    <style>
+      *,
+      *:before,
+      *:after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        background-image: linear-gradient(20deg, #08aeea 0%, #2af598 100%);
+      }
+
+      /* padding에 의해 height가 0이 되지 않는 문제를 해결하기 위한 컨테이너 */
+      .collapse {
+        height: 0;
+        overflow: hidden;
+        transition: height 0.4s ease;
+      }
+
+      .collapse-body {
+        padding: 10px;
+        margin: 10px;
+        border-radius: 6px;
+        background: #fff;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+      }
+
+      .active {
+        /* height: 0 -> height: auto;는 transition이 동작하지 않는다. */
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="toggle">slide toggle</button>
+    <div class="collapse">
+      <div class="collapse-body">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error sequi labore nesciunt,
+        molestiae veritatis quas tenetur quam pariatur delectus corporis itaque perferendis facere
+        cum ab odit id sint, aliquid modi?
+      </div>
+    </div>
+    <script>
+      const $btnToggle = document.querySelector('.toggle');
+      const $collapse = document.querySelector('.collapse');
+
+      $btnToggle.onclick = () => $collapse.classList.toggle('active');
+    </script>
+  </body>
+</html>
+```
+
+<div class="result" style="height: 200px"></div>
+
+두 번째, transition이 동작하지 않는다. 이것은 `height: 0`에서 `height: auto`로 변화할 때 transition이 동작하지 않기 때문이다. 이 문제를 회피하기 위해 자바스크립트를 사용하여 height에 auto가 아닌 명확한 수치를 지정할 필요가 있다. max-height에 임의의 높이(1000px)를 지정하는 방법도 있지만 이 방법을 사용하면 애니메이션 타이밍이 망가진다.
 
 문제 발생 원인과 대응 방법을 알았으니 다시 구현해보자.
 
 ```html
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Collapse</title>
-  <style>
-    *, *:before, *:after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Collapse</title>
+    <style>
+      *,
+      *:before,
+      *:after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-    html, body {
-      height: 100%;
-    }
+      html,
+      body {
+        height: 100%;
+      }
 
-    body {
-      background-image: linear-gradient(20deg, #08aeea 0%, #2af598 100%);
-    }
+      body {
+        background-image: linear-gradient(20deg, #08aeea 0%, #2af598 100%);
+      }
 
-    /* padding에 의해 height가 0이 되지 않는 문제를 해결하기 위한 컨테이너 */
-    .collapse {
-      height: 0;
-      overflow: hidden;
-      transition: height 0.4s ease;
-    }
+      /* padding에 의해 height가 0이 되지 않는 문제를 해결하기 위한 컨테이너 */
+      .collapse {
+        height: 0;
+        overflow: hidden;
+        transition: height 0.4s ease;
+      }
 
-    .collapse-body {
-      padding: 10px;
-      margin: 10px;
-      border-radius: 6px;
-      background: #fff;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-    }
+      .collapse-body {
+        padding: 10px;
+        margin: 10px;
+        border-radius: 6px;
+        background: #fff;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+      }
 
-    .active {
-      /* height: 0 -> height: auto;는 transition이 동작하지 않는다. */
-      /* height: auto; */
-    }
-  </style>
-</head>
-<body>
-  <button class="toggle">slide toggle</button>
-  <!-- padding에 의해 height가 0이 되지 않는 문제를 해결하기 위한 컨테이너 -->
-  <div class='collapse'>
-    <div class="collapse-body">
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error sequi labore nesciunt, molestiae veritatis quas tenetur quam pariatur delectus corporis itaque perferendis facere cum ab odit id sint, aliquid modi?
+      .active {
+        /* height: 0 -> height: auto;는 transition이 동작하지 않는다. */
+        /* height: auto; */
+      }
+    </style>
+  </head>
+  <body>
+    <button class="toggle">slide toggle</button>
+    <div class="collapse">
+      <div class="collapse-body">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error sequi labore nesciunt,
+        molestiae veritatis quas tenetur quam pariatur delectus corporis itaque perferendis facere
+        cum ab odit id sint, aliquid modi?
+      </div>
     </div>
-  </div>
-  <script>
-    const $btnToggle = document.querySelector('.toggle');
-    const $collapse = document.querySelector('.collapse');
+    <script>
+      const $btnToggle = document.querySelector('.toggle');
+      const $collapse = document.querySelector('.collapse');
 
-    $btnToggle.addEventListener('click', () => {
-      $collapse.classList.toggle('active');
-      /**
-       * `height: 0`에서 `height: auto`로의 변화는 transition이 동작하지 않는다.
-       * 이 문제를 회피하기 위해 자바스크립트를 사용하여 height에 명확한 수치를 지정할 필요가 있다.
-       * max-height에 임의의 높이를 지정하는 방법도 있지만 이 방법을 사용하면 애니메이션 타이밍이 망가진다.
-       */
-       // scrollHeight: https://stackoverflow.com/questions/22675126/what-is-offsetheight-clientheight-scrollheight
-      $collapse.style.height = $collapse.classList.contains('active') ? $collapse.scrollHeight + 'px' : '0';
-    });
-  </script>
-</body>
+      $btnToggle.onclick = () => {
+        $collapse.classList.toggle('active');
+        /**
+         * height: 0에서 height: auto로 변화할 때 transition이 동작하지 않는다.
+         * 이 문제를 회피하기 위해 자바스크립트를 사용하여 height에 auto가 아닌 명확한 수치를 지정할 필요가 있다.
+         * max-height에 임의의 높이를 지정하는 방법도 있지만 이 방법을 사용하면 애니메이션 타이밍이 망가진다.
+         */
+        // scrollHeight: https://stackoverflow.com/questions/22675126/what-is-offsetheight-clientheight-scrollheight
+        $collapse.style.height = $collapse.classList.contains('active')
+          ? $collapse.scrollHeight + 'px'
+          : '0';
+      };
+    </script>
+  </body>
 </html>
 ```
 
@@ -191,196 +265,257 @@ box-sizing: border-box은 border와 padding을 유지한 상태에서 content �
 ```html
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Accordion Menu</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+    <link href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" rel="stylesheet" />
 
-<head>
-  <meta charset="UTF-8">
-  <title>Accordion Menu</title>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-  <link href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" rel="stylesheet">
+    <style>
+      *,
+      *:before,
+      *:after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-  <style>
-    *, *:before, *:after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+      html,
+      body {
+        height: 100%;
+      }
 
-    html, body {
-      height: 100%;
-    }
+      body {
+        background-image: linear-gradient(20deg, #08aeea 0%, #2af598 100%);
+        font-family: 'Open Sans', Arial, Helvetica, Sans-serif, Verdana, Tahoma;
+      }
 
-    body {
-      background-image: linear-gradient(20deg, #08aeea 0%, #2af598 100%);
-      font-family: 'Open Sans', Arial, Helvetica, Sans-serif, Verdana, Tahoma;
-    }
+      ul {
+        list-style-type: none;
+      }
 
-    ul {
-      list-style-type: none;
-    }
+      h1 {
+        color: #fff;
+        font-size: 2.5rem;
+        text-align: center;
+        padding: 50px 0;
+      }
 
-    h1 {
-      color: #fff;
-      font-size: 2.5rem;
-      text-align: center;
-      padding: 50px 0;
-    }
+      .accordion {
+        width: 100%;
+        max-width: 360px;
+        margin: auto;
+        background: #fff;
+        border-radius: 4px;
+      }
 
-    .accordion {
-      width: 100%;
-      max-width: 360px;
-      margin: auto;
-      background: #fff;
-      border-radius: 4px;
-    }
+      .accordion .menu {
+        position: relative;
+        padding: 15px 15px 15px 45px;
+        color: #4d4d4d;
+        font-weight: bold;
+        border-bottom: 1px solid #ccc;
+        cursor: pointer;
+        transition: all 0.4s ease;
+      }
 
-    .accordion .menu {
-      position: relative;
-      padding: 15px 15px 15px 45px;
-      color: #4d4d4d;
-      font-weight: bold;
-      border-bottom: 1px solid #ccc;
-      cursor: pointer;
-      transition: all 0.4s ease;
-    }
+      .accordion li:last-child .menu {
+        border-bottom: 0;
+      }
 
-    .accordion li:last-child .menu {
-      border-bottom: 0;
-    }
+      .accordion li i {
+        position: absolute;
+        top: 1.2rem;
+        left: 1rem;
+        color: #595959;
+        transition: all 0.4s ease;
+      }
 
-    .accordion li i {
-      position: absolute;
-      top: 1.2rem;
-      left: 1rem;
-      color: #595959;
-      transition: all 0.4s ease;
-    }
+      .accordion li i.fa-chevron-down {
+        right: 1rem;
+        left: auto;
+      }
 
-    .accordion li i.fa-chevron-down {
-      right: 1rem;
-      left: auto;
-    }
+      .accordion li.active i.fa-chevron-down {
+        transform: rotate(180deg);
+      }
 
-    .accordion li.active i.fa-chevron-down {
-      transform: rotate(180deg);
-    }
+      .accordion li.active .menu {
+        color: #b63b4d;
+      }
 
-    .accordion li.active .menu {
-      color: #b63b4d;
-    }
+      .accordion li.active i {
+        color: #b63b4d;
+      }
 
-    .accordion li.active i {
-      color: #b63b4d;
-    }
-
-    /* Show submenu */
-    .accordion li.active .submenu {
-      /*
+      /* Show submenu */
+      .accordion li.active .submenu {
+        /*
         height: 0 -> height: auto;는 transition이 동작하지 않는다.
         max-height: 임의의 높이;를 지정하면 transition이 동작하지만 타이밍이 망가진다.
         max-height: 1000px;과 max-height: 133px;을 비교해 보라!
         height를 1000px으로 transition할 시간에 실제로는 133px정도만 transition하므로 여는 시간이 닫는 시간보다 빠르다.
       */
-      /* max-height: 1000px; */
-      /* max-height: 133px; */
-    }
+        /* max-height: 1000px; */
+        /* max-height: 133px; */
+      }
 
-    .submenu {
-      height: 0;
-      overflow: hidden;
-      background: #444359;
-      font-size: 14px;
-      transition: height 0.4s ease;
-    }
+      .submenu {
+        height: 0;
+        overflow: hidden;
+        background: #444359;
+        font-size: 14px;
+        transition: height 0.4s ease;
+      }
 
-    .submenu li {
-      border-bottom: 1px solid #4b4a5e;
-    }
+      .submenu li {
+        border-bottom: 1px solid #4b4a5e;
+      }
 
-    .accordion li:last-child .submenu {
-      border-radius: 0 0 4px 4px;
-    }
+      .accordion li:last-child .submenu {
+        border-radius: 0 0 4px 4px;
+      }
 
-    .accordion li:last-child .submenu li:last-child {
-      border-bottom: 0;
-    }
+      .accordion li:last-child .submenu li:last-child {
+        border-bottom: 0;
+      }
 
-    .submenu a {
-      display: block;
-      text-decoration: none;
-      color: #d9d9d9;
-      padding: 12px;
-      padding-left: 42px;
-      transition: all 0.25s ease-in-out;
-    }
+      .submenu a {
+        display: block;
+        text-decoration: none;
+        color: #d9d9d9;
+        padding: 12px;
+        padding-left: 42px;
+        transition: all 0.25s ease-in-out;
+      }
 
-    .submenu a:hover {
-      background: #b63b4d;
-      color: #fff;
-    }
-  </style>
-</head>
+      .submenu a:hover {
+        background: #b63b4d;
+        color: #fff;
+      }
+    </style>
+  </head>
 
-<body>
-  <h1>Accordion Menu</h1>
+  <body>
+    <h1>Accordion Menu</h1>
 
-  <ul id="accordion" class="accordion">
-    <li class="active">
-    <!-- <li> -->
-      <div class="menu"><i class="fa fa-code"></i>Front-end<i class="fa fa-chevron-down"></i></div>
-      <ul class="submenu">
-        <li><a href="#">HTML</a></li>
-        <li><a href="#">CSS</a></li>
-        <li><a href="#">Javascript</a></li>
-      </ul>
-    </li>
-    <li>
-      <div class="menu"><i class="fa fa-mobile"></i>Responsive web<i class="fa fa-chevron-down"></i></div>
-      <ul class="submenu">
-        <li><a href="#">Tablets</a></li>
-        <li><a href="#">Mobiles</a></li>
-        <li><a href="#">Desktop</a></li>
-      </ul>
-    </li>
-    <li>
-      <div class="menu"><i class="fa fa-globe"></i>Web Browser<i class="fa fa-chevron-down"></i></div>
-      <ul class="submenu">
-        <li><a href="#">Chrome</a></li>
-        <li><a href="#">Firefox</a></li>
-        <li><a href="#">Safari</a></li>
-      </ul>
-    </li>
-  </ul>
-</body>
-<script>
-  class Accordion {
-    constructor(options) {
-      // 기본 옵션과 사용자 지정 옵션을 병합
-      this.config = Accordion.mergeConfig(options);
-      this.$accordion = document.querySelector(this.config.selector);
+    <ul id="accordion" class="accordion">
+      <!--
+      <li class="active">
+        <div class="menu">
+          <i class="fa fa-code"></i>Front-end<i class="fa fa-chevron-down"></i>
+        </div>
+        <ul class="submenu">
+          <li><a href="#">HTML</a></li>
+          <li><a href="#">CSS</a></li>
+          <li><a href="#">Javascript</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="menu">
+          <i class="fa fa-mobile"></i>Responsive web<i class="fa fa-chevron-down"></i>
+        </div>
+        <ul class="submenu">
+          <li><a href="#">Tablets</a></li>
+          <li><a href="#">Mobiles</a></li>
+          <li><a href="#">Desktop</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="menu">
+          <i class="fa fa-globe"></i>Web Browser<i class="fa fa-chevron-down"></i>
+        </div>
+        <ul class="submenu">
+          <li><a href="#">Chrome</a></li>
+          <li><a href="#">Firefox</a></li>
+          <li><a href="#">Safari</a></li>
+        </ul>
+      </li> -->
+    </ul>
+  </body>
+  <script>
+    const createAccordion = () => {
+      const accordionMenuItems = [
+        {
+          name: 'Front-end',
+          iconClass: 'fa fa-code',
+          active: true,
+          submenu: [
+            { name: 'HTML', url: '#' },
+            { name: 'CSS', url: '#' },
+            { name: 'Javascript', url: '#' }
+          ]
+        },
+        {
+          name: 'Responsive web',
+          iconClass: 'fa fa-mobile',
+          active: false,
+          submenu: [
+            { name: 'Tablets', url: '#' },
+            { name: 'Mobiles', url: '#' },
+            { name: 'Desktop', url: '#' }
+          ]
+        },
+        {
+          name: 'Web Browser',
+          iconClass: 'fa fa-globe',
+          active: false,
+          submenu: [
+            { name: 'Chrome', url: '#' },
+            { name: 'Firefox', url: '#' },
+            { name: 'Desktop', url: '#' }
+          ]
+        }
+      ];
 
-      // do something!
-    }
+      const $accordion = document.getElementById('accordion');
 
-    static mergeConfig(options) {
-      // 기본 옵션
-      const config = {
-        selector: '#accordion',
-        multi: true
+      // 선택된 메뉴의 서브 메뉴를 활성화하고 나머지 서버 메뉴를 모두 비활성화한다.
+      const activateSelectedMenu = $selectedMenu => {
+        [...$accordion.children].forEach($li => {
+          const $submenu = $li.querySelector('.submenu');
+
+          if ($li === $selectedMenu.parentNode) {
+            $li.classList.add('active');
+            $submenu.style.height = $submenu.scrollHeight + 'px';
+          } else {
+            $li.classList.remove('active');
+            $submenu.style.height = '0px';
+          }
+        });
       };
 
-      return { ...config, ...options };
-    }
+      const render = () => {
+        const html = accordionMenuItems.map(({ active, iconClass, name, submenu }) => `
+          <li class="${active ? 'active' : ''}">
+            <div class="menu">
+              <i class="${iconClass}"></i>${name}<i class="fa fa-chevron-down"></i>
+            </div>
+            <ul class="submenu">
+              ${submenu.map(({ name, url }) => `<li><a href="${url}">${name}</a></li>`).join('')}
+            </ul>
+          </li>`).join('');
 
-    // do something!
-  }
+        $accordion.innerHTML = html;
 
-  window.onload = function () {
-    const accordion = new Accordion({ multi: false });
-    // const accordion = new Accordion();
-  };
-</script>
+        const $submenu = document.querySelector('li.active > .submenu');
+        $submenu.style.height = $submenu.scrollHeight + 'px';
+      };
+
+      $accordion.onclick = e => {
+        if (!e.target.matches('#accordion > li > .menu')) return;
+        activateSelectedMenu(e.target);
+      };
+
+      render();
+    };
+
+    window.onload = createAccordion;
+  </script>
 </html>
 ```
+
+<div class="result" style="height: 600px"></div>
 
 <!-- <div class="result" style="height: 600px"></div>
 

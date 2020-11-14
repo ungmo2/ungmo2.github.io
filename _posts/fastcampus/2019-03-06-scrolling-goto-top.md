@@ -25,7 +25,7 @@ Scrolling goto top
   - [Window.scrollTo()](https://developer.mozilla.org/ko/docs/Web/API/Window/scrollTo)
   - [Window.scroll()](https://developer.mozilla.org/en-US/docs/Web/API/Window/scroll)
 
-- scroll 이벤트가 짧은 시간 간격으로 연속해서 발생한다. 이벤트 핸들러가 과도하게 호출되지 않도록 한다.
+- scroll 이벤트는 짧은 시간 간격으로 연속해서 발생한다. 이벤트 핸들러가 과도하게 호출되지 않도록 한다.
 
 ```html
 <!DOCTYPE html>

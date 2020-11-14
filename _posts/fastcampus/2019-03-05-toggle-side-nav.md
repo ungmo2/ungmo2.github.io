@@ -22,73 +22,127 @@ Toggle side nav
 ```html
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Toggle side nav</title>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Toggle side nav</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+    />
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
 
-    .container {
-      position: relative;
-      overflow-x: hidden; /* 가로 scroll bar 방지 */
-      width: 100%;
-      height: 100%;
-    }
+      .container {
+        position: relative;
+        overflow-x: hidden; /* 가로 scroll bar 방지 */
+        width: 100%;
+        height: 100%;
+      }
 
-    .main, .side-nav {
-      position: absolute;
-      top: 0;
-      height: 100%;
-      transition: transform 0.8s;
-    }
+      main,
+      nav {
+        position: absolute;
+        height: 100%;
+        transition: transform 0.5s;
+      }
 
-    .main {
-      left: 0;
-      width: 100%;
-      background: antiquewhite;
-    }
+      main {
+        height: 100%;
+        padding: 20px;
+      }
 
-    .side-nav {
-      left: -300px;
-      width: 300px;
-      background: rebeccapurple;
-    }
+      nav {
+        left: -300px;
+        width: 300px;
+        background: #20232a;
+      }
 
-    .active > .main,
-    .active > .side-nav {
-      transform: translate3d(300px, 0, 0);
-    }
+      .container.active > main,
+      .container.active > nav {
+        transform: translate3d(300px, 0, 0);
+      }
 
-    .toggle {
-      font-size: 2em;
-      color: maroon;
-      margin: 10px;
-      cursor: pointer;
-      transition: transform 0.5s;
-    }
+      .toggle {
+        font-size: 2em;
+        color: maroon;
+        cursor: pointer;
+        transition: transform 0.5s;
+      }
 
-    .active .toggle {
-      transform: rotate(180deg);
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="side-nav"></div>
-    <div class="main">
-      <i class="toggle fas fa-arrow-circle-right"></i>
+      .active .toggle {
+        transform: rotate(180deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <nav></nav>
+      <main>
+        <i class="toggle fas fa-arrow-circle-right"></i>
+        <h1>Lorem ipsum</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <section>
+          <article>
+            <h2>Lorem ipsum</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio cumque eos fugit
+              labore sunt error, dolores ullam, sit, quis atque molestiae? Atque rem facere
+              perspiciatis cupiditate sed temporibus fuga sint! Lorem ipsum dolor sit amet
+              consectetur adipisicing elit. Distinctio cumque eos fugit labore sunt error, dolores
+              ullam, sit, quis atque molestiae? Atque rem facere perspiciatis cupiditate sed
+              temporibus fuga sint! Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Distinctio cumque eos fugit labore sunt error, dolores ullam, sit, quis atque
+              molestiae? Atque rem facere perspiciatis cupiditate sed temporibus fuga sint! Lorem
+              ipsum dolor sit amet consectetur adipisicing elit. Distinctio cumque eos fugit labore
+              sunt error, dolores ullam, sit, quis atque molestiae? Atque rem facere perspiciatis
+              cupiditate sed temporibus fuga sint!
+            </p>
+          </article>
+          <article>
+            <h2>Lorem ipsum</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio cumque eos fugit
+              labore sunt error, dolores ullam, sit, quis atque molestiae? Atque rem facere
+              perspiciatis cupiditate sed temporibus fuga sint! Lorem ipsum dolor sit amet
+              consectetur adipisicing elit. Distinctio cumque eos fugit labore sunt error, dolores
+              ullam, sit, quis atque molestiae? Atque rem facere perspiciatis cupiditate sed
+              temporibus fuga sint! Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Distinctio cumque eos fugit labore sunt error, dolores ullam, sit, quis atque
+              molestiae? Atque rem facere perspiciatis cupiditate sed temporibus fuga sint! Lorem
+              ipsum dolor sit amet consectetur adipisicing elit. Distinctio cumque eos fugit labore
+              sunt error, dolores ullam, sit, quis atque molestiae? Atque rem facere perspiciatis
+              cupiditate sed temporibus fuga sint!
+            </p>
+          </article>
+          <article>
+            <h2>Lorem ipsum</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio cumque eos fugit
+              labore sunt error, dolores ullam, sit, quis atque molestiae? Atque rem facere
+              perspiciatis cupiditate sed temporibus fuga sint! Lorem ipsum dolor sit amet
+              consectetur adipisicing elit. Distinctio cumque eos fugit labore sunt error, dolores
+              ullam, sit, quis atque molestiae? Atque rem facere perspiciatis cupiditate sed
+              temporibus fuga sint! Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Distinctio cumque eos fugit labore sunt error, dolores ullam, sit, quis atque
+              molestiae? Atque rem facere perspiciatis cupiditate sed temporibus fuga sint! Lorem
+              ipsum dolor sit amet consectetur adipisicing elit. Distinctio cumque eos fugit labore
+              sunt error, dolores ullam, sit, quis atque molestiae? Atque rem facere perspiciatis
+              cupiditate sed temporibus fuga sint!
+            </p>
+          </article>
+        </section>
+      </main>
     </div>
-  </div>
-  <script>
-
-  </script>
-</body>
+    <script>
+      // do something!
+    </script>
+  </body>
 </html>
 ```
 

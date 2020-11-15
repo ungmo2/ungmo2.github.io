@@ -1,6 +1,6 @@
 ---
 layout: fs-post
-title: <strong>Toggle button</strong>
+title: <strong>Dark mode - Toggle button</strong>
 categories: fastcampus-exercise
 section: fastcampus-exercise
 seq: 8
@@ -13,14 +13,12 @@ description:
 
 ![](/assets/fs-images/exercise/toggle-button.gif)
 
-counter
+Dark mode - Toggle button
 {: .desc-img}
 
 요구 사항
-: 1. Light/Dark 상태(true: Light / false: Dark)는 [localStorage](https://developer.mozilla.org/ko/docs/Web/API/Window/localStorage)에 저장한다. 따라서 초기 표시할 때도 localStorage에서 상태를 취득해 초기화해야 한다.
-2. Light Mode : body { background-color: '#fff'; }, .toggle-button-text { background-color: #3dbf87; },
-3. Dark Mode : body { background-color: '#232323'; }, .toggle-button-text { background-color: #fc3164; }
-
+: 1. light/dark 2개의 테마를 갖는다. 기본은 light 테마다.
+2. light/dark 테마 상태(dark-theme: false/true)는 [localStorage](https://developer.mozilla.org/ko/docs/Web/API/Window/localStorage)에 저장한다. 따라서 초기 표시할 때도 localStorage에서 light/dark 테마 상태를 취득해 초기화해야 한다.
 
 ```html
 <!DOCTYPE html>
@@ -55,7 +53,7 @@ counter
       }
 
       /* 토글 버튼 내부의 원 */
-      .toggle-button .toggle-button-switch {
+      .toggle-button > .toggle-button-switch {
         position: absolute;
         top: 2px;
         left: 2px;
@@ -65,11 +63,11 @@ counter
         border-radius: 100%;
         cursor: pointer;
         z-index: 100;
-        transition: transform 0.3s;
+        transition: left 0.3s;
       }
 
       /* 토글 버튼의 바탕 */
-      .toggle-button .toggle-button-text {
+      .toggle-button > .toggle-button-text {
         overflow: hidden;
         background-color: #3dbf87;
         border-radius: 25px;
@@ -78,8 +76,8 @@ counter
       }
 
       /* 토글 버튼의 텍스트 */
-      .toggle-button .toggle-button-text-on,
-      .toggle-button .toggle-button-text-off {
+      .toggle-button > .toggle-button-text > .toggle-button-text-on,
+      .toggle-button > .toggle-button-text > .toggle-button-text-off {
         float: left;
         width: 50%;
         height: 100%;
@@ -88,6 +86,19 @@ counter
         font-weight: bold;
         color: #fff;
         text-align: center;
+      }
+
+      /* Dark Theme */
+      body.dark-theme {
+        background-color: #232323;
+      }
+
+      body.dark-theme .toggle-button > .toggle-button-switch {
+        left: 52px;
+      }
+
+      body.dark-theme .toggle-button > .toggle-button-text {
+        background-color: #fc3164;
       }
     </style>
   </head>

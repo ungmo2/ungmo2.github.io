@@ -17,9 +17,9 @@ Java나 C# 같은 정적 타입 언어의 경우, 함수 또는 클래스를 정
 
 ```typescript
 class Queue {
-  protected data = []; // data: any[]
+  protected data: any[] = [];
 
-  push(item) {
+  push(item: any) {
     this.data.push(item);
   }
 
@@ -37,7 +37,7 @@ console.log(queue.pop().toFixed()); // 0
 console.log(queue.pop().toFixed()); // Runtime error
 ```
 
-Queue 클래스의 data 프로퍼티는 타입 선언을 생략하였기 때문에 any[] 타입이 된다. any[] 타입은 어떤 타입의 요소도 가질 수 있는 배열을 의미한다.
+Queue 클래스의 data 프로퍼티는 any[] 타입이다. any[] 타입은 어떤 타입의 요소도 가질 수 있는 배열을 의미한다.
 
 any[] 타입은 배열 요소의 타입이 모두 같지 않다는 문제를 가지게 된다. 위 예제의 경우 data 프로퍼티는 number 타입만을 포함하는 배열이라는 기대 하에 각 요소에 대해 [Number.prototype.toFixed](./js-number#36-numberprototypetofixed)를 사용하였다. 따라서 number 타입이 아닌 요소의 경우 런타임 에러가 발생한다.
 
@@ -45,10 +45,10 @@ any[] 타입은 배열 요소의 타입이 모두 같지 않다는 문제를 가
 
 ```typescript
 class Queue {
-  protected data = []; // data: any[]
+  protected data: any[] = [];
 
   push(item) {
-    this.data.push(item);
+    this.data.push(item: any);
   }
 
   pop() {

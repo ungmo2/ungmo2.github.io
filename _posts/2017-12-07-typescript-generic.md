@@ -47,8 +47,8 @@ any[] 타입은 배열 요소의 타입이 모두 같지 않다는 문제를 가
 class Queue {
   protected data: any[] = [];
 
-  push(item) {
-    this.data.push(item: any);
+  push(item: any) {
+    this.data.push(item);
   }
 
   pop() {
@@ -72,7 +72,7 @@ const queue = new NumberQueue();
 
 queue.push(0);
 // 의도하지 않은 실수를 사전 검출 가능
-// [ts] Argument of type '"1"' is not assignable to parameter of type 'number'.
+// error TS2345: Argument of type 'string' is not assignable to parameter of type 'number'.
 // queue.push('1');
 queue.push(+'1'); // 실수를 사전 인지하고 수정할 수 있다
 
@@ -95,7 +95,7 @@ class Queue<T> {
   push(item: T) {
     this.data.push(item);
   }
-  pop(): T {
+  pop(): T | undefined {
     return this.data.shift();
   }
 }
@@ -107,8 +107,11 @@ numberQueue.push(0);
 // numberQueue.push('1'); // 의도하지 않은 실수를 사전 검출 가능
 numberQueue.push(+'1');   // 실수를 사전 인지하고 수정할 수 있다
 
-console.log(numberQueue.pop().toFixed()); // 0
-console.log(numberQueue.pop().toFixed()); // 1
+// ?. => optional chaining
+// https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#optional-chaining
+console.log(numberQueue.pop()?.toFixed()); // 0
+console.log(numberQueue.pop()?.toFixed()); // 1
+console.log(numberQueue.pop()?.toFixed()); // undefined
 
 // string 전용 Queue
 const stringQueue = new Queue<string>();
@@ -116,8 +119,9 @@ const stringQueue = new Queue<string>();
 stringQueue.push('Hello');
 stringQueue.push('World');
 
-console.log(stringQueue.pop().toUpperCase()); // HELLO
-console.log(stringQueue.pop().toUpperCase()); // WORLD
+console.log(stringQueue.pop()?.toUpperCase()); // HELLO
+console.log(stringQueue.pop()?.toUpperCase()); // WORLD
+console.log(stringQueue.pop()?.toUpperCase()); // undefined
 
 // 커스텀 객체 전용 Queue
 const myQueue = new Queue<{name: string, age: number}>();
@@ -126,9 +130,10 @@ myQueue.push({name: 'Kim', age: 20});
 
 console.log(myQueue.pop()); // { name: 'Lee', age: 10 }
 console.log(myQueue.pop()); // { name: 'Kim', age: 20 }
+console.log(myQueue.pop()); // undefined
 ```
 
-**제네릭은 선언 시점이 아니라 생성 시점에 타입을 명시하여 하나의 타입만이 아닌 다양한 타입을 사용할 수 있도록 하는 기법이다. 한 번의 선언으로 다양한 타입에 재사용이 가능하다는 장점이 있다.**
+**제네릭은 선언 시점이 아니라 생성 시점에 타입을 명시하여 하나의 타입만이 아닌 다양한 타입을 사용할 수 있도록 하는 기법이다. 한번의 선언으로 다양한 타입에 재사용이 가능하다는 장점이 있다.**
 
 **T는 제네릭을 선언할 때 관용적으로 사용되는 식별자로 타입 파라미터(Type parameter)라 한다.** T는 Type의 약자로 반드시 T를 사용하여야 하는 것은 아니다.
 

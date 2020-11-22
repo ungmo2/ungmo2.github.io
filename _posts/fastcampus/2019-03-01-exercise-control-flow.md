@@ -265,7 +265,7 @@ for (var i = 0; i < line; i++) {
     if (i <= j) {
       star += '*’;
     } else {
-      star += ' ‘;
+      star += ' ';
     }
   }
   star += '\n';

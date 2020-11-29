@@ -100,7 +100,7 @@ function binarySearch(array, target) {
   // 배열의 시작 인덱스가 마지막 인덱스와 같거나 크면
   while (start <= end) {
     // 배열의 중간 인덱스
-    // 실수가 나올수 있기 때문에 Math.floor로 소수점 이하를 내림한 정수를 구한다.
+    // (start + end) / 2를 평가했을 때 실수가 나올수 있으므로 Math.floor로 소수점 이하를 내림한 정수를 구한다.
     const mid = Math.floor((start + end) / 2);
 
     // target이 중간값(array[mid])과 같으면 mid를 반환하고 종료

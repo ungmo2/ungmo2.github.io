@@ -320,7 +320,7 @@ p {
 }
 ```
 
-따옴표가 있는 문자열과 없는 문자열을 함께 사용하는 경우, 좌항의 문자열을 기준으로 따옴표를 처리한다.
+따옴표가 있는 문자열과 없는 문자열을 함께 사용하는 경우 좌항의 문자열을 기준으로 따옴표를 처리한다.
 
 ```scss
 p:before {
@@ -480,7 +480,7 @@ body {
   font: 16px/1.5 "Lucida Grande", "Lucida Sans Unicode", sans-serif; }
 ```
 
-만일 font.scss의 $font-family 변수에 !default 설정이 없었다면 후위에 선언된 font.scss의 $font-family 변수값이 적용된어 아래와 같은 결과가 생성되었을 것이다
+만일 font.scss의 $font-family 변수에 !default 설정이 없었다면 후위에 선언된 font.scss의 $font-family 변수값이 적용돠어 아래와 같은 결과가 생성되었을 것이다
 
 ```css
 body {

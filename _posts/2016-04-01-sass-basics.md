@@ -37,7 +37,7 @@ CSS와 비교하여 Sass는 아래와 같은 장점이 있다.
 
 # 2. Install
 
-브라우저는 Sass의 문법을 알지 못하기 때문에 Sass(.scss) 파일을 css 파일로 컴파일(트랜스파일링)하여야 한다. 따라서 Sass 환경의 설치가 필요하다.
+브라우저는 Sass의 문법을 알지 못하기 때문에 Sass(.scss) 파일을 css 파일로 트랜스파일링(컴파일)하여야 한다. 따라서 Sass 환경의 설치가 필요하다.
 
 Sass는 2006년 Ruby로 처음 개발되었고 이후 다양한 포팅 버전이 등장했다. [Libsass](https://github.com/sass/libsass)도 Ruby Sass를 C++로 포팅한 버전이다. 2014년, Ruby Sass와 LibSass 팀은 두 버전의 동기화를 합의하였기 때문에 Ruby Sass와 LibSass는 완전한 호환에 근접해 있지만 Ruby Sass의 버전이 앞설 가능성이 있다. Ruby Sass와 LibSass의 호환성 문제는 [Sass Compatibility](http://sass-compatibility.github.io/)를 참조하기 바란다.
 
@@ -54,8 +54,8 @@ Libsass를 Node.js 환경에서 사용하기 위해서는 [node-sass](https://gi
 ```
 $ npm install -g node-sass
 $ node-sass -v
-node-sass	4.12.0	(Wrapper)	[JavaScript]
-libsass  	3.5.4	(Sass Compiler)	[C/C++]
+node-sass       5.0.0   (Wrapper)       [JavaScript]
+libsass         3.5.5   (Sass Compiler) [C/C++]
 ```
 
 ## 2.2 Ruby Sass
@@ -93,7 +93,7 @@ Sass 3.5.1 (Bleeding Edge)
 
 ## 2.3 GUI App
 
-GUI 환경에서 컴파일 기능 제공하는 App은 아래와 같다. App에 따라 Sass뿐만 아니라 LESS, Compass, Stylus, Jade, CoffeeScript, Slim, HAML, Markdown등 다양한 파일의 컴파일 기능을 제공한다.
+GUI 환경에서 트랜스파일링 기능 제공하는 App은 아래와 같다. App에 따라 Sass뿐만 아니라 LESS, Compass, Stylus, Jade, CoffeeScript, Slim, HAML, Markdown등 다양한 파일의 트랜스파일링 기능을 제공한다.
 
 - [Hammer](http://hammerformac.com/)
 
@@ -111,13 +111,13 @@ GUI 환경에서 컴파일 기능 제공하는 App은 아래와 같다. App에 �
 
 ```bash
 $ node-sass -v
-node-sass	4.12.0	(Wrapper)	[JavaScript]
-libsass  	3.5.4	(Sass Compiler)	[C/C++]
+node-sass       5.0.0   (Wrapper)       [JavaScript]
+libsass         3.5.5   (Sass Compiler) [C/C++]
 ```
 
-## 3.2 compile
+## 3.2 트랜스파일링
 
-컴파일할 SCSS 파일인 foo.scss 파일을 sass-project 폴더에 아래와 같이 생성하자.
+트랜스파일링할 foo.scss 파일을 sass-project 폴더에 아래와 같이 생성하자.
 
 ```scss
 $site_max_width: 960px;
@@ -145,37 +145,40 @@ body {
 }
 ```
 
+트랜스파일링할 SCSS 파일의 경로와 트랜스파일링 후 생성될 css 파일의 경로를 지정한다.
+
+```bash
+$ cd sass-project
+
+## foo.scss를 트랜스파일링해서 foo.css를 생성
+$ node-sass foo.scss > foo.css
+```
+
+foo.scss 파일이 드랜스파일링되어 다음과 같이 foo.css 파일이 생성된다.
+
+
 ```css
 body {
   color: #333;
   font-size: 16px;
   font-family: Arial, sans-serif;
-  line-height: 125%;
-}
+  line-height: 125%; }
 
 #main {
   width: 100%;
-  max-width: 960px;
-}
+  max-width: 960px; }
 ```
 
-컴파일할 SCSS 파일의 경로와 컴파일 후 생성될 css 파일의 경로를 지정한다.
+특정 디렉터리 내의 모든 scss 파일을 css 파일로 일괄 트랜스파일링해서 지정한 디렉터리에 저장하려면 다음과 인풋 디렉터리외 아웃풋 디렉터리를 지정한다.
 
 ```bash
-$ cd sass-project
-
-## 특정 파일을 특정 파일 이름으로 컴파일
-## Compile foo.scss to bar.css
-$ node-sass foo.scss > bar.css
-
-## 폴더 내의 모든 파일을 컴파일
-## node-sass input-folder-path -o output-folder-path
+## node-sass input-directory-path -o output-directory-path
 $ node-sass src/sass --output dist/css
 ```
 
 ## 3.3 style
 
-scss 파일을 컴파일하여 css 파일을 생성할 때 4가지 스타일 중 하나를 선택할 수 있다.
+scss 파일을 트랜스파일링하여 css 파일을 생성할 때 4가지 스타일 중 하나를 선택할 수 있다.
 
 **nested**
 
@@ -211,7 +214,7 @@ $ node-sass --output-style compressed src/sass --output dist/css
 
 ## 3.4 watch
 
-watch command는 scss 파일의 변경을 감지하여 변경될 때마다 scss 파일을 컴파일하여 css 파일을 자동 업데이트한다.
+watch 옵션은 scss 파일의 변경을 감지하여 변경될 때마다 scss 파일을 트랜스파일링하여 css 파일을 자동 업데이트한다.
 
 디렉터리 단위 또는 파일 단위의 모니터링이 가능하다.
 

@@ -225,7 +225,7 @@ p {
 }
 ```
 
-CSS에서의 `/`는 나눗셈의 의미가 아니라 값을 분리하는 의미를 갖는다.
+CSS에서의 `/`는 나눗셈의 의미가 아니라 값을 구분하는 의미를 갖는다.
 
 따라서 Sass의 `/` 연산자를 사용하기 위해서는 몇가지 조건이 필요하다.
 
@@ -266,7 +266,7 @@ p {
 
 ## 4.2 컬러 연산자
 
-모든 산술 연산자는 컬러 값에도 사용할 수 있다.
+모든 산술 연산자는 컬러값에도 사용할 수 있다.
 
 ```scss
 p {
@@ -287,16 +287,16 @@ p {
 
 p {
   color: rgba(255, 0, 0, 0.75) + rgba(0, 255, 0, 0.75);
-  // alpha 값은 연산되지 않는다
+  // alpha(투명도)는 연산되지 않는다
   // color: rgba(255, 255, 0, 0.75);
 }
 ```
 
-alpha 값은 연산되지 않는다. alpha 값의 연산을 위해서는 [opacify 함수 또는 transparentize 함수](./sass-built-in-function#65-alpha-연산)를 사용한다.
+rgba의 alpha값은 연산되지 않는다. alpha값의 연산을 위해서는 [opacify 함수 또는 transparentize 함수](./sass-built-in-function#65-alpha-연산)를 사용한다.
 
-- opacify 함수: 첫번째 argument의 alpha값에 두번째 argument를 더해 불투명도를 증가시킨다.(더 불투명해진다)
+- opacify 함수: 첫번째 인수로 전달받은 alpha값에 두번째 인수를 더해 불투명도를 증가시킨다.(더 불투명해진다)
 
-- transparentize 함수: 첫번째 argument의 alpha값에 두번째 argument를 빼서 불투명도를 감소시킨다.(더 투명해진다)
+- transparentize 함수: 첫번째 인수로 전달받은 alpha값에 두번째 인수를 빼서 불투명도를 감소시킨다.(더 투명해진다)
 
 ```scss
 $translucent-red: rgba(255, 0, 0, 0.5);

@@ -16,16 +16,15 @@ description: SassScript는 CSS에서는 불가능한 연산, 변수, 함수 등�
 
 SassScript는 CSS에서는 불가능한 연산, 변수, 함수 등의 확장 기능을 의미한다.
 
-# 1. Data Type
+# 1. 데이터 타입
 
-프로퍼티값으로 사용할 수 있는 값에는 각각의 데이터 타입(Data Type)이 존재한다. SassScript는 7가지의 데이터 타입을 제공한다.
+프로퍼티 값으로 사용할 수 있는 값에는 각각의 데이터 타입(Data type)이 존재한다. SassScript는 7가지의 데이터 타입을 제공한다.
 
 숫자형
 : e.g) 1.2, 13, 10px
 
 문자열
-: CSS는 2종류의 문자열을 사용할 수 있다. 따옴표를 사용하는 경우("Lucida Grande", 'http://sass-lang.com')와 사용하지 않는 경우(bold, sans-serif)가 있다. Sass는 2종류의 문자열 모두를 인식할 수 있으며 컴파일 후의 CSS에는 Sass에서 사용한 문자열이 그대로 출력된다.
-	e.g. "Lucida Grande", 'http://sass-lang.com', sans-serif
+: CSS는 2종류의 문자열을 사용할 수 있다. 따옴표를 사용하는 경우("Lucida Grande", 'http://sass-lang.com')와 사용하지 않는 경우(bold, sans-serif)가 있다. Sass는 2종류의 문자열 모두를 인식할 수 있으며 트랜스파일링 후의 CSS에는 Sass에서 사용한 문자열이 그대로 출력된다.<br>e.g. "Lucida Grande", 'http://sass-lang.com', sans-serif
 
 컬러
 : e.g. blue, #04a3f9, rgba(255, 0, 0, 0.5)
@@ -34,15 +33,13 @@ boolean
 : e.g. true, false
 
 null
-: 프로퍼티 값에 값이 null인 변수가 지정되면 해당 룰셋은 출력되지 않는다.
+: 프로퍼티 값에 값이 null인 변수가 지정되면 해당 룰셋은 트랜스파일링되지 않는다.
 
 list
-: margin과 padding 프로퍼티값 지정에 사용되는 0 auto와 font-family 프로퍼티값 지정에 사용되는 Helvetica, Arial, sans-serif 등은 공백 또는 콤마 구분된 값의 list이다.
-	e.g. 1.5em 1em 0 2em, Helvetica, Arial, sans-serif
+: margin과 padding 프로퍼티값 지정에 사용되는 0 auto와 font-family 프로퍼티값 지정에 사용되는 Helvetica, Arial, sans-serif 등은 공백 또는 콤마 구분된 값의 list이다.<br>e.g. 1.5em 1em 0 2em, Helvetica, Arial, sans-serif
 
 map
-: JSON과 유사한 방식으로 `map-get` 함수를 사용하여 원하는 값은 추출할 수 있다.
- 	e.g. (key1: value1, key2: value2)
+: 객체와 유사한 방식으로 `map-get` 함수를 사용하여 원하는 값은 추출할 수 있다.<br>e.g. (key1: value1, key2: value2)
 
 ```scss
 // map
@@ -60,7 +57,7 @@ $foundation-palette: (
 // => .mars { color: #D7525C; }
 ```
 
-Data type은 Built-in function [type-of](./sass-built-in-function#21-data-type-%EC%B7%A8%EB%93%9D)으로 취득할 수 있다.
+데이터 타입을 확인하려면 빌트인 함수인 [type-of](./sass-built-in-function#21-data-type-%EC%B7%A8%EB%93%9D)를 사용한다.
 
 # 2. 변수
 
@@ -110,14 +107,10 @@ body {
 
 # 3. 변수의 Scope
 
-변수에는 유효범위(scope)가 존재한다.
-
-위의 예에서 변수 $width는 top level에 기술되었으므로 전역변수(global variable)가 된다. 전역변수는 전역은 물론 하위의 어떤 코드 블록 내에서도 유효하다.
-
-코드 블록 내에서 선언된 변수는 지역변수(local variable)가 된다. 지역변수의 유효범위는 자신이 속한 코드 블록과 하위 코드 블록이다.
+변수에는 유효범위(scope)가 존재한다. 코드 블록 내에서 선언된 변수는 지역변수가 된다. 지역변수의 유효범위는 자신이 속한 코드 블록과 하위 코드 블록이다.
 
 ```scss
-$width: 960px; // global variable
+$width: 960px; // 전역 변수
 
 header {
   width: $width;
@@ -125,7 +118,7 @@ header {
 }
 
 #main {
-  $color: #333; // local variable
+  $color: #333; // 지역 변수
   width: $width;
   margin: 20px auto;
   section {
@@ -142,26 +135,28 @@ header {
 footer {
   width: $width;
   margin: 0 auto;
-  color: $color;
+  color: $color; // Error: Undefined variable: "$color".
 }
 ```
 
-위 코드를 컴파일하면 Undefined variable: "$color"라는 에러가 발생한다. 이는 &#35;main에서 선언한 $color는 &#35;main 내에서만 유효한 지역변수이기 때문이다.
+위 예제에서 $width는 top level에 기술되었으므로 전역 변수다. 전역변수는 전역은 물론 하위의 어떤 코드 블록 내에서도 유효하다.
 
-코드 블록 내에서 선언한 지역변수를 전역변수화하는 방법은 아래와 같다.
+위 예제를 트랜스파일링하면 Undefined variable: "$color"라는 에러가 발생한다. 이는 &#35;main에서 선언한 $color는 &#35;main 내에서만 유효한 지역 변수이기 때문이다.
+
+코드 블록 내에서 선언한 변수를 전역 변수로 지정하는 방법은 아래와 같다.
 
 ```scss
 #main {
-  $color: #333 !global; // global variable
+  $color: #333 !global; // 전역 변수
   width: $width;
   ...
 ```
 
-# 4. 연산자(Operation)
+# 4. 연산자
 
 ## 4.1 숫자 연산자
 
-| Operator	| Description   |
+| 연산자    	| 설명
 |:---------:|:------------- |
 | +	        | 덧셈
 | -	        | 뺄셈
@@ -171,7 +166,7 @@ footer {
 | ==        | 동등
 | !=        | 부등
 
-아래의 코드를 살펴보자.
+아래의 예제를 살펴보자.
 
 ```scss
 $width: 100px;
@@ -193,13 +188,13 @@ $width에 10em을 더하면 어떻게 될까?
 $width: 100px;
 
 #foo {
-  width: $width + 10em; // NG: 100px + 10em
+  width: $width + 10em; // 100px + 10em => Error: Incompatible units: 'em' and 'px'.
 }
 ```
 
-컴파일 결과 Incompatible units: 'em' and 'px'.이라는 에러를 출력한다.
+트랜스파일링 결과 Incompatible units: 'em' and 'px'.이라는 에러를 출력한다.
 
-Sass 연산은 대상을 변환하여 연산할 수 없는 경우, 에러를 출력한다.
+Sass 연산은 대상을 변환하여 연산할 수 없는 경우 에러를 출력한다.
 
 %, em, rem, vh, vw, vmin, vmax과 같이 상대적인 값을 Sass는 알지 못한다. 상대적인 값의 결과값은 브라우저만이 알 수 있기 때문이다.
 
@@ -336,7 +331,7 @@ p:before {
 
 ## 4.4 불린 연산자
 
-| Operator	  | Description
+| 연산자	  | 설명
 | :---------: |:-------------:|
 | &&	        | and
 | &#124;&#124;| or
@@ -404,7 +399,7 @@ a {
 }
 ```
 
-위 Sass의 컴파일 결과는 아래와 같다.
+위 Sass의 트랜스파일링 결과는 아래와 같다.
 
 ```css
 a {
@@ -478,7 +473,7 @@ $font-family: "Lucida Grande", "Lucida Sans Unicode", sans-serif;
 @import "font";
 ```
 
-위 코드의 컴파일 결과는 아래와 같다. !default는 변수에 값이 할당되지 않았을 때 사용할 기본값을 지정할 때 사용한다. 위 예제의 경우, main.scss에서 변수에 값을 할당하였기 때문에 !default와 같이 사용한 변수값은 무력화된다.
+위 코드의 트랜스파일링 결과는 아래와 같다. !default는 변수에 값이 할당되지 않았을 때 사용할 기본값을 지정할 때 사용한다. 위 예제의 경우, main.scss에서 변수에 값을 할당하였기 때문에 !default와 같이 사용한 변수값은 무력화된다.
 
 ```css
 body {

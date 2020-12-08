@@ -156,7 +156,6 @@ $ node-sass foo.scss > foo.css
 
 foo.scss 파일이 드랜스파일링되어 다음과 같이 foo.css 파일이 생성된다.
 
-
 ```css
 body {
   color: #333;
@@ -174,6 +173,38 @@ body {
 ```bash
 ## node-sass input-directory-path -o output-directory-path
 $ node-sass src/sass --output dist/css
+```
+
+npm scripts를 사용하면 매번 긴 명령어를 입력하지 않고 좀 더 간단히 명령어를 사용할 수 있다.
+
+프로젝트 디럭터리에 아직 package.json이 없다면 다음 명령으로 package.json을 생성한다.
+
+```bash
+$ cd sass-project
+$ npm init -y
+```
+
+생성된 package.json을 다음과 같이 수정한다.
+
+```json
+{
+  "name": "sass-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:sass": "node-sass src/sass --output dist/css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+```
+
+이제 다음 명령으로 좀 더 간단히 트랜스파일링할 수 있다.
+
+```bash
+$ npm run build:sass
 ```
 
 ## 3.3 style

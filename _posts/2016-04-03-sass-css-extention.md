@@ -229,9 +229,7 @@ _vars.scss에는 변수가 선언되어 있으므로 partial된 _vars.scss, _hea
 
 ## 2.2 @extend
 
-기존 스타일을 상속하고자 경우 @extend를 사용한다.
-
-예를 들어 아래의 경우를 살펴보자.
+기존 스타일을 상속하고자 경우 @extend를 사용한다. 예를 들어, 아래의 경우를 살펴보자.
 
 ```html
 <div class="error seriousError">
@@ -279,7 +277,7 @@ _vars.scss에는 변수가 선언되어 있으므로 partial된 _vars.scss, _hea
 </div>
 ```
 
-@extend를 @media 블록과 같이 사용하는 경우, 제대로 작동하지 않는다. 다시말해 @media 안에서 외부의 선택자를 @extend할 수 없다.
+@extend를 @media 블록과 같이 사용하는 경우, 제대로 작동하지 않는다. 다시 말해, @media 안에서 외부의 선택자를 @extend할 수 없다.
 
 ```scss
 .foo {
@@ -288,8 +286,7 @@ _vars.scss에는 변수가 선언되어 있으므로 partial된 _vars.scss, _hea
 
 @media print {
   .bar {
-    // ERROR
-    @extend .foo;
+    @extend .foo; // ERROR: You may not @extend selectors across media queries.
   }
 }
 ```
@@ -301,7 +298,7 @@ _vars.scss에는 변수가 선언되어 있으므로 partial된 _vars.scss, _hea
 
 ## 2.3 Placeholder Selectors
 
-Placeholder Selector는 Sass 3.2부터 제공되는 기능으로 재이용이 가능한 rule set을 % 키워드로 지정하는 @extend 전용 Selector이다.
+Placeholder Selector는 재사용이 가능한 rule set을 % 키워드로 지정하는 @extend 전용 Selector이다.
 
 Placeholder Selector은 상속만을 위한 rule set으로 자신은 트랜스파일링되지 않는다.
 
@@ -341,9 +338,7 @@ Placeholder Selector은 상속만을 위한 rule set으로 자신은 트랜스�
 
 # 3. 조건과 반복
 
-Sass는 Javascript 같은 프로그래밍 언어와 같이 제어문(Control flow statement)을 사용할 수 있는 기능을 제공한다.
-
-- [Javascript Control Flow](./js-control-flow)
+Sass는 프로그래밍 언어와 유사하게 제어문을 사용할 수 있는 기능을 제공한다.
 
 ## 3.1 if()
 
@@ -363,9 +358,9 @@ p {
 }
 ```
 
-## 3.2 @if
+## 3.2 @if...@else
 
-@if를 사용하면 조건분기가 가능하다.
+@if...@else를 사용하면 조건 분기가 가능하다.
 
 ```scss
 $type: monster;
@@ -503,7 +498,7 @@ $i: 6;
 
 Mixin은 Sass의 매우 유용한 기능으로 중복 기술을 방지하기 위해 사용 빈도가 높은 마크업을 사전에 정의하여 필요할 때에 불러 사용하는 방법이다.
 
-@extend와 유사하나 프로그래밍 언어의 함수와 같이 argument를 받을 수 있다.
+@extend와 유사하나 프로그래밍 언어의 함수와 같이 인수를 전달받을 수 있다는 차이가 있다.
 
 사용법은 매우 간단하다. `@mixin` 선언하고 `@include`로 불러들인다.
 
@@ -515,7 +510,7 @@ Mixin은 Sass의 매우 유용한 기능으로 중복 기술을 방지하기 위
   border-radius: 50%;
 }
 
-// 지름이 50px인 원을 위한 mixin을 include한 후, 배경을 추가 지정
+// 지름이 50px인 원을 위한 mixin을 include한 후 배경을 추가 지정
 .box {
   @include circle;
 
@@ -523,7 +518,7 @@ Mixin은 Sass의 매우 유용한 기능으로 중복 기술을 방지하기 위
 }
 ```
 
-트랜스파일링 결과는 아래와 같다. 배경이 red이고 지름이 50px인 원을 표시한다.
+트랜스파일링 결과는 아래와 같다. 배경이 red이고 지름이 50px인 원을 나타낸다.
 
 ```css
 .box {
@@ -534,12 +529,12 @@ Mixin은 Sass의 매우 유용한 기능으로 중복 기술을 방지하기 위
 }
 ```
 
-@extend와 차이가 없어 보이나 Mixin은 함수와 같이 argument를 사용할 수 있다.
+@extend와 차이가 없어 보이나 Mixin은 함수와 같이 매개 변수를 사용할 수 있다.
 
 ```scss
 @mixin circle($size) {
   width: $size;
-  height: $size;
+  height: $size * 2;
   border-radius: 50%;
 }
 
@@ -555,23 +550,23 @@ Mixin은 Sass의 매우 유용한 기능으로 중복 기술을 방지하기 위
 ```css
 .box {
   width: 100px;
-  height: 100px;
+  height: 200px;
   border-radius: 50%;
   background: #f00;
 }
 ```
 
-argument의 초기값을 설정할 수도 있다.
+매개 변수의 초기값을 설정할 수도 있다.
 
 ```scss
 @mixin circle($size: 10px) {
   width: $size;
-  height: $size;
+  height: $size * 2;
   border-radius: 50%;
 }
 
 .box {
-  // 인자가 없으면 초기값을 사용한다.
+  // 인수가 전달되지 않으면 초기값을 사용한다.
   @include circle();
   background: #f00;
 }
@@ -582,7 +577,7 @@ argument의 초기값을 설정할 수도 있다.
 ```css
 .box {
   width: 10px;
-  height: 10px;
+  height: 20px;
   border-radius: 50%;
   background: #f00;
 }
@@ -675,11 +670,11 @@ position
 
 # 5. Function
 
-Function은 mixin과 유사하나 리턴값에 차이가 있다.
+Function은 mixin과 유사하나 반환값에 차이가 있다.
 
-- mixin : style markup을 리턴
+- mixin : style markup을 반환
 
-- function : @return directive를 통하여 값을 리턴
+- function : @return directive를 통하여 값을 반환
 
 ```scss
 $grid-width: 40px;

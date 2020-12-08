@@ -6,7 +6,7 @@ categories: Sass
 section: Sass
 seq: 4
 subseq: 3
-description: Sass의 유용한 확장 기능으로 선언을 중첩(Nesting)하는 것이다. CSS는 후손 셀렉터(Descendant Combinator)의 경우, 부모요소를 기술하여야 한다.
+description: Sass의 유용한 확장 기능으로 선언을 중첩(nesting)하는 것이다. CSS는 후손 셀렉터(Descendant Combinator)의 경우, 부모요소를 기술하여야 한다.
 ---
 
 * TOC
@@ -16,9 +16,9 @@ description: Sass의 유용한 확장 기능으로 선언을 중첩(Nesting)하�
 
 # 1. Nesting
 
-Nesting은 Sass의 유용한 확장 기능으로 선언을 중첩(Nesting)하는 것이다.
+Nesting은 Sass의 유용한 확장 기능으로 선언을 중첩(nesting)하는 것이다.
 
-CSS는 [후손 셀렉터(Descendant Combinator)](./css3-selector#61-후손-셀렉터-descendant-combinator)의 경우, 부모요소를 기술하여야 한다.
+CSS는 [후손 셀렉터(Descendant combinator)](./css3-selector#61-후손-셀렉터-descendant-combinator)의 경우 부모요소를 기술하여야 한다.
 
 ```css
 #navbar {
@@ -39,23 +39,27 @@ CSS는 [후손 셀렉터(Descendant Combinator)](./css3-selector#61-후손-셀�
 }
 ```
 
-Sass의 Nesting은 후손 셀렉터를 간단히 기술이 가능하다. 또한 HTML의 구조를 반영한 CSS를 기술할 수 있다.
+Sass의 nesting을 사용하면 후손 셀렉터를 간단히 기술할 수 있다. 또한 HTML의 구조를 반영한 CSS를 기술할 수 있다.
 
 ```scss
 #navbar {
   width: 80%;
   height: 23px;
 
-  ul { list-style-type: none; }
+  ul {
+    list-style-type: none;
+  }
 
   li {
     float: left;
-    a { font-weight: bold; }
+    a {
+      font-weight: bold;
+    }
   }
 }
 ```
 
-너무 깊은 Nesting은 가독성을 나쁘게 하고 셀렉터를 복잡하게 만든다.
+너무 깊은 nesting은 가독성을 나쁘게 하고 셀렉터를 복잡하게 만든다.
 
 ```scss
 // Bad case
@@ -85,7 +89,7 @@ div#main {
 }
 ```
 
-부모요소의 참조가 필요한 경우 `&`를 사용한다. 예를들어 :hover 또는 ::before 등의 [가상 클래스 선택자 (Pseudo-Class Selector)](./css3-selector#7-가상-클래스-셀렉터-pseudo-class-selector)를 지정하는 경우 부모요소의 참조가 필요하다.
+부모 요소의 참조가 필요한 경우 `&`를 사용한다. 예를 들어, :hover 또는 ::before 등의 [가상 클래스 선택자 (Pseudo-class selector)](./css3-selector#7-가상-클래스-셀렉터-pseudo-class-selector)를 지정하는 경우 부모 요소의 참조가 필요하다.
 
 ```scss
 .myAnchor {
@@ -103,7 +107,7 @@ div#main {
 }
 ```
 
-Nesting은 프로퍼티에도 사용할 수 있다.
+nesting은 프로퍼티에도 사용할 수 있다.
 
 ```scss
 .funky {
@@ -115,7 +119,7 @@ Nesting은 프로퍼티에도 사용할 수 있다.
 }
 ```
 
-위 코드의 컴파일 결과는 아래와 같다.
+위 코드의 트랜스파일링 결과는 아래와 같다.
 
 ```css
 .funky {
@@ -129,9 +133,9 @@ Nesting은 프로퍼티에도 사용할 수 있다.
 
 ## 2.1 @import
 
-1개의 CSS 파일에 모든 스타일을 기술하는 것은 가독성을 나쁘게 한다. 또한 기능에 따라 CSS 파일을 분리하면 재사용 및 유지보수 측면에서 유리하다. 따라서 룰을 정하여 파일을 분리하여 개발하는 것은 효과적인 방법이다.
+1개의 CSS 파일에 모든 스타일을 기술하면 유지보수하기 힘들고 가독성이 좋지 않다. 기능에 따라 CSS 파일을 분리하면 재사용 및 유지보수 측면에서 유리하다. 따라서 룰을 정하여 파일을 분리하여 개발하는 것은 효과적인 방법이다.
 
-Sass는 @import directive를 사용하여 분리된 stylesheet 파일을 import할 수 있다. 기존의 [CSS @import](https://developer.mozilla.org/ko/docs/Web/CSS/@import)보다 편리한 기능을 제공한다.
+Sass는 @import directive를 사용하여 분리된 stylesheet 파일을 import할 수 있다. Sass는 기존의 [CSS @import](https://developer.mozilla.org/ko/docs/Web/CSS/@import)보다 편리한 기능을 제공한다.
 
 ```scss
 @import "foo.scss";
@@ -139,48 +143,49 @@ Sass는 @import directive를 사용하여 분리된 stylesheet 파일을 import�
 // 확장자는 생략 가능하다
 @import "foo";
 
-// import multiple files
+// 여러 개의 파일을 한번에 임포트할 수 있다.
 @import "rounded-corners", "text-shadow";
 
-$family: unquote("Droid+Sans");
+// 변수를 사용해 문자열을 생성하여 임포트할 수도 있다.
+$family: "Open+Sans";
 @import url("http://fonts.googleapis.com/css?family=#{$family}");
 ```
 
-여러 개의 파일로 분할하는 것 또는 분할된 파일을 **partial** 이라 하며 partial된 Sass 파일명의 선두에는 underscore(&#95;)를 붙인다. (&#95;reset.scss, &#95;module.scss, &#95;print.scss)
+여러 개의 파일로 분할하는 것 또는 분할된 파일을 **partial**이라 하며 partial된 Sass 파일명의 선두에는 underscore(&#95;)를 붙인다. (&#95;reset.scss, &#95;module.scss, &#95;print.scss)
 
-예를 들어 "&#95;foo.scss"라는 partial된 Sass 파일이 있고 이 파일을 import하는 경우 아래와 같이 기술한다. 파일명 선두의 &#95;와 확장자는 생략할 수 있다.
+예를 들어, "&#95;foo.scss"라는 partial된 Sass 파일이 있고 이 파일을 import하는 경우 아래와 같이 기술한다. 파일명 선두의 &#95;와 확장자는 생략할 수 있다.
 
 ```scss
 @import "foo";
 ```
 
-partial된 Sass 파일명 선두에 붙인 &#95;의 의미는 import는 수행하되 CSS로의 컴파일은 수행하지 말라는 의미를 갖는다. 따라서 partial은 import시에는 CSS 파일로 컴파일되지 않기 때문에 최종적으로 CSS로 컴파일을 수행할 Sass 파일에서 import한다.
+partial된 Sass 파일명 선두에 붙인 &#95;의 의미는 import는 수행하되 CSS로의 트랜스파일링은 수행하지 말라는 의미를 갖는다. 따라서 partial은 import시에는 CSS 파일로 트랜스파일링되지 않기 때문에 최종적으로 CSS로 트랜스파일링을 수행할 Sass 파일에서 import한다.
 
 ![partial](/img/partial.png)
 
-예를 들어 위 그림과 같이 partial된 _vars.scss, _header.scss, _sidebar.scss, _footer.scss를 style.scss가 import하는 경우를 생각해 보자.
+예를 들어, 위 그림과 같이 partial된 _vars.scss, _header.scss, _sidebar.scss, _footer.scss를 style.scss가 import하는 경우를 생각해 보자.
 
 ```scss
-// _vars.scss
+// partial/_vars.scss
 $width: 960px;
 ```
 
 ```scss
-// _header.scss
+// partial/_header.scss
 #header {
   width: $width;
 }
 ```
 
 ```scss
-// _sidebar.scss
+// partial/_sidebar.scss
 #sidebar {
   width: $width;
 }
 ```
 
 ```scss
-// _footer.scss
+// partial/_footer.scss
 #footer {
   width: $width;
 }
@@ -194,7 +199,10 @@ $width: 960px;
 @import "partial/footer";
 ```
 
-_vars.scss에는 변수가 선언되어 있으므로 partial된 _vars.scss, _header.scss, _sidebar.scss, _footer.scss를 import가 수행되어 하나의 파일이 되기 이전에 컴파일을 실행하면 에러가 발생한다. 즉, partial된 Sass 파일명 선두에 붙인 &#95;을 제거하면 에러가 발생한다. 따라서 partial된 Sass 파일명 선두에는 반드시 &#95;를 붙여서 import 시에는 partial이 CSS 파일로 컴파일되지 않고 import가 완료된 이후, CSS로 컴파일을 수행도록 한다.
+_vars.scss에는 변수가 선언되어 있으므로 partial된 _vars.scss, _header.scss, _sidebar.scss, _footer.scss를 import가 수행되어 하나의 파일이 되기 이전에 트랜스파일링을 실행하면 에러가 발생한다. 즉, partial된 Sass 파일명 선두에 붙인 &#95;을 제거하면 에러가 발생한다. 따라서 partial된 Sass 파일명 선두에는 반드시 &#95;를 붙여서 import 시에는 partial이 CSS 파일로 트랜스파일링되지 않고 import가 완료된 이후, CSS로 트랜스파일링을 수행도록 한다.
+
+최신 버전에서는 &#95;을 붙여도 에러가 발생하지 않는다. @import 대신 @use를 사용하는 방법도 있다. 이에 대해서는 [SCSS에 새로 추가된 Module System (@use, @forward)](https://blueshw.github.io/2019/10/27/scss-module-system/)을 참고하기 바란다.
+{:.info}
 
 @import는 top-level에서 사용하는 것이 일반적이지만 CSS rule 또는 @media rule 내에 포함시키는 것도 가능하다.
 
@@ -211,7 +219,7 @@ _vars.scss에는 변수가 선언되어 있으므로 partial된 _vars.scss, _hea
 }
 ```
 
-위 코드의 컴파일 결과는 아래와 같다.
+위 코드의 트랜스파일링 결과는 아래와 같다.
 
 ```css
 #main .example {
@@ -249,7 +257,7 @@ _vars.scss에는 변수가 선언되어 있으므로 partial된 _vars.scss, _hea
 }
 ```
 
-위 코드의 컴파일 결과는 아래와 같다. .error와 .seriousError가 공통으로 사용하는 프로퍼티를 묶어 합리적인 룰셋을 생성한다.
+위 코드의 트랜스파일링 결과는 아래와 같다. .error와 .seriousError가 공통으로 사용하는 프로퍼티를 묶어 합리적인 룰셋을 생성한다.
 
 ```css
 .error, .seriousError {
@@ -286,7 +294,7 @@ _vars.scss에는 변수가 선언되어 있으므로 partial된 _vars.scss, _hea
 }
 ```
 
-@extend를 사용하면 컴파일 후 자신의 셀렉터가 어디에 첨부될 것인지 예상하기 어렵고, 예상치 못했던 부작용이 발생할 수 있다. 따라서 @extend의 사용은 가급적 자제하고 Mixin은 사용하는 것을 추천한다.
+@extend를 사용하면 트랜스파일링 후 자신의 셀렉터가 어디에 첨부될 것인지 예상하기 어렵고, 예상치 못했던 부작용이 발생할 수 있다. 따라서 @extend의 사용은 가급적 자제하고 Mixin은 사용하는 것을 추천한다.
 {: .info}
 
 - [@extend의 부작용](https://sass-guidelin.es/ko/#extend)
@@ -295,7 +303,7 @@ _vars.scss에는 변수가 선언되어 있으므로 partial된 _vars.scss, _hea
 
 Placeholder Selector는 Sass 3.2부터 제공되는 기능으로 재이용이 가능한 rule set을 % 키워드로 지정하는 @extend 전용 Selector이다.
 
-Placeholder Selector은 상속만을 위한 rule set으로 자신은 컴파일되지 않는다.
+Placeholder Selector은 상속만을 위한 rule set으로 자신은 트랜스파일링되지 않는다.
 
 ```scss
 %input-style {
@@ -315,7 +323,7 @@ Placeholder Selector은 상속만을 위한 rule set으로 자신은 컴파일�
 }
 ```
 
-컴파일 결과는 아래와 같다.
+트랜스파일링 결과는 아래와 같다.
 
 ```css
 .input-black, .input-red {
@@ -375,7 +383,7 @@ p {
 }
 ```
 
-컴파일 결과는 아래와 같다.
+트랜스파일링 결과는 아래와 같다.
 
 ```css
 p {
@@ -393,7 +401,7 @@ p {
 }
 ```
 
-컴파일 결과는 아래와 같다.
+트랜스파일링 결과는 아래와 같다.
 
 ```css
 .item-1 {
@@ -431,7 +439,7 @@ p {
 }
 ```
 
-컴파일 결과는 아래와 같다.
+트랜스파일링 결과는 아래와 같다.
 
 ```css
 .puma-icon {
@@ -475,7 +483,7 @@ $i: 6;
 }
 ```
 
-컴파일 결과는 아래와 같다.
+트랜스파일링 결과는 아래와 같다.
 
 ```css
 .item-6 {
@@ -515,7 +523,7 @@ Mixin은 Sass의 매우 유용한 기능으로 중복 기술을 방지하기 위
 }
 ```
 
-컴파일 결과는 아래와 같다. 배경이 red이고 지름이 50px인 원을 표시한다.
+트랜스파일링 결과는 아래와 같다. 배경이 red이고 지름이 50px인 원을 표시한다.
 
 ```css
 .box {
@@ -542,7 +550,7 @@ Mixin은 Sass의 매우 유용한 기능으로 중복 기술을 방지하기 위
 }
 ```
 
-컴파일 결과는 아래와 같다.
+트랜스파일링 결과는 아래와 같다.
 
 ```css
 .box {
@@ -569,7 +577,7 @@ argument의 초기값을 설정할 수도 있다.
 }
 ```
 
-컴파일 결과는 아래와 같다.
+트랜스파일링 결과는 아래와 같다.
 
 ```css
 .box {
@@ -688,7 +696,7 @@ $gutter-width: 10px;
 
 CSS는 멀티 라인 주석 /&#42; &#42;/만을 지원하지만 Sass는 /&#42; &#42;/와 // 모두 사용할 수 있다.
 
-한 줄 주석 //은 컴파일 후 CSS에서 사라지고, 멀티 라인 주석은 CSS에 나타난다.
+한 줄 주석 //은 트랜스파일링 후 CSS에서 사라지고, 멀티 라인 주석은 CSS에 나타난다.
 
 # Reference
 

@@ -188,11 +188,11 @@ $width에 10em을 더하면 어떻게 될까?
 $width: 100px;
 
 #foo {
-  width: $width + 10em; // 100px + 10em => Error: Incompatible units: 'em' and 'px'.
+  width: $width + 10em; // 100px + 10em => Error: Incompatible units em and px.
 }
 ```
 
-트랜스파일링 결과 Incompatible units: 'em' and 'px'.이라는 에러를 출력한다.
+트랜스파일링 결과 Error: Incompatible units em and px.이라는 에러를 출력한다.
 
 Sass 연산은 대상을 변환하여 연산할 수 없는 경우 에러를 출력한다.
 
@@ -451,7 +451,7 @@ $new_content: "First time reference" !default;
 }
 ```
 
-이러한 특성은 [partial](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#Partials__partials)에 매우 유용하다.
+이러한 특성은 [partial](https://sass-lang.com/documentation#Partials__partials)에 매우 유용하다.
 
 2개의 파일 _font.scss와 main.scss를 생성해 보자. main.scss은 내부에서 _font.scss을 import한다.
 

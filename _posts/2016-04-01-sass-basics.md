@@ -39,7 +39,13 @@ CSS와 비교하여 Sass는 아래와 같은 장점이 있다.
 
 브라우저는 Sass의 문법을 알지 못하기 때문에 Sass(.scss) 파일을 css 파일로 트랜스파일링(컴파일)하여야 한다. 따라서 Sass 환경의 설치가 필요하다.
 
-Sass는 2006년 Ruby로 처음 개발되었고 이후 다양한 포팅 버전이 등장했다. [Libsass](https://github.com/sass/libsass)도 Ruby Sass를 C++로 포팅한 버전이다. 2014년, Ruby Sass와 LibSass 팀은 두 버전의 동기화를 합의하였기 때문에 Ruby Sass와 LibSass는 완전한 호환에 근접해 있지만 Ruby Sass의 버전이 앞설 가능성이 있다. Ruby Sass와 LibSass의 호환성 문제는 [Sass Compatibility](http://sass-compatibility.github.io/)를 참조하기 바란다.
+```
+$ npm install -g sass
+$ sass --version
+1.30.0 compiled with dart2js 2.10.4
+```
+
+<!-- Sass는 2006년 Ruby로 처음 개발되었고 이후 다양한 포팅 버전이 등장했다. [Libsass](https://github.com/sass/libsass)도 Ruby Sass를 C++로 포팅한 버전이다. 2014년, Ruby Sass와 LibSass 팀은 두 버전의 동기화를 합의하였기 때문에 Ruby Sass와 LibSass는 완전한 호환에 근접해 있지만 Ruby Sass의 버전이 앞설 가능성이 있다. Ruby Sass와 LibSass의 호환성 문제는 [Sass Compatibility](http://sass-compatibility.github.io/)를 참조하기 바란다.
 
 따라서, Ruby Sass와 LibSass 두가지 버전 중 하나를 선택하여 설치하면 된다. Ruby 환경에서 개발이 진행된다면 Ruby Sass를 선택하고, Node.js 환경에서 개발이 진행된다면 LibSass를 사용하는 편이 좋을 것이다.
 
@@ -89,9 +95,9 @@ Mac의 경우 Ruby가 기본적으로 설치되어 있으므로 바로 sass를 �
 $ gem install sass
 $ sass -v
 Sass 3.5.1 (Bleeding Edge)
-```
+``` -->
 
-## 2.3 GUI App
+<!-- ## 2.3 GUI App
 
 GUI 환경에서 트랜스파일링 기능 제공하는 App은 아래와 같다. App에 따라 Sass뿐만 아니라 LESS, Compass, Stylus, Jade, CoffeeScript, Slim, HAML, Markdown등 다양한 파일의 트랜스파일링 기능을 제공한다.
 
@@ -101,23 +107,20 @@ GUI 환경에서 트랜스파일링 기능 제공하는 App은 아래와 같다.
 
 - [Compass](http://compass.kkbox.com/)
 
-- [Koala](http://koala-app.com/)
+- [Koala](http://koala-app.com/) -->
 
 # 3. Command
-
-<strong>node-sass</strong>를 기준으로 설명한다.
 
 ## 3.1 version
 
 ```bash
-$ node-sass -v
-node-sass       5.0.0   (Wrapper)       [JavaScript]
-libsass         3.5.5   (Sass Compiler) [C/C++]
+$ sass --version
+1.30.0 compiled with dart2js 2.10.4
 ```
 
 ## 3.2 트랜스파일링
 
-트랜스파일링할 foo.scss 파일을 sass-project 폴더에 아래와 같이 생성하자.
+트랜스파일링할 foo.scss 파일을 sass-project 디렉터리에 아래와 같이 생성하자.
 
 ```scss
 $site_max_width: 960px;
@@ -151,7 +154,7 @@ body {
 $ cd sass-project
 
 ## foo.scss를 트랜스파일링해서 foo.css를 생성
-$ node-sass foo.scss > foo.css
+$ sass foo.scss foo.css
 ```
 
 foo.scss 파일이 드랜스파일링되어 다음과 같이 foo.css 파일이 생성된다.
@@ -171,8 +174,8 @@ body {
 특정 디렉터리 내의 모든 scss 파일을 css 파일로 일괄 트랜스파일링해서 지정한 디렉터리에 저장하려면 다음과 인풋 디렉터리외 아웃풋 디렉터리를 지정한다.
 
 ```bash
-## node-sass input-directory-path -o output-directory-path
-$ node-sass src/sass --output dist/css
+## sass input-directory-path:output-directory-path
+$ sass src/sass:dist/css
 ```
 
 npm scripts를 사용하면 매번 긴 명령어를 입력하지 않고 좀 더 간단히 명령어를 사용할 수 있다.
@@ -193,7 +196,7 @@ $ npm init -y
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:sass": "node-sass src/sass --output dist/css"
+    "build:sass": "sass src/sass:dist/css"
   },
   "keywords": [],
   "author": "",
@@ -209,30 +212,16 @@ $ npm run build:sass
 
 ## 3.3 style
 
-scss 파일을 트랜스파일링하여 css 파일을 생성할 때 4가지 스타일 중 하나를 선택할 수 있다.
-
-**nested**
-
-sass 형식과 유사하게 nested된 css 파일이 생성된다. 기본값으로 옵션을 추가하지 않아도 기본 적용된다.
-
-```bash
-$ node-sass --output-style nested src/sass --output dist/css
-```
+scss 파일을 트랜스파일링하여 css 파일을 생성할 때 2가지 스타일 중 하나를 선택할 수 있다.
 
 **expanded**
 
-표준적인 스타일의 css 파일이 생성된다.
+표준적인 스타일의 css 파일이 생성된다. 기본값이다.
 
 ```bash
-$ node-sass --output-style expanded src/sass --output dist/css
-```
-
-**compact**
-
-여러 룰셋을 한줄로 나타내는 스타일의 css 파일이 생성된다.
-
-```bash
-$ node-sass --output-style compact src/sass --output dist/css
+$ sass --style expanded src/sass:dist/css
+# 위와 같은 결과가 만들어진다.
+$ sass src/sass:dist/css
 ```
 
 **compressed**
@@ -240,31 +229,16 @@ $ node-sass --output-style compact src/sass --output dist/css
 가능한 빈공간이 없는 압축된 스타일의 css 파일이 생성된다.
 
 ```bash
-$ node-sass --output-style compressed src/sass --output dist/css
+$ sass --style compressed src/sass:dist/css
 ```
 
 ## 3.4 watch
 
 watch 옵션은 scss 파일의 변경을 감지하여 변경될 때마다 scss 파일을 트랜스파일링하여 css 파일을 자동 업데이트한다.
 
-디렉터리 단위 또는 파일 단위의 모니터링이 가능하다.
-
-**파일 단위의 watch**
-
 ```bash
-$ cd my-project
-
-## watch src/sass/foo.scss -> dist/css
-$ node-sass --watch src/sass/foo.scss --output dist/css
-```
-
-**디렉터리 단위의 watch**
-
-```bash
-$ cd my-project
-
 ## watch src/sass -> dist/css
-$ node-sass --watch src/sass --output dist/css
+$ sass --watch src/sass:dist/css
 ```
 
 # 4. SASS vs. SCSS

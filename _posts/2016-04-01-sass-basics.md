@@ -39,11 +39,11 @@ CSS와 비교하여 Sass는 아래와 같은 장점이 있다.
 
 브라우저는 Sass의 문법을 알지 못하기 때문에 Sass(.scss) 파일을 css 파일로 트랜스파일링(컴파일)하여야 한다. 따라서 Sass 환경의 설치가 필요하다.
 
-Sass는 2006년 Ruby로 처음 개발되었고 이후  [Libsass](https://github.com/sass/libsass), [node-sass](https://github.com/sass/node-sass) 등 다양한 포팅 버전이 등장했다. Sass는 최근에 Dart Sass로 재구현되었다.
+Sass는 2006년 Ruby로 처음 개발되었고 이후 Ruby Sass를 C++로 포팅한 [Libsass](https://github.com/sass/libsass), node.js 환경에서 Libsass를 사용할 수 있는 [node-sass](https://github.com/sass/node-sass) 등 다양한 포팅 버전이 등장했다. Sass는 최근에 [Dart Sass](https://sass-lang.com/dart-sass)로 재구현되었다. Libsass나 node-sass는 현재 유지 관리는 되고 있으나 폐지되었으므로 Dart Sass를 사용하도록 하자.
 
-다음 명령을 사용해 Sass를 설치하자.
+다음 명령을 사용해 Sass를 설치한다.
 
-```
+```bash
 $ npm install -g sass
 ```
 

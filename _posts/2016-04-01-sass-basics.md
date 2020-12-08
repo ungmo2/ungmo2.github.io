@@ -39,10 +39,12 @@ CSS와 비교하여 Sass는 아래와 같은 장점이 있다.
 
 브라우저는 Sass의 문법을 알지 못하기 때문에 Sass(.scss) 파일을 css 파일로 트랜스파일링(컴파일)하여야 한다. 따라서 Sass 환경의 설치가 필요하다.
 
+Sass는 2006년 Ruby로 처음 개발되었고 이후  [Libsass](https://github.com/sass/libsass), [node-sass](https://github.com/sass/node-sass) 등 다양한 포팅 버전이 등장했다. Sass는 최근에 Dart Sass로 재구현되었다.
+
+다음 명령을 사용해 Sass를 설치하자.
+
 ```
 $ npm install -g sass
-$ sass --version
-1.30.0 compiled with dart2js 2.10.4
 ```
 
 <!-- Sass는 2006년 Ruby로 처음 개발되었고 이후 다양한 포팅 버전이 등장했다. [Libsass](https://github.com/sass/libsass)도 Ruby Sass를 C++로 포팅한 버전이다. 2014년, Ruby Sass와 LibSass 팀은 두 버전의 동기화를 합의하였기 때문에 Ruby Sass와 LibSass는 완전한 호환에 근접해 있지만 Ruby Sass의 버전이 앞설 가능성이 있다. Ruby Sass와 LibSass의 호환성 문제는 [Sass Compatibility](http://sass-compatibility.github.io/)를 참조하기 바란다.
@@ -120,7 +122,7 @@ $ sass --version
 
 ## 3.2 트랜스파일링
 
-트랜스파일링할 foo.scss 파일을 sass-project 디렉터리에 아래와 같이 생성하자.
+sass-project 디렉터리를 생성하고 트랜스파일링할 foo.scss 파일을 아래와 같이 생성하자.
 
 ```scss
 $site_max_width: 960px;
@@ -154,7 +156,7 @@ body {
 $ cd sass-project
 
 ## foo.scss를 트랜스파일링해서 foo.css를 생성
-$ sass foo.scss foo.css
+$ sass foo.scss:foo.css
 ```
 
 foo.scss 파일이 드랜스파일링되어 다음과 같이 foo.css 파일이 생성된다.

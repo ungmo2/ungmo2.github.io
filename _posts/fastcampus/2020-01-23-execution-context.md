@@ -154,10 +154,10 @@ console.log 메서드를 호출하기 위해 먼저 식별자인 console을 스�
 ```javascript
 const x = 1;
 
-function foo () {
+function foo() {
   const y = 2;
 
-  function bar () {
+  function bar() {
     const z = 3;
     console.log(x + y + z);
   }
@@ -272,14 +272,14 @@ foo 함수가 종료되면 코드의 제어권은 다시 전역 코드로 이동
 var x = 1;
 const y = 2;
 
-function foo (a) {
+function foo(a) {
   var x = 3;
   const y = 4;
 
-  function bar (b) {
+  function bar(b) {
     const z = 5;
     console.log(a + b + x + y + z);
-}
+  }
   bar(10);
 }
 
@@ -369,7 +369,7 @@ window.__proto__.__proto__.__proto__.__proto__ === Object.prototype; // -> true
 var x = 1;
 const y = 2;
 
-function foo (a) {
+function foo(a) {
 ...
 ```
 
@@ -469,14 +469,14 @@ this 바인딩
 var x = 1;
 const y = 2;
 
-function foo (a) {
+function foo(a) {
   var x = 3;
   const y = 4;
 
-  function bar (b) {
+  function bar(b) {
     const z = 5;
     console.log(a + b + x + y + z);
-}
+  }
   bar(10);
 }
 
@@ -579,11 +579,11 @@ foo 함수 코드의 실행
 var x = 1;
 const y = 2;
 
-function foo (a) {
+function foo(a) {
   var x = 3;
   const y = 4;
 
-  function bar (b) {
+  function bar(b) {
     const z = 5;
     console.log(a + b + x + y + z);
   }

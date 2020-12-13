@@ -114,7 +114,7 @@ console.log('next' in generator); // true
 
 -	next 메서드를 호출하면 제너레이터 함수의 yield 표현식까지 코드 블록을 실행하고 yield된 값을 value 프로퍼티 값으로, false를 done 프로퍼티 값으로 갖는 이터레이터 리절트 객체를 반환한다.
 
--	return 메서드를 호출하면 인수로 전달받은 value 프로퍼티 값으로, true를 done 프로퍼티 값으로 갖는 이터레이터 리절트 객체를 반환한다.
+-	return 메서드를 호출하면 인수로 전달받은 값을 value 프로퍼티 값으로, true를 done 프로퍼티 값으로 갖는 이터레이터 리절트 객체를 반환한다.
 
 ```javascript
 function* genFunc() {
@@ -201,7 +201,7 @@ console.log(generator.next()); // {value: undefined, done: true}
 
 **이때 제너레이터 객체의 next 메서드는 value, done 프로퍼티를 갖는 이터레이터 리절트 객체(["34.1.2. 이터레이터"](/fastcampus/iterable#12-이터레이터) 참고)를 반환한다. next 메서드가 반환한 이터레이터 리절트 객체의 value 프로퍼티에는 yield 표현식에서 yield된 값(yield 키워드 뒤의 값)이 할당되고 done 프로퍼티에는 제너레이터 함수가 끝까지 실행되었는지를 나타내는 불리언 값이 할당된다.**
 
-이처럼 next 메서드를 반복 호출하여 yield 표현식까지 실행과 일시 중지를 반복하다가 제너레이터 함수가 끝까지 실행되면 next 메서드가 반환하는 이터레이터 리절트 객체의 value 프로퍼티에는 제너레이터 함수의 반환값이 할당되고 done 프로퍼티에는 제너레이터 함수가 끝까지 실행되었음을 나타내는 false가 할당된다.
+이처럼 next 메서드를 반복 호출하여 yield 표현식까지 실행과 일시 중지를 반복하다가 제너레이터 함수가 끝까지 실행되면 next 메서드가 반환하는 이터레이터 리절트 객체의 value 프로퍼티에는 제너레이터 함수의 반환값이 할당되고 done 프로퍼티에는 제너레이터 함수가 끝까지 실행되었음을 나타내는 true가 할당된다.
 
 ```
 generator.next() -> yield -> generator.next() -> yield -> ... -> generator.next() -> return
@@ -232,7 +232,7 @@ function* genFunc() {
 }
 
 // 제너레이터 함수를 호출하면 제너레이터 객체를 반환한다.
-// 이터러블이며 동시에 이터레이터인 next 메서드를 갖는다.
+// 이터러블이며 동시에 이터레이터인 제너레이터 객체는 next 메서드를 갖는다.
 const generator = genFunc(0);
 
 // 처음 호출하는 next 메서드에는 인수를 전달하지 않는다.

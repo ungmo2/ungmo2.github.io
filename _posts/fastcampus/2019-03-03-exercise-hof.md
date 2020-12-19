@@ -163,7 +163,7 @@ function sortBy(key) {
 
 # 4. 새로운 요소 추가
 
-새로운 요소(예를 들어 `{ id: 4, content: 'Test', completed: false }`)를 인수로 전달하면 todos의 선두에 새로운 요소를 추가하는 함수를 작성하라. 단, Array#push는 사용하지 않도록 하자.
+새로운 요소(예를 들어 `{ id: 4, content: 'Test', completed: false }`)를 인수로 전달하면 todos의 선두에 새로운 요소를 추가하는 함수를 작성하라. 단, Array#unshift나 Array#push는 사용하지 않도록 하자.
 
 ```javascript
 let todos = [

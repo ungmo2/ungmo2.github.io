@@ -149,15 +149,12 @@ console.log(sortBy('completed'));
 <!--
 function sortBy(key) {
   // copy
-  const sorted = todos.slice();
-  // const sorted = [...todos];
+  // const _todos = todos.slice();
+  const _todos = [...todos];
 
-  sorted.sort(function (a, b) {
-    // 프로퍼티 값이 문자열인 경우, - 산술 연산으로 비교하면 NaN이 나오므로 비교 연산을 사용한다.
-    return a[key] > b[key] ? 1 : (a[key] < b[key] ? -1 : 0);
-  });
-
-  return sorted;
+  return _todos.sort((todo1, todo2) =>
+    todo1[key] > todo2[key] ? 1 : todo1[key] < todo2[key] ? -1 : 0
+  );
 }
 -->
 

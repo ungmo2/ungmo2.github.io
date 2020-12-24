@@ -257,6 +257,7 @@ DOM API에 의한 리플로우, 리페인트
 따라서 리플로우와 리페인트가 반드시 순차적으로 동시에 실행되는 것은 아니다. 레이아웃에 영향이 없는 변경은 리플로우 없이 리페인트만 실행된다.
 
 - [What forces layout / reflow](https://gist.github.com/paulirish/5d52fb081b3570c81e3a)
+- [CSS triggers](https://csstriggers.com)
 - [Layout thrashing cheatsheet](https://devhints.io/layout-thrashing)
 
 # 8. 자바스크립트 파싱에 의한 HTML 파싱 중단

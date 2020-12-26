@@ -177,6 +177,7 @@ RangeSlider.propTypes = {
 컴포넌트가 위치한 디렉터리에 RangeSlider.stories.js 파일을 생성한다.
 
 ```javascript
+// src/components/RangeSlider.stories.js
 import React from 'react';
 import RangeSlider from './RangeSlider';
 
@@ -197,4 +198,24 @@ Deafult.args = {
 
 다음과 같이 Storybook에 컴포넌트가 추가된 것을 확인할 수 있다.
 
-![Storybook component](img/storybook-component.png)
+![Storybook component](img/storybook-component1.png)
+
+만약 src/components 디렉터리에 있는 컴포넌트만을 Storybook으로 관리하려면 .storybook/main.js의 stories를 다음과 같이 수정한다.
+
+```javascript
+// .storybook/main.js
+module.exports = {
+  // "stories": [
+  //   "../src/**/*.stories.mdx",
+  //   "../src/**/*.stories.@(js|jsx|ts|tsx)"
+  // ],
+  stories: ['../src/components/**/*.stories.js'],
+  "addons": [
+    "@storybook/addon-links",
+    "@storybook/addon-essentials",
+    "@storybook/preset-create-react-app"
+  ]
+}
+```
+
+![Storybook component](img/storybook-component2.png)

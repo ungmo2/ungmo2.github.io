@@ -19,6 +19,9 @@ Story는 Storybook을 구성하는 기본 구성 단위다. UI 컨포넌트는 �
 
 # 1. Storybook 설치
 
+Storybook 6.1.11을 기준으로 작성되었다.
+{; .info}
+
 Storybook은 기존 프로젝트의 루드 디렉터리에 설치해 사용할 수도 있고, 새롭게 프로젝트를 생성하면서 설치할 수도 있다. 예를 들어, 다음과 같이 React 프로젝트를 생성하면서 Storybook 설치해보자.
 
 ```bash
@@ -33,8 +36,8 @@ $ npx -p @storybook/cli sb init
 
 설치가 완료되면 다음과 같은 디렉터리가 프로젝트 루트에 생성된다.
 
-- /.storybook: Storybook 설정 파일이 포함되어 있다.
-- /src/stories: Storybook 예제 컴포넌트
+- .storybook: Storybook 설정 파일이 포함되어 있다.
+- src/stories: Storybook 예제 컴포넌트
 
 다음 명령을 실행하면 [Storybook 서버](http://localhost:6006)가 기동된다.
 

@@ -20,7 +20,7 @@ Story는 Storybook을 구성하는 기본 구성 단위다. UI 컨포넌트는 �
 # 1. Storybook 설치
 
 Storybook 6.1.11을 기준으로 작성되었다.
-{; .info}
+{: .info}
 
 Storybook은 기존 프로젝트의 루드 디렉터리에 설치해 사용할 수도 있고, 새롭게 프로젝트를 생성하면서 설치할 수도 있다. 예를 들어, 다음과 같이 React 프로젝트를 생성하면서 Storybook 설치해보자.
 
@@ -208,11 +208,11 @@ Deafult.args = {
 ```javascript
 // .storybook/main.js
 module.exports = {
-  // "stories": [
-  //   "../src/**/*.stories.mdx",
-  //   "../src/**/*.stories.@(js|jsx|ts|tsx)"
-  // ],
-  stories: ['../src/components/**/*.stories.js'],
+  "stories": [
+    // "../src/**/*.stories.mdx",
+    // "../src/**/*.stories.@(js|jsx|ts|tsx)"
+    '../src/components/**/*.stories.js'
+  ],
   "addons": [
     "@storybook/addon-links",
     "@storybook/addon-essentials",

@@ -17,7 +17,7 @@ description: Storybook은 React, Angular, Vue 등의 분리된 UI 컨포넌트�
 
 Story는 Storybook을 구성하는 기본 구성 단위다. UI 컨포넌트는 기본적으로 하나 이상의 Story로 구성된다.
 
-# 1. Storybook 설치
+# 1. 리액트 프로젝트를 위한 Storybook 설치
 
 Storybook 6.1.11을 기준으로 작성되었다.
 {: .info}
@@ -63,9 +63,6 @@ $ npm start
 ```
 
 ![Storybook project](img/storybook-project.png)
-
-
-# 2. 컴포넌트 생성과 Story 추가
 
 프로젝트에 다음과 같이 src/components 디렉터리에 RangeSlider 컴포넌트를 추가해보자.
 
@@ -222,3 +219,94 @@ module.exports = {
 ```
 
 ![Storybook component](img/storybook-component2.png)
+
+
+# 2. HTML 프로젝트를 위한 Storybook 설치
+
+다음과 같이 HTML 프로젝트를 생성하면서 Storybook 설치해보자.
+
+```bash
+# Create our application:
+$ mkdir html-storybook-project && cd html-orybook-project
+
+# Add Storybook:
+$ npx -p @storybook/cli sb init --type html
+```
+
+다음 명령을 실행하면 [Storybook 서버](http://localhost:6006)가 기동된다.
+
+```bash
+# Start the component explorer on port 6006:
+$ npm run storybook
+```
+
+storybook을 설치하면 webpack을 설치하는데 설치된 webpack 5버전이 설치되면 다음과 같은 에러가 발생한다.
+
+```bash
+$ npm run storybook
+
+> storybook
+> start-storybook -p 6006
+
+info @storybook/html v6.1.11
+info
+info => Using prebuilt manager
+info => Loading presets
+info => Loading 1 config file in "./.storybook"
+info => Loading 7 other files in "./.storybook"
+info => Adding stories defined in ".storybook/main.js"
+info => Using default Webpack setup
+10% building 1/1 modules 0 active/Users/ungmo2/Desktop/@poiemaweb/html-ui/node_modules/html-webpack-plugin/lib/webpack5/file-watcher-api.js:13
+    mainCompilation.fileSystemInfo.createSnapshot(
+                                   ^
+
+TypeError: Cannot read property 'createSnapshot' of undefined
+    at /Users/ungmo2/Desktop/@poiemaweb/html-ui/node_modules/html-webpack-plugin/lib/webpack5/file-watcher-api.js:13:36
+    at new Promise (<anonymous>)
+    at Object.createSnapshot (/Users/ungmo2/Desktop/@poiemaweb/html-ui/node_modules/html-webpack-plugin/lib/webpack5/file-watcher-api.js:12:10)
+    at /Users/ungmo2/Desktop/@poiemaweb/html-ui/node_modules/html-webpack-plugin/lib/cached-child-compiler.js:219:35
+npm ERR! code 1
+npm ERR! path /Users/ungmo2/Desktop/@poiemaweb/html-ui
+npm ERR! command failed
+npm ERR! command sh -c start-storybook -p 6006
+```
+
+webpack5를 위해 [html-webpack-plugin@next](https://www.npmjs.com/package/html-webpack-plugin)를 설치해야 한다.
+
+```bash
+$ npm i --save-dev html-webpack-plugin@next
+
+npm ERR! code ERESOLVE
+npm ERR! ERESOLVE unable to resolve dependency tree
+npm ERR!
+npm ERR! Found: html-webpack-plugin@4.5.1
+npm ERR! node_modules/html-webpack-plugin
+npm ERR!   dev html-webpack-plugin@"5.0.0-beta.4" from the root project
+npm ERR!
+npm ERR! Could not resolve dependency:
+npm ERR! dev html-webpack-plugin@"5.0.0-beta.4" from the root project
+npm ERR!
+npm ERR! Fix the upstream dependency conflict, or retry
+npm ERR! this command with --force, or --legacy-peer-deps
+npm ERR! to accept an incorrect (and potentially broken) dependency resolution.
+npm ERR!
+npm ERR! See /Users/ungmo2/.npm/eresolve-report.txt for a full report.
+```
+
+위와 같이 에러가 발생하면 node_modules 디렉터리와 package-lock.json 파일을 제거한 후 다음과 같이 재설치한다.
+
+```bash
+$ npm i --save-dev html-webpack-plugin@next
+$ npm i
+```
+
+설치가 완료되면 다음과 같은 디렉터리가 프로젝트 루트에 생성된다.
+
+- .storybook: Storybook 설정 파일이 포함되어 있다.
+- src/stories: Storybook 예제 컴포넌트
+
+다음 명령을 실행하면 [Storybook 서버](http://localhost:6006)가 기동된다.
+
+```bash
+$ npm run storybook
+```

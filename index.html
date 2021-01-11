@@ -12,7 +12,7 @@ route: index
     <h1>Web Development Tutorial</h1>
     <div class="type-wrap">
       Learn to code
-      <span id="typed" style="white-space:pre;"></span>
+      <span id="typed" style="white-space: pre"></span>
     </div>
   </div>
   <div id="scroll-icon"><i class="fa fa-angle-double-down"></i></div>
@@ -28,15 +28,21 @@ route: index
       <i class="fa fa-envelope"></i>
     </a>
   </div>
-
 </section>
 
 <div class="book">
   <!-- <a href="http://www.yes24.com/24/Goods/62063090" target="_blank" rel="noopener">
     <img src="img/angular-essentials.png" border="0">
   </a> -->
-  <a href="http://www.yes24.com/Product/Goods/92742567" target="_blank" rel="noopener">
+  <!-- <a href="http://www.yes24.com/Product/Goods/92742567" target="_blank" rel="noopener">
     <img src="img/mjs.png" border="0">
+  </a> -->
+  <a
+    href="http://www.kyobobook.co.kr/product/detailViewKor.laf?mallGb=KOR&ejkGb=KOR&linkClass=331405&barcode=9791158392239"
+    target="_blank"
+    rel="noopener"
+  >
+    <img src="img/mjs.png" border="0" />
   </a>
 </div>
 
@@ -45,12 +51,8 @@ route: index
 
 <section class="toc-head">
   <div class="container">
-    <p class="toc-column--sections">
-      <strong>{{ site.categories | size }}</strong> sections
-    </p>
-    <p class="toc-column--lessons">
-      <strong>{{ site.posts | size }}</strong> lessons
-    </p>
+    <p class="toc-column--sections"><strong>{{ site.categories | size }}</strong> sections</p>
+    <p class="toc-column--lessons"><strong>{{ site.posts | size }}</strong> lessons</p>
   </div>
 </section>
 

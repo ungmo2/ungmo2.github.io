@@ -18,6 +18,16 @@ route: post
       </h1>
       <h2>{{ page.subtitle }}</h2>
     </div>
+
+    <div class="book" style="margin: -140px auto 80px; max-width: 550px">
+      <a
+        href="http://www.kyobobook.co.kr/product/detailViewKor.laf?mallGb=KOR&ejkGb=KOR&linkClass=331405&barcode=9791158392239"
+        target="_blank"
+        rel="noopener"
+      >
+        <img src="img/mjs.png" border="0" />
+      </a>
+    </div>
   </section>
 
   <div class="page-content">
@@ -31,53 +41,49 @@ route: post
           </a>
 
           <span class="breadcrumb-section">
-            {% case page.section %}
-            {% when "html" %}
-              <i class="devicon-html5-plain"></i>
+            {% case page.section %} {% when "html" %}
+            <i class="devicon-html5-plain"></i>
             {% when "css" %}
-              <i class="devicon-css3-plain"></i>
+            <i class="devicon-css3-plain"></i>
             {% when "bootstrap" %}
-              <i class="devicon-bootstrap-plain"></i>
+            <i class="devicon-bootstrap-plain"></i>
             {% when "Sass" %}
-              <i class="devicon-sass-plain"></i>
+            <i class="devicon-sass-plain"></i>
             {% when "javascript" %}
-              <i class="devicon-javascript-plain"></i>
+            <i class="devicon-javascript-plain"></i>
             {% when "es6" %}
-              <i class="devicon-javascript-plain"></i>
+            <i class="devicon-javascript-plain"></i>
             {% when "jquery" %}
-              <i class="devicon-jquery-plain"></i>
+            <i class="devicon-jquery-plain"></i>
             {% when "snippet" %}
-              <i class="devicon-nodewebkit-plain"></i>
+            <i class="devicon-nodewebkit-plain"></i>
             {% when "nodejs" %}
-              <i class="devicon-nodejs-plain"></i>
+            <i class="devicon-nodejs-plain"></i>
             {% when "express" %}
-              <i class="devicon-nodejs-plain"></i>
+            <i class="devicon-nodejs-plain"></i>
             {% when "mongodb" %}
-              <i class="devicon-mongodb-plain"></i>
+            <i class="devicon-mongodb-plain"></i>
             {% when "typescript" %}
-              <i class="devicon-typescript-plain"></i>
-<!-- angular2 -->
+            <i class="devicon-typescript-plain"></i>
+            <!-- angular2 -->
             {% when "angular" %}
             <i class="devicon-angularjs-plain"></i>
-<!-- angular2 -->
+            <!-- angular2 -->
             {% when "tools" %}
-              <i class="devicon-webpack-plain"></i>
-            {% endcase %}
-            {{ page.section }}
+            <i class="devicon-webpack-plain"></i>
+            {% endcase %} {{ page.section }}
           </span>
 
           {% if page.next %}
-            <a class="breadcrumb-next" href="{{ page.next.url }}">
-              <i class="fa fa-angle-right"></i>
-              <span>Next article</span>
-            </a>
-          {% endif %}
-
-          {% if page.previous %}
-            <a class="breadcrumb-previous" href="{{ page.previous.url }}">
-              <i class="fa fa-angle-left"></i>
-              <span>Previous article</span>
-            </a>
+          <a class="breadcrumb-next" href="{{ page.next.url }}">
+            <i class="fa fa-angle-right"></i>
+            <span>Next article</span>
+          </a>
+          {% endif %} {% if page.previous %}
+          <a class="breadcrumb-previous" href="{{ page.previous.url }}">
+            <i class="fa fa-angle-left"></i>
+            <span>Previous article</span>
+          </a>
           {% endif %}
         </header>
       </div>
@@ -91,24 +97,32 @@ route: post
 
         <!-- facebook like box -->
         <div class="fb-like-box">
-          <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fpoiemaweb%2F&tabs&width=340&height=214&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1777080295904196" width="340" height="214" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+          <iframe
+            src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fpoiemaweb%2F&tabs&width=340&height=214&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1777080295904196"
+            width="340"
+            height="214"
+            style="border: none; overflow: hidden"
+            scrolling="no"
+            frameborder="0"
+            allowTransparency="true"
+          ></iframe>
           <button class="close"></button>
         </div>
       </article>
 
       <nav class="pagination">
         {% if page.previous %}
-          <a class="pagination-previous" href="{{ page.previous.url }}">
-            <em>&larr; Previous</em>
-            <strong>{{ page.previous.seq }}.{{ page.previous.subseq }} {{ page.previous.title }}</strong>
-          </a>
-        {% endif %}
-
-        {% if page.next %}
-          <a class="pagination-next" href="{{ page.next.url }}">
-            <em>Next &rarr;</em>
-            <strong>{{ page.next.seq }}.{{ page.next.subseq }} {{ page.next.title }}</strong>
-          </a>
+        <a class="pagination-previous" href="{{ page.previous.url }}">
+          <em>&larr; Previous</em>
+          <strong
+            >{{ page.previous.seq }}.{{ page.previous.subseq }} {{ page.previous.title }}</strong
+          >
+        </a>
+        {% endif %} {% if page.next %}
+        <a class="pagination-next" href="{{ page.next.url }}">
+          <em>Next &rarr;</em>
+          <strong>{{ page.next.seq }}.{{ page.next.subseq }} {{ page.next.title }}</strong>
+        </a>
         {% endif %}
       </nav>
     </div>

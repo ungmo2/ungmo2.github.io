@@ -15,3 +15,21 @@
     margin: 10px auto;
   }
 }
+
+.page-container .book {
+  max-width: 580px;
+  width: 100%;
+  color: white;
+  background: white;
+  padding: 12px;
+  margin: -140px auto 70px;
+  text-align: center;
+  position: relative;
+  top: 50px;
+  border-radius: 4px;
+
+  @include mobile {
+    top: 0;
+    margin: -40px auto 20px;
+  }
+}

@@ -173,11 +173,11 @@ package.json을 아래와 같이 수정한다.
 ```json
 ...
 - "scripts": {
-    "start": "json-server --watch db.json"
-  },
+-   "start": "json-server --watch db.json"
+- },
 + "scripts": {
-    "start": "node server.js"
-  },
++   "start": "node server.js"
++ },
 ...
 ```
 

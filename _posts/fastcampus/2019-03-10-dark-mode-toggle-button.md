@@ -1,8 +1,8 @@
 ---
 layout: fs-post
 title: <strong>Dark mode - Toggle button</strong>
-categories: fastcampus-exercise
-section: fastcampus-exercise
+categories: fastcampus-ui-component
+section: fastcampus-ui-component
 seq: 10
 permalink: /:categories/:title
 description:

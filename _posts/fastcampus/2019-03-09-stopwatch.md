@@ -1,8 +1,8 @@
 ---
 layout: fs-post
 title: <strong>Stopwatch</strong>
-categories: fastcampus-exercise
-section: fastcampus-exercise
+categories: fastcampus-ui-component
+section: fastcampus-ui-component
 seq: 9
 permalink: /:categories/:title
 description:

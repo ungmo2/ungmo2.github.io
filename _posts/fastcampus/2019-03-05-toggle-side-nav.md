@@ -3,7 +3,7 @@ layout: fs-post
 title: <strong>Toggle side nav</strong>
 categories: fastcampus-ui-component
 section: fastcampus-ui-component
-seq: 5
+seq: 1
 permalink: /:categories/:title
 description:
 ---
@@ -17,7 +17,12 @@ Toggle side nav
 {: .desc-img}
 
 요구 사항
-: 자바스크립트를 사용하여 버튼이 클릭되었을 때 사이드 내비게이션이 토글되도록 구현한다.
+{: .title}
+- 자바스크립트를 사용하여 버튼이 클릭되었을 때 사이드 내비게이션이 토글되도록 구현한다.
+
+뷰의 기본 템플릿은 다음과 같다.
+
+- [Boxicons](https://boxicons.com)
 
 ```html
 <!DOCTYPE html>

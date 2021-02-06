@@ -6,12 +6,14 @@ route: index
 ---
 
 <!-- TEST -->
-<button class="signout" style="background-color: transparent;color: transparent;border: 0;">
+<button class="signout" style="background-color: transparent; color: transparent; border: 0">
   signout
 </button>
 <script>
   document.querySelector('.signout').onclick = () => {
-    firebase.auth().signOut()
+    firebase
+      .auth()
+      .signOut()
       .then(() => {
         location.href = '/fastcampus';
       })
@@ -46,13 +48,12 @@ route: index
         <small><span>{{ site.categories.fastcampus-orientation | size }}</span> lessons</small>
       </div>
       <ol class="toc-content">
-      {% assign counter = 0 %}
-      {% for post in site.categories.fastcampus-orientation reversed %}
+        {% assign counter = 0 %} {% for post in site.categories.fastcampus-orientation reversed %}
         {% assign counter = counter | plus: 1 %}
-          <li class="toc-month">
-            <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
-          </li>
-      {% endfor %}
+        <li class="toc-month">
+          <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
+        </li>
+        {% endfor %}
       </ol>
     </article>
 
@@ -63,13 +64,12 @@ route: index
         <small><span>{{ site.categories.fastcampus | size }}</span> lessons</small>
       </div>
       <ol class="toc-content">
-      {% assign counter = 0 %}
-      {% for post in site.categories.fastcampus reversed %}
-        {% assign counter = counter | plus: 1 %}
-          <li class="toc-month">
-            <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
-          </li>
-      {% endfor %}
+        {% assign counter = 0 %} {% for post in site.categories.fastcampus reversed %} {% assign
+        counter = counter | plus: 1 %}
+        <li class="toc-month">
+          <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
+        </li>
+        {% endfor %}
       </ol>
     </article>
     <!-- <article class="toc-section toc-section--javascript">
@@ -96,13 +96,28 @@ route: index
         <small><span>{{ site.categories.fastcampus-exercise | size }}</span> lessons</small>
       </div>
       <ol class="toc-content">
-      {% assign counter = 0 %}
-      {% for post in site.categories.fastcampus-exercise reversed %}
+        {% assign counter = 0 %} {% for post in site.categories.fastcampus-exercise reversed %} {%
+        assign counter = counter | plus: 1 %}
+        <li class="toc-month">
+          <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
+        </li>
+        {% endfor %}
+      </ol>
+    </article>
+
+    <article class="toc-section toc-section--express">
+      <div class="toc-heading">
+        <i class="devicon-jeet-plain"></i>
+        <h3>UI Componenets</h3>
+        <small><span>{{ site.categories.fastcampus-ui-component | size }}</span> lessons</small>
+      </div>
+      <ol class="toc-content">
+        {% assign counter = 0 %} {% for post in site.categories.fastcampus-ui-component reversed %}
         {% assign counter = counter | plus: 1 %}
-          <li class="toc-month">
-            <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
-          </li>
-      {% endfor %}
+        <li class="toc-month">
+          <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
+        </li>
+        {% endfor %}
       </ol>
     </article>
   </div>

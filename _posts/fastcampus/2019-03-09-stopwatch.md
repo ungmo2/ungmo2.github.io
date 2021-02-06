@@ -3,7 +3,7 @@ layout: fs-post
 title: <strong>Stopwatch</strong>
 categories: fastcampus-ui-component
 section: fastcampus-ui-component
-seq: 9
+seq: 5
 permalink: /:categories/:title
 description:
 ---
@@ -16,7 +16,8 @@ description:
 Stopwatch
 {: .desc-img}
 
-요구 사항은 다음과 같다.
+요구 사항
+{: .title}
 
 - 스톱워치의 시간은 mm:ss:ms 형식(예시 '01:59:89')으로 표시한다.
 

@@ -3,7 +3,7 @@ layout: fs-post
 title: <strong>Analog Clock</strong>
 categories: fastcampus-ui-component
 section: fastcampus-ui-component
-seq: 8
+seq: 4
 permalink: /:categories/:title
 description:
 ---
@@ -16,8 +16,8 @@ description:
 Analog clock
 {: .desc-img}
 
-요구 사항은 다음과 같다.
-
+요구 사항
+{: .title}
 - 시계의 시침(.hand.hour 요소), 분침(.hand.minute 요소), 초침(.hand.second 요소)을 1초 간격으로 회전시켜 현재 시간을 표시한다.
 
 뷰의 기본 템플릿은 다음과 같다.
@@ -29,7 +29,7 @@ Analog clock
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Analog clock</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400" rel="stylesheet" />
     <style>
       *,
       *::after,

@@ -1,8 +1,8 @@
 ---
 layout: fs-post
 title: <strong>Analog Clock</strong>
-categories: fastcampus-exercise
-section: fastcampus-exercise
+categories: fastcampus-ui-component
+section: fastcampus-ui-component
 seq: 8
 permalink: /:categories/:title
 description:

@@ -3,7 +3,7 @@ layout: fs-post
 title: <strong>Dark mode - Toggle button</strong>
 categories: fastcampus-ui-component
 section: fastcampus-ui-component
-seq: 10
+seq: 6
 permalink: /:categories/:title
 description:
 ---
@@ -19,7 +19,8 @@ description:
 Dark mode - Toggle button
 {: .desc-img}
 
-요구 사항은 다음과 같다.
+요구 사항
+{: .title}
 
 1. [로컬스토리지](https://developer.mozilla.org/ko/docs/Web/API/Window/localStorage)에 저장되어 있는 테마(다크 모드/라이트 모드)를 기준으로 초기 렌더링한다.
 2. 로컬스토리지에 저장된 테마가 없다면 라이트 모드로 초기 렌더링한다.
@@ -30,6 +31,8 @@ Dark mode - Toggle button
 
 ![](/assets/fs-images/exercise/dark-mode-toggle.gif)
 {: .w-700}
+
+뷰의 기본 템플릿은 다음과 같다.
 
 ```html
 <!DOCTYPE html>

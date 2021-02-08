@@ -133,10 +133,10 @@ description:
         />
         <img
           src="https://occ-0-1007-3996.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABcZQXIucIN_xRu1gyK_fb9U4zOPM7N_0uUh0zT9caSez5blf---4foEcBqrOGp5fjpLSjyfJRQc76BT1tewf1-5Go0HJWwVb5qguK2xgvel2F3rMunc132yG337r.jpg?r=449"
-        /> -->
+        />
       </div>
       <button class="carousel-control prev">«</button>
-      <button class="carousel-control next">»</button>
+      <button class="carousel-control next">»</button> -->
     </div>
     <script>
       const carousel = ($container, images) => {

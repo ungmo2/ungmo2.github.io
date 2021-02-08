@@ -263,7 +263,7 @@ transition을 사용해 HTML 요소를 어떻게 감추고 노출하면 되는�
 
 요구 사항은 아래와 같다.
 
-1. Accordion의 메뉴는 정적이다. 즉, Accordion의 메뉴는 늘어나거나 줄지 않는다.
+1. Accordion의 메뉴는 정적이다. 즉, Accordion 메뉴의 갯수는 늘어나거나 줄지 않는다.
 2. HTML에 active 클래스가 부여되어 있는 .menu-container 요소는 초기 렌더링 시에 오픈되어야 한다. 이때 transition되는 것이 보이지 않도록 한다.
 3. CSS transition을 이용하여 슬라이드 효과를 구현한다. CSS transition은 적절한 타이밍을 유지해야 한다. 다시 말해, 열고 닫히는 타이밍이 같아야 한다.
 

@@ -122,50 +122,6 @@ canlendar function
 6. 캘린터 크기는 동적으로 변경할 수 있어야 한다. 즉, 캘린터를 생성할 때 캘린터 크기를 지정할 수 있어야 한다.
 7. 날짜를 클릭하면 해당 날짜를 'yyyy-mm-dd' 형식의 문자열로 콘솔에 출력한다.
 
-기본 템플릿은 다음과 같다.
-
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calendar</title>
-    <!-- 원하는 폰트와 아이콘을 사용해도 좋다. -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet" />
-    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
-    <style>
-      *,
-      *::after,
-      *::before {
-        box-sizing: border-box;
-      }
-      body {
-        font-family: 'Open Sans';
-        font-weight: 300;
-      }
-      .title {
-        color: #db5b33;
-        font-weight: 300;
-        text-align: center;
-      }
-
-      /* 뷰를 구현하세요. */
-    </style>
-  </head>
-  <body>
-    <h1 class="title">Calendar</h1>
-    <div class="calendar"></div>
-    <script>
-      let currentDate = new Date();
-      const $calendar = document.querySelector('.calendar');
-
-      // 기능을 구현하세요.
-    </script>
-  </body>
-</html>
-```
-
 # 2. Date picker
 
 다음 그림을 참고해서 Date picker의 뷰와 기능을 구현한다.

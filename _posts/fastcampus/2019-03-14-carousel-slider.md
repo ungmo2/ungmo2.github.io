@@ -1,17 +1,12 @@
 ---
 layout: fs-post
-title: <strong>Carousel slider UI</strong>
+title: <strong>Carousel slider</strong>
 categories: fastcampus-ui-component
 section: fastcampus-ui-component
 seq: 10
 permalink: /:categories/:title
 description:
 ---
-
-* TOC
-{:toc}
-
-# 1. 캐러셀 슬라이더 UI
 
 캐러셀(Carousel)은 슬라이드 형태의 컨텐츠를 순환하며 표시하는 UI를 말한다. [캐러셀은 비생산적인 디자인 패턴](https://brunch.co.kr/@ebprux/41)이라는 주장이 있기도 하지만 사용자가 스크롤을 내리지 않은 상태에서도 많은 정보를 노출할 수 있는 장점이 있어 많은 웹사이트에서 사용하고 있다.
 

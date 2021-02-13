@@ -177,7 +177,7 @@ body {
 /*# sourceMappingURL=foo.css.map */
 ```
 
-특정 디렉터리 내의 모든 scss 파일을 css 파일로 일괄 트랜스파일링해서 지정한 디렉터리에 저장하려면 다음과 인풋 디렉터리외 아웃풋 디렉터리를 지정한다.
+특정 디렉터리 내의 모든 scss 파일을 css 파일로 일괄 트랜스파일링해서 지정한 디렉터리에 저장하려면 다음과 같이 인풋 디렉터리와 아웃풋 디렉터리를 지정한다.
 
 ```bash
 ## sass input-directory-path:output-directory-path

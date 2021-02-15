@@ -44,13 +44,17 @@ package.json은 다음과 같다. npm scripts에 build를 추가한다.
 프로젝트 루트에 webpack.config.js 파일을 생성하고 다음과 같이 수정한다.
 
 ```javascript
+const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  entry: ['./src/sass/foo.scss'],
+  entry: './src/sass/foo.scss',
+  output: {
+    path: path.resolve(__dirname, 'public')
+  },
   plugins: [
     // 컴파일 + 번들링 CSS 파일이 저장될 경로와 이름 지정
-    new MiniCssExtractPlugin({ filename: 'public/css/style.css' })
+    new MiniCssExtractPlugin({ filename: 'css/style.css' })
   ],
   module: {
     rules: [
@@ -61,6 +65,7 @@ module.exports = {
       }
     ]
   },
+  devtool: 'source-map',
   mode: 'development'
 };
 ```

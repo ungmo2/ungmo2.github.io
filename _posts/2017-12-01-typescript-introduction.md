@@ -136,7 +136,7 @@ $ npm install -g typescript
 
 ```bash
 $ tsc -v
-Version 2.8.3
+Version 4.1.5
 ```
 
 TypeScript 컴파일러(tsc)는 TypeScript 파일(.ts)을 자바스크립트 파일로 트랜스파일링한다.

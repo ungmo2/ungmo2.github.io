@@ -339,9 +339,11 @@ Lee is studying!!
 
 컴파일러의 옵션에 대해서는 [TypeScript Compiler Options](https://www.typescriptlang.org/docs/handbook/compiler-options.html)을 참조하기 바란다.
 
-추가적으로 TypeScript 프로젝트에서 ESLint를 적용하는 방법과 Webpack과 함께 TypeScript를 사용하는 방법에 대해서는 아래 링크를 참고하기 바란다.
+추가적으로 TypeScript 프로젝트에 ESLint/Prettier를 적용하는 방법과 Webpack과 함께 TypeScript를 사용하는 방법에 대해서는 아래 링크를 참고하기 바란다.
 
 * [How to use ESLint with TypeScript](https://khalilstemmler.com/blogs/typescript/eslint-for-typescript)
+
+* [How to use Prettier with ESLint and TypeScript in VSCode](https://khalilstemmler.com/blogs/tooling/prettier)
 
 * [Webpack + TypeScript](https://webpack.js.org/guides/typescript)
 

@@ -339,9 +339,15 @@ Lee is studying!!
 
 컴파일러의 옵션에 대해서는 [TypeScript Compiler Options](https://www.typescriptlang.org/docs/handbook/compiler-options.html)을 참조하기 바란다.
 
+추가적으로 TypeScript 프로젝트에서 ESLint를 적용하는 방법과 Webpack과 함께 TypeScript를 사용하는 방법에 대해서는 아래 링크를 참고하기 바란다.
+
+* [How to use ESLint with TypeScript](https://khalilstemmler.com/blogs/typescript/eslint-for-typescript)
+
+* [Webpack + TypeScript](https://webpack.js.org/guides/typescript)
+
 # Reference
 
-* [TypeScript](http://www.typescriptlang.org/index.html)
+* [TypeScript](http://www.typescriptlang.org)
 
 * [TypeScript Compiler Options](https://www.typescriptlang.org/docs/handbook/compiler-options.html)
 

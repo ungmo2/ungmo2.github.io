@@ -201,7 +201,7 @@ $width: 960px;
 
 _vars.scss에는 변수가 선언되어 있으므로 partial된 _vars.scss, _header.scss, _sidebar.scss, _footer.scss를 import가 수행되어 하나의 파일이 되기 이전에 트랜스파일링을 실행하면 에러가 발생한다. 즉, partial된 Sass 파일명 선두에 붙인 &#95;을 제거하면 에러가 발생한다. 따라서 partial된 Sass 파일명 선두에는 반드시 &#95;를 붙여서 import 시에는 partial이 CSS 파일로 트랜스파일링되지 않고 import가 완료된 이후, CSS로 트랜스파일링을 수행도록 한다.
 
-최신 버전에서는 &#95;을 붙여도 에러가 발생하지 않는다. @import 대신 @use를 사용하는 방법도 있다. 이에 대해서는 [SCSS에 새로 추가된 Module System (@use, @forward)](https://blueshw.github.io/2019/10/27/scss-module-system/)을 참고하기 바란다.
+최신 버전에서는 &#95;을 붙이지 않아도 에러가 발생하지 않는다. @import 대신 @use를 사용하는 방법도 있다. 이에 대해서는 [SCSS에 새로 추가된 Module System (@use, @forward)](https://blueshw.github.io/2019/10/27/scss-module-system/)을 참고하기 바란다.
 {:.info}
 
 @import는 top-level에서 사용하는 것이 일반적이지만 CSS rule 또는 @media rule 내에 포함시키는 것도 가능하다.

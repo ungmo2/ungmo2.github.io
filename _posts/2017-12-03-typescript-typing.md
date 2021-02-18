@@ -274,7 +274,7 @@ console.log(typeof foo); // boolean
 
 기존의 타입에서 다른 타입으로 타입 캐스팅하려면 as 키워드를 사용하거나 `<>` 연산자를 사용할 수 있다. 다음 예제를 살펴보자.
 
-```javascript
+```typescript
 const $input = document.querySelector('input["type="text"]');
 // => $input: Element | null
 
@@ -282,18 +282,18 @@ const val = $input.value;
 // TS2339: Property 'value' does not exist on type 'Element'.
 ```
 
-$input은 Element | null 타입이다. 이때 `$input.value`를 실행하면 Element 또는 null 타입에는 value이란 프로퍼티가 존재하지 않으므로 컴파일 에러가 발생한다.
+document.querySelector 메서드는 Element \| null 타입의 값을 반환한다. 따라서 위 예제의 $input은 Element \| null 타입이다. 이때 `$input.value`를 실행하면 Element 또는 null 타입에는 value이란 프로퍼티가 존재하지 않으므로 컴파일 에러가 발생한다.
 
 value 프로퍼티는 Element 타입의 하위 타입인 HTMLInputElement 타입에만 존재한다. 따라서 다음과 같이 타입 캐스팅이 필요하다.
 
-```javascript
+```typescript
 const $input = document.querySelector('input["type="text"]') as HTMLInputElement;
 const val = $input.value;
 ```
 
 또는 타입 캐스팅을 위해 as 키워드 대신 `<>` 연산자를 사용할 수도 있다.
 
-```javascript
+```typescript
 const $input = <HTMLInputElement>document.querySelector('input["type="text"]');
 const val = $input.value;
 ```
@@ -307,8 +307,6 @@ https://jbee.io/typescript/TS-9-unknown/
 
 unknown은 TypeScript 3.0부터 새롭게 추가된 타입으로 변수 선언 시에는 알 수 없는 타입을 설명하기 위해 사용한다.
 any 타입는 모든 타입의 값을 할당받을 수 있는 타입이다. unknown 타입도 any 타입과 마찬가지로 모든 타입의 값을 할당받을 수 있다.
-
-
 -->
 
 # Reference

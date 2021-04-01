@@ -424,17 +424,23 @@ console.log(copy);   // {name: "Kim", address: "Seoul"}
 #include <stdio.h>
 
 int main(void) {
-	int x = 1;
-  // 포인터 변수 *a에 변수 x의 메모리 주소 &x를 할당
-	int *num = &x;
+	int num = 1;
+  // 포인터 변수를 선언하고 변수 num의 메모리 주소를 할당
+	int *numPtr = &num;
 
-  // 포인터로 변수 x의 메모리 주소에 접근해 정수값을 변경
-	*num += 1;
-	printf("%d\n", x); // 2
+  // 포인터 변수 numPtr의 값(메모리 주소)을 출력. 컴퓨터마다 실행할 때마다 달라진다.
+  printf("%p\n", numPtr);
+
+  // 역참조 연산자로 변수 num의 메모리 주소에 접근해 정수값을 변경
+	*numPtr += 1;
+	printf("%d\n", num); // 2
 
   return 0;
 }
-``` -->
+```
+https://dojang.io/mod/page/view.php?id=275
+https://dojang.io/mod/page/view.php?id=276
+-->
 
 마지막으로 퀴즈를 풀어보고 마치자. 다음 예제를 살펴보고 결과를 예측해 보자.
 

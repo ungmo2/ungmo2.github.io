@@ -133,7 +133,7 @@ console.log(generator.next()); // {value: 1, done: false}
 console.log(generator.return('End!')); // {value: "End!", done: true}
 ```
 
--	throw 메서드를 호출하면 인수로 전달받은 에러를 발생시키고undefined를 value 프로퍼티 값으로, true를 done 프로퍼티 값으로 갖는 이터레이터 리절트 객체를 반환한다.
+-	throw 메서드를 호출하면 인수로 전달받은 에러를 발생시키고 undefined를 value 프로퍼티 값으로, true를 done 프로퍼티 값으로 갖는 이터레이터 리절트 객체를 반환한다.
 
 ```javascript
 function* genFunc() {

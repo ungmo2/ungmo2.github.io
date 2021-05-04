@@ -22,33 +22,36 @@
     }
   }
   .language-html {
-    @include label("HTML", $html, white);
+    @include label('HTML', $html, white);
   }
   .language-css {
-    @include label("CSS", $css, white);
+    @include label('CSS', $css, white);
   }
   .language-scss {
-    @include label("Sass", $sass, white);
+    @include label('Sass', $sass, white);
   }
   .language-javascript {
-    @include label("JavaScript", $html, white);
+    @include label('JavaScript', $html, white);
   }
   .language-bash {
-    @include label("bash", $bootstrap, white);
+    @include label('bash', $bootstrap, white);
   }
   .language-c {
-    @include label("C", $bootstrap, white);
+    @include label('C', $bootstrap, white);
   }
   .language-java {
-    @include label("Java", $sass, white);
+    @include label('Java', $sass, white);
   }
   .language-sql {
-    @include label("SQL", $html, white);
+    @include label('SQL', $html, white);
   }
   .language-json {
-    @include label("json", $css, white);
+    @include label('json', $css, white);
   }
   .language-typescript {
-    @include label("typescript", $sass, white);
+    @include label('typescript', $sass, white);
+  }
+  .language-jsx {
+    @include label('react', $bootstrap, white);
   }
 }

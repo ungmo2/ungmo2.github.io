@@ -107,6 +107,15 @@ function getCount8 () {
 }
 
 console.log(getCount8()); // 4000
+
+
+function getCount8() {
+  return Array.from({ length: 10000 }, (_, i) => i + 1)
+    .join('')
+    .match(/8/g).length;
+}
+
+console.log(getCount8()); // 4000
 ``` -->
 
 # 3. 문자열 다루기

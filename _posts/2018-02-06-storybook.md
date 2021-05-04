@@ -234,7 +234,7 @@ UserIdError.args = {
 UserIdError.storyName = 'Password(Error)';
 ```
 
-다음과 같이 Storybook에 컴포넌트가 추가된 것을 확인할 수 있다.
+다음과 같이 Storybook에 스토리가 추가된 것을 확인할 수 있다.
 
 ![Storybook component](img/storybook-component1.png)
 

@@ -223,16 +223,15 @@ Password.args = {
 };
 Password.storyName = 'Password';
 
-export const PasswordInputError = Template.bind({});
-PasswordInputError.args = {
-  id: 'password',
-  label: '패스워드',
-  type: 'password',
-  value: '1234',
-  placeholder: '패스워드를 입력하세요.',
+export const UserIdError = Template.bind({});
+UserIdError.args = {
+  id: 'userid',
+  label: '아이디',
+  value: 'user@email.',
+  placeholder: '아이디로 사용할 이메일을 입력하세요.',
   error: '아이디(이메일)는 이메일 형식으로 입력해주세요.'
 };
-PasswordInputError.storyName = 'Password(Error)';
+UserIdError.storyName = 'Password(Error)';
 ```
 
 다음과 같이 Storybook에 컴포넌트가 추가된 것을 확인할 수 있다.

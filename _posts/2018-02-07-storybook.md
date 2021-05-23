@@ -4,7 +4,7 @@ title: Storybook
 categories: tools
 section: tools
 seq: 14
-subseq: 6
+subseq: 7
 description: Storybook은 React, Angular, Vue 등의 분리된 UI 컨포넌트를 체계적이고 효율적으로 구축할 수 있는 개발 도구다. UI 컨포넌트 라이브러리의 문서화(documentation)를 위해 사용할 수도 있고 디자인 시스템(Design system)을 개발하기 위한 플랫폼으로 사용할 수도 있다.
 ---
 

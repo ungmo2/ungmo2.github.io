@@ -69,22 +69,34 @@ mysql               latest              db2b37ec6181        2 weeks ago         
 # 2. MySQL Docker 컨테이너 생성 및 실행
 
 ```bash
-$ docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=<password> --name <ungmo2-mysql> mysql:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+$ docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=<password> -d -p 3306:3306 mysql:latest
 ```
+
+<!-- $ docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=<password> -d -p 3306:3306 mysql:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci -->
 
 # 3. Docker 컨테이너 리스트 출력
 
-
 ```bash
 $ docker ps -a
-CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS                               NAMES
-dc557b92f573        mysql:latest        "docker-entrypoint.s…"   About a minute ago   Up About a minute   0.0.0.0:3306->3306/tcp, 33060/tcp   ungmo2-mysql
 ```
 
-# 4. MySQL Docker 컨테이너 접속
+# 4. MySQL Docker 컨테이너 시작/중지/재시작
 
 ```bash
-$ docker exec -it ungmo2-mysql bash
+# MySQL Docker 컨테이너 중지
+$ docker stop mysql-container
+
+# MySQL Docker 컨테이너 시작
+$ docker start mysql-container
+
+# MySQL Docker 컨테이너 재시작
+$ docker restart mysql-container
+```
+
+# 5. MySQL Docker 컨테이너 접속
+
+```bash
+$ docker exec -it mysql-container bash
 root@dc557b92f573:/# mysql -u root -p
 Enter password:
 Welcome to the MySQL monitor.  Commands end with ; or \g.
@@ -99,7 +111,16 @@ owners.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-mysql>
+mysql> show databases;
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.01 sec)
+
 ```
 
 - [docker-hub](https://hub.docker.com/_/mysql?tab=description)

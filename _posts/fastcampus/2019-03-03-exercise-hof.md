@@ -50,14 +50,6 @@ console.log(render());
 function render() {
   let html = '';
 
-  // todos.forEach(function (todo) {
-  //   html += `<li id="${todo.id}">
-  //     <label>
-  //       <input type="checkbox" ${todo.completed ? 'checked ' : ''}>${todo.content}
-  //     </label>
-  //   </li>`;
-  // });
-
   todos.forEach(({ id, content, completed }) => {
     html += `<li id="${id}">
       <label>
@@ -67,6 +59,32 @@ function render() {
   });
 
   return html;
+}
+
+function render() {
+  return todos
+    .map(
+      ({ id, content, completed }) =>
+        `<li id="${id}">
+          <label>
+            <input type="checkbox" ${completed ? 'checked ' : ''}>${content}
+          </label>
+        </li>`
+    )
+    .join('');
+}
+
+function render() {
+  return todos.reduce(
+    (html, { id, content, completed }) =>
+      html +
+      `<li id="${id}">
+        <label>
+          <input type="checkbox" ${completed ? 'checked ' : ''}>${content}
+        </label>
+      </li>`,
+    ''
+  );
 }
 -->
 
@@ -94,10 +112,7 @@ console.log(getValues('completed')); // [false, true, false]
 
 <!--
 function getValues(key) {
-  return todos.map(function (todo) {
-    return todo[key];
-  });
-  // return todos.map(todo => todo[key]);
+  return todos.map(todo => todo[key]);
 }
 -->
 
@@ -358,6 +373,7 @@ console.log(getMaxId()); // 3
 <!--
 function getMaxId() {
   return todos.length ? Math.max(...todos.map(({ id }) => id)) : 0;
+  // return Math.max(...todos.map(({ id }) => id), 0);
 }
 
 function getMaxId() {

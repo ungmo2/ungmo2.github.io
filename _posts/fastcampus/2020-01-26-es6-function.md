@@ -3,7 +3,7 @@ layout: fs-post
 title: <strong>ES6 함수의 추가 기능</strong>
 categories: fastcampus
 section: fastcampus
-seq: 25
+seq: 26
 permalink: /:categories/:title
 description:
 ---

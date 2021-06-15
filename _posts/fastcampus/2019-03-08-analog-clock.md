@@ -19,7 +19,7 @@ Analog clock
 요구 사항
 {: .title}
 - CSS 변수를 사용해 시계의 시침(.hand.hour 요소), 분침(.hand.minute 요소), 초침(.hand.second 요소)을 1초 간격으로 회전시켜 현재 시간을 표시한다.
-- CSS 변수에 대해서는 [Updating a CSS Variable with JavaScript](https://css-tricks.com/updating-a-css-variable-with-javascript)을 참조한다.
+- CSS 변수(CSS custom property): [Updating a CSS Variable with JavaScript](https://css-tricks.com/updating-a-css-variable-with-javascript)
 
 뷰의 기본 템플릿은 다음과 같다.
 

@@ -117,12 +117,12 @@ description:
     <h1 class="title">Carousel Slider</h1>
     <div class="carousel">
       <!-- <div class="carousel-slides">
-        <img src="assets/movies/movie-4.jpg">
-        <img src="assets/movies/movie-1.jpg">
-        <img src="assets/movies/movie-2.jpg">
-        <img src="assets/movies/movie-3.jpg">
-        <img src="assets/movies/movie-4.jpg">
-        <img src="assets/movies/movie-1.jpg">
+        <img src="movies/movie-4.jpg">
+        <img src="movies/movie-1.jpg">
+        <img src="movies/movie-2.jpg">
+        <img src="movies/movie-3.jpg">
+        <img src="movies/movie-4.jpg">
+        <img src="movies/movie-1.jpg">
       </div>
       <button class="carousel-control prev">&laquo;</button>
       <button class="carousel-control next">&raquo;</button> -->
@@ -131,10 +131,10 @@ description:
       const carousel = ($container, images) => {};
 
       carousel(document.querySelector('.carousel'), [
-        'assets/movies/movie-1.jpg',
-        'assets/movies/movie-2.jpg',
-        'assets/movies/movie-3.jpg',
-        'assets/movies/movie-4.jpg'
+        'movies/movie-1.jpg',
+        'movies/movie-2.jpg',
+        'movies/movie-3.jpg',
+        'movies/movie-4.jpg'
       ]);
     </script>
   </body>

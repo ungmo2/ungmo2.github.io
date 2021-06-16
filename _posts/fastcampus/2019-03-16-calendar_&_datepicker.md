@@ -135,7 +135,6 @@ date picker
 
 1. Date picker를 클릭(포커스)하면 캘린더가 렌더링된다. 이때 Date picker의 값은 빈문자열이다.
 2. Date picker는 read only하다.
-3. 캘린더의 날짜를 클릭하면 Date picker의 값으로 출력된다.
+3. 캘린더의 날짜를 클릭하면 해당 날짜가 Date picker의 값으로 출력된다.
 4. 캘린더와 Date picker 이외의 영역을 클릭하면 캘린더가 사라진다.
 5. Date picker의 값이 존재할 때 Date picker를 다시 클릭(포커스)하면 Date picker의 값을 기준으로 캘린더를 렌더링한다.
-

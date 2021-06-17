@@ -350,7 +350,7 @@ transition을 사용해 HTML 요소를 어떻게 감추고 노출하면 되는�
         transition: height 0.4s ease;
       }
       .accordion > .menu-container > .submenu > div {
-        border-bottom: 1px sodivd #4b4a5e;
+        border-bottom: 1px solid #4b4a5e;
       }
       .accordion > .menu-container:last-child > .submenu {
         border-radius: 0 0 4px 4px;

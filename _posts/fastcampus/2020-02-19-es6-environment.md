@@ -232,6 +232,9 @@ SyntaxError: /Users/leeungmo/Desktop/esnext-project/src/js/lib.js: Support for t
 
 2020년 7월 현재 TC39 프로세스의 stage 3(candidate) 단계에 있는 [private 필드 정의 제안](/fastcampus/class#74-private-필드-정의-제안)에서 에러가 발생했다. 이것은 @babel/preset-env가 현재 제안 단계에 있는 사양에 대한 플러그인을 지원하지 않기 때문에 발생한 에러다. 따라서 현재 제안 단계에 있는 사양을 트랜스파일링하려면 별도의 플러그인을 설치해야 한다.
 
+Babel 7.14.0 버전부터 제안 단계에 있는 클래스의 [private 필드 정의 제안은 기본 지원](https://babeljs.io/blog/2021/04/29/7.14.0#new-class-features-enabled-by-default)된다. 따라서 Babel 7.14.0 이상의 버전을 사용한다면 위와 같은 에러가 발생하지 않으며 다음에 설명하는 @babel/plugin-proposal-class-properties 플러그인을 별도로 설치할 필요가 없다.
+{: .info}
+
 ## 1.4. Babel 플러그인 설치
 
 설치가 필요한 Babel 플러그인은 Babel 홈페이지에서 검색할 수 있다. Babel 홈페이지 상단 메뉴의 Search란에 제안 사양의 이름을 입력하면 해당 플러그인을 검색할 수 있다. 여기서는 클래스 필드 정의 제안 플러그인을 검색하기 위해 "class field"를 입력해보자.

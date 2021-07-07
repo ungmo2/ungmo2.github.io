@@ -391,7 +391,7 @@ input 요소가 포거스 상태가 아닐 때 텍스트가 입력되지 있지 
         <i class="icon icon-error bx bxs-x-circle hidden"></i>
         <div class="error"></div>
       </div>
-      <button class="signup button" disabled>SIGNUP</button>
+      <button class="signup button" disabled>SIGN UP</button>
       <div class="link">Already a member? <a href="javascript:void(0);">Sign in</a></div>
     </form>
     <!-- local SVG sprite -->

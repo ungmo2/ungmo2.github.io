@@ -607,17 +607,17 @@ console.log(sumDivisor(12)); // 28
 
 # 17. 소수 찾기
 
-numberOfPrime 메서드는 정수 n을 매개변수로 입력받는다. 1부터 입력받은 숫자 n 사이에 있는 소수의 개수를 반환하도록 numberOfPrime 함수를 완성하라.
-예를 들어 10을 입력받았다면, 1부터 10 사이의 소수는 [2,3,5,7] 4개가 존재하므로 4를 반환한다.
+countPrime 함수는 정수 n을 매개변수로 입력받는다. 1부터 입력받은 숫자 n 사이에 있는 소수의 개수를 반환하도록 countPrime 함수를 완성하라.
+예를 들어, 10을 입력받았다면 1부터 10 사이의 소수는 4(2,3,5,7)개가 존재하므로 4를 반환한다.
 
 소수(素數, prime number)는 2, 3, 5, 7, 11, 13, 17...과 같이 1과 자신 이외의 어떤 수로도 나눠지지 않는 1보다 큰 양의 정수이다.
 
 ```javascript
-function numberOfPrime(n) {
+function countPrime(n) {
 
 }
 
-console.log(numberOfPrime(10)); // 4
+console.log(countPrime(10)); // 4
 ```
 
 <!--
@@ -628,6 +628,7 @@ function isPrime(n) {
   // 2부터 n-1까지의 모든수로 n을 나눠서 나머지가 있는지 확인한다.
   // 만약 나머지가 없다면 약수가 존재한다는 의미이므로 소수가 아니다.
   for (let i = 2; i < n; i++) {
+  // for (let i = 2; i <= Math.sqrt(num); i++) {
     if (n % i === 0) return false;
   }
 
@@ -645,14 +646,19 @@ console.log(isPrime(101)); // true
 console.log(isPrime(199)); // true
 
 
-function numberOfPrime(n) {
-  var cnt = 0;
+function countPrime(n) {
+  let cnt = 0;
   // 2부터 n까지 반복하며 소수인지 확인하여 소수이면 카운트한다.
-  for (var i = 2; i <= n; i++) {
+  for (let i = 2; i <= n; i++) {
     if (isPrime(i)) cnt++;
   }
   return cnt;
 }
+
+const countPrime = n =>
+  Array.from({ length: n }, (_, i) => i + 1).filter(v => v > 1 && isPrime(v)).length;
+
+console.log(countPrime(10)); // 4
 -->
 
 # 18. 피보나치 수

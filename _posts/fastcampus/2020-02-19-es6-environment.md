@@ -448,6 +448,7 @@ module.exports = {
       }
     ]
   },
+  // 소스 맵(Source Map)은 디버깅을 위해 번들링된 파일과 번들링되기 이전의 소스 파일을 연결해주는 파일이다.
   devtool: 'source-map',
   // https://webpack.js.org/configuration/mode
   mode: 'development'

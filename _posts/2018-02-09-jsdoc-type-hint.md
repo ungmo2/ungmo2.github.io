@@ -57,6 +57,12 @@ let num;
 /** @type {boolean} */
 let bool;
 
+/** @type {*} */
+let any;
+
+/** @type {?} */
+let unknown;
+
 /** @type {number[]} */
 let nums;
 
@@ -75,24 +81,53 @@ let generic;
 ```javascript
 // @ts-check
 
-// TYPESCRIPT SYNTAX를 사용하는 방법
+// TypeScript syntax를 사용하는 방법
 /**
  * 두 수의 합을 구한다.
  * @type { (a: number, b: number) => number }
  */
- const add1 = (a, b) => a + b;
+ const add = (a, b) => a + b;
 
-// JSDOC SYNTAX를 사용하는 방법
+// Closure syntax를 사용하는 방법
+/**
+ * 두 수의 곱을 구한다.
+ * @type { function(number, number): number }
+ */
+ const multiply = (a, b) => a * b;
+
+// JSDoc syntax를 사용하는 방법
 /**
  * 두 수의 차를 구한다.
  * @param {number} a - the first thing
  * @param {number} b - the second thing
  * @returns {number}
  */
- const sub = (a, b) => a - b;
+ const subtract = (a, b) => a - b;
+```
+
+@param은 타입 구문인 @type과 동일하게 사용할 수 있다, 단, @param은 매개변수 이름을 추가할 수 있고 매개변수는 이름을 대괄호로 감싸서 선택적 매개변수임을 명시할 수 있다.
+
+- [@param and @returns](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html#param-and-returns)
+
+```javascript
+// @ts-check
+
+// Parameters may be declared in a variety of syntactic forms
+/**
+ * @param {string}  p1 - A string param.
+ * @param {string=} p2 - An optional param (Closure syntax)
+ * @param {string} [p3] - Another optional param (JSDoc syntax).
+ * @param {string} [p4="test"] - An optional param with a default value
+ * @return {string} This is the result
+ */
+function stringsStringStrings(p1, p2, p3, p4) {
+  // TODO
+}
 ```
 
 # 3. 타입 정의
+
+@typedef는 복잡한 타입을 정의할 때 사용한다.
 
 ```javascript
 // @ts-check
@@ -116,7 +151,37 @@ const todos = [
 ];
 ```
 
-# Reference
+# 4. Callback
+
+@callback은 @typedef와 유사하지만 object 타입 대신 특정한 function 타입을 지정한다.
+
+```javascript
+// @ts-check
+
+// TypeScript syntax를 사용하는 방법
+/**
+ * @typedef { (data: string, index?: number) => boolean } Predicate1
+ */
+
+// Closure syntax를 사용하는 방법
+/**
+ * @typedef { function(string, number=): boolean } Predicate2
+ */
+
+// JSDoc syntax를 사용하는 방법
+/**
+ * @callback Predicate3
+ * @param {string} data
+ * @param {number} [index]
+ * @returns {boolean}
+ */
+
+
+/** @type {Predicate1} */
+const ok = s => !(s.length % 2);
+```
+
+# 5. Reference
 
 - [JS Projects Utilizing TypeScript](https://www.typescriptlang.org/docs/handbook/intro-to-js-ts.html)
 

@@ -1453,6 +1453,8 @@ Object.prototype.hasOwnProperty 메서드는 이름에서 알 수 있듯이 인�
 console.log(person.hasOwnProperty('toString')); // false
 ```
 
+- [Object.hasOwn](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwn)
+
 # 14. 프로퍼티 열거
 
 ## 14.1 for...in 문

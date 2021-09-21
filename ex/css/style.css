@@ -1,0 +1,178 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url(../assets/images/background.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+}
+
+.signin-container,
+.reset-password-container {
+  width: 100%;
+  max-width: 380px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 10px;
+  padding: 50px 30px 10px;
+}
+
+.title {
+  width: 100%;
+  line-height: 40px;
+  font-size: 32px;
+  letter-spacing: 2px;
+  color: #ed2553;
+  position: relative;
+}
+
+.title:before {
+  content: "";
+  width: 5px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: -30px;
+  background: #ed2553;
+}
+
+.input-container {
+  margin-top: 45px;
+  position: relative;
+}
+
+.input-container label,
+.input-container input {
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 300;
+}
+
+.input-container input {
+  width: 100%;
+  height: 60px;
+  border: none;
+  background: transparent;
+  position: relative;
+  outline: none;
+}
+
+.input-container label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 60px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.input-container input:focus + label,
+.input-container input:valid + label {
+  transform: translate3d(-12%, -50%, 0) scale(0.75);
+}
+
+.input-container .bar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: #757575;
+  width: 100%;
+  height: 1px;
+}
+
+.input-container .bar:before,
+.input-container .bar:after {
+  content: '';
+  position: absolute;
+  background: #ed2553;
+  width: 0;
+  height: 2px;
+  transition: 0.3s ease;
+}
+
+.input-container .bar:before {
+  left: 50%;
+}
+
+.input-container .bar:after {
+  right: 50%;
+}
+
+.input-container input:focus ~ .bar:before,
+.input-container input:focus ~ .bar:after {
+  width: 50%;
+}
+
+.signin,
+.reset {
+  width: 100%;
+  line-height: 64px;
+  font-weight: 900;
+  font-size: 18px;
+  margin: 65px 0 20px;
+  border: 3px solid transparent;
+  background-color: #ED2553;
+  color: #fff;
+  cursor: pointer;
+  outline: none;
+}
+
+.signin:disabled,
+.reset:disabled {
+  background-color: transparent;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.signin-message,
+.reset-message {
+  width: 100%;
+  max-height: 32px;
+  position: absolute;
+  left: 0;
+  top: 315px;
+  font-size: 14px;
+  font-weight: 300;
+  color: #ed2553;
+  padding: 0 30px;
+  /* multiline ellipsis */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* 라인수 */
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+.reset-password {
+  margin: 10px 0 20px;
+  /* color: #d3d3d3; */
+  color: rgba(0, 0, 0, 0.2);
+  font-size: 18px;
+  font-weight: 300;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.reset-password:hover {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (max-width: 768px) {
+  .login-container,
+  .reset-password-container {
+    width: 90%;
+  }
+}
+
+.reset-password-container {
+  display: none;
+}

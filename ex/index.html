@@ -1,0 +1,43 @@
+---
+layout: fs-default
+title: Fastcampus Front-end School
+description: Fastcampus Frontend School
+route: index
+---
+
+<div class="index-title">PoiemaWeb: Fastcampus Frontend School</div>
+<section class="toc-component">
+  <div class="container">
+    <article class="toc-section toc-section--express">
+      <div class="toc-heading">
+        <i class="devicon-nodejs-plain"></i>
+        <h3>Exercise</h3>
+        <small><span>{{ site.categories.fastcampus-exercise | size }}</span> lessons</small>
+      </div>
+      <ol class="toc-content">
+        {% assign counter = 0 %} {% for post in site.categories.fastcampus-exercise reversed %} {%
+        assign counter = counter | plus: 1 %}
+        <li class="toc-month">
+          <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
+        </li>
+        {% endfor %}
+      </ol>
+    </article>
+
+    <article class="toc-section toc-section--express">
+      <div class="toc-heading">
+        <i class="devicon-jeet-plain"></i>
+        <h3>UI Componenets</h3>
+        <small><span>{{ site.categories.fastcampus-ui-component | size }}</span> lessons</small>
+      </div>
+      <ol class="toc-content">
+        {% assign counter = 0 %} {% for post in site.categories.fastcampus-ui-component reversed %}
+        {% assign counter = counter | plus: 1 %}
+        <li class="toc-month">
+          <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
+        </li>
+        {% endfor %}
+      </ol>
+    </article>
+  </div>
+</section>

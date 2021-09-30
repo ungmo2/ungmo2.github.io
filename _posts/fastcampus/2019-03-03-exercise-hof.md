@@ -114,9 +114,9 @@ const todos = [
 
 const getValues = (todos, key) => { /* Do something */ };
 
-console.log(getValues('id')); // [3, 2, 1]
-console.log(getValues('content')); // ['HTML', 'CSS', 'Javascript']
-console.log(getValues('completed')); // [false, true, false]
+console.log(getValues(todos, 'id')); // [3, 2, 1]
+console.log(getValues(todos, 'content')); // ['HTML', 'CSS', 'Javascript']
+console.log(getValues(todos, 'completed')); // [false, true, false]
 ```
 
 <!--

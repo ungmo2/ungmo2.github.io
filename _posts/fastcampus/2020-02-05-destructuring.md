@@ -284,4 +284,13 @@ const { x, ...rest } = { x: 1, y: 2, z: 3 };
 console.log(x, rest); // 1 { y: 2, z: 3 }
 ```
 
+<!--
+const removeProperty = (obj, key) => {
+  const { [key]: removed, ...rest } = obj;
+  return rest;
+};
+
+console.log(removeProperty({ a: 1, b: 2 }, 'a'));
+-->
+
 Rest 프로퍼티는 [스프레드 프로퍼티](/fastcampus/spread-syntax#3-객체-리터럴-내부에서-사용하는-경우)와 함께 2020년 7월 현재 TC39 프로세스의 stage 4(Finished) 단계에 제안되어 있다.([Object Rest/Spread Properties for ECMAScript](https://github.com/tc39/proposal-object-rest-spread) 참고)

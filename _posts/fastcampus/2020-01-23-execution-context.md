@@ -713,3 +713,47 @@ if 문의 코드 블록을 위한 렉시컬 환경에서 이전 렉시컬 환경
 for 문의 변수 선언문에 let 키워드를 사용한 for 문은 코드 블록이 반복해서 실행될 때마다 코드 블록을 위한 새로운 렉시컬 환경을 생성한다. 만약 for 문의 코드 블록 내에서 정의된 함수가 있다면 이 함수의 상위 스코프는 for 문의 코드 블록이 생성한 렉시컬 환경이다.
 
 이때 함수의 상위 스코프는 for 문의 코드 블록이 반복해서 실행될 때마다 식별자(for 문의 변수 선언문 및 for 문의 코드 블록 내에서 선언된 지역 변수 등)의 값을 유지해야 한다. 이를 위해 for 문의 코드 블록이 반복해서 실행될 때마다 독립적인 렉시컬 환경을 생성하여 식별자의 값을 유지한다. 이에 대해서는 ["24. 클로저"](/fastcampus/closure)에서 자세히 살펴보도록 하자.
+
+# 8. Quiz
+
+다음 예제의 실행 결과를 예측하라.
+
+```javascript
+const recursiveLog = n => {
+  if (n <= 0) return;
+
+  recursiveLog(n - 1);
+  console.log(n);
+};
+
+recursiveLog(3); // ???
+```
+
+<!--
+/**
+ * 인수로 전달받은 정수 n을 1부터 n까지 console.log로 순서대로 출력하는 함수를 구현하라.
+ * 단, 재귀함수를 사용해야 한다.
+ *
+ * (3) => 1 2 3
+ * (1) => 1
+ * (0) =>
+ * (-1) =>
+ */
+const recursiveLog = n => {
+  if (n <= 0) return;
+
+  // console.log(n); // recursiveLog(3) => 3 2 1
+
+  recursiveLog(n - 1);
+
+  // 현재 실행 중인 실행 컨텍스트의 렉시컬 환경의 환경 레코드에 저장되어 있는 매개 변수 n을 참조한다.
+  // recursiveLog(3) => 실행 컨텍스트 스택: f(3), f(2), f(1), f(0)
+  console.log(n);
+};
+
+// 실행 컨텍스트 스택: f(3), f(2), f(1), f(0)
+recursiveLog(3);
+// recursiveLog(1);
+// recursiveLog(0);
+// recursiveLog(-1);
+-->

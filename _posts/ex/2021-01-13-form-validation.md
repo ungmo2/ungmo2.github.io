@@ -287,7 +287,7 @@ input 요소가 포거스 상태가 아닐 때 텍스트가 입력되지 있지 
 }
 ```
 
-- toaster.css: [Toaster UI](/fastcampus-ui-component/toaster)를 참고해 작성한다.
+- toaster.css: [Toaster UI](/ex-ui-component/toaster)를 참고해 작성한다.
 
 - [background.png](https://poiemaweb.com/assets/fs-images/exercise/background.png)
 

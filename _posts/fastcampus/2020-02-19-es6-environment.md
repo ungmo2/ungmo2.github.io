@@ -498,7 +498,7 @@ main.js, lib.js 모듈이 하나로 번들링된 bundle.js가 브라우저에서
 
 ## 2.4. babel-polyfill 설치
 
-Babel 7.4.0부터 @babel/polyfill은 deprecated 되었다. Babel 7.4.0 이상을 설치하는 경우 [15.10 폐지된 @babel/polyfill 대신 @babel/plugin-transform-runtime을 사용해 폴리필 추가하기](https://poiemaweb.com/babel-polyfill)을 참고하기 바란다.
+Babel 7.4.0부터 @babel/polyfill은 deprecated 되었다. Babel 7.4.0 이상을 설치하는 경우 [폐지된 @babel/polyfill 대신 @babel/plugin-transform-runtime을 사용해 폴리필 추가하기](https://poiemaweb.com/babel-polyfill)를 참고하기 바란다.
 {: .info}
 
 Babel을 사용하여 ES6+/ES.NEXT 사양의 소스코드를 ES5 사양의 소스코드로 트랜스파일링해도 브라우저가 지원하지 않는 코드가 남아 있을 수 있다. 예를 들어, ES6에서 추가된 Promise, Object.assign, Array.from 등은 ES5 사양으로 트랜스파일링해도 ES5 사양에 대체할 기능이 없기 때문에 트랜스파일링되지 못하고 그대로 남는다.

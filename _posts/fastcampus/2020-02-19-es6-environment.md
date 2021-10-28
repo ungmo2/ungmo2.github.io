@@ -635,3 +635,11 @@ dist/js/bundle.js를 확인해보면 다음과 같이 폴리필이 추가된 것
 
 추가된 폴리필
 {: .desc-img}
+
+## 2.5. DevServer
+
+- [Weppack DevServer](https://poiemaweb.com/devServer) 참고
+
+## 2.6. Sass
+
+- [Webpack 개발 환경에서 Sass 사용하기](https://poiemaweb.com/sass-webpack)

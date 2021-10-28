@@ -5,7 +5,7 @@ categories: tools
 section: tools
 seq: 15
 subseq: 10
-description: \@babel/polyfill 대신 @babel/plugin-transform-runtime을 사용해 폴리필 추가하기
+description: 폐지된 @babel/polyfill 대신 @babel/plugin-transform-runtime을 사용해 폴리필 추가하기
 ---
 
 Babel 7.4.0부터 [@babel/polyfill](https://babeljs.io/docs/en/babel-polyfill)은 deprecated 되었다.
@@ -72,6 +72,21 @@ webpack.config.js
     },
 ...
 ```
+
+사용한 Babel, Webpack, 플러그인의 버전은 다음과 같다.
+
+Babel/plug-in
+: - @babel/cli : 7.15.7
+- @babel/core : 7.15.8
+- @babel/preset-env : 7.15.8
+- @babel/plugin-transform-runtime : 7.15.8
+- @babel/runtime : 7.15.4
+- @babel/runtime-corejs3 : 7.15.4
+
+Webpack/plug-in
+: - webpack : 5.60.0
+- webpack-cli : 4.9.1
+- babel-loader : 8.2.3
 
 # Reference
 

@@ -49,7 +49,7 @@ webpack.config.js
 
 ```bash
 $ npm install --save-dev @babel/plugin-transform-runtime
-$ npm install @babel/runtime core-js@3
+$ npm install @babel/runtime-corejs3
 ```
 
 webpack.config.js

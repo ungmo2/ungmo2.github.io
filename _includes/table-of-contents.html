@@ -1,6 +1,5 @@
 <section class="toc-component">
   <div class="container">
-
     <article class="toc-section toc-section--html">
       <div class="toc-heading">
         <i class="devicon-html5-plain"></i>
@@ -8,13 +7,12 @@
         <small><span>{{ site.categories.html | size }}</span> lessons</small>
       </div>
       <ol class="toc-content">
-      {% assign counter = 0 %}
-      {% for post in site.categories.html reversed %}
-        {% assign counter = counter | plus: 1 %}
+        {% assign counter = 0 %} {% for post in site.categories.html reversed %} {% assign counter =
+        counter | plus: 1 %}
         <li class="toc-month">
           <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.subtitle | strip_html }}</a>
         </li>
-      {% endfor %}
+        {% endfor %}
       </ol>
     </article>
 
@@ -25,13 +23,12 @@
         <small><span>{{ site.categories.css | size }}</span> lessons</small>
       </div>
       <ol class="toc-content">
-      {% assign counter = 0 %}
-      {% for post in site.categories.css reversed %}
-        {% assign counter = counter | plus: 1 %}
-          <li class="toc-month">
-            <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.subtitle | strip_html }}</a>
-          </li>
-      {% endfor %}
+        {% assign counter = 0 %} {% for post in site.categories.css reversed %} {% assign counter =
+        counter | plus: 1 %}
+        <li class="toc-month">
+          <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.subtitle | strip_html }}</a>
+        </li>
+        {% endfor %}
       </ol>
     </article>
 
@@ -42,13 +39,12 @@
         <small><span>{{ site.categories.bootstrap | size }}</span> lessons</small>
       </div>
       <ol class="toc-content">
-      {% assign counter = 0 %}
-      {% for post in site.categories.bootstrap reversed %}
-        {% assign counter = counter | plus: 1 %}
-          <li class="toc-month">
-            <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.subtitle | strip_html }}</a>
-          </li>
-      {% endfor %}
+        {% assign counter = 0 %} {% for post in site.categories.bootstrap reversed %} {% assign
+        counter = counter | plus: 1 %}
+        <li class="toc-month">
+          <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.subtitle | strip_html }}</a>
+        </li>
+        {% endfor %}
       </ol>
     </article>
 
@@ -59,13 +55,12 @@
         <small><span>{{ site.categories.Sass | size }}</span> lessons</small>
       </div>
       <ol class="toc-content">
-      {% assign counter = 0 %}
-      {% for post in site.categories.Sass reversed %}
-        {% assign counter = counter | plus: 1 %}
-          <li class="toc-month">
-            <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.subtitle | strip_html }}</a>
-          </li>
-      {% endfor %}
+        {% assign counter = 0 %} {% for post in site.categories.Sass reversed %} {% assign counter =
+        counter | plus: 1 %}
+        <li class="toc-month">
+          <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.subtitle | strip_html }}</a>
+        </li>
+        {% endfor %}
       </ol>
     </article>
 
@@ -76,33 +71,30 @@
         <small><span>{{ site.categories.javascript | size }}</span> lessons</small>
       </div>
       <ol class="toc-content">
-      {% assign counter = 0 %}
-      {% for post in site.categories.javascript reversed %}
-        {% assign counter = counter | plus: 1 %}
-          <li class="toc-month">
-            <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.subtitle | strip_html }}</a>
-          </li>
-      {% endfor %}
+        {% assign counter = 0 %} {% for post in site.categories.javascript reversed %} {% assign
+        counter = counter | plus: 1 %}
+        <li class="toc-month">
+          <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.subtitle | strip_html }}</a>
+        </li>
+        {% endfor %}
       </ol>
     </article>
     <!-- es6 -->
-        <article class="toc-section toc-section--es6">
-          <div class="toc-heading">
-            <i class="devicon-javascript-plain"></i>
-            <h3>ECMAScript6</h3>
-            <small><span>{{ site.categories.es6 | size }}</span> lessons</small>
-          </div>
-          <ol class="toc-content">
-          {% assign counter = 0 %}
-          {% for post in site.categories.es6 reversed %}
-            {% assign counter = counter | plus: 1 %}
-              <li class="toc-month">
-                <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.subtitle | strip_html }}</a>
-              </li>
-          {% endfor %}
-          </ol>
-        </article>
-    <!-- es6 -->
+    <article class="toc-section toc-section--es6">
+      <div class="toc-heading">
+        <i class="devicon-javascript-plain"></i>
+        <h3>ECMAScript6</h3>
+        <small><span>{{ site.categories.es6 | size }}</span> lessons</small>
+      </div>
+      <ol class="toc-content">
+        {% assign counter = 0 %} {% for post in site.categories.es6 reversed %} {% assign counter =
+        counter | plus: 1 %}
+        <li class="toc-month">
+          <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.subtitle | strip_html }}</a>
+        </li>
+        {% endfor %}
+      </ol>
+    </article>
     <article class="toc-section toc-section--jquery">
       <div class="toc-heading">
         <i class="devicon-jquery-plain"></i>
@@ -110,17 +102,16 @@
         <small><span>{{ site.categories.jquery | size }}</span> lessons</small>
       </div>
       <ol class="toc-content">
-      {% assign counter = 0 %}
-      {% for post in site.categories.jquery reversed %}
-        {% assign counter = counter | plus: 1 %}
-          <li class="toc-month">
-            <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
-          </li>
-      {% endfor %}
+        {% assign counter = 0 %} {% for post in site.categories.jquery reversed %} {% assign counter
+        = counter | plus: 1 %}
+        <li class="toc-month">
+          <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
+        </li>
+        {% endfor %}
       </ol>
     </article>
 
-    <article class="toc-section toc-section--snippet">
+    <!-- <article class="toc-section toc-section--snippet">
       <div class="toc-heading">
         <i class="devicon-nodewebkit-plain"></i>
         <h3>Snippet</h3>
@@ -135,7 +126,7 @@
           </li>
       {% endfor %}
       </ol>
-    </article>
+    </article> -->
 
     <article class="toc-section toc-section--nodejs">
       <div class="toc-heading">
@@ -144,13 +135,12 @@
         <small><span>{{ site.categories.nodejs | size }}</span> lessons</small>
       </div>
       <ol class="toc-content">
-      {% assign counter = 0 %}
-      {% for post in site.categories.nodejs reversed %}
-        {% assign counter = counter | plus: 1 %}
-          <li class="toc-month">
-            <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
-          </li>
-      {% endfor %}
+        {% assign counter = 0 %} {% for post in site.categories.nodejs reversed %} {% assign counter
+        = counter | plus: 1 %}
+        <li class="toc-month">
+          <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
+        </li>
+        {% endfor %}
       </ol>
     </article>
 
@@ -161,13 +151,12 @@
         <small><span>{{ site.categories.express | size }}</span> lessons</small>
       </div>
       <ol class="toc-content">
-      {% assign counter = 0 %}
-      {% for post in site.categories.express reversed %}
-        {% assign counter = counter | plus: 1 %}
-          <li class="toc-month">
-            <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.subtitle | strip_html }}</a>
-          </li>
-      {% endfor %}
+        {% assign counter = 0 %} {% for post in site.categories.express reversed %} {% assign
+        counter = counter | plus: 1 %}
+        <li class="toc-month">
+          <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.subtitle | strip_html }}</a>
+        </li>
+        {% endfor %}
       </ol>
     </article>
 
@@ -178,13 +167,12 @@
         <small><span>{{ site.categories.mongodb | size }}</span> lessons</small>
       </div>
       <ol class="toc-content">
-      {% assign counter = 0 %}
-      {% for post in site.categories.mongodb reversed %}
-        {% assign counter = counter | plus: 1 %}
-          <li class="toc-month">
-            <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.subtitle | strip_html }}</a>
-          </li>
-      {% endfor %}
+        {% assign counter = 0 %} {% for post in site.categories.mongodb reversed %} {% assign
+        counter = counter | plus: 1 %}
+        <li class="toc-month">
+          <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.subtitle | strip_html }}</a>
+        </li>
+        {% endfor %}
       </ol>
     </article>
 
@@ -195,13 +183,12 @@
         <small><span>{{ site.categories.typescript | size }}</span> lessons</small>
       </div>
       <ol class="toc-content">
-      {% assign counter = 0 %}
-      {% for post in site.categories.typescript reversed %}
-        {% assign counter = counter | plus: 1 %}
-          <li class="toc-month">
-            <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.subtitle | strip_html }}</a>
-          </li>
-      {% endfor %}
+        {% assign counter = 0 %} {% for post in site.categories.typescript reversed %} {% assign
+        counter = counter | plus: 1 %}
+        <li class="toc-month">
+          <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.subtitle | strip_html }}</a>
+        </li>
+        {% endfor %}
       </ol>
     </article>
 
@@ -213,13 +200,12 @@
         <small><span>{{ site.categories.angular | size }}</span> lessons</small>
       </div>
       <ol class="toc-content">
-      {% assign counter = 0 %}
-      {% for post in site.categories.angular reversed %}
-        {% assign counter = counter | plus: 1 %}
-          <li class="toc-month">
-            <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.subtitle | strip_html }}</a>
-          </li>
-      {% endfor %}
+        {% assign counter = 0 %} {% for post in site.categories.angular reversed %} {% assign
+        counter = counter | plus: 1 %}
+        <li class="toc-month">
+          <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.subtitle | strip_html }}</a>
+        </li>
+        {% endfor %}
       </ol>
     </article>
 
@@ -230,15 +216,13 @@
         <small><span>{{ site.categories.tools | size }}</span> lessons</small>
       </div>
       <ol class="toc-content">
-      {% assign counter = 0 %}
-      {% for post in site.categories.tools reversed %}
-        {% assign counter = counter | plus: 1 %}
-          <li class="toc-month">
-            <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
-          </li>
-      {% endfor %}
+        {% assign counter = 0 %} {% for post in site.categories.tools reversed %} {% assign counter
+        = counter | plus: 1 %}
+        <li class="toc-month">
+          <a href="{{ post.url }}"><em>{{counter}}</em> {{ post.title | strip_html }}</a>
+        </li>
+        {% endfor %}
       </ol>
     </article>
-
   </div>
 </section>

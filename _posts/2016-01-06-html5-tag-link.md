@@ -134,9 +134,17 @@ target 어트리뷰트는 링크를 클릭했을 때 윈도우를 어떻게 오�
 <!DOCTYPE html>
 <html>
   <body>
-    <a href="http://www.google.com" target="_blank">Visit google.com!</a>
+    <a href="http://www.google.com" target="_blank" rel="noopener noreferrer">Visit google.com!</a>
   </body>
 </html>
 ```
 
 <div class="result"></div>
+
+`target="_blank"`를 사용해 외부 페이지를 오픈하는 경우, 이동한 외부 페이지에서 자바스크립트 코드를 사용해 악의적인 페이지로 리다이렉트할 수 있는 보안 취약점(Tabnabbing 피싱 공격)이 있다. 따라서 `rel="noopener noreferrer"`를 추가해 Tabnabbing 피싱 공격에 대비할 것을 권장한다. 참고로 noopener 속성은 성능 상 이점도 있는 것으로 알려져 있다. 자세한 내용은 아래 링크를 참고하기 바란다.
+
+- [Tabnabbing 피싱 공격의 동작 원리와 대응책](https://tech.lezhin.com/2017/06/12/tabnabbing)
+- [Tabnabbing 공격과 rel=noopener 속성](https://blog.coderifleman.com/2017/05/30/tabnabbing_attack_and_noopener)
+- [tabnabbing 공격 방어 대책 정리](https://medium.com/@youngminhong/tabnabbing-공격-방어-대책-정리-9276ebf63f94)
+- [Links to cross-origin destinations are unsafe](https://web.dev/external-anchors-use-rel-noopener)
+- [The performance benefits of rel=noopener](https://jakearchibald.com/2016/performance-benefits-of-rel-noopener)

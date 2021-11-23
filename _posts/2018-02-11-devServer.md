@@ -95,7 +95,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 webpack.config.js에 다음과 같이 설정을 추가한다.
 
-```javascript
+<!-- ```javascript
 ...
   devServer: {
     static: {
@@ -109,6 +109,21 @@ webpack.config.js에 다음과 같이 설정을 추가한다.
         target: 'http://localhost:5500/todos',
         pathRewrite: { '^/todos': '' },
       },
+    },
+  },
+...
+``` -->
+```javascript
+...
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'public'),
+    },
+    open: true,
+    port: 'auto',
+    // https://webpack.js.org/configuration/dev-server/#devserverproxy
+    proxy: {
+      '/todos': 'http://localhost:5500',
     },
   },
 ...

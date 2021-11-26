@@ -111,7 +111,7 @@ login form
   --green: #60bc79;
   --gray: #757575;
   --width: 380px;
-  --trasition-delay: 0.2s;
+  --transition-delay: 0.2s;
 }
 
 *,
@@ -201,7 +201,7 @@ input 요소가 포거스 상태가 아닐 때 텍스트가 입력되지 있지 
   left: 0.4rem;
   line-height: 60px;
   cursor: pointer;
-  transition: var(--trasition-delay) ease;
+  transition: var(--transition-delay) ease;
 }
 
 .input-container .bar {
@@ -220,7 +220,7 @@ input 요소가 포거스 상태가 아닐 때 텍스트가 입력되지 있지 
   background: var(--main-color);
   width: 0;
   height: 2px;
-  transition: var(--trasition-delay) ease;
+  transition: var(--transition-delay) ease;
 }
 
 .input-container .bar:before {
@@ -429,7 +429,7 @@ input 요소가 포거스 상태가 아닐 때 텍스트가 입력되지 있지 
   --green: #60bc79;
   --gray: #757575;
   --width: 380px;
-  --trasition-delay: 0.2s;
+  --transition-delay: 0.2s;
 }
 
 *,
@@ -519,7 +519,7 @@ input 요소가 포거스 상태가 아닐 때 텍스트가 입력되지 있지 
   left: 0.4rem;
   line-height: 60px;
   cursor: pointer;
-  transition: var(--trasition-delay) ease;
+  transition: var(--transition-delay) ease;
 }
 
 .input-container .bar {
@@ -538,7 +538,7 @@ input 요소가 포거스 상태가 아닐 때 텍스트가 입력되지 있지 
   background: var(--main-color);
   width: 0;
   height: 2px;
-  transition: var(--trasition-delay) ease;
+  transition: var(--transition-delay) ease;
 }
 
 .input-container .bar:before {
@@ -603,7 +603,7 @@ input 요소가 포거스 상태가 아닐 때 텍스트가 입력되지 있지 
   margin: 10px 0 20px;
   color: var(--label-color);
   text-align: center;
-  transition: var(--trasition-delay) ease;
+  transition: var(--transition-delay) ease;
 }
 
 .link > a:hover {

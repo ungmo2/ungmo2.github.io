@@ -44,16 +44,11 @@ login form
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Form validation</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;900&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;900&display=swap" rel="stylesheet" />
     <link href="https://unpkg.com/boxicons@latest/css/boxicons.min.css" rel="stylesheet" />
-    <link href="css/style.css" rel="stylesheet" />
     <link href="css/toaster.css" rel="stylesheet" />
-    <script type="module" defer src="js/signin.js"></script>
+    <link href="css/style.css" rel="stylesheet" />
+    <script type="module" src="js/signin.js"></script>
   </head>
   <body>
     <form class="form signin" novalidate>
@@ -316,16 +311,11 @@ input 요소가 포거스 상태가 아닐 때 텍스트가 입력되지 있지 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Form validation</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;900&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;900&display=swap" rel="stylesheet" />
     <link href="https://unpkg.com/boxicons@latest/css/boxicons.min.css" rel="stylesheet" />
-    <link href="css/style.css" rel="stylesheet" />
     <link href="css/toaster.css" rel="stylesheet" />
-    <script type="module" defer src="js/auth.js"></script>
+    <link href="css/style.css" rel="stylesheet" />
+    <script type="module" src="js/auth.js"></script>
   </head>
   <body>
     <form class="form signin" novalidate>

@@ -50,7 +50,7 @@ description:
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet" />
     <title>Carousel Slider</title>
     <style>
       *,
@@ -112,6 +112,7 @@ description:
         right: 0;
       }
     </style>
+    <script defer src="app.js"></script>
   </head>
   <body>
     <h1 class="title">Carousel Slider</h1>
@@ -139,4 +140,17 @@ description:
     </script>
   </body>
 </html>
+```
+
+app.js
+
+```javascript
+const carousel = ($container, images) => {};
+
+carousel(document.querySelector('.carousel'), [
+  'movies/movie-1.jpg',
+  'movies/movie-2.jpg',
+  'movies/movie-3.jpg',
+  'movies/movie-4.jpg'
+]);
 ```

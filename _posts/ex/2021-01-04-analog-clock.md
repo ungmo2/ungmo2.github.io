@@ -8,20 +8,17 @@ permalink: /:categories/:title
 description:
 ---
 
-다음과 같이 동작하는 아날로그 시계를 구현해보자.
-
 ![](/assets/fs-images/exercise/analog-clock.gif)
 {: .w-350}
 
 Analog clock
 {: .desc-img}
 
-요구 사항
-{: .title}
-- CSS 변수를 사용해 시계의 시침(.hand.hour 요소), 분침(.hand.minute 요소), 초침(.hand.second 요소)을 1초 간격으로 회전시켜 현재 시간을 표시한다.
-- CSS 변수(CSS custom property): [Updating a CSS Variable with JavaScript](https://css-tricks.com/updating-a-css-variable-with-javascript)
+# 1. 요구 사항
+  - CSS 변수를 사용해 시계의 시침(.hand.hour 요소), 분침(.hand.minute 요소), 초침(.hand.second 요소)을 1초 간격으로 회전시켜 현재 시간을 표시한다.
+  - CSS 변수(CSS custom property): [Updating a CSS Variable with JavaScript](https://css-tricks.com/updating-a-css-variable-with-javascript)
 
-뷰의 기본 템플릿은 다음과 같다.
+# 2. 기본 템플릿
 
 ```html
 <!DOCTYPE html>
@@ -30,7 +27,7 @@ Analog clock
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Analog clock</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet" />
     <style>
       *,
       *::after,
@@ -99,7 +96,7 @@ Analog clock
         background-color: black;
       }
 
-      /* 시간 구분 마크: .clock과 같은 크기의 블록 요소를 회전시킨다. */
+      /* .clock과 같은 크기의 블록 요소를 회전시킨다. */
       .clock > .time {
         position: absolute;
         width: 100%;
@@ -144,17 +141,14 @@ Analog clock
         transform: rotate(330deg);
       }
     </style>
+    <script defer src="app.js"></script>
   </head>
   <body>
     <h1 class="title">Analog clock</h1>
     <div class="clock">
-      <!-- 시계의 시침 -->
       <div class="hand hour"></div>
-      <!-- 시계의 분침 -->
       <div class="hand minute"></div>
-      <!-- 시계의 초침 -->
       <div class="hand second"></div>
-      <!-- 시간 구분 마크 -->
       <div class="time time1">|</div>
       <div class="time time2">|</div>
       <div class="time time3">|</div>

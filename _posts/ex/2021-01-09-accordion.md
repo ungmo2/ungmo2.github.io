@@ -275,7 +275,7 @@ transition을 사용해 HTML 요소를 어떻게 감추고 노출하면 되는�
   <head>
     <meta charset="UTF-8" />
     <title>Accordion</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet" />
     <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
     <style>
       *,
@@ -300,7 +300,7 @@ transition을 사용해 HTML 요소를 어떻게 감추고 노출하면 되는�
         box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14),
           0 5px 24px 4px rgba(0, 0, 0, 0.12);
         border-radius: 5px;
-        /* opacity: 0; */
+        opacity: 0;
       }
       .accordion > .menu-container > .menu {
         position: relative;
@@ -322,7 +322,7 @@ transition을 사용해 HTML 요소를 어떻게 감추고 노출하면 되는�
         transition: all 0.4s ease;
         /* https://developer.mozilla.org/ko/docs/Web/CSS/pointer-events
           pointer-events에 none을 지정하면 해당 요소에서 클릭, 드래그, 호버와 같은 포인터 이벤트가 발생하지 않는다. */
-        /* pointer-events: none; */
+        pointer-events: none;
       }
       .accordion > .menu-container.active > .menu > i {
         transform: rotate(180deg);
@@ -371,8 +371,8 @@ transition을 사용해 HTML 요소를 어떻게 감추고 노출하면 되는�
         color: #fff;
       }
     </style>
+    <script defer src="app.js"></script>
   </head>
-
   <body>
     <h1 class="title">Accordion</h1>
     <div class="accordion">

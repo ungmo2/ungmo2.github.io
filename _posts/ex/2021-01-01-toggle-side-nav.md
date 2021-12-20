@@ -8,22 +8,20 @@ permalink: /:categories/:title
 description:
 ---
 
-* TOC
-{:toc}
-
 ![](/assets/fs-images/exercise/toggle-side-nav.gif)
 
 Toggle side nav
 {: .desc-img}
 
-요구 사항
-{: .title}
-- 페이지 상단 토글 버튼(i.toggle)이 클릭되면 사이드 내비게이션이 토글(오픈/클로즈)되도록 구현한다.
-- 사이드 내비게이션이 포함된 페이지가 애플리케이션 내에 여러 개 존재한다고 가정하고 reload, 페이지 이동 시에도 이전에 적용된 사이드 내비게이션 상태가 동일하게 적용되도록 구현한다.
-- 사이드 네비게이션이 오픈된 상태에서 리로드하면 사이드 네비게이션이 다시 트랜지션하지 않고 오픈된 상태 그대로 렌더링되어야 한다.
-- 아이콘은 [Boxicons](https://boxicons.com)을 사용한다.
+# 1. 요구 사항
 
-뷰의 기본 템플릿은 다음과 같다.
+- 페이지 상단 토글 버튼(i.toggle)이 클릭되면 사이드 내비게이션이 토글(open ⇔ close)되도록 구현한다.
+- 사이드 내비게이션이 포함된 웹페이지가 애플리케이션 내에 여러개 존재한다고 가정한다.
+  - 페이지 이동 또는 리로드 시에도 이전에 적용된 사이드 내비게이션 상태가 모든 웹페이지에 동일하게 적용되어야 한다.
+- 초기 렌더링 시에 불필요한 트랜지션 방지
+  - 사이드 네비게이션이 오픈된 상태에서 웹페이지가 렌더링되면 사이드 네비게이션을 다시 트랜지션하지 않고 오픈된 상태 그대로 렌더링되어야 한다.
+
+# 2. 기본 템플릿
 
 ```html
 <!DOCTYPE html>
@@ -33,7 +31,7 @@ Toggle side nav
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Toggle side nav</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet" />
     <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
     <style>
       html,
@@ -70,7 +68,6 @@ Toggle side nav
         cursor: pointer;
         transition: transform 0.5s;
       }
-
       /* nav 요소 활성화 */
       nav.active,
       nav.active ~ main {
@@ -79,12 +76,12 @@ Toggle side nav
       nav.active ~ main > .toggle {
         transform: rotate(180deg);
       }
-
       /* 트랜지션 취소 */
       .notransition {
         transition: none !important;
       }
     </style>
+    <script defer src="app.js"></script>
   </head>
   <body>
     <div class="container">

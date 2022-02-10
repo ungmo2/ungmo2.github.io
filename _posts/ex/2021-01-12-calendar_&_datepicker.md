@@ -23,10 +23,10 @@ native-date-picker
 
 ![date-picker](/assets/fs-images/exercise/date-picker.gif)
 {: .w-300}
-datepicker
+date picker
 {: .desc-img}
 
-다음의 순서에 따라 먼저 Calendar를 구현하고 이를 기반으로 Datepicker를 구현해보자.
+다음의 순서에 따라 먼저 Calendar를 구현하고 이를 기반으로 Date picker를 구현해보자.
 
 # 1. Calendar
 
@@ -34,32 +34,32 @@ datepicker
 
 다음 그림을 참고해서 Calendar의 뷰를 구현한다.
 
-![canlendar layout](/assets/fs-images/exercise/canlendar-layout.png)
-canlendar layout
+![calendar layout](/assets/fs-images/exercise/calendar-layout.png)
+calendar layout
 {: .desc-img}
 
 요구 사항은 다음과 같다.
 
 1. 레이아웃
 
-flex는 1차원(선형) 레이아웃에 적합하고 grid는 2차원(매트릭스) 레이이웃에 적합하다. .calendar-nav 요소의 콘텐츠는 선형이고 .calendar-grid 요소의 콘텐츠는 매트릭스이므로 다음과 같이 레이아웃 시스템을 적용해 구현한다.
+flexbox는 1차원(선형) 레이아웃의 정렬에 적합하고 grid는 2차원(매트릭스) 레이이웃에 적합하다. .calendar-nav 요소의 콘텐츠는 선형이고 .calendar-grid 요소의 콘텐츠는 매트릭스이므로 다음과 같이 레이아웃 시스템을 적용해 구현한다.
 
 | 구성 요소            | 적용 레이아웃
 |:-------------------|:---------------
-| .calendar-nav      | flex
+| .calendar-nav      | flexbox
 | .calendar-grid     | gird
 
 - [When to use Flexbox and when to use CSS grid](https://blog.logrocket.com/flexbox-vs-css-grid)
 
 2. css 변수와 반응형 뷰
 
-CSS의 미디어 쿼리(@media)는 HTML 요소를 기반으로 동작하지 않고 디바이스 또는 [미디어 타입](https://www.w3.org/TR/CSS21/media.html)을 기반으로 동작한다. 따라서 미디어 쿼리로는 특정 HTML 요소의 width 값의 변화에 반응하는 뷰를 구현할 수 없다. 하지만 [css 변수(css 커스텀 프로퍼티)](https://developer.mozilla.org/ko/docs/Web/CSS/Using_CSS_custom_properties)를 사용하면 특정 HTML 요소의 width 값의 변화에 반응하는 뷰를 구현할 수 있다.
+CSS의 미디어 쿼리(@media)는 HTML 요소를 기반으로 동작하지 않고 디바이스 또는 [미디어 타입](https://www.w3.org/TR/CSS21/media.html)(screen, print 등)을 기반으로 동작한다. 따라서 미디어 쿼리로는 특정 HTML 요소의 width 값의 변화에 반응하는 뷰를 구현할 수 없다. 하지만 [css 변수(css 커스텀 프로퍼티)](https://developer.mozilla.org/ko/docs/Web/CSS/Using_CSS_custom_properties)를 사용하면 특정 HTML 요소의 width 값의 변화에 반응하는 뷰를 구현할 수 있다.
 
 - [Responsive Designs and CSS Custom Properties: Building a Flexible Grid System](https://css-tricks.com/responsive-designs-and-css-custom-properties-building-a-flexible-grid-system)
 
 자바스크립트로 .calendar 요소의 width 값을 동적으로 변경할 경우를 대비해 [css 변수](https://developer.mozilla.org/ko/docs/Web/CSS/Using_CSS_custom_properties)를 사용하여 .calendar 요소의 width 값을 관리하려 한다. 다음과 같이 .calendar 요소의 width 값이 변경되면 캘린더 전체의 크기와 폰트 사이즈가 연동해서 조정되도록 뷰를 구현한다.
 
-![canlendar layout](/assets/fs-images/exercise/calendar-size.gif)
+![calendar layout](/assets/fs-images/exercise/calendar-size.gif)
 {: .w-400}
 calendar size
 {: .desc-img}
@@ -108,8 +108,8 @@ calendar size
 
 구현된 뷰를 기반으로 다음 그림을 참고해서 바닐라 자바스크립트로 기능을 구현한다.
 
-![canlendar function](/assets/fs-images/exercise/canlendar-function.png)
-canlendar function
+![calendar function](/assets/fs-images/exercise/calendar-function.png)
+calendar function
 {: .desc-img}
 
 요구 사항은 다음과 같다.

@@ -13,6 +13,8 @@ description: JSDoc을 사용하여 자바스크립트에 타입 힌트 제공하
 
 VS Code에서 순수한 자바스크립트 소스코드에 다음과 같이 `@ts-check`를 주석으로 추가하면 TypeScript처럼 타입 및 에러 체크가 가능하다.
 
+- [@ts-check](https://www.typescriptlang.org/docs/handbook/intro-to-js-ts.html#ts-check)
+
 ```javascript
 // @ts-check
 
@@ -76,6 +78,8 @@ let union;
 let generic;
 ```
 
+- [@type](https://jsdoc.app/tags-type.html)
+
 # 2. 함수 타입
 
 ```javascript
@@ -125,6 +129,9 @@ function stringsStringStrings(p1, p2, p3, p4) {
 }
 ```
 
+- [@param (synonyms: @arg, @argument)](https://jsdoc.app/tags-param.html)
+- [@returns(synonyms: @return)](https://jsdoc.app/tags-returns.html)
+
 # 3. 타입 정의
 
 @typedef는 복잡한 타입을 정의할 때 사용한다.
@@ -150,6 +157,8 @@ const todos = [
   { id: 3, content: 'Javascript', completed: false },
 ];
 ```
+
+- [@typedef](https://jsdoc.app/tags-typedef.html)
 
 # 4. Callback
 
@@ -180,6 +189,8 @@ const todos = [
 /** @type {Predicate1} */
 const ok = s => !(s.length % 2);
 ```
+
+- [@callback](https://jsdoc.app/tags-callback.html)
 
 # 5. DOM
 

@@ -377,11 +377,11 @@ const arr = [1, 2, 3];
 arr.forEach(alert);
 ```
 
-이 소스코드를 실행하면 "ReferenceError: alert is not defined"라는 에러가 발생한다. 브라우저에 알림창을 띄우는 alert 함수는 브라우저에서만 동작하는 클라이언트 사이트 Web API다. 즉, alert 함수는 브라우저 환경에서만 유효하다.
+이 소스코드를 실행하면 "ReferenceError: alert is not defined"라는 에러가 발생한다. 브라우저에 알림창을 띄우는 alert 함수는 브라우저에서만 동작하는 클라이언트 사이드 Web API다. 즉, alert 함수는 브라우저 환경에서만 유효하다.
 
-그런데 Code Runner 확장 플러그인은 Node.js 환경을 사용해 자바스크립트를 실행한다. 따라서 클라이언트 사이트 Web API인 alert 함수를 Node.js 환경에서는 알 수 없기 때문에 에러가 발생한 것이다. 따라서 클라이언트 사이트 Web API가 포함된 소스코드는 Code Runner 확장 플러그인을 통해 실행하지 말고 브라우저 환경에서 실행해야 한다.
+그런데 Code Runner 확장 플러그인은 Node.js 환경을 사용해 자바스크립트를 실행한다. 따라서 클라이언트 사이드 Web API인 alert 함수를 Node.js 환경에서는 알 수 없기 때문에 에러가 발생한 것이다. 따라서 클라이언트 사이드 Web API가 포함된 소스코드는 Code Runner 확장 플러그인을 통해 실행하지 말고 브라우저 환경에서 실행해야 한다.
 
-지금은 브라우저 환경과 Node.js 환경 모두에서 실행 가능한 ECMAScript 표준 빌트인 함수와 브라우저 환경에서만 실행 가능한 클라이언트 사이트 Web API를 구분하기 어려울 것이다. 이 책에서는 앞으로 다양한 ECMAScript 표준 빌트인 함수와 클라이언트 사이트 Web API를 다룬다. 따라서 점차 ECMAScript의 표준 빌트인 함수와 클라이언트 사이트 Web API를 구분할 수 있게 될 것이다. 지금은 클라이언트 사이트 Web API는 Node.js 환경에서 실행할 수 없다는 것에 주목하자.
+지금은 브라우저 환경과 Node.js 환경 모두에서 실행 가능한 ECMAScript 표준 빌트인 함수와 브라우저 환경에서만 실행 가능한 클라이언트 사이드 Web API를 구분하기 어려울 것이다. 이 책에서는 앞으로 다양한 ECMAScript 표준 빌트인 함수와 클라이언트 사이드 Web API를 다룬다. 따라서 점차 ECMAScript의 표준 빌트인 함수와 클라이언트 사이드 Web API를 구분할 수 있게 될 것이다. 지금은 클라이언트 사이드 Web API는 Node.js 환경에서 실행할 수 없다는 것에 주목하자.
 
 ## 4.4.	Live Server 확장 플러그인
 

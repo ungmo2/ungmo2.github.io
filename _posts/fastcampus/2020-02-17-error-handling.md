@@ -61,7 +61,7 @@ const $elem = document.querySelector('#1');
 하지만 querySelector 메서드는 인수로 전달한 CSS 선택자 문자열로 DOM에서 요소 노드를 찾을 수 없는 경우 에러를 발생시키지 않고 null을 반환한다. 이때 if 문으로 querySelector 메서드의 반환값을 확인하거나 단축 평가 또는 옵셔널 체이닝 연산자 `?.`를 사용하지 않으면 다음 처리에서 에러로 이어질 가능성이 크다.
 
 ```javascript
-// DOM에 button 요소가 존재하는 경우 querySelector 메서드는 에러를 발생시키지 않고 null을 반환한다.
+// DOM에 button 요소가 존재하지 않는 경우 querySelector 메서드는 에러를 발생시키지 않고 null을 반환한다.
 const $button = document.querySelector('button'); // null
 $button?.classList.add('disabled');
 ```

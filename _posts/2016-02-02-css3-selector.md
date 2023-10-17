@@ -540,7 +540,7 @@ selector:pseudo-class {
 }
 ```
 
-다음은 div 요소가 hover 상태일 때(마우스가 올라와 있을 때) background-color를 yellow로 지정하는 예이다.
+다음은 div 요소가 hover 상태일 때(마우스가 올라와 있을 때) background-color를 red로 지정하는 예이다.
 
 ```html
 <!DOCTYPE html>

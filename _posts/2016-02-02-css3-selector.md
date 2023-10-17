@@ -548,7 +548,7 @@ selector:pseudo-class {
 <head>
   <style>
     /* a 요소가 hover 상태일 때 */
-    a:hover { color: red; }
+    a:hover { background-color: red; }
     /* input 요소가 focus 상태일 때 */
     input:focus { background-color: yellow; }
   </style>
